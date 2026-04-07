@@ -11,6 +11,7 @@
   "total_verses": 38,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "HAG",
       "chapter": 1,
       "chapter_usfm": "HAG.1",
@@ -19,73 +20,414 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HAG.1.1",
+          "line_type": "p",
           "text": "In the second year of King Darius, in the sixth month, on the first day of the month, the word of the Lord came by Haggai the prophet to Zerubbabel the son of Shealtiel, governor of Judah, and to Joshua the son of Jehozadak, the high priest, saying,"
         },
         {
           "verse": 2,
+          "usfm": "HAG.1.2",
+          "line_type": "p",
           "text": "“Thus speaks the Lord of hosts, saying: ‘This people says, “The time has not come, the time that the Lord’s house should be built.” ’ ”"
         },
         {
           "verse": 3,
+          "usfm": "HAG.1.3",
+          "line_type": "p",
           "text": "Then the word of the Lord came by Haggai the prophet, saying,"
         },
         {
           "verse": 4,
+          "usfm": "HAG.1.4",
+          "line_type": "p",
           "text": "“Is it time for you yourselves to dwell in your paneled houses, and this temple to lie in ruins?”"
         },
         {
           "verse": 5,
+          "usfm": "HAG.1.5",
+          "line_type": "p",
           "text": "Now therefore, thus says the Lord of hosts: “Consider your ways!"
         },
         {
           "verse": 6,
+          "usfm": "HAG.1.6",
+          "line_type": "q1",
           "text": "“You have sown much, and bring in little;You eat, but do not have enough;You drink, but you are not filled with drink;You clothe yourselves, but no one is warm;And he who earns wages,Earns wages to put into a bag with holes.”"
         },
         {
           "verse": 7,
+          "usfm": "HAG.1.7",
+          "line_type": "p",
           "text": "Thus says the Lord of hosts: “Consider your ways!"
         },
         {
           "verse": 8,
+          "usfm": "HAG.1.8",
+          "line_type": "p",
           "text": "Go up to the mountains and bring wood and build the temple, that I may take pleasure in it and be glorified,” says the Lord."
         },
         {
           "verse": 9,
+          "usfm": "HAG.1.9",
+          "line_type": "p",
           "text": "“You looked for much, but indeed it came to little; and when you brought it home, I blew it away. Why?” says the Lord of hosts. “Because of My house that is in ruins, while every one of you runs to his own house."
         },
         {
           "verse": 10,
+          "usfm": "HAG.1.10",
+          "line_type": "p",
           "text": "Therefore the heavens above you withhold the dew, and the earth withholds its fruit."
         },
         {
           "verse": 11,
+          "usfm": "HAG.1.11",
+          "line_type": "p",
           "text": "For I called for a drought on the land and the mountains, on the grain and the new wine and the oil, on whatever the ground brings forth, on men and livestock, and on all the labor of your hands.”"
         },
         {
           "verse": 12,
+          "usfm": "HAG.1.12",
+          "line_type": "p",
           "text": "Then Zerubbabel the son of Shealtiel, and Joshua the son of Jehozadak, the high priest, with all the remnant of the people, obeyed the voice of the Lord their God, and the words of Haggai the prophet, as the Lord their God had sent him; and the people feared the presence of the Lord."
         },
         {
           "verse": 13,
+          "usfm": "HAG.1.13",
+          "line_type": "p",
           "text": "Then Haggai, the Lord’s messenger, spoke the Lord’s message to the people, saying, “I am with you, says the Lord.”"
         },
         {
           "verse": 14,
+          "usfm": "HAG.1.14",
+          "line_type": "p",
           "text": "So the Lord stirred up the spirit of Zerubbabel the son of Shealtiel, governor of Judah, and the spirit of Joshua the son of Jehozadak, the high priest, and the spirit of all the remnant of the people; and they came and worked on the house of the Lord of hosts, their God,"
         },
         {
           "verse": 15,
+          "usfm": "HAG.1.15",
+          "line_type": "p",
           "text": "on the twenty-fourth day of the sixth month, in the second year of King Darius."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "The People’s Obedience"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HAG.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 4:24; Hag. 2:10; Zech. 1:1, 7"
+        },
+        {
+          "verse": 1,
+          "usfm": "HAG.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 5:1; 6:14"
+        },
+        {
+          "verse": 1,
+          "usfm": "HAG.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Chr. 3:19; Ezra 2:2; Neh. 7:7; Zech. 4:6; Matt. 1:12, 13"
+        },
+        {
+          "verse": 1,
+          "usfm": "HAG.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 5:2, 3; Zech. 6:11"
+        },
+        {
+          "verse": 1,
+          "usfm": "HAG.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Chr. 6:15"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAG.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 5:1"
+        },
+        {
+          "verse": 4,
+          "usfm": "HAG.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Sam. 7:2"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAG.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lam. 3:40"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAG.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 28:38–40; Hos. 8:7; Hag. 1:9, 10; 2:16, 17"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAG.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Zech. 8:10"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAG.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 3:7"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAG.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hag. 2:16"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAG.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hag. 2:17"
+        },
+        {
+          "verse": 10,
+          "usfm": "HAG.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lev. 26:19; Deut. 28:23; 1 Kin. 8:35; Joel 1:18–20"
+        },
+        {
+          "verse": 11,
+          "usfm": "HAG.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Kin. 17:1; 2 Kin. 8:1"
+        },
+        {
+          "verse": 11,
+          "usfm": "HAG.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hag. 2:17"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAG.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 5:2"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAG.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Matt. 28:20; Rom. 8:31)"
+        },
+        {
+          "verse": 14,
+          "usfm": "HAG.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Chr. 36:22; Ezra 1:1"
+        },
+        {
+          "verse": 14,
+          "usfm": "HAG.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hag. 2:21"
+        },
+        {
+          "verse": 14,
+          "usfm": "HAG.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 5:2, 8; Neh. 4:6"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HAG.1.1",
+            "HAG.1.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "HAG.1.3",
+            "HAG.1.4",
+            "HAG.1.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 11,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "HAG.1.10",
+            "HAG.1.11",
+            "HAG.1.7",
+            "HAG.1.8",
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 15,
+          "verses": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "HAG.1.12",
+            "HAG.1.13",
+            "HAG.1.14",
+            "HAG.1.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -104,9 +446,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/HAG/1-6334a5e42ada595eddd0f9f6b515319b.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/HAG.1.NKJV",
+        "reference": {
+          "usfm": [
+            "HAG.1"
+          ],
+          "human": "Haggai 1",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.3"
+          ],
+          "human": "Zephaniah 3",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HAG.2"
+          ],
+          "human": "Haggai 2",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HAG",
       "chapter": 2,
       "chapter_usfm": "HAG.2",
@@ -115,113 +514,618 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HAG.2.1",
+          "line_type": "p",
           "text": "In the seventh month, on the twenty-first of the month, the word of the Lord came by Haggai the prophet, saying:"
         },
         {
           "verse": 2,
+          "usfm": "HAG.2.2",
+          "line_type": "p",
           "text": "“Speak now to Zerubbabel the son of Shealtiel, governor of Judah, and to Joshua the son of Jehozadak, the high priest, and to the remnant of the people, saying:"
         },
         {
           "verse": 3,
+          "usfm": "HAG.2.3",
+          "line_type": "p",
           "text": "‘Who is left among you who saw this temple in its former glory? And how do you see it now? In comparison with it, is this not in your eyes as nothing?"
         },
         {
           "verse": 4,
+          "usfm": "HAG.2.4",
+          "line_type": "p",
           "text": "Yet now be strong, Zerubbabel,’ says the Lord; ‘and be strong, Joshua, son of Jehozadak, the high priest; and be strong, all you people of the land,’ says the Lord, ‘and work; for I am with you,’ says the Lord of hosts."
         },
         {
           "verse": 5,
+          "usfm": "HAG.2.5",
+          "line_type": "p",
           "text": "‘According to the word that I covenanted with you when you came out of Egypt, so My Spirit remains among you; do not fear!’"
         },
         {
           "verse": 6,
+          "usfm": "HAG.2.6",
+          "line_type": "p",
           "text": "“For thus says the Lord of hosts: ‘Once more (it is a little while) I will shake heaven and earth, the sea and dry land;"
         },
         {
           "verse": 7,
+          "usfm": "HAG.2.7",
+          "line_type": "p",
           "text": "and I will shake all nations, and they shall come to the Desire of All Nations, and I will fill this temple with glory,’ says the Lord of hosts."
         },
         {
           "verse": 8,
+          "usfm": "HAG.2.8",
+          "line_type": "p",
           "text": "‘The silver is Mine, and the gold is Mine,’ says the Lord of hosts."
         },
         {
           "verse": 9,
+          "usfm": "HAG.2.9",
+          "line_type": "p",
           "text": "‘The glory of this latter temple shall be greater than the former,’ says the Lord of hosts. ‘And in this place I will give peace,’ says the Lord of hosts.”"
         },
         {
           "verse": 10,
+          "usfm": "HAG.2.10",
+          "line_type": "p",
           "text": "On the twenty-fourth day of the ninth month, in the second year of Darius, the word of the Lord came by Haggai the prophet, saying,"
         },
         {
           "verse": 11,
+          "usfm": "HAG.2.11",
+          "line_type": "p",
           "text": "“Thus says the Lord of hosts: ‘Now, ask the priests concerning the law, saying,"
         },
         {
           "verse": 12,
+          "usfm": "HAG.2.12",
+          "line_type": "p",
           "text": "“If one carries holy meat in the fold of his garment, and with the edge he touches bread or stew, wine or oil, or any food, will it become holy?” ’ ”Then the priests answered and said, “No.”"
         },
         {
           "verse": 13,
+          "usfm": "HAG.2.13",
+          "line_type": "p",
           "text": "And Haggai said, “If one who is unclean because of a dead body touches any of these, will it be unclean?”So the priests answered and said, “It shall be unclean.”"
         },
         {
           "verse": 14,
+          "usfm": "HAG.2.14",
+          "line_type": "p",
           "text": "Then Haggai answered and said, “ ‘So is this people, and so is this nation before Me,’ says the Lord, ‘and so is every work of their hands; and what they offer there is unclean."
         },
         {
           "verse": 15,
+          "usfm": "HAG.2.15",
+          "line_type": "p",
           "text": "‘And now, carefully consider from this day forward: from before stone was laid upon stone in the temple of the Lord—"
         },
         {
           "verse": 16,
+          "usfm": "HAG.2.16",
+          "line_type": "p",
           "text": "since those days, when one came to a heap of twenty ephahs, there were but ten; when one came to the wine vat to draw out fifty baths from the press, there were but twenty."
         },
         {
           "verse": 17,
+          "usfm": "HAG.2.17",
+          "line_type": "p",
           "text": "I struck you with blight and mildew and hail in all the labors of your hands; yet you did not turn to Me,’ says the Lord."
         },
         {
           "verse": 18,
+          "usfm": "HAG.2.18",
+          "line_type": "p",
           "text": "‘Consider now from this day forward, from the twenty-fourth day of the ninth month, from the day that the foundation of the Lord’s temple was laid—consider it:"
         },
         {
           "verse": 19,
+          "usfm": "HAG.2.19",
+          "line_type": "p",
           "text": "Is the seed still in the barn? As yet the vine, the fig tree, the pomegranate, and the olive tree have not yielded fruit. But from this day I will bless you.’ ”"
         },
         {
           "verse": 20,
+          "usfm": "HAG.2.20",
+          "line_type": "p",
           "text": "And again the word of the Lord came to Haggai on the twenty-fourth day of the month, saying,"
         },
         {
           "verse": 21,
+          "usfm": "HAG.2.21",
+          "line_type": "p",
           "text": "“Speak to Zerubbabel, governor of Judah, saying:‘I will shake heaven and earth."
         },
         {
           "verse": 22,
+          "usfm": "HAG.2.22",
+          "line_type": "q2",
           "text": "I will overthrow the throne of kingdoms;I will destroy the strength of the Gentile kingdoms.I will overthrow the chariotsAnd those who ride in them;The horses and their riders shall come down,Every one by the sword of his brother."
         },
         {
           "verse": 23,
+          "usfm": "HAG.2.23",
+          "line_type": "p",
           "text": "‘In that day,’ says the Lord of hosts, ‘I will take you, Zerubbabel My servant, the son of Shealtiel,’ says the Lord, ‘and will make you like a signet ring; for I have chosen you,’ says the Lord of hosts.”"
         }
       ],
       "verse_count": 23,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "The People Are Defiled"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "Promised Blessing"
         },
         {
-          "before_verse": 19,
+          "before_verse": 20,
           "text": "Zerubbabel Chosen as a Signet"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "HAG.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 3:12, 13"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAG.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Zech. 4:10"
+        },
+        {
+          "verse": 4,
+          "usfm": "HAG.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 31:23; 1 Chr. 22:13; 28:20; Zech. 8:9; Eph. 6:10"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAG.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex. 29:45, 46"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAG.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Neh. 9:20); Is. 63:11, 14"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAG.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 12:26"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAG.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Joel 3:16)"
+        },
+        {
+          "verse": 7,
+          "usfm": "HAG.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 49:10; Mal. 3:1"
+        },
+        {
+          "verse": 7,
+          "usfm": "HAG.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Kin. 8:11; Is. 60:7; Zech. 2:5"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAG.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 1:14)"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAG.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 85:8, 9; Luke 2:14; (Eph. 2:14)"
+        },
+        {
+          "verse": 11,
+          "usfm": "HAG.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lev. 10:10, 11; Deut. 33:10; Mal. 2:7"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAG.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lev. 22:4–6; Num. 19:11, 22"
+        },
+        {
+          "verse": 14,
+          "usfm": "HAG.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Titus 1:15)"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAG.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hag. 1:5, 7; 2:18"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAG.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hag. 1:6, 9; Zech. 8:10"
+        },
+        {
+          "verse": 17,
+          "usfm": "HAG.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 28:22; 1 Kin. 8:37; Amos 4:9"
+        },
+        {
+          "verse": 17,
+          "usfm": "HAG.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hag. 1:11"
+        },
+        {
+          "verse": 17,
+          "usfm": "HAG.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 5:3; Amos 4:6–11"
+        },
+        {
+          "verse": 18,
+          "usfm": "HAG.2.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 5:1, 2, 16; Zech. 8:9"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAG.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Zech. 8:12"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAG.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 128:1–6; Jer. 31:12, 14; (Mal. 3:10)"
+        },
+        {
+          "verse": 21,
+          "usfm": "HAG.2.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 5:2; Hag. 1:1, 14; Zech. 4:6–10"
+        },
+        {
+          "verse": 21,
+          "usfm": "HAG.2.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hag. 2:6, 7; (Heb. 12:26, 27)"
+        },
+        {
+          "verse": 22,
+          "usfm": "HAG.2.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Dan. 2:44; Rev. 19:11–21)"
+        },
+        {
+          "verse": 22,
+          "usfm": "HAG.2.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 46:9; Ezek. 39:20; Mic. 5:10; Zech. 9:10"
+        },
+        {
+          "verse": 23,
+          "usfm": "HAG.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Song 8:6; Jer. 22:24"
+        },
+        {
+          "verse": 23,
+          "usfm": "HAG.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 42:1; 43:10"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "HAG.2.1",
+            "HAG.2.2",
+            "HAG.2.3",
+            "HAG.2.4",
+            "HAG.2.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "HAG.2.6",
+            "HAG.2.7",
+            "HAG.2.8",
+            "HAG.2.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "HAG.2.10",
+            "HAG.2.11",
+            "HAG.2.12"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "HAG.2.12"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAG.2.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAG.2.13"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HAG.2.14"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 19,
+          "verses": [
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "usfms": [
+            "HAG.2.15",
+            "HAG.2.16",
+            "HAG.2.17",
+            "HAG.2.18",
+            "HAG.2.19"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "HAG.2.20",
+            "HAG.2.21"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "HAG.2.21"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HAG.2.23"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -240,7 +1144,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/HAG/2-dc7cbb0b5b109067a57dea365628ddfc.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 23,
+          "parsed_count": 23,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/HAG.2.NKJV",
+        "reference": {
+          "usfm": [
+            "HAG.2"
+          ],
+          "human": "Haggai 2",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HAG.1"
+          ],
+          "human": "Haggai 1",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.1"
+          ],
+          "human": "Zechariah 1",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

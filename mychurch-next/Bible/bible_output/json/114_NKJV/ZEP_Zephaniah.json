@@ -11,6 +11,7 @@
   "total_verses": 53,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "ZEP",
       "chapter": 1,
       "chapter_usfm": "ZEP.1",
@@ -19,89 +20,1168 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEP.1.1",
+          "line_type": "p",
           "text": "The word of the Lord which came to Zephaniah the son of Cushi, the son of Gedaliah, the son of Amariah, the son of Hezekiah, in the days of Josiah the son of Amon, king of Judah."
         },
         {
           "verse": 2,
+          "usfm": "ZEP.1.2",
+          "line_type": "q1",
           "text": "“I will utterly consume everythingFrom the face of the land,”Says the Lord;"
         },
         {
           "verse": 3,
+          "usfm": "ZEP.1.3",
+          "line_type": "q2",
           "text": "“I will consume man and beast;I will consume the birds of the heavens,The fish of the sea,And the stumbling blocks along with the wicked.I will cut off man from the face of the land,”Says the Lord."
         },
         {
           "verse": 4,
+          "usfm": "ZEP.1.4",
+          "line_type": "q1",
           "text": "“I will stretch out My hand against Judah,And against all the inhabitants of Jerusalem.I will cut off every trace of Baal from this place,The names of the idolatrous priests with the pagan priests—"
         },
         {
           "verse": 5,
+          "usfm": "ZEP.1.5",
+          "line_type": "q2",
           "text": "Those who worship the host of heaven on the housetops;Those who worship and swear oaths by the Lord,But who also swear by Milcom;"
         },
         {
           "verse": 6,
+          "usfm": "ZEP.1.6",
+          "line_type": "q2",
           "text": "Those who have turned back from following the Lord,And have not sought the Lord, nor inquired of Him.”"
         },
         {
           "verse": 7,
+          "usfm": "ZEP.1.7",
+          "line_type": "q1",
           "text": "Be silent in the presence of the Lord God;For the day of the Lord is at hand,For the Lord has prepared a sacrifice;He has invited His guests."
         },
         {
           "verse": 8,
+          "usfm": "ZEP.1.8",
+          "line_type": "q1",
           "text": "“And it shall be,In the day of the Lord’s sacrifice,That I will punish the princes and the king’s children,And all such as are clothed with foreign apparel."
         },
         {
           "verse": 9,
+          "usfm": "ZEP.1.9",
+          "line_type": "q2",
           "text": "In the same day I will punishAll those who leap over the threshold,Who fill their masters’ houses with violence and deceit."
         },
         {
           "verse": 10,
+          "usfm": "ZEP.1.10",
+          "line_type": "q1",
           "text": "“And there shall be on that day,” says the Lord,“The sound of a mournful cry from the Fish Gate,A wailing from the Second Quarter,And a loud crashing from the hills."
         },
         {
           "verse": 11,
+          "usfm": "ZEP.1.11",
+          "line_type": "q2",
           "text": "Wail, you inhabitants of Maktesh!For all the merchant people are cut down;All those who handle money are cut off."
         },
         {
           "verse": 12,
+          "usfm": "ZEP.1.12",
+          "line_type": "q1",
           "text": "“And it shall come to pass at that timeThat I will search Jerusalem with lamps,And punish the menWho are settled in complacency,Who say in their heart,‘The Lord will not do good,Nor will He do evil.’"
         },
         {
           "verse": 13,
+          "usfm": "ZEP.1.13",
+          "line_type": "q2",
           "text": "Therefore their goods shall become booty,And their houses a desolation;They shall build houses, but not inhabit them;They shall plant vineyards, but not drink their wine.”"
         },
         {
           "verse": 14,
+          "usfm": "ZEP.1.14",
+          "line_type": "q1",
           "text": "The great day of the Lord is near;It is near and hastens quickly.The noise of the day of the Lord is bitter;There the mighty men shall cry out."
         },
         {
           "verse": 15,
+          "usfm": "ZEP.1.15",
+          "line_type": "q2",
           "text": "That day is a day of wrath,A day of trouble and distress,A day of devastation and desolation,A day of darkness and gloominess,A day of clouds and thick darkness,"
         },
         {
           "verse": 16,
+          "usfm": "ZEP.1.16",
+          "line_type": "q2",
           "text": "A day of trumpet and alarmAgainst the fortified citiesAnd against the high towers."
         },
         {
           "verse": 17,
+          "usfm": "ZEP.1.17",
+          "line_type": "q1",
           "text": "“I will bring distress upon men,And they shall walk like blind men,Because they have sinned against the Lord;Their blood shall be poured out like dust,And their flesh like refuse.”"
         },
         {
           "verse": 18,
+          "usfm": "ZEP.1.18",
+          "line_type": "q1",
           "text": "Neither their silver nor their goldShall be able to deliver themIn the day of the Lord’s wrath;But the whole land shall be devouredBy the fire of His jealousy,For He will make speedy riddanceOf all those who dwell in the land."
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The Great Day of the"
         },
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Lord"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "ZEP.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Kin. 22:1, 2; 2 Chr. 34:1–33; Jer. 1:2; 22:11"
+        },
+        {
+          "verse": 3,
+          "usfm": "ZEP.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hos. 4:3"
+        },
+        {
+          "verse": 4,
+          "usfm": "ZEP.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Kin. 23:5; Hos. 10:5"
+        },
+        {
+          "verse": 5,
+          "usfm": "ZEP.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Kin. 23:12; Jer. 19:13"
+        },
+        {
+          "verse": 5,
+          "usfm": "ZEP.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Josh. 23:7"
+        },
+        {
+          "verse": 6,
+          "usfm": "ZEP.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 1:4; Jer. 2:13"
+        },
+        {
+          "verse": 6,
+          "usfm": "ZEP.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hos. 7:7"
+        },
+        {
+          "verse": 7,
+          "usfm": "ZEP.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hab. 2:20; Zech. 2:13"
+        },
+        {
+          "verse": 7,
+          "usfm": "ZEP.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 13:6"
+        },
+        {
+          "verse": 7,
+          "usfm": "ZEP.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 28:26; Is. 34:6; Jer. 46:10; Ezek. 39:17–19"
+        },
+        {
+          "verse": 8,
+          "usfm": "ZEP.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 39:6"
+        },
+        {
+          "verse": 9,
+          "usfm": "ZEP.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Sam. 5:5"
+        },
+        {
+          "verse": 10,
+          "usfm": "ZEP.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Chr. 33:14; Neh. 3:3; 12:39"
+        },
+        {
+          "verse": 11,
+          "usfm": "ZEP.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "James 5:1"
+        },
+        {
+          "verse": 12,
+          "usfm": "ZEP.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 48:11; Amos 6:1"
+        },
+        {
+          "verse": 12,
+          "usfm": "ZEP.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 94:7"
+        },
+        {
+          "verse": 13,
+          "usfm": "ZEP.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 28:39"
+        },
+        {
+          "verse": 14,
+          "usfm": "ZEP.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 30:7; Joel 2:1, 11"
+        },
+        {
+          "verse": 15,
+          "usfm": "ZEP.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 22:5"
+        },
+        {
+          "verse": 16,
+          "usfm": "ZEP.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 27:13; Jer. 4:19"
+        },
+        {
+          "verse": 17,
+          "usfm": "ZEP.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 28:29"
+        },
+        {
+          "verse": 18,
+          "usfm": "ZEP.1.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 7:19"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEP.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.1.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.1.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.1.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.1.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.1.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.1.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.1.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.1.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.1.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.1.7"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.1.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.1.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.1.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.1.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.1.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.1.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.1.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.1.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.1.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.1.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.1.10"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.1.10"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.1.10"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.1.10"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.1.11"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.1.11"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.1.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.1.12"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.1.12"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.1.12"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.1.12"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.1.12"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.1.12"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.1.12"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.1.13"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.1.13"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.1.13"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.1.13"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.1.14"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.1.14"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.1.14"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.1.14"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.1.15"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.1.15"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.1.15"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.1.15"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.1.15"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ZEP.1.16"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ZEP.1.16"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ZEP.1.16"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.1.17"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.1.17"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.1.17"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.1.17"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.1.17"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.1.18"
+          ]
+        },
+        {
+          "index": 67,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.1.18"
+          ]
+        },
+        {
+          "index": 68,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.1.18"
+          ]
+        },
+        {
+          "index": 69,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.1.18"
+          ]
+        },
+        {
+          "index": 70,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.1.18"
+          ]
+        },
+        {
+          "index": 71,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.1.18"
+          ]
+        },
+        {
+          "index": 72,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.1.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -120,9 +1200,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/ZEP/1-3499abd3461ec14a4b135345b43a2737.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/ZEP.1.NKJV",
+        "reference": {
+          "usfm": [
+            "ZEP.1"
+          ],
+          "human": "Zephaniah 1",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HAB.3"
+          ],
+          "human": "Habakkuk 3",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.2"
+          ],
+          "human": "Zephaniah 2",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEP",
       "chapter": 2,
       "chapter_usfm": "ZEP.2",
@@ -131,73 +1268,1182 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEP.2.1",
+          "line_type": "q1",
           "text": "Gather yourselves together, yes, gather together,O undesirable nation,"
         },
         {
           "verse": 2,
+          "usfm": "ZEP.2.2",
+          "line_type": "q2",
           "text": "Before the decree is issued,Or the day passes like chaff,Before the Lord’s fierce anger comes upon you,Before the day of the Lord’s anger comes upon you!"
         },
         {
           "verse": 3,
+          "usfm": "ZEP.2.3",
+          "line_type": "q2",
           "text": "Seek the Lord, all you meek of the earth,Who have upheld His justice.Seek righteousness, seek humility.It may be that you will be hiddenIn the day of the Lord’s anger."
         },
         {
           "verse": 4,
+          "usfm": "ZEP.2.4",
+          "line_type": "q1",
           "text": "For Gaza shall be forsaken,And Ashkelon desolate;They shall drive out Ashdod at noonday,And Ekron shall be uprooted."
         },
         {
           "verse": 5,
+          "usfm": "ZEP.2.5",
+          "line_type": "q2",
           "text": "Woe to the inhabitants of the seacoast,The nation of the Cherethites!The word of the Lord is against you,O Canaan, land of the Philistines:“I will destroy you;So there shall be no inhabitant.”"
         },
         {
           "verse": 6,
+          "usfm": "ZEP.2.6",
+          "line_type": "q1",
           "text": "The seacoast shall be pastures,With shelters for shepherds and folds for flocks."
         },
         {
           "verse": 7,
+          "usfm": "ZEP.2.7",
+          "line_type": "q2",
           "text": "The coast shall be for the remnant of the house of Judah;They shall feed their flocks there;In the houses of Ashkelon they shall lie down at evening.For the Lord their God will intervene for them,And return their captives."
         },
         {
           "verse": 8,
+          "usfm": "ZEP.2.8",
+          "line_type": "q1",
           "text": "“I have heard the reproach of Moab,And the insults of the people of Ammon,With which they have reproached My people,And made arrogant threats against their borders."
         },
         {
           "verse": 9,
+          "usfm": "ZEP.2.9",
+          "line_type": "q2",
           "text": "Therefore, as I live,”Says the Lord of hosts, the God of Israel,“Surely Moab shall be like Sodom,And the people of Ammon like Gomorrah—Overrun with weeds and saltpits,And a perpetual desolation.The residue of My people shall plunder them,And the remnant of My people shall possess them.”"
         },
         {
           "verse": 10,
+          "usfm": "ZEP.2.10",
+          "line_type": "q1",
           "text": "This they shall have for their pride,Because they have reproached and made arrogant threatsAgainst the people of the Lord of hosts."
         },
         {
           "verse": 11,
+          "usfm": "ZEP.2.11",
+          "line_type": "q2",
           "text": "The Lord will be awesome to them,For He will reduce to nothing all the gods of the earth;People shall worship Him,Each one from his place,Indeed all the shores of the nations."
         },
         {
           "verse": 12,
+          "usfm": "ZEP.2.12",
+          "line_type": "q1",
           "text": "“You Ethiopians also,You shall be slain by My sword.”"
         },
         {
           "verse": 13,
+          "usfm": "ZEP.2.13",
+          "line_type": "q1",
           "text": "And He will stretch out His hand against the north,Destroy Assyria,And make Nineveh a desolation,As dry as the wilderness."
         },
         {
           "verse": 14,
+          "usfm": "ZEP.2.14",
+          "line_type": "q2",
           "text": "The herds shall lie down in her midst,Every beast of the nation.Both the pelican and the bitternShall lodge on the capitals of her pillars;Their voice shall sing in the windows;Desolation shall be at the threshold;For He will lay bare the cedar work."
         },
         {
           "verse": 15,
+          "usfm": "ZEP.2.15",
+          "line_type": "q2",
           "text": "This is the rejoicing cityThat dwelt securely,That said in her heart,“I am it, and there is none besides me.”How has she become a desolation,A place for beasts to lie down!Everyone who passes by herShall hiss and shake his fist."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Judgment on Nations"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "ZEP.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Chr. 20:4; Joel 1:14; 2:16"
+        },
+        {
+          "verse": 3,
+          "usfm": "ZEP.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 105:4; Amos 5:6"
+        },
+        {
+          "verse": 3,
+          "usfm": "ZEP.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 76:9"
+        },
+        {
+          "verse": 3,
+          "usfm": "ZEP.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Joel 2:14; Amos 5:14, 15"
+        },
+        {
+          "verse": 4,
+          "usfm": "ZEP.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 47:1, 5; Amos 1:7, 8; Zech. 9:5"
+        },
+        {
+          "verse": 4,
+          "usfm": "ZEP.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 6:4"
+        },
+        {
+          "verse": 5,
+          "usfm": "ZEP.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 25:15–17"
+        },
+        {
+          "verse": 5,
+          "usfm": "ZEP.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Josh. 13:3"
+        },
+        {
+          "verse": 6,
+          "usfm": "ZEP.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 17:2"
+        },
+        {
+          "verse": 7,
+          "usfm": "ZEP.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Mic. 5:7, 8)"
+        },
+        {
+          "verse": 7,
+          "usfm": "ZEP.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Luke 1:68"
+        },
+        {
+          "verse": 7,
+          "usfm": "ZEP.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 29:14"
+        },
+        {
+          "verse": 8,
+          "usfm": "ZEP.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 48:27; Amos 2:1–3"
+        },
+        {
+          "verse": 8,
+          "usfm": "ZEP.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 25:3; Amos 1:13"
+        },
+        {
+          "verse": 8,
+          "usfm": "ZEP.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 49:1"
+        },
+        {
+          "verse": 9,
+          "usfm": "ZEP.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 15:1–9; Jer. 48:1–47"
+        },
+        {
+          "verse": 9,
+          "usfm": "ZEP.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Amos 1:13"
+        },
+        {
+          "verse": 9,
+          "usfm": "ZEP.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 29:23"
+        },
+        {
+          "verse": 10,
+          "usfm": "ZEP.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 16:6"
+        },
+        {
+          "verse": 11,
+          "usfm": "ZEP.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mal. 1:11"
+        },
+        {
+          "verse": 11,
+          "usfm": "ZEP.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 10:5"
+        },
+        {
+          "verse": 12,
+          "usfm": "ZEP.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 18:1–7; Ezek. 30:4, 5"
+        },
+        {
+          "verse": 12,
+          "usfm": "ZEP.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 17:13"
+        },
+        {
+          "verse": 13,
+          "usfm": "ZEP.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 10:5–27; 14:24–27; Mic. 5:5, 6"
+        },
+        {
+          "verse": 14,
+          "usfm": "ZEP.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 13:21"
+        },
+        {
+          "verse": 14,
+          "usfm": "ZEP.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 14:23; 34:11"
+        },
+        {
+          "verse": 14,
+          "usfm": "ZEP.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 22:14"
+        },
+        {
+          "verse": 15,
+          "usfm": "ZEP.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 47:8"
+        },
+        {
+          "verse": 15,
+          "usfm": "ZEP.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rev. 18:7"
+        },
+        {
+          "verse": 15,
+          "usfm": "ZEP.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lam. 2:15"
+        },
+        {
+          "verse": 15,
+          "usfm": "ZEP.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Nah. 3:19"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEP.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEP.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.2.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.2.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.2.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.2.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.2.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.2.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.2.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.2.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.2.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.2.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.2.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.2.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.2.5"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.2.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.2.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.2.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.2.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.2.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.2.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.2.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.2.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.2.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.2.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.2.8"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.2.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.2.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.2.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.2.9"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.2.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.2.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.2.9"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.2.9"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.2.10"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.2.10"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.2.10"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.2.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.2.11"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.2.11"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.2.11"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.2.11"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.2.12"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.2.12"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.2.13"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.2.13"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.2.13"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.2.13"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.2.14"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.2.14"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.2.14"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.2.14"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.2.14"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.2.14"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.2.14"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.2.15"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.2.15"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.2.15"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.2.15"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.2.15"
+          ]
+        },
+        {
+          "index": 67,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.2.15"
+          ]
+        },
+        {
+          "index": 68,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.2.15"
+          ]
+        },
+        {
+          "index": 69,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.2.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -216,9 +2462,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/ZEP/2-734a8d82e6b163fc214449e469d78bd7.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/ZEP.2.NKJV",
+        "reference": {
+          "usfm": [
+            "ZEP.2"
+          ],
+          "human": "Zephaniah 2",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.1"
+          ],
+          "human": "Zephaniah 1",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.3"
+          ],
+          "human": "Zephaniah 3",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEP",
       "chapter": 3,
       "chapter_usfm": "ZEP.3",
@@ -227,97 +2530,1420 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEP.3.1",
+          "line_type": "q1",
           "text": "Woe to her who is rebellious and polluted,To the oppressing city!"
         },
         {
           "verse": 2,
+          "usfm": "ZEP.3.2",
+          "line_type": "q2",
           "text": "She has not obeyed His voice,She has not received correction;She has not trusted in the Lord,She has not drawn near to her God."
         },
         {
           "verse": 3,
+          "usfm": "ZEP.3.3",
+          "line_type": "q1",
           "text": "Her princes in her midst are roaring lions;Her judges are evening wolvesThat leave not a bone till morning."
         },
         {
           "verse": 4,
+          "usfm": "ZEP.3.4",
+          "line_type": "q2",
           "text": "Her prophets are insolent, treacherous people;Her priests have polluted the sanctuary,They have done violence to the law."
         },
         {
           "verse": 5,
+          "usfm": "ZEP.3.5",
+          "line_type": "q2",
           "text": "The Lord is righteous in her midst,He will do no unrighteousness.Every morning He brings His justice to light;He never fails,But the unjust knows no shame."
         },
         {
           "verse": 6,
+          "usfm": "ZEP.3.6",
+          "line_type": "q1",
           "text": "“I have cut off nations,Their fortresses are devastated;I have made their streets desolate,With none passing by.Their cities are destroyed;There is no one, no inhabitant."
         },
         {
           "verse": 7,
+          "usfm": "ZEP.3.7",
+          "line_type": "q2",
           "text": "I said, ‘Surely you will fear Me,You will receive instruction’—So that her dwelling would not be cut off,Despite everything for which I punished her.But they rose early and corrupted all their deeds."
         },
         {
           "verse": 8,
+          "usfm": "ZEP.3.8",
+          "line_type": "q1",
           "text": "“Therefore wait for Me,” says the Lord,“Until the day I rise up for plunder;My determination is to gather the nationsTo My assembly of kingdoms,To pour on them My indignation,All My fierce anger;All the earth shall be devouredWith the fire of My jealousy."
         },
         {
           "verse": 9,
+          "usfm": "ZEP.3.9",
+          "line_type": "q2",
           "text": "“For then I will restore to the peoples a pure language,That they all may call on the name of the Lord,To serve Him with one accord."
         },
         {
           "verse": 10,
+          "usfm": "ZEP.3.10",
+          "line_type": "q2",
           "text": "From beyond the rivers of EthiopiaMy worshipers,The daughter of My dispersed ones,Shall bring My offering."
         },
         {
           "verse": 11,
+          "usfm": "ZEP.3.11",
+          "line_type": "q2",
           "text": "In that day you shall not be shamed for any of your deedsIn which you transgress against Me;For then I will take away from your midstThose who rejoice in your pride,And you shall no longer be haughtyIn My holy mountain."
         },
         {
           "verse": 12,
+          "usfm": "ZEP.3.12",
+          "line_type": "q2",
           "text": "I will leave in your midstA meek and humble people,And they shall trust in the name of the Lord."
         },
         {
           "verse": 13,
+          "usfm": "ZEP.3.13",
+          "line_type": "q2",
           "text": "The remnant of Israel shall do no unrighteousnessAnd speak no lies,Nor shall a deceitful tongue be found in their mouth;For they shall feed their flocks and lie down,And no one shall make them afraid.”"
         },
         {
           "verse": 14,
+          "usfm": "ZEP.3.14",
+          "line_type": "q1",
           "text": "Sing, O daughter of Zion!Shout, O Israel!Be glad and rejoice with all your heart,O daughter of Jerusalem!"
         },
         {
           "verse": 15,
+          "usfm": "ZEP.3.15",
+          "line_type": "q2",
           "text": "The Lord has taken away your judgments,He has cast out your enemy.The King of Israel, the Lord, is in your midst;You shall see disaster no more."
         },
         {
           "verse": 16,
+          "usfm": "ZEP.3.16",
+          "line_type": "q1",
           "text": "In that day it shall be said to Jerusalem:“Do not fear;Zion, let not your hands be weak."
         },
         {
           "verse": 17,
+          "usfm": "ZEP.3.17",
+          "line_type": "q2",
           "text": "The Lord your God in your midst,The Mighty One, will save;He will rejoice over you with gladness,He will quiet you with His love,He will rejoice over you with singing.”"
         },
         {
           "verse": 18,
+          "usfm": "ZEP.3.18",
+          "line_type": "q1",
           "text": "“I will gather those who sorrow over the appointed assembly,Who are among you,To whom its reproach is a burden."
         },
         {
           "verse": 19,
+          "usfm": "ZEP.3.19",
+          "line_type": "q2",
           "text": "Behold, at that timeI will deal with all who afflict you;I will save the lame,And gather those who were driven out;I will appoint them for praise and fameIn every land where they were put to shame."
         },
         {
           "verse": 20,
+          "usfm": "ZEP.3.20",
+          "line_type": "q2",
           "text": "At that time I will bring you back,Even at the time I gather you;For I will give you fame and praiseAmong all the peoples of the earth,When I return your captives before your eyes,”Says the Lord."
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "A Faithful Remnant"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "Joy in God’s Faithfulness"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "ZEP.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 22:27"
+        },
+        {
+          "verse": 3,
+          "usfm": "ZEP.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 5:6; Hab. 1:8"
+        },
+        {
+          "verse": 4,
+          "usfm": "ZEP.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hos. 9:7"
+        },
+        {
+          "verse": 4,
+          "usfm": "ZEP.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 22:26; Mal. 2:7, 8"
+        },
+        {
+          "verse": 5,
+          "usfm": "ZEP.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 3:3"
+        },
+        {
+          "verse": 7,
+          "usfm": "ZEP.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 8:6"
+        },
+        {
+          "verse": 7,
+          "usfm": "ZEP.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 6:12"
+        },
+        {
+          "verse": 8,
+          "usfm": "ZEP.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Prov. 20:22; Mic. 7:7; Hab. 2:3"
+        },
+        {
+          "verse": 8,
+          "usfm": "ZEP.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 66:18; Ezek. 38:14–23; Joel 3:2; Mic. 4:12; Matt. 25:32"
+        },
+        {
+          "verse": 8,
+          "usfm": "ZEP.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Zeph. 1:18"
+        },
+        {
+          "verse": 9,
+          "usfm": "ZEP.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 19:18; 57:19"
+        },
+        {
+          "verse": 10,
+          "usfm": "ZEP.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 68:31; Is. 18:1; Acts 8:27"
+        },
+        {
+          "verse": 11,
+          "usfm": "ZEP.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 2:12; 5:15; Matt. 3:9"
+        },
+        {
+          "verse": 12,
+          "usfm": "ZEP.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 14:32; Zech. 13:8, 9"
+        },
+        {
+          "verse": 13,
+          "usfm": "ZEP.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 10:20–22; (Mic. 4:7)"
+        },
+        {
+          "verse": 13,
+          "usfm": "ZEP.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 60:21"
+        },
+        {
+          "verse": 13,
+          "usfm": "ZEP.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Zech. 8:3, 16; Rev. 14:5"
+        },
+        {
+          "verse": 13,
+          "usfm": "ZEP.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 34:13–15, 28"
+        },
+        {
+          "verse": 14,
+          "usfm": "ZEP.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 12:6"
+        },
+        {
+          "verse": 15,
+          "usfm": "ZEP.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 1:49)"
+        },
+        {
+          "verse": 15,
+          "usfm": "ZEP.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 48:35; (Rev. 7:15)"
+        },
+        {
+          "verse": 16,
+          "usfm": "ZEP.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 35:3, 4"
+        },
+        {
+          "verse": 16,
+          "usfm": "ZEP.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Job 4:3; Heb. 12:12"
+        },
+        {
+          "verse": 17,
+          "usfm": "ZEP.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Zeph. 3:5, 15"
+        },
+        {
+          "verse": 17,
+          "usfm": "ZEP.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 30:9; Is. 62:5; 65:19; Jer. 32:41"
+        },
+        {
+          "verse": 18,
+          "usfm": "ZEP.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lam. 2:6"
+        },
+        {
+          "verse": 19,
+          "usfm": "ZEP.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Ezek. 34:16; Mic. 4:6, 7)"
+        },
+        {
+          "verse": 20,
+          "usfm": "ZEP.3.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 11:12; Ezek. 28:25; Amos 9:14"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEP.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEP.3.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.3.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.3.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.3.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.3.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.3.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.3.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.3.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.3.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.3.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEP.3.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.3.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.3.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.3.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.3.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEP.3.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.3.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.3.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEP.3.9"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.3.10"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.3.10"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.3.10"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEP.3.10"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.3.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.3.11"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.3.11"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.3.11"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.3.11"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ZEP.3.11"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.3.12"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.3.12"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEP.3.12"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.3.13"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.3.13"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.3.13"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.3.13"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEP.3.13"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.3.14"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.3.14"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.3.14"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEP.3.14"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.3.15"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.3.15"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.3.15"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ZEP.3.15"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ZEP.3.16"
+          ]
+        },
+        {
+          "index": 67,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ZEP.3.16"
+          ]
+        },
+        {
+          "index": 68,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ZEP.3.16"
+          ]
+        },
+        {
+          "index": 69,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.3.17"
+          ]
+        },
+        {
+          "index": 70,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.3.17"
+          ]
+        },
+        {
+          "index": 71,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.3.17"
+          ]
+        },
+        {
+          "index": 72,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.3.17"
+          ]
+        },
+        {
+          "index": 73,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEP.3.17"
+          ]
+        },
+        {
+          "index": 74,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.3.18"
+          ]
+        },
+        {
+          "index": 75,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.3.18"
+          ]
+        },
+        {
+          "index": 76,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEP.3.18"
+          ]
+        },
+        {
+          "index": 77,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ZEP.3.19"
+          ]
+        },
+        {
+          "index": 78,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ZEP.3.19"
+          ]
+        },
+        {
+          "index": 79,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ZEP.3.19"
+          ]
+        },
+        {
+          "index": 80,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ZEP.3.19"
+          ]
+        },
+        {
+          "index": 81,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ZEP.3.19"
+          ]
+        },
+        {
+          "index": 82,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ZEP.3.19"
+          ]
+        },
+        {
+          "index": 83,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ZEP.3.20"
+          ]
+        },
+        {
+          "index": 84,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ZEP.3.20"
+          ]
+        },
+        {
+          "index": 85,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ZEP.3.20"
+          ]
+        },
+        {
+          "index": 86,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ZEP.3.20"
+          ]
+        },
+        {
+          "index": 87,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ZEP.3.20"
+          ]
+        },
+        {
+          "index": 88,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ZEP.3.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -336,7 +3962,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/ZEP/3-e5da5c58bffea8b53c068ad1ba4a890e.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/ZEP.3.NKJV",
+        "reference": {
+          "usfm": [
+            "ZEP.3"
+          ],
+          "human": "Zephaniah 3",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.2"
+          ],
+          "human": "Zephaniah 2",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HAG.1"
+          ],
+          "human": "Haggai 1",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

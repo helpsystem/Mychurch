@@ -11,6 +11,7 @@
   "total_verses": 83,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2TI",
       "chapter": 1,
       "chapter_usfm": "2TI.1",
@@ -19,74 +20,110 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TI.1.1",
+          "line_type": "p",
           "text": "This letter is from me, Paul. God chose me to be an apostle of Christ Jesus. God sent me to tell people about the true life that he has promised us. We receive this life when we belong to Christ Jesus."
         },
         {
           "verse": 2,
+          "usfm": "2TI.1.2",
+          "line_type": "p",
           "text": "I am writing to you, Timothy. You are like my own child, and I love you very much.I pray that God the Father and Christ Jesus our Lord will continue to help you and be kind to you. I pray that they will give you peace in your mind."
         },
         {
           "verse": 3,
+          "usfm": "2TI.1.3",
+          "line_type": "p",
           "text": "Like my ancestors, I serve God in a good way, that I know is right. When I pray to God, at night and during the day, I always remember to pray for you. And I thank God for you."
         },
         {
           "verse": 4,
+          "usfm": "2TI.1.4",
+          "line_type": "p",
           "text": "I remember how you wept when I said ‘goodbye’ to you. I want to see you again very much, so that I may be completely happy."
         },
         {
           "verse": 5,
+          "usfm": "2TI.1.5",
+          "line_type": "p",
           "text": "I also remember how you truly believe in Christ. Your grandmother, Lois, and your mother, Eunice, already believed in Christ before you did. Now I am sure that you yourself also really trust him."
         },
         {
           "verse": 6,
+          "usfm": "2TI.1.6",
+          "line_type": "p",
           "text": "For that reason, I want you to remember the spiritual gift that God gave you when I put my hands on you. Use that gift more and more to serve God well."
         },
         {
           "verse": 7,
+          "usfm": "2TI.1.7",
+          "line_type": "p",
           "text": "Be strong, because God has given us his Spirit. And his Spirit does not cause us to be afraid. Instead, his Spirit causes us to be powerful to serve God. He helps us to love God and other people. And he helps us to control ourselves properly."
         },
         {
           "verse": 8,
+          "usfm": "2TI.1.8",
+          "line_type": "p",
           "text": "So do not be ashamed of the message about our Lord that we tell people. And do not be ashamed of me because I am in a prison. I am a prisoner because I serve Christ. You must understand that you will have trouble because you tell people the good news about Jesus Christ. So be ready to have the same kind of trouble as I have. Let God make you strong when you have trouble."
         },
         {
           "verse": 9,
+          "usfm": "2TI.1.9",
+          "line_type": "p",
           "text": "God is the one who has saved us. He has chosen us to serve him with good, clean lives. He did not save us because of any good things that we have done. He chose to do it because he is very kind. He decided to do that before time began, because of what Christ Jesus would do for us."
         },
         {
           "verse": 10,
+          "usfm": "2TI.1.10",
+          "line_type": "p",
           "text": "Now Christ Jesus has come to save us, and we have seen how kind God is. Christ has destroyed death's power over us. We have heard the good news that he brought to us. So now we understand about life with God for ever."
         },
         {
           "verse": 11,
+          "usfm": "2TI.1.11",
+          "line_type": "p",
           "text": "That is the same good news that God has chosen me to tell to people. He has sent me as his apostle to teach his message to people."
         },
         {
           "verse": 12,
+          "usfm": "2TI.1.12",
+          "line_type": "p",
           "text": "That is why I am suffering like this. But I am not ashamed to be in prison. I have believed in Christ and I know him well. I know that I can trust him to keep his message safe. God has given me the authority to speak that message to people at this time. Christ has the power to keep it safe until that great day when he comes back."
         },
         {
           "verse": 13,
+          "usfm": "2TI.1.13",
+          "line_type": "p",
           "text": "You have heard me tell you about God's true message. Let those words be an example to you, so that you also teach what is true. Do this because you belong to Christ Jesus. Continue to trust him and to love his people."
         },
         {
           "verse": 14,
+          "usfm": "2TI.1.14",
+          "line_type": "p",
           "text": "God has given you his good message to keep safe. God's Holy Spirit, who lives in us, will help you to keep it safe."
         },
         {
           "verse": 15,
+          "usfm": "2TI.1.15",
+          "line_type": "p",
           "text": "You know that almost all the believers in Asia region have turned against me. They include Phygelus and Hermogenes."
         },
         {
           "verse": 16,
+          "usfm": "2TI.1.16",
+          "line_type": "p",
           "text": "But Onesiphorus has stayed to help me. I pray that the Lord will be kind to his family. He often came to help me not to be sad. I am in prison, but he was not ashamed to help me."
         },
         {
           "verse": 17,
+          "usfm": "2TI.1.17",
+          "line_type": "p",
           "text": "When he came here to Rome, he looked carefully for me until he found me."
         },
         {
           "verse": 18,
+          "usfm": "2TI.1.18",
+          "line_type": "p",
           "text": "I pray that the Lord will be kind to Onesiphorus on that great day when he judges people. You know very well how much Onesiphorus helped me in Ephesus."
         }
       ],
@@ -97,19 +134,271 @@
           "text": "Paul writes a second letter to Timothy"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Paul tells Timothy to teach God's message faithfully"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "Onesiphorus has helped Paul in prison"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 6,
+          "usfm": "2TI.1.6",
+          "note_ref": "1:6",
+          "note_type": "footnote",
+          "references": [
+            "1TI.4.14"
+          ],
+          "text": "The Christian leaders had put their hands on Timothy and they had prayed for him when he started to serve God. See 1 Timothy 4:14. At that time, God had given Timothy a spiritual gift so that he could be a good leader of the church and a teacher."
+        },
+        {
+          "verse": 12,
+          "usfm": "2TI.1.12",
+          "note_ref": "1:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Christ had chosen Paul to teach his good news. So Paul is probably saying that he trusts Christ to keep that message safe. The great day when Jesus comes back is the day when he will judge everyone."
+        },
+        {
+          "verse": 15,
+          "usfm": "2TI.1.15",
+          "note_ref": "1:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "At the time of the Bible, Asia was a region which the Romans ruled. It was in the west part of the country that we now call Turkey."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2TI.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2TI.1.1",
+            "2TI.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "2TI.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "2TI.1.2",
+            "2TI.1.3",
+            "2TI.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "2TI.1.4",
+            "2TI.1.5",
+            "2TI.1.6",
+            "2TI.1.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "2TI.1.7",
+            "2TI.1.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "2TI.1.10",
+            "2TI.1.8",
+            "2TI.1.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "2TI.1.10",
+            "2TI.1.11",
+            "2TI.1.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "2TI.1.12",
+            "2TI.1.13",
+            "2TI.1.14"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "2TI.1.14",
+            "2TI.1.15"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "2TI.1.15",
+            "2TI.1.16",
+            "2TI.1.17",
+            "2TI.1.18"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/2TI.1.EASY",
+        "reference": {
+          "usfm": [
+            "2TI.1"
+          ],
+          "human": "2 Timothy 1",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "2TI.INTRO1"
+          ],
+          "human": "2 Timothy Intro",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TI.2"
+          ],
+          "human": "2 Timothy 2",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TI",
       "chapter": 2,
       "chapter_usfm": "2TI.2",
@@ -118,106 +407,158 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TI.2.1",
+          "line_type": "p",
           "text": "Timothy, you are like my own child. Let God make you strong. He is kind, so trust him to help you, because you belong to Christ Jesus."
         },
         {
           "verse": 2,
+          "usfm": "2TI.2.2",
+          "line_type": "p",
           "text": "You have heard the message that I have taught. Many other people also heard it and they agree that it is true. Now you must tell the same message to other people who will be able to teach it to even more people. They should be people that you can trust as honest people and who can teach well."
         },
         {
           "verse": 3,
+          "usfm": "2TI.2.3",
+          "line_type": "p",
           "text": "Be patient through the troubles that we Christians have. Be brave and strong, like a good soldier for Christ Jesus."
         },
         {
           "verse": 4,
+          "usfm": "2TI.2.4",
+          "line_type": "p",
           "text": "Any soldier who fights in a war does not become busy with other things. He only wants to fight well to make his captain happy."
         },
         {
           "verse": 5,
+          "usfm": "2TI.2.5",
+          "line_type": "p",
           "text": "It is the same with an athlete who runs a race. He cannot win the race unless he obeys the rules."
         },
         {
           "verse": 6,
+          "usfm": "2TI.2.6",
+          "line_type": "p",
           "text": "A farmer works hard to grow plants for food. So he should be the first person to receive some of that food."
         },
         {
           "verse": 7,
+          "usfm": "2TI.2.7",
+          "line_type": "p",
           "text": "Think carefully about what I am saying to you. The Lord will help you to understand all these things."
         },
         {
           "verse": 8,
+          "usfm": "2TI.2.8",
+          "line_type": "p",
           "text": "Jesus Christ is a descendant of King David. God caused Jesus to become alive again after his death. Remember that! These facts are part of the good news that I tell people."
         },
         {
           "verse": 9,
+          "usfm": "2TI.2.9",
+          "line_type": "p",
           "text": "And I have many troubles because I tell that good news to people. They have even put me in a prison, like someone who has done something bad. But nobody can keep God's message in a prison!"
         },
         {
           "verse": 10,
+          "usfm": "2TI.2.10",
+          "line_type": "p",
           "text": "So I continue to be patient and brave during all these troubles. I do that so that I can help the people that God has chosen to belong to him. I want God to save them too, because of what Christ Jesus has done for them. As a result, they will live with God for ever, in the beautiful place where he lives."
         },
         {
           "verse": 11,
+          "usfm": "2TI.2.11",
+          "line_type": "p",
           "text": "We all know that this is true:‘If we have died with Christ in this world,we will also live with him in the future world."
         },
         {
           "verse": 12,
+          "usfm": "2TI.2.12",
+          "line_type": "q1",
           "text": "If we continue to be strong during troubles here,we will also rule with him there in heaven.But if we say that we do not know Christ,he will also say that he does not know us."
         },
         {
           "verse": 13,
+          "usfm": "2TI.2.13",
+          "line_type": "q1",
           "text": "Even if we no longer trust him,he will still be someone that people can trust.He will always remain true to his nature.’"
         },
         {
           "verse": 14,
+          "usfm": "2TI.2.14",
+          "line_type": "p",
           "text": "Continue to tell these things to God's people there, so that they remember them. Use God's authority and warn them not to quarrel about words. To quarrel about little things does not help anyone. Instead, it destroys those people who listen."
         },
         {
           "verse": 15,
+          "usfm": "2TI.2.15",
+          "line_type": "p",
           "text": "Always try very much to serve God in a way that makes him happy. Then he will accept you as a good worker that he can trust. You must teach God's true message correctly. Then you will have no reason to be ashamed of your work."
         },
         {
           "verse": 16,
+          "usfm": "2TI.2.16",
+          "line_type": "p",
           "text": "But stay away from people who talk about silly things that are not important to God. A message like that causes people to live more and more in a way that does not please God."
         },
         {
           "verse": 17,
+          "usfm": "2TI.2.17",
+          "line_type": "p",
           "text": "It causes people to become sick in their spirits. More and more people become sick as a result. Hymenaeus and Philetus are two of the people who teach that kind of false message."
         },
         {
           "verse": 18,
+          "usfm": "2TI.2.18",
+          "line_type": "p",
           "text": "They no longer teach God's true message. They say that God will not raise dead people any more. They say that he has already given life to dead people. In this way they have confused the minds of some people, so that they no longer believe in Christ."
         },
         {
           "verse": 19,
+          "usfm": "2TI.2.19",
+          "line_type": "p",
           "text": "But the group of true believers remains strong, like the foundation under a building. God has written his message there. It says, ‘The Lord knows who his own people are.’ It also says, ‘Everyone who says that he belongs to the Lord must stop doing bad things.’"
         },
         {
           "verse": 20,
+          "usfm": "2TI.2.20",
+          "line_type": "p",
           "text": "In a big house, there are different kinds of dishes. There are some dishes that people have made from gold or from silver. They see those dishes as valuable things. There are also dishes that people have made from wood or from clay. Those dishes are not special things and they may get dirty."
         },
         {
           "verse": 21,
+          "usfm": "2TI.2.21",
+          "line_type": "p",
           "text": "It is like that with people who serve God as their Master. People who keep themselves clean from those bad things will be like valuable dishes. Their master can use them for a special purpose. They will be ready for him to use them for every kind of good work."
         },
         {
           "verse": 22,
+          "usfm": "2TI.2.22",
+          "line_type": "p",
           "text": "Be careful not to do the kind of bad things that young people often want to do. Instead, always try to do what is right and fair. Continue to trust God. Love other people and live in peace with them. Join with people who are clean inside and who pray to the Lord."
         },
         {
           "verse": 23,
+          "usfm": "2TI.2.23",
+          "line_type": "p",
           "text": "Do not join with people who want to argue about silly things that do not mean anything. You know that silly things like that only cause people to quarrel."
         },
         {
           "verse": 24,
+          "usfm": "2TI.2.24",
+          "line_type": "p",
           "text": "As the Lord's servant, you must not quarrel. Instead, you must be kind to everyone. You must be able to teach them well. And you must be patient when people cause you to have trouble."
         },
         {
           "verse": 25,
+          "usfm": "2TI.2.25",
+          "line_type": "p",
           "text": "When people speak against God's true message, teach them carefully. Help them to understand what is right. Maybe God will change how they think so that they believe the true message."
         },
         {
           "verse": 26,
+          "usfm": "2TI.2.26",
+          "line_type": "p",
           "text": "Their minds will start to think clearly. It is the devil who has made them believe wrong things. He has made them do what he wants. Now they can get free from his power."
         }
       ],
@@ -228,15 +569,410 @@
           "text": "Timothy should serve God faithfully like a good soldier"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "Serve God in a way that pleases him"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "2TI.2.5",
+          "note_ref": "2:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "An athlete is a strong person who runs in games and races."
+        },
+        {
+          "verse": 8,
+          "usfm": "2TI.2.8",
+          "note_ref": "2:8",
+          "note_type": "footnote",
+          "references": [
+            "2SA.7.8+2SA.7.9",
+            "2SA.8.15"
+          ],
+          "text": "David was a great king of Israel's people, about 1,000 years before Christ came to the earth. See 2 Samuel 7:8-9; 8:15."
+        },
+        {
+          "verse": 11,
+          "usfm": "2TI.2.11",
+          "note_ref": "2:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "When Jesus died on the cross to save us from our sins, it is as if we also died with him. God has forgiven us for our sins and we have become like new people. Our old lives have finished and we have started to live new lives."
+        },
+        {
+          "verse": 13,
+          "usfm": "2TI.2.13",
+          "note_ref": "2:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "These words may be part of a song that the Christians knew."
+        },
+        {
+          "verse": 19,
+          "usfm": "2TI.2.19",
+          "note_ref": "2:19",
+          "note_type": "footnote",
+          "references": [
+            "NUM.16.5"
+          ],
+          "text": "See Numbers 16:5."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2TI.2.1",
+            "2TI.2.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 7,
+          "verses": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "2TI.2.2",
+            "2TI.2.3",
+            "2TI.2.4",
+            "2TI.2.5",
+            "2TI.2.6",
+            "2TI.2.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "2TI.2.7",
+            "2TI.2.8",
+            "2TI.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "2TI.2.10",
+            "2TI.2.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "2TI.2.10",
+            "2TI.2.11"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "2TI.2.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "2TI.2.11"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "2TI.2.11",
+            "2TI.2.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "2TI.2.12"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "2TI.2.12"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "2TI.2.12"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "2TI.2.12",
+            "2TI.2.13"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "2TI.2.13"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "2TI.2.13"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "2TI.2.13",
+            "2TI.2.14"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 18,
+          "verses": [
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "2TI.2.14",
+            "2TI.2.15",
+            "2TI.2.16",
+            "2TI.2.17",
+            "2TI.2.18"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "2TI.2.18",
+            "2TI.2.19"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "2TI.2.19",
+            "2TI.2.20",
+            "2TI.2.21"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "2TI.2.21",
+            "2TI.2.22"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 26,
+          "verses": [
+            22,
+            23,
+            24,
+            25,
+            26
+          ],
+          "usfms": [
+            "2TI.2.22",
+            "2TI.2.23",
+            "2TI.2.24",
+            "2TI.2.25",
+            "2TI.2.26"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 26,
+          "parsed_count": 26,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/2TI.2.EASY",
+        "reference": {
+          "usfm": [
+            "2TI.2"
+          ],
+          "human": "2 Timothy 2",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.1"
+          ],
+          "human": "2 Timothy 1",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TI.3"
+          ],
+          "human": "2 Timothy 3",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TI",
       "chapter": 3,
       "chapter_usfm": "2TI.3",
@@ -245,70 +981,104 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TI.3.1",
+          "line_type": "p",
           "text": "Let me tell you this. During the last days of this world, there will be times of great trouble."
         },
         {
           "verse": 2,
+          "usfm": "2TI.3.2",
+          "line_type": "p",
           "text": "People will love only themselves, and they will want lots of money for themselves. They will be proud and they will say how great they are. They will insult other people. They will not obey their parents. They will not thank anyone who helps them. They will not respect anything that is good."
         },
         {
           "verse": 3,
+          "usfm": "2TI.3.3",
+          "line_type": "p",
           "text": "They will not be kind to other people, but they will like to quarrel. They will tell lies to hurt other people. They will be unable to control themselves properly. They will be cruel and they will hate anything that is good."
         },
         {
           "verse": 4,
+          "usfm": "2TI.3.4",
+          "line_type": "p",
           "text": "People will turn against their friends. They will do foolish things. They will boast that they are very important. They will not love God, but instead they will only want to enjoy themselves."
         },
         {
           "verse": 5,
+          "usfm": "2TI.3.5",
+          "line_type": "p",
           "text": "Those people will seem to be serving God. But really they refuse to accept God's power to help them. You must stay away from people like that."
         },
         {
           "verse": 6,
+          "usfm": "2TI.3.6",
+          "line_type": "p",
           "text": "Among those people, there are some men who find a way into people's homes. They get power over silly women who feel very guilty about their sins. Those women want to do wrong things and they cannot stop themselves."
         },
         {
           "verse": 7,
+          "usfm": "2TI.3.7",
+          "line_type": "p",
           "text": "They are always trying to learn new things, but they can never really understand God's true message."
         },
         {
           "verse": 8,
+          "usfm": "2TI.3.8",
+          "line_type": "p",
           "text": "These are people who speak against God's true message, in the same way that Jannes and Jambres spoke against Moses. Their minds have become confused. The way that they serve God is false."
         },
         {
           "verse": 9,
+          "usfm": "2TI.3.9",
+          "line_type": "p",
           "text": "But they will not continue to do many more bad things. Everyone will see clearly that they are fools. That is what happened to Jannes and Jambres."
         },
         {
           "verse": 10,
+          "usfm": "2TI.3.10",
+          "line_type": "p",
           "text": "But you, Timothy, have heard my message and you know it well. You also know the way in which I have lived. You know my purpose in life. You know how I trust God. You know how patient I have been. You know my love for God and for other people. You know that I have been strong during troubles."
         },
         {
           "verse": 11,
+          "usfm": "2TI.3.11",
+          "line_type": "p",
           "text": "You also know what happened to me in the cities of Antioch, Iconium and Lystra. People caused me to suffer very much in those places. But I was patient and brave in those bad troubles! And the Lord kept me safe in all those dangerous times."
         },
         {
           "verse": 12,
+          "usfm": "2TI.3.12",
+          "line_type": "p",
           "text": "It is not only me. Every Christian who wants to live in a way that pleases God will have trouble from other people."
         },
         {
           "verse": 13,
+          "usfm": "2TI.3.13",
+          "line_type": "p",
           "text": "Bad people like that will become even worse. Some of them will teach a false message and people will believe their lies. Those false teachers even believe their own lies!"
         },
         {
           "verse": 14,
+          "usfm": "2TI.3.14",
+          "line_type": "p",
           "text": "But you must continue to believe the things that you have learned. You know that those things are true. You know the teachers who taught you those things."
         },
         {
           "verse": 15,
+          "usfm": "2TI.3.15",
+          "line_type": "p",
           "text": "Even when you were a child, you already knew the message of the Bible. The Bible has taught you how you can be truly wise. You understand that God saves you because you believe in Christ Jesus."
         },
         {
           "verse": 16,
+          "usfm": "2TI.3.16",
+          "line_type": "p",
           "text": "Everything that is written in the Bible comes from God's Spirit. It helps us in many ways. The Bible teaches us what is true. It warns us when we are doing wrong things. It shows us what is right. It teaches us how to live good lives."
         },
         {
           "verse": 17,
+          "usfm": "2TI.3.17",
+          "line_type": "p",
           "text": "As a result, people who want to serve God can know how to live properly. They will be people who are ready to do all kinds of good things."
         }
       ],
@@ -319,19 +1089,206 @@
           "text": "People will turn away from God in the last days"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Timothy should expect to suffer like Paul"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "God has given us the Bible to show us what is right"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 8,
+          "usfm": "2TI.3.8",
+          "note_ref": "3:8",
+          "note_type": "footnote",
+          "references": [
+            "EXO.7.11+EXO.7.12",
+            "EXO.7.22",
+            "EXO.8.7",
+            "EXO.8.18+EXO.8.19",
+            "EXO.9.11"
+          ],
+          "text": "Moses was a great leader of the Israelites, who gave God's laws to the people. Jannes and Jambres may have been Egyptian men in the time of Moses. They did magic for the king of Egypt. See Exodus 7:11-12,22; 8:7,18-19; 9:11."
+        },
+        {
+          "verse": 11,
+          "usfm": "2TI.3.11",
+          "note_ref": "3:11",
+          "note_type": "footnote",
+          "references": [
+            "ACT.13.50",
+            "ACT.14.1+ACT.14.2+ACT.14.3+ACT.14.4+ACT.14.5+ACT.14.6",
+            "ACT.14.19+ACT.14.20",
+            "ACT.16.1+ACT.16.2+ACT.16.3+ACT.16.4+ACT.16.5"
+          ],
+          "text": "See Acts 13:50; 14:1-6,19-20. Timothy's home was in Lystra. See Acts 16:1-5."
+        },
+        {
+          "verse": 16,
+          "usfm": "2TI.3.16",
+          "note_ref": "3:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "When Paul wrote this letter to Timothy, people had only the first part of the Bible that we call the Old Testament. That part describes what happened before Jesus came to the earth."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "2TI.3.1",
+            "2TI.3.2",
+            "2TI.3.3",
+            "2TI.3.4",
+            "2TI.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 9,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "2TI.3.5",
+            "2TI.3.6",
+            "2TI.3.7",
+            "2TI.3.8",
+            "2TI.3.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "2TI.3.10",
+            "2TI.3.11",
+            "2TI.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "2TI.3.11",
+            "2TI.3.12",
+            "2TI.3.13"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 17,
+          "verses": [
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "2TI.3.13",
+            "2TI.3.14",
+            "2TI.3.15",
+            "2TI.3.16",
+            "2TI.3.17"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/2TI.3.EASY",
+        "reference": {
+          "usfm": [
+            "2TI.3"
+          ],
+          "human": "2 Timothy 3",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.2"
+          ],
+          "human": "2 Timothy 2",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "2 Timothy 4",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TI",
       "chapter": 4,
       "chapter_usfm": "2TI.4",
@@ -340,90 +1297,134 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TI.4.1",
+          "line_type": "p",
           "text": "Timothy, I tell you this seriously, as God and Christ Jesus see everything that we do. When Christ Jesus comes to rule as king, he will judge everyone. He will judge the people who are alive and also those who have already died. When he appears, he will decide what should happen to them all. So I tell you this now:"
         },
         {
           "verse": 2,
+          "usfm": "2TI.4.2",
+          "line_type": "p",
           "text": "Tell God's message to people. Always be ready to speak God's message clearly to people, whether they want to listen to you or not. Warn people when they are doing something wrong. Tell them to stop doing wrong things, and explain to them what they ought to do. But be very patient while you teach them what is true."
         },
         {
           "verse": 3,
+          "usfm": "2TI.4.3",
+          "line_type": "p",
           "text": "Do this, because a time will come when people will not listen to God's true message. Instead, they will want to hear all kinds of new messages that will make them happy. So they will find many teachers for themselves who will tell them what they want to hear."
         },
         {
           "verse": 4,
+          "usfm": "2TI.4.4",
+          "line_type": "p",
           "text": "People will refuse to listen to God's true message. Instead, they will want to listen to silly stories that are false."
         },
         {
           "verse": 5,
+          "usfm": "2TI.4.5",
+          "line_type": "p",
           "text": "But you yourself must continue to think seriously and clearly. Be patient and brave when troubles come. Continue to tell the good news about Christ to people. Do all the work that God has given you to do as his servant."
         },
         {
           "verse": 6,
+          "usfm": "2TI.4.6",
+          "line_type": "p",
           "text": "As for me, it is nearly time for me to die. My death will be like a drink offering that they pour out to God. My life as God's servant will end."
         },
         {
           "verse": 7,
+          "usfm": "2TI.4.7",
+          "line_type": "p",
           "text": "I have worked to serve Christ well. I have finished everything that God wanted me to do. I am like a runner who has run to the end of the race. I have continued to believe God's true message."
         },
         {
           "verse": 8,
+          "usfm": "2TI.4.8",
+          "line_type": "p",
           "text": "So now a gift is waiting for me. The Lord will make me completely right with him. That will be like a crown which the Lord will give me on that great day when he judges people. He is the judge who is fair and right. He will not only give that gift to me. He will give it to all those people who love him. They will be happy to see him when he comes again."
         },
         {
           "verse": 9,
+          "usfm": "2TI.4.9",
+          "line_type": "p",
           "text": "Timothy, please come to see me as soon as you can."
         },
         {
           "verse": 10,
+          "usfm": "2TI.4.10",
+          "line_type": "p",
           "text": "Demas has left me and he has gone to Thessalonica city. He wanted to enjoy the things of this world too much. Crescens has gone to Galatia region. Titus has gone to Dalmatia region."
         },
         {
           "verse": 11,
+          "usfm": "2TI.4.11",
+          "line_type": "p",
           "text": "Only Luke is with me now. Bring Mark with you when you come. He can help me very much with the work for God."
         },
         {
           "verse": 12,
+          "usfm": "2TI.4.12",
+          "line_type": "p",
           "text": "I have sent Tychicus to Ephesus."
         },
         {
           "verse": 13,
+          "usfm": "2TI.4.13",
+          "line_type": "p",
           "text": "I left a coat with Carpus in Troas. Bring it when you come. Also bring the books for me. If you cannot bring all of them, then be sure to bring my special papers."
         },
         {
           "verse": 14,
+          "usfm": "2TI.4.14",
+          "line_type": "p",
           "text": "Alexander, the man who makes things from metal, caused a lot of trouble for me. The Lord will punish him because of the wrong things that he did."
         },
         {
           "verse": 15,
+          "usfm": "2TI.4.15",
+          "line_type": "p",
           "text": "You must also be careful that he does not cause trouble for you. He argued very strongly against our message."
         },
         {
           "verse": 16,
+          "usfm": "2TI.4.16",
+          "line_type": "p",
           "text": "I had to explain to a judge that I had not done anything wrong. The first time I did that, nobody helped me. All my friends stayed away. I pray that God will forgive them for that."
         },
         {
           "verse": 17,
+          "usfm": "2TI.4.17",
+          "line_type": "p",
           "text": "But the Lord was there to help me. He made me strong so that I could tell his message clearly. Gentile people from many countries could hear what I said. So the Lord saved me from the danger of death."
         },
         {
           "verse": 18,
+          "usfm": "2TI.4.18",
+          "line_type": "p",
           "text": "The Lord will continue to save me from every bad thing. And he will bring me safely to heaven, where he rules. He is great and we should praise him for ever! Amen."
         },
         {
           "verse": 19,
+          "usfm": "2TI.4.19",
+          "line_type": "p",
           "text": "Say ‘hello’ for me to Priscilla and Aquila, and to the family of Onesiphorus."
         },
         {
           "verse": 20,
+          "usfm": "2TI.4.20",
+          "line_type": "p",
           "text": "Erastus remained at Corinth city. I left Trophimus at Miletus city because he was ill."
         },
         {
           "verse": 21,
+          "usfm": "2TI.4.21",
+          "line_type": "p",
           "text": "Please try to come before the winter. Eubulus, Pudens, Linus and Claudia say ‘hello’ to you. All the other believers here also say ‘hello’."
         },
         {
           "verse": 22,
+          "usfm": "2TI.4.22",
+          "line_type": "p",
           "text": "I pray that the Lord will continue to make you strong in your spirit. I pray that he will be kind to all of you."
         }
       ],
@@ -434,13 +1435,352 @@
           "text": "Timothy must always be ready to teach God's message"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Paul finishes his second letter to Timothy"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 6,
+          "usfm": "2TI.4.6",
+          "note_ref": "4:6",
+          "note_type": "footnote",
+          "references": [
+            "NUM.15.5+NUM.15.6+NUM.15.7+NUM.15.8+NUM.15.9+NUM.15.10",
+            "NUM.28.7"
+          ],
+          "text": "When the Israelites worshipped God, they offered gifts to him. These gifts included wine. They poured out the wine as a drink offering to God. See Numbers 15:5-10; 28:7. Paul is saying that he himself is like the drink offering. His life on earth will soon end. He has lived to serve God, and now he is ready to die for God."
+        },
+        {
+          "verse": 8,
+          "usfm": "2TI.4.8",
+          "note_ref": "4:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "At that time, people often gave a crown to somebody who had won a race. Paul is using the crown as a picture of what God will give to his people. God will give honour to everyone who belongs to Christ. We will be completely right and happy as we will live with him for ever."
+        },
+        {
+          "verse": 10,
+          "usfm": "2TI.4.10",
+          "note_ref": "4:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Thessalonica was a city in the north part of the country that we call Greece."
+        },
+        {
+          "verse": 10,
+          "usfm": "2TI.4.10",
+          "note_ref": "4:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Galatia was the east part of the country that we call Turkey."
+        },
+        {
+          "verse": 10,
+          "usfm": "2TI.4.10",
+          "note_ref": "4:10",
+          "note_type": "footnote",
+          "references": [
+            "GAL.2.1",
+            "2CO.2.13",
+            "2CO.7.6",
+            "TIT.1.4+TIT.1.5"
+          ],
+          "text": "Titus was a man who had worked with Paul to teach the Christian message. See Galatians 2:1; 2 Corinthians 2:13; 7:6; Titus 1:4-5. Dalmatia was north and west of Greece."
+        },
+        {
+          "verse": 11,
+          "usfm": "2TI.4.11",
+          "note_ref": "4:11",
+          "note_type": "footnote",
+          "references": [
+            "ACT.16.10+ACT.16.11+ACT.16.12+ACT.16.13",
+            "COL.4.14",
+            "PHM.1.24"
+          ],
+          "text": "Luke had travelled and worked with Paul. He wrote the books called Luke and Acts. See Acts 16:10-13; Colossians 4:14; Philemon 1:24."
+        },
+        {
+          "verse": 12,
+          "usfm": "2TI.4.12",
+          "note_ref": "4:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Paul may have sent Tychicus to Ephesus to help with Timothy's work there."
+        },
+        {
+          "verse": 13,
+          "usfm": "2TI.4.13",
+          "note_ref": "4:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Troas was a city on the west coast of the country that we now call Turkey."
+        },
+        {
+          "verse": 19,
+          "usfm": "2TI.4.19",
+          "note_ref": "4:19",
+          "note_type": "footnote",
+          "references": [
+            "ACT.18.1+ACT.18.2+ACT.18.3",
+            "ACT.18.18+ACT.18.19+ACT.18.20+ACT.18.21+ACT.18.22+ACT.18.23+ACT.18.24+ACT.18.25+ACT.18.26",
+            "1CO.16.19",
+            "ROM.16.3+ROM.16.4",
+            "2TI.1.16"
+          ],
+          "text": "Priscilla and her husband, Aquila, had met Paul at Corinth city. See Acts 18:1-3. Then they went with Paul to Ephesus and they stayed there for some time. See Acts 18:18-26 and 1 Corinthians 16:19. Later they went to Rome. See Romans 16:3-4. They must have been in Ephesus again when Paul wrote this letter. Paul writes about Onesiphorus in 2 Timothy 1:16."
+        },
+        {
+          "verse": 20,
+          "usfm": "2TI.4.20",
+          "note_ref": "4:20",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Corinth was a city in the south part of the country that we call Greece."
+        },
+        {
+          "verse": 20,
+          "usfm": "2TI.4.20",
+          "note_ref": "4:20",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Miletus was an important city on the coast, south of Ephesus, in the country we now call Turkey."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2TI.4.1",
+            "2TI.4.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "2TI.4.2",
+            "2TI.4.3",
+            "2TI.4.4",
+            "2TI.4.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "2TI.4.5",
+            "2TI.4.6",
+            "2TI.4.7",
+            "2TI.4.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "2TI.4.10",
+            "2TI.4.8",
+            "2TI.4.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "2TI.4.10",
+            "2TI.4.11",
+            "2TI.4.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "2TI.4.12",
+            "2TI.4.13"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "2TI.4.13",
+            "2TI.4.14",
+            "2TI.4.15"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "2TI.4.15",
+            "2TI.4.16",
+            "2TI.4.17",
+            "2TI.4.18"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 20,
+          "verses": [
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "2TI.4.18",
+            "2TI.4.19",
+            "2TI.4.20"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "2TI.4.20",
+            "2TI.4.21"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "2TI.4.21",
+            "2TI.4.22"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/2TI.4.EASY",
+        "reference": {
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "2 Timothy 4",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.3"
+          ],
+          "human": "2 Timothy 3",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "TIT.INTRO1"
+          ],
+          "human": "Titus Intro",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 0,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 1,
       "chapter_usfm": "SNG.1",
@@ -20,10 +21,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4204/SNG.1.BBK",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4204,
+        "abbreviation": "BBK",
+        "local_abbreviation": "BBK",
+        "title": "کتاب مقدس به زبان بندری",
+        "local_title": "کتاب مقدس به زبان بندری",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 2,
       "chapter_usfm": "SNG.2",
@@ -33,10 +70,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4204/SNG.2.BBK",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4204,
+        "abbreviation": "BBK",
+        "local_abbreviation": "BBK",
+        "title": "کتاب مقدس به زبان بندری",
+        "local_title": "کتاب مقدس به زبان بندری",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 3,
       "chapter_usfm": "SNG.3",
@@ -46,10 +119,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4204/SNG.3.BBK",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4204,
+        "abbreviation": "BBK",
+        "local_abbreviation": "BBK",
+        "title": "کتاب مقدس به زبان بندری",
+        "local_title": "کتاب مقدس به زبان بندری",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 4,
       "chapter_usfm": "SNG.4",
@@ -59,10 +168,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4204/SNG.4.BBK",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4204,
+        "abbreviation": "BBK",
+        "local_abbreviation": "BBK",
+        "title": "کتاب مقدس به زبان بندری",
+        "local_title": "کتاب مقدس به زبان بندری",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 5,
       "chapter_usfm": "SNG.5",
@@ -72,10 +217,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4204/SNG.5.BBK",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4204,
+        "abbreviation": "BBK",
+        "local_abbreviation": "BBK",
+        "title": "کتاب مقدس به زبان بندری",
+        "local_title": "کتاب مقدس به زبان بندری",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 6,
       "chapter_usfm": "SNG.6",
@@ -85,10 +266,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4204/SNG.6.BBK",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4204,
+        "abbreviation": "BBK",
+        "local_abbreviation": "BBK",
+        "title": "کتاب مقدس به زبان بندری",
+        "local_title": "کتاب مقدس به زبان بندری",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 7,
       "chapter_usfm": "SNG.7",
@@ -98,10 +315,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4204/SNG.7.BBK",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4204,
+        "abbreviation": "BBK",
+        "local_abbreviation": "BBK",
+        "title": "کتاب مقدس به زبان بندری",
+        "local_title": "کتاب مقدس به زبان بندری",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 8,
       "chapter_usfm": "SNG.8",
@@ -111,8 +364,43 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4204/SNG.8.BBK",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 4204,
+        "abbreviation": "BBK",
+        "local_abbreviation": "BBK",
+        "title": "کتاب مقدس به زبان بندری",
+        "local_title": "کتاب مقدس به زبان بندری",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 13,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2JN",
       "chapter": 1,
       "chapter_usfm": "2JN.1",
@@ -19,71 +20,263 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2JN.1.1",
+          "line_type": "p",
           "text": "اَ مه شیخ،به بانوی گُزین بودَه و اولادُش که به ایشُ در ’حکیکت‘ دوست اُمهَه نه فَکَه مه، بلکه همۀ اُشُ که حکیکتُ اَشناسِن"
         },
         {
           "verse": 2,
+          "usfm": "2JN.1.2",
+          "line_type": "p",
           "text": "وا خاطر اُ حکیکتی که در ما ساکنِن و تا ابد با ما اَمونِت."
         },
         {
           "verse": 3,
+          "usfm": "2JN.1.3",
+          "line_type": "p",
           "text": "فیض و رحمت و صُل و سلامتی اَ طَرَه خدای بَپ و پُس اُ بَپ، عیسی مسیح، توو حکیکت و محبت با ما اَمونِت."
         },
         {
           "verse": 4,
+          "usfm": "2JN.1.4",
+          "line_type": "p",
           "text": "خیلی دلخاش بودُم که اُمدونست بعضی اَ چوکُنِ تو طِبکِ حکمی که اَ بَپ آسَمُنی مُگِفتِن، توو ’حکیکت‘ زندگی اَکُنِن."
         },
         {
           "verse": 5,
+          "usfm": "2JN.1.5",
+          "line_type": "p",
           "text": "حالا، ای بانوی عزیز، اَ تو مَوات که به همدگه محبت بُکنیم. نَکه حکمی تازه به تو بنویسُم، بلکه ایی همو حکمین که اَ اَوِّل مُبودِن."
         },
         {
           "verse": 6,
+          "usfm": "2JN.1.6",
+          "line_type": "p",
           "text": "و محبت ایین که ما طِبکِ حکموی اُ زندگی بُکنیم. حکم ایین که درست همطو که اَ اَوِّل تُشنُتِن توو محبت زندگی بُکنی."
         },
         {
           "verse": 7,
+          "usfm": "2JN.1.7",
+          "line_type": "p",
           "text": "چونکه دَغَل بازوی زیادی توو دنیا پخش بودَن، هموشویی که وا زَبُن نِتارِن که عیسی مسیح توو جسم بشری هُندِن. ایطو آدمُ، دَغَل باز و ضدّ مسیحَن."
         },
         {
           "verse": 8,
+          "usfm": "2JN.1.8",
+          "line_type": "p",
           "text": "واسار خو بُبی تا اُ ثمریُ که وا خاطری، زحمت مُکِشیدِن به باد نَدِین، بلکه یه پاداش تَمُم و کمال بگیری."
         },
         {
           "verse": 9,
+          "usfm": "2JN.1.9",
+          "line_type": "p",
           "text": "هَرکَ که اَ تعلیم مسیح جلو بِزَنت و توو اُ ساکن نِبو، خدائو اینین، اُ کِ توو تعلیم ساکنِن، هم به بَپ ایشَه و هم به پُس."
         },
         {
           "verse": 10,
+          "usfm": "2JN.1.10",
+          "line_type": "p",
           "text": "اگه کسی پهلو شما بیاد و ایی تعلیمُ نَیارت، به اُ توو لَهَر خو راه مَدِی و یا تحویلی مَگیری؛"
         },
         {
           "verse": 11,
+          "usfm": "2JN.1.11",
+          "line_type": "p",
           "text": "چون هَرکَ به اُ تحویل بِگِنت، توو کاروی بدی شریک اِبو."
         },
         {
           "verse": 12,
+          "usfm": "2JN.1.12",
+          "line_type": "p",
           "text": "با ایکه چیزُی زیادی اُمهَستِن که بِی شما بنویسُم، ولی اُمناوا با کاغذ و مرکّب بَشِت. بلکه امید اُمهَه پهلوتُ بیام و رو وا رو گَپ بِزِنیم تا شادیمُ کامل بَشِت."
         },
         {
           "verse": 13,
+          "usfm": "2JN.1.13",
+          "line_type": "p",
           "text": "اولادُنِ دادای گُزین بودَه اَت، به تو سلام اَرِسوندَن. آمین!"
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "توو حکیکت و محبت زندگی کِردِن"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "گَپ آخِر"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2JN.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2JN.1.1",
+            "2JN.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "2JN.1.2",
+            "2JN.1.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 6,
+          "verses": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "2JN.1.3",
+            "2JN.1.4",
+            "2JN.1.5",
+            "2JN.1.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 11,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "2JN.1.10",
+            "2JN.1.11",
+            "2JN.1.6",
+            "2JN.1.7",
+            "2JN.1.8",
+            "2JN.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "2JN.1.11",
+            "2JN.1.12"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "2JN.1.12",
+            "2JN.1.13"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/2JN.1.PES",
+        "reference": {
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "دوم یوحنا 1",
+          "version_id": 3950
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1JN.5"
+          ],
+          "human": "اوّل یوحنا 5",
+          "toc": true,
+          "version_id": 3950
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "سوّم یوحنا 1",
+          "toc": true,
+          "version_id": 3950
+        }
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     }
   ]
 }

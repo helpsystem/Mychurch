@@ -11,6 +11,7 @@
   "total_verses": 32,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 1,
       "chapter_usfm": "1CO.1",
@@ -19,25 +20,105 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "1CO.1.3",
+          "line_type": "p",
           "text": "May all the gifts and benefits that come from God our Father, and the Master, Jesus Christ, be yours. Every time I think of you—and I think of you often!—I thank God for your lives of free and open access to God, given by Jesus. There’s no end to what has happened in you—it’s beyond speech, beyond knowledge. The evidence of Christ has been clearly verified in your lives. Just think—you don’t need a thing, you’ve got it all! All God’s gifts are right in front of you as you wait expectantly for our Master Jesus to arrive on the scene for the Finale. And not only that, but God himself is right alongside to keep you steady and on track until things are all wrapped up by Jesus. God, who got you started in this spiritual adventure, shares with us the life of his Son and our Master Jesus. He will never give up on you. Never forget that."
         },
         {
           "verse": 10,
+          "usfm": "1CO.1.10",
+          "line_type": "m",
           "text": "I have a serious concern to bring up with you, my friends, using the authority of Jesus, our Master. I’ll put it as urgently as I can: You must get along with each other. You must learn to be considerate of one another, cultivating a life in common. I bring this up because some from Chloe’s family brought a most disturbing report to my attention—that you’re fighting among yourselves! I’ll tell you exactly what I was told: You’re all picking sides, going around saying, “I’m on Paul’s side,” or “I’m for Apollos,” or “Peter is my man,” or “I’m in the Messiah group.” I ask you, “Has the Messiah been chopped up in little pieces so we can each have a relic all our own? Was Paul crucified for you? Was a single one of you baptized in Paul’s name?” I was not involved with any of your baptisms—except for Crispus and Gaius—and on getting this report, I’m sure glad I wasn’t. At least no one can go around saying he was baptized in my name. (Come to think of it, I also baptized Stephanas’s family, but as far as I can recall, that’s it.)"
         },
         {
           "verse": 17,
+          "usfm": "1CO.1.17",
+          "line_type": "p",
           "text": "God didn’t send me out to collect a following for myself, but to preach the Message of what he has done, collecting a following for him. And he didn’t send me to do it with a lot of fancy rhetoric of my own, lest the powerful action at the center—Christ on the Cross—be trivialized into mere words. The Message that points to Christ on the Cross seems like sheer silliness to those hellbent on destruction, but for those on the way of salvation it makes perfect sense. This is the way God works, and most powerfully as it turns out. It’s written,I’ll turn conventional wisdom on its head,I’ll expose so-called experts as shams.So where can you find someone truly wise, truly educated, truly intelligent in this day and age? Hasn’t God exposed it all as pretentious nonsense? Since the world in all its fancy wisdom never had a clue when it came to knowing God, God in his wisdom took delight in using what the world considered stupid—preaching, of all things!—to bring those who trust him into the way of salvation. While Jews clamor for miraculous demonstrations and Greeks go in for philosophical wisdom, we go right on proclaiming Christ, the Crucified. Jews treat this like an anti-miracle—and Greeks pass it off as absurd. But to us who are personally called by God himself—both Jews and Greeks—Christ is God’s ultimate miracle and wisdom all wrapped up in one. Human wisdom is so cheap, so impotent, next to the seeming absurdity of God. Human strength can’t begin to compete with God’s “weakness.” Take a good look, friends, at who you were when you got called into this life. I don’t see many of “the brightest and the best” among you, not many influential, not many from high-society families. Isn’t it obvious that God deliberately chose men and women that the culture overlooks and exploits and abuses, chose these “nobodies” to expose the hollow pretensions of the “somebodies”? That makes it quite clear that none of you can get by with blowing your own horn before God. Everything that we have—right thinking and right living, a clean slate and a fresh start—comes from God by way of Jesus Christ. That’s why we have the saying, “If you’re going to blow a horn, blow a trumpet for God.”"
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "The Cross: The Irony of God’s Wisdom"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "1CO.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "1CO.1.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "m",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1CO.1.10"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1CO.1.10"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "1CO.1.17"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "1CO.1.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -48,9 +129,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/1-4699d96a6424420e00208492e3bf79fd.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.1.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.1"
+          ],
+          "human": "1 Corinthians 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ROM.16"
+          ],
+          "human": "Romans 16",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.2"
+          ],
+          "human": "1 Corinthians 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 2,
       "chapter_usfm": "1CO.2",
@@ -60,6 +198,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -70,9 +209,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/2-6ff76c9b8ff8633bc2e5799a38285884.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.2.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.2"
+          ],
+          "human": "1 Corinthians 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.1"
+          ],
+          "human": "1 Corinthians 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.3"
+          ],
+          "human": "1 Corinthians 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 3,
       "chapter_usfm": "1CO.3",
@@ -82,6 +278,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -92,9 +289,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/3-8539f755f33984282d2df53ad5a5dff2.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.3.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.3"
+          ],
+          "human": "1 Corinthians 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.2"
+          ],
+          "human": "1 Corinthians 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.4"
+          ],
+          "human": "1 Corinthians 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 4,
       "chapter_usfm": "1CO.4",
@@ -103,24 +357,108 @@
       "verses": [
         {
           "verse": 5,
+          "usfm": "1CO.4.5",
+          "line_type": "p",
           "text": "So don’t get ahead of the Master and jump to conclusions with your judgments before all the evidence is in. When he comes, he will bring out in the open and place in evidence all kinds of things we never even dreamed of—inner motives and purposes and prayers. Only then will any one of us get to hear the “Well done!” of God."
         },
         {
           "verse": 6,
+          "usfm": "1CO.4.6",
+          "line_type": "p",
           "text": "All I’m doing right now, friends, is showing how these things pertain to Apollos and me so that you will learn restraint and not rush into making judgments without knowing all the facts. It’s important to look at things from God’s point of view. I would rather not see you inflating or deflating reputations based on mere hearsay. For who do you know that really knows you, knows your heart? And even if they did, is there anything they would discover in you that you could take credit for? Isn’t everything you have and everything you are sheer gifts from God? So what’s the point of all this comparing and competing? You already have all you need. You already have more access to God than you can handle. Without bringing either Apollos or me into it, you’re sitting on top of the world—at least God’s world—and we’re right there, sitting alongside you! It seems to me that God has put us who bear his Message on stage in a theater in which no one wants to buy a ticket. We’re something everyone stands around and stares at, like an accident in the street. We’re the Messiah’s misfits. You might be sure of yourselves, but we live in the midst of frailties and uncertainties. You might be well-thought-of by others, but we’re mostly kicked around. Much of the time we don’t have enough to eat, we wear patched and threadbare clothes, we get doors slammed in our faces, and we pick up odd jobs anywhere we can to eke out a living. When they call us names, we say, “God bless you.” When they spread rumors about us, we put in a good word for them. We’re treated like garbage, the leftovers that nobody wants. And it’s not getting any better. I’m not writing all this as a neighborhood scold to shame you. I’m writing as a father to you, my children. I love you and want you to grow up well, not spoiled. There are a lot of people around who can’t wait to tell you what you’ve done wrong, but there aren’t many fathers willing to take the time and effort to help you grow up. It was as Jesus helped me proclaim God’s Message to you that I became your father. I’m not, you know, asking you to do anything I’m not already doing myself."
         },
         {
           "verse": 17,
+          "usfm": "1CO.4.17",
+          "line_type": "p",
           "text": "This is why I sent Timothy to you earlier. He is also my dear son, and true to the Master. He will refresh your memory on the instructions I regularly give all the churches on the way of Christ. I know there are some among you who are so full of themselves they never listen to anyone, let alone me. They don’t think I’ll ever show up in person. But I’ll be there sooner than you think, God willing, and then we’ll see if they’re full of anything but hot air. God’s Way is not a matter of mere talk; it’s an empowered life."
         },
         {
           "verse": 21,
+          "usfm": "1CO.4.21",
+          "line_type": "p",
           "text": "So how should I prepare to come to you? As a severe disciplinarian who makes you walk the line? Or as a good friend and counselor who wants to share heart-to-heart with you? You decide."
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "1CO.4.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "1CO.4.5",
+            "1CO.4.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "1CO.4.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "1CO.4.17"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "1CO.4.17"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "1CO.4.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -131,9 +469,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/4-dfd7192bec74bcb76fa011729623d732.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.4.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.4"
+          ],
+          "human": "1 Corinthians 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.3"
+          ],
+          "human": "1 Corinthians 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.5"
+          ],
+          "human": "1 Corinthians 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 5,
       "chapter_usfm": "1CO.5",
@@ -143,6 +538,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -153,9 +549,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/5-8e6114a69a12890978af71781e41b348.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.5.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.5"
+          ],
+          "human": "1 Corinthians 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.4"
+          ],
+          "human": "1 Corinthians 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.6"
+          ],
+          "human": "1 Corinthians 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 6,
       "chapter_usfm": "1CO.6",
@@ -164,16 +617,60 @@
       "verses": [
         {
           "verse": 12,
+          "usfm": "1CO.6.12",
+          "line_type": "p",
           "text": "Just because something is technically legal doesn’t mean that it’s spiritually appropriate. If I went around doing whatever I thought I could get by with, I’d be a slave to my whims."
         },
         {
           "verse": 13,
+          "usfm": "1CO.6.13",
+          "line_type": "p",
           "text": "You know the old saying, “First you eat to live, and then you live to eat”? Well, it may be true that the body is only a temporary thing, but that’s no excuse for stuffing your body with food, or indulging it with sex. Since the Master honors you with a body, honor him with your body! God honored the Master’s body by raising it from the grave. He’ll treat yours with the same resurrection power. Until that time, remember that your bodies are created with the same dignity as the Master’s body. You wouldn’t take the Master’s body off to a whorehouse, would you? I should hope not. There’s more to sex than mere skin on skin. Sex is as much spiritual mystery as physical fact. As written in Scripture, “The two become one.” Since we want to become spiritually one with the Master, we must not pursue the kind of sex that avoids commitment and intimacy, leaving us more lonely than ever—the kind of sex that can never “become one.” There is a sense in which sexual sins are different from all others. In sexual sin we violate the sacredness of our own bodies, these bodies that were made for God-given and God-modeled love, for “becoming one” with another. Or didn’t you realize that your body is a sacred place, the place of the Holy Spirit? Don’t you see that you can’t live however you please, squandering what God paid such a high price for? The physical part of you is not some piece of property belonging to the spiritual part of you. God owns the whole works. So let people see God in and through your body."
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "1CO.6.12"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "1CO.6.12",
+            "1CO.6.13"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "1CO.6.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -184,9 +681,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/6-cc7e63dacba148df02c8d928087bd80c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.6.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.6"
+          ],
+          "human": "1 Corinthians 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.5"
+          ],
+          "human": "1 Corinthians 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.7"
+          ],
+          "human": "1 Corinthians 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 7,
       "chapter_usfm": "1CO.7",
@@ -195,20 +749,100 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1CO.7.1",
+          "line_type": "m",
           "text": "Now, getting down to the questions you asked in your letter to me. First, Is it a good thing to have sexual relations? Certainly—but only within a certain context. It’s good for a man to have a wife, and for a woman to have a husband. Sexual drives are strong, but marriage is strong enough to contain them and provide for a balanced and fulfilling sexual life in a world of sexual disorder. The marriage bed must be a place of mutuality—the husband seeking to satisfy his wife, the wife seeking to satisfy her husband. Marriage is not a place to “stand up for your rights.” Marriage is a decision to serve the other, whether in bed or out. Abstaining from sex is permissible for a period of time if you both agree to it, and if it’s for the purposes of prayer and fasting—but only for such times. Then come back together again. Satan has an ingenious way of tempting us when we least expect it. I’m not, understand, commanding these periods of abstinence—only providing my best counsel if you should choose them."
         },
         {
           "verse": 7,
+          "usfm": "1CO.7.7",
+          "line_type": "p",
           "text": "Sometimes I wish everyone were single like me—a simpler life in many ways! But celibacy is not for everyone any more than marriage is. God gives the gift of the single life to some, the gift of the married life to others. I do, though, tell the unmarried and widows that singleness might well be the best thing for them, as it has been for me. But if they can’t manage their desires and emotions, they should by all means go ahead and get married. The difficulties of marriage are preferable by far to a sexually tortured life as a single. And if you are married, stay married. This is the Master’s command, not mine. If a wife should leave her husband, she must either remain single or else come back and make things right with him. And a husband has no right to get rid of his wife. For the rest of you who are in mixed marriages—Christian married to non-Christian—we have no explicit command from the Master. So this is what you must do. If you are a man with a wife who is not a believer but who still wants to live with you, hold on to her. If you are a woman with a husband who is not a believer but he wants to live with you, hold on to him. The unbelieving husband shares to an extent in the holiness of his wife, and the unbelieving wife is likewise touched by the holiness of her husband. Otherwise, your children would be left out; as it is, they also are included in the spiritual purposes of God. On the other hand, if the unbelieving spouse walks out, you’ve got to let him or her go. You don’t have to hold on desperately. God has called us to make the best of it, as peacefully as we can. You never know, wife: The way you handle this might bring your husband not only back to you but to God. You never know, husband: The way you handle this might bring your wife not only back to you but to God."
         },
         {
           "verse": 17,
+          "usfm": "1CO.7.17",
+          "line_type": "p",
           "text": "And don’t be wishing you were someplace else or with someone else. Where you are right now is God’s place for you. Live and obey and love and believe right there. God, not your marital status, defines your life. Don’t think I’m being harder on you than on the others. I give this same counsel in all the churches. Were you Jewish at the time God called you? Don’t try to remove the evidence. Were you non-Jewish at the time of your call? Don’t become a Jew. Being Jewish isn’t the point. The really important thing is obeying God’s call, following his commands. Stay where you were when God called your name. Were you a slave? Slavery is no roadblock to obeying and believing. I don’t mean you’re stuck and can’t leave. If you have a chance at freedom, go ahead and take it. I’m simply trying to point out that under your new Master you’re going to experience a marvelous freedom you would never have dreamed of. On the other hand, if you were free when Christ called you, you’ll experience a delightful “enslavement to God” you would never have dreamed of. All of you, slave and free both, were once held hostage in a sinful society. Then a huge sum was paid out for your ransom. So please don’t, out of old habit, slip back into being or doing what everyone else tells you. Friends, stay where you were called to be. God is there. Hold the high ground with him at your side. The Master did not give explicit direction regarding virgins, but as one much experienced in the mercy of the Master and loyal to him all the way, you can trust my counsel. Because of the current pressures on us from all sides, I think it would probably be best to stay just as you are. Are you married? Stay married. Are you unmarried? Don’t get married. But there’s certainly no sin in getting married, whether you’re a virgin or not. All I am saying is that when you marry, you take on additional stress in an already stressful time, and I want to spare you if possible. I do want to point out, friends, that time is of the essence. There is no time to waste, so don’t complicate your lives unnecessarily. Keep it simple—in marriage, grief, joy, whatever. Even in ordinary things—your daily routines of shopping, and so on. Deal as sparingly as possible with the things the world thrusts on you. This world as you see it is fading away. I want you to live as free of complications as possible. When you’re unmarried, you’re free to concentrate on simply pleasing the Master. Marriage involves you in all the nuts and bolts of domestic life and in wanting to please your spouse, leading to so many more demands on your attention. The time and energy that married people spend on caring for and nurturing each other, the unmarried can spend in becoming whole and holy instruments of God. I’m trying to be helpful and make it as easy as possible for you, not make things harder. All I want is for you to be able to develop a way of life in which you can spend plenty of time together with the Master without a lot of distractions. If a man has a woman friend to whom he is loyal but never intended to marry, having decided to serve God as a “single,” and then changes his mind, deciding he should marry her, he should go ahead and marry. It’s no sin; it’s not even a “step down” from celibacy, as some say. On the other hand, if a man is comfortable in his decision for a single life in service to God and it’s entirely his own conviction and not imposed on him by others, he ought to stick with it. Marriage is spiritually and morally right and not inferior to singleness in any way, although as I indicated earlier, because of the times we live in, I do have pastoral reasons for encouraging singleness. A wife must stay with her husband as long as he lives. If he dies, she is free to marry anyone she chooses. She will, of course, want to marry a believer and have the blessing of the Master. By now you know that I think she’ll be better off staying single. The Master, in my opinion, thinks so, too."
         }
       ],
       "verse_count": 3,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1CO.7.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1CO.7.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "1CO.7.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "1CO.7.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "1CO.7.17"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "1CO.7.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -219,9 +853,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/7-fae7a2bc950310342de7bebc23cf0242.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.7.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.7"
+          ],
+          "human": "1 Corinthians 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.6"
+          ],
+          "human": "1 Corinthians 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.8"
+          ],
+          "human": "1 Corinthians 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 8,
       "chapter_usfm": "1CO.8",
@@ -230,16 +921,82 @@
       "verses": [
         {
           "verse": 7,
+          "usfm": "1CO.8.7",
+          "line_type": "p",
           "text": "In strict logic, then, nothing happened to the meat when it was offered up to an idol. It’s just like any other meat. I know that, and you know that. But knowing isn’t everything. If it becomes everything, some people end up as know-it-alls who treat others as know-nothings. Real knowledge isn’t that insensitive.We need to be sensitive to the fact that we’re not all at the same level of understanding in this. Some of you have spent your entire lives eating “idol meat,” and are sure that there’s something bad in the meat that then becomes something bad inside of you. An imagination and conscience shaped under those conditions isn’t going to change overnight. But fortunately God doesn’t grade us on our diet. We’re neither commended when we clean our plate nor reprimanded when we just can’t stomach it. But God does care when you use your freedom carelessly in a way that leads a fellow believer still vulnerable to those old associations to be thrown off track."
         },
         {
           "verse": 10,
+          "usfm": "1CO.8.10",
+          "line_type": "p",
           "text": "For instance, say you flaunt your freedom by going to a banquet thrown in honor of idols, where the main course is meat sacrificed to idols. Isn’t there great danger if someone still struggling over this issue, someone who looks up to you as knowledgeable and mature, sees you go into that banquet? The danger is that he will become terribly confused—maybe even to the point of getting mixed up himself in what his conscience tells him is wrong. Christ gave up his life for that person. Wouldn’t you at least be willing to give up going to dinner for him—because, as you say, it doesn’t really make any difference? But it does make a difference if you hurt your friend terribly, risking his eternal ruin! When you hurt your friend, you hurt Christ. A free meal here and there isn’t worth it at the cost of even one of these “weak ones.” So, never go to these idol-tainted meals if there’s any chance it will trip up one of your brothers or sisters.* * *"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "1CO.8.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "1CO.8.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "1CO.8.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1CO.8.10"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1CO.8.10"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -250,9 +1007,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/8-49f81792c28f7adcaf04d15e7b94b457.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.8.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.8"
+          ],
+          "human": "1 Corinthians 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.7"
+          ],
+          "human": "1 Corinthians 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.9"
+          ],
+          "human": "1 Corinthians 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 9,
       "chapter_usfm": "1CO.9",
@@ -262,6 +1076,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -272,9 +1087,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/9-15960512cc08493d29daa8fdef8fe4db.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.9.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.9"
+          ],
+          "human": "1 Corinthians 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.8"
+          ],
+          "human": "1 Corinthians 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.10"
+          ],
+          "human": "1 Corinthians 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 10,
       "chapter_usfm": "1CO.10",
@@ -283,16 +1155,60 @@
       "verses": [
         {
           "verse": 13,
+          "usfm": "1CO.10.13",
+          "line_type": "p",
           "text": "No test or temptation that comes your way is beyond the course of what others have had to face. All you need to remember is that God will never let you down; he’ll never let you be pushed past your limit; he’ll always be there to help you come through it."
         },
         {
           "verse": 14,
+          "usfm": "1CO.10.14",
+          "line_type": "p",
           "text": "So, my very dear friends, when you see people reducing God to something they can use or control, get out of their company as fast as you can. I assume I’m addressing believers now who are mature. Draw your own conclusions: When we drink the cup of blessing, aren’t we taking into ourselves the blood, the very life, of Christ? And isn’t it the same with the loaf of bread we break and eat? Don’t we take into ourselves the body, the very life, of Christ? Because there is one loaf, our many-ness becomes one-ness—Christ doesn’t become fragmented in us. Rather, we become unified in him. We don’t reduce Christ to what we are; he raises us to what he is. That’s basically what happened even in old Israel—those who ate the sacrifices offered on God’s altar entered into God’s action at the altar. Do you see the difference? Sacrifices offered to idols are offered to nothing, for what’s the idol but a nothing? Or worse than nothing, a minus, a demon! I don’t want you to become part of something that reduces you to less than yourself. And you can’t have it both ways, banqueting with the Master one day and slumming with demons the next. Besides, the Master won’t put up with it. He wants us—all or nothing. Do you think you can get off with anything less? Looking at it one way, you could say, “Anything goes. Because of God’s immense generosity and grace, we don’t have to dissect and scrutinize every action to see if it will pass muster.” But the point is not to just get by. We want to live well, but our foremost efforts should be to help others live well. With that as a base to work from, common sense can take you the rest of the way. Eat anything sold at the butcher shop, for instance; you don’t have to run an “idolatry test” on every item. “The earth,” after all, “is God’s, and everything in it.” That “everything” certainly includes the leg of lamb in the butcher shop. If a nonbeliever invites you to dinner and you feel like going, go ahead and enjoy yourself; eat everything placed before you. It would be both bad manners and bad spirituality to cross-examine your host on the ethical purity of each course as it is served. On the other hand, if he goes out of his way to tell you that this or that was sacrificed to god or goddess so-and-so, you should pass. Even though you may be indifferent as to where it came from, he isn’t, and you don’t want to send mixed messages to him about who you are worshiping. But, except for these special cases, I’m not going to walk around on eggshells worrying about what small-minded people might say; I’m going to stride free and easy, knowing what our large-minded Master has already said. If I eat what is served to me, grateful to God for what is on the table, how can I worry about what someone will say? I thanked God for it and he blessed it! So eat your meals heartily, not worrying about what others say about you—you’re eating to God’s glory, after all, not to please them. As a matter of fact, do everything that way, heartily and freely to God’s glory. At the same time, don’t be callous in your exercise of freedom, thoughtlessly stepping on the toes of those who aren’t as free as you are. I try my best to be considerate of everyone’s feelings in all these matters; I hope you will be, too."
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "1CO.10.13"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "1CO.10.13",
+            "1CO.10.14"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "1CO.10.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -303,9 +1219,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/10-a610ba669b5b23d8d0c5c76387b95e60.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.10.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.10"
+          ],
+          "human": "1 Corinthians 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.9"
+          ],
+          "human": "1 Corinthians 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.11"
+          ],
+          "human": "1 Corinthians 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 11,
       "chapter_usfm": "1CO.11",
@@ -315,6 +1288,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -325,9 +1299,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/11-4defebfbbdbf8209eb8833c04e9dfa03.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.11.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.11"
+          ],
+          "human": "1 Corinthians 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.10"
+          ],
+          "human": "1 Corinthians 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.12"
+          ],
+          "human": "1 Corinthians 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 12,
       "chapter_usfm": "1CO.12",
@@ -337,6 +1368,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -347,9 +1379,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/12-ef72b7b744d192ef3c05cc31a8622ee3.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.12.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.12"
+          ],
+          "human": "1 Corinthians 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.11"
+          ],
+          "human": "1 Corinthians 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.13"
+          ],
+          "human": "1 Corinthians 13",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 13,
       "chapter_usfm": "1CO.13",
@@ -358,28 +1447,118 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1CO.13.1",
+          "line_type": "m",
           "text": "If I speak with human eloquence and angelic ecstasy but don’t love, I’m nothing but the creaking of a rusty gate."
         },
         {
           "verse": 2,
+          "usfm": "1CO.13.2",
+          "line_type": "p",
           "text": "If I speak God’s Word with power, revealing all his mysteries and making everything plain as day, and if I have faith that says to a mountain, “Jump,” and it jumps, but I don’t love, I’m nothing. If I give everything I own to the poor and even go to the stake to be burned as a martyr, but I don’t love, I’ve gotten nowhere. So, no matter what I say, what I believe, and what I do, I’m bankrupt without love.Love never gives up.Love cares more for others than for self.Love doesn’t want what it doesn’t have.Love doesn’t strut,Doesn’t have a swelled head,Doesn’t force itself on others,Isn’t always “me first,”Doesn’t fly off the handle,Doesn’t keep score of the sins of others,Doesn’t revel when others grovel,Takes pleasure in the flowering of truth,Puts up with anything,Trusts God always,Always looks for the best,Never looks back,But keeps going to the end. Love never dies. Inspired speech will be over some day; praying in tongues will end; understanding will reach its limit. We know only a portion of the truth, and what we say about God is always incomplete. But when the Complete arrives, our incompletes will be canceled."
         },
         {
           "verse": 11,
+          "usfm": "1CO.13.11",
+          "line_type": "p",
           "text": "When I was an infant at my mother’s breast, I gurgled and cooed like any infant. When I grew up, I left those infant ways for good."
         },
         {
           "verse": 12,
+          "usfm": "1CO.13.12",
+          "line_type": "p",
           "text": "We don’t yet see things clearly. We’re squinting in a fog, peering through a mist. But it won’t be long before the weather clears and the sun shines bright! We’ll see it all then, see it all as clearly as God sees us, knowing him directly just as he knows us!"
         },
         {
           "verse": 13,
+          "usfm": "1CO.13.13",
+          "line_type": "p",
           "text": "But for right now, until that completeness, we have three things to do to lead us toward that consummation: Trust steadily in God, hope unswervingly, love extravagantly. And the best of the three is love."
         }
       ],
       "verse_count": 5,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1CO.13.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1CO.13.1",
+            "1CO.13.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "1CO.13.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "1CO.13.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "1CO.13.11",
+            "1CO.13.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "1CO.13.12",
+            "1CO.13.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -390,9 +1569,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/13-60d0948634925631826c5396163cd600.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.13.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.13"
+          ],
+          "human": "1 Corinthians 13",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.12"
+          ],
+          "human": "1 Corinthians 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.14"
+          ],
+          "human": "1 Corinthians 14",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 14,
       "chapter_usfm": "1CO.14",
@@ -402,6 +1638,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -412,9 +1649,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/14-ec2bed18e1b12ec718dab1c1653cbacd.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.14.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.14"
+          ],
+          "human": "1 Corinthians 14",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.13"
+          ],
+          "human": "1 Corinthians 13",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.15"
+          ],
+          "human": "1 Corinthians 15",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 15,
       "chapter_usfm": "1CO.15",
@@ -423,24 +1717,118 @@
       "verses": [
         {
           "verse": 29,
+          "usfm": "1CO.15.29",
+          "line_type": "p",
           "text": "Why do you think people offer themselves to be baptized for those already in the grave? If there’s no chance of resurrection for a corpse, if God’s power stops at the cemetery gates, why do we keep doing things that suggest he’s going to clean the place out someday, pulling everyone up on their feet alive? And why do you think I keep risking my neck in this dangerous work? I look death in the face practically every day I live. Do you think I’d do this if I wasn’t convinced of your resurrection and mine as guaranteed by the resurrected Messiah Jesus? Do you think I was just trying to act heroic when I fought the wild beasts at Ephesus, hoping it wouldn’t be the end of me? Not on your life! It’s resurrection, resurrection, always resurrection, that undergirds what I do and say, the way I live. If there’s no resurrection, “We eat, we drink, the next day we die,” and that’s all there is to it. But don’t fool yourselves. Don’t let yourselves be poisoned by this anti-resurrection loose talk. “Bad company ruins good manners.”"
         },
         {
           "verse": 34,
+          "usfm": "1CO.15.34",
+          "line_type": "p",
           "text": "Think straight. Awaken to the holiness of life. No more playing fast and loose with resurrection facts. Ignorance of God is a luxury you can’t afford in times like these. Aren’t you embarrassed that you’ve let this kind of thing go on as long as you have? Some skeptic is sure to ask, “Show me how resurrection works. Give me a diagram; draw me a picture. What does this ‘resurrection body’ look like?” If you look at this question closely, you realize how absurd it is. There are no diagrams for this kind of thing. We do have a parallel experience in gardening. You plant a “dead” seed; soon there is a flourishing plant. There is no visual likeness between seed and plant. You could never guess what a tomato would look like by looking at a tomato seed. What we plant in the soil and what grows out of it don’t look anything alike. The dead body that we bury in the ground and the resurrection body that comes from it will be dramatically different. You will notice that the variety of bodies is stunning. Just as there are different kinds of seeds, there are different kinds of bodies—humans, animals, birds, fish—each unprecedented in its form. You get a hint at the diversity of resurrection glory by looking at the diversity of bodies not only on earth but in the skies—sun, moon, stars—all these varieties of beauty and brightness. And we’re only looking at pre-resurrection “seeds”—who can imagine what the resurrection “plants” will be like! This image of planting a dead seed and raising a live plant is a mere sketch at best, but perhaps it will help in approaching the mystery of the resurrection body—but only if you keep in mind that when we’re raised, we’re raised for good, alive forever! The corpse that’s planted is no beauty, but when it’s raised, it’s glorious. Put in the ground weak, it comes up powerful. The seed sown is natural; the seed grown is supernatural—same seed, same body, but what a difference from when it goes down in physical mortality to when it is raised up in spiritual immortality! We follow this sequence in Scripture: The First Adam received life, the Last Adam is a life-giving Spirit. Physical life comes first, then spiritual—a firm base shaped from the earth, a final completion coming out of heaven. The First Man was made out of earth, and people since then are earthy; the Second Man was made out of heaven, and people now can be heavenly. In the same way that we’ve worked from our earthy origins, let’s embrace our heavenly ends."
         },
         {
           "verse": 50,
+          "usfm": "1CO.15.50",
+          "line_type": "p",
           "text": "I need to emphasize, friends, that our natural, earthy lives don’t in themselves lead us by their very nature into the kingdom of God. Their very “nature” is to die, so how could they “naturally” end up in the Life kingdom? But let me tell you something wonderful, a mystery I’ll probably never fully understand. We’re not all going to die—but we are all going to be changed. You hear a blast to end all blasts from a trumpet, and in the time that you look up and blink your eyes—it’s over. On signal from that trumpet from heaven, the dead will be up and out of their graves, beyond the reach of death, never to die again. At the same moment and in the same way, we’ll all be changed. In the resurrection scheme of things, this has to happen: everything perishable taken off the shelves and replaced by the imperishable, this mortal replaced by the immortal. Then the saying will come true:Death swallowed by triumphant Life!Who got the last word, oh, Death?Oh, Death, who’s afraid of you now?It was sin that made death so frightening and law-code guilt that gave sin its leverage, its destructive power. But now in a single victorious stroke of Life, all three—sin, guilt, death—are gone, the gift of our Master, Jesus Christ. Thank God!"
         },
         {
           "verse": 58,
+          "usfm": "1CO.15.58",
+          "line_type": "p",
           "text": "With all this going for us, my dear, dear friends, stand your ground. And don’t hold back. Throw yourselves into the work of the Master, confident that nothing you do for him is a waste of time or effort."
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 29,
+          "verses": [
+            29
+          ],
+          "usfms": [
+            "1CO.15.29"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 29,
+          "verses": [
+            29
+          ],
+          "usfms": [
+            "1CO.15.29"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 34,
+          "end_verse": 34,
+          "verses": [
+            34
+          ],
+          "usfms": [
+            "1CO.15.34"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 34,
+          "end_verse": 34,
+          "verses": [
+            34
+          ],
+          "usfms": [
+            "1CO.15.34"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 50,
+          "end_verse": 50,
+          "verses": [
+            50
+          ],
+          "usfms": [
+            "1CO.15.50"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 50,
+          "end_verse": 50,
+          "verses": [
+            50
+          ],
+          "usfms": [
+            "1CO.15.50"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 58,
+          "end_verse": 58,
+          "verses": [
+            58
+          ],
+          "usfms": [
+            "1CO.15.58"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -451,9 +1839,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/15-9222609f728556fcf2fded5953f76f84.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.15.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.15"
+          ],
+          "human": "1 Corinthians 15",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.14"
+          ],
+          "human": "1 Corinthians 14",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1CO.16"
+          ],
+          "human": "1 Corinthians 16",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1CO",
       "chapter": 16,
       "chapter_usfm": "1CO.16",
@@ -462,36 +1907,182 @@
       "verses": [
         {
           "verse": 12,
+          "usfm": "1CO.16.12",
+          "line_type": "p",
           "text": "About our friend Apollos, I’ve done my best to get him to pay you a visit, but haven’t talked him into it yet. He doesn’t think this is the right time. But there will be a “right time.” Keep your eyes open, hold tight to your convictions, give it all you’ve got, be resolute, and love without stopping. Would you do me a favor, friends, and give special recognition to the family of Stephanas? You know, they were among the first converts in Greece, and they’ve put themselves out, serving Christians ever since then. I want you to honor and look up to people like that: companions and workers who show us how to do it, giving us something to aspire to. I want you to know how delighted I am to have Stephanas, Fortunatus, and Achaicus here with me. They partially make up for your absence! They’ve refreshed me by keeping me in touch with you. Be proud that you have people like this among you."
         },
         {
           "verse": 19,
+          "usfm": "1CO.16.19",
+          "line_type": "p",
           "text": "The churches here in western Asia send greetings.Aquila, Priscilla, and the church that meets in their house say hello."
         },
         {
           "verse": 20,
+          "usfm": "1CO.16.20",
+          "line_type": "p",
           "text": "All the friends here say hello.Pass the greetings around with holy hugs!"
         },
         {
           "verse": 21,
+          "usfm": "1CO.16.21",
+          "line_type": "p",
           "text": "And I, Paul—in my own handwriting!—send you my regards."
         },
         {
           "verse": 22,
+          "usfm": "1CO.16.22",
+          "line_type": "p",
           "text": "If anyone won’t love the Master, throw him out. Make room for the Master!"
         },
         {
           "verse": 23,
+          "usfm": "1CO.16.23",
+          "line_type": "p",
           "text": "Our Master Jesus has his arms wide open for you."
         },
         {
           "verse": 24,
+          "usfm": "1CO.16.24",
+          "line_type": "p",
           "text": "And I love all of you in the Messiah, in Jesus."
         }
       ],
       "verse_count": 7,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "1CO.16.12"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "1CO.16.12"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "1CO.16.19"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "1CO.16.19"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "1CO.16.19",
+            "1CO.16.20"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "1CO.16.20"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "1CO.16.20",
+            "1CO.16.21"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "1CO.16.21",
+            "1CO.16.22"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "1CO.16.22",
+            "1CO.16.23"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 24,
+          "verses": [
+            23,
+            24
+          ],
+          "usfms": [
+            "1CO.16.23",
+            "1CO.16.24"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -502,7 +2093,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1CO/16-9d7cbb2cb0e7de6f869f60d5f49f804f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 7,
+          "parsed_count": 7,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1CO.16.MSG",
+        "reference": {
+          "usfm": [
+            "1CO.16"
+          ],
+          "human": "1 Corinthians 16",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1CO.15"
+          ],
+          "human": "1 Corinthians 15",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2CO.1"
+          ],
+          "human": "2 Corinthians 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

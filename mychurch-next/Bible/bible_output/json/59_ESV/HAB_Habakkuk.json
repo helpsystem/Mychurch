@@ -11,6 +11,7 @@
   "total_verses": 56,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "HAB",
       "chapter": 1,
       "chapter_usfm": "HAB.1",
@@ -19,97 +20,1227 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HAB.1.1",
+          "line_type": "p",
           "text": "The oracle that Habakkuk the prophet saw."
         },
         {
           "verse": 2,
+          "usfm": "HAB.1.2",
+          "line_type": "q1",
           "text": "O Lord, how long shall I cry for help,and you will not hear?Or cry to you “Violence!”and you will not save?"
         },
         {
           "verse": 3,
+          "usfm": "HAB.1.3",
+          "line_type": "q1",
           "text": "Why do you make me see iniquity,and why do you idly look at wrong?Destruction and violence are before me;strife and contention arise."
         },
         {
           "verse": 4,
+          "usfm": "HAB.1.4",
+          "line_type": "q1",
           "text": "So the law is paralyzed,and justice never goes forth. For the wicked surround the righteous;so justice goes forth perverted."
         },
         {
           "verse": 5,
+          "usfm": "HAB.1.5",
+          "line_type": "q1",
           "text": "“Look among the nations, and see;wonder and be astounded. For I am doing a work in your daysthat you would not believe if told."
         },
         {
           "verse": 6,
+          "usfm": "HAB.1.6",
+          "line_type": "q1",
           "text": "For behold, I am raising up the Chaldeans,that bitter and hasty nation, who march through the breadth of the earth, to seize dwellings not their own."
         },
         {
           "verse": 7,
+          "usfm": "HAB.1.7",
+          "line_type": "q1",
           "text": "They are dreaded and fearsome; their justice and dignity go forth from themselves."
         },
         {
           "verse": 8,
+          "usfm": "HAB.1.8",
+          "line_type": "q1",
           "text": "Their horses are swifter than leopards,more fierce than the evening wolves;their horsemen press proudly on.Their horsemen come from afar; they fly like an eagle swift to devour."
         },
         {
           "verse": 9,
+          "usfm": "HAB.1.9",
+          "line_type": "q1",
           "text": "They all come for violence,all their faces forward.They gather captives like sand."
         },
         {
           "verse": 10,
+          "usfm": "HAB.1.10",
+          "line_type": "q1",
           "text": "At kings they scoff,and at rulers they laugh. They laugh at every fortress,for they pile up earth and take it."
         },
         {
           "verse": 11,
+          "usfm": "HAB.1.11",
+          "line_type": "q1",
           "text": "Then they sweep by like the wind and go on, guilty men, whose own might is their god!”"
         },
         {
           "verse": 12,
+          "usfm": "HAB.1.12",
+          "line_type": "q1",
           "text": "Are you not from everlasting,O Lord my God, my Holy One? We shall not die.O Lord, you have ordained them as a judgment,and you, O Rock, have established them for reproof."
         },
         {
           "verse": 13,
+          "usfm": "HAB.1.13",
+          "line_type": "q1",
           "text": "You who are of purer eyes than to see eviland cannot look at wrong, why do you idly look at traitorsand remain silent when the wicked swallows upthe man more righteous than he?"
         },
         {
           "verse": 14,
+          "usfm": "HAB.1.14",
+          "line_type": "q1",
           "text": "You make mankind like the fish of the sea,like crawling things that have no ruler."
         },
         {
           "verse": 15,
+          "usfm": "HAB.1.15",
+          "line_type": "q1",
           "text": "He brings all of them up with a hook;he drags them out with his net;he gathers them in his dragnet;so he rejoices and is glad."
         },
         {
           "verse": 16,
+          "usfm": "HAB.1.16",
+          "line_type": "q1",
           "text": "Therefore he sacrifices to his netand makes offerings to his dragnet;for by them he lives in luxury,and his food is rich."
         },
         {
           "verse": 17,
+          "usfm": "HAB.1.17",
+          "line_type": "q1",
           "text": "Is he then to keep on emptying his net and mercilessly killing nations forever?"
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Habakkuk’s Complaint"
         },
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "The"
         },
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Lord"
         },
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "’s Answer"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Habakkuk’s Second Complaint"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HAB.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NAM.1.1"
+          ],
+          "text": "See Nah. 1:1"
+        },
+        {
+          "verse": 2,
+          "usfm": "HAB.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.13.1",
+            "PSA.89.46"
+          ],
+          "text": "Ps. 13:1; 89:46"
+        },
+        {
+          "verse": 2,
+          "usfm": "HAB.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MIC.6.12"
+          ],
+          "text": "Mic. 6:12"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAB.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.9.2+JER.9.3+JER.9.4+JER.9.5+JER.9.6"
+          ],
+          "text": "See Jer. 9:2-6"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAB.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2"
+          ],
+          "text": "[See ver. 2 above]"
+        },
+        {
+          "verse": 4,
+          "usfm": "HAB.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MIC.7.3"
+          ],
+          "text": "[ Mic. 7:3 ]"
+        },
+        {
+          "verse": 4,
+          "usfm": "HAB.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOB.21.7",
+            "JER.12.1"
+          ],
+          "text": "[ Job 21:7; Jer. 12:1 ]"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.13.41"
+          ],
+          "text": "Cited Acts 13:41"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.28.21",
+            "ISA.29.14"
+          ],
+          "text": "[ Isa. 28:21; 29:14 ]"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.5.15"
+          ],
+          "text": "See Jer. 5:15"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.5"
+          ],
+          "text": "[ch. 2:5 ]"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.6"
+          ],
+          "text": "[ch. 2:6 ]"
+        },
+        {
+          "verse": 7,
+          "usfm": "HAB.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.1.10"
+          ],
+          "text": "[ver. 10, 11 ]"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.4.13"
+          ],
+          "text": "Jer. 4:13"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.5.6",
+            "ZEP.3.3"
+          ],
+          "text": "Jer. 5:6; Zeph. 3:3"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.28.49"
+          ],
+          "text": "See Deut. 28:49"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAB.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.17"
+          ],
+          "text": "[ch. 2:17]"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAB.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOS.11.4"
+          ],
+          "text": "See Josh. 11:4"
+        },
+        {
+          "verse": 10,
+          "usfm": "HAB.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NAM.3.12"
+          ],
+          "text": "[ Nah. 3:12 ]"
+        },
+        {
+          "verse": 10,
+          "usfm": "HAB.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.4.2"
+          ],
+          "text": "[Ezek. 4:2]"
+        },
+        {
+          "verse": 11,
+          "usfm": "HAB.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HOS.13.16"
+          ],
+          "text": "[ Hos. 13:16 ]"
+        },
+        {
+          "verse": 11,
+          "usfm": "HAB.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.1.7"
+          ],
+          "text": "[ver. 7]"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAB.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.33.27",
+            "PSA.90.2",
+            "PSA.93.2"
+          ],
+          "text": "Deut. 33:27; Ps. 90:2; 93:2"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAB.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAL.3.6"
+          ],
+          "text": "[ Mal. 3:6 ]"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAB.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.10.5+ISA.10.6+ISA.10.7"
+          ],
+          "text": "See Isa. 10:5-7"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAB.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.32.4"
+          ],
+          "text": "See Deut. 32:4"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAB.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.5.5"
+          ],
+          "text": "[Ps. 5:5]"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAB.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.12.1"
+          ],
+          "text": "Jer. 12:1"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAB.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.35.22"
+          ],
+          "text": "Ps. 35:22"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAB.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.16.16",
+            "AMO.4.2"
+          ],
+          "text": "Jer. 16:16; Amos 4:2"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAB.1.15",
+          "note_ref": "1:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, the wicked foe"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAB.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.19.8"
+          ],
+          "text": "[Isa. 19:8]"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.1.11"
+          ],
+          "text": "[ver. 11 ]"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.1.16",
+          "note_ref": "1:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew his portion is fat"
+        },
+        {
+          "verse": 17,
+          "usfm": "HAB.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.10"
+          ],
+          "text": "[ch. 2:10 ]"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HAB.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HAB.1.1",
+            "HAB.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "HAB.1.2",
+            "HAB.1.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.1.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.1.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "HAB.1.3",
+            "HAB.1.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAB.1.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAB.1.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAB.1.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "HAB.1.4",
+            "HAB.1.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.1.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.1.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.1.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "HAB.1.5",
+            "HAB.1.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.1.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.1.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.1.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "HAB.1.6",
+            "HAB.1.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HAB.1.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "HAB.1.7",
+            "HAB.1.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.1.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.1.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.1.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.1.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "HAB.1.8",
+            "HAB.1.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAB.1.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAB.1.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "HAB.1.10",
+            "HAB.1.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAB.1.10"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAB.1.10"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAB.1.10"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "HAB.1.10",
+            "HAB.1.11"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAB.1.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "HAB.1.11",
+            "HAB.1.12"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "HAB.1.12"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "HAB.1.12"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "HAB.1.12"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "HAB.1.12"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "HAB.1.12",
+            "HAB.1.13"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.1.13"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.1.13"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.1.13"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.1.13"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "HAB.1.13",
+            "HAB.1.14"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HAB.1.14"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "HAB.1.14",
+            "HAB.1.15"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "HAB.1.15"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "HAB.1.15"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "HAB.1.15"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "HAB.1.15",
+            "HAB.1.16"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.1.16"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.1.16"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.1.16"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "HAB.1.16",
+            "HAB.1.17"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.1.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -120,9 +1251,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/HAB/1-d8488875f29583c78615107f6808f38d.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/HAB.1.ESV",
+        "reference": {
+          "usfm": [
+            "HAB.1"
+          ],
+          "human": "Habakkuk 1",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "NAM.3"
+          ],
+          "human": "Nahum 3",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HAB.2"
+          ],
+          "human": "Habakkuk 2",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HAB",
       "chapter": 2,
       "chapter_usfm": "HAB.2",
@@ -131,97 +1319,1560 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HAB.2.1",
+          "line_type": "q1",
           "text": "I will take my stand at my watchpostand station myself on the tower,and look out to see what he will say to me,and what I will answer concerning my complaint."
         },
         {
           "verse": 2,
+          "usfm": "HAB.2.2",
+          "line_type": "p",
           "text": "And the Lord answered me: “Write the vision;make it plain on tablets,so he may run who reads it."
         },
         {
           "verse": 3,
+          "usfm": "HAB.2.3",
+          "line_type": "q1",
           "text": "For still the vision awaits its appointed time;it hastens to the end—it will not lie.If it seems slow, wait for it; it will surely come; it will not delay."
         },
         {
           "verse": 4,
+          "usfm": "HAB.2.4",
+          "line_type": "q1",
           "text": "“Behold, his soul is puffed up; it is not upright within him,but the righteous shall live by his faith."
         },
         {
           "verse": 5,
+          "usfm": "HAB.2.5",
+          "line_type": "q1",
           "text": "“Moreover, wine is a traitor,an arrogant man who is never at rest.His greed is as wide as Sheol;like death he has never enough. He gathers for himself all nationsand collects as his own all peoples.”"
         },
         {
           "verse": 6,
+          "usfm": "HAB.2.6",
+          "line_type": "p",
           "text": "Shall not all these take up their taunt against him, with scoffing and riddles for him, and say, “Woe to him who heaps up what is not his own—for how long?—and loads himself with pledges!”"
         },
         {
           "verse": 7,
+          "usfm": "HAB.2.7",
+          "line_type": "q1",
           "text": "Will not your debtors suddenly arise,and those awake who will make you tremble?Then you will be spoil for them."
         },
         {
           "verse": 8,
+          "usfm": "HAB.2.8",
+          "line_type": "q1",
           "text": "Because you have plundered many nations,all the remnant of the peoples shall plunder you, for the blood of man and violence to the earth,to cities and all who dwell in them."
         },
         {
           "verse": 9,
+          "usfm": "HAB.2.9",
+          "line_type": "q1",
           "text": "“Woe to him who gets evil gain for his house, to set his nest on high,to be safe from the reach of harm!"
         },
         {
           "verse": 10,
+          "usfm": "HAB.2.10",
+          "line_type": "q1",
           "text": "You have devised shame for your house by cutting off many peoples;you have forfeited your life."
         },
         {
           "verse": 11,
+          "usfm": "HAB.2.11",
+          "line_type": "q1",
           "text": "For the stone will cry out from the wall,and the beam from the woodwork respond."
         },
         {
           "verse": 12,
+          "usfm": "HAB.2.12",
+          "line_type": "q1",
           "text": "“Woe to him who builds a town with bloodand founds a city on iniquity!"
         },
         {
           "verse": 13,
+          "usfm": "HAB.2.13",
+          "line_type": "q1",
           "text": "Behold, is it not from the Lord of hoststhat peoples labor merely for fire,and nations weary themselves for nothing?"
         },
         {
           "verse": 14,
+          "usfm": "HAB.2.14",
+          "line_type": "q1",
           "text": "For the earth will be filledwith the knowledge of the glory of the Lordas the waters cover the sea."
         },
         {
           "verse": 15,
+          "usfm": "HAB.2.15",
+          "line_type": "q1",
           "text": "“Woe to him who makes his neighbors drink—you pour out your wrath and make them drunk,in order to gaze at their nakedness!"
         },
         {
           "verse": 16,
+          "usfm": "HAB.2.16",
+          "line_type": "q1",
           "text": "You will have your fill of shame instead of glory. Drink, yourself, and show your uncircumcision! The cup in the Lord’s right handwill come around to you,and utter shame will come upon your glory!"
         },
         {
           "verse": 17,
+          "usfm": "HAB.2.17",
+          "line_type": "q1",
           "text": "The violence done to Lebanon will overwhelm you,as will the destruction of the beasts that terrified them, for the blood of man and violence to the earth,to cities and all who dwell in them."
         },
         {
           "verse": 18,
+          "usfm": "HAB.2.18",
+          "line_type": "q1",
           "text": "“What profit is an idolwhen its maker has shaped it,a metal image, a teacher of lies?For its maker trusts in his own creationwhen he makes speechless idols!"
         },
         {
           "verse": 19,
+          "usfm": "HAB.2.19",
+          "line_type": "q1",
           "text": "Woe to him who says to a wooden thing, Awake;to a silent stone, Arise!Can this teach?Behold, it is overlaid with gold and silver,and there is no breath at all in it."
         },
         {
           "verse": 20,
+          "usfm": "HAB.2.20",
+          "line_type": "q1",
           "text": "But the Lord is in his holy temple; let all the earth keep silence before him.”"
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The Righteous Shall Live by His Faith"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Woe to the Chaldeans"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HAB.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.21.8"
+          ],
+          "text": "Isa. 21:8"
+        },
+        {
+          "verse": 1,
+          "usfm": "HAB.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.6.17",
+            "EZK.33.2"
+          ],
+          "text": "Jer. 6:17; Ezek. 33:2"
+        },
+        {
+          "verse": 1,
+          "usfm": "HAB.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.85.8"
+          ],
+          "text": "Ps. 85:8"
+        },
+        {
+          "verse": 2,
+          "usfm": "HAB.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.8.1",
+            "ISA.30.8",
+            "REV.1.19"
+          ],
+          "text": "Isa. 8:1; 30:8; [ Rev. 1:19 ]"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAB.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DAN.10.14"
+          ],
+          "text": "[Dan. 10:14]; See Ezek. 7:5-7"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAB.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEP.3.8",
+            "ISA.8.17"
+          ],
+          "text": "Zeph. 3:8; See Isa. 8:17"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAB.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HEB.10.37",
+            "2PE.3.9"
+          ],
+          "text": "Cited Heb. 10:37; [ 2 Pet. 3:9 ]"
+        },
+        {
+          "verse": 4,
+          "usfm": "HAB.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.1.17",
+            "GAL.3.11",
+            "HEB.10.38",
+            "JHN.3.36"
+          ],
+          "text": "Cited Rom. 1:17; Gal. 3:11; Heb. 10:38; [John 3:36]"
+        },
+        {
+          "verse": 4,
+          "usfm": "HAB.2.4",
+          "note_ref": "2:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or faithfulness"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.2.5",
+          "note_ref": "2:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Masoretic Text; Dead Sea Scroll wealth"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.1.13",
+            "ISA.21.2"
+          ],
+          "text": "ch. 1:13; Isa. 21:2"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.2.5",
+          "note_ref": "2:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The meaning of the Hebrew of these two lines is uncertain"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PRO.27.20"
+          ],
+          "text": "[Prov. 27:20]"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.27.7",
+            "JER.1.6",
+            "DAN.2.37",
+            "DAN.2.38"
+          ],
+          "text": "Jer. 27:7; [ch. 1:6; Dan. 2:37, 38 ]"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MIC.2.4",
+            "NUM.23.7"
+          ],
+          "text": "Mic. 2:4; See Num. 23:7"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.19",
+            "ISA.5.8"
+          ],
+          "text": "ver. 19 ; Isa. 5:8"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.1.6"
+          ],
+          "text": "[ch. 1:6]"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEC.1.12"
+          ],
+          "text": "See Zech. 1:12"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.18.7"
+          ],
+          "text": "[Ezek. 18:7]"
+        },
+        {
+          "verse": 7,
+          "usfm": "HAB.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.21.5+ISA.21.6+ISA.21.7+ISA.21.8+ISA.21.9"
+          ],
+          "text": "See Isa. 21:5-9"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.33.1"
+          ],
+          "text": "[ Isa. 33:1 ]"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.17"
+          ],
+          "text": "ver. 17"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.33.1"
+          ],
+          "text": "[Isa. 33:1]"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAB.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.6"
+          ],
+          "text": "[See ver. 6 above]"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAB.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.14.13"
+          ],
+          "text": "[ Isa. 14:13 ]"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAB.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.49.16",
+            "NUM.24.21"
+          ],
+          "text": "Jer. 49:16; [Num. 24:21]"
+        },
+        {
+          "verse": 10,
+          "usfm": "HAB.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.1.17"
+          ],
+          "text": "[ch. 1:17 ]"
+        },
+        {
+          "verse": 11,
+          "usfm": "HAB.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LUK.19.40"
+          ],
+          "text": "[Luke 19:40]"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAB.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.6"
+          ],
+          "text": "[See ver. 6 above]"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAB.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MIC.3.10"
+          ],
+          "text": "See Mic. 3:10"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAB.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.51.58"
+          ],
+          "text": "Jer. 51:58"
+        },
+        {
+          "verse": 14,
+          "usfm": "HAB.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.11.9"
+          ],
+          "text": "Isa. 11:9"
+        },
+        {
+          "verse": 14,
+          "usfm": "HAB.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.72.19"
+          ],
+          "text": "Ps. 72:19"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAB.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.6"
+          ],
+          "text": "[See ver. 6 above]"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAB.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.51.7"
+          ],
+          "text": "[ver. 5; Jer. 51:7]"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAB.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LAM.4.21",
+            "GEN.9.22"
+          ],
+          "text": "Lam. 4:21; [Gen. 9:22]"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NAM.3.5"
+          ],
+          "text": "Nah. 3:5"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.25.15",
+            "JER.25.26"
+          ],
+          "text": "Jer. 25:15, 26"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.25.15",
+            "JER.25.26"
+          ],
+          "text": "Jer. 25:15, 26"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NAM.3.6"
+          ],
+          "text": "[Nah. 3:6]"
+        },
+        {
+          "verse": 17,
+          "usfm": "HAB.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.8"
+          ],
+          "text": "ver. 8"
+        },
+        {
+          "verse": 17,
+          "usfm": "HAB.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.14.8",
+            "JER.22.23"
+          ],
+          "text": "[Isa. 14:8; Jer. 22:23]"
+        },
+        {
+          "verse": 17,
+          "usfm": "HAB.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.8"
+          ],
+          "text": "ver. 8"
+        },
+        {
+          "verse": 18,
+          "usfm": "HAB.2.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.44.10"
+          ],
+          "text": "Isa. 44:10"
+        },
+        {
+          "verse": 18,
+          "usfm": "HAB.2.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.10.8",
+            "JER.10.14",
+            "ZEC.10.2"
+          ],
+          "text": "Jer. 10:8, 14; Zech. 10:2"
+        },
+        {
+          "verse": 18,
+          "usfm": "HAB.2.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.115.5",
+            "1CO.12.2"
+          ],
+          "text": "Ps. 115:5; 1 Cor. 12:2"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.2.6"
+          ],
+          "text": "ver. 6, 9, 12, 15"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1KI.18.26",
+            "1KI.18.27"
+          ],
+          "text": "See 1 Kgs. 18:26, 27"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.135.17",
+            "JER.10.14"
+          ],
+          "text": "Ps. 135:17; Jer. 10:14"
+        },
+        {
+          "verse": 20,
+          "usfm": "HAB.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.11.4",
+            "MIC.1.2"
+          ],
+          "text": "Ps. 11:4; Mic. 1:2"
+        },
+        {
+          "verse": 20,
+          "usfm": "HAB.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEP.1.7",
+            "ZEC.2.13"
+          ],
+          "text": "[ Zeph. 1:7; Zech. 2:13 ]"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HAB.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HAB.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HAB.2.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HAB.2.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HAB.2.1",
+            "HAB.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.2.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.2.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.2.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "HAB.2.2",
+            "HAB.2.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.2.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.2.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.2.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "HAB.2.3",
+            "HAB.2.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAB.2.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "HAB.2.4",
+            "HAB.2.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.2.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.2.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.2.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.2.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.2.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "HAB.2.5",
+            "HAB.2.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.2.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.2.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.2.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "HAB.2.6",
+            "HAB.2.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HAB.2.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HAB.2.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "HAB.2.7",
+            "HAB.2.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.2.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.2.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.2.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "HAB.2.8",
+            "HAB.2.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAB.2.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAB.2.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "HAB.2.10",
+            "HAB.2.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAB.2.10"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAB.2.10"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "HAB.2.10",
+            "HAB.2.11"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAB.2.11"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "HAB.2.11",
+            "HAB.2.12"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "HAB.2.12"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "HAB.2.12",
+            "HAB.2.13"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.2.13"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.2.13"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "HAB.2.13",
+            "HAB.2.14"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HAB.2.14"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HAB.2.14"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "HAB.2.14",
+            "HAB.2.15"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "HAB.2.15"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "HAB.2.15"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "HAB.2.15",
+            "HAB.2.16"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.2.16"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.2.16"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.2.16"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.2.16"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "HAB.2.16",
+            "HAB.2.17"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.2.17"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.2.17"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.2.17"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "HAB.2.17",
+            "HAB.2.18"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "HAB.2.18"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "HAB.2.18"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "HAB.2.18"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "HAB.2.18"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "HAB.2.18",
+            "HAB.2.19"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HAB.2.19"
+          ]
+        },
+        {
+          "index": 67,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HAB.2.19"
+          ]
+        },
+        {
+          "index": 68,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HAB.2.19"
+          ]
+        },
+        {
+          "index": 69,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HAB.2.19"
+          ]
+        },
+        {
+          "index": 70,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "HAB.2.19",
+            "HAB.2.20"
+          ]
+        },
+        {
+          "index": 71,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "HAB.2.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -232,9 +2883,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/HAB/2-7f26a962ff8cf3484561ba14a27b7180.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/HAB.2.ESV",
+        "reference": {
+          "usfm": [
+            "HAB.2"
+          ],
+          "human": "Habakkuk 2",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HAB.1"
+          ],
+          "human": "Habakkuk 1",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HAB.3"
+          ],
+          "human": "Habakkuk 3",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HAB",
       "chapter": 3,
       "chapter_usfm": "HAB.3",
@@ -243,93 +2951,1447 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HAB.3.1",
+          "line_type": "p",
           "text": "A prayer of Habakkuk the prophet, according to Shigionoth."
         },
         {
           "verse": 2,
+          "usfm": "HAB.3.2",
+          "line_type": "q1",
           "text": "O Lord, I have heard the report of you,and your work, O Lord, do I fear.In the midst of the years revive it;in the midst of the years make it known; in wrath remember mercy."
         },
         {
           "verse": 3,
+          "usfm": "HAB.3.3",
+          "line_type": "q1",
           "text": "God came from Teman, and the Holy One from Mount Paran. SelahHis splendor covered the heavens,and the earth was full of his praise."
         },
         {
           "verse": 4,
+          "usfm": "HAB.3.4",
+          "line_type": "q1",
           "text": "His brightness was like the light;rays flashed from his hand;and there he veiled his power."
         },
         {
           "verse": 5,
+          "usfm": "HAB.3.5",
+          "line_type": "q1",
           "text": "Before him went pestilence,and plague followed at his heels."
         },
         {
           "verse": 6,
+          "usfm": "HAB.3.6",
+          "line_type": "q1",
           "text": "He stood and measured the earth;he looked and shook the nations;then the eternal mountains were scattered;the everlasting hills sank low.His were the everlasting ways."
         },
         {
           "verse": 7,
+          "usfm": "HAB.3.7",
+          "line_type": "q1",
           "text": "I saw the tents of Cushan in affliction; the curtains of the land of Midian did tremble."
         },
         {
           "verse": 8,
+          "usfm": "HAB.3.8",
+          "line_type": "q1",
           "text": "Was your wrath against the rivers, O Lord?Was your anger against the rivers, or your indignation against the sea, when you rode on your horses, on your chariot of salvation?"
         },
         {
           "verse": 9,
+          "usfm": "HAB.3.9",
+          "line_type": "q1",
           "text": "You stripped the sheath from your bow,calling for many arrows. Selah You split the earth with rivers."
         },
         {
           "verse": 10,
+          "usfm": "HAB.3.10",
+          "line_type": "q1",
           "text": "The mountains saw you and writhed;the raging waters swept on; the deep gave forth its voice; it lifted its hands on high."
         },
         {
           "verse": 11,
+          "usfm": "HAB.3.11",
+          "line_type": "q1",
           "text": "The sun and moon stood still in their place at the light of your arrows as they sped,at the flash of your glittering spear."
         },
         {
           "verse": 12,
+          "usfm": "HAB.3.12",
+          "line_type": "q1",
           "text": "You marched through the earth in fury; you threshed the nations in anger."
         },
         {
           "verse": 13,
+          "usfm": "HAB.3.13",
+          "line_type": "q1",
           "text": "You went out for the salvation of your people,for the salvation of your anointed. You crushed the head of the house of the wicked,laying him bare from thigh to neck. Selah"
         },
         {
           "verse": 14,
+          "usfm": "HAB.3.14",
+          "line_type": "q1",
           "text": "You pierced with his own arrows the heads of his warriors,who came like a whirlwind to scatter me,rejoicing as if to devour the poor in secret."
         },
         {
           "verse": 15,
+          "usfm": "HAB.3.15",
+          "line_type": "q1",
           "text": "You trampled the sea with your horses,the surging of mighty waters."
         },
         {
           "verse": 16,
+          "usfm": "HAB.3.16",
+          "line_type": "q1",
           "text": "I hear, and my body trembles;my lips quiver at the sound; rottenness enters into my bones;my legs tremble beneath me.Yet I will quietly wait for the day of troubleto come upon people who invade us."
         },
         {
           "verse": 17,
+          "usfm": "HAB.3.17",
+          "line_type": "q1",
           "text": "Though the fig tree should not blossom,nor fruit be on the vines,the produce of the olive failand the fields yield no food,the flock be cut off from the foldand there be no herd in the stalls,"
         },
         {
           "verse": 18,
+          "usfm": "HAB.3.18",
+          "line_type": "q1",
           "text": "yet I will rejoice in the Lord; I will take joy in the God of my salvation."
         },
         {
           "verse": 19,
+          "usfm": "HAB.3.19",
+          "line_type": "q1",
           "text": "God, the Lord, is my strength; he makes my feet like the deer’s;he makes me tread on my high places. To the choirmaster: with stringed instruments."
         }
       ],
       "verse_count": 19,
       "headings": [
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Habakkuk Rejoices in the"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Lord"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HAB.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.3.16",
+            "PSA.44.1"
+          ],
+          "text": "ver. 16; [Ps. 44:1]"
+        },
+        {
+          "verse": 2,
+          "usfm": "HAB.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.90.16"
+          ],
+          "text": "Ps. 90:16"
+        },
+        {
+          "verse": 2,
+          "usfm": "HAB.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.85.6"
+          ],
+          "text": "Ps. 85:6"
+        },
+        {
+          "verse": 2,
+          "usfm": "HAB.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.77.9"
+          ],
+          "text": "[ Ps. 77:9 ]"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAB.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1CH.1.45"
+          ],
+          "text": "See 1 Chr. 1:45"
+        },
+        {
+          "verse": 3,
+          "usfm": "HAB.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.33.2"
+          ],
+          "text": "See Deut. 33:2"
+        },
+        {
+          "verse": 4,
+          "usfm": "HAB.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.1.27"
+          ],
+          "text": "See Ezek. 1:27"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2KI.19.35"
+          ],
+          "text": "[ 2 Kgs. 19:35 ]; See Ex. 12:29, 30; 1 Chr. 21:11-15"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOB.18.11"
+          ],
+          "text": "[Job 18:11]"
+        },
+        {
+          "verse": 5,
+          "usfm": "HAB.3.5",
+          "note_ref": "3:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew feet"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.60.6"
+          ],
+          "text": "[Ps. 60:6]"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.49.26",
+            "DEU.33.15"
+          ],
+          "text": "Gen. 49:26; Deut. 33:15"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MIC.1.4",
+            "NAM.1.5"
+          ],
+          "text": "Mic. 1:4; Nah. 1:5"
+        },
+        {
+          "verse": 6,
+          "usfm": "HAB.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.51.9"
+          ],
+          "text": "[Isa. 51:9]"
+        },
+        {
+          "verse": 7,
+          "usfm": "HAB.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JDG.3.8"
+          ],
+          "text": "Judg. 3:8"
+        },
+        {
+          "verse": 7,
+          "usfm": "HAB.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JDG.8.19+JDG.8.20+JDG.8.21"
+          ],
+          "text": "See Judg. 8:19-21"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.114.5"
+          ],
+          "text": "[ Ps. 114:5 ]"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.114.5"
+          ],
+          "text": "[ Ps. 114:5 ]"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.33.26",
+            "DEU.33.27",
+            "PSA.18.10",
+            "PSA.68.4",
+            "PSA.68.17",
+            "PSA.104.3",
+            "ISA.19.1",
+            "ISA.66.15"
+          ],
+          "text": "Deut. 33:26, 27; Ps. 18:10; 68:4, 17; 104:3; Isa. 19:1; 66:15"
+        },
+        {
+          "verse": 8,
+          "usfm": "HAB.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.33.26",
+            "DEU.33.27",
+            "PSA.18.10",
+            "PSA.68.4",
+            "PSA.68.17",
+            "PSA.104.3",
+            "ISA.19.1",
+            "ISA.66.15"
+          ],
+          "text": "Deut. 33:26, 27; Ps. 18:10; 68:4, 17; 104:3; Isa. 19:1; 66:15"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAB.3.9",
+          "note_ref": "3:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The meaning of the Hebrew line is uncertain"
+        },
+        {
+          "verse": 9,
+          "usfm": "HAB.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.78.15",
+            "PSA.78.16"
+          ],
+          "text": "Ps. 78:15, 16"
+        },
+        {
+          "verse": 10,
+          "usfm": "HAB.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EXO.19.18",
+            "JDG.5.5"
+          ],
+          "text": "Ex. 19:18; See Judg. 5:5"
+        },
+        {
+          "verse": 10,
+          "usfm": "HAB.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.93.3"
+          ],
+          "text": "Ps. 93:3"
+        },
+        {
+          "verse": 10,
+          "usfm": "HAB.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EXO.14.22",
+            "EXO.15.8"
+          ],
+          "text": "[ Ex. 14:22; 15:8 ]"
+        },
+        {
+          "verse": 11,
+          "usfm": "HAB.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOS.10.12",
+            "JOS.10.13"
+          ],
+          "text": "See Josh. 10:12, 13"
+        },
+        {
+          "verse": 11,
+          "usfm": "HAB.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.3.5"
+          ],
+          "text": "[ver. 5 ]; See 2 Sam. 22:15"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAB.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOS.10.42"
+          ],
+          "text": "[ Josh. 10:42 ]"
+        },
+        {
+          "verse": 12,
+          "usfm": "HAB.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MIC.4.12",
+            "MIC.4.13"
+          ],
+          "text": "[ Mic. 4:12, 13 ]"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAB.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.3.12"
+          ],
+          "text": "[See ver. 12 above]"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAB.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1CH.16.22",
+            "PSA.105.15"
+          ],
+          "text": "1 Chr. 16:22; Ps. 105:15"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAB.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.68.21",
+            "PSA.110.6"
+          ],
+          "text": "Ps. 68:21; 110:6"
+        },
+        {
+          "verse": 13,
+          "usfm": "HAB.3.13",
+          "note_ref": "3:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The meaning of the Hebrew line is uncertain"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAB.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.77.19"
+          ],
+          "text": "[ Ps. 77:19 ]"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAB.3.2"
+          ],
+          "text": "ver. 2"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.4.19"
+          ],
+          "text": "Jer. 4:19"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PRO.12.4"
+          ],
+          "text": "[ Prov. 12:4 ]"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAB.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.94.13",
+            "ISA.14.3",
+            "ISA.14.4"
+          ],
+          "text": "[Ps. 94:13; Isa. 14:3, 4]"
+        },
+        {
+          "verse": 18,
+          "usfm": "HAB.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOB.13.15"
+          ],
+          "text": "[ Job 13:15 ]"
+        },
+        {
+          "verse": 18,
+          "usfm": "HAB.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.9.14",
+            "PSA.13.5",
+            "PSA.21.1",
+            "PSA.35.9",
+            "LUK.1.47",
+            "JOL.2.23"
+          ],
+          "text": "Ps. 9:14; 13:5; 21:1; 35:9; Luke 1:47; See Joel 2:23"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2SA.2.18"
+          ],
+          "text": "See 2 Sam. 2:18"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "AMO.4.13",
+            "MIC.1.3"
+          ],
+          "text": "Amos 4:13; Mic. 1:3"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.32.13",
+            "DEU.33.29"
+          ],
+          "text": "Deut. 32:13; 33:29"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.4"
+          ],
+          "text": "See Ps. 4"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.38.20"
+          ],
+          "text": "Isa. 38:20"
+        },
+        {
+          "verse": 19,
+          "usfm": "HAB.3.19",
+          "note_ref": "3:19",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew my stringed"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HAB.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HAB.3.1",
+            "HAB.3.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.3.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.3.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.3.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAB.3.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "HAB.3.2",
+            "HAB.3.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.3.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.3.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HAB.3.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "HAB.3.3",
+            "HAB.3.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAB.3.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAB.3.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "HAB.3.4",
+            "HAB.3.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAB.3.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "HAB.3.5",
+            "HAB.3.6"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.3.6"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.3.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.3.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAB.3.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "HAB.3.6",
+            "HAB.3.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HAB.3.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "HAB.3.7",
+            "HAB.3.8"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.3.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.3.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.3.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAB.3.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "HAB.3.8",
+            "HAB.3.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAB.3.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAB.3.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "HAB.3.10",
+            "HAB.3.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAB.3.10"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAB.3.10"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAB.3.10"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "HAB.3.10",
+            "HAB.3.11"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAB.3.11"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAB.3.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "HAB.3.11",
+            "HAB.3.12"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "HAB.3.12"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "HAB.3.12",
+            "HAB.3.13"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.3.13"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.3.13"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAB.3.13"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "HAB.3.13",
+            "HAB.3.14"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HAB.3.14"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HAB.3.14"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "HAB.3.14",
+            "HAB.3.15"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "HAB.3.15"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "HAB.3.15",
+            "HAB.3.16"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.3.16"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.3.16"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.3.16"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.3.16"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HAB.3.16"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "HAB.3.16",
+            "HAB.3.17"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.3.17"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.3.17"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.3.17"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.3.17"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HAB.3.17"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "HAB.3.17",
+            "HAB.3.18"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "HAB.3.18"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "HAB.3.18",
+            "HAB.3.19"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HAB.3.19"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HAB.3.19"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HAB.3.19"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -340,7 +4402,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/HAB/3-17a6140083f105e9c6e1dcb6d872374d.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 19,
+          "parsed_count": 19,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/HAB.3.ESV",
+        "reference": {
+          "usfm": [
+            "HAB.3"
+          ],
+          "human": "Habakkuk 3",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HAB.2"
+          ],
+          "human": "Habakkuk 2",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.1"
+          ],
+          "human": "Zephaniah 1",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

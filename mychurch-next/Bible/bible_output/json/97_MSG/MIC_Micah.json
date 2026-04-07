@@ -11,6 +11,7 @@
   "total_verses": 12,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 1,
       "chapter_usfm": "MIC.1",
@@ -19,25 +20,105 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.1.1",
+          "line_type": "p",
           "text": "God’s Message as it came to Micah of Moresheth. It came during the reigns of Jotham, Ahaz, and Hezekiah, kings of Judah. It had to do with what was going on in Samaria and Jerusalem."
         },
         {
           "verse": 2,
+          "usfm": "MIC.1.2",
+          "line_type": "q1",
           "text": "Listen, people—all of you.Listen, earth, and everyone in it:The Master, God, takes the witness stand against you,the Master from his Holy Temple.* * * Look, here he comes! God, from his place!He comes down and strides across mountains and hills.Mountains sink under his feet,valleys split apart;The rock mountains crumble into gravel,the river valleys leak like sieves.All this because of Jacob’s sin,because Israel’s family did wrong.You ask, “So what is Jacob’s sin?”Just look at Samaria—isn’t it obvious?And all the sex-and-religion shrines in Judah—isn’t Jerusalem responsible?* * * “I’m turning Samaria into a heap of rubble,a vacant lot littered with garbage.I’ll dump the stones from her buildings in the valleyand leave her abandoned foundations exposed.All her carved and cast gods and goddesseswill be sold for stove wood and scrap metal,All her sacred fertility grovesburned to the ground,All the sticks and stones she worshiped as gods,destroyed.These were her earnings from her life as a whore.This is what happens to the fees of a whore.”* * * This is why I lament and mourn.This is why I go around in rags and barefoot.This is why I howl like a pack of coyotes,and moan like a mournful owl in the night. God has inflicted punishing wounds;Judah has been wounded with no healing in sight.Judgment has marched through the city gates.Jerusalem must face the charges.* * * Don’t gossip about this in Telltown.Don’t waste your tears.In Dustville,roll in the dust.In Alarmtown,the alarm is sounded.The citizens of Exitburghwill never get out alive.Lament, Last-Stand City:There’s nothing in you left standing.The villagers of Bittertownwait in vain for sweet peace.Harsh judgment has come from Godand entered Peace City.All you who live in Chariotville,get in your chariots for flight.You led the daughter of Zioninto trusting not God but chariots.Similar sins in Israelalso got their start in you.Go ahead and give your good-bye giftsto Good-byeville.Miragetown beckonedbut disappointed Israel’s kings.Inheritance Cityhas lost its inheritance.Glorytownhas seen its last of glory.Shave your heads in mourningover the loss of your precious towns.Go bald as a goose egg—they’ve goneinto exile and aren’t coming back."
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "God"
         },
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Takes the Witness Stand"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.1.1",
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -48,9 +129,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MIC/1-ce0c56ee39d72263198440fe6d34bf4d.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MIC.1.MSG",
+        "reference": {
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "Micah 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "Jonah 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 2,
       "chapter_usfm": "MIC.2",
@@ -60,6 +198,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -70,9 +209,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MIC/2-a559d235edacad5f042278a4ea004c1c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MIC.2.MSG",
+        "reference": {
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "Micah 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 3,
       "chapter_usfm": "MIC.3",
@@ -81,16 +277,142 @@
       "verses": [
         {
           "verse": 4,
+          "usfm": "MIC.3.4",
+          "line_type": "q1",
           "text": "The time’s coming, though, when these same leaderswill cry out for help to God, but he won’t listen.He’ll turn his face the other waybecause of their history of evil.* * * Here is God’s Message to the prophets,the preachers who lie to my people:“For as long as they’re well paid and well fed,the prophets preach, ‘Isn’t life wonderful! Peace to all!’But if you don’t pay up and jump on their bandwagon,their ‘God bless you’ turns into ‘God damn you.’Therefore, you’re going blind. You’ll see nothing.You’ll live in deep shadows and know nothing.The sun has set on the prophets.They’ve had their day; from now on it’s night.Visionaries will be confused,experts will be all mixed up.They’ll hide behind their reputations and make lame excusesto cover up their God-ignorance.”* * *"
         },
         {
           "verse": 8,
+          "usfm": "MIC.3.8",
+          "line_type": "q1",
           "text": "But me—I’m filled with God’s power,filled with God’s Spirit of justice and strength,Ready to confront Jacob’s crimeand Israel’s sin. The leaders of Jacob andthe leaders of Israel areLeaders contemptuous of justice,who twist and distort right living,Leaders who build Zion by killing people,who expand Jerusalem by committing crimes.Judges sell verdicts to the highest bidder,priests mass-market their teaching,prophets preach for high fees,All the while posturing and pretendingdependence on God:“We’ve got God on our side.He’ll protect us from disaster.”Because of people like you,Zion will be turned back into farmland,Jerusalem end up as a pile of rubble,and instead of the Temple on the mountain,a few scraggly scrub pines."
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.3.8"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -101,9 +423,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MIC/3-9c3ca4639219a9d1453efe2457747e27.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MIC.3.MSG",
+        "reference": {
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 4,
       "chapter_usfm": "MIC.4",
@@ -112,14 +491,20 @@
       "verses": [
         {
           "verse": 5,
+          "usfm": "MIC.4.5",
+          "line_type": "q1",
           "text": "Meanwhile, all the other people live however they wish,picking and choosing their gods.But we live honoring God,and we’re loyal to our God forever and ever. “On that great day,” God says,“I will round up all the hurt and homeless,everyone I have bruised or banished.I will transform the battered into a company of the elite.I will make a strong nation out of the long lost,A showcase exhibit of God’s rule in action,as I rule from Mount Zion, from here to eternity."
         },
         {
           "verse": 8,
+          "usfm": "MIC.4.8",
+          "line_type": "q1",
           "text": "“And you stragglers around Jerusalem,eking out a living in shantytowns:The glory that once was will be again.Jerusalem’s daughter will be the kingdom center.”* * * So why the doomsday hysterics?You still have a king, don’t you?But maybe he’s not doing his joband you’re panicked like a woman in labor.Well, go ahead—twist and scream, Daughter Jerusalem.You are like a woman in childbirth.You’ll soon be out of the city, on your wayand camping in the open country.And then you’ll arrive in Babylon.What you lost in Jerusalem will be found in Babylon. God will give you new life again.He’ll redeem you from your enemies. But for right now, they’re ganged up against you,many godless peoples, saying,“Kick her when she’s down! Violate her!We want to see Zion grovel in the dirt.”These blasphemers have no ideawhat God is thinking and doing in this.They don’t know that this is the making of God’s people,that they are wheat being threshed, gold being refined."
         },
         {
           "verse": 13,
+          "usfm": "MIC.4.13",
+          "line_type": "q1",
           "text": "On your feet, Daughter of Zion! Be threshed of chaff,be refined of dross.I’m remaking you into a people invincible,into God’s juggernaut to crush the godless peoples.You’ll bring their plunder as holy offerings to God,their wealth to the Master of the earth."
         }
       ],
@@ -135,6 +520,200 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -145,9 +724,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MIC/4-26373cfd9ad919b61fa5b44ce2fabb16.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MIC.4.MSG",
+        "reference": {
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 5,
       "chapter_usfm": "MIC.5",
@@ -156,16 +792,166 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.5.1",
+          "line_type": "q1",
           "text": "But for now, prepare for the worst, victim daughter!The siege is set against us.They humiliate Israel’s king,slapping him around like a rag doll. But you, Bethlehem, David’s country,the runt of the litter—From you will come the leaderwho will shepherd-rule Israel.He’ll be no upstart, no pretender.His family tree is ancient and distinguished.Meanwhile, Israel will be in foster homesuntil the birth pangs are over and the child is born,And the scattered brothers come backhome to the family of Israel.He will stand tall in his shepherd-rule by God’s strength,centered in the majesty of God-Revealed.And the people will have a good and safe home,for the whole world will hold him in respect—Peacemaker of the world! And if some bullying Assyrian shows up,invades and violates our land, don’t worry.We’ll put him in his place, send him packing,and watch his every move.Shepherd-rule will extend as far as needed,to Assyria and all other Nimrod-bullies.Our shepherd-ruler will save us from old or new enemies,from anyone who invades or violates our land."
         },
         {
           "verse": 7,
+          "usfm": "MIC.5.7",
+          "line_type": "q1",
           "text": "The purged and select company of Jacob will belike an island in the sea of peoples.They’ll be like dew from God,like summer showersNot mentioned in the weather forecast,not subject to calculation or control. Yes, the purged and select company of Jacob will belike an island in the sea of peoples,Like the king of beasts among wild beasts,like a young lion loose in a flock of sheep,Killing and devouring the lambsand no one able to stop him.With your arms raised in triumph over your foes,your enemies will be no more!* * * “The day is coming”—God’s Decree—“When there will be no more war. None.I’ll slaughter your war horses and demolish your chariots.I’ll dismantle military postsand level your fortifications.I’ll abolish your religious black markets,your underworld traffic in black magic.I will smash your carved and cast godsand chop down your phallic posts.No more taking control of the world,worshiping what you do or make.I’ll root out your sacred sex-and-power centersand destroy the God-defiant.In raging anger, I’ll make a clean sweepof godless nations who haven’t listened.”"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -176,9 +962,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MIC/5-d1afd633760a254ac0c745a4d7fb905b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MIC.5.MSG",
+        "reference": {
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 6,
       "chapter_usfm": "MIC.6",
@@ -187,10 +1030,14 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "MIC.6.8",
+          "line_type": "q1",
           "text": "But he’s already made it plain how to live, what to do,what God is looking for in men and women.It’s quite simple: Do what is fair and just to your neighbor,be compassionate and loyal in your love,And don’t take yourself too seriously—take God seriously."
         },
         {
           "verse": 9,
+          "usfm": "MIC.6.9",
+          "line_type": "q1",
           "text": "Attention! God calls out to the city!If you know what’s good for you, you’ll listen.So listen, all of you!This is serious business.* * * “Do you expect me to overlook obscene wealthyou’ve piled up by cheating and fraud?Do you think I’ll tolerate shady dealsand shifty scheming?I’m tired of the violent richbullying their way with bluffs and lies.I’m fed up. Beginning now, you’re finished.You’ll pay for your sins down to your last cent.No matter how much you get, it will never be enough—hollow stomachs, empty hearts.No matter how hard you work, you’ll have nothing to show for it—bankrupt lives, wasted souls.You’ll plant grassbut never get a lawn.You’ll make jellybut never spread it on your bread.You’ll press applesbut never drink the cider.You have lived by the standards of your king, Omri,the decadent lifestyle of the family of Ahab.Because you’ve slavishly followed their fashions,I’m forcing you into bankruptcy.Your way of life will be laughed at, a tasteless joke.Your lives will be derided as futile and fake.”"
         }
       ],
@@ -206,6 +1053,142 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.6.8",
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.6.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -216,9 +1199,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MIC/6-259854eb9c889fd1347419d2f3f48833.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MIC.6.MSG",
+        "reference": {
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "Micah 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 7,
       "chapter_usfm": "MIC.7",
@@ -227,6 +1267,8 @@
       "verses": [
         {
           "verse": 7,
+          "usfm": "MIC.7.7",
+          "line_type": "q1",
           "text": "But me, I’m not giving up.I’m sticking around to see what God will do.I’m waiting for God to make things right.I’m counting on God to listen to me. Don’t, enemy, crow over me.I’m down, but I’m not out.I’m sitting in the dark right now,but God is my light.I can take God’s punishing rage.I deserve it—I sinned.But it’s not forever. He’s on my sideand is going to get me out of this.He’ll turn on the lights and show me his ways.I’ll see the whole picture and how right he is.And my enemy will see it, too,and be discredited—yes, disgraced!This enemy who kept taunting,“So where is this God of yours?”I’m going to see it with these, my own eyes—my enemy disgraced, trash in the gutter.* * * Oh, that will be a day! A day for rebuilding your city,a day for stretching your arms, spreading your wings!All your dispersed and scattered people will come back,old friends and family from faraway places,From Assyria in the east to Egypt in the west,from across the seas and out of the mountains.But there’ll be a reversal for everyone else—massive depopulation—because of the way they lived, the things they did. Shepherd, O God, your people with your staff,your dear and precious flock.Uniquely yours in a grove of trees,centered in lotus land.Let them graze in lush Bashanas in the old days in green Gilead.Reproduce the miracle-wondersof our exodus from Egypt.And the godless nations: Put them in their place—humiliated in their arrogance, speechless and clueless.Make them slink like snakes, crawl like cockroaches,come out of their holes from under their rocksAnd face our God.Fill them with holy fear and trembling.* * * Where is the god who can compare with you—wiping the slate clean of guilt,Turning a blind eye, a deaf ear,to the past sins of your purged and precious people?You don’t nurse your anger and don’t stay angry long,for mercy is your specialty. That’s what you love most.And compassion is on its way to us.You’ll stamp out our wrongdoing.You’ll sink our sinsto the bottom of the ocean.You’ll stay true to your word to Father Jacoband continue the compassion you showed Grandfather Abraham—Everything you promised our ancestorsfrom a long time ago."
         }
       ],
@@ -241,11 +1283,73 @@
           "text": "Will Do"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Spreading Your Wings"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.7.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.7.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.7.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.7.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.7.7"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -256,7 +1360,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MIC/7-1b8b955c0e21944a900b1ab851ea0375.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MIC.7.MSG",
+        "reference": {
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "Micah 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "NAM.1"
+          ],
+          "human": "Nahum 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

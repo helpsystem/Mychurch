@@ -1,0 +1,1606 @@
+{
+  "book_id": "SNG",
+  "book_name_en": "Song of Solomon",
+  "book_name_fa": "غزل غزلها",
+  "testament": "OT",
+  "version_id": 136,
+  "version_abbr": "POV",
+  "version_name": "ترجمۀ قدیم",
+  "language": "fa",
+  "chapter_count": 8,
+  "total_verses": 116,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "SNG",
+      "chapter": 1,
+      "chapter_usfm": "SNG.1",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "SNG.1.1",
+          "line_type": "p",
+          "text": "غزل غزلها که از آن سلیمان است."
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.1.2",
+          "line_type": "p",
+          "text": "او مرا به بوسه های دهان خود ببوسد زیرا که محبت تو از شراب نیکوتر است."
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.1.3",
+          "line_type": "p",
+          "text": "عطرهای توبوی خوش دارد و اسم تو مثل عطر ریخته شده میباشد. بنابراین دوشیزگان، تو را دوست میدارند."
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.1.4",
+          "line_type": "p",
+          "text": "مرا بکش تا در عقب تو بدویم. پادشاه مرا به حجله های خود آورد. از تو وجد و شادی خواهیم کرد. محبت تو را از شراب زیاده ذکرخواهیم نمود. تو را از روی خلوص دوست میدارند."
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.1.5",
+          "line_type": "p",
+          "text": "ای دختران اورشلیم، من سیه فام اماجمیل هستم، مثل خیمه های قیدار و مانندپرده های سلیمان."
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.1.6",
+          "line_type": "p",
+          "text": "بر من نگاه نکنید چونکه سیه فام هستم، زیرا که آفتاب مرا سوخته است. پسران مادرم بر من خشم نموده، مرا ناطورتاکستانها ساختند، اما تاکستان خود را دیده بانی ننمودم."
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.1.7",
+          "line_type": "p",
+          "text": "ای حبیب جان من، مرا خبر ده که کجامی چرانی و در وقت ظهر گله را کجا میخوابانی؟ زیرا چرا نزد گله های رفیقانت مثل آواره گردم."
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.1.8",
+          "line_type": "p",
+          "text": "ای جمیل تر از زنان، اگر نمی دانی، در اثرگلهها بیرون رو و بزغاله هایت را نزد مسکن های شبانان بچران."
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.1.9",
+          "line_type": "p",
+          "text": "ای محبوبه من، تو را به اسبی که در ارابه فرعون باشد تشبیه دادهام."
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.1.10",
+          "line_type": "p",
+          "text": "رخسارهایت به جواهرها و گردنت به گردن بندها چه بسیار جمیل است."
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.1.11",
+          "line_type": "p",
+          "text": "زنجیرهای طلا با حبه های نقره برای توخواهیم ساخت."
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.1.12",
+          "line_type": "p",
+          "text": "چون پادشاه بر سفره خودمی نشیند، سنبل من بوی خود را میدهد."
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.1.13",
+          "line_type": "p",
+          "text": "محبوب من، مرا مثل طبله مر است که در میان پستانهای من میخوابد."
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.1.14",
+          "line_type": "p",
+          "text": "محبوب من، برایم مثل خوشه بان درباغهای عین جدی میباشد."
+        },
+        {
+          "verse": 15,
+          "usfm": "SNG.1.15",
+          "line_type": "p",
+          "text": "اینک تو زیباهستیای محبوبه من، اینک تو زیبا هستی وچشمانت مثل چشمان کبوتر است."
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.1.16",
+          "line_type": "p",
+          "text": "اینک تو زیبا و شیرین هستیای محبوب من و تخت ما هم سبز است."
+        },
+        {
+          "verse": 17,
+          "usfm": "SNG.1.17",
+          "line_type": "p",
+          "text": "تیرهای خانه ما از سرو آزاد است و سقف ما از چوب صنوبر."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 17,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "SNG.1.1",
+            "SNG.1.10",
+            "SNG.1.11",
+            "SNG.1.12",
+            "SNG.1.13",
+            "SNG.1.14",
+            "SNG.1.15",
+            "SNG.1.16",
+            "SNG.1.17",
+            "SNG.1.2",
+            "SNG.1.3",
+            "SNG.1.4",
+            "SNG.1.5",
+            "SNG.1.6",
+            "SNG.1.7",
+            "SNG.1.8",
+            "SNG.1.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/SNG.1.POV",
+        "reference": {
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "غزل‌غزل‌ها 1",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.12"
+          ],
+          "human": "جامعه 12",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "غزل‌غزل‌ها 2",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "SNG",
+      "chapter": 2,
+      "chapter_usfm": "SNG.2",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "SNG.2.1",
+          "line_type": "p",
+          "text": "من نرگس شارون و سوسن وادیها هستم."
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.2.2",
+          "line_type": "p",
+          "text": "چنانکه سوسن در میان خارها همچنان محبوبه من در میان دختران است."
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.2.3",
+          "line_type": "p",
+          "text": "چنانکه سیب در میان درختان جنگل همچنان محبوب من در میان پسران است. درسایه وی به شادمانی نشستم و میوهاش برای کامم شیرین بود."
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.2.4",
+          "line_type": "p",
+          "text": "مرا به میخانه آورد و علم وی بالای سر من محبت بود."
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.2.5",
+          "line_type": "p",
+          "text": "مرا به قرصهای کشمش تقویت دهید و مرا به سیبها تازه سازید، زیرا که من از عشق بیمار هستم."
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.2.6",
+          "line_type": "p",
+          "text": "دست چپش در زیر سر من است و دست راستش مرا در آغوش میکشد."
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.2.7",
+          "line_type": "p",
+          "text": "ای دختران اورشلیم، شما را به غزالها وآهوهای صحرا قسم میدهم که محبوب مرا تاخودش نخواهد بیدار نکنید و برنینگیزانید."
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.2.8",
+          "line_type": "p",
+          "text": "آواز محبوب من است، اینک بر کوهها جستان وبر تلها خیزان میآید."
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.2.9",
+          "line_type": "p",
+          "text": "محبوب من مانند غزال یابچه آهو است. اینک او در عقب دیوار ما ایستاده، از پنجرهها مینگرد و از شبکهها خویشتن رانمایان میسازد."
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.2.10",
+          "line_type": "p",
+          "text": "محبوب من مرا خطاب کرده، گفت: «ای محبوبه من وای زیبایی من برخیز و بیا."
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.2.11",
+          "line_type": "p",
+          "text": "زیرا اینک زمستان گذشته و باران تمام شده ورفته است."
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.2.12",
+          "line_type": "p",
+          "text": "گلها بر زمین ظاهر شده و زمان الحان رسیده و آواز فاخته در ولایت ما شنیده میشود."
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.2.13",
+          "line_type": "p",
+          "text": "درخت انجیر میوه خود را میرساندو موها گل آورده، رایحه خوش میدهد. ای محبوبه من وای زیبایی من، برخیز و بیا.»"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.2.14",
+          "line_type": "p",
+          "text": "ای کبوتر من که در شکافهای صخره و درستر سنگهای خارا هستی، چهره خود را به من بنما و آوازت را به من بشنوان زیرا که آواز تو لذیذو چهره ات خوشنما است."
+        },
+        {
+          "verse": 15,
+          "usfm": "SNG.2.15",
+          "line_type": "p",
+          "text": "شغالها، شغالهای کوچک را که تاکستانها را خراب میکنند برای مابگیرید، زیرا که تاکستانهای ما گل آورده است."
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.2.16",
+          "line_type": "p",
+          "text": "محبوبم از آن من است و من از آن وی هستم. در میان سوسنها میچراند."
+        },
+        {
+          "verse": 17,
+          "usfm": "SNG.2.17",
+          "line_type": "p",
+          "text": "ای محبوب من، برگرد و تا نسیم روز بوزد و سایهها بگریزد، (مانند) غزال یا بچه آهو بر کوههای باتر باش."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 17,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "SNG.2.1",
+            "SNG.2.10",
+            "SNG.2.11",
+            "SNG.2.12",
+            "SNG.2.13",
+            "SNG.2.14",
+            "SNG.2.15",
+            "SNG.2.16",
+            "SNG.2.17",
+            "SNG.2.2",
+            "SNG.2.3",
+            "SNG.2.4",
+            "SNG.2.5",
+            "SNG.2.6",
+            "SNG.2.7",
+            "SNG.2.8",
+            "SNG.2.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/SNG.2.POV",
+        "reference": {
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "غزل‌غزل‌ها 2",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "غزل‌غزل‌ها 1",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "غزل‌غزل‌ها 3",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "SNG",
+      "chapter": 3,
+      "chapter_usfm": "SNG.3",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "SNG.3.1",
+          "line_type": "p",
+          "text": "شبانگاه در بستر خود او را که جانم دوست می دارد طلبیدم. او را جستجو کردم امانیافتم."
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.3.2",
+          "line_type": "p",
+          "text": "گفتم الان برخاسته، در کوچهها و شوارع شهر گشته، او را که جانم دوست میدارد خواهم طلبید. او را جستجو کردم اما نیافتم."
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.3.3",
+          "line_type": "p",
+          "text": "کشیکچیانی که در شهر گردش میکنند مرایافتند. گفتم که «آیا محبوب جان مرا دیدهاید؟»"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.3.4",
+          "line_type": "p",
+          "text": "از ایشان چندان پیش نرفته بودم که او را که جانم دوست میدارد یافتم. و او را گرفته، رها نکردم تابه خانه مادر خود و به حجره والده خویش درآوردم."
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.3.5",
+          "line_type": "p",
+          "text": "ای دختران اورشلیم، شما را به غزالها وآهوهای صحرا قسم میدهم که محبوب مرا تاخودش نخواهد بیدار مکنید و برمینگیزانید."
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.3.6",
+          "line_type": "p",
+          "text": "این کیست که مثل ستونهای دود از بیابان برمی آید وبه مر و بخور و به همه عطریات تاجران معطراست؟"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.3.7",
+          "line_type": "p",
+          "text": "اینک تخت روان سلیمان است که شصت جبار از جباران اسرائیل به اطراف آن میباشند."
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.3.8",
+          "line_type": "p",
+          "text": "همگی ایشان شمشیر گرفته و جنگ آزموده هستند. شمشیر هر یک بهسبب خوف شب بر رانش بسته است."
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.3.9",
+          "line_type": "p",
+          "text": "سلیمان پادشاه تخت روانی برای خویشتن از چوب لبنان ساخت."
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.3.10",
+          "line_type": "p",
+          "text": "ستونهایش را از نقره و سقفش را از طلا وکرسیاش را از ارغوان ساخت، و وسطش به محبت دختران اورشلیم معرق بود."
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.3.11",
+          "line_type": "p",
+          "text": "ای دختران صهیون، بیرون آیید و سلیمان پادشاه راببینید، با تاجی که مادرش در روز عروسی وی ودر روز شادی دلش آن را بر سر وی نهاد."
+        }
+      ],
+      "verse_count": 11,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 11,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.3.1",
+            "SNG.3.10",
+            "SNG.3.11",
+            "SNG.3.2",
+            "SNG.3.3",
+            "SNG.3.4",
+            "SNG.3.5",
+            "SNG.3.6",
+            "SNG.3.7",
+            "SNG.3.8",
+            "SNG.3.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/SNG.3.POV",
+        "reference": {
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "غزل‌غزل‌ها 3",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "غزل‌غزل‌ها 2",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "غزل‌غزل‌ها 4",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "SNG",
+      "chapter": 4,
+      "chapter_usfm": "SNG.4",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "SNG.4.1",
+          "line_type": "p",
+          "text": "اینک تو زیبا هستیای محبوبه من، اینک تو زیبا هستی و چشمانت از پشت برقع تومثل چشمان کبوتر است و موهایت مثل گله بزهااست که بر جانب کوه جلعاد خوابیدهاند."
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.4.2",
+          "line_type": "p",
+          "text": "دندانهایت مثل گله گوسفندان پشم بریده که ازشستن برآمده باشند و همگی آنها توام زاییده ودر آنها یکی هم نازاد نباشد."
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.4.3",
+          "line_type": "p",
+          "text": "لبهایت مثل رشته قرمز و دهانت جمیل است و شقیقه هایت درعقب برقع تو مانند پاره انار است."
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.4.4",
+          "line_type": "p",
+          "text": "گردنت مثل برج داود است که به جهت سلاح خانه بنا شده است و در آن هزار سپر یعنی همه سپرهای شجاعان آویزان است."
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.4.5",
+          "line_type": "p",
+          "text": "دو پستانت مثل دو بچه توام آهو میباشد که در میان سوسنها میچرند،"
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.4.6",
+          "line_type": "p",
+          "text": "تا نسیم روز بوزد و سایهها بگریزد. به کوه مر وبه تل کندر خواهم رفت."
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.4.7",
+          "line_type": "p",
+          "text": "ای محبوبه من، تمامی تو زیبا میباشد. در توعیبی نیست."
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.4.8",
+          "line_type": "p",
+          "text": "بیا با من از لبنانای عروس، با من ازلبنان بیا. از قله امانه از قله شنیر و حرمون ازمغاره های شیرها و از کوههای پلنگها بنگر."
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.4.9",
+          "line_type": "p",
+          "text": "ای خواهر و عروس من دلم را به یکی از چشمانت وبه یکی از گردن بندهای گردنت ربودی."
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.4.10",
+          "line_type": "p",
+          "text": "ای خواهر و عروس من، محبتهایت چه بسیار لذیذ است. محبتهایت از شراب چه بسیار نیکوتر است و بوی عطرهایت از جمیع عطرها."
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.4.11",
+          "line_type": "p",
+          "text": "ای عروس من، لبهای تو عسل را میچکاند زیر زبان تو عسل و شیر است و بوی لباست مثل بوی لبنان است."
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.4.12",
+          "line_type": "p",
+          "text": "خواهر و عروس من، باغی بسته شده است. چشمه مقفل و منبع مختوم است."
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.4.13",
+          "line_type": "p",
+          "text": "نهالهایت بستان انارها با میوه های نفیسه و بان و سنبل است."
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.4.14",
+          "line_type": "p",
+          "text": "سنبل و زعفران و نی و دارچینی با انواع درختان کندر، مر و عود با جمیع عطرهای نفیسه."
+        },
+        {
+          "verse": 15,
+          "usfm": "SNG.4.15",
+          "line_type": "p",
+          "text": "چشمه باغها و برکه آب زنده و نهرهایی که ازلبنان جاری است."
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.4.16",
+          "line_type": "p",
+          "text": "ای باد شمال، برخیز وای باد جنوب، بیا. برباغ من بوز تا عطرهایش منتشر شود. محبوب من به باغ خود بیاید و میوه نفیسه خود را بخورد."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 16,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "SNG.4.1",
+            "SNG.4.10",
+            "SNG.4.11",
+            "SNG.4.12",
+            "SNG.4.13",
+            "SNG.4.14",
+            "SNG.4.15",
+            "SNG.4.16",
+            "SNG.4.2",
+            "SNG.4.3",
+            "SNG.4.4",
+            "SNG.4.5",
+            "SNG.4.6",
+            "SNG.4.7",
+            "SNG.4.8",
+            "SNG.4.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/SNG.4.POV",
+        "reference": {
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "غزل‌غزل‌ها 4",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "غزل‌غزل‌ها 3",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "غزل‌غزل‌ها 5",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "SNG",
+      "chapter": 5,
+      "chapter_usfm": "SNG.5",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "SNG.5.1",
+          "line_type": "p",
+          "text": "ای خواهر و عروس من، به باغ خود آمدم. مر خود را با عطرهایم چیدم. شانه عسل خود را با عسل خویش خوردم. شراب خود را باشیر خویش نوشیدم.ای دوستان بخورید وای یاران بنوشید و به سیری بیاشامید."
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.5.2",
+          "line_type": "p",
+          "text": "من در خواب هستم اما دلم بیدار است. آوازمحبوب من است که در را میکوبد (و میگوید): «از برای من باز کنای خواهر من! ای محبوبه من وکبوترم وای کامله من! زیرا که سر من از شبنم و زلفهایم از ترشحات شب پر است.»"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.5.3",
+          "line_type": "p",
+          "text": "رخت خودرا کندم چگونه آن را بپوشم؟ پایهای خود راشستم چگونه آنها را چرکین نمایم؟"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.5.4",
+          "line_type": "p",
+          "text": "محبوب من دست خویش را از سوراخ در داخل ساخت واحشایم برای وی به جنبش آمد."
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.5.5",
+          "line_type": "p",
+          "text": "من برخاستم تادر را به جهت محبوب خود باز کنم، و از دستم مرو از انگشتهایم مر صافی بر دسته قفل بچکید."
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.5.6",
+          "line_type": "p",
+          "text": "به جهت محبوب خود باز کردم اما محبوبم روگردانیده، رفته بود. چون او سخن میگفت جان از من بدر شده بود. او را جستجو کردم و نیافتم اورا خواندم و جوابم نداد."
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.5.7",
+          "line_type": "p",
+          "text": "کشیکچیانی که در شهرگردش میکنند مرا یافتند، بزدند و مجروح ساختند. دیده بانهای حصارها برقع مرا از من گرفتند."
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.5.8",
+          "line_type": "p",
+          "text": "ای دختران اورشلیم، شما را قسم میدهم که اگر محبوب مرا بیابید وی را گویید که من مریض عشق هستم."
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.5.9",
+          "line_type": "p",
+          "text": "ای زیباترین زنان، محبوب تو از سایرمحبوبان چه برتری دارد و محبوب تو را بر سایرمحبوبان چه فضیلت است که ما را چنین قسم میدهی؟"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.5.10",
+          "line_type": "p",
+          "text": "محبوب من سفید و سرخفام است، و برهزارها افراشته شده است."
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.5.11",
+          "line_type": "p",
+          "text": "سر او طلای خالص است و زلفهایش به هم پیچیده و مانندغراب سیاه فام است."
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.5.12",
+          "line_type": "p",
+          "text": "چشمانش کبوتران نزدنهرهای آب است، با شیر شسته شده و درچشمخانه خود نشسته."
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.5.13",
+          "line_type": "p",
+          "text": "رخسارهایش مثل باغچه بلسان و پشته های ریاحین میباشد. لبهایش سوسنها است که از آنها مر صافی می چکد."
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.5.14",
+          "line_type": "p",
+          "text": "دستهایش حلقه های طلاست که به زبرجد منقش باشد و بر او عاج شفاف است که به یاقوت زرد مرصع بود."
+        },
+        {
+          "verse": 15,
+          "usfm": "SNG.5.15",
+          "line_type": "p",
+          "text": "ساقهایش ستونهای مرمر بر پایه های زر ناب موسس شده، سیمایش مثل لبنان و مانند سروهای آزاد برگزیده است."
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.5.16",
+          "line_type": "p",
+          "text": "دهان او بسیار شیرین و تمام او مرغوبترین است. این است محبوب من و این است یار منای دختران اورشلیم."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 16,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "SNG.5.1",
+            "SNG.5.10",
+            "SNG.5.11",
+            "SNG.5.12",
+            "SNG.5.13",
+            "SNG.5.14",
+            "SNG.5.15",
+            "SNG.5.16",
+            "SNG.5.2",
+            "SNG.5.3",
+            "SNG.5.4",
+            "SNG.5.5",
+            "SNG.5.6",
+            "SNG.5.7",
+            "SNG.5.8",
+            "SNG.5.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/SNG.5.POV",
+        "reference": {
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "غزل‌غزل‌ها 5",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "غزل‌غزل‌ها 4",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "غزل‌غزل‌ها 6",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "SNG",
+      "chapter": 6,
+      "chapter_usfm": "SNG.6",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "SNG.6.1",
+          "line_type": "p",
+          "text": "محبوب تو کجا رفته استای زیباترین زنان؟ محبوب تو کجا توجه نموده است تااو را با تو بطلبیم؟"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.6.2",
+          "line_type": "p",
+          "text": "محبوب من به باغ خویش و نزد باغچه های بلسان فرود شده است، تا در باغات بچراند وسوسنها بچیند."
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.6.3",
+          "line_type": "p",
+          "text": "من از آن محبوب خود ومحبوبم از آن من است. در میان سوسنها گله رامی چراند."
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.6.4",
+          "line_type": "p",
+          "text": "ای محبوبه من، تو مثل ترصه جمیل و ماننداورشلیم زیبا و مثل لشکرهای بیدق دار مهیب هستی."
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.6.5",
+          "line_type": "p",
+          "text": "چشمانت را از من برگردان زیرا آنها برمن غالب شده است. مویهایت مثل گله بزها است که بر جانب کوه جلعاد خوابیده باشند."
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.6.6",
+          "line_type": "p",
+          "text": "دندانهایت مانند گله گوسفندان است که ازشستن برآمده باشند. و همگی آنها توام زاییده ودر آنها یکی هم نازاد نباشد."
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.6.7",
+          "line_type": "p",
+          "text": "شقیقه هایت درعقب برقع تو مانند پاره انار است."
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.6.8",
+          "line_type": "p",
+          "text": "شصت ملکه وهشتاد متعه و دوشیزگان بیشماره هستند."
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.6.9",
+          "line_type": "p",
+          "text": "اما کبوتر من و کامله من یکی است. او یگانه مادرخویش و مختاره والده خود میباشد. دختران اورا دیده، خجسته گفتند. ملکهها و متعهها بر اونگریستند و او را مدح نمودند."
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.6.10",
+          "line_type": "p",
+          "text": "این کیست که مثل صبح میدرخشد؟ ومانند ماه جمیل و مثل آفتاب طاهر و مانند لشکربیدق دار مهیب است؟"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.6.11",
+          "line_type": "p",
+          "text": "به باغ درختان جوز فرود شدم تا سبزیهای وادی را بنگرم و ببینم که آیا مو شکوفه آورده وانار گل کرده است."
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.6.12",
+          "line_type": "p",
+          "text": "بیآنکه ملتفت شوم که ناگاه جانم مرا مثل عرابه های عمیناداب ساخت."
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.6.13",
+          "line_type": "p",
+          "text": "برگرد، برگردای شولمیت برگرد، برگرد تابر تو بنگریم."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 13,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.6.1",
+            "SNG.6.10",
+            "SNG.6.11",
+            "SNG.6.12",
+            "SNG.6.13",
+            "SNG.6.2",
+            "SNG.6.3",
+            "SNG.6.4",
+            "SNG.6.5",
+            "SNG.6.6",
+            "SNG.6.7",
+            "SNG.6.8",
+            "SNG.6.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/SNG.6.POV",
+        "reference": {
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "غزل‌غزل‌ها 6",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "غزل‌غزل‌ها 5",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "غزل‌غزل‌ها 7",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "SNG",
+      "chapter": 7,
+      "chapter_usfm": "SNG.7",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "SNG.7.1",
+          "line_type": "p",
+          "text": "در شولمیت چه میبینی؟ مثل محفل دولشکر."
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.7.2",
+          "line_type": "p",
+          "text": "ناف تو مثل کاسه مدور است که شراب ممزوج در آن کم نباشد. بر تو توده گندم است که سوسنها آن را احاطه کرده باشد."
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.7.3",
+          "line_type": "p",
+          "text": "دو پستان تومثل دو بچه توام غزال است."
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.7.4",
+          "line_type": "p",
+          "text": "گردن تو مثل برج عاج و چشمانت مثل برکه های حشبون نزددروازه بیت ربیم. بینی تو مثل برج لبنان است که بسوی دمشق مشرف میباشد."
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.7.5",
+          "line_type": "p",
+          "text": "سرت بر تو مثل کرمل و موی سرت مانند ارغوان است. و پادشاه در طره هایش اسیر میباشد."
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.7.6",
+          "line_type": "p",
+          "text": "ای محبوبه، چه بسیار زیبا و چه بسیار شیرین بهسبب لذتهاهستی."
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.7.7",
+          "line_type": "p",
+          "text": "این قامت تو مانند درخت خرما وپستانهایت مثل خوشه های انگور میباشد."
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.7.8",
+          "line_type": "p",
+          "text": "گفتم که به درخت خرما برآمده، شاخه هایش راخواهم گرفت. و پستانهایت مثل خوشه های انگور و بوی نفس تو مثل سیبها باشد."
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.7.9",
+          "line_type": "p",
+          "text": "و دهان تومانند شراب بهترین برای محبوبم که به ملایمت فرو رود و لبهای خفتگان را متکلم سازد."
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.7.10",
+          "line_type": "p",
+          "text": "من از آن محبوب خود هستم و اشتیاق وی بر من است."
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.7.11",
+          "line_type": "p",
+          "text": "بیاای محبوب من به صحرا بیرون برویم، و در دهات ساکن شویم."
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.7.12",
+          "line_type": "p",
+          "text": "و صبح زود به تاکستانها برویم و ببینیم که آیا انگور گل کرده وگلهایش گشوده و انارها گل داده باشد. در آنجامحبت خود را به تو خواهم داد."
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.7.13",
+          "line_type": "p",
+          "text": "مهر گیاههابوی خود را میدهد و نزد درهای ما هر قسم میوه نفیس تازه و کهنه هست که آنها را برای توای محبوب من جمع کردهام."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 13,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.7.1",
+            "SNG.7.10",
+            "SNG.7.11",
+            "SNG.7.12",
+            "SNG.7.13",
+            "SNG.7.2",
+            "SNG.7.3",
+            "SNG.7.4",
+            "SNG.7.5",
+            "SNG.7.6",
+            "SNG.7.7",
+            "SNG.7.8",
+            "SNG.7.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/SNG.7.POV",
+        "reference": {
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "غزل‌غزل‌ها 7",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "غزل‌غزل‌ها 6",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.8"
+          ],
+          "human": "غزل‌غزل‌ها 8",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "SNG",
+      "chapter": 8,
+      "chapter_usfm": "SNG.8",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "SNG.8.1",
+          "line_type": "p",
+          "text": "کاش که مثل برادر من که پستانهای مادر مرامکید میبودی، تا چون تو را بیرون مییافتم تو را میبوسیدم و مرا رسوانمی ساختند."
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.8.2",
+          "line_type": "p",
+          "text": "تو را رهبری میکردم و به خانه مادرم در میآوردم تا مرا تعلیم میدادی تا شراب ممزوج و عصیر انار خود را به تو مینوشانیدم."
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.8.3",
+          "line_type": "p",
+          "text": "دست چپ او زیر سر من میبود و دست راستش مرا در آغوش میکشید."
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.8.4",
+          "line_type": "p",
+          "text": "ای دختران اورشلیم شما را قسم میدهم که محبوب مرا تا خودش نخواهد بیدار نکنید و برنینگیزانید."
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.8.5",
+          "line_type": "p",
+          "text": "این کیست که بر محبوب خود تکیه کرده، ازصحرا برمی آید؟"
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.8.6",
+          "line_type": "p",
+          "text": "مرا مثل خاتم بر دلت و مثل نگین بر بازویت بگذار، زیرا که محبت مثل موت زورآور است و غیرت مثل هاویه ستم کیش میباشد. شعله هایش شعله های آتش و لهیب یهوه است."
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.8.7",
+          "line_type": "p",
+          "text": "آبهای بسیار محبت را خاموش نتواند کرد و سیلها آن را نتواند فرو نشانید. اگر کسی تمامی اموال خانه خویش رابرای محبت بدهد آن را البته خوار خواهندشمرد."
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.8.8",
+          "line_type": "p",
+          "text": "ما را خواهری کوچک است که پستان ندارد. به جهت خواهر خود در روزی که او راخواستگاری کنند چه بکنیم؟"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.8.9",
+          "line_type": "p",
+          "text": "اگر دیوار میبود، بر او برج نقرهای بنا میکردیم. و اگر دروازه میبود، او را به تخته های سرو آزادمی پوشانیدیم."
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.8.10",
+          "line_type": "p",
+          "text": "من دیوار هستم و پستانهایم مثل برجهااست. لهذا در نظر او ازجمله یابندگان سلامتی شدهام."
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.8.11",
+          "line_type": "p",
+          "text": "سلیمان تاکستانی در بعل هامون داشت و تاکستان را به ناطوران سپرد، که هر کس برای میوهاش هزار نقره بدهد."
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.8.12",
+          "line_type": "p",
+          "text": "تاکستانم که از آن من است پیش روی من میباشد. برای توای سلیمان هزار و برای ناطوران میوهاش، دویست خواهدبود."
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.8.13",
+          "line_type": "p",
+          "text": "ای (محبوبه ) که در باغات مینشینی، رفیقان آواز تو را میشنوند، مرا نیز بشنوان."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 13,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.8.1",
+            "SNG.8.10",
+            "SNG.8.11",
+            "SNG.8.12",
+            "SNG.8.13",
+            "SNG.8.2",
+            "SNG.8.3",
+            "SNG.8.4",
+            "SNG.8.5",
+            "SNG.8.6",
+            "SNG.8.7",
+            "SNG.8.8",
+            "SNG.8.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/SNG.8.POV",
+        "reference": {
+          "usfm": [
+            "SNG.8"
+          ],
+          "human": "غزل‌غزل‌ها 8",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "غزل‌غزل‌ها 7",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ISA.1"
+          ],
+          "human": "اشعیا 1",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

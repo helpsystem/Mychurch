@@ -11,6 +11,7 @@
   "total_verses": 0,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 1,
       "chapter_usfm": "JER.1",
@@ -20,10 +21,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.1.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 2,
       "chapter_usfm": "JER.2",
@@ -33,10 +70,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.2.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 3,
       "chapter_usfm": "JER.3",
@@ -46,10 +119,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.3.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 4,
       "chapter_usfm": "JER.4",
@@ -59,10 +168,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.4.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 5,
       "chapter_usfm": "JER.5",
@@ -72,10 +217,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.5.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 6,
       "chapter_usfm": "JER.6",
@@ -85,10 +266,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.6.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 7,
       "chapter_usfm": "JER.7",
@@ -98,10 +315,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.7.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 8,
       "chapter_usfm": "JER.8",
@@ -111,10 +364,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.8.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 9,
       "chapter_usfm": "JER.9",
@@ -124,10 +413,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.9.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 10,
       "chapter_usfm": "JER.10",
@@ -137,10 +462,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.10.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 11,
       "chapter_usfm": "JER.11",
@@ -150,10 +511,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.11.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 12,
       "chapter_usfm": "JER.12",
@@ -163,10 +560,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.12.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 13,
       "chapter_usfm": "JER.13",
@@ -176,10 +609,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.13.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 14,
       "chapter_usfm": "JER.14",
@@ -189,10 +658,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.14.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 15,
       "chapter_usfm": "JER.15",
@@ -202,10 +707,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.15.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 16,
       "chapter_usfm": "JER.16",
@@ -215,10 +756,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.16.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 17,
       "chapter_usfm": "JER.17",
@@ -228,10 +805,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.17.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 18,
       "chapter_usfm": "JER.18",
@@ -241,10 +854,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.18.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 19,
       "chapter_usfm": "JER.19",
@@ -254,10 +903,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.19.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 20,
       "chapter_usfm": "JER.20",
@@ -267,10 +952,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.20.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 21,
       "chapter_usfm": "JER.21",
@@ -280,10 +1001,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.21.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 22,
       "chapter_usfm": "JER.22",
@@ -293,10 +1050,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.22.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 23,
       "chapter_usfm": "JER.23",
@@ -306,10 +1099,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.23.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 24,
       "chapter_usfm": "JER.24",
@@ -319,10 +1148,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.24.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 25,
       "chapter_usfm": "JER.25",
@@ -332,10 +1197,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.25.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 26,
       "chapter_usfm": "JER.26",
@@ -345,10 +1246,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.26.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 27,
       "chapter_usfm": "JER.27",
@@ -358,10 +1295,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.27.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 28,
       "chapter_usfm": "JER.28",
@@ -371,10 +1344,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.28.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 29,
       "chapter_usfm": "JER.29",
@@ -384,10 +1393,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.29.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 30,
       "chapter_usfm": "JER.30",
@@ -397,10 +1442,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.30.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 31,
       "chapter_usfm": "JER.31",
@@ -410,10 +1491,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.31.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 32,
       "chapter_usfm": "JER.32",
@@ -423,10 +1540,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.32.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 33,
       "chapter_usfm": "JER.33",
@@ -436,10 +1589,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.33.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 34,
       "chapter_usfm": "JER.34",
@@ -449,10 +1638,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.34.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 35,
       "chapter_usfm": "JER.35",
@@ -462,10 +1687,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.35.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 36,
       "chapter_usfm": "JER.36",
@@ -475,10 +1736,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.36.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 37,
       "chapter_usfm": "JER.37",
@@ -488,10 +1785,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.37.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 38,
       "chapter_usfm": "JER.38",
@@ -501,10 +1834,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.38.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 39,
       "chapter_usfm": "JER.39",
@@ -514,10 +1883,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.39.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 40,
       "chapter_usfm": "JER.40",
@@ -527,10 +1932,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.40.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 41,
       "chapter_usfm": "JER.41",
@@ -540,10 +1981,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.41.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 42,
       "chapter_usfm": "JER.42",
@@ -553,10 +2030,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.42.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 43,
       "chapter_usfm": "JER.43",
@@ -566,10 +2079,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.43.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 44,
       "chapter_usfm": "JER.44",
@@ -579,10 +2128,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.44.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 45,
       "chapter_usfm": "JER.45",
@@ -592,10 +2177,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.45.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 46,
       "chapter_usfm": "JER.46",
@@ -605,10 +2226,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.46.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 47,
       "chapter_usfm": "JER.47",
@@ -618,10 +2275,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.47.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 48,
       "chapter_usfm": "JER.48",
@@ -631,10 +2324,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.48.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 49,
       "chapter_usfm": "JER.49",
@@ -644,10 +2373,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.49.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 50,
       "chapter_usfm": "JER.50",
@@ -657,10 +2422,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.50.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 51,
       "chapter_usfm": "JER.51",
@@ -670,10 +2471,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.51.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JER",
       "chapter": 52,
       "chapter_usfm": "JER.52",
@@ -683,8 +2520,43 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/JER.52.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     }
   ]
 }

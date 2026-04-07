@@ -11,6 +11,7 @@
   "total_verses": 13,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2JN",
       "chapter": 1,
       "chapter_usfm": "2JN.1",
@@ -19,54 +20,80 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2JN.1.1",
+          "line_type": "p",
           "text": "This letter comes from me, the leader of the believers. I am writing to you, a special lady that God has chosen, and to your children. I love all of you, because you have believed God's true message. And I am not the only one who loves you. Everyone who knows the true message about God really loves you."
         },
         {
           "verse": 2,
+          "usfm": "2JN.1.2",
+          "line_type": "p",
           "text": "I love you because we have all come to understand what is true. It will remain with us for ever."
         },
         {
           "verse": 3,
+          "usfm": "2JN.1.3",
+          "line_type": "p",
           "text": "God our Father, and his Son Jesus Christ will help us. He will be kind to us and he will give us peace in our minds. This will happen because God loves us and because we believe his true message."
         },
         {
           "verse": 4,
+          "usfm": "2JN.1.4",
+          "line_type": "p",
           "text": "I was very happy to hear about some of your children. I am happy because they are living in a good way. They are obeying the true message about God. They are doing what God our Father has told us to do."
         },
         {
           "verse": 5,
+          "usfm": "2JN.1.5",
+          "line_type": "p",
           "text": "So now, dear lady, I want you to do something. I want all of us to love one another. I am not telling you a new command to obey. This is a command that we have had from the beginning."
         },
         {
           "verse": 6,
+          "usfm": "2JN.1.6",
+          "line_type": "p",
           "text": "How do we show real love? We show it when we live in a way that makes God happy. We obey his commands. He tells us to love one another, and that is how you should live. You have heard that command from the beginning."
         },
         {
           "verse": 7,
+          "usfm": "2JN.1.7",
+          "line_type": "p",
           "text": "I say this because many false teachers are travelling around everywhere. They do not agree that Jesus Christ was born as a human baby. People like that are telling lies. They are enemies of Christ."
         },
         {
           "verse": 8,
+          "usfm": "2JN.1.8",
+          "line_type": "p",
           "text": "So be careful! Do not believe their lies. Do not lose the good things that we have worked for. Make sure that you receive all the good things that God has promised to give you."
         },
         {
           "verse": 9,
+          "usfm": "2JN.1.9",
+          "line_type": "p",
           "text": "Remember the message which Christ taught. Anyone who teaches his own ideas instead of Christ's true message does not belong to God. Continue to believe what Christ taught. Anyone who does that belongs to God the Father and to his Son, Jesus."
         },
         {
           "verse": 10,
+          "usfm": "2JN.1.10",
+          "line_type": "p",
           "text": "Someone may come to you and teach you something that is different. Do not receive that person into your house. Do not receive him as a Christian."
         },
         {
           "verse": 11,
+          "usfm": "2JN.1.11",
+          "line_type": "p",
           "text": "If you receive people like that as Christian people, you are making yourself the same as them. You also are doing the same kind of bad work."
         },
         {
           "verse": 12,
+          "usfm": "2JN.1.12",
+          "line_type": "p",
           "text": "I want to tell you many more things, but I do not want to write about them in a letter. Instead, I hope to come and visit you. Then I can see you and we can talk together. Then we will be completely happy."
         },
         {
           "verse": 13,
+          "usfm": "2JN.1.13",
+          "line_type": "p",
           "text": "The believers here say ‘hello’ to you. They are the children of your sister that God has chosen."
         }
       ],
@@ -77,21 +104,224 @@
           "text": "John writes to a special lady and her children"
         },
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Continue to love each other"
         },
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Do not believe false teachers"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "John hopes to visit the believers"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "2JN.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "When John wrote this letter to ‘a special lady’, he may have meant a group of believers. Or he may have meant someone who had a home where the believers met."
+        },
+        {
+          "verse": 3,
+          "usfm": "2JN.1.3",
+          "note_ref": "1:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Christ is a name for Jesus in the Greek language that means the same as Messiah in the Hebrew language. It means someone that God chose as a special king for his people."
+        },
+        {
+          "verse": 13,
+          "usfm": "2JN.1.13",
+          "note_ref": "1:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "John is talking about the group of believers who are with him. The words ‘lady’ (in verse 1) and ‘sister’ (in verse 13) probably mean the groups of believers in two places."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2JN.1.1",
+            "2JN.1.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "2JN.1.2",
+            "2JN.1.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "2JN.1.3",
+            "2JN.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "2JN.1.4",
+            "2JN.1.5",
+            "2JN.1.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "2JN.1.6",
+            "2JN.1.7",
+            "2JN.1.8",
+            "2JN.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "2JN.1.10",
+            "2JN.1.11",
+            "2JN.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "2JN.1.11",
+            "2JN.1.12"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "2JN.1.12",
+            "2JN.1.13"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/2JN.1.EASY",
+        "reference": {
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "2 John 1",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "2JN.INTRO1"
+          ],
+          "human": "2 John Intro",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "3JN.INTRO1"
+          ],
+          "human": "3 John Intro",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

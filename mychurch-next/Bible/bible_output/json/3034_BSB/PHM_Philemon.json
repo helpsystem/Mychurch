@@ -11,6 +11,7 @@
   "total_verses": 25,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "PHM",
       "chapter": 1,
       "chapter_usfm": "PHM.1",
@@ -19,121 +20,410 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "PHM.1.1",
+          "line_type": "p",
           "text": "Paul, a prisoner of Christ Jesus, and Timothy our brother,To Philemon our beloved fellow worker,"
         },
         {
           "verse": 2,
+          "usfm": "PHM.1.2",
+          "line_type": "p",
           "text": "to Apphia our sister, to Archippus our fellow soldier, and to the church that meets at your house:"
         },
         {
           "verse": 3,
+          "usfm": "PHM.1.3",
+          "line_type": "p",
           "text": "Grace and peace to you from God our Father and the Lord Jesus Christ."
         },
         {
           "verse": 4,
+          "usfm": "PHM.1.4",
+          "line_type": "p",
           "text": "I always thank my God, remembering you in my prayers,"
         },
         {
           "verse": 5,
+          "usfm": "PHM.1.5",
+          "line_type": "p",
           "text": "because I hear about your faith in the Lord Jesus and your love for all the saints."
         },
         {
           "verse": 6,
+          "usfm": "PHM.1.6",
+          "line_type": "p",
           "text": "I pray that your partnership in the faith may become effective as you fully acknowledge every good thing that is ours in Christ."
         },
         {
           "verse": 7,
+          "usfm": "PHM.1.7",
+          "line_type": "p",
           "text": "I take great joy and encouragement in your love, because you, brother, have refreshed the hearts of the saints."
         },
         {
           "verse": 8,
+          "usfm": "PHM.1.8",
+          "line_type": "p",
           "text": "So although in Christ I am bold enough to order you to do what is proper,"
         },
         {
           "verse": 9,
+          "usfm": "PHM.1.9",
+          "line_type": "p",
           "text": "I prefer to appeal on the basis of love. For I, Paul, am now aged, and a prisoner of Christ Jesus as well."
         },
         {
           "verse": 10,
+          "usfm": "PHM.1.10",
+          "line_type": "p",
           "text": "I appeal to you for my child Onesimus, whose father I became while I was in chains."
         },
         {
           "verse": 11,
+          "usfm": "PHM.1.11",
+          "line_type": "p",
           "text": "Formerly he was useless to you, but now he has become useful both to you and to me."
         },
         {
           "verse": 12,
+          "usfm": "PHM.1.12",
+          "line_type": "p",
           "text": "I am sending back to you him who is my very heart."
         },
         {
           "verse": 13,
+          "usfm": "PHM.1.13",
+          "line_type": "p",
           "text": "I would have liked to keep him with me, so that on your behalf he could minister to me in my chains for the gospel."
         },
         {
           "verse": 14,
+          "usfm": "PHM.1.14",
+          "line_type": "p",
           "text": "But I did not want to do anything without your consent, so that your goodness will not be out of compulsion, but by your own free will."
         },
         {
           "verse": 15,
+          "usfm": "PHM.1.15",
+          "line_type": "p",
           "text": "For perhaps this is why he was separated from you for a while, so that you might have him back for good —"
         },
         {
           "verse": 16,
+          "usfm": "PHM.1.16",
+          "line_type": "p",
           "text": "no longer as a slave, but better than a slave, as a beloved brother. He is especially beloved to me, but even more so to you, both in person and in the Lord."
         },
         {
           "verse": 17,
+          "usfm": "PHM.1.17",
+          "line_type": "p",
           "text": "So if you consider me a partner, receive him as you would receive me."
         },
         {
           "verse": 18,
+          "usfm": "PHM.1.18",
+          "line_type": "p",
           "text": "But if he has wronged you in any way or owes you anything, charge it to my account."
         },
         {
           "verse": 19,
+          "usfm": "PHM.1.19",
+          "line_type": "p",
           "text": "I, Paul, write this with my own hand. I will repay it— not to mention that you owe me your very self."
         },
         {
           "verse": 20,
+          "usfm": "PHM.1.20",
+          "line_type": "p",
           "text": "Yes, brother, let me have some benefit from you in the Lord. Refresh my heart in Christ."
         },
         {
           "verse": 21,
+          "usfm": "PHM.1.21",
+          "line_type": "p",
           "text": "Confident of your obedience, I write to you, knowing that you will do even more than I ask."
         },
         {
           "verse": 22,
+          "usfm": "PHM.1.22",
+          "line_type": "p",
           "text": "In the meantime, prepare a guest room for me, because I hope that through your prayers I will be restored to you."
         },
         {
           "verse": 23,
+          "usfm": "PHM.1.23",
+          "line_type": "p",
           "text": "Epaphras, my fellow prisoner in Christ Jesus, sends you greetings,"
         },
         {
           "verse": 24,
+          "usfm": "PHM.1.24",
+          "line_type": "p",
           "text": "as do Mark, Aristarchus, Demas, and Luke, my fellow workers."
         },
         {
           "verse": 25,
+          "usfm": "PHM.1.25",
+          "line_type": "p",
           "text": "The grace of the Lord Jesus Christ be with your spirit."
         }
       ],
       "verse_count": 25,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Philemon’s Faith and Love"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Paul’s Appeal for Onesimus"
         },
         {
-          "before_verse": 22,
+          "before_verse": 23,
           "text": "Additional Greetings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "PHM.1.2",
+          "note_ref": "1:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "You and Your are singular throughout this letter, except in verses 3, 22, and 25."
+        },
+        {
+          "verse": 10,
+          "usfm": "PHM.1.10",
+          "note_ref": "1:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Onesimus means useful (see verse 11) or beneficial (see verse 20)."
+        },
+        {
+          "verse": 20,
+          "usfm": "PHM.1.20",
+          "note_ref": "1:20",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek onaimēn, a play on the name Onesimus"
+        },
+        {
+          "verse": 25,
+          "usfm": "PHM.1.25",
+          "note_ref": "1:25",
+          "note_type": "footnote",
+          "references": [],
+          "text": "BYZ and TR include Amen."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "PHM.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "PHM.1.1",
+            "PHM.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "PHM.1.2",
+            "PHM.1.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 7,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "PHM.1.3",
+            "PHM.1.4",
+            "PHM.1.5",
+            "PHM.1.6",
+            "PHM.1.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "PHM.1.7",
+            "PHM.1.8",
+            "PHM.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 12,
+          "verses": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "PHM.1.10",
+            "PHM.1.11",
+            "PHM.1.12",
+            "PHM.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 16,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "PHM.1.12",
+            "PHM.1.13",
+            "PHM.1.14",
+            "PHM.1.15",
+            "PHM.1.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 19,
+          "verses": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "usfms": [
+            "PHM.1.16",
+            "PHM.1.17",
+            "PHM.1.18",
+            "PHM.1.19"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "PHM.1.19",
+            "PHM.1.20"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "PHM.1.20",
+            "PHM.1.21"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "PHM.1.21",
+            "PHM.1.22"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 24,
+          "verses": [
+            22,
+            23,
+            24
+          ],
+          "usfms": [
+            "PHM.1.22",
+            "PHM.1.23",
+            "PHM.1.24"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "PHM.1.24",
+            "PHM.1.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -144,7 +434,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/PHM/1-a759733809c68c6907974d9d03d32d6e.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/PHM.1.BSB",
+        "reference": {
+          "usfm": [
+            "PHM.1"
+          ],
+          "human": "Philemon 1",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.1"
+          ],
+          "human": "Hebrews 1",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

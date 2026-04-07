@@ -11,6 +11,7 @@
   "total_verses": 0,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 1,
       "chapter_usfm": "LAM.1",
@@ -20,10 +21,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/LAM.1.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 2,
       "chapter_usfm": "LAM.2",
@@ -33,10 +70,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/LAM.2.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 3,
       "chapter_usfm": "LAM.3",
@@ -46,10 +119,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/LAM.3.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 4,
       "chapter_usfm": "LAM.4",
@@ -59,10 +168,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/LAM.4.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 5,
       "chapter_usfm": "LAM.5",
@@ -72,8 +217,43 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/LAM.5.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     }
   ]
 }

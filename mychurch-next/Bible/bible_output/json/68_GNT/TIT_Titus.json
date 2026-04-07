@@ -11,6 +11,7 @@
   "total_verses": 44,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 1,
       "chapter_usfm": "TIT.1",
@@ -19,69 +20,228 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.1.1",
+          "line_type": "p",
           "text": "From Paul, a servant of God and an apostle of Jesus Christ.I was chosen and sent to help the faith of God's chosen people and to lead them to the truth taught by our religion,"
         },
         {
           "verse": 2,
+          "usfm": "TIT.1.2",
+          "line_type": "p",
           "text": "which is based on the hope for eternal life. God, who does not lie, promised us this life before the beginning of time,"
         },
         {
           "verse": 3,
+          "usfm": "TIT.1.3",
+          "line_type": "p",
           "text": "and at the right time he revealed it in his message. This was entrusted to me, and I proclaim it by order of God our Savior."
         },
         {
           "verse": 4,
+          "usfm": "TIT.1.4",
+          "line_type": "p",
           "text": "I write to Titus, my true son in the faith that we have in common.May God the Father and Christ Jesus our Savior give you grace and peace."
         },
         {
           "verse": 5,
+          "usfm": "TIT.1.5",
+          "line_type": "p",
           "text": "I left you in Crete, so that you could put in order the things that still needed doing and appoint church elders in every town. Remember my instructions:"
         },
         {
           "verse": 6,
+          "usfm": "TIT.1.6",
+          "line_type": "p",
           "text": "an elder must be without fault; he must have only one wife, and his children must be believers and not have the reputation of being wild or disobedient."
         },
         {
           "verse": 7,
+          "usfm": "TIT.1.7",
+          "line_type": "p",
           "text": "For since a church leader is in charge of God's work, he should be without fault. He must not be arrogant or quick-tempered, or a drunkard or violent or greedy for money."
         },
         {
           "verse": 8,
+          "usfm": "TIT.1.8",
+          "line_type": "p",
           "text": "He must be hospitable and love what is good. He must be self-controlled, upright, holy, and disciplined."
         },
         {
           "verse": 9,
+          "usfm": "TIT.1.9",
+          "line_type": "p",
           "text": "He must hold firmly to the message which can be trusted and which agrees with the doctrine. In this way he will be able to encourage others with the true teaching and also to show the error of those who are opposed to it."
         },
         {
           "verse": 10,
+          "usfm": "TIT.1.10",
+          "line_type": "p",
           "text": "For there are many, especially the converts from Judaism, who rebel and deceive others with their nonsense."
         },
         {
           "verse": 11,
+          "usfm": "TIT.1.11",
+          "line_type": "p",
           "text": "It is necessary to stop their talk, because they are upsetting whole families by teaching what they should not, and all for the shameful purpose of making money. It was a Cretan himself, one of their own prophets, who spoke the truth when he said, “Cretans are always liars, wicked beasts, and lazy gluttons.” For this reason you must rebuke them sharply, so that they may have a healthy faith"
         },
         {
           "verse": 14,
+          "usfm": "TIT.1.14",
+          "line_type": "p",
           "text": "and no longer hold on to Jewish legends and to human commandments which come from people who have rejected the truth."
         },
         {
           "verse": 15,
+          "usfm": "TIT.1.15",
+          "line_type": "p",
           "text": "Everything is pure to those who are themselves pure; but nothing is pure to those who are defiled and unbelieving, for their minds and consciences have been defiled."
         },
         {
           "verse": 16,
+          "usfm": "TIT.1.16",
+          "line_type": "p",
           "text": "They claim that they know God, but their actions deny it. They are hateful and disobedient, not fit to do anything good."
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Titus' Work in Crete"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 4,
+          "usfm": "TIT.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2CO.8.23",
+            "GAL.2.3",
+            "2TI.4.10"
+          ],
+          "text": "2 Co 8.23; Ga 2.3; 2 Ti 4.10"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.3.2+1TI.3.3+1TI.3.4+1TI.3.5+1TI.3.6+1TI.3.7"
+          ],
+          "text": "1 Ti 3.2-7"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "1.6:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "have only one wife; or be married only once."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "TIT.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "TIT.1.1",
+            "TIT.1.2",
+            "TIT.1.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "TIT.1.3",
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 9,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "TIT.1.4",
+            "TIT.1.5",
+            "TIT.1.6",
+            "TIT.1.7",
+            "TIT.1.8",
+            "TIT.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 16,
+          "verses": [
+            9,
+            10,
+            11,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "TIT.1.10",
+            "TIT.1.11",
+            "TIT.1.14",
+            "TIT.1.15",
+            "TIT.1.16",
+            "TIT.1.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -92,9 +252,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/TIT/1-8ef31b22c9092eb710f7108b2b4afbe7.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/TIT.1.GNT",
+        "reference": {
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "TIT.INTRO1"
+          ],
+          "human": "Titus Introduction",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 2,
       "chapter_usfm": "TIT.2",
@@ -103,68 +320,212 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.2.1",
+          "line_type": "p",
           "text": "But you must teach what agrees with sound doctrine."
         },
         {
           "verse": 2,
+          "usfm": "TIT.2.2",
+          "line_type": "p",
           "text": "Instruct the older men to be sober, sensible, and self-controlled; to be sound in their faith, love, and endurance."
         },
         {
           "verse": 3,
+          "usfm": "TIT.2.3",
+          "line_type": "p",
           "text": "In the same way instruct the older women to behave as women should who live a holy life. They must not be slanderers or slaves to wine. They must teach what is good,"
         },
         {
           "verse": 4,
+          "usfm": "TIT.2.4",
+          "line_type": "p",
           "text": "in order to train the younger women to love their husbands and children,"
         },
         {
           "verse": 5,
+          "usfm": "TIT.2.5",
+          "line_type": "p",
           "text": "to be self-controlled and pure, and to be good housewives who submit themselves to their husbands, so that no one will speak evil of the message that comes from God."
         },
         {
           "verse": 6,
+          "usfm": "TIT.2.6",
+          "line_type": "p",
           "text": "In the same way urge the young men to be self-controlled."
         },
         {
           "verse": 7,
+          "usfm": "TIT.2.7",
+          "line_type": "p",
           "text": "In all things you yourself must be an example of good behavior. Be sincere and serious in your teaching."
         },
         {
           "verse": 8,
+          "usfm": "TIT.2.8",
+          "line_type": "p",
           "text": "Use sound words that cannot be criticized, so that your enemies may be put to shame by not having anything bad to say about us."
         },
         {
           "verse": 9,
+          "usfm": "TIT.2.9",
+          "line_type": "p",
           "text": "Slaves are to submit themselves to their masters and please them in all things. They must not talk back to them"
         },
         {
           "verse": 10,
+          "usfm": "TIT.2.10",
+          "line_type": "p",
           "text": "or steal from them. Instead, they must show that they are always good and faithful, so as to bring credit to the teaching about God our Savior in all they do."
         },
         {
           "verse": 11,
+          "usfm": "TIT.2.11",
+          "line_type": "p",
           "text": "For God has revealed his grace for the salvation of all people."
         },
         {
           "verse": 12,
+          "usfm": "TIT.2.12",
+          "line_type": "p",
           "text": "That grace instructs us to give up ungodly living and worldly passions, and to live self-controlled, upright, and godly lives in this world,"
         },
         {
           "verse": 13,
+          "usfm": "TIT.2.13",
+          "line_type": "p",
           "text": "as we wait for the blessed Day we hope for, when the glory of our great God and Savior Jesus Christ will appear."
         },
         {
           "verse": 14,
+          "usfm": "TIT.2.14",
+          "line_type": "p",
           "text": "He gave himself for us, to rescue us from all wickedness and to make us a pure people who belong to him alone and are eager to do good."
         },
         {
           "verse": 15,
+          "usfm": "TIT.2.15",
+          "line_type": "p",
           "text": "Teach these things and use your full authority as you encourage and rebuke your hearers. Let none of them look down on you."
         }
       ],
       "verse_count": 15,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 13,
+          "usfm": "TIT.2.13",
+          "note_ref": "2.13:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "our great God and Savior Jesus Christ; or the great God and our Savior Jesus Christ."
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.130.8",
+            "EXO.19.5",
+            "DEU.4.20",
+            "DEU.7.6",
+            "DEU.14.2",
+            "1PE.2.9"
+          ],
+          "text": "Ps 130.8; Ex 19.5; Dt 4.20; 7.6; 14.2; 1 P 2.9"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "TIT.2.1",
+            "TIT.2.2",
+            "TIT.2.3",
+            "TIT.2.4",
+            "TIT.2.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.2.5",
+            "TIT.2.6",
+            "TIT.2.7",
+            "TIT.2.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.8",
+            "TIT.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 14,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.11",
+            "TIT.2.12",
+            "TIT.2.13",
+            "TIT.2.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.2.14",
+            "TIT.2.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -175,9 +536,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/TIT/2-1c8108f8800f92aede805fc0071677a1.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/TIT.2.GNT",
+        "reference": {
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 3,
       "chapter_usfm": "TIT.3",
@@ -186,73 +604,220 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.3.1",
+          "line_type": "p",
           "text": "Remind your people to submit to rulers and authorities, to obey them, and to be ready to do good in every way."
         },
         {
           "verse": 2,
+          "usfm": "TIT.3.2",
+          "line_type": "p",
           "text": "Tell them not to speak evil of anyone, but to be peaceful and friendly, and always to show a gentle attitude toward everyone."
         },
         {
           "verse": 3,
+          "usfm": "TIT.3.3",
+          "line_type": "p",
           "text": "For we ourselves were once foolish, disobedient, and wrong. We were slaves to passions and pleasures of all kinds. We spent our lives in malice and envy; others hated us and we hated them."
         },
         {
           "verse": 4,
+          "usfm": "TIT.3.4",
+          "line_type": "p",
           "text": "But when the kindness and love of God our Savior was revealed,"
         },
         {
           "verse": 5,
+          "usfm": "TIT.3.5",
+          "line_type": "p",
           "text": "he saved us. It was not because of any good deeds that we ourselves had done, but because of his own mercy that he saved us, through the Holy Spirit, who gives us new birth and new life by washing us."
         },
         {
           "verse": 6,
+          "usfm": "TIT.3.6",
+          "line_type": "p",
           "text": "God poured out the Holy Spirit abundantly on us through Jesus Christ our Savior,"
         },
         {
           "verse": 7,
+          "usfm": "TIT.3.7",
+          "line_type": "p",
           "text": "so that by his grace we might be put right with God and come into possession of the eternal life we hope for."
         },
         {
           "verse": 8,
+          "usfm": "TIT.3.8",
+          "line_type": "p",
           "text": "This is a true saying.I want you to give special emphasis to these matters, so that those who believe in God may be concerned with giving their time to doing good deeds, which are good and useful for everyone."
         },
         {
           "verse": 9,
+          "usfm": "TIT.3.9",
+          "line_type": "p",
           "text": "But avoid stupid arguments, long lists of ancestors, quarrels, and fights about the Law. They are useless and worthless."
         },
         {
           "verse": 10,
+          "usfm": "TIT.3.10",
+          "line_type": "p",
           "text": "Give at least two warnings to those who cause divisions, and then have nothing more to do with them."
         },
         {
           "verse": 11,
+          "usfm": "TIT.3.11",
+          "line_type": "p",
           "text": "You know that such people are corrupt, and their sins prove that they are wrong."
         },
         {
           "verse": 12,
+          "usfm": "TIT.3.12",
+          "line_type": "p",
           "text": "When I send Artemas or Tychicus to you, do your best to come to me in Nicopolis, because I have decided to spend the winter there."
         },
         {
           "verse": 13,
+          "usfm": "TIT.3.13",
+          "line_type": "p",
           "text": "Do your best to help Zenas the lawyer and Apollos to get started on their travels, and see to it that they have everything they need."
         },
         {
           "verse": 14,
+          "usfm": "TIT.3.14",
+          "line_type": "p",
           "text": "Our people must learn to spend their time doing good, in order to provide for real needs; they should not live useless lives."
         },
         {
           "verse": 15,
+          "usfm": "TIT.3.15",
+          "line_type": "p",
           "text": "All who are with me send you greetings. Give our greetings to our friends in the faith.God's grace be with you all."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Final Instructions"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 12,
+          "usfm": "TIT.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.20.4",
+            "EPH.6.21",
+            "EPH.6.22",
+            "COL.4.7",
+            "COL.4.8",
+            "2TI.4.12"
+          ],
+          "text": "Ac 20.4; Eph 6.21,22; Col 4.7,8; 2 Ti 4.12"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.18.24",
+            "1CO.16.12"
+          ],
+          "text": "Ac 18.24; 1 Co 16.12"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 8,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.3.1",
+            "TIT.3.2",
+            "TIT.3.3",
+            "TIT.3.4",
+            "TIT.3.5",
+            "TIT.3.6",
+            "TIT.3.7",
+            "TIT.3.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "TIT.3.10",
+            "TIT.3.11",
+            "TIT.3.8",
+            "TIT.3.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 14,
+          "verses": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.3.11",
+            "TIT.3.12",
+            "TIT.3.13",
+            "TIT.3.14"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.3.14",
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -263,7 +828,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/TIT/3-26fc4e9ad3deb849c51d5434d192e5ff.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/TIT.3.GNT",
+        "reference": {
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "PHM.INTRO1"
+          ],
+          "human": "Philemon Introduction",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

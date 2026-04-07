@@ -11,6 +11,7 @@
   "total_verses": 25,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JUD",
       "chapter": 1,
       "chapter_usfm": "JUD.1",
@@ -19,102 +20,152 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JUD.1.1",
+          "line_type": "p",
           "text": "This letter is from me, Jude. I am Jesus Christ's servant and I am James's brother. I am writing to you people that God the Father loves. God has chosen you to be his own people. He is keeping you safe until the time when Jesus Christ returns."
         },
         {
           "verse": 2,
+          "usfm": "JUD.1.2",
+          "line_type": "p",
           "text": "I pray that God will be kind to you and that he will give you peace in your minds more and more. I want you to know more and more how much God loves you."
         },
         {
           "verse": 3,
+          "usfm": "JUD.1.3",
+          "line_type": "p",
           "text": "My friends, I wanted very much to write to you about how God has saved us from sin. That is what he has done for you and for us. But instead of that, I now know that I must write to you about something else. I must tell you to be strong and brave. You must do everything that you can to keep God's true message safe. God has given this message to his special people and his message will never change. Do not let anyone teach you a different message."
         },
         {
           "verse": 4,
+          "usfm": "JUD.1.4",
+          "line_type": "p",
           "text": "I say this because certain bad people have secretly come among you. They have turned away from God. They are trying to change God's true message. They teach that we can do any evil things that we want to do. They say that God will be kind and he will forgive us for all those things. They do not accept the authority of Jesus Christ, who is our only Master and our Lord. God will certainly punish those wicked people. A long time ago God said that he would punish people like them."
         },
         {
           "verse": 5,
+          "usfm": "JUD.1.5",
+          "line_type": "p",
           "text": "Remember that the Lord brought Israel's people out of Egypt where they had been slaves. But later he destroyed all those same people who did not trust him. I want you to remember these important things. You should already know all about them, but you must never forget them."
         },
         {
           "verse": 6,
+          "usfm": "JUD.1.6",
+          "line_type": "p",
           "text": "Also remember that some angels refused to obey God. They took more authority for themselves than God had given them. They left their own proper place with God in heaven. So God has tied them up as prisoners for ever in a completely dark place. He will keep them there until that great day when he will judge everyone."
         },
         {
           "verse": 7,
+          "usfm": "JUD.1.7",
+          "line_type": "p",
           "text": "Also, remember what happened to the cities of Sodom and Gomorrah, and the other cities that were near them. Like those bad angels, the people who lived in those places were also doing evil things. They were having sex with people who were not their husbands or their wives. They liked to have sex in other ways that are not right. God destroyed their cities. He has punished them with fire that never stops burning. That is an example of what will happen to wicked people like them."
         },
         {
           "verse": 8,
+          "usfm": "JUD.1.8",
+          "line_type": "p",
           "text": "These false teachers who have come among you do the same kind of bad things. Their dreams deceive them so that they use their bodies to do disgusting things. They refuse to obey God's authority. They insult God's powerful angels."
         },
         {
           "verse": 9,
+          "usfm": "JUD.1.9",
+          "line_type": "p",
           "text": "Even the leader of God's angels, Michael, did not speak bad words like that against the devil. Long ago, Michael argued with the devil about who should have Moses' dead body. But even when the devil said bad words against God, Michael himself did not speak against the devil. He did not think that he should do that. Instead, Michael said, ‘The Lord himself will show that you are wrong.’"
         },
         {
           "verse": 10,
+          "usfm": "JUD.1.10",
+          "line_type": "p",
           "text": "But these false teachers speak bad things against anything that they do not understand. They are like animals that cannot think properly. They just do the things that their nature causes them to do. Those are the things that are destroying them."
         },
         {
           "verse": 11,
+          "usfm": "JUD.1.11",
+          "line_type": "p",
           "text": "It will be very bad for them! They have lived in the way that Cain lived. They have made the same mistake that Balaam made, because they wanted to get money for themselves. Like Korah, they have refused to obey God. So God will destroy them."
         },
         {
           "verse": 12,
+          "usfm": "JUD.1.12",
+          "line_type": "p",
           "text": "When you eat special meals together as believers, those false teachers meet with you. But they are dangerous! They will stop you showing your love for one another. They come only because they want to eat too much. They do not respect God or other people. They only think about themselves and they are not ashamed. They are like clouds that you think will bring rain. But the wind blows those clouds along and there is no rain. They are like trees that have no fruit, even at the time for harvest. People pull trees like that out of the ground. They are completely dead and can give no fruit."
         },
         {
           "verse": 13,
+          "usfm": "JUD.1.13",
+          "line_type": "p",
           "text": "Those false teachers are like water in the sea that the wind blows during a storm. The dirt that comes to the top of the water is like the disgusting things that those people do. They are like stars that have moved away from their proper places in the sky. God has prepared a completely dark place for them. God will keep them there for ever."
         },
         {
           "verse": 14,
+          "usfm": "JUD.1.14",
+          "line_type": "p",
           "text": "Long ago, Enoch also spoke about those false teachers. He belonged to the seventh family that was born, starting with Adam. Enoch said, ‘Look, the Lord will come with many thousands of his own angels."
         },
         {
           "verse": 15,
+          "usfm": "JUD.1.15",
+          "line_type": "p",
           "text": "He will judge all people. He will punish everyone who lives in a way that does not please him. He will punish them because of all the wicked things that they have done. He will punish them because of all the bad words that they have spoken against him.’"
         },
         {
           "verse": 16,
+          "usfm": "JUD.1.16",
+          "line_type": "p",
           "text": "Those people are always complaining. They like to accuse other people. They do any bad things that will make themselves happy. They speak great things about themselves, to show how important they are. They praise other people only so that they can get something good for themselves."
         },
         {
           "verse": 17,
+          "usfm": "JUD.1.17",
+          "line_type": "p",
           "text": "But as for you, my friends, remember the message that the apostles of our Lord Jesus Christ have taught you. They spoke about what would happen in future times."
         },
         {
           "verse": 18,
+          "usfm": "JUD.1.18",
+          "line_type": "p",
           "text": "They said to you, ‘In the last days of this world, some people will laugh at God's message. They will say that it is silly to obey God. Instead, they will do the bad things that they want to do. Those things do not please God.’"
         },
         {
           "verse": 19,
+          "usfm": "JUD.1.19",
+          "line_type": "p",
           "text": "It is people like this who cause you to argue with one another, so that you belong to separate groups. Their thoughts belong to this world. They do not have God's Spirit in them."
         },
         {
           "verse": 20,
+          "usfm": "JUD.1.20",
+          "line_type": "p",
           "text": "But you, my friends, have believed the message that comes from God himself. So you must help one another to trust God more and more. Pray to God with the help of the Holy Spirit."
         },
         {
           "verse": 21,
+          "usfm": "JUD.1.21",
+          "line_type": "p",
           "text": "Continue to live in a way that shows God's love. As you wait for our Lord Jesus Christ to come, remember that he is very kind. Because of that, you will have life with God for ever."
         },
         {
           "verse": 22,
+          "usfm": "JUD.1.22",
+          "line_type": "p",
           "text": "Help those people who do not know whether to trust God. Be kind to them."
         },
         {
           "verse": 23,
+          "usfm": "JUD.1.23",
+          "line_type": "p",
           "text": "Some people are in great danger. You must save them from the fire of God's punishment. Also be kind to people who have done wicked and disgusting things. But be careful! Do not let their sins make you bad too."
         },
         {
           "verse": 24,
+          "usfm": "JUD.1.24",
+          "line_type": "p",
           "text": "God is able to keep you safe so that you continue to trust him. One day you will stand in front of him and you will be very happy. God will bring you to that place and you will be completely good. You will be able to stand near to God, who shines with beautiful light."
         },
         {
           "verse": 25,
+          "usfm": "JUD.1.25",
+          "line_type": "p",
           "text": "He is the only God. He is the one who saves us because of our Lord Jesus Christ. So we praise him! We say that he is very great! He rules with power and authority. This has always been true. It is true now, and it will be true for ever. Amen."
         }
       ],
@@ -125,21 +176,432 @@
           "text": "Jude writes to God's people"
         },
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Jude warns about false teachers"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Christians must help each other to trust God"
         },
         {
-          "before_verse": 23,
+          "before_verse": 24,
           "text": "Jude praises God"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JUD.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [
+            "MRK.6.3"
+          ],
+          "text": "Jude and James were brothers of Jesus. See Mark 6:3."
+        },
+        {
+          "verse": 1,
+          "usfm": "JUD.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Christ is a name for Jesus in the Greek language that means the same as Messiah in the Hebrew language. It means someone that God chose as a special king for his people."
+        },
+        {
+          "verse": 5,
+          "usfm": "JUD.1.5",
+          "note_ref": "1:5",
+          "note_type": "footnote",
+          "references": [
+            "NUM.14.1+NUM.14.2+NUM.14.3+NUM.14.4+NUM.14.5+NUM.14.6+NUM.14.7+NUM.14.8+NUM.14.9+NUM.14.10+NUM.14.11+NUM.14.12+NUM.14.13+NUM.14.14+NUM.14.15+NUM.14.16+NUM.14.17+NUM.14.18+NUM.14.19+NUM.14.20+NUM.14.21+NUM.14.22+NUM.14.23+NUM.14.24+NUM.14.25+NUM.14.26+NUM.14.27+NUM.14.28+NUM.14.29+NUM.14.30+NUM.14.31+NUM.14.32+NUM.14.33+NUM.14.34+NUM.14.35+NUM.14.36+NUM.14.37",
+            "NUM.26.64+NUM.26.65"
+          ],
+          "text": "God's people, the Israelites, had been slaves in Egypt. God saved them when Moses led them out from there. But as they travelled through the wilderness, most of them did not trust God. So those people did not go into the land that God had promised to give them as their home. See Numbers 14:1-37; 26:64-65."
+        },
+        {
+          "verse": 7,
+          "usfm": "JUD.1.7",
+          "note_ref": "1:7",
+          "note_type": "footnote",
+          "references": [
+            "GEN.18.20",
+            "GEN.19.1+GEN.19.2+GEN.19.3+GEN.19.4+GEN.19.5+GEN.19.6+GEN.19.7+GEN.19.8+GEN.19.9+GEN.19.10+GEN.19.11+GEN.19.12+GEN.19.13+GEN.19.14+GEN.19.15+GEN.19.16+GEN.19.17+GEN.19.18+GEN.19.19+GEN.19.20+GEN.19.21+GEN.19.22+GEN.19.23+GEN.19.24+GEN.19.25+GEN.19.26+GEN.19.27+GEN.19.28+GEN.19.29"
+          ],
+          "text": "Jude uses Sodom and Gomorrah as examples of places where people did bad things. See Genesis 18:20; 19:1-29."
+        },
+        {
+          "verse": 9,
+          "usfm": "JUD.1.9",
+          "note_ref": "1:9",
+          "note_type": "footnote",
+          "references": [
+            "DEU.34.5+DEU.34.6"
+          ],
+          "text": "See Deuteronomy 34:5-6. Moses was a great leader of the Israelites."
+        },
+        {
+          "verse": 11,
+          "usfm": "JUD.1.11",
+          "note_ref": "1:11",
+          "note_type": "footnote",
+          "references": [
+            "GEN.4.3+GEN.4.4+GEN.4.5+GEN.4.6+GEN.4.7+GEN.4.8+GEN.4.9+GEN.4.10+GEN.4.11+GEN.4.12+GEN.4.13+GEN.4.14+GEN.4.15+GEN.4.16",
+            "HEB.11.4",
+            "1JN.3.12"
+          ],
+          "text": "Cain killed his brother Abel. See Genesis 4:3-16; Hebrews 11:4; 1 John 3:12."
+        },
+        {
+          "verse": 11,
+          "usfm": "JUD.1.11",
+          "note_ref": "1:11",
+          "note_type": "footnote",
+          "references": [
+            "DEU.23.4+DEU.23.5",
+            "REV.2.14"
+          ],
+          "text": "Balaam caused Israel's people to do bad things. See Numbers 22–25; Deuteronomy 23:4-5; Revelation 2:14."
+        },
+        {
+          "verse": 11,
+          "usfm": "JUD.1.11",
+          "note_ref": "1:11",
+          "note_type": "footnote",
+          "references": [
+            "NUM.16.1+NUM.16.2+NUM.16.3+NUM.16.4+NUM.16.5+NUM.16.6+NUM.16.7+NUM.16.8+NUM.16.9+NUM.16.10+NUM.16.11+NUM.16.12+NUM.16.13+NUM.16.14+NUM.16.15+NUM.16.16+NUM.16.17+NUM.16.18+NUM.16.19+NUM.16.20+NUM.16.21+NUM.16.22+NUM.16.23+NUM.16.24+NUM.16.25+NUM.16.26+NUM.16.27+NUM.16.28+NUM.16.29+NUM.16.30+NUM.16.31+NUM.16.32+NUM.16.33+NUM.16.34+NUM.16.35"
+          ],
+          "text": "Korah refused to obey what God had told Moses. See Numbers 16:1-35."
+        },
+        {
+          "verse": 14,
+          "usfm": "JUD.1.14",
+          "note_ref": "1:14",
+          "note_type": "footnote",
+          "references": [
+            "GEN.5.3+GEN.5.4+GEN.5.5+GEN.5.6+GEN.5.7+GEN.5.8+GEN.5.9+GEN.5.10+GEN.5.11+GEN.5.12+GEN.5.13+GEN.5.14+GEN.5.15+GEN.5.16+GEN.5.17+GEN.5.18+GEN.5.19+GEN.5.20+GEN.5.21+GEN.5.22+GEN.5.23+GEN.5.24",
+            "GEN.2"
+          ],
+          "text": "Enoch lived in a good way that pleased God. See Genesis 5:3-24. Adam was the first man that God made. See Genesis 2."
+        },
+        {
+          "verse": 15,
+          "usfm": "JUD.1.15",
+          "note_ref": "1:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "These words of Enoch are not in the Bible."
+        },
+        {
+          "verse": 23,
+          "usfm": "JUD.1.23",
+          "note_ref": "1:23",
+          "note_type": "footnote",
+          "references": [
+            "JUD.1.7"
+          ],
+          "text": "See Jude 1:7."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JUD.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JUD.1.1",
+            "JUD.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "JUD.1.2",
+            "JUD.1.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "JUD.1.3",
+            "JUD.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "JUD.1.4",
+            "JUD.1.5",
+            "JUD.1.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JUD.1.6",
+            "JUD.1.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 10,
+          "verses": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "JUD.1.10",
+            "JUD.1.7",
+            "JUD.1.8",
+            "JUD.1.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "JUD.1.10",
+            "JUD.1.11"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "JUD.1.11",
+            "JUD.1.12"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "JUD.1.12",
+            "JUD.1.13"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 16,
+          "verses": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "JUD.1.13",
+            "JUD.1.14",
+            "JUD.1.15",
+            "JUD.1.16"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 18,
+          "verses": [
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "JUD.1.16",
+            "JUD.1.17",
+            "JUD.1.18"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "JUD.1.18",
+            "JUD.1.19"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "JUD.1.19",
+            "JUD.1.20",
+            "JUD.1.21"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 23,
+          "verses": [
+            21,
+            22,
+            23
+          ],
+          "usfms": [
+            "JUD.1.21",
+            "JUD.1.22",
+            "JUD.1.23"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 25,
+          "verses": [
+            23,
+            24,
+            25
+          ],
+          "usfms": [
+            "JUD.1.23",
+            "JUD.1.24",
+            "JUD.1.25"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/JUD.1.EASY",
+        "reference": {
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "JUD.INTRO1"
+          ],
+          "human": "Jude Intro",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "REV.INTRO1"
+          ],
+          "human": "Revelation Intro",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 0,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 1,
       "chapter_usfm": "DEU.1",
@@ -20,10 +21,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.1.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 2,
       "chapter_usfm": "DEU.2",
@@ -33,10 +70,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.2.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 3,
       "chapter_usfm": "DEU.3",
@@ -46,10 +119,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.3.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 4,
       "chapter_usfm": "DEU.4",
@@ -59,10 +168,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.4.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 5,
       "chapter_usfm": "DEU.5",
@@ -72,10 +217,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.5.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 6,
       "chapter_usfm": "DEU.6",
@@ -85,10 +266,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.6.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 7,
       "chapter_usfm": "DEU.7",
@@ -98,10 +315,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.7.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 8,
       "chapter_usfm": "DEU.8",
@@ -111,10 +364,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.8.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 9,
       "chapter_usfm": "DEU.9",
@@ -124,10 +413,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.9.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 10,
       "chapter_usfm": "DEU.10",
@@ -137,10 +462,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.10.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 11,
       "chapter_usfm": "DEU.11",
@@ -150,10 +511,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.11.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 12,
       "chapter_usfm": "DEU.12",
@@ -163,10 +560,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.12.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 13,
       "chapter_usfm": "DEU.13",
@@ -176,10 +609,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.13.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 14,
       "chapter_usfm": "DEU.14",
@@ -189,10 +658,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.14.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 15,
       "chapter_usfm": "DEU.15",
@@ -202,10 +707,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.15.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 16,
       "chapter_usfm": "DEU.16",
@@ -215,10 +756,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.16.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 17,
       "chapter_usfm": "DEU.17",
@@ -228,10 +805,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.17.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 18,
       "chapter_usfm": "DEU.18",
@@ -241,10 +854,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.18.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 19,
       "chapter_usfm": "DEU.19",
@@ -254,10 +903,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.19.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 20,
       "chapter_usfm": "DEU.20",
@@ -267,10 +952,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.20.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 21,
       "chapter_usfm": "DEU.21",
@@ -280,10 +1001,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.21.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 22,
       "chapter_usfm": "DEU.22",
@@ -293,10 +1050,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.22.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 23,
       "chapter_usfm": "DEU.23",
@@ -306,10 +1099,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.23.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 24,
       "chapter_usfm": "DEU.24",
@@ -319,10 +1148,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.24.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 25,
       "chapter_usfm": "DEU.25",
@@ -332,10 +1197,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.25.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 26,
       "chapter_usfm": "DEU.26",
@@ -345,10 +1246,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.26.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 27,
       "chapter_usfm": "DEU.27",
@@ -358,10 +1295,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.27.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 28,
       "chapter_usfm": "DEU.28",
@@ -371,10 +1344,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.28.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 29,
       "chapter_usfm": "DEU.29",
@@ -384,10 +1393,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.29.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 30,
       "chapter_usfm": "DEU.30",
@@ -397,10 +1442,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.30.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 31,
       "chapter_usfm": "DEU.31",
@@ -410,10 +1491,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.31.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 32,
       "chapter_usfm": "DEU.32",
@@ -423,10 +1540,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.32.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 33,
       "chapter_usfm": "DEU.33",
@@ -436,10 +1589,46 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.33.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DEU",
       "chapter": 34,
       "chapter_usfm": "DEU.34",
@@ -449,8 +1638,43 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3950/DEU.34.PES",
+        "reference": null,
+        "previous": null,
+        "next": null
+      },
+      "version_meta": {
+        "id": 3950,
+        "abbreviation": "PES",
+        "local_abbreviation": "PES",
+        "title": "Bandari Bible - Korpu",
+        "local_title": "Bandari Bible - Korpu",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "The Seed Company"
+        },
+        "audio_enabled": false
+      }
     }
   ]
 }

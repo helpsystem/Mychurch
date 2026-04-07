@@ -11,6 +11,7 @@
   "total_verses": 193,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 1,
       "chapter_usfm": "HOS.1",
@@ -19,61 +20,246 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.1.1",
+          "line_type": "p",
           "text": "This is the message which the Lord gave Hosea son of Beeri during the time that Uzziah, Jotham, Ahaz, and Hezekiah were kings of Judah, and Jeroboam son of Jehoash was king of Israel."
         },
         {
           "verse": 2,
+          "usfm": "HOS.1.2",
+          "line_type": "p",
           "text": "When the Lord first spoke to Israel through Hosea, he said to Hosea, “Go and get married; your wife will be unfaithful, and your children will be just like her. In the same way my people have left me and become unfaithful.”"
         },
         {
           "verse": 3,
+          "usfm": "HOS.1.3",
+          "line_type": "p",
           "text": "So Hosea married a woman named Gomer, the daughter of Diblaim. After the birth of their first child, a son,"
         },
         {
           "verse": 4,
+          "usfm": "HOS.1.4",
+          "line_type": "p",
           "text": "the Lord said to Hosea, “Name him ‘Jezreel,’ because it will not be long before I punish the king of Israel for the murders that his ancestor Jehu committed at Jezreel. I am going to put an end to Jehu's dynasty."
         },
         {
           "verse": 5,
+          "usfm": "HOS.1.5",
+          "line_type": "p",
           "text": "And in Jezreel Valley I will at that time destroy Israel's military power.”"
         },
         {
           "verse": 6,
+          "usfm": "HOS.1.6",
+          "line_type": "p",
           "text": "Gomer had a second child—this time it was a daughter. The Lord said to Hosea, “Name her ‘Unloved,’ because I will no longer show love to the people of Israel or forgive them."
         },
         {
           "verse": 7,
+          "usfm": "HOS.1.7",
+          "line_type": "p",
           "text": "But to the people of Judah I will show love. I, the Lord their God, will save them, but I will not do it by war—with swords or bows and arrows or with horses and horsemen.”"
         },
         {
           "verse": 8,
+          "usfm": "HOS.1.8",
+          "line_type": "p",
           "text": "After Gomer had weaned her daughter, she became pregnant again and had another son."
         },
         {
           "verse": 9,
+          "usfm": "HOS.1.9",
+          "line_type": "p",
           "text": "The Lord said to Hosea, “Name him ‘Not-My-People,’ because the people of Israel are not my people, and I am not their God.”"
         },
         {
           "verse": 10,
+          "usfm": "HOS.1.10",
+          "line_type": "p",
           "text": "The people of Israel will become like the sand of the sea, more than can be counted or measured. Now God says to them, “You are not my people,” but the day is coming when he will say to them, “You are the children of the living God!”"
         },
         {
           "verse": 11,
+          "usfm": "HOS.1.11",
+          "line_type": "p",
           "text": "The people of Judah and the people of Israel will be reunited. They will choose for themselves a single leader, and once again they will grow and prosper in their land. Yes, the day of Jezreel will be a great day!"
         }
       ],
       "verse_count": 11,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Hosea's Wife and Children"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Israel Is to Be Restored"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2KI.15.1+2KI.15.2+2KI.15.3+2KI.15.4+2KI.15.5+2KI.15.6+2KI.15.7",
+            "2CH.26.1+2CH.26.2+2CH.26.3+2CH.26.4+2CH.26.5+2CH.26.6+2CH.26.7+2CH.26.8+2CH.26.9+2CH.26.10+2CH.26.11+2CH.26.12+2CH.26.13+2CH.26.14+2CH.26.15+2CH.26.16+2CH.26.17+2CH.26.18+2CH.26.19+2CH.26.20+2CH.26.21+2CH.26.22+2CH.26.23",
+            "2KI.15.32+2KI.15.33+2KI.15.34+2KI.15.35+2KI.15.36+2KI.15.37+2KI.15.38",
+            "2CH.27.1+2CH.27.2+2CH.27.3+2CH.27.4+2CH.27.5+2CH.27.6+2CH.27.7+2CH.27.8",
+            "2KI.16.1+2KI.16.2+2KI.16.3+2KI.16.4+2KI.16.5+2KI.16.6+2KI.16.7+2KI.16.8+2KI.16.9+2KI.16.10+2KI.16.11+2KI.16.12+2KI.16.13+2KI.16.14+2KI.16.15+2KI.16.16+2KI.16.17+2KI.16.18+2KI.16.19+2KI.16.20",
+            "2CH.28.1+2CH.28.2+2CH.28.3+2CH.28.4+2CH.28.5+2CH.28.6+2CH.28.7+2CH.28.8+2CH.28.9+2CH.28.10+2CH.28.11+2CH.28.12+2CH.28.13+2CH.28.14+2CH.28.15+2CH.28.16+2CH.28.17+2CH.28.18+2CH.28.19+2CH.28.20+2CH.28.21+2CH.28.22+2CH.28.23+2CH.28.24+2CH.28.25+2CH.28.26+2CH.28.27",
+            "2KI.14.23+2KI.14.24+2KI.14.25+2KI.14.26+2KI.14.27+2KI.14.28+2KI.14.29"
+          ],
+          "text": "2 K 15.1-7; 2 Ch 26.1-23; 2 K 15.32-38; 2 Ch 27.1-8; 2 K 16.1-20; 2 Ch 28.1-27; 2 K 18.1—20.21; 2 Ch 29.1—32.33; 2 K 14.23-29"
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.1.2",
+          "note_ref": "1.2:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "get married; your wife … her; or marry a prostitute, and have children by her who will be just as bad as she is."
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2KI.10.11"
+          ],
+          "text": "2 K 10.11"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "1.4:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jezreel: At this city Jehu assassinated the king of Israel and all the rest of the royal family, and became the first king of a new dynasty (see 2 K 9–10)."
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "1.4:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jehu's dynasty; or the kingdom of Israel."
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.9.26"
+          ],
+          "text": "Ro 9.26"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.1.11",
+          "note_ref": "1.11:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jezreel: This name in Hebrew means “God sows” and suggests growth and prosperity."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HOS.1.1",
+            "HOS.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "HOS.1.2",
+            "HOS.1.3",
+            "HOS.1.4",
+            "HOS.1.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "HOS.1.5",
+            "HOS.1.6",
+            "HOS.1.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "HOS.1.7",
+            "HOS.1.8",
+            "HOS.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "HOS.1.10",
+            "HOS.1.11",
+            "HOS.1.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -84,9 +270,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/1-4f5b853db62fcc810ad82663c4c3ea09.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.1.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.1"
+          ],
+          "human": "Hosea 1",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "HOS.INTRO1"
+          ],
+          "human": "Hosea Introduction",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 2,
       "chapter_usfm": "HOS.2",
@@ -95,101 +338,435 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.2.1",
+          "line_type": "m",
           "text": "So call your fellow Israelites “God's People” and “Loved-by-the-Lord.”"
         },
         {
           "verse": 2,
+          "usfm": "HOS.2.2",
+          "line_type": "p",
           "text": "My children, plead with your mother—though she is no longer a wife to me, and I am no longer her husband. Plead with her to stop her adultery and prostitution."
         },
         {
           "verse": 3,
+          "usfm": "HOS.2.3",
+          "line_type": "p",
           "text": "If she does not, I will strip her as naked as she was on the day she was born. I will make her like a dry and barren land, and she will die of thirst. I will not show mercy to her children; they are the children of a shameless prostitute. She herself said, “I will go to my lovers—they give me food and water, wool and linen, olive oil and wine.”"
         },
         {
           "verse": 6,
+          "usfm": "HOS.2.6",
+          "line_type": "p",
           "text": "So I am going to fence her in with thorn bushes and build a wall to block her way."
         },
         {
           "verse": 7,
+          "usfm": "HOS.2.7",
+          "line_type": "p",
           "text": "She will run after her lovers but will not catch them. She will look for them but will not find them. Then she will say, “I am going back to my first husband—I was better off then than I am now.”"
         },
         {
           "verse": 8,
+          "usfm": "HOS.2.8",
+          "line_type": "p",
           "text": "She would never acknowledge that I am the one who gave her the grain, the wine, the olive oil, and all the silver and gold that she used in the worship of Baal."
         },
         {
           "verse": 9,
+          "usfm": "HOS.2.9",
+          "line_type": "p",
           "text": "So at harvest time I will take back my gifts of grain and wine, and will take away the wool and the linen I gave her for clothing."
         },
         {
           "verse": 10,
+          "usfm": "HOS.2.10",
+          "line_type": "p",
           "text": "I will strip her naked in front of her lovers, and no one will be able to save her from my power."
         },
         {
           "verse": 11,
+          "usfm": "HOS.2.11",
+          "line_type": "p",
           "text": "I will put an end to all her festivities—her annual and monthly festivals and her Sabbath celebrations—all her religious meetings."
         },
         {
           "verse": 12,
+          "usfm": "HOS.2.12",
+          "line_type": "p",
           "text": "I will destroy her grapevines and her fig trees, which she said her lovers gave her for serving them. I will turn her vineyards and orchards into a wilderness; wild animals will destroy them."
         },
         {
           "verse": 13,
+          "usfm": "HOS.2.13",
+          "line_type": "p",
           "text": "I will punish her for the times that she forgot me, when she burned incense to Baal and put on her jewelry to go chasing after her lovers. The Lord has spoken."
         },
         {
           "verse": 14,
+          "usfm": "HOS.2.14",
+          "line_type": "p",
           "text": "So I am going to take her into the desert again; there I will win her back with words of love."
         },
         {
           "verse": 15,
+          "usfm": "HOS.2.15",
+          "line_type": "p",
           "text": "I will give back to her the vineyards she had and make Trouble Valley a door of hope. She will respond to me there as she did when she was young, when she came from Egypt."
         },
         {
           "verse": 16,
+          "usfm": "HOS.2.16",
+          "line_type": "p",
           "text": "Then once again she will call me her husband—she will no longer call me her Baal."
         },
         {
           "verse": 17,
+          "usfm": "HOS.2.17",
+          "line_type": "p",
           "text": "I will never let her speak the name of Baal again."
         },
         {
           "verse": 18,
+          "usfm": "HOS.2.18",
+          "line_type": "p",
           "text": "At that time I will make a covenant with all the wild animals and birds, so that they will not harm my people. I will also remove all weapons of war from the land, all swords and bows, and will let my people live in peace and safety."
         },
         {
           "verse": 19,
+          "usfm": "HOS.2.19",
+          "line_type": "q1",
           "text": "Israel, I will make you my wife;I will be true and faithful;I will show you constant love and mercyand make you mine forever."
         },
         {
           "verse": 20,
+          "usfm": "HOS.2.20",
+          "line_type": "q1",
           "text": "I will keep my promise and make you mine,and you will acknowledge me as Lord. At that time I will answer the prayers of my people Israel.I will make rain fall on the earth,and the earth will produce grain and grapes and olives."
         },
         {
           "verse": 23,
+          "usfm": "HOS.2.23",
+          "line_type": "q1",
           "text": "I will establish my people in the land and make them prosper.I will show love to those who were called “Unloved,”and to those who were called “Not-My-People”I will say, “You are my people,”and they will answer, “You are our God.”"
         }
       ],
       "verse_count": 19,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Unfaithful Gomer—Unfaithful Israel"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "The"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "Lord"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "'s Love for His People"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "HOS.2.3",
+          "note_ref": "2.4-5:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "the children of a shameless prostitute; or as shameless as their mother, a prostitute."
+        },
+        {
+          "verse": 15,
+          "usfm": "HOS.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOS.7.24+JOS.7.25+JOS.7.26"
+          ],
+          "text": "Js 7.24-26"
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.2.16",
+          "note_ref": "2.16:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Baal: This title of the Canaanite god means “Lord”; another meaning of the word is “husband.”"
+        },
+        {
+          "verse": 20,
+          "usfm": "HOS.2.20",
+          "note_ref": "2.21-22:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Israel: The Hebrew text here refers to Israel as Jezreel (see 1.4, 11)."
+        },
+        {
+          "verse": 23,
+          "usfm": "HOS.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.9.25",
+            "1PE.2.10"
+          ],
+          "text": "Ro 9.25; 1 P 2.10"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.2.1",
+            "HOS.2.2",
+            "HOS.2.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "HOS.2.6",
+            "HOS.2.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 13,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "HOS.2.10",
+            "HOS.2.11",
+            "HOS.2.12",
+            "HOS.2.13",
+            "HOS.2.7",
+            "HOS.2.8",
+            "HOS.2.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 17,
+          "verses": [
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "HOS.2.13",
+            "HOS.2.14",
+            "HOS.2.15",
+            "HOS.2.16",
+            "HOS.2.17"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "HOS.2.17",
+            "HOS.2.18"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "HOS.2.18",
+            "HOS.2.19"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HOS.2.19"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HOS.2.19"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "HOS.2.19"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "HOS.2.19",
+            "HOS.2.20"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "HOS.2.20"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "HOS.2.20"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HOS.2.23"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HOS.2.23"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HOS.2.23"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HOS.2.23"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HOS.2.23"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -200,9 +777,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/2-b2dbbaea9dbcb6df72576b7fc1fc051f.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 19,
+          "parsed_count": 19,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.2.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.1"
+          ],
+          "human": "Hosea 1",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 3,
       "chapter_usfm": "HOS.3",
@@ -211,28 +845,89 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.3.1",
+          "line_type": "p",
           "text": "The Lord said to me, “Go again and show your love for a woman who is committing adultery with a lover. You must love her just as I still love the people of Israel, even though they turn to other gods and like to take offerings of raisins to idols.”"
         },
         {
           "verse": 2,
+          "usfm": "HOS.3.2",
+          "line_type": "p",
           "text": "So I paid fifteen pieces of silver and seven bushels of barley to buy her."
         },
         {
           "verse": 3,
+          "usfm": "HOS.3.3",
+          "line_type": "p",
           "text": "I told her that for a long time she would have to wait for me without being a prostitute or committing adultery; and during this time I would wait for her."
         },
         {
           "verse": 4,
+          "usfm": "HOS.3.4",
+          "line_type": "p",
           "text": "In just this way the people of Israel will have to live for a long time without kings or leaders, without sacrifices or sacred stone pillars, without idols or images to use for divination."
         },
         {
           "verse": 5,
+          "usfm": "HOS.3.5",
+          "line_type": "p",
           "text": "But the time will come when the people of Israel will once again turn to the Lord their God and to a descendant of David their king. Then they will fear the Lord and will receive his good gifts."
         }
       ],
       "verse_count": 5,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.3.1",
+          "note_ref": "3.1:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The Lord … again; or The Lord spoke to me again. He said, “Go …”"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.3.1",
+          "note_ref": "3.1:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "offerings of raisins to idols: Dried grapes were used in the worship of fertility gods, who were believed to give abundant harvests to their worshipers."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "HOS.3.1",
+            "HOS.3.2",
+            "HOS.3.3",
+            "HOS.3.4",
+            "HOS.3.5"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -243,9 +938,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/3-43eaca6566c19bba92f246c6a1d41fe6.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.3.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 4,
       "chapter_usfm": "HOS.4",
@@ -254,78 +1006,116 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.4.1",
+          "line_type": "p",
           "text": "The Lord has an accusation to bring against the people who live in this land. Listen, Israel, to what he says: “There is no faithfulness or love in the land, and the people do not acknowledge me as God."
         },
         {
           "verse": 2,
+          "usfm": "HOS.4.2",
+          "line_type": "p",
           "text": "They make promises and break them; they lie, murder, steal, and commit adultery. Crimes increase, and there is one murder after another."
         },
         {
           "verse": 3,
+          "usfm": "HOS.4.3",
+          "line_type": "p",
           "text": "And so the land will dry up, and everything that lives on it will die. All the animals and birds, and even the fish, will die.”"
         },
         {
           "verse": 4,
+          "usfm": "HOS.4.4",
+          "line_type": "p",
           "text": "The Lord says, “Let no one accuse the people or reprimand them—my complaint is against you priests."
         },
         {
           "verse": 5,
+          "usfm": "HOS.4.5",
+          "line_type": "p",
           "text": "Night and day you blunder on, and the prophets do no better than you. I am going to destroy Israel, your mother."
         },
         {
           "verse": 6,
+          "usfm": "HOS.4.6",
+          "line_type": "p",
           "text": "My people are doomed because they do not acknowledge me. You priests have refused to acknowledge me and have rejected my teaching, and so I reject you and will not acknowledge your sons as my priests."
         },
         {
           "verse": 7,
+          "usfm": "HOS.4.7",
+          "line_type": "p",
           "text": "“The more of you priests there are, the more you sin against me, and so I will turn your honor into disgrace."
         },
         {
           "verse": 8,
+          "usfm": "HOS.4.8",
+          "line_type": "p",
           "text": "You grow rich from the sins of my people, and so you want them to sin more and more."
         },
         {
           "verse": 9,
+          "usfm": "HOS.4.9",
+          "line_type": "p",
           "text": "You will suffer the same punishment as the people! I will punish you and make you pay for the evil you do."
         },
         {
           "verse": 10,
+          "usfm": "HOS.4.10",
+          "line_type": "p",
           "text": "You will eat your share of the sacrifices, but still be hungry. You will worship the fertility gods, but still have no children, because you have turned away from me to follow other gods.”"
         },
         {
           "verse": 11,
+          "usfm": "HOS.4.11",
+          "line_type": "p",
           "text": "The Lord says, “Wine, both old and new, is robbing my people of their senses!"
         },
         {
           "verse": 12,
+          "usfm": "HOS.4.12",
+          "line_type": "p",
           "text": "They ask for revelations from a piece of wood! A stick tells them what they want to know! They have left me. Like a woman who becomes a prostitute, they have given themselves to other gods."
         },
         {
           "verse": 13,
+          "usfm": "HOS.4.13",
+          "line_type": "p",
           "text": "At sacred places on the mountaintops they offer sacrifices, and on the hills they burn incense under tall, spreading trees, because the shade is so pleasant!“As a result, your daughters serve as prostitutes, and your daughters-in-law commit adultery."
         },
         {
           "verse": 14,
+          "usfm": "HOS.4.14",
+          "line_type": "p",
           "text": "Yet I will not punish them for this, because you yourselves go off with temple prostitutes, and together with them you offer pagan sacrifices. As the proverb says, ‘A people without sense will be ruined.’"
         },
         {
           "verse": 15,
+          "usfm": "HOS.4.15",
+          "line_type": "p",
           "text": "“Even though you people of Israel are unfaithful to me, may Judah not be guilty of the same thing. Don't worship at Gilgal or Bethaven, or make promises there in the name of the living Lord."
         },
         {
           "verse": 16,
+          "usfm": "HOS.4.16",
+          "line_type": "p",
           "text": "The people of Israel are as stubborn as mules. How can I feed them like lambs in a meadow?"
         },
         {
           "verse": 17,
+          "usfm": "HOS.4.17",
+          "line_type": "p",
           "text": "The people of Israel are under the spell of idols. Let them go their own way."
         },
         {
           "verse": 18,
+          "usfm": "HOS.4.18",
+          "line_type": "p",
           "text": "After drinking much wine, they delight in their prostitution, preferring disgrace to honor."
         },
         {
           "verse": 19,
+          "usfm": "HOS.4.19",
+          "line_type": "p",
           "text": "They will be carried away as by the wind, and they will be ashamed of their pagan sacrifices."
         }
       ],
@@ -340,31 +1130,182 @@
           "text": "'s Accusation against Israel"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "The"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Lord"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Accuses the Priests"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "The"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Lord"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Condemns Pagan Worship"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 4,
+          "usfm": "HOS.4.4",
+          "note_ref": "4.4:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text my complaint is against you priests; Hebrew your people are like those with a complaint against the priests."
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.4.14",
+          "note_ref": "4.14:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "temple prostitutes: These women were found in Canaanite temples, where fertility gods were worshiped. It was believed that intercourse with these prostitutes assured fertile fields and herds."
+        },
+        {
+          "verse": 15,
+          "usfm": "HOS.4.15",
+          "note_ref": "4.15:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Bethaven: This name means “house of evil” or “house of idolatry” and in this passage refers to the city of Bethel, a name which means “house of God.” See also 10.8."
+        },
+        {
+          "verse": 19,
+          "usfm": "HOS.4.19",
+          "note_ref": "4.19:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "sacrifices; some ancient translations altars."
+        },
+        {
+          "verse": 19,
+          "usfm": "HOS.4.19",
+          "note_ref": "4.19:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Verses 17-19 in Hebrew are unclear."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.4.1",
+            "HOS.4.2",
+            "HOS.4.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 6,
+          "verses": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "HOS.4.3",
+            "HOS.4.4",
+            "HOS.4.5",
+            "HOS.4.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 10,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "HOS.4.10",
+            "HOS.4.6",
+            "HOS.4.7",
+            "HOS.4.8",
+            "HOS.4.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "HOS.4.10",
+            "HOS.4.11",
+            "HOS.4.12",
+            "HOS.4.13"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "HOS.4.13",
+            "HOS.4.14"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 19,
+          "verses": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "usfms": [
+            "HOS.4.14",
+            "HOS.4.15",
+            "HOS.4.16",
+            "HOS.4.17",
+            "HOS.4.18",
+            "HOS.4.19"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -375,9 +1316,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/4-fecf6741f9b9db89fe2147c95092c65f.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 19,
+          "parsed_count": 19,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.4.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 5,
       "chapter_usfm": "HOS.5",
@@ -386,77 +1384,234 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.5.1",
+          "line_type": "p",
           "text": "“Listen to this, you priests! Pay attention, people of Israel! Listen, you that belong to the royal family! You are supposed to judge with justice—so judgment will fall on you! You have become a trap at Mizpah, a net spread on Mount Tabor,"
         },
         {
           "verse": 2,
+          "usfm": "HOS.5.2",
+          "line_type": "p",
           "text": "a deep pit at Acacia City, and I will punish all of you."
         },
         {
           "verse": 3,
+          "usfm": "HOS.5.3",
+          "line_type": "p",
           "text": "I know what Israel is like—she cannot hide from me. She has been unfaithful, and her people are unfit to worship me.”"
         },
         {
           "verse": 4,
+          "usfm": "HOS.5.4",
+          "line_type": "p",
           "text": "The evil that the people have done keeps them from returning to their God. Idolatry has a powerful hold on them, and they do not acknowledge the Lord."
         },
         {
           "verse": 5,
+          "usfm": "HOS.5.5",
+          "line_type": "p",
           "text": "The arrogance of the people of Israel cries out against them. Their sins make them stumble and fall, and the people of Judah fall with them."
         },
         {
           "verse": 6,
+          "usfm": "HOS.5.6",
+          "line_type": "p",
           "text": "They take their sheep and cattle to offer as sacrifices to the Lord, but it does them no good. They cannot find him, for he has left them."
         },
         {
           "verse": 7,
+          "usfm": "HOS.5.7",
+          "line_type": "p",
           "text": "They have been unfaithful to the Lord; their children do not belong to him. So now they and their lands will soon be destroyed."
         },
         {
           "verse": 8,
+          "usfm": "HOS.5.8",
+          "line_type": "p",
           "text": "Blow the war trumpets in Gibeah! Sound the alarm in Ramah! Raise the war cry at Bethaven! Into battle, men of Benjamin!"
         },
         {
           "verse": 9,
+          "usfm": "HOS.5.9",
+          "line_type": "p",
           "text": "The day of punishment is coming, and Israel will be ruined. People of Israel, this will surely happen!"
         },
         {
           "verse": 10,
+          "usfm": "HOS.5.10",
+          "line_type": "p",
           "text": "The Lord says, “I am angry because the leaders of Judah have invaded Israel and stolen land from her. So I will pour out punishment on them like a flood."
         },
         {
           "verse": 11,
+          "usfm": "HOS.5.11",
+          "line_type": "p",
           "text": "Israel is suffering oppression; she has lost land that was rightfully hers, because she insisted on going for help to those who had none to give."
         },
         {
           "verse": 12,
+          "usfm": "HOS.5.12",
+          "line_type": "p",
           "text": "I will bring destruction on Israel and ruin on the people of Judah."
         },
         {
           "verse": 13,
+          "usfm": "HOS.5.13",
+          "line_type": "p",
           "text": "“When Israel saw how sick she was and when Judah saw her own wounds, then Israel went to Assyria to ask the great emperor for help, but he could not cure them or heal their wounds."
         },
         {
           "verse": 14,
+          "usfm": "HOS.5.14",
+          "line_type": "p",
           "text": "I will attack the people of Israel and Judah like a lion. I myself will tear them to pieces and then leave them. When I drag them off, no one will be able to save them."
         },
         {
           "verse": 15,
+          "usfm": "HOS.5.15",
+          "line_type": "p",
           "text": "“I will abandon my people until they have suffered enough for their sins and come looking for me. Perhaps in their suffering they will try to find me.”"
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Hosea Warns against Idolatry"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "War between Judah and Israel"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.5.2",
+          "note_ref": "5.2:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text a deep pit at Acacia City; Hebrew unclear."
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.5.8",
+          "note_ref": "5.8:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Bethaven: This name means “house of evil” or “house of idolatry” and in this passage refers to the city of Bethel, a name which means “house of God.” See also 10.8."
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.5.11",
+          "note_ref": "5.11:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text those who had none to give; Hebrew command."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.5.1",
+            "HOS.5.2",
+            "HOS.5.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 7,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "HOS.5.3",
+            "HOS.5.4",
+            "HOS.5.5",
+            "HOS.5.6",
+            "HOS.5.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "HOS.5.7",
+            "HOS.5.8",
+            "HOS.5.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 12,
+          "verses": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "HOS.5.10",
+            "HOS.5.11",
+            "HOS.5.12",
+            "HOS.5.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "HOS.5.12",
+            "HOS.5.13",
+            "HOS.5.14"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "HOS.5.14",
+            "HOS.5.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -467,9 +1622,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/5-be73adcd201d8c43336505f2a1f28115.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.5.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 6,
       "chapter_usfm": "HOS.6",
@@ -478,52 +1690,164 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.6.1",
+          "line_type": "p",
           "text": "The people say, “Let's return to the Lord! He has hurt us, but he will be sure to heal us; he has wounded us, but he will bandage our wounds, won't he?"
         },
         {
           "verse": 2,
+          "usfm": "HOS.6.2",
+          "line_type": "p",
           "text": "In two or three days he will revive us, and we will live in his presence."
         },
         {
           "verse": 3,
+          "usfm": "HOS.6.3",
+          "line_type": "p",
           "text": "Let us try to know the Lord. He will come to us as surely as the day dawns, as surely as the spring rains fall upon the earth.”"
         },
         {
           "verse": 4,
+          "usfm": "HOS.6.4",
+          "line_type": "p",
           "text": "But the Lord says, “Israel and Judah, what am I going to do with you? Your love for me disappears as quickly as morning mist; it is like dew, that vanishes early in the day."
         },
         {
           "verse": 5,
+          "usfm": "HOS.6.5",
+          "line_type": "p",
           "text": "That is why I have sent my prophets to you with my message of judgment and destruction. What I want from you is plain and clear:"
         },
         {
           "verse": 6,
+          "usfm": "HOS.6.6",
+          "line_type": "p",
           "text": "I want your constant love, not your animal sacrifices. I would rather have my people know me than burn offerings to me."
         },
         {
           "verse": 7,
+          "usfm": "HOS.6.7",
+          "line_type": "p",
           "text": "“But as soon as they entered the land at Adam, they broke the covenant I had made with them."
         },
         {
           "verse": 8,
+          "usfm": "HOS.6.8",
+          "line_type": "p",
           "text": "Gilead is a city full of evil people and murderers."
         },
         {
           "verse": 9,
+          "usfm": "HOS.6.9",
+          "line_type": "p",
           "text": "The priests are like a gang of robbers who wait in ambush for someone. Even on the road to the holy place at Shechem they commit murder. And they do all this evil deliberately!"
         },
         {
           "verse": 10,
+          "usfm": "HOS.6.10",
+          "line_type": "p",
           "text": "I have seen a horrible thing in Israel: my people have defiled themselves by worshiping idols."
         },
         {
           "verse": 11,
+          "usfm": "HOS.6.11",
+          "line_type": "p",
           "text": "“And as for you, people of Judah, I have set a time to punish you also for what you are doing."
         }
       ],
       "verse_count": 11,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 6,
+          "usfm": "HOS.6.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.9.13",
+            "MAT.12.7"
+          ],
+          "text": "Mt 9.13; 12.7"
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.6.7",
+          "note_ref": "6.7:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text But … at Adam; Hebrew But like Adam."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.6.1",
+            "HOS.6.2",
+            "HOS.6.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 6,
+          "verses": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "HOS.6.3",
+            "HOS.6.4",
+            "HOS.6.5",
+            "HOS.6.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 10,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "HOS.6.10",
+            "HOS.6.6",
+            "HOS.6.7",
+            "HOS.6.8",
+            "HOS.6.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "HOS.6.10",
+            "HOS.6.11"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -534,9 +1858,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/6-f465b996836591f16388322f652f8c94.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.6.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 7,
       "chapter_usfm": "HOS.7",
@@ -545,81 +1926,230 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.7.1",
+          "line_type": "p",
           "text": "“Whenever I want to heal my people Israel and make them prosperous again, all I can see is their wickedness and the evil they do. They cheat one another; they break into houses and steal; they rob people in the streets."
         },
         {
           "verse": 2,
+          "usfm": "HOS.7.2",
+          "line_type": "p",
           "text": "It never enters their heads that I will remember all this evil; but their sins surround them, and I cannot avoid seeing them.”"
         },
         {
           "verse": 3,
+          "usfm": "HOS.7.3",
+          "line_type": "p",
           "text": "The Lord says, “People deceive the king and his officers by their evil plots."
         },
         {
           "verse": 4,
+          "usfm": "HOS.7.4",
+          "line_type": "p",
           "text": "They are all treacherous and disloyal. Their hatred smolders like the fire in an oven, which is not stirred by the baker until the dough is ready to bake."
         },
         {
           "verse": 5,
+          "usfm": "HOS.7.5",
+          "line_type": "p",
           "text": "On the day of the king's celebration they made the king and his officials drunk and foolish with wine."
         },
         {
           "verse": 6,
+          "usfm": "HOS.7.6",
+          "line_type": "p",
           "text": "Yes, they burned like an oven with their plotting. All night their anger smoldered, and in the morning it burst into flames."
         },
         {
           "verse": 7,
+          "usfm": "HOS.7.7",
+          "line_type": "p",
           "text": "“In the heat of their anger they murdered their rulers. Their kings have been assassinated one after another, but no one prays to me for help.”"
         },
         {
           "verse": 8,
+          "usfm": "HOS.7.8",
+          "line_type": "p",
           "text": "The Lord says, “The people of Israel are like a half-baked loaf of bread. They rely on the nations around them"
         },
         {
           "verse": 9,
+          "usfm": "HOS.7.9",
+          "line_type": "p",
           "text": "and do not realize that this reliance on foreigners has robbed them of their strength. Their days are numbered, but they don't even know it."
         },
         {
           "verse": 10,
+          "usfm": "HOS.7.10",
+          "line_type": "p",
           "text": "The arrogance of the people of Israel cries out against them. In spite of everything that has happened, they have not returned to me, the Lord their God."
         },
         {
           "verse": 11,
+          "usfm": "HOS.7.11",
+          "line_type": "p",
           "text": "Israel flits around like a silly pigeon; first her people call on Egypt for help, and then they run to Assyria!"
         },
         {
           "verse": 12,
+          "usfm": "HOS.7.12",
+          "line_type": "p",
           "text": "But I will spread out a net and catch them like birds as they go by. I will punish them for the evil they have done."
         },
         {
           "verse": 13,
+          "usfm": "HOS.7.13",
+          "line_type": "p",
           "text": "“They are doomed! They have left me and rebelled against me. They will be destroyed. I wanted to save them, but their worship of me was false."
         },
         {
           "verse": 14,
+          "usfm": "HOS.7.14",
+          "line_type": "p",
           "text": "They have not prayed to me sincerely, but instead they throw themselves down and wail as the heathen do. When they pray for grain and wine, they gash themselves like pagans. What rebels they are!"
         },
         {
           "verse": 15,
+          "usfm": "HOS.7.15",
+          "line_type": "p",
           "text": "Even though I was the one who brought them up and made them strong, they plotted against me."
         },
         {
           "verse": 16,
+          "usfm": "HOS.7.16",
+          "line_type": "p",
           "text": "They keep on turning away from me to a god that is powerless. They are as unreliable as a crooked bow. Because their leaders talk arrogantly, they will die a violent death, and the Egyptians will laugh.”"
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Conspiracy in the Palace"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Israel and the Nations"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 6,
+          "usfm": "HOS.7.6",
+          "note_ref": "7.6:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation burned; Hebrew drew near."
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.7.12",
+          "note_ref": "7.12:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text the evil they have done; Hebrew the report to their congregation."
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.7.16",
+          "note_ref": "7.16:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text a god that is powerless; Hebrew unclear."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HOS.7.1",
+            "HOS.7.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 6,
+          "verses": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "HOS.7.2",
+            "HOS.7.3",
+            "HOS.7.4",
+            "HOS.7.5",
+            "HOS.7.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "HOS.7.6",
+            "HOS.7.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 12,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "HOS.7.10",
+            "HOS.7.11",
+            "HOS.7.12",
+            "HOS.7.7",
+            "HOS.7.8",
+            "HOS.7.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 16,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "HOS.7.12",
+            "HOS.7.13",
+            "HOS.7.14",
+            "HOS.7.15",
+            "HOS.7.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -630,9 +2160,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/7-7a1ef7b09678749c692502754172f576.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.7.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 8,
       "chapter_usfm": "HOS.8",
@@ -641,58 +2228,86 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.8.1",
+          "line_type": "p",
           "text": "The Lord says, “Sound the alarm! Enemies are swooping down on my land like eagles! My people have broken the covenant I made with them and have rebelled against my teaching."
         },
         {
           "verse": 2,
+          "usfm": "HOS.8.2",
+          "line_type": "p",
           "text": "Even though they call me their God and claim that they are my people and that they know me,"
         },
         {
           "verse": 3,
+          "usfm": "HOS.8.3",
+          "line_type": "p",
           "text": "they have rejected what is good. Because of this their enemies will pursue them."
         },
         {
           "verse": 4,
+          "usfm": "HOS.8.4",
+          "line_type": "p",
           "text": "“My people chose kings, but they did it on their own. They appointed leaders, but without my approval. They took their silver and gold and made idols—for their own destruction."
         },
         {
           "verse": 5,
+          "usfm": "HOS.8.5",
+          "line_type": "p",
           "text": "I hate the gold bull worshiped by the people of the city of Samaria. I am furious with them. How long will it be before they give up their idolatry?"
         },
         {
           "verse": 6,
+          "usfm": "HOS.8.6",
+          "line_type": "p",
           "text": "An Israelite craftsman made the idol, and it is not a god at all! The gold bull worshiped in Samaria will be smashed to pieces!"
         },
         {
           "verse": 7,
+          "usfm": "HOS.8.7",
+          "line_type": "p",
           "text": "When they sow the wind, they will reap a storm! A field of grain that doesn't ripen can never produce any bread. But even if it did, foreigners would eat it up."
         },
         {
           "verse": 8,
+          "usfm": "HOS.8.8",
+          "line_type": "p",
           "text": "Israel has become like any other nation and is as useless as a broken pot."
         },
         {
           "verse": 9,
+          "usfm": "HOS.8.9",
+          "line_type": "p",
           "text": "Stubborn as wild donkeys, the people of Israel go their own way. They have gone off to seek help from Assyria and have paid other nations to protect them."
         },
         {
           "verse": 10,
+          "usfm": "HOS.8.10",
+          "line_type": "p",
           "text": "But now I am going to gather them together and punish them. Soon they will writhe in pain when the emperor of Assyria oppresses them."
         },
         {
           "verse": 11,
+          "usfm": "HOS.8.11",
+          "line_type": "p",
           "text": "“The more altars the people of Israel build for removing sin, the more places they have for sinning!"
         },
         {
           "verse": 12,
+          "usfm": "HOS.8.12",
+          "line_type": "p",
           "text": "I write down countless teachings for the people, but they reject them as strange and foreign."
         },
         {
           "verse": 13,
+          "usfm": "HOS.8.13",
+          "line_type": "p",
           "text": "They offer sacrifices to me and eat the meat of the sacrifices. But I, the Lord, am not pleased with them, and now I will remember their sin and punish them for it; I will send them back to Egypt!"
         },
         {
           "verse": 14,
+          "usfm": "HOS.8.14",
+          "line_type": "p",
           "text": "“The people of Israel have built palaces, but they have forgotten their own Maker. The people of Judah have built fortified cities. But I will send fire that will burn down their palaces and their cities.”"
         }
       ],
@@ -707,7 +2322,92 @@
           "text": "Condemns Israel for Idol Worship"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 13,
+          "usfm": "HOS.8.13",
+          "note_ref": "8.13:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "They offer … the sacrifices; Hebrew unclear."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.8.1",
+            "HOS.8.2",
+            "HOS.8.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 10,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "HOS.8.10",
+            "HOS.8.3",
+            "HOS.8.4",
+            "HOS.8.5",
+            "HOS.8.6",
+            "HOS.8.7",
+            "HOS.8.8",
+            "HOS.8.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "HOS.8.10",
+            "HOS.8.11",
+            "HOS.8.12",
+            "HOS.8.13"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "HOS.8.13",
+            "HOS.8.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -718,9 +2418,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/8-1d7ba395c6463176a2acd026d510b110.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.8.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 9,
       "chapter_usfm": "HOS.9",
@@ -729,97 +2486,292 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.9.1",
+          "line_type": "p",
           "text": "People of Israel, stop celebrating your festivals like pagans. You have turned away from your God and have been unfaithful to him. All over the land you have sold yourselves like prostitutes to the god Baal and have loved the grain you thought he paid you with!"
         },
         {
           "verse": 2,
+          "usfm": "HOS.9.2",
+          "line_type": "p",
           "text": "But soon you will not have enough grain and olive oil, and there will be no wine."
         },
         {
           "verse": 3,
+          "usfm": "HOS.9.3",
+          "line_type": "p",
           "text": "The people of Israel will not remain in the Lord's land, but will have to go back to Egypt and will have to eat forbidden food in Assyria."
         },
         {
           "verse": 4,
+          "usfm": "HOS.9.4",
+          "line_type": "p",
           "text": "In those foreign lands they will not be able to make wine offerings to the Lord or bring their sacrifices to him. Their food will defile everyone who eats it, like food eaten at funerals. It will be used only to satisfy their hunger; none of it will be taken as an offering to the Lord's Temple."
         },
         {
           "verse": 5,
+          "usfm": "HOS.9.5",
+          "line_type": "p",
           "text": "And when the time comes for the appointed festivals in honor of the Lord, what will they do then?"
         },
         {
           "verse": 6,
+          "usfm": "HOS.9.6",
+          "line_type": "p",
           "text": "When the disaster comes and the people are scattered, the Egyptians will gather them up—gather them for burial there at Memphis! Their treasures of silver and the places where their homes once stood will be overgrown with weeds and thorn bushes."
         },
         {
           "verse": 7,
+          "usfm": "HOS.9.7",
+          "line_type": "p",
           "text": "The time for punishment has come, the time when people will get what they deserve. When that happens, Israel will know it! “This prophet,” you say, “is a fool. This inspired man is insane.” You people hate me so much because your sin is so great."
         },
         {
           "verse": 8,
+          "usfm": "HOS.9.8",
+          "line_type": "p",
           "text": "God has sent me as a prophet to warn his people Israel. Yet wherever I go, you try to trap me like a bird. Even in God's Temple the people are the prophet's enemies."
         },
         {
           "verse": 9,
+          "usfm": "HOS.9.9",
+          "line_type": "p",
           "text": "They are hopelessly evil in what they do, just as they were at Gibeah. God will remember their sin and punish them for it."
         },
         {
           "verse": 10,
+          "usfm": "HOS.9.10",
+          "line_type": "p",
           "text": "The Lord says, “When I first found Israel, it was like finding grapes growing in the desert. When I first saw your ancestors, it was like seeing the first ripe figs of the season. But when they came to Mount Peor, they began to worship Baal and soon became as disgusting as the gods they loved."
         },
         {
           "verse": 11,
+          "usfm": "HOS.9.11",
+          "line_type": "p",
           "text": "Israel's greatness will fly away like a bird, and there will be no more children born to them, no more women pregnant, no more children conceived."
         },
         {
           "verse": 12,
+          "usfm": "HOS.9.12",
+          "line_type": "p",
           "text": "But even if they did bring up children, I would take them away and not leave one alive. When I abandon these people, terrible things will happen to them.”"
         },
         {
           "verse": 13,
+          "usfm": "HOS.9.13",
+          "line_type": "p",
           "text": "Lord, I can see their children being hunted down and killed."
         },
         {
           "verse": 14,
+          "usfm": "HOS.9.14",
+          "line_type": "p",
           "text": "What shall I ask you to do to these people? Make their women barren! Make them unable to nurse their babies!"
         },
         {
           "verse": 15,
+          "usfm": "HOS.9.15",
+          "line_type": "p",
           "text": "The Lord says, “All their evildoing began in Gilgal. It was there that I began to hate them. And because of the evil they have done, I will drive them out of my land. I will not love them any more; all their leaders have rebelled against me."
         },
         {
           "verse": 16,
+          "usfm": "HOS.9.16",
+          "line_type": "p",
           "text": "The people of Israel are like a plant whose roots have dried up and which bears no fruit. They will have no children, but even if they did, I would kill the children so dear to them.”"
         },
         {
           "verse": 17,
+          "usfm": "HOS.9.17",
+          "line_type": "p",
           "text": "The God I serve will reject his people, because they have not listened to him. They will become wanderers among the nations."
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Israel's Sin and Its Consequences"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "The"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "Lord"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "'s Judgment on Israel"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "The Prophet Speaks about Israel"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "HOS.9.3",
+          "note_ref": "9.3:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "forbidden food: The Law of Moses prohibited the eating of certain foods as being ritually unclean (see Lv 11)."
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.9.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LUK.21.22"
+          ],
+          "text": "Lk 21.22"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.9.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JDG.19.1+JDG.19.2+JDG.19.3+JDG.19.4+JDG.19.5+JDG.19.6+JDG.19.7+JDG.19.8+JDG.19.9+JDG.19.10+JDG.19.11+JDG.19.12+JDG.19.13+JDG.19.14+JDG.19.15+JDG.19.16+JDG.19.17+JDG.19.18+JDG.19.19+JDG.19.20+JDG.19.21+JDG.19.22+JDG.19.23+JDG.19.24+JDG.19.25+JDG.19.26+JDG.19.27+JDG.19.28+JDG.19.29+JDG.19.30"
+          ],
+          "text": "Jg 19.1-30"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.9.9",
+          "note_ref": "9.9:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Gibeah: At this city some Israelites of the tribe of Benjamin raped a Levite's concubine; this caused a civil war that almost wiped out the Benjaminites (see Jg 19–21)."
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.9.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NUM.25.1+NUM.25.2+NUM.25.3+NUM.25.4+NUM.25.5"
+          ],
+          "text": "Nu 25.1-5"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.9.13",
+          "note_ref": "9.13:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text being hunted down; Hebrew unclear."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 6,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "HOS.9.1",
+            "HOS.9.2",
+            "HOS.9.3",
+            "HOS.9.4",
+            "HOS.9.5",
+            "HOS.9.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "HOS.9.6",
+            "HOS.9.7",
+            "HOS.9.8",
+            "HOS.9.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 12,
+          "verses": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "HOS.9.10",
+            "HOS.9.11",
+            "HOS.9.12",
+            "HOS.9.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "HOS.9.12",
+            "HOS.9.13",
+            "HOS.9.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 16,
+          "verses": [
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "HOS.9.14",
+            "HOS.9.15",
+            "HOS.9.16"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "HOS.9.16",
+            "HOS.9.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -830,9 +2782,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/9-5459bfd5cbb1dfe90f598870c98ad15c.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.9.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 10,
       "chapter_usfm": "HOS.10",
@@ -841,81 +2850,301 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.10.1",
+          "line_type": "p",
           "text": "The people of Israel were like a grapevine that was full of grapes. The more prosperous they were, the more altars they built. The more productive their land was, the more beautiful they made the sacred stone pillars they worship."
         },
         {
           "verse": 2,
+          "usfm": "HOS.10.2",
+          "line_type": "p",
           "text": "The people whose hearts are deceitful must now suffer for their sins. God will break down their altars and destroy their sacred pillars."
         },
         {
           "verse": 3,
+          "usfm": "HOS.10.3",
+          "line_type": "p",
           "text": "These people will soon be saying, “We have no king because we did not fear the Lord. But what could a king do for us anyway?”"
         },
         {
           "verse": 4,
+          "usfm": "HOS.10.4",
+          "line_type": "p",
           "text": "They utter empty words and make false promises and useless treaties. Justice has become injustice, growing like poisonous weeds in a plowed field."
         },
         {
           "verse": 5,
+          "usfm": "HOS.10.5",
+          "line_type": "p",
           "text": "The people who live in the city of Samaria will be afraid and will mourn the loss of the gold bull at Bethaven. They and the priests who serve the idol will weep over it. They will wail when it is stripped of its golden splendor."
         },
         {
           "verse": 6,
+          "usfm": "HOS.10.6",
+          "line_type": "p",
           "text": "The idol will be carried off to Assyria as tribute to the great emperor. The people of Israel will be disgraced and put to shame because of the advice they followed."
         },
         {
           "verse": 7,
+          "usfm": "HOS.10.7",
+          "line_type": "p",
           "text": "Their king will be carried off, like a chip of wood on water."
         },
         {
           "verse": 8,
+          "usfm": "HOS.10.8",
+          "line_type": "p",
           "text": "The hilltop shrines of Aven, where the people of Israel worship idols, will be destroyed. Thorns and weeds will grow up over their altars. The people will call out to the mountains, “Hide us!” and to the hills, “Cover us!”"
         },
         {
           "verse": 9,
+          "usfm": "HOS.10.9",
+          "line_type": "p",
           "text": "The Lord says, “The people of Israel have not stopped sinning against me since the time of their sin at Gibeah. So at Gibeah war will catch up with them."
         },
         {
           "verse": 10,
+          "usfm": "HOS.10.10",
+          "line_type": "p",
           "text": "I will attack this sinful people and punish them. Nations will join together against them, and they will be punished for their many sins."
         },
         {
           "verse": 11,
+          "usfm": "HOS.10.11",
+          "line_type": "p",
           "text": "“Israel was once like a well-trained young cow, ready and willing to thresh grain. But I decided to put a yoke on her beautiful neck and to harness her for harder work. I made Judah pull the plow and Israel pull the harrow."
         },
         {
           "verse": 12,
+          "usfm": "HOS.10.12",
+          "line_type": "p",
           "text": "I said, ‘Plow new ground for yourselves, plant righteousness, and reap the blessings that your devotion to me will produce. It is time for you to turn to me, your Lord, and I will come and pour out blessings upon you.’"
         },
         {
           "verse": 13,
+          "usfm": "HOS.10.13",
+          "line_type": "p",
           "text": "But instead you planted evil and reaped its harvest. You have eaten the fruit produced by your lies.“Because you trusted in your chariots and in the large number of your soldiers,"
         },
         {
           "verse": 14,
+          "usfm": "HOS.10.14",
+          "line_type": "p",
           "text": "war will come to your people, and all your fortresses will be destroyed. It will be like the day when King Shalman destroyed the city of Betharbel in battle, and mothers and their children were crushed to death."
         },
         {
           "verse": 15,
+          "usfm": "HOS.10.15",
+          "line_type": "p",
           "text": "That is what will happen to you, people of Bethel, because of the terrible evil that you have done. As soon as the battle begins, the king of Israel will die.”"
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "The"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Lord"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Pronounces Judgment on Israel"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "HOS.10.5",
+          "note_ref": "10.5:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some ancient translations bull; Hebrew cows."
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.10.5",
+          "note_ref": "10.5:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Bethaven: This name means “house of evil” or “house of idolatry” and in this passage refers to the city of Bethel, a name which means “house of God.” In verse 8, Bethaven is called Aven. See also 4.15 and 5.8."
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.10.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LUK.23.30",
+            "REV.6.16"
+          ],
+          "text": "Lk 23.30; Rev 6.16"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.10.8",
+          "note_ref": "10.8:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Bethaven: This name means “house of evil” or “house of idolatry” and in this passage refers to the city of Bethel, a name which means “house of God.” In verse 8, Bethaven is called Aven. See also 4.15 and 5.8."
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.10.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JDG.19.1+JDG.19.2+JDG.19.3+JDG.19.4+JDG.19.5+JDG.19.6+JDG.19.7+JDG.19.8+JDG.19.9+JDG.19.10+JDG.19.11+JDG.19.12+JDG.19.13+JDG.19.14+JDG.19.15+JDG.19.16+JDG.19.17+JDG.19.18+JDG.19.19+JDG.19.20+JDG.19.21+JDG.19.22+JDG.19.23+JDG.19.24+JDG.19.25+JDG.19.26+JDG.19.27+JDG.19.28+JDG.19.29+JDG.19.30"
+          ],
+          "text": "Jg 19.1-30"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.10.9",
+          "note_ref": "10.9:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Gibeah: See 9.9."
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.10.10",
+          "note_ref": "10.10:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation I will attack; Hebrew In my desire."
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.10.11",
+          "note_ref": "10.11:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text put a yoke; Hebrew spare."
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.10.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.4.3"
+          ],
+          "text": "Jr 4.3"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.10.13",
+          "note_ref": "10.13:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation chariots; Hebrew way."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HOS.10.1",
+            "HOS.10.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "HOS.10.2",
+            "HOS.10.3",
+            "HOS.10.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 8,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "HOS.10.4",
+            "HOS.10.5",
+            "HOS.10.6",
+            "HOS.10.7",
+            "HOS.10.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "HOS.10.10",
+            "HOS.10.8",
+            "HOS.10.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "HOS.10.10",
+            "HOS.10.11",
+            "HOS.10.12",
+            "HOS.10.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "HOS.10.13",
+            "HOS.10.14",
+            "HOS.10.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -926,9 +3155,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/10-3781533d15b2cf0573640d374aaea576.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.10.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 11,
       "chapter_usfm": "HOS.11",
@@ -937,61 +3223,503 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.11.1",
+          "line_type": "p",
           "text": "The Lord says,“When Israel was a child, I loved himand called him out of Egypt as my son."
         },
         {
           "verse": 2,
+          "usfm": "HOS.11.2",
+          "line_type": "q1",
           "text": "But the more I called to him,the more he turned away from me.My people sacrificed to Baal;they burned incense to idols."
         },
         {
           "verse": 3,
+          "usfm": "HOS.11.3",
+          "line_type": "q1",
           "text": "Yet I was the one who taught Israel to walk.I took my people up in my arms,but they did not acknowledge that I took care of them."
         },
         {
           "verse": 4,
+          "usfm": "HOS.11.4",
+          "line_type": "q1",
           "text": "I drew them to me with affection and love.I picked them up and held them to my cheek;I bent down to them and fed them."
         },
         {
           "verse": 5,
+          "usfm": "HOS.11.5",
+          "line_type": "p",
           "text": "“They refuse to return to me, and so they must return to Egypt, and Assyria will rule them."
         },
         {
           "verse": 6,
+          "usfm": "HOS.11.6",
+          "line_type": "p",
           "text": "War will sweep through their cities and break down the city gates. It will destroy my people because they do what they themselves think best."
         },
         {
           "verse": 7,
+          "usfm": "HOS.11.7",
+          "line_type": "p",
           "text": "They insist on turning away from me. They will cry out because of the yoke that is on them, but no one will lift it from them."
         },
         {
           "verse": 8,
+          "usfm": "HOS.11.8",
+          "line_type": "q1",
           "text": "“How can I give you up, Israel?How can I abandon you?Could I ever destroy you as I did Admah,or treat you as I did Zeboiim?My heart will not let me do it!My love for you is too strong."
         },
         {
           "verse": 9,
+          "usfm": "HOS.11.9",
+          "line_type": "q1",
           "text": "I will not punish you in my anger;I will not destroy Israel again.For I am God and not a mere human being.I, the Holy One, am with you.I will not come to you in anger."
         },
         {
           "verse": 10,
+          "usfm": "HOS.11.10",
+          "line_type": "p",
           "text": "“My people will follow me when I roar like a lion at their enemies. They will hurry to me from the west."
         },
         {
           "verse": 11,
+          "usfm": "HOS.11.11",
+          "line_type": "p",
           "text": "They will come from Egypt, as swiftly as birds, and from Assyria, like doves. I will bring them to their homes again. I, the Lord, have spoken.”"
         },
         {
           "verse": 12,
+          "usfm": "HOS.11.12",
+          "line_type": "p",
           "text": "The Lord says, “The people of Israel have surrounded me with lies and deceit, and the people of Judah are still rebelling against me, the faithful and holy God."
         }
       ],
       "verse_count": 12,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Israel and Judah Are Condemned"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.11.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EXO.4.22",
+            "MAT.2.15"
+          ],
+          "text": "Ex 4.22; Mt 2.15"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.11.1",
+          "note_ref": "11.1:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "him, and called him … son; or him; from the time he left Egypt I have called him my son."
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.11.2",
+          "note_ref": "11.2:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation I; Hebrew they."
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.11.2",
+          "note_ref": "11.2:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation me; Hebrew them."
+        },
+        {
+          "verse": 3,
+          "usfm": "HOS.11.3",
+          "note_ref": "11.3:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation I … my arms; Hebrew He … his arms."
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.11.4",
+          "note_ref": "11.4:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Verse 4 in Hebrew is unclear."
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.11.7",
+          "note_ref": "11.7:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Verse 7 in Hebrew is unclear."
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.11.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.29.23"
+          ],
+          "text": "Dt 29.23"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.11.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.11.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.11.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HOS.11.1",
+            "HOS.11.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HOS.11.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HOS.11.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HOS.11.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.11.2",
+            "HOS.11.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HOS.11.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HOS.11.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "HOS.11.3",
+            "HOS.11.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HOS.11.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HOS.11.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "HOS.11.4",
+            "HOS.11.5",
+            "HOS.11.6",
+            "HOS.11.7"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "HOS.11.7",
+            "HOS.11.8"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HOS.11.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HOS.11.8"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HOS.11.8"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HOS.11.8"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HOS.11.8"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "HOS.11.8",
+            "HOS.11.9"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.11.9"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.11.9"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.11.9"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.11.9"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "HOS.11.10",
+            "HOS.11.11",
+            "HOS.11.9"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "HOS.11.11",
+            "HOS.11.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -1002,9 +3730,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/11-18f0dd8536b5566caa958b3345e5deab.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 12,
+          "parsed_count": 12,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.11.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 12,
       "chapter_usfm": "HOS.12",
@@ -1013,69 +3798,244 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.12.1",
+          "line_type": "p",
           "text": "Everything that the people of Israel do from morning to night is useless and destructive. Treachery and acts of violence increase among them. They make treaties with Assyria and do business with Egypt.”"
         },
         {
           "verse": 2,
+          "usfm": "HOS.12.2",
+          "line_type": "p",
           "text": "The Lord has an accusation to bring against the people of Judah; he is also going to punish Israel for the way her people act. He will pay them back for what they have done."
         },
         {
           "verse": 3,
+          "usfm": "HOS.12.3",
+          "line_type": "p",
           "text": "Their ancestor Jacob struggled with his twin brother Esau while the two of them were still in their mother's womb; when Jacob grew up, he fought against God—"
         },
         {
           "verse": 4,
+          "usfm": "HOS.12.4",
+          "line_type": "p",
           "text": "he fought against an angel and won. He wept and asked for a blessing. And at Bethel God came to our ancestor Jacob and spoke with him."
         },
         {
           "verse": 5,
+          "usfm": "HOS.12.5",
+          "line_type": "p",
           "text": "This was the Lord God Almighty—the Lord is the name by which he is to be worshiped."
         },
         {
           "verse": 6,
+          "usfm": "HOS.12.6",
+          "line_type": "p",
           "text": "So now, descendants of Jacob, trust in your God and return to him. Be loyal and just, and wait patiently for your God to act."
         },
         {
           "verse": 7,
+          "usfm": "HOS.12.7",
+          "line_type": "p",
           "text": "The Lord says, “The people of Israel are as dishonest as the Canaanites; they love to cheat their customers with false scales."
         },
         {
           "verse": 8,
+          "usfm": "HOS.12.8",
+          "line_type": "p",
           "text": "‘We are rich,’ they say. ‘We've made a fortune. And no one can accuse us of getting rich dishonestly.’"
         },
         {
           "verse": 9,
+          "usfm": "HOS.12.9",
+          "line_type": "p",
           "text": "But I, the Lord your God who led you out of Egypt, I will make you live in tents again, as you did when I came to you in the desert."
         },
         {
           "verse": 10,
+          "usfm": "HOS.12.10",
+          "line_type": "p",
           "text": "“I spoke to the prophets and gave them many visions, and through the prophets I gave my people warnings."
         },
         {
           "verse": 11,
+          "usfm": "HOS.12.11",
+          "line_type": "p",
           "text": "Yet idols are worshiped in Gilead, and those who worship them will die. Bulls are sacrificed in Gilgal, and the altars there will become piles of stone in the open fields.”"
         },
         {
           "verse": 12,
+          "usfm": "HOS.12.12",
+          "line_type": "p",
           "text": "Our ancestor Jacob had to flee to Mesopotamia, where, in order to get a wife, he worked for another man and took care of his sheep."
         },
         {
           "verse": 13,
+          "usfm": "HOS.12.13",
+          "line_type": "p",
           "text": "The Lord sent a prophet to rescue the people of Israel from slavery in Egypt and to take care of them."
         },
         {
           "verse": 14,
+          "usfm": "HOS.12.14",
+          "line_type": "p",
           "text": "The people of Israel have made the Lord bitterly angry; they deserve death for their crimes. Their Lord will punish them for the disgrace they have brought on him."
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Further Words of Judgment"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "HOS.12.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.25.26"
+          ],
+          "text": "Gn 25.26"
+        },
+        {
+          "verse": 3,
+          "usfm": "HOS.12.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.32.24+GEN.32.25+GEN.32.26"
+          ],
+          "text": "Gn 32.24-26"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.12.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.28.10+GEN.28.11+GEN.28.12+GEN.28.13+GEN.28.14+GEN.28.15+GEN.28.16+GEN.28.17+GEN.28.18+GEN.28.19+GEN.28.20+GEN.28.21+GEN.28.22"
+          ],
+          "text": "Gn 28.10-22"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.12.4",
+          "note_ref": "12.4:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some ancient translations him; Hebrew us."
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.12.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LEV.23.42",
+            "LEV.23.43"
+          ],
+          "text": "Lv 23.42,43"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.12.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.29.1+GEN.29.2+GEN.29.3+GEN.29.4+GEN.29.5+GEN.29.6+GEN.29.7+GEN.29.8+GEN.29.9+GEN.29.10+GEN.29.11+GEN.29.12+GEN.29.13+GEN.29.14+GEN.29.15+GEN.29.16+GEN.29.17+GEN.29.18+GEN.29.19+GEN.29.20"
+          ],
+          "text": "Gn 29.1-20"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.12.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EXO.12.50",
+            "EXO.12.51"
+          ],
+          "text": "Ex 12.50,51"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 6,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "HOS.12.1",
+            "HOS.12.2",
+            "HOS.12.3",
+            "HOS.12.4",
+            "HOS.12.5",
+            "HOS.12.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "HOS.12.6",
+            "HOS.12.7",
+            "HOS.12.8",
+            "HOS.12.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "HOS.12.10",
+            "HOS.12.11",
+            "HOS.12.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 14,
+          "verses": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "HOS.12.11",
+            "HOS.12.12",
+            "HOS.12.13",
+            "HOS.12.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -1086,9 +4046,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/12-51a9821f88d984bfe9532c66d66ae131.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.12.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 13,
       "chapter_usfm": "HOS.13",
@@ -1097,72 +4114,275 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.13.1",
+          "line_type": "p",
           "text": "In the past, when the tribe of Ephraim spoke, the other tribes of Israel were afraid; they looked up to Ephraim. But the people sinned by worshiping Baal, and for this they will die."
         },
         {
           "verse": 2,
+          "usfm": "HOS.13.2",
+          "line_type": "p",
           "text": "They still keep on sinning by making metal images to worship—idols of silver, designed by human minds, made by human hands. And then they say, “Offer sacrifices to them!” How can anyone kiss those idols—idols in the shape of bulls!"
         },
         {
           "verse": 3,
+          "usfm": "HOS.13.3",
+          "line_type": "p",
           "text": "And so these people will disappear like morning mist, like the dew that vanishes early in the day. They will be like chaff which the wind blows from the threshing place, like smoke from a chimney."
         },
         {
           "verse": 4,
+          "usfm": "HOS.13.4",
+          "line_type": "p",
           "text": "The Lord says, “I am the Lord your God, who led you out of Egypt. You have no God but me. I alone am your savior."
         },
         {
           "verse": 5,
+          "usfm": "HOS.13.5",
+          "line_type": "p",
           "text": "I took care of you in a dry, desert land."
         },
         {
           "verse": 6,
+          "usfm": "HOS.13.6",
+          "line_type": "p",
           "text": "But when you entered the good land, you became full and satisfied, and then you grew proud and forgot me."
         },
         {
           "verse": 7,
+          "usfm": "HOS.13.7",
+          "line_type": "p",
           "text": "So I will attack you like a lion. Like a leopard I will lie in wait along your path."
         },
         {
           "verse": 8,
+          "usfm": "HOS.13.8",
+          "line_type": "p",
           "text": "I will attack you like a bear that has lost her cubs, and I will tear you open. Like a lion I will devour you on the spot, and will tear you to pieces like a wild animal."
         },
         {
           "verse": 9,
+          "usfm": "HOS.13.9",
+          "line_type": "p",
           "text": "“I will destroy you, people of Israel! Then who can help you?"
         },
         {
           "verse": 10,
+          "usfm": "HOS.13.10",
+          "line_type": "p",
           "text": "You asked for a king and for leaders, but how can they save the nation?"
         },
         {
           "verse": 11,
+          "usfm": "HOS.13.11",
+          "line_type": "p",
           "text": "In my anger I have given you kings, and in my fury I have taken them away."
         },
         {
           "verse": 12,
+          "usfm": "HOS.13.12",
+          "line_type": "p",
           "text": "“Israel's sin and guilt are on record, and the records are safely stored away."
         },
         {
           "verse": 13,
+          "usfm": "HOS.13.13",
+          "line_type": "p",
           "text": "Israel has a chance to live, but is too foolish to take it—like a child about to be born, who refuses to come out of the womb."
         },
         {
           "verse": 14,
+          "usfm": "HOS.13.14",
+          "line_type": "p",
           "text": "I will not save this people from the world of the dead or rescue them from the power of death. Bring on your plagues, death! Bring on your destruction, world of the dead! I will no longer have pity for this people."
         },
         {
           "verse": 15,
+          "usfm": "HOS.13.15",
+          "line_type": "p",
           "text": "Even though Israel flourishes like weeds, I will send a hot east wind from the desert, and it will dry up their springs and wells. It will take away everything of value."
         },
         {
           "verse": 16,
+          "usfm": "HOS.13.16",
+          "line_type": "p",
           "text": "Samaria must be punished for rebelling against me. Her people will die in war; babies will be dashed to the ground, and pregnant women will be ripped open.”"
         }
       ],
       "verse_count": 16,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.13.2",
+          "note_ref": "13.2:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text And then they … bulls!; Hebrew unclear."
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.13.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.8.11+DEU.8.12+DEU.8.13+DEU.8.14+DEU.8.15+DEU.8.16+DEU.8.17"
+          ],
+          "text": "Dt 8.11-17"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.13.9",
+          "note_ref": "13.9:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation who can help you?; Hebrew in me is your help."
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.13.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1SA.8.5",
+            "1SA.8.6"
+          ],
+          "text": "1 S 8.5,6"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.13.10",
+          "note_ref": "13.10:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Verse 10 in Hebrew is unclear."
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.13.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1SA.10.17+1SA.10.18+1SA.10.19+1SA.10.20+1SA.10.21+1SA.10.22+1SA.10.23+1SA.10.24",
+            "1SA.15.26"
+          ],
+          "text": "1 S 10.17-24; 1 S 15.26"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.13.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1CO.15.55"
+          ],
+          "text": "1 Co 15.55"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.13.14",
+          "note_ref": "13.14:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some ancient translations Bring on; Hebrew I will be."
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.13.14",
+          "note_ref": "13.14:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some ancient translations Bring on; Hebrew I will be."
+        },
+        {
+          "verse": 15,
+          "usfm": "HOS.13.15",
+          "note_ref": "13.15:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text like weeds; Hebrew among brothers."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.13.1",
+            "HOS.13.2",
+            "HOS.13.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 8,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "HOS.13.3",
+            "HOS.13.4",
+            "HOS.13.5",
+            "HOS.13.6",
+            "HOS.13.7",
+            "HOS.13.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "HOS.13.10",
+            "HOS.13.11",
+            "HOS.13.8",
+            "HOS.13.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 16,
+          "verses": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "HOS.13.11",
+            "HOS.13.12",
+            "HOS.13.13",
+            "HOS.13.14",
+            "HOS.13.15",
+            "HOS.13.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -1173,9 +4393,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/13-ca18741728fcd5f1d87af3c82fa84480.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.13.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.14"
+          ],
+          "human": "Hosea 14",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 14,
       "chapter_usfm": "HOS.14",
@@ -1184,61 +4461,382 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.14.1",
+          "line_type": "p",
           "text": "Return to the Lord your God, people of Israel. Your sin has made you stumble and fall."
         },
         {
           "verse": 2,
+          "usfm": "HOS.14.2",
+          "line_type": "p",
           "text": "Return to the Lord, and let this prayer be your offering to him: “Forgive all our sins and accept our prayer, and we will praise you as we have promised."
         },
         {
           "verse": 3,
+          "usfm": "HOS.14.3",
+          "line_type": "p",
           "text": "Assyria can never save us, and war horses cannot protect us. We will never again say to our idols that they are our God. O Lord, you show mercy to those who have no one else to turn to.”"
         },
         {
           "verse": 4,
+          "usfm": "HOS.14.4",
+          "line_type": "p",
           "text": "The Lord says,“I will bring my people back to me.I will love them with all my heart;no longer am I angry with them."
         },
         {
           "verse": 5,
+          "usfm": "HOS.14.5",
+          "line_type": "q1",
           "text": "I will be to the people of Israellike rain in a dry land.They will blossom like flowers;they will be firmly rootedlike the trees of Lebanon."
         },
         {
           "verse": 6,
+          "usfm": "HOS.14.6",
+          "line_type": "q1",
           "text": "They will be alive with new growth,and beautiful like olive trees.They will be fragrantlike the cedars of Lebanon."
         },
         {
           "verse": 7,
+          "usfm": "HOS.14.7",
+          "line_type": "q1",
           "text": "Once again they will live under my protection.They will grow crops of grainand be fruitful like a vineyard.They will be as famous as the wine of Lebanon."
         },
         {
           "verse": 8,
+          "usfm": "HOS.14.8",
+          "line_type": "q1",
           "text": "The people of Israel will have nothing more to do with idols;I will answer their prayers and take care of them.Like an evergreen tree I will shelter them;I am the source of all their blessings.”"
         },
         {
           "verse": 9,
+          "usfm": "HOS.14.9",
+          "line_type": "p",
           "text": "May those who are wise understand what is written here, and may they take it to heart. The Lord's ways are right, and righteous people live by following them, but sinners stumble and fall because they ignore them."
         }
       ],
       "verse_count": 9,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "The"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Lord"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Promises New Life for Israel"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Conclusion"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 8,
+          "usfm": "HOS.14.8",
+          "note_ref": "14.8:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation The people of Israel; Hebrew Israel, I."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.14.1",
+            "HOS.14.2",
+            "HOS.14.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "HOS.14.3",
+            "HOS.14.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HOS.14.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HOS.14.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HOS.14.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "HOS.14.4",
+            "HOS.14.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HOS.14.5"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HOS.14.5"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HOS.14.5"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HOS.14.5"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "HOS.14.5",
+            "HOS.14.6"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.14.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.14.6"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.14.6"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "HOS.14.6",
+            "HOS.14.7"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HOS.14.7"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HOS.14.7"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HOS.14.7"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "HOS.14.7",
+            "HOS.14.8"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HOS.14.8"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HOS.14.8"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HOS.14.8"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "HOS.14.8",
+            "HOS.14.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -1249,7 +4847,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/HOS/14-e48aff282f7bc1457770c9b144f4363d.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 9,
+          "parsed_count": 9,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/HOS.14.GNT",
+        "reference": {
+          "usfm": [
+            "HOS.14"
+          ],
+          "human": "Hosea 14",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "JOL.INTRO1"
+          ],
+          "human": "Joel Introduction",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

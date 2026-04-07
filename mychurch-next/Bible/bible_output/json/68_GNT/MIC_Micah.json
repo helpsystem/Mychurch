@@ -11,6 +11,7 @@
   "total_verses": 105,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 1,
       "chapter_usfm": "MIC.1",
@@ -19,81 +20,347 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.1.1",
+          "line_type": "p",
           "text": "During the time that Jotham, Ahaz, and Hezekiah were kings of Judah, the Lord gave this message to Micah, who was from the town of Moresheth. The Lord revealed to Micah all these things about Samaria and Jerusalem."
         },
         {
           "verse": 2,
+          "usfm": "MIC.1.2",
+          "line_type": "q1",
           "text": "Hear this, all you nations;listen to this, all who live on earth!The Sovereign Lord will testify against you.Listen! He speaks from his heavenly temple."
         },
         {
           "verse": 3,
+          "usfm": "MIC.1.3",
+          "line_type": "q1",
           "text": "The Lord is coming from his holy place;he will come down and walk on the tops of the mountains."
         },
         {
           "verse": 4,
+          "usfm": "MIC.1.4",
+          "line_type": "q1",
           "text": "Then the mountains will melt under himlike wax in a fire;they will pour down into the valleyslike water pouring down a hill."
         },
         {
           "verse": 5,
+          "usfm": "MIC.1.5",
+          "line_type": "p",
           "text": "All this will happen because the people of Israel have sinned and rebelled against God. Who is to blame for Israel's rebellion? Samaria, the capital city itself! Who is guilty of idolatry in Judah? Jerusalem itself!"
         },
         {
           "verse": 6,
+          "usfm": "MIC.1.6",
+          "line_type": "p",
           "text": "So the Lord says, “I will make Samaria a pile of ruins in the open country, a place for planting grapevines. I will pour the rubble of the city down into the valley, and will lay bare the city's foundations."
         },
         {
           "verse": 7,
+          "usfm": "MIC.1.7",
+          "line_type": "p",
           "text": "All its precious idols will be smashed to pieces, everything given to its temple prostitutes will be destroyed by fire, and all its images will become a desolate heap. Samaria acquired these things for its fertility rites, and now her enemies will carry them off for temple prostitutes elsewhere.”"
         },
         {
           "verse": 8,
+          "usfm": "MIC.1.8",
+          "line_type": "p",
           "text": "Then Micah said, “Because of this I will mourn and lament. To show my sorrow, I will walk around barefoot and naked. I will howl like a jackal and wail like an ostrich."
         },
         {
           "verse": 9,
+          "usfm": "MIC.1.9",
+          "line_type": "p",
           "text": "Samaria's wounds cannot be healed, and Judah is about to suffer in the same way; destruction has reached the gates of Jerusalem itself, where my people live.”"
         },
         {
           "verse": 10,
+          "usfm": "MIC.1.10",
+          "line_type": "p",
           "text": "Don't tell our enemies in Gath about our defeat; don't let them see you weeping. People of Beth Leaphrah, show your despair by rolling in the dust!"
         },
         {
           "verse": 11,
+          "usfm": "MIC.1.11",
+          "line_type": "p",
           "text": "You people of Shaphir, go into exile, naked and ashamed. Those who live in Zaanan do not dare to come out of their city. When you hear the people of Bethezel mourn, you will know that there is no refuge there."
         },
         {
           "verse": 12,
+          "usfm": "MIC.1.12",
+          "line_type": "p",
           "text": "The people of Maroth anxiously wait for relief, because the Lord has brought disaster close to Jerusalem."
         },
         {
           "verse": 13,
+          "usfm": "MIC.1.13",
+          "line_type": "p",
           "text": "You that live in Lachish, hitch the horses to the chariots. You imitated the sins of Israel and so caused Jerusalem to sin."
         },
         {
           "verse": 14,
+          "usfm": "MIC.1.14",
+          "line_type": "p",
           "text": "And now, people of Judah, say good-bye to the town of Moresheth Gath. The kings of Israel will get no help from the town of Achzib."
         },
         {
           "verse": 15,
+          "usfm": "MIC.1.15",
+          "line_type": "p",
           "text": "People of Mareshah, the Lord will hand you over to an enemy, who is going to capture your town. The leaders of Israel will go and hide in the cave at Adullam."
         },
         {
           "verse": 16,
+          "usfm": "MIC.1.16",
+          "line_type": "p",
           "text": "People of Judah, cut off your hair in mourning for the children you love. Make yourselves as bald as vultures, because your children will be taken away from you into exile."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "A Lament for Samaria and Jerusalem"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "The Enemy Approaches Jerusalem"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MIC.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2KI.15.32+2KI.15.33+2KI.15.34+2KI.15.35+2KI.15.36+2KI.15.37+2KI.15.38",
+            "2CH.27.1+2CH.27.2+2CH.27.3+2CH.27.4+2CH.27.5+2CH.27.6+2CH.27.7",
+            "2KI.16.1+2KI.16.2+2KI.16.3+2KI.16.4+2KI.16.5+2KI.16.6+2KI.16.7+2KI.16.8+2KI.16.9+2KI.16.10+2KI.16.11+2KI.16.12+2KI.16.13+2KI.16.14+2KI.16.15+2KI.16.16+2KI.16.17+2KI.16.18+2KI.16.19+2KI.16.20",
+            "2CH.28.1+2CH.28.2+2CH.28.3+2CH.28.4+2CH.28.5+2CH.28.6+2CH.28.7+2CH.28.8+2CH.28.9+2CH.28.10+2CH.28.11+2CH.28.12+2CH.28.13+2CH.28.14+2CH.28.15+2CH.28.16+2CH.28.17+2CH.28.18+2CH.28.19+2CH.28.20+2CH.28.21+2CH.28.22+2CH.28.23+2CH.28.24+2CH.28.25+2CH.28.26+2CH.28.27"
+          ],
+          "text": "2 K 15.32-38; 2 Ch 27.1-7; 2 K 16.1-20; 2 Ch 28.1-27; 2 K 18.1—20.21; 2 Ch 29.1—32.33"
+        },
+        {
+          "verse": 10,
+          "usfm": "MIC.1.10",
+          "note_ref": "1.10:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Beth Leaphrah: The prophet speaks of outlying towns (verses 10-14) which an enemy army approaching Jerusalem would attack."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.1.1",
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.1.2",
+            "MIC.1.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.1.3",
+            "MIC.1.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.1.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.1.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.1.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.1.4",
+            "MIC.1.5",
+            "MIC.1.6",
+            "MIC.1.7"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.1.7",
+            "MIC.1.8",
+            "MIC.1.9"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 14,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "MIC.1.10",
+            "MIC.1.11",
+            "MIC.1.12",
+            "MIC.1.13",
+            "MIC.1.14",
+            "MIC.1.9"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 16,
+          "verses": [
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "MIC.1.14",
+            "MIC.1.15",
+            "MIC.1.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -104,9 +371,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MIC/1-f4dd7393859289d2d936952c40e9dd04.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MIC.1.GNT",
+        "reference": {
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "Micah 1",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "MIC.INTRO1"
+          ],
+          "human": "Micah Introduction",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 2,
       "chapter_usfm": "MIC.2",
@@ -115,60 +439,277 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.2.1",
+          "line_type": "p",
           "text": "How terrible it will be for those who lie awake and plan evil! When morning comes, as soon as they have the chance, they do the evil they planned."
         },
         {
           "verse": 2,
+          "usfm": "MIC.2.2",
+          "line_type": "p",
           "text": "When they want fields, they seize them; when they want houses, they take them. No one's family or property is safe."
         },
         {
           "verse": 3,
+          "usfm": "MIC.2.3",
+          "line_type": "p",
           "text": "And so the Lord says, “I am planning to bring disaster on you, and you will not be able to escape it. You are going to find yourselves in trouble, and then you will not walk so proudly any more."
         },
         {
           "verse": 4,
+          "usfm": "MIC.2.4",
+          "line_type": "p",
           "text": "When that time comes, people will use the story about you as an example of disaster, and they will sing this song of despair about your experience:We are completely ruined!The Lord has taken our land awayAnd given it to those who took us captive.”"
         },
         {
           "verse": 5,
+          "usfm": "MIC.2.5",
+          "line_type": "p",
           "text": "So then, when the time comes for the land to be given back to the Lord's people, there will be no share for any of you."
         },
         {
           "verse": 6,
+          "usfm": "MIC.2.6",
+          "line_type": "p",
           "text": "The people preach at me and say, “Don't preach at us. Don't preach about all that. God is not going to disgrace us."
         },
         {
           "verse": 7,
+          "usfm": "MIC.2.7",
+          "line_type": "p",
           "text": "Do you think the people of Israel are under a curse? Has the Lord lost his patience? Would he really do such things? Doesn't he speak kindly to those who do right?”"
         },
         {
           "verse": 8,
+          "usfm": "MIC.2.8",
+          "line_type": "p",
           "text": "The Lord replies, “You attack my people like enemies. Men return from battle, thinking they are safe at home, but there you are, waiting to steal the coats off their backs."
         },
         {
           "verse": 9,
+          "usfm": "MIC.2.9",
+          "line_type": "p",
           "text": "You drive the women of my people out of the homes they love, and you have robbed their children of my blessings forever."
         },
         {
           "verse": 10,
+          "usfm": "MIC.2.10",
+          "line_type": "p",
           "text": "Get up and go; there is no safety here any more. Your sins have doomed this place to destruction."
         },
         {
           "verse": 11,
+          "usfm": "MIC.2.11",
+          "line_type": "p",
           "text": "“These people want the kind of prophet who goes around full of lies and deceit and says, ‘I prophesy that wine and liquor will flow for you.’"
         },
         {
           "verse": 12,
+          "usfm": "MIC.2.12",
+          "line_type": "p",
           "text": "“But I will gather you together, all you people of Israel that are left. I will bring you together like sheep returning to the fold. Like a pasture full of sheep, your land will once again be filled with many people.”"
         },
         {
           "verse": 13,
+          "usfm": "MIC.2.13",
+          "line_type": "p",
           "text": "God will open the way for them and lead them out of exile. They will break out of the city gates and go free. Their king, the Lord himself, will lead them out."
         }
       ],
       "verse_count": 13,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 4,
+          "usfm": "MIC.2.4",
+          "note_ref": "2.4:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text those who took us captive; Hebrew rebels."
+        },
+        {
+          "verse": 7,
+          "usfm": "MIC.2.7",
+          "note_ref": "2.7:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text under a curse; Hebrew unclear."
+        },
+        {
+          "verse": 7,
+          "usfm": "MIC.2.7",
+          "note_ref": "2.7:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation Doesn't he; Hebrew Don't I."
+        },
+        {
+          "verse": 8,
+          "usfm": "MIC.2.8",
+          "note_ref": "2.8:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text You attack my people; Hebrew Recently my people have attacked."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.2.1",
+            "MIC.2.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.2.2",
+            "MIC.2.3",
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.2.4",
+            "MIC.2.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.2.5",
+            "MIC.2.6",
+            "MIC.2.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 10,
+          "verses": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.2.10",
+            "MIC.2.7",
+            "MIC.2.8",
+            "MIC.2.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.2.10",
+            "MIC.2.11"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.2.11",
+            "MIC.2.12"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.2.12",
+            "MIC.2.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -179,9 +720,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MIC/2-af645f5be89c09b2c4b3054b54635ecd.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MIC.2.GNT",
+        "reference": {
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "Micah 1",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 3,
       "chapter_usfm": "MIC.3",
@@ -190,56 +788,163 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.3.1",
+          "line_type": "p",
           "text": "Listen, you rulers of Israel! You are supposed to be concerned about justice,"
         },
         {
           "verse": 2,
+          "usfm": "MIC.3.2",
+          "line_type": "p",
           "text": "yet you hate what is good and you love what is evil. You skin my people alive and tear the flesh off their bones."
         },
         {
           "verse": 3,
+          "usfm": "MIC.3.3",
+          "line_type": "p",
           "text": "You eat my people up. You strip off their skin, break their bones, and chop them up like meat for the pot."
         },
         {
           "verse": 4,
+          "usfm": "MIC.3.4",
+          "line_type": "p",
           "text": "The time is coming when you will cry out to the Lord, but he will not answer you. He will not listen to your prayers, for you have done evil."
         },
         {
           "verse": 5,
+          "usfm": "MIC.3.5",
+          "line_type": "p",
           "text": "My people are deceived by prophets who promise peace to those who pay them, but threaten war for those who don't. To these prophets the Lord says,"
         },
         {
           "verse": 6,
+          "usfm": "MIC.3.6",
+          "line_type": "p",
           "text": "“Prophets, your day is almost over; the sun is going down on you. Because you mislead my people, you will have no more prophetic visions, and you will not be able to predict anything.”"
         },
         {
           "verse": 7,
+          "usfm": "MIC.3.7",
+          "line_type": "p",
           "text": "Those who predict the future will be disgraced by their failure. They will all be humiliated because God does not answer them."
         },
         {
           "verse": 8,
+          "usfm": "MIC.3.8",
+          "line_type": "p",
           "text": "But as for me, the Lord fills me with his spirit and power, and gives me a sense of justice and the courage to tell the people of Israel what their sins are."
         },
         {
           "verse": 9,
+          "usfm": "MIC.3.9",
+          "line_type": "p",
           "text": "Listen to me, you rulers of Israel, you that hate justice and turn right into wrong."
         },
         {
           "verse": 10,
+          "usfm": "MIC.3.10",
+          "line_type": "p",
           "text": "You are building God's city, Jerusalem, on a foundation of murder and injustice."
         },
         {
           "verse": 11,
+          "usfm": "MIC.3.11",
+          "line_type": "p",
           "text": "The city's rulers govern for bribes, the priests interpret the Law for pay, the prophets give their revelations for money—and they all claim that the Lord is with them. “No harm will come to us,” they say. “The Lord is with us.”"
         },
         {
           "verse": 12,
+          "usfm": "MIC.3.12",
+          "line_type": "p",
           "text": "And so, because of you, Zion will be plowed like a field, Jerusalem will become a pile of ruins, and the Temple hill will become a forest."
         }
       ],
       "verse_count": 12,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 12,
+          "usfm": "MIC.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.26.18"
+          ],
+          "text": "Jr 26.18"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.3.1",
+            "MIC.3.2",
+            "MIC.3.3",
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.3.4",
+            "MIC.3.5",
+            "MIC.3.6",
+            "MIC.3.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 11,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.3.10",
+            "MIC.3.11",
+            "MIC.3.7",
+            "MIC.3.8",
+            "MIC.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.3.11",
+            "MIC.3.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -250,9 +955,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MIC/3-395aab1ca5157049641e3d0fb96fab0f.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 12,
+          "parsed_count": 12,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MIC.3.GNT",
+        "reference": {
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 4,
       "chapter_usfm": "MIC.4",
@@ -261,54 +1023,80 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.4.1",
+          "line_type": "q1",
           "text": "In days to comethe mountain where the Temple standswill be the highest one of all,towering above all the hills.Many nations will come streaming to it,"
         },
         {
           "verse": 2,
+          "usfm": "MIC.4.2",
+          "line_type": "q2",
           "text": "and their people will say,“Let us go up the hill of the Lord,to the Temple of Israel's God.He will teach us what he wants us to do;we will walk in the paths he has chosen.For the Lord's teaching comes from Jerusalem;from Zion he speaks to his people.”"
         },
         {
           "verse": 3,
+          "usfm": "MIC.4.3",
+          "line_type": "q1",
           "text": "He will settle disputes among the nations,among the great powers near and far.They will hammer their swords into plowsand their spears into pruning knives.Nations will never again go to war,never prepare for battle again."
         },
         {
           "verse": 4,
+          "usfm": "MIC.4.4",
+          "line_type": "q1",
           "text": "Everyone will live in peaceamong their own vineyards and fig trees,and no one will make them afraid.The Lord Almighty has promised this."
         },
         {
           "verse": 5,
+          "usfm": "MIC.4.5",
+          "line_type": "p",
           "text": "Each nation worships and obeys its own god, but we will worship and obey the Lord our God forever and ever."
         },
         {
           "verse": 6,
+          "usfm": "MIC.4.6",
+          "line_type": "p",
           "text": "“The time is coming,” says the Lord, “when I will gather together the people I punished, those who have suffered in exile."
         },
         {
           "verse": 7,
+          "usfm": "MIC.4.7",
+          "line_type": "p",
           "text": "They are crippled and far from home, but I will make a new beginning with those who are left, and they will become a great nation. I will rule over them on Mount Zion from that time on and forever.”"
         },
         {
           "verse": 8,
+          "usfm": "MIC.4.8",
+          "line_type": "p",
           "text": "And you, Jerusalem, where God, like a shepherd from his lookout tower, watches over his people, will once again be the capital of the kingdom that was yours."
         },
         {
           "verse": 9,
+          "usfm": "MIC.4.9",
+          "line_type": "p",
           "text": "Why do you cry out so loudly? Why are you suffering like a woman in labor? Is it because you have no king, and your counselors are dead?"
         },
         {
           "verse": 10,
+          "usfm": "MIC.4.10",
+          "line_type": "p",
           "text": "Twist and groan, people of Jerusalem, like a woman giving birth, for now you will have to leave the city and live in the open country. You will have to go to Babylon, but there the Lord will save you from your enemies."
         },
         {
           "verse": 11,
+          "usfm": "MIC.4.11",
+          "line_type": "p",
           "text": "Many nations have gathered to attack you. They say, “Jerusalem must be destroyed! We will see this city in ruins!”"
         },
         {
           "verse": 12,
+          "usfm": "MIC.4.12",
+          "line_type": "p",
           "text": "But these nations do not know what is in the Lord's mind. They do not realize that they have been gathered together to be punished in the same way that grain is brought in to be threshed."
         },
         {
           "verse": 13,
+          "usfm": "MIC.4.13",
+          "line_type": "p",
           "text": "The Lord says, “People of Jerusalem, go and punish your enemies! I will make you as strong as a bull with iron horns and bronze hoofs. You will crush many nations, and the wealth they got by violence you will present to me, the Lord of the whole world.”"
         }
       ],
@@ -328,18 +1116,390 @@
         },
         {
           "before_verse": 1,
-          "text": "Isaiah 2.2-4"
-        },
-        {
-          "before_verse": 1,
           "text": ")"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Israel Will Return from Exile"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "MIC.4.2",
+          "note_ref": "4.2:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "hill of the Lord: Mount Zion (see Zion in Word List)."
+        },
+        {
+          "verse": 3,
+          "usfm": "MIC.4.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.2.4",
+            "JOL.3.10"
+          ],
+          "text": "Is 2.4; Jl 3.10"
+        },
+        {
+          "verse": 4,
+          "usfm": "MIC.4.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEC.3.10"
+          ],
+          "text": "Zec 3.10"
+        },
+        {
+          "verse": 10,
+          "usfm": "MIC.4.10",
+          "note_ref": "4.10:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text groan; Hebrew bring forth."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.4.1",
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.4.2",
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.4.3",
+            "MIC.4.4"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.4.4"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.4.4"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.4.4"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.4.4",
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.4.5",
+            "MIC.4.6",
+            "MIC.4.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 12,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.4.10",
+            "MIC.4.11",
+            "MIC.4.12",
+            "MIC.4.7",
+            "MIC.4.8",
+            "MIC.4.9"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.4.12",
+            "MIC.4.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -350,9 +1510,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MIC/4-3cdc786c0e0740820123fd4decc7a3c9.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MIC.4.GNT",
+        "reference": {
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 5,
       "chapter_usfm": "MIC.5",
@@ -361,77 +1578,247 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.5.1",
+          "line_type": "p",
           "text": "People of Jerusalem, gather your forces! We are besieged! They are attacking the leader of Israel!"
         },
         {
           "verse": 2,
+          "usfm": "MIC.5.2",
+          "line_type": "p",
           "text": "The Lord says, “Bethlehem Ephrathah, you are one of the smallest towns in Judah, but out of you I will bring a ruler for Israel, whose family line goes back to ancient times.”"
         },
         {
           "verse": 3,
+          "usfm": "MIC.5.3",
+          "line_type": "p",
           "text": "So the Lord will abandon his people to their enemies until the woman who is to give birth has her son. Then those Israelites who are in exile will be reunited with their own people."
         },
         {
           "verse": 4,
+          "usfm": "MIC.5.4",
+          "line_type": "p",
           "text": "When he comes, he will rule his people with the strength that comes from the Lord and with the majesty of the Lord God himself. His people will live in safety because people all over the earth will acknowledge his greatness,"
         },
         {
           "verse": 5,
+          "usfm": "MIC.5.5",
+          "line_type": "p",
           "text": "and he will bring peace.When the Assyrians invade our country and break through our defenses, we will send our strongest leaders to fight them."
         },
         {
           "verse": 6,
+          "usfm": "MIC.5.6",
+          "line_type": "p",
           "text": "By force of arms they will conquer Assyria, the land of Nimrod, and they will save us from the Assyrians when they invade our territory."
         },
         {
           "verse": 7,
+          "usfm": "MIC.5.7",
+          "line_type": "p",
           "text": "The people of Israel who survive will be like refreshing dew sent by the Lord for many nations, like showers on growing plants. They will depend on God, not people."
         },
         {
           "verse": 8,
+          "usfm": "MIC.5.8",
+          "line_type": "p",
           "text": "Those who are left among the nations will be like a lion hunting for food in a forest or a pasture: it gets in among the sheep, pounces on them, and tears them to pieces—and there is no hope of rescue."
         },
         {
           "verse": 9,
+          "usfm": "MIC.5.9",
+          "line_type": "p",
           "text": "Israel will conquer her enemies and destroy them all."
         },
         {
           "verse": 10,
+          "usfm": "MIC.5.10",
+          "line_type": "p",
           "text": "The Lord says, “At that time I will take away your horses and destroy your chariots."
         },
         {
           "verse": 11,
+          "usfm": "MIC.5.11",
+          "line_type": "p",
           "text": "I will destroy the cities in your land and tear down all your defenses."
         },
         {
           "verse": 12,
+          "usfm": "MIC.5.12",
+          "line_type": "p",
           "text": "I will destroy the magic charms you use and leave you without any fortunetellers."
         },
         {
           "verse": 13,
+          "usfm": "MIC.5.13",
+          "line_type": "p",
           "text": "I will destroy your idols and sacred stone pillars; no longer will you worship the things that you yourselves have made."
         },
         {
           "verse": 14,
+          "usfm": "MIC.5.14",
+          "line_type": "p",
           "text": "I will pull down the images of the goddess Asherah in your land and destroy your cities."
         },
         {
           "verse": 15,
+          "usfm": "MIC.5.15",
+          "line_type": "p",
           "text": "And in my great anger I will take revenge on all nations that have not obeyed me.”"
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "God Promises a Ruler from Bethlehem"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Deliverance and Punishment"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MIC.5.1",
+          "note_ref": "5.1:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text People … forces!; Hebrew unclear."
+        },
+        {
+          "verse": 2,
+          "usfm": "MIC.5.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.2.6",
+            "JHN.7.42"
+          ],
+          "text": "Mt 2.6; Jn 7.42"
+        },
+        {
+          "verse": 6,
+          "usfm": "MIC.5.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.10.8+GEN.10.9+GEN.10.10+GEN.10.11"
+          ],
+          "text": "Gn 10.8-11"
+        },
+        {
+          "verse": 6,
+          "usfm": "MIC.5.6",
+          "note_ref": "5.6:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text they; Hebrew he."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.5.1",
+            "MIC.5.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.5.2",
+            "MIC.5.3",
+            "MIC.5.4",
+            "MIC.5.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.5.5",
+            "MIC.5.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.5.6",
+            "MIC.5.7",
+            "MIC.5.8",
+            "MIC.5.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 15,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "MIC.5.10",
+            "MIC.5.11",
+            "MIC.5.12",
+            "MIC.5.13",
+            "MIC.5.14",
+            "MIC.5.15",
+            "MIC.5.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -442,9 +1829,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MIC/5-ec809267017e9f0761d1ada2fc7218fe.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MIC.5.GNT",
+        "reference": {
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 6,
       "chapter_usfm": "MIC.6",
@@ -453,66 +1897,98 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.6.1",
+          "line_type": "p",
           "text": "Listen to the Lord's case against Israel.Arise, O Lord, and present your case; let the mountains and the hills hear what you say."
         },
         {
           "verse": 2,
+          "usfm": "MIC.6.2",
+          "line_type": "p",
           "text": "You mountains, you everlasting foundations of the earth, listen to the Lord's case! The Lord has a case against his people. He is going to bring an accusation against Israel."
         },
         {
           "verse": 3,
+          "usfm": "MIC.6.3",
+          "line_type": "p",
           "text": "The Lord says, “My people, what have I done to you? How have I been a burden to you? Answer me."
         },
         {
           "verse": 4,
+          "usfm": "MIC.6.4",
+          "line_type": "p",
           "text": "I brought you out of Egypt; I rescued you from slavery; I sent Moses, Aaron, and Miriam to lead you."
         },
         {
           "verse": 5,
+          "usfm": "MIC.6.5",
+          "line_type": "p",
           "text": "My people, remember what King Balak of Moab planned to do to you and how Balaam son of Beor answered him. Remember the things that happened on the way from the camp at Acacia to Gilgal. Remember these things and you will realize what I did in order to save you.”"
         },
         {
           "verse": 6,
+          "usfm": "MIC.6.6",
+          "line_type": "p",
           "text": "What shall I bring to the Lord, the God of heaven, when I come to worship him? Shall I bring the best calves to burn as offerings to him?"
         },
         {
           "verse": 7,
+          "usfm": "MIC.6.7",
+          "line_type": "p",
           "text": "Will the Lord be pleased if I bring him thousands of sheep or endless streams of olive oil? Shall I offer him my first-born child to pay for my sins?"
         },
         {
           "verse": 8,
+          "usfm": "MIC.6.8",
+          "line_type": "p",
           "text": "No, the Lord has told us what is good. What he requires of us is this: to do what is just, to show constant love, and to live in humble fellowship with our God."
         },
         {
           "verse": 9,
+          "usfm": "MIC.6.9",
+          "line_type": "p",
           "text": "It is wise to fear the Lord. He calls to the city, “Listen, you people who assemble in the city!"
         },
         {
           "verse": 10,
+          "usfm": "MIC.6.10",
+          "line_type": "p",
           "text": "In the houses of evil people are treasures which they got dishonestly. They use false measures, a thing that I hate."
         },
         {
           "verse": 11,
+          "usfm": "MIC.6.11",
+          "line_type": "p",
           "text": "How can I forgive those who use false scales and weights?"
         },
         {
           "verse": 12,
+          "usfm": "MIC.6.12",
+          "line_type": "p",
           "text": "Your rich people exploit the poor, and all of you are liars."
         },
         {
           "verse": 13,
+          "usfm": "MIC.6.13",
+          "line_type": "p",
           "text": "So I have already begun your ruin and destruction because of your sins."
         },
         {
           "verse": 14,
+          "usfm": "MIC.6.14",
+          "line_type": "p",
           "text": "You will eat, but not be satisfied—in fact you will still be hungry. You will carry things off, but you will not be able to save them; anything you do save I will destroy in war."
         },
         {
           "verse": 15,
+          "usfm": "MIC.6.15",
+          "line_type": "p",
           "text": "You will sow grain, but not harvest the crop. You will press oil from olives, but never get to use it. You will make wine, but never drink it."
         },
         {
           "verse": 16,
+          "usfm": "MIC.6.16",
+          "line_type": "p",
           "text": "This will happen because you have followed the evil practices of King Omri and of his son, King Ahab. You have continued their policies, and so I will bring you to ruin, and everyone will despise you. People everywhere will treat you with contempt.”"
         }
       ],
@@ -527,19 +2003,198 @@
           "text": "'s Case against Israel"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "What the"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Lord"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Requires"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 4,
+          "usfm": "MIC.6.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EXO.12.50",
+            "EXO.12.51",
+            "EXO.4.10+EXO.4.11+EXO.4.12+EXO.4.13+EXO.4.14+EXO.4.15+EXO.4.16",
+            "EXO.15.20"
+          ],
+          "text": "Ex 12.50,51; Ex 4.10-16; Ex 15.20"
+        },
+        {
+          "verse": 5,
+          "usfm": "MIC.6.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Nu 22.2—24.25; Js 3.1—4.19"
+        },
+        {
+          "verse": 9,
+          "usfm": "MIC.6.9",
+          "note_ref": "6.9:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text who assemble in the city; Hebrew and who appointed it. Yet."
+        },
+        {
+          "verse": 10,
+          "usfm": "MIC.6.10",
+          "note_ref": "6.10:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Verse 10 in Hebrew is unclear."
+        },
+        {
+          "verse": 13,
+          "usfm": "MIC.6.13",
+          "note_ref": "6.13:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some ancient translations begun; Hebrew made sick."
+        },
+        {
+          "verse": 16,
+          "usfm": "MIC.6.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1KI.16.23+1KI.16.24+1KI.16.25+1KI.16.26+1KI.16.27+1KI.16.28",
+            "1KI.16.29+1KI.16.30+1KI.16.31+1KI.16.32+1KI.16.33+1KI.16.34",
+            "1KI.21.25",
+            "1KI.21.26"
+          ],
+          "text": "1 K 16.23-28; 1 K 16.29-34; 21.25,26"
+        },
+        {
+          "verse": 16,
+          "usfm": "MIC.6.16",
+          "note_ref": "6.16:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation People; Hebrew My people."
+        },
+        {
+          "verse": 16,
+          "usfm": "MIC.6.16",
+          "note_ref": "6.16:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "People … contempt; or As my people you will everywhere be treated with contempt."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.6.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.6.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.6.1",
+            "MIC.6.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.6.2",
+            "MIC.6.3",
+            "MIC.6.4",
+            "MIC.6.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.6.5",
+            "MIC.6.6",
+            "MIC.6.7",
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 16,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "MIC.6.10",
+            "MIC.6.11",
+            "MIC.6.12",
+            "MIC.6.13",
+            "MIC.6.14",
+            "MIC.6.15",
+            "MIC.6.16",
+            "MIC.6.8",
+            "MIC.6.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -550,9 +2205,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MIC/6-bf3e9118308956b14001a74abd7bc9b9.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MIC.6.GNT",
+        "reference": {
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "Micah 7",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 7,
       "chapter_usfm": "MIC.7",
@@ -561,113 +2273,326 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.7.1",
+          "line_type": "p",
           "text": "It's hopeless! I am like a hungry person who finds no fruit left on the trees and no grapes on the vines. All the grapes and all the tasty figs have been picked."
         },
         {
           "verse": 2,
+          "usfm": "MIC.7.2",
+          "line_type": "p",
           "text": "There is not an honest person left in the land, no one loyal to God. Everyone is waiting for a chance to commit murder. Everyone hunts down their own people."
         },
         {
           "verse": 3,
+          "usfm": "MIC.7.3",
+          "line_type": "p",
           "text": "They are all experts at doing evil. Officials and judges ask for bribes. The influential people tell them what they want, and so they scheme together."
         },
         {
           "verse": 4,
+          "usfm": "MIC.7.4",
+          "line_type": "p",
           "text": "Even the best and most honest of them are as worthless as weeds.The day has come when God will punish the people, as he warned them through their watchmen, the prophets. Now they are in confusion."
         },
         {
           "verse": 5,
+          "usfm": "MIC.7.5",
+          "line_type": "p",
           "text": "Don't believe your neighbor or trust your friend. Be careful what you say even to your husband or wife."
         },
         {
           "verse": 6,
+          "usfm": "MIC.7.6",
+          "line_type": "p",
           "text": "In these times sons treat their fathers like fools, daughters oppose their mothers, and young women quarrel with their mothers-in-law; your enemies are the members of your own family."
         },
         {
           "verse": 7,
+          "usfm": "MIC.7.7",
+          "line_type": "p",
           "text": "But I will watch for the Lord; I will wait confidently for God, who will save me. My God will hear me."
         },
         {
           "verse": 8,
+          "usfm": "MIC.7.8",
+          "line_type": "p",
           "text": "Our enemies have no reason to gloat over us. We have fallen, but we will rise again. We are in darkness now, but the Lord will give us light."
         },
         {
           "verse": 9,
+          "usfm": "MIC.7.9",
+          "line_type": "p",
           "text": "We have sinned against the Lord, so now we must endure his anger for a while. But in the end he will defend us and right the wrongs that have been done to us. He will bring us out to the light; we will live to see him save us."
         },
         {
           "verse": 10,
+          "usfm": "MIC.7.10",
+          "line_type": "p",
           "text": "Then our enemies will see this and be disgraced—the same enemies who taunted us by asking, “Where is the Lord your God?” We will see them defeated, trampled down like mud in the streets."
         },
         {
           "verse": 11,
+          "usfm": "MIC.7.11",
+          "line_type": "p",
           "text": "People of Jerusalem, the time to rebuild the city walls is coming. At that time your territory will be enlarged."
         },
         {
           "verse": 12,
+          "usfm": "MIC.7.12",
+          "line_type": "p",
           "text": "Your people will return to you from everywhere—from Assyria in the east, from Egypt in the south, from the region of the Euphrates River, from distant seas and far-off mountains."
         },
         {
           "verse": 13,
+          "usfm": "MIC.7.13",
+          "line_type": "p",
           "text": "But the earth will become a desert because of the wickedness of those who live on it."
         },
         {
           "verse": 14,
+          "usfm": "MIC.7.14",
+          "line_type": "p",
           "text": "Be a shepherd to your people, Lord, the people you have chosen. Although they live apart in the wilderness, there is fertile land around them. Let them go and feed in the rich pastures of Bashan and Gilead, as they did long ago."
         },
         {
           "verse": 15,
+          "usfm": "MIC.7.15",
+          "line_type": "p",
           "text": "Work miracles for us, Lord, as you did in the days when you brought us out of Egypt."
         },
         {
           "verse": 16,
+          "usfm": "MIC.7.16",
+          "line_type": "p",
           "text": "The nations will see this and be frustrated in spite of all their strength. In dismay they will close their mouths and cover their ears."
         },
         {
           "verse": 17,
+          "usfm": "MIC.7.17",
+          "line_type": "p",
           "text": "They will crawl in the dust like snakes; they will come from their fortresses, trembling and afraid. They will turn in fear to the Lord our God."
         },
         {
           "verse": 18,
+          "usfm": "MIC.7.18",
+          "line_type": "p",
           "text": "There is no other god like you, O Lord; you forgive the sins of your people who have survived. You do not stay angry forever, but you take pleasure in showing us your constant love."
         },
         {
           "verse": 19,
+          "usfm": "MIC.7.19",
+          "line_type": "p",
           "text": "You will be merciful to us once again. You will trample our sins underfoot and send them to the bottom of the sea!"
         },
         {
           "verse": 20,
+          "usfm": "MIC.7.20",
+          "line_type": "p",
           "text": "You will show your faithfulness and constant love to your people, the descendants of Abraham and of Jacob, as you promised our ancestors long ago."
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "The"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Lord"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Brings Salvation"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "The"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "Lord"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "'s Compassion on Israel"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "MIC.7.3",
+          "note_ref": "7.3:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "and so they scheme together; Hebrew unclear."
+        },
+        {
+          "verse": 6,
+          "usfm": "MIC.7.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.10.35",
+            "MAT.10.36",
+            "LUK.12.53"
+          ],
+          "text": "Mt 10.35,36; Lk 12.53"
+        },
+        {
+          "verse": 10,
+          "usfm": "MIC.7.10",
+          "note_ref": "7.10:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "We will see … trampled; or We will gloat over them as they lie trampled."
+        },
+        {
+          "verse": 15,
+          "usfm": "MIC.7.15",
+          "note_ref": "7.15:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text Work miracles for us; Hebrew I will work miracles for him."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.7.1",
+            "MIC.7.2",
+            "MIC.7.3",
+            "MIC.7.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.7.4",
+            "MIC.7.5",
+            "MIC.7.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.7.6",
+            "MIC.7.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 10,
+          "verses": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.7.10",
+            "MIC.7.7",
+            "MIC.7.8",
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.7.10",
+            "MIC.7.11",
+            "MIC.7.12",
+            "MIC.7.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MIC.7.13",
+            "MIC.7.14"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 17,
+          "verses": [
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "MIC.7.14",
+            "MIC.7.15",
+            "MIC.7.16",
+            "MIC.7.17"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 20,
+          "verses": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "MIC.7.17",
+            "MIC.7.18",
+            "MIC.7.19",
+            "MIC.7.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -678,7 +2603,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MIC/7-67ebc6e132e2abc45721ce55e06d6817.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MIC.7.GNT",
+        "reference": {
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "Micah 7",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "NAM.INTRO1"
+          ],
+          "human": "Nahum Introduction",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

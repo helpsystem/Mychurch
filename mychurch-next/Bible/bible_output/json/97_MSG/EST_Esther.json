@@ -11,6 +11,7 @@
   "total_verses": 32,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 1,
       "chapter_usfm": "EST.1",
@@ -20,6 +21,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -30,9 +32,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/1-986aea9696304d6659563e3bbb5b236e.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.1.MSG",
+        "reference": {
+          "usfm": [
+            "EST.1"
+          ],
+          "human": "Esther 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "NEH.13"
+          ],
+          "human": "Nehemiah 13",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.2"
+          ],
+          "human": "Esther 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 2,
       "chapter_usfm": "EST.2",
@@ -41,24 +100,120 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "EST.2.8",
+          "line_type": "p",
           "text": "When the king’s order had been publicly posted, many young girls were brought to the palace complex of Susa and given over to Hegai who was overseer of the women. Esther was among them. Hegai liked Esther and took a special interest in her. Right off he started her beauty treatments, ordered special food, assigned her seven personal maids from the palace, and put her and her maids in the best rooms in the harem. Esther didn’t say anything about her family and racial background because Mordecai had told her not to."
         },
         {
           "verse": 11,
+          "usfm": "EST.2.11",
+          "line_type": "p",
           "text": "Every day Mordecai strolled beside the court of the harem to find out how Esther was and get news of what she was doing. Each girl’s turn came to go in to King Xerxes after she had completed the twelve months of prescribed beauty treatments—six months’ treatment with oil of myrrh followed by six months with perfumes and various cosmetics. When it was time for the girl to go to the king, she was given whatever she wanted to take with her when she left the harem for the king’s quarters. She would go there in the evening; in the morning she would return to a second harem overseen by Shaashgaz, the king’s eunuch in charge of the concubines. She never again went back to the king unless the king took a special liking to her and asked for her by name."
         },
         {
           "verse": 15,
+          "usfm": "EST.2.15",
+          "line_type": "p",
           "text": "When it was Esther’s turn to go to the king (Esther the daughter of Abihail the uncle of Mordecai, who had adopted her as his daughter), she asked for nothing other than what Hegai, the king’s eunuch in charge of the harem, had recommended. Esther, just as she was, won the admiration of everyone who saw her."
         },
         {
           "verse": 16,
+          "usfm": "EST.2.16",
+          "line_type": "p",
           "text": "She was taken to King Xerxes in the royal palace in the tenth month, the month of Tebeth, in the seventh year of the king’s reign. The king fell in love with Esther far more than with any of his other women or any of the other virgins—he was totally smitten by her. He placed a royal crown on her head and made her queen in place of Vashti. Then the king gave a great banquet for all his nobles and officials—“Esther’s Banquet.” He proclaimed a holiday for all the provinces and handed out gifts with royal generosity.* * * On one of the occasions when the virgins were being gathered together, Mordecai was sitting at the King’s Gate. All this time, Esther had kept her family background and race a secret as Mordecai had ordered; Esther still did what Mordecai told her, just as when she was being raised by him. On this day, with Mordecai sitting at the King’s Gate, Bigthana and Teresh, two of the king’s eunuchs who guarded the entrance, had it in for the king and were making plans to kill King Xerxes. But Mordecai learned of the plot and told Queen Esther, who then told King Xerxes, giving credit to Mordecai. When the thing was investigated and confirmed as true, the two men were hanged on a gallows. This was all written down in a logbook kept for the king’s use.* * *"
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "EST.2.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "EST.2.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "EST.2.11"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "EST.2.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "EST.2.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "EST.2.15",
+            "EST.2.16"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "EST.2.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -69,9 +224,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/2-877bec3980bddc0f24354db7390fcf26.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.2.MSG",
+        "reference": {
+          "usfm": [
+            "EST.2"
+          ],
+          "human": "Esther 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.1"
+          ],
+          "human": "Esther 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.3"
+          ],
+          "human": "Esther 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 3,
       "chapter_usfm": "EST.3",
@@ -80,28 +292,128 @@
       "verses": [
         {
           "verse": 7,
+          "usfm": "EST.3.7",
+          "line_type": "p",
           "text": "In the first month, the month of Nisan, of the twelfth year of Xerxes, the pur—that is, the lot—was cast under Haman’s charge to determine the propitious day and month. The lot turned up the thirteenth day of the twelfth month, which is the month of Adar. Haman then spoke with King Xerxes: “There is an odd set of people scattered through the provinces of your kingdom who don’t fit in. Their customs and ways are different from those of everybody else. Worse, they disregard the king’s laws. They’re an affront; the king shouldn’t put up with them. If it please the king, let orders be given that they be destroyed. I’ll pay for it myself. I’ll deposit 375 tons of silver in the royal bank to finance the operation.”"
         },
         {
           "verse": 10,
+          "usfm": "EST.3.10",
+          "line_type": "p",
           "text": "The king slipped his signet ring from his hand and gave it to Haman son of Hammedatha the Agagite, archenemy of the Jews."
         },
         {
           "verse": 11,
+          "usfm": "EST.3.11",
+          "line_type": "p",
           "text": "“Go ahead,” the king said to Haman. “It’s your money—do whatever you want with those people.”"
         },
         {
           "verse": 12,
+          "usfm": "EST.3.12",
+          "line_type": "p",
           "text": "The king’s secretaries were brought in on the thirteenth day of the first month. The orders were written out word for word as Haman had addressed them to the king’s satraps, the governors of every province, and the officials of every people. They were written in the script of each province and the language of each people in the name of King Xerxes and sealed with the royal signet ring. Bulletins were sent out by couriers to all the king’s provinces with orders to massacre, kill, and eliminate all the Jews—youngsters and old men, women and babies—on a single day, the thirteenth day of the twelfth month, the month Adar, and to plunder their goods. Copies of the bulletin were to be posted in each province, publicly available to all peoples, to get them ready for that day."
         },
         {
           "verse": 15,
+          "usfm": "EST.3.15",
+          "line_type": "p",
           "text": "At the king’s command, the couriers took off; the order was also posted in the palace complex of Susa. The king and Haman sat back and had a drink while the city of Susa reeled from the news."
         }
       ],
       "verse_count": 5,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "EST.3.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "EST.3.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "EST.3.10"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "EST.3.10",
+            "EST.3.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "EST.3.11",
+            "EST.3.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "EST.3.12"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "EST.3.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -112,9 +424,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/3-d812432061ff0ee4aa2892a48dcf7f80.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.3.MSG",
+        "reference": {
+          "usfm": [
+            "EST.3"
+          ],
+          "human": "Esther 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.2"
+          ],
+          "human": "Esther 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.4"
+          ],
+          "human": "Esther 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 4,
       "chapter_usfm": "EST.4",
@@ -123,12 +492,28 @@
       "verses": [
         {
           "verse": 17,
+          "usfm": "EST.4.17",
+          "line_type": "p",
           "text": "Mordecai left and carried out Esther’s instructions.* * *"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "EST.4.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -139,9 +524,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/4-57e3e5dc3680a091cc7e70b251b7e2b3.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.4.MSG",
+        "reference": {
+          "usfm": [
+            "EST.4"
+          ],
+          "human": "Esther 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.3"
+          ],
+          "human": "Esther 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.5"
+          ],
+          "human": "Esther 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 5,
       "chapter_usfm": "EST.5",
@@ -150,16 +592,70 @@
       "verses": [
         {
           "verse": 4,
+          "usfm": "EST.5.4",
+          "line_type": "p",
           "text": "“If it please the king,” said Esther, “let the king come with Haman to a dinner I’ve prepared for him.” “Get Haman at once,” said the king, “so we can go to dinner with Esther.”So the king and Haman joined Esther at the dinner she had arranged. As they were drinking the wine, the king said, “Now, what is it you want? Half of my kingdom isn’t too much to ask! Just ask.” Esther answered, “Here’s what I want. If the king favors me and is pleased to do what I desire and ask, let the king and Haman come again tomorrow to the dinner that I will fix for them. Then I’ll give a straight answer to the king’s question.”* * * Haman left the palace that day happy, beaming. And then he saw Mordecai sitting at the King’s Gate ignoring him, oblivious to him. Haman was furious with Mordecai. But he held himself in and went on home. He got his friends together with his wife Zeresh and started bragging about how much money he had, his many sons, all the times the king had honored him, and his promotion to the highest position in the government. “On top of all that,” Haman continued, “Queen Esther invited me to a private dinner she gave for the king, just the three of us. And she’s invited me to another one tomorrow. But I can’t enjoy any of it when I see Mordecai the Jew sitting at the King’s Gate.”"
         },
         {
           "verse": 14,
+          "usfm": "EST.5.14",
+          "line_type": "p",
           "text": "His wife Zeresh and all his friends said, “Build a gallows seventy-five feet high. First thing in the morning speak with the king; get him to order Mordecai hanged on it. Then happily go with the king to dinner.”Haman liked that. He had the gallows built.* * *"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "EST.5.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "EST.5.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "EST.5.14"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "EST.5.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -170,9 +666,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/5-7e55d66f0991a06f461bd099567b141c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.5.MSG",
+        "reference": {
+          "usfm": [
+            "EST.5"
+          ],
+          "human": "Esther 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.4"
+          ],
+          "human": "Esther 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.6"
+          ],
+          "human": "Esther 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 6,
       "chapter_usfm": "EST.6",
@@ -181,32 +734,184 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "EST.6.3",
+          "line_type": "p",
           "text": "The king asked, “What great honor was given to Mordecai for this?”“Nothing,” replied the king’s servants who were in attendance. “Nothing has been done for him.”"
         },
         {
           "verse": 4,
+          "usfm": "EST.6.4",
+          "line_type": "p",
           "text": "The king said, “Is there anybody out in the court?”Now Haman had just come into the outer court of the king’s palace to talk to the king about hanging Mordecai on the gallows he had built for him."
         },
         {
           "verse": 5,
+          "usfm": "EST.6.5",
+          "line_type": "p",
           "text": "The king’s servants said, “Haman is out there, waiting in the court.”“Bring him in,” said the king. When Haman entered, the king said, “What would be appropriate for the man the king especially wants to honor?”Haman thought to himself, “He must be talking about honoring me—who else?” So he answered the king, “For the man the king delights to honor, do this: Bring a royal robe that the king has worn and a horse the king has ridden, one with a royal crown on its head. Then give the robe and the horse to one of the king’s most noble princes. Have him robe the man whom the king especially wants to honor; have the prince lead him on horseback through the city square, proclaiming before him, ‘This is what is done for the man whom the king especially wants to honor!’”"
         },
         {
           "verse": 10,
+          "usfm": "EST.6.10",
+          "line_type": "p",
           "text": "“Go and do it,” the king said to Haman. “Don’t waste another minute. Take the robe and horse and do what you have proposed to Mordecai the Jew who sits at the King’s Gate. Don’t leave out a single detail of your plan.”"
         },
         {
           "verse": 11,
+          "usfm": "EST.6.11",
+          "line_type": "p",
           "text": "So Haman took the robe and horse; he robed Mordecai and led him through the city square, proclaiming before him, “This is what is done for the man whom the king especially wants to honor!” Then Mordecai returned to the King’s Gate, but Haman fled to his house, thoroughly mortified, hiding his face. When Haman had finished telling his wife Zeresh and all his friends everything that had happened to him, his knowledgeable friends who were there and his wife Zeresh said, “If this Mordecai is in fact a Jew, your bad luck has only begun. You don’t stand a chance against him—you’re as good as ruined.”"
         },
         {
           "verse": 14,
+          "usfm": "EST.6.14",
+          "line_type": "p",
           "text": "While they were still talking, the king’s eunuchs arrived and hurried Haman off to the dinner that Esther had prepared.* * *"
         }
       ],
       "verse_count": 6,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "EST.6.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "EST.6.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "EST.6.3",
+            "EST.6.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "EST.6.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "EST.6.4",
+            "EST.6.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "EST.6.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "EST.6.5"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "EST.6.10"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "EST.6.10",
+            "EST.6.11"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "EST.6.11"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "EST.6.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -217,9 +922,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/6-9c668684b428c59b2f0c7302ee4fb33e.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.6.MSG",
+        "reference": {
+          "usfm": [
+            "EST.6"
+          ],
+          "human": "Esther 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.5"
+          ],
+          "human": "Esther 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.7"
+          ],
+          "human": "Esther 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 7,
       "chapter_usfm": "EST.7",
@@ -228,32 +990,162 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "EST.7.3",
+          "line_type": "p",
           "text": "Queen Esther answered, “If I have found favor in your eyes, O King, and if it please the king, give me my life, and give my people their lives."
         },
         {
           "verse": 4,
+          "usfm": "EST.7.4",
+          "line_type": "p",
           "text": "“We’ve been sold, I and my people, to be destroyed—sold to be massacred, eliminated. If we had just been sold off into slavery, I wouldn’t even have brought it up; our troubles wouldn’t have been worth bothering the king over.”"
         },
         {
           "verse": 5,
+          "usfm": "EST.7.5",
+          "line_type": "p",
           "text": "King Xerxes exploded, “Who? Where is he? This is monstrous!”"
         },
         {
           "verse": 6,
+          "usfm": "EST.7.6",
+          "line_type": "p",
           "text": "“An enemy. An adversary. This evil Haman,” said Esther.Haman was terror-stricken before the king and queen. The king, raging, left his wine and stomped out into the palace garden.Haman stood there pleading with Queen Esther for his life—he could see that the king was finished with him and that he was doomed. As the king came back from the palace garden into the banquet hall, Haman was groveling at the couch on which Esther reclined. The king roared out, “Will he even molest the queen while I’m just around the corner?”When that word left the king’s mouth, all the blood drained from Haman’s face."
         },
         {
           "verse": 9,
+          "usfm": "EST.7.9",
+          "line_type": "p",
           "text": "Harbona, one of the eunuchs attending the king, spoke up: “Look over there! There’s the gallows that Haman had built for Mordecai, who saved the king’s life. It’s right next to Haman’s house—seventy-five feet high!”The king said, “Hang him on it!”"
         },
         {
           "verse": 10,
+          "usfm": "EST.7.10",
+          "line_type": "p",
           "text": "So Haman was hanged on the very gallows that he had built for Mordecai. And the king’s hot anger cooled.* * *"
         }
       ],
       "verse_count": 6,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "EST.7.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "EST.7.3",
+            "EST.7.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "EST.7.4",
+            "EST.7.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "EST.7.5",
+            "EST.7.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "EST.7.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "EST.7.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "EST.7.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "EST.7.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "EST.7.10",
+            "EST.7.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -264,9 +1156,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/7-e168357c724a88c5e138fd46f7479e20.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.7.MSG",
+        "reference": {
+          "usfm": [
+            "EST.7"
+          ],
+          "human": "Esther 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.6"
+          ],
+          "human": "Esther 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.8"
+          ],
+          "human": "Esther 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 8,
       "chapter_usfm": "EST.8",
@@ -275,20 +1224,90 @@
       "verses": [
         {
           "verse": 9,
+          "usfm": "EST.8.9",
+          "line_type": "p",
           "text": "So the king’s secretaries were brought in on the twenty-third day of the third month, the month of Sivan, and the order regarding the Jews was written word for word as Mordecai dictated and was addressed to the satraps, governors, and officials of the provinces from India to Ethiopia, 127 provinces in all, to each province in its own script and each people in their own language, including the Jews in their script and language."
         },
         {
           "verse": 10,
+          "usfm": "EST.8.10",
+          "line_type": "p",
           "text": "He wrote under the name of King Xerxes and sealed the order with the royal signet ring; he sent out the bulletins by couriers on horseback, riding the fastest royal steeds bred from the royal stud. The king’s order authorized the Jews in every city to arm and defend themselves to the death, killing anyone who threatened them or their women and children, and confiscating for themselves anything owned by their enemies. The day set for this in all King Xerxes’ provinces was the thirteenth day of the twelfth month, the month of Adar. The order was posted in public places in each province so everyone could read it, authorizing the Jews to be prepared on that day to avenge themselves on their enemies."
         },
         {
           "verse": 14,
+          "usfm": "EST.8.14",
+          "line_type": "p",
           "text": "The couriers, fired up by the king’s order, raced off on their royal horses. At the same time, the order was posted in the palace complex of Susa. Mordecai walked out of the king’s presence wearing a royal robe of violet and white, a huge gold crown, and a purple cape of fine linen. The city of Susa exploded with joy. For Jews it was all good times and laughter: they celebrated, they were honored. It was that way all over the country, in every province, every city when the king’s bulletin was posted: the Jews took to the streets in celebration, cheering, and feasting. Not only that, but many non-Jews became Jews—now it was dangerous not to be a Jew!* * *"
         }
       ],
       "verse_count": 3,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "EST.8.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "EST.8.10",
+            "EST.8.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "EST.8.10"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "EST.8.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "EST.8.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -299,9 +1318,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/8-30e427e0c050d3dd463e05c22c71ac77.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.8.MSG",
+        "reference": {
+          "usfm": [
+            "EST.8"
+          ],
+          "human": "Esther 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.7"
+          ],
+          "human": "Esther 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.9"
+          ],
+          "human": "Esther 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 9,
       "chapter_usfm": "EST.9",
@@ -310,24 +1386,110 @@
       "verses": [
         {
           "verse": 13,
+          "usfm": "EST.9.13",
+          "line_type": "p",
           "text": "“If it please the king,” Queen Esther responded, “give the Jews of Susa permission to extend the terms of the order another day. And have the bodies of Haman’s ten sons hanged in public display on the gallows.”"
         },
         {
           "verse": 14,
+          "usfm": "EST.9.14",
+          "line_type": "p",
           "text": "The king commanded it: The order was extended; the bodies of Haman’s ten sons were publicly hanged."
         },
         {
           "verse": 15,
+          "usfm": "EST.9.15",
+          "line_type": "p",
           "text": "The Jews in Susa went at it again. On the fourteenth day of Adar they killed another three hundred men in Susa. But again they took no plunder. Meanwhile in the rest of the king’s provinces, the Jews had organized and defended themselves, freeing themselves from oppression. On the thirteenth day of the month of Adar, they killed seventy-five thousand of those who hated them but did not take any plunder. The next day, the fourteenth, they took it easy and celebrated with much food and laughter. But in Susa, since the Jews had banded together on both the thirteenth and fourteenth days, they made the fifteenth their holiday for laughing and feasting. (This accounts for why Jews living out in the country in the rural villages remember the fourteenth day of Adar for celebration, their day for parties and the exchange of gifts.)* * * Mordecai wrote all this down and sent copies to all the Jews in all King Xerxes’ provinces, regardless of distance, calling for an annual celebration on the fourteenth and fifteenth days of Adar as the occasion when Jews got relief from their enemies, the month in which their sorrow turned to joy, mourning somersaulted into a holiday for parties and fun and laughter, the sending and receiving of presents and of giving gifts to the poor."
         },
         {
           "verse": 23,
+          "usfm": "EST.9.23",
+          "line_type": "p",
           "text": "And they did it. What started then became a tradition, continuing the practice of what Mordecai had written to them.* * * Haman son of Hammedatha, the Agagite, the archenemy of all Jews, had schemed to destroy all Jews. He had cast the pur (the lot) to throw them into a panic and destroy them. But when Queen Esther intervened with the king, he gave written orders that the evil scheme that Haman had worked out should boomerang back on his own head. He and his sons were hanged on the gallows. That’s why these days are called “Purim,” from the word pur or “lot.” Therefore, because of everything written in this letter and because of all that they had been through, the Jews agreed to continue. It became a tradition for them, their children, and all future converts to remember these two days every year on the specified dates set down in the letter. These days are to be remembered and kept by every single generation, every last family, every province and city. These days of Purim must never be neglected among the Jews; the memory of them must never die out among their descendants. Queen Esther, the daughter of Abihail, backed Mordecai the Jew, using her full queenly authority in this second Purim letter to endorse and ratify what he wrote. Calming and reassuring letters went out to all the Jews throughout the 127 provinces of Xerxes’ kingdom to fix these days of Purim their assigned place on the calendar, dates set by Mordecai the Jew—what they had agreed to for themselves and their descendants regarding their fasting and mourning. Esther’s word confirmed the tradition of Purim and was written in the book.* * *"
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "EST.9.13"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "EST.9.13",
+            "EST.9.14"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "EST.9.14",
+            "EST.9.15"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "EST.9.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "EST.9.23"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "EST.9.23"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -338,9 +1500,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/9-950a7fbc71d3d64967fd6814a2e3bdd0.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.9.MSG",
+        "reference": {
+          "usfm": [
+            "EST.9"
+          ],
+          "human": "Esther 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.8"
+          ],
+          "human": "Esther 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EST.10"
+          ],
+          "human": "Esther 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EST",
       "chapter": 10,
       "chapter_usfm": "EST.10",
@@ -349,12 +1568,28 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "EST.10.3",
+          "line_type": "p",
           "text": "Mordecai the Jew ranked second in command to King Xerxes. He was popular among the Jews and greatly respected by them. He worked hard for the good of his people; he cared for the peace and prosperity of his race."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "EST.10.3"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -365,7 +1600,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EST/10-9fdf50597f759b40f79684167ef13c72.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EST.10.MSG",
+        "reference": {
+          "usfm": [
+            "EST.10"
+          ],
+          "human": "Esther 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.9"
+          ],
+          "human": "Esther 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.1"
+          ],
+          "human": "Job 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

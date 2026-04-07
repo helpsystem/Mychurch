@@ -11,6 +11,7 @@
   "total_verses": 47,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 1,
       "chapter_usfm": "2TH.1",
@@ -19,61 +20,214 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TH.1.1",
+          "line_type": "m",
           "text": "This letter is from Paul, Silas, and Timothy.We are writing to the church in Thessalonica, to you who belong to God our Father and the Lord Jesus Christ."
         },
         {
           "verse": 2,
+          "usfm": "2TH.1.2",
+          "line_type": "p",
           "text": "May God our Father and the Lord Jesus Christ give you grace and peace."
         },
         {
           "verse": 3,
+          "usfm": "2TH.1.3",
+          "line_type": "m",
           "text": "Dear brothers and sisters, we can’t help but thank God for you, because your faith is flourishing and your love for one another is growing."
         },
         {
           "verse": 4,
+          "usfm": "2TH.1.4",
+          "line_type": "m",
           "text": "We proudly tell God’s other churches about your endurance and faithfulness in all the persecutions and hardships you are suffering."
         },
         {
           "verse": 5,
+          "usfm": "2TH.1.5",
+          "line_type": "m",
           "text": "And God will use this persecution to show his justice and to make you worthy of his Kingdom, for which you are suffering."
         },
         {
           "verse": 6,
+          "usfm": "2TH.1.6",
+          "line_type": "m",
           "text": "In his justice he will pay back those who persecute you."
         },
         {
           "verse": 7,
+          "usfm": "2TH.1.7",
+          "line_type": "p",
           "text": "And God will provide rest for you who are being persecuted and also for us when the Lord Jesus appears from heaven. He will come with his mighty angels,"
         },
         {
           "verse": 8,
+          "usfm": "2TH.1.8",
+          "line_type": "p",
           "text": "in flaming fire, bringing judgment on those who don’t know God and on those who refuse to obey the Good News of our Lord Jesus."
         },
         {
           "verse": 9,
+          "usfm": "2TH.1.9",
+          "line_type": "p",
           "text": "They will be punished with eternal destruction, forever separated from the Lord and from his glorious power."
         },
         {
           "verse": 10,
+          "usfm": "2TH.1.10",
+          "line_type": "p",
           "text": "When he comes on that day, he will receive glory from his holy people—praise from all who believe. And this includes you, for you believed what we told you about him."
         },
         {
           "verse": 11,
+          "usfm": "2TH.1.11",
+          "line_type": "p",
           "text": "So we keep on praying for you, asking our God to enable you to live a life worthy of his call. May he give you the power to accomplish all the good things your faith prompts you to do."
         },
         {
           "verse": 12,
+          "usfm": "2TH.1.12",
+          "line_type": "p",
           "text": "Then the name of our Lord Jesus will be honored because of the way you live, and you will be honored along with him. This is all made possible because of the grace of our God and Lord, Jesus Christ."
         }
       ],
       "verse_count": 12,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Encouragement during Persecution"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "2TH.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek Silvanus, the Greek form of the name."
+        },
+        {
+          "verse": 2,
+          "usfm": "2TH.1.2",
+          "note_ref": "1:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read God the Father."
+        },
+        {
+          "verse": 3,
+          "usfm": "2TH.1.3",
+          "note_ref": "1:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek Brothers."
+        },
+        {
+          "verse": 12,
+          "usfm": "2TH.1.12",
+          "note_ref": "1:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or of our God and our Lord Jesus Christ."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2TH.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2TH.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2TH.1.1",
+            "2TH.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 2,
+          "end_verse": 6,
+          "verses": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "2TH.1.2",
+            "2TH.1.3",
+            "2TH.1.4",
+            "2TH.1.5",
+            "2TH.1.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 10,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "2TH.1.10",
+            "2TH.1.6",
+            "2TH.1.7",
+            "2TH.1.8",
+            "2TH.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "2TH.1.10",
+            "2TH.1.11",
+            "2TH.1.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -116,9 +270,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/2TH/1-db86655c02ca61db3498ae29f7269a0d.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 12,
+          "parsed_count": 12,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/2TH.1.NLT",
+        "reference": {
+          "usfm": [
+            "2TH.1"
+          ],
+          "human": "2 Thessalonians 1",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.5"
+          ],
+          "human": "1 Thessalonians 5",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "2 Thessalonians 2",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 2,
       "chapter_usfm": "2TH.2",
@@ -127,81 +338,254 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TH.2.1",
+          "line_type": "m",
           "text": "Now, dear brothers and sisters, let us clarify some things about the coming of our Lord Jesus Christ and how we will be gathered to meet him."
         },
         {
           "verse": 2,
+          "usfm": "2TH.2.2",
+          "line_type": "m",
           "text": "Don’t be so easily shaken or alarmed by those who say that the day of the Lord has already begun. Don’t believe them, even if they claim to have had a spiritual vision, a revelation, or a letter supposedly from us."
         },
         {
           "verse": 3,
+          "usfm": "2TH.2.3",
+          "line_type": "m",
           "text": "Don’t be fooled by what they say. For that day will not come until there is a great rebellion against God and the man of lawlessness is revealed—the one who brings destruction."
         },
         {
           "verse": 4,
+          "usfm": "2TH.2.4",
+          "line_type": "m",
           "text": "He will exalt himself and defy everything that people call god and every object of worship. He will even sit in the temple of God, claiming that he himself is God."
         },
         {
           "verse": 5,
+          "usfm": "2TH.2.5",
+          "line_type": "p",
           "text": "Don’t you remember that I told you about all this when I was with you?"
         },
         {
           "verse": 6,
+          "usfm": "2TH.2.6",
+          "line_type": "p",
           "text": "And you know what is holding him back, for he can be revealed only when his time comes."
         },
         {
           "verse": 7,
+          "usfm": "2TH.2.7",
+          "line_type": "p",
           "text": "For this lawlessness is already at work secretly, and it will remain secret until the one who is holding it back steps out of the way."
         },
         {
           "verse": 8,
+          "usfm": "2TH.2.8",
+          "line_type": "p",
           "text": "Then the man of lawlessness will be revealed, but the Lord Jesus will slay him with the breath of his mouth and destroy him by the splendor of his coming."
         },
         {
           "verse": 9,
+          "usfm": "2TH.2.9",
+          "line_type": "p",
           "text": "This man will come to do the work of Satan with counterfeit power and signs and miracles."
         },
         {
           "verse": 10,
+          "usfm": "2TH.2.10",
+          "line_type": "p",
           "text": "He will use every kind of evil deception to fool those on their way to destruction, because they refuse to love and accept the truth that would save them."
         },
         {
           "verse": 11,
+          "usfm": "2TH.2.11",
+          "line_type": "p",
           "text": "So God will cause them to be greatly deceived, and they will believe these lies."
         },
         {
           "verse": 12,
+          "usfm": "2TH.2.12",
+          "line_type": "p",
           "text": "Then they will be condemned for enjoying evil rather than believing the truth."
         },
         {
           "verse": 13,
+          "usfm": "2TH.2.13",
+          "line_type": "m",
           "text": "As for us, we can’t help but thank God for you, dear brothers and sisters loved by the Lord. We are always thankful that God chose you to be among the first to experience salvation—a salvation that came through the Spirit who makes you holy and through your belief in the truth."
         },
         {
           "verse": 14,
+          "usfm": "2TH.2.14",
+          "line_type": "m",
           "text": "He called you to salvation when we told you the Good News; now you can share in the glory of our Lord Jesus Christ."
         },
         {
           "verse": 15,
+          "usfm": "2TH.2.15",
+          "line_type": "p",
           "text": "With all these things in mind, dear brothers and sisters, stand firm and keep a strong grip on the teaching we passed on to you both in person and by letter."
         },
         {
           "verse": 16,
+          "usfm": "2TH.2.16",
+          "line_type": "p",
           "text": "Now may our Lord Jesus Christ himself and God our Father, who loved us and by his grace gave us eternal comfort and a wonderful hope,"
         },
         {
           "verse": 17,
+          "usfm": "2TH.2.17",
+          "line_type": "p",
           "text": "comfort you and strengthen you in every good thing you do and say."
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Believers Should Stand Firm"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "2TH.2.1",
+          "note_ref": "2:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek brothers; also in 2:13, 15."
+        },
+        {
+          "verse": 3,
+          "usfm": "2TH.2.3",
+          "note_ref": "2:3a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read the man of sin."
+        },
+        {
+          "verse": 3,
+          "usfm": "2TH.2.3",
+          "note_ref": "2:3b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek the son of destruction."
+        },
+        {
+          "verse": 13,
+          "usfm": "2TH.2.13",
+          "note_ref": "2:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read chose you from the very beginning."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "2TH.2.1",
+            "2TH.2.2",
+            "2TH.2.3",
+            "2TH.2.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 8,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "2TH.2.4",
+            "2TH.2.5",
+            "2TH.2.6",
+            "2TH.2.7",
+            "2TH.2.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 12,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "2TH.2.10",
+            "2TH.2.11",
+            "2TH.2.12",
+            "2TH.2.8",
+            "2TH.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "2TH.2.12",
+            "2TH.2.13",
+            "2TH.2.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "2TH.2.14",
+            "2TH.2.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 17,
+          "verses": [
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "2TH.2.15",
+            "2TH.2.16",
+            "2TH.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -244,9 +628,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/2TH/2-6989a2ca0a8e4fca36eb899e52597f3d.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/2TH.2.NLT",
+        "reference": {
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "2 Thessalonians 2",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TH.1"
+          ],
+          "human": "2 Thessalonians 1",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TH.3"
+          ],
+          "human": "2 Thessalonians 3",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 3,
       "chapter_usfm": "2TH.3",
@@ -255,89 +696,286 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TH.3.1",
+          "line_type": "m",
           "text": "Finally, dear brothers and sisters, we ask you to pray for us. Pray that the Lord’s message will spread rapidly and be honored wherever it goes, just as when it came to you."
         },
         {
           "verse": 2,
+          "usfm": "2TH.3.2",
+          "line_type": "m",
           "text": "Pray, too, that we will be rescued from wicked and evil people, for not everyone is a believer."
         },
         {
           "verse": 3,
+          "usfm": "2TH.3.3",
+          "line_type": "m",
           "text": "But the Lord is faithful; he will strengthen you and guard you from the evil one."
         },
         {
           "verse": 4,
+          "usfm": "2TH.3.4",
+          "line_type": "m",
           "text": "And we are confident in the Lord that you are doing and will continue to do the things we commanded you."
         },
         {
           "verse": 5,
+          "usfm": "2TH.3.5",
+          "line_type": "m",
           "text": "May the Lord lead your hearts into a full understanding and expression of the love of God and the patient endurance that comes from Christ."
         },
         {
           "verse": 6,
+          "usfm": "2TH.3.6",
+          "line_type": "m",
           "text": "And now, dear brothers and sisters, we give you this command in the name of our Lord Jesus Christ: Stay away from all believers who live idle lives and don’t follow the tradition they received from us."
         },
         {
           "verse": 7,
+          "usfm": "2TH.3.7",
+          "line_type": "m",
           "text": "For you know that you ought to imitate us. We were not idle when we were with you."
         },
         {
           "verse": 8,
+          "usfm": "2TH.3.8",
+          "line_type": "m",
           "text": "We never accepted food from anyone without paying for it. We worked hard day and night so we would not be a burden to any of you."
         },
         {
           "verse": 9,
+          "usfm": "2TH.3.9",
+          "line_type": "m",
           "text": "We certainly had the right to ask you to feed us, but we wanted to give you an example to follow."
         },
         {
           "verse": 10,
+          "usfm": "2TH.3.10",
+          "line_type": "m",
           "text": "Even while we were with you, we gave you this command: “Those unwilling to work will not get to eat.”"
         },
         {
           "verse": 11,
+          "usfm": "2TH.3.11",
+          "line_type": "p",
           "text": "Yet we hear that some of you are living idle lives, refusing to work and meddling in other people’s business."
         },
         {
           "verse": 12,
+          "usfm": "2TH.3.12",
+          "line_type": "p",
           "text": "We command such people and urge them in the name of the Lord Jesus Christ to settle down and work to earn their own living."
         },
         {
           "verse": 13,
+          "usfm": "2TH.3.13",
+          "line_type": "p",
           "text": "As for the rest of you, dear brothers and sisters, never get tired of doing good."
         },
         {
           "verse": 14,
+          "usfm": "2TH.3.14",
+          "line_type": "p",
           "text": "Take note of those who refuse to obey what we say in this letter. Stay away from them so they will be ashamed."
         },
         {
           "verse": 15,
+          "usfm": "2TH.3.15",
+          "line_type": "p",
           "text": "Don’t think of them as enemies, but warn them as you would a brother or sister."
         },
         {
           "verse": 16,
+          "usfm": "2TH.3.16",
+          "line_type": "m",
           "text": "Now may the Lord of peace himself give you his peace at all times and in every situation. The Lord be with you all."
         },
         {
           "verse": 17,
+          "usfm": "2TH.3.17",
+          "line_type": "p",
           "text": "Here is my greeting in my own handwriting—Paul. I do this in all my letters to prove they are from me."
         },
         {
           "verse": 18,
+          "usfm": "2TH.3.18",
+          "line_type": "p",
           "text": "May the grace of our Lord Jesus Christ be with you all."
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "An Exhortation to Proper Living"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "Paul’s Final Greetings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "2TH.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek brothers; also in 3:6, 13."
+        },
+        {
+          "verse": 3,
+          "usfm": "2TH.3.3",
+          "note_ref": "3:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or from evil."
+        },
+        {
+          "verse": 6,
+          "usfm": "2TH.3.6",
+          "note_ref": "3:6a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek from every brother."
+        },
+        {
+          "verse": 6,
+          "usfm": "2TH.3.6",
+          "note_ref": "3:6b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read you received."
+        },
+        {
+          "verse": 15,
+          "usfm": "2TH.3.15",
+          "note_ref": "3:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek as a brother."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "2TH.3.1",
+            "2TH.3.2",
+            "2TH.3.3",
+            "2TH.3.4",
+            "2TH.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 5,
+          "end_verse": 10,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "2TH.3.10",
+            "2TH.3.5",
+            "2TH.3.6",
+            "2TH.3.7",
+            "2TH.3.8",
+            "2TH.3.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "2TH.3.10",
+            "2TH.3.11",
+            "2TH.3.12",
+            "2TH.3.13"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "2TH.3.13",
+            "2TH.3.14",
+            "2TH.3.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "2TH.3.15",
+            "2TH.3.16"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "2TH.3.16",
+            "2TH.3.17"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "2TH.3.17",
+            "2TH.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -380,7 +1018,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/2TH/3-e009d23c86e904665ff7326ffbb8e755.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/2TH.3.NLT",
+        "reference": {
+          "usfm": [
+            "2TH.3"
+          ],
+          "human": "2 Thessalonians 3",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "2 Thessalonians 2",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.1"
+          ],
+          "human": "1 Timothy 1",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

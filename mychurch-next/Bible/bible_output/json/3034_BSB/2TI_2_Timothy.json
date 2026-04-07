@@ -11,6 +11,7 @@
   "total_verses": 83,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2TI",
       "chapter": 1,
       "chapter_usfm": "2TI.1",
@@ -19,89 +20,354 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TI.1.1",
+          "line_type": "p",
           "text": "Paul, an apostle of Christ Jesus by the will of God, according to the promise of life in Christ Jesus,"
         },
         {
           "verse": 2,
+          "usfm": "2TI.1.2",
+          "line_type": "p",
           "text": "To Timothy, my beloved child:Grace, mercy, and peace from God the Father and Christ Jesus our Lord."
         },
         {
           "verse": 3,
+          "usfm": "2TI.1.3",
+          "line_type": "p",
           "text": "I thank God, whom I serve with a clear conscience as did my forefathers, as I constantly remember you night and day in my prayers."
         },
         {
           "verse": 4,
+          "usfm": "2TI.1.4",
+          "line_type": "p",
           "text": "Recalling your tears, I long to see you so that I may be filled with joy."
         },
         {
           "verse": 5,
+          "usfm": "2TI.1.5",
+          "line_type": "p",
           "text": "I am reminded of your sincere faith, which first dwelt in your grandmother Lois and your mother Eunice, and I am convinced is in you as well."
         },
         {
           "verse": 6,
+          "usfm": "2TI.1.6",
+          "line_type": "p",
           "text": "For this reason I remind you to fan into flame the gift of God, which is in you through the laying on of my hands."
         },
         {
           "verse": 7,
+          "usfm": "2TI.1.7",
+          "line_type": "p",
           "text": "For God has not given us a spirit of fear, but of power, love, and self-control."
         },
         {
           "verse": 8,
+          "usfm": "2TI.1.8",
+          "line_type": "p",
           "text": "So do not be ashamed of the testimony of our Lord, or of me, His prisoner. Instead, join me in suffering for the gospel by the power of God."
         },
         {
           "verse": 9,
+          "usfm": "2TI.1.9",
+          "line_type": "p",
           "text": "He has saved us and called us to a holy calling, not because of our works, but by His own purpose and by the grace He granted us in Christ Jesus before time began."
         },
         {
           "verse": 10,
+          "usfm": "2TI.1.10",
+          "line_type": "p",
           "text": "And now He has revealed this grace through the appearing of our Savior, Christ Jesus, who has abolished death and illuminated the way to life and immortality through the gospel,"
         },
         {
           "verse": 11,
+          "usfm": "2TI.1.11",
+          "line_type": "p",
           "text": "to which I was appointed as a preacher, an apostle, and a teacher."
         },
         {
           "verse": 12,
+          "usfm": "2TI.1.12",
+          "line_type": "p",
           "text": "For this reason, even though I suffer as I do, I am not ashamed; for I know whom I have believed, and I am convinced that He is able to guard what I have entrusted to Him for that day."
         },
         {
           "verse": 13,
+          "usfm": "2TI.1.13",
+          "line_type": "p",
           "text": "Hold on to the pattern of sound teaching you have heard from me, with the faith and love that are in Christ Jesus."
         },
         {
           "verse": 14,
+          "usfm": "2TI.1.14",
+          "line_type": "p",
           "text": "Guard the treasure entrusted to you, with the help of the Holy Spirit who dwells in us."
         },
         {
           "verse": 15,
+          "usfm": "2TI.1.15",
+          "line_type": "p",
           "text": "You know that everyone in the Province of Asia has deserted me, including Phygelus and Hermogenes."
         },
         {
           "verse": 16,
+          "usfm": "2TI.1.16",
+          "line_type": "p",
           "text": "May the Lord grant mercy to the household of Onesiphorus, because he has often refreshed me and was unashamed of my chains."
         },
         {
           "verse": 17,
+          "usfm": "2TI.1.17",
+          "line_type": "p",
           "text": "Indeed, when he arrived in Rome, he searched diligently until he found me."
         },
         {
           "verse": 18,
+          "usfm": "2TI.1.18",
+          "line_type": "p",
           "text": "May the Lord grant Onesiphorus His mercy on that day. You know very well how much he ministered to me in Ephesus."
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Faithfulness under Persecution"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Holding to Sound Teaching"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 7,
+          "usfm": "2TI.1.7",
+          "note_ref": "1:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or timidity or cowardice"
+        },
+        {
+          "verse": 9,
+          "usfm": "2TI.1.9",
+          "note_ref": "1:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally before times eternal"
+        },
+        {
+          "verse": 12,
+          "usfm": "2TI.1.12",
+          "note_ref": "1:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or what He has entrusted to me"
+        },
+        {
+          "verse": 13,
+          "usfm": "2TI.1.13",
+          "note_ref": "1:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally sound words"
+        },
+        {
+          "verse": 14,
+          "usfm": "2TI.1.14",
+          "note_ref": "1:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or the good deposit entrusted to you"
+        },
+        {
+          "verse": 15,
+          "usfm": "2TI.1.15",
+          "note_ref": "1:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally in Asia; Asia was a Roman province in what is now western Turkey."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2TI.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2TI.1.1",
+            "2TI.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "2TI.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "2TI.1.2",
+            "2TI.1.3",
+            "2TI.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "2TI.1.4",
+            "2TI.1.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "2TI.1.5",
+            "2TI.1.6",
+            "2TI.1.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 11,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "2TI.1.10",
+            "2TI.1.11",
+            "2TI.1.7",
+            "2TI.1.8",
+            "2TI.1.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "2TI.1.11",
+            "2TI.1.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "2TI.1.12",
+            "2TI.1.13",
+            "2TI.1.14"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "2TI.1.14",
+            "2TI.1.15"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 17,
+          "verses": [
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "2TI.1.15",
+            "2TI.1.16",
+            "2TI.1.17"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "2TI.1.17",
+            "2TI.1.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -112,9 +378,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/2TI/1-257aafa1a953a3f82b607829eb0891ae.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/2TI.1.BSB",
+        "reference": {
+          "usfm": [
+            "2TI.1"
+          ],
+          "human": "2 Timothy 1",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.6"
+          ],
+          "human": "1 Timothy 6",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TI.2"
+          ],
+          "human": "2 Timothy 2",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TI",
       "chapter": 2,
       "chapter_usfm": "2TI.2",
@@ -123,117 +446,486 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TI.2.1",
+          "line_type": "p",
           "text": "You therefore, my child, be strong in the grace that is in Christ Jesus."
         },
         {
           "verse": 2,
+          "usfm": "2TI.2.2",
+          "line_type": "p",
           "text": "And the things that you have heard me say among many witnesses, entrust these to faithful men who will be qualified to teach others as well."
         },
         {
           "verse": 3,
+          "usfm": "2TI.2.3",
+          "line_type": "p",
           "text": "Join me in suffering, like a good soldier of Christ Jesus."
         },
         {
           "verse": 4,
+          "usfm": "2TI.2.4",
+          "line_type": "p",
           "text": "A soldier refrains from entangling himself in civilian affairs, in order to please the one who enlisted him."
         },
         {
           "verse": 5,
+          "usfm": "2TI.2.5",
+          "line_type": "p",
           "text": "Likewise, a competitor does not receive the crown unless he competes according to the rules."
         },
         {
           "verse": 6,
+          "usfm": "2TI.2.6",
+          "line_type": "p",
           "text": "The hardworking farmer should be the first to partake of the crops."
         },
         {
           "verse": 7,
+          "usfm": "2TI.2.7",
+          "line_type": "p",
           "text": "Consider what I am saying, for the Lord will give you insight into all things."
         },
         {
           "verse": 8,
+          "usfm": "2TI.2.8",
+          "line_type": "p",
           "text": "Remember Jesus Christ, raised from the dead, descended from David, as proclaimed by my gospel,"
         },
         {
           "verse": 9,
+          "usfm": "2TI.2.9",
+          "line_type": "p",
           "text": "for which I suffer to the extent of being chained like a criminal. But the word of God cannot be chained!"
         },
         {
           "verse": 10,
+          "usfm": "2TI.2.10",
+          "line_type": "p",
           "text": "For this reason I endure all things for the sake of the elect, so that they too may obtain the salvation that is in Christ Jesus, with eternal glory."
         },
         {
           "verse": 11,
+          "usfm": "2TI.2.11",
+          "line_type": "p",
           "text": "This is a trustworthy saying:If we died with Him,we will also live with Him;"
         },
         {
           "verse": 12,
+          "usfm": "2TI.2.12",
+          "line_type": "q1",
           "text": "if we endure,we will also reign with Him;if we deny Him,He will also deny us;"
         },
         {
           "verse": 13,
+          "usfm": "2TI.2.13",
+          "line_type": "q1",
           "text": "if we are faithless,He remains faithful,for He cannot deny Himself."
         },
         {
           "verse": 14,
+          "usfm": "2TI.2.14",
+          "line_type": "p",
           "text": "Remind the believers of these things, charging them before God to avoid quarreling over words, which succeeds only in leading the listeners to ruin."
         },
         {
           "verse": 15,
+          "usfm": "2TI.2.15",
+          "line_type": "p",
           "text": "Make every effort to present yourself approved to God, an unashamed workman who accurately handles the word of truth."
         },
         {
           "verse": 16,
+          "usfm": "2TI.2.16",
+          "line_type": "p",
           "text": "But avoid irreverent, empty chatter, which will only lead to more ungodliness,"
         },
         {
           "verse": 17,
+          "usfm": "2TI.2.17",
+          "line_type": "p",
           "text": "and the talk of such men will spread like gangrene. Among them are Hymenaeus and Philetus,"
         },
         {
           "verse": 18,
+          "usfm": "2TI.2.18",
+          "line_type": "p",
           "text": "who have deviated from the truth. They say that the resurrection has already occurred, and they undermine the faith of some."
         },
         {
           "verse": 19,
+          "usfm": "2TI.2.19",
+          "line_type": "p",
           "text": "Nevertheless, God’s firm foundation stands, bearing this seal: “The Lord knows those who are His,” and, “Everyone who calls on the name of the Lord must turn away from iniquity.”"
         },
         {
           "verse": 20,
+          "usfm": "2TI.2.20",
+          "line_type": "p",
           "text": "A large house contains not only vessels of gold and silver, but also of wood and clay. Some indeed are for honorable use, but others are for common use."
         },
         {
           "verse": 21,
+          "usfm": "2TI.2.21",
+          "line_type": "p",
           "text": "So if anyone cleanses himself of what is unfit, he will be a vessel for honor: sanctified, useful to the Master, and prepared for every good work."
         },
         {
           "verse": 22,
+          "usfm": "2TI.2.22",
+          "line_type": "p",
           "text": "Flee from youthful passions and pursue righteousness, faith, love, and peace, together with those who call on the Lord out of a pure heart."
         },
         {
           "verse": 23,
+          "usfm": "2TI.2.23",
+          "line_type": "p",
           "text": "But reject foolish and ignorant speculation, for you know that it breeds quarreling."
         },
         {
           "verse": 24,
+          "usfm": "2TI.2.24",
+          "line_type": "p",
           "text": "And a servant of the Lord must not be quarrelsome, but must be kind to everyone, able to teach, and forbearing."
         },
         {
           "verse": 25,
+          "usfm": "2TI.2.25",
+          "line_type": "p",
           "text": "He must gently reprove those who oppose him, in the hope that God may grant them repentance leading to a knowledge of the truth."
         },
         {
           "verse": 26,
+          "usfm": "2TI.2.26",
+          "line_type": "p",
           "text": "Then they will come to their senses and escape the snare of the devil, who has taken them captive to his will."
         }
       ],
       "verse_count": 26,
       "headings": [
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "The Lord’s Approved Workman"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 14,
+          "usfm": "2TI.2.14",
+          "note_ref": "2:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "SBL, BYZ, and TR the Lord"
+        },
+        {
+          "verse": 19,
+          "usfm": "2TI.2.19",
+          "note_ref": "2:19",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Numbers 16:5 (see also LXX)"
+        },
+        {
+          "verse": 21,
+          "usfm": "2TI.2.21",
+          "note_ref": "2:21",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally cleanses himself of these"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2TI.2.1",
+            "2TI.2.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 7,
+          "verses": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "2TI.2.2",
+            "2TI.2.3",
+            "2TI.2.4",
+            "2TI.2.5",
+            "2TI.2.6",
+            "2TI.2.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 10,
+          "verses": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "2TI.2.10",
+            "2TI.2.7",
+            "2TI.2.8",
+            "2TI.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "2TI.2.10",
+            "2TI.2.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "2TI.2.11"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "2TI.2.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "2TI.2.11",
+            "2TI.2.12"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "2TI.2.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "2TI.2.12"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "2TI.2.12"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "2TI.2.12",
+            "2TI.2.13"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "2TI.2.13"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "2TI.2.13"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "2TI.2.13",
+            "2TI.2.14"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "2TI.2.14",
+            "2TI.2.15"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "2TI.2.15",
+            "2TI.2.16",
+            "2TI.2.17",
+            "2TI.2.18"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "2TI.2.18",
+            "2TI.2.19"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "2TI.2.19",
+            "2TI.2.20",
+            "2TI.2.21"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "2TI.2.21",
+            "2TI.2.22"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 26,
+          "verses": [
+            22,
+            23,
+            24,
+            25,
+            26
+          ],
+          "usfms": [
+            "2TI.2.22",
+            "2TI.2.23",
+            "2TI.2.24",
+            "2TI.2.25",
+            "2TI.2.26"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -244,9 +936,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/2TI/2-aea19410fa905c756312e1d9d096290a.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 26,
+          "parsed_count": 26,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/2TI.2.BSB",
+        "reference": {
+          "usfm": [
+            "2TI.2"
+          ],
+          "human": "2 Timothy 2",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.1"
+          ],
+          "human": "2 Timothy 1",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TI.3"
+          ],
+          "human": "2 Timothy 3",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TI",
       "chapter": 3,
       "chapter_usfm": "2TI.3",
@@ -255,81 +1004,218 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TI.3.1",
+          "line_type": "p",
           "text": "But understand this: In the last days terrible times will come."
         },
         {
           "verse": 2,
+          "usfm": "2TI.3.2",
+          "line_type": "p",
           "text": "For men will be lovers of themselves, lovers of money, boastful, arrogant, abusive, disobedient to their parents, ungrateful, unholy,"
         },
         {
           "verse": 3,
+          "usfm": "2TI.3.3",
+          "line_type": "p",
           "text": "unloving, unforgiving, slanderous, without self-control, brutal, without love of good,"
         },
         {
           "verse": 4,
+          "usfm": "2TI.3.4",
+          "line_type": "p",
           "text": "traitorous, reckless, conceited, lovers of pleasure rather than lovers of God,"
         },
         {
           "verse": 5,
+          "usfm": "2TI.3.5",
+          "line_type": "p",
           "text": "having a form of godliness but denying its power. Turn away from such as these!"
         },
         {
           "verse": 6,
+          "usfm": "2TI.3.6",
+          "line_type": "p",
           "text": "They are the kind who worm their way into households and captivate vulnerable women who are weighed down with sins and led astray by various passions,"
         },
         {
           "verse": 7,
+          "usfm": "2TI.3.7",
+          "line_type": "p",
           "text": "who are always learning but never able to come to a knowledge of the truth."
         },
         {
           "verse": 8,
+          "usfm": "2TI.3.8",
+          "line_type": "p",
           "text": "Just as Jannes and Jambres opposed Moses, so also these men oppose the truth. They are depraved in mind and disqualified from the faith."
         },
         {
           "verse": 9,
+          "usfm": "2TI.3.9",
+          "line_type": "p",
           "text": "But they will not advance much further. For just like Jannes and Jambres, their folly will be plain to everyone."
         },
         {
           "verse": 10,
+          "usfm": "2TI.3.10",
+          "line_type": "p",
           "text": "You, however, have observed my teaching, my conduct, my purpose, my faith, my patience, my love, my perseverance,"
         },
         {
           "verse": 11,
+          "usfm": "2TI.3.11",
+          "line_type": "p",
           "text": "my persecutions, and the sufferings that came upon me in Antioch, Iconium, and Lystra. What persecutions I endured! Yet the Lord rescued me from all of them."
         },
         {
           "verse": 12,
+          "usfm": "2TI.3.12",
+          "line_type": "p",
           "text": "Indeed, all who desire to live godly lives in Christ Jesus will be persecuted,"
         },
         {
           "verse": 13,
+          "usfm": "2TI.3.13",
+          "line_type": "p",
           "text": "while evil men and imposters go from bad to worse, deceiving and being deceived."
         },
         {
           "verse": 14,
+          "usfm": "2TI.3.14",
+          "line_type": "p",
           "text": "But as for you, continue in the things you have learned and firmly believed, since you know from whom you have learned them."
         },
         {
           "verse": 15,
+          "usfm": "2TI.3.15",
+          "line_type": "p",
           "text": "From infancy you have known the Holy Scriptures, which are able to make you wise for salvation through faith in Christ Jesus."
         },
         {
           "verse": 16,
+          "usfm": "2TI.3.16",
+          "line_type": "p",
           "text": "All Scripture is God-breathed and is useful for instruction, for conviction, for correction, and for training in righteousness,"
         },
         {
           "verse": 17,
+          "usfm": "2TI.3.17",
+          "line_type": "p",
           "text": "so that the man of God may be complete, fully equipped for every good work."
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "All Scripture Is God-Breathed"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 8,
+          "usfm": "2TI.3.8",
+          "note_ref": "3:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "See Jasher 79:27. The Book of Jashar or the Book of the Upright One is often cited as Jasher."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "2TI.3.1",
+            "2TI.3.2",
+            "2TI.3.3",
+            "2TI.3.4",
+            "2TI.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "2TI.3.5",
+            "2TI.3.6",
+            "2TI.3.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "2TI.3.7",
+            "2TI.3.8",
+            "2TI.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 13,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "2TI.3.10",
+            "2TI.3.11",
+            "2TI.3.12",
+            "2TI.3.13",
+            "2TI.3.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 17,
+          "verses": [
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "2TI.3.13",
+            "2TI.3.14",
+            "2TI.3.15",
+            "2TI.3.16",
+            "2TI.3.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -340,9 +1226,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/2TI/3-7602eb8b358aeb69f240496e019ac27c.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/2TI.3.BSB",
+        "reference": {
+          "usfm": [
+            "2TI.3"
+          ],
+          "human": "2 Timothy 3",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.2"
+          ],
+          "human": "2 Timothy 2",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "2 Timothy 4",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TI",
       "chapter": 4,
       "chapter_usfm": "2TI.4",
@@ -351,109 +1294,346 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TI.4.1",
+          "line_type": "p",
           "text": "I charge you in the presence of God and of Christ Jesus, who will judge the living and the dead, and in view of His appearing and His kingdom:"
         },
         {
           "verse": 2,
+          "usfm": "2TI.4.2",
+          "line_type": "p",
           "text": "Preach the word; be prepared in season and out of season; reprove, rebuke, and encourage with every form of patient instruction."
         },
         {
           "verse": 3,
+          "usfm": "2TI.4.3",
+          "line_type": "p",
           "text": "For the time will come when men will not tolerate sound doctrine, but with itching ears they will gather around themselves teachers to suit their own desires."
         },
         {
           "verse": 4,
+          "usfm": "2TI.4.4",
+          "line_type": "p",
           "text": "So they will turn their ears away from the truth and turn aside to myths."
         },
         {
           "verse": 5,
+          "usfm": "2TI.4.5",
+          "line_type": "p",
           "text": "But you, be sober in all things, endure hardship, do the work of an evangelist, fulfill your ministry."
         },
         {
           "verse": 6,
+          "usfm": "2TI.4.6",
+          "line_type": "p",
           "text": "For I am already being poured out like a drink offering, and the time of my departure is at hand."
         },
         {
           "verse": 7,
+          "usfm": "2TI.4.7",
+          "line_type": "p",
           "text": "I have fought the good fight, I have finished the race, I have kept the faith."
         },
         {
           "verse": 8,
+          "usfm": "2TI.4.8",
+          "line_type": "p",
           "text": "From now on there is laid up for me the crown of righteousness, which the Lord, the righteous Judge, will award to me on that day — and not only to me, but to all who crave His appearing."
         },
         {
           "verse": 9,
+          "usfm": "2TI.4.9",
+          "line_type": "p",
           "text": "Make every effort to come to me quickly,"
         },
         {
           "verse": 10,
+          "usfm": "2TI.4.10",
+          "line_type": "p",
           "text": "because Demas, in his love of this world, has deserted me and gone to Thessalonica. Crescens has gone to Galatia, and Titus to Dalmatia."
         },
         {
           "verse": 11,
+          "usfm": "2TI.4.11",
+          "line_type": "p",
           "text": "Only Luke is with me. Get Mark and bring him with you, because he is useful to me in the ministry."
         },
         {
           "verse": 12,
+          "usfm": "2TI.4.12",
+          "line_type": "p",
           "text": "Tychicus, however, I have sent to Ephesus."
         },
         {
           "verse": 13,
+          "usfm": "2TI.4.13",
+          "line_type": "p",
           "text": "When you come, bring the cloak that I left with Carpus at Troas, and my scrolls, especially the parchments."
         },
         {
           "verse": 14,
+          "usfm": "2TI.4.14",
+          "line_type": "p",
           "text": "Alexander the coppersmith did great harm to me. The Lord will repay him according to his deeds."
         },
         {
           "verse": 15,
+          "usfm": "2TI.4.15",
+          "line_type": "p",
           "text": "You too should beware of him, for he has vigorously opposed our message."
         },
         {
           "verse": 16,
+          "usfm": "2TI.4.16",
+          "line_type": "p",
           "text": "At my first defense, no one stood with me, but everyone deserted me. May it not be charged against them."
         },
         {
           "verse": 17,
+          "usfm": "2TI.4.17",
+          "line_type": "p",
           "text": "But the Lord stood by me and strengthened me, so that through me the message would be fully proclaimed, and all the Gentiles would hear it. So I was delivered from the mouth of the lion."
         },
         {
           "verse": 18,
+          "usfm": "2TI.4.18",
+          "line_type": "p",
           "text": "And the Lord will rescue me from every evil action and bring me safely into His heavenly kingdom. To Him be the glory forever and ever. Amen."
         },
         {
           "verse": 19,
+          "usfm": "2TI.4.19",
+          "line_type": "p",
           "text": "Greet Prisca and Aquila, as well as the household of Onesiphorus."
         },
         {
           "verse": 20,
+          "usfm": "2TI.4.20",
+          "line_type": "p",
           "text": "Erastus has remained at Corinth, and Trophimus I left sick in Miletus."
         },
         {
           "verse": 21,
+          "usfm": "2TI.4.21",
+          "line_type": "p",
           "text": "Make every effort to come to me before winter.Eubulus sends you greetings, as do Pudens, Linus, Claudia, and all the brothers."
         },
         {
           "verse": 22,
+          "usfm": "2TI.4.22",
+          "line_type": "p",
           "text": "The Lord be with your spirit. Grace be with you all."
         }
       ],
       "verse_count": 22,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Personal Concerns"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "The Lord Remains Faithful"
         },
         {
-          "before_verse": 18,
+          "before_verse": 19,
           "text": "Final Greetings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 19,
+          "usfm": "2TI.4.19",
+          "note_ref": "4:19",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Prisca is a variant of Priscilla; see Acts 18:2."
+        },
+        {
+          "verse": 22,
+          "usfm": "2TI.4.22",
+          "note_ref": "4:22",
+          "note_type": "footnote",
+          "references": [],
+          "text": "BYZ and TR include Amen."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2TI.4.1",
+            "2TI.4.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "2TI.4.2",
+            "2TI.4.3",
+            "2TI.4.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 8,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "2TI.4.4",
+            "2TI.4.5",
+            "2TI.4.6",
+            "2TI.4.7",
+            "2TI.4.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 13,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "2TI.4.10",
+            "2TI.4.11",
+            "2TI.4.12",
+            "2TI.4.13",
+            "2TI.4.8",
+            "2TI.4.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "2TI.4.13",
+            "2TI.4.14",
+            "2TI.4.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "2TI.4.15",
+            "2TI.4.16",
+            "2TI.4.17",
+            "2TI.4.18"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "2TI.4.18",
+            "2TI.4.19"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "2TI.4.19",
+            "2TI.4.20"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "2TI.4.20",
+            "2TI.4.21"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "2TI.4.21"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "2TI.4.21",
+            "2TI.4.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -464,7 +1644,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/2TI/4-5b54f998f1b51f585e200417704e51d8.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/2TI.4.BSB",
+        "reference": {
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "2 Timothy 4",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.3"
+          ],
+          "human": "2 Timothy 3",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

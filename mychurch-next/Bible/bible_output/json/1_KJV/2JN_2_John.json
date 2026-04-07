@@ -11,6 +11,7 @@
   "total_verses": 13,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2JN",
       "chapter": 1,
       "chapter_usfm": "2JN.1",
@@ -19,60 +20,148 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2JN.1.1",
+          "line_type": "p",
           "text": "The elder unto the elect lady and her children, whom I love in the truth; and not I only, but also all they that have known the truth;"
         },
         {
           "verse": 2,
+          "usfm": "2JN.1.2",
+          "line_type": "p",
           "text": "for the truth's sake, which dwelleth in us, and shall be with us for ever."
         },
         {
           "verse": 3,
+          "usfm": "2JN.1.3",
+          "line_type": "p",
           "text": "Grace be with you, mercy, and peace, from God the Father, and from the Lord Jesus Christ, the Son of the Father, in truth and love."
         },
         {
           "verse": 4,
+          "usfm": "2JN.1.4",
+          "line_type": "p",
           "text": "I rejoiced greatly that I found of thy children walking in truth, as we have received a commandment from the Father."
         },
         {
           "verse": 5,
+          "usfm": "2JN.1.5",
+          "line_type": "p",
           "text": "And now I beseech thee, lady, not as though I wrote a new commandment unto thee, but that which we had from the beginning, that we love one another."
         },
         {
           "verse": 6,
+          "usfm": "2JN.1.6",
+          "line_type": "p",
           "text": "And this is love, that we walk after his commandments. This is the commandment, That, as ye have heard from the beginning, ye should walk in it."
         },
         {
           "verse": 7,
+          "usfm": "2JN.1.7",
+          "line_type": "p",
           "text": "For many deceivers are entered into the world, who confess not that Jesus Christ is come in the flesh. This is a deceiver and an antichrist."
         },
         {
           "verse": 8,
+          "usfm": "2JN.1.8",
+          "line_type": "p",
           "text": "Look to yourselves, that we lose not those things which we have wrought, but that we receive a full reward."
         },
         {
           "verse": 9,
+          "usfm": "2JN.1.9",
+          "line_type": "p",
           "text": "Whosoever transgresseth, and abideth not in the doctrine of Christ, hath not God. He that abideth in the doctrine of Christ, he hath both the Father and the Son."
         },
         {
           "verse": 10,
+          "usfm": "2JN.1.10",
+          "line_type": "p",
           "text": "If there come any unto you, and bring not this doctrine, receive him not into your house, neither bid him God speed:"
         },
         {
           "verse": 11,
+          "usfm": "2JN.1.11",
+          "line_type": "p",
           "text": "for he that biddeth him God speed is partaker of his evil deeds."
         },
         {
           "verse": 12,
+          "usfm": "2JN.1.12",
+          "line_type": "p",
           "text": "Having many things to write unto you, I would not write with paper and ink: but I trust to come unto you, and speak face to face, that our joy may be full."
         },
         {
           "verse": 13,
+          "usfm": "2JN.1.13",
+          "line_type": "p",
           "text": "The children of thy elect sister greet thee. Amen."
         }
       ],
       "verse_count": 13,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "2JN.1.1",
+            "2JN.1.2",
+            "2JN.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 11,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "2JN.1.10",
+            "2JN.1.11",
+            "2JN.1.3",
+            "2JN.1.4",
+            "2JN.1.5",
+            "2JN.1.6",
+            "2JN.1.7",
+            "2JN.1.8",
+            "2JN.1.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "2JN.1.11",
+            "2JN.1.12",
+            "2JN.1.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -83,7 +172,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/2JN/1-5a78fd62f406ef95928c795d81903a87.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/2JN.1.KJV",
+        "reference": {
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "2 John 1",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1JN.5"
+          ],
+          "human": "1 John 5",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 55,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 1,
       "chapter_usfm": "MAL.1",
@@ -19,89 +20,279 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.1.1",
+          "line_type": "p",
           "text": "This is the message that the Lord gave Malachi to tell the people of Israel."
         },
         {
           "verse": 2,
+          "usfm": "MAL.1.2",
+          "line_type": "p",
           "text": "The Lord says to his people, “I have always loved you.”But they reply, “How have you shown your love for us?”The Lord answers, “Esau and Jacob were brothers, but I have loved Jacob and his descendants,"
         },
         {
           "verse": 3,
+          "usfm": "MAL.1.3",
+          "line_type": "p",
           "text": "and have hated Esau and his descendants. I have devastated Esau's hill country and abandoned the land to jackals.”"
         },
         {
           "verse": 4,
+          "usfm": "MAL.1.4",
+          "line_type": "p",
           "text": "If Esau's descendants, the Edomites, say, “Our towns have been destroyed, but we will rebuild them,” then the Lord will reply, “Let them rebuild—I will tear them down again. People will call them ‘The evil country’ and ‘The nation with whom the Lord is angry forever.’”"
         },
         {
           "verse": 5,
+          "usfm": "MAL.1.5",
+          "line_type": "p",
           "text": "The people of Israel are going to see this with their own eyes, and they will say, “The Lord is mighty even outside the land of Israel!”"
         },
         {
           "verse": 6,
+          "usfm": "MAL.1.6",
+          "line_type": "p",
           "text": "The Lord Almighty says to the priests, “Children honor their parents, and servants honor their masters. I am your father—why don't you honor me? I am your master—why don't you respect me? You despise me, and yet you ask, ‘How have we despised you?’"
         },
         {
           "verse": 7,
+          "usfm": "MAL.1.7",
+          "line_type": "p",
           "text": "This is how—by offering worthless food on my altar. Then you ask, ‘How have we failed to respect you?’ I will tell you—by showing contempt for my altar."
         },
         {
           "verse": 8,
+          "usfm": "MAL.1.8",
+          "line_type": "p",
           "text": "When you bring a blind or sick or lame animal to sacrifice to me, do you think there's nothing wrong with that? Try giving an animal like that to the governor! Would he be pleased with you or grant you any favors?”"
         },
         {
           "verse": 9,
+          "usfm": "MAL.1.9",
+          "line_type": "p",
           "text": "Now, you priests, try asking God to be good to us. He will not answer your prayer, and it will be your fault."
         },
         {
           "verse": 10,
+          "usfm": "MAL.1.10",
+          "line_type": "p",
           "text": "The Lord Almighty says, “I wish one of you would close the Temple doors so as to prevent you from lighting useless fires on my altar. I am not pleased with you; I will not accept the offerings you bring me."
         },
         {
           "verse": 11,
+          "usfm": "MAL.1.11",
+          "line_type": "p",
           "text": "People from one end of the world to the other honor me. Everywhere they burn incense to me and offer acceptable sacrifices. All of them honor me!"
         },
         {
           "verse": 12,
+          "usfm": "MAL.1.12",
+          "line_type": "p",
           "text": "But you dishonor me when you say that my altar is worthless and when you offer on it food that you despise."
         },
         {
           "verse": 13,
+          "usfm": "MAL.1.13",
+          "line_type": "p",
           "text": "You say, ‘How tired we are of all this!’ and you turn up your nose at me. As your offering to me you bring a stolen animal or one that is lame or sick. Do you think I will accept that from you?"
         },
         {
           "verse": 14,
+          "usfm": "MAL.1.14",
+          "line_type": "p",
           "text": "A curse on the cheater who sacrifices a worthless animal to me, when he has in his flock a good animal that he promised to give me! For I am a great king, and people of all nations fear me.”"
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The"
         },
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Lord"
         },
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "'s Love for Israel"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "The"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Lord"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Reprimands the Priests"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "MAL.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.9.13"
+          ],
+          "text": "Ro 9.13"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.34.5+ISA.34.6+ISA.34.7+ISA.34.8+ISA.34.9+ISA.34.10+ISA.34.11+ISA.34.12+ISA.34.13+ISA.34.14+ISA.34.15+ISA.34.16+ISA.34.17",
+            "ISA.63.1+ISA.63.2+ISA.63.3+ISA.63.4+ISA.63.5+ISA.63.6",
+            "JER.49.7+JER.49.8+JER.49.9+JER.49.10+JER.49.11+JER.49.12+JER.49.13+JER.49.14+JER.49.15+JER.49.16+JER.49.17+JER.49.18+JER.49.19+JER.49.20+JER.49.21+JER.49.22",
+            "EZK.25.12+EZK.25.13+EZK.25.14",
+            "EZK.35.1+EZK.35.2+EZK.35.3+EZK.35.4+EZK.35.5+EZK.35.6+EZK.35.7+EZK.35.8+EZK.35.9+EZK.35.10+EZK.35.11+EZK.35.12+EZK.35.13+EZK.35.14+EZK.35.15",
+            "AMO.1.11",
+            "AMO.1.12",
+            "OBA.1.1+OBA.1.2+OBA.1.3+OBA.1.4+OBA.1.5+OBA.1.6+OBA.1.7+OBA.1.8+OBA.1.9+OBA.1.10+OBA.1.11+OBA.1.12+OBA.1.13+OBA.1.14"
+          ],
+          "text": "Is 34.5-17; 63.1-6; Jr 49.7-22; Ez 25.12-14; 35.1-15; Am 1.11,12; Ob 1-14"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.15.21"
+          ],
+          "text": "Dt 15.21"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MAL.1.1",
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.1.2",
+            "MAL.1.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.1.3",
+            "MAL.1.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.1.4",
+            "MAL.1.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "MAL.1.5",
+            "MAL.1.6",
+            "MAL.1.7",
+            "MAL.1.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 14,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.11",
+            "MAL.1.12",
+            "MAL.1.13",
+            "MAL.1.14",
+            "MAL.1.8",
+            "MAL.1.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -112,9 +303,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MAL/1-c094f9e1031e8242f5038a2c918cfd66.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MAL.1.GNT",
+        "reference": {
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "MAL.INTRO1"
+          ],
+          "human": "Malachi Introduction",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 2,
       "chapter_usfm": "MAL.2",
@@ -123,85 +371,262 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.2.1",
+          "line_type": "p",
           "text": "The Lord Almighty says to the priests, “This command is for you:"
         },
         {
           "verse": 2,
+          "usfm": "MAL.2.2",
+          "line_type": "p",
           "text": "You must honor me by what you do. If you will not listen to what I say, then I will bring a curse on you. I will put a curse on the things you receive for your support. In fact, I have already put a curse on them, because you do not take my command seriously."
         },
         {
           "verse": 3,
+          "usfm": "MAL.2.3",
+          "line_type": "p",
           "text": "I will punish your children and rub your faces in the dung of the animals you sacrifice—and you will be taken out to the dung heap."
         },
         {
           "verse": 4,
+          "usfm": "MAL.2.4",
+          "line_type": "p",
           "text": "Then you will know that I have given you this command, so that my covenant with the priests, the descendants of Levi, will not be broken."
         },
         {
           "verse": 5,
+          "usfm": "MAL.2.5",
+          "line_type": "p",
           "text": "“In my covenant I promised them life and well-being, and this is what I gave them, so that they might respect me. In those days they did respect and fear me."
         },
         {
           "verse": 6,
+          "usfm": "MAL.2.6",
+          "line_type": "p",
           "text": "They taught what was right, not what was wrong. They lived in harmony with me; they not only did what was right themselves, but they also helped many others to stop doing evil."
         },
         {
           "verse": 7,
+          "usfm": "MAL.2.7",
+          "line_type": "p",
           "text": "It is the duty of priests to teach the true knowledge of God. People should go to them to learn my will, because they are the messengers of the Lord Almighty."
         },
         {
           "verse": 8,
+          "usfm": "MAL.2.8",
+          "line_type": "p",
           "text": "“But now you priests have turned away from the right path. Your teaching has led many to do wrong. You have broken the covenant I made with you."
         },
         {
           "verse": 9,
+          "usfm": "MAL.2.9",
+          "line_type": "p",
           "text": "So I, in turn, will make the people of Israel despise you because you do not obey my will, and when you teach my people, you do not treat everyone alike.”"
         },
         {
           "verse": 10,
+          "usfm": "MAL.2.10",
+          "line_type": "p",
           "text": "Don't we all have the same father? Didn't the same God create us all? Then why do we break our promises to one another, and why do we despise the covenant that God made with our ancestors?"
         },
         {
           "verse": 11,
+          "usfm": "MAL.2.11",
+          "line_type": "p",
           "text": "The people of Judah have broken their promise to God and done a horrible thing in Jerusalem and all over the country. They have defiled the Temple which the Lord loves. Men have married women who worship foreign gods."
         },
         {
           "verse": 12,
+          "usfm": "MAL.2.12",
+          "line_type": "p",
           "text": "May the Lord remove from the community of Israel those who did this, and never again let them participate in the offerings our nation brings to the Lord Almighty."
         },
         {
           "verse": 13,
+          "usfm": "MAL.2.13",
+          "line_type": "p",
           "text": "This is another thing you do. You drown the Lord's altar with tears, weeping and wailing because he no longer accepts the offerings you bring him."
         },
         {
           "verse": 14,
+          "usfm": "MAL.2.14",
+          "line_type": "p",
           "text": "You ask why he no longer accepts them. It is because he knows you have broken your promise to the wife you married when you were young. She was your partner, and you have broken your promise to her, although you promised before God that you would be faithful to her."
         },
         {
           "verse": 15,
+          "usfm": "MAL.2.15",
+          "line_type": "p",
           "text": "Didn't God make you one body and spirit with her? What was his purpose in this? It was that you should have children who are truly God's people. So make sure that none of you breaks his promise to his wife."
         },
         {
           "verse": 16,
+          "usfm": "MAL.2.16",
+          "line_type": "p",
           "text": "“I hate divorce,” says the Lord God of Israel. “I hate it when one of you does such a cruel thing to his wife. Make sure that you do not break your promise to be faithful to your wife.”"
         },
         {
           "verse": 17,
+          "usfm": "MAL.2.17",
+          "line_type": "p",
           "text": "You have tired the Lord out with your talk. But you ask, “How have we tired him?” By saying, “The Lord Almighty thinks all evildoers are good; in fact he likes them.” Or by asking, “Where is the God who is supposed to be just?”"
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "The People's Unfaithfulness to God"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "The Day of Judgment Is Near"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 4,
+          "usfm": "MAL.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NUM.3.11+NUM.3.12+NUM.3.13"
+          ],
+          "text": "Nu 3.11-13"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NUM.25.12"
+          ],
+          "text": "Nu 25.12"
+        },
+        {
+          "verse": 12,
+          "usfm": "MAL.2.12",
+          "note_ref": "2.12:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation May … Almighty; Hebrew unclear."
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.2.15",
+          "note_ref": "2.15:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text Didn't God … her; Hebrew unclear."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.2.1",
+            "MAL.2.2",
+            "MAL.2.3",
+            "MAL.2.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.2.4",
+            "MAL.2.5",
+            "MAL.2.6",
+            "MAL.2.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.2.7",
+            "MAL.2.8",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 12,
+          "verses": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.11",
+            "MAL.2.12",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 16,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "MAL.2.12",
+            "MAL.2.13",
+            "MAL.2.14",
+            "MAL.2.15",
+            "MAL.2.16"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "MAL.2.16",
+            "MAL.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -212,9 +637,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MAL/2-96544c832dab12a4c6b63b16572b1620.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MAL.2.GNT",
+        "reference": {
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 3,
       "chapter_usfm": "MAL.3",
@@ -223,89 +705,280 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.3.1",
+          "line_type": "p",
           "text": "The Lord Almighty answers, “I will send my messenger to prepare the way for me. Then the Lord you are looking for will suddenly come to his Temple. The messenger you long to see will come and proclaim my covenant.”"
         },
         {
           "verse": 2,
+          "usfm": "MAL.3.2",
+          "line_type": "p",
           "text": "But who will be able to endure the day when he comes? Who will be able to survive when he appears? He will be like strong soap, like a fire that refines metal."
         },
         {
           "verse": 3,
+          "usfm": "MAL.3.3",
+          "line_type": "p",
           "text": "He will come to judge like one who refines and purifies silver. As a metalworker refines silver and gold, so the Lord's messenger will purify the priests, so that they will bring to the Lord the right kind of offerings."
         },
         {
           "verse": 4,
+          "usfm": "MAL.3.4",
+          "line_type": "p",
           "text": "Then the offerings which the people of Judah and Jerusalem bring to the Lord will be pleasing to him, as they used to be in the past."
         },
         {
           "verse": 5,
+          "usfm": "MAL.3.5",
+          "line_type": "p",
           "text": "The Lord Almighty says, “I will appear among you to judge, and I will testify at once against those who practice magic, against adulterers, against those who give false testimony, those who cheat employees out of their wages, and those who take advantage of widows, orphans, and foreigners—against all who do not respect me."
         },
         {
           "verse": 6,
+          "usfm": "MAL.3.6",
+          "line_type": "p",
           "text": "“I am the Lord, and I do not change. And so you, the descendants of Jacob, are not yet completely lost."
         },
         {
           "verse": 7,
+          "usfm": "MAL.3.7",
+          "line_type": "p",
           "text": "You, like your ancestors before you, have turned away from my laws and have not kept them. Turn back to me, and I will turn to you. But you ask, ‘What must we do to turn back to you?’"
         },
         {
           "verse": 8,
+          "usfm": "MAL.3.8",
+          "line_type": "p",
           "text": "I ask you, is it right for a person to cheat God? Of course not, yet you are cheating me. ‘How?’ you ask. In the matter of tithes and offerings."
         },
         {
           "verse": 9,
+          "usfm": "MAL.3.9",
+          "line_type": "p",
           "text": "A curse is on all of you because the whole nation is cheating me."
         },
         {
           "verse": 10,
+          "usfm": "MAL.3.10",
+          "line_type": "p",
           "text": "Bring the full amount of your tithes to the Temple, so that there will be plenty of food there. Put me to the test and you will see that I will open the windows of heaven and pour out on you in abundance all kinds of good things."
         },
         {
           "verse": 11,
+          "usfm": "MAL.3.11",
+          "line_type": "p",
           "text": "I will not let insects destroy your crops, and your grapevines will be loaded with grapes."
         },
         {
           "verse": 12,
+          "usfm": "MAL.3.12",
+          "line_type": "p",
           "text": "Then the people of all nations will call you happy, because your land will be a good place to live."
         },
         {
           "verse": 13,
+          "usfm": "MAL.3.13",
+          "line_type": "p",
           "text": "“You have said terrible things about me,” says the Lord. “But you ask, ‘What have we said about you?’"
         },
         {
           "verse": 14,
+          "usfm": "MAL.3.14",
+          "line_type": "p",
           "text": "You have said, ‘It's useless to serve God. What's the use of doing what he says or of trying to show the Lord Almighty that we are sorry for what we have done?"
         },
         {
           "verse": 15,
+          "usfm": "MAL.3.15",
+          "line_type": "p",
           "text": "As we see it, proud people are the ones who are happy. Evil people not only prosper, but they test God's patience with their evil deeds and get away with it.’”"
         },
         {
           "verse": 16,
+          "usfm": "MAL.3.16",
+          "line_type": "p",
           "text": "Then the people who feared the Lord spoke to one another, and the Lord listened and heard what they said. In his presence, there was written down in a book a record of those who feared the Lord and respected him."
         },
         {
           "verse": 17,
+          "usfm": "MAL.3.17",
+          "line_type": "p",
           "text": "“They will be my people,” says the Lord Almighty. “On the day when I act, they will be my very own. I will be merciful to them as parents are merciful to the children who serve them."
         },
         {
           "verse": 18,
+          "usfm": "MAL.3.18",
+          "line_type": "p",
           "text": "Once again my people will see the difference between what happens to the righteous and to the wicked, to the person who serves me and the one who does not.”"
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "The Payment of Tithes"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "God's Promise of Mercy"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.11.10",
+            "MRK.1.2",
+            "LUK.1.76",
+            "LUK.7.27"
+          ],
+          "text": "Mt 11.10; Mk 1.2; Lk 1.76; 7.27"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.11",
+            "REV.6.17"
+          ],
+          "text": "Jl 2.11; Rev 6.17"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Si 48.10"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LEV.27.30",
+            "NUM.18.21+NUM.18.22+NUM.18.23+NUM.18.24",
+            "DEU.12.6",
+            "DEU.14.22+DEU.14.23+DEU.14.24+DEU.14.25+DEU.14.26+DEU.14.27+DEU.14.28+DEU.14.29",
+            "NEH.13.12"
+          ],
+          "text": "Lv 27.30; Nu 18.21-24; Dt 12.6; 14.22-29; Ne 13.12"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.3.1",
+            "MAL.3.2",
+            "MAL.3.3",
+            "MAL.3.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.3.4",
+            "MAL.3.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 12,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.3.10",
+            "MAL.3.11",
+            "MAL.3.12",
+            "MAL.3.5",
+            "MAL.3.6",
+            "MAL.3.7",
+            "MAL.3.8",
+            "MAL.3.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 15,
+          "verses": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.3.12",
+            "MAL.3.13",
+            "MAL.3.14",
+            "MAL.3.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "MAL.3.15",
+            "MAL.3.16",
+            "MAL.3.17",
+            "MAL.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -316,9 +989,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MAL/3-0371d5c83c13ef13104313f62d8b52ac.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MAL.3.GNT",
+        "reference": {
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 4,
       "chapter_usfm": "MAL.4",
@@ -327,26 +1057,38 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.4.1",
+          "line_type": "p",
           "text": "The Lord Almighty says, “The day is coming when all proud and evil people will burn like straw. On that day they will burn up, and there will be nothing left of them."
         },
         {
           "verse": 2,
+          "usfm": "MAL.4.2",
+          "line_type": "p",
           "text": "But for you who obey me, my saving power will rise on you like the sun and bring healing like the sun's rays. You will be as free and happy as calves let out of a stall."
         },
         {
           "verse": 3,
+          "usfm": "MAL.4.3",
+          "line_type": "p",
           "text": "On the day when I act, you will overcome the wicked, and they will be like dust under your feet."
         },
         {
           "verse": 4,
+          "usfm": "MAL.4.4",
+          "line_type": "p",
           "text": "“Remember the teachings of my servant Moses, the laws and commands which I gave him at Mount Sinai for all the people of Israel to obey."
         },
         {
           "verse": 5,
+          "usfm": "MAL.4.5",
+          "line_type": "p",
           "text": "“But before the great and terrible day of the Lord comes, I will send you the prophet Elijah."
         },
         {
           "verse": 6,
+          "usfm": "MAL.4.6",
+          "line_type": "p",
           "text": "He will bring fathers and children together again; otherwise I would have to come and destroy your country.”"
         }
       ],
@@ -361,7 +1103,70 @@
           "text": "Is Coming"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "MAL.4.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.11.14",
+            "MAT.17.10+MAT.17.11+MAT.17.12+MAT.17.13",
+            "MRK.9.11+MRK.9.12+MRK.9.13",
+            "LUK.1.17",
+            "JHN.1.21"
+          ],
+          "text": "Mt 11.14; 17.10-13; Mk 9.11-13; Lk 1.17; Jn 1.21"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.4.1",
+            "MAL.4.2",
+            "MAL.4.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.4.3",
+            "MAL.4.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.4.4",
+            "MAL.4.5",
+            "MAL.4.6"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -372,7 +1177,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/MAL/4-cb501d35b154aaaef9f8b2dec89f6720.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/MAL.4.GNT",
+        "reference": {
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "MAT.INTRO1"
+          ],
+          "human": "Matthew Introduction",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

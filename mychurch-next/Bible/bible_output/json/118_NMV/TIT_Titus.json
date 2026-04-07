@@ -11,6 +11,7 @@
   "total_verses": 46,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 1,
       "chapter_usfm": "TIT.1",
@@ -19,77 +20,238 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.1.1",
+          "line_type": "p",
           "text": "از پولس، خادم خدا و رسول عیسی مسیح، در خدمتِ ایمانِ برگزیدگانِ خدا و شناخت آن حقیقت که منطبق بر دینداری است،"
         },
         {
           "verse": 2,
+          "usfm": "TIT.1.2",
+          "line_type": "p",
           "text": "و به امید حیات جاویدان که خدای منزّه از هر دروغ از ایام ازل بدان وعده فرمود"
         },
         {
           "verse": 3,
+          "usfm": "TIT.1.3",
+          "line_type": "p",
           "text": "و کلام خود را در زمان مقرر آشکار ساخت، به واسطۀ موعظه‌ای که به حکم نجات‌دهندۀ ما خدا به من سپرده شد،"
         },
         {
           "verse": 4,
+          "usfm": "TIT.1.4",
+          "line_type": "p",
           "text": "به تیتوس، فرزند راستینم در ایمانی مشترک:فیض و سلامتی از جانب خدای پدر و نجات‌دهندۀ ما عیسی مسیح بر تو باد."
         },
         {
           "verse": 5,
+          "usfm": "TIT.1.5",
+          "line_type": "p",
           "text": "تو را از آن رو در کْرِت بر جا گذاشتم تا کارهای ناتمام را سامان دهی و همان‌گونه که تو را امر کردم، در هر شهر مشایخی برگماری."
         },
         {
           "verse": 6,
+          "usfm": "TIT.1.6",
+          "line_type": "p",
           "text": "شیخ کلیسا باید به دور از ملامت، شوهرِ وفادارِ یک زن، و دارای فرزندانی باایمان باشد که از هر گونه اتهامِ لجام گسیختگی و سرکشی مبرا باشند."
         },
         {
           "verse": 7,
+          "usfm": "TIT.1.7",
+          "line_type": "p",
           "text": "چرا که ناظر کلیسا مباشر خداست و از همین رو باید به دور از ملامت باشد، نه خودرأی یا تندخو یا میگسار یا خشن یا در پی منافع نامشروع،"
         },
         {
           "verse": 8,
+          "usfm": "TIT.1.8",
+          "line_type": "p",
           "text": "بلکه شهره به میهمان‌نوازی و دوستدارِ نیکویی و خویشتندار و پارسا و مقدّس و منظم؛"
         },
         {
           "verse": 9,
+          "usfm": "TIT.1.9",
+          "line_type": "p",
           "text": "و پایدار بر کلام مطمئنی که تعلیم داده شده است تا بتواند دیگران را بر پایۀ تعلیم صحیح پند دهد و نظر مخالفان را رد کند."
         },
         {
           "verse": 10,
+          "usfm": "TIT.1.10",
+          "line_type": "p",
           "text": "زیرا گردنکشانِ یاوه‌گوی و فریبکار بسیارند، بخصوص از ختنه‌شدگان،"
         },
         {
           "verse": 11,
+          "usfm": "TIT.1.11",
+          "line_type": "p",
           "text": "که دهانشان را باید بست، زیرا برای کسب منافع نامشروع، تعالیم ناشایسته می‌دهند و بدین‌گونه خانواده‌ها را به تمامی تباه می‌سازند."
         },
         {
           "verse": 12,
+          "usfm": "TIT.1.12",
+          "line_type": "p",
           "text": "حتی یکی از انبیای خودشان گفته است: «کْرِتیان همواره مردمانی دروغگو و وحوشی شریر و شکم‌پرستانی تن‌پرورند.»"
         },
         {
           "verse": 13,
+          "usfm": "TIT.1.13",
+          "line_type": "p",
           "text": "این شهادت راست است. پس آنان را سخت توبیخ کن تا از سلامتِ ایمان برخوردار باشند و"
         },
         {
           "verse": 14,
+          "usfm": "TIT.1.14",
+          "line_type": "p",
           "text": "به افسانه‌های یهود و احکامِ منکرانِ حقیقت گوش نسپارند."
         },
         {
           "verse": 15,
+          "usfm": "TIT.1.15",
+          "line_type": "p",
           "text": "برای پاکان همه چیزْ پاک است، امّا برای آنان که آلوده‌اند و بی‌ایمان، هیچ چیز پاک نیست، بلکه هم فکرشان آلوده است و هم وجدانشان."
         },
         {
           "verse": 16,
+          "usfm": "TIT.1.16",
+          "line_type": "p",
           "text": "مدّعی خداشناسی‌اند، امّا با کردارشان او را انکار می‌کنند. نفرت‌انگیزند و نافرمان، و نامناسب برای هر کار نیکو."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "مأموریت تیتوس در کْرِت"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "TIT.1.1",
+          "note_ref": "1‏:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا ”غلام“."
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "note_ref": "1‏:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا:‏ «و بر امید حیات جاویدان استوار است که ...»."
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "1‏:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا:‏ ”شوهر یک زن“."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "TIT.1.1",
+            "TIT.1.2",
+            "TIT.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "TIT.1.3",
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "TIT.1.4",
+            "TIT.1.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 9,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "TIT.1.5",
+            "TIT.1.6",
+            "TIT.1.7",
+            "TIT.1.8",
+            "TIT.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 16,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "TIT.1.10",
+            "TIT.1.11",
+            "TIT.1.12",
+            "TIT.1.13",
+            "TIT.1.14",
+            "TIT.1.15",
+            "TIT.1.16",
+            "TIT.1.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 42,
@@ -108,9 +270,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1533/m4a/32k/TIT/1-129afdf4e87290befb3d17b6b4b2d554.m3u8?version_id=118"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/TIT.1.NMV",
+        "reference": {
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "تیتوس 1",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "TIT.INTRO1"
+          ],
+          "human": "تیتوس ‮معرفیِ نامۀ پولس رسول به تیتوس‬",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "تیتوس 2",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 2,
       "chapter_usfm": "TIT.2",
@@ -119,68 +338,217 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.2.1",
+          "line_type": "p",
           "text": "امّا تو از آنچه مطابق با تعلیم صحیح است، سخن بگو."
         },
         {
           "verse": 2,
+          "usfm": "TIT.2.2",
+          "line_type": "p",
           "text": "مردان سالخورده را بگو که معتدل و باوقار و خویشتندار باشند و در ایمان و محبت و پایداری، به شایستگی رفتار کنند."
         },
         {
           "verse": 3,
+          "usfm": "TIT.2.3",
+          "line_type": "p",
           "text": "به همین‌سان، زنان سالخورده باید شیوۀ زندگی محترمانه‌ای داشته باشند. نباید غیبت‌گو یا بندۀ شراب باشند، بلکه باید آنچه را که نیکوست تعلیم دهند،"
         },
         {
           "verse": 4,
+          "usfm": "TIT.2.4",
+          "line_type": "p",
           "text": "تا بتوانند زنان جوانتر را خرد بیاموزند که شوهردوست و فرزنددوست باشند"
         },
         {
           "verse": 5,
+          "usfm": "TIT.2.5",
+          "line_type": "p",
           "text": "و خویشتندار و عفیف و کدبانو و مهربان و تسلیمِ شوهر، تا کلام خدا بد گفته نشود."
         },
         {
           "verse": 6,
+          "usfm": "TIT.2.6",
+          "line_type": "p",
           "text": "نیز مردان جوان را پند ده تا خویشتندار باشند."
         },
         {
           "verse": 7,
+          "usfm": "TIT.2.7",
+          "line_type": "p",
           "text": "خودْ در همه چیز سرمشقِ اعمال نیکو باش. در تعلیم خود صداقت و جدیّت به خرج ده،"
         },
         {
           "verse": 8,
+          "usfm": "TIT.2.8",
+          "line_type": "p",
           "text": "و سلامتِ گفتارت چنان باشد که کسی آن را مذمّت نتواند کرد، تا مخالفان چون فرصت بد گفتن از ما نیابند، شرمسار شوند."
         },
         {
           "verse": 9,
+          "usfm": "TIT.2.9",
+          "line_type": "p",
           "text": "غلامان را بیاموز که در هر چیز تسلیم اربابانشان باشند و برای جلب خشنودی آنها بکوشند؛ و چون و چرا نکنند"
         },
         {
           "verse": 10,
+          "usfm": "TIT.2.10",
+          "line_type": "p",
           "text": "و از آنان ندزدند، بلکه کمال امانت را نشان دهند تا در هر چیز تعلیم مربوط به نجات‌دهندۀ ما خدا را زینت بخشند."
         },
         {
           "verse": 11,
+          "usfm": "TIT.2.11",
+          "line_type": "p",
           "text": "زیرا فیض خدا به ظهور رسیده است، فیضی که همگان را نجات‌بخش است"
         },
         {
           "verse": 12,
+          "usfm": "TIT.2.12",
+          "line_type": "p",
           "text": "و به ما می‌آموزد که بی‌دینی و امیال دنیوی را ترک گفته، با خویشتنداری و پارسایی و دینداری در این عصر زیست کنیم،"
         },
         {
           "verse": 13,
+          "usfm": "TIT.2.13",
+          "line_type": "p",
           "text": "در حینی که منتظر آن امید مبارک، یعنی ظهور پرجلال خدای عظیم و نجات‌دهندۀ خویش عیسی مسیح هستیم،"
         },
         {
           "verse": 14,
+          "usfm": "TIT.2.14",
+          "line_type": "p",
           "text": "که خود را فدای ما ساخت تا از هر شرارت رهایی‌مان بخشد و قومی برای خود طاهر سازد که از آنِ خودش باشند و غیور برای کار نیکو."
         },
         {
           "verse": 15,
+          "usfm": "TIT.2.15",
+          "line_type": "p",
           "text": "اینها را بگو، و با کمال اقتدار تشویق و توبیخ کن، و مگذار کسی تو را حقیر شمارد."
         }
       ],
       "verse_count": 15,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 12,
+          "usfm": "TIT.2.12",
+          "note_ref": "2‏:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا:‏ ”در این دنیا“."
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "note_ref": "2‏:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا:‏ «بازخریدمان کند». اصل یونانی این فعل، در بسیاری مواقع حاوی مفهوم رهانیدن بردگان اسیر با پرداخت بها است."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "TIT.2.1",
+            "TIT.2.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "TIT.2.2",
+            "TIT.2.3",
+            "TIT.2.4",
+            "TIT.2.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.2.5",
+            "TIT.2.6",
+            "TIT.2.7",
+            "TIT.2.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.8",
+            "TIT.2.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 14,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.11",
+            "TIT.2.12",
+            "TIT.2.13",
+            "TIT.2.14"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.2.14",
+            "TIT.2.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 42,
@@ -199,9 +567,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1533/m4a/32k/TIT/2-27171eb60e9bbe1b76d15983404af059.m3u8?version_id=118"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/TIT.2.NMV",
+        "reference": {
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "تیتوس 2",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "تیتوس 1",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "تیتوس 3",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 3,
       "chapter_usfm": "TIT.3",
@@ -210,73 +635,205 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.3.1",
+          "line_type": "p",
           "text": "ایشان را یادآور شو که تسلیم حکمرانان و صاحبمنصبان باشند و فرمانبرداری کنند، و برای هر کار نیک آماده باشند؛"
         },
         {
           "verse": 2,
+          "usfm": "TIT.3.2",
+          "line_type": "p",
           "text": "کسی را ناسزا نگویند بلکه صلح‌جو و باملاحظه باشند و با همه در کمال فروتنی رفتار کنند."
         },
         {
           "verse": 3,
+          "usfm": "TIT.3.3",
+          "line_type": "p",
           "text": "ما نیز زمانی نادان و نافرمانبردار بودیم و گمراه و بندۀ همه گونه امیال و لذتها؛ و در کین و حسد روزگار می‌گذراندیم. منفور بودیم و متنفر از یکدیگر."
         },
         {
           "verse": 4,
+          "usfm": "TIT.3.4",
+          "line_type": "p",
           "text": "امّا چون مهربانی و انساندوستی نجات‌دهندۀ ما خدا آشکار شد،"
         },
         {
           "verse": 5,
+          "usfm": "TIT.3.5",
+          "line_type": "p",
           "text": "ما را نه به سبب کارهای نیکویی که کرده بودیم، بلکه از رحمت خویش نجات بخشید، به غسل تولد تازه و نو شدنی که از روح‌القدس است؛"
         },
         {
           "verse": 6,
+          "usfm": "TIT.3.6",
+          "line_type": "p",
           "text": "که او را به‌فراوانی بر ما فرو ریخت، به واسطۀ منجی ما عیسی مسیح،"
         },
         {
           "verse": 7,
+          "usfm": "TIT.3.7",
+          "line_type": "p",
           "text": "تا به فیض او پارسا شمرده شده، بنا بر امید حیات جاویدان، به وارثان بَدل گردیم."
         },
         {
           "verse": 8,
+          "usfm": "TIT.3.8",
+          "line_type": "p",
           "text": "این سخن درخور اعتماد است. و از تو می‌خواهم که بر این امور تأکید ورزی، تا آنان که بر خدا اعتماد بسته‌اند، از یاد نبرند که خویشتن را وقف کارهای نیکو نمایند، که اینها همگان را نیکو و سودمند است."
         },
         {
           "verse": 9,
+          "usfm": "TIT.3.9",
+          "line_type": "p",
           "text": "امّا از مجادلات نابخردانه و شجره‌نامه‌ها و بحثها و نزاعهای پیرامونِ شریعت اجتناب کن، زیرا بی‌فایده و بی‌ارزش است."
         },
         {
           "verse": 10,
+          "usfm": "TIT.3.10",
+          "line_type": "p",
           "text": "به آن که عامل تفرقه است یک بار، و سپس برای دوّمین بار هشدار ده، و از آن پس، با او قطع ارتباط کن."
         },
         {
           "verse": 11,
+          "usfm": "TIT.3.11",
+          "line_type": "p",
           "text": "چرا که می‌دانی چنین شخص منحرف است و گناهکار، و خودْ عامل محکومیت خویش."
         },
         {
           "verse": 12,
+          "usfm": "TIT.3.12",
+          "line_type": "p",
           "text": "وقتی آرتِماس یا تیخیکوس را نزدت بفرستم، بکوش تا هر چه زودتر نزد من به نیکوپولیس آیی، زیرا عزم آن دارم که زمستان را در آنجا به سر برم."
         },
         {
           "verse": 13,
+          "usfm": "TIT.3.13",
+          "line_type": "p",
           "text": "تا آنجا که می‌توانی، زیناسِ وکیل و آپولس را در انجام سفرشان مدد فرما تا هیچ محتاج نمانند."
         },
         {
           "verse": 14,
+          "usfm": "TIT.3.14",
+          "line_type": "p",
           "text": "بگذار همکیشان ما بیاموزند که خویشتن را وقف انجام کارهای نیکو کنند تا برای رفع نیازهای ضروری تدارک بینند و زندگی بی‌ثمری نداشته باشند."
         },
         {
           "verse": 15,
+          "usfm": "TIT.3.15",
+          "line_type": "p",
           "text": "آنان که با من‌اند، جملگی تو را سلام می‌فرستند. به آنان که ما را در ایمان دوست می‌دارند، سلام برسان.فیض با همۀ شما باد."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "نصایح پایانی"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "TIT.3.1",
+            "TIT.3.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 8,
+          "verses": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.3.2",
+            "TIT.3.3",
+            "TIT.3.4",
+            "TIT.3.5",
+            "TIT.3.6",
+            "TIT.3.7",
+            "TIT.3.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "TIT.3.10",
+            "TIT.3.11",
+            "TIT.3.8",
+            "TIT.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 14,
+          "verses": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.3.11",
+            "TIT.3.12",
+            "TIT.3.13",
+            "TIT.3.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.3.14",
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 42,
@@ -295,7 +852,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1533/m4a/32k/TIT/3-07ae648a9fa8643f89fc90d50986f19c.m3u8?version_id=118"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/TIT.3.NMV",
+        "reference": {
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "تیتوس 3",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "تیتوس 2",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "PHM.INTRO1"
+          ],
+          "human": "فیلیمون ‮معرفی نامۀ پولس رسول به فیلیمون‬",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

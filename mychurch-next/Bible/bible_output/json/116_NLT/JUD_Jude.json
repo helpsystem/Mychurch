@@ -11,6 +11,7 @@
   "total_verses": 25,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JUD",
       "chapter": 1,
       "chapter_usfm": "JUD.1",
@@ -19,121 +20,458 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JUD.1.1",
+          "line_type": "m",
           "text": "This letter is from Jude, a slave of Jesus Christ and a brother of James.I am writing to all who have been called by God the Father, who loves you and keeps you safe in the care of Jesus Christ."
         },
         {
           "verse": 2,
+          "usfm": "JUD.1.2",
+          "line_type": "p",
           "text": "May God give you more and more mercy, peace, and love."
         },
         {
           "verse": 3,
+          "usfm": "JUD.1.3",
+          "line_type": "m",
           "text": "Dear friends, I had been eagerly planning to write to you about the salvation we all share. But now I find that I must write about something else, urging you to defend the faith that God has entrusted once for all time to his holy people."
         },
         {
           "verse": 4,
+          "usfm": "JUD.1.4",
+          "line_type": "m",
           "text": "I say this because some ungodly people have wormed their way into your churches, saying that God’s marvelous grace allows us to live immoral lives. The condemnation of such people was recorded long ago, for they have denied our only Master and Lord, Jesus Christ."
         },
         {
           "verse": 5,
+          "usfm": "JUD.1.5",
+          "line_type": "p",
           "text": "So I want to remind you, though you already know these things, that Jesus first rescued the nation of Israel from Egypt, but later he destroyed those who did not remain faithful."
         },
         {
           "verse": 6,
+          "usfm": "JUD.1.6",
+          "line_type": "p",
           "text": "And I remind you of the angels who did not stay within the limits of authority God gave them but left the place where they belonged. God has kept them securely chained in prisons of darkness, waiting for the great day of judgment."
         },
         {
           "verse": 7,
+          "usfm": "JUD.1.7",
+          "line_type": "p",
           "text": "And don’t forget Sodom and Gomorrah and their neighboring towns, which were filled with immorality and every kind of sexual perversion. Those cities were destroyed by fire and serve as a warning of the eternal fire of God’s judgment."
         },
         {
           "verse": 8,
+          "usfm": "JUD.1.8",
+          "line_type": "p",
           "text": "In the same way, these people—who claim authority from their dreams—live immoral lives, defy authority, and scoff at supernatural beings."
         },
         {
           "verse": 9,
+          "usfm": "JUD.1.9",
+          "line_type": "p",
           "text": "But even Michael, one of the mightiest of the angels, did not dare accuse the devil of blasphemy, but simply said, “The Lord rebuke you!” (This took place when Michael was arguing with the devil about Moses’ body.)"
         },
         {
           "verse": 10,
+          "usfm": "JUD.1.10",
+          "line_type": "p",
           "text": "But these people scoff at things they do not understand. Like unthinking animals, they do whatever their instincts tell them, and so they bring about their own destruction."
         },
         {
           "verse": 11,
+          "usfm": "JUD.1.11",
+          "line_type": "p",
           "text": "What sorrow awaits them! For they follow in the footsteps of Cain, who killed his brother. Like Balaam, they deceive people for money. And like Korah, they perish in their rebellion."
         },
         {
           "verse": 12,
+          "usfm": "JUD.1.12",
+          "line_type": "p",
           "text": "When these people eat with you in your fellowship meals commemorating the Lord’s love, they are like dangerous reefs that can shipwreck you. They are like shameless shepherds who care only for themselves. They are like clouds blowing over the land without giving any rain. They are like trees in autumn that are doubly dead, for they bear no fruit and have been pulled up by the roots."
         },
         {
           "verse": 13,
+          "usfm": "JUD.1.13",
+          "line_type": "p",
           "text": "They are like wild waves of the sea, churning up the foam of their shameful deeds. They are like wandering stars, doomed forever to blackest darkness."
         },
         {
           "verse": 14,
+          "usfm": "JUD.1.14",
+          "line_type": "p",
           "text": "Enoch, who lived in the seventh generation after Adam, prophesied about these people. He said, “Listen! The Lord is coming with countless thousands of his holy ones"
         },
         {
           "verse": 15,
+          "usfm": "JUD.1.15",
+          "line_type": "p",
           "text": "to execute judgment on the people of the world. He will convict every person of all the ungodly things they have done and for all the insults that ungodly sinners have spoken against him.”"
         },
         {
           "verse": 16,
+          "usfm": "JUD.1.16",
+          "line_type": "p",
           "text": "These people are grumblers and complainers, living only to satisfy their desires. They brag loudly about themselves, and they flatter others to get what they want."
         },
         {
           "verse": 17,
+          "usfm": "JUD.1.17",
+          "line_type": "m",
           "text": "But you, my dear friends, must remember what the apostles of our Lord Jesus Christ predicted."
         },
         {
           "verse": 18,
+          "usfm": "JUD.1.18",
+          "line_type": "m",
           "text": "They told you that in the last times there would be scoffers whose purpose in life is to satisfy their ungodly desires."
         },
         {
           "verse": 19,
+          "usfm": "JUD.1.19",
+          "line_type": "m",
           "text": "These people are the ones who are creating divisions among you. They follow their natural instincts because they do not have God’s Spirit in them."
         },
         {
           "verse": 20,
+          "usfm": "JUD.1.20",
+          "line_type": "p",
           "text": "But you, dear friends, must build each other up in your most holy faith, pray in the power of the Holy Spirit,"
         },
         {
           "verse": 21,
+          "usfm": "JUD.1.21",
+          "line_type": "p",
           "text": "and await the mercy of our Lord Jesus Christ, who will bring you eternal life. In this way, you will keep yourselves safe in God’s love."
         },
         {
           "verse": 22,
+          "usfm": "JUD.1.22",
+          "line_type": "p",
           "text": "And you must show mercy to those whose faith is wavering."
         },
         {
           "verse": 23,
+          "usfm": "JUD.1.23",
+          "line_type": "p",
           "text": "Rescue others by snatching them from the flames of judgment. Show mercy to still others, but do so with great caution, hating the sins that contaminate their lives."
         },
         {
           "verse": 24,
+          "usfm": "JUD.1.24",
+          "line_type": "m",
           "text": "Now all glory to God, who is able to keep you from falling away and will bring you with great joy into his glorious presence without a single fault."
         },
         {
           "verse": 25,
+          "usfm": "JUD.1.25",
+          "line_type": "m",
           "text": "All glory to him who alone is God, our Savior through Jesus Christ our Lord. All glory, majesty, power, and authority are his before all time, and in the present, and beyond all time! Amen."
         }
       ],
       "verse_count": 25,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "The Danger of False Teachers"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "A Call to Remain Faithful"
         },
         {
-          "before_verse": 23,
+          "before_verse": 24,
           "text": "A Prayer of Praise"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JUD.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or keeps you for Jesus Christ."
+        },
+        {
+          "verse": 5,
+          "usfm": "JUD.1.5",
+          "note_ref": "1:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Other manuscripts read [the] Lord, or God, or God Christ."
+        },
+        {
+          "verse": 8,
+          "usfm": "JUD.1.8",
+          "note_ref": "1:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek at glorious ones, which are probably evil angels."
+        },
+        {
+          "verse": 9,
+          "usfm": "JUD.1.9",
+          "note_ref": "1:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek Michael, the archangel."
+        },
+        {
+          "verse": 12,
+          "usfm": "JUD.1.12",
+          "note_ref": "1:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or they are contaminants among you; or they are stains."
+        },
+        {
+          "verse": 15,
+          "usfm": "JUD.1.15",
+          "note_ref": "1:14-15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The quotation comes from intertestamental literature: 1 Enoch 1:9."
+        },
+        {
+          "verse": 20,
+          "usfm": "JUD.1.20",
+          "note_ref": "1:20",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek pray in the Holy Spirit."
+        },
+        {
+          "verse": 22,
+          "usfm": "JUD.1.22",
+          "note_ref": "1:22",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read must reprove."
+        },
+        {
+          "verse": 23,
+          "usfm": "JUD.1.23",
+          "note_ref": "1:22-23a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts have only two categories of people: (1) those whose faith is wavering and therefore need to be snatched from the flames of judgment, and (2) those who need to be shown mercy."
+        },
+        {
+          "verse": 23,
+          "usfm": "JUD.1.23",
+          "note_ref": "1:23b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek with fear, hating even the clothing stained by the flesh."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JUD.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JUD.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JUD.1.1",
+            "JUD.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "JUD.1.2",
+            "JUD.1.3",
+            "JUD.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "JUD.1.4",
+            "JUD.1.5",
+            "JUD.1.6",
+            "JUD.1.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 11,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "JUD.1.10",
+            "JUD.1.11",
+            "JUD.1.7",
+            "JUD.1.8",
+            "JUD.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "JUD.1.11",
+            "JUD.1.12",
+            "JUD.1.13"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "JUD.1.13",
+            "JUD.1.14",
+            "JUD.1.15"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "JUD.1.15",
+            "JUD.1.16"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "m",
+          "start_verse": 16,
+          "end_verse": 19,
+          "verses": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "usfms": [
+            "JUD.1.16",
+            "JUD.1.17",
+            "JUD.1.18",
+            "JUD.1.19"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "JUD.1.19",
+            "JUD.1.20",
+            "JUD.1.21"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 23,
+          "verses": [
+            21,
+            22,
+            23
+          ],
+          "usfms": [
+            "JUD.1.21",
+            "JUD.1.22",
+            "JUD.1.23"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "m",
+          "start_verse": 23,
+          "end_verse": 25,
+          "verses": [
+            23,
+            24,
+            25
+          ],
+          "usfms": [
+            "JUD.1.23",
+            "JUD.1.24",
+            "JUD.1.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -176,7 +514,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/JUD/1-86931ebd258b8575ac419b9de337e78a.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/JUD.1.NLT",
+        "reference": {
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.1"
+          ],
+          "human": "Revelation 1",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

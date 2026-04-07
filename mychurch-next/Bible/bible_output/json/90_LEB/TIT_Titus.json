@@ -11,6 +11,7 @@
   "total_verses": 46,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 1,
       "chapter_usfm": "TIT.1",
@@ -19,77 +20,206 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.1.1",
+          "line_type": "p",
           "text": "Paul, a slave of God and an apostle of Jesus Christ for the faith of the chosen of God and the knowledge of the truth that is according to godliness,"
         },
         {
           "verse": 2,
+          "usfm": "TIT.1.2",
+          "line_type": "p",
           "text": "in the hope of eternal life which God, who does not lie, promised before eternal ages,"
         },
         {
           "verse": 3,
+          "usfm": "TIT.1.3",
+          "line_type": "p",
           "text": "but at the proper time has disclosed his message in the proclamation with which I was entrusted according to the command of God our Savior,"
         },
         {
           "verse": 4,
+          "usfm": "TIT.1.4",
+          "line_type": "p",
           "text": "to Titus, my true child according to a common faith. Grace and peace from God the Father and Christ Jesus our Savior."
         },
         {
           "verse": 5,
+          "usfm": "TIT.1.5",
+          "line_type": "p",
           "text": "On account of this, I left you behind in Crete, in order that what remains may be set in order and you may appoint elders in every town, as I ordered you."
         },
         {
           "verse": 6,
+          "usfm": "TIT.1.6",
+          "line_type": "p",
           "text": "If anyone is blameless, the husband of one wife, having faithful children, not accused of dissipation or rebellious."
         },
         {
           "verse": 7,
+          "usfm": "TIT.1.7",
+          "line_type": "p",
           "text": "For it is necessary for the overseer to be blameless as God’s steward, not self-willed, not quick-tempered, not addicted to wine, not violent, not greedy for dishonest gain,"
         },
         {
           "verse": 8,
+          "usfm": "TIT.1.8",
+          "line_type": "p",
           "text": "but hospitable, loving what is good, prudent, just, devout, self-controlled,"
         },
         {
           "verse": 9,
+          "usfm": "TIT.1.9",
+          "line_type": "p",
           "text": "holding fast to the faithful message according to the teaching, in order that he may be able both to exhort with sound instruction and to reprove those who speak against it."
         },
         {
           "verse": 10,
+          "usfm": "TIT.1.10",
+          "line_type": "p",
           "text": "For there are many rebellious people, idle talkers and deceivers, especially those of the circumcision,"
         },
         {
           "verse": 11,
+          "usfm": "TIT.1.11",
+          "line_type": "p",
           "text": "whom it is necessary to silence, whoever are ruining whole families by teaching things which must not be taught for the sake of dishonest gain."
         },
         {
           "verse": 12,
+          "usfm": "TIT.1.12",
+          "line_type": "p",
           "text": "A certain one of them, one of their own prophets, has said, “Cretans are always liars, evil beasts, lazy gluttons.”"
         },
         {
           "verse": 13,
+          "usfm": "TIT.1.13",
+          "line_type": "p",
           "text": "This testimony is true, for which reason reprove them severely, in order that they may be sound in the faith,"
         },
         {
           "verse": 14,
+          "usfm": "TIT.1.14",
+          "line_type": "p",
           "text": "not paying attention to Jewish myths and commandments of people who turn away from the truth."
         },
         {
           "verse": 15,
+          "usfm": "TIT.1.15",
+          "line_type": "p",
           "text": "To the pure all things are pure, but to those who are defiled and unbelieving nothing is pure, but both their mind and conscience are defiled."
         },
         {
           "verse": 16,
+          "usfm": "TIT.1.16",
+          "line_type": "p",
           "text": "They profess to know God, but by their deeds they deny him, because they are detestable and disobedient, and unfit for every good deed."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Instructions to Titus in Crete"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “believing”"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “with an accusation of dissipation”"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "﻿*Here “by” is supplied as a component of the participle (“teaching”) which is understood as means"
+        },
+        {
+          "verse": 16,
+          "usfm": "TIT.1.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "﻿*Here “because” is supplied as a component of the participle (“are”) which is understood as causal"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "TIT.1.1",
+            "TIT.1.2",
+            "TIT.1.3",
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 9,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "TIT.1.5",
+            "TIT.1.6",
+            "TIT.1.7",
+            "TIT.1.8",
+            "TIT.1.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 16,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "TIT.1.10",
+            "TIT.1.11",
+            "TIT.1.12",
+            "TIT.1.13",
+            "TIT.1.14",
+            "TIT.1.15",
+            "TIT.1.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 38,
@@ -100,9 +230,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/38/m4a/32k/TIT/1-3bf95f13456ef020fe3d66d1dc5a060c.m3u8?version_id=90"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/TIT.1.LEB",
+        "reference": {
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "2 Timothy 4",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 2,
       "chapter_usfm": "TIT.2",
@@ -111,68 +298,167 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.2.1",
+          "line_type": "p",
           "text": "But you, speak the things which are fitting for sound instruction."
         },
         {
           "verse": 2,
+          "usfm": "TIT.2.2",
+          "line_type": "p",
           "text": "Older men are to be temperate, worthy of respect, self-controlled, sound in faith, in love, and in endurance."
         },
         {
           "verse": 3,
+          "usfm": "TIT.2.3",
+          "line_type": "p",
           "text": "Older women likewise are to be reverent in their behavior, not slanderous, not enslaved to much wine, teaching what is good,"
         },
         {
           "verse": 4,
+          "usfm": "TIT.2.4",
+          "line_type": "p",
           "text": "in order that they may encourage the young women to love their husbands and to love their children,"
         },
         {
           "verse": 5,
+          "usfm": "TIT.2.5",
+          "line_type": "p",
           "text": "to be self-controlled, pure, busy at home, good, being subject to their own husbands, in order that the word of God may not be slandered."
         },
         {
           "verse": 6,
+          "usfm": "TIT.2.6",
+          "line_type": "p",
           "text": "Likewise, exhort the young men to be self-controlled,"
         },
         {
           "verse": 7,
+          "usfm": "TIT.2.7",
+          "line_type": "p",
           "text": "concerning everything showing yourself to be an example of good deeds, in your teaching demonstrating soundness, dignity,"
         },
         {
           "verse": 8,
+          "usfm": "TIT.2.8",
+          "line_type": "p",
           "text": "a sound message beyond reproach, in order that an opponent may be put to shame, because he has nothing bad to say concerning us."
         },
         {
           "verse": 9,
+          "usfm": "TIT.2.9",
+          "line_type": "p",
           "text": "Slaves must be subject to their own masters in everything, to be well-pleasing, not to talk back,"
         },
         {
           "verse": 10,
+          "usfm": "TIT.2.10",
+          "line_type": "p",
           "text": "not stealing, but demonstrating all good faith, in order that they may do credit to the teaching of God our Savior in everything."
         },
         {
           "verse": 11,
+          "usfm": "TIT.2.11",
+          "line_type": "p",
           "text": "For the grace of God has appeared, bringing salvation to all people,"
         },
         {
           "verse": 12,
+          "usfm": "TIT.2.12",
+          "line_type": "p",
           "text": "training us in order that, denying impiety and worldly desires, we may live self-controlled and righteously and godly in the present age,"
         },
         {
           "verse": 13,
+          "usfm": "TIT.2.13",
+          "line_type": "p",
           "text": "looking forward to the blessed hope and the glorious appearing of our great God and Savior Jesus Christ,"
         },
         {
           "verse": 14,
+          "usfm": "TIT.2.14",
+          "line_type": "p",
           "text": "who gave himself for us, in order that he might redeem us from all lawlessness and purify for himself a people for his own possession, zealous for good deeds."
         },
         {
           "verse": 15,
+          "usfm": "TIT.2.15",
+          "line_type": "p",
           "text": "Speak these things and exhort and reprove with all authority. Let no one disregard you."
         }
       ],
       "verse_count": 15,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 8,
+          "usfm": "TIT.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “one from the opposed”"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "﻿*Here “because” is supplied as a component of the participle (“has”) which is understood as causal"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 8,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.2.1",
+            "TIT.2.2",
+            "TIT.2.3",
+            "TIT.2.4",
+            "TIT.2.5",
+            "TIT.2.6",
+            "TIT.2.7",
+            "TIT.2.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 15,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.11",
+            "TIT.2.12",
+            "TIT.2.13",
+            "TIT.2.14",
+            "TIT.2.15",
+            "TIT.2.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 38,
@@ -183,9 +469,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/38/m4a/32k/TIT/2-bf6f104055f1fa7d9fd5d683f6a5400d.m3u8?version_id=90"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/TIT.2.LEB",
+        "reference": {
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 3,
       "chapter_usfm": "TIT.3",
@@ -194,73 +537,174 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.3.1",
+          "line_type": "p",
           "text": "Remind them to be subject to the rulers and to the authorities, to obey, to be prepared for every good work,"
         },
         {
           "verse": 2,
+          "usfm": "TIT.3.2",
+          "line_type": "p",
           "text": "to speak evil of no one, to be peaceable, gentle, showing all courtesy to all people."
         },
         {
           "verse": 3,
+          "usfm": "TIT.3.3",
+          "line_type": "p",
           "text": "For we also were once foolish, disobedient, led astray, enslaved to various desires and pleasures, spending our lives in wickedness and envy, despicable, hating one another."
         },
         {
           "verse": 4,
+          "usfm": "TIT.3.4",
+          "line_type": "p",
           "text": "But when the kindness and love for mankind of God our Savior appeared,"
         },
         {
           "verse": 5,
+          "usfm": "TIT.3.5",
+          "line_type": "p",
           "text": "he saved us, not by deeds of righteousness that we have done, but because of his mercy, through the washing of regeneration and renewal by the Holy Spirit,"
         },
         {
           "verse": 6,
+          "usfm": "TIT.3.6",
+          "line_type": "p",
           "text": "whom he poured out on us abundantly through Jesus Christ our Savior,"
         },
         {
           "verse": 7,
+          "usfm": "TIT.3.7",
+          "line_type": "p",
           "text": "so that, having been justified by his grace, we may become heirs according to the hope of eternal life."
         },
         {
           "verse": 8,
+          "usfm": "TIT.3.8",
+          "line_type": "p",
           "text": "The saying is trustworthy, and I want you to insist concerning these things, so that those who have believed in God may be careful to engage in good deeds. These things are good and beneficial for people."
         },
         {
           "verse": 9,
+          "usfm": "TIT.3.9",
+          "line_type": "p",
           "text": "But avoid foolish controversies and genealogies and contentions and quarrels about the law, for they are useless and fruitless."
         },
         {
           "verse": 10,
+          "usfm": "TIT.3.10",
+          "line_type": "p",
           "text": "Reject a divisive person after a first and second admonition,"
         },
         {
           "verse": 11,
+          "usfm": "TIT.3.11",
+          "line_type": "p",
           "text": "knowing that such a person is perverted and is sinning, being self-condemned."
         },
         {
           "verse": 12,
+          "usfm": "TIT.3.12",
+          "line_type": "p",
           "text": "When I send Artemas or Tychicus to you, make haste to come to me in Nicopolis, for I have decided to spend the winter there."
         },
         {
           "verse": 13,
+          "usfm": "TIT.3.13",
+          "line_type": "p",
           "text": "Diligently send on their way Zenas the lawyer and Apollos, so that they may lack nothing."
         },
         {
           "verse": 14,
+          "usfm": "TIT.3.14",
+          "line_type": "p",
           "text": "But also our people must learn to engage in good deeds for necessary needs, so that they will not be unfruitful."
         },
         {
           "verse": 15,
+          "usfm": "TIT.3.15",
+          "line_type": "p",
           "text": "All those with me greet you. Greet those who love us in the faith. Grace be with all of you."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Final Instructions to Titus"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 13,
+          "usfm": "TIT.3.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “nothing may lack to them”"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 7,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "TIT.3.1",
+            "TIT.3.2",
+            "TIT.3.3",
+            "TIT.3.4",
+            "TIT.3.5",
+            "TIT.3.6",
+            "TIT.3.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "TIT.3.10",
+            "TIT.3.11",
+            "TIT.3.8",
+            "TIT.3.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 15,
+          "verses": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.3.12",
+            "TIT.3.13",
+            "TIT.3.14",
+            "TIT.3.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 38,
@@ -271,7 +715,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/38/m4a/32k/TIT/3-74c5858c0be46f1bac1c3668ba2d7cd9.m3u8?version_id=90"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/TIT.3.LEB",
+        "reference": {
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "PHM.1"
+          ],
+          "human": "Philemon 1",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

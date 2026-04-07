@@ -11,6 +11,7 @@
   "total_verses": 149,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "GAL",
       "chapter": 1,
       "chapter_usfm": "GAL.1",
@@ -19,117 +20,574 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "GAL.1.1",
+          "line_type": "p",
           "text": "Paul, an apostle (not from men nor through man, but through Jesus Christ and God the Father who raised Him from the dead),"
         },
         {
           "verse": 2,
+          "usfm": "GAL.1.2",
+          "line_type": "p",
           "text": "and all the brethren who are with me,To the churches of Galatia:"
         },
         {
           "verse": 3,
+          "usfm": "GAL.1.3",
+          "line_type": "p",
           "text": "Grace to you and peace from God the Father and our Lord Jesus Christ,"
         },
         {
           "verse": 4,
+          "usfm": "GAL.1.4",
+          "line_type": "p",
           "text": "who gave Himself for our sins, that He might deliver us from this present evil age, according to the will of our God and Father,"
         },
         {
           "verse": 5,
+          "usfm": "GAL.1.5",
+          "line_type": "p",
           "text": "to whom be glory forever and ever. Amen."
         },
         {
           "verse": 6,
+          "usfm": "GAL.1.6",
+          "line_type": "p",
           "text": "I marvel that you are turning away so soon from Him who called you in the grace of Christ, to a different gospel,"
         },
         {
           "verse": 7,
+          "usfm": "GAL.1.7",
+          "line_type": "p",
           "text": "which is not another; but there are some who trouble you and want to pervert the gospel of Christ."
         },
         {
           "verse": 8,
+          "usfm": "GAL.1.8",
+          "line_type": "p",
           "text": "But even if we, or an angel from heaven, preach any other gospel to you than what we have preached to you, let him be accursed."
         },
         {
           "verse": 9,
+          "usfm": "GAL.1.9",
+          "line_type": "p",
           "text": "As we have said before, so now I say again, if anyone preaches any other gospel to you than what you have received, let him be accursed."
         },
         {
           "verse": 10,
+          "usfm": "GAL.1.10",
+          "line_type": "p",
           "text": "For do I now persuade men, or God? Or do I seek to please men? For if I still pleased men, I would not be a bondservant of Christ."
         },
         {
           "verse": 11,
+          "usfm": "GAL.1.11",
+          "line_type": "p",
           "text": "But I make known to you, brethren, that the gospel which was preached by me is not according to man."
         },
         {
           "verse": 12,
+          "usfm": "GAL.1.12",
+          "line_type": "p",
           "text": "For I neither received it from man, nor was I taught it, but it came through the revelation of Jesus Christ."
         },
         {
           "verse": 13,
+          "usfm": "GAL.1.13",
+          "line_type": "p",
           "text": "For you have heard of my former conduct in Judaism, how I persecuted the church of God beyond measure and tried to destroy it."
         },
         {
           "verse": 14,
+          "usfm": "GAL.1.14",
+          "line_type": "p",
           "text": "And I advanced in Judaism beyond many of my contemporaries in my own nation, being more exceedingly zealous for the traditions of my fathers."
         },
         {
           "verse": 15,
+          "usfm": "GAL.1.15",
+          "line_type": "p",
           "text": "But when it pleased God, who separated me from my mother’s womb and called me through His grace,"
         },
         {
           "verse": 16,
+          "usfm": "GAL.1.16",
+          "line_type": "p",
           "text": "to reveal His Son in me, that I might preach Him among the Gentiles, I did not immediately confer with flesh and blood,"
         },
         {
           "verse": 17,
+          "usfm": "GAL.1.17",
+          "line_type": "p",
           "text": "nor did I go up to Jerusalem to those who were apostles before me; but I went to Arabia, and returned again to Damascus."
         },
         {
           "verse": 18,
+          "usfm": "GAL.1.18",
+          "line_type": "p",
           "text": "Then after three years I went up to Jerusalem to see Peter, and remained with him fifteen days."
         },
         {
           "verse": 19,
+          "usfm": "GAL.1.19",
+          "line_type": "p",
           "text": "But I saw none of the other apostles except James, the Lord’s brother."
         },
         {
           "verse": 20,
+          "usfm": "GAL.1.20",
+          "line_type": "p",
           "text": "(Now concerning the things which I write to you, indeed, before God, I do not lie.)"
         },
         {
           "verse": 21,
+          "usfm": "GAL.1.21",
+          "line_type": "p",
           "text": "Afterward I went into the regions of Syria and Cilicia."
         },
         {
           "verse": 22,
+          "usfm": "GAL.1.22",
+          "line_type": "p",
           "text": "And I was unknown by face to the churches of Judea which were in Christ."
         },
         {
           "verse": 23,
+          "usfm": "GAL.1.23",
+          "line_type": "p",
           "text": "But they were hearing only, “He who formerly persecuted us now preaches the faith which he once tried to destroy.”"
         },
         {
           "verse": 24,
+          "usfm": "GAL.1.24",
+          "line_type": "p",
           "text": "And they glorified God in me."
         }
       ],
       "verse_count": 24,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Only One Gospel"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Call to Apostleship"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Contacts at Jerusalem"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "GAL.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 9:6"
+        },
+        {
+          "verse": 1,
+          "usfm": "GAL.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 2:24"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Matt. 20:28)"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 2:5"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 8:28); Gal. 1:15; 5:8"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Cor. 11:4"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 15:1; Gal. 5:10, 12"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Cor. 2:17"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 16:22"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 4:2"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(1 Cor. 10:33); 1 Thess. 2:4"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Sam. 24:7"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Thess. 2:4"
+        },
+        {
+          "verse": 11,
+          "usfm": "GAL.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 2:16); 1 Cor. 15:1"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 15:1"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Eph. 3:3–5)"
+        },
+        {
+          "verse": 13,
+          "usfm": "GAL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 9:1"
+        },
+        {
+          "verse": 13,
+          "usfm": "GAL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 8:3; 22:4, 5"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 26:9; Phil. 3:6"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 9:14; Matt. 15:2; Mark 7:3; (Col. 2:8)"
+        },
+        {
+          "verse": 15,
+          "usfm": "GAL.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 49:1, 5; Jer. 1:5; Acts 9:15; Rom. 1:1; Gal. 1:6"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(2 Cor. 4:5–7)"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 9:15; Gal. 2:9"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 16:17"
+        },
+        {
+          "verse": 18,
+          "usfm": "GAL.1.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 9:26"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.1.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 9:5"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.1.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 13:55"
+        },
+        {
+          "verse": 21,
+          "usfm": "GAL.1.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 9:30"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.1.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 16:7"
+        },
+        {
+          "verse": 23,
+          "usfm": "GAL.1.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 9:20, 21"
+        },
+        {
+          "verse": 23,
+          "usfm": "GAL.1.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 8:3"
+        },
+        {
+          "verse": 24,
+          "usfm": "GAL.1.24",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 11:18"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "GAL.1.1",
+            "GAL.1.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "GAL.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "GAL.1.3",
+            "GAL.1.4",
+            "GAL.1.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "GAL.1.6",
+            "GAL.1.7",
+            "GAL.1.8",
+            "GAL.1.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "GAL.1.10"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "GAL.1.11",
+            "GAL.1.12"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "GAL.1.13",
+            "GAL.1.14"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 17,
+          "verses": [
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "GAL.1.15",
+            "GAL.1.16",
+            "GAL.1.17"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 20,
+          "verses": [
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "GAL.1.18",
+            "GAL.1.19",
+            "GAL.1.20"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 24,
+          "verses": [
+            21,
+            22,
+            23,
+            24
+          ],
+          "usfms": [
+            "GAL.1.21",
+            "GAL.1.22",
+            "GAL.1.23",
+            "GAL.1.24"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -148,9 +606,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/GAL/1-e501548901645f9a525fcef66d687bb5.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 24,
+          "parsed_count": 24,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/GAL.1.NKJV",
+        "reference": {
+          "usfm": [
+            "GAL.1"
+          ],
+          "human": "Galatians 1",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2CO.13"
+          ],
+          "human": "II Corinthians 13",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "GAL.2"
+          ],
+          "human": "Galatians 2",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "GAL",
       "chapter": 2,
       "chapter_usfm": "GAL.2",
@@ -159,97 +674,530 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "GAL.2.1",
+          "line_type": "p",
           "text": "Then after fourteen years I went up again to Jerusalem with Barnabas, and also took Titus with me."
         },
         {
           "verse": 2,
+          "usfm": "GAL.2.2",
+          "line_type": "p",
           "text": "And I went up by revelation, and communicated to them that gospel which I preach among the Gentiles, but privately to those who were of reputation, lest by any means I might run, or had run, in vain."
         },
         {
           "verse": 3,
+          "usfm": "GAL.2.3",
+          "line_type": "p",
           "text": "Yet not even Titus who was with me, being a Greek, was compelled to be circumcised."
         },
         {
           "verse": 4,
+          "usfm": "GAL.2.4",
+          "line_type": "p",
           "text": "And this occurred because of false brethren secretly brought in (who came in by stealth to spy out our liberty which we have in Christ Jesus, that they might bring us into bondage),"
         },
         {
           "verse": 5,
+          "usfm": "GAL.2.5",
+          "line_type": "p",
           "text": "to whom we did not yield submission even for an hour, that the truth of the gospel might continue with you."
         },
         {
           "verse": 6,
+          "usfm": "GAL.2.6",
+          "line_type": "p",
           "text": "But from those who seemed to be something—whatever they were, it makes no difference to me; God shows personal favoritism to no man—for those who seemed to be something added nothing to me."
         },
         {
           "verse": 7,
+          "usfm": "GAL.2.7",
+          "line_type": "p",
           "text": "But on the contrary, when they saw that the gospel for the uncircumcised had been committed to me, as the gospel for the circumcised was to Peter"
         },
         {
           "verse": 8,
+          "usfm": "GAL.2.8",
+          "line_type": "p",
           "text": "(for He who worked effectively in Peter for the apostleship to the circumcised also worked effectively in me toward the Gentiles),"
         },
         {
           "verse": 9,
+          "usfm": "GAL.2.9",
+          "line_type": "p",
           "text": "and when James, Cephas, and John, who seemed to be pillars, perceived the grace that had been given to me, they gave me and Barnabas the right hand of fellowship, that we should go to the Gentiles and they to the circumcised."
         },
         {
           "verse": 10,
+          "usfm": "GAL.2.10",
+          "line_type": "p",
           "text": "They desired only that we should remember the poor, the very thing which I also was eager to do."
         },
         {
           "verse": 11,
+          "usfm": "GAL.2.11",
+          "line_type": "p",
           "text": "Now when Peter had come to Antioch, I withstood him to his face, because he was to be blamed;"
         },
         {
           "verse": 12,
+          "usfm": "GAL.2.12",
+          "line_type": "p",
           "text": "for before certain men came from James, he would eat with the Gentiles; but when they came, he withdrew and separated himself, fearing those who were of the circumcision."
         },
         {
           "verse": 13,
+          "usfm": "GAL.2.13",
+          "line_type": "p",
           "text": "And the rest of the Jews also played the hypocrite with him, so that even Barnabas was carried away with their hypocrisy."
         },
         {
           "verse": 14,
+          "usfm": "GAL.2.14",
+          "line_type": "p",
           "text": "But when I saw that they were not straightforward about the truth of the gospel, I said to Peter before them all, “If you, being a Jew, live in the manner of Gentiles and not as the Jews, why do you compel Gentiles to live as Jews?"
         },
         {
           "verse": 15,
+          "usfm": "GAL.2.15",
+          "line_type": "p",
           "text": "We who are Jews by nature, and not sinners of the Gentiles,"
         },
         {
           "verse": 16,
+          "usfm": "GAL.2.16",
+          "line_type": "p",
           "text": "knowing that a man is not justified by the works of the law but by faith in Jesus Christ, even we have believed in Christ Jesus, that we might be justified by faith in Christ and not by the works of the law; for by the works of the law no flesh shall be justified."
         },
         {
           "verse": 17,
+          "usfm": "GAL.2.17",
+          "line_type": "p",
           "text": "“But if, while we seek to be justified by Christ, we ourselves also are found sinners, is Christ therefore a minister of sin? Certainly not!"
         },
         {
           "verse": 18,
+          "usfm": "GAL.2.18",
+          "line_type": "p",
           "text": "For if I build again those things which I destroyed, I make myself a transgressor."
         },
         {
           "verse": 19,
+          "usfm": "GAL.2.19",
+          "line_type": "p",
           "text": "For I through the law died to the law that I might live to God."
         },
         {
           "verse": 20,
+          "usfm": "GAL.2.20",
+          "line_type": "p",
           "text": "I have been crucified with Christ; it is no longer I who live, but Christ lives in me; and the life which I now live in the flesh I live by faith in the Son of God, who loved me and gave Himself for me."
         },
         {
           "verse": 21,
+          "usfm": "GAL.2.21",
+          "line_type": "p",
           "text": "I do not set aside the grace of God; for if righteousness comes through the law, then Christ died in vain.”"
         }
       ],
       "verse_count": 21,
       "headings": [
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "No Return to the Law"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "GAL.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 15:2"
+        },
+        {
+          "verse": 2,
+          "usfm": "GAL.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 15:1–4"
+        },
+        {
+          "verse": 2,
+          "usfm": "GAL.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 9:16; 1 Cor. 9:24); Gal. 5:7; Phil. 2:16; 1 Thess. 3:5; 2 Tim. 4:7; Heb. 12:1"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 15:1, 24; 2 Cor. 11:13, 26; Gal. 1:7"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 3:25; 5:1, 13; (James 1:25)"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 4:3, 9"
+        },
+        {
+          "verse": 5,
+          "usfm": "GAL.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Gal. 1:6; 2:14; 3:1); Col. 1:5"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 2:9; 6:3"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 10:34; Rom. 2:11"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Cor. 11:5; 12:11"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 9:15; 13:46; 22:21; Rom. 11:13"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 9:17; 1 Thess. 2:4; 1 Tim. 1:11"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Pet. 1:1"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 9:15"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Gal. 3:5)"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 16:18"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 1:5"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 13:3"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 11:30"
+        },
+        {
+          "verse": 11,
+          "usfm": "GAL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 15:35"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Acts 10:28; 11:2, 3)"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 1:6; 2:5; Col. 1:5"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Tim. 5:20"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Acts 10:28); Gal. 2:12"
+        },
+        {
+          "verse": 15,
+          "usfm": "GAL.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Acts 15:10)"
+        },
+        {
+          "verse": 15,
+          "usfm": "GAL.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 9:11"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 13:38, 39; Gal. 3:11"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 1:17"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 143:2; Rom. 3:20"
+        },
+        {
+          "verse": 17,
+          "usfm": "GAL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(1 John 3:8)"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 8:2"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 6:2, 14; 7:4); 1 Cor. 9:20"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 6:11)"
+        },
+        {
+          "verse": 20,
+          "usfm": "GAL.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 6:6; Gal. 5:24; 6:14)"
+        },
+        {
+          "verse": 20,
+          "usfm": "GAL.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 6:8–11; 2 Cor. 5:15; (Eph. 2:4–6; Col. 3:1–4)"
+        },
+        {
+          "verse": 20,
+          "usfm": "GAL.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 53:12; Eph. 5:2"
+        },
+        {
+          "verse": 21,
+          "usfm": "GAL.2.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 7:11"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "GAL.2.1",
+            "GAL.2.2",
+            "GAL.2.3",
+            "GAL.2.4",
+            "GAL.2.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 10,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "GAL.2.10",
+            "GAL.2.6",
+            "GAL.2.7",
+            "GAL.2.8",
+            "GAL.2.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "GAL.2.11",
+            "GAL.2.12",
+            "GAL.2.13"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 16,
+          "verses": [
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "GAL.2.14",
+            "GAL.2.15",
+            "GAL.2.16"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 21,
+          "verses": [
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "GAL.2.17",
+            "GAL.2.18",
+            "GAL.2.19",
+            "GAL.2.20",
+            "GAL.2.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -268,9 +1216,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/GAL/2-729e387be1abb8aa7c7fae46ee84accd.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 21,
+          "parsed_count": 21,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/GAL.2.NKJV",
+        "reference": {
+          "usfm": [
+            "GAL.2"
+          ],
+          "human": "Galatians 2",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "GAL.1"
+          ],
+          "human": "Galatians 1",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "GAL.3"
+          ],
+          "human": "Galatians 3",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "GAL",
       "chapter": 3,
       "chapter_usfm": "GAL.3",
@@ -279,141 +1284,684 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "GAL.3.1",
+          "line_type": "p",
           "text": "O foolish Galatians! Who has bewitched you that you should not obey the truth, before whose eyes Jesus Christ was clearly portrayed among you as crucified?"
         },
         {
           "verse": 2,
+          "usfm": "GAL.3.2",
+          "line_type": "p",
           "text": "This only I want to learn from you: Did you receive the Spirit by the works of the law, or by the hearing of faith?"
         },
         {
           "verse": 3,
+          "usfm": "GAL.3.3",
+          "line_type": "p",
           "text": "Are you so foolish? Having begun in the Spirit, are you now being made perfect by the flesh?"
         },
         {
           "verse": 4,
+          "usfm": "GAL.3.4",
+          "line_type": "p",
           "text": "Have you suffered so many things in vain—if indeed it was in vain?"
         },
         {
           "verse": 5,
+          "usfm": "GAL.3.5",
+          "line_type": "p",
           "text": "Therefore He who supplies the Spirit to you and works miracles among you, does He do it by the works of the law, or by the hearing of faith?—"
         },
         {
           "verse": 6,
+          "usfm": "GAL.3.6",
+          "line_type": "p",
           "text": "just as Abraham “believed God, and it was accounted to him for righteousness.”"
         },
         {
           "verse": 7,
+          "usfm": "GAL.3.7",
+          "line_type": "p",
           "text": "Therefore know that only those who are of faith are sons of Abraham."
         },
         {
           "verse": 8,
+          "usfm": "GAL.3.8",
+          "line_type": "p",
           "text": "And the Scripture, foreseeing that God would justify the Gentiles by faith, preached the gospel to Abraham beforehand, saying, “In you all the nations shall be blessed.”"
         },
         {
           "verse": 9,
+          "usfm": "GAL.3.9",
+          "line_type": "p",
           "text": "So then those who are of faith are blessed with believing Abraham."
         },
         {
           "verse": 10,
+          "usfm": "GAL.3.10",
+          "line_type": "p",
           "text": "For as many as are of the works of the law are under the curse; for it is written, “Cursed is everyone who does not continue in all things which are written in the book of the law, to do them.”"
         },
         {
           "verse": 11,
+          "usfm": "GAL.3.11",
+          "line_type": "p",
           "text": "But that no one is justified by the law in the sight of God is evident, for “the just shall live by faith.”"
         },
         {
           "verse": 12,
+          "usfm": "GAL.3.12",
+          "line_type": "p",
           "text": "Yet the law is not of faith, but “the man who does them shall live by them.”"
         },
         {
           "verse": 13,
+          "usfm": "GAL.3.13",
+          "line_type": "p",
           "text": "Christ has redeemed us from the curse of the law, having become a curse for us (for it is written, “Cursed is everyone who hangs on a tree”),"
         },
         {
           "verse": 14,
+          "usfm": "GAL.3.14",
+          "line_type": "p",
           "text": "that the blessing of Abraham might come upon the Gentiles in Christ Jesus, that we might receive the promise of the Spirit through faith."
         },
         {
           "verse": 15,
+          "usfm": "GAL.3.15",
+          "line_type": "p",
           "text": "Brethren, I speak in the manner of men: Though it is only a man’s covenant, yet if it is confirmed, no one annuls or adds to it."
         },
         {
           "verse": 16,
+          "usfm": "GAL.3.16",
+          "line_type": "p",
           "text": "Now to Abraham and his Seed were the promises made. He does not say, “And to seeds,” as of many, but as of one, “And to your Seed,” who is Christ."
         },
         {
           "verse": 17,
+          "usfm": "GAL.3.17",
+          "line_type": "p",
           "text": "And this I say, that the law, which was four hundred and thirty years later, cannot annul the covenant that was confirmed before by God in Christ, that it should make the promise of no effect."
         },
         {
           "verse": 18,
+          "usfm": "GAL.3.18",
+          "line_type": "p",
           "text": "For if the inheritance is of the law, it is no longer of promise; but God gave it to Abraham by promise."
         },
         {
           "verse": 19,
+          "usfm": "GAL.3.19",
+          "line_type": "p",
           "text": "What purpose then does the law serve? It was added because of transgressions, till the Seed should come to whom the promise was made; and it was appointed through angels by the hand of a mediator."
         },
         {
           "verse": 20,
+          "usfm": "GAL.3.20",
+          "line_type": "p",
           "text": "Now a mediator does not mediate for one only, but God is one."
         },
         {
           "verse": 21,
+          "usfm": "GAL.3.21",
+          "line_type": "p",
           "text": "Is the law then against the promises of God? Certainly not! For if there had been a law given which could have given life, truly righteousness would have been by the law."
         },
         {
           "verse": 22,
+          "usfm": "GAL.3.22",
+          "line_type": "p",
           "text": "But the Scripture has confined all under sin, that the promise by faith in Jesus Christ might be given to those who believe."
         },
         {
           "verse": 23,
+          "usfm": "GAL.3.23",
+          "line_type": "p",
           "text": "But before faith came, we were kept under guard by the law, kept for the faith which would afterward be revealed."
         },
         {
           "verse": 24,
+          "usfm": "GAL.3.24",
+          "line_type": "p",
           "text": "Therefore the law was our tutor to bring us to Christ, that we might be justified by faith."
         },
         {
           "verse": 25,
+          "usfm": "GAL.3.25",
+          "line_type": "p",
           "text": "But after faith has come, we are no longer under a tutor."
         },
         {
           "verse": 26,
+          "usfm": "GAL.3.26",
+          "line_type": "p",
           "text": "For you are all sons of God through faith in Christ Jesus."
         },
         {
           "verse": 27,
+          "usfm": "GAL.3.27",
+          "line_type": "p",
           "text": "For as many of you as were baptized into Christ have put on Christ."
         },
         {
           "verse": 28,
+          "usfm": "GAL.3.28",
+          "line_type": "p",
           "text": "There is neither Jew nor Greek, there is neither slave nor free, there is neither male nor female; for you are all one in Christ Jesus."
         },
         {
           "verse": 29,
+          "usfm": "GAL.3.29",
+          "line_type": "p",
           "text": "And if you are Christ’s, then you are Abraham’s seed, and heirs according to the promise."
         }
       ],
       "verse_count": 29,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "The Law Brings a Curse"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "The Changeless Promise"
         },
         {
-          "before_verse": 18,
+          "before_verse": 19,
           "text": "Purpose of the Law"
         },
         {
-          "before_verse": 25,
+          "before_verse": 26,
           "text": "Sons and Heirs"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "GAL.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 10:16, 17"
+        },
+        {
+          "verse": 3,
+          "usfm": "GAL.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Gal. 4:9)"
+        },
+        {
+          "verse": 3,
+          "usfm": "GAL.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 7:16"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 10:35"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 15:6"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 8:39"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 9:17"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 12:3; 18:18; 22:18; 26:4; 28:14"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 27:26"
+        },
+        {
+          "verse": 11,
+          "usfm": "GAL.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hab. 2:4; Rom. 1:17; Heb. 10:38"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 4:4, 5"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lev. 18:5; Rom. 10:5"
+        },
+        {
+          "verse": 13,
+          "usfm": "GAL.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 8:3)"
+        },
+        {
+          "verse": 13,
+          "usfm": "GAL.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 21:23"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 4:1–5, 9, 16; Gal. 3:28)"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 42:1, 6; 49:6; Luke 2:32; Rom. 3:29, 30"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 32:15"
+        },
+        {
+          "verse": 15,
+          "usfm": "GAL.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 9:17"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 22:18"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 12:3, 7; 13:15; 24:7"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(1 Cor. 12:12)"
+        },
+        {
+          "verse": 17,
+          "usfm": "GAL.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 15:13; Ex. 12:40; Acts 7:6"
+        },
+        {
+          "verse": 17,
+          "usfm": "GAL.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 4:13)"
+        },
+        {
+          "verse": 18,
+          "usfm": "GAL.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 8:17)"
+        },
+        {
+          "verse": 18,
+          "usfm": "GAL.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 4:14"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 15:22"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 4:4"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 7:53"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex. 20:19; Deut. 5:5"
+        },
+        {
+          "verse": 20,
+          "usfm": "GAL.3.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 3:29)"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.3.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 11:32"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.3.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 4:11"
+        },
+        {
+          "verse": 24,
+          "usfm": "GAL.3.24",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 10:4"
+        },
+        {
+          "verse": 24,
+          "usfm": "GAL.3.24",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 13:39"
+        },
+        {
+          "verse": 26,
+          "usfm": "GAL.3.26",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 1:12"
+        },
+        {
+          "verse": 27,
+          "usfm": "GAL.3.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 28:19; (Rom. 6:3); 1 Cor. 10:2"
+        },
+        {
+          "verse": 27,
+          "usfm": "GAL.3.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 10:12; 13:14"
+        },
+        {
+          "verse": 28,
+          "usfm": "GAL.3.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 10:16); Rom. 3:22; 10:12; (Eph. 2:14); Col. 3:11"
+        },
+        {
+          "verse": 28,
+          "usfm": "GAL.3.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(1 Cor. 12:13)"
+        },
+        {
+          "verse": 28,
+          "usfm": "GAL.3.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 17:11; (1 Cor. 12:13; Eph. 2:15, 16)"
+        },
+        {
+          "verse": 29,
+          "usfm": "GAL.3.29",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 21:10; Heb. 11:18"
+        },
+        {
+          "verse": 29,
+          "usfm": "GAL.3.29",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 4:11; Gal. 3:7"
+        },
+        {
+          "verse": 29,
+          "usfm": "GAL.3.29",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 12:3; 18:18; Rom. 8:17"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "GAL.3.1",
+            "GAL.3.2",
+            "GAL.3.3",
+            "GAL.3.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 9,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "GAL.3.5",
+            "GAL.3.6",
+            "GAL.3.7",
+            "GAL.3.8",
+            "GAL.3.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "GAL.3.10",
+            "GAL.3.11",
+            "GAL.3.12"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "GAL.3.13",
+            "GAL.3.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "GAL.3.15",
+            "GAL.3.16",
+            "GAL.3.17",
+            "GAL.3.18"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "GAL.3.19",
+            "GAL.3.20"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 25,
+          "verses": [
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "usfms": [
+            "GAL.3.21",
+            "GAL.3.22",
+            "GAL.3.23",
+            "GAL.3.24",
+            "GAL.3.25"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 26,
+          "end_verse": 29,
+          "verses": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "usfms": [
+            "GAL.3.26",
+            "GAL.3.27",
+            "GAL.3.28",
+            "GAL.3.29"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -432,9 +1980,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/GAL/3-d783d61ca3985c2b79c57e8749409927.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 29,
+          "parsed_count": 29,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/GAL.3.NKJV",
+        "reference": {
+          "usfm": [
+            "GAL.3"
+          ],
+          "human": "Galatians 3",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "GAL.2"
+          ],
+          "human": "Galatians 2",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "GAL.4"
+          ],
+          "human": "Galatians 4",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "GAL",
       "chapter": 4,
       "chapter_usfm": "GAL.4",
@@ -443,141 +2048,698 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "GAL.4.1",
+          "line_type": "p",
           "text": "Now I say that the heir, as long as he is a child, does not differ at all from a slave, though he is master of all,"
         },
         {
           "verse": 2,
+          "usfm": "GAL.4.2",
+          "line_type": "p",
           "text": "but is under guardians and stewards until the time appointed by the father."
         },
         {
           "verse": 3,
+          "usfm": "GAL.4.3",
+          "line_type": "p",
           "text": "Even so we, when we were children, were in bondage under the elements of the world."
         },
         {
           "verse": 4,
+          "usfm": "GAL.4.4",
+          "line_type": "p",
           "text": "But when the fullness of the time had come, God sent forth His Son, born of a woman, born under the law,"
         },
         {
           "verse": 5,
+          "usfm": "GAL.4.5",
+          "line_type": "p",
           "text": "to redeem those who were under the law, that we might receive the adoption as sons."
         },
         {
           "verse": 6,
+          "usfm": "GAL.4.6",
+          "line_type": "p",
           "text": "And because you are sons, God has sent forth the Spirit of His Son into your hearts, crying out, “Abba, Father!”"
         },
         {
           "verse": 7,
+          "usfm": "GAL.4.7",
+          "line_type": "p",
           "text": "Therefore you are no longer a slave but a son, and if a son, then an heir of God through Christ."
         },
         {
           "verse": 8,
+          "usfm": "GAL.4.8",
+          "line_type": "p",
           "text": "But then, indeed, when you did not know God, you served those which by nature are not gods."
         },
         {
           "verse": 9,
+          "usfm": "GAL.4.9",
+          "line_type": "p",
           "text": "But now after you have known God, or rather are known by God, how is it that you turn again to the weak and beggarly elements, to which you desire again to be in bondage?"
         },
         {
           "verse": 10,
+          "usfm": "GAL.4.10",
+          "line_type": "p",
           "text": "You observe days and months and seasons and years."
         },
         {
           "verse": 11,
+          "usfm": "GAL.4.11",
+          "line_type": "p",
           "text": "I am afraid for you, lest I have labored for you in vain."
         },
         {
           "verse": 12,
+          "usfm": "GAL.4.12",
+          "line_type": "p",
           "text": "Brethren, I urge you to become like me, for I became like you. You have not injured me at all."
         },
         {
           "verse": 13,
+          "usfm": "GAL.4.13",
+          "line_type": "p",
           "text": "You know that because of physical infirmity I preached the gospel to you at the first."
         },
         {
           "verse": 14,
+          "usfm": "GAL.4.14",
+          "line_type": "p",
           "text": "And my trial which was in my flesh you did not despise or reject, but you received me as an angel of God, even as Christ Jesus."
         },
         {
           "verse": 15,
+          "usfm": "GAL.4.15",
+          "line_type": "p",
           "text": "What then was the blessing you enjoyed? For I bear you witness that, if possible, you would have plucked out your own eyes and given them to me."
         },
         {
           "verse": 16,
+          "usfm": "GAL.4.16",
+          "line_type": "p",
           "text": "Have I therefore become your enemy because I tell you the truth?"
         },
         {
           "verse": 17,
+          "usfm": "GAL.4.17",
+          "line_type": "p",
           "text": "They zealously court you, but for no good; yes, they want to exclude you, that you may be zealous for them."
         },
         {
           "verse": 18,
+          "usfm": "GAL.4.18",
+          "line_type": "p",
           "text": "But it is good to be zealous in a good thing always, and not only when I am present with you."
         },
         {
           "verse": 19,
+          "usfm": "GAL.4.19",
+          "line_type": "p",
           "text": "My little children, for whom I labor in birth again until Christ is formed in you,"
         },
         {
           "verse": 20,
+          "usfm": "GAL.4.20",
+          "line_type": "p",
           "text": "I would like to be present with you now and to change my tone; for I have doubts about you."
         },
         {
           "verse": 21,
+          "usfm": "GAL.4.21",
+          "line_type": "p",
           "text": "Tell me, you who desire to be under the law, do you not hear the law?"
         },
         {
           "verse": 22,
+          "usfm": "GAL.4.22",
+          "line_type": "p",
           "text": "For it is written that Abraham had two sons: the one by a bondwoman, the other by a freewoman."
         },
         {
           "verse": 23,
+          "usfm": "GAL.4.23",
+          "line_type": "p",
           "text": "But he who was of the bondwoman was born according to the flesh, and he of the freewoman through promise,"
         },
         {
           "verse": 24,
+          "usfm": "GAL.4.24",
+          "line_type": "p",
           "text": "which things are symbolic. For these are the two covenants: the one from Mount Sinai which gives birth to bondage, which is Hagar—"
         },
         {
           "verse": 25,
+          "usfm": "GAL.4.25",
+          "line_type": "p",
           "text": "for this Hagar is Mount Sinai in Arabia, and corresponds to Jerusalem which now is, and is in bondage with her children—"
         },
         {
           "verse": 26,
+          "usfm": "GAL.4.26",
+          "line_type": "p",
           "text": "but the Jerusalem above is free, which is the mother of us all."
         },
         {
           "verse": 27,
+          "usfm": "GAL.4.27",
+          "line_type": "p",
           "text": "For it is written:“Rejoice, O barren,You who do not bear!Break forth and shout,You who are not in labor!For the desolate has many more childrenThan she who has a husband.”"
         },
         {
           "verse": 28,
+          "usfm": "GAL.4.28",
+          "line_type": "p",
           "text": "Now we, brethren, as Isaac was, are children of promise."
         },
         {
           "verse": 29,
+          "usfm": "GAL.4.29",
+          "line_type": "p",
           "text": "But, as he who was born according to the flesh then persecuted him who was born according to the Spirit, even so it is now."
         },
         {
           "verse": 30,
+          "usfm": "GAL.4.30",
+          "line_type": "p",
           "text": "Nevertheless what does the Scripture say? “Cast out the bondwoman and her son, for the son of the bondwoman shall not be heir with the son of the freewoman.”"
         },
         {
           "verse": 31,
+          "usfm": "GAL.4.31",
+          "line_type": "p",
           "text": "So then, brethren, we are not children of the bondwoman but of the free."
         }
       ],
       "verse_count": 31,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Fears for the Church"
         },
         {
-          "before_verse": 20,
+          "before_verse": 21,
           "text": "Two Covenants"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "GAL.4.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 4:9; Col. 2:8, 20; Heb. 5:12; 9:10"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.4.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Gen. 49:10)"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.4.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 1:14); Rom. 1:3; 8:3; (Phil. 2:7)"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.4.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 3:15; (Is. 7:14; Matt. 1:25)"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.4.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Matt. 5:17); Luke 2:21, 27"
+        },
+        {
+          "verse": 5,
+          "usfm": "GAL.4.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Matt. 20:28; Gal. 3:13)"
+        },
+        {
+          "verse": 5,
+          "usfm": "GAL.4.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 1:12)"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.4.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Acts 16:7; Rom. 5:5; 8:9, 15, 16; 2 Cor. 3:17)"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.4.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 8:16, 17)"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.4.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 1:21; Eph. 2:12; 1 Thess. 4:5; 2 Thess. 1:8"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.4.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 1:25"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.4.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(1 Cor. 8:3)"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.4.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 3:1–3; Col. 2:20"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.4.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 7:18"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.4.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 14:5; Col. 2:16"
+        },
+        {
+          "verse": 11,
+          "usfm": "GAL.4.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Thess. 3:5"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.4.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Cor. 2:5"
+        },
+        {
+          "verse": 13,
+          "usfm": "GAL.4.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 2:3"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.4.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mal. 2:7"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.4.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Luke 10:16)"
+        },
+        {
+          "verse": 17,
+          "usfm": "GAL.4.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 10:2"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.4.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 4:15"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.4.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 16:15"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.4.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 21:2"
+        },
+        {
+          "verse": 23,
+          "usfm": "GAL.4.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 9:7, 8; Gal. 4:29"
+        },
+        {
+          "verse": 23,
+          "usfm": "GAL.4.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 16:15; 17:15–19; 18:10; 21:1; Gal. 4:28; Heb. 11:11"
+        },
+        {
+          "verse": 24,
+          "usfm": "GAL.4.24",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex. 24:6–8; Deut. 33:2"
+        },
+        {
+          "verse": 26,
+          "usfm": "GAL.4.26",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Is. 2:2)"
+        },
+        {
+          "verse": 27,
+          "usfm": "GAL.4.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 54:1"
+        },
+        {
+          "verse": 28,
+          "usfm": "GAL.4.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 9:7, 8; Gal. 3:29"
+        },
+        {
+          "verse": 28,
+          "usfm": "GAL.4.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 3:25"
+        },
+        {
+          "verse": 29,
+          "usfm": "GAL.4.29",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 21:9"
+        },
+        {
+          "verse": 29,
+          "usfm": "GAL.4.29",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 5:11"
+        },
+        {
+          "verse": 30,
+          "usfm": "GAL.4.30",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Gal. 3:8, 22)"
+        },
+        {
+          "verse": 30,
+          "usfm": "GAL.4.30",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 21:10, 12"
+        },
+        {
+          "verse": 30,
+          "usfm": "GAL.4.30",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 8:35)"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "GAL.4.1",
+            "GAL.4.2",
+            "GAL.4.3",
+            "GAL.4.4",
+            "GAL.4.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "GAL.4.6",
+            "GAL.4.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "GAL.4.10",
+            "GAL.4.11",
+            "GAL.4.8",
+            "GAL.4.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 16,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "GAL.4.12",
+            "GAL.4.13",
+            "GAL.4.14",
+            "GAL.4.15",
+            "GAL.4.16"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 20,
+          "verses": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "GAL.4.17",
+            "GAL.4.18",
+            "GAL.4.19",
+            "GAL.4.20"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 27,
+          "verses": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "usfms": [
+            "GAL.4.21",
+            "GAL.4.22",
+            "GAL.4.23",
+            "GAL.4.24",
+            "GAL.4.25",
+            "GAL.4.26",
+            "GAL.4.27"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "GAL.4.27"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "GAL.4.27"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "GAL.4.27"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "GAL.4.27"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "GAL.4.27"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "GAL.4.27"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 31,
+          "verses": [
+            28,
+            29,
+            30,
+            31
+          ],
+          "usfms": [
+            "GAL.4.28",
+            "GAL.4.29",
+            "GAL.4.30",
+            "GAL.4.31"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -596,9 +2758,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/GAL/4-2bb97c1e375d56d6cff9b2b4ef643efd.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 31,
+          "parsed_count": 31,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/GAL.4.NKJV",
+        "reference": {
+          "usfm": [
+            "GAL.4"
+          ],
+          "human": "Galatians 4",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "GAL.3"
+          ],
+          "human": "Galatians 3",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "GAL.5"
+          ],
+          "human": "Galatians 5",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "GAL",
       "chapter": 5,
       "chapter_usfm": "GAL.5",
@@ -607,121 +2826,570 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "GAL.5.1",
+          "line_type": "p",
           "text": "Stand fast therefore in the liberty by which Christ has made us free, and do not be entangled again with a yoke of bondage."
         },
         {
           "verse": 2,
+          "usfm": "GAL.5.2",
+          "line_type": "p",
           "text": "Indeed I, Paul, say to you that if you become circumcised, Christ will profit you nothing."
         },
         {
           "verse": 3,
+          "usfm": "GAL.5.3",
+          "line_type": "p",
           "text": "And I testify again to every man who becomes circumcised that he is a debtor to keep the whole law."
         },
         {
           "verse": 4,
+          "usfm": "GAL.5.4",
+          "line_type": "p",
           "text": "You have become estranged from Christ, you who attempt to be justified by law; you have fallen from grace."
         },
         {
           "verse": 5,
+          "usfm": "GAL.5.5",
+          "line_type": "p",
           "text": "For we through the Spirit eagerly wait for the hope of righteousness by faith."
         },
         {
           "verse": 6,
+          "usfm": "GAL.5.6",
+          "line_type": "p",
           "text": "For in Christ Jesus neither circumcision nor uncircumcision avails anything, but faith working through love."
         },
         {
           "verse": 7,
+          "usfm": "GAL.5.7",
+          "line_type": "p",
           "text": "You ran well. Who hindered you from obeying the truth?"
         },
         {
           "verse": 8,
+          "usfm": "GAL.5.8",
+          "line_type": "p",
           "text": "This persuasion does not come from Him who calls you."
         },
         {
           "verse": 9,
+          "usfm": "GAL.5.9",
+          "line_type": "p",
           "text": "A little leaven leavens the whole lump."
         },
         {
           "verse": 10,
+          "usfm": "GAL.5.10",
+          "line_type": "p",
           "text": "I have confidence in you, in the Lord, that you will have no other mind; but he who troubles you shall bear his judgment, whoever he is."
         },
         {
           "verse": 11,
+          "usfm": "GAL.5.11",
+          "line_type": "p",
           "text": "And I, brethren, if I still preach circumcision, why do I still suffer persecution? Then the offense of the cross has ceased."
         },
         {
           "verse": 12,
+          "usfm": "GAL.5.12",
+          "line_type": "p",
           "text": "I could wish that those who trouble you would even cut themselves off!"
         },
         {
           "verse": 13,
+          "usfm": "GAL.5.13",
+          "line_type": "p",
           "text": "For you, brethren, have been called to liberty; only do not use liberty as an opportunity for the flesh, but through love serve one another."
         },
         {
           "verse": 14,
+          "usfm": "GAL.5.14",
+          "line_type": "p",
           "text": "For all the law is fulfilled in one word, even in this: “You shall love your neighbor as yourself.”"
         },
         {
           "verse": 15,
+          "usfm": "GAL.5.15",
+          "line_type": "p",
           "text": "But if you bite and devour one another, beware lest you be consumed by one another!"
         },
         {
           "verse": 16,
+          "usfm": "GAL.5.16",
+          "line_type": "p",
           "text": "I say then: Walk in the Spirit, and you shall not fulfill the lust of the flesh."
         },
         {
           "verse": 17,
+          "usfm": "GAL.5.17",
+          "line_type": "p",
           "text": "For the flesh lusts against the Spirit, and the Spirit against the flesh; and these are contrary to one another, so that you do not do the things that you wish."
         },
         {
           "verse": 18,
+          "usfm": "GAL.5.18",
+          "line_type": "p",
           "text": "But if you are led by the Spirit, you are not under the law."
         },
         {
           "verse": 19,
+          "usfm": "GAL.5.19",
+          "line_type": "p",
           "text": "Now the works of the flesh are evident, which are: adultery, fornication, uncleanness, lewdness,"
         },
         {
           "verse": 20,
+          "usfm": "GAL.5.20",
+          "line_type": "p",
           "text": "idolatry, sorcery, hatred, contentions, jealousies, outbursts of wrath, selfish ambitions, dissensions, heresies,"
         },
         {
           "verse": 21,
+          "usfm": "GAL.5.21",
+          "line_type": "p",
           "text": "envy, murders, drunkenness, revelries, and the like; of which I tell you beforehand, just as I also told you in time past, that those who practice such things will not inherit the kingdom of God."
         },
         {
           "verse": 22,
+          "usfm": "GAL.5.22",
+          "line_type": "p",
           "text": "But the fruit of the Spirit is love, joy, peace, longsuffering, kindness, goodness, faithfulness,"
         },
         {
           "verse": 23,
+          "usfm": "GAL.5.23",
+          "line_type": "p",
           "text": "gentleness, self-control. Against such there is no law."
         },
         {
           "verse": 24,
+          "usfm": "GAL.5.24",
+          "line_type": "p",
           "text": "And those who are Christ’s have crucified the flesh with its passions and desires."
         },
         {
           "verse": 25,
+          "usfm": "GAL.5.25",
+          "line_type": "p",
           "text": "If we live in the Spirit, let us also walk in the Spirit."
         },
         {
           "verse": 26,
+          "usfm": "GAL.5.26",
+          "line_type": "p",
           "text": "Let us not become conceited, provoking one another, envying one another."
         }
       ],
       "verse_count": 26,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Love Fulfills the Law"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "Walking in the Spirit"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "GAL.5.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Phil. 4:1"
+        },
+        {
+          "verse": 1,
+          "usfm": "GAL.5.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 15:10; Gal. 2:4"
+        },
+        {
+          "verse": 2,
+          "usfm": "GAL.5.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 15:1; Gal. 5:3, 6, 11"
+        },
+        {
+          "verse": 3,
+          "usfm": "GAL.5.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Deut. 27:26; Rom. 2:25; Gal. 3:10)"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.5.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 9:31)"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.5.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 12:15; 2 Pet. 3:17"
+        },
+        {
+          "verse": 5,
+          "usfm": "GAL.5.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 8:24"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.5.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(1 Cor. 7:19; Gal. 6:15; Col. 3:11)"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.5.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Col. 1:4; 1 Thess. 1:3; (James 2:18, 20, 22)"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.5.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 9:24"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.5.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 5:6"
+        },
+        {
+          "verse": 11,
+          "usfm": "GAL.5.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 15:30"
+        },
+        {
+          "verse": 11,
+          "usfm": "GAL.5.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 9:33; (1 Cor. 1:23)"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.5.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Josh. 7:25"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.5.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 15:1, 2"
+        },
+        {
+          "verse": 13,
+          "usfm": "GAL.5.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 8:2); 1 Cor. 8:9; Gal. 5:1"
+        },
+        {
+          "verse": 13,
+          "usfm": "GAL.5.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 6:1; 1 Pet. 2:16"
+        },
+        {
+          "verse": 13,
+          "usfm": "GAL.5.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 9:19; Eph. 5:21"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.5.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 7:12; 22:40; Rom. 13:8, 10; Gal. 6:2"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.5.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lev. 19:18; Matt. 22:39; Rom. 13:9"
+        },
+        {
+          "verse": 16,
+          "usfm": "GAL.5.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 6:12"
+        },
+        {
+          "verse": 17,
+          "usfm": "GAL.5.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 7:18, 22, 23; 8:5"
+        },
+        {
+          "verse": 17,
+          "usfm": "GAL.5.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 7:15"
+        },
+        {
+          "verse": 18,
+          "usfm": "GAL.5.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 6:14; 7:4; 8:14; 1 Tim. 1:9)"
+        },
+        {
+          "verse": 19,
+          "usfm": "GAL.5.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 1:26–31; Eph. 5:3, 11; 2 Tim. 3:2–4"
+        },
+        {
+          "verse": 21,
+          "usfm": "GAL.5.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 6:9, 10"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.5.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 15:2)"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.5.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 5:1–5; 1 Cor. 13:4; Col. 3:12–15)"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.5.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 15:14"
+        },
+        {
+          "verse": 22,
+          "usfm": "GAL.5.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 13:7"
+        },
+        {
+          "verse": 23,
+          "usfm": "GAL.5.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Tim. 1:9"
+        },
+        {
+          "verse": 24,
+          "usfm": "GAL.5.24",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 6:6; (Gal. 2:20; 6:14)"
+        },
+        {
+          "verse": 25,
+          "usfm": "GAL.5.25",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 8:4, 5)"
+        },
+        {
+          "verse": 26,
+          "usfm": "GAL.5.26",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Phil. 2:3"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 6,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "GAL.5.1",
+            "GAL.5.2",
+            "GAL.5.3",
+            "GAL.5.4",
+            "GAL.5.5",
+            "GAL.5.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 10,
+          "verses": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "GAL.5.10",
+            "GAL.5.7",
+            "GAL.5.8",
+            "GAL.5.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "GAL.5.11",
+            "GAL.5.12"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "GAL.5.13",
+            "GAL.5.14",
+            "GAL.5.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 18,
+          "verses": [
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "GAL.5.16",
+            "GAL.5.17",
+            "GAL.5.18"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "GAL.5.19",
+            "GAL.5.20",
+            "GAL.5.21"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 26,
+          "verses": [
+            22,
+            23,
+            24,
+            25,
+            26
+          ],
+          "usfms": [
+            "GAL.5.22",
+            "GAL.5.23",
+            "GAL.5.24",
+            "GAL.5.25",
+            "GAL.5.26"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -740,9 +3408,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/GAL/5-35b01d9d7fbfed16b3b93bb407f33569.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 26,
+          "parsed_count": 26,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/GAL.5.NKJV",
+        "reference": {
+          "usfm": [
+            "GAL.5"
+          ],
+          "human": "Galatians 5",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "GAL.4"
+          ],
+          "human": "Galatians 4",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "GAL.6"
+          ],
+          "human": "Galatians 6",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "GAL",
       "chapter": 6,
       "chapter_usfm": "GAL.6",
@@ -751,93 +3476,398 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "GAL.6.1",
+          "line_type": "p",
           "text": "Brethren, if a man is overtaken in any trespass, you who are spiritual restore such a one in a spirit of gentleness, considering yourself lest you also be tempted."
         },
         {
           "verse": 2,
+          "usfm": "GAL.6.2",
+          "line_type": "p",
           "text": "Bear one another’s burdens, and so fulfill the law of Christ."
         },
         {
           "verse": 3,
+          "usfm": "GAL.6.3",
+          "line_type": "p",
           "text": "For if anyone thinks himself to be something, when he is nothing, he deceives himself."
         },
         {
           "verse": 4,
+          "usfm": "GAL.6.4",
+          "line_type": "p",
           "text": "But let each one examine his own work, and then he will have rejoicing in himself alone, and not in another."
         },
         {
           "verse": 5,
+          "usfm": "GAL.6.5",
+          "line_type": "p",
           "text": "For each one shall bear his own load."
         },
         {
           "verse": 6,
+          "usfm": "GAL.6.6",
+          "line_type": "p",
           "text": "Let him who is taught the word share in all good things with him who teaches."
         },
         {
           "verse": 7,
+          "usfm": "GAL.6.7",
+          "line_type": "p",
           "text": "Do not be deceived, God is not mocked; for whatever a man sows, that he will also reap."
         },
         {
           "verse": 8,
+          "usfm": "GAL.6.8",
+          "line_type": "p",
           "text": "For he who sows to his flesh will of the flesh reap corruption, but he who sows to the Spirit will of the Spirit reap everlasting life."
         },
         {
           "verse": 9,
+          "usfm": "GAL.6.9",
+          "line_type": "p",
           "text": "And let us not grow weary while doing good, for in due season we shall reap if we do not lose heart."
         },
         {
           "verse": 10,
+          "usfm": "GAL.6.10",
+          "line_type": "p",
           "text": "Therefore, as we have opportunity, let us do good to all, especially to those who are of the household of faith."
         },
         {
           "verse": 11,
+          "usfm": "GAL.6.11",
+          "line_type": "p",
           "text": "See with what large letters I have written to you with my own hand!"
         },
         {
           "verse": 12,
+          "usfm": "GAL.6.12",
+          "line_type": "p",
           "text": "As many as desire to make a good showing in the flesh, these would compel you to be circumcised, only that they may not suffer persecution for the cross of Christ."
         },
         {
           "verse": 13,
+          "usfm": "GAL.6.13",
+          "line_type": "p",
           "text": "For not even those who are circumcised keep the law, but they desire to have you circumcised that they may boast in your flesh."
         },
         {
           "verse": 14,
+          "usfm": "GAL.6.14",
+          "line_type": "p",
           "text": "But God forbid that I should boast except in the cross of our Lord Jesus Christ, by whom the world has been crucified to me, and I to the world."
         },
         {
           "verse": 15,
+          "usfm": "GAL.6.15",
+          "line_type": "p",
           "text": "For in Christ Jesus neither circumcision nor uncircumcision avails anything, but a new creation."
         },
         {
           "verse": 16,
+          "usfm": "GAL.6.16",
+          "line_type": "p",
           "text": "And as many as walk according to this rule, peace and mercy be upon them, and upon the Israel of God."
         },
         {
           "verse": 17,
+          "usfm": "GAL.6.17",
+          "line_type": "p",
           "text": "From now on let no one trouble me, for I bear in my body the marks of the Lord Jesus."
         },
         {
           "verse": 18,
+          "usfm": "GAL.6.18",
+          "line_type": "p",
           "text": "Brethren, the grace of our Lord Jesus Christ be with your spirit. Amen."
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Be Generous and Do Good"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Glory Only in the Cross"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "Blessing and a Plea"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "GAL.6.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph. 4:2"
+        },
+        {
+          "verse": 2,
+          "usfm": "GAL.6.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 20:35; Rom. 15:1; 1 Thess. 5:14"
+        },
+        {
+          "verse": 2,
+          "usfm": "GAL.6.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(James 2:8)"
+        },
+        {
+          "verse": 3,
+          "usfm": "GAL.6.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 12:3"
+        },
+        {
+          "verse": 3,
+          "usfm": "GAL.6.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(2 Cor. 3:5; James 1:22)"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.6.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 11:28"
+        },
+        {
+          "verse": 4,
+          "usfm": "GAL.6.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Luke 18:11"
+        },
+        {
+          "verse": 5,
+          "usfm": "GAL.6.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 2:6)"
+        },
+        {
+          "verse": 6,
+          "usfm": "GAL.6.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 9:11, 14"
+        },
+        {
+          "verse": 7,
+          "usfm": "GAL.6.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 2:6)"
+        },
+        {
+          "verse": 8,
+          "usfm": "GAL.6.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 6:8)"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.6.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 15:58; 2 Cor. 4:1; 2 Thess. 3:13"
+        },
+        {
+          "verse": 9,
+          "usfm": "GAL.6.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Matt. 24:13); Heb. 12:3, 5; (James 5:7, 8)"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.6.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Prov. 3:27; (John 9:4; 12:35)"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.6.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Titus 3:8"
+        },
+        {
+          "verse": 10,
+          "usfm": "GAL.6.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 12:13"
+        },
+        {
+          "verse": 12,
+          "usfm": "GAL.6.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 5:11; Phil. 3:8"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.6.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(1 Cor. 1:18)"
+        },
+        {
+          "verse": 14,
+          "usfm": "GAL.6.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Gal. 2:20); Col. 2:20"
+        },
+        {
+          "verse": 15,
+          "usfm": "GAL.6.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 2:26, 28); 1 Cor. 7:19; (Gal. 5:6)"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "GAL.6.1",
+            "GAL.6.2",
+            "GAL.6.3",
+            "GAL.6.4",
+            "GAL.6.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "GAL.6.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 10,
+          "verses": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "GAL.6.10",
+            "GAL.6.7",
+            "GAL.6.8",
+            "GAL.6.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 15,
+          "verses": [
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "GAL.6.11",
+            "GAL.6.12",
+            "GAL.6.13",
+            "GAL.6.14",
+            "GAL.6.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "GAL.6.16"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "GAL.6.17"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "GAL.6.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -856,7 +3886,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/GAL/6-d9015fd86d10988a694c02cd56257910.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/GAL.6.NKJV",
+        "reference": {
+          "usfm": [
+            "GAL.6"
+          ],
+          "human": "Galatians 6",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "GAL.5"
+          ],
+          "human": "Galatians 5",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EPH.1"
+          ],
+          "human": "Ephesians 1",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

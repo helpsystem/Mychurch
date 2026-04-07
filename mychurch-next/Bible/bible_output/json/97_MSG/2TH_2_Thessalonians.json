@@ -11,6 +11,7 @@
   "total_verses": 3,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 1,
       "chapter_usfm": "2TH.1",
@@ -25,6 +26,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -35,9 +37,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TH/1-a371ae88ecf7cb2d603638f951fb0bbc.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/2TH.1.MSG",
+        "reference": {
+          "usfm": [
+            "2TH.1"
+          ],
+          "human": "2 Thessalonians 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.5"
+          ],
+          "human": "1 Thessalonians 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "2 Thessalonians 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 2,
       "chapter_usfm": "2TH.2",
@@ -47,6 +106,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -57,9 +117,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TH/2-74bcae47ccb8b308dc0e88cdb1fd0c5e.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/2TH.2.MSG",
+        "reference": {
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "2 Thessalonians 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TH.1"
+          ],
+          "human": "2 Thessalonians 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TH.3"
+          ],
+          "human": "2 Thessalonians 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 3,
       "chapter_usfm": "2TH.3",
@@ -68,20 +185,68 @@
       "verses": [
         {
           "verse": 16,
+          "usfm": "2TH.3.16",
+          "line_type": "p",
           "text": "May the Master of Peace himself give you the gift of getting along with each other at all times, in all ways. May the Master be truly among you!"
         },
         {
           "verse": 17,
+          "usfm": "2TH.3.17",
+          "line_type": "p",
           "text": "I, Paul, bid you good-bye in my own handwriting. I do this in all my letters, so examine my signature as proof that the letter is genuine."
         },
         {
           "verse": 18,
+          "usfm": "2TH.3.18",
+          "line_type": "p",
           "text": "The incredible grace of our Master, Jesus Christ, be with all of you!"
         }
       ],
       "verse_count": 3,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "2TH.3.16"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "2TH.3.16",
+            "2TH.3.17"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "2TH.3.17",
+            "2TH.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -92,7 +257,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2TH/3-e04f41c7b61e8fa33b5eb0b09dad31be.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/2TH.3.MSG",
+        "reference": {
+          "usfm": [
+            "2TH.3"
+          ],
+          "human": "2 Thessalonians 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "2 Thessalonians 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.1"
+          ],
+          "human": "1 Timothy 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

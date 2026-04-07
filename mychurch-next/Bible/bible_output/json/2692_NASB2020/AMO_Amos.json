@@ -11,6 +11,7 @@
   "total_verses": 146,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 1,
       "chapter_usfm": "AMO.1",
@@ -19,62 +20,92 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.1.1",
+          "line_type": "p",
           "text": "The words of Amos, who was among the sheepherders from Tekoa, which he saw in visions concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam son of Joash, king of Israel, two years before the earthquake."
         },
         {
           "verse": 2,
+          "usfm": "AMO.1.2",
+          "line_type": "q",
           "text": "And he said,“The Lord roars from Zion,And from Jerusalem He utters His voice;And the shepherds’ pasture grounds mourn,And the summit of Carmel dries up.”"
         },
         {
           "verse": 3,
+          "usfm": "AMO.1.3",
+          "line_type": "q",
           "text": "¶This is what the Lord says:“For three offenses of Damascus, and for four,I will not revoke its punishment,Because they threshed Gilead with iron sledges."
         },
         {
           "verse": 4,
+          "usfm": "AMO.1.4",
+          "line_type": "q",
           "text": "“So I will send fire upon the house of Hazael,And it will consume the citadels of Ben-hadad."
         },
         {
           "verse": 5,
+          "usfm": "AMO.1.5",
+          "line_type": "q",
           "text": "“I will also break the gate bar of Damascus,And eliminate every inhabitant from the Valley of Aven,As well as him who holds the scepter, from Beth-eden;So the people of Aram will be exiled to Kir,”Says the Lord."
         },
         {
           "verse": 6,
+          "usfm": "AMO.1.6",
+          "line_type": "q",
           "text": "¶This is what the Lord says:“For three offenses of Gaza, and for four,I will not revoke its punishment,Because they led into exile an entire populationTo turn them over to Edom."
         },
         {
           "verse": 7,
+          "usfm": "AMO.1.7",
+          "line_type": "q",
           "text": "“So I will send fire on the wall of GazaAnd it will consume her citadels."
         },
         {
           "verse": 8,
+          "usfm": "AMO.1.8",
+          "line_type": "q",
           "text": "“I will also eliminate every inhabitant from Ashdod,As well as him who holds the scepter, from Ashkelon;And I will direct My power against Ekron,And the remnant of the Philistines will perish,”Says the Lord God."
         },
         {
           "verse": 9,
+          "usfm": "AMO.1.9",
+          "line_type": "q",
           "text": "¶This is what the Lord says:“For three offenses of Tyre, and for four,I will not revoke its punishment,Because they turned an entire population over to EdomAnd did not remember the covenant of brotherhood."
         },
         {
           "verse": 10,
+          "usfm": "AMO.1.10",
+          "line_type": "q",
           "text": "“So I will send fire on the wall of Tyre,And it will consume her citadels.”"
         },
         {
           "verse": 11,
+          "usfm": "AMO.1.11",
+          "line_type": "q",
           "text": "¶This is what the Lord says:“For three offenses of Edom, and for four,I will not revoke its punishment,Because he pursued his brother with the swordAnd stifled his compassion;His anger also tore continually,And he maintained his fury forever."
         },
         {
           "verse": 12,
+          "usfm": "AMO.1.12",
+          "line_type": "q",
           "text": "“So I will send fire upon TemanAnd it will consume the citadels of Bozrah.”"
         },
         {
           "verse": 13,
+          "usfm": "AMO.1.13",
+          "line_type": "q",
           "text": "¶This is what the Lord says:“For three offenses of the sons of Ammon, and for four,I will not revoke its punishment,Because they ripped open the pregnant women of GileadIn order to enlarge their borders."
         },
         {
           "verse": 14,
+          "usfm": "AMO.1.14",
+          "line_type": "q",
           "text": "“So I will kindle a fire on the wall of Rabbah,And it will consume her citadelsAmid war cries on the day of battle, And amid a storm on the day of tempest."
         },
         {
           "verse": 15,
+          "usfm": "AMO.1.15",
+          "line_type": "q",
           "text": "“Their king will go into exile,He and his princes together,” says the Lord."
         }
       ],
@@ -85,7 +116,766 @@
           "text": "Judgment on Neighbor Nations"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "AMO.1.2",
+          "note_ref": "1:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit head"
+        },
+        {
+          "verse": 3,
+          "usfm": "AMO.1.3",
+          "note_ref": "1:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit cause it to turn back, and so throughout the ch"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.1.5",
+          "note_ref": "1:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Possibly Baalbek"
+        },
+        {
+          "verse": 8,
+          "usfm": "AMO.1.8",
+          "note_ref": "1:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit hand"
+        },
+        {
+          "verse": 8,
+          "usfm": "AMO.1.8",
+          "note_ref": "1:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb YHWH, usually rendered Lord"
+        },
+        {
+          "verse": 9,
+          "usfm": "AMO.1.9",
+          "note_ref": "1:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit brothers"
+        },
+        {
+          "verse": 14,
+          "usfm": "AMO.1.14",
+          "note_ref": "1:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or shouts"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.1.1",
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.1.2",
+            "AMO.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.1.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.1.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.1.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "AMO.1.3",
+            "AMO.1.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.1.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.1.4",
+            "AMO.1.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.1.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.1.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.1.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.1.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.1.5",
+            "AMO.1.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.1.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.1.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.1.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.1.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.1.6",
+            "AMO.1.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.1.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.1.7",
+            "AMO.1.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.1.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.1.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.1.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.1.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "AMO.1.8",
+            "AMO.1.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.1.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.1.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.1.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.1.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "AMO.1.10",
+            "AMO.1.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.1.10"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.1.10",
+            "AMO.1.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.1.11"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.1.11"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.1.11"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.1.11"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.1.11"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.1.11"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.1.11",
+            "AMO.1.12"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.1.12"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.1.12",
+            "AMO.1.13"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.1.13"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.1.13"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.1.13"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.1.13"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "AMO.1.13",
+            "AMO.1.14"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.1.14"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.1.14"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.1.14"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "AMO.1.14",
+            "AMO.1.15"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.1.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -104,9 +894,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/1-a05c58a80a495206b727ca03a07edbd3.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.1.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.1"
+          ],
+          "human": "Amos 1",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOL.3"
+          ],
+          "human": "Joel 3",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.2"
+          ],
+          "human": "Amos 2",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 2,
       "chapter_usfm": "AMO.2",
@@ -115,66 +962,98 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.2.1",
+          "line_type": "p",
           "text": "This is what the Lord says:“For three offenses of Moab, and for four,I will not revoke its punishment,Because he burned the bones of the king of Edom to lime."
         },
         {
           "verse": 2,
+          "usfm": "AMO.2.2",
+          "line_type": "q",
           "text": "“So I will send fire upon MoabAnd it will consume the citadels of Kerioth;And Moab will die amid the panic of battle,Amid war cries and the sound of a trumpet."
         },
         {
           "verse": 3,
+          "usfm": "AMO.2.3",
+          "line_type": "q",
           "text": "“I will also eliminate the judge from her midstAnd slay all her leaders with him,” says the Lord."
         },
         {
           "verse": 4,
+          "usfm": "AMO.2.4",
+          "line_type": "q",
           "text": "¶This is what the Lord says:“For three offenses of Judah, and for four,I will not revoke its punishment,Because they rejected the Law of the LordAnd have not kept His statutes;Their lies also have led them astray,Those which their fathers followed."
         },
         {
           "verse": 5,
+          "usfm": "AMO.2.5",
+          "line_type": "q",
           "text": "“So I will send fire upon Judah,And it will consume the citadels of Jerusalem.”"
         },
         {
           "verse": 6,
+          "usfm": "AMO.2.6",
+          "line_type": "q",
           "text": "¶This is what the Lord says:“For three offenses of Israel, and for four,I will not revoke its punishment,Because they sell the righteous for money,And the needy for a pair of sandals."
         },
         {
           "verse": 7,
+          "usfm": "AMO.2.7",
+          "line_type": "q",
           "text": "“These who trample the head of the helpless to the dust of the earthAlso divert the way of the humble;And a man and his father resort to the same girlSo as to profane My holy name."
         },
         {
           "verse": 8,
+          "usfm": "AMO.2.8",
+          "line_type": "q",
           "text": "“And on garments seized as pledges they stretch out beside every altar,And in the house of their God they drink the wine of those who have been fined."
         },
         {
           "verse": 9,
+          "usfm": "AMO.2.9",
+          "line_type": "q",
           "text": "¶“Yet it was I who destroyed the Amorite before them, Though his height was like the height of cedarsAnd he was as strong as the oaks;I also destroyed his fruit above and his roots below."
         },
         {
           "verse": 10,
+          "usfm": "AMO.2.10",
+          "line_type": "q",
           "text": "“And it was I who brought you up from the land of Egypt,And led you in the wilderness for forty yearsSo that you might take possession of the land of the Amorite."
         },
         {
           "verse": 11,
+          "usfm": "AMO.2.11",
+          "line_type": "q",
           "text": "“Then I raised up some of your sons to be prophets,And some of your young men to be Nazirites.Is this not so, you sons of Israel?” declares the Lord."
         },
         {
           "verse": 12,
+          "usfm": "AMO.2.12",
+          "line_type": "q",
           "text": "“But you made the Nazirites drink wine,And you commanded the prophets, saying, ‘You shall not prophesy!’"
         },
         {
           "verse": 13,
+          "usfm": "AMO.2.13",
+          "line_type": "q",
           "text": "“Behold, I am making a rut in the ground beneath you,Just as a wagon makes a rut when filled with sheaves."
         },
         {
           "verse": 14,
+          "usfm": "AMO.2.14",
+          "line_type": "q",
           "text": "“Refuge will be lost from the swift,And the strong will not strengthen his power,Nor the warrior save his life."
         },
         {
           "verse": 15,
+          "usfm": "AMO.2.15",
+          "line_type": "q",
           "text": "“The one who grasps the bow will not stand his ground,The swift of foot will not escape,Nor will the one who rides the horse save his life."
         },
         {
           "verse": 16,
+          "usfm": "AMO.2.16",
+          "line_type": "q",
           "text": "“Even the bravest among the warriors will flee naked on that day,” declares the Lord."
         }
       ],
@@ -185,15 +1064,748 @@
           "text": "Judgment on Moab"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Judgment on Judah"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Judgment on Israel"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "AMO.2.1",
+          "note_ref": "2:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit cause it to turn back, and so throughout the ch"
+        },
+        {
+          "verse": 3,
+          "usfm": "AMO.2.3",
+          "note_ref": "2:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or executive officer"
+        },
+        {
+          "verse": 4,
+          "usfm": "AMO.2.4",
+          "note_ref": "2:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or false gods"
+        },
+        {
+          "verse": 6,
+          "usfm": "AMO.2.6",
+          "note_ref": "2:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit silver"
+        },
+        {
+          "verse": 7,
+          "usfm": "AMO.2.7",
+          "note_ref": "2:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or pant for the dust...on the head of the helpless"
+        },
+        {
+          "verse": 7,
+          "usfm": "AMO.2.7",
+          "note_ref": "2:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit go"
+        },
+        {
+          "verse": 7,
+          "usfm": "AMO.2.7",
+          "note_ref": "2:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Possibly a prostitute, or a temple prostitute"
+        },
+        {
+          "verse": 9,
+          "usfm": "AMO.2.9",
+          "note_ref": "2:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit Whose height"
+        },
+        {
+          "verse": 14,
+          "usfm": "AMO.2.14",
+          "note_ref": "2:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit soul"
+        },
+        {
+          "verse": 15,
+          "usfm": "AMO.2.15",
+          "note_ref": "2:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit soul"
+        },
+        {
+          "verse": 16,
+          "usfm": "AMO.2.16",
+          "note_ref": "2:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit strong of his heart"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.2.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.2.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.2.1",
+            "AMO.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.2.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.2.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.2.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.2.2",
+            "AMO.2.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.2.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "AMO.2.3",
+            "AMO.2.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.2.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.2.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.2.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.2.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.2.4"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.2.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.2.4",
+            "AMO.2.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.2.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.2.5",
+            "AMO.2.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.2.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.2.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.2.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.2.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.2.6",
+            "AMO.2.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.2.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.2.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.2.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.2.7",
+            "AMO.2.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.2.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "AMO.2.8",
+            "AMO.2.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.2.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.2.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.2.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "AMO.2.10",
+            "AMO.2.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.2.10"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.2.10"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.2.10",
+            "AMO.2.11"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.2.11"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.2.11"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.2.11",
+            "AMO.2.12"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.2.12"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.2.12",
+            "AMO.2.13"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.2.13"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "AMO.2.13",
+            "AMO.2.14"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.2.14"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.2.14"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "AMO.2.14",
+            "AMO.2.15"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.2.15"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.2.15"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "AMO.2.15",
+            "AMO.2.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -212,9 +1824,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/2-d633f6a8169d0beecd16b9ae450603f4.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.2.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.2"
+          ],
+          "human": "Amos 2",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.1"
+          ],
+          "human": "Amos 1",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.3"
+          ],
+          "human": "Amos 3",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 3,
       "chapter_usfm": "AMO.3",
@@ -223,62 +1892,92 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.3.1",
+          "line_type": "p",
           "text": "Hear this word which the Lord has spoken against you, sons of Israel, against the entire family which He brought up from the land of Egypt:"
         },
         {
           "verse": 2,
+          "usfm": "AMO.3.2",
+          "line_type": "q",
           "text": "“You only have I known among all the families of the earth;Therefore I will punish you for all your wrongdoing.”"
         },
         {
           "verse": 3,
+          "usfm": "AMO.3.3",
+          "line_type": "q",
           "text": "Do two people walk together unless they have agreed to meet?"
         },
         {
           "verse": 4,
+          "usfm": "AMO.3.4",
+          "line_type": "q",
           "text": "Does a lion roar in the forest when he has no prey?Does a young lion growl from his den unless he has captured something?"
         },
         {
           "verse": 5,
+          "usfm": "AMO.3.5",
+          "line_type": "q",
           "text": "Does a bird fall into a trap on the ground when there is no device in it?Does a trap spring up from the earth when it captures nothing at all?"
         },
         {
           "verse": 6,
+          "usfm": "AMO.3.6",
+          "line_type": "q",
           "text": "If a trumpet is blown in a city, will the people not tremble?If a disaster occurs in a city, has the Lord not brought it about?"
         },
         {
           "verse": 7,
+          "usfm": "AMO.3.7",
+          "line_type": "q",
           "text": "Certainly the Lord God does nothingUnless He reveals His secret planTo His servants the prophets."
         },
         {
           "verse": 8,
+          "usfm": "AMO.3.8",
+          "line_type": "q",
           "text": "A lion has roared! Who will not fear?The Lord God has spoken! Who can do anything but prophesy?"
         },
         {
           "verse": 9,
+          "usfm": "AMO.3.9",
+          "line_type": "p",
           "text": "Proclaim on the citadels in Ashdod and on the citadels in the land of Egypt and say, “Assemble yourselves on the mountains of Samaria and see the great panic within her and the oppressions in her midst."
         },
         {
           "verse": 10,
+          "usfm": "AMO.3.10",
+          "line_type": "p",
           "text": "But they do not know how to do what is right,” declares the Lord, “these who store up violence and devastation in their citadels.”"
         },
         {
           "verse": 11,
+          "usfm": "AMO.3.11",
+          "line_type": "p",
           "text": "Therefore, this is what the Lord God says:“An enemy, one surrounding the land,Will take down your fortifications from you,And your citadels will be looted.”"
         },
         {
           "verse": 12,
+          "usfm": "AMO.3.12",
+          "line_type": "m",
           "text": "This is what the Lord says:“Just as the shepherd snatches from the lion’s mouth a couple of legs or a piece of an ear,So will the sons of Israel living in Samaria be snatched away—With the corner of a bed and the cover of a couch!"
         },
         {
           "verse": 13,
+          "usfm": "AMO.3.13",
+          "line_type": "q",
           "text": "“Hear and testify against the house of Jacob,”Declares the Lord God, the God of armies."
         },
         {
           "verse": 14,
+          "usfm": "AMO.3.14",
+          "line_type": "q",
           "text": "“For on the day that I punish Israel’s offenses,I will also punish the altars of Bethel;The horns of the altar will be cut off,And will fall to the ground."
         },
         {
           "verse": 15,
+          "usfm": "AMO.3.15",
+          "line_type": "q",
           "text": "“I will also strike the winter house together with the summer house;The houses of ivory will also perish,And the great houses will come to an end,”Declares the Lord."
         }
       ],
@@ -289,7 +1988,550 @@
           "text": "All the Tribes Are Guilty"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "AMO.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., nation"
+        },
+        {
+          "verse": 1,
+          "usfm": "AMO.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit I"
+        },
+        {
+          "verse": 2,
+          "usfm": "AMO.3.2",
+          "note_ref": "3:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or chosen"
+        },
+        {
+          "verse": 2,
+          "usfm": "AMO.3.2",
+          "note_ref": "3:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit visit"
+        },
+        {
+          "verse": 4,
+          "usfm": "AMO.3.4",
+          "note_ref": "3:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit give his voice"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.3.5",
+          "note_ref": "3:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit snare"
+        },
+        {
+          "verse": 7,
+          "usfm": "AMO.3.7",
+          "note_ref": "3:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or For"
+        },
+        {
+          "verse": 7,
+          "usfm": "AMO.3.7",
+          "note_ref": "3:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb YHWH, usually rendered Lord, and so throughout the ch"
+        },
+        {
+          "verse": 10,
+          "usfm": "AMO.3.10",
+          "note_ref": "3:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., the plunder from violence"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.3.12",
+          "note_ref": "3:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or rescues"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.3.12",
+          "note_ref": "3:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or rescued"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.3.12",
+          "note_ref": "3:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or headrest; lit damask"
+        },
+        {
+          "verse": 15,
+          "usfm": "AMO.3.15",
+          "note_ref": "3:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., ivory inlay"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.3.1",
+            "AMO.3.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.3.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.3.2",
+            "AMO.3.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "AMO.3.3",
+            "AMO.3.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.3.4"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.3.4",
+            "AMO.3.5"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.3.5"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.3.5",
+            "AMO.3.6"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.3.6"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.3.6",
+            "AMO.3.7"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.3.7"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.3.7"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.3.7",
+            "AMO.3.8"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.3.8"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "AMO.3.10",
+            "AMO.3.8",
+            "AMO.3.9"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.3.10",
+            "AMO.3.11"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.3.11"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.3.11"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.3.11"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.3.11",
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.3.12",
+            "AMO.3.13"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.3.13"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "AMO.3.13",
+            "AMO.3.14"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.3.14"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.3.14"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.3.14"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "AMO.3.14",
+            "AMO.3.15"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.3.15"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.3.15"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.3.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -308,9 +2550,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/3-4402b1ff67a71dceffc62f9c8dc8132c.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.3.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.3"
+          ],
+          "human": "Amos 3",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.2"
+          ],
+          "human": "Amos 2",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.4"
+          ],
+          "human": "Amos 4",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 4,
       "chapter_usfm": "AMO.4",
@@ -319,54 +2618,80 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.4.1",
+          "line_type": "q",
           "text": "Hear this word, you cows of Bashan who are on the mountain of Samaria,Who exploit the poor, who oppress the needy, And say to their husbands, “Bring now, that we may drink!”"
         },
         {
           "verse": 2,
+          "usfm": "AMO.4.2",
+          "line_type": "q",
           "text": "The Lord God has sworn by His holiness,“For behold, the days are coming upon youWhen they will take you away with meat hooks,And the last of you with fish hooks."
         },
         {
           "verse": 3,
+          "usfm": "AMO.4.3",
+          "line_type": "q",
           "text": "“You will go out through holes in the walls,One in front of the other,And you will be hurled to Harmon,” declares the Lord."
         },
         {
           "verse": 4,
+          "usfm": "AMO.4.4",
+          "line_type": "q",
           "text": "¶“Enter Bethel and do wrong;In Gilgal multiply wrongdoing!Bring your sacrifices every morning,Your tithes every three days."
         },
         {
           "verse": 5,
+          "usfm": "AMO.4.5",
+          "line_type": "q",
           "text": "“Offer a thanksgiving offering also from that which is leavened,And proclaim voluntary offerings, make them known.For so you love to do, you sons of Israel,”Declares the Lord God."
         },
         {
           "verse": 6,
+          "usfm": "AMO.4.6",
+          "line_type": "q",
           "text": "¶“But I gave you also cleanness of teeth in all your cities,And lack of bread in all your places;Yet you have not returned to Me,” declares the Lord."
         },
         {
           "verse": 7,
+          "usfm": "AMO.4.7",
+          "line_type": "q",
           "text": "“Furthermore, I withheld the rain from youWhile there were still three months until harvest.Then I would send rain on one city,But on another city I would not send rain;One part would be rained on,While the part not rained on would dry up."
         },
         {
           "verse": 8,
+          "usfm": "AMO.4.8",
+          "line_type": "q",
           "text": "“So the people of two or three cities would stagger to another city to drink water,But would not be satisfied;Yet you have not returned to Me,” declares the Lord."
         },
         {
           "verse": 9,
+          "usfm": "AMO.4.9",
+          "line_type": "q",
           "text": "“I struck you with scorching wind and mildew;The caterpillar was devouringYour many gardens and vineyards, fig trees and olive trees;Yet you have not returned to Me,” declares the Lord."
         },
         {
           "verse": 10,
+          "usfm": "AMO.4.10",
+          "line_type": "q",
           "text": "“I sent a plague among you as in Egypt;I killed your young men with the sword, along with your captured horses,And I made the stench of your camp rise up in your nostrils;Yet you have not returned to Me,” declares the Lord."
         },
         {
           "verse": 11,
+          "usfm": "AMO.4.11",
+          "line_type": "q",
           "text": "“I overthrew you, as God overthrew Sodom and Gomorrah,And you were like a log snatched from a fire;Yet you have not returned to Me,” declares the Lord."
         },
         {
           "verse": 12,
+          "usfm": "AMO.4.12",
+          "line_type": "q",
           "text": "“Therefore so I will do to you, Israel;Because I will do this to you,Prepare to meet your God, Israel.”"
         },
         {
           "verse": 13,
+          "usfm": "AMO.4.13",
+          "line_type": "q",
           "text": "For behold, He who forms mountains and creates the wind,And declares to a person what are His thoughts,He who makes dawn into darknessAnd treads on the high places of the earth,The Lord God of armies is His name."
         }
       ],
@@ -377,7 +2702,694 @@
           "text": "“Yet You Have Not Returned to Me”"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "AMO.4.1",
+          "note_ref": "4:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., haughty, prominent women"
+        },
+        {
+          "verse": 1,
+          "usfm": "AMO.4.1",
+          "note_ref": "4:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit Who"
+        },
+        {
+          "verse": 1,
+          "usfm": "AMO.4.1",
+          "note_ref": "4:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit lords"
+        },
+        {
+          "verse": 2,
+          "usfm": "AMO.4.2",
+          "note_ref": "4:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb YHWH, usually rendered Lord, and so throughout the ch"
+        },
+        {
+          "verse": 2,
+          "usfm": "AMO.4.2",
+          "note_ref": "4:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit he"
+        },
+        {
+          "verse": 3,
+          "usfm": "AMO.4.3",
+          "note_ref": "4:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "As in LXX; MT will hurl"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.4.5",
+          "note_ref": "4:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit Offer up in smoke"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.4.5",
+          "note_ref": "4:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or freewill offerings"
+        },
+        {
+          "verse": 10,
+          "usfm": "AMO.4.10",
+          "note_ref": "4:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit in the way of Egypt"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.4.1",
+            "AMO.4.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.4.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.4.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.4.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.4.2",
+            "AMO.4.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.4.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.4.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "AMO.4.3",
+            "AMO.4.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.4.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.4.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.4.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.4.4",
+            "AMO.4.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.4.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.4.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.4.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.4.5",
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.4.6",
+            "AMO.4.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.4.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.4.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.4.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.4.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.4.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.4.7",
+            "AMO.4.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.4.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.4.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "AMO.4.8",
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "AMO.4.10",
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.4.10",
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.4.11",
+            "AMO.4.12"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.4.12"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.4.12"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.4.12",
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -396,9 +3408,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/4-3bebf916ff362a8acf7f693e06a210e5.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.4.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.4"
+          ],
+          "human": "Amos 4",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.3"
+          ],
+          "human": "Amos 3",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.5"
+          ],
+          "human": "Amos 5",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 5,
       "chapter_usfm": "AMO.5",
@@ -407,110 +3476,164 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.5.1",
+          "line_type": "q",
           "text": "Hear this word which I am taking up for you as a song of mourning, house of Israel:"
         },
         {
           "verse": 2,
+          "usfm": "AMO.5.2",
+          "line_type": "q",
           "text": "She has fallen, she will not rise again—The virgin Israel.She lies unnoticed on her land;There is no one to raise her up."
         },
         {
           "verse": 3,
+          "usfm": "AMO.5.3",
+          "line_type": "m",
           "text": "For this is what the Lord God says:“The city which goes forth a thousand strongWill have a hundred left,And the one which goes forth a hundred strongWill have ten left to the house of Israel.”"
         },
         {
           "verse": 4,
+          "usfm": "AMO.5.4",
+          "line_type": "p",
           "text": "For this is what the Lord says to the house of Israel:“Seek Me so that you may live."
         },
         {
           "verse": 5,
+          "usfm": "AMO.5.5",
+          "line_type": "q",
           "text": "“But do not resort to BethelAnd do not come to Gilgal,Nor cross over to Beersheba;For Gilgal will certainly go into captivityAnd Bethel will come to nothing."
         },
         {
           "verse": 6,
+          "usfm": "AMO.5.6",
+          "line_type": "q",
           "text": "“Seek the Lord so that you may live,Or He will break through like a fire, house of Joseph,And it will consume with no one to extinguish it for Bethel,"
         },
         {
           "verse": 7,
+          "usfm": "AMO.5.7",
+          "line_type": "q",
           "text": "For those who turn justice into wormwood,And throw righteousness to the earth.”"
         },
         {
           "verse": 8,
+          "usfm": "AMO.5.8",
+          "line_type": "q",
           "text": "¶He who made the Pleiades and Orion,And changes deep darkness into morning, Who also darkens day into night,Who calls for the waters of the seaAnd pours them out on the surface of the earth,The Lord is His name."
         },
         {
           "verse": 9,
+          "usfm": "AMO.5.9",
+          "line_type": "q",
           "text": "It is He who makes destruction flash upon the strong,So that destruction comes upon the fortress."
         },
         {
           "verse": 10,
+          "usfm": "AMO.5.10",
+          "line_type": "q",
           "text": "¶They hate him who rebukes in the gate,And they despise him who speaks with integrity."
         },
         {
           "verse": 11,
+          "usfm": "AMO.5.11",
+          "line_type": "q",
           "text": "Therefore because you impose heavy rent on the poorAnd take a tribute of grain from them, Though you have built houses of cut stone,Yet you will not live in them;You have planted beautiful vineyards, yet you will not drink their wine."
         },
         {
           "verse": 12,
+          "usfm": "AMO.5.12",
+          "line_type": "q",
           "text": "For I know your offenses are many and your sins are great, You who are hostile to the righteous and accept bribes,And turn away the poor from justice at the gate."
         },
         {
           "verse": 13,
+          "usfm": "AMO.5.13",
+          "line_type": "q",
           "text": "Therefore at such a time the prudent person keeps quiet, because it is an evil time."
         },
         {
           "verse": 14,
+          "usfm": "AMO.5.14",
+          "line_type": "q",
           "text": "¶Seek good and not evil, so that you may live;And so may the Lord God of armies be with you,Just as you have said!"
         },
         {
           "verse": 15,
+          "usfm": "AMO.5.15",
+          "line_type": "q",
           "text": "Hate evil, love good,And establish justice in the gate!Perhaps the Lord God of armiesWill be gracious to the remnant of Joseph."
         },
         {
           "verse": 16,
+          "usfm": "AMO.5.16",
+          "line_type": "p",
           "text": "Therefore this is what the Lord God of armies, the Lord says:“There is mourning in all the public squares,And in all the streets they say, ‘Oh no! Oh no!’They also call the farmer to mourningAnd professional mourners to mourning rites."
         },
         {
           "verse": 17,
+          "usfm": "AMO.5.17",
+          "line_type": "q",
           "text": "“And in all the vineyards there is mourning,Because I will pass through the midst of you,” says the Lord."
         },
         {
           "verse": 18,
+          "usfm": "AMO.5.18",
+          "line_type": "q",
           "text": "¶Woe to you who are longing for the day of the Lord,For what purpose will the day of the Lord be to you?It will be darkness and not light;"
         },
         {
           "verse": 19,
+          "usfm": "AMO.5.19",
+          "line_type": "q",
           "text": "As when a man flees from a lionAnd a bear confronts him, Or he goes home, leans with his hand against the wall,And a snake bites him."
         },
         {
           "verse": 20,
+          "usfm": "AMO.5.20",
+          "line_type": "q",
           "text": "Will the day of the Lord not be darkness instead of light,Even gloom with no brightness in it?"
         },
         {
           "verse": 21,
+          "usfm": "AMO.5.21",
+          "line_type": "q",
           "text": "¶“I hate, I reject your festivals,Nor do I delight in your festive assemblies."
         },
         {
           "verse": 22,
+          "usfm": "AMO.5.22",
+          "line_type": "q",
           "text": "“Even though you offer up to Me burnt offerings and your grain offerings,I will not accept them;And I will not even look at the peace offerings of your fattened oxen."
         },
         {
           "verse": 23,
+          "usfm": "AMO.5.23",
+          "line_type": "q",
           "text": "“Take away from Me the noise of your songs;I will not even listen to the sound of your harps."
         },
         {
           "verse": 24,
+          "usfm": "AMO.5.24",
+          "line_type": "q",
           "text": "“But let justice roll out like waters,And righteousness like an ever-flowing stream."
         },
         {
           "verse": 25,
+          "usfm": "AMO.5.25",
+          "line_type": "p",
           "text": "“Did you present Me with sacrifices and grain offerings in the wilderness for forty years, house of Israel?"
         },
         {
           "verse": 26,
+          "usfm": "AMO.5.26",
+          "line_type": "p",
           "text": "You also carried along Sikkuth your king and Kiyyun, your images, the star of your gods which you made for yourselves."
         },
         {
           "verse": 27,
+          "usfm": "AMO.5.27",
+          "line_type": "p",
           "text": "Therefore I will make you go into exile beyond Damascus,” says the Lord, whose name is the God of armies."
         }
       ],
@@ -521,7 +3644,1110 @@
           "text": "“Seek Me So That You May Live”"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "AMO.5.3",
+          "note_ref": "5:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb YHWH, usually rendered Lord, and so throughout the ch"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.5.5",
+          "note_ref": "5:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit seek"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.5.5",
+          "note_ref": "5:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit be"
+        },
+        {
+          "verse": 6,
+          "usfm": "AMO.5.6",
+          "note_ref": "5:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in the house"
+        },
+        {
+          "verse": 7,
+          "usfm": "AMO.5.7",
+          "note_ref": "5:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit they have thrown"
+        },
+        {
+          "verse": 8,
+          "usfm": "AMO.5.8",
+          "note_ref": "5:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit And He darkened"
+        },
+        {
+          "verse": 10,
+          "usfm": "AMO.5.10",
+          "note_ref": "5:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., the place where court was held"
+        },
+        {
+          "verse": 11,
+          "usfm": "AMO.5.11",
+          "note_ref": "5:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or tax"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.5.12",
+          "note_ref": "5:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit they turn"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.5.12",
+          "note_ref": "5:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., the place where court was held"
+        },
+        {
+          "verse": 13,
+          "usfm": "AMO.5.13",
+          "note_ref": "5:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit that time"
+        },
+        {
+          "verse": 15,
+          "usfm": "AMO.5.15",
+          "note_ref": "5:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., the place where court was held"
+        },
+        {
+          "verse": 16,
+          "usfm": "AMO.5.16",
+          "note_ref": "5:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit those who know mourning"
+        },
+        {
+          "verse": 18,
+          "usfm": "AMO.5.18",
+          "note_ref": "5:18",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit will this be to you, the day"
+        },
+        {
+          "verse": 19,
+          "usfm": "AMO.5.19",
+          "note_ref": "5:19",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Then"
+        },
+        {
+          "verse": 21,
+          "usfm": "AMO.5.21",
+          "note_ref": "5:21",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit like to smell your"
+        },
+        {
+          "verse": 25,
+          "usfm": "AMO.5.25",
+          "note_ref": "5:25",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or You presented Me with the sacrifices and a grain offering"
+        },
+        {
+          "verse": 26,
+          "usfm": "AMO.5.26",
+          "note_ref": "5:26",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Sakkuth (Saturn), or the tabernacle of your Moloch"
+        },
+        {
+          "verse": 26,
+          "usfm": "AMO.5.26",
+          "note_ref": "5:26",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Kaiwan (Saturn), or stands of"
+        },
+        {
+          "verse": 26,
+          "usfm": "AMO.5.26",
+          "note_ref": "5:26",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or your star gods"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.5.1",
+            "AMO.5.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.5.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.5.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.5.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "m",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.5.2",
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "AMO.5.3",
+            "AMO.5.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.5.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.5.4",
+            "AMO.5.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.5.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.5.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.5.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.5.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.5.5",
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.5.6",
+            "AMO.5.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.5.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.5.7",
+            "AMO.5.8"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.5.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.5.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.5.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.5.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.5.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "AMO.5.8",
+            "AMO.5.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.5.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "AMO.5.10",
+            "AMO.5.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.5.10"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.5.10",
+            "AMO.5.11"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.5.11"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.5.11"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.5.11"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.5.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.5.11",
+            "AMO.5.12"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.5.12"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.5.12"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.5.12",
+            "AMO.5.13"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "AMO.5.13",
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "AMO.5.14",
+            "AMO.5.15"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.5.15"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.5.15"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.5.15"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "AMO.5.15",
+            "AMO.5.16"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "AMO.5.16"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "AMO.5.16"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "AMO.5.16"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "AMO.5.16"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "AMO.5.16",
+            "AMO.5.17"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "AMO.5.17"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "AMO.5.17",
+            "AMO.5.18"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "AMO.5.18"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "AMO.5.18"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "AMO.5.18",
+            "AMO.5.19"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "AMO.5.19"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "AMO.5.19"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "AMO.5.19"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "AMO.5.19",
+            "AMO.5.20"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "AMO.5.20"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "AMO.5.20",
+            "AMO.5.21"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "AMO.5.21"
+          ]
+        },
+        {
+          "index": 67,
+          "type": "q",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "AMO.5.21",
+            "AMO.5.22"
+          ]
+        },
+        {
+          "index": 68,
+          "type": "q",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "AMO.5.22"
+          ]
+        },
+        {
+          "index": 69,
+          "type": "q",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "AMO.5.22"
+          ]
+        },
+        {
+          "index": 70,
+          "type": "q",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "AMO.5.22",
+            "AMO.5.23"
+          ]
+        },
+        {
+          "index": 71,
+          "type": "q",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "AMO.5.23"
+          ]
+        },
+        {
+          "index": 72,
+          "type": "q",
+          "start_verse": 23,
+          "end_verse": 24,
+          "verses": [
+            23,
+            24
+          ],
+          "usfms": [
+            "AMO.5.23",
+            "AMO.5.24"
+          ]
+        },
+        {
+          "index": 73,
+          "type": "q",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "AMO.5.24"
+          ]
+        },
+        {
+          "index": 74,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 27,
+          "verses": [
+            24,
+            25,
+            26,
+            27
+          ],
+          "usfms": [
+            "AMO.5.24",
+            "AMO.5.25",
+            "AMO.5.26",
+            "AMO.5.27"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -540,9 +4766,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/5-38b3e8503f4b19d189799e81a9537057.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 27,
+          "parsed_count": 27,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.5.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.5"
+          ],
+          "human": "Amos 5",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.4"
+          ],
+          "human": "Amos 4",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.6"
+          ],
+          "human": "Amos 6",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 6,
       "chapter_usfm": "AMO.6",
@@ -551,58 +4834,86 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.6.1",
+          "line_type": "q",
           "text": "Woe to those who are carefree in Zion,And to those who feel secure on the mountain of Samaria,The dignitaries of the foremost of nations,To whom the house of Israel comes."
         },
         {
           "verse": 2,
+          "usfm": "AMO.6.2",
+          "line_type": "q",
           "text": "Go over to Calneh and look,And go from there to Hamath the great,Then go down to Gath of the Philistines.Are they better than these kingdoms,Or is their territory greater than yours?"
         },
         {
           "verse": 3,
+          "usfm": "AMO.6.3",
+          "line_type": "q",
           "text": "Are you postponing the day of disaster,And would you bring near the seat of violence?"
         },
         {
           "verse": 4,
+          "usfm": "AMO.6.4",
+          "line_type": "q",
           "text": "¶Those who lie on beds of ivory,And lounge around on their couches,And eat lambs from the flock,And calves from the midst of the fattened cattle,"
         },
         {
           "verse": 5,
+          "usfm": "AMO.6.5",
+          "line_type": "q",
           "text": "Who improvise to the sound of the harp, And like David have composed songs for themselves,"
         },
         {
           "verse": 6,
+          "usfm": "AMO.6.6",
+          "line_type": "q",
           "text": "Who drink wine from sacred bowlsWhile they anoint themselves with the finest of oils—Yet they have not grieved over the collapse of Joseph."
         },
         {
           "verse": 7,
+          "usfm": "AMO.6.7",
+          "line_type": "q",
           "text": "Therefore, they will now go into exile at the head of the exiles,And the revelry of those who lounge around will come to an end."
         },
         {
           "verse": 8,
+          "usfm": "AMO.6.8",
+          "line_type": "q",
           "text": "¶The Lord God has sworn by Himself, the Lord God of armies has declared:“I loathe the arrogance of Jacob,And detest his citadels;Therefore I will give up the city and all it contains.”"
         },
         {
           "verse": 9,
+          "usfm": "AMO.6.9",
+          "line_type": "m",
           "text": "And it will be, if ten men are left in one house, they will die."
         },
         {
           "verse": 10,
+          "usfm": "AMO.6.10",
+          "line_type": "m",
           "text": "Then one’s uncle, or his undertaker, will lift him up to carry out his bones from the house, and he will say to the one who is in the innermost part of the house, “Is anyone else with you?” And that one will say, “No one.” Then he will answer, “Keep quiet! For the name of the Lord is not to be mentioned.”"
         },
         {
           "verse": 11,
+          "usfm": "AMO.6.11",
+          "line_type": "m",
           "text": "For behold, the Lord is going to command that the great house be smashed to pieces, and the small house to rubble."
         },
         {
           "verse": 12,
+          "usfm": "AMO.6.12",
+          "line_type": "q",
           "text": "¶Do horses run on rocks?Or does one plow them with oxen?Yet you have turned justice into poison,And the fruit of righteousness into wormwood,"
         },
         {
           "verse": 13,
+          "usfm": "AMO.6.13",
+          "line_type": "q",
           "text": "You who rejoice in Lodebar, And say, “Have we not by our own strength taken Karnaim for ourselves?”"
         },
         {
           "verse": 14,
+          "usfm": "AMO.6.14",
+          "line_type": "q",
           "text": "“For behold, I am going to raise up a nation against you,House of Israel,” declares the Lord God of armies,“And they will torment you from the entrance of HamathTo the brook of the Arabah.”"
         }
       ],
@@ -613,7 +4924,584 @@
           "text": "“Carefree in Zion”"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "AMO.6.2",
+          "note_ref": "6:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or you"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.6.5",
+          "note_ref": "6:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or invented musical instruments"
+        },
+        {
+          "verse": 8,
+          "usfm": "AMO.6.8",
+          "note_ref": "6:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb YHWH, usually rendered Lord"
+        },
+        {
+          "verse": 8,
+          "usfm": "AMO.6.8",
+          "note_ref": "6:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit hate"
+        },
+        {
+          "verse": 8,
+          "usfm": "AMO.6.8",
+          "note_ref": "6:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit its fullness"
+        },
+        {
+          "verse": 10,
+          "usfm": "AMO.6.10",
+          "note_ref": "6:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or beloved one"
+        },
+        {
+          "verse": 10,
+          "usfm": "AMO.6.10",
+          "note_ref": "6:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit say"
+        },
+        {
+          "verse": 10,
+          "usfm": "AMO.6.10",
+          "note_ref": "6:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit not to make mention in the name of"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.6.12",
+          "note_ref": "6:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Another reading is plow the sea with oxen"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.6.12",
+          "note_ref": "6:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., bitterness"
+        },
+        {
+          "verse": 13,
+          "usfm": "AMO.6.13",
+          "note_ref": "6:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit nothing"
+        },
+        {
+          "verse": 13,
+          "usfm": "AMO.6.13",
+          "note_ref": "6:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit Who say"
+        },
+        {
+          "verse": 13,
+          "usfm": "AMO.6.13",
+          "note_ref": "6:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit a pair of horns"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.6.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.6.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.6.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.6.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.6.1",
+            "AMO.6.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.6.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.6.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.6.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.6.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.6.2",
+            "AMO.6.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.6.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "AMO.6.3",
+            "AMO.6.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.6.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.6.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.6.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.6.4",
+            "AMO.6.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.6.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.6.5",
+            "AMO.6.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.6.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.6.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.6.6",
+            "AMO.6.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.6.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.6.7",
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "m",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.6.10",
+            "AMO.6.11",
+            "AMO.6.8",
+            "AMO.6.9"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.6.11",
+            "AMO.6.12"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.6.12"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.6.12"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.6.12"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.6.12",
+            "AMO.6.13"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.6.13"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "AMO.6.13",
+            "AMO.6.14"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.6.14"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.6.14"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.6.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -632,9 +5520,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/6-7fad8487084affed1f46ea632f92cd55.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.6.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.6"
+          ],
+          "human": "Amos 6",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.5"
+          ],
+          "human": "Amos 5",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.7"
+          ],
+          "human": "Amos 7",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 7,
       "chapter_usfm": "AMO.7",
@@ -643,70 +5588,104 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.7.1",
+          "line_type": "p",
           "text": "This is what the Lord God showed me, and behold, He was forming a swarm of locusts when the spring crop began to sprout. And behold, the spring crop was after the king’s mowing."
         },
         {
           "verse": 2,
+          "usfm": "AMO.7.2",
+          "line_type": "p",
           "text": "And it came about, when it had finished eating the vegetation of the land, that I said,“Lord God, please pardon!How can Jacob stand?For he is small.”"
         },
         {
           "verse": 3,
+          "usfm": "AMO.7.3",
+          "line_type": "q",
           "text": "The Lord relented of this.“It shall not be,” said the Lord."
         },
         {
           "verse": 4,
+          "usfm": "AMO.7.4",
+          "line_type": "p",
           "text": "So the Lord God showed me, and behold, the Lord God was calling to contend with them by fire, and it consumed the great deep and began to consume the farmland."
         },
         {
           "verse": 5,
+          "usfm": "AMO.7.5",
+          "line_type": "p",
           "text": "Then I said,“Lord God, please stop!How can Jacob stand?For he is small.”"
         },
         {
           "verse": 6,
+          "usfm": "AMO.7.6",
+          "line_type": "q",
           "text": "The Lord relented of this.“This too shall not be,” said the Lord God."
         },
         {
           "verse": 7,
+          "usfm": "AMO.7.7",
+          "line_type": "p",
           "text": "So He showed me, and behold, the Lord was standing by a vertical wall with a plumb line in His hand."
         },
         {
           "verse": 8,
+          "usfm": "AMO.7.8",
+          "line_type": "p",
           "text": "And the Lord said to me, “What do you see, Amos?” And I said, “A plumb line.” Then the Lord said,“Behold I am about to put a plumb lineIn the midst of My people Israel.I will not spare them any longer."
         },
         {
           "verse": 9,
+          "usfm": "AMO.7.9",
+          "line_type": "q",
           "text": "“The high places of Isaac will become deserted,And the sanctuaries of Israel will be in ruins.Then I will rise up against the house of Jeroboam with the sword.”"
         },
         {
           "verse": 10,
+          "usfm": "AMO.7.10",
+          "line_type": "p",
           "text": "Then Amaziah, the priest of Bethel, sent word to Jeroboam king of Israel, saying, “Amos has conspired against you in the midst of the house of Israel; the land is unable to endure all his words."
         },
         {
           "verse": 11,
+          "usfm": "AMO.7.11",
+          "line_type": "p",
           "text": "For this is what Amos says: ‘Jeroboam will die by the sword, and Israel will certainly go from its land into exile.’ ”"
         },
         {
           "verse": 12,
+          "usfm": "AMO.7.12",
+          "line_type": "p",
           "text": "Then Amaziah said to Amos, “Go, you seer, flee to the land of Judah; and eat bread there and do your prophesying there!"
         },
         {
           "verse": 13,
+          "usfm": "AMO.7.13",
+          "line_type": "p",
           "text": "But do not prophesy at Bethel any longer, for it is a sanctuary of the king and a royal residence.”"
         },
         {
           "verse": 14,
+          "usfm": "AMO.7.14",
+          "line_type": "p",
           "text": "Then Amos replied to Amaziah, “I am not a prophet, nor am I the son of a prophet; for I am a herdsman and a grower of sycamore figs."
         },
         {
           "verse": 15,
+          "usfm": "AMO.7.15",
+          "line_type": "p",
           "text": "But the Lord took me from following the flock, and the Lord said to me, ‘Go prophesy to My people Israel.’"
         },
         {
           "verse": 16,
+          "usfm": "AMO.7.16",
+          "line_type": "p",
           "text": "So now hear the word of the Lord: you are saying, ‘You shall not prophesy against Israel nor shall you prophesy against the house of Isaac.’"
         },
         {
           "verse": 17,
+          "usfm": "AMO.7.17",
+          "line_type": "p",
           "text": "Therefore, this is what the Lord says: ‘Your wife will become a prostitute in the city, your sons and your daughters will fall by the sword, your land will be parceled up by a measuring line, and you yourself will die upon unclean soil. Furthermore Israel will certainly go from its land into exile.’ ”"
         }
       ],
@@ -717,11 +5696,394 @@
           "text": "Warning through Visions"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Amos Accused; Gives an Answer"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "AMO.7.1",
+          "note_ref": "7:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb YHWH, usually rendered Lord, and so throughout the ch"
+        },
+        {
+          "verse": 1,
+          "usfm": "AMO.7.1",
+          "note_ref": "7:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit at the beginning of the coming up of"
+        },
+        {
+          "verse": 2,
+          "usfm": "AMO.7.2",
+          "note_ref": "7:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit if"
+        },
+        {
+          "verse": 4,
+          "usfm": "AMO.7.4",
+          "note_ref": "7:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit plot of land"
+        },
+        {
+          "verse": 7,
+          "usfm": "AMO.7.7",
+          "note_ref": "7:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or on"
+        },
+        {
+          "verse": 7,
+          "usfm": "AMO.7.7",
+          "note_ref": "7:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit wall of a plumb line"
+        },
+        {
+          "verse": 8,
+          "usfm": "AMO.7.8",
+          "note_ref": "7:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit pass him by"
+        },
+        {
+          "verse": 13,
+          "usfm": "AMO.7.13",
+          "note_ref": "7:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit house"
+        },
+        {
+          "verse": 14,
+          "usfm": "AMO.7.14",
+          "note_ref": "7:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or picker"
+        },
+        {
+          "verse": 15,
+          "usfm": "AMO.7.15",
+          "note_ref": "7:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit behind"
+        },
+        {
+          "verse": 16,
+          "usfm": "AMO.7.16",
+          "note_ref": "7:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit drivel"
+        },
+        {
+          "verse": 17,
+          "usfm": "AMO.7.17",
+          "note_ref": "7:17",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in an unclean land"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.7.1",
+            "AMO.7.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.7.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.7.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.7.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.7.2",
+            "AMO.7.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.7.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.7.3",
+            "AMO.7.4",
+            "AMO.7.5"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.7.5"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.7.5"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.7.5"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.7.5",
+            "AMO.7.6"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.7.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 8,
+          "verses": [
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.7.6",
+            "AMO.7.7",
+            "AMO.7.8"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.7.8"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.7.8"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.7.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "AMO.7.8",
+            "AMO.7.9"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.7.9"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.7.9"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 13,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.7.10",
+            "AMO.7.11",
+            "AMO.7.12",
+            "AMO.7.13",
+            "AMO.7.9"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 17,
+          "verses": [
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "AMO.7.13",
+            "AMO.7.14",
+            "AMO.7.15",
+            "AMO.7.16",
+            "AMO.7.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -740,9 +6102,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/7-bf623bd98e6cf4197687ef21e55e12eb.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.7.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.7"
+          ],
+          "human": "Amos 7",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.6"
+          ],
+          "human": "Amos 6",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.8"
+          ],
+          "human": "Amos 8",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 8,
       "chapter_usfm": "AMO.8",
@@ -751,58 +6170,86 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.8.1",
+          "line_type": "p",
           "text": "This is what the Lord God showed me, and behold, there was a basket of summer fruit."
         },
         {
           "verse": 2,
+          "usfm": "AMO.8.2",
+          "line_type": "p",
           "text": "And He said, “What do you see, Amos?” And I said, “A basket of summer fruit.” Then the Lord said to me, “The end has come for My people Israel. I will not spare them any longer."
         },
         {
           "verse": 3,
+          "usfm": "AMO.8.3",
+          "line_type": "p",
           "text": "The songs of the palace will turn to wailing on that day,” declares the Lord God. “The corpses will be many; in every place they will throw them out. Hush!”"
         },
         {
           "verse": 4,
+          "usfm": "AMO.8.4",
+          "line_type": "p",
           "text": "Hear this, you who trample the needy, to put an end to the humble of the land,"
         },
         {
           "verse": 5,
+          "usfm": "AMO.8.5",
+          "line_type": "p",
           "text": "saying,“When will the new moon be over,So that we may sell grain;And the Sabbath, so that we may open the wheat market,To make the ephah smaller and the shekel bigger,And to cheat with dishonest scales,"
         },
         {
           "verse": 6,
+          "usfm": "AMO.8.6",
+          "line_type": "q",
           "text": "So as to buy the helpless for money,And the needy for a pair of sandals,And that we may sell the refuse of the wheat?”"
         },
         {
           "verse": 7,
+          "usfm": "AMO.8.7",
+          "line_type": "q",
           "text": "¶The Lord has sworn by the pride of Jacob,“Indeed, I will never forget any of their deeds."
         },
         {
           "verse": 8,
+          "usfm": "AMO.8.8",
+          "line_type": "q",
           "text": "“Because of this will the land not quake,And everyone who lives in it mourn?Indeed, all of it will rise up like the Nile,And it will be tossed aboutAnd subside like the Nile of Egypt."
         },
         {
           "verse": 9,
+          "usfm": "AMO.8.9",
+          "line_type": "q",
           "text": "“And it will come about on that day,” declares the Lord God,“That I will make the sun go down at noon,And make the earth dark in broad daylight."
         },
         {
           "verse": 10,
+          "usfm": "AMO.8.10",
+          "line_type": "q",
           "text": "“Then I will turn your festivals into mourning,And all your songs into songs of mourning;And I will put sackcloth around everyone’s waist,And baldness on every head.And I will make it like a time of mourning for an only son,And the end of it will be like a bitter day."
         },
         {
           "verse": 11,
+          "usfm": "AMO.8.11",
+          "line_type": "q",
           "text": "¶“Behold, days are coming,” declares the Lord God,“When I will send a famine on the land,Not a famine of bread or a thirst for water,But rather for hearing the words of the Lord."
         },
         {
           "verse": 12,
+          "usfm": "AMO.8.12",
+          "line_type": "q",
           "text": "“People will stagger from sea to seaAnd from the north even to the east;They will roam about to seek the word of the Lord,But they will not find it."
         },
         {
           "verse": 13,
+          "usfm": "AMO.8.13",
+          "line_type": "q",
           "text": "“On that day the beautiful virginsAnd the young men will faint from thirst."
         },
         {
           "verse": 14,
+          "usfm": "AMO.8.14",
+          "line_type": "q",
           "text": "“As for those who swear by the guilt of Samaria,And say, ‘As your god lives, Dan,’And, ‘As the way of Beersheba lives,’They will fall and not rise again.”"
         }
       ],
@@ -813,7 +6260,620 @@
           "text": "Basket of Fruit and Israel’s Captivity"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "AMO.8.1",
+          "note_ref": "8:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb YHWH, usually rendered Lord, and so throughout the ch"
+        },
+        {
+          "verse": 2,
+          "usfm": "AMO.8.2",
+          "note_ref": "8:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit pass him by"
+        },
+        {
+          "verse": 3,
+          "usfm": "AMO.8.3",
+          "note_ref": "8:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit They will howl the palace songs"
+        },
+        {
+          "verse": 3,
+          "usfm": "AMO.8.3",
+          "note_ref": "8:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit he has thrown"
+        },
+        {
+          "verse": 3,
+          "usfm": "AMO.8.3",
+          "note_ref": "8:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "An order for sacred silence"
+        },
+        {
+          "verse": 4,
+          "usfm": "AMO.8.4",
+          "note_ref": "8:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or snap at"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.8.5",
+          "note_ref": "8:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit pass by"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.8.5",
+          "note_ref": "8:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "About 1 cubic foot or 0.03 cubic meters"
+        },
+        {
+          "verse": 5,
+          "usfm": "AMO.8.5",
+          "note_ref": "8:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "About 0.4 oz. or 11 gm"
+        },
+        {
+          "verse": 6,
+          "usfm": "AMO.8.6",
+          "note_ref": "8:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit silver"
+        },
+        {
+          "verse": 9,
+          "usfm": "AMO.8.9",
+          "note_ref": "8:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit a day of light"
+        },
+        {
+          "verse": 10,
+          "usfm": "AMO.8.10",
+          "note_ref": "8:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "I.e., shaved as a sign of mourning"
+        },
+        {
+          "verse": 14,
+          "usfm": "AMO.8.14",
+          "note_ref": "8:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Ashimah"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.8.1",
+            "AMO.8.2",
+            "AMO.8.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.8.3",
+            "AMO.8.4",
+            "AMO.8.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.8.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.8.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.8.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.8.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.8.5"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.8.5",
+            "AMO.8.6"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.8.6"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.8.6"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.8.6",
+            "AMO.8.7"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.8.7"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.8.7",
+            "AMO.8.8"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.8.8"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.8.8"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.8.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.8.8"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "AMO.8.8",
+            "AMO.8.9"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.8.9"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.8.9"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "AMO.8.10",
+            "AMO.8.9"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.8.10"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.8.10"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.8.10"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.8.10"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.8.10"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.8.10",
+            "AMO.8.11"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.8.11"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.8.11"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.8.11"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.8.11",
+            "AMO.8.12"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.8.12"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.8.12"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.8.12"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.8.12",
+            "AMO.8.13"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.8.13"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "AMO.8.13",
+            "AMO.8.14"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.8.14"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.8.14"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.8.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -832,9 +6892,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/8-6a201fec448a59cfa152b4f66bfa2549.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.8.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.8"
+          ],
+          "human": "Amos 8",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.7"
+          ],
+          "human": "Amos 7",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.9"
+          ],
+          "human": "Amos 9",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 9,
       "chapter_usfm": "AMO.9",
@@ -843,62 +6960,92 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.9.1",
+          "line_type": "p",
           "text": "I saw the Lord standing beside the altar, and He said,“Strike the pillar capitals so that the thresholds will shake,And break them on the heads of them all!Then I will put to death the rest of them with the sword;They will not have a fugitive who will flee,Nor a survivor who will escape."
         },
         {
           "verse": 2,
+          "usfm": "AMO.9.2",
+          "line_type": "q",
           "text": "“Though they dig into Sheol,From there My hand will take them;And though they ascend to heaven,From there I will bring them down."
         },
         {
           "verse": 3,
+          "usfm": "AMO.9.3",
+          "line_type": "q",
           "text": "“And though they hide on the summit of Carmel,I will track them down and take them from there;And though they hide themselves from My sight on the bottom of the sea,I will command the serpent from there, and it will bite them."
         },
         {
           "verse": 4,
+          "usfm": "AMO.9.4",
+          "line_type": "q",
           "text": "“And though they go into captivity before their enemies,From there I will command the sword and it will kill them,And I will set My eyes against them for harm and not for good.”"
         },
         {
           "verse": 5,
+          "usfm": "AMO.9.5",
+          "line_type": "q",
           "text": "¶The Lord God of armies,The One who touches the land so that it quakes,And all those who live in it mourn,And all of it rises up like the NileAnd subsides like the Nile of Egypt;"
         },
         {
           "verse": 6,
+          "usfm": "AMO.9.6",
+          "line_type": "q",
           "text": "The One who builds His upper chambers in the heavensAnd has founded His vaulted dome over the earth,He who calls for the waters of the seaAnd pours them out on the face of the earth,The Lord is His name."
         },
         {
           "verse": 7,
+          "usfm": "AMO.9.7",
+          "line_type": "q",
           "text": "¶“Are you not as the sons of Ethiopia to Me,You sons of Israel?” declares the Lord.“Have I not brought up Israel from the land of Egypt,And the Philistines from Caphtor and the Arameans from Kir?"
         },
         {
           "verse": 8,
+          "usfm": "AMO.9.8",
+          "line_type": "q",
           "text": "“Behold, the eyes of the Lord God are on the sinful kingdom,And I will eliminate it from the face of the earth;Nevertheless, I will not totally eliminate the house of Jacob,”Declares the Lord."
         },
         {
           "verse": 9,
+          "usfm": "AMO.9.9",
+          "line_type": "q",
           "text": "“For behold, I am commanding,And I will shake the house of Israel among all nationsAs grain is shaken in a sieve,But not a pebble will fall to the ground."
         },
         {
           "verse": 10,
+          "usfm": "AMO.9.10",
+          "line_type": "q",
           "text": "“All the sinners of My people will die by the sword,Those who say, ‘The catastrophe will not overtake or confront us.’"
         },
         {
           "verse": 11,
+          "usfm": "AMO.9.11",
+          "line_type": "q",
           "text": "¶“On that day I will raise up the fallen shelter of David,And wall up its gaps;I will also raise up its ruinsAnd rebuild it as in the days of old;"
         },
         {
           "verse": 12,
+          "usfm": "AMO.9.12",
+          "line_type": "q",
           "text": "So that they may possess the remnant of EdomAnd all the nations who are called by My name,”Declares the Lord who does this."
         },
         {
           "verse": 13,
+          "usfm": "AMO.9.13",
+          "line_type": "q",
           "text": "¶“Behold, days are coming,” declares the Lord,“When the plowman will overtake the reaper,And the one who treads grapes will overtake him who sows the seed;When the mountains will drip grape juice,And all the hills will come apart."
         },
         {
           "verse": 14,
+          "usfm": "AMO.9.14",
+          "line_type": "q",
           "text": "“I will also restore the fortunes of My people Israel,And they will rebuild the desolated cities and live in them;They will also plant vineyards and drink their wine,And make gardens and eat their fruit."
         },
         {
           "verse": 15,
+          "usfm": "AMO.9.15",
+          "line_type": "q",
           "text": "“I will also plant them on their land,And they will not be uprooted again from their landWhich I have given them,”Says the Lord your God."
         }
       ],
@@ -909,11 +7056,806 @@
           "text": "God’s Judgment Unavoidable"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "The Restoration of Israel"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "AMO.9.5",
+          "note_ref": "9:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb YHWH, usually rendered Lord, and so throughout the ch"
+        },
+        {
+          "verse": 11,
+          "usfm": "AMO.9.11",
+          "note_ref": "9:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Heb sukkah; i.e., hut or dwelling"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.9.12",
+          "note_ref": "9:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or take possession of"
+        },
+        {
+          "verse": 12,
+          "usfm": "AMO.9.12",
+          "note_ref": "9:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Gentiles"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.9.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.9.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.9.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.9.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.9.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.9.1"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.9.1",
+            "AMO.9.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.9.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.9.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.9.2"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.9.2",
+            "AMO.9.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.9.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.9.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.9.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "AMO.9.3",
+            "AMO.9.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.9.4"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "AMO.9.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.9.4",
+            "AMO.9.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.9.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.9.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.9.5"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "AMO.9.5"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.9.5",
+            "AMO.9.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.9.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.9.6"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.9.6"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.9.6"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.9.6",
+            "AMO.9.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.9.7"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.9.7"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.9.7"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.9.7",
+            "AMO.9.8"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.9.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.9.8"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.9.8"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "AMO.9.8",
+            "AMO.9.9"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.9.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.9.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.9.9"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "AMO.9.10",
+            "AMO.9.9"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.9.10"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.9.10",
+            "AMO.9.11"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.9.11"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.9.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.9.11"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.9.11",
+            "AMO.9.12"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.9.12"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.9.12"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.9.12",
+            "AMO.9.13"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.9.13"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.9.13"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.9.13"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.9.13"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "AMO.9.13",
+            "AMO.9.14"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.9.14"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.9.14"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.9.14"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "AMO.9.14",
+            "AMO.9.15"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.9.15"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.9.15"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.9.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -932,7 +7874,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/AMO/9-b122dcd83836e93f0aad1390f1e87db5.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/AMO.9.NASB2020",
+        "reference": {
+          "usfm": [
+            "AMO.9"
+          ],
+          "human": "Amos 9",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.8"
+          ],
+          "human": "Amos 8",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "OBA.1"
+          ],
+          "human": "Obadiah 1",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

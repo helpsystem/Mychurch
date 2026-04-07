@@ -11,6 +11,7 @@
   "total_verses": 117,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 1,
       "chapter_usfm": "SNG.1",
@@ -19,76 +20,732 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.1.1",
+          "line_type": "p",
           "text": "The song of songs, which is Solomon's."
         },
         {
           "verse": 2,
+          "usfm": "SNG.1.2",
+          "line_type": "q1",
           "text": "Let him kiss me with the kisses of his mouth:For thy love is better than wine."
         },
         {
           "verse": 3,
+          "usfm": "SNG.1.3",
+          "line_type": "q2",
           "text": "Because of the savour of thy good ointmentsThy name is as ointment poured forth,Therefore do the virgins love thee."
         },
         {
           "verse": 4,
+          "usfm": "SNG.1.4",
+          "line_type": "q1",
           "text": "Draw me, we will run after thee:The king hath brought me into his chambers:We will be glad and rejoice in thee,We will remember thy love more than wine:The upright love thee."
         },
         {
           "verse": 5,
+          "usfm": "SNG.1.5",
+          "line_type": "q1",
           "text": "I am black, but comely,O ye daughters of Jerusalem,As the tents of Kedar,As the curtains of Solomon."
         },
         {
           "verse": 6,
+          "usfm": "SNG.1.6",
+          "line_type": "q1",
           "text": "Look not upon me, because I am black,Because the sun hath looked upon me:My mother's children were angry with me;They made me the keeper of the vineyards; But mine own vineyard have I not kept."
         },
         {
           "verse": 7,
+          "usfm": "SNG.1.7",
+          "line_type": "q1",
           "text": "Tell me, O thou whom my soul loveth,Where thou feedest, where thou makest thy flock to rest at noon:For why should I be as one that turneth asideBy the flocks of thy companions?"
         },
         {
           "verse": 8,
+          "usfm": "SNG.1.8",
+          "line_type": "q1",
           "text": "If thou know not,O thou fairest among women,Go thy way forth by the footsteps of the flock,And feed thy kidsBeside the shepherds' tents."
         },
         {
           "verse": 9,
+          "usfm": "SNG.1.9",
+          "line_type": "q1",
           "text": "I have compared thee, O my love,To a company of horses in Pharaoh's chariots."
         },
         {
           "verse": 10,
+          "usfm": "SNG.1.10",
+          "line_type": "q1",
           "text": "Thy cheeks are comely with rows of jewels,Thy neck with chains of gold."
         },
         {
           "verse": 11,
+          "usfm": "SNG.1.11",
+          "line_type": "q1",
           "text": "We will make thee borders of goldWith studs of silver."
         },
         {
           "verse": 12,
+          "usfm": "SNG.1.12",
+          "line_type": "q1",
           "text": "While the King sitteth at his table,My spikenard sendeth forth the smell thereof."
         },
         {
           "verse": 13,
+          "usfm": "SNG.1.13",
+          "line_type": "q1",
           "text": "A bundle of myrrh is my wellbeloved unto me;He shall lie all night betwixt my breasts."
         },
         {
           "verse": 14,
+          "usfm": "SNG.1.14",
+          "line_type": "q1",
           "text": "My beloved is unto me as a cluster of camphireIn the vineyards of Engedi."
         },
         {
           "verse": 15,
+          "usfm": "SNG.1.15",
+          "line_type": "q1",
           "text": "Behold, thou art fair, my love;Behold, thou art fair;Thou hast doves' eyes."
         },
         {
           "verse": 16,
+          "usfm": "SNG.1.16",
+          "line_type": "q1",
           "text": "Behold, thou art fair, my beloved,Yea, pleasant:Also our bed is green."
         },
         {
           "verse": 17,
+          "usfm": "SNG.1.17",
+          "line_type": "q2",
           "text": "The beams of our house are cedar, And our rafters of fir."
         }
       ],
       "verse_count": 17,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.1.1",
+            "SNG.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.1.2",
+            "SNG.1.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.1.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.1.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "SNG.1.3",
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "SNG.1.4",
+            "SNG.1.5"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.1.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.1.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.1.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "SNG.1.5",
+            "SNG.1.6"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.1.6"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.1.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.1.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.1.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "SNG.1.6",
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.1.7",
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.1.8",
+            "SNG.1.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.1.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "SNG.1.10",
+            "SNG.1.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.1.10"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.1.10",
+            "SNG.1.11"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.1.11"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "SNG.1.11",
+            "SNG.1.12"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.1.12"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.1.12",
+            "SNG.1.13"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.1.13"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "SNG.1.13",
+            "SNG.1.14"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.1.14"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "SNG.1.14",
+            "SNG.1.15"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.1.15"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.1.15"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "SNG.1.15",
+            "SNG.1.16"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.1.16"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.1.16"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "SNG.1.16",
+            "SNG.1.17"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "SNG.1.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -99,9 +756,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/1-6e8978c4a4d3c40b2a8e98023061b312.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/SNG.1.KJV",
+        "reference": {
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "Song of Solomon 1",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.12"
+          ],
+          "human": "Ecclesiastes 12",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Solomon 2",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 2,
       "chapter_usfm": "SNG.2",
@@ -110,76 +824,852 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.2.1",
+          "line_type": "q1",
           "text": "I am the rose of Sharon, And the lily of the valleys."
         },
         {
           "verse": 2,
+          "usfm": "SNG.2.2",
+          "line_type": "q1",
           "text": "As the lily among thorns,So is my love among the daughters."
         },
         {
           "verse": 3,
+          "usfm": "SNG.2.3",
+          "line_type": "q1",
           "text": "As the apple tree among the trees of the wood,So is my beloved among the sons.I sat down under his shadow with great delight,And his fruit was sweet to my taste."
         },
         {
           "verse": 4,
+          "usfm": "SNG.2.4",
+          "line_type": "q1",
           "text": "He brought me to the banqueting house,And his banner over me was love."
         },
         {
           "verse": 5,
+          "usfm": "SNG.2.5",
+          "line_type": "q1",
           "text": "Stay me with flagons,Comfort me with apples:For I am sick of love."
         },
         {
           "verse": 6,
+          "usfm": "SNG.2.6",
+          "line_type": "q1",
           "text": "His left hand is under my head,And his right hand doth embrace me."
         },
         {
           "verse": 7,
+          "usfm": "SNG.2.7",
+          "line_type": "q1",
           "text": "I charge you, O ye daughters of Jerusalem,By the roes, and by the hinds of the field,That ye stir not up, nor awake my love,Till he please."
         },
         {
           "verse": 8,
+          "usfm": "SNG.2.8",
+          "line_type": "q1",
           "text": "The voice of my beloved!Behold, he comethLeaping upon the mountains,Skipping upon the hills."
         },
         {
           "verse": 9,
+          "usfm": "SNG.2.9",
+          "line_type": "q1",
           "text": "My beloved is like a roeOr a young hart:Behold, he standethBehind our wall,He looketh forth at the windows,Shewing himself through the lattice."
         },
         {
           "verse": 10,
+          "usfm": "SNG.2.10",
+          "line_type": "q1",
           "text": "My beloved spake, and said unto me,Rise up, my love, my fair one,And come away."
         },
         {
           "verse": 11,
+          "usfm": "SNG.2.11",
+          "line_type": "q1",
           "text": "For, lo, the winter is past,The rain is over and gone;"
         },
         {
           "verse": 12,
+          "usfm": "SNG.2.12",
+          "line_type": "q1",
           "text": "The flowers appear on the earth;The time of the singing of birds is come,And the voice of the turtleIs heard in our land;"
         },
         {
           "verse": 13,
+          "usfm": "SNG.2.13",
+          "line_type": "q1",
           "text": "The fig tree putteth forth her green figs,And the vines with the tender grapeGive a good smell.Arise, my love, my fair one,and come away."
         },
         {
           "verse": 14,
+          "usfm": "SNG.2.14",
+          "line_type": "q1",
           "text": "O my dove, that art in the clefts of the rock,In the secret places of the stairs,Let me see thy countenance,Let me hear thy voice;For sweet is thy voice,And thy countenance is comely."
         },
         {
           "verse": 15,
+          "usfm": "SNG.2.15",
+          "line_type": "q1",
           "text": "Take us the foxes,The little foxes,That spoil the vines:For our vines have tender grapes."
         },
         {
           "verse": 16,
+          "usfm": "SNG.2.16",
+          "line_type": "q1",
           "text": "My beloved is mine, and I am his:He feedeth among the lilies."
         },
         {
           "verse": 17,
+          "usfm": "SNG.2.17",
+          "line_type": "q1",
           "text": "Until the day break,And the shadows flee away,Turn, my beloved, and be thou like a roe or a young hartUpon the mountains of Bether."
         }
       ],
       "verse_count": 17,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.2.1",
+            "SNG.2.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.2.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.2.2",
+            "SNG.2.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.2.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.2.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.2.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "SNG.2.3",
+            "SNG.2.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.2.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "SNG.2.4",
+            "SNG.2.5"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.2.5"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.2.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "SNG.2.5",
+            "SNG.2.6"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.2.6"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "SNG.2.6",
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.2.7",
+            "SNG.2.8"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.2.8"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.2.8"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.2.8"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.2.8",
+            "SNG.2.9"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.2.9"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.2.9"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.2.9"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.2.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.2.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "SNG.2.10",
+            "SNG.2.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.2.10"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.2.10"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.2.10",
+            "SNG.2.11"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.2.11"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "SNG.2.11",
+            "SNG.2.12"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.2.12"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.2.12"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.2.12"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.2.12",
+            "SNG.2.13"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.2.13"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.2.13"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.2.13"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.2.13"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "SNG.2.13",
+            "SNG.2.14"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.2.14"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.2.14"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.2.14"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.2.14"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.2.14"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "SNG.2.14",
+            "SNG.2.15"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.2.15"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.2.15"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.2.15"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "SNG.2.15",
+            "SNG.2.16"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.2.16"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "SNG.2.16",
+            "SNG.2.17"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "SNG.2.17"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "SNG.2.17"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "SNG.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -190,9 +1680,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/2-84633b42712b76fc3672c3b26d45d41c.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/SNG.2.KJV",
+        "reference": {
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Solomon 2",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "Song of Solomon 1",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Solomon 3",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 3,
       "chapter_usfm": "SNG.3",
@@ -201,52 +1748,576 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.3.1",
+          "line_type": "q1",
           "text": "By night on my bed I sought him whom my soul loveth:I sought him, but I found him not."
         },
         {
           "verse": 2,
+          "usfm": "SNG.3.2",
+          "line_type": "q1",
           "text": "I will rise now, and go about the cityIn the streets, and in the broad waysI will seek him whom my soul loveth:I sought him, but I found him not."
         },
         {
           "verse": 3,
+          "usfm": "SNG.3.3",
+          "line_type": "q1",
           "text": "The watchmen that go about the city found me: To whom I said,Saw ye him whom my soul loveth?"
         },
         {
           "verse": 4,
+          "usfm": "SNG.3.4",
+          "line_type": "q1",
           "text": "It was but a little that I passed from them,But I found him whom my soul loveth:I held him, and would not let him go,Until I had brought him into my mother's house,And into the chamber of her that conceived me."
         },
         {
           "verse": 5,
+          "usfm": "SNG.3.5",
+          "line_type": "q1",
           "text": "I charge you, O ye daughters of Jerusalem,By the roes, and by the hinds of the field,That ye stir not up, nor awake my love,Till he please."
         },
         {
           "verse": 6,
+          "usfm": "SNG.3.6",
+          "line_type": "q1",
           "text": "Who is this that cometh out of the wildernessLike pillars of smoke,Perfumed with myrrh and frankincense,With all powders of the merchant?"
         },
         {
           "verse": 7,
+          "usfm": "SNG.3.7",
+          "line_type": "q1",
           "text": "Behold his bed, which is Solomon's;Threescore valiant men are about it,Of the valiant of Israel."
         },
         {
           "verse": 8,
+          "usfm": "SNG.3.8",
+          "line_type": "q1",
           "text": "They all hold swords, Being expert in war:Every man hath his sword upon his thighBecause of fear in the night."
         },
         {
           "verse": 9,
+          "usfm": "SNG.3.9",
+          "line_type": "q1",
           "text": "King Solomon made himself a chariotOf the wood of Lebanon."
         },
         {
           "verse": 10,
+          "usfm": "SNG.3.10",
+          "line_type": "q1",
           "text": "He made the pillars thereof of silver,The bottom thereof of gold, the covering of it of purple,The midst thereof being paved with love,For the daughters of Jerusalem."
         },
         {
           "verse": 11,
+          "usfm": "SNG.3.11",
+          "line_type": "q1",
           "text": "Go forth, O ye daughters of Zion,And behold king SolomonWith the crown wherewith his mother crowned himIn the day of his espousals,And in the day of the gladness of his heart."
         }
       ],
       "verse_count": 11,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.3.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.3.1",
+            "SNG.3.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.3.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.3.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.3.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.3.2",
+            "SNG.3.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.3.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.3.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "SNG.3.3",
+            "SNG.3.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.3.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.3.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.3.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.3.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "SNG.3.4",
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "SNG.3.5",
+            "SNG.3.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.3.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.3.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.3.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "SNG.3.6",
+            "SNG.3.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.3.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.3.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.3.7",
+            "SNG.3.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.3.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.3.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.3.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.3.8",
+            "SNG.3.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.3.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "SNG.3.10",
+            "SNG.3.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.3.10"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.3.10"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.3.10"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.3.10",
+            "SNG.3.11"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -257,9 +2328,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/3-2d5d656b91f8d11b5122fc9a9559b07b.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/SNG.3.KJV",
+        "reference": {
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Solomon 3",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Solomon 2",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Solomon 4",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 4,
       "chapter_usfm": "SNG.4",
@@ -268,72 +2396,844 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.4.1",
+          "line_type": "q1",
           "text": "Behold, thou art fair, my love;Behold, thou art fair;Thou hast doves' eyesWithin thy locks:Thy hair is as a flock of goats,That appear from mount Gilead."
         },
         {
           "verse": 2,
+          "usfm": "SNG.4.2",
+          "line_type": "q1",
           "text": "Thy teeth are like a flock of sheep that are even shorn,Which came up from the washing;Whereof every one bear twins,And none is barren among them."
         },
         {
           "verse": 3,
+          "usfm": "SNG.4.3",
+          "line_type": "q1",
           "text": "Thy lips are like a thread of scarlet,And thy speech is comely:Thy temples are like a piece of a pomegranateWithin thy locks."
         },
         {
           "verse": 4,
+          "usfm": "SNG.4.4",
+          "line_type": "q1",
           "text": "Thy neck is like the tower of DavidBuilded for an armoury,Whereon there hang a thousand bucklers,All shields of mighty men."
         },
         {
           "verse": 5,
+          "usfm": "SNG.4.5",
+          "line_type": "q1",
           "text": "Thy two breasts are like two young roesThat are twins,Which feed among the lilies."
         },
         {
           "verse": 6,
+          "usfm": "SNG.4.6",
+          "line_type": "q1",
           "text": "Until the day break,And the shadows flee away,I will get me to the mountain of myrrh,And to the hill of frankincense."
         },
         {
           "verse": 7,
+          "usfm": "SNG.4.7",
+          "line_type": "q1",
           "text": "Thou art all fair, my love; There is no spot in thee."
         },
         {
           "verse": 8,
+          "usfm": "SNG.4.8",
+          "line_type": "q1",
           "text": "Come with me from Lebanon, my spouse,With me from Lebanon:Look from the top of Amana,From the top of Shenir and Hermon,From the lions' dens,From the mountains of the leopards."
         },
         {
           "verse": 9,
+          "usfm": "SNG.4.9",
+          "line_type": "q1",
           "text": "Thou hast ravished my heart, my sister, my spouse;Thou hast ravished my heart with one of thine eyes,With one chain of thy neck."
         },
         {
           "verse": 10,
+          "usfm": "SNG.4.10",
+          "line_type": "q1",
           "text": "How fair is thy love, my sister, my spouse!How much better is thy love than wine!And the smell of thine ointments than all spices!"
         },
         {
           "verse": 11,
+          "usfm": "SNG.4.11",
+          "line_type": "q1",
           "text": "Thy lips, O my spouse, drop as the honeycomb:Honey and milk are under thy tongue;And the smell of thy garments is like the smell of Lebanon."
         },
         {
           "verse": 12,
+          "usfm": "SNG.4.12",
+          "line_type": "q1",
           "text": "A garden inclosed is my sister, my spouse;A spring shut up, a fountain sealed."
         },
         {
           "verse": 13,
+          "usfm": "SNG.4.13",
+          "line_type": "q1",
           "text": "Thy plants are an orchard of pomegranates,With pleasant fruits;Camphire, with spikenard,"
         },
         {
           "verse": 14,
+          "usfm": "SNG.4.14",
+          "line_type": "q1",
           "text": "Spikenard and saffron;Calamus and cinnamon,With all trees of frankincense;Myrrh and aloes, with all the chief spices:"
         },
         {
           "verse": 15,
+          "usfm": "SNG.4.15",
+          "line_type": "q1",
           "text": "A fountain of gardens,A well of living waters, and streams from Lebanon."
         },
         {
           "verse": 16,
+          "usfm": "SNG.4.16",
+          "line_type": "q1",
           "text": "Awake, O north wind;And come, thou south;Blow upon my garden, That the spices thereof may flow out.Let my beloved come into his garden,And eat his pleasant fruits."
         }
       ],
       "verse_count": 16,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.4.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.4.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.4.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.4.1"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.4.1",
+            "SNG.4.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.4.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.4.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.4.2"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.4.2",
+            "SNG.4.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.4.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.4.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.4.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "SNG.4.3",
+            "SNG.4.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.4.4"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.4.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.4.4"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "SNG.4.4",
+            "SNG.4.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.4.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.4.5"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "SNG.4.5",
+            "SNG.4.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.4.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.4.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.4.6"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "SNG.4.6",
+            "SNG.4.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.4.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.4.7",
+            "SNG.4.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.4.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.4.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.4.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.4.8"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.4.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.4.8",
+            "SNG.4.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.4.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.4.9"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "SNG.4.10",
+            "SNG.4.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.4.10"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.4.10"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.4.10",
+            "SNG.4.11"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.4.11"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.4.11"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "SNG.4.11",
+            "SNG.4.12"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.4.12"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.4.12",
+            "SNG.4.13"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.4.13"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.4.13"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "SNG.4.13",
+            "SNG.4.14"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.4.14"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.4.14"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.4.14"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "SNG.4.14",
+            "SNG.4.15"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.4.15"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "SNG.4.15",
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -344,9 +3244,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/4-5852e828823c20cecfb9e103e78eedae.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/SNG.4.KJV",
+        "reference": {
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Solomon 4",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Solomon 3",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Solomon 5",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 5,
       "chapter_usfm": "SNG.5",
@@ -355,72 +3312,796 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.5.1",
+          "line_type": "q1",
           "text": "I am come into my garden, my sister, my spouse:I have gathered my myrrh with my spice;I have eaten my honeycomb with my honey;I have drunk my wine with my milk:Eat, O friends;Drink, yea, drink abundantly, O beloved."
         },
         {
           "verse": 2,
+          "usfm": "SNG.5.2",
+          "line_type": "q1",
           "text": "I sleep, but my heart waketh: It is the voice of my beloved that knocketh, saying,Open to me, my sister, my love,My dove, my undefiled:For my head is filled with dew, And my locks with the drops of the night."
         },
         {
           "verse": 3,
+          "usfm": "SNG.5.3",
+          "line_type": "q1",
           "text": "I have put off my coat;How shall I put it on?I have washed my feet;How shall I defile them?"
         },
         {
           "verse": 4,
+          "usfm": "SNG.5.4",
+          "line_type": "q1",
           "text": "My beloved put in his hand by the hole of the door,And my bowels were moved for him."
         },
         {
           "verse": 5,
+          "usfm": "SNG.5.5",
+          "line_type": "q1",
           "text": "I rose up to open to my beloved;And my hands dropped with myrrh,And my fingers with sweet smelling myrrh,Upon the handles of the lock."
         },
         {
           "verse": 6,
+          "usfm": "SNG.5.6",
+          "line_type": "q1",
           "text": "I opened to my beloved;But my beloved had withdrawn himself, and was gone:My soul failed when he spake:I sought him, but I could not find him;I called him, but he gave me no answer."
         },
         {
           "verse": 7,
+          "usfm": "SNG.5.7",
+          "line_type": "q1",
           "text": "The watchmen that went about the city found me,They smote me, they wounded me;The keepers of the walls took away my veil from me."
         },
         {
           "verse": 8,
+          "usfm": "SNG.5.8",
+          "line_type": "q1",
           "text": "I charge you, O daughters of Jerusalem,If ye find my beloved,That ye tell him,that I am sick of love."
         },
         {
           "verse": 9,
+          "usfm": "SNG.5.9",
+          "line_type": "q1",
           "text": "What is thy beloved more than another beloved,O thou fairest among women?What is thy beloved more than another beloved,That thou dost so charge us?"
         },
         {
           "verse": 10,
+          "usfm": "SNG.5.10",
+          "line_type": "q1",
           "text": "My beloved is white and ruddy,The chiefest among ten thousand."
         },
         {
           "verse": 11,
+          "usfm": "SNG.5.11",
+          "line_type": "q1",
           "text": "His head is as the most fine gold,His locks are bushy, And black as a raven."
         },
         {
           "verse": 12,
+          "usfm": "SNG.5.12",
+          "line_type": "q1",
           "text": "His eyes are as the eyes of doves by the rivers of waters,Washed with milk, and fitly set."
         },
         {
           "verse": 13,
+          "usfm": "SNG.5.13",
+          "line_type": "q1",
           "text": "His cheeks are as a bed of spices, as sweet flowers:His lips like lilies, dropping sweet smelling myrrh."
         },
         {
           "verse": 14,
+          "usfm": "SNG.5.14",
+          "line_type": "q1",
           "text": "His hands are as gold rings set with the beryl:His belly is as bright ivory overlaid with sapphires."
         },
         {
           "verse": 15,
+          "usfm": "SNG.5.15",
+          "line_type": "q1",
           "text": "His legs are as pillars of marble, set upon sockets of fine gold:His countenance is as Lebanon, excellent as the cedars."
         },
         {
           "verse": 16,
+          "usfm": "SNG.5.16",
+          "line_type": "q1",
           "text": "His mouth is most sweet:Yea, he is altogether lovely.This is my beloved, and this is my friend,O daughters of Jerusalem."
         }
       ],
       "verse_count": 16,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.5.1",
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.5.2",
+            "SNG.5.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.5.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.5.3"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.5.3"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "SNG.5.3",
+            "SNG.5.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.5.4"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "SNG.5.4",
+            "SNG.5.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.5.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.5.5"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.5.5"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "SNG.5.5",
+            "SNG.5.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.5.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.5.6"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.5.6"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.5.6"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "SNG.5.6",
+            "SNG.5.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.5.7"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.5.7"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.5.7",
+            "SNG.5.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.5.8"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.5.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.5.8"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.5.8",
+            "SNG.5.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.5.9"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.5.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.5.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "SNG.5.10",
+            "SNG.5.9"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.5.10"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.5.10",
+            "SNG.5.11"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.5.11"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.5.11"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "SNG.5.11",
+            "SNG.5.12"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.5.12"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.5.12",
+            "SNG.5.13"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.5.13"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "SNG.5.13",
+            "SNG.5.14"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.5.14"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "SNG.5.14",
+            "SNG.5.15"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.5.15"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "SNG.5.15",
+            "SNG.5.16"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.5.16"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.5.16"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.5.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -431,9 +4112,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/5-34f1b4f72708d2ce4df795aeeea3efe2.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/SNG.5.KJV",
+        "reference": {
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Solomon 5",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Solomon 4",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Solomon 6",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 6,
       "chapter_usfm": "SNG.6",
@@ -442,60 +4180,628 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.6.1",
+          "line_type": "q1",
           "text": "Whither is thy beloved gone,O thou fairest among women?Whither is thy beloved turned aside?That we may seek him with thee."
         },
         {
           "verse": 2,
+          "usfm": "SNG.6.2",
+          "line_type": "q1",
           "text": "My beloved is gone down into his garden,To the beds of spices,To feed in the gardens,And to gather lilies."
         },
         {
           "verse": 3,
+          "usfm": "SNG.6.3",
+          "line_type": "q1",
           "text": "I am my beloved's, and my beloved is mine:He feedeth among the lilies."
         },
         {
           "verse": 4,
+          "usfm": "SNG.6.4",
+          "line_type": "q1",
           "text": "Thou art beautiful, O my love, as Tirzah,Comely as Jerusalem,Terrible as an army with banners."
         },
         {
           "verse": 5,
+          "usfm": "SNG.6.5",
+          "line_type": "q1",
           "text": "Turn away thine eyes from me,For they have overcome me:Thy hair is as a flock of goatsThat appear from Gilead."
         },
         {
           "verse": 6,
+          "usfm": "SNG.6.6",
+          "line_type": "q1",
           "text": "Thy teeth are as a flock of sheepWhich go up from the washing,Whereof every one beareth twins,And there is not one barren among them."
         },
         {
           "verse": 7,
+          "usfm": "SNG.6.7",
+          "line_type": "q1",
           "text": "As a piece of a pomegranate are thy templesWithin thy locks."
         },
         {
           "verse": 8,
+          "usfm": "SNG.6.8",
+          "line_type": "q1",
           "text": "There are threescore queens, and fourscore concubines,And virgins without number."
         },
         {
           "verse": 9,
+          "usfm": "SNG.6.9",
+          "line_type": "q1",
           "text": "My dove, my undefiled is but one;She is the only one of her mother,She is the choice one of her that bare her.The daughters saw her, and blessed her; Yea, the queens and the concubines, and they praised her."
         },
         {
           "verse": 10,
+          "usfm": "SNG.6.10",
+          "line_type": "q1",
           "text": "Who is she that looketh forth as the morning,Fair as the moon, clear as the sun, And terrible as an army with banners?"
         },
         {
           "verse": 11,
+          "usfm": "SNG.6.11",
+          "line_type": "q1",
           "text": "I went down into the garden of nutsTo see the fruits of the valley, And to see whether the vine flourished, And the pomegranates budded."
         },
         {
           "verse": 12,
+          "usfm": "SNG.6.12",
+          "line_type": "q1",
           "text": "Or ever I was aware,My soul made me like the chariots of Amminadib."
         },
         {
           "verse": 13,
+          "usfm": "SNG.6.13",
+          "line_type": "q1",
           "text": "Return, return, O Shulamite;Return, return, that we may look upon thee.What will ye see in the Shulamite?As it were the company of two armies."
         }
       ],
       "verse_count": 13,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.6.1",
+            "SNG.6.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.6.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.6.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.6.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.6.2",
+            "SNG.6.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.6.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "SNG.6.3",
+            "SNG.6.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.6.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.6.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "SNG.6.4",
+            "SNG.6.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.6.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.6.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.6.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "SNG.6.5",
+            "SNG.6.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.6.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.6.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.6.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "SNG.6.6",
+            "SNG.6.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.6.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.6.7",
+            "SNG.6.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.6.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.6.8",
+            "SNG.6.9"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.6.9"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.6.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.6.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.6.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "SNG.6.10",
+            "SNG.6.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.6.10"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.6.10"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.6.10",
+            "SNG.6.11"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.6.11"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.6.11"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.6.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "SNG.6.11",
+            "SNG.6.12"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.6.12"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.6.12",
+            "SNG.6.13"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.6.13"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.6.13"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.6.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -506,9 +4812,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/6-0990b2502d30b5105ddad4bff9518516.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/SNG.6.KJV",
+        "reference": {
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Solomon 6",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Solomon 5",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Solomon 7",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 7,
       "chapter_usfm": "SNG.7",
@@ -517,60 +4880,628 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.7.1",
+          "line_type": "q1",
           "text": "How beautiful are thy feet with shoes,O prince's daughter!The joints of thy thighs are like jewels,The work of the hands of a cunning workman."
         },
         {
           "verse": 2,
+          "usfm": "SNG.7.2",
+          "line_type": "q1",
           "text": "Thy navel is like a round goblet, Which wanteth not liquor:Thy belly is like an heap of wheatSet about with lilies."
         },
         {
           "verse": 3,
+          "usfm": "SNG.7.3",
+          "line_type": "q1",
           "text": "Thy two breasts are like two young roes That are twins."
         },
         {
           "verse": 4,
+          "usfm": "SNG.7.4",
+          "line_type": "q1",
           "text": "Thy neck is as a tower of ivory;Thine eyes like the fishpools in Heshbon,By the gate of Bathrabbim:Thy nose is as the tower of LebanonWhich looketh toward Damascus."
         },
         {
           "verse": 5,
+          "usfm": "SNG.7.5",
+          "line_type": "q1",
           "text": "Thine head upon thee is like Carmel,And the hair of thine head like purple;The king is held in the galleries."
         },
         {
           "verse": 6,
+          "usfm": "SNG.7.6",
+          "line_type": "q1",
           "text": "How fair and how pleasant art thou,O love, for delights!"
         },
         {
           "verse": 7,
+          "usfm": "SNG.7.7",
+          "line_type": "q1",
           "text": "This thy stature is like to a palm tree,And thy breasts to clusters of grapes."
         },
         {
           "verse": 8,
+          "usfm": "SNG.7.8",
+          "line_type": "q1",
           "text": "I said, I will go up to the palm tree,I will take hold of the boughs thereof:Now also thy breasts shall be as clusters of the vine,And the smell of thy nose like apples;"
         },
         {
           "verse": 9,
+          "usfm": "SNG.7.9",
+          "line_type": "q1",
           "text": "And the roof of thy mouth like the best wineFor my beloved, that goeth down sweetly,Causing the lips of those that are asleep to speak."
         },
         {
           "verse": 10,
+          "usfm": "SNG.7.10",
+          "line_type": "q1",
           "text": "I am my beloved's,And his desire is toward me."
         },
         {
           "verse": 11,
+          "usfm": "SNG.7.11",
+          "line_type": "q1",
           "text": "Come, my beloved,Let us go forth into the field;Let us lodge in the villages."
         },
         {
           "verse": 12,
+          "usfm": "SNG.7.12",
+          "line_type": "q1",
           "text": "Let us get up early to the vineyards;Let us see if the vine flourish, Whether the tender grape appear, And the pomegranates bud forth:There will I give thee my loves."
         },
         {
           "verse": 13,
+          "usfm": "SNG.7.13",
+          "line_type": "q1",
           "text": "The mandrakes give a smell,And at our gates are all manner of pleasant fruits,New and old, Which I have laid up for thee, O my beloved."
         }
       ],
       "verse_count": 13,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.7.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.7.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.7.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.7.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.7.1",
+            "SNG.7.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.7.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.7.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.7.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.7.2",
+            "SNG.7.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.7.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "SNG.7.3",
+            "SNG.7.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.7.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.7.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.7.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.7.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "SNG.7.4",
+            "SNG.7.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.7.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.7.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "SNG.7.5",
+            "SNG.7.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.7.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "SNG.7.6",
+            "SNG.7.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.7.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.7.7",
+            "SNG.7.8"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.7.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.7.8"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.7.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.7.8",
+            "SNG.7.9"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.7.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.7.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "SNG.7.10",
+            "SNG.7.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.7.10"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.7.10",
+            "SNG.7.11"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.7.11"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.7.11"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "SNG.7.11",
+            "SNG.7.12"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.7.12"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.7.12"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.7.12"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.7.12"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.7.12",
+            "SNG.7.13"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.7.13"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.7.13"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.7.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -581,9 +5512,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/7-4e9dcc1d984fc82f7158230601c8dbf8.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/SNG.7.KJV",
+        "reference": {
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Solomon 7",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Solomon 6",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.8"
+          ],
+          "human": "Song of Solomon 8",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 8,
       "chapter_usfm": "SNG.8",
@@ -592,64 +5580,768 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.8.1",
+          "line_type": "q1",
           "text": "O that thou wert as my brother,That sucked the breasts of my mother! When I should find thee without, I would kiss thee;Yea, I should not be despised."
         },
         {
           "verse": 2,
+          "usfm": "SNG.8.2",
+          "line_type": "q1",
           "text": "I would lead thee, And bring thee into my mother's house, Who would instruct me:I would cause thee to drink of spiced wineOf the juice of my pomegranate."
         },
         {
           "verse": 3,
+          "usfm": "SNG.8.3",
+          "line_type": "q1",
           "text": "His left hand should be under my head,And his right hand should embrace me."
         },
         {
           "verse": 4,
+          "usfm": "SNG.8.4",
+          "line_type": "q1",
           "text": "I charge you, O daughters of Jerusalem,That ye stir not up, nor awake my love,Until he please."
         },
         {
           "verse": 5,
+          "usfm": "SNG.8.5",
+          "line_type": "q1",
           "text": "Who is this that cometh up from the wilderness,Leaning upon her beloved?I raised thee up under the apple tree:There thy mother brought thee forth:There she brought thee forth that bare thee."
         },
         {
           "verse": 6,
+          "usfm": "SNG.8.6",
+          "line_type": "q1",
           "text": "Set me as a seal upon thine heart,As a seal upon thine arm:For love is strong as death;Jealousy is cruel as the grave:The coals thereof are coals of fire, Which hath a most vehement flame."
         },
         {
           "verse": 7,
+          "usfm": "SNG.8.7",
+          "line_type": "q1",
           "text": "Many waters cannot quench love,Neither can the floods drown it:If a man would give all the substance of his house for love,It would utterly be contemned."
         },
         {
           "verse": 8,
+          "usfm": "SNG.8.8",
+          "line_type": "q1",
           "text": "We have a little sister,And she hath no breasts:What shall we do for our sisterIn the day when she shall be spoken for?"
         },
         {
           "verse": 9,
+          "usfm": "SNG.8.9",
+          "line_type": "q1",
           "text": "If she be a wall,We will build upon her a palace of silver:And if she be a door,We will inclose her with boards of cedar."
         },
         {
           "verse": 10,
+          "usfm": "SNG.8.10",
+          "line_type": "q1",
           "text": "I am a wall,And my breasts like towers:Then was I in his eyesAs one that found favour."
         },
         {
           "verse": 11,
+          "usfm": "SNG.8.11",
+          "line_type": "q1",
           "text": "Solomon had a vineyard at Baalhamon;He let out the vineyard unto keepers;Every one for the fruit thereof was to bring a thousand pieces of silver."
         },
         {
           "verse": 12,
+          "usfm": "SNG.8.12",
+          "line_type": "q1",
           "text": "My vineyard, which is mine, is before me:Thou, O Solomon, must have a thousand,And those that keep the fruit thereof two hundred."
         },
         {
           "verse": 13,
+          "usfm": "SNG.8.13",
+          "line_type": "q1",
           "text": "Thou that dwellest in the gardens,The companions hearken to thy voice:Cause me to hear it."
         },
         {
           "verse": 14,
+          "usfm": "SNG.8.14",
+          "line_type": "q1",
           "text": "Make haste, my beloved,And be thou like to a roeOr to a young hartUpon the mountains of spices."
         }
       ],
       "verse_count": 14,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.8.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.8.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.8.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.8.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.8.1",
+            "SNG.8.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.8.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.8.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.8.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.8.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.8.2",
+            "SNG.8.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.8.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "SNG.8.3",
+            "SNG.8.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.8.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.8.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "SNG.8.4",
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "SNG.8.5",
+            "SNG.8.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.8.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.8.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.8.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.8.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "SNG.8.6"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "SNG.8.6",
+            "SNG.8.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.8.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.8.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.8.7"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.8.7",
+            "SNG.8.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.8.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.8.8"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.8.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.8.8",
+            "SNG.8.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.8.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.8.9"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.8.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "SNG.8.10",
+            "SNG.8.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.8.10"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.8.10"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.8.10"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "SNG.8.10",
+            "SNG.8.11"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.8.11"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.8.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "SNG.8.11",
+            "SNG.8.12"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.8.12"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "SNG.8.12"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "SNG.8.12",
+            "SNG.8.13"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.8.13"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.8.13"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "SNG.8.13",
+            "SNG.8.14"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.8.14"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.8.14"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.8.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -660,7 +6352,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/SNG/8-a85b95b310fb8af9b405d1a4940ab25b.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/SNG.8.KJV",
+        "reference": {
+          "usfm": [
+            "SNG.8"
+          ],
+          "human": "Song of Solomon 8",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Solomon 7",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ISA.1"
+          ],
+          "human": "Isaiah 1",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

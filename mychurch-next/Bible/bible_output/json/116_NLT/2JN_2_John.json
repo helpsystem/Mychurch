@@ -11,6 +11,7 @@
   "total_verses": 13,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2JN",
       "chapter": 1,
       "chapter_usfm": "2JN.1",
@@ -19,69 +20,278 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2JN.1.1",
+          "line_type": "m",
           "text": "This letter is from John, the elder.I am writing to the chosen lady and to her children, whom I love in the truth—as does everyone else who knows the truth—"
         },
         {
           "verse": 2,
+          "usfm": "2JN.1.2",
+          "line_type": "p",
           "text": "because the truth lives in us and will be with us forever."
         },
         {
           "verse": 3,
+          "usfm": "2JN.1.3",
+          "line_type": "p",
           "text": "Grace, mercy, and peace, which come from God the Father and from Jesus Christ—the Son of the Father—will continue to be with us who live in truth and love."
         },
         {
           "verse": 4,
+          "usfm": "2JN.1.4",
+          "line_type": "m",
           "text": "How happy I was to meet some of your children and find them living according to the truth, just as the Father commanded."
         },
         {
           "verse": 5,
+          "usfm": "2JN.1.5",
+          "line_type": "p",
           "text": "I am writing to remind you, dear friends, that we should love one another. This is not a new commandment, but one we have had from the beginning."
         },
         {
           "verse": 6,
+          "usfm": "2JN.1.6",
+          "line_type": "p",
           "text": "Love means doing what God has commanded us, and he has commanded us to love one another, just as you heard from the beginning."
         },
         {
           "verse": 7,
+          "usfm": "2JN.1.7",
+          "line_type": "p",
           "text": "I say this because many deceivers have gone out into the world. They deny that Jesus Christ came in a real body. Such a person is a deceiver and an antichrist."
         },
         {
           "verse": 8,
+          "usfm": "2JN.1.8",
+          "line_type": "p",
           "text": "Watch out that you do not lose what we have worked so hard to achieve. Be diligent so that you receive your full reward."
         },
         {
           "verse": 9,
+          "usfm": "2JN.1.9",
+          "line_type": "p",
           "text": "Anyone who wanders away from this teaching has no relationship with God. But anyone who remains in the teaching of Christ has a relationship with both the Father and the Son."
         },
         {
           "verse": 10,
+          "usfm": "2JN.1.10",
+          "line_type": "p",
           "text": "If anyone comes to your meeting and does not teach the truth about Christ, don’t invite that person into your home or give any kind of encouragement."
         },
         {
           "verse": 11,
+          "usfm": "2JN.1.11",
+          "line_type": "p",
           "text": "Anyone who encourages such people becomes a partner in their evil work."
         },
         {
           "verse": 12,
+          "usfm": "2JN.1.12",
+          "line_type": "m",
           "text": "I have much more to say to you, but I don’t want to do it with paper and ink. For I hope to visit you soon and talk with you face to face. Then our joy will be complete."
         },
         {
           "verse": 13,
+          "usfm": "2JN.1.13",
+          "line_type": "p",
           "text": "Greetings from the children of your sister, chosen by God."
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Live in the Truth"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Conclusion"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "2JN.1.1",
+          "note_ref": "1:1a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek From the elder."
+        },
+        {
+          "verse": 1,
+          "usfm": "2JN.1.1",
+          "note_ref": "1:1b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or the church God has chosen and its members."
+        },
+        {
+          "verse": 5,
+          "usfm": "2JN.1.5",
+          "note_ref": "1:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek I urge you, lady."
+        },
+        {
+          "verse": 7,
+          "usfm": "2JN.1.7",
+          "note_ref": "1:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or will come."
+        },
+        {
+          "verse": 8,
+          "usfm": "2JN.1.8",
+          "note_ref": "1:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read you."
+        },
+        {
+          "verse": 13,
+          "usfm": "2JN.1.13",
+          "note_ref": "1:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or from the members of your sister church."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2JN.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2JN.1.1",
+            "2JN.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "2JN.1.2",
+            "2JN.1.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "2JN.1.3",
+            "2JN.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "2JN.1.4",
+            "2JN.1.5",
+            "2JN.1.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "2JN.1.6",
+            "2JN.1.7",
+            "2JN.1.8",
+            "2JN.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "2JN.1.10",
+            "2JN.1.11",
+            "2JN.1.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "2JN.1.11",
+            "2JN.1.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "2JN.1.12",
+            "2JN.1.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -124,7 +334,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/2JN/1-433666b4b2556fe7d6651a8b546dfc0b.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/2JN.1.NLT",
+        "reference": {
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "2 John 1",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1JN.5"
+          ],
+          "human": "1 John 5",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

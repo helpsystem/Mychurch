@@ -11,6 +11,7 @@
   "total_verses": 73,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JOL",
       "chapter": 1,
       "chapter_usfm": "JOL.1",
@@ -19,97 +20,1713 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JOL.1.1",
+          "line_type": "p",
           "text": "The word of the Lord that came to Joel, the son of Pethuel:"
         },
         {
           "verse": 2,
+          "usfm": "JOL.1.2",
+          "line_type": "q1",
           "text": "Hear this, you elders;give ear, all inhabitants of the land! Has such a thing happened in your days,or in the days of your fathers?"
         },
         {
           "verse": 3,
+          "usfm": "JOL.1.3",
+          "line_type": "q1",
           "text": "Tell your children of it,and let your children tell their children,and their children to another generation."
         },
         {
           "verse": 4,
+          "usfm": "JOL.1.4",
+          "line_type": "q1",
           "text": "What the cutting locust left, the swarming locust has eaten.What the swarming locust left, the hopping locust has eaten,and what the hopping locust left, the destroying locust has eaten."
         },
         {
           "verse": 5,
+          "usfm": "JOL.1.5",
+          "line_type": "q1",
           "text": "Awake, you drunkards, and weep,and wail, all you drinkers of wine,because of the sweet wine,for it is cut off from your mouth."
         },
         {
           "verse": 6,
+          "usfm": "JOL.1.6",
+          "line_type": "q1",
           "text": "For a nation has come up against my land, powerful and beyond number; its teeth are lions’ teeth,and it has the fangs of a lioness."
         },
         {
           "verse": 7,
+          "usfm": "JOL.1.7",
+          "line_type": "q1",
           "text": "It has laid waste my vineand splintered my fig tree;it has stripped off their bark and thrown it down;their branches are made white."
         },
         {
           "verse": 8,
+          "usfm": "JOL.1.8",
+          "line_type": "q1",
           "text": "Lament like a virgin wearing sackclothfor the bridegroom of her youth."
         },
         {
           "verse": 9,
+          "usfm": "JOL.1.9",
+          "line_type": "q1",
           "text": "The grain offering and the drink offering are cut offfrom the house of the Lord. The priests mourn, the ministers of the Lord."
         },
         {
           "verse": 10,
+          "usfm": "JOL.1.10",
+          "line_type": "q1",
           "text": "The fields are destroyed, the ground mourns,because the grain is destroyed, the wine dries up,the oil languishes."
         },
         {
           "verse": 11,
+          "usfm": "JOL.1.11",
+          "line_type": "q1",
           "text": "Be ashamed, O tillers of the soil;wail, O vinedressers,for the wheat and the barley, because the harvest of the field has perished."
         },
         {
           "verse": 12,
+          "usfm": "JOL.1.12",
+          "line_type": "q1",
           "text": "The vine dries up; the fig tree languishes.Pomegranate, palm, and apple,all the trees of the field are dried up,and gladness dries upfrom the children of man."
         },
         {
           "verse": 13,
+          "usfm": "JOL.1.13",
+          "line_type": "q1",
           "text": "Put on sackcloth and lament, O priests; wail, O ministers of the altar.Go in, pass the night in sackcloth, O ministers of my God! Because grain offering and drink offeringare withheld from the house of your God."
         },
         {
           "verse": 14,
+          "usfm": "JOL.1.14",
+          "line_type": "q1",
           "text": "Consecrate a fast; call a solemn assembly.Gather the eldersand all the inhabitants of the landto the house of the Lord your God,and cry out to the Lord."
         },
         {
           "verse": 15,
+          "usfm": "JOL.1.15",
+          "line_type": "q1",
           "text": "Alas for the day! For the day of the Lord is near,and as destruction from the Almighty it comes."
         },
         {
           "verse": 16,
+          "usfm": "JOL.1.16",
+          "line_type": "q1",
           "text": "Is not the food cut offbefore our eyes, joy and gladnessfrom the house of our God?"
         },
         {
           "verse": 17,
+          "usfm": "JOL.1.17",
+          "line_type": "q1",
           "text": "The seed shrivels under the clods;the storehouses are desolate;the granaries are torn downbecause the grain has dried up."
         },
         {
           "verse": 18,
+          "usfm": "JOL.1.18",
+          "line_type": "q1",
           "text": "How the beasts groan!The herds of cattle are perplexedbecause there is no pasture for them;even the flocks of sheep suffer."
         },
         {
           "verse": 19,
+          "usfm": "JOL.1.19",
+          "line_type": "q1",
           "text": "To you, O Lord, I call. For fire has devouredthe pastures of the wilderness, and flame has burnedall the trees of the field."
         },
         {
           "verse": 20,
+          "usfm": "JOL.1.20",
+          "line_type": "q1",
           "text": "Even the beasts of the field pant for youbecause the water brooks are dried up, and fire has devouredthe pastures of the wilderness."
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "An Invasion of Locusts"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "A Call to Repentance"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "JOL.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HOS.5.1"
+          ],
+          "text": "[ Hos. 5:1 ]"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.14"
+          ],
+          "text": "ver. 14"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.14"
+          ],
+          "text": "ver. 14"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.2"
+          ],
+          "text": "[ch. 2:2 ]"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.78.4"
+          ],
+          "text": "[ Ps. 78:4 ]"
+        },
+        {
+          "verse": 4,
+          "usfm": "JOL.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.25",
+            "AMO.4.9"
+          ],
+          "text": "ch. 2:25; Amos 4:9"
+        },
+        {
+          "verse": 4,
+          "usfm": "JOL.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "AMO.7.1"
+          ],
+          "text": "[ Amos 7:1 ]; See Ex. 10:4"
+        },
+        {
+          "verse": 4,
+          "usfm": "JOL.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.25",
+            "PSA.105.34",
+            "NAM.3.15"
+          ],
+          "text": "ch. 2:25; Ps. 105:34; Nah. 3:15"
+        },
+        {
+          "verse": 4,
+          "usfm": "JOL.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.25",
+            "PSA.78.46"
+          ],
+          "text": "ch. 2:25; Ps. 78:46"
+        },
+        {
+          "verse": 5,
+          "usfm": "JOL.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.24.11"
+          ],
+          "text": "[Isa. 24:11]"
+        },
+        {
+          "verse": 5,
+          "usfm": "JOL.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.18",
+            "ISA.49.26",
+            "AMO.9.13"
+          ],
+          "text": "ch. 3:18; Isa. 49:26; Amos 9:13"
+        },
+        {
+          "verse": 6,
+          "usfm": "JOL.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.2"
+          ],
+          "text": "ch. 2:2"
+        },
+        {
+          "verse": 6,
+          "usfm": "JOL.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.2"
+          ],
+          "text": "ch. 2:2"
+        },
+        {
+          "verse": 6,
+          "usfm": "JOL.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "REV.9.7",
+            "REV.9.8"
+          ],
+          "text": "[ Rev. 9:7, 8 ]"
+        },
+        {
+          "verse": 7,
+          "usfm": "JOL.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.12"
+          ],
+          "text": "[ver. 12]"
+        },
+        {
+          "verse": 8,
+          "usfm": "JOL.1.8",
+          "note_ref": "1:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or young woman"
+        },
+        {
+          "verse": 8,
+          "usfm": "JOL.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.13"
+          ],
+          "text": "[ver. 13]; See 2 Sam. 3:31"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.13",
+            "JOL.2.14"
+          ],
+          "text": "ver. 13 ; ch. 2:14"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.17",
+            "ISA.61.6",
+            "EZK.45.4"
+          ],
+          "text": "ch. 2:17; [ Isa. 61:6; Ezek. 45:4 ]"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.17",
+            "ISA.61.6",
+            "EZK.45.4"
+          ],
+          "text": "ch. 2:17; [ Isa. 61:6; Ezek. 45:4 ]"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HOS.4.3"
+          ],
+          "text": "See Hos. 4:3"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HOS.2.9"
+          ],
+          "text": "[Hos. 2:9]"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HOS.2.9"
+          ],
+          "text": "[ Hos. 2:9 ]"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.14.4"
+          ],
+          "text": "[ Jer. 14:4 ]"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.1.11",
+          "note_ref": "1:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The Hebrew words for dry up and be ashamed in verses 10–12, 17 sound alike"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.17"
+          ],
+          "text": "ver. 17"
+        },
+        {
+          "verse": 12,
+          "usfm": "JOL.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.7"
+          ],
+          "text": "[ver. 7 ]"
+        },
+        {
+          "verse": 12,
+          "usfm": "JOL.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.24.11",
+            "JER.48.33"
+          ],
+          "text": "Isa. 24:11; Jer. 48:33"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.4.8"
+          ],
+          "text": "[ver. 8; Jer. 4:8 ]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.9"
+          ],
+          "text": "[See ver. 9above]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MIC.1.8"
+          ],
+          "text": "[ver. 8; Mic. 1:8 ]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.4.8"
+          ],
+          "text": "[ver. 8; Jer. 4:8]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.9"
+          ],
+          "text": "[See ver. 9 above]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.9",
+            "JOL.2.14"
+          ],
+          "text": "ver. 9 ; ch. 2:14"
+        },
+        {
+          "verse": 14,
+          "usfm": "JOL.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.15",
+            "JOL.2.16",
+            "2CH.20.3"
+          ],
+          "text": "ch. 2:15, 16; See 2 Chr. 20:3"
+        },
+        {
+          "verse": 14,
+          "usfm": "JOL.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.15",
+            "JOL.2.16",
+            "2CH.20.3"
+          ],
+          "text": "ch. 2:15, 16; See 2 Chr. 20:3"
+        },
+        {
+          "verse": 14,
+          "usfm": "JOL.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.2"
+          ],
+          "text": "ver. 2"
+        },
+        {
+          "verse": 14,
+          "usfm": "JOL.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.2"
+          ],
+          "text": "ver. 2"
+        },
+        {
+          "verse": 15,
+          "usfm": "JOL.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.1",
+            "JOL.2.11",
+            "JOL.2.31",
+            "JOL.3.14",
+            "ISA.13.6",
+            "ISA.13.9",
+            "JER.46.10",
+            "EZK.30.2",
+            "EZK.30.3",
+            "AMO.5.18",
+            "OBA.1.15",
+            "ZEP.1.14",
+            "ZEP.1.15",
+            "ZEC.14.1",
+            "2PE.3.10"
+          ],
+          "text": "ch. 2:1, 11, 31; 3:14; Isa. 13:6, 9; Jer. 46:10; Ezek. 30:2, 3; Amos 5:18; Obad. 15; Zeph. 1:14, 15; Zech. 14:1; 2 Pet. 3:10"
+        },
+        {
+          "verse": 15,
+          "usfm": "JOL.1.15",
+          "note_ref": "1:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Destruction sounds like the Hebrew for Almighty"
+        },
+        {
+          "verse": 16,
+          "usfm": "JOL.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.12.6",
+            "DEU.12.7",
+            "DEU.16.14",
+            "DEU.16.15"
+          ],
+          "text": "[ Deut. 12:6, 7; 16:14, 15 ]"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAL.2.3"
+          ],
+          "text": "[ Mal. 2:3 ]"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.1.17",
+          "note_ref": "1:17",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The meaning of the Hebrew line is uncertain"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.11"
+          ],
+          "text": "ver. 11"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.1.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.22",
+            "JER.12.4",
+            "HOS.4.3"
+          ],
+          "text": "ch. 2:22; [Jer. 12:4; Hos. 4:3]"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.1.18",
+          "note_ref": "1:18",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or are made desolate"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.1.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.50.15"
+          ],
+          "text": "Ps. 50:15"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.1.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.9.10"
+          ],
+          "text": "Jer. 9:10"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.1.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.9.10"
+          ],
+          "text": "Jer. 9:10"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.1.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOB.38.41",
+            "PSA.104.21",
+            "PSA.145.15"
+          ],
+          "text": "[Job 38:41; Ps. 104:21; 145:15]"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.1.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.19"
+          ],
+          "text": "[See ver. 19 above]"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOL.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JOL.1.1",
+            "JOL.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "JOL.1.2",
+            "JOL.1.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JOL.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JOL.1.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "JOL.1.3",
+            "JOL.1.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JOL.1.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JOL.1.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JOL.1.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JOL.1.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JOL.1.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "JOL.1.4",
+            "JOL.1.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JOL.1.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JOL.1.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JOL.1.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "JOL.1.5",
+            "JOL.1.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JOL.1.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JOL.1.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JOL.1.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JOL.1.6",
+            "JOL.1.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JOL.1.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JOL.1.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JOL.1.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "JOL.1.7",
+            "JOL.1.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JOL.1.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "JOL.1.8",
+            "JOL.1.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.1.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.1.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.1.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JOL.1.10",
+            "JOL.1.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.1.10"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.1.10"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.1.10"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.1.10"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "JOL.1.10",
+            "JOL.1.11"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.1.11"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.1.11"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.1.11"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "JOL.1.11",
+            "JOL.1.12"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.1.12"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.1.12"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.1.12"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.1.12"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.1.12"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "JOL.1.12",
+            "JOL.1.13"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.1.13"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.1.13"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.1.13"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.1.13"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.1.13"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "JOL.1.13",
+            "JOL.1.14"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.1.14"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.1.14"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.1.14"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.1.14"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.1.14"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "JOL.1.14",
+            "JOL.1.15"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "JOL.1.15"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "JOL.1.15"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "JOL.1.15",
+            "JOL.1.16"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.1.16"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.1.16"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.1.16"
+          ]
+        },
+        {
+          "index": 67,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "JOL.1.16",
+            "JOL.1.17"
+          ]
+        },
+        {
+          "index": 68,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.1.17"
+          ]
+        },
+        {
+          "index": 69,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.1.17"
+          ]
+        },
+        {
+          "index": 70,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.1.17"
+          ]
+        },
+        {
+          "index": 71,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "JOL.1.17",
+            "JOL.1.18"
+          ]
+        },
+        {
+          "index": 72,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.1.18"
+          ]
+        },
+        {
+          "index": 73,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.1.18"
+          ]
+        },
+        {
+          "index": 74,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.1.18"
+          ]
+        },
+        {
+          "index": 75,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "JOL.1.18",
+            "JOL.1.19"
+          ]
+        },
+        {
+          "index": 76,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.1.19"
+          ]
+        },
+        {
+          "index": 77,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.1.19"
+          ]
+        },
+        {
+          "index": 78,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.1.19"
+          ]
+        },
+        {
+          "index": 79,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.1.19"
+          ]
+        },
+        {
+          "index": 80,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "JOL.1.19",
+            "JOL.1.20"
+          ]
+        },
+        {
+          "index": 81,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.1.20"
+          ]
+        },
+        {
+          "index": 82,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.1.20"
+          ]
+        },
+        {
+          "index": 83,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.1.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -120,9 +1737,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/JOL/1-54208dbd07b499ef794d20d466c8e041.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/JOL.1.ESV",
+        "reference": {
+          "usfm": [
+            "JOL.1"
+          ],
+          "human": "Joel 1",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.14"
+          ],
+          "human": "Hosea 14",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOL.2"
+          ],
+          "human": "Joel 2",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOL",
       "chapter": 2,
       "chapter_usfm": "JOL.2",
@@ -131,130 +1805,194 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JOL.2.1",
+          "line_type": "q1",
           "text": "Blow a trumpet in Zion;sound an alarm on my holy mountain!Let all the inhabitants of the land tremble,for the day of the Lord is coming; it is near,"
         },
         {
           "verse": 2,
+          "usfm": "JOL.2.2",
+          "line_type": "q1",
           "text": "a day of darkness and gloom, a day of clouds and thick darkness!Like blackness there is spread upon the mountains a great and powerful people; their like has never been before,nor will be again after themthrough the years of all generations."
         },
         {
           "verse": 3,
+          "usfm": "JOL.2.3",
+          "line_type": "q1",
           "text": "Fire devours before them,and behind them a flame burns.The land is like the garden of Eden before them,but behind them a desolate wilderness,and nothing escapes them."
         },
         {
           "verse": 4,
+          "usfm": "JOL.2.4",
+          "line_type": "q1",
           "text": "Their appearance is like the appearance of horses,and like war horses they run."
         },
         {
           "verse": 5,
+          "usfm": "JOL.2.5",
+          "line_type": "q1",
           "text": "As with the rumbling of chariots,they leap on the tops of the mountains,like the crackling of a flame of firedevouring the stubble, like a powerful armydrawn up for battle."
         },
         {
           "verse": 6,
+          "usfm": "JOL.2.6",
+          "line_type": "q1",
           "text": "Before them peoples are in anguish; all faces grow pale."
         },
         {
           "verse": 7,
+          "usfm": "JOL.2.7",
+          "line_type": "q1",
           "text": "Like warriors they charge;like soldiers they scale the wall.They march each on his way;they do not swerve from their paths."
         },
         {
           "verse": 8,
+          "usfm": "JOL.2.8",
+          "line_type": "q1",
           "text": "They do not jostle one another; each marches in his path;they burst through the weaponsand are not halted."
         },
         {
           "verse": 9,
+          "usfm": "JOL.2.9",
+          "line_type": "q1",
           "text": "They leap upon the city,they run upon the walls, they climb up into the houses, they enter through the windows like a thief."
         },
         {
           "verse": 10,
+          "usfm": "JOL.2.10",
+          "line_type": "q1",
           "text": "The earth quakes before them;the heavens tremble. The sun and the moon are darkened,and the stars withdraw their shining."
         },
         {
           "verse": 11,
+          "usfm": "JOL.2.11",
+          "line_type": "q1",
           "text": "The Lord utters his voicebefore his army,for his camp is exceedingly great; he who executes his word is powerful. For the day of the Lord is great and very awesome; who can endure it?"
         },
         {
           "verse": 12,
+          "usfm": "JOL.2.12",
+          "line_type": "q1",
           "text": "“Yet even now,” declares the Lord, “return to me with all your heart, with fasting, with weeping, and with mourning;"
         },
         {
           "verse": 13,
+          "usfm": "JOL.2.13",
+          "line_type": "q2",
           "text": "and rend your hearts and not your garments.”Return to the Lord your God, for he is gracious and merciful,slow to anger, and abounding in steadfast love; and he relents over disaster."
         },
         {
           "verse": 14,
+          "usfm": "JOL.2.14",
+          "line_type": "q1",
           "text": "Who knows whether he will not turn and relent,and leave a blessing behind him, a grain offering and a drink offeringfor the Lord your God?"
         },
         {
           "verse": 15,
+          "usfm": "JOL.2.15",
+          "line_type": "q1",
           "text": "Blow the trumpet in Zion; consecrate a fast;call a solemn assembly;"
         },
         {
           "verse": 16,
+          "usfm": "JOL.2.16",
+          "line_type": "q2",
           "text": "gather the people. Consecrate the congregation;assemble the elders; gather the children,even nursing infants. Let the bridegroom leave his room,and the bride her chamber."
         },
         {
           "verse": 17,
+          "usfm": "JOL.2.17",
+          "line_type": "q1",
           "text": "Between the vestibule and the altar let the priests, the ministers of the Lord, weepand say, “Spare your people, O Lord,and make not your heritage a reproach,a byword among the nations. Why should they say among the peoples,‘Where is their God?’”"
         },
         {
           "verse": 18,
+          "usfm": "JOL.2.18",
+          "line_type": "q1",
           "text": "Then the Lord became jealous for his land and had pity on his people."
         },
         {
           "verse": 19,
+          "usfm": "JOL.2.19",
+          "line_type": "q1",
           "text": "The Lord answered and said to his people,“Behold, I am sending to yougrain, wine, and oil, and you will be satisfied;and I will no more make youa reproach among the nations."
         },
         {
           "verse": 20,
+          "usfm": "JOL.2.20",
+          "line_type": "q1",
           "text": "“I will remove the northerner far from you,and drive him into a parched and desolate land,his vanguard into the eastern sea,and his rear guard into the western sea; the stench and foul smell of him will rise,for he has done great things."
         },
         {
           "verse": 21,
+          "usfm": "JOL.2.21",
+          "line_type": "q1",
           "text": "“Fear not, O land;be glad and rejoice,for the Lord has done great things!"
         },
         {
           "verse": 22,
+          "usfm": "JOL.2.22",
+          "line_type": "q1",
           "text": "Fear not, you beasts of the field,for the pastures of the wilderness are green; the tree bears its fruit;the fig tree and vine give their full yield."
         },
         {
           "verse": 23,
+          "usfm": "JOL.2.23",
+          "line_type": "q1",
           "text": "“Be glad, O children of Zion,and rejoice in the Lord your God,for he has given the early rain for your vindication;he has poured down for you abundant rain, the early and the latter rain, as before."
         },
         {
           "verse": 24,
+          "usfm": "JOL.2.24",
+          "line_type": "q1",
           "text": "“The threshing floors shall be full of grain;the vats shall overflow with wine and oil."
         },
         {
           "verse": 25,
+          "usfm": "JOL.2.25",
+          "line_type": "q1",
           "text": "I will restore to you the yearsthat the swarming locust has eaten, the hopper, the destroyer, and the cutter, my great army, which I sent among you."
         },
         {
           "verse": 26,
+          "usfm": "JOL.2.26",
+          "line_type": "q1",
           "text": "“You shall eat in plenty and be satisfied,and praise the name of the Lord your God,who has dealt wondrously with you.And my people shall never again be put to shame."
         },
         {
           "verse": 27,
+          "usfm": "JOL.2.27",
+          "line_type": "q1",
           "text": "You shall know that I am in the midst of Israel,and that I am the Lord your God and there is none else.And my people shall never again be put to shame."
         },
         {
           "verse": 28,
+          "usfm": "JOL.2.28",
+          "line_type": "q1",
           "text": "“And it shall come to pass afterward,that I will pour out my Spirit on all flesh; your sons and your daughters shall prophesy,your old men shall dream dreams,and your young men shall see visions."
         },
         {
           "verse": 29,
+          "usfm": "JOL.2.29",
+          "line_type": "q1",
           "text": "Even on the male and female servantsin those days I will pour out my Spirit."
         },
         {
           "verse": 30,
+          "usfm": "JOL.2.30",
+          "line_type": "p",
           "text": "“And I will show wonders in the heavens and on the earth, blood and fire and columns of smoke."
         },
         {
           "verse": 31,
+          "usfm": "JOL.2.31",
+          "line_type": "p",
           "text": "The sun shall be turned to darkness, and the moon to blood, before the great and awesome day of the Lord comes."
         },
         {
           "verse": 32,
+          "usfm": "JOL.2.32",
+          "line_type": "p",
           "text": "And it shall come to pass that everyone who calls on the name of the Lord shall be saved. For in Mount Zion and in Jerusalem there shall be those who escape, as the Lord has said, and among the survivors shall be those whom the Lord calls."
         }
       ],
@@ -265,39 +2003,2594 @@
           "text": "Lord"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Return to the"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Lord"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "The"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Lord"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Had Pity"
         },
         {
-          "before_verse": 27,
+          "before_verse": 28,
           "text": "The"
         },
         {
-          "before_verse": 27,
+          "before_verse": 28,
           "text": "Lord"
         },
         {
-          "before_verse": 27,
+          "before_verse": 28,
           "text": "Will Pour Out His Spirit"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JOL.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.15",
+            "ISA.58.1",
+            "HOS.5.8",
+            "AMO.3.6"
+          ],
+          "text": "ver. 15 ; Isa. 58:1; Hos. 5:8; Amos 3:6"
+        },
+        {
+          "verse": 1,
+          "usfm": "JOL.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.17"
+          ],
+          "text": "See ch. 3:17"
+        },
+        {
+          "verse": 1,
+          "usfm": "JOL.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.17"
+          ],
+          "text": "See ch. 3:17"
+        },
+        {
+          "verse": 1,
+          "usfm": "JOL.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.15"
+          ],
+          "text": "See ch. 1:15"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "AMO.5.18",
+            "AMO.5.20",
+            "ZEP.1.15"
+          ],
+          "text": "Amos 5:18, 20; Zeph. 1:15"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "AMO.5.18",
+            "AMO.5.20",
+            "ZEP.1.15"
+          ],
+          "text": "Amos 5:18, 20; Zeph. 1:15"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.6",
+            "JOL.2.11"
+          ],
+          "text": "ch. 1:6; [ver. 11, 25 ]"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.2"
+          ],
+          "text": "[ch. 1:2 ]"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.19",
+            "JOL.1.20"
+          ],
+          "text": "ch. 1:19, 20"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.2.8",
+            "GEN.2.9",
+            "ISA.51.3"
+          ],
+          "text": "Gen. 2:8, 9; See Isa. 51:3"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEC.7.14"
+          ],
+          "text": "Zech. 7:14"
+        },
+        {
+          "verse": 4,
+          "usfm": "JOL.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "REV.9.7"
+          ],
+          "text": "Rev. 9:7"
+        },
+        {
+          "verse": 5,
+          "usfm": "JOL.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "REV.9.9",
+            "NAM.3.2"
+          ],
+          "text": "Rev. 9:9; [ Nah. 3:2 ]"
+        },
+        {
+          "verse": 5,
+          "usfm": "JOL.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.5.24",
+            "ISA.47.14",
+            "OBA.1.18",
+            "NAM.1.10"
+          ],
+          "text": "Isa. 5:24; 47:14; Obad. 18; Nah. 1:10"
+        },
+        {
+          "verse": 5,
+          "usfm": "JOL.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.2"
+          ],
+          "text": "[See ver. 2 above]"
+        },
+        {
+          "verse": 6,
+          "usfm": "JOL.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NAM.2.10"
+          ],
+          "text": "Nah. 2:10"
+        },
+        {
+          "verse": 8,
+          "usfm": "JOL.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PRO.30.27"
+          ],
+          "text": "Prov. 30:27"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.33.4"
+          ],
+          "text": "Isa. 33:4"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.9.21"
+          ],
+          "text": "[ Jer. 9:21 ]"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.9.21"
+          ],
+          "text": "[ Jer. 9:21 ]"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JHN.10.1"
+          ],
+          "text": "[John 10:1]"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.16",
+            "PSA.18.7",
+            "AMO.8.8"
+          ],
+          "text": "ch. 3:16; [ Ps. 18:7; Amos 8:8 ]"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.15",
+            "ISA.13.10",
+            "EZK.32.7",
+            "MAT.24.29",
+            "REV.9.2"
+          ],
+          "text": "ch. 3:15; Isa. 13:10; Ezek. 32:7; Matt. 24:29; [ Rev. 9:2 ]"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.16",
+            "1TH.4.16"
+          ],
+          "text": "ch. 3:16; [ 1 Thess. 4:16 ]"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.25"
+          ],
+          "text": "ver. 25"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "REV.18.8"
+          ],
+          "text": "Rev. 18:8"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.15"
+          ],
+          "text": "See ch. 1:15"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.31"
+          ],
+          "text": "ver. 31"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAL.3.2",
+            "NUM.24.23"
+          ],
+          "text": "Mal. 3:2; [ Num. 24:23 ]"
+        },
+        {
+          "verse": 12,
+          "usfm": "JOL.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.4.30",
+            "1SA.7.3",
+            "JER.4.1",
+            "HOS.12.6"
+          ],
+          "text": "Deut. 4:30; 1 Sam. 7:3; Jer. 4:1; Hos. 12:6"
+        },
+        {
+          "verse": 12,
+          "usfm": "JOL.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1SA.7.6"
+          ],
+          "text": "[ 1 Sam. 7:6 ]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.34.18"
+          ],
+          "text": "[Ps. 34:18]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.37.29"
+          ],
+          "text": "See Gen. 37:29"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EXO.34.6",
+            "PSA.86.5",
+            "PSA.86.15",
+            "JON.4.2"
+          ],
+          "text": "Ex. 34:6; Ps. 86:5, 15; Jonah 4:2"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NUM.23.19",
+            "EZK.24.14"
+          ],
+          "text": "[ Num. 23:19; Ezek. 24:14 ]"
+        },
+        {
+          "verse": 14,
+          "usfm": "JOL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JON.3.9"
+          ],
+          "text": "Jonah 3:9"
+        },
+        {
+          "verse": 14,
+          "usfm": "JOL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HAG.2.19",
+            "MAL.3.10"
+          ],
+          "text": "Hag. 2:19; Mal. 3:10"
+        },
+        {
+          "verse": 14,
+          "usfm": "JOL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.9",
+            "JOL.1.13"
+          ],
+          "text": "ch. 1:9, 13"
+        },
+        {
+          "verse": 15,
+          "usfm": "JOL.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1"
+          ],
+          "text": "See ver. 1"
+        },
+        {
+          "verse": 15,
+          "usfm": "JOL.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.14"
+          ],
+          "text": "See ch. 1:14"
+        },
+        {
+          "verse": 16,
+          "usfm": "JOL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOS.3.5"
+          ],
+          "text": "See Josh. 3:5"
+        },
+        {
+          "verse": 16,
+          "usfm": "JOL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2CH.20.13"
+          ],
+          "text": "[ 2 Chr. 20:13 ]"
+        },
+        {
+          "verse": 16,
+          "usfm": "JOL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.24.5",
+            "ECC.3.5",
+            "ZEC.12.12+ZEC.12.13+ZEC.12.14",
+            "1CO.7.5"
+          ],
+          "text": "[ Deut. 24:5; Eccles. 3:5; Zech. 12:12-14; 1 Cor. 7:5 ]"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.8.16"
+          ],
+          "text": "Ezek. 8:16"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1KI.6.3",
+            "2CH.3.4"
+          ],
+          "text": "1 Kgs. 6:3; 2 Chr. 3:4"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2CH.4.1"
+          ],
+          "text": "2 Chr. 4:1"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.9"
+          ],
+          "text": "See ch. 1:9"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.2.17",
+          "note_ref": "2:17",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or reproach, that the nations should rule over them"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.42.3",
+            "PSA.79.10",
+            "PSA.115.2"
+          ],
+          "text": "Ps. 42:3; 79:10; 115:2"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.2.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEC.1.14",
+            "ZEC.8.2"
+          ],
+          "text": "Zech. 1:14; 8:2"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.2.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.103.13"
+          ],
+          "text": "[ Ps. 103:13 ]"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.10",
+            "PSA.4.7"
+          ],
+          "text": "[ch. 1:10; Ps. 4:7]; See Mal. 3:10-12"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.10",
+            "PSA.4.7"
+          ],
+          "text": "[ch. 1:10; Ps. 4:7 ]; See Mal. 3:10-12"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.2.20",
+          "note_ref": "2:20",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew face"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.47.18",
+            "ZEC.14.8"
+          ],
+          "text": "Ezek. 47:18; Zech. 14:8"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.2.20",
+          "note_ref": "2:20",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew his end"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEC.14.8"
+          ],
+          "text": "Zech. 14:8"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.34.3",
+            "AMO.4.10"
+          ],
+          "text": "Isa. 34:3; [ Amos 4:10 ]"
+        },
+        {
+          "verse": 21,
+          "usfm": "JOL.2.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.126.2",
+            "PSA.126.3"
+          ],
+          "text": "Ps. 126:2, 3"
+        },
+        {
+          "verse": 22,
+          "usfm": "JOL.2.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.18"
+          ],
+          "text": "See ch. 1:18"
+        },
+        {
+          "verse": 22,
+          "usfm": "JOL.2.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.19"
+          ],
+          "text": "[ch. 1:19]"
+        },
+        {
+          "verse": 22,
+          "usfm": "JOL.2.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEC.8.12"
+          ],
+          "text": "[ Zech. 8:12 ]"
+        },
+        {
+          "verse": 22,
+          "usfm": "JOL.2.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEC.8.12"
+          ],
+          "text": "[Zech. 8:12]"
+        },
+        {
+          "verse": 23,
+          "usfm": "JOL.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.100.1",
+            "PSA.100.2",
+            "HAB.3.18",
+            "ZEC.10.7"
+          ],
+          "text": "Ps. 100:1, 2; Hab. 3:18; Zech. 10:7"
+        },
+        {
+          "verse": 23,
+          "usfm": "JOL.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.100.1",
+            "PSA.100.2",
+            "HAB.3.18",
+            "ZEC.10.7"
+          ],
+          "text": "Ps. 100:1, 2; Hab. 3:18; Zech. 10:7"
+        },
+        {
+          "verse": 23,
+          "usfm": "JOL.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.11.14",
+            "JER.5.24"
+          ],
+          "text": "Deut. 11:14; Jer. 5:24"
+        },
+        {
+          "verse": 23,
+          "usfm": "JOL.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.11.14",
+            "JER.5.24"
+          ],
+          "text": "Deut. 11:14; Jer. 5:24"
+        },
+        {
+          "verse": 23,
+          "usfm": "JOL.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HOS.6.3"
+          ],
+          "text": "Hos. 6:3"
+        },
+        {
+          "verse": 25,
+          "usfm": "JOL.2.25",
+          "note_ref": "2:25",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or pay back"
+        },
+        {
+          "verse": 25,
+          "usfm": "JOL.2.25",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.4"
+          ],
+          "text": "ch. 1:4"
+        },
+        {
+          "verse": 25,
+          "usfm": "JOL.2.25",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.4"
+          ],
+          "text": "ch. 1:4"
+        },
+        {
+          "verse": 25,
+          "usfm": "JOL.2.25",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.4"
+          ],
+          "text": "ch. 1:4"
+        },
+        {
+          "verse": 25,
+          "usfm": "JOL.2.25",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.4"
+          ],
+          "text": "ch. 1:4"
+        },
+        {
+          "verse": 25,
+          "usfm": "JOL.2.25",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.11"
+          ],
+          "text": "ver. 11"
+        },
+        {
+          "verse": 26,
+          "usfm": "JOL.2.26",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LEV.25.19"
+          ],
+          "text": "Lev. 25:19"
+        },
+        {
+          "verse": 26,
+          "usfm": "JOL.2.26",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.49.23"
+          ],
+          "text": "[Isa. 49:23]"
+        },
+        {
+          "verse": 27,
+          "usfm": "JOL.2.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.17"
+          ],
+          "text": "ch. 3:17"
+        },
+        {
+          "verse": 27,
+          "usfm": "JOL.2.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "HOS.11.9",
+            "EZK.37.26"
+          ],
+          "text": "Hos. 11:9; See Ezek. 37:26"
+        },
+        {
+          "verse": 27,
+          "usfm": "JOL.2.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EXO.20.2"
+          ],
+          "text": "See Ex. 20:2"
+        },
+        {
+          "verse": 27,
+          "usfm": "JOL.2.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.44.8"
+          ],
+          "text": "[Isa. 44:8]"
+        },
+        {
+          "verse": 27,
+          "usfm": "JOL.2.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.26"
+          ],
+          "text": "[See ver. 26 above]"
+        },
+        {
+          "verse": 28,
+          "usfm": "JOL.2.28",
+          "note_ref": "2:28",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Ch 3:1 in Hebrew"
+        },
+        {
+          "verse": 28,
+          "usfm": "JOL.2.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.2.17+ACT.2.18+ACT.2.19+ACT.2.20+ACT.2.21"
+          ],
+          "text": "ver. 28-32, cited Acts 2:17-21"
+        },
+        {
+          "verse": 28,
+          "usfm": "JOL.2.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.32.15",
+            "EZK.39.29",
+            "ZEC.12.10",
+            "JHN.7.39"
+          ],
+          "text": "Isa. 32:15; Ezek. 39:29; Zech. 12:10; John 7:39"
+        },
+        {
+          "verse": 28,
+          "usfm": "JOL.2.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.2.39"
+          ],
+          "text": "[ Acts 2:39 ]"
+        },
+        {
+          "verse": 28,
+          "usfm": "JOL.2.28",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.21.9"
+          ],
+          "text": "[Acts 21:9]"
+        },
+        {
+          "verse": 29,
+          "usfm": "JOL.2.29",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1CO.12.13"
+          ],
+          "text": "[ 1 Cor. 12:13 ]"
+        },
+        {
+          "verse": 30,
+          "usfm": "JOL.2.30",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.24.30",
+            "LUK.21.11"
+          ],
+          "text": "[Matt. 24:30; Luke 21:11]"
+        },
+        {
+          "verse": 30,
+          "usfm": "JOL.2.30",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.24.30",
+            "LUK.21.11"
+          ],
+          "text": "[Matt. 24:30; Luke 21:11]"
+        },
+        {
+          "verse": 31,
+          "usfm": "JOL.2.31",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.10"
+          ],
+          "text": "See ver. 10"
+        },
+        {
+          "verse": 31,
+          "usfm": "JOL.2.31",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "REV.6.12"
+          ],
+          "text": "Rev. 6:12"
+        },
+        {
+          "verse": 31,
+          "usfm": "JOL.2.31",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAL.4.5"
+          ],
+          "text": "Mal. 4:5"
+        },
+        {
+          "verse": 32,
+          "usfm": "JOL.2.32",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.10.13"
+          ],
+          "text": "Cited Rom. 10:13"
+        },
+        {
+          "verse": 32,
+          "usfm": "JOL.2.32",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.46.13",
+            "ISA.59.20",
+            "OBA.1.17"
+          ],
+          "text": "Isa. 46:13; 59:20; Obad. 17"
+        },
+        {
+          "verse": 32,
+          "usfm": "JOL.2.32",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.31.7",
+            "MIC.4.7",
+            "ZEC.8.12"
+          ],
+          "text": "Jer. 31:7; Mic. 4:7; Zech. 8:12"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOL.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOL.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOL.2.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOL.2.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JOL.2.1",
+            "JOL.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.2.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.2.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.2.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.2.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.2.2"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JOL.2.2"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "JOL.2.2",
+            "JOL.2.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JOL.2.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JOL.2.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JOL.2.3"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JOL.2.3"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "JOL.2.3",
+            "JOL.2.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JOL.2.4"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "JOL.2.4",
+            "JOL.2.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JOL.2.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JOL.2.5"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JOL.2.5"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JOL.2.5"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JOL.2.5"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "JOL.2.5",
+            "JOL.2.6"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JOL.2.6"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JOL.2.6",
+            "JOL.2.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JOL.2.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JOL.2.7"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JOL.2.7"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "JOL.2.7",
+            "JOL.2.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JOL.2.8"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JOL.2.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JOL.2.8"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "JOL.2.8",
+            "JOL.2.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.2.9"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.2.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.2.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JOL.2.10",
+            "JOL.2.9"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.2.10"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.2.10"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.2.10"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "JOL.2.10",
+            "JOL.2.11"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.2.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.2.11"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.2.11"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.2.11"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.2.11"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "JOL.2.11",
+            "JOL.2.12"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.2.12"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.2.12"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "JOL.2.12",
+            "JOL.2.13"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.2.13"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.2.13"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.2.13"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.2.13"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "JOL.2.13",
+            "JOL.2.14"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.2.14"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.2.14"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.2.14"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "JOL.2.14",
+            "JOL.2.15"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "JOL.2.15"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "JOL.2.15"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "JOL.2.15",
+            "JOL.2.16"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.2.16"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.2.16"
+          ]
+        },
+        {
+          "index": 67,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.2.16"
+          ]
+        },
+        {
+          "index": 68,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.2.16"
+          ]
+        },
+        {
+          "index": 69,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.2.16"
+          ]
+        },
+        {
+          "index": 70,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.2.16"
+          ]
+        },
+        {
+          "index": 71,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "JOL.2.16",
+            "JOL.2.17"
+          ]
+        },
+        {
+          "index": 72,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.2.17"
+          ]
+        },
+        {
+          "index": 73,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.2.17"
+          ]
+        },
+        {
+          "index": 74,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.2.17"
+          ]
+        },
+        {
+          "index": 75,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.2.17"
+          ]
+        },
+        {
+          "index": 76,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.2.17"
+          ]
+        },
+        {
+          "index": 77,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.2.17"
+          ]
+        },
+        {
+          "index": 78,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "JOL.2.17",
+            "JOL.2.18"
+          ]
+        },
+        {
+          "index": 79,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.2.18"
+          ]
+        },
+        {
+          "index": 80,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "JOL.2.18",
+            "JOL.2.19"
+          ]
+        },
+        {
+          "index": 81,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.2.19"
+          ]
+        },
+        {
+          "index": 82,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.2.19"
+          ]
+        },
+        {
+          "index": 83,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.2.19"
+          ]
+        },
+        {
+          "index": 84,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.2.19"
+          ]
+        },
+        {
+          "index": 85,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.2.19"
+          ]
+        },
+        {
+          "index": 86,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "JOL.2.19",
+            "JOL.2.20"
+          ]
+        },
+        {
+          "index": 87,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.2.20"
+          ]
+        },
+        {
+          "index": 88,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.2.20"
+          ]
+        },
+        {
+          "index": 89,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.2.20"
+          ]
+        },
+        {
+          "index": 90,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.2.20"
+          ]
+        },
+        {
+          "index": 91,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.2.20"
+          ]
+        },
+        {
+          "index": 92,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "JOL.2.20",
+            "JOL.2.21"
+          ]
+        },
+        {
+          "index": 93,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "JOL.2.21"
+          ]
+        },
+        {
+          "index": 94,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "JOL.2.21"
+          ]
+        },
+        {
+          "index": 95,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "JOL.2.21",
+            "JOL.2.22"
+          ]
+        },
+        {
+          "index": 96,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "JOL.2.22"
+          ]
+        },
+        {
+          "index": 97,
+          "type": "q1",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "JOL.2.22"
+          ]
+        },
+        {
+          "index": 98,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "JOL.2.22"
+          ]
+        },
+        {
+          "index": 99,
+          "type": "q1",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "JOL.2.22",
+            "JOL.2.23"
+          ]
+        },
+        {
+          "index": 100,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "JOL.2.23"
+          ]
+        },
+        {
+          "index": 101,
+          "type": "q1",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "JOL.2.23"
+          ]
+        },
+        {
+          "index": 102,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "JOL.2.23"
+          ]
+        },
+        {
+          "index": 103,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "JOL.2.23"
+          ]
+        },
+        {
+          "index": 104,
+          "type": "q1",
+          "start_verse": 23,
+          "end_verse": 24,
+          "verses": [
+            23,
+            24
+          ],
+          "usfms": [
+            "JOL.2.23",
+            "JOL.2.24"
+          ]
+        },
+        {
+          "index": 105,
+          "type": "q2",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "JOL.2.24"
+          ]
+        },
+        {
+          "index": 106,
+          "type": "q1",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "JOL.2.24",
+            "JOL.2.25"
+          ]
+        },
+        {
+          "index": 107,
+          "type": "q2",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "JOL.2.25"
+          ]
+        },
+        {
+          "index": 108,
+          "type": "q1",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "JOL.2.25"
+          ]
+        },
+        {
+          "index": 109,
+          "type": "q2",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "JOL.2.25"
+          ]
+        },
+        {
+          "index": 110,
+          "type": "q1",
+          "start_verse": 25,
+          "end_verse": 26,
+          "verses": [
+            25,
+            26
+          ],
+          "usfms": [
+            "JOL.2.25",
+            "JOL.2.26"
+          ]
+        },
+        {
+          "index": 111,
+          "type": "q2",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "JOL.2.26"
+          ]
+        },
+        {
+          "index": 112,
+          "type": "q2",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "JOL.2.26"
+          ]
+        },
+        {
+          "index": 113,
+          "type": "q1",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "JOL.2.26"
+          ]
+        },
+        {
+          "index": 114,
+          "type": "q1",
+          "start_verse": 26,
+          "end_verse": 27,
+          "verses": [
+            26,
+            27
+          ],
+          "usfms": [
+            "JOL.2.26",
+            "JOL.2.27"
+          ]
+        },
+        {
+          "index": 115,
+          "type": "q2",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "JOL.2.27"
+          ]
+        },
+        {
+          "index": 116,
+          "type": "q1",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "JOL.2.27"
+          ]
+        },
+        {
+          "index": 117,
+          "type": "q1",
+          "start_verse": 27,
+          "end_verse": 28,
+          "verses": [
+            27,
+            28
+          ],
+          "usfms": [
+            "JOL.2.27",
+            "JOL.2.28"
+          ]
+        },
+        {
+          "index": 118,
+          "type": "q2",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "JOL.2.28"
+          ]
+        },
+        {
+          "index": 119,
+          "type": "q1",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "JOL.2.28"
+          ]
+        },
+        {
+          "index": 120,
+          "type": "q2",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "JOL.2.28"
+          ]
+        },
+        {
+          "index": 121,
+          "type": "q2",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "JOL.2.28"
+          ]
+        },
+        {
+          "index": 122,
+          "type": "q1",
+          "start_verse": 28,
+          "end_verse": 29,
+          "verses": [
+            28,
+            29
+          ],
+          "usfms": [
+            "JOL.2.28",
+            "JOL.2.29"
+          ]
+        },
+        {
+          "index": 123,
+          "type": "q2",
+          "start_verse": 29,
+          "end_verse": 29,
+          "verses": [
+            29
+          ],
+          "usfms": [
+            "JOL.2.29"
+          ]
+        },
+        {
+          "index": 124,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 32,
+          "verses": [
+            29,
+            30,
+            31,
+            32
+          ],
+          "usfms": [
+            "JOL.2.29",
+            "JOL.2.30",
+            "JOL.2.31",
+            "JOL.2.32"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -308,9 +4601,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/JOL/2-e2f52d13c83e9ad94c0dd0c4bc51ae3c.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 32,
+          "parsed_count": 32,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/JOL.2.ESV",
+        "reference": {
+          "usfm": [
+            "JOL.2"
+          ],
+          "human": "Joel 2",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOL.1"
+          ],
+          "human": "Joel 1",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOL.3"
+          ],
+          "human": "Joel 3",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOL",
       "chapter": 3,
       "chapter_usfm": "JOL.3",
@@ -319,86 +4669,128 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JOL.3.1",
+          "line_type": "p",
           "text": "“For behold, in those days and at that time, when I restore the fortunes of Judah and Jerusalem,"
         },
         {
           "verse": 2,
+          "usfm": "JOL.3.2",
+          "line_type": "p",
           "text": "I will gather all the nations and bring them down to the Valley of Jehoshaphat. And I will enter into judgment with them there, on behalf of my people and my heritage Israel, because they have scattered them among the nations and have divided up my land,"
         },
         {
           "verse": 3,
+          "usfm": "JOL.3.3",
+          "line_type": "p",
           "text": "and have cast lots for my people, and have traded a boy for a prostitute, and have sold a girl for wine and have drunk it."
         },
         {
           "verse": 4,
+          "usfm": "JOL.3.4",
+          "line_type": "p",
           "text": "“What are you to me, O Tyre and Sidon, and all the regions of Philistia? Are you paying me back for something? If you are paying me back, I will return your payment on your own head swiftly and speedily."
         },
         {
           "verse": 5,
+          "usfm": "JOL.3.5",
+          "line_type": "p",
           "text": "For you have taken my silver and my gold, and have carried my rich treasures into your temples."
         },
         {
           "verse": 6,
+          "usfm": "JOL.3.6",
+          "line_type": "p",
           "text": "You have sold the people of Judah and Jerusalem to the Greeks in order to remove them far from their own border."
         },
         {
           "verse": 7,
+          "usfm": "JOL.3.7",
+          "line_type": "p",
           "text": "Behold, I will stir them up from the place to which you have sold them, and I will return your payment on your own head."
         },
         {
           "verse": 8,
+          "usfm": "JOL.3.8",
+          "line_type": "p",
           "text": "I will sell your sons and your daughters into the hand of the people of Judah, and they will sell them to the Sabeans, to a nation far away, for the Lord has spoken.”"
         },
         {
           "verse": 9,
+          "usfm": "JOL.3.9",
+          "line_type": "q1",
           "text": "Proclaim this among the nations: Consecrate for war;stir up the mighty men.Let all the men of war draw near;let them come up."
         },
         {
           "verse": 10,
+          "usfm": "JOL.3.10",
+          "line_type": "q1",
           "text": "Beat your plowshares into swords,and your pruning hooks into spears;let the weak say, “I am a warrior.”"
         },
         {
           "verse": 11,
+          "usfm": "JOL.3.11",
+          "line_type": "q1",
           "text": "Hasten and come,all you surrounding nations,and gather yourselves there. Bring down your warriors, O Lord."
         },
         {
           "verse": 12,
+          "usfm": "JOL.3.12",
+          "line_type": "q1",
           "text": "Let the nations stir themselves upand come up to the Valley of Jehoshaphat; for there I will sit to judgeall the surrounding nations."
         },
         {
           "verse": 13,
+          "usfm": "JOL.3.13",
+          "line_type": "q1",
           "text": "Put in the sickle, for the harvest is ripe. Go in, tread, for the winepress is full.The vats overflow,for their evil is great."
         },
         {
           "verse": 14,
+          "usfm": "JOL.3.14",
+          "line_type": "q1",
           "text": "Multitudes, multitudes,in the valley of decision!For the day of the Lord is nearin the valley of decision."
         },
         {
           "verse": 15,
+          "usfm": "JOL.3.15",
+          "line_type": "q1",
           "text": "The sun and the moon are darkened,and the stars withdraw their shining."
         },
         {
           "verse": 16,
+          "usfm": "JOL.3.16",
+          "line_type": "q1",
           "text": "The Lord roars from Zion,and utters his voice from Jerusalem, and the heavens and the earth quake.But the Lord is a refuge to his people,a stronghold to the people of Israel."
         },
         {
           "verse": 17,
+          "usfm": "JOL.3.17",
+          "line_type": "q1",
           "text": "“So you shall know that I am the Lord your God, who dwells in Zion, my holy mountain.And Jerusalem shall be holy,and strangers shall never again pass through it."
         },
         {
           "verse": 18,
+          "usfm": "JOL.3.18",
+          "line_type": "q1",
           "text": "“And in that day the mountains shall drip sweet wine,and the hills shall flow with milk,and all the streambeds of Judahshall flow with water; and a fountain shall come forth from the house of the Lordand water the Valley of Shittim."
         },
         {
           "verse": 19,
+          "usfm": "JOL.3.19",
+          "line_type": "q1",
           "text": "“Egypt shall become a desolationand Edom a desolate wilderness, for the violence done to the people of Judah,because they have shed innocent blood in their land."
         },
         {
           "verse": 20,
+          "usfm": "JOL.3.20",
+          "line_type": "q1",
           "text": "But Judah shall be inhabited forever,and Jerusalem to all generations."
         },
         {
           "verse": 21,
+          "usfm": "JOL.3.21",
+          "line_type": "q1",
           "text": "I will avenge their blood,blood I have not avenged, for the Lord dwells in Zion.”"
         }
       ],
@@ -413,11 +4805,1208 @@
           "text": "Judges the Nations"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "The Glorious Future of Judah"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JOL.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Ch 4:1 in Hebrew"
+        },
+        {
+          "verse": 1,
+          "usfm": "JOL.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.30.3"
+          ],
+          "text": "Jer. 30:3"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEP.3.8"
+          ],
+          "text": "[Zeph. 3:8]; See Zech. 14:2-4"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.66.16",
+            "JER.25.31"
+          ],
+          "text": "Isa. 66:16; Jer. 25:31"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "OBA.1.11",
+            "NAM.3.10"
+          ],
+          "text": "Obad. 11; Nah. 3:10"
+        },
+        {
+          "verse": 4,
+          "usfm": "JOL.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.23.1",
+            "ISA.23.2",
+            "JER.47.4",
+            "AMO.1.9"
+          ],
+          "text": "Isa. 23:1, 2; Jer. 47:4; Amos 1:9"
+        },
+        {
+          "verse": 4,
+          "usfm": "JOL.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.25.15",
+            "EZK.25.16"
+          ],
+          "text": "[Ezek. 25:15, 16]"
+        },
+        {
+          "verse": 4,
+          "usfm": "JOL.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "OBA.1.15"
+          ],
+          "text": "[Obad. 15]"
+        },
+        {
+          "verse": 5,
+          "usfm": "JOL.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2CH.21.16",
+            "2CH.21.17"
+          ],
+          "text": "[2 Chr. 21:16, 17]"
+        },
+        {
+          "verse": 5,
+          "usfm": "JOL.3.5",
+          "note_ref": "3:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or palaces"
+        },
+        {
+          "verse": 6,
+          "usfm": "JOL.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.3"
+          ],
+          "text": "[ver. 3]"
+        },
+        {
+          "verse": 7,
+          "usfm": "JOL.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.4"
+          ],
+          "text": "[See ver. 4above]"
+        },
+        {
+          "verse": 8,
+          "usfm": "JOL.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1KI.10.1"
+          ],
+          "text": "See 1 Kgs. 10:1"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MIC.3.5"
+          ],
+          "text": "[ Mic. 3:5 ]"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.3.9",
+          "note_ref": "3:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Consecrate a war"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.2.4"
+          ],
+          "text": "[ Isa. 2:4 ]"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.2.4"
+          ],
+          "text": "[Isa. 2:4]"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.54.15"
+          ],
+          "text": "[ Isa. 54:15 ]"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ZEC.14.5"
+          ],
+          "text": "[ Zech. 14:5 ]"
+        },
+        {
+          "verse": 12,
+          "usfm": "JOL.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.2"
+          ],
+          "text": "ver. 2"
+        },
+        {
+          "verse": 12,
+          "usfm": "JOL.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.96.13",
+            "PSA.98.9",
+            "PSA.110.6",
+            "ISA.2.4",
+            "ISA.3.13",
+            "MIC.4.3"
+          ],
+          "text": "Ps. 96:13; 98:9; 110:6; Isa. 2:4; 3:13; Mic. 4:3"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "REV.14.15"
+          ],
+          "text": "Rev. 14:15"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.51.33",
+            "HOS.6.11",
+            "MAT.13.30",
+            "MAT.13.39",
+            "MRK.4.29",
+            "JHN.4.35",
+            "REV.14.15",
+            "REV.14.18"
+          ],
+          "text": "[ Jer. 51:33; Hos. 6:11; Matt. 13:30, 39; Mark 4:29; John 4:35; Rev. 14:15, 18 ]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "REV.14.20",
+            "ISA.63.2",
+            "ISA.63.3"
+          ],
+          "text": "Rev. 14:20; [ Isa. 63:2, 3 ]"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "REV.14.20",
+            "ISA.63.2",
+            "ISA.63.3"
+          ],
+          "text": "Rev. 14:20; [ Isa. 63:2, 3 ]"
+        },
+        {
+          "verse": 14,
+          "usfm": "JOL.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.1.15"
+          ],
+          "text": "See ch. 1:15"
+        },
+        {
+          "verse": 15,
+          "usfm": "JOL.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.10"
+          ],
+          "text": "See ch. 2:10"
+        },
+        {
+          "verse": 16,
+          "usfm": "JOL.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.11",
+            "AMO.1.2",
+            "JER.25.30"
+          ],
+          "text": "ch. 2:11; Amos 1:2; [ Jer. 25:30 ]"
+        },
+        {
+          "verse": 16,
+          "usfm": "JOL.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.11",
+            "AMO.1.2",
+            "JER.25.30"
+          ],
+          "text": "ch. 2:11; Amos 1:2; [Jer. 25:30]"
+        },
+        {
+          "verse": 16,
+          "usfm": "JOL.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.10"
+          ],
+          "text": "ch. 2:10"
+        },
+        {
+          "verse": 16,
+          "usfm": "JOL.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.4.6",
+            "ISA.25.4"
+          ],
+          "text": "Isa. 4:6; 25:4"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.27",
+            "EZK.6.7"
+          ],
+          "text": "ch. 2:27; [ Ezek. 6:7 ]"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.21",
+            "EZK.43.7"
+          ],
+          "text": "ver. 21 ; [Ezek. 43:7]"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.1",
+            "PSA.48.1",
+            "ISA.65.11",
+            "JER.31.23"
+          ],
+          "text": "ch. 2:1; Ps. 48:1; Isa. 65:11; Jer. 31:23"
+        },
+        {
+          "verse": 17,
+          "usfm": "JOL.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.52.1",
+            "NAM.1.15",
+            "ZEC.14.21",
+            "REV.21.27",
+            "REV.22.15"
+          ],
+          "text": "Isa. 52:1; Nah. 1:15; Zech. 14:21; [Rev. 21:27; 22:15]"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JER.31.12",
+            "AMO.9.13"
+          ],
+          "text": "Jer. 31:12; Amos 9:13"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.30.25"
+          ],
+          "text": "Isa. 30:25"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.47.1"
+          ],
+          "text": "Ezek. 47:1"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.3.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NUM.25.1"
+          ],
+          "text": "See Num. 25:1"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.19.1+ISA.19.2+ISA.19.3+ISA.19.4+ISA.19.5+ISA.19.6+ISA.19.7+ISA.19.8+ISA.19.9+ISA.19.10+ISA.19.11+ISA.19.12+ISA.19.13+ISA.19.14+ISA.19.15+ISA.19.16+ISA.19.17"
+          ],
+          "text": "See Isa. 19:1-17"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.34.5"
+          ],
+          "text": "See Isa. 34:5"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.3.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "OBA.1.10"
+          ],
+          "text": "Obad. 10"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.3.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.125.1",
+            "PSA.125.2",
+            "EZK.37.25"
+          ],
+          "text": "Ps. 125:1, 2; Ezek. 37:25"
+        },
+        {
+          "verse": 21,
+          "usfm": "JOL.3.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ISA.4.4",
+            "EZK.36.25",
+            "EZK.36.29"
+          ],
+          "text": "Isa. 4:4; Ezek. 36:25, 29"
+        },
+        {
+          "verse": 21,
+          "usfm": "JOL.3.21",
+          "note_ref": "3:21",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or I will acquit their bloodguilt that I have not acquitted"
+        },
+        {
+          "verse": 21,
+          "usfm": "JOL.3.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.3.17"
+          ],
+          "text": "[See ver. 17 above]"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "JOL.3.1",
+            "JOL.3.2",
+            "JOL.3.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 8,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "JOL.3.3",
+            "JOL.3.4",
+            "JOL.3.5",
+            "JOL.3.6",
+            "JOL.3.7",
+            "JOL.3.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "JOL.3.8",
+            "JOL.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.3.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.3.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.3.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOL.3.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JOL.3.10",
+            "JOL.3.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.3.10"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOL.3.10"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "JOL.3.10",
+            "JOL.3.11"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.3.11"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.3.11"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOL.3.11"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "JOL.3.11",
+            "JOL.3.12"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.3.12"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.3.12"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOL.3.12"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "JOL.3.12",
+            "JOL.3.13"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.3.13"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.3.13"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.3.13"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.3.13"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "JOL.3.13"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "JOL.3.13",
+            "JOL.3.14"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.3.14"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.3.14"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JOL.3.14"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "JOL.3.14",
+            "JOL.3.15"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "JOL.3.15"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "JOL.3.15",
+            "JOL.3.16"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.3.16"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.3.16"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.3.16"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOL.3.16"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "JOL.3.16",
+            "JOL.3.17"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.3.17"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.3.17"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOL.3.17"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "JOL.3.17",
+            "JOL.3.18"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.3.18"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.3.18"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.3.18"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.3.18"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.3.18"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "JOL.3.18"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "JOL.3.18",
+            "JOL.3.19"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.3.19"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.3.19"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "JOL.3.19"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "JOL.3.19",
+            "JOL.3.20"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOL.3.20"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "JOL.3.20",
+            "JOL.3.21"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "JOL.3.21"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "JOL.3.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -428,7 +6017,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1/m4a/32k/JOL/3-3e9d933146d4468aeed49e34a3f4bee1.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 21,
+          "parsed_count": 21,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/JOL.3.ESV",
+        "reference": {
+          "usfm": [
+            "JOL.3"
+          ],
+          "human": "Joel 3",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOL.2"
+          ],
+          "human": "Joel 2",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.1"
+          ],
+          "human": "Amos 1",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

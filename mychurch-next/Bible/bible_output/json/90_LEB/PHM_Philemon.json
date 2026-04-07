@@ -11,6 +11,7 @@
   "total_verses": 25,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "PHM",
       "chapter": 1,
       "chapter_usfm": "PHM.1",
@@ -19,125 +20,344 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "PHM.1.1",
+          "line_type": "p",
           "text": "Paul, a prisoner of Christ Jesus, and Timothy our brother, to Philemon, our dear friend and fellow worker,"
         },
         {
           "verse": 2,
+          "usfm": "PHM.1.2",
+          "line_type": "p",
           "text": "and to Apphia our sister, and to Archippus our fellow soldier, and to the church in your house."
         },
         {
           "verse": 3,
+          "usfm": "PHM.1.3",
+          "line_type": "p",
           "text": "Grace to you and peace from God our Father and the Lord Jesus Christ."
         },
         {
           "verse": 4,
+          "usfm": "PHM.1.4",
+          "line_type": "p",
           "text": "I thank my God, always making mention of you in my prayers,"
         },
         {
           "verse": 5,
+          "usfm": "PHM.1.5",
+          "line_type": "p",
           "text": "because I hear about your love and faith which you have toward the Lord Jesus and for all the saints."
         },
         {
           "verse": 6,
+          "usfm": "PHM.1.6",
+          "line_type": "p",
           "text": "I pray that the fellowship of your faith may become effective in the knowledge of every good thing that is in us for Christ."
         },
         {
           "verse": 7,
+          "usfm": "PHM.1.7",
+          "line_type": "p",
           "text": "For I have great joy and encouragement from your love, because the hearts of the saints have been refreshed through you, brother."
         },
         {
           "verse": 8,
+          "usfm": "PHM.1.8",
+          "line_type": "p",
           "text": "Therefore, although I have great confidence in Christ to order you to do what is proper,"
         },
         {
           "verse": 9,
+          "usfm": "PHM.1.9",
+          "line_type": "p",
           "text": "instead I appeal to you because of love, since I am such a one as Paul, now an old man and also a prisoner of Christ Jesus."
         },
         {
           "verse": 10,
+          "usfm": "PHM.1.10",
+          "line_type": "p",
           "text": "I am appealing to you concerning my child whom I became the father of during my imprisonment, Onesimus."
         },
         {
           "verse": 11,
+          "usfm": "PHM.1.11",
+          "line_type": "p",
           "text": "Once he was useless to you, but now he is useful to you and to me,"
         },
         {
           "verse": 12,
+          "usfm": "PHM.1.12",
+          "line_type": "p",
           "text": "whom I have sent back to you himself, that is, my heart,"
         },
         {
           "verse": 13,
+          "usfm": "PHM.1.13",
+          "line_type": "p",
           "text": "whom I wanted to keep with me, in order that he might serve me on behalf of you during my imprisonment for the gospel."
         },
         {
           "verse": 14,
+          "usfm": "PHM.1.14",
+          "line_type": "p",
           "text": "But apart from your consent, I wanted to do nothing, in order that your good deed might be not as according to necessity, but according to your own free will."
         },
         {
           "verse": 15,
+          "usfm": "PHM.1.15",
+          "line_type": "p",
           "text": "For perhaps because of this, he was separated from you for a time, in order that you might have him back forever,"
         },
         {
           "verse": 16,
+          "usfm": "PHM.1.16",
+          "line_type": "p",
           "text": "no longer as a slave, but more than a slave, a beloved brother, especially to me, but how much more to you, both in the flesh and in the Lord."
         },
         {
           "verse": 17,
+          "usfm": "PHM.1.17",
+          "line_type": "p",
           "text": "If therefore you consider me a partner, receive him as you would me."
         },
         {
           "verse": 18,
+          "usfm": "PHM.1.18",
+          "line_type": "p",
           "text": "But if in anything he has caused you loss or owes you anything, charge this to my account."
         },
         {
           "verse": 19,
+          "usfm": "PHM.1.19",
+          "line_type": "p",
           "text": "I, Paul, write this with my own hand: I will pay it back, lest I mention to you that you owe me even your very self besides."
         },
         {
           "verse": 20,
+          "usfm": "PHM.1.20",
+          "line_type": "p",
           "text": "Yes, brother, I ought to have some benefit of you in the Lord; refresh my heart in Christ."
         },
         {
           "verse": 21,
+          "usfm": "PHM.1.21",
+          "line_type": "p",
           "text": "Confident of your obedience, I am writing to you because I know that you will do even beyond what I say."
         },
         {
           "verse": 22,
+          "usfm": "PHM.1.22",
+          "line_type": "p",
           "text": "At the same time also, prepare a guest room for me, for I hope that through your prayers I will be restored to you."
         },
         {
           "verse": 23,
+          "usfm": "PHM.1.23",
+          "line_type": "p",
           "text": "Epaphras, my fellow prisoner in Christ Jesus, greets you,"
         },
         {
           "verse": 24,
+          "usfm": "PHM.1.24",
+          "line_type": "p",
           "text": "and so do Mark, Aristarchus, Demas, and Luke, my fellow workers."
         },
         {
           "verse": 25,
+          "usfm": "PHM.1.25",
+          "line_type": "p",
           "text": "The grace of the Lord Jesus Christ be with your spirit."
         }
       ],
       "verse_count": 25,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Thanksgiving and Prayer for Philemon"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Paul’s Appeal for Onesimus"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Paul’s Request to Philemon"
         },
         {
-          "before_verse": 22,
+          "before_verse": 23,
           "text": "Final Greetings and Benediction"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "PHM.1.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "﻿*Here “because” is supplied as a component of the participle (“hear about”) which is understood as causal"
+        },
+        {
+          "verse": 8,
+          "usfm": "PHM.1.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "﻿*Here “although” is supplied as a component of the participle (“have”) which is understood as concessive"
+        },
+        {
+          "verse": 9,
+          "usfm": "PHM.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "﻿*Here “since” is supplied as a component of the participle (“am”) which is understood as causal"
+        },
+        {
+          "verse": 11,
+          "usfm": "PHM.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts have “both to you”"
+        },
+        {
+          "verse": 18,
+          "usfm": "PHM.1.18",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “this to me charge to my account”"
+        },
+        {
+          "verse": 19,
+          "usfm": "PHM.1.19",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “even yourself to me you owe besides”"
+        },
+        {
+          "verse": 21,
+          "usfm": "PHM.1.21",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "﻿*Here “because” is supplied as a component of the participle (“know”) which is understood as causal"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "PHM.1.1",
+            "PHM.1.2",
+            "PHM.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "PHM.1.4",
+            "PHM.1.5",
+            "PHM.1.6",
+            "PHM.1.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 16,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "PHM.1.10",
+            "PHM.1.11",
+            "PHM.1.12",
+            "PHM.1.13",
+            "PHM.1.14",
+            "PHM.1.15",
+            "PHM.1.16",
+            "PHM.1.8",
+            "PHM.1.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 20,
+          "verses": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "PHM.1.17",
+            "PHM.1.18",
+            "PHM.1.19",
+            "PHM.1.20"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "PHM.1.21",
+            "PHM.1.22"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 25,
+          "verses": [
+            23,
+            24,
+            25
+          ],
+          "usfms": [
+            "PHM.1.23",
+            "PHM.1.24",
+            "PHM.1.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 38,
@@ -148,7 +368,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/38/m4a/32k/PHM/1-003376fb9a436129b9e9133f9ac97393.m3u8?version_id=90"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/PHM.1.LEB",
+        "reference": {
+          "usfm": [
+            "PHM.1"
+          ],
+          "human": "Philemon 1",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.1"
+          ],
+          "human": "Hebrews 1",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

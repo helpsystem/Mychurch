@@ -11,6 +11,7 @@
   "total_verses": 14,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "3JN",
       "chapter": 1,
       "chapter_usfm": "3JN.1",
@@ -19,64 +20,180 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "3JN.1.1",
+          "line_type": "p",
           "text": "The elder unto Gaius the beloved, whom I love in truth."
         },
         {
           "verse": 2,
+          "usfm": "3JN.1.2",
+          "line_type": "p",
           "text": "Beloved, I pray that in all things thou mayest prosper and be in health, even as thy soul prospereth."
         },
         {
           "verse": 3,
+          "usfm": "3JN.1.3",
+          "line_type": "p",
           "text": "For I rejoiced greatly, when brethren came and bare witness unto thy truth, even as thou walkest in truth."
         },
         {
           "verse": 4,
+          "usfm": "3JN.1.4",
+          "line_type": "p",
           "text": "Greater joy have I none than this, to hear of my children walking in the truth."
         },
         {
           "verse": 5,
+          "usfm": "3JN.1.5",
+          "line_type": "p",
           "text": "Beloved, thou doest a faithful work in whatsoever thou doest toward them that are brethren and strangers withal;"
         },
         {
           "verse": 6,
+          "usfm": "3JN.1.6",
+          "line_type": "p",
           "text": "who bare witness to thy love before the church: whom thou wilt do well to set forward on their journey worthily of God:"
         },
         {
           "verse": 7,
+          "usfm": "3JN.1.7",
+          "line_type": "p",
           "text": "because that for the sake of the Name they went forth, taking nothing of the Gentiles."
         },
         {
           "verse": 8,
+          "usfm": "3JN.1.8",
+          "line_type": "p",
           "text": "We therefore ought to welcome such, that we may be fellow-workers for the truth."
         },
         {
           "verse": 9,
+          "usfm": "3JN.1.9",
+          "line_type": "p",
           "text": "I wrote somewhat unto the church: but Diotrephes, who loveth to have the preeminence among them, receiveth us not."
         },
         {
           "verse": 10,
+          "usfm": "3JN.1.10",
+          "line_type": "p",
           "text": "Therefore, if I come, I will bring to remembrance his works which he doeth, prating against us with wicked words: and not content therewith, neither doth he himself receive the brethren, and them that would he forbiddeth and casteth them out of the church."
         },
         {
           "verse": 11,
+          "usfm": "3JN.1.11",
+          "line_type": "p",
           "text": "Beloved, imitate not that which is evil, but that which is good. He that doeth good is of God: he that doeth evil hath not seen God."
         },
         {
           "verse": 12,
+          "usfm": "3JN.1.12",
+          "line_type": "p",
           "text": "Demetrius hath the witness of all men, and of the truth itself: yea, we also bear witness; and thou knowest that our witness is true."
         },
         {
           "verse": 13,
+          "usfm": "3JN.1.13",
+          "line_type": "p",
           "text": "I had many things to write unto thee, but I am unwilling to write them to thee with ink and pen:"
         },
         {
           "verse": 14,
+          "usfm": "3JN.1.14",
+          "line_type": "p",
           "text": "but I hope shortly to see thee, and we shall speak face to face. Peace be unto thee. The friends salute thee. Salute the friends by name."
         }
       ],
       "verse_count": 14,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "3JN.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "3JN.1.1",
+            "3JN.1.2",
+            "3JN.1.3",
+            "3JN.1.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 8,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "3JN.1.4",
+            "3JN.1.5",
+            "3JN.1.6",
+            "3JN.1.7",
+            "3JN.1.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 12,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "3JN.1.10",
+            "3JN.1.11",
+            "3JN.1.12",
+            "3JN.1.8",
+            "3JN.1.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "3JN.1.12",
+            "3JN.1.13",
+            "3JN.1.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 7,
@@ -87,7 +204,61 @@
           "hls_url": "https://audio-hls.youversionapi.com/7/m4a/32k/3JN/1-42553db8192ace26fe33788a1c3db9b1.m3u8?version_id=12"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/12/3JN.1.ASV",
+        "reference": {
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "version_id": 12
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "2 John 1",
+          "toc": true,
+          "version_id": 12
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "toc": true,
+          "version_id": 12
+        }
+      },
+      "version_meta": {
+        "id": 12,
+        "abbreviation": "ASV",
+        "local_abbreviation": "ASV",
+        "title": "American Standard Version",
+        "local_title": "American Standard Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": null,
+        "audio_enabled": true
+      }
     }
   ]
 }

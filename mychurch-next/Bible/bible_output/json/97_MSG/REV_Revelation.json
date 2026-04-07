@@ -11,6 +11,7 @@
   "total_verses": 63,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 1,
       "chapter_usfm": "REV.1",
@@ -19,21 +20,87 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "REV.1.3",
+          "line_type": "p",
           "text": "How blessed the reader! How blessed the hearers and keepers of these oracle words, all the words written in this book!Time is just about up. I, John, am writing this to the seven churches in Asia province: All the best to you from The God Who Is, The God Who Was, and The God About to Arrive, and from the Seven Spirits assembled before his throne, and from Jesus Christ—Loyal Witness, Firstborn from the dead, Ruler of all earthly kings.Glory and strength to Christ, who loves us,who blood-washed our sins from our lives,Who made us a Kingdom, Priests for his Father,forever—and yes, he’s on his way!Riding the clouds, he’ll be seen by every eye,those who mocked and killed him will see him,People from all nations and all timeswill tear their clothes in lament.Oh, Yes."
         },
         {
           "verse": 8,
+          "usfm": "REV.1.8",
+          "line_type": "p",
           "text": "The Master declares, “I’m A to Z. I’m The God Who Is, The God Who Was, and The God About to Arrive. I’m the Sovereign-Strong.” I, John, with you all the way in the trial and the Kingdom and the passion of patience in Jesus, was on the island called Patmos because of God’s Word, the witness of Jesus. It was Sunday and I was in the Spirit, praying. I heard a loud voice behind me, trumpet-clear and piercing: “Write what you see into a book. Send it to the seven churches: to Ephesus, Smyrna, Pergamum, Thyatira, Sardis, Philadelphia, Laodicea.” I turned and saw the voice.I saw a gold menorahwith seven branches,And in the center, the Son of Man,in a robe and gold breastplate,hair a blizzard of white,Eyes pouring fire-blaze,both feet furnace-fired bronze,His voice a roar,right hand holding the Seven Stars,His mouth a sharp-biting sword,his face a blinding sun.I saw this and fainted dead at his feet. His right hand pulled me upright, his voice reassured me: “Don’t fear: I am First, I am Last, I’m Alive. I died, but I came to life, and my life is now forever. See these keys in my hand? They open and lock Death’s doors, they open and lock Hell’s gates. Now write down everything you see: things that are, things about to be. The Seven Stars you saw in my right hand and the seven-branched gold menorah—do you want to know what’s behind them? The Seven Stars are the Angels of the seven churches; the menorah’s seven branches are the seven churches.”"
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "His Eyes Pouring Fire-Blaze"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "REV.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "REV.1.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "m",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "REV.1.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "REV.1.8"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "REV.1.8"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -44,9 +111,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/1-c4ef7c5a1c52a4966756b205c651e29a.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.1.MSG",
+        "reference": {
+          "usfm": [
+            "REV.1"
+          ],
+          "human": "Revelation 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.2"
+          ],
+          "human": "Revelation 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 2,
       "chapter_usfm": "REV.2",
@@ -55,77 +179,343 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "REV.2.1",
+          "line_type": "m",
           "text": "Write this to Ephesus, to the Angel of the church. The One with Seven Stars in his right-fist grip, striding through the golden seven-lights’ circle, speaks: “I see what you’ve done, your hard, hard work, your refusal to quit. I know you can’t stomach evil, that you weed out apostolic pretenders. I know your persistence, your courage in my cause, that you never wear out. “But you walked away from your first love—why? What’s going on with you, anyway? Do you have any idea how far you’ve fallen? A Lucifer fall!“Turn back! Recover your dear early love. No time to waste, for I’m well on my way to removing your light from the golden circle."
         },
         {
           "verse": 6,
+          "usfm": "REV.2.6",
+          "line_type": "p",
           "text": "“You do have this to your credit: You hate the Nicolaitan business. I hate it, too."
         },
         {
           "verse": 7,
+          "usfm": "REV.2.7",
+          "line_type": "p",
           "text": "“Are your ears awake? Listen. Listen to the Wind Words, the Spirit blowing through the churches. I’m about to call each conqueror to dinner. I’m spreading a banquet of Tree-of-Life fruit, a supper plucked from God’s orchard.”"
         },
         {
           "verse": 8,
+          "usfm": "REV.2.8",
+          "line_type": "m",
           "text": "Write this to Smyrna, to the Angel of the church. The Beginning and Ending, the First and Final One, the Once Dead and Then Come Alive, speaks:"
         },
         {
           "verse": 9,
+          "usfm": "REV.2.9",
+          "line_type": "p",
           "text": "“I can see your pain and poverty—constant pain, dire poverty—but I also see your wealth. And I hear the lie in the claims of those who pretend to be good Jews, who in fact belong to Satan’s crowd."
         },
         {
           "verse": 10,
+          "usfm": "REV.2.10",
+          "line_type": "p",
           "text": "“Fear nothing in the things you’re about to suffer—but stay on guard! Fear nothing! The Devil is about to throw you in jail for a time of testing—ten days. It won’t last forever.“Don’t quit, even if it costs you your life. Stay there believing. I have a Life-Crown sized and ready for you."
         },
         {
           "verse": 11,
+          "usfm": "REV.2.11",
+          "line_type": "p",
           "text": "“Are your ears awake? Listen. Listen to the Wind Words, the Spirit blowing through the churches. Christ-conquerors are safe from Devil-death.”"
         },
         {
           "verse": 12,
+          "usfm": "REV.2.12",
+          "line_type": "m",
           "text": "Write this to Pergamum, to the Angel of the church. The One with the sharp-biting sword draws from the sheath of his mouth—out come the sword words:"
         },
         {
           "verse": 13,
+          "usfm": "REV.2.13",
+          "line_type": "p",
           "text": "“I see where you live, right under the shadow of Satan’s throne. But you continue boldly in my Name; you never once denied my Name, even when the pressure was worst, when they martyred Antipas, my witness who stayed faithful to me on Satan’s turf. “But why do you indulge that Balaam crowd? Don’t you remember that Balaam was an enemy agent, seducing Balak and sabotaging Israel’s holy pilgrimage by throwing unholy parties? And why do you put up with the Nicolaitans, who do the same thing?"
         },
         {
           "verse": 16,
+          "usfm": "REV.2.16",
+          "line_type": "p",
           "text": "“Enough! Don’t give in to them; I’ll be with you soon. I’m fed up and about to cut them to pieces with my sword-sharp words."
         },
         {
           "verse": 17,
+          "usfm": "REV.2.17",
+          "line_type": "p",
           "text": "“Are your ears awake? Listen. Listen to the Wind Words, the Spirit blowing through the churches. I’ll give the sacred manna to every conqueror; I’ll also give a clear, smooth stone inscribed with your new name, your secret new name.”"
         },
         {
           "verse": 18,
+          "usfm": "REV.2.18",
+          "line_type": "m",
           "text": "Write this to Thyatira, to the Angel of the church. God’s Son, eyes pouring fire-blaze, standing on feet of furnace-fired bronze, says this:"
         },
         {
           "verse": 19,
+          "usfm": "REV.2.19",
+          "line_type": "p",
           "text": "“I see everything you’re doing for me. Impressive! The love and the faith, the service and persistence. Yes, very impressive! You get better at it every day. “But why do you let that Jezebel who calls herself a prophet mislead my dear servants into Cross-denying, self-indulging religion? I gave her a chance to change her ways, but she has no intention of giving up a career in the god-business. I’m about to lay her low, along with her partners, as they play their sex-and-religion games. The bastard offspring of their idol-whoring I’ll kill. Then every church will know that appearances don’t impress me. I x-ray every motive and make sure you get what’s coming to you. “The rest of you Thyatirans, who have nothing to do with this outrage, who scorn this playing around with the Devil that gets paraded as profundity, be assured I’ll not make life any harder for you than it already is. Hold on to the truth you have until I get there. “Here’s the reward I have for every conqueror, everyone who keeps at it, refusing to give up: You’ll rule the nations, your Shepherd-King rule as firm as an iron staff, their resistance fragile as clay pots. This was the gift my Father gave me; I pass it along to you—and with it, the Morning Star!"
         },
         {
           "verse": 29,
+          "usfm": "REV.2.29",
+          "line_type": "p",
           "text": "“Are your ears awake? Listen. Listen to the Wind Words, the Spirit blowing through the churches.”"
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "To Smyrna"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "To Pergamum"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "To Thyatira"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "REV.2.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "REV.2.6",
+            "REV.2.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "REV.2.7",
+            "REV.2.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "REV.2.8",
+            "REV.2.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "REV.2.10",
+            "REV.2.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "REV.2.10"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "REV.2.10",
+            "REV.2.11"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "REV.2.11",
+            "REV.2.12"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "REV.2.12",
+            "REV.2.13"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "REV.2.13"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "REV.2.16"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "REV.2.16",
+            "REV.2.17"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "m",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "REV.2.17",
+            "REV.2.18"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "REV.2.18",
+            "REV.2.19"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "REV.2.19"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 29,
+          "verses": [
+            29
+          ],
+          "usfms": [
+            "REV.2.29"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -136,9 +526,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/2-933ee818f4b4028d9fcf593440a39879.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.2.MSG",
+        "reference": {
+          "usfm": [
+            "REV.2"
+          ],
+          "human": "Revelation 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.1"
+          ],
+          "human": "Revelation 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.3"
+          ],
+          "human": "Revelation 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 3,
       "chapter_usfm": "REV.3",
@@ -147,77 +594,359 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "REV.3.1",
+          "line_type": "m",
           "text": "Write this to Sardis, to the Angel of the church. The One holding the Seven Spirits of God in one hand, a firm grip on the Seven Stars with the other, speaks:“I see right through your work. You have a reputation for vigor and zest, but you’re dead, stone-dead. “Up on your feet! Take a deep breath! Maybe there’s life in you yet. But I wouldn’t know it by looking at your busywork; nothing of God’s work has been completed. Your condition is desperate. Think of the gift you once had in your hands, the Message you heard with your ears—grasp it again and turn back to God.“If you pull the covers back over your head and sleep on, oblivious to God, I’ll return when you least expect it, break into your life like a thief in the night."
         },
         {
           "verse": 4,
+          "usfm": "REV.3.4",
+          "line_type": "p",
           "text": "“You still have a few followers of Jesus in Sardis who haven’t ruined themselves wallowing in the muck of the world’s ways. They’ll walk with me on parade! They’ve proved their worth!"
         },
         {
           "verse": 5,
+          "usfm": "REV.3.5",
+          "line_type": "p",
           "text": "“Conquerors will march in the victory parade, their names indelible in the Book of Life. I’ll lead them up and present them by name to my Father and his Angels."
         },
         {
           "verse": 6,
+          "usfm": "REV.3.6",
+          "line_type": "p",
           "text": "“Are your ears awake? Listen. Listen to the Wind Words, the Spirit blowing through the churches.”"
         },
         {
           "verse": 7,
+          "usfm": "REV.3.7",
+          "line_type": "m",
           "text": "Write this to Philadelphia, to the Angel of the church. The Holy, the True—David’s key in his hand, opening doors no one can lock, locking doors no one can open—speaks:"
         },
         {
           "verse": 8,
+          "usfm": "REV.3.8",
+          "line_type": "p",
           "text": "“I see what you’ve done. Now see what I’ve done. I’ve opened a door before you that no one can slam shut. You don’t have much strength, I know that; you used what you had to keep my Word. You didn’t deny me when times were rough."
         },
         {
           "verse": 9,
+          "usfm": "REV.3.9",
+          "line_type": "p",
           "text": "“And watch as I take those who call themselves true believers but are nothing of the kind, pretenders whose true membership is in the club of Satan—watch as I strip off their pretensions and they’re forced to acknowledge it’s you that I’ve loved."
         },
         {
           "verse": 10,
+          "usfm": "REV.3.10",
+          "line_type": "p",
           "text": "“Because you kept my Word in passionate patience, I’ll keep you safe in the time of testing that will be here soon, and all over the earth, every man, woman, and child put to the test."
         },
         {
           "verse": 11,
+          "usfm": "REV.3.11",
+          "line_type": "p",
           "text": "“I’m on my way; I’ll be there soon. Keep a tight grip on what you have so no one distracts you and steals your crown."
         },
         {
           "verse": 12,
+          "usfm": "REV.3.12",
+          "line_type": "p",
           "text": "“I’ll make each conqueror a pillar in the sanctuary of my God, a permanent position of honor. Then I’ll write names on you, the pillars: the Name of my God, the Name of God’s City—the new Jerusalem coming down out of Heaven—and my new Name."
         },
         {
           "verse": 13,
+          "usfm": "REV.3.13",
+          "line_type": "p",
           "text": "“Are your ears awake? Listen. Listen to the Wind Words, the Spirit blowing through the churches.”"
         },
         {
           "verse": 14,
+          "usfm": "REV.3.14",
+          "line_type": "m",
           "text": "Write to Laodicea, to the Angel of the church. God’s Yes, the Faithful and Accurate Witness, the First of God’s creation, says: “I know you inside and out, and find little to my liking. You’re not cold, you’re not hot—far better to be either cold or hot! You’re stale. You’re stagnant. You make me want to vomit. You brag, ‘I’m rich, I’ve got it made, I need nothing from anyone,’ oblivious that in fact you’re a pitiful, blind beggar, threadbare and homeless."
         },
         {
           "verse": 18,
+          "usfm": "REV.3.18",
+          "line_type": "p",
           "text": "“Here’s what I want you to do: Buy your gold from me, gold that’s been through the refiner’s fire. Then you’ll be rich. Buy your clothes from me, clothes designed in Heaven. You’ve gone around half-naked long enough. And buy medicine for your eyes from me so you can see, really see."
         },
         {
           "verse": 19,
+          "usfm": "REV.3.19",
+          "line_type": "p",
           "text": "“The people I love, I call to account—prod and correct and guide so that they’ll live at their best. Up on your feet, then! About face! Run after God! “Look at me. I stand at the door. I knock. If you hear me call and open the door, I’ll come right in and sit down to supper with you. Conquerors will sit alongside me at the head table, just as I, having conquered, took the place of honor at the side of my Father. That’s my gift to the conquerors!"
         },
         {
           "verse": 22,
+          "usfm": "REV.3.22",
+          "line_type": "p",
           "text": "“Are your ears awake? Listen. Listen to the Wind Words, the Spirit blowing through the churches.”"
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "To Philadelphia"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "To Laodicea"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.3.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.3.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "REV.3.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "REV.3.4",
+            "REV.3.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "REV.3.5",
+            "REV.3.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "m",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "REV.3.6",
+            "REV.3.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "REV.3.7",
+            "REV.3.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "REV.3.8",
+            "REV.3.9"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "REV.3.10",
+            "REV.3.9"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "REV.3.10",
+            "REV.3.11"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "REV.3.11",
+            "REV.3.12"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "REV.3.12",
+            "REV.3.13"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "m",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "REV.3.13",
+            "REV.3.14"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "REV.3.14"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "REV.3.18"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "REV.3.18",
+            "REV.3.19"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "REV.3.19"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "REV.3.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -228,9 +957,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/3-384f3862a07e3df4ee28b392ebab8ae0.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.3.MSG",
+        "reference": {
+          "usfm": [
+            "REV.3"
+          ],
+          "human": "Revelation 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.2"
+          ],
+          "human": "Revelation 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.4"
+          ],
+          "human": "Revelation 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 4,
       "chapter_usfm": "REV.4",
@@ -239,12 +1025,40 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "REV.4.1",
+          "line_type": "m",
           "text": "Then I looked, and, oh!—a door open into Heaven. The trumpet-voice, the first voice in my vision, called out, “Ascend and enter. I’ll show you what happens next.” I was caught up at once in deep worship and, oh!—a Throne set in Heaven with One Seated on the Throne, suffused in gem hues of amber and flame with a nimbus of emerald. Twenty-four thrones circled the Throne, with Twenty-four Elders seated, white-robed, gold-crowned. Lightning flash and thunder crash pulsed from the Throne. Seven fire-blazing torches fronted the Throne (these are the Sevenfold Spirit of God). Before the Throne it was like a clear crystal sea. Prowling around the Throne were Four Animals, all eyes. Eyes to look ahead, eyes to look behind. The first Animal like a lion, the second like an ox, the third with a human face, the fourth like an eagle in flight. The Four Animals were winged, each with six wings. They were all eyes, seeing around and within. And they chanted night and day, never taking a break:Holy, holy, holyIs God our Master, Sovereign-Strong, The Was, The Is, The Coming. Every time the Animals gave glory and honor and thanks to the One Seated on the Throne—the age-after-age Living One—the Twenty-four Elders would fall prostrate before the One Seated on the Throne. They worshiped the age-after-age Living One. They threw their crowns at the foot of the Throne, chanting,Worthy, O Master! Yes, our God!Take the glory! the honor! the power!You created it all;It was created because you wanted it."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.4.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -255,9 +1069,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/4-7658daf4e87a9b4faab9723fbc22fd78.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.4.MSG",
+        "reference": {
+          "usfm": [
+            "REV.4"
+          ],
+          "human": "Revelation 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.3"
+          ],
+          "human": "Revelation 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.5"
+          ],
+          "human": "Revelation 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 5,
       "chapter_usfm": "REV.5",
@@ -266,12 +1137,40 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "REV.5.3",
+          "line_type": "p",
           "text": "There was no one—no one in Heaven, no one on earth, no one from the underworld—able to break open the scroll and read it. I wept and wept and wept that no one was found able to open the scroll, able to read it. One of the Elders said, “Don’t weep. Look—the Lion from Tribe Judah, the Root of David’s Tree, has conquered. He can open the scroll, can rip through the seven seals.” So I looked, and there, surrounded by Throne, Animals, and Elders, was a Lamb, slaughtered but standing tall. Seven horns he had, and seven eyes, the Seven Spirits of God sent into all the earth. He came to the One Seated on the Throne and took the scroll from his right hand. The moment he took the scroll, the Four Animals and Twenty-four Elders fell down and worshiped the Lamb. Each had a harp and each had a bowl, a gold bowl filled with incense, the prayers of God’s holy people. And they sang a new song:Worthy! Take the scroll, open its seals.Slain! Paying in blood, you bought men and women,Bought them back from all over the earth,Bought them back for God.Then you made them a Kingdom, Priests for our God,Priest-kings to rule over the earth. I looked again. I heard a company of Angels around the Throne, the Animals, and the Elders—ten thousand times ten thousand their number, thousand after thousand after thousand in full song:The slain Lamb is worthy!Take the power, the wealth, the wisdom, the strength!Take the honor, the glory, the blessing!Then I heard every creature in Heaven and earth, in underworld and sea, join in, all voices in all places, singing:To the One on the Throne! To the Lamb!The blessing, the honor, the glory, the strength,For age after age after age.The Four Animals called out, “Oh, Yes!” The Elders fell to their knees and worshiped."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "REV.5.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "REV.5.3"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -282,9 +1181,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/5-41531a61e4109281a76d8a0cbaf85983.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.5.MSG",
+        "reference": {
+          "usfm": [
+            "REV.5"
+          ],
+          "human": "Revelation 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.4"
+          ],
+          "human": "Revelation 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.6"
+          ],
+          "human": "Revelation 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 6,
       "chapter_usfm": "REV.6",
@@ -294,6 +1250,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -304,9 +1261,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/6-87ddab335f6f1202950eeda2edc4b4ee.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.6.MSG",
+        "reference": {
+          "usfm": [
+            "REV.6"
+          ],
+          "human": "Revelation 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.5"
+          ],
+          "human": "Revelation 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.7"
+          ],
+          "human": "Revelation 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 7,
       "chapter_usfm": "REV.7",
@@ -315,12 +1329,40 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "REV.7.1",
+          "line_type": "m",
           "text": "Immediately I saw Four Angels standing at the four corners of earth, standing steady with a firm grip on the four winds so no wind would blow on earth or sea, not even rustle a tree. Then I saw another Angel rising from where the sun rose, carrying the seal of the Living God. He thundered to the Four Angels assigned the task of hurting earth and sea, “Don’t hurt the earth! Don’t hurt the sea! Don’t so much as hurt a tree until I’ve sealed the servants of our God on their foreheads!” I heard the count of those who were sealed: 144,000! They were sealed out of every Tribe of Israel: 12,000 sealed from Judah, 12,000 from Reuben, 12,000 from Gad, 12,000 from Asher, 12,000 from Naphtali, 12,000 from Manasseh, 12,000 from Simeon, 12,000 from Levi, 12,000 from Issachar, 12,000 from Zebulun, 12,000 from Joseph, 12,000 sealed from Benjamin.* * * I looked again. I saw a huge crowd, too huge to count. Everyone was there—all nations and tribes, all races and languages. And they were standing, dressed in white robes and waving palm branches, standing before the Throne and the Lamb and heartily singing:Salvation to our God on his Throne!Salvation to the Lamb!All who were standing around the Throne—Angels, Elders, Animals—fell on their faces before the Throne and worshiped God, singing:Oh, Yes!The blessing and glory and wisdom and thanksgiving,The honor and power and strength,To our God forever and ever and ever!Oh, Yes! Just then one of the Elders addressed me: “Who are these dressed in white robes, and where did they come from?” Taken aback, I said, “O Sir, I have no idea—but you must know.” Then he told me, “These are those who come from the great tribulation, and they’ve washed their robes, scrubbed them clean in the blood of the Lamb. That’s why they’re standing before God’s Throne. They serve him day and night in his Temple. The One on the Throne will pitch his tent there for them: no more hunger, no more thirst, no more scorching heat. The Lamb on the Throne will shepherd them, will lead them to spring waters of Life. And God will wipe every last tear from their eyes.”"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.7.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.7.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -331,9 +1373,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/7-1d615a0738de2d341ba44d047737f908.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.7.MSG",
+        "reference": {
+          "usfm": [
+            "REV.7"
+          ],
+          "human": "Revelation 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.6"
+          ],
+          "human": "Revelation 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.8"
+          ],
+          "human": "Revelation 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 8,
       "chapter_usfm": "REV.8",
@@ -342,29 +1441,113 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "REV.8.1",
+          "line_type": "p",
           "text": "When the Lamb ripped off the seventh seal, Heaven fell quiet—complete silence for about half an hour. I saw the Seven Angels who are always in readiness before God handed seven trumpets. Then another Angel, carrying a gold censer, came and stood at the Altar. He was given a great quantity of incense so that he could offer up the prayers of all the holy people of God on the Golden Altar before the Throne. Smoke billowed up from the incense-laced prayers of the holy ones, rose before God from the hand of the Angel."
         },
         {
           "verse": 5,
+          "usfm": "REV.8.5",
+          "line_type": "p",
           "text": "Then the Angel filled the censer with fire from the Altar and heaved it to earth. It set off thunders, voices, lightnings, and an earthquake. The Seven Angels with the trumpets got ready to blow them. At the first trumpet blast, hail and fire mixed with blood were dumped on earth. A third of the earth was scorched, a third of the trees, and every blade of green grass—burned to a crisp. The second Angel trumpeted. Something like a huge mountain blazing with fire was flung into the sea. A third of the sea turned to blood, a third of the living sea creatures died, and a third of the ships sank. The third Angel trumpeted. A huge Star, blazing like a torch, fell from Heaven, wiping out a third of the rivers and a third of the springs. The Star’s name was Wormwood. A third of the water turned bitter, and many people died from the poisoned water."
         },
         {
           "verse": 12,
+          "usfm": "REV.8.12",
+          "line_type": "p",
           "text": "The fourth Angel trumpeted. A third of the sun, a third of the moon, and a third of the stars were hit, blacked out by a third, both day and night in one-third blackout."
         },
         {
           "verse": 13,
+          "usfm": "REV.8.13",
+          "line_type": "p",
           "text": "I looked hard; I heard a lone eagle, flying through Middle-Heaven, crying out ominously, “Doom! Doom! Doom to everyone left on earth! There are three more Angels about to blow their trumpets. Doom is on its way!”* * *"
         }
       ],
       "verse_count": 4,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Blowing the Trumpets"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.8.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.8.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "REV.8.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "REV.8.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "REV.8.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "REV.8.12",
+            "REV.8.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -375,9 +1558,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/8-7f4e7b1b29f7d96a242bfc484007d8df.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.8.MSG",
+        "reference": {
+          "usfm": [
+            "REV.8"
+          ],
+          "human": "Revelation 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.7"
+          ],
+          "human": "Revelation 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.9"
+          ],
+          "human": "Revelation 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 9,
       "chapter_usfm": "REV.9",
@@ -386,12 +1626,40 @@
       "verses": [
         {
           "verse": 12,
+          "usfm": "REV.9.12",
+          "line_type": "p",
           "text": "The first doom is past. Two dooms yet to come. The sixth Angel trumpeted. I heard a voice speaking to the sixth Angel from the horns of the Golden Altar before God: “Let the Four Angels loose, the Angels confined at the great River Euphrates.” The Four Angels were untied and let loose, Four Angels all prepared for the exact year, month, day, and even hour when they were to kill a third of the human race. The number of the army of horsemen was twice ten thousand times ten thousand. I heard the count and saw both horses and riders in my vision: fiery breastplates on the riders, lion heads on the horses breathing out fire and smoke and brimstone. With these three weapons—fire and smoke and brimstone—they killed a third of the human race. The horses killed with their mouths and tails; their serpentlike tails also had heads that wreaked havoc. The remaining men and women who weren’t killed by these weapons went on their merry way—didn’t change their way of life, didn’t quit worshiping demons, didn’t quit centering their lives around lumps of gold and silver and brass, hunks of stone and wood that couldn’t see or hear or move. There wasn’t a sign of a change of heart. They plunged right on in their murderous, occult, promiscuous, and thieving ways.* * *"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "REV.9.12"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "REV.9.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -402,9 +1670,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/9-d6042b3a3329b2625a2b55833ce21e92.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.9.MSG",
+        "reference": {
+          "usfm": [
+            "REV.9"
+          ],
+          "human": "Revelation 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.8"
+          ],
+          "human": "Revelation 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.10"
+          ],
+          "human": "Revelation 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 10,
       "chapter_usfm": "REV.10",
@@ -414,6 +1739,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -424,9 +1750,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/10-e953f9610d34d95581dad0e51025aff4.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.10.MSG",
+        "reference": {
+          "usfm": [
+            "REV.10"
+          ],
+          "human": "Revelation 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.9"
+          ],
+          "human": "Revelation 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.11"
+          ],
+          "human": "Revelation 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 11,
       "chapter_usfm": "REV.11",
@@ -435,25 +1818,93 @@
       "verses": [
         {
           "verse": 11,
+          "usfm": "REV.11.11",
+          "line_type": "p",
           "text": "“Then, after three and a half days, the Living Spirit of God will enter them—they’re on their feet!—and all those gloating spectators will be scared to death.” I heard a strong voice out of Heaven calling, “Come up here!” and up they went to Heaven, wrapped in a cloud, their enemies watching it all. At that moment there was a gigantic earthquake—a tenth of the city fell to ruin, seven thousand perished in the earthquake, the rest frightened to the core of their being, frightened into giving honor to the God-of-Heaven."
         },
         {
           "verse": 14,
+          "usfm": "REV.11.14",
+          "line_type": "p",
           "text": "The second doom is past, the third doom coming right on its heels. The seventh Angel trumpeted. A crescendo of voices in Heaven sang out,The kingdom of the world is nowthe Kingdom of our God and his Messiah!He will rule forever and ever!The Twenty-four Elders seated before God on their thrones fell to their knees, worshiped, and sang,We thank you, O God, Sovereign-Strong, Who Is and Who Was.You took your great powerand took over—reigned!The angry nations nowget a taste of your anger.The time has come to judge the dead,to reward your servants, all prophets and saints,Reward small and great who fear your Name,and destroy the destroyers of earth."
         },
         {
           "verse": 19,
+          "usfm": "REV.11.19",
+          "line_type": "p",
           "text": "The doors of God’s Temple in Heaven flew open, and the Ark of his Covenant was clearly seen surrounded by flashes of lightning, loud shouts, peals of thunder, an earthquake, and a fierce hailstorm."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "The Last Trumpet Sounds"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "REV.11.11"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "REV.11.11"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "REV.11.14"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "REV.11.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "REV.11.19"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -464,9 +1915,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/11-aaa090b13505c0e57f19281f16e3710a.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.11.MSG",
+        "reference": {
+          "usfm": [
+            "REV.11"
+          ],
+          "human": "Revelation 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.10"
+          ],
+          "human": "Revelation 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.12"
+          ],
+          "human": "Revelation 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 12,
       "chapter_usfm": "REV.12",
@@ -476,6 +1984,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -486,9 +1995,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/12-dad8fac4a8227791d17e996fba166396.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.12.MSG",
+        "reference": {
+          "usfm": [
+            "REV.12"
+          ],
+          "human": "Revelation 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.11"
+          ],
+          "human": "Revelation 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.13"
+          ],
+          "human": "Revelation 13",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 13,
       "chapter_usfm": "REV.13",
@@ -497,6 +2063,8 @@
       "verses": [
         {
           "verse": 18,
+          "usfm": "REV.13.18",
+          "line_type": "p",
           "text": "Solve a riddle: Put your heads together and figure out the meaning of the number of the Beast. It’s a human number: 666."
         }
       ],
@@ -508,6 +2076,20 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "REV.13.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -518,9 +2100,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/13-14dd1ae246526a55a5203801e74e6d13.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.13.MSG",
+        "reference": {
+          "usfm": [
+            "REV.13"
+          ],
+          "human": "Revelation 13",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.12"
+          ],
+          "human": "Revelation 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.14"
+          ],
+          "human": "Revelation 14",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 14,
       "chapter_usfm": "REV.14",
@@ -529,14 +2168,20 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "REV.14.8",
+          "line_type": "p",
           "text": "A second Angel followed, calling out, “Ruined, ruined, Great Babylon ruined! She made all the nations drunk on the wine of her whoring!” A third Angel followed, shouting, warning, “If anyone worships the Beast and its image and takes the mark on forehead or hand, that person will drink the wine of God’s wrath, prepared unmixed in his chalice of anger, and suffer torment from fire and brimstone in the presence of Holy Angels, in the presence of the Lamb. Smoke from their torment will rise age after age. No respite for those who worship the Beast and its image, who take the mark of its name.”"
         },
         {
           "verse": 12,
+          "usfm": "REV.14.12",
+          "line_type": "p",
           "text": "Meanwhile, the saints stand passionately patient, keeping God’s commands, staying faithful to Jesus."
         },
         {
           "verse": 13,
+          "usfm": "REV.14.13",
+          "line_type": "p",
           "text": "I heard a voice out of Heaven, “Write this: Blessed are those who die in the Master from now on; how blessed to die that way!”“Yes,” says the Spirit, “and blessed rest from their hard, hard work. None of what they’ve done is wasted; God blesses them for it all in the end.” I looked up, I caught my breath!—a white cloud and one like the Son of Man sitting on it. He wore a gold crown and held a sharp sickle. Another Angel came out of the Temple, shouting to the Cloud-Enthroned, “Swing your sickle and reap. It’s harvest time. Earth’s harvest is ripe for reaping.” The Cloud-Enthroned gave a mighty sweep of his sickle, began harvesting earth in a stroke. Then another Angel came out of the Temple in Heaven. He also had a sharp sickle. Yet another Angel, the one in charge of tending the fire, came from the Altar. He thundered to the Angel who held the sharp sickle, “Swing your sharp sickle. Harvest earth’s vineyard. The grapes are bursting with ripeness.” The Angel swung his sickle, harvested earth’s vintage, and heaved it into the winepress, the giant winepress of God’s wrath. The winepress was outside the City. As the vintage was trodden, blood poured from the winepress as high as a horse’s bridle, a river of blood for two hundred miles."
         }
       ],
@@ -547,11 +2192,87 @@
           "text": "Voices from Heaven"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "Harvest Time"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "REV.14.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "REV.14.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "REV.14.12"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "REV.14.12",
+            "REV.14.13"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "REV.14.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "m",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "REV.14.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -562,9 +2283,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/14-0fb42baf49751e411fcae13aaef43804.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.14.MSG",
+        "reference": {
+          "usfm": [
+            "REV.14"
+          ],
+          "human": "Revelation 14",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.13"
+          ],
+          "human": "Revelation 13",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.15"
+          ],
+          "human": "Revelation 15",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 15,
       "chapter_usfm": "REV.15",
@@ -573,12 +2351,40 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "REV.15.1",
+          "line_type": "m",
           "text": "I saw another Sign in Heaven, huge and breathtaking: seven Angels with seven disasters. These are the final disasters, the wrap-up of God’s wrath. I saw something like a sea made of glass, the glass all shot through with fire. Carrying harps of God, triumphant over the Beast, its image, and the number of its name, the saved ones stood on the sea of glass. They sang the Song of Moses, servant of God; they sang the Song of the Lamb:Mighty your acts and marvelous,O God, the Sovereign-Strong!Righteous your ways and true,King of the nations!Who can fail to fear you, God,give glory to your Name?Because you and you only are holy,all nations will come and worship you,because they see your judgments are right. Then I saw the doors of the Temple, the Tent of Witness in Heaven, open wide. The Seven Angels carrying the seven disasters came out of the Temple. They were dressed in clean, bright linen and wore gold vests. One of the Four Animals handed the Seven Angels seven gold bowls, brimming with the wrath of God, who lives forever and ever. Smoke from God’s glory and power poured out of the Temple. No one was permitted to enter the Temple until the seven disasters of the Seven Angels were finished."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.15.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.15.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -589,9 +2395,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/15-5f0a4c37edec2e6804796886b1325902.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.15.MSG",
+        "reference": {
+          "usfm": [
+            "REV.15"
+          ],
+          "human": "Revelation 15",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.14"
+          ],
+          "human": "Revelation 14",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.16"
+          ],
+          "human": "Revelation 16",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 16,
       "chapter_usfm": "REV.16",
@@ -600,28 +2463,130 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "REV.16.1",
+          "line_type": "m",
           "text": "I heard a shout of command from the Temple to the Seven Angels: “Begin! Pour out the seven bowls of God’s wrath on earth!”"
         },
         {
           "verse": 2,
+          "usfm": "REV.16.2",
+          "line_type": "p",
           "text": "The first Angel stepped up and poured his bowl out on earth: Loathsome, stinking sores erupted on all who had taken the mark of the Beast and worshiped its image."
         },
         {
           "verse": 3,
+          "usfm": "REV.16.3",
+          "line_type": "p",
           "text": "The second Angel poured his bowl on the sea: The sea coagulated into blood, and everything in it died. The third Angel poured his bowl on rivers and springs: The waters turned to blood. I heard the Angel of Waters say,Righteous you are, and your judgments are righteous, The Is, The Was, The Holy.They poured out the blood of saints and prophetsso you’ve given them blood to drink—they’ve gotten what they deserve!Just then I heard the Altar chime in,Yes, O God, the Sovereign-Strong!Your judgments are true and just! The fourth Angel poured his bowl on the sun: Fire blazed from the sun and scorched men and women. Burned and blistered, they cursed God’s Name, the God behind these disasters. They refused to repent, refused to honor God. The fifth Angel poured his bowl on the throne of the Beast: Its kingdom fell into sudden eclipse. Mad with pain, men and women bit and chewed their tongues, cursed the God-of-Heaven for their torment and sores, and refused to repent and change their ways. The sixth Angel poured his bowl on the great Euphrates River: It dried up to nothing. The dry riverbed became a fine roadbed for the kings from the East. From the mouths of the Dragon, the Beast, and the False Prophet I saw three foul demons crawl out—they looked like frogs. These are demon spirits performing signs. They’re after the kings of the whole world to get them gathered for battle on the Great Day of God, the Sovereign-Strong."
         },
         {
           "verse": 15,
+          "usfm": "REV.16.15",
+          "line_type": "p",
           "text": "“Keep watch! I come unannounced, like a thief. You’re blessed if, awake and dressed, you’re ready for me. Too bad if you’re found running through the streets, naked and ashamed.”"
         },
         {
           "verse": 16,
+          "usfm": "REV.16.16",
+          "line_type": "p",
           "text": "The frog-demons gathered the kings together at the place called in Hebrew Armageddon. The seventh Angel poured his bowl into the air: From the Throne in the Temple came a shout, “Done!” followed by lightning flashes and shouts, thunder crashes and a colossal earthquake—a huge and devastating earthquake, never an earthquake like it since time began. The Great City split three ways, the cities of the nations toppled to ruin. Great Babylon had to drink the wine of God’s raging anger—God remembered to give her the cup! Every island fled and not a mountain was to be found. Hailstones weighing close to a hundred pounds plummeted, crushing and smashing men and women as they cursed God for the hail, the epic disaster of hail."
         }
       ],
       "verse_count": 5,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.16.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "REV.16.1",
+            "REV.16.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "REV.16.2",
+            "REV.16.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "REV.16.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "REV.16.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "REV.16.15",
+            "REV.16.16"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "REV.16.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -632,9 +2597,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/16-6ac4bd78c84ca6aaa8e03b2307cc4ad1.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.16.MSG",
+        "reference": {
+          "usfm": [
+            "REV.16"
+          ],
+          "human": "Revelation 16",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.15"
+          ],
+          "human": "Revelation 15",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.17"
+          ],
+          "human": "Revelation 17",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 17,
       "chapter_usfm": "REV.17",
@@ -644,6 +2666,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -654,9 +2677,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/17-148df50a24a7f0ce9c9a4c92191ed639.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.17.MSG",
+        "reference": {
+          "usfm": [
+            "REV.17"
+          ],
+          "human": "Revelation 17",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.16"
+          ],
+          "human": "Revelation 16",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.18"
+          ],
+          "human": "Revelation 18",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 18,
       "chapter_usfm": "REV.18",
@@ -665,12 +2745,40 @@
       "verses": [
         {
           "verse": 20,
+          "usfm": "REV.18.20",
+          "line_type": "p",
           "text": "“O Heaven, celebrate! And join in, saints, apostles, and prophets! God has judged her; every wrong you suffered from her has been judged.” A strong Angel reached for a boulder—huge, like a millstone—and heaved it into the sea, saying,Heaved and sunk, the great city Babylon,sunk in the sea, not a sign of her ever again.Silent the music of harpists and singers—you’ll never hear flutes and trumpets again.Artisans of every kind—gone;you’ll never see their likes again.The voice of a millstone grinding falls dumb;you’ll never hear that sound again.The light from lamps, never again;never again laughter of bride and groom.Her traders robbed the whole earth blind,and by black-magic arts deceived the nations.The only thing left of Babylon is blood—the blood of saints and prophets,the murdered and the martyred."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "REV.18.20"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "REV.18.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -681,9 +2789,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/18-140d28f95cc04a9e2c17426d530422dd.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.18.MSG",
+        "reference": {
+          "usfm": [
+            "REV.18"
+          ],
+          "human": "Revelation 18",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.17"
+          ],
+          "human": "Revelation 17",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.19"
+          ],
+          "human": "Revelation 19",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 19,
       "chapter_usfm": "REV.19",
@@ -692,29 +2857,151 @@
       "verses": [
         {
           "verse": 4,
+          "usfm": "REV.19.4",
+          "line_type": "p",
           "text": "The Twenty-four Elders and the Four Animals fell to their knees and worshiped God on his Throne, praising,Amen! Yes! Hallelujah!"
         },
         {
           "verse": 5,
+          "usfm": "REV.19.5",
+          "line_type": "p",
           "text": "From the Throne came a shout, a command:Praise our God, all you his servants,All you who fear him, small and great! Then I heard the sound of massed choirs, the sound of mighty rapids, the sound of strong thunder:Hallelujah!The Master reigns,our God, the Sovereign-Strong!Let us celebrate, let us rejoice,let us give him the glory!The Marriage of the Lamb has come;his Wife has made herself ready.She was given a bridal gownof bright and shining linen.The linen is the righteousness of the saints."
         },
         {
           "verse": 9,
+          "usfm": "REV.19.9",
+          "line_type": "p",
           "text": "The Angel said to me, “Write this: ‘Blessed are those invited to the Wedding Supper of the Lamb.’” He added, “These are the true words of God!”"
         },
         {
           "verse": 10,
+          "usfm": "REV.19.10",
+          "line_type": "p",
           "text": "I fell at his feet to worship him, but he wouldn’t let me. “Don’t do that,” he said. “I’m a servant just like you, and like your brothers and sisters who hold to the witness of Jesus. The witness of Jesus is the spirit of prophecy.” Then I saw Heaven open wide—and oh! a white horse and its Rider. The Rider, named Faithful and True, judges and makes war in pure righteousness. His eyes are a blaze of fire, on his head many crowns. He has a Name inscribed that’s known only to himself. He is dressed in a robe soaked with blood, and he is addressed as “Word of God.” The armies of Heaven, mounted on white horses and dressed in dazzling white linen, follow him. A sharp sword comes out of his mouth so he can subdue the nations, then rule them with a rod of iron. He treads the winepress of the raging wrath of God, the Sovereign-Strong. On his robe and thigh is written, King of kings, Lord of lords. I saw an Angel standing in the sun, shouting to all flying birds in Middle-Heaven, “Come to the Great Supper of God! Feast on the flesh of kings and captains and champions, horses and their riders. Eat your fill of them all—free and slave, small and great!” I saw the Beast and, assembled with him, earth’s kings and their armies, ready to make war against the One on the horse and his army. The Beast was taken, and with him, his puppet, the False Prophet, who used signs to dazzle and deceive those who had taken the mark of the Beast and worshiped his image. They were thrown alive, those two, into Lake Fire and Brimstone. The rest were killed by the sword of the One on the horse, the sword that comes from his mouth. All the birds held a feast on their flesh."
         }
       ],
       "verse_count": 4,
       "headings": [
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "A White Horse and Its Rider"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "REV.19.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "REV.19.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "REV.19.4",
+            "REV.19.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "REV.19.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "REV.19.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "REV.19.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "REV.19.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "REV.19.10",
+            "REV.19.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "m",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "REV.19.10"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -725,9 +3012,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/19-1d77b2e0ddcddb96745f5f2c9636a92e.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.19.MSG",
+        "reference": {
+          "usfm": [
+            "REV.19"
+          ],
+          "human": "Revelation 19",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.18"
+          ],
+          "human": "Revelation 18",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.20"
+          ],
+          "human": "Revelation 20",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 20,
       "chapter_usfm": "REV.20",
@@ -742,6 +3086,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -752,9 +3097,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/20-9b54f3e3faf040ae3a90080c697d7866.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.20.MSG",
+        "reference": {
+          "usfm": [
+            "REV.20"
+          ],
+          "human": "Revelation 20",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.19"
+          ],
+          "human": "Revelation 19",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.21"
+          ],
+          "human": "Revelation 21",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 21,
       "chapter_usfm": "REV.21",
@@ -763,21 +3165,65 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "REV.21.1",
+          "line_type": "m",
           "text": "I saw Heaven and earth new-created. Gone the first Heaven, gone the first earth, gone the sea."
         },
         {
           "verse": 2,
+          "usfm": "REV.21.2",
+          "line_type": "p",
           "text": "I saw Holy Jerusalem, new-created, descending resplendent out of Heaven, as ready for God as a bride for her husband. I heard a voice thunder from the Throne: “Look! Look! God has moved into the neighborhood, making his home with men and women! They’re his people, he’s their God. He’ll wipe every tear from their eyes. Death is gone for good—tears gone, crying gone, pain gone—all the first order of things gone.” The Enthroned continued, “Look! I’m making everything new. Write it all down—each word dependable and accurate.” Then he said, “It’s happened. I’m A to Z. I’m the Beginning, I’m the Conclusion. From Water-of-Life Well I give freely to the thirsty. Conquerors inherit all this. I’ll be God to them, they’ll be sons and daughters to me. But for the rest—the feckless and faithless, degenerates and murderers, sex peddlers and sorcerers, idolaters and all liars—for them it’s Lake Fire and Brimstone. Second death!” One of the Seven Angels who had carried the bowls filled with the seven final disasters spoke to me: “Come here. I’ll show you the Bride, the Wife of the Lamb.” He took me away in the Spirit to an enormous, high mountain and showed me Holy Jerusalem descending out of Heaven from God, resplendent in the bright glory of God. The City shimmered like a precious gem, light-filled, pulsing light. She had a wall majestic and high with twelve gates. At each gate stood an Angel, and on the gates were inscribed the names of the Twelve Tribes of the sons of Israel: three gates on the east, three gates on the north, three gates on the south, three gates on the west. The wall was set on twelve foundations, the names of the Twelve Apostles of the Lamb inscribed on them. The Angel speaking with me had a gold measuring stick to measure the City, its gates, and its wall. The City was laid out in a perfect square. He measured the City with the measuring stick: fifteen hundred miles, its length, width, and height all equal. Using the standard measure, the Angel measured the thickness of its wall: seventy-two yards. The wall was jasper, the color of Glory, and the City was pure gold, translucent as glass. The foundations of the City walls were garnished with every precious gem imaginable: the first foundation jasper, the second sapphire, the third agate, the fourth emerald, the fifth onyx, the sixth carnelian, the seventh chrysolite, the eighth beryl, the ninth topaz, the tenth chrysoprase, the eleventh jacinth, the twelfth amethyst. The twelve gates were twelve pearls, each gate a single pearl. The main street of the City was pure gold, translucent as glass. But there was no sign of a Temple, for the Lord God—the Sovereign-Strong—and the Lamb are the Temple. The City doesn’t need sun or moon for light. God’s Glory is its light, the Lamb its lamp! The nations will walk in its light and earth’s kings bring in their splendor. Its gates will never be shut by day, and there won’t be any night. They’ll bring the glory and honor of the nations into the City. Nothing dirty or defiled will get into the City, and no one who defiles or deceives. Only those whose names are written in the Lamb’s Book of Life will get in.* * *"
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "The City of Light"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "REV.21.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "REV.21.1",
+            "REV.21.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "REV.21.2"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -788,9 +3234,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/21-c803d3a8201bdf659130c7ed218772bd.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.21.MSG",
+        "reference": {
+          "usfm": [
+            "REV.21"
+          ],
+          "human": "Revelation 21",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.20"
+          ],
+          "human": "Revelation 20",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.22"
+          ],
+          "human": "Revelation 22",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "REV",
       "chapter": 22,
       "chapter_usfm": "REV.22",
@@ -799,18 +3302,26 @@
       "verses": [
         {
           "verse": 16,
+          "usfm": "REV.22.16",
+          "line_type": "p",
           "text": "“I, Jesus, sent my Angel to testify to these things for the churches. I’m the Root and Branch of David, the Bright Morning Star.”"
         },
         {
           "verse": 17,
+          "usfm": "REV.22.17",
+          "line_type": "q1",
           "text": "“Come!” say the Spirit and the Bride.Whoever hears, echo, “Come!”Is anyone thirsty? Come!All who will, come and drink,Drink freely of the Water of Life! I give fair warning to all who hear the words of the prophecy of this book: If you add to the words of this prophecy, God will add to your life the disasters written in this book; if you subtract from the words of the book of this prophecy, God will subtract your part from the Tree of Life and the Holy City that are written in this book."
         },
         {
           "verse": 20,
+          "usfm": "REV.22.20",
+          "line_type": "p",
           "text": "He who testifies to all these things says it again: “I’m on my way! I’ll be there soon!”Yes! Come, Master Jesus!"
         },
         {
           "verse": 21,
+          "usfm": "REV.22.21",
+          "line_type": "p",
           "text": "The grace of the Master Jesus be with all of you. Oh, Yes!"
         }
       ],
@@ -822,6 +3333,132 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "REV.22.16"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "REV.22.16",
+            "REV.22.17"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "REV.22.17"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "REV.22.17"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "REV.22.17"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "REV.22.17"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "REV.22.17"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "REV.22.20"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "REV.22.20"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "REV.22.20",
+            "REV.22.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -832,7 +3469,55 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/REV/22-c3dd182d43b7c14b7d88b9b4d645609e.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/REV.22.MSG",
+        "reference": {
+          "usfm": [
+            "REV.22"
+          ],
+          "human": "Revelation 22",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "REV.21"
+          ],
+          "human": "Revelation 21",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": null
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

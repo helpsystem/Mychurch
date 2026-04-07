@@ -11,6 +11,7 @@
   "total_verses": 7,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "ZEP",
       "chapter": 1,
       "chapter_usfm": "ZEP.1",
@@ -19,14 +20,20 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEP.1.1",
+          "line_type": "m",
           "text": "God’s Message to Zephaniah son of Cushi, son of Gedaliah, son of Amariah, son of Hezekiah. It came during the reign of Josiah son of Amon, who was king of Judah:"
         },
         {
           "verse": 2,
+          "usfm": "ZEP.1.2",
+          "line_type": "q1",
           "text": "“I’m going to make a clean sweep of the earth,a thorough housecleaning.” God’s Decree."
         },
         {
           "verse": 3,
+          "usfm": "ZEP.1.3",
+          "line_type": "q1",
           "text": "“Men and women and animals,including birds and fish—Anything and everything that causes sin—will go,but especially people.* * * “I’ll start with Judahand everybody who lives in Jerusalem.I’ll sweep the place clean of every traceof the sex-and-religion Baal shrines and their priests.I’ll get rid of the people who sneak up to their rooftops at nightto worship the star gods and goddesses;Also those who continue to worship Godbut cover their bases by worshiping other king-gods as well;Not to mention those who’ve dumped God altogether,no longer giving him a thought or offering a prayer.* * * “Quiet now!Reverent silence before me, God, the Master!Time’s up. My Judgment Day is near:The Holy Day is all set, the invited guests made holy.On the Holy Day, God’s Judgment Day,I will punish the leaders and the royal sons;I will punish those who dress up like foreign priests and priestesses,Who introduce pagan prayers and practices;And I’ll punish all who import pagan superstitionsthat turn holy places into hellholes.Judgment Day!” God’s Decree!“Cries of panic from the city’s Fish Gate,Cries of terror from the city’s Second Quarter,sounds of great crashing from the hills!Wail, you shopkeepers on Market Street!Moneymaking has had its day. The god Money is dead.On Judgment Day,I’ll search through every closet and alley in Jerusalem.I’ll find and punish those who are sitting it out, fat and lazy,amusing themselves and taking it easy,Who think, ‘God doesn’t do anything, good or bad.He isn’t involved, so neither are we.’But just wait. They’ll lose everything they have,money and house and land.They’ll build a house and never move in.They’ll plant vineyards and never taste the wine. “The Great Judgment Day of God is almost here.It’s countdown time: . . . seven, six, five, four . . . Bitter and noisy cries on my Judgment Day,even strong men screaming for help.Judgment Day is payday—my anger paid out:a day of distress and anguish,a day of catastrophic doom,a day of darkness at noon,a day of black storm clouds,a day of bloodcurdling war cries,as forts are assaulted,as defenses are smashed.I’ll make things so bad they won’t know what hit them.They’ll walk around groping like the blind.They’ve sinned against God!Their blood will be poured out like old dishwater,their guts shoveled into slop buckets.Don’t plan on buying your way out.Your money is worthless for this.This is the Day of God’s Judgment—my wrath!I care about sin with fiery passion—A fire to burn up the corrupted world,a wildfire finish to the corrupting people.”"
         }
       ],
@@ -41,11 +48,113 @@
           "text": "a Thought or a Prayer"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "A Day of Darkness at Noon"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEP.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "ZEP.1.1",
+            "ZEP.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEP.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "ZEP.1.2",
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.1.3"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -56,9 +165,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEP/1-3590b526ae8fa9861deecee8744b1fb9.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEP.1.MSG",
+        "reference": {
+          "usfm": [
+            "ZEP.1"
+          ],
+          "human": "Zephaniah 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HAB.3"
+          ],
+          "human": "Habakkuk 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.2"
+          ],
+          "human": "Zephaniah 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEP",
       "chapter": 2,
       "chapter_usfm": "ZEP.2",
@@ -67,6 +233,8 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "ZEP.2.3",
+          "line_type": "q1",
           "text": "Seek God, all you quietly disciplined peoplewho live by God’s justice.Seek God’s right ways. Seek a quiet and disciplined life.Perhaps you’ll be hidden on the Day of God’s anger. Gaza is scheduled for demolition,Ashdod will be cleaned out by high noon,Ekron pulled out by the roots.Doom to the seaside people,the seafaring people from Crete!The Word of God is bad news for youwho settled Canaan, the Philistine country:“You’re slated for destruction—no survivors!”* * * The lands of the seafarerswill become pastureland,A country for shepherds and sheep.What’s left of the family of Judah will get it.Day after day they’ll pasture by the sea,and go home in the evening to Ashkelon to sleep.Their very own God will look out for them.He’ll make things as good as before.* * * “I’ve heard the crude taunts of Moab,the mockeries flung by Ammon,The cruel talk they’ve used to put down my people,their self-important strutting along Israel’s borders.Therefore, as sure as I am the living God,” says God-of-the-Angel-Armies,Israel’s personal God,“Moab will become a ruin like Sodom,Ammon a ghost town like Gomorrah,One a field of rocks, the other a sterile salt flat,a moonscape forever.What’s left of my people will finish them off,will pick them clean and take over.This is what they get for their bloated pride,their taunts and mockeries of the peopleof God-of-the-Angel-Armies. God will be seen as truly terrible—a Holy Terror.All earth-made gods will shrivel up and blow away;And everyone, wherever they are, far or near,will fall to the ground and worship him.Also you Ethiopians,you, too, will die—I’ll see to it.”* * * Then God will reach into the northand destroy Assyria.He will waste Nineveh,leave her dry and treeless as a desert.The ghost town of a city,the haunt of wild animals,Nineveh will be home to raccoons and coyotes—they’ll bed down in its ruins.Owls will hoot in the windows, ravens will croak in the doorways—all that fancy woodwork now a perch for birds.Can this be the famous Fun Citythat had it made,That boasted, “I’m the Number-One City!I’m King of the Mountain!”So why is the place deserted,a lair for wild animals?Passersby hardly give it a look;they dismiss it with a gesture."
         }
       ],
@@ -77,11 +245,73 @@
           "text": "God"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "All Earth-Made Gods Will Blow Away"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEP.2.3"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -92,9 +322,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEP/2-9236d96df4e04457d58abff9acb79968.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEP.2.MSG",
+        "reference": {
+          "usfm": [
+            "ZEP.2"
+          ],
+          "human": "Zephaniah 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.1"
+          ],
+          "human": "Zephaniah 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.3"
+          ],
+          "human": "Zephaniah 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEP",
       "chapter": 3,
       "chapter_usfm": "ZEP.3",
@@ -103,37 +390,325 @@
       "verses": [
         {
           "verse": 6,
+          "usfm": "ZEP.3.6",
+          "line_type": "q1",
           "text": "“So I cut off the godless nations.I knocked down their defense posts,Filled her roads with rubbleso no one could get through.Her cities were bombed-out ruins,unlivable and unlived in."
         },
         {
           "verse": 7,
+          "usfm": "ZEP.3.7",
+          "line_type": "q1",
           "text": "“I thought, ‘Surely she’ll honor me now,accept my discipline and correction,Find a way of escape from the trouble she’s in,find relief from the punishment I’m bringing.’But it didn’t faze her. Bright and earlyshe was up at it again, doing the same old things."
         },
         {
           "verse": 8,
+          "usfm": "ZEP.3.8",
+          "line_type": "q1",
           "text": "“Well, if that’s what you want, stick around.” God’s Decree.“Your day in court is coming,but remember I’ll be there to bring evidence.I’ll bring all the nations to the courtroom,round up all the kingdoms,And let them feel the brunt of my anger,my raging wrath.My zeal is a firethat will purge and purify the earth. “In the end I will turn things around for the people.I’ll give them a language undistorted, unpolluted,Words to address God in worshipand, united, to serve me with their shoulders to the wheel.They’ll come from beyond the Ethiopian rivers,they’ll come praying—All my scattered, exiled peoplewill come home with offerings for worship.You’ll no longer have to be ashamedof all those acts of rebellion.I’ll have gotten rid of your arrogant leaders.No more pious strutting on my holy hill!I’ll leave a core of people among youwho are poor in spirit—What’s left of Israel that’s really Israel.They’ll make their home in God.This core holy peoplewill not do wrong.They won’t lie,won’t use words to flatter or seduce.Content with who they are and where they are,unanxious, they’ll live at peace.”* * * So sing, Daughter Zion!Raise your voices, Israel!Daughter Jerusalem,be happy! celebrate! God has reversed his judgments against youand sent your enemies off chasing their tails.From now on, God is Israel’s king,in charge at the center.There’s nothing to fear from evilever again! Jerusalem will be told:“Don’t be afraid.Dear Zion,don’t despair.Your God is present among you,a strong Warrior there to save you.Happy to have you back, he’ll calm you with his loveand delight you with his songs.* * * “The accumulated sorrows of your exilewill dissipate.I, your God, will get rid of them for you.You’ve carried those burdens long enough.At the same time, I’ll get rid of all thosewho’ve made your life miserable.I’ll heal the maimed;I’ll bring home the homeless.In the very countries where they were hatedthey will be venerated.On Judgment DayI’ll bring you back home—a great family gathering!You’ll be famous and honoredall over the world.You’ll see it with your own eyes—all those painful partings turned into reunions!” God’s Promise."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "God"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Is in Charge at the Center"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "God"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Is Present Among You"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEP.3.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "ZEP.3.6",
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEP.3.7"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "ZEP.3.7",
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEP.3.8"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -144,7 +719,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEP/3-beb369da0181100f9feb114361cf8a1c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEP.3.MSG",
+        "reference": {
+          "usfm": [
+            "ZEP.3"
+          ],
+          "human": "Zephaniah 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.2"
+          ],
+          "human": "Zephaniah 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HAG.1"
+          ],
+          "human": "Haggai 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

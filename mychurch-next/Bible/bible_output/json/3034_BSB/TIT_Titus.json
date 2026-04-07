@@ -11,6 +11,7 @@
   "total_verses": 46,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 1,
       "chapter_usfm": "TIT.1",
@@ -19,81 +20,266 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.1.1",
+          "line_type": "p",
           "text": "Paul, a servant of God and an apostle of Jesus Christ for the faith of God’s elect and their knowledge of the truth that leads to godliness,"
         },
         {
           "verse": 2,
+          "usfm": "TIT.1.2",
+          "line_type": "p",
           "text": "in the hope of eternal life, which God, who cannot lie, promised before time began."
         },
         {
           "verse": 3,
+          "usfm": "TIT.1.3",
+          "line_type": "p",
           "text": "In His own time He has made His word evident in the proclamation entrusted to me by the command of God our Savior."
         },
         {
           "verse": 4,
+          "usfm": "TIT.1.4",
+          "line_type": "p",
           "text": "To Titus, my true child in our common faith:Grace and peace from God the Father and Christ Jesus our Savior."
         },
         {
           "verse": 5,
+          "usfm": "TIT.1.5",
+          "line_type": "p",
           "text": "The reason I left you in Crete was that you would set in order what was unfinished and appoint elders in every town, as I directed you."
         },
         {
           "verse": 6,
+          "usfm": "TIT.1.6",
+          "line_type": "p",
           "text": "An elder must be blameless, the husband of but one wife, having children who are believers and who are not open to accusation of indiscretion or insubordination."
         },
         {
           "verse": 7,
+          "usfm": "TIT.1.7",
+          "line_type": "p",
           "text": "As God’s steward, an overseer must be above reproach — not self-willed, not quick-tempered, not given to drunkenness, not violent, not greedy for money."
         },
         {
           "verse": 8,
+          "usfm": "TIT.1.8",
+          "line_type": "p",
           "text": "Instead, he must be hospitable, a lover of good, self-controlled, upright, holy, and disciplined."
         },
         {
           "verse": 9,
+          "usfm": "TIT.1.9",
+          "line_type": "p",
           "text": "He must hold firmly to the faithful word as it was taught, so that he can encourage others by sound teaching and refute those who contradict it."
         },
         {
           "verse": 10,
+          "usfm": "TIT.1.10",
+          "line_type": "p",
           "text": "For many are rebellious and full of empty talk and deception, especially those of the circumcision,"
         },
         {
           "verse": 11,
+          "usfm": "TIT.1.11",
+          "line_type": "p",
           "text": "who must be silenced. For the sake of dishonorable gain, they undermine entire households and teach things they should not."
         },
         {
           "verse": 12,
+          "usfm": "TIT.1.12",
+          "line_type": "p",
           "text": "As one of their own prophets has said, “Cretans are always liars, evil beasts, lazy gluttons.”"
         },
         {
           "verse": 13,
+          "usfm": "TIT.1.13",
+          "line_type": "p",
           "text": "This testimony is true. Therefore rebuke them sternly, so that they will be sound in the faith"
         },
         {
           "verse": 14,
+          "usfm": "TIT.1.14",
+          "line_type": "p",
           "text": "and will pay no attention to Jewish myths or to the commands of men who have rejected the truth."
         },
         {
           "verse": 15,
+          "usfm": "TIT.1.15",
+          "line_type": "p",
           "text": "To the pure, all things are pure; but to the defiled and unbelieving, nothing is pure. Indeed, both their minds and their consciences are defiled."
         },
         {
           "verse": 16,
+          "usfm": "TIT.1.16",
+          "line_type": "p",
           "text": "They profess to know God, but by their actions they deny Him. They are detestable, disobedient, and unfit for any good deed."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Appointing Elders on Crete"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Correcting False Teachers"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "note_ref": "1:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally before times eternal"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "1:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or faithful to his wife"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.1.12",
+          "note_ref": "1:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "This quote, also known as the Epimenides paradox, has been attributed to the Cretan philosopher Epimenides of Knossos."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "TIT.1.1",
+            "TIT.1.2",
+            "TIT.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "TIT.1.3",
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "TIT.1.4",
+            "TIT.1.5",
+            "TIT.1.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "TIT.1.6",
+            "TIT.1.7",
+            "TIT.1.8",
+            "TIT.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 12,
+          "verses": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "TIT.1.10",
+            "TIT.1.11",
+            "TIT.1.12",
+            "TIT.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.1.12",
+            "TIT.1.13",
+            "TIT.1.14"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 16,
+          "verses": [
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "TIT.1.14",
+            "TIT.1.15",
+            "TIT.1.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -104,9 +290,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/TIT/1-0f6a818534adb60980474b5fab56e94c.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/TIT.1.BSB",
+        "reference": {
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "2 Timothy 4",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 2,
       "chapter_usfm": "TIT.2",
@@ -115,73 +358,229 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.2.1",
+          "line_type": "p",
           "text": "But as for you, speak the things that are consistent with sound doctrine."
         },
         {
           "verse": 2,
+          "usfm": "TIT.2.2",
+          "line_type": "p",
           "text": "Older men are to be temperate, dignified, self-controlled, and sound in faith, love, and perseverance."
         },
         {
           "verse": 3,
+          "usfm": "TIT.2.3",
+          "line_type": "p",
           "text": "Older women, likewise, are to be reverent in their behavior, not slanderers or addicted to much wine, but teachers of good."
         },
         {
           "verse": 4,
+          "usfm": "TIT.2.4",
+          "line_type": "p",
           "text": "In this way they can train the young women to love their husbands and children,"
         },
         {
           "verse": 5,
+          "usfm": "TIT.2.5",
+          "line_type": "p",
           "text": "to be self-controlled, pure, managers of their households, kind, and submissive to their own husbands, so that the word of God will not be discredited."
         },
         {
           "verse": 6,
+          "usfm": "TIT.2.6",
+          "line_type": "p",
           "text": "In the same way, urge the younger men to be self-controlled."
         },
         {
           "verse": 7,
+          "usfm": "TIT.2.7",
+          "line_type": "p",
           "text": "In everything, show yourself to be an example by doing good works. In your teaching show integrity, dignity,"
         },
         {
           "verse": 8,
+          "usfm": "TIT.2.8",
+          "line_type": "p",
           "text": "and wholesome speech that is above reproach, so that anyone who opposes us will be ashamed, having nothing bad to say about us."
         },
         {
           "verse": 9,
+          "usfm": "TIT.2.9",
+          "line_type": "p",
           "text": "Slaves are to submit to their own masters in everything, to be well-pleasing, not argumentative,"
         },
         {
           "verse": 10,
+          "usfm": "TIT.2.10",
+          "line_type": "p",
           "text": "not stealing from them, but showing all good faith, so that in every respect they will adorn the teaching about God our Savior."
         },
         {
           "verse": 11,
+          "usfm": "TIT.2.11",
+          "line_type": "p",
           "text": "For the grace of God has appeared, bringing salvation to everyone."
         },
         {
           "verse": 12,
+          "usfm": "TIT.2.12",
+          "line_type": "p",
           "text": "It instructs us to renounce ungodliness and worldly passions, and to live sensible, upright, and godly lives in the present age,"
         },
         {
           "verse": 13,
+          "usfm": "TIT.2.13",
+          "line_type": "p",
           "text": "as we await the blessed hope and glorious appearance of our great God and Savior Jesus Christ."
         },
         {
           "verse": 14,
+          "usfm": "TIT.2.14",
+          "line_type": "p",
           "text": "He gave Himself for us to redeem us from all lawlessness and to purify for Himself a people for His own possession, zealous for good deeds."
         },
         {
           "verse": 15,
+          "usfm": "TIT.2.15",
+          "line_type": "p",
           "text": "Speak these things as you encourage and rebuke with all authority. Let no one despise you."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "God’s Grace Brings Salvation"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "TIT.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "TIT.2.1",
+            "TIT.2.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "TIT.2.2",
+            "TIT.2.3",
+            "TIT.2.4",
+            "TIT.2.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "TIT.2.5",
+            "TIT.2.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 8,
+          "verses": [
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.2.6",
+            "TIT.2.7",
+            "TIT.2.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.8",
+            "TIT.2.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 14,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.11",
+            "TIT.2.12",
+            "TIT.2.13",
+            "TIT.2.14"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.2.14",
+            "TIT.2.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -192,9 +591,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/TIT/2-50982b67ebb07db72134a3328c828b11.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/TIT.2.BSB",
+        "reference": {
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 3,
       "chapter_usfm": "TIT.3",
@@ -203,77 +659,262 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.3.1",
+          "line_type": "p",
           "text": "Remind the believers to submit to rulers and authorities, to be obedient and ready for every good work,"
         },
         {
           "verse": 2,
+          "usfm": "TIT.3.2",
+          "line_type": "p",
           "text": "to malign no one, and to be peaceable and gentle, showing full consideration to everyone."
         },
         {
           "verse": 3,
+          "usfm": "TIT.3.3",
+          "line_type": "p",
           "text": "For at one time we too were foolish, disobedient, misled, and enslaved to all sorts of desires and pleasures — living in malice and envy, being hated and hating one another."
         },
         {
           "verse": 4,
+          "usfm": "TIT.3.4",
+          "line_type": "p",
           "text": "But when the kindness of God our Savior and His love for mankind appeared,"
         },
         {
           "verse": 5,
+          "usfm": "TIT.3.5",
+          "line_type": "p",
           "text": "He saved us, not by the righteous deeds we had done, but according to His mercy, through the washing of new birth and renewal by the Holy Spirit."
         },
         {
           "verse": 6,
+          "usfm": "TIT.3.6",
+          "line_type": "p",
           "text": "This is the Spirit He poured out on us abundantly through Jesus Christ our Savior,"
         },
         {
           "verse": 7,
+          "usfm": "TIT.3.7",
+          "line_type": "p",
           "text": "so that, having been justified by His grace, we would become heirs with the hope of eternal life."
         },
         {
           "verse": 8,
+          "usfm": "TIT.3.8",
+          "line_type": "p",
           "text": "This saying is trustworthy. And I want you to emphasize these things, so that those who have believed God will take care to devote themselves to good deeds. These things are excellent and profitable for the people."
         },
         {
           "verse": 9,
+          "usfm": "TIT.3.9",
+          "line_type": "p",
           "text": "But avoid foolish controversies, genealogies, arguments, and quarrels about the law, because these things are pointless and worthless."
         },
         {
           "verse": 10,
+          "usfm": "TIT.3.10",
+          "line_type": "p",
           "text": "Reject a divisive man after a first and second admonition,"
         },
         {
           "verse": 11,
+          "usfm": "TIT.3.11",
+          "line_type": "p",
           "text": "knowing that such a man is corrupt and sinful; he is self-condemned."
         },
         {
           "verse": 12,
+          "usfm": "TIT.3.12",
+          "line_type": "p",
           "text": "As soon as I send Artemas or Tychicus to you, make every effort to come to me at Nicopolis, because I have decided to winter there."
         },
         {
           "verse": 13,
+          "usfm": "TIT.3.13",
+          "line_type": "p",
           "text": "Do your best to equip Zenas the lawyer and Apollos, so that they will have everything they need."
         },
         {
           "verse": 14,
+          "usfm": "TIT.3.14",
+          "line_type": "p",
           "text": "And our people must also learn to devote themselves to good works in order to meet the pressing needs of others, so that they will not be unfruitful."
         },
         {
           "verse": 15,
+          "usfm": "TIT.3.15",
+          "line_type": "p",
           "text": "All who are with me send you greetings.Greet those who love us in the faith.Grace be with all of you."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Avoid Divisions"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Final Remarks and Greetings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "TIT.3.5",
+          "note_ref": "3:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or of regeneration"
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.3.15",
+          "note_ref": "3:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "BYZ and TR include Amen."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "TIT.3.1",
+            "TIT.3.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "TIT.3.2",
+            "TIT.3.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 8,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "TIT.3.3",
+            "TIT.3.4",
+            "TIT.3.5",
+            "TIT.3.6",
+            "TIT.3.7",
+            "TIT.3.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "TIT.3.8",
+            "TIT.3.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "TIT.3.10",
+            "TIT.3.11",
+            "TIT.3.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 14,
+          "verses": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.3.11",
+            "TIT.3.12",
+            "TIT.3.13",
+            "TIT.3.14"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.3.14",
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -284,7 +925,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/TIT/3-444d39e4bcc61bce0f18858b1e8aa673.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/TIT.3.BSB",
+        "reference": {
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "PHM.1"
+          ],
+          "human": "Philemon 1",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

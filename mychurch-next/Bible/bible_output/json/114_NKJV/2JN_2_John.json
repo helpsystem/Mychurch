@@ -11,6 +11,7 @@
   "total_verses": 13,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2JN",
       "chapter": 1,
       "chapter_usfm": "2JN.1",
@@ -19,73 +20,338 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2JN.1.1",
+          "line_type": "p",
           "text": "The Elder,To the elect lady and her children, whom I love in truth, and not only I, but also all those who have known the truth,"
         },
         {
           "verse": 2,
+          "usfm": "2JN.1.2",
+          "line_type": "p",
           "text": "because of the truth which abides in us and will be with us forever:"
         },
         {
           "verse": 3,
+          "usfm": "2JN.1.3",
+          "line_type": "p",
           "text": "Grace, mercy, and peace will be with you from God the Father and from the Lord Jesus Christ, the Son of the Father, in truth and love."
         },
         {
           "verse": 4,
+          "usfm": "2JN.1.4",
+          "line_type": "p",
           "text": "I rejoiced greatly that I have found some of your children walking in truth, as we received commandment from the Father."
         },
         {
           "verse": 5,
+          "usfm": "2JN.1.5",
+          "line_type": "p",
           "text": "And now I plead with you, lady, not as though I wrote a new commandment to you, but that which we have had from the beginning: that we love one another."
         },
         {
           "verse": 6,
+          "usfm": "2JN.1.6",
+          "line_type": "p",
           "text": "This is love, that we walk according to His commandments. This is the commandment, that as you have heard from the beginning, you should walk in it."
         },
         {
           "verse": 7,
+          "usfm": "2JN.1.7",
+          "line_type": "p",
           "text": "For many deceivers have gone out into the world who do not confess Jesus Christ as coming in the flesh. This is a deceiver and an antichrist."
         },
         {
           "verse": 8,
+          "usfm": "2JN.1.8",
+          "line_type": "p",
           "text": "Look to yourselves, that we do not lose those things we worked for, but that we may receive a full reward."
         },
         {
           "verse": 9,
+          "usfm": "2JN.1.9",
+          "line_type": "p",
           "text": "Whoever transgresses and does not abide in the doctrine of Christ does not have God. He who abides in the doctrine of Christ has both the Father and the Son."
         },
         {
           "verse": 10,
+          "usfm": "2JN.1.10",
+          "line_type": "p",
           "text": "If anyone comes to you and does not bring this doctrine, do not receive him into your house nor greet him;"
         },
         {
           "verse": 11,
+          "usfm": "2JN.1.11",
+          "line_type": "p",
           "text": "for he who greets him shares in his evil deeds."
         },
         {
           "verse": 12,
+          "usfm": "2JN.1.12",
+          "line_type": "p",
           "text": "Having many things to write to you, I did not wish to do so with paper and ink; but I hope to come to you and speak face to face, that our joy may be full."
         },
         {
           "verse": 13,
+          "usfm": "2JN.1.13",
+          "line_type": "p",
           "text": "The children of your elect sister greet you. Amen."
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Walk in Christ’s Commandments"
         },
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Beware of Antichrist Deceivers"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "John’s Farewell Greeting"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "2JN.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Col. 1:5"
+        },
+        {
+          "verse": 3,
+          "usfm": "2JN.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 1:7; 1 Tim. 1:2"
+        },
+        {
+          "verse": 4,
+          "usfm": "2JN.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Thess. 2:19, 20; 3 John 3, 4"
+        },
+        {
+          "verse": 5,
+          "usfm": "2JN.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 13:34, 35; 15:12, 17); 1 John 3:11; 4:7, 11"
+        },
+        {
+          "verse": 6,
+          "usfm": "2JN.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 14:15; 1 John 2:5; 5:3"
+        },
+        {
+          "verse": 6,
+          "usfm": "2JN.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 John 2:24"
+        },
+        {
+          "verse": 7,
+          "usfm": "2JN.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 John 2:19; 4:1"
+        },
+        {
+          "verse": 7,
+          "usfm": "2JN.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 John 4:2"
+        },
+        {
+          "verse": 7,
+          "usfm": "2JN.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 John 2:22"
+        },
+        {
+          "verse": 8,
+          "usfm": "2JN.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mark 13:9"
+        },
+        {
+          "verse": 8,
+          "usfm": "2JN.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 3:4"
+        },
+        {
+          "verse": 9,
+          "usfm": "2JN.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 7:16; 8:31; 1 John 2:19, 23, 24"
+        },
+        {
+          "verse": 10,
+          "usfm": "2JN.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Kin. 13:16; Rom. 16:17; 2 Thess. 3:6, 14; Titus 3:10"
+        },
+        {
+          "verse": 12,
+          "usfm": "2JN.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "3 John 13, 14"
+        },
+        {
+          "verse": 12,
+          "usfm": "2JN.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 17:13"
+        },
+        {
+          "verse": 13,
+          "usfm": "2JN.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Pet. 5:13"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2JN.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2JN.1.1",
+            "2JN.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "2JN.1.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "2JN.1.4",
+            "2JN.1.5",
+            "2JN.1.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "2JN.1.7",
+            "2JN.1.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "2JN.1.10",
+            "2JN.1.11",
+            "2JN.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "2JN.1.12"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "2JN.1.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -104,7 +370,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/2JN/1-913ca920048de4b526722f642a773b81.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/2JN.1.NKJV",
+        "reference": {
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "II John 1",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1JN.5"
+          ],
+          "human": "I John 5",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "III John 1",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 25,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 1,
       "chapter_usfm": "SNG.1",
@@ -19,37 +20,39 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.1.1",
+          "line_type": "q1",
           "text": "The Song—best of all songs—Solomon’s song! Kiss me—full on the mouth!Yes! For your love is better than wine,headier than your aromatic oils.The syllables of your name murmur like a meadow brook.No wonder everyone loves to say your name!"
         },
         {
           "verse": 4,
+          "usfm": "SNG.1.4",
+          "line_type": "q1",
           "text": "Take me away with you! Let’s run off together!An elopement with my King-Lover!We’ll celebrate, we’ll sing,we’ll make great music.Yes! For your love is better than vintage wine.Everyone loves you—of course! And why not? I am weathered but still elegant,oh, dear sisters in Jerusalem,Weather-darkened like Kedar desert tents,time-softened like Solomon’s Temple hangings.Don’t look down on me because I’m dark,darkened by the sun’s harsh rays.My brothers ridiculed me and sent me to work in the fields.They made me care for the face of the earth,but I had no time to care for my own face."
         },
         {
           "verse": 7,
+          "usfm": "SNG.1.7",
+          "line_type": "q1",
           "text": "Tell me where you’re working—I love you so much—Tell me where you’re tending your flocks,where you let them rest at noontime.Why should I be the one left out,outside the orbit of your tender care?"
         },
         {
           "verse": 8,
+          "usfm": "SNG.1.8",
+          "line_type": "q1",
           "text": "If you can’t find me, loveliest of all women,it’s all right. Stay with your flocks.Lead your lambs to good pasture.Stay with your shepherd neighbors. You remind me of Pharaoh’swell-groomed and satiny mares.Pendant earrings line the elegance of your cheeks;strands of jewels illumine the curve of your throat.I’m making jewelry for you, gold and silver jewelrythat will mark and accent your beauty. When my King-Lover lay down beside me,my fragrance filled the room.His head resting between my breasts—the head of my lover was a sachet of sweet myrrh.My beloved is a bouquet of wildflowerspicked just for me from the fields of En Gedi."
         },
         {
           "verse": 15,
+          "usfm": "SNG.1.15",
+          "line_type": "q1",
           "text": "Oh, my dear friend! You’re so beautiful!And your eyes so beautiful—like doves! And you, my dear lover—you’re so handsome!And the bed we share is like a forest glen.We enjoy a canopy of cedarsenclosed by cypresses, fragrant and green."
         }
       ],
       "verse_count": 5,
       "headings": [
         {
-          "before_verse": 1,
-          "text": "The Woman"
-        },
-        {
-          "before_verse": 7,
-          "text": "The Man"
-        },
-        {
-          "before_verse": 8,
+          "before_verse": 2,
           "text": "The Woman"
         },
         {
@@ -57,11 +60,299 @@
           "text": "The Man"
         },
         {
-          "before_verse": 15,
+          "before_verse": 9,
+          "text": "The Woman"
+        },
+        {
+          "before_verse": 9,
+          "text": "The Man"
+        },
+        {
+          "before_verse": 16,
           "text": "The Woman"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "SNG.1.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.1.7"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "SNG.1.7",
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.1.8"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.1.15"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.1.15"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.1.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -72,9 +363,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/SNG/1-e6f0485e5fd2e2f2bfce886ffbbf4bad.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/SNG.1.MSG",
+        "reference": {
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "Song of Songs 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.12"
+          ],
+          "human": "Ecclesiastes 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Songs 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 2,
       "chapter_usfm": "SNG.2",
@@ -83,41 +431,233 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.2.1",
+          "line_type": "q1",
           "text": "I’m just a wildflower picked from the plains of Sharon,a lotus blossom from the valley pools."
         },
         {
           "verse": 2,
+          "usfm": "SNG.2.2",
+          "line_type": "q1",
           "text": "A lotus blossoming in a swamp of weeds—that’s my dear friend among the girls in the village. As an apricot tree stands out in the forest,my lover stands above the young men in town.All I want is to sit in his shade,to taste and savor his delicious love.He took me home with him for a festive meal,but his eyes feasted on me! Oh! Give me something refreshing to eat—and quickly!Apricots, raisins—anything. I’m about to faint with love!His left hand cradles my head,and his right arm encircles my waist!"
         },
         {
           "verse": 7,
+          "usfm": "SNG.2.7",
+          "line_type": "q1",
           "text": "Oh, let me warn you, sisters in Jerusalem,by the gazelles, yes, by all the wild deer:Don’t excite love, don’t stir it up,until the time is ripe—and you’re ready. Look! Listen! There’s my lover!Do you see him coming?Vaulting the mountains,leaping the hills.My lover is like a gazelle, graceful;like a young stag, virile.Look at him there, on tiptoe at the gate,all ears, all eyes—ready!My lover has arrivedand he’s speaking to me! Get up, my dear friend,fair and beautiful lover—come to me!Look around you: Winter is over;the winter rains are over, gone!Spring flowers are in blossom all over.The whole world’s a choir—and singing!Spring warblers are filling the forestwith sweet strains.Lilacs are exuberantly purple and perfumed,and cherry trees fragrant with blossoms.Oh, get up, dear friend,my fair and beautiful lover—come to me!Come, my shy and modest dove—leave your seclusion, come out in the open.Let me see your face,let me hear your voice.For your voice is soothingand your face is ravishing."
         },
         {
           "verse": 15,
+          "usfm": "SNG.2.15",
+          "line_type": "q1",
           "text": "Then you must protect me from the foxes,foxes on the prowl,Foxes who would like nothing betterthan to get into our flowering garden. My lover is mine, and I am his.Nightly he strolls in our garden,Delighting in the flowersuntil dawn breathes its light and night slips away.Turn to me, dear lover.Come like a gazelle.Leap like a wild stagon delectable mountains!"
         }
       ],
       "verse_count": 4,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The Man"
         },
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "The Woman"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "The Man"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "The Woman"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.2.1",
+            "SNG.2.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.2.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "SNG.2.7"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.2.15"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.2.15"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.2.15"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.2.15"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "SNG.2.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -128,9 +668,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/SNG/2-262a70305db6f31f82e555eb126404b9.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/SNG.2.MSG",
+        "reference": {
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Songs 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "Song of Songs 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Songs 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 3,
       "chapter_usfm": "SNG.3",
@@ -139,16 +736,142 @@
       "verses": [
         {
           "verse": 5,
+          "usfm": "SNG.3.5",
+          "line_type": "q1",
           "text": "Oh, let me warn you, sisters in Jerusalem,by the gazelles, yes, by all the wild deer:Don’t excite love, don’t stir it up,until the time is ripe—and you’re ready. What’s this I see, approaching from the desert,raising clouds of dust,Filling the air with sweet smellsand pungent aromatics?Look! It’s Solomon’s carriage,carried and guarded by sixty soldiers,sixty of Israel’s finest,All of them armed to the teeth,trained for battle,ready for anything, anytime.King Solomon once had a carriage builtfrom fine-grained Lebanon cedar.He had it framed with silver and roofed with gold.The cushions were covered with a purple fabric,the interior lined with tooled leather."
         },
         {
           "verse": 11,
+          "usfm": "SNG.3.11",
+          "line_type": "q1",
           "text": "Come and look, sisters in Jerusalem.Oh, sisters of Zion, don’t miss this!My King-Lover,dressed and garlanded for his wedding,his heart full, bursting with joy!"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.3.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "SNG.3.11"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -159,9 +882,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/SNG/3-e50260769b68c7a05c3d119593fd58a9.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/SNG.3.MSG",
+        "reference": {
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Songs 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Songs 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Songs 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 4,
       "chapter_usfm": "SNG.4",
@@ -170,6 +950,8 @@
       "verses": [
         {
           "verse": 16,
+          "usfm": "SNG.4.16",
+          "line_type": "q1",
           "text": "Wake up, North Wind,get moving, South Wind!Breathe on my garden,fill the air with spice fragrance.Oh, let my lover enter his garden!Yes, let him eat the fine, ripe fruits."
         }
       ],
@@ -181,6 +963,80 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "SNG.4.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -191,9 +1047,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/SNG/4-8cade8f071cfc9029743b830b441a99c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/SNG.4.MSG",
+        "reference": {
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Songs 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Songs 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Songs 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 5,
       "chapter_usfm": "SNG.5",
@@ -202,49 +1115,331 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.5.1",
+          "line_type": "q1",
           "text": "I went to my garden, dear friend, best lover!breathed the sweet fragrance.I ate the fruit and honey,I drank the nectar and wine.Celebrate with me, friends!Raise your glasses—“To life! To love!”"
         },
         {
           "verse": 2,
+          "usfm": "SNG.5.2",
+          "line_type": "q1",
           "text": "I was sound asleep, but in my dreams I was wide awake.Oh, listen! It’s the sound of my lover knocking, calling!“Let me in, dear companion, dearest friend,my dove, consummate lover!I’m soaked with the dampness of the night,drenched with dew, shivering and cold.”"
         },
         {
           "verse": 3,
+          "usfm": "SNG.5.3",
+          "line_type": "q1",
           "text": "“But I’m in my nightgown—do you expect me to get dressed?I’m bathed and in bed—do you want me to get dirty?” But my lover wouldn’t take no for an answer,and the longer he knocked, the more excited I became.I got up to open the door to my lover,sweetly ready to receive him,Desiring and expectantas I turned the door handle.But when I opened the door he was gone.My loved one had tired of waiting and left.And I died inside—oh, I felt so bad!I ran out looking for himBut he was nowhere to be found.I called into the darkness—but no answer.The night watchmen found meas they patrolled the streets of the city.They slapped and beat and bruised me,ripping off my clothes,These watchmen,who were supposed to be guarding the city."
         },
         {
           "verse": 8,
+          "usfm": "SNG.5.8",
+          "line_type": "q1",
           "text": "I beg you, sisters in Jerusalem—if you find my lover,Please tell him I want him,that I’m heartsick with love for him."
         },
         {
           "verse": 9,
+          "usfm": "SNG.5.9",
+          "line_type": "q1",
           "text": "What’s so great about your lover, fair lady?What’s so special about him that you beg for our help? My dear lover glows with health—red-blooded, radiant!He’s one in a million.There’s no one quite like him!My golden one, pure and untarnished,with raven black curls tumbling across his shoulders.His eyes are like doves, soft and bright,but deep-set, brimming with meaning, like wells of water.His face is rugged, his beard smells like sage,His voice, his words, warm and reassuring.Fine muscles ripple beneath his skin,quiet and beautiful.His torso is the work of a sculptor,hard and smooth as ivory.He stands tall, like a cedar,strong and deep-rooted,A rugged mountain of a man,aromatic with wood and stone.His words are kisses, his kisses words.Everything about him delights me, thrills methrough and through!That’s my lover, that’s my man,dear Jerusalem sisters."
         }
       ],
       "verse_count": 5,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The Woman"
         },
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "The Man"
         },
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "The Woman"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "The Chorus"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "The Woman"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.5.1"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "SNG.5.1",
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "SNG.5.2"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "SNG.5.2",
+            "SNG.5.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.5.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "SNG.5.3"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.5.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.5.8"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.5.8"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "SNG.5.8"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "SNG.5.8",
+            "SNG.5.9"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.5.9"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "SNG.5.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -255,9 +1450,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/SNG/5-2df16be093f7d7406e61527ee08d66f0.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/SNG.5.MSG",
+        "reference": {
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Songs 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Songs 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Songs 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 6,
       "chapter_usfm": "SNG.6",
@@ -266,29 +1518,193 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.6.1",
+          "line_type": "q1",
           "text": "So where has this love of yours gone,fair one?Where on earth can he be?Can we help you look for him? Never mind. My lover is already on his way to his garden,to browse among the flowers, touching the colors and forms.I am my lover’s and my lover is mine.He caresses the sweet-smelling flowers. Dear, dear friend and lover,you’re as beautiful as Tirzah, city of delights,Lovely as Jerusalem, city of dreams,the ravishing visions of my ecstasy.Your beauty is too much for me—I’m in over my head.I’m not used to this! I can’t take it in.Your hair flows and shimmerslike a flock of goats in the distancestreaming down a hillside in the sunshine.Your smile is generous and full—expressive and strong and clean.Your veiled cheeksare soft and radiant. There’s no one like her on earth,never has been, never will be.She’s a woman beyond compare.My dove is perfection,Pure and innocent as the day she was born,and cradled in joy by her mother.Everyone who came by to see herexclaimed and admired her—All the fathers and mothers, the neighbors and friends,blessed and praised her:"
         },
         {
           "verse": 10,
+          "usfm": "SNG.6.10",
+          "line_type": "q1",
           "text": "“Has anyone ever seen anything like this—dawn-fresh, moon-lovely, sun-radiant,ravishing as the night sky with its galaxies of stars?” One day I went strolling through the orchard,looking for signs of spring,Looking for buds about to burst into flower,anticipating readiness, ripeness.Before I knew it my heart was raptured,carried away by lofty thoughts!"
         },
         {
           "verse": 13,
+          "usfm": "SNG.6.13",
+          "line_type": "q1",
           "text": "Dance, dance, dear Shulammite, Angel-Princess!Dance, and we’ll feast our eyes on your grace!Everyone wants to see the Shulammite danceher victory dances of love and peace."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The Woman"
         },
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The Man"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "SNG.6.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.6.10"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.6.10"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.6.10"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.6.10"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.6.13"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.6.13"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.6.13"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.6.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -299,9 +1715,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/SNG/6-5a557088fff7aeace8a98b98337b2e3a.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/SNG.6.MSG",
+        "reference": {
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Songs 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Songs 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Songs 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 7,
       "chapter_usfm": "SNG.7",
@@ -310,6 +1783,8 @@
       "verses": [
         {
           "verse": 13,
+          "usfm": "SNG.7.13",
+          "line_type": "q1",
           "text": "Love-apples drench us with fragrance,fertility surrounds, suffuses us,Fruits fresh and preservedthat I’ve kept and saved just for you, my love."
         }
       ],
@@ -321,6 +1796,56 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.7.13"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.7.13"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.7.13"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.7.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -331,9 +1856,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/SNG/7-a6237992146fa522e4ef80a3d8e149e1.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/SNG.7.MSG",
+        "reference": {
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Songs 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Songs 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.8"
+          ],
+          "human": "Song of Songs 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 8,
       "chapter_usfm": "SNG.8",
@@ -342,18 +1924,26 @@
       "verses": [
         {
           "verse": 5,
+          "usfm": "SNG.8.5",
+          "line_type": "q1",
           "text": "Who is this I see coming up from the country,arm in arm with her lover?I found you under the apricot tree,and woke you up to love.Your mother went into labor under that tree,and under that very tree she bore you. Hang my locket around your neck,wear my ring on your finger.Love is invincible facing danger and death.Passion laughs at the terrors of hell.The fire of love stops at nothing—it sweeps everything before it.Flood waters can’t drown love,torrents of rain can’t put it out.Love can’t be bought, love can’t be sold—it’s not to be found in the marketplace.My brothers used to worry about me: “Our little sister has no breasts.What shall we do with our little sisterwhen men come asking for her?She’s a virgin and vulnerable,and we’ll protect her.If they think she’s a wall, we’ll top it with barbed wire.If they think she’s a door, we’ll barricade it.”"
         },
         {
           "verse": 10,
+          "usfm": "SNG.8.10",
+          "line_type": "q1",
           "text": "Dear brothers, I’m a walled-in virgin still,but my breasts are full—And when my lover sees me,he knows he’ll soon be satisfied. King Solomon may have vast vineyardsin lush, fertile country,Where he hires others to work the ground.People pay anything to get in on that bounty.But my vineyard is all mine,and I’m keeping it to myself.You can have your vast vineyards, Solomon,you and your greedy guests!"
         },
         {
           "verse": 13,
+          "usfm": "SNG.8.13",
+          "line_type": "q1",
           "text": "Oh, lady of the gardens,my friends are with me listening.Let me hear your voice!"
         },
         {
           "verse": 14,
+          "usfm": "SNG.8.14",
+          "line_type": "q1",
           "text": "Run to me, dear lover.Come like a gazelle.Leap like a wild stagon the spice mountains."
         }
       ],
@@ -364,23 +1954,255 @@
           "text": "The Chorus"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "The Man"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "The Woman"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "The Man"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "The Woman"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "SNG.8.5"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.8.10"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.8.10"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.8.10"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.8.10"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "SNG.8.10"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.8.13"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.8.13"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "SNG.8.13"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "SNG.8.13",
+            "SNG.8.14"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.8.14"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.8.14"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "SNG.8.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -391,7 +2213,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/SNG/8-d7b593b11e08a83e41c27a8e593f28cf.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/SNG.8.MSG",
+        "reference": {
+          "usfm": [
+            "SNG.8"
+          ],
+          "human": "Song of Songs 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Songs 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ISA.1"
+          ],
+          "human": "Isaiah 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

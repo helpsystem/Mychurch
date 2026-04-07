@@ -11,6 +11,7 @@
   "total_verses": 47,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 1,
       "chapter_usfm": "2TH.1",
@@ -19,61 +20,198 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TH.1.1",
+          "line_type": "p",
           "text": "از پولس و سیلاس و تیموتائوس،به کلیسای تسالونیکیان که در خدا، پدر ما، و خداوندْ عیسی مسیح‌اند:"
         },
         {
           "verse": 2,
+          "usfm": "2TH.1.2",
+          "line_type": "p",
           "text": "فیض و سلامتی از سوی خدا، پدر ما، و خداوندْ عیسی مسیح بر شما باد."
         },
         {
           "verse": 3,
+          "usfm": "2TH.1.3",
+          "line_type": "p",
           "text": "ای برادران، ما باید همواره خدا را به‌خاطر وجود شما شکر گوییم، و سزاوار نیز همین است، زیرا ایمان شما هر چه بیشتر رشد می‌کند و محبت هر یک از شما به یکدیگر فزونی می‌یابد."
         },
         {
           "verse": 4,
+          "usfm": "2TH.1.4",
+          "line_type": "p",
           "text": "از این رو، ما در کلیساهای خدا به‌خاطر پایداری و ایمان شما در تحمّل آزارها و سختیها، به وجودتان افتخار می‌کنیم."
         },
         {
           "verse": 5,
+          "usfm": "2TH.1.5",
+          "line_type": "p",
           "text": "اینها همه نشان داوری عادلانۀ خداست، و ثمرش این است که شما شایستۀ پادشاهی خدا شمرده خواهید شد که در راهش رنج می‌برید."
         },
         {
           "verse": 6,
+          "usfm": "2TH.1.6",
+          "line_type": "p",
           "text": "زیرا این عادلانه است که خدا آنان را که شما را رنج می‌دهند، به رنج عوض دهد،"
         },
         {
           "verse": 7,
+          "usfm": "2TH.1.7",
+          "line_type": "p",
           "text": "و شما را که رنج می‌برید با ما آرام بخشد. این زمانی واقع خواهد شد که خداوندْ عیسی همراه با فرشتگانِ نیرومند خویش با آتشی فروزان از آسمان ظهور کند."
         },
         {
           "verse": 8,
+          "usfm": "2TH.1.8",
+          "line_type": "p",
           "text": "او خدانشناسان و نافرمانانِ به انجیل خداوند ما عیسی را کیفر خواهد داد."
         },
         {
           "verse": 9,
+          "usfm": "2TH.1.9",
+          "line_type": "p",
           "text": "جزای ایشان هلاکت جاودانی از حضور خداوند و از جلالِ قدرت او خواهد بود،"
         },
         {
           "verse": 10,
+          "usfm": "2TH.1.10",
+          "line_type": "p",
           "text": "در آن روز که او می‌آید تا در مقدسین خود تمجید شود و در میان همۀ آنان که ایمان آورده‌اند، مایۀ شگفتی گردد. این شامل شما نیز خواهد بود، چرا که به شهادت ما ایمان آورده‌اید."
         },
         {
           "verse": 11,
+          "usfm": "2TH.1.11",
+          "line_type": "p",
           "text": "از همین رو، پیوسته برای شما دعا می‌کنیم تا خدای ما شما را شایستۀ دعوت خود شمارد و به نیروی خود هر قصد نیکو و هر عملی را که از ایمان شما سرچشمه می‌گیرد، به انجام رساند،"
         },
         {
           "verse": 12,
+          "usfm": "2TH.1.12",
+          "line_type": "p",
           "text": "و تا نام خداوند ما عیسی در شما جلال یابد، و شما نیز در او جلال یابید، بر حسب فیض خدای ما و خداوندْ عیسی مسیح."
         }
       ],
       "verse_count": 12,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "شکرگزاری و دعا"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "2TH.1.1",
+          "note_ref": "1‏:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "در اصل یونانی:‏ ”سیلوانُس“، که شکل دیگری از ”سیلاس“ است."
+        },
+        {
+          "verse": 9,
+          "usfm": "2TH.1.9",
+          "note_ref": "1‏:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا:‏ «هلاکت جاودانی و دوری از حضور خداوند و از جلالِ قدرت او خواهد بود»."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2TH.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "2TH.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "2TH.1.1",
+            "2TH.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "2TH.1.2",
+            "2TH.1.3",
+            "2TH.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 10,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "2TH.1.10",
+            "2TH.1.4",
+            "2TH.1.5",
+            "2TH.1.6",
+            "2TH.1.7",
+            "2TH.1.8",
+            "2TH.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "2TH.1.10",
+            "2TH.1.11",
+            "2TH.1.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 42,
@@ -92,9 +230,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1533/m4a/32k/2TH/1-b6ac5e47af7bdc0910e7ed6f2fccf632.m3u8?version_id=118"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 12,
+          "parsed_count": 12,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/2TH.1.NMV",
+        "reference": {
+          "usfm": [
+            "2TH.1"
+          ],
+          "human": "۲تسالونیکیان 1",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "2TH.INTRO1"
+          ],
+          "human": "۲تسالونیکیان ‮معرفیِ نامۀ دوّم پولس رسول به تسالونیکیان‬",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "۲تسالونیکیان 2",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 2,
       "chapter_usfm": "2TH.2",
@@ -103,81 +298,222 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TH.2.1",
+          "line_type": "p",
           "text": "ای برادران، دربارۀ آمدن خداوند ما عیسی مسیح و گِرد آمدن ما نزد او، استدعا داریم"
         },
         {
           "verse": 2,
+          "usfm": "2TH.2.2",
+          "line_type": "p",
           "text": "از پیام نبوّتی یا گفته یا نامه‌ای که گویا از ما باشد، بدین مضمون که روز خداوند هم‌اکنون فرا رسیده است، زود متزلزل یا مشوّش مشوید."
         },
         {
           "verse": 3,
+          "usfm": "2TH.2.3",
+          "line_type": "p",
           "text": "مگذارید هیچ‌کس به هیچ طریقی شما را فریب دهد. زیرا تا نخست آن عِصیان واقع نشود و آن مرد بی‌دین که فرزند هلاکت است به ظهور نرسد، آن روز فرا نخواهد رسید."
         },
         {
           "verse": 4,
+          "usfm": "2TH.2.4",
+          "line_type": "p",
           "text": "او با هرآنچه خدا خوانده می‌شود و مورد پرستش قرار می‌گیرد، مخالفت می‌ورزد و خود را بالاتر قرار می‌دهد، تا آنجا که در معبد خدا جلوس می‌کند و خود را خدا معرفی می‌نماید."
         },
         {
           "verse": 5,
+          "usfm": "2TH.2.5",
+          "line_type": "p",
           "text": "آیا به یاد ندارید هنگامی که با شما بودم اینها را به شما می‌گفتم؟"
         },
         {
           "verse": 6,
+          "usfm": "2TH.2.6",
+          "line_type": "p",
           "text": "شما می‌دانید که اکنون چه چیزی مانع است و سبب می‌شود که او تنها در زمان مناسب خود ظهور کند."
         },
         {
           "verse": 7,
+          "usfm": "2TH.2.7",
+          "line_type": "p",
           "text": "زیرا سِرّ بی‌دینی هم‌اکنون نیز عمل می‌کند، امّا فقط تا وقتی که آن که تا به حال مانع است از میان برداشته شود."
         },
         {
           "verse": 8,
+          "usfm": "2TH.2.8",
+          "line_type": "p",
           "text": "آنگاه آن بی‌دین ظاهر خواهد شد، که خداوندْ عیسی با نَفَس دهان خود او را هلاک خواهد کرد و با درخشندگیِ ظهور خویش او را نابود خواهد ساخت."
         },
         {
           "verse": 9,
+          "usfm": "2TH.2.9",
+          "line_type": "p",
           "text": "ظهور آن بی‌دین به نیروی شیطان و همراه با همه گونه معجزات و آیات و عجایبِ گمراه‌کننده خواهد بود،"
         },
         {
           "verse": 10,
+          "usfm": "2TH.2.10",
+          "line_type": "p",
           "text": "و نیز همراه با همه گونه شرارت که راهیان طریق هلاکت را فریفته می‌سازد. ایشان از آن رو هلاک می‌شوند که نخواستند حقیقت را دوست بدارند تا نجات یابند."
         },
         {
           "verse": 11,
+          "usfm": "2TH.2.11",
+          "line_type": "p",
           "text": "پس خدا ایشان را به توهّمی بزرگ دچار خواهد کرد، به گونه‌ای که دروغ را باور خواهند داشت،"
         },
         {
           "verse": 12,
+          "usfm": "2TH.2.12",
+          "line_type": "p",
           "text": "تا همۀ کسانی که حقیقت را باور نکرده و از شرارت خشنود گشته‌اند، محکوم شوند."
         },
         {
           "verse": 13,
+          "usfm": "2TH.2.13",
+          "line_type": "p",
           "text": "امّا ای برادران که محبوب خدایید، ما باید همواره خدا را به‌خاطر وجود شما شکر گوییم، زیرا خدا شما را از آغاز برگزید تا به واسطۀ عمل تقدیس‌کنندۀ روح و ایمان به حقیقت نجات یابید."
         },
         {
           "verse": 14,
+          "usfm": "2TH.2.14",
+          "line_type": "p",
           "text": "او شما را به واسطۀ انجیل ما فرا خواند تا از جلال خداوند ما عیسی مسیح برخوردار شوید."
         },
         {
           "verse": 15,
+          "usfm": "2TH.2.15",
+          "line_type": "p",
           "text": "پس، ای برادران، استوار باشید و سنّتهایی را که چه با سخنِ زبان و چه با نامه به شما سپردیم، نگاه دارید."
         },
         {
           "verse": 16,
+          "usfm": "2TH.2.16",
+          "line_type": "p",
           "text": "خودِ خداوند ما عیسی مسیح و پدر ما خدا که ما را محبت کرد و به فیض خود به ما دلگرمی جاودانی و امیدی نیکو بخشید،"
         },
         {
           "verse": 17,
+          "usfm": "2TH.2.17",
+          "line_type": "p",
           "text": "شما را دلگرمی بخشد و در هر کردار و گفتار نیکو استوار گرداند."
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "استوار بمانید"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "2TH.2.3",
+          "note_ref": "2‏:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "منظور از ”فرزند هلاکت“، ”محکوم به هلاکت“، و یا به احتمال کمتر، ”عامل هلاکت“ است."
+        },
+        {
+          "verse": 13,
+          "usfm": "2TH.2.13",
+          "note_ref": "2‏:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا:‏ «خدا شما را چون نوبر برگزید»."
+        },
+        {
+          "verse": 15,
+          "usfm": "2TH.2.15",
+          "note_ref": "2‏:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا ”تعالیمی“."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "2TH.2.1",
+            "2TH.2.2",
+            "2TH.2.3",
+            "2TH.2.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 12,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "2TH.2.10",
+            "2TH.2.11",
+            "2TH.2.12",
+            "2TH.2.4",
+            "2TH.2.5",
+            "2TH.2.6",
+            "2TH.2.7",
+            "2TH.2.8",
+            "2TH.2.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 15,
+          "verses": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "2TH.2.12",
+            "2TH.2.13",
+            "2TH.2.14",
+            "2TH.2.15"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 17,
+          "verses": [
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "2TH.2.15",
+            "2TH.2.16",
+            "2TH.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 42,
@@ -196,9 +532,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1533/m4a/32k/2TH/2-567cb8cf947ecef381c83759102a230d.m3u8?version_id=118"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/2TH.2.NMV",
+        "reference": {
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "۲تسالونیکیان 2",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TH.1"
+          ],
+          "human": "۲تسالونیکیان 1",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TH.3"
+          ],
+          "human": "۲تسالونیکیان 3",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2TH",
       "chapter": 3,
       "chapter_usfm": "2TH.3",
@@ -207,89 +600,254 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "2TH.3.1",
+          "line_type": "p",
           "text": "در خاتمه، ای برادران، برای ما دعا کنید تا کلام خداوند به‌سرعت پیش رود و عزّت یابد، همان‌گونه که در میان شما چنین شد،"
         },
         {
           "verse": 2,
+          "usfm": "2TH.3.2",
+          "line_type": "p",
           "text": "و تا از افراد خبیث و شَرور رهایی یابیم، زیرا همگان را ایمان نیست."
         },
         {
           "verse": 3,
+          "usfm": "2TH.3.3",
+          "line_type": "p",
           "text": "امّا خداوند امین است؛ او شما را نیرو می‌بخشد و از آن شریر حفظ می‌کند."
         },
         {
           "verse": 4,
+          "usfm": "2TH.3.4",
+          "line_type": "p",
           "text": "ما در خداوند به شما اطمینان داریم که آنچه به شما حکم می‌کنیم به جای می‌آورید و خواهید آورد."
         },
         {
           "verse": 5,
+          "usfm": "2TH.3.5",
+          "line_type": "p",
           "text": "خداوند دلهای شما را به محبت خدا و پایداری مسیح هدایت فرماید."
         },
         {
           "verse": 6,
+          "usfm": "2TH.3.6",
+          "line_type": "p",
           "text": "ای برادران، به نام خداوندْ عیسی مسیح به شما حکم می‌کنیم که از هر برادری که کاهلی پیشه کرده است و مطابق تعلیمی که از ما گرفته‌اید رفتار نمی‌کند، دوری کنید."
         },
         {
           "verse": 7,
+          "usfm": "2TH.3.7",
+          "line_type": "p",
           "text": "زیرا خود می‌دانید که چگونه باید از ما سرمشق بگیرید. زمانی که ما با شما بودیم، کاهلی نکردیم"
         },
         {
           "verse": 8,
+          "usfm": "2TH.3.8",
+          "line_type": "p",
           "text": "و نان کسی را مفت نخوردیم، بلکه شب و روز کار کردیم و زحمت کشیدیم تا سربار هیچ‌یک از شما نباشیم."
         },
         {
           "verse": 9,
+          "usfm": "2TH.3.9",
+          "line_type": "p",
           "text": "نه اینکه چنین حقّی نداریم، بلکه می‌خواستیم نمونه‌ای به شما بدهیم تا از ما سرمشق بگیرید."
         },
         {
           "verse": 10,
+          "usfm": "2TH.3.10",
+          "line_type": "p",
           "text": "زیرا حتی زمانی که با شما بودیم این حکم را به شما دادیم که «هر که نمی‌خواهد کار کند، نان هم نخورد.»"
         },
         {
           "verse": 11,
+          "usfm": "2TH.3.11",
+          "line_type": "p",
           "text": "شنیده‌ایم در میان شما برخی کاهلی پیشه کرده‌اند. اینان کار نمی‌کنند، بلکه در کارهای دیگران فضولی می‌نمایند."
         },
         {
           "verse": 12,
+          "usfm": "2TH.3.12",
+          "line_type": "p",
           "text": "پس به نام خداوندْ عیسی مسیح چنین‌کسان را حکم می‌کنیم و پند می‌دهیم که آرام و قرار بگیرند و برای تأمین معاش خود به آرامی کار کنند."
         },
         {
           "verse": 13,
+          "usfm": "2TH.3.13",
+          "line_type": "p",
           "text": "و امّا شما ای برادران، هرگز از انجام کار درست خسته نشوید."
         },
         {
           "verse": 14,
+          "usfm": "2TH.3.14",
+          "line_type": "p",
           "text": "هر گاه کسی از تعالیم ما در این نامه اطاعت نکند، او را نشان کنید و با وی معاشرت ننمایید تا شرمنده شود."
         },
         {
           "verse": 15,
+          "usfm": "2TH.3.15",
+          "line_type": "p",
           "text": "ولی او را دشمن مشمارید، بلکه همچون برادر به وی هشدار دهید."
         },
         {
           "verse": 16,
+          "usfm": "2TH.3.16",
+          "line_type": "p",
           "text": "حال، خداوندِ سلامتی، خود همواره و از هر حیث به شما سلامتی عطا فرماید. خداوند با همگی شما باد."
         },
         {
           "verse": 17,
+          "usfm": "2TH.3.17",
+          "line_type": "p",
           "text": "من، پولس، به خط خود این سلام را می‌نویسم. این نشان ویژۀ همۀ نامه‌های من است. من چنین می‌نویسم."
         },
         {
           "verse": 18,
+          "usfm": "2TH.3.18",
+          "line_type": "p",
           "text": "فیض خداوند ما عیسی مسیح با همگی شما باد. آمین."
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "هشدار به کاهلان"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "خاتمه"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 12,
+          "usfm": "2TH.3.12",
+          "note_ref": "3‏:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "در یونانی:‏ «نانی که می‌خورند»."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "2TH.3.1",
+            "2TH.3.2",
+            "2TH.3.3",
+            "2TH.3.4",
+            "2TH.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 10,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "2TH.3.10",
+            "2TH.3.5",
+            "2TH.3.6",
+            "2TH.3.7",
+            "2TH.3.8",
+            "2TH.3.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "2TH.3.10",
+            "2TH.3.11",
+            "2TH.3.12",
+            "2TH.3.13"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "2TH.3.13",
+            "2TH.3.14",
+            "2TH.3.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "2TH.3.15",
+            "2TH.3.16"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "2TH.3.16",
+            "2TH.3.17"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "2TH.3.17",
+            "2TH.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 42,
@@ -308,7 +866,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1533/m4a/32k/2TH/3-562863cfd8e9005bb0ddc321665c9755.m3u8?version_id=118"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/2TH.3.NMV",
+        "reference": {
+          "usfm": [
+            "2TH.3"
+          ],
+          "human": "۲تسالونیکیان 3",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TH.2"
+          ],
+          "human": "۲تسالونیکیان 2",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "1TI.INTRO1"
+          ],
+          "human": "۱تیموتائوس ‮معرفیِ نامۀ اوّل پولس رسول به تیموتائوس‬",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

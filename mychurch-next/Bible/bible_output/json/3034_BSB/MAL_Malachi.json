@@ -11,6 +11,7 @@
   "total_verses": 55,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 1,
       "chapter_usfm": "MAL.1",
@@ -19,69 +20,362 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.1.1",
+          "line_type": "p",
           "text": "This is the burden of the word of the Lord"
         },
         {
           "verse": 2,
+          "usfm": "MAL.1.2",
+          "line_type": "p",
           "text": "“I have loved you,” says the LordBut you ask, “How have You loved us?”“Was not Esau Jacob’s brother?” declares the Lord"
         },
         {
           "verse": 3,
+          "usfm": "MAL.1.3",
+          "line_type": "p",
           "text": "but Esau I have hated, and I have made his mountains a wasteland and left his inheritance to the desert jackals.”"
         },
         {
           "verse": 4,
+          "usfm": "MAL.1.4",
+          "line_type": "p",
           "text": "Though Edom may say, “We have been devastated, but we will rebuild the ruins,” this is what the Lord"
         },
         {
           "verse": 5,
+          "usfm": "MAL.1.5",
+          "line_type": "p",
           "text": "You will see this with your own eyes, and you yourselves will say, ‘The Lord"
         },
         {
           "verse": 6,
+          "usfm": "MAL.1.6",
+          "line_type": "p",
           "text": "“A son honors his father, and a servant his master. But if I am a father, where is My honor? And if I am a master, where is your fear of Me?” says the Lord“But you ask, ‘How have we despised Your name?’"
         },
         {
           "verse": 7,
+          "usfm": "MAL.1.7",
+          "line_type": "p",
           "text": "By presenting defiled food on My altar.But you ask, ‘How have we defiled You?’By saying that the table of the Lord"
         },
         {
           "verse": 8,
+          "usfm": "MAL.1.8",
+          "line_type": "p",
           "text": "When you offer blind animals for sacrifice, is it not wrong? And when you present the lame and sick ones, is it not wrong? Try offering them to your governor! Would he be pleased with you or show you favor?” asks the Lord"
         },
         {
           "verse": 9,
+          "usfm": "MAL.1.9",
+          "line_type": "p",
           "text": "“But ask now for God’s favor. Will He be gracious? Since this has come from your hands, will He show you favor?” asks the Lord"
         },
         {
           "verse": 10,
+          "usfm": "MAL.1.10",
+          "line_type": "p",
           "text": "“Oh, that one of you would shut the temple doors, so that you would no longer kindle useless fires on My altar! I take no pleasure in you,” says the Lord"
         },
         {
           "verse": 11,
+          "usfm": "MAL.1.11",
+          "line_type": "p",
           "text": "For My name will be great among the nations, from where the sun rises to where it sets. In every place, incense and pure offerings will be presented in My name, because My name will be great among the nations,” says the Lord"
         },
         {
           "verse": 12,
+          "usfm": "MAL.1.12",
+          "line_type": "p",
           "text": "“But you profane it when you say, ‘The table of the Lord is defiled, and as for its fruit, its food is contemptible.’"
         },
         {
           "verse": 13,
+          "usfm": "MAL.1.13",
+          "line_type": "p",
           "text": "You also say: ‘Oh, what a nuisance!’ And you turn up your nose at it,” says the Lord“You bring offerings that are stolen, lame, or sick! Should I accept these from your hands?” asks the Lord"
         },
         {
           "verse": 14,
+          "usfm": "MAL.1.14",
+          "line_type": "p",
           "text": "“But cursed is the deceiver who has an acceptable male in his flock and vows to give it, but sacrifices a defective animal to the Lord. For I am a great King,” says the Lord"
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "The Polluted Offerings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Malachi means My messenger."
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.1.3",
+          "note_ref": "1:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Cited in Romans 9:13"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.1.3",
+          "note_ref": "1:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or to the serpents of the wilderness or to the dragons of the wilderness"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.1.7",
+          "note_ref": "1:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "LXX defiled it"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MAL.1.1",
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.1.2",
+            "MAL.1.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.1.3",
+            "MAL.1.4",
+            "MAL.1.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.1.5",
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.1.6",
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MAL.1.7",
+            "MAL.1.8"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.1.8",
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.11",
+            "MAL.1.12"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.1.12",
+            "MAL.1.13"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.1.13"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MAL.1.13",
+            "MAL.1.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -92,9 +386,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/MAL/1-c95fef3178f00566da59d4bf842b67c3.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/MAL.1.BSB",
+        "reference": {
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.14"
+          ],
+          "human": "Zechariah 14",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 2,
       "chapter_usfm": "MAL.2",
@@ -103,81 +454,346 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.2.1",
+          "line_type": "p",
           "text": "“And now this decree is for you, O priests:"
         },
         {
           "verse": 2,
+          "usfm": "MAL.2.2",
+          "line_type": "p",
           "text": "If you do not listen, and if you do not take it to heart to honor My name,” says the Lord"
         },
         {
           "verse": 3,
+          "usfm": "MAL.2.3",
+          "line_type": "p",
           "text": "Behold, I will rebuke your descendants, and I will spread dung on your faces, the waste from your feasts, and you will be carried off with it."
         },
         {
           "verse": 4,
+          "usfm": "MAL.2.4",
+          "line_type": "p",
           "text": "Then you will know that I have sent you this commandment so that My covenant with Levi may continue,” says the Lord"
         },
         {
           "verse": 5,
+          "usfm": "MAL.2.5",
+          "line_type": "p",
           "text": "“My covenant with him was one of life and peace, which I gave to him; it called for reverence, and he revered Me and stood in awe of My name."
         },
         {
           "verse": 6,
+          "usfm": "MAL.2.6",
+          "line_type": "p",
           "text": "True instruction was in his mouth, and nothing false was found on his lips. He walked with Me in peace and uprightness, and he turned many from iniquity."
         },
         {
           "verse": 7,
+          "usfm": "MAL.2.7",
+          "line_type": "p",
           "text": "For the lips of a priest should preserve knowledge, and people should seek instruction from his mouth, because he is the messenger of the Lord"
         },
         {
           "verse": 8,
+          "usfm": "MAL.2.8",
+          "line_type": "p",
           "text": "But you have departed from the way, and your instruction has caused many to stumble. You have violated the covenant of Levi,” says the Lord"
         },
         {
           "verse": 9,
+          "usfm": "MAL.2.9",
+          "line_type": "p",
           "text": "“So I in turn have made you despised and humiliated before all the people, because you have not kept My ways, but have shown partiality in matters of the law.”"
         },
         {
           "verse": 10,
+          "usfm": "MAL.2.10",
+          "line_type": "p",
           "text": "Do we not all have one Father? Did not one God create us? Why then do we break faith with one another so as to profane the covenant of our fathers?"
         },
         {
           "verse": 11,
+          "usfm": "MAL.2.11",
+          "line_type": "p",
           "text": "Judah has broken faith; an abomination has been committed in Israel and in Jerusalem. For Judah has profaned the Lord"
         },
         {
           "verse": 12,
+          "usfm": "MAL.2.12",
+          "line_type": "p",
           "text": "As for the man who does this, may the Lord"
         },
         {
           "verse": 13,
+          "usfm": "MAL.2.13",
+          "line_type": "p",
           "text": "And this is another thing you do: You cover the altar of the Lord"
         },
         {
           "verse": 14,
+          "usfm": "MAL.2.14",
+          "line_type": "p",
           "text": "Yet you ask, “Why?”It is because the Lord"
         },
         {
           "verse": 15,
+          "usfm": "MAL.2.15",
+          "line_type": "p",
           "text": "Has not the Lord"
         },
         {
           "verse": 16,
+          "usfm": "MAL.2.16",
+          "line_type": "p",
           "text": "“For I hate divorce,” says the Lord says the Lord"
         },
         {
           "verse": 17,
+          "usfm": "MAL.2.17",
+          "line_type": "p",
           "text": "You have wearied the LordBy saying, “All who do evil are good in the sight of the Lord"
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Judah’s Unfaithfulness"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "2:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or I will blight your grain"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "2:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “For the man who hates his wife and divorces her,” says the Lord, the God of Israel, “covers his garment with violence,”"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MAL.2.1",
+            "MAL.2.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.2.2",
+            "MAL.2.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.2.3",
+            "MAL.2.4",
+            "MAL.2.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.2.5",
+            "MAL.2.6",
+            "MAL.2.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.2.7",
+            "MAL.2.8",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.11",
+            "MAL.2.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.2.12",
+            "MAL.2.13"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MAL.2.13",
+            "MAL.2.14"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MAL.2.14"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.2.14",
+            "MAL.2.15"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MAL.2.15",
+            "MAL.2.16"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "MAL.2.16",
+            "MAL.2.17"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -188,9 +804,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/MAL/2-e4c5d58bcb5d890d4c3d851c2baf9ca4.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/MAL.2.BSB",
+        "reference": {
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 3,
       "chapter_usfm": "MAL.3",
@@ -199,89 +872,366 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.3.1",
+          "line_type": "p",
           "text": "“Behold, I will send My messenger, who will prepare the way before Me. Then the Lord whom you seek will suddenly come to His temple — the Messenger of the covenant, in whom you delight — see, He is coming,” says the Lord"
         },
         {
           "verse": 2,
+          "usfm": "MAL.3.2",
+          "line_type": "p",
           "text": "But who can endure the day of His coming? And who can stand when He appears? For He will be like a refiner’s fire, like a launderer’s soap."
         },
         {
           "verse": 3,
+          "usfm": "MAL.3.3",
+          "line_type": "p",
           "text": "And He will sit as a refiner and purifier of silver; He will purify the sons of Levi and refine them like gold and silver. Then they will present offerings to the Lord"
         },
         {
           "verse": 4,
+          "usfm": "MAL.3.4",
+          "line_type": "p",
           "text": "Then the offerings of Judah and Jerusalem will please the Lord"
         },
         {
           "verse": 5,
+          "usfm": "MAL.3.5",
+          "line_type": "p",
           "text": "“Then I will draw near to you for judgment. And I will be a swift witness against sorcerers and adulterers and perjurers, against oppressors of the widowed and fatherless, and against those who defraud laborers of their wages and deny justice to the foreigner but do not fear Me,” says the Lord"
         },
         {
           "verse": 6,
+          "usfm": "MAL.3.6",
+          "line_type": "p",
           "text": "“Because I, the Lord"
         },
         {
           "verse": 7,
+          "usfm": "MAL.3.7",
+          "line_type": "p",
           "text": "Yet from the days of your fathers, you have turned away from My statutes and have not kept them. Return to Me, and I will return to you,” says the Lord“But you ask, ‘How can we return?’"
         },
         {
           "verse": 8,
+          "usfm": "MAL.3.8",
+          "line_type": "p",
           "text": "Will a man rob God? Yet you are robbing Me!But you ask, ‘How do we rob You?’In tithes and offerings."
         },
         {
           "verse": 9,
+          "usfm": "MAL.3.9",
+          "line_type": "p",
           "text": "You are cursed with a curse, yet you— the whole nation— are still robbing Me."
         },
         {
           "verse": 10,
+          "usfm": "MAL.3.10",
+          "line_type": "p",
           "text": "Bring the full tithe into the storehouse, so that there may be food in My house. Test Me in this,” says the Lord"
         },
         {
           "verse": 11,
+          "usfm": "MAL.3.11",
+          "line_type": "p",
           "text": "I will rebuke the devourer for you, so that it will not destroy the fruits of your land, and the vine in your field will not fail to produce fruit,” says the Lord"
         },
         {
           "verse": 12,
+          "usfm": "MAL.3.12",
+          "line_type": "p",
           "text": "“Then all the nations will call you blessed, for you will be a land of delight,” says the Lord"
         },
         {
           "verse": 13,
+          "usfm": "MAL.3.13",
+          "line_type": "p",
           "text": "“Your words against Me have been harsh,” says the Lord"
         },
         {
           "verse": 14,
+          "usfm": "MAL.3.14",
+          "line_type": "p",
           "text": "You have said, ‘It is futile to serve God. What have we gained by keeping His requirements and walking mournfully before the Lord"
         },
         {
           "verse": 15,
+          "usfm": "MAL.3.15",
+          "line_type": "p",
           "text": "So now we call the arrogant blessed. Not only do evildoers prosper, they even test God and escape.’”"
         },
         {
           "verse": 16,
+          "usfm": "MAL.3.16",
+          "line_type": "p",
           "text": "At that time those who feared the Lord"
         },
         {
           "verse": 17,
+          "usfm": "MAL.3.17",
+          "line_type": "p",
           "text": "“They will be Mine,” says the Lord"
         },
         {
           "verse": 18,
+          "usfm": "MAL.3.18",
+          "line_type": "p",
           "text": "So you will again distinguish between the righteous and the wicked, between those who serve God and those who do not.”"
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Robbing God"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "The Book of Remembrance"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Cited in Matthew 11:10, Mark 1:2, and Luke 7:27"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.3.10",
+          "note_ref": "3:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally blessing for which there will be no room"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.3.11",
+          "note_ref": "3:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The devourer is probably a name for a crop-destroying pest."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MAL.3.1",
+            "MAL.3.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.3.2",
+            "MAL.3.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.3.3",
+            "MAL.3.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.3.4",
+            "MAL.3.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.3.5",
+            "MAL.3.6",
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MAL.3.7",
+            "MAL.3.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MAL.3.8"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "MAL.3.10",
+            "MAL.3.11",
+            "MAL.3.8",
+            "MAL.3.9"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.3.11",
+            "MAL.3.12"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.3.12",
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.3.13",
+            "MAL.3.14",
+            "MAL.3.15"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MAL.3.15",
+            "MAL.3.16"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 18,
+          "verses": [
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "MAL.3.16",
+            "MAL.3.17",
+            "MAL.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -292,9 +1242,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/MAL/3-92acef208cdb1f5dbe5ca4aefea1844e.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/MAL.3.BSB",
+        "reference": {
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 4,
       "chapter_usfm": "MAL.4",
@@ -303,32 +1310,137 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.4.1",
+          "line_type": "p",
           "text": "“For behold, the day is coming, burning like a furnace, when all the arrogant and every evildoer will be stubble; the day is coming when I will set them ablaze,” says the Lord"
         },
         {
           "verse": 2,
+          "usfm": "MAL.4.2",
+          "line_type": "p",
           "text": "“But for you who fear My name, the sun of righteousness will rise with healing in its wings, and you will go out and leap like calves from the stall."
         },
         {
           "verse": 3,
+          "usfm": "MAL.4.3",
+          "line_type": "p",
           "text": "Then you will trample the wicked, for they will be ashes under the soles of your feet on the day I am preparing,” says the Lord"
         },
         {
           "verse": 4,
+          "usfm": "MAL.4.4",
+          "line_type": "p",
           "text": "“Remember the law of My servant Moses, the statutes and ordinances I commanded him for all Israel at Horeb."
         },
         {
           "verse": 5,
+          "usfm": "MAL.4.5",
+          "line_type": "p",
           "text": "Behold, I will send you Elijah the prophet before the coming of the great and awesome Day of the Lord"
         },
         {
           "verse": 6,
+          "usfm": "MAL.4.6",
+          "line_type": "p",
           "text": "And he will turn the hearts of the fathers to their children, and the hearts of the children to their fathers. Otherwise, I will come and strike the land with a curse.”"
         }
       ],
       "verse_count": 6,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "MAL.4.2",
+          "note_ref": "4:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or the Sun of Righteousness will rise with healing in His wings"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.4.4",
+          "note_ref": "4:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, Mount Sinai, or possibly a mountain in the range containing Mount Sinai"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.4.5",
+          "note_ref": "4:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or dreadful; LXX glorious"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.4.6",
+          "note_ref": "4:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Cited in Luke 1:17"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.4.1",
+            "MAL.4.2",
+            "MAL.4.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.4.3",
+            "MAL.4.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.4.4",
+            "MAL.4.5",
+            "MAL.4.6"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -339,7 +1451,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/MAL/4-8010b279cbafd9a5daa4e0e67d6abd06.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/MAL.4.BSB",
+        "reference": {
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAT.1"
+          ],
+          "human": "Matthew 1",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

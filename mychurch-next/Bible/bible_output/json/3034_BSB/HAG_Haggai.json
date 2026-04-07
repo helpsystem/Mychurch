@@ -11,6 +11,7 @@
   "total_verses": 38,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "HAG",
       "chapter": 1,
       "chapter_usfm": "HAG.1",
@@ -19,73 +20,646 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HAG.1.1",
+          "line_type": "p",
           "text": "In the second year of the reign of Darius, on the first day of the sixth month, the word of the Lord the high priest, stating"
         },
         {
           "verse": 2,
+          "usfm": "HAG.1.2",
+          "line_type": "p",
           "text": "that this is what the Lord“These people say, ‘The time has not yet cometo rebuild the house of the Lord"
         },
         {
           "verse": 3,
+          "usfm": "HAG.1.3",
+          "line_type": "p",
           "text": "Then the word of the Lord"
         },
         {
           "verse": 4,
+          "usfm": "HAG.1.4",
+          "line_type": "q1",
           "text": "“Is it a time for you yourselvesto live in your paneled houses,while this house lies in ruins?”"
         },
         {
           "verse": 5,
+          "usfm": "HAG.1.5",
+          "line_type": "p",
           "text": "Now this is what the Lord“Consider carefully your ways."
         },
         {
           "verse": 6,
+          "usfm": "HAG.1.6",
+          "line_type": "q1",
           "text": "You have planted muchbut harvested little.You eat but never have enough.You drink but never have your fill.You put on clothes but never get warm.You earn wages to put into a bag pierced through.”"
         },
         {
           "verse": 7,
+          "usfm": "HAG.1.7",
+          "line_type": "p",
           "text": "This is what the Lord“Consider carefully your ways."
         },
         {
           "verse": 8,
+          "usfm": "HAG.1.8",
+          "line_type": "q1",
           "text": "Go up into the hills,bring down lumber, and build the house,so that I may take pleasure in it and be glorified,says the Lord"
         },
         {
           "verse": 9,
+          "usfm": "HAG.1.9",
+          "line_type": "q1",
           "text": "You expected much,but behold, it amounted to little.And what you brought home, I blew away.Why? declares the LordBecause My house still lies in ruins,while each of you is busywith his own house."
         },
         {
           "verse": 10,
+          "usfm": "HAG.1.10",
+          "line_type": "q1",
           "text": "Therefore, on account of youthe heavens have withheld their dewand the earth has withheld its crops."
         },
         {
           "verse": 11,
+          "usfm": "HAG.1.11",
+          "line_type": "q1",
           "text": "I have summoned a droughton the fields and on the mountains,on the grain, new wine, and oil,and on whatever the ground yields,on man and beast,and on all the labor of your hands.”"
         },
         {
           "verse": 12,
+          "usfm": "HAG.1.12",
+          "line_type": "p",
           "text": "Then Zerubbabel son of Shealtiel and Joshua son of Jehozadak, the high priest, as well as all the remnant of the people, obeyed the voice of the Lord"
         },
         {
           "verse": 13,
+          "usfm": "HAG.1.13",
+          "line_type": "p",
           "text": "Haggai, the messenger of the Lord“I am with you,”declares the Lord"
         },
         {
           "verse": 14,
+          "usfm": "HAG.1.14",
+          "line_type": "p",
           "text": "So the Lord"
         },
         {
           "verse": 15,
+          "usfm": "HAG.1.15",
+          "line_type": "p",
           "text": "on the twenty-fourth day of the sixth month, in the second year of King Darius."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "The People Obey"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HAG.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jehozadak is a variant of Jozadak; also in verses 12 and 14; see Ezra 3:2."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HAG.1.1",
+            "HAG.1.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAG.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HAG.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "HAG.1.2",
+            "HAG.1.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "HAG.1.3",
+            "HAG.1.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.1.4"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.1.4"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "HAG.1.4",
+            "HAG.1.5"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAG.1.5"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "HAG.1.5",
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.1.6"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "HAG.1.6",
+            "HAG.1.7"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HAG.1.7"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "HAG.1.7",
+            "HAG.1.8"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAG.1.8"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAG.1.8"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAG.1.8"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "HAG.1.8",
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "HAG.1.10",
+            "HAG.1.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAG.1.10"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HAG.1.10"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "HAG.1.10",
+            "HAG.1.11"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAG.1.11"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAG.1.11"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAG.1.11"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAG.1.11"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HAG.1.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "HAG.1.11",
+            "HAG.1.12"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "HAG.1.12",
+            "HAG.1.13"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAG.1.13"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAG.1.13"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "HAG.1.13",
+            "HAG.1.14",
+            "HAG.1.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -96,9 +670,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/HAG/1-b3d766c439fd0f673030b2d241484938.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/HAG.1.BSB",
+        "reference": {
+          "usfm": [
+            "HAG.1"
+          ],
+          "human": "Haggai 1",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEP.3"
+          ],
+          "human": "Zephaniah 3",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HAG.2"
+          ],
+          "human": "Haggai 2",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HAG",
       "chapter": 2,
       "chapter_usfm": "HAG.2",
@@ -107,109 +738,842 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HAG.2.1",
+          "line_type": "p",
           "text": "On the twenty-first day of the seventh month, the word of the Lord"
         },
         {
           "verse": 2,
+          "usfm": "HAG.2.2",
+          "line_type": "p",
           "text": "“Speak to Zerubbabel son of Shealtiel, governor of Judah, and to Joshua son of Jehozadak, the high priest, and also to the remnant of the people. Ask them,"
         },
         {
           "verse": 3,
+          "usfm": "HAG.2.3",
+          "line_type": "p",
           "text": "‘Who is left among you who saw this house in its former glory? How does it look to you now? Does it not appear to you like nothing in comparison?’"
         },
         {
           "verse": 4,
+          "usfm": "HAG.2.4",
+          "line_type": "q1",
           "text": "But now be strong, O Zerubbabel,declares the LordBe strong, O Joshua son of Jehozadak,the high priest.And be strong, all you people of the land,declares the LordWork! For I am with you,declares the Lord"
         },
         {
           "verse": 5,
+          "usfm": "HAG.2.5",
+          "line_type": "q1",
           "text": "This is the promise I made to youwhen you came out of Egypt.And My Spirit remains among you;do not be afraid.”"
         },
         {
           "verse": 6,
+          "usfm": "HAG.2.6",
+          "line_type": "p",
           "text": "For this is what the Lord“Once more, in a little while,I will shake the heavens and the earth,the sea and the dry land."
         },
         {
           "verse": 7,
+          "usfm": "HAG.2.7",
+          "line_type": "q1",
           "text": "I will shake all the nations,and they will come with all their treasures,and I will fill this house with glory,says the Lord"
         },
         {
           "verse": 8,
+          "usfm": "HAG.2.8",
+          "line_type": "q1",
           "text": "The silver is Mine, and the gold is Mine,declares the Lord"
         },
         {
           "verse": 9,
+          "usfm": "HAG.2.9",
+          "line_type": "q1",
           "text": "The latter glory of this housewill be greater than the former,says the LordAnd in this place I will provide peace,declares the Lord"
         },
         {
           "verse": 10,
+          "usfm": "HAG.2.10",
+          "line_type": "p",
           "text": "On the twenty-fourth day of the ninth month, in the second year of Darius, the word of the Lord"
         },
         {
           "verse": 11,
+          "usfm": "HAG.2.11",
+          "line_type": "p",
           "text": "“This is what the Lord"
         },
         {
           "verse": 12,
+          "usfm": "HAG.2.12",
+          "line_type": "p",
           "text": "If a man carries consecrated meat in the fold of his garment, and it touches bread, stew, wine, oil, or any other food, does that item become holy?’”“No,” replied the priests."
         },
         {
           "verse": 13,
+          "usfm": "HAG.2.13",
+          "line_type": "p",
           "text": "So Haggai asked, “If one who is defiled by contact with a corpse touches any of these, does it become defiled?”“Yes, it becomes defiled,” the priests answered."
         },
         {
           "verse": 14,
+          "usfm": "HAG.2.14",
+          "line_type": "p",
           "text": "Then Haggai replied, “So it is with this people and this nation before Me, declares the Lord"
         },
         {
           "verse": 15,
+          "usfm": "HAG.2.15",
+          "line_type": "p",
           "text": "Now consider carefully from this day forward: Before one stone was placed on another in the temple of the Lord"
         },
         {
           "verse": 16,
+          "usfm": "HAG.2.16",
+          "line_type": "p",
           "text": "from that time, when one came expecting a heap of twenty ephahs of grain, there were but ten. When one came to the winepress to draw out fifty baths, there were but twenty."
         },
         {
           "verse": 17,
+          "usfm": "HAG.2.17",
+          "line_type": "p",
           "text": "I struck you— all the work of your hands— with blight, mildew, and hail, but you did not turn to Me, declares the Lord"
         },
         {
           "verse": 18,
+          "usfm": "HAG.2.18",
+          "line_type": "p",
           "text": "Consider carefully from this day forward — from the twenty-fourth day of the ninth month, the day the foundation of the Lord"
         },
         {
           "verse": 19,
+          "usfm": "HAG.2.19",
+          "line_type": "p",
           "text": "Is there still seed in the barn? The vine, the fig, the pomegranate, and the olive tree have not yet yielded fruit. But from this day on, I will bless you.”"
         },
         {
           "verse": 20,
+          "usfm": "HAG.2.20",
+          "line_type": "p",
           "text": "For the second time that day, the twenty-fourth day of the month, the word of the Lord"
         },
         {
           "verse": 21,
+          "usfm": "HAG.2.21",
+          "line_type": "p",
           "text": "“Tell Zerubbabel governor of Judah that I am about to shake the heavens and the earth:"
         },
         {
           "verse": 22,
+          "usfm": "HAG.2.22",
+          "line_type": "q1",
           "text": "I will overturn royal thronesand destroy the powerof the kingdoms of the nations.I will overturn chariots and their riders;horses and their riders will fall,each by the sword of his brother."
         },
         {
           "verse": 23,
+          "usfm": "HAG.2.23",
+          "line_type": "q1",
           "text": "On that day,declares the LordI will take you, My servant,Zerubbabel son of Shealtiel,declares the Lordand I will make you like My signet ring,for I have chosen you,declares the Lord"
         }
       ],
       "verse_count": 23,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Blessings for a Defiled People"
         },
         {
-          "before_verse": 19,
+          "before_verse": 20,
           "text": "Zerubbabel the Lord"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HAG.2.2",
+          "note_ref": "2:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jehozadak is a variant of Jozadak; also in verse 4; see Ezra 3:2."
+        },
+        {
+          "verse": 6,
+          "usfm": "HAG.2.6",
+          "note_ref": "2:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Cited in Hebrews 12:26"
+        },
+        {
+          "verse": 15,
+          "usfm": "HAG.2.15",
+          "note_ref": "2:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or backward; also in verse 18"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAG.2.16",
+          "note_ref": "2:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally a heap of twenty"
+        },
+        {
+          "verse": 16,
+          "usfm": "HAG.2.16",
+          "note_ref": "2:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally to draw out fifty from the winepress"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "HAG.2.1",
+            "HAG.2.2",
+            "HAG.2.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "HAG.2.3",
+            "HAG.2.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.2.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.2.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.2.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.2.4"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.2.4"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.2.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HAG.2.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "HAG.2.4",
+            "HAG.2.5"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAG.2.5"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAG.2.5"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "HAG.2.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "HAG.2.5",
+            "HAG.2.6"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.2.6"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.2.6"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HAG.2.6"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "HAG.2.6",
+            "HAG.2.7"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HAG.2.7"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HAG.2.7"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HAG.2.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "HAG.2.7",
+            "HAG.2.8"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "HAG.2.8"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "HAG.2.8",
+            "HAG.2.9"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.2.9"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.2.9"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.2.9"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HAG.2.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 12,
+          "verses": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "HAG.2.10",
+            "HAG.2.11",
+            "HAG.2.12",
+            "HAG.2.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "HAG.2.12"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "HAG.2.12",
+            "HAG.2.13"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HAG.2.13"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "HAG.2.13",
+            "HAG.2.14"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 17,
+          "verses": [
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "HAG.2.14",
+            "HAG.2.15",
+            "HAG.2.16",
+            "HAG.2.17"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 19,
+          "verses": [
+            17,
+            18,
+            19
+          ],
+          "usfms": [
+            "HAG.2.17",
+            "HAG.2.18",
+            "HAG.2.19"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "HAG.2.19",
+            "HAG.2.20",
+            "HAG.2.21"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "HAG.2.21",
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "HAG.2.22"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "HAG.2.22",
+            "HAG.2.23"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HAG.2.23"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HAG.2.23"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HAG.2.23"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HAG.2.23"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HAG.2.23"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HAG.2.23"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HAG.2.23"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -220,7 +1584,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/HAG/2-44ed0bffc1b55921f0b604cc467c43aa.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 23,
+          "parsed_count": 23,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/HAG.2.BSB",
+        "reference": {
+          "usfm": [
+            "HAG.2"
+          ],
+          "human": "Haggai 2",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HAG.1"
+          ],
+          "human": "Haggai 1",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.1"
+          ],
+          "human": "Zechariah 1",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

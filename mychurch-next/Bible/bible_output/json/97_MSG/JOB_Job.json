@@ -11,6 +11,7 @@
   "total_verses": 19,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 1,
       "chapter_usfm": "JOB.1",
@@ -19,34 +20,50 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "JOB.1.8",
+          "line_type": "p",
           "text": "God said to Satan, “Have you noticed my friend Job? There’s no one quite like him—honest and true to his word, totally devoted to God and hating evil.” Satan retorted, “So do you think Job does all that out of the sheer goodness of his heart? Why, no one ever had it so good! You pamper him like a pet, make sure nothing bad ever happens to him or his family or his possessions, bless everything he does—he can’t lose!"
         },
         {
           "verse": 11,
+          "usfm": "JOB.1.11",
+          "line_type": "p",
           "text": "“But what do you think would happen if you reached down and took away everything that is his? He’d curse you right to your face, that’s what.”"
         },
         {
           "verse": 12,
+          "usfm": "JOB.1.12",
+          "line_type": "p",
           "text": "God replied, “We’ll see. Go ahead—do what you want with all that is his. Just don’t hurt him.” Then Satan left the presence of God. Sometime later, while Job’s children were having one of their parties at the home of the oldest son, a messenger came to Job and said, “The oxen were plowing and the donkeys grazing in the field next to us when Sabeans attacked. They stole the animals and killed the field hands. I’m the only one to get out alive and tell you what happened.”"
         },
         {
           "verse": 16,
+          "usfm": "JOB.1.16",
+          "line_type": "p",
           "text": "While he was still talking, another messenger arrived and said, “Bolts of lightning struck the sheep and the shepherds and fried them—burned them to a crisp. I’m the only one to get out alive and tell you what happened.”"
         },
         {
           "verse": 17,
+          "usfm": "JOB.1.17",
+          "line_type": "p",
           "text": "While he was still talking, another messenger arrived and said, “Chaldeans coming from three directions raided the camels and massacred the camel drivers. I’m the only one to get out alive and tell you what happened.” While he was still talking, another messenger arrived and said, “Your children were having a party at the home of the oldest brother when a tornado swept in off the desert and struck the house. It collapsed on the young people and they died. I’m the only one to get out alive and tell you what happened.”"
         },
         {
           "verse": 20,
+          "usfm": "JOB.1.20",
+          "line_type": "p",
           "text": "Job got to his feet, ripped his robe, shaved his head, then fell to the ground and worshiped:"
         },
         {
           "verse": 21,
+          "usfm": "JOB.1.21",
+          "line_type": "q1",
           "text": "Naked I came from my mother’s womb,naked I’ll return to the womb of the earth. God gives, God takes.God’s name be ever blessed."
         },
         {
           "verse": 22,
+          "usfm": "JOB.1.22",
+          "line_type": "p",
           "text": "Not once through all this did Job sin; not once did he blame God."
         }
       ],
@@ -58,6 +75,184 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JOB.1.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JOB.1.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "JOB.1.11"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "JOB.1.11",
+            "JOB.1.12"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "JOB.1.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOB.1.16"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "JOB.1.16",
+            "JOB.1.17"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JOB.1.17"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "JOB.1.20"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "JOB.1.20",
+            "JOB.1.21"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "JOB.1.21"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "JOB.1.21"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "JOB.1.21"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "JOB.1.21",
+            "JOB.1.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -68,9 +263,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/1-3b5dc4e2873d590ba592ec4d158ae2bc.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 8,
+          "parsed_count": 8,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.1.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.1"
+          ],
+          "human": "Job 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EST.10"
+          ],
+          "human": "Esther 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.2"
+          ],
+          "human": "Job 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 2,
       "chapter_usfm": "JOB.2",
@@ -79,25 +331,107 @@
       "verses": [
         {
           "verse": 6,
+          "usfm": "JOB.2.6",
+          "line_type": "p",
           "text": "God said, “All right. Go ahead—you can do what you like with him. But mind you, don’t kill him.” Satan left God and struck Job with terrible sores. Job was ulcers and scabs from head to foot. They itched and oozed so badly that he took a piece of broken pottery to scrape himself, then went and sat on a trash heap, among the ashes."
         },
         {
           "verse": 9,
+          "usfm": "JOB.2.9",
+          "line_type": "p",
           "text": "His wife said, “Still holding on to your precious integrity, are you? Curse God and be done with it!”"
         },
         {
           "verse": 10,
+          "usfm": "JOB.2.10",
+          "line_type": "p",
           "text": "He told her, “You’re talking like an empty-headed fool. We take the good days from God—why not also the bad days?”Not once through all this did Job sin. He said nothing against God. Three of Job’s friends heard of all the trouble that had fallen on him. Each traveled from his own country—Eliphaz from Teman, Bildad from Shuhah, Zophar from Naamath—and went together to Job to keep him company and comfort him. When they first caught sight of him, they couldn’t believe what they saw—they hardly recognized him! They cried out in lament, ripped their robes, and dumped dirt on their heads as a sign of their grief. Then they sat with him on the ground. Seven days and nights they sat there without saying a word. They could see how rotten he felt, how deeply he was suffering."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Job’s Three Friends"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JOB.2.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JOB.2.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOB.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JOB.2.10",
+            "JOB.2.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOB.2.10"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "m",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JOB.2.10"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -108,9 +442,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/2-6741f3860f11a59db6eb296e475d41fa.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.2.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.2"
+          ],
+          "human": "Job 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.1"
+          ],
+          "human": "Job 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.3"
+          ],
+          "human": "Job 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 3,
       "chapter_usfm": "JOB.3",
@@ -125,6 +516,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -135,9 +527,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/3-8df64505b4ac1fdfcadc444fbe068a96.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.3.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.3"
+          ],
+          "human": "Job 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.2"
+          ],
+          "human": "Job 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.4"
+          ],
+          "human": "Job 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 4,
       "chapter_usfm": "JOB.4",
@@ -160,6 +609,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -170,9 +620,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/4-5593bd291168bf78b91b412e1bc4db14.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.4.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.4"
+          ],
+          "human": "Job 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.3"
+          ],
+          "human": "Job 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.5"
+          ],
+          "human": "Job 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 5,
       "chapter_usfm": "JOB.5",
@@ -181,6 +688,8 @@
       "verses": [
         {
           "verse": 27,
+          "usfm": "JOB.5.27",
+          "line_type": "q1",
           "text": "“Yes, this is the way things are—my word of honor!Take it to heart and you won’t go wrong.”"
         }
       ],
@@ -192,6 +701,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "JOB.5.27"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "JOB.5.27"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -202,9 +737,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/5-65bd64df3656ecd178aa63465067b5b2.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.5.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.5"
+          ],
+          "human": "Job 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.4"
+          ],
+          "human": "Job 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.6"
+          ],
+          "human": "Job 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 6,
       "chapter_usfm": "JOB.6",
@@ -227,6 +819,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -237,9 +830,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/6-e8992c0639c198adf5558a83b18e6e16.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.6.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.6"
+          ],
+          "human": "Job 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.5"
+          ],
+          "human": "Job 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.7"
+          ],
+          "human": "Job 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 7,
       "chapter_usfm": "JOB.7",
@@ -249,6 +899,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -259,9 +910,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/7-30afd4cbd51bd3ded91486297361c970.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.7.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.7"
+          ],
+          "human": "Job 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.6"
+          ],
+          "human": "Job 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.8"
+          ],
+          "human": "Job 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 8,
       "chapter_usfm": "JOB.8",
@@ -280,6 +988,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -290,9 +999,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/8-025187c24103c73ac30f42f911a7e5cb.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.8.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.8"
+          ],
+          "human": "Job 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.7"
+          ],
+          "human": "Job 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.9"
+          ],
+          "human": "Job 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 9,
       "chapter_usfm": "JOB.9",
@@ -311,6 +1077,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -321,9 +1088,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/9-4840df67b051b357fd695d5cbc514299.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.9.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.9"
+          ],
+          "human": "Job 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.8"
+          ],
+          "human": "Job 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.10"
+          ],
+          "human": "Job 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 10,
       "chapter_usfm": "JOB.10",
@@ -332,12 +1156,64 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JOB.10.1",
+          "line_type": "q1",
           "text": "“I can’t stand my life—I hate it!I’m putting it all out on the table,all the bitterness of my life—I’m holding back nothing.” Job prayed:“Here’s what I want to say:Don’t, God, bring in a verdict of guiltywithout letting me know the charges you’re bringing.How does this fit into what you once called ‘good’—giving me a hard time, spurning me,a life you shaped by your very own hands,and then blessing the plots of the wicked?You don’t look at things the way we mortals do.You’re not taken in by appearances, are you?Unlike us, you’re not working against a deadline.You have all eternity to work things out.So what’s this all about, anyway—this compulsionto dig up some dirt, to find some skeleton in my closet?You know good and well I’m not guilty.You also know no one can help me. “You made me like a handcrafted piece of pottery—and now are you going to smash me to pieces?Don’t you remember how beautifully you worked my clay?Will you reduce me now to a mud pie?Oh, that marvel of conception as you stirred togethersemen and ovum—What a miracle of skin and bone,muscle and brain!You gave me life itself, and incredible love.You watched and guarded every breath I took. “But you never told me about this part.I should have known that there was more to it—That if I so much as missed a step, you’d notice and pounce,wouldn’t let me get by with a thing.If I’m truly guilty, I’m doomed.But if I’m innocent, it’s no better—I’m still doomed.My belly is full of bitterness.I’m up to my ears in a swamp of affliction.I try to make the best of it, try to brave it out,but you’re too much for me,relentless, like a lion on the prowl.You line up fresh witnesses against me.You compound your angerand pile on the grief and pain! “So why did you have me born?I wish no one had ever laid eyes on me!I wish I’d never lived—a stillborn,buried without ever having breathed.Isn’t it time to call it quits on my life?Can’t you let up, and let me smile just onceBefore I die and am buried,before I’m nailed into my coffin, sealed in the ground,And banished for good to the land of the dead,blind in the final dark?”"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOB.10.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOB.10.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOB.10.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOB.10.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -348,9 +1224,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/10-aaa0798038d2b6a79055629a55966683.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.10.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.10"
+          ],
+          "human": "Job 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.9"
+          ],
+          "human": "Job 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.11"
+          ],
+          "human": "Job 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 11,
       "chapter_usfm": "JOB.11",
@@ -369,6 +1302,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -379,9 +1313,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/11-19a01b66c20ebbd5a950f7ae0459df37.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.11.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.11"
+          ],
+          "human": "Job 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.10"
+          ],
+          "human": "Job 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.12"
+          ],
+          "human": "Job 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 12,
       "chapter_usfm": "JOB.12",
@@ -400,6 +1391,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -410,9 +1402,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/12-8c0d30f41fc0db4fdfa3f6ff11ad21e1.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.12.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.12"
+          ],
+          "human": "Job 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.11"
+          ],
+          "human": "Job 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.13"
+          ],
+          "human": "Job 13",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 13,
       "chapter_usfm": "JOB.13",
@@ -421,6 +1470,8 @@
       "verses": [
         {
           "verse": 28,
+          "usfm": "JOB.13.28",
+          "line_type": "q1",
           "text": "“Like something rotten, human life fast decomposes,like a moth-eaten shirt or a mildewed blouse.”"
         }
       ],
@@ -432,6 +1483,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "JOB.13.28"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "JOB.13.28"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -442,9 +1519,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/13-7cfcffc067d4a975965ca4efad6e4eb2.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.13.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.13"
+          ],
+          "human": "Job 13",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.12"
+          ],
+          "human": "Job 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.14"
+          ],
+          "human": "Job 14",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 14,
       "chapter_usfm": "JOB.14",
@@ -454,6 +1588,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -464,9 +1599,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/14-2daa98d903cc9e5ce577f24d3bddadab.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.14.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.14"
+          ],
+          "human": "Job 14",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.13"
+          ],
+          "human": "Job 13",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.15"
+          ],
+          "human": "Job 15",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 15,
       "chapter_usfm": "JOB.15",
@@ -485,6 +1677,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -495,9 +1688,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/15-d8bba00061e798c2136080d26cd6f2eb.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.15.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.15"
+          ],
+          "human": "Job 15",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.14"
+          ],
+          "human": "Job 14",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.16"
+          ],
+          "human": "Job 16",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 16,
       "chapter_usfm": "JOB.16",
@@ -516,6 +1766,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -526,9 +1777,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/16-94a2ef85ad0136a685a835551c18a917.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.16.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.16"
+          ],
+          "human": "Job 16",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.15"
+          ],
+          "human": "Job 15",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.17"
+          ],
+          "human": "Job 17",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 17,
       "chapter_usfm": "JOB.17",
@@ -537,12 +1845,52 @@
       "verses": [
         {
           "verse": 9,
+          "usfm": "JOB.17.9",
+          "line_type": "q1",
           "text": "“But principled people hold tight, keep a firm grip on life,sure that their clean, pure hands will get stronger and stronger! “Maybe you’d all like to start over,to try it again, the bunch of you.So far I haven’t come across one scrapof wisdom in anything you’ve said.My life’s about over. All my plans are shattered,all my hopes are snuffed out—My hope that night would turn into day,my hope that dawn was about to break.If all I have to look forward to is a home in the graveyard,if my only hope for comfort is a well-built coffin,If a family reunion means going six feet under,and the only family that shows up is worms,Do you call that hope?Who on earth could find any hope in that?No. If hope and I are to be buried together,I suppose you’ll all come to the double funeral!”"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOB.17.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOB.17.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOB.17.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -553,9 +1901,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/17-4c68aff40be70347bad15023da13fae5.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.17.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.17"
+          ],
+          "human": "Job 17",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.16"
+          ],
+          "human": "Job 16",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.18"
+          ],
+          "human": "Job 18",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 18,
       "chapter_usfm": "JOB.18",
@@ -570,6 +1975,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -580,9 +1986,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/18-d1dc9858ecbe40f041787b40f0228ec2.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.18.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.18"
+          ],
+          "human": "Job 18",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.17"
+          ],
+          "human": "Job 17",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.19"
+          ],
+          "human": "Job 19",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 19,
       "chapter_usfm": "JOB.19",
@@ -601,6 +2064,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -611,9 +2075,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/19-33fb32bbd63832cd335382bcc83f279b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.19.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.19"
+          ],
+          "human": "Job 19",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.18"
+          ],
+          "human": "Job 18",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.20"
+          ],
+          "human": "Job 20",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 20,
       "chapter_usfm": "JOB.20",
@@ -628,6 +2149,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -638,9 +2160,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/20-7c8aa439979c6c230964a69578cd39bd.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.20.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.20"
+          ],
+          "human": "Job 20",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.19"
+          ],
+          "human": "Job 19",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.21"
+          ],
+          "human": "Job 21",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 21,
       "chapter_usfm": "JOB.21",
@@ -649,6 +2228,8 @@
       "verses": [
         {
           "verse": 34,
+          "usfm": "JOB.21.34",
+          "line_type": "q1",
           "text": "“So how do you expect me to get any comfort from your nonsense?Your so-called comfort is a tissue of lies.”"
         }
       ],
@@ -664,6 +2245,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 34,
+          "end_verse": 34,
+          "verses": [
+            34
+          ],
+          "usfms": [
+            "JOB.21.34"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 34,
+          "end_verse": 34,
+          "verses": [
+            34
+          ],
+          "usfms": [
+            "JOB.21.34"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -674,9 +2281,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/21-197eaa44c105871ff2154ea156bc001f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.21.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.21"
+          ],
+          "human": "Job 21",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.20"
+          ],
+          "human": "Job 20",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.22"
+          ],
+          "human": "Job 22",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 22,
       "chapter_usfm": "JOB.22",
@@ -691,6 +2355,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -701,9 +2366,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/22-17fae0c4bce5a5bee6edadcf448f3b92.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.22.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.22"
+          ],
+          "human": "Job 22",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.21"
+          ],
+          "human": "Job 21",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.23"
+          ],
+          "human": "Job 23",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 23,
       "chapter_usfm": "JOB.23",
@@ -718,6 +2440,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -728,9 +2451,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/23-ac079a7360b9864f07cf01e9e1d04134.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.23.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.23"
+          ],
+          "human": "Job 23",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.22"
+          ],
+          "human": "Job 22",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.24"
+          ],
+          "human": "Job 24",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 24,
       "chapter_usfm": "JOB.24",
@@ -740,6 +2520,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -750,9 +2531,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/24-b792d776fbd49953b406e39f64d81c71.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.24.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.24"
+          ],
+          "human": "Job 24",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.23"
+          ],
+          "human": "Job 23",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.25"
+          ],
+          "human": "Job 25",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 25,
       "chapter_usfm": "JOB.25",
@@ -767,6 +2605,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -777,9 +2616,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/25-9eb9310043dc3fe961f6d8b0d36da462.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.25.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.25"
+          ],
+          "human": "Job 25",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.24"
+          ],
+          "human": "Job 24",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.26"
+          ],
+          "human": "Job 26",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 26,
       "chapter_usfm": "JOB.26",
@@ -794,6 +2690,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -804,9 +2701,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/26-7de566c6a27740da6c30d53a4f7079c5.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.26.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.26"
+          ],
+          "human": "Job 26",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.25"
+          ],
+          "human": "Job 25",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.27"
+          ],
+          "human": "Job 27",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 27,
       "chapter_usfm": "JOB.27",
@@ -816,6 +2770,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -826,9 +2781,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/27-a6dd648daa4c7900ca1b2f71042b3e52.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.27.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.27"
+          ],
+          "human": "Job 27",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.26"
+          ],
+          "human": "Job 26",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.28"
+          ],
+          "human": "Job 28",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 28,
       "chapter_usfm": "JOB.28",
@@ -838,6 +2850,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -848,9 +2861,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/28-eb9895d3dbf25038bda443faaf1f3d0b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.28.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.28"
+          ],
+          "human": "Job 28",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.27"
+          ],
+          "human": "Job 27",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.29"
+          ],
+          "human": "Job 29",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 29,
       "chapter_usfm": "JOB.29",
@@ -860,6 +2930,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -870,9 +2941,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/29-1eb44929fbfb1adf886ef98914d534cc.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.29.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.29"
+          ],
+          "human": "Job 29",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.28"
+          ],
+          "human": "Job 28",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.30"
+          ],
+          "human": "Job 30",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 30,
       "chapter_usfm": "JOB.30",
@@ -887,6 +3015,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -897,9 +3026,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/30-e3d179d32bb1adaa4154c7d9feaae069.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.30.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.30"
+          ],
+          "human": "Job 30",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.29"
+          ],
+          "human": "Job 29",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.31"
+          ],
+          "human": "Job 31",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 31,
       "chapter_usfm": "JOB.31",
@@ -914,6 +3100,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -924,9 +3111,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/31-4fbe69c026747fcde313bae8bd2433b0.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.31.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.31"
+          ],
+          "human": "Job 31",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.30"
+          ],
+          "human": "Job 30",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.32"
+          ],
+          "human": "Job 32",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 32,
       "chapter_usfm": "JOB.32",
@@ -941,6 +3185,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -951,9 +3196,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/32-93a7e5cc97a82a32c3f792ddb193a611.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.32.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.32"
+          ],
+          "human": "Job 32",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.31"
+          ],
+          "human": "Job 31",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.33"
+          ],
+          "human": "Job 33",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 33,
       "chapter_usfm": "JOB.33",
@@ -968,6 +3270,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -978,9 +3281,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/33-90d1cc323435efb9f613958da690df5d.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.33.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.33"
+          ],
+          "human": "Job 33",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.32"
+          ],
+          "human": "Job 32",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.34"
+          ],
+          "human": "Job 34",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 34,
       "chapter_usfm": "JOB.34",
@@ -1003,6 +3363,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1013,9 +3374,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/34-6fc9de14c204675758995d0a15fe40a1.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.34.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.34"
+          ],
+          "human": "Job 34",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.33"
+          ],
+          "human": "Job 33",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.35"
+          ],
+          "human": "Job 35",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 35,
       "chapter_usfm": "JOB.35",
@@ -1024,6 +3442,8 @@
       "verses": [
         {
           "verse": 16,
+          "usfm": "JOB.35.16",
+          "line_type": "q1",
           "text": "“Job, you talk sheer nonsense—nonstop nonsense!”"
         }
       ],
@@ -1035,6 +3455,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOB.35.16"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "JOB.35.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1045,9 +3491,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/35-aa2df4bc77f2bf611858cf4bb0d20fa4.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.35.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.35"
+          ],
+          "human": "Job 35",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.34"
+          ],
+          "human": "Job 34",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.36"
+          ],
+          "human": "Job 36",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 36,
       "chapter_usfm": "JOB.36",
@@ -1056,6 +3559,8 @@
       "verses": [
         {
           "verse": 26,
+          "usfm": "JOB.36.26",
+          "line_type": "q1",
           "text": "“Take a long, hard look. See how great he is—infinite,greater than anything you could ever imagine or figure out! “He pulls water up out of the sea,distills it, and fills up his rain-cloud cisterns.Then the skies open upand pour out soaking showers on everyone.Does anyone have the slightest idea how this happens?How he arranges the clouds, how he speaks in thunder?Just look at that lightning, his sky-filling light showillumining the dark depths of the sea!These are the symbols of his sovereignty,his generosity, his loving care.He hurls arrows of light,taking sure and accurate aim.The High God roars in the thunder,angry against evil.”"
         }
       ],
@@ -1071,6 +3576,44 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "JOB.36.26"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "JOB.36.26"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "JOB.36.26"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1081,9 +3624,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/36-548ca4682b3f8d0db99158b19889393f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.36.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.36"
+          ],
+          "human": "Job 36",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.35"
+          ],
+          "human": "Job 35",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.37"
+          ],
+          "human": "Job 37",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 37,
       "chapter_usfm": "JOB.37",
@@ -1098,6 +3698,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1108,9 +3709,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/37-eb4be1a96a94f736b80dcc7cd6c313e4.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.37.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.37"
+          ],
+          "human": "Job 37",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.36"
+          ],
+          "human": "Job 36",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.38"
+          ],
+          "human": "Job 38",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 38,
       "chapter_usfm": "JOB.38",
@@ -1129,6 +3787,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1139,9 +3798,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/38-3349f8169b8e5d3b29ea63d3aca92e5b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.38.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.38"
+          ],
+          "human": "Job 38",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.37"
+          ],
+          "human": "Job 37",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.39"
+          ],
+          "human": "Job 39",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 39,
       "chapter_usfm": "JOB.39",
@@ -1151,6 +3867,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1161,9 +3878,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/39-413b7ec20f4d60b395fc18d815eb94d7.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.39.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.39"
+          ],
+          "human": "Job 39",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.38"
+          ],
+          "human": "Job 38",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.40"
+          ],
+          "human": "Job 40",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 40,
       "chapter_usfm": "JOB.40",
@@ -1190,6 +3964,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1200,9 +3975,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/40-b4f82f076df9259544c81def9a4d69a8.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.40.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.40"
+          ],
+          "human": "Job 40",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.39"
+          ],
+          "human": "Job 39",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.41"
+          ],
+          "human": "Job 41",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 41,
       "chapter_usfm": "JOB.41",
@@ -1212,6 +4044,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1222,9 +4055,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/41-743800a7bb3d45ce33607dbda8242e86.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.41.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.41"
+          ],
+          "human": "Job 41",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.40"
+          ],
+          "human": "Job 40",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOB.42"
+          ],
+          "human": "Job 42",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOB",
       "chapter": 42,
       "chapter_usfm": "JOB.42",
@@ -1233,6 +4123,8 @@
       "verses": [
         {
           "verse": 9,
+          "usfm": "JOB.42.9",
+          "line_type": "p",
           "text": "They did it. Eliphaz the Temanite, Bildad the Shuhite, and Zophar the Naamathite did what God commanded. And God accepted Job’s prayer. After Job had interceded for his friends, God restored his fortune—and then doubled it! All his brothers and sisters and friends came to his house and celebrated. They told him how sorry they were, and consoled him for all the trouble God had brought him. Each of them brought generous housewarming gifts. God blessed Job’s later life even more than his earlier life. He ended up with fourteen thousand sheep, six thousand camels, one thousand teams of oxen, and one thousand donkeys. He also had seven sons and three daughters. He named the first daughter Dove, the second, Cinnamon, and the third, Darkeyes. There was not a woman in that country as beautiful as Job’s daughters. Their father treated them as equals with their brothers, providing the same inheritance. Job lived on another 140 years, living to see his children and grandchildren—four generations of them! Then he died—an old man, a full life."
         }
       ],
@@ -1252,6 +4144,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOB.42.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JOB.42.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1262,7 +4180,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JOB/42-79a97125774468eaf2b457d025602a00.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JOB.42.MSG",
+        "reference": {
+          "usfm": [
+            "JOB.42"
+          ],
+          "human": "Job 42",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOB.41"
+          ],
+          "human": "Job 41",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "PSA.1"
+          ],
+          "human": "Psalms 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

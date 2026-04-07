@@ -11,6 +11,7 @@
   "total_verses": 48,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 1,
       "chapter_usfm": "JON.1",
@@ -19,85 +20,354 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.1.1",
+          "line_type": "p",
           "text": "Now the word of the Lord"
         },
         {
           "verse": 2,
+          "usfm": "JON.1.2",
+          "line_type": "p",
           "text": "“Get up! Go to the great city of Nineveh and preach against it, because its wickedness has come up before Me.”"
         },
         {
           "verse": 3,
+          "usfm": "JON.1.3",
+          "line_type": "p",
           "text": "Jonah, however, got up to flee to Tarshish, away from the presence of the Lord"
         },
         {
           "verse": 4,
+          "usfm": "JON.1.4",
+          "line_type": "p",
           "text": "Then the Lord"
         },
         {
           "verse": 5,
+          "usfm": "JON.1.5",
+          "line_type": "p",
           "text": "The sailors were afraid, and each cried out to his own god. And they threw the ship’s cargo into the sea to lighten the load. But Jonah had gone down to the lowest part of the vessel, where he lay down and fell into a deep sleep."
         },
         {
           "verse": 6,
+          "usfm": "JON.1.6",
+          "line_type": "p",
           "text": "The captain approached him and said, “How can you sleep? Get up and call upon your God. Perhaps this God will consider us, so that we may not perish.”"
         },
         {
           "verse": 7,
+          "usfm": "JON.1.7",
+          "line_type": "p",
           "text": "“Come!” said the sailors to one another. “Let us cast lots to find out who is responsible for this calamity that is upon us.”So they cast lots, and the lot fell on Jonah."
         },
         {
           "verse": 8,
+          "usfm": "JON.1.8",
+          "line_type": "p",
           "text": "“Tell us now,” they demanded, “who is to blame for this calamity that is upon us? What is your occupation, and where have you come from? What is your country, and who are your people?”"
         },
         {
           "verse": 9,
+          "usfm": "JON.1.9",
+          "line_type": "p",
           "text": "“I am a Hebrew,” replied Jonah. “I worship the Lord"
         },
         {
           "verse": 10,
+          "usfm": "JON.1.10",
+          "line_type": "p",
           "text": "Then the men were even more afraid and said to him, “What have you done?” The men knew that he was fleeing from the presence of the Lord"
         },
         {
           "verse": 11,
+          "usfm": "JON.1.11",
+          "line_type": "p",
           "text": "Now the sea was growing worse and worse, so they said to Jonah, “What must we do to you to calm this sea for us?”"
         },
         {
           "verse": 12,
+          "usfm": "JON.1.12",
+          "line_type": "p",
           "text": "“Pick me up,” he answered, “and cast me into the sea, so it may quiet down for you. For I know that I am to blame for this violent storm that has come upon you.”"
         },
         {
           "verse": 13,
+          "usfm": "JON.1.13",
+          "line_type": "p",
           "text": "Nevertheless, the men rowed hard to get back to dry land, but they could not, for the sea was raging against them more and more."
         },
         {
           "verse": 14,
+          "usfm": "JON.1.14",
+          "line_type": "p",
           "text": "So they cried out to the Lord"
         },
         {
           "verse": 15,
+          "usfm": "JON.1.15",
+          "line_type": "p",
           "text": "Then they picked up Jonah and cast him into the sea, and the raging sea grew calm."
         },
         {
           "verse": 16,
+          "usfm": "JON.1.16",
+          "line_type": "p",
           "text": "Then the men feared the Lord"
         },
         {
           "verse": 17,
+          "usfm": "JON.1.17",
+          "line_type": "p",
           "text": "Now the Lord"
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "The Great Storm"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Jonah Cast into the Sea"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 13,
+          "usfm": "JON.1.13",
+          "note_ref": "1:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew the men dug in"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JON.1.1",
+            "JON.1.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "JON.1.2",
+            "JON.1.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "JON.1.3",
+            "JON.1.4",
+            "JON.1.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "JON.1.5",
+            "JON.1.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JON.1.6",
+            "JON.1.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JON.1.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "JON.1.7",
+            "JON.1.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "JON.1.8",
+            "JON.1.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.1.10",
+            "JON.1.9"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "JON.1.10",
+            "JON.1.11"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "JON.1.11",
+            "JON.1.12"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "JON.1.12",
+            "JON.1.13"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "JON.1.13",
+            "JON.1.14"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "JON.1.14",
+            "JON.1.15"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "JON.1.15",
+            "JON.1.16"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "JON.1.16",
+            "JON.1.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -108,9 +378,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/JON/1-38b125c24ba38817e451fc652d67840a.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/JON.1.BSB",
+        "reference": {
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "Jonah 1",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "OBA.1"
+          ],
+          "human": "Obadiah 1",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "Jonah 2",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 2,
       "chapter_usfm": "JON.2",
@@ -119,48 +446,481 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.2.1",
+          "line_type": "p",
           "text": "From inside the fish, Jonah prayed to the Lord"
         },
         {
           "verse": 2,
+          "usfm": "JON.2.2",
+          "line_type": "p",
           "text": "saying:“In my distress I called to the Lordand He answered me.From the belly of Sheol I called for help,and You heard my voice."
         },
         {
           "verse": 3,
+          "usfm": "JON.2.3",
+          "line_type": "q1",
           "text": "For You cast me into the deep,into the heart of the seas,and the current swirled about me;all Your breakers and waves swept over me."
         },
         {
           "verse": 4,
+          "usfm": "JON.2.4",
+          "line_type": "q1",
           "text": "At this, I said,‘I have been banished from Your sight;yet I will look once moretoward Your holy temple.’"
         },
         {
           "verse": 5,
+          "usfm": "JON.2.5",
+          "line_type": "q1",
           "text": "The waters engulfed meto take my life;the watery depths closed around me;the seaweed wrapped around my head."
         },
         {
           "verse": 6,
+          "usfm": "JON.2.6",
+          "line_type": "q1",
           "text": "To the roots of the mountains I descended;the earth beneath me barred me in forever!But You raised my life from the pit,O Lord"
         },
         {
           "verse": 7,
+          "usfm": "JON.2.7",
+          "line_type": "q1",
           "text": "As my life was fading away,I remembered the LordMy prayer went up to You,to Your holy temple."
         },
         {
           "verse": 8,
+          "usfm": "JON.2.8",
+          "line_type": "q1",
           "text": "Those who cling to worthless idolsforsake His loving devotion."
         },
         {
           "verse": 9,
+          "usfm": "JON.2.9",
+          "line_type": "q1",
           "text": "But I, with the voice of thanksgiving,will sacrifice to You.I will fulfill what I have vowed.Salvation is from the Lord"
         },
         {
           "verse": 10,
+          "usfm": "JON.2.10",
+          "line_type": "p",
           "text": "And the Lord"
         }
       ],
       "verse_count": 10,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 8,
+          "usfm": "JON.2.8",
+          "note_ref": "2:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Forms of the Hebrew chesed are translated here and in most cases throughout the Scriptures as loving devotion; the range of meaning includes love, goodness, kindness, faithfulness, and mercy, as well as loyalty to a covenant."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JON.2.1",
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "JON.2.2",
+            "JON.2.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JON.2.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JON.2.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JON.2.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "JON.2.3",
+            "JON.2.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JON.2.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JON.2.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JON.2.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "JON.2.4",
+            "JON.2.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JON.2.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JON.2.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JON.2.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "JON.2.5",
+            "JON.2.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JON.2.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JON.2.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JON.2.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JON.2.6",
+            "JON.2.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JON.2.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JON.2.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JON.2.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "JON.2.7",
+            "JON.2.8"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JON.2.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "JON.2.8",
+            "JON.2.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JON.2.9"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JON.2.9"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JON.2.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.2.10",
+            "JON.2.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -171,9 +931,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/JON/2-1cd14d935b1e321e8182b2b6d262f60e.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/JON.2.BSB",
+        "reference": {
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "Jonah 2",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "Jonah 1",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "Jonah 3",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 3,
       "chapter_usfm": "JON.3",
@@ -182,48 +999,213 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.3.1",
+          "line_type": "p",
           "text": "Then the word of the Lord"
         },
         {
           "verse": 2,
+          "usfm": "JON.3.2",
+          "line_type": "p",
           "text": "“Get up! Go to the great city of Nineveh and proclaim to it the message that I give you.”"
         },
         {
           "verse": 3,
+          "usfm": "JON.3.3",
+          "line_type": "p",
           "text": "This time Jonah got up and went to Nineveh, in accordance with the word of the LordNow Nineveh was an exceedingly great city, requiring a three-day journey."
         },
         {
           "verse": 4,
+          "usfm": "JON.3.4",
+          "line_type": "p",
           "text": "On the first day of his journey, Jonah set out into the city and proclaimed, “Forty more days and Nineveh will be overturned!”"
         },
         {
           "verse": 5,
+          "usfm": "JON.3.5",
+          "line_type": "p",
           "text": "And the Ninevites believed God. They proclaimed a fast and dressed in sackcloth, from the greatest of them to the least."
         },
         {
           "verse": 6,
+          "usfm": "JON.3.6",
+          "line_type": "p",
           "text": "When word reached the king of Nineveh, he got up from his throne, took off his royal robe, covered himself with sackcloth, and sat in ashes."
         },
         {
           "verse": 7,
+          "usfm": "JON.3.7",
+          "line_type": "p",
           "text": "Then he issued a proclamation in Nineveh:“By the decree of the king and his nobles:Let no man or beast, herd or flock, taste anything at all. They must not eat or drink."
         },
         {
           "verse": 8,
+          "usfm": "JON.3.8",
+          "line_type": "p",
           "text": "Furthermore, let both man and beast be covered with sackcloth, and have everyone call out earnestly to God. Let each one turn from his evil ways and from the violence in his hands."
         },
         {
           "verse": 9,
+          "usfm": "JON.3.9",
+          "line_type": "p",
           "text": "Who knows? God may turn and relent; He may turn from His fierce anger, so that we will not perish.”"
         },
         {
           "verse": 10,
+          "usfm": "JON.3.10",
+          "line_type": "p",
           "text": "When God saw their actions— that they had turned from their evil ways— He relented from the disaster He had threatened to bring upon them."
         }
       ],
       "verse_count": 10,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "JON.3.3",
+          "note_ref": "3:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or was a great city to God"
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.3.3",
+          "note_ref": "3:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally great city, a three-day journey"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JON.3.1",
+            "JON.3.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "JON.3.2",
+            "JON.3.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "JON.3.3",
+            "JON.3.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "JON.3.4",
+            "JON.3.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "JON.3.5",
+            "JON.3.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JON.3.6",
+            "JON.3.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JON.3.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "JON.3.7",
+            "JON.3.8",
+            "JON.3.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.3.10",
+            "JON.3.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -234,9 +1216,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/JON/3-46f38385f9ebe2e722ddef550d43bbaa.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/JON.3.BSB",
+        "reference": {
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "Jonah 3",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "Jonah 2",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "Jonah 4",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 4,
       "chapter_usfm": "JON.4",
@@ -245,52 +1284,209 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.4.1",
+          "line_type": "p",
           "text": "Jonah, however, was greatly displeased, and he became angry."
         },
         {
           "verse": 2,
+          "usfm": "JON.4.2",
+          "line_type": "p",
           "text": "So he prayed to the Lord"
         },
         {
           "verse": 3,
+          "usfm": "JON.4.3",
+          "line_type": "p",
           "text": "And now, O Lord"
         },
         {
           "verse": 4,
+          "usfm": "JON.4.4",
+          "line_type": "p",
           "text": "But the Lord"
         },
         {
           "verse": 5,
+          "usfm": "JON.4.5",
+          "line_type": "p",
           "text": "Then Jonah left the city and sat down east of it, where he made himself a shelter and sat in its shade to see what would happen to the city."
         },
         {
           "verse": 6,
+          "usfm": "JON.4.6",
+          "line_type": "p",
           "text": "So the Lord and it grew up to provide shade over Jonah’s head to ease his discomfort, and Jonah was greatly pleased with the plant."
         },
         {
           "verse": 7,
+          "usfm": "JON.4.7",
+          "line_type": "p",
           "text": "When dawn came the next day, God appointed a worm that attacked the plant so that it withered."
         },
         {
           "verse": 8,
+          "usfm": "JON.4.8",
+          "line_type": "p",
           "text": "As the sun was rising, God appointed a scorching east wind, and the sun beat down on Jonah’s head so that he grew faint and wished to die, saying, “It is better for me to die than to live.”"
         },
         {
           "verse": 9,
+          "usfm": "JON.4.9",
+          "line_type": "p",
           "text": "Then God asked Jonah, “Have you any right to be angry about the plant?”“I do,” he replied. “I am angry enough to die!”"
         },
         {
           "verse": 10,
+          "usfm": "JON.4.10",
+          "line_type": "p",
           "text": "But the Lord"
         },
         {
           "verse": 11,
+          "usfm": "JON.4.11",
+          "line_type": "p",
           "text": "So should I not care about the great city of Nineveh, which has more than 120,000 people who cannot tell their right hand from their left, and many cattle as well?”"
         }
       ],
       "verse_count": 11,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JON.4.1",
+          "note_ref": "4:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or It was exceedingly evil to Jonah, and he became angry"
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.4.6",
+          "note_ref": "4:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew qiqayon; that is, possibly the castor oil plant; also in verses 7, 9, and 10"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "JON.4.1",
+            "JON.4.2",
+            "JON.4.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "JON.4.3",
+            "JON.4.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "JON.4.4",
+            "JON.4.5",
+            "JON.4.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JON.4.6",
+            "JON.4.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "JON.4.7",
+            "JON.4.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "JON.4.8",
+            "JON.4.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JON.4.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "JON.4.10",
+            "JON.4.11",
+            "JON.4.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -301,7 +1497,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/JON/4-4c1404976628e2b406b39e674e7fc34d.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/JON.4.BSB",
+        "reference": {
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "Jonah 4",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "Jonah 3",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "Micah 1",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

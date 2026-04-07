@@ -11,6 +11,7 @@
   "total_verses": 34,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 1,
       "chapter_usfm": "AMO.1",
@@ -19,21 +20,113 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.1.1",
+          "line_type": "p",
           "text": "The Message of Amos, one of the shepherds of Tekoa, that he received on behalf of Israel. It came to him in visions during the time that Uzziah was king of Judah and Jeroboam II son of Joash was king of Israel, two years before the big earthquake."
         },
         {
           "verse": 2,
+          "usfm": "AMO.1.2",
+          "line_type": "m",
           "text": "The Message: God roars from Zion,shouts from Jerusalem!The thunderclap voice withers the pastures tended by shepherds,shrivels Mount Carmel’s proud peak. God’s Message:“Because of the three great sins of Damascus—make that four—I’m not putting up with her any longer.She pounded Gilead to a pulp, pounded her senselesswith iron hammers and mauls.For that, I’m setting the palace of Hazael on fire.I’m torching Ben-hadad’s forts.I’m going to smash the Damascus gatesand banish the crime king who lives in Sin Valley,the vice boss who gives orders from Paradise Palace.The people of the land will be sent backto where they came from—to Kir.” God’s Decree. God’s Message:“Because of the three great sins of Gaza—make that four—I’m not putting up with her any longer.She deported whole townsand then sold the people to Edom.For that, I’m burning down the walls of Gaza,burning up all her forts.I’ll banish the crime king from Ashdod,the vice boss from Ashkelon.I’ll raise my fist against Ekron,and what’s left of the Philistines will die.” God’s Decree. God’s Message:“Because of the three great sins of Tyre—make that four—I’m not putting up with her any longer.She deported whole towns to Edom,breaking the treaty she had with her kin.For that, I’m burning down the walls of Tyre,burning up all her forts.” God’s Message:“Because of the three great sins of Edom—make that four—I’m not putting up with her any longer.She hunts down her brother to murder him.She has no pity, she has no heart.Her anger rampages day and night.Her meanness never takes a timeout.For that, I’m burning down her capital, Teman,burning up the forts of Bozrah.” God’s Message:“Because of the three great sins of Ammon—make that four—I’m not putting up with her any longer.She ripped open pregnant women in Gileadto get more land for herself.For that, I’m burning down the walls of her capital, Rabbah,burning up her forts.Battle shouts! War whoops!with a tornado to finish things off!The king has been carted off to exile,the king and his princes with him.” God’s Decree.* * *"
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Swallowing the Same Old Lies"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.1.1",
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.1.2"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -44,9 +137,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/1-55f2cba94383ef99dadef3b1aed4d168.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.1.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.1"
+          ],
+          "human": "Amos 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOL.3"
+          ],
+          "human": "Joel 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.2"
+          ],
+          "human": "Amos 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 2,
       "chapter_usfm": "AMO.2",
@@ -61,6 +211,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -71,9 +222,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/2-3ae194094c3a88496b337dd3c8c414df.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.2.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.2"
+          ],
+          "human": "Amos 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.1"
+          ],
+          "human": "Amos 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.3"
+          ],
+          "human": "Amos 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 3,
       "chapter_usfm": "AMO.3",
@@ -82,24 +290,288 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.3.1",
+          "line_type": "m",
           "text": "Listen to this, Israel. God is calling you to account—and I mean all of you, everyone connected with the family that he delivered out of Egypt. Listen!"
         },
         {
           "verse": 2,
+          "usfm": "AMO.3.2",
+          "line_type": "q1",
           "text": "“Out of all the families on earth,I picked you.Therefore, because of your special calling,I’m holding you responsible for all your sins.” Do two people walk hand in handif they aren’t going to the same place?Does a lion roar in the forestif there’s no carcass to devour?Does a young lion growl with pleasureif he hasn’t caught his supper?Does a bird fall to the groundif it hasn’t been hit with a stone?Does a trap spring shutif nothing trips it?When the alarm goes off in the city,aren’t people alarmed?And when disaster strikes the city,doesn’t God stand behind it?The fact is, God, the Master, does nothingwithout first telling his prophets the whole story."
         },
         {
           "verse": 8,
+          "usfm": "AMO.3.8",
+          "line_type": "q1",
           "text": "The lion has roared—who isn’t frightened? God has spoken—what prophet can keep quiet?* * * Announce to the forts of Assyria,announce to the forts of Egypt—Tell them, “Gather on the Samaritan mountains, take a good, hard look:what a snake pit of brutality and terror!They can’t—or won’t—do one thing right.” God said so.“They stockpile violence and blight.Therefore”—this is God’s Word—“an enemy will surround the country.He’ll strip you of your power and plunder your forts.”"
         },
         {
           "verse": 12,
+          "usfm": "AMO.3.12",
+          "line_type": "p",
           "text": "God’s Message:“In the same way that a shepherdtrying to save a lamb from a lionManages to recoverjust a pair of legs or the scrap of an ear,So will little be saved of the Israeliteswho live in Samaria—A couple of old chairs at most,the broken leg of a table. “Listen and bring witness against Jacob’s family”—this is God’s Word, God-of-the-Angel-Armies!“Note well! The day I make Israel pay for its sins,pay for the sin-altars of worship at Bethel,The horned altars will all be dehornedand scattered around.I’ll tear down the winter palace,smash the summer palace—all your fancy buildings.The luxury homes will be demolished,all those pretentious houses.” God’s Decree."
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.3.1",
+            "AMO.3.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.3.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.3.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.3.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.3.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.3.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.3.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.3.8"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.3.8"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.3.8"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.3.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -110,9 +582,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/3-a20dbaec313ae55f87f29a889cc4ca2d.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.3.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.3"
+          ],
+          "human": "Amos 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.2"
+          ],
+          "human": "Amos 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.4"
+          ],
+          "human": "Amos 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 4,
       "chapter_usfm": "AMO.4",
@@ -121,30 +650,44 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.4.1",
+          "line_type": "q1",
           "text": "“Listen to this, you cows of Bashangrazing on the slopes of Samaria.You women! Mean to the poor,cruel to the down-and-out!Indolent and pampered, you demand of your husbands,‘Bring us a tall, cool drink!’ “This is serious—I, God, have sworn by my holiness!Be well warned: Judgment Day is coming!They’re going to rope you up and haul you off,keep the stragglers in line with cattle prods.They’ll drag you through the ruined city walls,forcing you out single file,And kick you to kingdom come.” God’s Decree. “Come along to Bethel and sin!And then to Gilgal and sin some more!Bring your sacrifices for morning worship.Every third day bring your tithe.Burn pure sacrifices—thank offerings.Speak up—announce freewill offerings!That’s the sort of religious showyou Israelites just love.” God’s Decree."
         },
         {
           "verse": 6,
+          "usfm": "AMO.4.6",
+          "line_type": "q1",
           "text": "“You know, don’t you, that I’m the Onewho emptied your pantries and cleaned out your cupboards,Who left you hungry and standing in bread lines?But you never got hungry for me. You continued to ignore me.” God’s Decree. “Yes, and I’m the One who stopped the rainsthree months short of harvest.I’d make it rain on one villagebut not on another.I’d make it rain on one fieldbut not on another—and that one would dry up.People would stagger from village to villagecrazed for water and never quenching their thirst.But you never got thirsty for me.You ignored me.” God’s Decree."
         },
         {
           "verse": 9,
+          "usfm": "AMO.4.9",
+          "line_type": "q1",
           "text": "“I hit your crops with diseaseand withered your orchards and gardens.Locusts devoured your olive and fig trees,but you continued to ignore me.” God’s Decree."
         },
         {
           "verse": 10,
+          "usfm": "AMO.4.10",
+          "line_type": "q1",
           "text": "“I revisited you with the old Egyptian plagues,killed your choice young men and prize horses.The stink of rot in your camps was so strongthat you held your noses—But you didn’t notice me.You continued to ignore me.” God’s Decree."
         },
         {
           "verse": 11,
+          "usfm": "AMO.4.11",
+          "line_type": "q1",
           "text": "“I hit you with earthquake and fire,left you devastated like Sodom and Gomorrah.You were like a burning sticksnatched from the flames.But you never looked my way.You continued to ignore me.” God’s Decree."
         },
         {
           "verse": 12,
+          "usfm": "AMO.4.12",
+          "line_type": "q1",
           "text": "“All this I have done to you, Israel,and this is why I have done it.Time’s up, O Israel!Prepare to meet your God!”"
         },
         {
           "verse": 13,
+          "usfm": "AMO.4.13",
+          "line_type": "q1",
           "text": "Look who’s here: Mountain-Shaper! Wind-Maker!He laid out the whole plot before Adam.He brings everything out of nothing,like dawn out of darkness.He strides across the alpine ridges.His name is God, God-of-the-Angel-Armies."
         }
       ],
@@ -156,6 +699,520 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.4.1"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q3",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.4.6"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q3",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "AMO.4.10",
+            "AMO.4.9"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q3",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.4.10"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.4.10",
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q3",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.4.11"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "AMO.4.11",
+            "AMO.4.12"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.4.12"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.4.12"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "AMO.4.12"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "AMO.4.12",
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.4.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -166,9 +1223,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/4-3aeff08991848a98e4ecb6adbdc14b27.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 7,
+          "parsed_count": 7,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.4.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.4"
+          ],
+          "human": "Amos 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.3"
+          ],
+          "human": "Amos 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.5"
+          ],
+          "human": "Amos 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 5,
       "chapter_usfm": "AMO.5",
@@ -177,45 +1291,465 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.5.1",
+          "line_type": "q1",
           "text": "Listen to this, family of Israel,this Message I’m sending in bold print, this tragic warning:"
         },
         {
           "verse": 2,
+          "usfm": "AMO.5.2",
+          "line_type": "q1",
           "text": "“Virgin Israel has fallen flat on her face.She’ll never stand up again.She’s been left where she’s fallen.No one offers to help her up.”"
         },
         {
           "verse": 3,
+          "usfm": "AMO.5.3",
+          "line_type": "p",
           "text": "This is the Message, God’s Word:“The city that marches out with a thousandwill end up with a hundred.The city that marches out with a hundredwill end up with ten. Oh, family of Israel!” God’s Message to the family of Israel:“Seek me and live.Don’t fool around at those shrines of Bethel,Don’t waste time taking trips to Gilgal,and don’t bother going down to Beer-sheba.Gilgal is here today and gone tomorrowand Bethel is all show, no substance.”"
         },
         {
           "verse": 6,
+          "usfm": "AMO.5.6",
+          "line_type": "q1",
           "text": "So seek God and live! You don’t want to end upwith nothing to show for your lifeBut a pile of ashes, a house burned to the ground.For God will send just such a fire,and the firefighters will show up too late. Woe to you who turn justice to vinegarand stomp righteousness into the mud.Do you realize where you are? You’re in a cosmosstar-flung with constellations by God,A world God wakes up each morningand puts to bed each night.God dips water from the oceanand gives the land a drink. God, God-revealed, does all this.And he can destroy it as easily as make it.He can turn this vast wonder into total waste. People hate this kind of talk.Raw truth is never popular.But here it is, bluntly spoken:Because you run roughshod over the poorand take the bread right out of their mouths,You’re never going to move intothe luxury homes you have built.You’re never going to drink winefrom the expensive vineyards you’ve planted.I know precisely the extent of your violations,the enormity of your sins. Appalling!You bully right-living people,taking bribes right and left and kicking the poor when they’re down."
         },
         {
           "verse": 13,
+          "usfm": "AMO.5.13",
+          "line_type": "q1",
           "text": "Justice is a lost cause. Evil is epidemic.Decent people throw up their hands.Protest and rebuke are useless,a waste of breath."
         },
         {
           "verse": 14,
+          "usfm": "AMO.5.14",
+          "line_type": "q1",
           "text": "Seek good and not evil—and live!You talk about God, the God-of-the-Angel-Armies,being your best friend.Well, live like it,and maybe it will happen."
         },
         {
           "verse": 15,
+          "usfm": "AMO.5.15",
+          "line_type": "q1",
           "text": "Hate evil and love good,then work it out in the public square.Maybe God, the God-of-the-Angel-Armies,will notice your remnant and be gracious. Now again, my Master’s Message, God, God-of-the-Angel-Armies:“Go out into the streets and lament loudly!Fill the malls and shops with cries of doom!Weep loudly, ‘Not me! Not us, Not now!’Empty offices, stores, factories, workplaces.Enlist everyone in the general lament.I want to hear it loud and clear when I make my visit.” God’s Decree. Woe to all of you who want God’s Judgment Day!Why would you want to see God, want him to come?When God comes, it will be bad news before it’s good news,the worst of times, not the best of times.Here’s what it’s like: A man runs from a lionright into the jaws of a bear.A woman goes home after a hard day’s workand is raped by a neighbor.At God’s coming we face hard reality, not fantasy—a black cloud with no silver lining. “I can’t stand your religious meetings.I’m fed up with your conferences and conventions.I want nothing to do with your religion projects,your pretentious slogans and goals.I’m sick of your fund-raising schemes,your public relations and image making.I’ve had all I can take of your noisy ego-music.When was the last time you sang to me?Do you know what I want?I want justice—oceans of it.I want fairness—rivers of it.That’s what I want. That’s all I want. “Didn’t you, dear family of Israel, worship me faithfully for forty years in the wilderness, bringing the sacrifices and offerings I commanded? How is it you’ve stooped to dragging gimcrack statues of your so-called rulers around, hauling the cheap images of all your star-gods here and there? Since you like them so much, you can take them with you when I drive you into exile beyond Damascus.” God’s Message, God-of-the-Angel-Armies."
         }
       ],
       "verse_count": 7,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Raw Truth Is Never Popular"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "Time to Face Hard Reality, Not Fantasy"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.5.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.5.1",
+            "AMO.5.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.5.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.5.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.5.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.5.2",
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.5.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "m",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.5.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.5.13"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.5.13"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.5.13"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "AMO.5.13"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "AMO.5.13",
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.5.14"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "AMO.5.14",
+            "AMO.5.15"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.5.15"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.5.15"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.5.15"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "AMO.5.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -226,9 +1760,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/5-4614016a16382a1d48fb2efa4655c70f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 7,
+          "parsed_count": 7,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.5.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.5"
+          ],
+          "human": "Amos 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.4"
+          ],
+          "human": "Amos 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.6"
+          ],
+          "human": "Amos 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 6,
       "chapter_usfm": "AMO.6",
@@ -237,29 +1828,281 @@
       "verses": [
         {
           "verse": 7,
+          "usfm": "AMO.6.7",
+          "line_type": "q1",
           "text": "But here’s what’s really coming:a forced march into exile.They’ll leave the country whining,a rag-tag bunch of good-for-nothings."
         },
         {
           "verse": 8,
+          "usfm": "AMO.6.8",
+          "line_type": "q1",
           "text": "God, the Master, has sworn, and solemnly stands by his Word.The God-of-the-Angel-Armies speaks:“I hate the arrogance of Jacob.I have nothing but contempt for his forts.I’m about to hand over the cityand everyone in it.” Ten men are in a house, all dead. A relative comes and gets the bodies to prepare them for a decent burial. He discovers a survivor huddled in a closet and asks, “Are there any more?” The answer: “Not a soul. But hush! God must not be mentioned in this desecrated place.”"
         },
         {
           "verse": 11,
+          "usfm": "AMO.6.11",
+          "line_type": "q1",
           "text": "Note well: God issues the orders.He’ll knock large houses to smithereens.He’ll smash little houses to bits. Do you hold a horse race in a field of rocks?Do you plow the sea with oxen?You’d cripple the horsesand drown the oxen.And yet you’ve made a shambles of justice,a bloated corpse of righteousness,Bragging of your trivial pursuits,beating up on the weak and crowing, “Look what I’ve done!”"
         },
         {
           "verse": 14,
+          "usfm": "AMO.6.14",
+          "line_type": "q1",
           "text": "“Enjoy it while you can, you Israelites.I’ve got a pagan army on the move against you”—this is your God speaking, God-of-the-Angel-Armies—“And they’ll make hash of you,from one end of the country to the other.”"
         }
       ],
       "verse_count": 4,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "You’ve Made a Shambles of Justice"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.6.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.6.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.6.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.6.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "AMO.6.7",
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "AMO.6.8"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.6.11"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.6.11"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.6.11"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.6.11"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.6.14"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.6.14"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.6.14"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.6.14"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "AMO.6.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -270,9 +2113,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/6-c1143e443205f5aca0eb545c063609da.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.6.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.6"
+          ],
+          "human": "Amos 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.5"
+          ],
+          "human": "Amos 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.7"
+          ],
+          "human": "Amos 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 7,
       "chapter_usfm": "AMO.7",
@@ -281,36 +2181,218 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "AMO.7.3",
+          "line_type": "p",
           "text": "God gave in.“It won’t happen,” he said.* * *"
         },
         {
           "verse": 4,
+          "usfm": "AMO.7.4",
+          "line_type": "p",
           "text": "God showed me this vision: Oh! God, my Master God was calling up a firestorm. It burned up the ocean. Then it burned up the Promised Land."
         },
         {
           "verse": 5,
+          "usfm": "AMO.7.5",
+          "line_type": "p",
           "text": "I said, “God, my Master! Hold it—please! What’s going to come of Jacob? He’s so small.”"
         },
         {
           "verse": 6,
+          "usfm": "AMO.7.6",
+          "line_type": "p",
           "text": "God gave in.“All right, this won’t happen either,” God, my Master, said.* * *"
         },
         {
           "verse": 7,
+          "usfm": "AMO.7.7",
+          "line_type": "p",
           "text": "God showed me this vision: My Master was standing beside a wall. In his hand he held a plumb line. God said to me, “What do you see, Amos?”I said, “A plumb line.”Then my Master said, “Look what I’ve done. I’ve hung a plumb line in the midst of my people Israel. I’ve spared them for the last time. This is it!“Isaac’s sex-and-religion shrines will be smashed,Israel’s unholy shrines will be knocked to pieces.I’m raising my sword against the royal family of Jeroboam.”"
         },
         {
           "verse": 10,
+          "usfm": "AMO.7.10",
+          "line_type": "p",
           "text": "Amaziah, priest at the shrine at Bethel, sent a message to Jeroboam, king of Israel:“Amos is plotting to get rid of you; and he’s doing it as an insider, working from within Israel. His talk will destroy the country. He’s got to be silenced. Do you know what Amos is saying?"
         },
         {
           "verse": 11,
+          "usfm": "AMO.7.11",
+          "line_type": "q2",
           "text": "‘Jeroboam will be killed.Israel is headed for exile.’” Then Amaziah confronted Amos: “Seer, be on your way! Get out of here and go back to Judah where you came from! Hang out there. Do your preaching there. But no more preaching at Bethel! Don’t show your face here again. This is the king’s chapel. This is a royal shrine.” But Amos stood up to Amaziah: “I never set up to be a preacher, never had plans to be a preacher. I raised cattle and I pruned trees. Then God took me off the farm and said, ‘Go preach to my people Israel.’ “So listen to God’s Word. You tell me, ‘Don’t preach to Israel. Don’t say anything against the family of Isaac.’ But here’s what God is telling you:Your wife will become a whore in town.Your children will get killed.Your land will be auctioned off.You will die homeless and friendless.And Israel will be hauled off to exile, far from home.”"
         }
       ],
       "verse_count": 7,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.7.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.7.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "AMO.7.3",
+            "AMO.7.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "AMO.7.4",
+            "AMO.7.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "AMO.7.5",
+            "AMO.7.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "AMO.7.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "AMO.7.6",
+            "AMO.7.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "AMO.7.7"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.7.10"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "AMO.7.10"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "AMO.7.10",
+            "AMO.7.11"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.7.11"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "AMO.7.11"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -321,9 +2403,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/7-c5dbc09b957cc1c4e0efc6662a38565d.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 7,
+          "parsed_count": 7,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.7.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.7"
+          ],
+          "human": "Amos 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.6"
+          ],
+          "human": "Amos 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.8"
+          ],
+          "human": "Amos 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 8,
       "chapter_usfm": "AMO.8",
@@ -332,20 +2471,140 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "AMO.8.1",
+          "line_type": "m",
           "text": "My Master God showed me this vision: A bowl of fresh fruit."
         },
         {
           "verse": 2,
+          "usfm": "AMO.8.2",
+          "line_type": "p",
           "text": "He said, “What do you see, Amos?”I said, “A bowl of fresh, ripe fruit.” God said, “Right. So, I’m calling it quits with my people Israel. I’m no longer acting as if everything is just fine.”"
         },
         {
           "verse": 3,
+          "usfm": "AMO.8.3",
+          "line_type": "q1",
           "text": "“The royal singers will wail when it happens.”My Master God said so.“Corpses will be strewn here, there, and everywhere.Hush!” Listen to this, you who walk all over the weak,you who treat poor people as less than nothing,Who say, “When’s my next paycheck comingso I can go out and live it up?How long till the weekendwhen I can go out and have a good time?”Who give little and take much,and never do an honest day’s work.You exploit the poor, using them—and then, when they’re used up, you discard them. God swears against the arrogance of Jacob:“I’m keeping track of their every last sin.”God’s oath will shake earth’s foundations,dissolve the whole world into tears.God’s oath will sweep in like a river that rises,flooding houses and lands,And then recedes,leaving behind a sea of mud. “On Judgment Day, watch out!”These are the words of God, my Master.“I’ll turn off the sun at noon.In the middle of the day the earth will go black.I’ll turn your parties into funeralsand make every song you sing a dirge.Everyone will walk around in rags,with sunken eyes and bald heads.Think of the worst that could happen—your only son, say, murdered.That’s a hint of Judgment Day—that and much more. “Oh yes, Judgment Day is coming!”These are the words of my Master God.“I’ll send a famine through the whole country.It won’t be food or water that’s lacking, but my Word.People will drift from one end of the country to the other,roam to the north, wander to the east.They’ll go anywhere, listen to anyone,hoping to hear God’s Word—but they won’t hear it. “On Judgment Day,lovely young girls will faint of Word-thirst,robust young men will faint of God-thirst,Along with those who take oaths at the Samaria Sin-and-Sex Center,saying, ‘As the lord god of Dan is my witness!’and ‘The lady goddess of Beer-sheba bless you!’Their lives will fall to pieces.They’ll never put it together again.”"
         }
       ],
       "verse_count": 3,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "AMO.8.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "AMO.8.1",
+            "AMO.8.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.8.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "AMO.8.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "AMO.8.2",
+            "AMO.8.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.8.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.8.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.8.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "AMO.8.3"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -356,9 +2615,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/8-e9ad194c86288ef39524bd9055bdfbb5.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.8.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.8"
+          ],
+          "human": "Amos 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.7"
+          ],
+          "human": "Amos 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.9"
+          ],
+          "human": "Amos 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "AMO",
       "chapter": 9,
       "chapter_usfm": "AMO.9",
@@ -373,6 +2689,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -383,7 +2700,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/AMO/9-c9240199cd3915875e4fc803bf9a4f77.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/AMO.9.MSG",
+        "reference": {
+          "usfm": [
+            "AMO.9"
+          ],
+          "human": "Amos 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.8"
+          ],
+          "human": "Amos 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "OBA.1"
+          ],
+          "human": "Obadiah 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

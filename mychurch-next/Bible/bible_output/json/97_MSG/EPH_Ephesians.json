@@ -11,6 +11,7 @@
   "total_verses": 9,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "EPH",
       "chapter": 1,
       "chapter_usfm": "EPH.1",
@@ -25,6 +26,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -35,9 +37,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EPH/1-e9bac68aad2cb28d741a4591e8be39d9.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EPH.1.MSG",
+        "reference": {
+          "usfm": [
+            "EPH.1"
+          ],
+          "human": "Ephesians 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "GAL.6"
+          ],
+          "human": "Galatians 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EPH.2"
+          ],
+          "human": "Ephesians 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EPH",
       "chapter": 2,
       "chapter_usfm": "EPH.2",
@@ -47,6 +106,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -57,9 +117,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EPH/2-dff0b48b7813fbdc424baed073de541e.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EPH.2.MSG",
+        "reference": {
+          "usfm": [
+            "EPH.2"
+          ],
+          "human": "Ephesians 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EPH.1"
+          ],
+          "human": "Ephesians 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EPH.3"
+          ],
+          "human": "Ephesians 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EPH",
       "chapter": 3,
       "chapter_usfm": "EPH.3",
@@ -69,6 +186,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -79,9 +197,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EPH/3-e2c473167964d099c84249cdec125909.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EPH.3.MSG",
+        "reference": {
+          "usfm": [
+            "EPH.3"
+          ],
+          "human": "Ephesians 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EPH.2"
+          ],
+          "human": "Ephesians 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EPH.4"
+          ],
+          "human": "Ephesians 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EPH",
       "chapter": 4,
       "chapter_usfm": "EPH.4",
@@ -90,18 +265,26 @@
       "verses": [
         {
           "verse": 25,
+          "usfm": "EPH.4.25",
+          "line_type": "p",
           "text": "What this adds up to, then, is this: no more lies, no more pretense. Tell your neighbor the truth. In Christ’s body we’re all connected to each other, after all. When you lie to others, you end up lying to yourself. Go ahead and be angry. You do well to be angry—but don’t use your anger as fuel for revenge. And don’t stay angry. Don’t go to bed angry. Don’t give the Devil that kind of foothold in your life."
         },
         {
           "verse": 28,
+          "usfm": "EPH.4.28",
+          "line_type": "p",
           "text": "Did you use to make ends meet by stealing? Well, no more! Get an honest job so that you can help others who can’t work."
         },
         {
           "verse": 29,
+          "usfm": "EPH.4.29",
+          "line_type": "p",
           "text": "Watch the way you talk. Let nothing foul or dirty come out of your mouth. Say only what helps, each word a gift."
         },
         {
           "verse": 30,
+          "usfm": "EPH.4.30",
+          "line_type": "p",
           "text": "Don’t grieve God. Don’t break his heart. His Holy Spirit, moving and breathing in you, is the most intimate part of your life, making you fit for himself. Don’t take such a gift for granted. Make a clean break with all cutting, backbiting, profane talk. Be gentle with one another, sensitive. Forgive one another as quickly and thoroughly as God in Christ forgave you."
         }
       ],
@@ -113,6 +296,84 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "EPH.4.25"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "EPH.4.25"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "EPH.4.28"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 29,
+          "verses": [
+            28,
+            29
+          ],
+          "usfms": [
+            "EPH.4.28",
+            "EPH.4.29"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 30,
+          "verses": [
+            29,
+            30
+          ],
+          "usfms": [
+            "EPH.4.29",
+            "EPH.4.30"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 30,
+          "end_verse": 30,
+          "verses": [
+            30
+          ],
+          "usfms": [
+            "EPH.4.30"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -123,9 +384,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EPH/4-88fc9d8df640a02b22776e2d08d31ab0.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EPH.4.MSG",
+        "reference": {
+          "usfm": [
+            "EPH.4"
+          ],
+          "human": "Ephesians 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EPH.3"
+          ],
+          "human": "Ephesians 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EPH.5"
+          ],
+          "human": "Ephesians 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EPH",
       "chapter": 5,
       "chapter_usfm": "EPH.5",
@@ -134,25 +452,105 @@
       "verses": [
         {
           "verse": 5,
+          "usfm": "EPH.5.5",
+          "line_type": "p",
           "text": "You can be sure that using people or religion or things just for what you can get out of them—the usual variations on idolatry—will get you nowhere, and certainly nowhere near the kingdom of Christ, the kingdom of God. Don’t let yourselves get taken in by religious smooth talk. God gets furious with people who are full of religious sales talk but want nothing to do with him. Don’t even hang around people like that. You groped your way through that murk once, but no longer. You’re out in the open now. The bright light of Christ makes your way plain. So no more stumbling around. Get on with it! The good, the right, the true—these are the actions appropriate for daylight hours. Figure out what will please Christ, and then do it. Don’t waste your time on useless work, mere busywork, the barren pursuits of darkness. Expose these things for the sham they are. It’s a scandal when people waste their lives on things they must do in the darkness where no one will see. Rip the cover off those frauds and see how attractive they look in the light of Christ.Wake up from your sleep,Climb out of your coffins;Christ will show you the light!So watch your step. Use your head. Make the most of every chance you get. These are desperate times!"
         },
         {
           "verse": 17,
+          "usfm": "EPH.5.17",
+          "line_type": "p",
           "text": "Don’t live carelessly, unthinkingly. Make sure you understand what the Master wants. Don’t drink too much wine. That cheapens your life. Drink the Spirit of God, huge drafts of him. Sing hymns instead of drinking songs! Sing songs from your heart to Christ. Sing praises over everything, any excuse for a song to God the Father in the name of our Master, Jesus Christ."
         },
         {
           "verse": 21,
+          "usfm": "EPH.5.21",
+          "line_type": "m",
           "text": "Out of respect for Christ, be courteously reverent to one another. Wives, understand and support your husbands in ways that show your support for Christ. The husband provides leadership to his wife the way Christ does to his church, not by domineering but by cherishing. So just as the church submits to Christ as he exercises such leadership, wives should likewise submit to their husbands. Husbands, go all out in your love for your wives, exactly as Christ did for the church—a love marked by giving, not getting. Christ’s love makes the church whole. His words evoke her beauty. Everything he does and says is designed to bring the best out of her, dressing her in dazzling white silk, radiant with holiness. And that is how husbands ought to love their wives. They’re really doing themselves a favor—since they’re already “one” in marriage. No one abuses his own body, does he? No, he feeds and pampers it. That’s how Christ treats us, the church, since we are part of his body. And this is why a man leaves father and mother and cherishes his wife. No longer two, they become “one flesh.” This is a huge mystery, and I don’t pretend to understand it all. What is clearest to me is the way Christ treats the church. And this provides a good picture of how each husband is to treat his wife, loving himself in loving her, and how each wife is to honor her husband."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Relationships"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "EPH.5.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "EPH.5.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "EPH.5.17"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "EPH.5.17"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "EPH.5.21"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "EPH.5.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -163,9 +561,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EPH/5-0e833977316e332f430bd41aa7665e43.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EPH.5.MSG",
+        "reference": {
+          "usfm": [
+            "EPH.5"
+          ],
+          "human": "Ephesians 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EPH.4"
+          ],
+          "human": "Ephesians 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "EPH.6"
+          ],
+          "human": "Ephesians 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "EPH",
       "chapter": 6,
       "chapter_usfm": "EPH.6",
@@ -174,21 +629,75 @@
       "verses": [
         {
           "verse": 4,
+          "usfm": "EPH.6.4",
+          "line_type": "p",
           "text": "Fathers, don’t frustrate your children with no-win scenarios. Take them by the hand and lead them in the way of the Master. Servants, respectfully obey your earthly masters but always with an eye to obeying the real master, Christ. Don’t just do what you have to do to get by, but work heartily, as Christ’s servants doing what God wants you to do. And work with a smile on your face, always keeping in mind that no matter who happens to be giving the orders, you’re really serving God. Good work will get you good pay from the Master, regardless of whether you are slave or free."
         },
         {
           "verse": 9,
+          "usfm": "EPH.6.9",
+          "line_type": "p",
           "text": "Masters, it’s the same with you. No abuse, please, and no threats. You and your servants are both under the same Master in heaven. He makes no distinction between you and them. And that about wraps it up. God is strong, and he wants you strong. So take everything the Master has set out for you, well-made weapons of the best materials. And put them to use so you will be able to stand up to everything the Devil throws your way. This is no weekend war that we’ll walk away from and forget about in a couple of hours. This is for keeps, a life-or-death fight to the finish against the Devil and all his angels. Be prepared. You’re up against far more than you can handle on your own. Take all the help you can get, every weapon God has issued, so that when it’s all over but the shouting you’ll still be on your feet. Truth, righteousness, peace, faith, and salvation are more than words. Learn how to apply them. You’ll need them throughout your life. God’s Word is an indispensable weapon. In the same way, prayer is essential in this ongoing warfare. Pray hard and long. Pray for your brothers and sisters. Keep your eyes open. Keep each other’s spirits up so that no one falls behind or drops out. And don’t forget to pray for me. Pray that I’ll know what to say and have the courage to say it at the right time, telling the mystery to one and all, the Message that I, jailbird preacher that I am, am responsible for getting out. Tychicus, my good friend here, will tell you what I’m doing and how things are going with me. He is certainly a dependable servant of the Master! I’ve sent him not only to tell you about us but to cheer you on in your faith. Good-bye, friends. Love mixed with faith be yours from God the Father and from the Master, Jesus Christ. Pure grace and nothing but grace be with all who love our Master, Jesus Christ."
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "A Fight to the Finish"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "EPH.6.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "EPH.6.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "EPH.6.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "EPH.6.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -199,7 +708,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/EPH/6-4d850f2046b4a49f180c8d1088072fbe.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/EPH.6.MSG",
+        "reference": {
+          "usfm": [
+            "EPH.6"
+          ],
+          "human": "Ephesians 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EPH.5"
+          ],
+          "human": "Ephesians 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "PHP.1"
+          ],
+          "human": "Philippians 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

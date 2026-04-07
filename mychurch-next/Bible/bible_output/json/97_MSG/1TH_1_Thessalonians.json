@@ -11,6 +11,7 @@
   "total_verses": 4,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 1,
       "chapter_usfm": "1TH.1",
@@ -19,17 +20,45 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TH.1.1",
+          "line_type": "p",
           "text": "I, Paul, together here with Silas and Timothy, send greetings to the church at Thessalonica, Christians assembled by God the Father and by the Master, Jesus Christ. God’s amazing grace be with you! God’s robust peace! Every time we think of you, we thank God for you. Day and night you’re in our prayers as we call to mind your work of faith, your labor of love, and your patience of hope in following our Master, Jesus Christ, before God our Father. It is clear to us, friends, that God not only loves you very much but also has put his hand on you for something special. When the Message we preached came to you, it wasn’t just words. Something happened in you. The Holy Spirit put steel in your convictions. You paid careful attention to the way we lived among you, and determined to live that way yourselves. In imitating us, you imitated the Master. Although great trouble accompanied the Word, you were able to take great joy from the Holy Spirit!—taking the trouble with the joy, the joy with the trouble. Do you know that all over the provinces of both Macedonia and Achaia believers look up to you? The word has gotten around. Your lives are echoing the Master’s Word, not only in the provinces but all over the place. The news of your faith in God is out. We don’t even have to say anything anymore—you’re the message! People come up and tell us how you received us with open arms, how you deserted the dead idols of your old life so you could embrace and serve God, the true God. They marvel at how expectantly you await the arrival of his Son, whom he raised from the dead—Jesus, who rescued us from certain doom."
         }
       ],
       "verse_count": 1,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Convictions of Steel"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1TH.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1TH.1.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -40,9 +69,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1TH/1-2d194ac1881d62663b583a1ba74a5fb5.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1TH.1.MSG",
+        "reference": {
+          "usfm": [
+            "1TH.1"
+          ],
+          "human": "1 Thessalonians 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "COL.4"
+          ],
+          "human": "Colossians 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.2"
+          ],
+          "human": "1 Thessalonians 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 2,
       "chapter_usfm": "1TH.2",
@@ -51,6 +137,8 @@
       "verses": [
         {
           "verse": 13,
+          "usfm": "1TH.2.13",
+          "line_type": "p",
           "text": "And now we look back on all this and thank God, a geyser of thanks! When you got the Message of God we preached, you didn’t pass it off as just one more human opinion, but you took it to heart as God’s true word to you, which it is, God himself at work in you believers! Friends, do you realize that you followed in the exact footsteps of the churches of God in Judea, those who were the first to follow in the footsteps of Jesus Christ? You got the same bad treatment from your countrymen as they did from theirs, the Jews who killed the Master Jesus (to say nothing of the prophets) and followed it up by running us out of town. They make themselves offensive to God and everyone else by trying to keep us from telling people who’ve never heard of our God how to be saved. They’ve made a career of opposing God, and have gotten mighty good at it. But God is fed up, ready to put an end to it.* * * Do you have any idea how very homesick we became for you, dear friends? Even though it hadn’t been that long and it was only our bodies that were separated from you, not our hearts, we tried our very best to get back to see you. You can’t imagine how much we missed you! I, Paul, tried over and over to get back, but Satan thwarted us each time. Who do you think we’re going to be proud of when our Master Jesus appears if it’s not you? You’re our pride and joy!"
         }
       ],
@@ -62,6 +150,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "1TH.2.13"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "1TH.2.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -72,9 +186,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1TH/2-3c677dca3cb04307a4e6ee9eb8ca72ba.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1TH.2.MSG",
+        "reference": {
+          "usfm": [
+            "1TH.2"
+          ],
+          "human": "1 Thessalonians 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.1"
+          ],
+          "human": "1 Thessalonians 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.3"
+          ],
+          "human": "1 Thessalonians 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 3,
       "chapter_usfm": "1TH.3",
@@ -84,6 +255,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -94,9 +266,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1TH/3-4b40499ca6e113a2f8f74393ce802f5b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1TH.3.MSG",
+        "reference": {
+          "usfm": [
+            "1TH.3"
+          ],
+          "human": "1 Thessalonians 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.2"
+          ],
+          "human": "1 Thessalonians 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.4"
+          ],
+          "human": "1 Thessalonians 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 4,
       "chapter_usfm": "1TH.4",
@@ -105,17 +334,45 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "1TH.4.8",
+          "line_type": "p",
           "text": "If you disregard this advice, you’re not offending your neighbors; you’re rejecting God, who is making you a gift of his Holy Spirit. Regarding life together and getting along with each other, you don’t need me to tell you what to do. You’re God-taught in these matters. Just love one another! You’re already good at it; your friends all over the province of Macedonia are the evidence. Keep it up; get better and better at it. Stay calm; mind your own business; do your own job. You’ve heard all this from us before, but a reminder never hurts. We want you living in a way that will command the respect of outsiders, not lying around sponging off your friends. And regarding the question, friends, that has come up about what happens to those already dead and buried, we don’t want you in the dark any longer. First off, you must not carry on over them like people who have nothing to look forward to, as if the grave were the last word. Since Jesus died and broke loose from the grave, God will most certainly bring back to life those who died in Jesus. And then this: We can tell you with complete confidence—we have the Master’s word on it—that when the Master comes again to get us, those of us who are still alive will not get a jump on the dead and leave them behind. In actual fact, they’ll be ahead of us. The Master himself will give the command. Archangel thunder! God’s trumpet blast! He’ll come down from heaven and the dead in Christ will rise—they’ll go first. Then the rest of us who are still alive at the time will be caught up with them into the clouds to meet the Master. Oh, we’ll be walking on air! And then there will be one huge family reunion with the Master. So reassure one another with these words."
         }
       ],
       "verse_count": 1,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "The Master’s Coming"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "1TH.4.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "1TH.4.8"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -126,9 +383,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1TH/4-590aff0182dcb28a7d7363e32ffdbb82.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1TH.4.MSG",
+        "reference": {
+          "usfm": [
+            "1TH.4"
+          ],
+          "human": "1 Thessalonians 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.3"
+          ],
+          "human": "1 Thessalonians 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.5"
+          ],
+          "human": "1 Thessalonians 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 5,
       "chapter_usfm": "1TH.5",
@@ -137,6 +451,8 @@
       "verses": [
         {
           "verse": 28,
+          "usfm": "1TH.5.28",
+          "line_type": "p",
           "text": "The amazing grace of Jesus Christ be with you!"
         }
       ],
@@ -148,6 +464,20 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "1TH.5.28"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -158,7 +488,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/1TH/5-30a45a8080558d64bf11d024d7f3af33.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/1TH.5.MSG",
+        "reference": {
+          "usfm": [
+            "1TH.5"
+          ],
+          "human": "1 Thessalonians 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.4"
+          ],
+          "human": "1 Thessalonians 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TH.1"
+          ],
+          "human": "2 Thessalonians 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

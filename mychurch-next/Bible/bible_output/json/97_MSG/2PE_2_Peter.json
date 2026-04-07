@@ -11,6 +11,7 @@
   "total_verses": 2,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "2PE",
       "chapter": 1,
       "chapter_usfm": "2PE.1",
@@ -29,6 +30,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -39,9 +41,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2PE/1-ab03937a2c2ad6c13079e58dee57561d.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/2PE.1.MSG",
+        "reference": {
+          "usfm": [
+            "2PE.1"
+          ],
+          "human": "2 Peter 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1PE.5"
+          ],
+          "human": "1 Peter 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2PE.2"
+          ],
+          "human": "2 Peter 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2PE",
       "chapter": 2,
       "chapter_usfm": "2PE.2",
@@ -50,17 +109,45 @@
       "verses": [
         {
           "verse": 9,
+          "usfm": "2PE.2.9",
+          "line_type": "p",
           "text": "So God knows how to rescue the godly from evil trials. And he knows how to hold the feet of the wicked to the fire until Judgment Day. God is especially incensed against these “teachers” who live by lust, addicted to a filthy existence. They despise interference from true authority, preferring to indulge in self-rule. Insolent egotists, they don’t hesitate to speak evil against the most splendid of creatures. Even angels, their superiors in every way, wouldn’t think of throwing their weight around like that, trying to slander others before God. These people are nothing but brute beasts, born in the wild, predators on the prowl. In the very act of bringing down others with their ignorant blasphemies, they themselves will be brought down, losers in the end. Their evil will boomerang on them. They’re so despicable and addicted to pleasure that they indulge in wild parties, carousing in broad daylight. They’re obsessed with adultery, compulsive in sin, seducing every vulnerable soul they come upon. Their specialty is greed, and they’re experts at it. Dead souls! They’ve left the main road and are directionless, having taken the way of Balaam, son of Beor, the prophet who turned profiteer, a connoisseur of evil. But Balaam was stopped in his wayward tracks: A dumb animal spoke in a human voice and prevented the prophet’s craziness. There’s nothing to these people—they’re dried-up fountains, storm-scattered clouds, headed for a black hole in hell. They are loudmouths, full of hot air, but still they’re dangerous. Men and women who have recently escaped from a deviant life are most susceptible to their brand of seduction. They promise these newcomers freedom, but they themselves are slaves of corruption, for if they’re addicted to corruption—and they are—they’re enslaved. If they’ve escaped from the slum of sin by experiencing our Master and Savior, Jesus Christ, and then slid back into that same old life again, they’re worse than if they had never left. Better not to have started out on the straight road to God than to start out and then turn back, repudiating the experience and the holy command. They prove the point of the proverbs, “A dog goes back to its own vomit” and “A scrubbed-up pig heads for the mud.”"
         }
       ],
       "verse_count": 1,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Predators on the Prowl"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "2PE.2.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "2PE.2.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -71,9 +158,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2PE/2-2f0108c09e4d614f3d5a66ca694e52cf.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/2PE.2.MSG",
+        "reference": {
+          "usfm": [
+            "2PE.2"
+          ],
+          "human": "2 Peter 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2PE.1"
+          ],
+          "human": "2 Peter 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2PE.3"
+          ],
+          "human": "2 Peter 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "2PE",
       "chapter": 3,
       "chapter_usfm": "2PE.3",
@@ -82,6 +226,8 @@
       "verses": [
         {
           "verse": 10,
+          "usfm": "2PE.3.10",
+          "line_type": "p",
           "text": "But when the Day of God’s Judgment does come, it will be unannounced, like a thief. The sky will collapse with a thunderous bang, everything disintegrating in a raging inferno, earth and all its works exposed to the scrutiny of Judgment. Since everything here today might well be gone tomorrow, do you see how essential it is to live a holy life? Daily expect the Day of God, eager for its arrival. The galaxies will burn up and the elements melt down that day—but we’ll hardly notice. We’ll be looking the other way, ready for the promised new heavens and the promised new earth, all landscaped with righteousness.* * * So, my dear friends, since this is what you have to look forward to, do your very best to be found living at your best, in purity and peace. Interpret our Master’s patient restraint for what it is: salvation. Our good brother Paul, who was given much wisdom in these matters, refers to this in all his letters, and has written you essentially the same thing. Some things Paul writes are difficult to understand. Irresponsible people who don’t know what they are talking about twist them every which way. They do it to the rest of the Scriptures, too, destroying themselves as they do it. But you, friends, are well-warned. Be on guard lest you lose your footing and get swept off your feet by these lawless and loose-talking teachers. Grow in grace and understanding of our Master and Savior, Jesus Christ.Glory to the Master, now and forever! Yes!"
         }
       ],
@@ -93,6 +239,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "2PE.3.10"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "2PE.3.10"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -103,7 +275,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/2PE/3-ba86c521e10f62de7ff5fe56d56c4d04.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/2PE.3.MSG",
+        "reference": {
+          "usfm": [
+            "2PE.3"
+          ],
+          "human": "2 Peter 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2PE.2"
+          ],
+          "human": "2 Peter 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1JN.1"
+          ],
+          "human": "1 John 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

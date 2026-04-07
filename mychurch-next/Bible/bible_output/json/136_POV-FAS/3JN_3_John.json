@@ -1,0 +1,201 @@
+{
+  "book_id": "3JN",
+  "book_name_en": "3 John",
+  "book_name_fa": "سوم یوحنا",
+  "testament": "NT",
+  "version_id": 136,
+  "version_abbr": "POV",
+  "version_name": "ترجمۀ قدیم",
+  "language": "fa",
+  "chapter_count": 1,
+  "total_verses": 13,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "3JN",
+      "chapter": 1,
+      "chapter_usfm": "3JN.1",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "3JN.1.1",
+          "line_type": "p",
+          "text": "من که پیرم، به غایس حبیب که او را در راستی محبت مینمایم."
+        },
+        {
+          "verse": 2,
+          "usfm": "3JN.1.2",
+          "line_type": "p",
+          "text": "ای حبیب، دعا میکنم که در هر وجه کامیاب و تندرست بوده باشی، چنانکه جان توکامیاب است."
+        },
+        {
+          "verse": 3,
+          "usfm": "3JN.1.3",
+          "line_type": "p",
+          "text": "زیرا که بسیار شاد شدم چون برادران آمدند و بر راستی تو شهادت دادند، چنانکه تو در راستی سلوک مینمایی."
+        },
+        {
+          "verse": 4,
+          "usfm": "3JN.1.4",
+          "line_type": "p",
+          "text": "مرا بیش از این شادی نیست که بشنوم که فرزندانم درراستی سلوک مینمایند."
+        },
+        {
+          "verse": 5,
+          "usfm": "3JN.1.5",
+          "line_type": "p",
+          "text": "ای حبیب، آنچه میکنی به برادران خصوص به غریبان، به امانت میکنی،"
+        },
+        {
+          "verse": 6,
+          "usfm": "3JN.1.6",
+          "line_type": "p",
+          "text": "که در حضور کلیسا بر محبت توشهادت دادند و هرگاه ایشان را بطور شایسته خدابدرقه کنی، نیکویی مینمایی زیرا که بجهت اسم او بیرون رفتند و از امتها چیزی نمی گیرند."
+        },
+        {
+          "verse": 7,
+          "usfm": "3JN.1.7",
+          "line_type": "p",
+          "text": "پس بر ما واجب است که چنین اشخاص را بپذیریم تاشریک راستی بشویم."
+        },
+        {
+          "verse": 8,
+          "usfm": "3JN.1.8",
+          "line_type": "p",
+          "text": "به کلیسا چیزی نوشتم لکن دیوترفیس که سرداری بر ایشان را دوست میدارد ما را قبول نمی کند."
+        },
+        {
+          "verse": 9,
+          "usfm": "3JN.1.9",
+          "line_type": "p",
+          "text": "لهذا اگر آیم کارهایی را که او میکندبه یاد خواهم آورد زیرا به سخنان ناشایسته برما یاوهگویی میکند و به این قانع نشده، برادران را خود نمی پذیرد و کسانی را نیز که میخواهند، مانع ایشان میشود و از کلیسا بیرون میکند."
+        },
+        {
+          "verse": 10,
+          "usfm": "3JN.1.10",
+          "line_type": "p",
+          "text": "ای حبیب به بدی اقتدا منما بلکه به نیکویی زیرا نیکوکردار از خداست و بدکردار خدا راندیده است."
+        },
+        {
+          "verse": 11,
+          "usfm": "3JN.1.11",
+          "line_type": "p",
+          "text": "همه مردم و خود راستی نیز بردیمتریوس شهادت میدهند و ما هم شهادت میدهیم و آگاهید که شهادت ما راست است."
+        },
+        {
+          "verse": 12,
+          "usfm": "3JN.1.12",
+          "line_type": "p",
+          "text": "مرا چیزهای بسیار بود که به تو بنویسم، لکن نمی خواهم به مرکب و قلم به تو بنویسم."
+        },
+        {
+          "verse": 13,
+          "usfm": "3JN.1.13",
+          "line_type": "p",
+          "text": "لکن امیدوارم که به زودی تو را خواهم دید وزبانی گفتگو کنیم."
+        }
+      ],
+      "verse_count": 13,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 13,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "3JN.1.1",
+            "3JN.1.10",
+            "3JN.1.11",
+            "3JN.1.12",
+            "3JN.1.13",
+            "3JN.1.2",
+            "3JN.1.3",
+            "3JN.1.4",
+            "3JN.1.5",
+            "3JN.1.6",
+            "3JN.1.7",
+            "3JN.1.8",
+            "3JN.1.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/3JN.1.POV",
+        "reference": {
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "۳یوحنا 1",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "۲یوحنا 1",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "یهودا 1",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

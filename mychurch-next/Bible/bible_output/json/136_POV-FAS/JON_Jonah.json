@@ -1,0 +1,722 @@
+{
+  "book_id": "JON",
+  "book_name_en": "Jonah",
+  "book_name_fa": "یونس",
+  "testament": "OT",
+  "version_id": 136,
+  "version_abbr": "POV",
+  "version_name": "ترجمۀ قدیم",
+  "language": "fa",
+  "chapter_count": 4,
+  "total_verses": 47,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "JON",
+      "chapter": 1,
+      "chapter_usfm": "JON.1",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "JON.1.1",
+          "line_type": "p",
+          "text": "و کلام خداوند بر یونس بن امتای نازل شده، گفت:"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.1.2",
+          "line_type": "p",
+          "text": "«برخیز و به نینوا شهر بزرگ برو و بر آن ندا کن زیرا که شرارت ایشان به حضورمن برآمده است.»"
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.1.3",
+          "line_type": "p",
+          "text": "اما یونس برخاست تا از حضور خداوند به ترشیش فرار کند و به یافا فرود آمده، کشتیای یافت که عازم ترشیش بود. پس کرایهاش را داده، سوار شد تا همراه ایشان از حضور خداوند به ترشیش برود."
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.1.4",
+          "line_type": "p",
+          "text": "و خداوند باد شدیدی بر دریاوزانید که تلاطم عظیمی در دریا پدید آمدچنانکه نزدیک بود که کشتی شکسته شود."
+        },
+        {
+          "verse": 5,
+          "usfm": "JON.1.5",
+          "line_type": "p",
+          "text": "وملاحان ترسان شده، هر کدام نزد خدای خوداستغاثه نمودند و اسباب را که در کشتی بود به دریا ریختند تا آن را برای خود سبک سازند. امایونس در اندرون کشتی فرود شده، دراز شد وخواب سنگینی او را در ربود."
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.1.6",
+          "line_type": "p",
+          "text": "و ناخدای کشتی نزد او آمده، وی را گفت: «ای که خفتهای تو را چه شده است؟ برخیز وخدای خود را بخوان شاید که خدا ما را بخاطرآورد تا هلاک نشویم.»"
+        },
+        {
+          "verse": 7,
+          "usfm": "JON.1.7",
+          "line_type": "p",
+          "text": "و به یکدیگر گفتند: «بیایید قرعه بیندازیم تا بدانیم که این بلا بهسبب چه کس بر ما وارد شده است؟» پس چون قرعه انداختند، قرعه به نام یونس درآمد."
+        },
+        {
+          "verse": 8,
+          "usfm": "JON.1.8",
+          "line_type": "p",
+          "text": "پس او راگفتند: «ما را اطلاع ده که این بلا بهسبب چه کس بر ما عارض شده؟ شغل تو چیست و از کجا آمدهای و وطنت کدام است و از چه قوم هستی؟»"
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.1.9",
+          "line_type": "p",
+          "text": "او ایشان را جواب داد که: «من عبرانی هستم و ازیهوه خدای آسمان که دریا و خشکی را آفریده است ترسان میباشم.»"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.1.10",
+          "line_type": "p",
+          "text": "پس آن مردمان سختترسان شدند و او را گفتند: «چه کردهای؟» زیرا که ایشان میدانستند که از حضور خداوند فرار کرده است چونکه ایشان را اطلاع داده بود."
+        },
+        {
+          "verse": 11,
+          "usfm": "JON.1.11",
+          "line_type": "p",
+          "text": "و او راگفتند: «با تو چه کنیم تا دریا برای ما ساکن شود؟» زیرا دریا در تلاطم همی افزود."
+        },
+        {
+          "verse": 12,
+          "usfm": "JON.1.12",
+          "line_type": "p",
+          "text": "او به ایشان گفت: «مرا برداشته، به دریا بیندازید ودریا برای شما ساکن خواهد شد، زیرا میدانم این تلاطم عظیم بهسبب من بر شما وارد آمده است."
+        },
+        {
+          "verse": 13,
+          "usfm": "JON.1.13",
+          "line_type": "p",
+          "text": "اما آن مردمان سعی نمودند تا کشتی را به خشکی برسانند اما نتوانستند زیرا که دریا به ضدایشان زیاده و زیاده تلاطم مینمود."
+        },
+        {
+          "verse": 14,
+          "usfm": "JON.1.14",
+          "line_type": "p",
+          "text": "پس نزدیهوه دعا کرده، گفتند: «آهای خداوند بهخاطرجان این شخص هلاک نشویم و خون بیگناه را برما مگذار زیرا توای خداوند هرچه میخواهی میکنی.»"
+        },
+        {
+          "verse": 15,
+          "usfm": "JON.1.15",
+          "line_type": "p",
+          "text": "پس یونس را برداشته، در دریاانداختند و دریا از تلاطمش آرام شد."
+        },
+        {
+          "verse": 16,
+          "usfm": "JON.1.16",
+          "line_type": "p",
+          "text": "و آن مردمان از خداوند سختترسان شدند و برای خداوند قربانیها گذرانیدند و نذرها نمودند."
+        },
+        {
+          "verse": 17,
+          "usfm": "JON.1.17",
+          "line_type": "p",
+          "text": "واما خداوند ماهی بزرگی پیدا کرد که یونس را فروبرد و یونس سه روز و سه شب در شکم ماهی ماند."
+        }
+      ],
+      "verse_count": 17,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 17,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "JON.1.1",
+            "JON.1.10",
+            "JON.1.11",
+            "JON.1.12",
+            "JON.1.13",
+            "JON.1.14",
+            "JON.1.15",
+            "JON.1.16",
+            "JON.1.17",
+            "JON.1.2",
+            "JON.1.3",
+            "JON.1.4",
+            "JON.1.5",
+            "JON.1.6",
+            "JON.1.7",
+            "JON.1.8",
+            "JON.1.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/JON.1.POV",
+        "reference": {
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "یونس 1",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "OBA.1"
+          ],
+          "human": "عوبدیا 1",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "یونس 2",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "JON",
+      "chapter": 2,
+      "chapter_usfm": "JON.2",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "JON.2.1",
+          "line_type": "p",
+          "text": "و یونس از شکم ماهی نزد یهوه خدای خود دعا نمود"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.2.2",
+          "line_type": "p",
+          "text": "و گفت: «در تنگی خودخداوند را خواندم و مرا مستجاب فرمود. ازشکم هاویه تضرع نمودم و آواز مرا شنیدی."
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.2.3",
+          "line_type": "p",
+          "text": "زیرا که مرا به ژرفی در دل دریاها انداختی وسیلها مرا احاطه نمود. جمیع خیزابها و موجهای تو بر من گذشت."
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.2.4",
+          "line_type": "p",
+          "text": "و من گفتم از پیش چشم توانداخته شدم. لیکن هیکل قدس تو را باز خواهم دید."
+        },
+        {
+          "verse": 5,
+          "usfm": "JON.2.5",
+          "line_type": "p",
+          "text": "آبها مرا تا بهجان احاطه نمود و لجه دورمرا گرفت و علف دریا بسر من پیچیده شد."
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.2.6",
+          "line_type": "p",
+          "text": "به بنیان کوهها فرود رفتم و زمین به بندهای خود تا به ابد مرا درگرفت. اما توای یهوه خدایم حیات مرااز حفره برآوردی."
+        },
+        {
+          "verse": 7,
+          "usfm": "JON.2.7",
+          "line_type": "p",
+          "text": "چون جان من در اندرونم بیتاب شد، خداوند را بیاد آوردم و دعای من نزدتو به هیکل قدست رسید."
+        },
+        {
+          "verse": 8,
+          "usfm": "JON.2.8",
+          "line_type": "p",
+          "text": "آنانی که اباطیل دروغ را منظور میدارند، احسان های خویش را ترک مینمایند."
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.2.9",
+          "line_type": "p",
+          "text": "اما من به آواز تشکر برای تو قربانی خواهم گذرانید، و به آنچه نذر کردم وفا خواهم نمود. نجات از آن خداوند است.»"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.2.10",
+          "line_type": "p",
+          "text": "پس خداوند ماهی را امر فرمود و یونس را بر خشکی قی کرد."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 10,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.2.1",
+            "JON.2.10",
+            "JON.2.2",
+            "JON.2.3",
+            "JON.2.4",
+            "JON.2.5",
+            "JON.2.6",
+            "JON.2.7",
+            "JON.2.8",
+            "JON.2.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/JON.2.POV",
+        "reference": {
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "یونس 2",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "یونس 1",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "یونس 3",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "JON",
+      "chapter": 3,
+      "chapter_usfm": "JON.3",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "JON.3.1",
+          "line_type": "p",
+          "text": "پس کلام خداوند بار دوم بر یونس نازل شده، گفت:"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.3.2",
+          "line_type": "p",
+          "text": "«برخیز و به نینوا شهر بزرگ برو و آن وعظ را که من به تو خواهم گفت به ایشان ندا کن.»"
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.3.3",
+          "line_type": "p",
+          "text": "آنگاه یونس برخاسته، برحسب فرمان خداوند به نینوا رفت و نینوا شهر بزرگ بود که مسافت سه روز داشت."
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.3.4",
+          "line_type": "p",
+          "text": "و یونس به مسافت یک روز داخل شهر شده، به ندا کردن شروع نمود وگفت بعد از چهل روز نینوا سرنگون خواهد شد."
+        },
+        {
+          "verse": 5,
+          "usfm": "JON.3.5",
+          "line_type": "p",
+          "text": "و مردمان نینوا به خدا ایمان آوردند و روزه راندا کرده، از بزرگ تا کوچک پلاس پوشیدند."
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.3.6",
+          "line_type": "p",
+          "text": "و چون پادشاه نینوا از این امر اطلاع یافت، ازکرسی خود برخاسته، ردای خود را از برکند وپلاس پوشیده، بر خاکستر نشست."
+        },
+        {
+          "verse": 7,
+          "usfm": "JON.3.7",
+          "line_type": "p",
+          "text": "و پادشاه واکابرش فرمان دادند تا در نینوا ندا دردادند وامرفرموده، گفتند که «مردمان و بهایم و گاوان وگوسفندان چیزی نخورند و نچرند و آب ننوشند."
+        },
+        {
+          "verse": 8,
+          "usfm": "JON.3.8",
+          "line_type": "p",
+          "text": "و مردمان و بهایم به پلاس پوشیده شوند و نزدخدا بشدت استغاثه نمایند و هرکس از راه بدخود و از ظلمی که در دست او است بازگشت نماید."
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.3.9",
+          "line_type": "p",
+          "text": "کیست بداند که شاید خدا برگشته، پشیمان شود و از حدت خشم خود رجوع نمایدتا هلاک نشویم.»"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.3.10",
+          "line_type": "p",
+          "text": "پس چون خدا اعمال ایشان را دید که از راه زشت خود بازگشت نمودند، آنگاه خدا از بلایی که گفته بود که به ایشان برساند پشیمان گردید وآن را بعمل نیاورد."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 10,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.3.1",
+            "JON.3.10",
+            "JON.3.2",
+            "JON.3.3",
+            "JON.3.4",
+            "JON.3.5",
+            "JON.3.6",
+            "JON.3.7",
+            "JON.3.8",
+            "JON.3.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/JON.3.POV",
+        "reference": {
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "یونس 3",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "یونس 2",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "یونس 4",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "JON",
+      "chapter": 4,
+      "chapter_usfm": "JON.4",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "JON.4.1",
+          "line_type": "p",
+          "text": "اما این امر یونس را به غایت ناپسند آمد وغیظش افروخته شد،"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.4.2",
+          "line_type": "p",
+          "text": "و نزد خداوند دعانموده، گفت: «آهای خداوند، آیا این سخن من نبود حینی که در ولایت خود بودم و از این سبب به فرار کردن به ترشیش مبادرت نمودم زیرامی دانستم که تو خدای کریم و رحیم و دیر غضب و کثیر احسان هستی و از بلا پشیمان میشوی؟"
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.4.3",
+          "line_type": "p",
+          "text": "پس حالای خداوند جانم را از من بگیر زیرا که مردن از زنده ماندن برای من بهتر است.»"
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.4.4",
+          "line_type": "p",
+          "text": "خداوندگفت: «آیا صواب است که خشمناک شوی؟»"
+        },
+        {
+          "verse": 5,
+          "usfm": "JON.4.5",
+          "line_type": "p",
+          "text": "و یونس از شهر بیرون رفته، بطرف شرقی شهر نشست و در آنجا سایه بانی برای خودساخته زیر سایهاش نشست تا ببیند بر شهرچه واقع خواهد شد."
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.4.6",
+          "line_type": "p",
+          "text": "و یهوه خدا کدویی رویانید وآن را بالای یونس نمو داد تا بر سر وی سایه افکنده، او را از حزنش آسایش دهد و یونس ازکدو بینهایت شادمان شد."
+        },
+        {
+          "verse": 7,
+          "usfm": "JON.4.7",
+          "line_type": "p",
+          "text": "اما در فردای آن روزدر وقت طلوع فجر خدا کرمی پیدا کرد که کدو رازد و خشک شد."
+        },
+        {
+          "verse": 8,
+          "usfm": "JON.4.8",
+          "line_type": "p",
+          "text": "و چون آفتاب برآمد خدا بادشرقی گرم وزانید و آفتاب بر سر یونس تابید به حدی که بیتاب شده، برای خود مسالت نمود که بمیرد و گفت: «مردن از زنده ماندن برای من بهتراست.»"
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.4.9",
+          "line_type": "p",
+          "text": "خدا به یونس جواب داد: «آیا صواب است که به جهت کدو غضبناک شوی؟» او گفت: «صواب است که تا به مرگ غضبناک شوم.»"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.4.10",
+          "line_type": "p",
+          "text": "خداوند گفت: «دل تو برای کدو بسوخت که برای آن زحمت نکشیدی و آن را نمو ندادی که در یک شب بوجود آمد و در یک شب ضایع گردید."
+        }
+      ],
+      "verse_count": 10,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 10,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.4.1",
+            "JON.4.10",
+            "JON.4.2",
+            "JON.4.3",
+            "JON.4.4",
+            "JON.4.5",
+            "JON.4.6",
+            "JON.4.7",
+            "JON.4.8",
+            "JON.4.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/JON.4.POV",
+        "reference": {
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "یونس 4",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "یونس 3",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "میکا 1",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

@@ -11,6 +11,7 @@
   "total_verses": 105,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 1,
       "chapter_usfm": "MIC.1",
@@ -19,81 +20,943 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.1.1",
+          "line_type": "p",
           "text": "کلام خداوند که در ایام یوتام و آحاز و حِزِقیا، پادشاهان یهودا، بر میکاهِ مورِشِتی نازل شد و آن را دربارۀ سامِرِه و اورشلیم دید:"
         },
         {
           "verse": 2,
+          "usfm": "MIC.1.2",
+          "line_type": "q1",
           "text": "ای همۀ قومها، بشنوید،و ای زمین و هرآنچه در آن است، گوش فرا دهید؛خداوندگارْ یهوه بر شما شاهد باشد،آری، خداوندگار از معبد مقدسش بر شما شهادت دهد."
         },
         {
           "verse": 3,
+          "usfm": "MIC.1.3",
+          "line_type": "q1",
           "text": "زیرا هان خداوند از مکان خویش بیرون می‌آید؛او نزول کرده، بر بلندیهای زمین می‌خرامد."
         },
         {
           "verse": 4,
+          "usfm": "MIC.1.4",
+          "line_type": "q1",
           "text": "کوهها زیر او گداخته می‌شود،و درّه‌ها شکافته می‌گردد،همچون موم در برابر آتش،و مانند آبی که در سراشیبی ریخته شود."
         },
         {
           "verse": 5,
+          "usfm": "MIC.1.5",
+          "line_type": "q1",
           "text": "این‌همه به سبب عِصیان یعقوبو گناهان خاندان اسرائیل است.عِصیان یعقوب چیست؟آیا سامِرِه نیست؟و مکانهای بلند یهودا کدام است؟آیا اورشلیم نیست؟"
         },
         {
           "verse": 6,
+          "usfm": "MIC.1.6",
+          "line_type": "q1",
           "text": "پس سامِرِه را به ویرانه‌ای در صحرا بدل خواهم کرد،و به مکانی برای غرس تاکستانها؛سنگهایش را به وادی خواهم ریخت،و بنیانش را منکشف خواهم کرد."
         },
         {
           "verse": 7,
+          "usfm": "MIC.1.7",
+          "line_type": "q1",
           "text": "همۀ تمثالهای تراشیده‌اش خرد خواهد شد،همۀ مزدهایش در آتش خواهد سوخت،و همۀ بتهایش را نابود خواهم کرد.زیرا آنها را از مزد فاحشگی اندوخته است،پس به مزد فاحشگی نیز برگردانیده خواهند شد."
         },
         {
           "verse": 8,
+          "usfm": "MIC.1.8",
+          "line_type": "q1",
           "text": "از این رو ماتم و شیون خواهم کرد،و پایْ‌برهنه و عریان راه خواهم رفت.مانند شغالها ماتم خواهم کرد،و همچون شتر‌مرغان نوحه‌گری خواهم نمود."
         },
         {
           "verse": 9,
+          "usfm": "MIC.1.9",
+          "line_type": "q1",
           "text": "زیرا جراحات سامِرِه علاج‌ناپذیر استو تا به یهودا رسیده؛حتی به دروازۀ قوم من،یعنی به اورشلیم نزدیک شده است."
         },
         {
           "verse": 10,
+          "usfm": "MIC.1.10",
+          "line_type": "q1",
           "text": "این را در جَت اعلام مکنید،و به هیچ وجه گریه منمایید.در بِیت‌عَفرَه،در خاک بغلطید."
         },
         {
           "verse": 11,
+          "usfm": "MIC.1.11",
+          "line_type": "q1",
           "text": "ای که در شافیر ساکنی،عریان و شرمگین، بگذر.ساکنان صَئانانبیرون نمی‌آیند؛ بِیت‌ایصِل ماتم می‌کند،و حمایتش را از شما برمی‌گیرد."
         },
         {
           "verse": 12,
+          "usfm": "MIC.1.12",
+          "line_type": "q1",
           "text": "ساکنانِ ماروت از فرط انتظار برای آسایش بیمار گشته‌اند،زیرا بلا از جانب خداوند بر دروازۀ اورشلیم نازل شده است."
         },
         {
           "verse": 13,
+          "usfm": "MIC.1.13",
+          "line_type": "q1",
           "text": "ای که در لاکیش ساکنی،اسبان تیزرو را به ارابه‌ها بربند!لاکیش آغاز گناه برای دختر صَهیون بود،زیرا عِصیان اسرائیل در تو یافت شد."
         },
         {
           "verse": 14,
+          "usfm": "MIC.1.14",
+          "line_type": "q1",
           "text": "پس هدایای خداحافظی به مورِشِت‌جَت پیشکش خواهی کرد؛خانه‌های اَکزیب امیدی کاذب برای پادشاهان اسرائیل خواهد بود."
         },
         {
           "verse": 15,
+          "usfm": "MIC.1.15",
+          "line_type": "q1",
           "text": "ای ساکنِ مَریشَه، من دیگر بار کسی را به تصرف تو خواهم فرستاد،و جلال اسرائیل به عَدُلّام خواهد آمد."
         },
         {
           "verse": 16,
+          "usfm": "MIC.1.16",
+          "line_type": "q1",
           "text": "موی سرت را بچین و خویشتن را به سبب فرزندان نازنینت بی‌مو ساز!سر خود را به گَریِ سَرِ کرکس گردان،زیرا ایشان از نزد تو به تبعید خواهند رفت."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "داوری بر سامِرِه و اورشلیم"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "MIC.1.5",
+          "note_ref": "1‏:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "اشاره به مراکز بت‌پرستی است که معمولاً در مکانهای بلند واقع بود."
+        },
+        {
+          "verse": 8,
+          "usfm": "MIC.1.8",
+          "note_ref": "1‏:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "یا ”جغدان“."
+        },
+        {
+          "verse": 10,
+          "usfm": "MIC.1.10",
+          "note_ref": "1‏:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "واژۀ ”جَت“ در عبری با فعل ”اعلام مکنید“ شباهت آوایی دارد."
+        },
+        {
+          "verse": 10,
+          "usfm": "MIC.1.10",
+          "note_ref": "1‏:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "”بِیت‌عَفرَه“ در عبری به معنی ”خانۀ خاک“ است."
+        },
+        {
+          "verse": 11,
+          "usfm": "MIC.1.11",
+          "note_ref": "1‏:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "”شافیر“ در عبری به معنی ”دلپذیر“ است."
+        },
+        {
+          "verse": 11,
+          "usfm": "MIC.1.11",
+          "note_ref": "1‏:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "”صَئانان“ با فعل عبری ”بیرون آمدن“ (یاصار) شباهت آوایی دارد."
+        },
+        {
+          "verse": 15,
+          "usfm": "MIC.1.15",
+          "note_ref": "1‏:15‏",
+          "note_type": "footnote",
+          "references": [],
+          "text": "”مَریشَه“ در عبری به معنی ”تصرف“ است."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.1.1",
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.1.2",
+            "MIC.1.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.1.3",
+            "MIC.1.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.1.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.1.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.1.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.1.4",
+            "MIC.1.5"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.1.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.1.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.1.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.1.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.1.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.1.5",
+            "MIC.1.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.1.6"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.1.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.1.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.1.6",
+            "MIC.1.7"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.1.7"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.1.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.1.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.1.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.1.7",
+            "MIC.1.8"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.1.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.1.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.1.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.1.8",
+            "MIC.1.9"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.1.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.1.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.1.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.1.10",
+            "MIC.1.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.1.10"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.1.10"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.1.10"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.1.10",
+            "MIC.1.11"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.1.11"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.1.11"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.1.11"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.1.11"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.1.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.1.11",
+            "MIC.1.12"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.1.12"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.1.12",
+            "MIC.1.13"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.1.13"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.1.13"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.1.13"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MIC.1.13",
+            "MIC.1.14"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MIC.1.14"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "MIC.1.14",
+            "MIC.1.15"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "MIC.1.15"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MIC.1.15",
+            "MIC.1.16"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.1.16"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.1.16"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/MIC.1.NMV",
+        "reference": {
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "میکاه 1",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "MIC.INTRO1"
+          ],
+          "human": "میکاه ‮معرفی کتاب میکاه‬",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "میکاه 2",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 2,
       "chapter_usfm": "MIC.2",
@@ -102,73 +965,779 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.2.1",
+          "line_type": "q1",
           "text": "وای بر آنان که نقشه‌های پلید می‌کشند،و بر بسترهای خویش شرارت را تدبیر می‌کنند.در روشنایی صبح آن را به عمل می‌آورند،زیرا قدرت انجامش را دارند."
         },
         {
           "verse": 2,
+          "usfm": "MIC.2.2",
+          "line_type": "q1",
           "text": "بر مزرعه‌ها طمع می‌ورزند و آنها را غصب می‌کنند؛بر خانه‌ها نیز، و آنها را به چنگ می‌آورند.بر مرد و اهل خانه‌اش ظلم می‌کنند،و بر آدمی و میراثش ستم روا می‌دارند."
         },
         {
           "verse": 3,
+          "usfm": "MIC.2.3",
+          "line_type": "q1",
           "text": "پس خداوند چنین می‌گوید:هان من بلایی بر ضد این خاندان تدبیر می‌کنمکه از آن جان به در نتوانید برد،و با گردن افراشته راه نخواهید رفت،زیرا آن زمان، زمان بلا خواهد بود."
         },
         {
           "verse": 4,
+          "usfm": "MIC.2.4",
+          "line_type": "q1",
           "text": "در آن روز بر شما طعنه خواهند زدو چون ماتمیان مرثیه خوانده، خواهند گفت:«به تمامی هلاک گشته‌ایم؛او نصیب قوم مرا تغییر داده است؛ببینید چگونه آن را از من دور می‌کند،و مزرعه‌های ما را میان مرتدان تقسیم می‌نماید!»"
         },
         {
           "verse": 5,
+          "usfm": "MIC.2.5",
+          "line_type": "q1",
           "text": "پس در جماعت خداوند کسی برای تو نخواهد بودکه به قرعه، زمین را با ریسمانِ اندازه‌گیری تقسیم کند."
         },
         {
           "verse": 6,
+          "usfm": "MIC.2.6",
+          "line_type": "q1",
           "text": "ایشان موعظه کرده، می‌گویند: «موعظه مکنید؛بدین چیزها موعظه نباید کرد؛رسوایی دامنگیر ما نخواهد شد.»"
         },
         {
           "verse": 7,
+          "usfm": "MIC.2.7",
+          "line_type": "q1",
           "text": "ای خاندان یعقوب، آیا درست است که گفته شود:مگر صبر خداوند به سر آمده است؟آیا اینها اعمال اوست؟آیا کلام او برای آن کس که به درستی گام بر‌دارد نیکو نیست؟"
         },
         {
           "verse": 8,
+          "usfm": "MIC.2.8",
+          "line_type": "q1",
           "text": "اما در ایام اخیر قوم من به دشمنی برخاسته‌اند؛شما ردای نفیس را از تن آنان که در امنیت ره می‌سپارند به در می‌آورید،از تن آنان که از جنگ بازمی‌گردند."
         },
         {
           "verse": 9,
+          "usfm": "MIC.2.9",
+          "line_type": "q1",
           "text": "زنانِ قوم مرا از خانه‌های باصفایشان بیرون می‌رانید،و فرزندان ایشان را تا به ابد از جلال من محروم می‌کنید."
         },
         {
           "verse": 10,
+          "usfm": "MIC.2.10",
+          "line_type": "q1",
           "text": "برخیزید و بروید،زیرا اینجا مکانی برای استراحت نیست،چراکه در آن نجاستی هستکه به بلایی مُهلِک هلاک می‌کند."
         },
         {
           "verse": 11,
+          "usfm": "MIC.2.11",
+          "line_type": "q1",
           "text": "اگر شخصی دروغگو و فریبکار از راه رسیده، بگوید:«من از شراب و مُسکِرات برایتان موعظه خواهم کرد‌،»او واعظ این قوم خواهد شد!"
         },
         {
           "verse": 12,
+          "usfm": "MIC.2.12",
+          "line_type": "q1",
           "text": "ای یعقوب، به‌یقین همۀ شما را گرد خواهم آورد؛و بی‌گمان باقیماندگان اسرائیل را جمع خواهم کرد.ایشان را همچون گوسفندان با هم در آغل خواهم نهاد،و همچون گله در میان چراگاهش،و زمین از هیاهوی مردمانِ بسیار، مملو خواهد شد."
         },
         {
           "verse": 13,
+          "usfm": "MIC.2.13",
+          "line_type": "q1",
           "text": "گشایندۀ راه، پیشاپیش آنان بر خواهد آمد؛آنان راه را گشوده، از دروازه خواهند گذشت و بیرون خواهند رفت.پادشاهشان پیشاپیش آنان خواهد رفت،و خداوند در رأس ایشان."
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "انبیای دروغین"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "وعدۀ رهایی"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 7,
+          "usfm": "MIC.2.7",
+          "note_ref": "2‏:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "در متن عبری ”من“ آمده است."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.2.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.2.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.2.1",
+            "MIC.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.2.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.2.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.2.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.2.2",
+            "MIC.2.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.2.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.2.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.2.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.2.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.2.3",
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.2.4"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.2.4",
+            "MIC.2.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.2.5"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.2.5",
+            "MIC.2.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.2.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.2.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.2.6",
+            "MIC.2.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.2.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.2.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.2.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.2.7",
+            "MIC.2.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.2.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.2.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.2.8",
+            "MIC.2.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.2.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.2.10",
+            "MIC.2.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.2.10"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.2.10"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.2.10"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.2.10",
+            "MIC.2.11"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.2.11"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.2.11"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.2.11",
+            "MIC.2.12"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.2.12"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.2.12"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.2.12"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.2.12"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.2.12",
+            "MIC.2.13"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.2.13"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.2.13"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.2.13"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/MIC.2.NMV",
+        "reference": {
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "میکاه 2",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "میکاه 1",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "میکاه 3",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 3,
       "chapter_usfm": "MIC.3",
@@ -177,60 +1746,818 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.3.1",
+          "line_type": "p",
           "text": "آنگاه گفتم:ای سران یعقوب،و ای حاکمان خاندان اسرائیل،بشنوید!آیا بر شما نیست که انصاف را به جا آرید؟"
         },
         {
           "verse": 2,
+          "usfm": "MIC.3.2",
+          "line_type": "q2",
           "text": "ای شما که از نیکویی بیزاریدو بدی را دوست می‌دارید؛پوست از تن قوم من می‌کَنید،و گوشت از استخوانهای ایشان."
         },
         {
           "verse": 3,
+          "usfm": "MIC.3.3",
+          "line_type": "q1",
           "text": "گوشتِ تن قوم مرا می‌خوریدو پوست از تنشان کنده،استخوانهایشان را خرد می‌کنید؛آنها را همچون گوشتِ داخل دیگ تکه تکه می‌کنید،آری، همچون گوشتِ درون پاتیل."
         },
         {
           "verse": 4,
+          "usfm": "MIC.3.4",
+          "line_type": "q1",
           "text": "پس نزد خداوند فریاد بر خواهند آورد،اما ایشان را اجابت نخواهد کرد،بلکه روی خود را در آن زمان از ایشان خواهد پوشانیدزیرا که شرارت ورزیده‌اند."
         },
         {
           "verse": 5,
+          "usfm": "MIC.3.5",
+          "line_type": "q1",
           "text": "خداوند دربارۀ انبیایی که قوم مرا گمراه می‌کنند چنین می‌گوید،دربارۀ آنان که چون خوراک فراوان دارند ندای ’صلح و سلامت‘ سر می‌دهند،اما اگر کسی طعامی در دهانشان نگذارد،به وی اعلام جنگ می‌کنند."
         },
         {
           "verse": 6,
+          "usfm": "MIC.3.6",
+          "line_type": "q1",
           "text": "پس برای شما شب خواهد بود،بدون هیچ رؤیایی،و ظلمت خواهد بود،بدون هیچ پیشگویی.آفتاب بر انبیا غروب خواهد کردو روز بر ایشان تاریک خواهد شد؛"
         },
         {
           "verse": 7,
+          "usfm": "MIC.3.7",
+          "line_type": "q1",
           "text": "رؤیابینانْ شرمسار خواهند گردید،و پیشگویان، رسوا خواهند گشت.جملگی روی خود را خواهند پوشانید،زیرا پاسخی از جانب خدا نخواهد بود."
         },
         {
           "verse": 8,
+          "usfm": "MIC.3.8",
+          "line_type": "q1",
           "text": "اما من به روح خداوند از قوّت پر گشته‌ام،از انصاف و توانایی؛تا یعقوب را از عِصیانش آگاه سازم،و اسرائیل را از گناهش."
         },
         {
           "verse": 9,
+          "usfm": "MIC.3.9",
+          "line_type": "q1",
           "text": "ای سران خاندان یعقوبو ای حاکمان خاندان اسرائیل،این را بشنوید!ای شما که از انصاف بیزاریدو هرآنچه را راست است، کج می‌سازید؛"
         },
         {
           "verse": 10,
+          "usfm": "MIC.3.10",
+          "line_type": "q1",
           "text": "که صَهیون را با خونریزیو اورشلیم را با شرارت بنا می‌کنید!"
         },
         {
           "verse": 11,
+          "usfm": "MIC.3.11",
+          "line_type": "q1",
           "text": "رهبرانش برای رشوهْ داوری می‌کنند،کاهنانش برای مزدْ تعلیم می‌دهند،و انبیایش برای پولْ پیشگویی می‌کنند؛و با این حال، بر خداوند تکیه کرده، می‌گویند:«آیا خداوند در میان ما نیست؟پس بلایی به ما نخواهد رسید.»"
         },
         {
           "verse": 12,
+          "usfm": "MIC.3.12",
+          "line_type": "q1",
           "text": "از این رو، به سبب شماصَهیون همچون مزرعه شیار خواهد شد؛اورشلیم به تَلی از ویرانه‌ها بدل خواهد گشت،و کوه خانۀ خدا به بلندیهای جنگل."
         }
       ],
       "verse_count": 12,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MIC.3.1",
+          "note_ref": "3‏:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "در متن عبری:‏ ”بشناسید“."
+        },
+        {
+          "verse": 12,
+          "usfm": "MIC.3.12",
+          "note_ref": "3‏:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "واژۀ ”خدا“ در متن عبری نیامده است."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.3.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.3.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.3.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.3.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.3.1",
+            "MIC.3.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.3.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.3.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.3.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.3.2",
+            "MIC.3.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.3.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.3.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.3.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.3.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.3.3",
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.3.4",
+            "MIC.3.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.3.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.3.5"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.3.5"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.3.5",
+            "MIC.3.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.3.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.3.6"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.3.6"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.3.6"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.3.6"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.3.6",
+            "MIC.3.7"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.3.7"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.3.7"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.3.7"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.3.7",
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.3.8",
+            "MIC.3.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.3.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.3.9"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.3.9"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.3.9"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.3.10",
+            "MIC.3.9"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.3.10"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.3.10",
+            "MIC.3.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.3.11"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.3.11"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.3.11"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.3.11"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.3.11"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.3.11",
+            "MIC.3.12"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.3.12"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.3.12"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.3.12"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 12,
+          "parsed_count": 12,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/MIC.3.NMV",
+        "reference": {
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "میکاه 3",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "میکاه 2",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "میکاه 4",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 4,
       "chapter_usfm": "MIC.4",
@@ -239,69 +2566,898 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.4.1",
+          "line_type": "q1",
           "text": "در ایام آخر واقع خواهد شدکه کوه خانۀ خداوندبالاتر از تمامی کوه‌ها استوار خواهد گردید،و فراتر از تپه‌ها برافراشته خواهد شد؛ملتها به سوی آن روان خواهند گشت"
         },
         {
           "verse": 2,
+          "usfm": "MIC.4.2",
+          "line_type": "q2",
           "text": "و قومهای بسیار آمده، خواهند گفت:«بیایید تا به کوه خداوند برویمو به خانۀ خدای یعقوب برآییم،تا راههای خویش را به ما تعلیم دهدو در طریقهای وی گام برداریم.»زیرا شریعت از صَهیون صادر خواهد شد،کلام خداوند از اورشلیم."
         },
         {
           "verse": 3,
+          "usfm": "MIC.4.3",
+          "line_type": "q1",
           "text": "او میان ملتهای بسیار داوری خواهد کردو منازعات قومهای نیرومند را تا دوردستها فیصل خواهد داد؛ایشان شمشیرهای خود را برای ساختن گاوآهن خواهند شکست،و نیزه‌های خویش را برای تهیۀ ابزار باغبانی؛دیگر قومی بر قوم دیگر شمشیر نخواهد کشید،و جنگاوری را دیگر نخواهند آموخت."
         },
         {
           "verse": 4,
+          "usfm": "MIC.4.4",
+          "line_type": "q1",
           "text": "هر یک زیر تاک خود خواهند نشست،زیر درخت انجیر خویش،و کسی هراسانشان نخواهد ساخت،چراکه دهان خداوندِ لشکرها سخن گفته است."
         },
         {
           "verse": 5,
+          "usfm": "MIC.4.5",
+          "line_type": "q1",
           "text": "زیرا همۀ قومها، هر یک به نام خدای خویش سالکند،اما ما به نام یهوه خدای خود سلوک خواهیم کرد، تا ابدالاباد."
         },
         {
           "verse": 6,
+          "usfm": "MIC.4.6",
+          "line_type": "q1",
           "text": "خداوند می‌فرماید:در آن روز لنگان و رانده‌شدگان را جمع خواهم کرد،و هر آن کس را که زده‌ام، گرد خواهم آورد؛"
         },
         {
           "verse": 7,
+          "usfm": "MIC.4.7",
+          "line_type": "q1",
           "text": "لنگان را ’باقیمانده‌ای‘ خواهم ساخت،طردشدگان را قومی نیرومند؛و خداوند در کوه صَهیون بر ایشان پادشاهی خواهد کرد،از حال تا به ابد."
         },
         {
           "verse": 8,
+          "usfm": "MIC.4.8",
+          "line_type": "q1",
           "text": "و اما تو، ای برج گَلّه،ای قلعۀ دخترِ صَهیون،این را باز خواهی یافت،و حاکمیت پیشین احیا خواهد شد،یعنی پادشاهی دختر اورشلیم."
         },
         {
           "verse": 9,
+          "usfm": "MIC.4.9",
+          "line_type": "q1",
           "text": "حال چرا فریاد برمی‌آوری؟آیا پادشاهی در تو نیست؟آیا مشاور تو هلاک گشته،که تو را دردی چون درد زن زائو درگرفته است؟"
         },
         {
           "verse": 10,
+          "usfm": "MIC.4.10",
+          "line_type": "q1",
           "text": "ای دختر صَهیون، ناله سر ده،و همچون زن زائو بر خود بپیچ.زیرا اکنون از شهر بیرون خواهی رفت،و در صحرا ساکن خواهی شد؛آری، به بابِل خواهی رفت؛اما در آنجا رهایی خواهی یافت؛خداوند در آنجا تو را از چنگ دشمنان خواهد رهانید."
         },
         {
           "verse": 11,
+          "usfm": "MIC.4.11",
+          "line_type": "q1",
           "text": "اکنون قومهای بسیاربر ضد تو گرد آمده‌اند و می‌گویند:«باشد که صَهیون بی‌حرمت گردد،و چشمان ما شادمانه بر او بنگرد.»"
         },
         {
           "verse": 12,
+          "usfm": "MIC.4.12",
+          "line_type": "q1",
           "text": "اما آنان اندیشه‌های خداوند را نمی‌دانند،و تدبیرهای او را درنمی‌یابند،که آنان را همچون بافه در خرمنگاه گرد آورده است."
         },
         {
           "verse": 13,
+          "usfm": "MIC.4.13",
+          "line_type": "q1",
           "text": "ای دختر صَهیون، بر پا شو و پایمال کن،زیرا شاخهای تو را آهنین خواهم ساختو سُمهایت را برنجین.تو قومهای بسیار را پایمال خواهی کرد؛منافع نامشروعشان را وقف خداوند خواهی نمود،و ثروتشان را وقف خداوندگار تمامی زمین."
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "نقشۀ خداوند"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.4.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.4.1",
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.4.2"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.4.2",
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.4.3"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.4.3",
+            "MIC.4.4"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.4.4"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.4.4"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.4.4"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.4.4",
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.4.5",
+            "MIC.4.6"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.4.6"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.4.6"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.4.6",
+            "MIC.4.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.4.7"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.4.7"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.4.7"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.4.7",
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.4.8",
+            "MIC.4.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.4.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.4.9"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.4.9"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.4.10",
+            "MIC.4.9"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.4.10"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.4.10"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.4.10"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.4.10"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.4.10"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.4.10"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.4.10",
+            "MIC.4.11"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.4.11"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.4.11"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.4.11"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.4.11",
+            "MIC.4.12"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.4.12"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.4.12"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.4.12",
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.4.13"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/MIC.4.NMV",
+        "reference": {
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "میکاه 4",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "میکاه 3",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "میکاه 5",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 5,
       "chapter_usfm": "MIC.5",
@@ -310,77 +3466,839 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.5.1",
+          "line_type": "q1",
           "text": "حال ای دختر افواج،فوجهای سربازانت را بسیج کن،زیرا به محاصره درآمده‌ایم.ایشان با عصای خویش،بر گونۀ حاکم اسرائیل می‌کوبند."
         },
         {
           "verse": 2,
+          "usfm": "MIC.5.2",
+          "line_type": "q1",
           "text": "اما تو، ای بِیت‌لِحِمِ اِفراتَه،گرچه در میان طوایف یهودا کوچکی،از تو کسی برای من بیرون خواهد آمدکه بر اسرائیل فرمانروایی خواهد کرد؛طلوع او از قدیمو از ایام ازل بوده است."
         },
         {
           "verse": 3,
+          "usfm": "MIC.5.3",
+          "line_type": "q1",
           "text": "پس ایشان را تسلیم خواهد کردتا زمانی که زن زائو بزاید؛آنگاه باقیماندۀ برادرانش به بنی‌اسرائیل باز خواهند گشت."
         },
         {
           "verse": 4,
+          "usfm": "MIC.5.4",
+          "line_type": "q1",
           "text": "و او خواهد ایستاد و گلۀ خود را شبانی خواهد کرد،به قوّت خداوند و در کبریاییِ نام یهوه خدای خویش.و آنان آرام و قرار خواهند یافت،زیرا اکنون او تا به کرانهای زمین بزرگ خواهد شد،"
         },
         {
           "verse": 5,
+          "usfm": "MIC.5.5",
+          "line_type": "q2",
           "text": "و صلح و سلامتِ ایشان خواهد بود.و چون آشوریان به سرزمین ما درآیند،و کاخهای ما را لگدمال کنند،در برابرشان هفت، بلکه هشت شبان و رهبر بر پا خواهیم داشت،"
         },
         {
           "verse": 6,
+          "usfm": "MIC.5.6",
+          "line_type": "q1",
           "text": "و ایشان به شمشیر بر سرزمین آشور فرمانروایی خواهند کرد،بر سرزمین نِمرود به شمشیر برهنه.و او ما را از آشور رهایی خواهد داد،آنگاه که به سرزمین ما درآیدو در حدود ما گام بردارد."
         },
         {
           "verse": 7,
+          "usfm": "MIC.5.7",
+          "line_type": "q1",
           "text": "آنگاه باقیماندگان یعقوب در میان ملتهای بسیارمانند شبنمی از جانب خداوند خواهند بود،و همچون بارشی بر سبزه‌ها؛که به انتظار انسان نمی‌نشیند،و منتظر بنی آدم نمی‌ماند."
         },
         {
           "verse": 8,
+          "usfm": "MIC.5.8",
+          "line_type": "q1",
           "text": "و باقیماندگانِ یعقوب در میان قومهاو در وسط ملتهای بسیار،مانند شیری خواهند بود میان جانوران جنگل،و همچون شیر ژیان در میان گله‌های گوسفندان،که چون می‌گذرد، پایمال می‌کند و می‌درَد،و کسی نیست که از چنگش برهاند."
         },
         {
           "verse": 9,
+          "usfm": "MIC.5.9",
+          "line_type": "q1",
           "text": "دست تو بر خصمانت بلند خواهد شدو دشمنانت جملگی منقطع خواهند گردید."
         },
         {
           "verse": 10,
+          "usfm": "MIC.5.10",
+          "line_type": "p",
           "text": "و خداوند می‌گوید:در آن روز اسبانت را از میانت منقطع خواهم ساخت،و ارابه‌هایت را نابود خواهم کرد."
         },
         {
           "verse": 11,
+          "usfm": "MIC.5.11",
+          "line_type": "q1",
           "text": "شهرهای سرزمین تو را از میان خواهم برد،و دژهایت را جملگی فرو خواهم ریخت؛"
         },
         {
           "verse": 12,
+          "usfm": "MIC.5.12",
+          "line_type": "q1",
           "text": "جادوگری را از دست تو بر خواهم چید،و دیگر هیچ فالگیری در تو یافت نخواهد شد."
         },
         {
           "verse": 13,
+          "usfm": "MIC.5.13",
+          "line_type": "q1",
           "text": "تمثالها و ستونهایت را از میانت منقطع خواهم ساخت،و دیگر در برابر صنعت دستان خود سَجده نخواهی کرد؛"
         },
         {
           "verse": 14,
+          "usfm": "MIC.5.14",
+          "line_type": "q1",
           "text": "اَشیرَه‌های تو را از میانت بر خواهم کَند،و شهرهایت را نابود خواهم ساخت."
         },
         {
           "verse": 15,
+          "usfm": "MIC.5.15",
+          "line_type": "q1",
           "text": "و از اقوامی که فرمان نمی‌برندبا خشم و غضب انتقام خواهم ستاند."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "باقیمانده‌ای رهایی خواهند یافت"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 14,
+          "usfm": "MIC.5.14",
+          "note_ref": "5‏:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "”اَشیرَه“ الهۀ باروری که پرستش آن با اعمال منافی عفت همراه بود."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.5.1",
+            "MIC.5.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.5.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.5.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.5.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.5.2"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.5.2"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.5.2",
+            "MIC.5.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.5.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.5.3"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.5.3",
+            "MIC.5.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.5.4"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.5.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.5.4"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.5.4",
+            "MIC.5.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.5.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.5.5"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.5.5"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.5.5",
+            "MIC.5.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.5.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.5.6"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.5.6"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.5.6"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.5.6",
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.5.7"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.5.7",
+            "MIC.5.8"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.5.8"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.5.8"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.5.8"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.5.8"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.5.8"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.5.8",
+            "MIC.5.9"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.5.9"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.5.10",
+            "MIC.5.9"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.5.10"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.5.10"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.5.10",
+            "MIC.5.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.5.11"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.5.11",
+            "MIC.5.12"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.5.12"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.5.12",
+            "MIC.5.13"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.5.13"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MIC.5.13",
+            "MIC.5.14"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MIC.5.14"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "MIC.5.14",
+            "MIC.5.15"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "MIC.5.15"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/MIC.5.NMV",
+        "reference": {
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "میکاه 5",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "میکاه 4",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "میکاه 6",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 6,
       "chapter_usfm": "MIC.6",
@@ -389,85 +4307,875 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.6.1",
+          "line_type": "p",
           "text": "حال به آنچه خداوند می‌گوید، گوش بسپارید:برخیز و دادخواهی خویش را نزد کوهها بیان دارو آواز خود را به گوش تپه‌ها برسان."
         },
         {
           "verse": 2,
+          "usfm": "MIC.6.2",
+          "line_type": "q1",
           "text": "ای کوهها شکایت خداوند را بشنوید،و ای بنیانهای زمین، گوش بسپارید!زیرا خداوند علیه قوم خود شکایتی داردو بر ضد اسرائیل اقامۀ دعوی می‌کند."
         },
         {
           "verse": 3,
+          "usfm": "MIC.6.3",
+          "line_type": "q1",
           "text": "«ای قوم من،به شما چه کرده‌ام؟به چه چیز شما را خسته کرده‌ام؟پاسخم دهید!"
         },
         {
           "verse": 4,
+          "usfm": "MIC.6.4",
+          "line_type": "q1",
           "text": "زیرا شما را از سرزمین مصر به در آوردمو از خانۀ بندگی فدیه دادم،و موسی و هارون و مریم را پیش رویتان فرستادم."
         },
         {
           "verse": 5,
+          "usfm": "MIC.6.5",
+          "line_type": "q1",
           "text": "ای قوم من، به یاد آریدکه بالاق، پادشاه موآب، چه تدبیر کردو بَلعام پسر بِعور بدو چه پاسخ داد،و از شِطّیم تا جِلجال چه واقع شد،تا اعمال عادلانۀ خداوند را دریابید.»"
         },
         {
           "verse": 6,
+          "usfm": "MIC.6.6",
+          "line_type": "q1",
           "text": "«با چه به حضور خداوند بیایم،و در پیشگاه خدای متعال خم شوم؟آیا با قربانیهای تمام‌سوز،و با گوساله‌های یک ساله؟"
         },
         {
           "verse": 7,
+          "usfm": "MIC.6.7",
+          "line_type": "q1",
           "text": "آیا خداوند از هزاران قوچ خشنود خواهد شد،و از ده هزاران نهر روغن؟آیا نخست‌زاده‌ام را به جهت عِصیانم بدهم،و ثمرۀ بدن خویش را برای گناه جانم؟»"
         },
         {
           "verse": 8,
+          "usfm": "MIC.6.8",
+          "line_type": "q1",
           "text": "ای مرد، او تو را از آنچه نیکوست آگاه ساخته است؛و خداوند از تو چه می‌طلبد،جز آنکه انصاف را به جای آری و محبت را دوست بداری،و با فروتنی در حضور خدایت سلوک کنی؟"
         },
         {
           "verse": 9,
+          "usfm": "MIC.6.9",
+          "line_type": "q1",
           "text": "آواز خداوند به شهر ندا درمی‌دهد -ترسیدن از نام تو، خردمندی است:«به عصا و مقرر‌دارندۀ آن گوش فرا دهید!"
         },
         {
           "verse": 10,
+          "usfm": "MIC.6.10",
+          "line_type": "q1",
           "text": "آیا هنوز در خانۀ شریران گنجهای شرارت یافت می‌شود،و میزانهای کمتر از اندازه که ملعونند؟"
         },
         {
           "verse": 11,
+          "usfm": "MIC.6.11",
+          "line_type": "q1",
           "text": "آیا کسی را با ترازوهای نادرستو کیسۀ سنگهای تقلبی، تبرئه کنم؟"
         },
         {
           "verse": 12,
+          "usfm": "MIC.6.12",
+          "line_type": "q1",
           "text": "ثروتمندانت مملو از خشونتند،و ساکنانت دروغگو؛زبان ایشان در دهانشان فریب محض است."
         },
         {
           "verse": 13,
+          "usfm": "MIC.6.13",
+          "line_type": "q1",
           "text": "پس من نیز به ضربه‌ای تو را مجروح می‌سازمتا به سبب گناهانت تو را هلاک کنم."
         },
         {
           "verse": 14,
+          "usfm": "MIC.6.14",
+          "line_type": "q1",
           "text": "خواهی خورد اما سیر نخواهی شد،و شکمت همچنان خالی خواهد ماند؛جمع خواهی کرد اما نخواهی اندوخت،و آنچه را که بیندوزی به دم شمشیر خواهم سپرد."
         },
         {
           "verse": 15,
+          "usfm": "MIC.6.15",
+          "line_type": "q1",
           "text": "خواهی کاشت، اما درو نخواهی کرد؛زیتون خواهی افشرد، اما خود را به روغن تدهین نخواهی نمود؛شراب تازه فراهم خواهی آورد، اما از آن نخواهی نوشید."
         },
         {
           "verse": 16,
+          "usfm": "MIC.6.16",
+          "line_type": "q1",
           "text": "زیرا قوانین عُمری و همۀ رسوم خاندان اَخاب را نگاه داشته‌ای،و در مشورتهای ایشان سلوک کرده‌ای؛از این رو تو را ویران خواهم کرد،و ساکنانت را مایۀ تمسخر خواهم ساخت؛پس سرزنشِ درخورِ قوم مرا متحمل خواهی شد.»"
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "خداوند از تو چه می‌طلبد؟"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "نابودی شریران"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 9,
+          "usfm": "MIC.6.9",
+          "note_ref": "6‏:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "معنای این جملۀ عبری نامشخص است."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.6.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.6.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.6.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.6.1",
+            "MIC.6.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.6.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.6.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.6.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.6.2",
+            "MIC.6.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.6.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.6.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.6.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.6.3",
+            "MIC.6.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.6.4"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.6.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.6.4",
+            "MIC.6.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.6.5"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.6.5"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.6.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.6.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.6.5",
+            "MIC.6.6"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.6.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.6.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.6.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.6.6",
+            "MIC.6.7"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.6.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.6.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.6.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.6.7",
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.6.8",
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.6.10",
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.6.10"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.6.10",
+            "MIC.6.11"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.6.11"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.6.11",
+            "MIC.6.12"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.6.12"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.6.12"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.6.12",
+            "MIC.6.13"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.6.13"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MIC.6.13",
+            "MIC.6.14"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MIC.6.14"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MIC.6.14"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MIC.6.14"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "MIC.6.14",
+            "MIC.6.15"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "MIC.6.15"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "MIC.6.15"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MIC.6.15",
+            "MIC.6.16"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.6.16"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.6.16"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.6.16"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.6.16"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/MIC.6.NMV",
+        "reference": {
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "میکاه 6",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "میکاه 5",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "میکاه 7",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 7,
       "chapter_usfm": "MIC.7",
@@ -476,95 +5184,1152 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.7.1",
+          "line_type": "q1",
           "text": "وای بر من!زیرا همچون گردآورندۀ میوۀ تابستانی شده‌ام،و مانند کسی که انگورچینی می‌کند؛نه خوشۀ انگوری برای خوردن یافت می‌شودو نه نوبر انجیری، که جان من مشتاق آن است."
         },
         {
           "verse": 2,
+          "usfm": "MIC.7.2",
+          "line_type": "q1",
           "text": "سرسپردگان از زمین نابود شده‌اند،و صالحی در میان آدمیان بر جا نمانده است؛همگی برای ریختن خون در کمین می‌نشینند،و همنوع خود را به دام صید می‌کنند."
         },
         {
           "verse": 3,
+          "usfm": "MIC.7.3",
+          "line_type": "q1",
           "text": "در شرارت‌ورزی چیره‌دستند؛حاکمْ رشوه می‌طلبد و قاضی نیز همچنین؛قدرتمندانشان به هرآنچه می‌خواهند حکم می‌کنند،و ایشان آن را به هم می‌بافند."
         },
         {
           "verse": 4,
+          "usfm": "MIC.7.4",
+          "line_type": "q1",
           "text": "بهترینشان مانند خارند،و صالح‌ترینشان همچون خاربست.روز دیدبانان توست، و مجازاتت فرا رسیده؛اکنون زمان پریشانیِ ایشان است."
         },
         {
           "verse": 5,
+          "usfm": "MIC.7.5",
+          "line_type": "q1",
           "text": "بر دوست خود اعتماد مکنو به یار خویش اطمینان مدار؛نزد هم‌آغوش خود نیز عنان دهان خویش نگاه دار؛"
         },
         {
           "verse": 6,
+          "usfm": "MIC.7.6",
+          "line_type": "q1",
           "text": "زیرا پسر بر پدر بی‌حرمتی می‌کند،دختر بر ضد مادر، قیامو عروس علیه مادرشوهر؛و دشمنان شخص، اهل خانۀ اویند."
         },
         {
           "verse": 7,
+          "usfm": "MIC.7.7",
+          "line_type": "q1",
           "text": "اما من به سوی خداوند چشم می‌دوزم،و برای خدای نجاتِ خویش انتظار می‌کشم؛خدای من مرا اجابت خواهد کرد."
         },
         {
           "verse": 8,
+          "usfm": "MIC.7.8",
+          "line_type": "q1",
           "text": "ای دشمن من بر من شادی مکن،زیرا اگرچه بیفتم، بر خواهم خاست،و اگرچه در تاریکی بنشینم،خداوند نور من خواهد بود."
         },
         {
           "verse": 9,
+          "usfm": "MIC.7.9",
+          "line_type": "q1",
           "text": "غضب خداوند را متحمل خواهم شد،زیرا که به او گناه ورزیده‌ام،تا آنگاه که به دفاع از من برخیزدو دادرسی‌ام کند.او مرا به روشناییْ بیرون خواهد آورد،و من عدالت او را نظاره خواهم کرد."
         },
         {
           "verse": 10,
+          "usfm": "MIC.7.10",
+          "line_type": "q1",
           "text": "آنگاه دشمنم این را خواهد دید،و غرقِ شرمساری خواهد شد؛همان که به من می‌گفت:«یهوه خدایت کجاست؟»چشمانم بر او خواهد نگریست،و حال مانند گِل کوچه‌ها پایمال خواهد شد."
         },
         {
           "verse": 11,
+          "usfm": "MIC.7.11",
+          "line_type": "q1",
           "text": "روز ساختن دیوارهایت فرا خواهد رسید؛در آن روز مرزها گسترش خواهد یافت."
         },
         {
           "verse": 12,
+          "usfm": "MIC.7.12",
+          "line_type": "q1",
           "text": "در آن روز، از آشور و شهرهای مصر نزد تو خواهند آمد،از مصر تا رود فرات؛از دریا تا دریاو از کوه تا کوه."
         },
         {
           "verse": 13,
+          "usfm": "MIC.7.13",
+          "line_type": "q1",
           "text": "اما زمین ویران خواهد شد،به سبب ساکنانش و ثمرۀ اعمالشان."
         },
         {
           "verse": 14,
+          "usfm": "MIC.7.14",
+          "line_type": "q1",
           "text": "قوم خویش و گلۀ میراث خود را به عصای خویش شبانی کن،آنان را که به تنهایی در جنگل، میان سرزمینی حاصلخیز ساکنند؛باشد که چون روزگاران پیشین،در باشان و جِلعاد بچرند."
         },
         {
           "verse": 15,
+          "usfm": "MIC.7.15",
+          "line_type": "q1",
           "text": "همچون روزهایی که از سرزمین مصر به در آمدی،بدیشان چیزهای شگفت‌انگیز نشان خواهم داد."
         },
         {
           "verse": 16,
+          "usfm": "MIC.7.16",
+          "line_type": "q1",
           "text": "قومها چون این را بینند،از همۀ قوّت خویش شرمسار خواهند شد؛دست بر دهان خواهند نهاد،و گوشهایشان کر خواهد شد؛"
         },
         {
           "verse": 17,
+          "usfm": "MIC.7.17",
+          "line_type": "q1",
           "text": "مانند مار خاک را خواهند لیسید،مانند موجوداتی که بر زمین می‌خزند؛از دژهای خود لرزان بیرون خواهند آمد،و هراسان رو به سوی یهوه خدای ما خواهند نهاد،و از تو خواهند ترسید."
         },
         {
           "verse": 18,
+          "usfm": "MIC.7.18",
+          "line_type": "q1",
           "text": "کیست خدایی همانند تو،که گناه را می‌آمرزدو از نافرمانیِ باقیماندۀ میراث خویش درمی‌گذرد؟خشم خود را تا به ابد نگاه نمی‌دارد،زیرا از محبت کردن لذت می‌برد."
         },
         {
           "verse": 19,
+          "usfm": "MIC.7.19",
+          "line_type": "q1",
           "text": "بار دیگر بر ما رحم خواهد کرد،و بر گناهان ما چیره خواهد شد.تو تمامی گناهان ما را به قعر دریا خواهی افکند."
         },
         {
           "verse": 20,
+          "usfm": "MIC.7.20",
+          "line_type": "q1",
           "text": "امانت را برای یعقوب و محبت را برای ابراهیم به جا خواهی آورد،چنانکه در روزگاران کهن برای پدران ما سوگند خوردی."
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "ستایش خداوند"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 14,
+          "usfm": "MIC.7.14",
+          "note_ref": "7‏:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "در عبری:‏ ”در میان کَرمِل“."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.7.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.7.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.7.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.7.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.7.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MIC.7.1",
+            "MIC.7.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.7.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.7.2"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MIC.7.2"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.7.2",
+            "MIC.7.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.7.3"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.7.3"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MIC.7.3"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.7.3",
+            "MIC.7.4"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.7.4"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.7.4"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MIC.7.4"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.7.4",
+            "MIC.7.5"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.7.5"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MIC.7.5"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.7.5",
+            "MIC.7.6"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.7.6"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.7.6"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MIC.7.6"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.7.6",
+            "MIC.7.7"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.7.7"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MIC.7.7"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.7.7",
+            "MIC.7.8"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.7.8"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.7.8"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MIC.7.8"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.7.8",
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.7.10",
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.7.10"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.7.10"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.7.10"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.7.10"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MIC.7.10"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.7.10",
+            "MIC.7.11"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MIC.7.11"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.7.11",
+            "MIC.7.12"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.7.12"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.7.12"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MIC.7.12"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.7.12",
+            "MIC.7.13"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MIC.7.13"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MIC.7.13",
+            "MIC.7.14"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MIC.7.14"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MIC.7.14"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MIC.7.14"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "MIC.7.14",
+            "MIC.7.15"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "MIC.7.15"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MIC.7.15",
+            "MIC.7.16"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.7.16"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.7.16"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MIC.7.16"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "MIC.7.16",
+            "MIC.7.17"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MIC.7.17"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MIC.7.17"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MIC.7.17"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MIC.7.17"
+          ]
+        },
+        {
+          "index": 67,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "MIC.7.17",
+            "MIC.7.18"
+          ]
+        },
+        {
+          "index": 68,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "MIC.7.18"
+          ]
+        },
+        {
+          "index": 69,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "MIC.7.18"
+          ]
+        },
+        {
+          "index": 70,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "MIC.7.18"
+          ]
+        },
+        {
+          "index": 71,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "MIC.7.18"
+          ]
+        },
+        {
+          "index": 72,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "MIC.7.18",
+            "MIC.7.19"
+          ]
+        },
+        {
+          "index": 73,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "MIC.7.19"
+          ]
+        },
+        {
+          "index": 74,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "MIC.7.19"
+          ]
+        },
+        {
+          "index": 75,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "MIC.7.19",
+            "MIC.7.20"
+          ]
+        },
+        {
+          "index": 76,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "MIC.7.20"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/118/MIC.7.NMV",
+        "reference": {
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "میکاه 7",
+          "version_id": 118
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "میکاه 6",
+          "toc": true,
+          "version_id": 118
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "NAM.INTRO1"
+          ],
+          "human": "ناحوم ‮معرفی کتاب ناحوم‬",
+          "toc": true,
+          "version_id": 118
+        }
+      },
+      "version_meta": {
+        "id": 118,
+        "abbreviation": "nmv",
+        "local_abbreviation": "nmv",
+        "title": "هزارۀ نو",
+        "local_title": "هزارۀ نو",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

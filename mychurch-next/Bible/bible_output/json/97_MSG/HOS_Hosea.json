@@ -11,6 +11,7 @@
   "total_verses": 13,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 1,
       "chapter_usfm": "HOS.1",
@@ -19,25 +20,133 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.1.1",
+          "line_type": "p",
           "text": "This is God’s Message to Hosea son of Beeri. It came to him during the royal reigns of Judah’s kings Uzziah, Jotham, Ahaz, and Hezekiah. This was also the time that Jeroboam son of Joash was king over Israel."
         },
         {
           "verse": 2,
+          "usfm": "HOS.1.2",
+          "line_type": "m",
           "text": "The first time God spoke to Hosea he said:“Find a whore and marry her.Make this whore the mother of your children.And here’s why: This whole countryhas become a whorehouse, unfaithful to me, God.”"
         },
         {
           "verse": 3,
+          "usfm": "HOS.1.3",
+          "line_type": "p",
           "text": "Hosea did it. He picked Gomer daughter of Diblaim. She got pregnant and gave him a son. Then God told him:“Name him Jezreel. It won’t be long now beforeI’ll make the people of Israel pay for the massacre at Jezreel.I’m calling it quits on the kingdom of Israel.Payday is coming! I’m going to chop Israel’s bows and arrowsinto kindling in the valley of Jezreel.”* * * Gomer got pregnant again. This time she had a daughter. God told Hosea:“Name this one No-Mercy. I’m fed up with Israel.I’ve run out of mercy. There’s no more forgiveness.Judah’s another story. I’ll continue having mercy on them.I’ll save them. It will be their God who saves them,Not their armaments and armies,not their horsepower and manpower.”* * * After Gomer had weaned No-Mercy, she got pregnant yet again and had a son. God said:“Name him Nobody. You’ve become nobodies to me,and I, God, am a nobody to you. “But down the road the population of Israel is going to explode past counting, like sand on the ocean beaches. In the very place where they were once named Nobody, they will be named God’s Somebody. Everybody in Judah and everybody in Israel will be assembled as one people. They’ll choose a single leader. There’ll be no stopping them—a great day in Jezreel!”"
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "This Whole Country Has Become a Whorehouse"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "HOS.1.1",
+            "HOS.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HOS.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HOS.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HOS.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "HOS.1.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "HOS.1.2",
+            "HOS.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HOS.1.3"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -48,9 +157,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/1-3f002d01cde2f27bab455c739e7bf80c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.1.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.1"
+          ],
+          "human": "Hosea 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.12"
+          ],
+          "human": "Daniel 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 2,
       "chapter_usfm": "HOS.2",
@@ -59,21 +225,61 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.2.1",
+          "line_type": "q1",
           "text": "“Rename your brothers ‘God’s Somebody.’Rename your sisters ‘All Mercy.’ “Haul your mother into court. Accuse her!She’s no longer my wife.I’m no longer her husband.Tell her to quit dressing like a whore,displaying her breasts for sale.If she refuses, I’ll rip off her clothesand expose her, naked as a newborn.I’ll turn her skin into dried-out leather,her body into a badlands landscape,a rack of bones in the desert.I’ll have nothing to do with her children,born one and all in a whorehouse.Face it: Your mother’s been a whore,bringing bastard children into the world.She said, ‘I’m off to see my lovers!They’ll wine and dine me,Dress and caress me,perfume and adorn me!’But I’ll fix her: I’ll dump her in a field of thistles,then lose her in a dead-end alley.She’ll go on the hunt for her loversbut not bring down a single one.She’ll look high and lowbut won’t find a one. Then she’ll say,‘I’m going back to my husband, the one I started out with.That was a better life by far than this one.’She didn’t know that it was I all alongwho wined and dined and adorned her,That I was the one who dressed her upin the big-city fashions and jewelrythat she wasted on wild Baal-orgies.I’m about to bring her up short: No more wining and dining!Silk lingerie and gowns are a thing of the past.I’ll expose her genitals to the public.All her fly-by-night lovers will be helpless to help her.Party time is over. I’m calling a halt to the whole business,her wild weekends and unholy holidays.I’ll wreck her sumptuous gardens and ornamental fountains,of which she bragged, ‘Whoring paid for all this!’They will soon be dumping grounds for garbage,feeding grounds for stray dogs and cats.I’ll make her pay for her indulgence in promiscuous religion—all that sensuous Baal worshipAnd all the promiscuous sex that went with it,stalking her lovers, dressed to kill,And not a thought for me.” God’s Message! “And now, here’s what I’m going to do:I’m going to start all over again.I’m taking her back out into the wildernesswhere we had our first date, and I’ll court her.I’ll give her bouquets of roses.I’ll turn Heartbreak Valley into Acres of Hope.She’ll respond like she did as a young girl,those days when she was fresh out of Egypt.* * * “At that time”—this is God’s Message still—“you’ll address me, ‘Dear husband!’Never again will you address me,‘My slave-master!’I’ll wash your mouth out with soap,get rid of all the dirty false-god names,not so much as a whisper of those names again.At the same time I’ll make a peace treaty between youand wild animals and birds and reptiles,And get rid of all weapons of war.Think of it! Safe from beasts and bullies!And then I’ll marry you for good—forever!I’ll marry you true and proper, in love and tenderness.Yes, I’ll marry you and neither leave you nor let you go.You’ll know me, God, for who I really am.* * * “On the very same day, I’ll answer”—this is God’s Message—“I’ll answer the sky, sky will answer earth,Earth will answer grain and wine and olive oil,and they’ll all answer Jezreel.I’ll plant her in the good earth.I’ll have mercy on No-Mercy.I’ll say to Nobody, ‘You’re my dear Somebody,’and he’ll say ‘You’re my God!’”"
         }
       ],
       "verse_count": 1,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Wild Weekends and Unholy Holidays"
         },
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "To Start All Over Again"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.2.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -84,9 +290,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/2-22299173e8cb10323e639f2c667b4677.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.2.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.1"
+          ],
+          "human": "Hosea 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 3,
       "chapter_usfm": "HOS.3",
@@ -95,12 +358,76 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.3.1",
+          "line_type": "q1",
           "text": "Then God ordered me, “Start all over: Love your wife again,your wife who’s in bed with her latest boyfriend, your cheating wife.Love her the way I, God, love the Israelite people,even as they flirt and party with every god that takes their fancy.” I did it. I paid good money to get her back.It cost me the price of a slave.Then I told her, “From now on you’re living with me.No more whoring, no more sleeping around.You’re living with me and I’m living with you.”* * * The people of Israel are going to live a long timestripped of security and protection,without religion and comfort,godless and prayerless.But in time they’ll come back, these Israelites,come back looking for their God and their David-King.They’ll come back chastened to reverencebefore God and his good gifts, ready for the End of the story of his love."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.3.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.3.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.3.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.3.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -111,9 +438,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/3-f0bf8f37735ff46dd9b11351055ca698.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.3.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 4,
       "chapter_usfm": "HOS.4",
@@ -128,6 +512,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -138,9 +523,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/4-e5e5a8699e5f049acefe89278a633c57.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.4.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 5,
       "chapter_usfm": "HOS.5",
@@ -149,10 +591,14 @@
       "verses": [
         {
           "verse": 10,
+          "usfm": "HOS.5.10",
+          "line_type": "q1",
           "text": "“Israel’s rulers are crooks and thieves,cheating the people of their land,And I’m angry, good and angry.Every inch of their bodies is going to feel my anger. “Brutal Ephraim is himself brutalized—a taste of his own medicine!He was so determinedto do it his own worthless way.Therefore I’m pus to Ephraim,dry rot in the house of Judah."
         },
         {
           "verse": 13,
+          "usfm": "HOS.5.13",
+          "line_type": "q1",
           "text": "“When Ephraim saw he was sickand Judah saw his pus-filled sores,Ephraim went running to Assyria,went for help to the big king.But he can’t heal you.He can’t cure your oozing sores. “I’m a grizzly charging Ephraim,a grizzly with cubs charging Judah.I’ll rip them to pieces—yes, I will!No one can stop me now.I’ll drag them off.No one can help them.Then I’ll go back to where I came fromuntil they come to their senses.When they finally hit rock bottom,maybe they’ll come looking for me.”"
         }
       ],
@@ -168,6 +614,152 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HOS.5.10"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HOS.5.10"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HOS.5.10"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HOS.5.10"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HOS.5.10"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HOS.5.13"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HOS.5.13"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HOS.5.13"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HOS.5.13"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HOS.5.13"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HOS.5.13"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HOS.5.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -178,9 +770,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/5-9a740018f2b8bc29645c1f8e0ef3ec50.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.5.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 6,
       "chapter_usfm": "HOS.6",
@@ -189,16 +838,84 @@
       "verses": [
         {
           "verse": 10,
+          "usfm": "HOS.6.10",
+          "line_type": "q1",
           "text": "“I saw a shocking thing in the country of Israel:Ephraim worshiping in a religious whorehouse,and Israel in the mud right there with him."
         },
         {
           "verse": 11,
+          "usfm": "HOS.6.11",
+          "line_type": "q1",
           "text": "“You’re as bad as the worst of them, Judah.You’ve been sowing wild oats. Now it’s harvest time.”"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HOS.6.10"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HOS.6.10"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "HOS.6.10"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "HOS.6.10",
+            "HOS.6.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "HOS.6.11"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -209,9 +926,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/6-7ae85709d155d006c3f8f240e475c32c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.6.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 7,
       "chapter_usfm": "HOS.7",
@@ -226,6 +1000,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -236,9 +1011,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/7-4cf1a6d40f3ef77519a9ea4dd4cb8347.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.7.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 8,
       "chapter_usfm": "HOS.8",
@@ -248,6 +1080,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -258,9 +1091,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/8-b3bfafe83d666b1485f51bdffc696e89.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.8.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 9,
       "chapter_usfm": "HOS.9",
@@ -269,10 +1159,14 @@
       "verses": [
         {
           "verse": 14,
+          "usfm": "HOS.9.14",
+          "line_type": "q1",
           "text": "Give it to them, God! But what?Give them a dried-up womb and shriveled breasts. “All their evil came out into the openat the pagan shrine at Gilgal. Oh, how I hated them there!Because of their evil practices,I’ll kick them off my land.I’m wasting no more love on them.Their leaders are a bunch of rebellious adolescents.Ephraim is hit hard—roots withered, no more fruit.Even if by some miracle they had children,the dear babies wouldn’t live—I’d make sure of that!”"
         },
         {
           "verse": 17,
+          "usfm": "HOS.9.17",
+          "line_type": "q1",
           "text": "My God has washed his hands of them.They wouldn’t listen.They’re doomed to be wanderers,vagabonds among the godless nations."
         }
       ],
@@ -288,6 +1182,92 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HOS.9.14"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HOS.9.14"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "HOS.9.14"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HOS.9.17"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HOS.9.17"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HOS.9.17"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HOS.9.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -298,9 +1278,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/9-1551f6ea9f0a138eaedc807eecd46eee.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.9.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 10,
       "chapter_usfm": "HOS.10",
@@ -310,6 +1347,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -320,9 +1358,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/10-b69686e7c6bfd82695ec35cebc66c494.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.10.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 11,
       "chapter_usfm": "HOS.11",
@@ -337,6 +1432,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -347,9 +1443,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/11-f86cf3395b3400888dcef9fef81cba90.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.11.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 12,
       "chapter_usfm": "HOS.12",
@@ -358,12 +1511,76 @@
       "verses": [
         {
           "verse": 6,
+          "usfm": "HOS.12.6",
+          "line_type": "q1",
           "text": "What are you waiting for? Return to your God!Commit yourself in love, in justice!Wait for your God,and don’t give up on him—ever! The businessmen engage in wholesale fraud.They love to rip people off!Ephraim boasted, “Look, I’m rich!I’ve made it big!And look how well I’ve covered my tracks:not a hint of fraud, not a sign of sin!” “But not so fast! I’m God, your God!Your God from the days in Egypt!I’m going to put you back to living in tents,as in the old days when you worshiped in the wilderness.I speak through the prophetsto give clear pictures of the way things are.Using prophets, I tell revealing stories.I show Gilead rampant with religious scandaland Gilgal teeming with empty-headed religion.I expose their worship centers asstinking piles of garbage in their gardens.” Are you going to repeat the life of your ancestor Jacob?He ran off guilty to Aram,Then sold his soul to get ahead,and made it big through treachery and deceit.Your real identity is formed through God-sent prophets,who led you out of Egypt and served as faithful pastors.As it is, Ephraim has continuallyand inexcusably insulted God.Now he has to pay for his life-destroying ways.His Master will do to him what he has done."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.12.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.12.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.12.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.12.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.12.6"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -374,9 +1591,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/12-c9ee25a6a52bd550ac02d23daecbd0a7.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.12.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 13,
       "chapter_usfm": "HOS.13",
@@ -386,6 +1660,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -396,9 +1671,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/13-4acc4d688e0b67c8feeb773bde0784c2.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.13.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.14"
+          ],
+          "human": "Hosea 14",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 14,
       "chapter_usfm": "HOS.14",
@@ -407,6 +1739,8 @@
       "verses": [
         {
           "verse": 9,
+          "usfm": "HOS.14.9",
+          "line_type": "q1",
           "text": "If you want to live well,make sure you understand all of this.If you know what’s good for you,you’ll learn this inside and out. God’s paths get you where you want to go.Right-living people walk them easily;wrong-living people are always tripping and stumbling."
         }
       ],
@@ -422,6 +1756,92 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.14.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.14.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.14.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.14.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.14.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.14.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HOS.14.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -432,7 +1852,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HOS/14-9b1beb07a762b5d10fefad7b5e09bcc5.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HOS.14.MSG",
+        "reference": {
+          "usfm": [
+            "HOS.14"
+          ],
+          "human": "Hosea 14",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOL.1"
+          ],
+          "human": "Joel 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

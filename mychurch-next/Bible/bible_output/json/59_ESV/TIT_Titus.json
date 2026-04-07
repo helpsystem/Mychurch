@@ -11,6 +11,7 @@
   "total_verses": 46,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 1,
       "chapter_usfm": "TIT.1",
@@ -19,77 +20,707 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.1.1",
+          "line_type": "p",
           "text": "Paul, a servant of God and an apostle of Jesus Christ, for the sake of the faith of God’s elect and their knowledge of the truth, which accords with godliness,"
         },
         {
           "verse": 2,
+          "usfm": "TIT.1.2",
+          "line_type": "p",
           "text": "in hope of eternal life, which God, who never lies, promised before the ages began"
         },
         {
           "verse": 3,
+          "usfm": "TIT.1.3",
+          "line_type": "p",
           "text": "and at the proper time manifested in his word through the preaching with which I have been entrusted by the command of God our Savior;"
         },
         {
           "verse": 4,
+          "usfm": "TIT.1.4",
+          "line_type": "p",
           "text": "To Titus, my true child in a common faith: Grace and peace from God the Father and Christ Jesus our Savior."
         },
         {
           "verse": 5,
+          "usfm": "TIT.1.5",
+          "line_type": "p",
           "text": "This is why I left you in Crete, so that you might put what remained into order, and appoint elders in every town as I directed you—"
         },
         {
           "verse": 6,
+          "usfm": "TIT.1.6",
+          "line_type": "p",
           "text": "if anyone is above reproach, the husband of one wife, and his children are believers and not open to the charge of debauchery or insubordination."
         },
         {
           "verse": 7,
+          "usfm": "TIT.1.7",
+          "line_type": "p",
           "text": "For an overseer, as God’s steward, must be above reproach. He must not be arrogant or quick-tempered or a drunkard or violent or greedy for gain,"
         },
         {
           "verse": 8,
+          "usfm": "TIT.1.8",
+          "line_type": "p",
           "text": "but hospitable, a lover of good, self-controlled, upright, holy, and disciplined."
         },
         {
           "verse": 9,
+          "usfm": "TIT.1.9",
+          "line_type": "p",
           "text": "He must hold firm to the trustworthy word as taught, so that he may be able to give instruction in sound doctrine and also to rebuke those who contradict it."
         },
         {
           "verse": 10,
+          "usfm": "TIT.1.10",
+          "line_type": "p",
           "text": "For there are many who are insubordinate, empty talkers and deceivers, especially those of the circumcision party."
         },
         {
           "verse": 11,
+          "usfm": "TIT.1.11",
+          "line_type": "p",
           "text": "They must be silenced, since they are upsetting whole families by teaching for shameful gain what they ought not to teach."
         },
         {
           "verse": 12,
+          "usfm": "TIT.1.12",
+          "line_type": "p",
           "text": "One of the Cretans, a prophet of their own, said, “Cretans are always liars, evil beasts, lazy gluttons.”"
         },
         {
           "verse": 13,
+          "usfm": "TIT.1.13",
+          "line_type": "p",
           "text": "This testimony is true. Therefore rebuke them sharply, that they may be sound in the faith,"
         },
         {
           "verse": 14,
+          "usfm": "TIT.1.14",
+          "line_type": "p",
           "text": "not devoting themselves to Jewish myths and the commands of people who turn away from the truth."
         },
         {
           "verse": 15,
+          "usfm": "TIT.1.15",
+          "line_type": "p",
           "text": "To the pure, all things are pure, but to the defiled and unbelieving, nothing is pure; but both their minds and their consciences are defiled."
         },
         {
           "verse": 16,
+          "usfm": "TIT.1.16",
+          "line_type": "p",
           "text": "They profess to know God, but they deny him by their works. They are detestable, disobedient, unfit for any good work."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Qualifications for Elders"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "TIT.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "For the contextual rendering of the Greek word doulos, see Preface"
+        },
+        {
+          "verse": 1,
+          "usfm": "TIT.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2CO.1.1"
+          ],
+          "text": "See 2 Cor. 1:1"
+        },
+        {
+          "verse": 1,
+          "usfm": "TIT.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.2.4"
+          ],
+          "text": "See 1 Tim. 2:4"
+        },
+        {
+          "verse": 1,
+          "usfm": "TIT.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.6.3"
+          ],
+          "text": "1 Tim. 6:3"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.1.1",
+            "HEB.9.15",
+            "HEB.2.13",
+            "HEB.3.7"
+          ],
+          "text": "2 Tim. 1:1; Heb. 9:15; [ch. 2:13; 3:7]"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NUM.23.19",
+            "2TI.2.13",
+            "HEB.6.18"
+          ],
+          "text": "Num. 23:19; 2 Tim. 2:13; Heb. 6:18"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.1.2"
+          ],
+          "text": "Rom. 1:2"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.1.9"
+          ],
+          "text": "See 2 Tim. 1:9"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "note_ref": "1:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek before times eternal"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.2.6"
+          ],
+          "text": "See 1 Tim. 2:6"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.1.3",
+          "note_ref": "1:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or manifested his word"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.10.14"
+          ],
+          "text": "[Rom. 10:14]"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.11"
+          ],
+          "text": "See 1 Tim. 1:11"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.1"
+          ],
+          "text": "1 Tim. 1:1"
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "3JN.1.4"
+          ],
+          "text": "See 3 John 4"
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JUD.1.3",
+            "2PE.1.1"
+          ],
+          "text": "Jude 3; See 2 Pet. 1:1"
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.2"
+          ],
+          "text": "See 1 Tim. 1:2"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.3"
+          ],
+          "text": "[ 1 Tim. 1:3 ]"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.14.23",
+            "2TI.2.2"
+          ],
+          "text": "[Acts 14:23; 2 Tim. 2:2]"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.3.2+1TI.3.3+1TI.3.4"
+          ],
+          "text": "For ver. 6-8, see 1 Tim. 3:2-4"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "1:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or a man of one woman"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "1:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or are faithful"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EPH.5.18"
+          ],
+          "text": "See Eph. 5:18"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.1.7",
+          "note_ref": "1:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or bishop; Greek episkopos"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LUK.12.42",
+            "1CO.4.1",
+            "1PE.4.10"
+          ],
+          "text": "Luke 12:42; 1 Cor. 4:1; 1 Pet. 4:10"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2PE.2.10"
+          ],
+          "text": "2 Pet. 2:10"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.3.8",
+            "1PE.5.2"
+          ],
+          "text": "1 Tim. 3:8; 1 Pet. 5:2"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1CO.9.25"
+          ],
+          "text": "[1 Cor. 9:25]"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TH.2.13",
+            "2TH.2.15"
+          ],
+          "text": "[2 Thess. 2:13, 15]; See 1 Tim. 1:15; 2 Tim. 1:13"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.10"
+          ],
+          "text": "See 1 Tim. 1:10"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.1.9",
+          "note_ref": "1:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or healthy; also verse 13"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.6"
+          ],
+          "text": "1 Tim. 1:6"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.11.2"
+          ],
+          "text": "See Acts 11:2"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.1.10",
+          "note_ref": "1:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or especially those of the circumcision"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.3.6"
+          ],
+          "text": "[2 Tim. 3:6]"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.6.5",
+            "2PE.2.3"
+          ],
+          "text": "1 Tim. 6:5; 2 Pet. 2:3"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.17.28"
+          ],
+          "text": "[Acts 17:28]"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.1.12",
+          "note_ref": "1:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek One of them"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.1.12",
+          "note_ref": "1:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probably from Epimenides of Crete"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.2.15",
+            "1TI.5.20"
+          ],
+          "text": "ch. 2:15; 1 Tim. 5:20"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2CO.13.10"
+          ],
+          "text": "2 Cor. 13:10"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.2.1",
+            "TIT.2.2"
+          ],
+          "text": "ch. 2:1, 2"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.4"
+          ],
+          "text": "See 1 Tim. 1:4"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "COL.2.22"
+          ],
+          "text": "See Col. 2:22"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.6.20"
+          ],
+          "text": "See 1 Tim. 6:20"
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "LUK.11.41",
+            "1TI.4.3"
+          ],
+          "text": "[Luke 11:41; 1 Tim. 4:3]; See Acts 10:15"
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.14.23"
+          ],
+          "text": "[Rom. 14:23]"
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.6.5"
+          ],
+          "text": "See 1 Tim. 6:5"
+        },
+        {
+          "verse": 16,
+          "usfm": "TIT.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1JN.2.4"
+          ],
+          "text": "[1 John 2:4]"
+        },
+        {
+          "verse": 16,
+          "usfm": "TIT.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.5.8"
+          ],
+          "text": "See 1 Tim. 5:8"
+        },
+        {
+          "verse": 16,
+          "usfm": "TIT.1.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.3.8"
+          ],
+          "text": "2 Tim. 3:8"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "TIT.1.1",
+            "TIT.1.2",
+            "TIT.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "TIT.1.3",
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "TIT.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 9,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "TIT.1.4",
+            "TIT.1.5",
+            "TIT.1.6",
+            "TIT.1.7",
+            "TIT.1.8",
+            "TIT.1.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 16,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "TIT.1.10",
+            "TIT.1.11",
+            "TIT.1.12",
+            "TIT.1.13",
+            "TIT.1.14",
+            "TIT.1.15",
+            "TIT.1.16",
+            "TIT.1.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -108,9 +739,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1668/m4a/32k/TIT/1-b582c0e66aec93a1806dfae182cb8a8d.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/TIT.1.ESV",
+        "reference": {
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "2 Timothy 4",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 2,
       "chapter_usfm": "TIT.2",
@@ -119,68 +807,557 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.2.1",
+          "line_type": "p",
           "text": "But as for you, teach what accords with sound doctrine."
         },
         {
           "verse": 2,
+          "usfm": "TIT.2.2",
+          "line_type": "p",
           "text": "Older men are to be sober-minded, dignified, self-controlled, sound in faith, in love, and in steadfastness."
         },
         {
           "verse": 3,
+          "usfm": "TIT.2.3",
+          "line_type": "p",
           "text": "Older women likewise are to be reverent in behavior, not slanderers or slaves to much wine. They are to teach what is good,"
         },
         {
           "verse": 4,
+          "usfm": "TIT.2.4",
+          "line_type": "p",
           "text": "and so train the young women to love their husbands and children,"
         },
         {
           "verse": 5,
+          "usfm": "TIT.2.5",
+          "line_type": "p",
           "text": "to be self-controlled, pure, working at home, kind, and submissive to their own husbands, that the word of God may not be reviled."
         },
         {
           "verse": 6,
+          "usfm": "TIT.2.6",
+          "line_type": "p",
           "text": "Likewise, urge the younger men to be self-controlled."
         },
         {
           "verse": 7,
+          "usfm": "TIT.2.7",
+          "line_type": "p",
           "text": "Show yourself in all respects to be a model of good works, and in your teaching show integrity, dignity,"
         },
         {
           "verse": 8,
+          "usfm": "TIT.2.8",
+          "line_type": "p",
           "text": "and sound speech that cannot be condemned, so that an opponent may be put to shame, having nothing evil to say about us."
         },
         {
           "verse": 9,
+          "usfm": "TIT.2.9",
+          "line_type": "p",
           "text": "Bondservants are to be submissive to their own masters in everything; they are to be well-pleasing, not argumentative,"
         },
         {
           "verse": 10,
+          "usfm": "TIT.2.10",
+          "line_type": "p",
           "text": "not pilfering, but showing all good faith, so that in everything they may adorn the doctrine of God our Savior."
         },
         {
           "verse": 11,
+          "usfm": "TIT.2.11",
+          "line_type": "p",
           "text": "For the grace of God has appeared, bringing salvation for all people,"
         },
         {
           "verse": 12,
+          "usfm": "TIT.2.12",
+          "line_type": "p",
           "text": "training us to renounce ungodliness and worldly passions, and to live self-controlled, upright, and godly lives in the present age,"
         },
         {
           "verse": 13,
+          "usfm": "TIT.2.13",
+          "line_type": "p",
           "text": "waiting for our blessed hope, the appearing of the glory of our great God and Savior Jesus Christ,"
         },
         {
           "verse": 14,
+          "usfm": "TIT.2.14",
+          "line_type": "p",
           "text": "who gave himself for us to redeem us from all lawlessness and to purify for himself a people for his own possession who are zealous for good works."
         },
         {
           "verse": 15,
+          "usfm": "TIT.2.15",
+          "line_type": "p",
           "text": "Declare these things; exhort and rebuke with all authority. Let no one disregard you."
         }
       ],
       "verse_count": 15,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "TIT.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.10"
+          ],
+          "text": "See 1 Tim. 1:10"
+        },
+        {
+          "verse": 1,
+          "usfm": "TIT.2.1",
+          "note_ref": "2:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or healthy; also verses 2, 8"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.1"
+          ],
+          "text": "[See ver. 1 above]"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.2.9"
+          ],
+          "text": "[1 Tim. 2:9]"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.3.11"
+          ],
+          "text": "1 Tim. 3:11"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.3.8",
+            "1TI.5.23"
+          ],
+          "text": "[1 Tim. 3:8; 5:23]"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1PE.3.2"
+          ],
+          "text": "1 Pet. 3:2"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.5.14"
+          ],
+          "text": "[1 Tim. 5:14]"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.3.16"
+          ],
+          "text": "See Gen. 3:16"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.6.1"
+          ],
+          "text": "See 1 Tim. 6:1"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.5.1"
+          ],
+          "text": "1 Tim. 5:1"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.4.12",
+            "1PE.5.3"
+          ],
+          "text": "1 Tim. 4:12; 1 Pet. 5:3"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2CO.11.3"
+          ],
+          "text": "[2 Cor. 11:3]"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.2.2"
+          ],
+          "text": "1 Tim. 2:2"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.6.3"
+          ],
+          "text": "[1 Tim. 6:3]"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "NEH.5.9",
+            "1TI.5.14",
+            "1PE.2.12",
+            "1PE.3.16"
+          ],
+          "text": "Neh. 5:9; 1 Tim. 5:14; 1 Pet. 2:12; 3:16"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1PE.2.18"
+          ],
+          "text": "See 1 Pet. 2:18"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.2.9",
+          "note_ref": "2:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "For the contextual rendering of the Greek word doulos, see Preface"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "COL.3.22"
+          ],
+          "text": "[Col. 3:22]"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.3.11"
+          ],
+          "text": "[1 Tim. 3:11]"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.5.16",
+            "PHP.2.15"
+          ],
+          "text": "Matt. 5:16; Phil. 2:15"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.3.7",
+            "ACT.11.23"
+          ],
+          "text": "ch. 3:7; See Acts 11:23"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.3.4"
+          ],
+          "text": "ch. 3:4"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.67.2"
+          ],
+          "text": "[Ps. 67:2]; See 1 Tim. 2:4"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1PE.4.2",
+            "1JN.2.16"
+          ],
+          "text": "1 Pet. 4:2; 1 John 2:16"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.3.12",
+            "ACT.24.25"
+          ],
+          "text": "2 Tim. 3:12; [Acts 24:25]"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.6.17",
+            "2TI.4.10"
+          ],
+          "text": "1 Tim. 6:17; 2 Tim. 4:10"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1CO.1.7",
+            "2PE.3.12"
+          ],
+          "text": "See 1 Cor. 1:7; 2 Pet. 3:12"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.1.2"
+          ],
+          "text": "See ch. 1:2"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TH.2.8"
+          ],
+          "text": "See 2 Thess. 2:8"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2PE.1.1"
+          ],
+          "text": "2 Pet. 1:1"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.20.28"
+          ],
+          "text": "See Matt. 20:28"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "PSA.130.8",
+            "1PE.1.18"
+          ],
+          "text": "Ps. 130:8; See 1 Pet. 1:18"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.37.23",
+            "EXO.19.5"
+          ],
+          "text": "Ezek. 37:23; See Ex. 19:5"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EZK.37.23",
+            "EXO.19.5"
+          ],
+          "text": "Ezek. 37:23; See Ex. 19:5"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.3.8",
+            "EPH.2.10"
+          ],
+          "text": "ch. 3:8; Eph. 2:10"
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.1.13",
+            "1TI.5.20"
+          ],
+          "text": "ch. 1:13; 1 Tim. 5:20"
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.4.12"
+          ],
+          "text": "See 1 Tim. 4:12"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 10,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "TIT.2.1",
+            "TIT.2.10",
+            "TIT.2.2",
+            "TIT.2.3",
+            "TIT.2.4",
+            "TIT.2.5",
+            "TIT.2.6",
+            "TIT.2.7",
+            "TIT.2.8",
+            "TIT.2.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 14,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.2.10",
+            "TIT.2.11",
+            "TIT.2.12",
+            "TIT.2.13",
+            "TIT.2.14"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.2.14",
+            "TIT.2.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -199,9 +1376,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1668/m4a/32k/TIT/2-9f6172a44b69cf490e6b383623c9131a.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/TIT.2.ESV",
+        "reference": {
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "Titus 1",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "TIT",
       "chapter": 3,
       "chapter_usfm": "TIT.3",
@@ -210,73 +1444,483 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "TIT.3.1",
+          "line_type": "p",
           "text": "Remind them to be submissive to rulers and authorities, to be obedient, to be ready for every good work,"
         },
         {
           "verse": 2,
+          "usfm": "TIT.3.2",
+          "line_type": "p",
           "text": "to speak evil of no one, to avoid quarreling, to be gentle, and to show perfect courtesy toward all people."
         },
         {
           "verse": 3,
+          "usfm": "TIT.3.3",
+          "line_type": "p",
           "text": "For we ourselves were once foolish, disobedient, led astray, slaves to various passions and pleasures, passing our days in malice and envy, hated by others and hating one another."
         },
         {
           "verse": 4,
+          "usfm": "TIT.3.4",
+          "line_type": "p",
           "text": "But when the goodness and loving kindness of God our Savior appeared,"
         },
         {
           "verse": 5,
+          "usfm": "TIT.3.5",
+          "line_type": "p",
           "text": "he saved us, not because of works done by us in righteousness, but according to his own mercy, by the washing of regeneration and renewal of the Holy Spirit,"
         },
         {
           "verse": 6,
+          "usfm": "TIT.3.6",
+          "line_type": "p",
           "text": "whom he poured out on us richly through Jesus Christ our Savior,"
         },
         {
           "verse": 7,
+          "usfm": "TIT.3.7",
+          "line_type": "p",
           "text": "so that being justified by his grace we might become heirs according to the hope of eternal life."
         },
         {
           "verse": 8,
+          "usfm": "TIT.3.8",
+          "line_type": "p",
           "text": "The saying is trustworthy, and I want you to insist on these things, so that those who have believed in God may be careful to devote themselves to good works. These things are excellent and profitable for people."
         },
         {
           "verse": 9,
+          "usfm": "TIT.3.9",
+          "line_type": "p",
           "text": "But avoid foolish controversies, genealogies, dissensions, and quarrels about the law, for they are unprofitable and worthless."
         },
         {
           "verse": 10,
+          "usfm": "TIT.3.10",
+          "line_type": "p",
           "text": "As for a person who stirs up division, after warning him once and then twice, have nothing more to do with him,"
         },
         {
           "verse": 11,
+          "usfm": "TIT.3.11",
+          "line_type": "p",
           "text": "knowing that such a person is warped and sinful; he is self-condemned."
         },
         {
           "verse": 12,
+          "usfm": "TIT.3.12",
+          "line_type": "p",
           "text": "When I send Artemas or Tychicus to you, do your best to come to me at Nicopolis, for I have decided to spend the winter there."
         },
         {
           "verse": 13,
+          "usfm": "TIT.3.13",
+          "line_type": "p",
           "text": "Do your best to speed Zenas the lawyer and Apollos on their way; see that they lack nothing."
         },
         {
           "verse": 14,
+          "usfm": "TIT.3.14",
+          "line_type": "p",
           "text": "And let our people learn to devote themselves to good works, so as to help cases of urgent need, and not be unfruitful."
         },
         {
           "verse": 15,
+          "usfm": "TIT.3.15",
+          "line_type": "p",
           "text": "All who are with me send greetings to you. Greet those who love us in the faith. Grace be with you all."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Final Instructions and Greetings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "TIT.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.13.1",
+            "1PE.2.13"
+          ],
+          "text": "Rom. 13:1; 1 Pet. 2:13"
+        },
+        {
+          "verse": 1,
+          "usfm": "TIT.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.2.21"
+          ],
+          "text": "See 2 Tim. 2:21"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EPH.4.31"
+          ],
+          "text": "Eph. 4:31"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.3.3"
+          ],
+          "text": "1 Tim. 3:3"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.2.25"
+          ],
+          "text": "See 2 Tim. 2:25"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1CO.6.11"
+          ],
+          "text": "See 1 Cor. 6:11"
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.2.4"
+          ],
+          "text": "See Rom. 2:4"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.3.27"
+          ],
+          "text": "See Rom. 3:27"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EPH.2.4",
+            "1PE.1.3"
+          ],
+          "text": "Eph. 2:4; 1 Pet. 1:3"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JHN.3.5",
+            "1CO.6.11",
+            "1PE.3.21"
+          ],
+          "text": "See John 3:5; 1 Cor. 6:11; 1 Pet. 3:21"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.12.2"
+          ],
+          "text": "See Rom. 12:2"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "JOL.2.28",
+            "ACT.2.33",
+            "ACT.10.45",
+            "ROM.5.5"
+          ],
+          "text": "Joel 2:28; Acts 2:33; 10:45; Rom. 5:5"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.2.11"
+          ],
+          "text": "ch. 2:11"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ROM.8.17"
+          ],
+          "text": "Rom. 8:17"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.1.2"
+          ],
+          "text": "See ch. 1:2"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.15"
+          ],
+          "text": "See 1 Tim. 1:15"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.3.14",
+            "TIT.2.14"
+          ],
+          "text": "ver. 14; ch. 2:14"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.2.16"
+          ],
+          "text": "2 Tim. 2:16"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.6.4"
+          ],
+          "text": "See 1 Tim. 6:4"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "1TI.1.4"
+          ],
+          "text": "1 Tim. 1:4"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.2.14"
+          ],
+          "text": "2 Tim. 2:14"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.18.15"
+          ],
+          "text": "See Matt. 18:15"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2JN.1.10"
+          ],
+          "text": "See 2 John 10"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.4.12"
+          ],
+          "text": "See 2 Tim. 4:12"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2TI.4.10"
+          ],
+          "text": "[2 Tim. 4:10]"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.18.24"
+          ],
+          "text": "See Acts 18:24"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "TIT.3.8"
+          ],
+          "text": "ver. 8"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2PE.1.8",
+            "PHP.1.11",
+            "PHP.4.17",
+            "COL.1.10"
+          ],
+          "text": "2 Pet. 1:8; [Phil. 1:11; 4:17; Col. 1:10]"
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "COL.4.18"
+          ],
+          "text": "See Col. 4:18"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 11,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "TIT.3.1",
+            "TIT.3.10",
+            "TIT.3.11",
+            "TIT.3.2",
+            "TIT.3.3",
+            "TIT.3.4",
+            "TIT.3.5",
+            "TIT.3.6",
+            "TIT.3.7",
+            "TIT.3.8",
+            "TIT.3.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 14,
+          "verses": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.3.11",
+            "TIT.3.12",
+            "TIT.3.13",
+            "TIT.3.14"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.3.14",
+            "TIT.3.15"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "TIT.3.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1,
@@ -295,7 +1939,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1668/m4a/32k/TIT/3-f62ea26f24baa96ef5812e497e31e58d.m3u8?version_id=59"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/59/TIT.3.ESV",
+        "reference": {
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "Titus 3",
+          "version_id": 59
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "Titus 2",
+          "toc": true,
+          "version_id": 59
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "PHM.1"
+          ],
+          "human": "Philemon 1",
+          "toc": true,
+          "version_id": 59
+        }
+      },
+      "version_meta": {
+        "id": 59,
+        "abbreviation": "ESV",
+        "local_abbreviation": "ESV",
+        "title": "English Standard Version 2025",
+        "local_title": "English Standard Version 2025",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Crossway / Good News Publishers"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

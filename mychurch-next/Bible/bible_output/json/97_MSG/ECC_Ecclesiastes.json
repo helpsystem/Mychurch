@@ -11,6 +11,7 @@
   "total_verses": 73,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 1,
       "chapter_usfm": "ECC.1",
@@ -19,25 +20,117 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ECC.1.1",
+          "line_type": "m",
           "text": "These are the words of the Quester, David’s son and king in Jerusalem: Smoke, nothing but smoke. [That’s what the Quester says.]There’s nothing to anything—it’s all smoke.What’s there to show for a lifetime of work,a lifetime of working your fingers to the bone?One generation goes its way, the next one arrives,but nothing changes—it’s business as usual for old planet earth.The sun comes up and the sun goes down,then does it again, and again—the same old round.The wind blows south, the wind blows north.Around and around and around it blows,blowing this way, then that—the whirling, erratic wind.All the rivers flow into the sea,but the sea never fills up.The rivers keep flowing to the same old place,and then start all over and do it again.Everything’s boring, utterly boring—no one can find any meaning in it.Boring to the eye,boring to the ear.What was will be again,what happened will happen again.There’s nothing new on this earth.Year after year it’s the same old thing.Does someone call out, “Hey, this is new”?Don’t get excited—it’s the same old story.Nobody remembers what happened yesterday.And the things that will happen tomorrow?Nobody’ll remember them either.Don’t count on being remembered. Call me “the Quester.” I’ve been king over Israel in Jerusalem. I looked most carefully into everything, searched out all that is done on this earth. And let me tell you, there’s not much to write home about. God hasn’t made it easy for us. I’ve seen it all and it’s nothing but smoke—smoke, and spitting into the wind."
         },
         {
           "verse": 15,
+          "usfm": "ECC.1.15",
+          "line_type": "q1",
           "text": "Life’s a corkscrew that can’t be straightened,A minus that won’t add up. I said to myself, “I know more and I’m wiser than anyone before me in Jerusalem. I’ve stockpiled wisdom and knowledge.” What I’ve finally concluded is that so-called wisdom and knowledge are mindless and witless—nothing but spitting into the wind."
         },
         {
           "verse": 18,
+          "usfm": "ECC.1.18",
+          "line_type": "q1",
           "text": "Much learning earns you much trouble.The more you know, the more you hurt."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "I’ve Seen It All"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.1.15"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.1.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.1.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ECC.1.18"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ECC.1.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -48,9 +141,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/1-6fcd57f97c65369b6f7e82cd7d31a111.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.1.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.1"
+          ],
+          "human": "Ecclesiastes 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "PRO.31"
+          ],
+          "human": "Proverbs 31",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.2"
+          ],
+          "human": "Ecclesiastes 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 2,
       "chapter_usfm": "ECC.2",
@@ -59,10 +209,14 @@
       "verses": [
         {
           "verse": 11,
+          "usfm": "ECC.2.11",
+          "line_type": "m",
           "text": "Then I took a good look at everything I’d done, looked at all the sweat and hard work. But when I looked, I saw nothing but smoke. Smoke and spitting into the wind. There was nothing to any of it. Nothing. And then I took a hard look at what’s smart and what’s stupid. What’s left to do after you’ve been king? That’s a hard act to follow. You just do what you can, and that’s it. But I did see that it’s better to be smart than stupid, just as light is better than darkness. Even so, though the smart ones see where they’re going and the stupid ones grope in the dark, they’re all the same in the end. One fate for all—and that’s it. When I realized that my fate’s the same as the fool’s, I had to ask myself, “So why bother being wise?” It’s all smoke, nothing but smoke. The smart and the stupid both disappear out of sight. In a day or two they’re both forgotten. Yes, both the smart and the stupid die, and that’s it."
         },
         {
           "verse": 17,
+          "usfm": "ECC.2.17",
+          "line_type": "p",
           "text": "I hate life. As far as I can see, what happens on earth is a bad business. It’s smoke—and spitting into the wind. And I hated everything I’d accomplished and accumulated on this earth. I can’t take it with me—no, I have to leave it to whoever comes after me. Whether they’re worthy or worthless—and who’s to tell?—they’ll take over the earthly results of my intense thinking and hard work. Smoke. That’s when I called it quits, gave up on anything that could be hoped for on this earth. What’s the point of working your fingers to the bone if you hand over what you worked for to someone who never lifted a finger for it? Smoke, that’s what it is. A bad business from start to finish. So what do you get from a life of hard labor? Pain and grief from dawn to dusk. Never a decent night’s rest. Nothing but smoke. The best you can do with your life is have a good time and get by the best you can. The way I see it, that’s it—divine fate. Whether we feast or fast, it’s up to God. God may give wisdom and knowledge and joy to his favorites, but sinners are assigned a life of hard labor, and end up turning their wages over to God’s favorites. Nothing but smoke—and spitting into the wind."
         }
       ],
@@ -78,6 +232,56 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.2.11"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.2.11"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ECC.2.17"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ECC.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -88,9 +292,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/2-1a78f69b964b61da65a7bf37f9f62a2f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.2.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.2"
+          ],
+          "human": "Ecclesiastes 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.1"
+          ],
+          "human": "Ecclesiastes 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.3"
+          ],
+          "human": "Ecclesiastes 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 3,
       "chapter_usfm": "ECC.3",
@@ -99,25 +360,119 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ECC.3.1",
+          "line_type": "m",
           "text": "There’s an opportune time to do things, a right time for everything on the earth: A right time for birth and another for death,A right time to plant and another to reap,A right time to kill and another to heal,A right time to destroy and another to construct,A right time to cry and another to laugh,A right time to lament and another to cheer,A right time to make love and another to abstain,A right time to embrace and another to part,A right time to search and another to count your losses,A right time to hold on and another to let go,A right time to rip out and another to mend,A right time to shut up and another to speak up,A right time to love and another to hate,A right time to wage war and another to make peace. But in the end, does it really make a difference what anyone does? I’ve had a good look at what God has given us to do—busywork, mostly. True, God made everything beautiful in itself and in its time—but he’s left us in the dark, so we can never know what God is up to, whether he’s coming or going. I’ve decided that there’s nothing better to do than go ahead and have a good time and get the most we can out of life. That’s it—eat, drink, and make the most of your job. It’s God’s gift."
         },
         {
           "verse": 14,
+          "usfm": "ECC.3.14",
+          "line_type": "p",
           "text": "I’ve also concluded that whatever God does, that’s the way it’s going to be, always. No addition, no subtraction. God’s done it and that’s it. That’s so we’ll quit asking questions and simply worship in holy fear."
         },
         {
           "verse": 15,
+          "usfm": "ECC.3.15",
+          "line_type": "q1",
           "text": "Whatever was, is.Whatever will be, is.That’s how it always is with God. I took another good look at what’s going on: The very place of judgment—corrupt! The place of righteousness—corrupt! I said to myself, “God will judge righteous and wicked.” There’s a right time for every thing, every deed—and there’s no getting around it. I said to myself regarding the human race, “God’s testing the lot of us, showing us up as nothing but animals.” Humans and animals come to the same end—humans die, animals die. We all breathe the same air. So there’s really no advantage in being human. None. Everything’s smoke. We all end up in the same place—we all came from dust, we all end up as dust. Nobody knows for sure that the human spirit rises to heaven or that the animal spirit sinks into the earth. So I made up my mind that there’s nothing better for us men and women than to have a good time in whatever we do—that’s our lot. Who knows if there’s anything else to life?"
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "God’s Testing Us"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.3.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.3.14"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "ECC.3.14",
+            "ECC.3.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.3.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.3.15"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "m",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.3.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -128,9 +483,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/3-8aa558e2f9b86b1a466b185f289f9088.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.3.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.3"
+          ],
+          "human": "Ecclesiastes 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.2"
+          ],
+          "human": "Ecclesiastes 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.4"
+          ],
+          "human": "Ecclesiastes 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 4,
       "chapter_usfm": "ECC.4",
@@ -139,33 +551,219 @@
       "verses": [
         {
           "verse": 4,
+          "usfm": "ECC.4.4",
+          "line_type": "p",
           "text": "Then I observed all the work and ambition motivated by envy. What a waste! Smoke. And spitting into the wind."
         },
         {
           "verse": 5,
+          "usfm": "ECC.4.5",
+          "line_type": "q1",
           "text": "The fool sits back and takes it easy,His sloth is slow suicide."
         },
         {
           "verse": 6,
+          "usfm": "ECC.4.6",
+          "line_type": "q1",
           "text": "One handful of peaceful reposeIs better than two fistfuls of worried work—More spitting into the wind. I turned my head and saw yet another wisp of smoke on its way to nothingness: a solitary person, completely alone—no children, no family, no friends—yet working obsessively late into the night, compulsively greedy for more and more, never bothering to ask, “Why am I working like a dog, never having any fun? And who cares?” More smoke. A bad business. It’s better to have a partner than go it alone.Share the work, share the wealth.And if one falls down, the other helps,But if there’s no one to help, tough!"
         },
         {
           "verse": 11,
+          "usfm": "ECC.4.11",
+          "line_type": "q1",
           "text": "Two in a bed warm each other.Alone, you shiver all night."
         },
         {
           "verse": 12,
+          "usfm": "ECC.4.12",
+          "line_type": "q1",
           "text": "By yourself you’re unprotected.With a friend you can face the worst.Can you round up a third?A three-stranded rope isn’t easily snapped.* * * A poor child with some wisdom is better off than an old but foolish king who doesn’t know which end is up. I saw a youth just like this start with nothing and go from rags to riches, and I saw everyone rally to the rule of this young successor to the king. Even so, the excitement died quickly, the throngs of people soon lost interest. Can’t you see it’s only smoke? And spitting into the wind?"
         }
       ],
       "verse_count": 5,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Why Am I Working Like a Dog?"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ECC.4.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "ECC.4.4",
+            "ECC.4.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ECC.4.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "ECC.4.5",
+            "ECC.4.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.4.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.4.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "m",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.4.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.4.11"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.4.11"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "ECC.4.11",
+            "ECC.4.12"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.4.12"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.4.12"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.4.12"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.4.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -176,9 +774,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/4-f289043d7f92a1e3870a80a118ff834c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.4.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.4"
+          ],
+          "human": "Ecclesiastes 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.3"
+          ],
+          "human": "Ecclesiastes 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.5"
+          ],
+          "human": "Ecclesiastes 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 5,
       "chapter_usfm": "ECC.5",
@@ -187,49 +842,377 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ECC.5.1",
+          "line_type": "q1",
           "text": "Watch your step when you enter God’s house.Enter to learn. That’s far better than mindlessly offeringa sacrifice,Doing more harm than good."
         },
         {
           "verse": 2,
+          "usfm": "ECC.5.2",
+          "line_type": "q1",
           "text": "Don’t shoot off your mouth, or speak before you think.Don’t be too quick to tell God what you think he wants to hear.God’s in charge, not you—the less you speak, the better."
         },
         {
           "verse": 3,
+          "usfm": "ECC.5.3",
+          "line_type": "q1",
           "text": "Overwork makes for restless sleep.Overtalk shows you up as a fool. When you tell God you’ll do something, do it—now.God takes no pleasure in foolish drivel. Vow it, then do it.Far better not to vow in the first place than to vow and not pay up."
         },
         {
           "verse": 6,
+          "usfm": "ECC.5.6",
+          "line_type": "q1",
           "text": "Don’t let your mouth make a total sinner of you.When called to account, you won’t get by with“Sorry, I didn’t mean it.”Why risk provoking God to angry retaliation?"
         },
         {
           "verse": 7,
+          "usfm": "ECC.5.7",
+          "line_type": "q1",
           "text": "But against all illusion and fantasy and empty talkThere’s always this rock foundation: Fear God! Don’t be too upset when you see the poor kicked around, and justice and right violated all over the place. Exploitation filters down from one petty official to another. There’s no end to it, and nothing can be done about it. But the good earth doesn’t cheat anyone—even a bad king is honestly served by a field."
         },
         {
           "verse": 10,
+          "usfm": "ECC.5.10",
+          "line_type": "q1",
           "text": "The one who loves money is never satisfied with money,Nor the one who loves wealth with big profits. More smoke."
         },
         {
           "verse": 11,
+          "usfm": "ECC.5.11",
+          "line_type": "q1",
           "text": "The more loot you get, the more looters show up.And what fun is that—to be robbed in broad daylight?"
         },
         {
           "verse": 12,
+          "usfm": "ECC.5.12",
+          "line_type": "q1",
           "text": "Hard and honest work earns a good night’s sleep,Whether supper is beans or steak.But a rich man’s belly gives him insomnia. Here’s a piece of bad luck I’ve seen happen:A man hoards far more wealth than is good for himAnd then loses it all in a bad business deal.He fathered a child but hasn’t a cent left to give him.He arrived naked from the womb of his mother;He’ll leave in the same condition—with nothing.This is bad luck, for sure—naked he came, naked he went.So what was the point of working for a salary of smoke?All for a miserable life spent in the dark? After looking at the way things are on this earth, here’s what I’ve decided is the best way to live: Take care of yourself, have a good time, and make the most of whatever job you have for as long as God gives you life. And that’s about it. That’s the human lot. Yes, we should make the most of what God gives, both the bounty and the capacity to enjoy it, accepting what’s given and delighting in the work. It’s God’s gift! God deals out joy in the present, the now. It’s useless to brood over how long we might live."
         }
       ],
       "verse_count": 8,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "A Salary of Smoke"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Make the Most of What God Gives"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.5.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q3",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.5.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.5.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "ECC.5.1",
+            "ECC.5.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ECC.5.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ECC.5.2"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "ECC.5.2",
+            "ECC.5.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ECC.5.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ECC.5.3"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.5.6"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.5.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.5.6"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.5.6"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "ECC.5.6",
+            "ECC.5.7"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ECC.5.7"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "m",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ECC.5.7"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.5.10"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.5.10"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "ECC.5.10",
+            "ECC.5.11"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.5.11"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "ECC.5.11",
+            "ECC.5.12"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.5.12"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.5.12"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.5.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -240,9 +1223,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/5-9262bd22a77f2256efd86d2c3c26280b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 8,
+          "parsed_count": 8,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.5.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.5"
+          ],
+          "human": "Ecclesiastes 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.4"
+          ],
+          "human": "Ecclesiastes 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.6"
+          ],
+          "human": "Ecclesiastes 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 6,
       "chapter_usfm": "ECC.6",
@@ -251,20 +1291,114 @@
       "verses": [
         {
           "verse": 6,
+          "usfm": "ECC.6.6",
+          "line_type": "p",
           "text": "Even if someone lived a thousand years—make it two thousand!—but didn’t enjoy anything, what’s the point? Doesn’t everyone end up in the same place?"
         },
         {
           "verse": 7,
+          "usfm": "ECC.6.7",
+          "line_type": "q1",
           "text": "We work to feed our appetites;Meanwhile our souls go hungry. So what advantage has a sage over a fool, or over some poor wretch who barely gets by? Just grab whatever you can while you can; don’t assume something better might turn up by and by. All it amounts to anyway is smoke. And spitting into the wind."
         },
         {
           "verse": 10,
+          "usfm": "ECC.6.10",
+          "line_type": "q1",
           "text": "Whatever happens, happens. Its destiny is fixed.You can’t argue with fate. The more words that are spoken, the more smoke there is in the air. And who is any better off? And who knows what’s best for us as we live out our meager smoke-and-shadow lives? And who can tell any of us the next chapter of our lives?"
         }
       ],
       "verse_count": 3,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.6.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "ECC.6.6",
+            "ECC.6.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ECC.6.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ECC.6.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.6.10"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.6.10"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.6.10"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -275,9 +1409,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/6-2857db7beb32a1bffab5e1cf7658146b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.6.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.6"
+          ],
+          "human": "Ecclesiastes 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.5"
+          ],
+          "human": "Ecclesiastes 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.7"
+          ],
+          "human": "Ecclesiastes 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 7,
       "chapter_usfm": "ECC.7",
@@ -286,77 +1477,565 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ECC.7.1",
+          "line_type": "q1",
           "text": "A good reputation is better than a fat bank account.Your death date tells more than your birth date."
         },
         {
           "verse": 2,
+          "usfm": "ECC.7.2",
+          "line_type": "q1",
           "text": "You learn more at a funeral than at a feast—After all, that’s where we’ll end up. We might discoversomething from it."
         },
         {
           "verse": 3,
+          "usfm": "ECC.7.3",
+          "line_type": "q1",
           "text": "Crying is better than laughing.It blotches the face but it scours the heart."
         },
         {
           "verse": 4,
+          "usfm": "ECC.7.4",
+          "line_type": "q1",
           "text": "Sages invest themselves in hurt and grieving.Fools waste their lives in fun and games."
         },
         {
           "verse": 5,
+          "usfm": "ECC.7.5",
+          "line_type": "q1",
           "text": "You’ll get more from the rebuke of a sageThan from the song and dance of fools."
         },
         {
           "verse": 6,
+          "usfm": "ECC.7.6",
+          "line_type": "q1",
           "text": "The giggles of fools are like the crackling of twigsUnder the cooking pot. And like smoke."
         },
         {
           "verse": 7,
+          "usfm": "ECC.7.7",
+          "line_type": "q1",
           "text": "Brutality stupefies even the wiseAnd destroys the strongest heart."
         },
         {
           "verse": 8,
+          "usfm": "ECC.7.8",
+          "line_type": "q1",
           "text": "Endings are better than beginnings.Sticking to it is better than standing out."
         },
         {
           "verse": 9,
+          "usfm": "ECC.7.9",
+          "line_type": "q1",
           "text": "Don’t be quick to fly off the handle.Anger boomerangs. You can spot a fool by the lumps on his head."
         },
         {
           "verse": 10,
+          "usfm": "ECC.7.10",
+          "line_type": "q1",
           "text": "Don’t always be asking, “Where are the good old days?”Wise folks don’t ask questions like that. Wisdom is better when it’s paired with money,Especially if you get both while you’re still living.Double protection: wisdom and wealth!Plus this bonus: Wisdom energizes its owner."
         },
         {
           "verse": 13,
+          "usfm": "ECC.7.13",
+          "line_type": "q1",
           "text": "Take a good look at God’s work.Who could simplify and reduce Creation’s curves and anglesTo a plain straight line?"
         },
         {
           "verse": 14,
+          "usfm": "ECC.7.14",
+          "line_type": "q1",
           "text": "On a good day, enjoy yourself;On a bad day, examine your conscience.God arranges for both kinds of daysSo that we won’t take anything for granted. I’ve seen it all in my brief and pointless life—here a good person cut down in the middle of doing good, there a bad person living a long life of sheer evil. So don’t knock yourself out being good, and don’t go overboard being wise. Believe me, you won’t get anything out of it. But don’t press your luck by being bad, either. And don’t be reckless. Why die needlessly?"
         },
         {
           "verse": 18,
+          "usfm": "ECC.7.18",
+          "line_type": "p",
           "text": "It’s best to stay in touch with both sides of an issue. A person who fears God deals responsibly with all of reality, not just a piece of it."
         },
         {
           "verse": 19,
+          "usfm": "ECC.7.19",
+          "line_type": "q1",
           "text": "Wisdom puts more strength in one wise personThan ten strong men give to a city."
         },
         {
           "verse": 20,
+          "usfm": "ECC.7.20",
+          "line_type": "q1",
           "text": "There’s not one totally good person on earth,Not one who is truly pure and sinless. Don’t eavesdrop on the conversation of others.What if the gossip’s about you and you’d rather not hear it?You’ve done that a few times, haven’t you—said thingsBehind someone’s back you wouldn’t say to his face? I tested everything in my search for wisdom. I set out to be wise, but it was beyond me, far beyond me, and deep—oh so deep! Does anyone ever find it? I concentrated with all my might, studying and exploring and seeking wisdom—the meaning of life. I also wanted to identify evil and stupidity, foolishness and craziness. One discovery: A woman can be a bitter pill to swallow, full of seductive scheming and grasping. The lucky escape her; the undiscerning get caught. At least this is my experience—what I, the Quester, have pieced together as I’ve tried to make sense of life. But the wisdom I’ve looked for I haven’t found. I didn’t find one man or woman in a thousand worth my while. Yet I did spot one ray of light in this murk: God made men and women true and upright; we’re the ones who’ve made a mess of things."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "Stay in Touch with Both Sides"
         },
         {
-          "before_verse": 20,
+          "before_verse": 21,
           "text": "How to Interpret the Meaning of Life"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.7.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.7.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "ECC.7.1",
+            "ECC.7.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ECC.7.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ECC.7.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "ECC.7.2",
+            "ECC.7.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ECC.7.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "ECC.7.3",
+            "ECC.7.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ECC.7.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "ECC.7.4",
+            "ECC.7.5"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ECC.7.5"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "ECC.7.5",
+            "ECC.7.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.7.6"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "ECC.7.6",
+            "ECC.7.7"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ECC.7.7"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "ECC.7.7",
+            "ECC.7.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.7.8"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "ECC.7.8",
+            "ECC.7.9"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ECC.7.9"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "ECC.7.10",
+            "ECC.7.9"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.7.10"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.7.10"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ECC.7.13"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ECC.7.13"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ECC.7.13"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "ECC.7.13",
+            "ECC.7.14"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.7.14"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.7.14"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.7.14"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "m",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.7.14"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ECC.7.18"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "ECC.7.18",
+            "ECC.7.19"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ECC.7.19"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "ECC.7.19",
+            "ECC.7.20"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ECC.7.20"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ECC.7.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -367,9 +2046,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/7-e1d1615bbe3a9ddde148cd748574ad92.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.7.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.7"
+          ],
+          "human": "Ecclesiastes 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.6"
+          ],
+          "human": "Ecclesiastes 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.8"
+          ],
+          "human": "Ecclesiastes 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 8,
       "chapter_usfm": "ECC.8",
@@ -378,45 +2114,261 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ECC.8.1",
+          "line_type": "q1",
           "text": "There’s nothing better than being wise,Knowing how to interpret the meaning of life.Wisdom puts light in the eyes,And gives gentleness to words and manners. Do what your king commands; you gave a sacred oath of obedience. Don’t worryingly second-guess your orders or try to back out when the task is unpleasant. You’re serving his pleasure, not yours. The king has the last word. Who dares say to him, “What are you doing?” Carrying out orders won’t hurt you a bit; the wise person obeys promptly and accurately. Yes, there’s a right time and way for everything, even though, unfortunately, we miss it for the most part. It’s true that no one knows what’s going to happen, or when. Who’s around to tell us?"
         },
         {
           "verse": 8,
+          "usfm": "ECC.8.8",
+          "line_type": "q1",
           "text": "No one can control the wind or lock it in a box.No one has any say-so regarding the day of death.No one can stop a battle in its tracks.No one who does evil can be saved by evil."
         },
         {
           "verse": 9,
+          "usfm": "ECC.8.9",
+          "line_type": "p",
           "text": "All this I observed as I tried my best to understand all that’s going on in this world. As long as men and women have the power to hurt each other, this is the way it is."
         },
         {
           "verse": 10,
+          "usfm": "ECC.8.10",
+          "line_type": "m",
           "text": "One time I saw wicked men given a solemn burial in holy ground. When the people returned to the city, they delivered flowery eulogies—and in the very place where wicked acts were done by those very men! More smoke. Indeed."
         },
         {
           "verse": 11,
+          "usfm": "ECC.8.11",
+          "line_type": "p",
           "text": "Because the sentence against evil deeds is so long in coming, people in general think they can get by with murder. Even though a person sins and gets by with it hundreds of times throughout a long life, I’m still convinced that the good life is reserved for the person who fears God, who lives reverently in his presence, and that the evil person will not experience a “good” life. No matter how many days he lives, they’ll all be as flat and colorless as a shadow—because he doesn’t fear God.* * *"
         },
         {
           "verse": 14,
+          "usfm": "ECC.8.14",
+          "line_type": "p",
           "text": "Here’s something that happens all the time and makes no sense at all: Good people get what’s coming to the wicked, and bad people get what’s coming to the good. I tell you, this makes no sense. It’s smoke."
         },
         {
           "verse": 15,
+          "usfm": "ECC.8.15",
+          "line_type": "p",
           "text": "So, I’m all for just going ahead and having a good time—the best possible. The only earthly good men and women can look forward to is to eat and drink well and have a good time—compensation for the struggle for survival these few years God gives us on earth. When I determined to load up on wisdom and examine everything taking place on earth, I realized that if you keep your eyes open day and night without even blinking, you’ll still never figure out the meaning of what God is doing on this earth. Search as hard as you like, you’re not going to make sense of it. No matter how smart you are, you won’t get to the bottom of it."
         }
       ],
       "verse_count": 7,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "No One Can Control the Wind"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "One Fate for Everybody"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.8.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.8.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.8.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.8.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.8.1"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.8.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.8.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.8.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.8.8"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "ECC.8.8",
+            "ECC.8.9"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "m",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "ECC.8.10",
+            "ECC.8.9"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "ECC.8.10",
+            "ECC.8.11"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.8.11"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.8.14"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "ECC.8.14",
+            "ECC.8.15"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.8.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -427,9 +2379,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/8-700f175e101e2ac39292465bc9cbaa02.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 7,
+          "parsed_count": 7,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.8.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.8"
+          ],
+          "human": "Ecclesiastes 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.7"
+          ],
+          "human": "Ecclesiastes 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.9"
+          ],
+          "human": "Ecclesiastes 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 9,
       "chapter_usfm": "ECC.9",
@@ -438,22 +2447,32 @@
       "verses": [
         {
           "verse": 11,
+          "usfm": "ECC.9.11",
+          "line_type": "p",
           "text": "I took another walk around the neighborhood and realized that on this earth as it is—The race is not always to the swift,Nor the battle to the strong,Nor satisfaction to the wise,Nor riches to the smart,Nor grace to the learned.Sooner or later bad luck hits us all."
         },
         {
           "verse": 12,
+          "usfm": "ECC.9.12",
+          "line_type": "q1",
           "text": "No one can predict misfortune.Like fish caught in a cruel net or birds in a trap,So men and women are caughtBy accidents evil and sudden. One day as I was observing how wisdom fares on this earth, I saw something that made me sit up and take notice. There was a small town with only a few people in it. A strong king came and mounted an attack, building trenches and attack posts around it. There was a poor but wise man in that town whose wisdom saved the town, but he was promptly forgotten. (He was only a poor man, after all.)"
         },
         {
           "verse": 16,
+          "usfm": "ECC.9.16",
+          "line_type": "p",
           "text": "All the same, I still say that wisdom is better than muscle, even though the wise poor man was treated with contempt and soon forgotten."
         },
         {
           "verse": 17,
+          "usfm": "ECC.9.17",
+          "line_type": "q1",
           "text": "The quiet words of the wise are more effectiveThan the ranting of a king of fools."
         },
         {
           "verse": 18,
+          "usfm": "ECC.9.18",
+          "line_type": "q1",
           "text": "Wisdom is better than warheads,But one hothead can ruin the good earth."
         }
       ],
@@ -464,11 +2483,223 @@
           "text": "Seize Life!"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Wisdom Is Better than Muscle"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.9.11"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.9.11"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.9.11"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.9.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.9.11"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.9.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.9.11"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "ECC.9.11",
+            "ECC.9.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.9.12"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.9.12"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.9.12"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "m",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ECC.9.12"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ECC.9.16"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "ECC.9.16",
+            "ECC.9.17"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ECC.9.17"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "ECC.9.17",
+            "ECC.9.18"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ECC.9.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -479,9 +2710,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/9-45d9c1e2a5d054c4335a4218db4ff9ab.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.9.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.9"
+          ],
+          "human": "Ecclesiastes 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.8"
+          ],
+          "human": "Ecclesiastes 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.10"
+          ],
+          "human": "Ecclesiastes 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 10,
       "chapter_usfm": "ECC.10",
@@ -490,60 +2778,490 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ECC.10.1",
+          "line_type": "q1",
           "text": "Dead flies in perfume make it stink,And a little foolishness decomposes much wisdom."
         },
         {
           "verse": 2,
+          "usfm": "ECC.10.2",
+          "line_type": "q1",
           "text": "Wise thinking leads to right living;Stupid thinking leads to wrong living."
         },
         {
           "verse": 3,
+          "usfm": "ECC.10.3",
+          "line_type": "q1",
           "text": "Fools on the road have no sense of direction.The way they walk tells the story: “There goes the fool again!”"
         },
         {
           "verse": 4,
+          "usfm": "ECC.10.4",
+          "line_type": "q1",
           "text": "If a ruler loses his temper against you, don’t panic;A calm disposition quiets intemperate rage.* * * Here’s a piece of bad business I’ve seen on this earth,An error that can be blamed on whoever is in charge:Immaturity is given a place of prominence,While maturity is made to take a backseat.I’ve seen unproven upstarts riding in style,While experienced veterans are put out to pasture.* * *"
         },
         {
           "verse": 8,
+          "usfm": "ECC.10.8",
+          "line_type": "q1",
           "text": "Caution: The trap you set might catch you.Warning: Your accomplice in crime might double-cross you."
         },
         {
           "verse": 9,
+          "usfm": "ECC.10.9",
+          "line_type": "q1",
           "text": "Safety first: Quarrying stones is dangerous.Be alert: Felling trees is hazardous."
         },
         {
           "verse": 10,
+          "usfm": "ECC.10.10",
+          "line_type": "q1",
           "text": "Remember: The duller the ax the harder the work;Use your head: The more brains, the less muscle."
         },
         {
           "verse": 11,
+          "usfm": "ECC.10.11",
+          "line_type": "q1",
           "text": "If the snake bites before it’s been charmed,What’s the point in then sending for the charmer?* * * The words of a wise person are gracious.The talk of a fool self-destructs—He starts out talking nonsenseAnd ends up spouting insanity and evil."
         },
         {
           "verse": 14,
+          "usfm": "ECC.10.14",
+          "line_type": "q1",
           "text": "Fools talk way too much,Chattering stuff they know nothing about."
         },
         {
           "verse": 15,
+          "usfm": "ECC.10.15",
+          "line_type": "q1",
           "text": "A decent day’s work so fatigues foolsThat they can’t find their way back to town.* * * Unlucky the land whose king is a young pup,And whose princes party all night.Lucky the land whose king is mature,Where the princes behave themselvesAnd don’t drink themselves silly.* * *"
         },
         {
           "verse": 18,
+          "usfm": "ECC.10.18",
+          "line_type": "q1",
           "text": "A shiftless man lives in a tumbledown shack;A lazy woman ends up with a leaky roof."
         },
         {
           "verse": 19,
+          "usfm": "ECC.10.19",
+          "line_type": "q1",
           "text": "Laughter and bread go together,And wine gives sparkle to life—But it’s money that makes the world go around."
         },
         {
           "verse": 20,
+          "usfm": "ECC.10.20",
+          "line_type": "q1",
           "text": "Don’t bad-mouth your leaders, not even under your breath,And don’t abuse your betters, even in the privacy of your home.Loose talk has a way of getting picked up and spread around.Little birds drop the crumbs of your gossip far and wide."
         }
       ],
       "verse_count": 13,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.10.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.10.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "ECC.10.1",
+            "ECC.10.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ECC.10.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "ECC.10.2",
+            "ECC.10.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ECC.10.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "ECC.10.3",
+            "ECC.10.4"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ECC.10.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ECC.10.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.10.8"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.10.8"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "ECC.10.8",
+            "ECC.10.9"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ECC.10.9"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "ECC.10.10",
+            "ECC.10.9"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.10.10"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "ECC.10.10",
+            "ECC.10.11"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.10.11"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.10.11"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.10.14"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.10.14"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "ECC.10.14",
+            "ECC.10.15"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.10.15"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ECC.10.15"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ECC.10.18"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ECC.10.18"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "ECC.10.18",
+            "ECC.10.19"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ECC.10.19"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ECC.10.19"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "ECC.10.19",
+            "ECC.10.20"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ECC.10.20"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ECC.10.20"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "ECC.10.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -554,9 +3272,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/10-766bd47d62f29c61b07e4b2ce45222b6.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.10.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.10"
+          ],
+          "human": "Ecclesiastes 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.9"
+          ],
+          "human": "Ecclesiastes 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.11"
+          ],
+          "human": "Ecclesiastes 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 11,
       "chapter_usfm": "ECC.11",
@@ -565,37 +3340,333 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ECC.11.1",
+          "line_type": "q1",
           "text": "Be generous: Invest in acts of charity.Charity yields high returns."
         },
         {
           "verse": 2,
+          "usfm": "ECC.11.2",
+          "line_type": "q1",
           "text": "Don’t hoard your goods; spread them around.Be a blessing to others. This could be your last night. When the clouds are full of water, it rains.When the wind blows down a tree, it lies where it falls.Don’t sit there watching the wind. Do your own work.Don’t stare at the clouds. Get on with your life."
         },
         {
           "verse": 5,
+          "usfm": "ECC.11.5",
+          "line_type": "q1",
           "text": "Just as you’ll never understandthe mystery of life forming in a pregnant woman,So you’ll never understandthe mystery at work in all that God does."
         },
         {
           "verse": 6,
+          "usfm": "ECC.11.6",
+          "line_type": "q1",
           "text": "Go to work in the morningand stick to it until evening without watching the clock.You never know from moment to momenthow your work will turn out in the end. Oh, how sweet the light of day,And how wonderful to live in the sunshine!Even if you live a long time, don’t take a single day for granted.Take delight in each light-filled hour,Remembering that there will also be many dark daysAnd that most of what comes your way is smoke."
         },
         {
           "verse": 9,
+          "usfm": "ECC.11.9",
+          "line_type": "q1",
           "text": "You who are young, make the most of your youth.Relish your youthful vigor.Follow the impulses of your heart.If something looks good to you, pursue it.But know also that not just anything goes;You have to answer to God for every last bit of it."
         },
         {
           "verse": 10,
+          "usfm": "ECC.11.10",
+          "line_type": "q1",
           "text": "Live footloose and fancy-free—You won’t be young forever.Youth lasts about as long as smoke."
         }
       ],
       "verse_count": 6,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Before the Years Take Their Toll"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.11.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ECC.11.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "ECC.11.1",
+            "ECC.11.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ECC.11.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ECC.11.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ECC.11.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ECC.11.5"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ECC.11.5"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ECC.11.5"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "ECC.11.5",
+            "ECC.11.6"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.11.6"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.11.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.11.6"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ECC.11.6"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ECC.11.9"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ECC.11.9"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ECC.11.9"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ECC.11.9"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ECC.11.9"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ECC.11.9"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "ECC.11.10",
+            "ECC.11.9"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.11.10"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ECC.11.10"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -606,9 +3677,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/11-5d5fcfb2a51e8def6adaed5bfcde7a42.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.11.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.11"
+          ],
+          "human": "Ecclesiastes 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.10"
+          ],
+          "human": "Ecclesiastes 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ECC.12"
+          ],
+          "human": "Ecclesiastes 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ECC",
       "chapter": 12,
       "chapter_usfm": "ECC.12",
@@ -617,25 +3745,129 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "ECC.12.8",
+          "line_type": "q1",
           "text": "It’s all smoke, nothing but smoke.The Quester says that everything’s smoke. Besides being wise himself, the Quester also taught others knowledge. He weighed, examined, and arranged many proverbs. The Quester did his best to find the right words and write the plain truth."
         },
         {
           "verse": 11,
+          "usfm": "ECC.12.11",
+          "line_type": "q1",
           "text": "The words of the wise prod us to live well.They’re like nails hammered home, holding life together.They are given by God, the one Shepherd. But regarding anything beyond this, dear friend, go easy. There’s no end to the publishing of books, and constant study wears you out so you’re no good for anything else. The last and final word is this:Fear God.Do what he tells you."
         },
         {
           "verse": 14,
+          "usfm": "ECC.12.14",
+          "line_type": "p",
           "text": "And that’s it. Eventually God will bring everything that we do out into the open and judge it according to its hidden intent, whether it’s good or evil."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "The Final Word"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.12.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.12.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "m",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ECC.12.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.12.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.12.11"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.12.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ECC.12.11"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ECC.12.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -646,7 +3878,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ECC/12-03b97c298f45d33833f6db33af9e50d0.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ECC.12.MSG",
+        "reference": {
+          "usfm": [
+            "ECC.12"
+          ],
+          "human": "Ecclesiastes 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.11"
+          ],
+          "human": "Ecclesiastes 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "Song of Songs 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

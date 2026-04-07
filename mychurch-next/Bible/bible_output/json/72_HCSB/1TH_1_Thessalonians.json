@@ -11,6 +11,7 @@
   "total_verses": 89,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 1,
       "chapter_usfm": "1TH.1",
@@ -19,53 +20,372 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TH.1.1",
+          "line_type": "p",
           "text": "Paul, Silvanus, and Timothy: To the church of the Thessalonians in God the Father and the Lord Jesus Christ.Grace to you and peace."
         },
         {
           "verse": 2,
+          "usfm": "1TH.1.2",
+          "line_type": "p",
           "text": "We always thank God for all of you, remembering you constantly in our prayers."
         },
         {
           "verse": 3,
+          "usfm": "1TH.1.3",
+          "line_type": "p",
           "text": "We recall, in the presence of our God and Father, your work of faith, labor of love, and endurance of hope in our Lord Jesus Christ,"
         },
         {
           "verse": 4,
+          "usfm": "1TH.1.4",
+          "line_type": "p",
           "text": "knowing your election, brothers loved by God."
         },
         {
           "verse": 5,
+          "usfm": "1TH.1.5",
+          "line_type": "p",
           "text": "For our gospel did not come to you in word only, but also in power, in the Holy Spirit, and with much assurance. You know what kind of men we were among you for your benefit,"
         },
         {
           "verse": 6,
+          "usfm": "1TH.1.6",
+          "line_type": "p",
           "text": "and you became imitators of us and of the Lord when, in spite of severe persecution, you welcomed the message with joy from the Holy Spirit."
         },
         {
           "verse": 7,
+          "usfm": "1TH.1.7",
+          "line_type": "p",
           "text": "As a result, you became an example to all the believers in Macedonia and Achaia."
         },
         {
           "verse": 8,
+          "usfm": "1TH.1.8",
+          "line_type": "p",
           "text": "For the Lord’s message rang out from you, not only in Macedonia and Achaia, but in every place that your faith in God has gone out. Therefore, we don’t need to say anything,"
         },
         {
           "verse": 9,
+          "usfm": "1TH.1.9",
+          "line_type": "p",
           "text": "for they themselves report what kind of reception we had from you: how you turned to God from idols to serve the living and true God"
         },
         {
           "verse": 10,
+          "usfm": "1TH.1.10",
+          "line_type": "p",
           "text": "and to wait for His Son from heaven, whom He raised from the dead — Jesus, who rescues us from the coming wrath."
         }
       ],
       "verse_count": 10,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Thanksgiving"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TH.1.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Silas ; Ac 15:22-32; 16:19-40; 17:1-16"
+        },
+        {
+          "verse": 1,
+          "usfm": "1TH.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 15:22; 2Co 1:19; 2Th 1:1; 1Pt 5:12"
+        },
+        {
+          "verse": 1,
+          "usfm": "1TH.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 16:1; 1Tm 1:2"
+        },
+        {
+          "verse": 1,
+          "usfm": "1TH.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 17:1"
+        },
+        {
+          "verse": 1,
+          "usfm": "1TH.1.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Other mss add from God our Father and the Lord Jesus Christ"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Php 4:20"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 3:28; 9:32; Gl 2:16; 5:6; 2Th 1:11; Heb 6:1; Jms 2:14-26; Rv 2:19"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 15:26"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 24:22; Eph 1:4"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 3:16; Rv 12:11"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 33:12; 2Th 2:13"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TH.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 1:33; Ac 2:4; Rm 8:9; 1Co 2:4; Gl 5:25; Ti 3:5; Rv 3:22"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TH.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 20:18; 1Th 2:10"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TH.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb 4:12"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TH.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 16:9"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TH.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 18:12"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TH.1.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in every place news of your faith"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TH.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gl 2:16"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit report about us"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 17:1-9"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Pt 2:25"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 31:19; 1Co 8:4"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 5:26"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 4:23; 1Jn 5:20"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jd 21"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb 1:2"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 17:9; Jn 5:25"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 27:43"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 2:5; 1Th 5:9; Rv 6:16"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1TH.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1TH.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1TH.1.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 10,
+          "verses": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1TH.1.10",
+            "1TH.1.2",
+            "1TH.1.3",
+            "1TH.1.4",
+            "1TH.1.5",
+            "1TH.1.6",
+            "1TH.1.7",
+            "1TH.1.8",
+            "1TH.1.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -76,9 +396,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/1TH/1-9667313e70043efff3fbf9da855ca197.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/1TH.1.HCSB",
+        "reference": {
+          "usfm": [
+            "1TH.1"
+          ],
+          "human": "1 Thessalonians 1",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "COL.4"
+          ],
+          "human": "Colossians 4",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.2"
+          ],
+          "human": "1 Thessalonians 2",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 2,
       "chapter_usfm": "1TH.2",
@@ -87,97 +464,546 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TH.2.1",
+          "line_type": "p",
           "text": "For you yourselves know, brothers, that our visit with you was not without result."
         },
         {
           "verse": 2,
+          "usfm": "1TH.2.2",
+          "line_type": "p",
           "text": "On the contrary, after we had previously suffered, and we were treated outrageously in Philippi, as you know, we were emboldened by our God to speak the gospel of God to you in spite of great opposition."
         },
         {
           "verse": 3,
+          "usfm": "1TH.2.3",
+          "line_type": "p",
           "text": "For our exhortation didn’t come from error or impurity or an intent to deceive."
         },
         {
           "verse": 4,
+          "usfm": "1TH.2.4",
+          "line_type": "p",
           "text": "Instead, just as we have been approved by God to be entrusted with the gospel, so we speak, not to please men, but rather God, who examines our hearts."
         },
         {
           "verse": 5,
+          "usfm": "1TH.2.5",
+          "line_type": "p",
           "text": "For we never used flattering speech, as you know, or had greedy motives — God is our witness —"
         },
         {
           "verse": 6,
+          "usfm": "1TH.2.6",
+          "line_type": "p",
           "text": "and we didn’t seek glory from people, either from you or from others."
         },
         {
           "verse": 7,
+          "usfm": "1TH.2.7",
+          "line_type": "p",
           "text": "Although we could have been a burden as Christ’s apostles, instead we were gentle among you, as a nursing mother nurtures her own children."
         },
         {
           "verse": 8,
+          "usfm": "1TH.2.8",
+          "line_type": "p",
           "text": "We cared so much for you that we were pleased to share with you not only the gospel of God but also our own lives, because you had become dear to us."
         },
         {
           "verse": 9,
+          "usfm": "1TH.2.9",
+          "line_type": "p",
           "text": "For you remember our labor and hardship, brothers. Working night and day so that we would not burden any of you, we preached God’s gospel to you."
         },
         {
           "verse": 10,
+          "usfm": "1TH.2.10",
+          "line_type": "p",
           "text": "You are witnesses, and so is God, of how devoutly, righteously, and blamelessly we conducted ourselves with you believers."
         },
         {
           "verse": 11,
+          "usfm": "1TH.2.11",
+          "line_type": "p",
           "text": "As you know, like a father with his own children,"
         },
         {
           "verse": 12,
+          "usfm": "1TH.2.12",
+          "line_type": "p",
           "text": "we encouraged, comforted, and implored each one of you to walk worthy of God, who calls you into His own kingdom and glory."
         },
         {
           "verse": 13,
+          "usfm": "1TH.2.13",
+          "line_type": "p",
           "text": "This is why we constantly thank God, because when you received the message about God that you heard from us, you welcomed it not as a human message, but as it truly is, the message of God, which also works effectively in you believers."
         },
         {
           "verse": 14,
+          "usfm": "1TH.2.14",
+          "line_type": "p",
           "text": "For you, brothers, became imitators of God’s churches in Christ Jesus that are in Judea, since you have also suffered the same things from people of your own country, just as they did from the Jews"
         },
         {
           "verse": 15,
+          "usfm": "1TH.2.15",
+          "line_type": "p",
           "text": "who killed both the Lord Jesus and the prophets and persecuted us; they displease God and are hostile to everyone,"
         },
         {
           "verse": 16,
+          "usfm": "1TH.2.16",
+          "line_type": "p",
           "text": "hindering us from speaking to the Gentiles so that they may be saved. As a result, they are always completing the number of their sins, and wrath has overtaken them at last."
         },
         {
           "verse": 17,
+          "usfm": "1TH.2.17",
+          "line_type": "p",
           "text": "But as for us, brothers, after we were forced to leave you for a short time (in person, not in heart ), we greatly desired and made every effort to return and see you face to face."
         },
         {
           "verse": 18,
+          "usfm": "1TH.2.18",
+          "line_type": "p",
           "text": "So we wanted to come to you — even I, Paul, time and again — but Satan hindered us."
         },
         {
           "verse": 19,
+          "usfm": "1TH.2.19",
+          "line_type": "p",
           "text": "For who is our hope or joy or crown of boasting in the presence of our Lord Jesus at His coming? Is it not you?"
         },
         {
           "verse": 20,
+          "usfm": "1TH.2.20",
+          "line_type": "p",
           "text": "For you are our glory and joy!"
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Reception and Opposition to the Message"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Paul’s Desire to See Them"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TH.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 17:1-9"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TH.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 16:19-24"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TH.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Php 1:1"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 4:7"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 10:7"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 16:11"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 15:7; Gl 2:7; 1Tm 1:11"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 5:44; 12:43; 1Co 4:5; 2Co 10:18; Gl 1:10; Php 3:19; 1Th 2:15; 1Pt 3:4"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 17:3; Pr 21:2; Rm 8:27"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TH.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph 5:3"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TH.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mk 12:40; Lk 20:47; Jn 15:22; Ac 27:30; Php 1:18"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TH.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 1:9"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TH.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Php 3:19"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TH.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 1:2; Jd 17"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TH.2.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Other mss read infants"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Jn 8"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 1:9"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ti 2:12"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 5:23"
+        },
+        {
+          "verse": 11,
+          "usfm": "1TH.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Co 4:14; Gl 4:19; 1Tm 1:2; Phm 10"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "3Jn 6"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mk 1:15; Ac 20:25"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 9:32; 24:26; Jn 17:24; 2Co 3:18; 1Pt 5:1; 2Pt 3:18"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Th 3:1"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 8:21"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 1:5"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Php 1:29"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 17:5"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 24:20"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 11:3"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TH.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 23:30-32"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TH.2.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or to the end"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TH.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Col 2:5"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TH.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 3:10"
+        },
+        {
+          "verse": 18,
+          "usfm": "1TH.2.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 4:1,10; Ac 13:10"
+        },
+        {
+          "verse": 19,
+          "usfm": "1TH.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 15:11; 2Co 6:10"
+        },
+        {
+          "verse": 19,
+          "usfm": "1TH.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rv 12:1"
+        },
+        {
+          "verse": 19,
+          "usfm": "1TH.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Co 12:5; Jms 4:16"
+        },
+        {
+          "verse": 19,
+          "usfm": "1TH.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rv 11:8"
+        },
+        {
+          "verse": 19,
+          "usfm": "1TH.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 1:10; 1Jn 2:28"
+        },
+        {
+          "verse": 19,
+          "usfm": "1TH.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Co 15:31; 2Co 1:14; Php 4:1; 2Th 1:4"
+        },
+        {
+          "verse": 20,
+          "usfm": "1TH.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 12:43; Php 3:19"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 12,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "1TH.2.1",
+            "1TH.2.10",
+            "1TH.2.11",
+            "1TH.2.12",
+            "1TH.2.2",
+            "1TH.2.3",
+            "1TH.2.4",
+            "1TH.2.5",
+            "1TH.2.6",
+            "1TH.2.7",
+            "1TH.2.8",
+            "1TH.2.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 16,
+          "verses": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "1TH.2.13",
+            "1TH.2.14",
+            "1TH.2.15",
+            "1TH.2.16"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 20,
+          "verses": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "1TH.2.17",
+            "1TH.2.18",
+            "1TH.2.19",
+            "1TH.2.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -188,9 +1014,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/1TH/2-18b07c45bf355744bca8b9167e3715d2.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/1TH.2.HCSB",
+        "reference": {
+          "usfm": [
+            "1TH.2"
+          ],
+          "human": "1 Thessalonians 2",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.1"
+          ],
+          "human": "1 Thessalonians 1",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.3"
+          ],
+          "human": "1 Thessalonians 3",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 3,
       "chapter_usfm": "1TH.3",
@@ -199,69 +1082,314 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TH.3.1",
+          "line_type": "p",
           "text": "Therefore, when we could no longer stand it, we thought it was better to be left alone in Athens."
         },
         {
           "verse": 2,
+          "usfm": "1TH.3.2",
+          "line_type": "p",
           "text": "And we sent Timothy, our brother and God’s coworker in the gospel of Christ, to strengthen and encourage you concerning your faith,"
         },
         {
           "verse": 3,
+          "usfm": "1TH.3.3",
+          "line_type": "p",
           "text": "so that no one will be shaken by these persecutions. For you yourselves know that we are appointed to this."
         },
         {
           "verse": 4,
+          "usfm": "1TH.3.4",
+          "line_type": "p",
           "text": "In fact, when we were with you, we told you previously that we were going to suffer persecution, and as you know, it happened."
         },
         {
           "verse": 5,
+          "usfm": "1TH.3.5",
+          "line_type": "p",
           "text": "For this reason, when I could no longer stand it, I also sent him to find out about your faith, fearing that the tempter had tempted you and that our labor might be for nothing."
         },
         {
           "verse": 6,
+          "usfm": "1TH.3.6",
+          "line_type": "p",
           "text": "But now Timothy has come to us from you and brought us good news about your faith and love and reported that you always have good memories of us, wanting to see us, as we also want to see you."
         },
         {
           "verse": 7,
+          "usfm": "1TH.3.7",
+          "line_type": "p",
           "text": "Therefore, brothers, in all our distress and persecution, we were encouraged about you through your faith."
         },
         {
           "verse": 8,
+          "usfm": "1TH.3.8",
+          "line_type": "p",
           "text": "For now we live, if you stand firm in the Lord."
         },
         {
           "verse": 9,
+          "usfm": "1TH.3.9",
+          "line_type": "p",
           "text": "How can we thank God for you in return for all the joy we experience before our God because of you,"
         },
         {
           "verse": 10,
+          "usfm": "1TH.3.10",
+          "line_type": "p",
           "text": "as we pray very earnestly night and day to see you face to face and to complete what is lacking in your faith?"
         },
         {
           "verse": 11,
+          "usfm": "1TH.3.11",
+          "line_type": "p",
           "text": "Now may our God and Father Himself, and our Lord Jesus, direct our way to you."
         },
         {
           "verse": 12,
+          "usfm": "1TH.3.12",
+          "line_type": "p",
           "text": "And may the Lord cause you to increase and overflow with love for one another and for everyone, just as we also do for you."
         },
         {
           "verse": 13,
+          "usfm": "1TH.3.13",
+          "line_type": "p",
           "text": "May He make your hearts blameless in holiness before our God and Father at the coming of our Lord Jesus with all His saints. Amen."
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Encouraged by Timothy"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Prayer for the Church"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TH.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 17:15"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TH.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 16:1; 1Tm 1:2"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TH.3.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Other mss read servant"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TH.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Php 1:27"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or are destined for"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TH.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 18:5"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TH.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Co 11:2; Php 1:8"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TH.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 14:4; 1Co 16:13; Php 1:27"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 15:11; 2Co 6:10; Php 1:18"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 2:17"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Col 1:24"
+        },
+        {
+          "verse": 11,
+          "usfm": "1TH.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 8:42; Php 4:20"
+        },
+        {
+          "verse": 11,
+          "usfm": "1TH.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 20:21"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 7:42"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.3.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 13:8"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 1:6"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 1:4; 1Co 7:14; 2Co 7:1"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 1:10; 1Jn 2:28"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rv 11:8"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.3.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Other mss omit Amen."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "1TH.3.1",
+            "1TH.3.2",
+            "1TH.3.3",
+            "1TH.3.4",
+            "1TH.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 10,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1TH.3.10",
+            "1TH.3.6",
+            "1TH.3.7",
+            "1TH.3.8",
+            "1TH.3.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "1TH.3.11",
+            "1TH.3.12",
+            "1TH.3.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -272,9 +1400,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/1TH/3-ace253233781eeed2c1bbb99060260d0.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/1TH.3.HCSB",
+        "reference": {
+          "usfm": [
+            "1TH.3"
+          ],
+          "human": "1 Thessalonians 3",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.2"
+          ],
+          "human": "1 Thessalonians 2",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.4"
+          ],
+          "human": "1 Thessalonians 4",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 4,
       "chapter_usfm": "1TH.4",
@@ -283,89 +1468,508 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TH.4.1",
+          "line_type": "p",
           "text": "Finally then, brothers, we ask and encourage you in the Lord Jesus, that as you have received from us how you must walk and please God — as you are doing — do so even more."
         },
         {
           "verse": 2,
+          "usfm": "1TH.4.2",
+          "line_type": "p",
           "text": "For you know what commands we gave you through the Lord Jesus."
         },
         {
           "verse": 3,
+          "usfm": "1TH.4.3",
+          "line_type": "p",
           "text": "For this is God’s will, your sanctification: that you abstain from sexual immorality,"
         },
         {
           "verse": 4,
+          "usfm": "1TH.4.4",
+          "line_type": "p",
           "text": "so that each of you knows how to control his own body in sanctification and honor,"
         },
         {
           "verse": 5,
+          "usfm": "1TH.4.5",
+          "line_type": "p",
           "text": "not with lustful desires, like the Gentiles who don’t know God."
         },
         {
           "verse": 6,
+          "usfm": "1TH.4.6",
+          "line_type": "p",
           "text": "This means one must not transgress against and defraud his brother in this matter, because the Lord is an avenger of all these offenses, as we also previously told and warned you."
         },
         {
           "verse": 7,
+          "usfm": "1TH.4.7",
+          "line_type": "p",
           "text": "For God has not called us to impurity but to sanctification."
         },
         {
           "verse": 8,
+          "usfm": "1TH.4.8",
+          "line_type": "p",
           "text": "Therefore, the person who rejects this does not reject man, but God, who also gives you His Holy Spirit."
         },
         {
           "verse": 9,
+          "usfm": "1TH.4.9",
+          "line_type": "p",
           "text": "About brotherly love: You don’t need me to write you because you yourselves are taught by God to love one another."
         },
         {
           "verse": 10,
+          "usfm": "1TH.4.10",
+          "line_type": "p",
           "text": "In fact, you are doing this toward all the brothers in the entire region of Macedonia. But we encourage you, brothers, to do so even more,"
         },
         {
           "verse": 11,
+          "usfm": "1TH.4.11",
+          "line_type": "p",
           "text": "to seek to lead a quiet life, to mind your own business, and to work with your own hands, as we commanded you,"
         },
         {
           "verse": 12,
+          "usfm": "1TH.4.12",
+          "line_type": "p",
           "text": "so that you may walk properly in the presence of outsiders and not be dependent on anyone."
         },
         {
           "verse": 13,
+          "usfm": "1TH.4.13",
+          "line_type": "p",
           "text": "We do not want you to be uninformed, brothers, concerning those who are asleep, so that you will not grieve like the rest, who have no hope."
         },
         {
           "verse": 14,
+          "usfm": "1TH.4.14",
+          "line_type": "p",
           "text": "Since we believe that Jesus died and rose again, in the same way God will bring with Him those who have fallen asleep through Jesus."
         },
         {
           "verse": 15,
+          "usfm": "1TH.4.15",
+          "line_type": "p",
           "text": "For we say this to you by a revelation from the Lord: We who are still alive at the Lord’s coming will certainly have no advantage over those who have fallen asleep."
         },
         {
           "verse": 16,
+          "usfm": "1TH.4.16",
+          "line_type": "p",
           "text": "For the Lord Himself will descend from heaven with a shout, with the archangel’s voice, and with the trumpet of God, and the dead in Christ will rise first."
         },
         {
           "verse": 17,
+          "usfm": "1TH.4.17",
+          "line_type": "p",
           "text": "Then we who are still alive will be caught up together with them in the clouds to meet the Lord in the air and so we will always be with the Lord."
         },
         {
           "verse": 18,
+          "usfm": "1TH.4.18",
+          "line_type": "p",
           "text": "Therefore encourage one another with these words."
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Loving and Working"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "The Comfort of Christ’s Coming"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TH.4.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit walking"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.4.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 5:18"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.4.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 6:19,22; 1Co 1:30; 2Th 2:13; 1Tm 2:15; Heb 12:14; 1Pt 1:2"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.4.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Tm 4:3"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.4.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or to acquire his own wife ; lit to possess his own vessel"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TH.4.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Pt 1:4; 2:10"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TH.4.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Co 12:17"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TH.4.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit things"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TH.4.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 23:27; 2Co 12:21; Gl 5:19; Eph 4:19; 5:3; Col 3:5; 1Th 2:3"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TH.4.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 51:11; Jn 1:33; Ac 2:4; Rm 8:9; Gl 5:25; Ti 3:5; 1Jn 5:8; Rv 3:22"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.4.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 6:45"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.4.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Jn 3:11"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.4.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 16:9"
+        },
+        {
+          "verse": 11,
+          "usfm": "1TH.4.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 14:4; 23:56; Ac 11:18; 21:14"
+        },
+        {
+          "verse": 11,
+          "usfm": "1TH.4.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit to practice one’s own things"
+        },
+        {
+          "verse": 11,
+          "usfm": "1TH.4.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Th 3:12; 2Jn 8"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.4.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or may live respectably"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.4.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 13:13; 1Co 14:40"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.4.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Non-Christians"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.4.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or not need anything, or not be in need"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.4.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph 4:28"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.4.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jr 14:19; Eph 2:12; 1Th 1:3"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.4.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 18:33"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.4.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 14:9,15; 1Co 8:11; 15:3-4; 2Co 5:15"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.4.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.4.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 14:19; Rm 8:11; 1Co 6:14; 15:18-20; 2Co 4:14; Php 1:23"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.4.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or a word of the Lord"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.4.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Pt 1:21; Rv 11:8"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.4.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Jn 2:28"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.4.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or certainly not precede"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.4.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Co 15:51"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TH.4.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or command"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TH.4.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 5:25"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TH.4.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jd 9"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TH.4.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 16:7; 1Co 15:18; 1Pt 5:14; Rv 14:13; 20:5"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TH.4.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Co 15:23,51-52"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TH.4.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 26:64"
+        },
+        {
+          "verse": 18,
+          "usfm": "1TH.4.18",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or comfort"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1TH.4.1",
+            "1TH.4.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 8,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "1TH.4.3",
+            "1TH.4.4",
+            "1TH.4.5",
+            "1TH.4.6",
+            "1TH.4.7",
+            "1TH.4.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 12,
+          "verses": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "1TH.4.10",
+            "1TH.4.11",
+            "1TH.4.12",
+            "1TH.4.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 18,
+          "verses": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "1TH.4.13",
+            "1TH.4.14",
+            "1TH.4.15",
+            "1TH.4.16",
+            "1TH.4.17",
+            "1TH.4.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -376,9 +1980,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/1TH/4-aff000e53362afea6e05733acdfde5f9.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/1TH.4.HCSB",
+        "reference": {
+          "usfm": [
+            "1TH.4"
+          ],
+          "human": "1 Thessalonians 4",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.3"
+          ],
+          "human": "1 Thessalonians 3",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.5"
+          ],
+          "human": "1 Thessalonians 5",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TH",
       "chapter": 5,
       "chapter_usfm": "1TH.5",
@@ -387,125 +2048,636 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TH.5.1",
+          "line_type": "p",
           "text": "About the times and the seasons: Brothers, you do not need anything to be written to you."
         },
         {
           "verse": 2,
+          "usfm": "1TH.5.2",
+          "line_type": "p",
           "text": "For you yourselves know very well that the Day of the Lord will come just like a thief in the night."
         },
         {
           "verse": 3,
+          "usfm": "1TH.5.3",
+          "line_type": "p",
           "text": "When they say, “Peace and security,” then sudden destruction comes on them, like labor pains come on a pregnant woman, and they will not escape."
         },
         {
           "verse": 4,
+          "usfm": "1TH.5.4",
+          "line_type": "p",
           "text": "But you, brothers, are not in the dark, for this day to overtake you like a thief."
         },
         {
           "verse": 5,
+          "usfm": "1TH.5.5",
+          "line_type": "p",
           "text": "For you are all sons of light and sons of the day. We do not belong to the night or the darkness."
         },
         {
           "verse": 6,
+          "usfm": "1TH.5.6",
+          "line_type": "p",
           "text": "So then, we must not sleep, like the rest, but we must stay awake and be serious."
         },
         {
           "verse": 7,
+          "usfm": "1TH.5.7",
+          "line_type": "p",
           "text": "For those who sleep, sleep at night, and those who get drunk are drunk at night."
         },
         {
           "verse": 8,
+          "usfm": "1TH.5.8",
+          "line_type": "p",
           "text": "But since we belong to the day, we must be serious and put the armor of faith and love on our chests, and put on a helmet of the hope of salvation."
         },
         {
           "verse": 9,
+          "usfm": "1TH.5.9",
+          "line_type": "p",
           "text": "For God did not appoint us to wrath, but to obtain salvation through our Lord Jesus Christ,"
         },
         {
           "verse": 10,
+          "usfm": "1TH.5.10",
+          "line_type": "p",
           "text": "who died for us, so that whether we are awake or asleep, we will live together with Him."
         },
         {
           "verse": 11,
+          "usfm": "1TH.5.11",
+          "line_type": "p",
           "text": "Therefore encourage one another and build each other up as you are already doing."
         },
         {
           "verse": 12,
+          "usfm": "1TH.5.12",
+          "line_type": "p",
           "text": "Now we ask you, brothers, to give recognition to those who labor among you and lead you in the Lord and admonish you,"
         },
         {
           "verse": 13,
+          "usfm": "1TH.5.13",
+          "line_type": "p",
           "text": "and to regard them very highly in love because of their work. Be at peace among yourselves."
         },
         {
           "verse": 14,
+          "usfm": "1TH.5.14",
+          "line_type": "p",
           "text": "And we exhort you, brothers: warn those who are irresponsible, comfort the discouraged, help the weak, be patient with everyone."
         },
         {
           "verse": 15,
+          "usfm": "1TH.5.15",
+          "line_type": "p",
           "text": "See to it that no one repays evil for evil to anyone, but always pursue what is good for one another and for all."
         },
         {
           "verse": 16,
+          "usfm": "1TH.5.16",
+          "line_type": "p",
           "text": "Rejoice always!"
         },
         {
           "verse": 17,
+          "usfm": "1TH.5.17",
+          "line_type": "p",
           "text": "Pray constantly."
         },
         {
           "verse": 18,
+          "usfm": "1TH.5.18",
+          "line_type": "p",
           "text": "Give thanks in everything,for this is God’s will for you in Christ Jesus."
         },
         {
           "verse": 19,
+          "usfm": "1TH.5.19",
+          "line_type": "p",
           "text": "Don’t stifle the Spirit."
         },
         {
           "verse": 20,
+          "usfm": "1TH.5.20",
+          "line_type": "p",
           "text": "Don’t despise prophecies,"
         },
         {
           "verse": 21,
+          "usfm": "1TH.5.21",
+          "line_type": "p",
           "text": "but test all things. Hold on to what is good."
         },
         {
           "verse": 22,
+          "usfm": "1TH.5.22",
+          "line_type": "p",
           "text": "Stay away from every kind of evil."
         },
         {
           "verse": 23,
+          "usfm": "1TH.5.23",
+          "line_type": "p",
           "text": "Now may the God of peace Himself sanctify you completely. And may your spirit, soul, and body be kept sound and blameless for the coming of our Lord Jesus Christ."
         },
         {
           "verse": 24,
+          "usfm": "1TH.5.24",
+          "line_type": "p",
           "text": "He who calls you is faithful, who also will do it."
         },
         {
           "verse": 25,
+          "usfm": "1TH.5.25",
+          "line_type": "p",
           "text": "Brothers, pray for us also."
         },
         {
           "verse": 26,
+          "usfm": "1TH.5.26",
+          "line_type": "p",
           "text": "Greet all the brothers with a holy kiss."
         },
         {
           "verse": 27,
+          "usfm": "1TH.5.27",
+          "line_type": "p",
           "text": "I charge you by the Lord that this letter be read to all the brothers."
         },
         {
           "verse": 28,
+          "usfm": "1TH.5.28",
+          "line_type": "p",
           "text": "The grace of our Lord Jesus Christ be with you."
         }
       ],
       "verse_count": 28,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Exhortations and Blessings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TH.5.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dn 2:21; Ac 1:7"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TH.5.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jl 2:1; Mt 25:13; Ac 2:20; Php 1:6"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TH.5.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 10:1"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TH.5.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Th 1:9"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TH.5.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jb 24:13-17"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TH.5.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Col 1:13"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TH.5.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Pt 5:8"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TH.5.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph 6:14; Rv 9:9,17"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TH.5.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 17:5,38; Ps 60:7; 108:8; Is 59:17; Eph 6:17"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.5.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rv 11:8"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TH.5.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ac 15:26"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.5.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jn 11:51; Rm 14:9; 1Co 8:11; Gl 1:4"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.5.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 5:6"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TH.5.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 20:38; Php 1:23"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TH.5.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Co 16:18; Php 2:29"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TH.5.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mk 9:50"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.5.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Th 3:15"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.5.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or who are disorderly, or who are undisciplined"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TH.5.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 18:26,29; Lk 18:7; 1Co 13:4; Heb 6:15; Jms 5:7-8; 2Pt 3:9"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.5.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 5:44; Rm 12:17; 1Pt 3:9"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.5.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 7:47"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TH.5.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 12:9; Gl 6:10; 1Th 5:21"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TH.5.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Co 6:10; Php 1:18"
+        },
+        {
+          "verse": 18,
+          "usfm": "1TH.5.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph 6:6; 1Th 4:3; 1Pt 2:15; 4:2; 1Jn 2:17"
+        },
+        {
+          "verse": 21,
+          "usfm": "1TH.5.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph 5:17"
+        },
+        {
+          "verse": 22,
+          "usfm": "1TH.5.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Tm 4:3"
+        },
+        {
+          "verse": 23,
+          "usfm": "1TH.5.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rm 15:33"
+        },
+        {
+          "verse": 23,
+          "usfm": "1TH.5.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 51:12"
+        },
+        {
+          "verse": 23,
+          "usfm": "1TH.5.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Th 1:10"
+        },
+        {
+          "verse": 23,
+          "usfm": "1TH.5.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rv 11:8"
+        },
+        {
+          "verse": 23,
+          "usfm": "1TH.5.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Jn 2:28"
+        },
+        {
+          "verse": 24,
+          "usfm": "1TH.5.24",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Col 3:15"
+        },
+        {
+          "verse": 24,
+          "usfm": "1TH.5.24",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Pt 1:15"
+        },
+        {
+          "verse": 27,
+          "usfm": "1TH.5.27",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Col 4:16"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 11,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "1TH.5.1",
+            "1TH.5.10",
+            "1TH.5.11",
+            "1TH.5.2",
+            "1TH.5.3",
+            "1TH.5.4",
+            "1TH.5.5",
+            "1TH.5.6",
+            "1TH.5.7",
+            "1TH.5.8",
+            "1TH.5.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 15,
+          "verses": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "1TH.5.12",
+            "1TH.5.13",
+            "1TH.5.14",
+            "1TH.5.15"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TH.5.16"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "1TH.5.17"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "1TH.5.18"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "1TH.5.18"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "1TH.5.19"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "1TH.5.20"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "1TH.5.21"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "1TH.5.21"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "1TH.5.22"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 28,
+          "verses": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "usfms": [
+            "1TH.5.23",
+            "1TH.5.24",
+            "1TH.5.25",
+            "1TH.5.26",
+            "1TH.5.27",
+            "1TH.5.28"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -516,7 +2688,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/1TH/5-4942fd18ec87fe9e72b54792244e6f7b.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 28,
+          "parsed_count": 28,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/1TH.5.HCSB",
+        "reference": {
+          "usfm": [
+            "1TH.5"
+          ],
+          "human": "1 Thessalonians 5",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TH.4"
+          ],
+          "human": "1 Thessalonians 4",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TH.1"
+          ],
+          "human": "2 Thessalonians 1",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

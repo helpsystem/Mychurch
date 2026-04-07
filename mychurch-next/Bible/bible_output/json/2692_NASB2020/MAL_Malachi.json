@@ -11,6 +11,7 @@
   "total_verses": 55,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 1,
       "chapter_usfm": "MAL.1",
@@ -19,58 +20,86 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.1.1",
+          "line_type": "p",
           "text": "The pronouncement of the word of the Lord to Israel through Malachi:"
         },
         {
           "verse": 2,
+          "usfm": "MAL.1.2",
+          "line_type": "p",
           "text": "“I have loved you,” says the Lord. But you say, “How have You loved us?” “Was Esau not Jacob’s brother?” declares the Lord. “Yet I have loved Jacob;"
         },
         {
           "verse": 3,
+          "usfm": "MAL.1.3",
+          "line_type": "p",
           "text": "but I have hated Esau, and I have made his mountains a desolation and given his inheritance to the jackals of the wilderness.”"
         },
         {
           "verse": 4,
+          "usfm": "MAL.1.4",
+          "line_type": "p",
           "text": "Though Edom says, “We have been beaten down, but we will return and build up the ruins”; this is what the Lord of armies says: “They may build, but I will tear down; and people will call them the territory of wickedness, and the people with whom the Lord is indignant forever.”"
         },
         {
           "verse": 5,
+          "usfm": "MAL.1.5",
+          "line_type": "p",
           "text": "And your eyes will see this, and you will say, “The Lord be exalted beyond the border of Israel!”"
         },
         {
           "verse": 6,
+          "usfm": "MAL.1.6",
+          "line_type": "p",
           "text": "“ ‘A son honors his father, and a servant his master. Then if I am a father, where is My honor? And if I am a master, where is My respect?’ says the Lord of armies to you, the priests who despise My name! But you say, ‘How have we despised Your name?’"
         },
         {
           "verse": 7,
+          "usfm": "MAL.1.7",
+          "line_type": "p",
           "text": "You are presenting defiled food upon My altar. But you say, ‘How have we defiled You?’ In that you say, ‘The table of the Lord is to be despised.’"
         },
         {
           "verse": 8,
+          "usfm": "MAL.1.8",
+          "line_type": "p",
           "text": "And when you present a blind animal for sacrifice, is it not evil? Or when you present a lame or sick animal, is it not evil? So offer it to your governor! Would he be pleased with you, or would he receive you kindly?” says the Lord of armies."
         },
         {
           "verse": 9,
+          "usfm": "MAL.1.9",
+          "line_type": "p",
           "text": "“But now, do indeed plead for God’s favor, so that He will be gracious to us. With such an offering on your part, will He receive any of you kindly?” says the Lord of armies."
         },
         {
           "verse": 10,
+          "usfm": "MAL.1.10",
+          "line_type": "p",
           "text": "“If only there were one among you who would shut the gates, so that you would not kindle fire on My altar for nothing! I am not pleased with you,” says the Lord of armies, “nor will I accept an offering from your hand."
         },
         {
           "verse": 11,
+          "usfm": "MAL.1.11",
+          "line_type": "p",
           "text": "For from the rising of the sun even to its setting, My name shall be great among the nations, and in every place frankincense is going to be offered to My name, and a grain offering that is pure; for My name shall be great among the nations,” says the Lord of armies."
         },
         {
           "verse": 12,
+          "usfm": "MAL.1.12",
+          "line_type": "p",
           "text": "“But you are profaning it by your saying, ‘The table of the Lord is defiled, and as for its fruit, its food is to be despised.’"
         },
         {
           "verse": 13,
+          "usfm": "MAL.1.13",
+          "line_type": "p",
           "text": "You also say, ‘See, how tiresome it is!’ And you view it as trivial,” says the Lord of armies, “and you bring what was taken by robbery and what is lame or sick; so you bring the offering! Should I accept it from your hand?” says the Lord."
         },
         {
           "verse": 14,
+          "usfm": "MAL.1.14",
+          "line_type": "p",
           "text": "“But cursed be the swindler who has a male in his flock and vows it, but sacrifices a blemished animal to the Lord, for I am a great King,” says the Lord of armies, “and My name is feared among the nations.”"
         }
       ],
@@ -81,11 +110,180 @@
           "text": "God’s Love for Jacob"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Sin of the Priests"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or My messenger"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.1.4",
+          "note_ref": "1:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or rebuild the ruins"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.1.4",
+          "note_ref": "1:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit border of wickedness"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.1.4",
+          "note_ref": "1:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or whom the Lord has cursed"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.1.5",
+          "note_ref": "1:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or will be great"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.1.5",
+          "note_ref": "1:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or territory"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.1.6",
+          "note_ref": "1:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit fear"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.1.7",
+          "note_ref": "1:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit bread"
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.1.9",
+          "note_ref": "1:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit This has been from your hand"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.1.10",
+          "note_ref": "1:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or doors"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.1.13",
+          "note_ref": "1:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit it is hardship"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.1.14",
+          "note_ref": "1:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or revered"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.1.14",
+          "note_ref": "1:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Gentiles"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.1.1",
+            "MAL.1.2",
+            "MAL.1.3",
+            "MAL.1.4",
+            "MAL.1.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 14,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.11",
+            "MAL.1.12",
+            "MAL.1.13",
+            "MAL.1.14",
+            "MAL.1.5",
+            "MAL.1.6",
+            "MAL.1.7",
+            "MAL.1.8",
+            "MAL.1.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -104,9 +302,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/MAL/1-164ab4a4e4c91f02633747f7de264e4c.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/MAL.1.NASB2020",
+        "reference": {
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.14"
+          ],
+          "human": "Zechariah 14",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 2,
       "chapter_usfm": "MAL.2",
@@ -115,70 +370,104 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.2.1",
+          "line_type": "p",
           "text": "“And now, this commandment is for you, the priests."
         },
         {
           "verse": 2,
+          "usfm": "MAL.2.2",
+          "line_type": "p",
           "text": "If you do not listen, and if you do not take it to heart to give honor to My name,” says the Lord of armies, “then I will send the curse upon you and I will curse your blessings; and indeed, I have cursed them already, because you are not taking it to heart."
         },
         {
           "verse": 3,
+          "usfm": "MAL.2.3",
+          "line_type": "p",
           "text": "Behold, I am going to rebuke your descendants, and I will spread dung on your faces, the dung of your feasts; and you will be taken away with it."
         },
         {
           "verse": 4,
+          "usfm": "MAL.2.4",
+          "line_type": "p",
           "text": "Then you will know that I have sent this commandment to you, so that My covenant may continue with Levi,” says the Lord of armies."
         },
         {
           "verse": 5,
+          "usfm": "MAL.2.5",
+          "line_type": "p",
           "text": "“My covenant with him was one of life and peace, and I gave them to him as an object of reverence; so he revered Me and was in awe of My name."
         },
         {
           "verse": 6,
+          "usfm": "MAL.2.6",
+          "line_type": "p",
           "text": "True instruction was in his mouth and injustice was not found on his lips; he walked with Me in peace and justice, and he turned many back from wrongdoing."
         },
         {
           "verse": 7,
+          "usfm": "MAL.2.7",
+          "line_type": "p",
           "text": "For the lips of a priest should maintain knowledge, and people should seek instruction from his mouth; for he is the messenger of the Lord of armies."
         },
         {
           "verse": 8,
+          "usfm": "MAL.2.8",
+          "line_type": "p",
           "text": "But as for you, you have turned aside from the way; you have caused many to stumble by the instruction; you have ruined the covenant of Levi,” says the Lord of armies."
         },
         {
           "verse": 9,
+          "usfm": "MAL.2.9",
+          "line_type": "p",
           "text": "“So I also have made you despised and of low reputation in the view of all the people, since you are not keeping My ways but are showing partiality in the instruction.”"
         },
         {
           "verse": 10,
+          "usfm": "MAL.2.10",
+          "line_type": "p",
           "text": "Do we not all have one Father? Is it not one God who has created us? Why do we deal treacherously, each against his brother so as to profane the covenant of our fathers?"
         },
         {
           "verse": 11,
+          "usfm": "MAL.2.11",
+          "line_type": "p",
           "text": "Judah has dealt treacherously, and an abomination has been committed in Israel and in Jerusalem; for Judah has profaned the sanctuary of the Lord which He loves, and has married the daughter of a foreign god."
         },
         {
           "verse": 12,
+          "usfm": "MAL.2.12",
+          "line_type": "p",
           "text": "As for the man who does this, may the Lord eliminate from the tents of Jacob everyone who is awake and answers, or who presents an offering to the Lord of armies."
         },
         {
           "verse": 13,
+          "usfm": "MAL.2.13",
+          "line_type": "p",
           "text": "And this is another thing you do: you cover the altar of the Lord with tears, with weeping and sighing, because He no longer gives attention to the offering or accepts it with favor from your hand."
         },
         {
           "verse": 14,
+          "usfm": "MAL.2.14",
+          "line_type": "p",
           "text": "Yet you say, “For what reason?” Because the Lord has been a witness between you and the wife of your youth, against whom you have dealt treacherously, though she is your marriage companion and your wife by covenant."
         },
         {
           "verse": 15,
+          "usfm": "MAL.2.15",
+          "line_type": "p",
           "text": "But not one has done so who has a remnant of the Spirit. And why the one? He was seeking a godly offspring. Be careful then about your spirit, and see that none of you deals treacherously against the wife of your youth."
         },
         {
           "verse": 16,
+          "usfm": "MAL.2.16",
+          "line_type": "p",
           "text": "“For I hate divorce,” says the Lord, the God of Israel, “and him who covers his garment with violence,” says the Lord of armies. “So be careful about your spirit, that you do not deal treacherously.”"
         },
         {
           "verse": 17,
+          "usfm": "MAL.2.17",
+          "line_type": "p",
           "text": "You have wearied the Lord with your words. Yet you say, “How have we wearied Him?” In that you say, “Everyone who does evil is good in the sight of the Lord, and He delights in them,” or, “Where is the God of justice?”"
         }
       ],
@@ -189,11 +478,270 @@
           "text": "Priests to Be Disciplined"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Sin in the Family"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "2:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit seed"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "2:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or vomit"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "2:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or vomit"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "2:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit to"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.2.4",
+          "note_ref": "2:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or to be My covenant with"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.2.4",
+          "note_ref": "2:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit be"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.2.5",
+          "note_ref": "2:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or fear"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.2.5",
+          "note_ref": "2:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or feared"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.2.6",
+          "note_ref": "2:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Law of truth"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.2.7",
+          "note_ref": "2:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or the Law"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.2.8",
+          "note_ref": "2:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in the Law"
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.2.9",
+          "note_ref": "2:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit to"
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.2.9",
+          "note_ref": "2:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or law"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "2:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in that he has loved and married"
+        },
+        {
+          "verse": 12,
+          "usfm": "MAL.2.12",
+          "note_ref": "2:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or a grain offering"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.2.13",
+          "note_ref": "2:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit a second"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.2.13",
+          "note_ref": "2:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or grain offering"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.2.15",
+          "note_ref": "2:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Did He not make one, although He had the remnant"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.2.15",
+          "note_ref": "2:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or what did the one do while he was seeking"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "2:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit He hates"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "2:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit sending away"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "2:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit he covers"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 9,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.2.1",
+            "MAL.2.2",
+            "MAL.2.3",
+            "MAL.2.4",
+            "MAL.2.5",
+            "MAL.2.6",
+            "MAL.2.7",
+            "MAL.2.8",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 12,
+          "verses": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.11",
+            "MAL.2.12",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 16,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "MAL.2.12",
+            "MAL.2.13",
+            "MAL.2.14",
+            "MAL.2.15",
+            "MAL.2.16"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "MAL.2.16",
+            "MAL.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -212,9 +760,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/MAL/2-af300647c3eb9bfd3d1b6202ec914978.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/MAL.2.NASB2020",
+        "reference": {
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 3,
       "chapter_usfm": "MAL.3",
@@ -223,74 +828,110 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.3.1",
+          "line_type": "p",
           "text": "“Behold, I am sending My messenger, and he will clear a way before Me. And the Lord, whom you are seeking, will suddenly come to His temple; and the messenger of the covenant, in whom you delight, behold, He is coming,” says the Lord of armies."
         },
         {
           "verse": 2,
+          "usfm": "MAL.3.2",
+          "line_type": "p",
           "text": "“But who can endure the day of His coming? And who can stand when He appears? For He is like a refiner’s fire, and like launderer’s soap."
         },
         {
           "verse": 3,
+          "usfm": "MAL.3.3",
+          "line_type": "p",
           "text": "And He will sit as a smelter and purifier of silver, and He will purify the sons of Levi and refine them like gold and silver, so that they may present to the Lord offerings in righteousness."
         },
         {
           "verse": 4,
+          "usfm": "MAL.3.4",
+          "line_type": "p",
           "text": "Then the offering of Judah and Jerusalem will be pleasing to the Lord as in the days of old, and as in former years."
         },
         {
           "verse": 5,
+          "usfm": "MAL.3.5",
+          "line_type": "p",
           "text": "“Then I will come near to you for judgment; and I will be a swift witness against the sorcerers, the adulterers, against those who swear falsely, those who oppress the wage earner in his wages or the widow or the orphan, and those who turn away the stranger from justice and do not fear Me,” says the Lord of armies."
         },
         {
           "verse": 6,
+          "usfm": "MAL.3.6",
+          "line_type": "p",
           "text": "“For I, the Lord, do not change; therefore you, the sons of Jacob, have not come to an end."
         },
         {
           "verse": 7,
+          "usfm": "MAL.3.7",
+          "line_type": "p",
           "text": "“From the days of your fathers you have turned away from My statutes and have not kept them. Return to Me, and I will return to you,” says the Lord of armies. “But you say, ‘How shall we return?’"
         },
         {
           "verse": 8,
+          "usfm": "MAL.3.8",
+          "line_type": "p",
           "text": "“Would anyone rob God? Yet you are robbing Me! But you say, ‘How have we robbed You?’ In tithes and offerings."
         },
         {
           "verse": 9,
+          "usfm": "MAL.3.9",
+          "line_type": "p",
           "text": "You are cursed with a curse, for you are robbing Me, the entire nation of you!"
         },
         {
           "verse": 10,
+          "usfm": "MAL.3.10",
+          "line_type": "p",
           "text": "Bring the whole tithe into the storehouse, so that there may be food in My house, and put Me to the test now in this,” says the Lord of armies, “if I do not open for you the windows of heaven and pour out for you a blessing until it overflows."
         },
         {
           "verse": 11,
+          "usfm": "MAL.3.11",
+          "line_type": "p",
           "text": "Then I will rebuke the devourer for you, so that it will not destroy the fruit of your ground; nor will the vine in the field prove fruitless to you,” says the Lord of armies."
         },
         {
           "verse": 12,
+          "usfm": "MAL.3.12",
+          "line_type": "p",
           "text": "“All the nations will call you blessed, for you will be a delightful land,” says the Lord of armies."
         },
         {
           "verse": 13,
+          "usfm": "MAL.3.13",
+          "line_type": "p",
           "text": "“Your words have been arrogant against Me,” says the Lord. “Yet you say, ‘What have we spoken against You?’"
         },
         {
           "verse": 14,
+          "usfm": "MAL.3.14",
+          "line_type": "p",
           "text": "You have said, ‘It is pointless to serve God; and what benefit is it for us that we have done what He required, and that we have walked in mourning before the Lord of armies?"
         },
         {
           "verse": 15,
+          "usfm": "MAL.3.15",
+          "line_type": "p",
           "text": "So now we call the arrogant blessed; not only are the doers of wickedness built up, but they also put God to the test and escape punishment.’ ”"
         },
         {
           "verse": 16,
+          "usfm": "MAL.3.16",
+          "line_type": "p",
           "text": "Then those who feared the Lord spoke to one another, and the Lord listened attentively and heard it, and a book of remembrance was written before Him for those who fear the Lord and esteem His name."
         },
         {
           "verse": 17,
+          "usfm": "MAL.3.17",
+          "line_type": "p",
           "text": "“And they will be Mine,” says the Lord of armies, “on the day that I prepare My own possession, and I will have compassion for them just as a man has compassion for his own son who serves him.”"
         },
         {
           "verse": 18,
+          "usfm": "MAL.3.18",
+          "line_type": "p",
           "text": "So you will again distinguish between the righteous and the wicked, between one who serves God and one who does not serve Him."
         }
       ],
@@ -301,15 +942,244 @@
           "text": "The Purifier"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "You Have Robbed God"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "The Book of Remembrance"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or angel"
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or that is, the"
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or angel"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.3.3",
+          "note_ref": "3:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or grain offerings"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.3.4",
+          "note_ref": "3:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or grain offering"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.3.5",
+          "note_ref": "3:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or exploit"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.3.5",
+          "note_ref": "3:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or fatherless"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.3.5",
+          "note_ref": "3:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or revere"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.3.6",
+          "note_ref": "3:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or I am the Lord; I do not"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.3.8",
+          "note_ref": "3:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or contributions"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.3.10",
+          "note_ref": "3:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or there is not room enough"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.3.13",
+          "note_ref": "3:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit strong"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.3.16",
+          "note_ref": "3:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or revere(d)"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.3.16",
+          "note_ref": "3:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or revere(d)"
+        },
+        {
+          "verse": 17,
+          "usfm": "MAL.3.17",
+          "note_ref": "3:17",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit make"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.3.1",
+            "MAL.3.2",
+            "MAL.3.3",
+            "MAL.3.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.3.4",
+            "MAL.3.5",
+            "MAL.3.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.3.6",
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 12,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.3.10",
+            "MAL.3.11",
+            "MAL.3.12",
+            "MAL.3.7",
+            "MAL.3.8",
+            "MAL.3.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 15,
+          "verses": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.3.12",
+            "MAL.3.13",
+            "MAL.3.14",
+            "MAL.3.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "MAL.3.15",
+            "MAL.3.16",
+            "MAL.3.17",
+            "MAL.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -328,9 +1198,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/MAL/3-e12efdf61b1866f7b31fd10440df9f2c.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/MAL.3.NASB2020",
+        "reference": {
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 4,
       "chapter_usfm": "MAL.4",
@@ -339,26 +1266,38 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.4.1",
+          "line_type": "p",
           "text": "“For behold, the day is coming, burning like a furnace; and all the arrogant and every evildoer will be chaff; and the day that is coming will set them ablaze,” says the Lord of armies, “so that it will leave them neither root nor branches."
         },
         {
           "verse": 2,
+          "usfm": "MAL.4.2",
+          "line_type": "p",
           "text": "But for you who fear My name, the sun of righteousness will rise with healing in its wings; and you will go forth and frolic like calves from the stall."
         },
         {
           "verse": 3,
+          "usfm": "MAL.4.3",
+          "line_type": "p",
           "text": "And you will crush the wicked underfoot, for they will be ashes under the soles of your feet on the day that I am preparing,” says the Lord of armies."
         },
         {
           "verse": 4,
+          "usfm": "MAL.4.4",
+          "line_type": "p",
           "text": "“Remember the Law of Moses My servant, the statutes and ordinances which I commanded him in Horeb for all Israel."
         },
         {
           "verse": 5,
+          "usfm": "MAL.4.5",
+          "line_type": "p",
           "text": "“Behold, I am going to send you Elijah the prophet before the coming of the great and terrible day of the Lord."
         },
         {
           "verse": 6,
+          "usfm": "MAL.4.6",
+          "line_type": "p",
           "text": "He will turn the hearts of the fathers back to their children and the hearts of the children to their fathers, so that I will not come and strike the land with complete destruction.”"
         }
       ],
@@ -369,7 +1308,80 @@
           "text": "Final Admonition"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.4.1",
+          "note_ref": "4:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Ch 3:19 in Heb"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.4.2",
+          "note_ref": "4:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or revere"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.4.3",
+          "note_ref": "4:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or when I act"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.4.1",
+            "MAL.4.2",
+            "MAL.4.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.4.3",
+            "MAL.4.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.4.4",
+            "MAL.4.5",
+            "MAL.4.6"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2468,
@@ -388,7 +1400,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/2929/m4a/32k/MAL/4-c1507ed48dd578dcd656c88c5dec929a.m3u8?version_id=2692"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2692/MAL.4.NASB2020",
+        "reference": {
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "version_id": 2692
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 2692
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAT.1"
+          ],
+          "human": "Matthew 1",
+          "toc": true,
+          "version_id": 2692
+        }
+      },
+      "version_meta": {
+        "id": 2692,
+        "abbreviation": "NASB2020",
+        "local_abbreviation": "NASB2020",
+        "title": "New American Standard Bible - NASB",
+        "local_title": "New American Standard Bible - NASB",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "The Lockman Foundation"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

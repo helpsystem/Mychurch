@@ -11,6 +11,7 @@
   "total_verses": 72,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 1,
       "chapter_usfm": "DAN.1",
@@ -19,12 +20,28 @@
       "verses": [
         {
           "verse": 21,
+          "usfm": "DAN.1.21",
+          "line_type": "p",
           "text": "Daniel continued in the king’s service until the first year in the reign of King Cyrus."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "DAN.1.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -35,9 +52,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/1-5006e26964b5b05bb3907bad01b53b52.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.1.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.1"
+          ],
+          "human": "Daniel 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "EZK.48"
+          ],
+          "human": "Ezekiel 48",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.2"
+          ],
+          "human": "Daniel 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 2,
       "chapter_usfm": "DAN.2",
@@ -46,33 +120,145 @@
       "verses": [
         {
           "verse": 4,
+          "usfm": "DAN.2.4",
+          "line_type": "p",
           "text": "The fortunetellers, speaking in the Aramaic language, said, “Long live the king! Tell us the dream and we will interpret it.” The king answered the fortunetellers, “This is my decree: If you can’t tell me both the dream itself and its interpretation, I’ll have you ripped to pieces, limb from limb, and your homes torn down. But if you tell me both the dream and its interpretation, I’ll lavish you with gifts and honors. So go to it: Tell me the dream and its interpretation.”"
         },
         {
           "verse": 7,
+          "usfm": "DAN.2.7",
+          "line_type": "p",
           "text": "They answered, “If it please your majesty, tell us the dream. We’ll give the interpretation.” But the king said, “I know what you’re up to—you’re just playing for time. You know you’re cornered. You know that if you can’t tell me my dream, you’re out and out doomed. I see right through you—you’re going to slap together some fancy stories and confuse the issue until I change my mind. No way! First tell me the dream, then I’ll know that you’re on the up and up with the interpretation and not just blowing smoke in my eyes.” The fortunetellers said, “Nobody anywhere can do what you ask. And no king, great or small, has ever demanded anything like this from any magician, enchanter, or fortuneteller. What you’re asking is impossible unless some god or goddess should reveal it—and they don’t hang around with people like us.” That set the king off. He lost his temper and ordered the whole company of Babylonian wise men killed. When the death warrant was issued, Daniel and his companions were included. They also were marked for execution. When Arioch, chief of the royal guards, was making arrangements for the execution, Daniel wisely took him aside and quietly asked what was going on: “Why this all of a sudden?” After Arioch filled in the background, Daniel went to the king and asked for a little time so that he could interpret the dream. Daniel then went home and told his companions Hananiah, Mishael, and Azariah what was going on. He asked them to pray to the God of heaven for mercy in solving this mystery so that the four of them wouldn’t be killed along with the whole company of Babylonian wise men. That night the answer to the mystery was given to Daniel in a vision. Daniel blessed the God of heaven, saying,“Blessed be the name of God,forever and ever.He knows all, does all:He changes the seasons and guides history,He raises up kings and also brings them down,he provides both intelligence and discernment,He opens up the depths, tells secrets,sees in the dark—light spills out of him!God of all my ancestors, all thanks! all praise!You made me wise and strong.And now you’ve shown us what we asked for.You’ve solved the king’s mystery.”"
         },
         {
           "verse": 24,
+          "usfm": "DAN.2.24",
+          "line_type": "p",
           "text": "So Daniel went back to Arioch, who had been put in charge of the execution. He said, “Call off the execution! Take me to the king and I’ll interpret his dream.”"
         },
         {
           "verse": 25,
+          "usfm": "DAN.2.25",
+          "line_type": "p",
           "text": "Arioch didn’t lose a minute. He ran to the king, bringing Daniel with him, and said, “I’ve found a man from the exiles of Judah who can interpret the king’s dream!”"
         },
         {
           "verse": 26,
+          "usfm": "DAN.2.26",
+          "line_type": "p",
           "text": "The king asked Daniel (renamed in Babylonian, Belteshazzar), “Are you sure you can do this—tell me the dream I had and interpret it for me?” Daniel answered the king, “No mere human can solve the king’s mystery, I don’t care who it is—no wise man, enchanter, magician, diviner. But there is a God in heaven who solves mysteries, and he has solved this one. He is letting King Nebuchadnezzar in on what is going to happen in the days ahead. This is the dream you had when you were lying on your bed, the vision that filled your mind: “While you were stretched out on your bed, O king, thoughts came to you regarding what is coming in the days ahead. The Revealer of Mysteries showed you what will happen. But the interpretation is given through me, not because I’m any smarter than anyone else in the country, but so that you will know what it means, so that you will understand what you dreamed. “What you saw, O king, was a huge statue standing before you, striking in appearance. And terrifying. The head of the statue was pure gold, the chest and arms were silver, the belly and hips were bronze, the legs were iron, and the feet were an iron-ceramic mixture. While you were looking at this statue, a stone cut out of a mountain by an invisible hand hit the statue, smashing its iron-ceramic feet. Then the whole thing fell to pieces—iron, tile, bronze, silver, and gold, smashed to bits. It was like scraps of old newspapers in a vacant lot in a hot dry summer, blown every which way by the wind, scattered to oblivion. But the stone that hit the statue became a huge mountain, dominating the horizon. This was your dream. “And now we’ll interpret it for the king. You, O king, are the most powerful king on earth. The God of heaven has given you the works: rule, power, strength, and glory. He has put you in charge of men and women, wild animals and birds, all over the world—you’re the head ruler, you are the head of gold. But your rule will be taken over by another kingdom, inferior to yours, and that one by a third, a bronze kingdom, but still ruling the whole land, and after that by a fourth kingdom, ironlike in strength. Just as iron smashes things to bits, breaking and pulverizing, it will bust up the previous kingdoms. “But then the feet and toes that ended up as a mixture of ceramic and iron will deteriorate into a mongrel kingdom with some remains of iron in it. Just as the toes of the feet were part ceramic and part iron, it will end up a mixed bag of the breakable and unbreakable. That kingdom won’t bond, won’t hold together any more than iron and clay hold together. “But throughout the history of these kingdoms, the God of heaven will be building a kingdom that will never be destroyed, nor will this kingdom ever fall under the domination of another. In the end it will crush the other kingdoms and finish them off and come through it all standing strong and eternal. It will be like the stone cut from the mountain by the invisible hand that crushed the iron, the bronze, the ceramic, the silver, and the gold.“The great God has let the king know what will happen in the years to come. This is an accurate telling of the dream, and the interpretation is also accurate.” When Daniel finished, King Nebuchadnezzar fell on his face in awe before Daniel. He ordered the offering of sacrifices and burning of incense in Daniel’s honor. He said to Daniel, “Your God is beyond question the God of all gods, the Master of all kings. And he solves all mysteries, I know, because you’ve solved this mystery.” Then the king promoted Daniel to a high position in the kingdom, lavished him with gifts, and made him governor over the entire province of Babylon and the chief in charge of all the Babylonian wise men. At Daniel’s request the king appointed Shadrach, Meshach, and Abednego to administrative posts throughout Babylon, while Daniel governed from the royal headquarters."
         }
       ],
       "verse_count": 5,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Dream Interpretation: A Story of Five Kingdoms"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "DAN.2.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "DAN.2.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "DAN.2.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "DAN.2.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "DAN.2.24"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "DAN.2.24",
+            "DAN.2.25"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 25,
+          "end_verse": 26,
+          "verses": [
+            25,
+            26
+          ],
+          "usfms": [
+            "DAN.2.25",
+            "DAN.2.26"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "DAN.2.26"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -83,9 +269,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/2-92d9ea87c0f74630a5d189d325527d70.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.2.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.2"
+          ],
+          "human": "Daniel 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.1"
+          ],
+          "human": "Daniel 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.3"
+          ],
+          "human": "Daniel 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 3,
       "chapter_usfm": "DAN.3",
@@ -94,40 +337,202 @@
       "verses": [
         {
           "verse": 7,
+          "usfm": "DAN.3.7",
+          "line_type": "p",
           "text": "The band started to play, a huge band equipped with all the musical instruments of Babylon, and everyone—every race, color, and creed—fell to their knees and worshiped the gold statue that King Nebuchadnezzar had set up. Just then, some Babylonian fortunetellers stepped up and accused the Jews. They said to King Nebuchadnezzar, “Long live the king! You gave strict orders, O king, that when the big band started playing, everyone had to fall to their knees and worship the gold statue, and whoever did not go to their knees and worship it had to be pitched into a roaring furnace. Well, there are some Jews here—Shadrach, Meshach, and Abednego—whom you have placed in high positions in the province of Babylon. These men are ignoring you, O king. They don’t respect your gods and they won’t worship the gold statue you set up.” Furious, King Nebuchadnezzar ordered Shadrach, Meshach, and Abednego to be brought in. When the men were brought in, Nebuchadnezzar asked, “Is it true, Shadrach, Meshach, and Abednego, that you don’t respect my gods and refuse to worship the gold statue that I have set up? I’m giving you a second chance—but from now on, when the big band strikes up you must go to your knees and worship the statue I have made. If you don’t worship it, you will be pitched into a roaring furnace, no questions asked. Who is the god who can rescue you from my power?” Shadrach, Meshach, and Abednego answered King Nebuchadnezzar, “Your threat means nothing to us. If you throw us in the fire, the God we serve can rescue us from your roaring furnace and anything else you might cook up, O king. But even if he doesn’t, it wouldn’t make a bit of difference, O king. We still wouldn’t serve your gods or worship the gold statue you set up.” Nebuchadnezzar, his face purple with anger, cut off Shadrach, Meshach, and Abednego. He ordered the furnace fired up seven times hotter than usual. He ordered some strong men from the army to tie them up, hands and feet, and throw them into the roaring furnace. Shadrach, Meshach, and Abednego, bound hand and foot, fully dressed from head to toe, were pitched into the roaring fire. Because the king was in such a hurry and the furnace was so hot, flames from the furnace killed the men who carried Shadrach, Meshach, and Abednego to it, while the fire raged around Shadrach, Meshach, and Abednego."
         },
         {
           "verse": 24,
+          "usfm": "DAN.3.24",
+          "line_type": "p",
           "text": "Suddenly King Nebuchadnezzar jumped up in alarm and said, “Didn’t we throw three men, bound hand and foot, into the fire?”“That’s right, O king,” they said."
         },
         {
           "verse": 25,
+          "usfm": "DAN.3.25",
+          "line_type": "p",
           "text": "“But look!” he said. “I see four men, walking around freely in the fire, completely unharmed! And the fourth man looks like a son of the gods!”"
         },
         {
           "verse": 26,
+          "usfm": "DAN.3.26",
+          "line_type": "p",
           "text": "Nebuchadnezzar went to the door of the roaring furnace and called in, “Shadrach, Meshach, and Abednego, servants of the High God, come out here!”Shadrach, Meshach, and Abednego walked out of the fire."
         },
         {
           "verse": 27,
+          "usfm": "DAN.3.27",
+          "line_type": "p",
           "text": "All the important people, the government leaders and king’s counselors, gathered around to examine them and discovered that the fire hadn’t so much as touched the three men—not a hair singed, not a scorch mark on their clothes, not even the smell of fire on them!"
         },
         {
           "verse": 28,
+          "usfm": "DAN.3.28",
+          "line_type": "p",
           "text": "Nebuchadnezzar said, “Blessed be the God of Shadrach, Meshach, and Abednego! He sent his angel and rescued his servants who trusted in him! They ignored the king’s orders and laid their bodies on the line rather than serve or worship any god but their own."
         },
         {
           "verse": 29,
+          "usfm": "DAN.3.29",
+          "line_type": "p",
           "text": "“Therefore I issue this decree: Anyone anywhere, of any race, color, or creed, who says anything against the God of Shadrach, Meshach, and Abednego will be ripped to pieces, limb from limb, and their houses torn down. There has never been a god who can pull off a rescue like this.”"
         },
         {
           "verse": 30,
+          "usfm": "DAN.3.30",
+          "line_type": "p",
           "text": "Then the king promoted Shadrach, Meshach, and Abednego in the province of Babylon."
         }
       ],
       "verse_count": 8,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "DAN.3.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "DAN.3.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "DAN.3.24"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "DAN.3.24"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "DAN.3.24",
+            "DAN.3.25"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 25,
+          "end_verse": 26,
+          "verses": [
+            25,
+            26
+          ],
+          "usfms": [
+            "DAN.3.25",
+            "DAN.3.26"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "DAN.3.26"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 26,
+          "end_verse": 27,
+          "verses": [
+            26,
+            27
+          ],
+          "usfms": [
+            "DAN.3.26",
+            "DAN.3.27"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 28,
+          "verses": [
+            27,
+            28
+          ],
+          "usfms": [
+            "DAN.3.27",
+            "DAN.3.28"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 29,
+          "verses": [
+            28,
+            29
+          ],
+          "usfms": [
+            "DAN.3.28",
+            "DAN.3.29"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 30,
+          "verses": [
+            29,
+            30
+          ],
+          "usfms": [
+            "DAN.3.29",
+            "DAN.3.30"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -138,9 +543,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/3-131a8e74033009517d97555d387d5bb3.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 8,
+          "parsed_count": 8,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.3.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.3"
+          ],
+          "human": "Daniel 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.2"
+          ],
+          "human": "Daniel 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.4"
+          ],
+          "human": "Daniel 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 4,
       "chapter_usfm": "DAN.4",
@@ -149,53 +611,369 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "DAN.4.3",
+          "line_type": "q1",
           "text": "“His miracles are staggering,his wonders are surprising.His kingdom lasts and lasts,his sovereign rule goes on forever. “I, Nebuchadnezzar, was at home taking it easy in my palace, without a care in the world. But as I was stretched out on my bed I had a dream that scared me—a nightmare that shook me. I sent for all the wise men of Babylon so that they could interpret the dream for me. When they were all assembled—magicians, enchanters, fortunetellers, witches—I told them the dream. None could tell me what it meant."
         },
         {
           "verse": 8,
+          "usfm": "DAN.4.8",
+          "line_type": "p",
           "text": "“And then Daniel came in. His Babylonian name is Belteshazzar, named after my god, a man full of the divine Holy Spirit. I told him my dream."
         },
         {
           "verse": 9,
+          "usfm": "DAN.4.9",
+          "line_type": "p",
           "text": "“‘Belteshazzar,’ I said, ‘chief of the magicians, I know that you are a man full of the divine Holy Spirit and that there is no mystery that you can’t solve. Listen to this dream that I had and interpret it for me. “‘This is what I saw as I was stretched out on my bed. I saw a big towering tree at the center of the world. As I watched, the tree grew huge and strong. Its top reached the sky and it could be seen from the four corners of the earth. Its leaves were beautiful, its fruit abundant—enough food for everyone! Wild animals found shelter under it, birds nested in its branches, everything living was fed and sheltered by it. “‘And this also is what I saw as I was stretched out on my bed. I saw a holy watchman descend from heaven, and call out:Chop down the tree, lop off its branches,strip its leaves and scatter its fruit.Chase the animals from beneath itand shoo the birds from its branches.But leave the stump and roots in the ground,belted with a strap of iron and bronze in the grassy meadow. Let him be soaked in heaven’s dewand take his meals with the animals that graze.Let him lose his mindand get an animal’s mind in exchange,And let this go onfor seven seasons."
         },
         {
           "verse": 17,
+          "usfm": "DAN.4.17",
+          "line_type": "q2",
           "text": "The angels announce this decree,the holy watchmen bring this sentence,So that everyone living will knowthat the High God rules human kingdoms.He arranges kingdom affairs however he wishes,and makes leaders out of losers.* * *"
         },
         {
           "verse": 18,
+          "usfm": "DAN.4.18",
+          "line_type": "p",
           "text": "“‘This is what I, King Nebuchadnezzar, dreamed. It’s your turn, Belteshazzar—interpret it for me. None of the wise men of Babylon could make heads or tails of it, but I’m sure you can do it. You’re full of the divine Holy Spirit.’”"
         },
         {
           "verse": 19,
+          "usfm": "DAN.4.19",
+          "line_type": "m",
           "text": "At first Daniel, who had been renamed Belteshazzar in Babylon, was upset. The thoughts that came swarming into his mind terrified him.“Belteshazzar,” the king said, “stay calm. Don’t let the dream and its interpretation scare you.”“My master,” said Belteshazzar, “I wish this dream were about your enemies and its interpretation for your foes. “The tree you saw that grew so large and sturdy with its top touching the sky, visible from the four corners of the world; the tree with the luxuriant foliage and abundant fruit, enough for everyone; the tree under which animals took cover and in which birds built nests—you, O king, are that tree.“You have grown great and strong. Your royal majesty reaches sky-high, and your sovereign rule stretches to the four corners of the world. “But the part about the holy angel descending from heaven and proclaiming, ‘Chop down the tree, destroy it, but leave stump and roots in the ground belted with a strap of iron and bronze in the grassy meadow; let him be soaked with heaven’s dew and take his meals with the grazing animals for seven seasons’—this, O king, also refers to you. It means that the High God has sentenced my master the king: You will be driven away from human company and live with the wild animals. You will graze on grass like an ox. You will be soaked in heaven’s dew. This will go on for seven seasons, and you will learn that the High God rules over human kingdoms and that he arranges all kingdom affairs."
         },
         {
           "verse": 26,
+          "usfm": "DAN.4.26",
+          "line_type": "p",
           "text": "“The part about the tree stump and roots being left means that your kingdom will still be there for you after you learn that it is heaven that runs things."
         },
         {
           "verse": 27,
+          "usfm": "DAN.4.27",
+          "line_type": "p",
           "text": "“So, king, take my advice: Make a clean break with your sins and start living for others. Quit your wicked life and look after the needs of the down-and-out. Then you will continue to have a good life.” All this happened to King Nebuchadnezzar. Just twelve months later, he was walking on the balcony of the royal palace in Babylon and boasted, “Look at this, Babylon the great! And I built it all by myself, a royal palace adequate to display my honor and glory!” The words were no sooner out of his mouth than a voice out of heaven spoke, “This is the verdict on you, King Nebuchadnezzar: Your kingdom is taken from you. You will be driven out of human company and live with the wild animals. You will eat grass like an ox. The sentence is for seven seasons, enough time to learn that the High God rules human kingdoms and puts whomever he wishes in charge.”"
         },
         {
           "verse": 33,
+          "usfm": "DAN.4.33",
+          "line_type": "p",
           "text": "It happened at once. Nebuchadnezzar was driven out of human company, ate grass like an ox, and was soaked in heaven’s dew. His hair grew like the feathers of an eagle and his nails like the claws of a hawk.* * * “At the end of the seven years, I, Nebuchadnezzar, looked to heaven. I was given my mind back and I blessed the High God, thanking and glorifying God, who lives forever:“His sovereign rule lasts and lasts,his kingdom never declines and falls.Life on this earth doesn’t add up to much,but God’s heavenly army keeps everything going.No one can interrupt his work,no one can call his rule into question. “At the same time that I was given back my mind, I was also given back my majesty and splendor, making my kingdom shine. All the leaders and important people came looking for me. I was reestablished as king in my kingdom and became greater than ever. And that’s why I’m singing—I, Nebuchadnezzar—singing and praising the King of Heaven:“Everything he does is right,and he does it the right way.He knows how to turn a proud personinto a humble man or woman.”"
         }
       ],
       "verse_count": 9,
       "headings": [
         {
-          "before_verse": 18,
+          "before_verse": 19,
           "text": "“You Will Graze on Grass Like an Ox”"
         },
         {
-          "before_verse": 27,
+          "before_verse": 28,
           "text": "The Loss and Regaining of a Mind and a Kingdom"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "DAN.4.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "DAN.4.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "DAN.4.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "DAN.4.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "DAN.4.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "DAN.4.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "DAN.4.8",
+            "DAN.4.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "DAN.4.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "DAN.4.17"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q3",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "DAN.4.17"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "DAN.4.17"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q3",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "DAN.4.17"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "DAN.4.17"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q3",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "DAN.4.17"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "DAN.4.17",
+            "DAN.4.18"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "m",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "DAN.4.18",
+            "DAN.4.19"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.4.19"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.4.19"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.4.19"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "p",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "DAN.4.26"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "p",
+          "start_verse": 26,
+          "end_verse": 27,
+          "verses": [
+            26,
+            27
+          ],
+          "usfms": [
+            "DAN.4.26",
+            "DAN.4.27"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "m",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "DAN.4.27"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "p",
+          "start_verse": 33,
+          "end_verse": 33,
+          "verses": [
+            33
+          ],
+          "usfms": [
+            "DAN.4.33"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "p",
+          "start_verse": 33,
+          "end_verse": 33,
+          "verses": [
+            33
+          ],
+          "usfms": [
+            "DAN.4.33"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -206,9 +984,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/4-946733615d338cde499f7f1a28e5f9e3.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 9,
+          "parsed_count": 9,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.4.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.4"
+          ],
+          "human": "Daniel 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.3"
+          ],
+          "human": "Daniel 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.5"
+          ],
+          "human": "Daniel 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 5,
       "chapter_usfm": "DAN.5",
@@ -217,24 +1052,110 @@
       "verses": [
         {
           "verse": 17,
+          "usfm": "DAN.5.17",
+          "line_type": "p",
           "text": "Daniel answered the king, “You can keep your gifts, or give them to someone else. But I will read the writing for the king and tell him what it means. “Listen, O king! The High God gave your father Nebuchadnezzar a great kingdom and a glorious reputation. Because God made him so famous, people from everywhere, whatever their race, color, and creed, were totally intimidated by him. He killed or spared people on whim. He promoted or humiliated people capriciously. He developed a big head and a hard spirit. Then God knocked him off his high horse and stripped him of his fame. He was thrown out of human company, lost his mind, and lived like a wild animal. He ate grass like an ox and was soaked by heaven’s dew until he learned his lesson: that the High God rules human kingdoms and puts anyone he wants in charge. “You are his son and have known all this, yet you’re as arrogant as he ever was. Look at you, setting yourself up in competition against the Master of heaven! You had the sacred chalices from his Temple brought into your drunken party so that you and your nobles, your wives and your concubines, could drink from them. You used the sacred chalices to toast your gods of silver and gold, bronze and iron, wood and stone—blind, deaf, and imbecile gods. But you treat with contempt the living God who holds your entire life from birth to death in his hand. “God sent the hand that wrote on the wall, and this is what is written: mene, teqel, and peres. This is what the words mean:“Mene: God has numbered the days of your rule and they don’t add up."
         },
         {
           "verse": 27,
+          "usfm": "DAN.5.27",
+          "line_type": "p",
           "text": "“Teqel: You have been weighed on the scales and you don’t weigh much."
         },
         {
           "verse": 28,
+          "usfm": "DAN.5.28",
+          "line_type": "p",
           "text": "“Peres: Your kingdom has been divided up and handed over to the Medes and Persians.”* * *"
         },
         {
           "verse": 29,
+          "usfm": "DAN.5.29",
+          "line_type": "p",
           "text": "Belshazzar did what he had promised. He robed Daniel in purple, draped the great gold chain around his neck, and promoted him to third-in-charge in the kingdom. That same night the Babylonian king Belshazzar was murdered. Darius the Mede was sixty-two years old when he succeeded him as king."
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "DAN.5.17"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "DAN.5.17"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "DAN.5.27"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 28,
+          "verses": [
+            27,
+            28
+          ],
+          "usfms": [
+            "DAN.5.27",
+            "DAN.5.28"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 29,
+          "verses": [
+            28,
+            29
+          ],
+          "usfms": [
+            "DAN.5.28",
+            "DAN.5.29"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 29,
+          "verses": [
+            29
+          ],
+          "usfms": [
+            "DAN.5.29"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -245,9 +1166,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/5-bb6e974d5386e042e1178fdd306a1d15.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.5.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.5"
+          ],
+          "human": "Daniel 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.4"
+          ],
+          "human": "Daniel 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.6"
+          ],
+          "human": "Daniel 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 6,
       "chapter_usfm": "DAN.6",
@@ -256,56 +1234,278 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "DAN.6.8",
+          "line_type": "p",
           "text": "“Issue this decree, O king, and make it unconditional, as if written in stone like all the laws of the Medes and the Persians.”"
         },
         {
           "verse": 9,
+          "usfm": "DAN.6.9",
+          "line_type": "p",
           "text": "King Darius signed the decree."
         },
         {
           "verse": 10,
+          "usfm": "DAN.6.10",
+          "line_type": "p",
           "text": "When Daniel learned that the decree had been signed and posted, he continued to pray just as he had always done. His house had windows in the upstairs that opened toward Jerusalem. Three times a day he knelt there in prayer, thanking and praising his God. The conspirators came and found him praying, asking God for help. They went straight to the king and reminded him of the royal decree that he had signed. “Did you not,” they said, “sign a decree forbidding anyone to pray to any god or man except you for the next thirty days? And anyone caught doing it would be thrown into the lions’ den?”“Absolutely,” said the king. “Written in stone, like all the laws of the Medes and Persians.”"
         },
         {
           "verse": 13,
+          "usfm": "DAN.6.13",
+          "line_type": "p",
           "text": "Then they said, “Daniel, one of the Jewish exiles, ignores you, O king, and defies your decree. Three times a day he prays.”"
         },
         {
           "verse": 14,
+          "usfm": "DAN.6.14",
+          "line_type": "p",
           "text": "At this, the king was very upset and tried his best to get Daniel out of the fix he’d put him in. He worked at it the whole day long."
         },
         {
           "verse": 15,
+          "usfm": "DAN.6.15",
+          "line_type": "p",
           "text": "But then the conspirators were back: “Remember, O king, it’s the law of the Medes and Persians that the king’s decree can never be changed.”"
         },
         {
           "verse": 16,
+          "usfm": "DAN.6.16",
+          "line_type": "p",
           "text": "The king caved in and ordered Daniel brought and thrown into the lions’ den. But he said to Daniel, “Your God, to whom you are so loyal, is going to get you out of this.”"
         },
         {
           "verse": 17,
+          "usfm": "DAN.6.17",
+          "line_type": "p",
           "text": "A stone slab was placed over the opening of the den. The king sealed the cover with his signet ring and the signet rings of all his nobles, fixing Daniel’s fate."
         },
         {
           "verse": 18,
+          "usfm": "DAN.6.18",
+          "line_type": "p",
           "text": "The king then went back to his palace. He refused supper. He couldn’t sleep. He spent the night fasting. At daybreak the king got up and hurried to the lions’ den. As he approached the den, he called out anxiously, “Daniel, servant of the living God, has your God, whom you serve so loyally, saved you from the lions?” “O king, live forever!” said Daniel. “My God sent his angel, who closed the mouths of the lions so that they would not hurt me. I’ve been found innocent before God and also before you, O king. I’ve done nothing to harm you.”"
         },
         {
           "verse": 23,
+          "usfm": "DAN.6.23",
+          "line_type": "p",
           "text": "When the king heard these words, he was happy. He ordered Daniel taken up out of the den. When he was hauled up, there wasn’t a scratch on him. He had trusted his God."
         },
         {
           "verse": 24,
+          "usfm": "DAN.6.24",
+          "line_type": "p",
           "text": "Then the king commanded that the conspirators who had informed on Daniel be thrown into the lions’ den, along with their wives and children. Before they hit the floor, the lions had them in their jaws, tearing them to pieces. King Darius published this proclamation to every race, color, and creed on earth:Peace to you! Abundant peace!I decree that Daniel’s God shall be worshiped and fearedin all parts of my kingdom.He is the living God, world without end. His kingdomnever falls.His rule continues eternally.He is a savior and rescuer.He performs astonishing miracles in heaven and on earth.He saved Daniel from the power of the lions.* * *"
         },
         {
           "verse": 28,
+          "usfm": "DAN.6.28",
+          "line_type": "p",
           "text": "From then on, Daniel was treated well during the reign of Darius, and also in the following reign of Cyrus the Persian."
         }
       ],
       "verse_count": 12,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "DAN.6.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "DAN.6.8",
+            "DAN.6.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "DAN.6.10",
+            "DAN.6.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "DAN.6.10"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "DAN.6.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "DAN.6.13",
+            "DAN.6.14"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "DAN.6.14",
+            "DAN.6.15"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "DAN.6.15",
+            "DAN.6.16"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "DAN.6.16",
+            "DAN.6.17"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "DAN.6.17",
+            "DAN.6.18"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "DAN.6.18"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "DAN.6.23"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 24,
+          "verses": [
+            23,
+            24
+          ],
+          "usfms": [
+            "DAN.6.23",
+            "DAN.6.24"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "DAN.6.24"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "DAN.6.28"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -316,9 +1516,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/6-2a52ce062b8f18cb0ec4080473d6820e.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 12,
+          "parsed_count": 12,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.6.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.6"
+          ],
+          "human": "Daniel 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.5"
+          ],
+          "human": "Daniel 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.7"
+          ],
+          "human": "Daniel 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 7,
       "chapter_usfm": "DAN.7",
@@ -327,36 +1584,168 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "DAN.7.1",
+          "line_type": "m",
           "text": "In the first year of the reign of King Belshazzar of Babylon, Daniel had a dream. What he saw as he slept in his bed terrified him—a real nightmare. Then he wrote out his dream: “In my dream that night I saw the four winds of heaven whipping up a great storm on the sea. Four huge animals, each different from the others, ascended out of the sea."
         },
         {
           "verse": 4,
+          "usfm": "DAN.7.4",
+          "line_type": "p",
           "text": "“The first animal looked like a lion, but it had the wings of an eagle. While I watched, its wings were pulled off. It was then pulled erect so that it was standing on two feet like a man. Then a human heart was placed in it."
         },
         {
           "verse": 5,
+          "usfm": "DAN.7.5",
+          "line_type": "p",
           "text": "“Then I saw a second animal that looked like a bear. It lurched from side to side, holding three ribs in its jaws. It was told, ‘Attack! Devour! Fill your belly!’"
         },
         {
           "verse": 6,
+          "usfm": "DAN.7.6",
+          "line_type": "p",
           "text": "“Next I saw another animal. This one looked like a panther. It had four birdlike wings on its back. This animal had four heads and was made to rule."
         },
         {
           "verse": 7,
+          "usfm": "DAN.7.7",
+          "line_type": "p",
           "text": "“After that, a fourth animal appeared in my dream. This one was a grisly horror—hideous. It had huge iron teeth. It crunched and swallowed its victims. Anything left over, it trampled into the ground. It was different from the other animals—this one was a real monster. It had ten horns."
         },
         {
           "verse": 8,
+          "usfm": "DAN.7.8",
+          "line_type": "p",
           "text": "“As I was staring at the horns and trying to figure out what they meant, another horn sprouted up, a little horn. Three of the original horns were pulled out to make room for it. There were human eyes in this little horn, and a big mouth speaking arrogantly. “As I was watching all this,“Thrones were set in placeand The Old One sat down.His robes were white as snow,his hair was white like wool.His throne was flaming with fire,its wheels blazing.A river of firepoured out of the throne.Thousands upon thousands served him,tens of thousands attended him.The courtroom was called to order,and the books were opened. “I kept watching. The little horn was speaking arrogantly. Then, as I watched, the monster was killed and its body cremated in a roaring fire. The other animals lived on for a limited time, but they didn’t really do anything, had no power to rule. My dream continued. “I saw a human form, a son of man,arriving in a whirl of clouds.He came to The Old Oneand was presented to him.He was given power to rule—all the glory of royalty.Everyone—race, color, and creed—had to serve him.His rule would be forever, never ending.His kingly rule would never be replaced. “But as for me, Daniel, I was disturbed. All these dream-visions had me agitated. So I went up to one of those standing by and asked him the meaning of all this. And he told me, interpreting the dream for me: “‘These four huge animals,’ he said, ‘mean that four kingdoms will appear on earth. But eventually the holy people of the High God will be given the kingdom and have it ever after—yes, forever and ever.’ “But I wanted to know more. I was curious about the fourth animal, the one so different from the others, the hideous monster with the iron teeth and the bronze claws, gulping down what it ripped to pieces and trampling the leftovers into the dirt. And I wanted to know about the ten horns on its head and the other horn that sprouted up while three of the original horns were removed. This new horn had eyes and a big mouth and spoke arrogantly, dominating the other horns. I watched as this horn was making war on God’s holy people and getting the best of them. But then The Old One intervened and decided things in favor of the people of the High God. In the end, God’s holy people took over the kingdom. “The bystander continued, telling me this: ‘The fourth animal is a fourth kingdom that will appear on earth. It will be different from the first three kingdoms, a monster kingdom that will chew up everyone in sight and spit them out. The ten horns are ten kings, one after another, that will come from this kingdom. But then another king will arrive. He will be different from the earlier kings. He will begin by toppling three kings. Then he will blaspheme the High God, persecute the followers of the High God, and try to get rid of sacred worship and moral practice. God’s holy people will be persecuted by him for a time, two times, half a time. “‘But when the court comes to order, the horn will be stripped of its power and totally destroyed. Then the royal rule and the authority and the glory of all the kingdoms under heaven will be handed over to the people of the High God. Their royal rule will last forever. All other rulers will serve and obey them.’"
         },
         {
           "verse": 28,
+          "usfm": "DAN.7.28",
+          "line_type": "p",
           "text": "“And there it ended. I, Daniel, was in shock. I was like a man who had seen a ghost. But I kept it all to myself.”"
         }
       ],
       "verse_count": 7,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "DAN.7.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "DAN.7.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "DAN.7.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "DAN.7.4",
+            "DAN.7.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "DAN.7.5",
+            "DAN.7.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "DAN.7.6",
+            "DAN.7.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "DAN.7.7",
+            "DAN.7.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "DAN.7.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "DAN.7.28"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -367,9 +1756,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/7-a29e9e98c71da09c9922298f5508bf16.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 7,
+          "parsed_count": 7,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.7.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.7"
+          ],
+          "human": "Daniel 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.6"
+          ],
+          "human": "Daniel 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.8"
+          ],
+          "human": "Daniel 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 8,
       "chapter_usfm": "DAN.8",
@@ -378,32 +1824,158 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "DAN.8.1",
+          "line_type": "m",
           "text": "“In King Belshazzar’s third year as king, another vision came to me, Daniel. This was now the second vision. “In the vision, I saw myself in Susa, the capital city of the province Elam, standing at the Ulai Canal. Looking around, I was surprised to see a ram also standing at the gate. The ram had two huge horns, one bigger than the other, but the bigger horn was the last to appear. I watched as the ram charged: first west, then north, then south. No beast could stand up to him. He did just as he pleased, strutting as if he were king of the beasts. “While I was watching this, wondering what it all meant, I saw a billy goat with an immense horn in the middle of its forehead come up out of the west and fly across the whole country, not once touching the ground. The billy goat approached the double-horned ram that I had earlier seen standing at the gate and, enraged, charged it viciously. I watched as, mad with rage, it charged the ram and hit it so hard that it broke off its two horns. The ram didn’t stand a chance against it. The billy goat knocked the ram to the ground and stomped all over it. Nothing could have saved the ram from the goat. “Then the billy goat swelled to an enormous size. At the height of its power its immense horn broke off and four other big horns sprouted in its place, pointing to the four points of the compass. And then from one of these big horns another horn sprouted. It started small, but then grew to an enormous size, facing south and east—toward lovely Palestine. The horn grew tall, reaching to the stars, the heavenly army, and threw some of the stars to the earth and stomped on them. It even dared to challenge the power of God, Prince of the Celestial Army! And then it threw out daily worship and desecrated the Sanctuary. As judgment against their sin, the holy people of God got the same treatment as the daily worship. The horn cast God’s Truth aside. High-handed, it took over everything and everyone."
         },
         {
           "verse": 13,
+          "usfm": "DAN.8.13",
+          "line_type": "p",
           "text": "“Then I overheard two holy angels talking. One asked, ‘How long is what we see here going to last—the abolishing of daily worship, this devastating judgment against sin, the kicking around of God’s holy people and the Sanctuary?’"
         },
         {
           "verse": 14,
+          "usfm": "DAN.8.14",
+          "line_type": "p",
           "text": "“The other answered, ‘Over the course of 2,300 sacrifices, evening and morning. Then the Sanctuary will be set right again.’* * *"
         },
         {
           "verse": 15,
+          "usfm": "DAN.8.15",
+          "line_type": "p",
           "text": "“While I, Daniel, was trying to make sense of what I was seeing, suddenly there was a humanlike figure standing before me. “Then I heard a man’s voice from over by the Ulai Canal calling out, ‘Gabriel, tell this man what is going on. Explain the vision to him.’ He came up to me, but when he got close I became terrified and fell facedown on the ground. “He said, ‘Understand that this vision has to do with the time of the end.’ As soon as he spoke, I fainted, my face in the dirt. But he picked me up and put me on my feet."
         },
         {
           "verse": 19,
+          "usfm": "DAN.8.19",
+          "line_type": "p",
           "text": "“And then he continued, ‘I want to tell you what is going to happen as the judgment days of wrath wind down, for there is going to be an end to all this. “‘The double-horned ram you saw stands for the two kings of the Medes and Persians. The billy goat stands for the kingdom of the Greeks. The huge horn on its forehead is the first Greek king. The four horns that sprouted after it was broken off are the four kings that come after him, but without his power. “‘As their kingdoms cool downand rebellions heat up,A king will show up,hard-faced, a master trickster.His power will swell enormously.He’ll talk big, high-handedly,Doing whatever he pleases,knocking off heroes and holy ones left and right.He’ll plot and scheme to make crime flourish—and oh, how it will flourish!He’ll think he’s invincibleand get rid of anyone who gets in his way.But when he takes on the Prince of all princes,he’ll be smashed to bits—but not by human hands.This vision of the 2,300 sacrifices, evening and morning,is accurate but confidential.Keep it to yourself.It refers to the far future.’* * *"
         },
         {
           "verse": 27,
+          "usfm": "DAN.8.27",
+          "line_type": "p",
           "text": "“I, Daniel, walked around in a daze, unwell for days. Then I got a grip on myself and went back to work taking care of the king’s affairs. But I continued to be upset by the vision. I couldn’t make sense of it.”"
         }
       ],
       "verse_count": 6,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "DAN.8.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "DAN.8.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "DAN.8.13"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "DAN.8.13",
+            "DAN.8.14"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "DAN.8.14",
+            "DAN.8.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "DAN.8.15"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.8.19"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.8.19"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "DAN.8.27"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -414,9 +1986,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/8-a611a1f6036a20830183ed306b534cbe.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.8.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.8"
+          ],
+          "human": "Daniel 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.7"
+          ],
+          "human": "Daniel 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.9"
+          ],
+          "human": "Daniel 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 9,
       "chapter_usfm": "DAN.9",
@@ -425,29 +2054,173 @@
       "verses": [
         {
           "verse": 18,
+          "usfm": "DAN.9.18",
+          "line_type": "p",
           "text": "“‘Turn your ears our way, God, and listen. Open your eyes and take a long look at our ruined city, this city named after you. We know that we don’t deserve a hearing from you. Our appeal is to your compassion. This prayer is our last and only hope:"
         },
         {
           "verse": 19,
+          "usfm": "DAN.9.19",
+          "line_type": "q2",
           "text": "“‘Master, listen to us!Master, forgive us!Master, look at us and do something!Master, don’t put us off!Your city and your people are named after you:You have a stake in us!’ “While I was pouring out my heart, baring my sins and the sins of my people Israel, praying my life out before my God, interceding for the holy mountain of my God—while I was absorbed in this praying, the humanlike Gabriel, the one I had seen in an earlier vision, approached me, flying in like a bird about the time of evening worship. “He stood before me and said, ‘Daniel, I have come to make things plain to you. You had no sooner started your prayer when the answer was given. And now I’m here to deliver the answer to you. You are much loved! So listen carefully to the answer, the plain meaning of what is revealed:"
         },
         {
           "verse": 24,
+          "usfm": "DAN.9.24",
+          "line_type": "p",
           "text": "“‘Seventy sevens are set for your people and for your holy city to throttle rebellion, stop sin, wipe out crime, set things right forever, confirm what the prophet saw, and anoint The Holy of Holies. “‘Here is what you must understand: From the time the word goes out to rebuild Jerusalem until the coming of the Anointed Leader, there will be seven sevens. The rebuilding will take sixty-two sevens, including building streets and digging a moat. Those will be rough times. After the sixty-two sevens, the Anointed Leader will be killed—the end of him. The city and Sanctuary will be laid in ruins by the army of the newly arriving leader. The end will come in a rush, like a flood. War will rage right up to the end, desolation the order of the day."
         },
         {
           "verse": 27,
+          "usfm": "DAN.9.27",
+          "line_type": "p",
           "text": "“‘Then for one seven, he will forge many and strong alliances, but halfway through the seven he will banish worship and prayers. At the place of worship, a desecrating obscenity will be set up and remain until finally the desecrator himself is decisively destroyed.’”"
         }
       ],
       "verse_count": 4,
       "headings": [
         {
-          "before_verse": 19,
+          "before_verse": 20,
           "text": "Seventy Sevens"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "DAN.9.18"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "DAN.9.18",
+            "DAN.9.19"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.9.19"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.9.19"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.9.19"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.9.19"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.9.19"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "m",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "DAN.9.19"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "DAN.9.24"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "DAN.9.24"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "DAN.9.27"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -458,9 +2231,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/9-2018a229b3bcecb547e90eba6df62f5b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.9.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.9"
+          ],
+          "human": "Daniel 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.8"
+          ],
+          "human": "Daniel 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.10"
+          ],
+          "human": "Daniel 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 10,
       "chapter_usfm": "DAN.10",
@@ -469,16 +2299,82 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "DAN.10.1",
+          "line_type": "m",
           "text": "In the third year of the reign of King Cyrus of Persia, a message was made plain to Daniel, whose Babylonian name was Belteshazzar. The message was true. It dealt with a big war. He understood the message, the understanding coming by revelation: “During those days, I, Daniel, went into mourning over Jerusalem for three weeks. I ate only plain and simple food, no seasoning or meat or wine. I neither bathed nor shaved until the three weeks were up. “On the twenty-fourth day of the first month I was standing on the bank of the great river, the Tigris. I looked up and to my surprise saw a man dressed in linen with a belt of pure gold around his waist. His body was hard and glistening, as if sculpted from a precious stone, his face radiant, his eyes bright and penetrating like torches, his arms and feet glistening like polished bronze, and his voice, deep and resonant, sounded like a huge choir of voices. “I, Daniel, was the only one to see this. The men who were with me, although they didn’t see it, were overcome with fear and ran off and hid, fearing the worst. Left alone after the appearance, abandoned by my friends, I went weak in the knees, the blood drained from my face. “I heard his voice. At the sound of it I fainted, fell flat on the ground, face in the dirt. A hand touched me and pulled me to my hands and knees."
         },
         {
           "verse": 11,
+          "usfm": "DAN.10.11",
+          "line_type": "p",
           "text": "“‘Daniel,’ he said, ‘man of quality, listen carefully to my message. And get up on your feet. Stand at attention. I’ve been sent to bring you news.’“When he had said this, I stood up, but I was still shaking. “‘Relax, Daniel,’ he continued, ‘don’t be afraid. From the moment you decided to humble yourself to receive understanding, your prayer was heard, and I set out to come to you. But I was waylaid by the angel-prince of the kingdom of Persia and was delayed for a good three weeks. But then Michael, one of the chief angel-princes, intervened to help me. I left him there with the prince of the kingdom of Persia. And now I’m here to help you understand what will eventually happen to your people. The vision has to do with what’s ahead.’ “While he was saying all this, I looked at the ground and said nothing. Then I was surprised by something like a human hand that touched my lips. I opened my mouth and started talking to the messenger: ‘When I saw you, master, I was terror-stricken. My knees turned to water. I couldn’t move. How can I, a lowly servant, speak to you, my master? I’m paralyzed. I can hardly breathe!’ “Then this humanlike figure touched me again and gave me strength. He said, ‘Don’t be afraid, friend. Peace. Everything is going to be all right. Take courage. Be strong.’“Even as he spoke, courage surged up within me. I said, ‘Go ahead, let my master speak. You’ve given me courage.’ “He said, ‘Do you know why I’ve come here to you? I now have to go back to fight against the angel-prince of Persia, and when I get him out of the way, the angel-prince of Greece will arrive. But first let me tell you what’s written in The True Book. No one helps me in my fight against these beings except Michael, your angel-prince.’”* * *"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "DAN.10.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "DAN.10.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "DAN.10.11"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "DAN.10.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "DAN.10.11"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -489,9 +2385,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/10-417fdf783ba8e4ffbe42da4d52014d70.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.10.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.10"
+          ],
+          "human": "Daniel 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.9"
+          ],
+          "human": "Daniel 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.11"
+          ],
+          "human": "Daniel 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 11,
       "chapter_usfm": "DAN.11",
@@ -500,41 +2453,205 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "DAN.11.1",
+          "line_type": "p",
           "text": "“‘And I, in my turn, have been helping him out as best I can ever since the first year in the reign of Darius the Mede.’"
         },
         {
           "verse": 2,
+          "usfm": "DAN.11.2",
+          "line_type": "m",
           "text": "“‘But now let me tell you the truth of how things stand: Three more kings of Persia will show up, and then a fourth will become richer than all of them. When he senses that he is powerful enough as a result of his wealth, he will go to war against the entire kingdom of Greece. “‘Then a powerful king will show up and take over a huge territory and run things just as he pleases. But at the height of his power, with everything seemingly under control, his kingdom will split into four parts, like the four points of the compass. But his heirs won’t get in on it. There will be no continuity with his kingship. Others will tear it to pieces and grab whatever they can get for themselves. “‘Next the king of the south will grow strong, but one of his princes will grow stronger than he and rule an even larger territory. After a few years, the two of them will make a pact, and the daughter of the king of the south will marry the king of the north to cement the peace agreement. But her influence will weaken and her child will not survive. She and her servants, her child, and her husband will be betrayed. “‘Sometime later a member of the royal family will show up and take over. He will take command of his army and invade the defenses of the king of the north and win a resounding victory. He will load up their tin gods and all the gold and silver trinkets that go with them and cart them off to Egypt. Eventually, the king of the north will recover and invade the country of the king of the south, but unsuccessfully. He will have to retreat."
         },
         {
           "verse": 10,
+          "usfm": "DAN.11.10",
+          "line_type": "p",
           "text": "“‘But then his sons will raise a huge army and rush down like a flood, a torrential attack, on the defenses of the south. “‘Furious, the king of the south will come out and engage the king of the north and his huge army in battle and rout them. As the corpses are cleared from the field, the king, inflamed with bloodlust, will go on a bloodletting rampage, massacring tens of thousands. But his victory won’t last long, for the king of the north will put together another army bigger than the last one, and after a few years he’ll come back to do battle again with his immense army and endless supplies."
         },
         {
           "verse": 14,
+          "usfm": "DAN.11.14",
+          "line_type": "p",
           "text": "“‘In those times, many others will get into the act and go off to fight against the king of the south. Hotheads from your own people, drunk on dreams, will join them. But they’ll sputter out. “‘When the king of the north arrives, he’ll build siege works and capture the outpost fortress city. The armies of the south will fall to pieces before him. Not even their famous commando shock troops will slow down the attacker. He’ll march in big as you please, as if he owned the place. He’ll take over that beautiful country, Palestine, and make himself at home in it. Then he’ll proceed to get everything, lock, stock, and barrel, in his control. He’ll cook up a peace treaty and even give his daughter in marriage to the king of the south in a plot to destroy him totally. But the plot will fizzle. It won’t succeed. “‘Later, he’ll turn his attention to the coastal regions and capture a bunch of prisoners, but a general will step in and put a stop to his bullying ways. The bully will be bullied! He’ll go back home and tend to his own military affairs. But by then he’ll be washed up and soon will be heard of no more."
         },
         {
           "verse": 20,
+          "usfm": "DAN.11.20",
+          "line_type": "p",
           "text": "“‘He will be replaced shortly by a real loser, his rule, reputation, and authority already in shreds. And he won’t last long. He’ll slip out of history quietly, without even a fight. “‘His place will be taken by a reject, a man spurned and passed over for advancement. He’ll surprise everyone, seemingly coming out of nowhere, and will seize the kingdom. He’ll come in like a steamroller, flattening the opposition. Even the Prince of the Covenant will be crushed. After negotiating a cease-fire, he’ll betray its terms. With a few henchmen, he’ll take total control. Arbitrarily and impulsively, he’ll invade the richest provinces. He’ll surpass all his ancestors, near and distant, in his rape of the country, grabbing and looting, living with his cronies in corrupt and lavish luxury. “‘He will make plans against the fortress cities, but they’ll turn out to be shortsighted. He’ll get a great army together, all charged up to fight the king of the south. The king of the south in response will get his army—an even greater army—in place, ready to fight. But he won’t be able to sustain that intensity for long because of the treacherous intrigue in his own ranks, his court having been honeycombed with vicious plots. His army will be smashed, the battlefield filled with corpses."
         },
         {
           "verse": 27,
+          "usfm": "DAN.11.27",
+          "line_type": "p",
           "text": "“‘The two kings, each with evil designs on the other, will sit at the conference table and trade lies. Nothing will come of the treaty, which is nothing but a tissue of lies anyway. But that’s not the end of it. There’s more to this story."
         },
         {
           "verse": 28,
+          "usfm": "DAN.11.28",
+          "line_type": "p",
           "text": "“‘The king of the north will go home loaded down with plunder, but his mind will be set on destroying the holy covenant as he passes through the country on his way home. “‘One year later he will mount a fresh invasion of the south. But the second invasion won’t compare to the first. When the Roman ships arrive, he will turn tail and go back home. But as he passes through the country, he will be filled with anger at the holy covenant. He will take up with all those who betray the holy covenant, favoring them. The bodyguards surrounding him will march in and desecrate the Sanctuary and citadel. They’ll throw out the daily worship and set up in its place the obscene sacrilege. The king of the north will play up to those who betray the holy covenant, corrupting them even further with his seductive talk, but those who stay courageously loyal to their God will take a strong stand. “‘Those who keep their heads on straight will teach the crowds right from wrong by their example. They’ll be put to severe testing for a season: some killed, some burned, some exiled, some robbed. When the testing is intense, they’ll get some help, but not much. Many of the helpers will be halfhearted at best. The testing will refine, cleanse, and purify those who keep their heads on straight and stay true, for there is still more to come. “‘Meanwhile, the king of the north will do whatever he pleases. He’ll puff himself up and posture himself as greater than any god. He will even dare to brag and boast in defiance of the God of gods. And he’ll get by with it for a while—until this time of wrathful judgment is completed, for what is decreed must be done. He will have no respect for the gods of his ancestors, not even that popular favorite among women, Adonis. Contemptuous of every god and goddess, the king of the north will puff himself up greater than all of them. He’ll even stoop to despising the God of the holy ones, and in the place where God is worshiped he will put on exhibit, with a lavish show of silver and gold and jewels, a new god that no one has ever heard of. Marching under the banner of a strange god, he will attack the key fortresses. He will promote everyone who falls into line behind this god, putting them in positions of power and paying them off with grants of land. “‘In the final wrap-up of this story, the king of the south will confront him. But the king of the north will come at him like a tornado. Unleashing chariots and horses and an armada of ships, he’ll blow away anything in his path. As he enters the beautiful land, people will fall before him like dominoes. Only Edom, Moab, and a few Ammonites will escape. As he reaches out, grabbing country after country, not even Egypt will be exempt. He will confiscate the treasuries of Egyptian gold and silver and other valuables. The Libyans and Ethiopians will fall in with him. Then disturbing reports will come in from the north and east that will throw him into a panic. Towering in rage, he’ll rush to stamp out the threat. But he’ll no sooner have pitched camp between the Mediterranean Sea and the Holy Mountain—all those royal tents!—than he’ll meet his end. And not a soul around who can help!’”"
         }
       ],
       "verse_count": 7,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The Kings of the South and the North"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "DAN.11.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "DAN.11.1",
+            "DAN.11.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "DAN.11.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "DAN.11.10"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "DAN.11.10"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "DAN.11.14"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "DAN.11.14"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "DAN.11.20"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "DAN.11.20"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "DAN.11.27"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 28,
+          "verses": [
+            27,
+            28
+          ],
+          "usfms": [
+            "DAN.11.27",
+            "DAN.11.28"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "DAN.11.28"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -545,9 +2662,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/11-9392ac3bffe8dbe432c29414bb0266fa.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 7,
+          "parsed_count": 7,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.11.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.11"
+          ],
+          "human": "Daniel 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.10"
+          ],
+          "human": "Daniel 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "DAN.12"
+          ],
+          "human": "Daniel 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "DAN",
       "chapter": 12,
       "chapter_usfm": "DAN.12",
@@ -556,36 +2730,168 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "DAN.12.3",
+          "line_type": "p",
           "text": "“‘Men and women who have lived wisely and well will shine brilliantly, like the cloudless, star-strewn night skies. And those who put others on the right path to life will glow like stars forever."
         },
         {
           "verse": 4,
+          "usfm": "DAN.12.4",
+          "line_type": "p",
           "text": "“‘This is a confidential report, Daniel, for your eyes and ears only. Keep it secret. Put the book under lock and key until the end. In the interim there is going to be a lot of frantic running around, trying to figure out what’s going on.’* * * “As I, Daniel, took all this in, two figures appeared, one standing on this bank of the river and one on the other bank. One of them asked a third man who was dressed in linen and who straddled the river, ‘How long is this astonishing story to go on?’"
         },
         {
           "verse": 7,
+          "usfm": "DAN.12.7",
+          "line_type": "p",
           "text": "“The man dressed in linen, who straddled the river, raised both hands to the skies. I heard him solemnly swear by the Eternal One that it would be a time, two times, and half a time, that when the oppressor of the holy people was brought down the story would be complete."
         },
         {
           "verse": 8,
+          "usfm": "DAN.12.8",
+          "line_type": "p",
           "text": "“I heard all this plainly enough, but I didn’t understand it. So I asked, ‘Master, can you explain this to me?’ “‘Go on about your business, Daniel,’ he said. ‘The message is confidential and under lock and key until the end, until things are about to be wrapped up. The populace will be washed clean and made like new. But the wicked will just keep on being wicked, without a clue about what is happening. Those who live wisely and well will understand what’s going on.’* * *"
         },
         {
           "verse": 11,
+          "usfm": "DAN.12.11",
+          "line_type": "p",
           "text": "“From the time that the daily worship is banished from the Temple and the obscene desecration is set up in its place, there will be 1,290 days."
         },
         {
           "verse": 12,
+          "usfm": "DAN.12.12",
+          "line_type": "p",
           "text": "“Blessed are those who patiently make it through the 1,335 days."
         },
         {
           "verse": 13,
+          "usfm": "DAN.12.13",
+          "line_type": "p",
           "text": "“And you? Go about your business without fretting or worrying. Relax. When it’s all over, you will be on your feet to receive your reward.”"
         }
       ],
       "verse_count": 7,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "DAN.12.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "DAN.12.3",
+            "DAN.12.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "DAN.12.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "DAN.12.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "DAN.12.7",
+            "DAN.12.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "DAN.12.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "DAN.12.11"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "DAN.12.11",
+            "DAN.12.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "DAN.12.12",
+            "DAN.12.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -596,7 +2902,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/DAN/12-ade022018cabe1e3c9b026824e096888.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 7,
+          "parsed_count": 7,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/DAN.12.MSG",
+        "reference": {
+          "usfm": [
+            "DAN.12"
+          ],
+          "human": "Daniel 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.11"
+          ],
+          "human": "Daniel 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.1"
+          ],
+          "human": "Hosea 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

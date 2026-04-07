@@ -11,6 +11,7 @@
   "total_verses": 47,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "NAM",
       "chapter": 1,
       "chapter_usfm": "NAM.1",
@@ -19,85 +20,311 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "NAM.1.1",
+          "line_type": null,
           "text": "The oracle concerning Nineveh— the scroll of the vision of Nahum the Elkoshite:"
         },
         {
           "verse": 2,
+          "usfm": "NAM.1.2",
+          "line_type": null,
           "text": "Yahweh is a jealous God and avenging; Yahweh is avenging and full of wrath. Yahweh takes vengeance against his enemies; he rages against his adversaries."
         },
         {
           "verse": 3,
+          "usfm": "NAM.1.3",
+          "line_type": null,
           "text": "Yahweh is slow to anger but great in power; he will certainly not allow the guilty to go unpunished. He marches in storm wind and in gale; storm clouds are the dust of his feet."
         },
         {
           "verse": 4,
+          "usfm": "NAM.1.4",
+          "line_type": null,
           "text": "He rebukes the sea and he dries up the rivers; he makes all the rivers run dry. Bashan and Carmel wither; the blossom of Lebanon languishes."
         },
         {
           "verse": 5,
+          "usfm": "NAM.1.5",
+          "line_type": null,
           "text": "Mountains quake before him; the hills shake apart. The earth heaves before him— the world and all her inhabitants."
         },
         {
           "verse": 6,
+          "usfm": "NAM.1.6",
+          "line_type": null,
           "text": "His indignation—who can stand before it? Who can endure his fierce anger? His wrath is poured out like fire; rocks are shattered before him."
         },
         {
           "verse": 7,
+          "usfm": "NAM.1.7",
+          "line_type": null,
           "text": "Yahweh is good—a refuge in the day of distress; he knows those who take refuge in him."
         },
         {
           "verse": 8,
+          "usfm": "NAM.1.8",
+          "line_type": null,
           "text": "But with a rushing torrent he will bring Nineveh to an end; he will chase his enemies into darkness."
         },
         {
           "verse": 9,
+          "usfm": "NAM.1.9",
+          "line_type": null,
           "text": "What do you plot against Yahweh? He will completely destroy it; trouble will not rise up a second time!"
         },
         {
           "verse": 10,
+          "usfm": "NAM.1.10",
+          "line_type": null,
           "text": "For like entangled thorns, and like their drink which is drunk, they will be consumed like fully dry chaff."
         },
         {
           "verse": 11,
+          "usfm": "NAM.1.11",
+          "line_type": null,
           "text": "From you goes out one who plots evil against Yahweh, one who plans wickedness."
         },
         {
           "verse": 12,
+          "usfm": "NAM.1.12",
+          "line_type": "p",
           "text": "Yahweh says this: “Even though they are powerful and likewise many, even so they will be cut off and pass away. Though I have afflicted you, I will afflict you no longer."
         },
         {
           "verse": 13,
+          "usfm": "NAM.1.13",
+          "line_type": null,
           "text": "And now, I will break his yoke from upon you; I will snap your bonds.”"
         },
         {
           "verse": 14,
+          "usfm": "NAM.1.14",
+          "line_type": "p",
           "text": "Yahweh has commanded concerning you: “Your name will no longer be sown. I will cut off the idols and images from the temple of your gods; I will send you to the grave because you are worthless.”"
         },
         {
           "verse": 15,
+          "usfm": "NAM.1.15",
+          "line_type": null,
           "text": "Look! On the mountains! The feet of the one who brings good tidings, the one who proclaims peace! “Celebrate a festival, O Judah, Fulfill your vows! For he will not invade you again; the wicked one is cut off completely!”"
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Half-Acrostic: Yahweh Takes Vengeance against His Enemies"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Yahweh Will Destroy Nineveh"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Yahweh Will Deliver Judah and Destroy Nineveh"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "NAM.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a lord of wrath”"
+        },
+        {
+          "verse": 3,
+          "usfm": "NAM.1.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “His path”"
+        },
+        {
+          "verse": 4,
+          "usfm": "NAM.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "MT reads “languishes,” but the versions reflect “withers,” which also restores the acrostic"
+        },
+        {
+          "verse": 5,
+          "usfm": "NAM.1.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “melt”"
+        },
+        {
+          "verse": 6,
+          "usfm": "NAM.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the heat of his anger”"
+        },
+        {
+          "verse": 6,
+          "usfm": "NAM.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “by”"
+        },
+        {
+          "verse": 9,
+          "usfm": "NAM.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Why …?”"
+        },
+        {
+          "verse": 9,
+          "usfm": "NAM.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “he will make a complete destruction”"
+        },
+        {
+          "verse": 12,
+          "usfm": "NAM.1.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, Judah"
+        },
+        {
+          "verse": 12,
+          "usfm": "NAM.1.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, Judah"
+        },
+        {
+          "verse": 14,
+          "usfm": "NAM.1.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the idols and the molten idols”"
+        },
+        {
+          "verse": 14,
+          "usfm": "NAM.1.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “house”"
+        },
+        {
+          "verse": 14,
+          "usfm": "NAM.1.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will make your grave”"
+        },
+        {
+          "verse": 15,
+          "usfm": "NAM.1.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Nahum 1:15–2:13 in the English Bible is 2:1–14 in the Hebrew Bible"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "NAM.1.12"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "NAM.1.14"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/NAM.1.LEB",
+        "reference": {
+          "usfm": [
+            "NAM.1"
+          ],
+          "human": "Nahum 1",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "Micah 7",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "NAM.2"
+          ],
+          "human": "Nahum 2",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "NAM",
       "chapter": 2,
       "chapter_usfm": "NAM.2",
@@ -106,73 +333,318 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "NAM.2.1",
+          "line_type": null,
           "text": "One who shatters has come up against you! Guard the fortification! Watch the road! Gird your loins! Muster all your strength!"
         },
         {
           "verse": 2,
+          "usfm": "NAM.2.2",
+          "line_type": null,
           "text": "For Yahweh will restore the majesty of Jacob like the majesty of Israel; for ravagers have ravaged them and ruined their branches."
         },
         {
           "verse": 3,
+          "usfm": "NAM.2.3",
+          "line_type": null,
           "text": "The shields of his warriors are dyed red; The powerful men are dressed in scarlet. The metal of the chariots shines like fire on the day of battle, and their spears quiver."
         },
         {
           "verse": 4,
+          "usfm": "NAM.2.4",
+          "line_type": null,
           "text": "The chariots race madly through the streets; they rush back and forth in the public squares. Their appearance like lightning bolts, they dart about like flashes of lightning."
         },
         {
           "verse": 5,
+          "usfm": "NAM.2.5",
+          "line_type": null,
           "text": "He calls his officers; they stumble as they march; they rush to her wall; they set the covering in place."
         },
         {
           "verse": 6,
+          "usfm": "NAM.2.6",
+          "line_type": null,
           "text": "The gates of the river are opened; the palace trembles."
         },
         {
           "verse": 7,
+          "usfm": "NAM.2.7",
+          "line_type": null,
           "text": "Her goddess is taken out and taken into exile; her maidservants moan like doves; they beat on their breasts."
         },
         {
           "verse": 8,
+          "usfm": "NAM.2.8",
+          "line_type": null,
           "text": "Nineveh is like a pool of water without its water. As they flee, she cries, “Stop! Stop!” But there is no one who turns back."
         },
         {
           "verse": 9,
+          "usfm": "NAM.2.9",
+          "line_type": null,
           "text": "Plunder the silver! Plunder the gold! There is no end to the spoils, an abundance of everything one could want!"
         },
         {
           "verse": 10,
+          "usfm": "NAM.2.10",
+          "line_type": null,
           "text": "Emptiness and plundering and devastation! Their hearts faint and their knees tremble, All their loins shake and all their faces turn pale."
         },
         {
           "verse": 11,
+          "usfm": "NAM.2.11",
+          "line_type": null,
           "text": "Where now is the den of the lions and the cave of the fierce lions? There the lioness, the cub, and the lion once prowled, and no one disturbed them."
         },
         {
           "verse": 12,
+          "usfm": "NAM.2.12",
+          "line_type": null,
           "text": "The lion tore apart enough prey for his cubs, he strangled prey for his lioness; he filled his lair with prey and his den with mangled carcass."
         },
         {
           "verse": 13,
+          "usfm": "NAM.2.13",
+          "line_type": null,
           "text": "“Look! I am against you!” declares Yahweh of hosts. “I will burn her chariots with fire; the sword will devour fierce lions. I will cut off your prey from the earth; the voice of your messengers will no longer be heard.”"
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "The Enemy Army Conquers the City of Nineveh"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "The Divine Warrior Will Hunt down the Mighty Lions"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "NAM.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a shatterer”"
+        },
+        {
+          "verse": 1,
+          "usfm": "NAM.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “way”"
+        },
+        {
+          "verse": 1,
+          "usfm": "NAM.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Collect”"
+        },
+        {
+          "verse": 3,
+          "usfm": "NAM.2.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “chariot”"
+        },
+        {
+          "verse": 3,
+          "usfm": "NAM.2.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “on the day of his preparation”"
+        },
+        {
+          "verse": 4,
+          "usfm": "NAM.2.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “chariot”"
+        },
+        {
+          "verse": 5,
+          "usfm": "NAM.2.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The Hebrew word describes a small portable roof to protect siege warriors from arrows and debris hurled at them from the fortified city wall"
+        },
+        {
+          "verse": 7,
+          "usfm": "NAM.2.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “It is decreed that she be exiled and led away.” MT reads the very enigmatic “And he is placed, she is sent into exile, she is taken up.” The BHS editors suggest the conjectural emendation “And her goddess = the idol of the patron deity of Nineveh is taken and taken into exile.” This is adopted in the translation on the basis of internal evidence"
+        },
+        {
+          "verse": 8,
+          "usfm": "NAM.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "MT reads “from her days.” Greek LXX and Syriac Peshitta reflect “from her waters”"
+        },
+        {
+          "verse": 8,
+          "usfm": "NAM.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “And they flee away”"
+        },
+        {
+          "verse": 9,
+          "usfm": "NAM.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the supply”"
+        },
+        {
+          "verse": 9,
+          "usfm": "NAM.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “every kind of desirable object”"
+        },
+        {
+          "verse": 10,
+          "usfm": "NAM.2.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “totter”"
+        },
+        {
+          "verse": 10,
+          "usfm": "NAM.2.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “And shaking of all loins”"
+        },
+        {
+          "verse": 10,
+          "usfm": "NAM.2.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “gather”"
+        },
+        {
+          "verse": 11,
+          "usfm": "NAM.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “went”"
+        },
+        {
+          "verse": 11,
+          "usfm": "NAM.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “there is no one making them afraid”"
+        },
+        {
+          "verse": 12,
+          "usfm": "NAM.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “his holes”"
+        },
+        {
+          "verse": 13,
+          "usfm": "NAM.2.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a declaration of”"
+        },
+        {
+          "verse": 13,
+          "usfm": "NAM.2.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “with smoke”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/NAM.2.LEB",
+        "reference": {
+          "usfm": [
+            "NAM.2"
+          ],
+          "human": "Nahum 2",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "NAM.1"
+          ],
+          "human": "Nahum 1",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "NAM.3"
+          ],
+          "human": "Nahum 3",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "NAM",
       "chapter": 3,
       "chapter_usfm": "NAM.3",
@@ -181,107 +653,275 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "NAM.3.1",
+          "line_type": null,
           "text": "Woe to the city that has shed much blood! She is a deceiver, She is filled with plunder, She has hoarded her spoils of war."
         },
         {
           "verse": 2,
+          "usfm": "NAM.3.2",
+          "line_type": null,
           "text": "The crack of the whip! The rumbling of the chariot wheel! The galloping of the horse! The racing of the chariot!"
         },
         {
           "verse": 3,
+          "usfm": "NAM.3.3",
+          "line_type": null,
           "text": "Chariots charge! Swords flash! Spears glitter! Many corpses are piled high! There is no end to the slain! They stumble over their dead!"
         },
         {
           "verse": 4,
+          "usfm": "NAM.3.4",
+          "line_type": null,
           "text": "“Because of the many idolatries of the prostitute, the beautiful charm of a mistress of witchcraft, she who enslaves nations by her harlotries, and peoples by her sorceries,"
         },
         {
           "verse": 5,
+          "usfm": "NAM.3.5",
+          "line_type": null,
           "text": "“Look! I am against you!” declaresYahweh. “I will strip up your skirts over your face; I will let nations look at your nakedness and your shame."
         },
         {
           "verse": 6,
+          "usfm": "NAM.3.6",
+          "line_type": null,
           "text": "“I will throw filth upon you, I will treat you with contempt, I will make you a spectacle."
         },
         {
           "verse": 7,
+          "usfm": "NAM.3.7",
+          "line_type": null,
           "text": "“And it will be that everyone who sees you will flee from you, And they will say, ‘Nineveh is destroyed!’ Who will mourn for her? From whence shall I seek comforters for you?”"
         },
         {
           "verse": 8,
+          "usfm": "NAM.3.8",
+          "line_type": null,
           "text": "Are you better than Thebes? She who sits at the Nile, surrounded by her waters, her rampart was the sea and water was her wall."
         },
         {
           "verse": 9,
+          "usfm": "NAM.3.9",
+          "line_type": null,
           "text": "Cush was her strength, Egypt without end; Put and Libya were among your allies."
         },
         {
           "verse": 10,
+          "usfm": "NAM.3.10",
+          "line_type": null,
           "text": "Yet she went into captivity as an exile; her children were dashed to pieces at the head of the streets; they cast lots for all of her nobles; all of her dignitaries were bound with chains."
         },
         {
           "verse": 11,
+          "usfm": "NAM.3.11",
+          "line_type": null,
           "text": "You also will behave like a drunkard; You also will hide yourself; You also will seek refuge from the enemy."
         },
         {
           "verse": 12,
+          "usfm": "NAM.3.12",
+          "line_type": null,
           "text": "All of your fortifications are like fig trees with ripe firstfruits— if they are shaken, they will fall into the mouth of the eater."
         },
         {
           "verse": 13,
+          "usfm": "NAM.3.13",
+          "line_type": null,
           "text": "Look! Your troops are like women in your midst. The gates of your land are wide open to your enemies; fire will consume the bars of your gates."
         },
         {
           "verse": 14,
+          "usfm": "NAM.3.14",
+          "line_type": null,
           "text": "Draw water for a siege! Strengthen your fortifications! Go to the mud pit! Trample the clay! Grasp the brick mold!"
         },
         {
           "verse": 15,
+          "usfm": "NAM.3.15",
+          "line_type": null,
           "text": "There fire will consume you; the sword will cut you off. It will consume you like the locust. Multiply yourself like the locust! Multiply yourself like the grasshopper!"
         },
         {
           "verse": 16,
+          "usfm": "NAM.3.16",
+          "line_type": null,
           "text": "You have increased your merchants more than the stars of heaven; like the locust they will shed their skin and fly away."
         },
         {
           "verse": 17,
+          "usfm": "NAM.3.17",
+          "line_type": null,
           "text": "Your officials are like locusts; your commanders are like a swarm of locusts. They encamp on the walls on a cold day; when the sun rises, they fly away— no one knows where they have gone."
         },
         {
           "verse": 18,
+          "usfm": "NAM.3.18",
+          "line_type": null,
           "text": "Your shepherds are sleeping, O king of Assyria! Your nobles slumber. Your people are scattered on the mountains; no one can gather them."
         },
         {
           "verse": 19,
+          "usfm": "NAM.3.19",
+          "line_type": null,
           "text": "There is no healing for your wound; your injury is fatal. All who hear the report of you will clap their hands for joy concerning you, For who has not suffered at the hands of your endless cruelty?"
         }
       ],
       "verse_count": 19,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Harlot Nineveh Will Get What She Deserves"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Nineveh Will Suffer the Same Fate She Inflicted on Thebes"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Nineveh’s Defenses Will Fail"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "Nineveh’s Defenders Will Flee"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Nineveh Will Come to an End"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "NAM.3.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “bloods”"
+        },
+        {
+          "verse": 1,
+          "usfm": "NAM.3.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “All of her is deception”"
+        },
+        {
+          "verse": 1,
+          "usfm": "NAM.3.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Prey does not depart”"
+        },
+        {
+          "verse": 3,
+          "usfm": "NAM.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Many dead, piles of corpses”"
+        },
+        {
+          "verse": 5,
+          "usfm": "NAM.3.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a declaration of”"
+        },
+        {
+          "verse": 7,
+          "usfm": "NAM.3.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “he”"
+        },
+        {
+          "verse": 8,
+          "usfm": "NAM.3.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “No-Amon”"
+        },
+        {
+          "verse": 9,
+          "usfm": "NAM.3.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “your helpers”"
+        },
+        {
+          "verse": 19,
+          "usfm": "NAM.3.19",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “For over whom has your endless cruelty not passed?”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 19,
+          "parsed_count": 19,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/NAM.3.LEB",
+        "reference": {
+          "usfm": [
+            "NAM.3"
+          ],
+          "human": "Nahum 3",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "NAM.2"
+          ],
+          "human": "Nahum 2",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HAB.1"
+          ],
+          "human": "Habakkuk 1",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

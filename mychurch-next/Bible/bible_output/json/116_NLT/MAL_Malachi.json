@@ -11,6 +11,7 @@
   "total_verses": 55,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 1,
       "chapter_usfm": "MAL.1",
@@ -19,81 +20,358 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.1.1",
+          "line_type": "p",
           "text": "This is the message that the Lord gave to Israel through the prophet Malachi."
         },
         {
           "verse": 2,
+          "usfm": "MAL.1.2",
+          "line_type": "m",
           "text": "“I have always loved you,” says the Lord.But you retort, “Really? How have you loved us?”And the Lord replies, “This is how I showed my love for you: I loved your ancestor Jacob,"
         },
         {
           "verse": 3,
+          "usfm": "MAL.1.3",
+          "line_type": "p",
           "text": "but I rejected his brother, Esau, and devastated his hill country. I turned Esau’s inheritance into a desert for jackals.”"
         },
         {
           "verse": 4,
+          "usfm": "MAL.1.4",
+          "line_type": "p",
           "text": "Esau’s descendants in Edom may say, “We have been shattered, but we will rebuild the ruins.”But the Lord of Heaven’s Armies replies, “They may try to rebuild, but I will demolish them again. Their country will be known as ‘The Land of Wickedness,’ and their people will be called ‘The People with Whom the Lord Is Forever Angry.’"
         },
         {
           "verse": 5,
+          "usfm": "MAL.1.5",
+          "line_type": "p",
           "text": "When you see the destruction for yourselves, you will say, ‘Truly, the Lord’s greatness reaches far beyond Israel’s borders!’”"
         },
         {
           "verse": 6,
+          "usfm": "MAL.1.6",
+          "line_type": "m",
           "text": "The Lord of Heaven’s Armies says to the priests: “A son honors his father, and a servant respects his master. If I am your father and master, where are the honor and respect I deserve? You have shown contempt for my name!“But you ask, ‘How have we ever shown contempt for your name?’"
         },
         {
           "verse": 7,
+          "usfm": "MAL.1.7",
+          "line_type": "p",
           "text": "“You have shown contempt by offering defiled sacrifices on my altar.“Then you ask, ‘How have we defiled the sacrifices?’“You defile them by saying the altar of the Lord deserves no respect."
         },
         {
           "verse": 8,
+          "usfm": "MAL.1.8",
+          "line_type": "p",
           "text": "When you give blind animals as sacrifices, isn’t that wrong? And isn’t it wrong to offer animals that are crippled and diseased? Try giving gifts like that to your governor, and see how pleased he is!” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 9,
+          "usfm": "MAL.1.9",
+          "line_type": "p",
           "text": "“Go ahead, beg God to be merciful to you! But when you bring that kind of offering, why should he show you any favor at all?” asks the Lord of Heaven’s Armies."
         },
         {
           "verse": 10,
+          "usfm": "MAL.1.10",
+          "line_type": "p",
           "text": "“How I wish one of you would shut the Temple doors so that these worthless sacrifices could not be offered! I am not pleased with you,” says the Lord of Heaven’s Armies, “and I will not accept your offerings."
         },
         {
           "verse": 11,
+          "usfm": "MAL.1.11",
+          "line_type": "p",
           "text": "But my name is honored by people of other nations from morning till night. All around the world they offer sweet incense and pure offerings in honor of my name. For my name is great among the nations,” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 12,
+          "usfm": "MAL.1.12",
+          "line_type": "p",
           "text": "“But you dishonor my name with your actions. By bringing contemptible food, you are saying it’s all right to defile the Lord’s table."
         },
         {
           "verse": 13,
+          "usfm": "MAL.1.13",
+          "line_type": "p",
           "text": "You say, ‘It’s too hard to serve the Lord,’ and you turn up your noses at my commands,” says the Lord of Heaven’s Armies. “Think of it! Animals that are stolen and crippled and sick are being presented as offerings! Should I accept from you such offerings as these?” asks the Lord."
         },
         {
           "verse": 14,
+          "usfm": "MAL.1.14",
+          "line_type": "p",
           "text": "“Cursed is the cheat who promises to give a fine ram from his flock but then sacrifices a defective one to the Lord. For I am a great king,” says the Lord of Heaven’s Armies, “and my name is feared among the nations!"
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The"
         },
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Lord"
         },
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "’s Love for Israel"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Unworthy Sacrifices"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "1:1a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew An Oracle: The message."
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "1:1b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Malachi means “my messenger.”"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.1.7",
+          "note_ref": "1:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "As in Greek version; Hebrew reads defiled you?"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.1.11",
+          "note_ref": "1:11a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or will be honored."
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.1.11",
+          "note_ref": "1:11b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or will offer."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MAL.1.1",
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.1.2",
+            "MAL.1.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.1.3",
+            "MAL.1.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.1.4",
+            "MAL.1.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "m",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.1.5",
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.1.6",
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MAL.1.7",
+            "MAL.1.8"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.1.8",
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.11",
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.1.11",
+            "MAL.1.12",
+            "MAL.1.13"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MAL.1.13",
+            "MAL.1.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -136,9 +414,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/MAL/1-37b6125496bf714f5329ea5c87ea5b73.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/MAL.1.NLT",
+        "reference": {
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.14"
+          ],
+          "human": "Zechariah 14",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 2,
       "chapter_usfm": "MAL.2",
@@ -147,81 +482,302 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.2.1",
+          "line_type": "m",
           "text": "“Listen, you priests—this command is for you!"
         },
         {
           "verse": 2,
+          "usfm": "MAL.2.2",
+          "line_type": "m",
           "text": "Listen to me and make up your minds to honor my name,” says the Lord of Heaven’s Armies, “or I will bring a terrible curse against you. I will curse even the blessings you receive. Indeed, I have already cursed them, because you have not taken my warning to heart."
         },
         {
           "verse": 3,
+          "usfm": "MAL.2.3",
+          "line_type": "m",
           "text": "I will punish your descendants and splatter your faces with the manure from your festival sacrifices, and I will throw you on the manure pile."
         },
         {
           "verse": 4,
+          "usfm": "MAL.2.4",
+          "line_type": "m",
           "text": "Then at last you will know it was I who sent you this warning so that my covenant with the Levites can continue,” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 5,
+          "usfm": "MAL.2.5",
+          "line_type": "p",
           "text": "“The purpose of my covenant with the Levites was to bring life and peace, and that is what I gave them. This required reverence from them, and they greatly revered me and stood in awe of my name."
         },
         {
           "verse": 6,
+          "usfm": "MAL.2.6",
+          "line_type": "p",
           "text": "They passed on to the people the truth of the instructions they received from me. They did not lie or cheat; they walked with me, living good and righteous lives, and they turned many from lives of sin."
         },
         {
           "verse": 7,
+          "usfm": "MAL.2.7",
+          "line_type": "p",
           "text": "“The words of a priest’s lips should preserve knowledge of God, and people should go to him for instruction, for the priest is the messenger of the Lord of Heaven’s Armies."
         },
         {
           "verse": 8,
+          "usfm": "MAL.2.8",
+          "line_type": "p",
           "text": "But you priests have left God’s paths. Your instructions have caused many to stumble into sin. You have corrupted the covenant I made with the Levites,” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 9,
+          "usfm": "MAL.2.9",
+          "line_type": "p",
           "text": "“So I have made you despised and humiliated in the eyes of all the people. For you have not obeyed me but have shown favoritism in the way you carry out my instructions.”"
         },
         {
           "verse": 10,
+          "usfm": "MAL.2.10",
+          "line_type": "m",
           "text": "Are we not all children of the same Father? Are we not all created by the same God? Then why do we betray each other, violating the covenant of our ancestors?"
         },
         {
           "verse": 11,
+          "usfm": "MAL.2.11",
+          "line_type": "p",
           "text": "Judah has been unfaithful, and a detestable thing has been done in Israel and in Jerusalem. The men of Judah have defiled the Lord’s beloved sanctuary by marrying women who worship idols."
         },
         {
           "verse": 12,
+          "usfm": "MAL.2.12",
+          "line_type": "p",
           "text": "May the Lord cut off from the nation of Israel every last man who has done this and yet brings an offering to the Lord of Heaven’s Armies."
         },
         {
           "verse": 13,
+          "usfm": "MAL.2.13",
+          "line_type": "p",
           "text": "Here is another thing you do. You cover the Lord’s altar with tears, weeping and groaning because he pays no attention to your offerings and doesn’t accept them with pleasure."
         },
         {
           "verse": 14,
+          "usfm": "MAL.2.14",
+          "line_type": "p",
           "text": "You cry out, “Why doesn’t the Lord accept my worship?” I’ll tell you why! Because the Lord witnessed the vows you and your wife made when you were young. But you have been unfaithful to her, though she remained your faithful partner, the wife of your marriage vows."
         },
         {
           "verse": 15,
+          "usfm": "MAL.2.15",
+          "line_type": "p",
           "text": "Didn’t the Lord make you one with your wife? In body and spirit you are his. And what does he want? Godly children from your union. So guard your heart; remain loyal to the wife of your youth."
         },
         {
           "verse": 16,
+          "usfm": "MAL.2.16",
+          "line_type": "p",
           "text": "“For I hate divorce!” says the Lord, the God of Israel. “To divorce your wife is to overwhelm her with cruelty,” says the Lord of Heaven’s Armies. “So guard your heart; do not be unfaithful to your wife.”"
         },
         {
           "verse": 17,
+          "usfm": "MAL.2.17",
+          "line_type": "p",
           "text": "You have wearied the Lord with your words.“How have we wearied him?” you ask.You have wearied him by saying that all who do evil are good in the Lord’s sight, and he is pleased with them. You have wearied him by asking, “Where is the God of justice?”"
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "A Call to Faithfulness"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 12,
+          "usfm": "MAL.2.12",
+          "note_ref": "2:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew from the tents of Jacob. The names “Jacob” and “Israel” are often interchanged throughout the Old Testament, referring sometimes to the individual patriarch and sometimes to the nation."
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.2.15",
+          "note_ref": "2:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Didn’t the one Lord make us and preserve our life and breath? or Didn’t the one Lord make her, both flesh and spirit? The meaning of the Hebrew is uncertain."
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "2:16a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew For he hates divorcing."
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "2:16b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew to cover one’s garment with violence."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.2.1",
+            "MAL.2.2",
+            "MAL.2.3",
+            "MAL.2.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.2.4",
+            "MAL.2.5",
+            "MAL.2.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.2.6",
+            "MAL.2.7",
+            "MAL.2.8",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.11",
+            "MAL.2.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "MAL.2.12",
+            "MAL.2.13",
+            "MAL.2.14"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 16,
+          "verses": [
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "MAL.2.14",
+            "MAL.2.15",
+            "MAL.2.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "MAL.2.16",
+            "MAL.2.17"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -264,9 +820,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/MAL/2-93078e3569b82ce20f06827cfa9a5d41.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/MAL.2.NLT",
+        "reference": {
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 3,
       "chapter_usfm": "MAL.3",
@@ -275,97 +888,334 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.3.1",
+          "line_type": "m",
           "text": "“Look! I am sending my messenger, and he will prepare the way before me. Then the Lord you are seeking will suddenly come to his Temple. The messenger of the covenant, whom you look for so eagerly, is surely coming,” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 2,
+          "usfm": "MAL.3.2",
+          "line_type": "p",
           "text": "“But who will be able to endure it when he comes? Who will be able to stand and face him when he appears? For he will be like a blazing fire that refines metal, or like a strong soap that bleaches clothes."
         },
         {
           "verse": 3,
+          "usfm": "MAL.3.3",
+          "line_type": "p",
           "text": "He will sit like a refiner of silver, burning away the dross. He will purify the Levites, refining them like gold and silver, so that they may once again offer acceptable sacrifices to the Lord."
         },
         {
           "verse": 4,
+          "usfm": "MAL.3.4",
+          "line_type": "p",
           "text": "Then once more the Lord will accept the offerings brought to him by the people of Judah and Jerusalem, as he did in the past."
         },
         {
           "verse": 5,
+          "usfm": "MAL.3.5",
+          "line_type": "p",
           "text": "“At that time I will put you on trial. I am eager to witness against all sorcerers and adulterers and liars. I will speak against those who cheat employees of their wages, who oppress widows and orphans, or who deprive the foreigners living among you of justice, for these people do not fear me,” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 6,
+          "usfm": "MAL.3.6",
+          "line_type": "m",
           "text": "“I am the Lord, and I do not change. That is why you descendants of Jacob are not already destroyed."
         },
         {
           "verse": 7,
+          "usfm": "MAL.3.7",
+          "line_type": "m",
           "text": "Ever since the days of your ancestors, you have scorned my decrees and failed to obey them. Now return to me, and I will return to you,” says the Lord of Heaven’s Armies.“But you ask, ‘How can we return when we have never gone away?’"
         },
         {
           "verse": 8,
+          "usfm": "MAL.3.8",
+          "line_type": "p",
           "text": "“Should people cheat God? Yet you have cheated me!“But you ask, ‘What do you mean? When did we ever cheat you?’“You have cheated me of the tithes and offerings due to me."
         },
         {
           "verse": 9,
+          "usfm": "MAL.3.9",
+          "line_type": "p",
           "text": "You are under a curse, for your whole nation has been cheating me."
         },
         {
           "verse": 10,
+          "usfm": "MAL.3.10",
+          "line_type": "p",
           "text": "Bring all the tithes into the storehouse so there will be enough food in my Temple. If you do,” says the Lord of Heaven’s Armies, “I will open the windows of heaven for you. I will pour out a blessing so great you won’t have enough room to take it in! Try it! Put me to the test!"
         },
         {
           "verse": 11,
+          "usfm": "MAL.3.11",
+          "line_type": "p",
           "text": "Your crops will be abundant, for I will guard them from insects and disease. Your grapes will not fall from the vine before they are ripe,” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 12,
+          "usfm": "MAL.3.12",
+          "line_type": "p",
           "text": "“Then all nations will call you blessed, for your land will be such a delight,” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 13,
+          "usfm": "MAL.3.13",
+          "line_type": "p",
           "text": "“You have said terrible things about me,” says the Lord.“But you say, ‘What do you mean? What have we said against you?’"
         },
         {
           "verse": 14,
+          "usfm": "MAL.3.14",
+          "line_type": "p",
           "text": "“You have said, ‘What’s the use of serving God? What have we gained by obeying his commands or by trying to show the Lord of Heaven’s Armies that we are sorry for our sins?"
         },
         {
           "verse": 15,
+          "usfm": "MAL.3.15",
+          "line_type": "p",
           "text": "From now on we will call the arrogant blessed. For those who do evil get rich, and those who dare God to punish them suffer no harm.’”"
         },
         {
           "verse": 16,
+          "usfm": "MAL.3.16",
+          "line_type": "m",
           "text": "Then those who feared the Lord spoke with each other, and the Lord listened to what they said. In his presence, a scroll of remembrance was written to record the names of those who feared him and always thought about the honor of his name."
         },
         {
           "verse": 17,
+          "usfm": "MAL.3.17",
+          "line_type": "p",
           "text": "“They will be my people,” says the Lord of Heaven’s Armies. “On the day when I act in judgment, they will be my own special treasure. I will spare them as a father spares an obedient child."
         },
         {
           "verse": 18,
+          "usfm": "MAL.3.18",
+          "line_type": "p",
           "text": "Then you will again see the difference between the righteous and the wicked, between those who serve God and those who do not.”"
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "A Call to Repentance"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "The"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "Lord"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "’s Promise of Mercy"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 11,
+          "usfm": "MAL.3.11",
+          "note_ref": "3:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew from the devourer."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.3.1",
+            "MAL.3.2",
+            "MAL.3.3",
+            "MAL.3.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.3.4",
+            "MAL.3.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.3.5",
+            "MAL.3.6",
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MAL.3.7",
+            "MAL.3.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MAL.3.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 12,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.3.10",
+            "MAL.3.11",
+            "MAL.3.12",
+            "MAL.3.8",
+            "MAL.3.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.3.12",
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.3.13",
+            "MAL.3.14",
+            "MAL.3.15"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "m",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MAL.3.15",
+            "MAL.3.16"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 18,
+          "verses": [
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "MAL.3.16",
+            "MAL.3.17",
+            "MAL.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -408,9 +1258,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/MAL/3-abad5518ad560d9d875704f0d459b5d1.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/MAL.3.NLT",
+        "reference": {
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 4,
       "chapter_usfm": "MAL.4",
@@ -419,32 +1326,129 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.4.1",
+          "line_type": "m",
           "text": "The Lord of Heaven’s Armies says, “The day of judgment is coming, burning like a furnace. On that day the arrogant and the wicked will be burned up like straw. They will be consumed—roots, branches, and all."
         },
         {
           "verse": 2,
+          "usfm": "MAL.4.2",
+          "line_type": "p",
           "text": "“But for you who fear my name, the Sun of Righteousness will rise with healing in his wings. And you will go free, leaping with joy like calves let out to pasture."
         },
         {
           "verse": 3,
+          "usfm": "MAL.4.3",
+          "line_type": "p",
           "text": "On the day when I act, you will tread upon the wicked as if they were dust under your feet,” says the Lord of Heaven’s Armies."
         },
         {
           "verse": 4,
+          "usfm": "MAL.4.4",
+          "line_type": "p",
           "text": "“Remember to obey the Law of Moses, my servant—all the decrees and regulations that I gave him on Mount Sinai for all Israel."
         },
         {
           "verse": 5,
+          "usfm": "MAL.4.5",
+          "line_type": "p",
           "text": "“Look, I am sending you the prophet Elijah before the great and dreadful day of the Lord arrives."
         },
         {
           "verse": 6,
+          "usfm": "MAL.4.6",
+          "line_type": "p",
           "text": "His preaching will turn the hearts of fathers to their children, and the hearts of children to their fathers. Otherwise I will come and strike the land with a curse.”"
         }
       ],
       "verse_count": 6,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.4.1",
+          "note_ref": "4:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Verses 4:1-6 are numbered 3:19-24 in Hebrew text."
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.4.2",
+          "note_ref": "4:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or the sun of righteousness will rise with healing in its wings."
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.4.4",
+          "note_ref": "4:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew Horeb, another name for Sinai."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.4.1",
+            "MAL.4.2",
+            "MAL.4.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.4.3",
+            "MAL.4.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.4.4",
+            "MAL.4.5",
+            "MAL.4.6"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -487,7 +1491,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/MAL/4-0c2793a494c5e1c52549fa4681983f7f.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/MAL.4.NLT",
+        "reference": {
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAT.1"
+          ],
+          "human": "Matthew 1",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

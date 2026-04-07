@@ -11,6 +11,7 @@
   "total_verses": 105,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "1PE",
       "chapter": 1,
       "chapter_usfm": "1PE.1",
@@ -19,117 +20,482 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1PE.1.1",
+          "line_type": "m",
           "text": "This letter is from Peter, an apostle of Jesus Christ.I am writing to God’s chosen people who are living as foreigners in the provinces of Pontus, Galatia, Cappadocia, Asia, and Bithynia."
         },
         {
           "verse": 2,
+          "usfm": "1PE.1.2",
+          "line_type": "p",
           "text": "God the Father knew you and chose you long ago, and his Spirit has made you holy. As a result, you have obeyed him and have been cleansed by the blood of Jesus Christ.May God give you more and more grace and peace."
         },
         {
           "verse": 3,
+          "usfm": "1PE.1.3",
+          "line_type": "m",
           "text": "All praise to God, the Father of our Lord Jesus Christ. It is by his great mercy that we have been born again, because God raised Jesus Christ from the dead. Now we live with great expectation,"
         },
         {
           "verse": 4,
+          "usfm": "1PE.1.4",
+          "line_type": "m",
           "text": "and we have a priceless inheritance—an inheritance that is kept in heaven for you, pure and undefiled, beyond the reach of change and decay."
         },
         {
           "verse": 5,
+          "usfm": "1PE.1.5",
+          "line_type": "m",
           "text": "And through your faith, God is protecting you by his power until you receive this salvation, which is ready to be revealed on the last day for all to see."
         },
         {
           "verse": 6,
+          "usfm": "1PE.1.6",
+          "line_type": "p",
           "text": "So be truly glad. There is wonderful joy ahead, even though you must endure many trials for a little while."
         },
         {
           "verse": 7,
+          "usfm": "1PE.1.7",
+          "line_type": "p",
           "text": "These trials will show that your faith is genuine. It is being tested as fire tests and purifies gold—though your faith is far more precious than mere gold. So when your faith remains strong through many trials, it will bring you much praise and glory and honor on the day when Jesus Christ is revealed to the whole world."
         },
         {
           "verse": 8,
+          "usfm": "1PE.1.8",
+          "line_type": "p",
           "text": "You love him even though you have never seen him. Though you do not see him now, you trust him; and you rejoice with a glorious, inexpressible joy."
         },
         {
           "verse": 9,
+          "usfm": "1PE.1.9",
+          "line_type": "p",
           "text": "The reward for trusting him will be the salvation of your souls."
         },
         {
           "verse": 10,
+          "usfm": "1PE.1.10",
+          "line_type": "p",
           "text": "This salvation was something even the prophets wanted to know more about when they prophesied about this gracious salvation prepared for you."
         },
         {
           "verse": 11,
+          "usfm": "1PE.1.11",
+          "line_type": "p",
           "text": "They wondered what time or situation the Spirit of Christ within them was talking about when he told them in advance about Christ’s suffering and his great glory afterward."
         },
         {
           "verse": 12,
+          "usfm": "1PE.1.12",
+          "line_type": "p",
           "text": "They were told that their messages were not for themselves, but for you. And now this Good News has been announced to you by those who preached in the power of the Holy Spirit sent from heaven. It is all so wonderful that even the angels are eagerly watching these things happen."
         },
         {
           "verse": 13,
+          "usfm": "1PE.1.13",
+          "line_type": "m",
           "text": "So prepare your minds for action and exercise self-control. Put all your hope in the gracious salvation that will come to you when Jesus Christ is revealed to the world."
         },
         {
           "verse": 14,
+          "usfm": "1PE.1.14",
+          "line_type": "m",
           "text": "So you must live as God’s obedient children. Don’t slip back into your old ways of living to satisfy your own desires. You didn’t know any better then."
         },
         {
           "verse": 15,
+          "usfm": "1PE.1.15",
+          "line_type": "m",
           "text": "But now you must be holy in everything you do, just as God who chose you is holy."
         },
         {
           "verse": 16,
+          "usfm": "1PE.1.16",
+          "line_type": "m",
           "text": "For the Scriptures say, “You must be holy because I am holy.”"
         },
         {
           "verse": 17,
+          "usfm": "1PE.1.17",
+          "line_type": "p",
           "text": "And remember that the heavenly Father to whom you pray has no favorites. He will judge or reward you according to what you do. So you must live in reverent fear of him during your time here as “temporary residents.”"
         },
         {
           "verse": 18,
+          "usfm": "1PE.1.18",
+          "line_type": "p",
           "text": "For you know that God paid a ransom to save you from the empty life you inherited from your ancestors. And it was not paid with mere gold or silver, which lose their value."
         },
         {
           "verse": 19,
+          "usfm": "1PE.1.19",
+          "line_type": "p",
           "text": "It was the precious blood of Christ, the sinless, spotless Lamb of God."
         },
         {
           "verse": 20,
+          "usfm": "1PE.1.20",
+          "line_type": "p",
           "text": "God chose him as your ransom long before the world began, but now in these last days he has been revealed for your sake."
         },
         {
           "verse": 21,
+          "usfm": "1PE.1.21",
+          "line_type": "p",
           "text": "Through Christ you have come to trust in God. And you have placed your faith and hope in God because he raised Christ from the dead and gave him great glory."
         },
         {
           "verse": 22,
+          "usfm": "1PE.1.22",
+          "line_type": "p",
           "text": "You were cleansed from your sins when you obeyed the truth, so now you must show sincere love to each other as brothers and sisters. Love each other deeply with all your heart."
         },
         {
           "verse": 23,
+          "usfm": "1PE.1.23",
+          "line_type": "p",
           "text": "For you have been born again, but not to a life that will quickly end. Your new life will last forever because it comes from the eternal, living word of God."
         },
         {
           "verse": 24,
+          "usfm": "1PE.1.24",
+          "line_type": "p",
           "text": "As the Scriptures say,“People are like grass;their beauty is like a flower in the field.The grass withers and the flower fades."
         },
         {
           "verse": 25,
+          "usfm": "1PE.1.25",
+          "line_type": "q2",
           "text": "But the word of the Lord remains forever.”And that word is the Good News that was preached to you."
         }
       ],
       "verse_count": 25,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "The Hope of Eternal Life"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "A Call to Holy Living"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1PE.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Pontus, Galatia, Cappadocia, Asia, and Bithynia were Roman provinces in what is now Turkey."
+        },
+        {
+          "verse": 6,
+          "usfm": "1PE.1.6",
+          "note_ref": "1:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or So you are truly glad."
+        },
+        {
+          "verse": 16,
+          "usfm": "1PE.1.16",
+          "note_ref": "1:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lev 11:44-45; 19:2; 20:7."
+        },
+        {
+          "verse": 22,
+          "usfm": "1PE.1.22",
+          "note_ref": "1:22a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek must have brotherly love."
+        },
+        {
+          "verse": 22,
+          "usfm": "1PE.1.22",
+          "note_ref": "1:22b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read with a pure heart."
+        },
+        {
+          "verse": 25,
+          "usfm": "1PE.1.25",
+          "note_ref": "1:24-25",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Isa 40:6-8."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1PE.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1PE.1.1",
+            "1PE.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "1PE.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "1PE.1.2",
+            "1PE.1.3",
+            "1PE.1.4",
+            "1PE.1.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "1PE.1.5",
+            "1PE.1.6",
+            "1PE.1.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "1PE.1.7",
+            "1PE.1.8",
+            "1PE.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "1PE.1.10",
+            "1PE.1.11",
+            "1PE.1.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "1PE.1.11",
+            "1PE.1.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "m",
+          "start_verse": 12,
+          "end_verse": 16,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "1PE.1.12",
+            "1PE.1.13",
+            "1PE.1.14",
+            "1PE.1.15",
+            "1PE.1.16"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 20,
+          "verses": [
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "1PE.1.16",
+            "1PE.1.17",
+            "1PE.1.18",
+            "1PE.1.19",
+            "1PE.1.20"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "1PE.1.20",
+            "1PE.1.21"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "1PE.1.21",
+            "1PE.1.22"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 24,
+          "verses": [
+            22,
+            23,
+            24
+          ],
+          "usfms": [
+            "1PE.1.22",
+            "1PE.1.23",
+            "1PE.1.24"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "1PE.1.24"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "1PE.1.24"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "1PE.1.24"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "1PE.1.24",
+            "1PE.1.25"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "m",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "1PE.1.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -172,9 +538,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1PE/1-3605eec2d778cf58d41fc11fa398fbda.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1PE.1.NLT",
+        "reference": {
+          "usfm": [
+            "1PE.1"
+          ],
+          "human": "1 Peter 1",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JAS.5"
+          ],
+          "human": "James 5",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1PE.2"
+          ],
+          "human": "1 Peter 2",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1PE",
       "chapter": 2,
       "chapter_usfm": "1PE.2",
@@ -183,121 +606,806 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1PE.2.1",
+          "line_type": "p",
           "text": "So get rid of all evil behavior. Be done with all deceit, hypocrisy, jealousy, and all unkind speech."
         },
         {
           "verse": 2,
+          "usfm": "1PE.2.2",
+          "line_type": "p",
           "text": "Like newborn babies, you must crave pure spiritual milk so that you will grow into a full experience of salvation. Cry out for this nourishment,"
         },
         {
           "verse": 3,
+          "usfm": "1PE.2.3",
+          "line_type": "p",
           "text": "now that you have had a taste of the Lord’s kindness."
         },
         {
           "verse": 4,
+          "usfm": "1PE.2.4",
+          "line_type": "m",
           "text": "You are coming to Christ, who is the living cornerstone of God’s temple. He was rejected by people, but he was chosen by God for great honor."
         },
         {
           "verse": 5,
+          "usfm": "1PE.2.5",
+          "line_type": "p",
           "text": "And you are living stones that God is building into his spiritual temple. What’s more, you are his holy priests. Through the mediation of Jesus Christ, you offer spiritual sacrifices that please God."
         },
         {
           "verse": 6,
+          "usfm": "1PE.2.6",
+          "line_type": "p",
           "text": "As the Scriptures say,“I am placing a cornerstone in Jerusalem,chosen for great honor,and anyone who trusts in himwill never be disgraced.”"
         },
         {
           "verse": 7,
+          "usfm": "1PE.2.7",
+          "line_type": "m",
           "text": "Yes, you who trust him recognize the honor God has given him. But for those who reject him,“The stone that the builders rejectedhas now become the cornerstone.”"
         },
         {
           "verse": 8,
+          "usfm": "1PE.2.8",
+          "line_type": "m",
           "text": "And,“He is the stone that makes people stumble,the rock that makes them fall.”They stumble because they do not obey God’s word, and so they meet the fate that was planned for them."
         },
         {
           "verse": 9,
+          "usfm": "1PE.2.9",
+          "line_type": "p",
           "text": "But you are not like that, for you are a chosen people. You are royal priests, a holy nation, God’s very own possession. As a result, you can show others the goodness of God, for he called you out of the darkness into his wonderful light."
         },
         {
           "verse": 10,
+          "usfm": "1PE.2.10",
+          "line_type": "q1",
           "text": "“Once you had no identity as a people;now you are God’s people.Once you received no mercy;now you have received God’s mercy.”"
         },
         {
           "verse": 11,
+          "usfm": "1PE.2.11",
+          "line_type": "p",
           "text": "Dear friends, I warn you as “temporary residents and foreigners” to keep away from worldly desires that wage war against your very souls."
         },
         {
           "verse": 12,
+          "usfm": "1PE.2.12",
+          "line_type": "p",
           "text": "Be careful to live properly among your unbelieving neighbors. Then even if they accuse you of doing wrong, they will see your honorable behavior, and they will give honor to God when he judges the world."
         },
         {
           "verse": 13,
+          "usfm": "1PE.2.13",
+          "line_type": "m",
           "text": "For the Lord’s sake, submit to all human authority—whether the king as head of state,"
         },
         {
           "verse": 14,
+          "usfm": "1PE.2.14",
+          "line_type": "m",
           "text": "or the officials he has appointed. For the king has sent them to punish those who do wrong and to honor those who do right."
         },
         {
           "verse": 15,
+          "usfm": "1PE.2.15",
+          "line_type": "p",
           "text": "It is God’s will that your honorable lives should silence those ignorant people who make foolish accusations against you."
         },
         {
           "verse": 16,
+          "usfm": "1PE.2.16",
+          "line_type": "p",
           "text": "For you are free, yet you are God’s slaves, so don’t use your freedom as an excuse to do evil."
         },
         {
           "verse": 17,
+          "usfm": "1PE.2.17",
+          "line_type": "p",
           "text": "Respect everyone, and love the family of believers. Fear God, and respect the king."
         },
         {
           "verse": 18,
+          "usfm": "1PE.2.18",
+          "line_type": "m",
           "text": "You who are slaves must submit to your masters with all respect. Do what they tell you—not only if they are kind and reasonable, but even if they are cruel."
         },
         {
           "verse": 19,
+          "usfm": "1PE.2.19",
+          "line_type": "m",
           "text": "For God is pleased when, conscious of his will, you patiently endure unjust treatment."
         },
         {
           "verse": 20,
+          "usfm": "1PE.2.20",
+          "line_type": "m",
           "text": "Of course, you get no credit for being patient if you are beaten for doing wrong. But if you suffer for doing good and endure it patiently, God is pleased with you."
         },
         {
           "verse": 21,
+          "usfm": "1PE.2.21",
+          "line_type": "p",
           "text": "For God called you to do good, even if it means suffering, just as Christ suffered for you. He is your example, and you must follow in his steps."
         },
         {
           "verse": 22,
+          "usfm": "1PE.2.22",
+          "line_type": "q1",
           "text": "He never sinned,nor ever deceived anyone."
         },
         {
           "verse": 23,
+          "usfm": "1PE.2.23",
+          "line_type": "q1",
           "text": "He did not retaliate when he was insulted,nor threaten revenge when he suffered.He left his case in the hands of God,who always judges fairly."
         },
         {
           "verse": 24,
+          "usfm": "1PE.2.24",
+          "line_type": "q1",
           "text": "He personally carried our sinsin his body on the crossso that we can be dead to sinand live for what is right.By his woundsyou are healed."
         },
         {
           "verse": 25,
+          "usfm": "1PE.2.25",
+          "line_type": "q1",
           "text": "Once you were like sheepwho wandered away.But now you have turned to your Shepherd,the Guardian of your souls."
         }
       ],
       "verse_count": 25,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Living Stones for God’s House"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Respecting People in Authority"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Slaves"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "1PE.2.5",
+          "note_ref": "2:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek holy priesthood."
+        },
+        {
+          "verse": 6,
+          "usfm": "1PE.2.6",
+          "note_ref": "2:6a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek in Zion."
+        },
+        {
+          "verse": 6,
+          "usfm": "1PE.2.6",
+          "note_ref": "2:6b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Isa 28:16 (Greek version)."
+        },
+        {
+          "verse": 7,
+          "usfm": "1PE.2.7",
+          "note_ref": "2:7a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Yes, for you who believe, there is honor."
+        },
+        {
+          "verse": 7,
+          "usfm": "1PE.2.7",
+          "note_ref": "2:7b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Ps 118:22."
+        },
+        {
+          "verse": 8,
+          "usfm": "1PE.2.8",
+          "note_ref": "2:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Isa 8:14."
+        },
+        {
+          "verse": 9,
+          "usfm": "1PE.2.9",
+          "note_ref": "2:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek a royal priesthood."
+        },
+        {
+          "verse": 10,
+          "usfm": "1PE.2.10",
+          "note_ref": "2:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hos 1:6, 9; 2:23."
+        },
+        {
+          "verse": 12,
+          "usfm": "1PE.2.12",
+          "note_ref": "2:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or on the day of visitation."
+        },
+        {
+          "verse": 17,
+          "usfm": "1PE.2.17",
+          "note_ref": "2:17",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek love the brotherhood."
+        },
+        {
+          "verse": 18,
+          "usfm": "1PE.2.18",
+          "note_ref": "2:18",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or because you fear God; Greek reads in all fear."
+        },
+        {
+          "verse": 21,
+          "usfm": "1PE.2.21",
+          "note_ref": "2:21",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read died."
+        },
+        {
+          "verse": 22,
+          "usfm": "1PE.2.22",
+          "note_ref": "2:22",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Isa 53:9."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "1PE.2.1",
+            "1PE.2.2",
+            "1PE.2.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "1PE.2.3",
+            "1PE.2.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "1PE.2.4",
+            "1PE.2.5",
+            "1PE.2.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "1PE.2.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "1PE.2.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "1PE.2.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "1PE.2.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "m",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "1PE.2.6",
+            "1PE.2.7"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "1PE.2.7"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "1PE.2.7"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "m",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "1PE.2.7",
+            "1PE.2.8"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "1PE.2.8"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "1PE.2.8"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "m",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "1PE.2.8"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "1PE.2.8",
+            "1PE.2.9"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "1PE.2.10",
+            "1PE.2.9"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1PE.2.10"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1PE.2.10"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1PE.2.10"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "1PE.2.10",
+            "1PE.2.11",
+            "1PE.2.12"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "m",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "1PE.2.12",
+            "1PE.2.13",
+            "1PE.2.14"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 17,
+          "verses": [
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "1PE.2.14",
+            "1PE.2.15",
+            "1PE.2.16",
+            "1PE.2.17"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "m",
+          "start_verse": 17,
+          "end_verse": 20,
+          "verses": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "1PE.2.17",
+            "1PE.2.18",
+            "1PE.2.19",
+            "1PE.2.20"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "1PE.2.20",
+            "1PE.2.21"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "1PE.2.21",
+            "1PE.2.22"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "1PE.2.22"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "1PE.2.22",
+            "1PE.2.23"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "1PE.2.23"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "1PE.2.23"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "1PE.2.23"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 23,
+          "end_verse": 24,
+          "verses": [
+            23,
+            24
+          ],
+          "usfms": [
+            "1PE.2.23",
+            "1PE.2.24"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "1PE.2.24"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "1PE.2.24"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "1PE.2.24"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "1PE.2.24"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "1PE.2.24"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "1PE.2.24",
+            "1PE.2.25"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "1PE.2.25"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "1PE.2.25"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "1PE.2.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -340,9 +1448,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1PE/2-c6ba38f0aa891fa50e1200cbdc256849.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1PE.2.NLT",
+        "reference": {
+          "usfm": [
+            "1PE.2"
+          ],
+          "human": "1 Peter 2",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1PE.1"
+          ],
+          "human": "1 Peter 1",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1PE.3"
+          ],
+          "human": "1 Peter 3",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1PE",
       "chapter": 3,
       "chapter_usfm": "1PE.3",
@@ -351,109 +1516,470 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1PE.3.1",
+          "line_type": "m",
           "text": "In the same way, you wives must accept the authority of your husbands. Then, even if some refuse to obey the Good News, your godly lives will speak to them without any words. They will be won over"
         },
         {
           "verse": 2,
+          "usfm": "1PE.3.2",
+          "line_type": "m",
           "text": "by observing your pure and reverent lives."
         },
         {
           "verse": 3,
+          "usfm": "1PE.3.3",
+          "line_type": "p",
           "text": "Don’t be concerned about the outward beauty of fancy hairstyles, expensive jewelry, or beautiful clothes."
         },
         {
           "verse": 4,
+          "usfm": "1PE.3.4",
+          "line_type": "p",
           "text": "You should clothe yourselves instead with the beauty that comes from within, the unfading beauty of a gentle and quiet spirit, which is so precious to God."
         },
         {
           "verse": 5,
+          "usfm": "1PE.3.5",
+          "line_type": "p",
           "text": "This is how the holy women of old made themselves beautiful. They put their trust in God and accepted the authority of their husbands."
         },
         {
           "verse": 6,
+          "usfm": "1PE.3.6",
+          "line_type": "p",
           "text": "For instance, Sarah obeyed her husband, Abraham, and called him her master. You are her daughters when you do what is right without fear of what your husbands might do."
         },
         {
           "verse": 7,
+          "usfm": "1PE.3.7",
+          "line_type": "m",
           "text": "In the same way, you husbands must give honor to your wives. Treat your wife with understanding as you live together. She may be weaker than you are, but she is your equal partner in God’s gift of new life. Treat her as you should so your prayers will not be hindered."
         },
         {
           "verse": 8,
+          "usfm": "1PE.3.8",
+          "line_type": "m",
           "text": "Finally, all of you should be of one mind. Sympathize with each other. Love each other as brothers and sisters. Be tenderhearted, and keep a humble attitude."
         },
         {
           "verse": 9,
+          "usfm": "1PE.3.9",
+          "line_type": "m",
           "text": "Don’t repay evil for evil. Don’t retaliate with insults when people insult you. Instead, pay them back with a blessing. That is what God has called you to do, and he will grant you his blessing."
         },
         {
           "verse": 10,
+          "usfm": "1PE.3.10",
+          "line_type": "m",
           "text": "For the Scriptures say,“If you want to enjoy lifeand see many happy days,keep your tongue from speaking eviland your lips from telling lies."
         },
         {
           "verse": 11,
+          "usfm": "1PE.3.11",
+          "line_type": "q1",
           "text": "Turn away from evil and do good.Search for peace, and work to maintain it."
         },
         {
           "verse": 12,
+          "usfm": "1PE.3.12",
+          "line_type": "q1",
           "text": "The eyes of the Lord watch over those who do right,and his ears are open to their prayers.But the Lord turns his faceagainst those who do evil.”"
         },
         {
           "verse": 13,
+          "usfm": "1PE.3.13",
+          "line_type": "m",
           "text": "Now, who will want to harm you if you are eager to do good?"
         },
         {
           "verse": 14,
+          "usfm": "1PE.3.14",
+          "line_type": "m",
           "text": "But even if you suffer for doing what is right, God will reward you for it. So don’t worry or be afraid of their threats."
         },
         {
           "verse": 15,
+          "usfm": "1PE.3.15",
+          "line_type": "m",
           "text": "Instead, you must worship Christ as Lord of your life. And if someone asks about your hope as a believer, always be ready to explain it."
         },
         {
           "verse": 16,
+          "usfm": "1PE.3.16",
+          "line_type": "m",
           "text": "But do this in a gentle and respectful way. Keep your conscience clear. Then if people speak against you, they will be ashamed when they see what a good life you live because you belong to Christ."
         },
         {
           "verse": 17,
+          "usfm": "1PE.3.17",
+          "line_type": "m",
           "text": "Remember, it is better to suffer for doing good, if that is what God wants, than to suffer for doing wrong!"
         },
         {
           "verse": 18,
+          "usfm": "1PE.3.18",
+          "line_type": "p",
           "text": "Christ suffered for our sins once for all time. He never sinned, but he died for sinners to bring you safely home to God. He suffered physical death, but he was raised to life in the Spirit."
         },
         {
           "verse": 19,
+          "usfm": "1PE.3.19",
+          "line_type": "p",
           "text": "So he went and preached to the spirits in prison—"
         },
         {
           "verse": 20,
+          "usfm": "1PE.3.20",
+          "line_type": "p",
           "text": "those who disobeyed God long ago when God waited patiently while Noah was building his boat. Only eight people were saved from drowning in that terrible flood."
         },
         {
           "verse": 21,
+          "usfm": "1PE.3.21",
+          "line_type": "p",
           "text": "And that water is a picture of baptism, which now saves you, not by removing dirt from your body, but as a response to God from a clean conscience. It is effective because of the resurrection of Jesus Christ."
         },
         {
           "verse": 22,
+          "usfm": "1PE.3.22",
+          "line_type": "p",
           "text": "Now Christ has gone to heaven. He is seated in the place of honor next to God, and all the angels and authorities and powers accept his authority."
         }
       ],
       "verse_count": 22,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Husbands"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "All Christians"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Suffering for Doing Good"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 8,
+          "usfm": "1PE.3.8",
+          "note_ref": "3:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek Show brotherly love."
+        },
+        {
+          "verse": 12,
+          "usfm": "1PE.3.12",
+          "note_ref": "3:10-12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Ps 34:12-16."
+        },
+        {
+          "verse": 16,
+          "usfm": "1PE.3.16",
+          "note_ref": "3:16",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some English translations put this sentence in verse 15."
+        },
+        {
+          "verse": 18,
+          "usfm": "1PE.3.18",
+          "note_ref": "3:18a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read died."
+        },
+        {
+          "verse": 18,
+          "usfm": "1PE.3.18",
+          "note_ref": "3:18b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in spirit."
+        },
+        {
+          "verse": 20,
+          "usfm": "1PE.3.20",
+          "note_ref": "3:20",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek saved through water."
+        },
+        {
+          "verse": 21,
+          "usfm": "1PE.3.21",
+          "note_ref": "3:21",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or as an appeal to God for."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1PE.3.1",
+            "1PE.3.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 6,
+          "verses": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "1PE.3.2",
+            "1PE.3.3",
+            "1PE.3.4",
+            "1PE.3.5",
+            "1PE.3.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "m",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "1PE.3.6",
+            "1PE.3.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 7,
+          "end_verse": 10,
+          "verses": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1PE.3.10",
+            "1PE.3.7",
+            "1PE.3.8",
+            "1PE.3.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1PE.3.10"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1PE.3.10"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1PE.3.10"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "1PE.3.10"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "1PE.3.10",
+            "1PE.3.11"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "1PE.3.11"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "1PE.3.11",
+            "1PE.3.12"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "1PE.3.12"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "1PE.3.12"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "1PE.3.12"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "m",
+          "start_verse": 12,
+          "end_verse": 17,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "1PE.3.12",
+            "1PE.3.13",
+            "1PE.3.14",
+            "1PE.3.15",
+            "1PE.3.16",
+            "1PE.3.17"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "1PE.3.17",
+            "1PE.3.18"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 21,
+          "verses": [
+            18,
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "1PE.3.18",
+            "1PE.3.19",
+            "1PE.3.20",
+            "1PE.3.21"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "1PE.3.21",
+            "1PE.3.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -496,9 +2022,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1PE/3-b7eda7e4cde46046fb47bf93467444ec.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1PE.3.NLT",
+        "reference": {
+          "usfm": [
+            "1PE.3"
+          ],
+          "human": "1 Peter 3",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1PE.2"
+          ],
+          "human": "1 Peter 2",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1PE.4"
+          ],
+          "human": "1 Peter 4",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1PE",
       "chapter": 4,
       "chapter_usfm": "1PE.4",
@@ -507,89 +2090,330 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1PE.4.1",
+          "line_type": "m",
           "text": "So then, since Christ suffered physical pain, you must arm yourselves with the same attitude he had, and be ready to suffer, too. For if you have suffered physically for Christ, you have finished with sin."
         },
         {
           "verse": 2,
+          "usfm": "1PE.4.2",
+          "line_type": "m",
           "text": "You won’t spend the rest of your lives chasing your own desires, but you will be anxious to do the will of God."
         },
         {
           "verse": 3,
+          "usfm": "1PE.4.3",
+          "line_type": "m",
           "text": "You have had enough in the past of the evil things that godless people enjoy—their immorality and lust, their feasting and drunkenness and wild parties, and their terrible worship of idols."
         },
         {
           "verse": 4,
+          "usfm": "1PE.4.4",
+          "line_type": "p",
           "text": "Of course, your former friends are surprised when you no longer plunge into the flood of wild and destructive things they do. So they slander you."
         },
         {
           "verse": 5,
+          "usfm": "1PE.4.5",
+          "line_type": "p",
           "text": "But remember that they will have to face God, who stands ready to judge everyone, both the living and the dead."
         },
         {
           "verse": 6,
+          "usfm": "1PE.4.6",
+          "line_type": "p",
           "text": "That is why the Good News was preached to those who are now dead—so although they were destined to die like all people, they now live forever with God in the Spirit."
         },
         {
           "verse": 7,
+          "usfm": "1PE.4.7",
+          "line_type": "p",
           "text": "The end of the world is coming soon. Therefore, be earnest and disciplined in your prayers."
         },
         {
           "verse": 8,
+          "usfm": "1PE.4.8",
+          "line_type": "p",
           "text": "Most important of all, continue to show deep love for each other, for love covers a multitude of sins."
         },
         {
           "verse": 9,
+          "usfm": "1PE.4.9",
+          "line_type": "p",
           "text": "Cheerfully share your home with those who need a meal or a place to stay."
         },
         {
           "verse": 10,
+          "usfm": "1PE.4.10",
+          "line_type": "p",
           "text": "God has given each of you a gift from his great variety of spiritual gifts. Use them well to serve one another."
         },
         {
           "verse": 11,
+          "usfm": "1PE.4.11",
+          "line_type": "p",
           "text": "Do you have the gift of speaking? Then speak as though God himself were speaking through you. Do you have the gift of helping others? Do it with all the strength and energy that God supplies. Then everything you do will bring glory to God through Jesus Christ. All glory and power to him forever and ever! Amen."
         },
         {
           "verse": 12,
+          "usfm": "1PE.4.12",
+          "line_type": "m",
           "text": "Dear friends, don’t be surprised at the fiery trials you are going through, as if something strange were happening to you."
         },
         {
           "verse": 13,
+          "usfm": "1PE.4.13",
+          "line_type": "m",
           "text": "Instead, be very glad—for these trials make you partners with Christ in his suffering, so that you will have the wonderful joy of seeing his glory when it is revealed to all the world."
         },
         {
           "verse": 14,
+          "usfm": "1PE.4.14",
+          "line_type": "p",
           "text": "If you are insulted because you bear the name of Christ, you will be blessed, for the glorious Spirit of God rests upon you."
         },
         {
           "verse": 15,
+          "usfm": "1PE.4.15",
+          "line_type": "p",
           "text": "If you suffer, however, it must not be for murder, stealing, making trouble, or prying into other people’s affairs."
         },
         {
           "verse": 16,
+          "usfm": "1PE.4.16",
+          "line_type": "p",
           "text": "But it is no shame to suffer for being a Christian. Praise God for the privilege of being called by his name!"
         },
         {
           "verse": 17,
+          "usfm": "1PE.4.17",
+          "line_type": "p",
           "text": "For the time has come for judgment, and it must begin with God’s household. And if judgment begins with us, what terrible fate awaits those who have never obeyed God’s Good News?"
         },
         {
           "verse": 18,
+          "usfm": "1PE.4.18",
+          "line_type": "p",
           "text": "And also,“If the righteous are barely saved,what will happen to godless sinners?”"
         },
         {
           "verse": 19,
+          "usfm": "1PE.4.19",
+          "line_type": "m",
           "text": "So if you are suffering in a manner that pleases God, keep on doing what is right, and trust your lives to the God who created you, for he will never fail you."
         }
       ],
       "verse_count": 19,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Suffering for Being a Christian"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1PE.4.1",
+          "note_ref": "4:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or For the one [or One] who has suffered physically has finished with sin."
+        },
+        {
+          "verse": 6,
+          "usfm": "1PE.4.6",
+          "note_ref": "4:6a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek preached even to the dead."
+        },
+        {
+          "verse": 6,
+          "usfm": "1PE.4.6",
+          "note_ref": "4:6b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or so although people had judged them worthy of death."
+        },
+        {
+          "verse": 6,
+          "usfm": "1PE.4.6",
+          "note_ref": "4:6c",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in spirit."
+        },
+        {
+          "verse": 14,
+          "usfm": "1PE.4.14",
+          "note_ref": "4:14a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or for the glory of God, which is his Spirit."
+        },
+        {
+          "verse": 14,
+          "usfm": "1PE.4.14",
+          "note_ref": "4:14b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts add On their part he is blasphemed, but on your part he is glorified."
+        },
+        {
+          "verse": 18,
+          "usfm": "1PE.4.18",
+          "note_ref": "4:18",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Prov 11:31 (Greek version)."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "1PE.4.1",
+            "1PE.4.2",
+            "1PE.4.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 6,
+          "verses": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "1PE.4.3",
+            "1PE.4.4",
+            "1PE.4.5",
+            "1PE.4.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "1PE.4.6",
+            "1PE.4.7",
+            "1PE.4.8",
+            "1PE.4.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "1PE.4.10",
+            "1PE.4.11",
+            "1PE.4.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "1PE.4.11",
+            "1PE.4.12",
+            "1PE.4.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 18,
+          "verses": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "1PE.4.13",
+            "1PE.4.14",
+            "1PE.4.15",
+            "1PE.4.16",
+            "1PE.4.17",
+            "1PE.4.18"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "1PE.4.18"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "1PE.4.18"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "m",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "1PE.4.18",
+            "1PE.4.19"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -632,9 +2456,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1PE/4-c02f3348cacdaa7a031ae5412ae4f40f.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 19,
+          "parsed_count": 19,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1PE.4.NLT",
+        "reference": {
+          "usfm": [
+            "1PE.4"
+          ],
+          "human": "1 Peter 4",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1PE.3"
+          ],
+          "human": "1 Peter 3",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1PE.5"
+          ],
+          "human": "1 Peter 5",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1PE",
       "chapter": 5,
       "chapter_usfm": "1PE.5",
@@ -643,69 +2524,278 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1PE.5.1",
+          "line_type": "m",
           "text": "And now, a word to you who are elders in the churches. I, too, am an elder and a witness to the sufferings of Christ. And I, too, will share in his glory when he is revealed to the whole world. As a fellow elder, I appeal to you:"
         },
         {
           "verse": 2,
+          "usfm": "1PE.5.2",
+          "line_type": "m",
           "text": "Care for the flock that God has entrusted to you. Watch over it willingly, not grudgingly—not for what you will get out of it, but because you are eager to serve God."
         },
         {
           "verse": 3,
+          "usfm": "1PE.5.3",
+          "line_type": "m",
           "text": "Don’t lord it over the people assigned to your care, but lead them by your own good example."
         },
         {
           "verse": 4,
+          "usfm": "1PE.5.4",
+          "line_type": "m",
           "text": "And when the Great Shepherd appears, you will receive a crown of never-ending glory and honor."
         },
         {
           "verse": 5,
+          "usfm": "1PE.5.5",
+          "line_type": "p",
           "text": "In the same way, you who are younger must accept the authority of the elders. And all of you, dress yourselves in humility as you relate to one another, for“God opposes the proudbut gives grace to the humble.”"
         },
         {
           "verse": 6,
+          "usfm": "1PE.5.6",
+          "line_type": "m",
           "text": "So humble yourselves under the mighty power of God, and at the right time he will lift you up in honor."
         },
         {
           "verse": 7,
+          "usfm": "1PE.5.7",
+          "line_type": "m",
           "text": "Give all your worries and cares to God, for he cares about you."
         },
         {
           "verse": 8,
+          "usfm": "1PE.5.8",
+          "line_type": "p",
           "text": "Stay alert! Watch out for your great enemy, the devil. He prowls around like a roaring lion, looking for someone to devour."
         },
         {
           "verse": 9,
+          "usfm": "1PE.5.9",
+          "line_type": "p",
           "text": "Stand firm against him, and be strong in your faith. Remember that your family of believers all over the world is going through the same kind of suffering you are."
         },
         {
           "verse": 10,
+          "usfm": "1PE.5.10",
+          "line_type": "p",
           "text": "In his kindness God called you to share in his eternal glory by means of Christ Jesus. So after you have suffered a little while, he will restore, support, and strengthen you, and he will place you on a firm foundation."
         },
         {
           "verse": 11,
+          "usfm": "1PE.5.11",
+          "line_type": "p",
           "text": "All power to him forever! Amen."
         },
         {
           "verse": 12,
+          "usfm": "1PE.5.12",
+          "line_type": "m",
           "text": "I have written and sent this short letter to you with the help of Silas, whom I commend to you as a faithful brother. My purpose in writing is to encourage you and assure you that what you are experiencing is truly part of God’s grace for you. Stand firm in this grace."
         },
         {
           "verse": 13,
+          "usfm": "1PE.5.13",
+          "line_type": "p",
           "text": "Your sister church here in Babylon sends you greetings, and so does my son Mark."
         },
         {
           "verse": 14,
+          "usfm": "1PE.5.14",
+          "line_type": "p",
           "text": "Greet each other with a kiss of love.Peace be with all of you who are in Christ."
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Peter’s Final Greetings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "1PE.5.5",
+          "note_ref": "5:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Prov 3:34 (Greek version)."
+        },
+        {
+          "verse": 9,
+          "usfm": "1PE.5.9",
+          "note_ref": "5:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek your brotherhood."
+        },
+        {
+          "verse": 12,
+          "usfm": "1PE.5.12",
+          "note_ref": "5:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek Silvanus."
+        },
+        {
+          "verse": 13,
+          "usfm": "1PE.5.13",
+          "note_ref": "5:13",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek The elect one in Babylon. Babylon was probably symbolic for Rome."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "1PE.5.1",
+            "1PE.5.2",
+            "1PE.5.3",
+            "1PE.5.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "1PE.5.4",
+            "1PE.5.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "1PE.5.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "1PE.5.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "1PE.5.5",
+            "1PE.5.6",
+            "1PE.5.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "1PE.5.7",
+            "1PE.5.8",
+            "1PE.5.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 11,
+          "verses": [
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "1PE.5.10",
+            "1PE.5.11",
+            "1PE.5.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "1PE.5.11",
+            "1PE.5.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "1PE.5.12",
+            "1PE.5.13",
+            "1PE.5.14"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "1PE.5.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -748,7 +2838,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1PE/5-0b6750f7e11c2479aace71cf394953ea.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1PE.5.NLT",
+        "reference": {
+          "usfm": [
+            "1PE.5"
+          ],
+          "human": "1 Peter 5",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1PE.4"
+          ],
+          "human": "1 Peter 4",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2PE.1"
+          ],
+          "human": "2 Peter 1",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

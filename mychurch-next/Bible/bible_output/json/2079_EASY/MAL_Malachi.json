@@ -11,6 +11,7 @@
   "total_verses": 55,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 1,
       "chapter_usfm": "MAL.1",
@@ -19,58 +20,86 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.1.1",
+          "line_type": "p",
           "text": "This is the message that the Lord spoke to Malachi. Malachi knew that he must tell this message to the Israelites."
         },
         {
           "verse": 2,
+          "usfm": "MAL.1.2",
+          "line_type": "p",
           "text": "The Lord says, ‘I have loved you.’But you ask, ‘How have you loved us?’The Lord says, ‘I chose to love Jacob and his descendants. Esau was Jacob's brother."
         },
         {
           "verse": 3,
+          "usfm": "MAL.1.3",
+          "line_type": "p",
           "text": "But I have not loved Esau and his descendants. Instead, I have caused trouble for Esau. I caused Esau's mountains to become a wilderness. Nobody uses that land any longer. Now there are only jackals in the land that belongs to Esau.’"
         },
         {
           "verse": 4,
+          "usfm": "MAL.1.4",
+          "line_type": "p",
           "text": "Esau's descendants in Edom may say, ‘They have destroyed our towns, but we will build our houses again.’But the Lord Almighty says, ‘They may build again, but I will knock everything down. People will call Edom, “The Evil Land”. They will call them, “The nation that the Lord is angry with for ever”."
         },
         {
           "verse": 5,
+          "usfm": "MAL.1.5",
+          "line_type": "p",
           "text": "You will see with your own eyes what I will do to them. Then you will say, “The Lord has great power, even beyond Israel's borders.” ’"
         },
         {
           "verse": 6,
+          "usfm": "MAL.1.6",
+          "line_type": "p",
           "text": "The Lord Almighty says this to the priests:‘A son respects his father. A servant respects his master. If I am really your father and your master, why do you not respect me? You are my priests, but you insult my name. But then you ask, “What have we done to insult your name?”"
         },
         {
           "verse": 7,
+          "usfm": "MAL.1.7",
+          "line_type": "p",
           "text": "You insult my name when you offer unclean sacrifices to me on my altar.But you ask, “How have we offered unclean sacrifices to you?”You have shown that you do not respect the Lord's altar as important."
         },
         {
           "verse": 8,
+          "usfm": "MAL.1.8",
+          "line_type": "p",
           "text": "You offer blind animals as a sacrifice to me. You know that is wrong. You offer to me animals that cannot walk or animals that are ill. That is also a wrong thing to do. You would not give gifts like that to your city's ruler. If you did, he would surely not accept them. He would not be happy with your gifts.’ That is what the Lord Almighty says."
         },
         {
           "verse": 9,
+          "usfm": "MAL.1.9",
+          "line_type": "p",
           "text": "‘Now you ask me to be kind to you. You want me to forgive you. But when you offer unclean animals as gifts to me, I will not be happy with your gifts.’That is what the Lord Almighty says."
         },
         {
           "verse": 10,
+          "usfm": "MAL.1.10",
+          "line_type": "p",
           "text": "‘It would be better if one of you shut the temple doors! Then you would not be able to offer useless sacrifices on my altar. I am not happy with you. I will not accept any more gifts from you.’That is what the Lord Almighty says."
         },
         {
           "verse": 11,
+          "usfm": "MAL.1.11",
+          "line_type": "p",
           "text": "‘People in every nation of the whole world will respect my name. People everywhere will offer incense and pure sacrifices to worship me. They will all know that I am great.’That is what the Lord Almighty says."
         },
         {
           "verse": 12,
+          "usfm": "MAL.1.12",
+          "line_type": "p",
           "text": "‘But you priests insult my name. You say that the Lord's altar is not special. You think that the food which you offer to me has no value."
         },
         {
           "verse": 13,
+          "usfm": "MAL.1.13",
+          "line_type": "p",
           "text": "You also say, “It is too much trouble to serve the Lord.” You think that you are too important to serve me.’That is what the Lord Almighty says.‘You offer to me animals that cannot walk or that are ill. You have even robbed other people to get some of these animals. Do you think that I will accept these unclean animals from you? Will I be happy with them?’That is what the Lord says."
         },
         {
           "verse": 14,
+          "usfm": "MAL.1.14",
+          "line_type": "p",
           "text": "‘You may promise to offer to me a valuable male animal from among your sheep. But then you change your mind. Instead, you offer to me an animal that has no value. I will surely punish you when you cheat me like that. Remember that I am a great king. People of all nations in the world respect my name with fear.’That is what the Lord Almighty says."
         }
       ],
@@ -81,15 +110,447 @@
           "text": "God chose Jacob's descendants as his people"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Judah's priests do not respect God"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "1:1",
+          "note_type": "footnote",
+          "references": [
+            "EXO.3.14"
+          ],
+          "text": "When we write Lord like this, it is a special name for God. Sometimes people write it as ‘Yahweh’, or as ‘Jehovah’. It is his own name that he told Moses. See Exodus 3:14. It means ‘I am who I am’. This shows that God has always been there and he always will be there."
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.1.3",
+          "note_ref": "1:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Esau and Jacob were brothers who were twins. Esau was born first. So he should have received God's special blessing. But Esau sold his blessing to Jacob. God gave Jacob a new name, ‘Israel’. The 12 tribes of Israel were descendants of Jacob's 12 sons."
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.1.6",
+          "note_ref": "1:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "To insult the name of God was to show no respect for God himself."
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.1.8",
+          "note_ref": "1:8",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Malachi says that the people and the priests were trying to cheat God. The sacrifices that they offered to God were not good and pure."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MAL.1.1",
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.1.2",
+            "MAL.1.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MAL.1.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.1.3",
+            "MAL.1.4"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.1.4",
+            "MAL.1.5"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.1.5",
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.1.6",
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MAL.1.7",
+            "MAL.1.8"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MAL.1.8"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.1.8",
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MAL.1.10"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.11"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MAL.1.11"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.1.11",
+            "MAL.1.12",
+            "MAL.1.13"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.1.13"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.1.13"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.1.13"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "MAL.1.13",
+            "MAL.1.14"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MAL.1.14"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/MAL.1.EASY",
+        "reference": {
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "MAL.INTRO1"
+          ],
+          "human": "Malachi Intro",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 2,
       "chapter_usfm": "MAL.2",
@@ -98,70 +559,104 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.2.1",
+          "line_type": "p",
           "text": "The Lord Almighty says this to the priests:"
         },
         {
           "verse": 2,
+          "usfm": "MAL.2.2",
+          "line_type": "p",
           "text": "‘Listen carefully to what I say to you. You must respect my name properly. If not, I will punish you. I will no longer bless you but I will curse you. I am already doing that because you do not respect my name as you should."
         },
         {
           "verse": 3,
+          "usfm": "MAL.2.3",
+          "line_type": "p",
           "text": "I will punish your descendants. When you offer an animal as a sacrifice at your festivals, I will cover your faces with its dirty bits. Then they will throw you away with all the other dirty bits. Those are the bits that I cannot accept as clean.’"
         },
         {
           "verse": 4,
+          "usfm": "MAL.2.4",
+          "line_type": "p",
           "text": "The Lord Almighty says, ‘When I punish you like that, you will know that I have warned you. Then the covenant that I made with Levi and his descendants, the priests, can continue."
         },
         {
           "verse": 5,
+          "usfm": "MAL.2.5",
+          "line_type": "p",
           "text": "I promised to give them a good life with many blessings. Levi received what I promised to him. He served me and he respected me, as a priest should do."
         },
         {
           "verse": 6,
+          "usfm": "MAL.2.6",
+          "line_type": "p",
           "text": "He taught my true message. He did not teach people anything that was bad. He lived in a good and honest way as he served me. He helped many people to stop doing wrong things."
         },
         {
           "verse": 7,
+          "usfm": "MAL.2.7",
+          "line_type": "p",
           "text": "Priests should help people to know the truth about God. People should ask the priests to teach them, because the Lord Almighty has chosen priests to speak his message."
         },
         {
           "verse": 8,
+          "usfm": "MAL.2.8",
+          "line_type": "p",
           "text": "But you priests do not serve me in the right way. What you teach causes many people to do wrong things. In that way, you have spoiled the covenant that I made with Levi.’That is what the Lord Almighty says."
         },
         {
           "verse": 9,
+          "usfm": "MAL.2.9",
+          "line_type": "p",
           "text": "‘So I have caused all the people to insult you. They no longer respect you, because you do not obey my rules. When you teach my people, you are kind to some of them but you cheat others.’"
         },
         {
           "verse": 10,
+          "usfm": "MAL.2.10",
+          "line_type": "p",
           "text": "You know that we all have one Father. It is God himself who made all of us. But now we turn against each other. We do not respect the covenant that God made with our ancestors."
         },
         {
           "verse": 11,
+          "usfm": "MAL.2.11",
+          "line_type": "p",
           "text": "Judah's people have turned against God. As a result, people have done disgusting things in Jerusalem and in all Israel. You have spoiled the holy place, the temple that the Lord loves. You have turned away from the Lord and you worship foreign gods."
         },
         {
           "verse": 12,
+          "usfm": "MAL.2.12",
+          "line_type": "p",
           "text": "I pray that the Lord will remove all people like that from among his people. Not one of them will continue to belong to the family of Jacob. They will no longer be able to offer gifts to the Lord Almighty."
         },
         {
           "verse": 13,
+          "usfm": "MAL.2.13",
+          "line_type": "p",
           "text": "Also, you weep so much that your tears cover the Lord's altar! You cry because the Lord no longer accepts your gifts. He is not happy with the gifts that you offer to him."
         },
         {
           "verse": 14,
+          "usfm": "MAL.2.14",
+          "line_type": "p",
           "text": "You ask, ‘Why is the Lord not happy with our gifts?’ The Lord knows that you men have not done the right thing with your wives. When you married as a young man, you promised to take care of your wife always. But you have sent her away, when the Law says that you must stay with her as your wife."
         },
         {
           "verse": 15,
+          "usfm": "MAL.2.15",
+          "line_type": "p",
           "text": "The Lord has joined you together, as a man with his wife. Your body and your spirit belong to him. Why did God put you together? He wanted you to have children who would belong to him. So think carefully about how you live. Do not leave the wife that you married when you were a young man."
         },
         {
           "verse": 16,
+          "usfm": "MAL.2.16",
+          "line_type": "p",
           "text": "The Lord God of Israel says this: ‘If a man sends his wife away from him, I hate that! He has been cruel to his wife when he should take care of her. So be very careful! Remember your promise to take care of your wife.’That is what the Lord Almighty says."
         },
         {
           "verse": 17,
+          "usfm": "MAL.2.17",
+          "line_type": "p",
           "text": "The Lord has become tired as he listens to your words.You ask, ‘Why is he tired? What have we done to cause that?’ You say, ‘The Lord thinks that all people who do evil things are good! He does not punish them but he is happy with them.’ You also say, ‘God is not here to bring justice!’"
         }
       ],
@@ -172,15 +667,343 @@
           "text": "God warns the priests"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Judah's people have turned against God"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "2:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The dirty bits of the animals were the things that were inside its stomach. Those things could not be part of the sacrifice that they offered to God. They should take those bits away and put them on the heap of rubbish."
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.2.4",
+          "note_ref": "2:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Levi was one of Jacob's sons. From his family, God chose the first priest, Aaron."
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.2.9",
+          "note_ref": "2:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The priests may have been more kind to rich people than they were to poor people."
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.2.10",
+          "note_ref": "2:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The ancestors of the Israelites were Abraham, Isaac and Jacob. God changed Jacob's name to become ‘Israel’."
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "2:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Judah was one of the 12 sons of Jacob. He was the ancestor of the Israelite tribe called Judah."
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "2:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jerusalem was the capital city of Judah. God's temple was in Jerusalem."
+        },
+        {
+          "verse": 12,
+          "usfm": "MAL.2.12",
+          "note_ref": "2:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "‘The family of Jacob’ means the Israelites."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MAL.2.1",
+            "MAL.2.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.2.2",
+            "MAL.2.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 6,
+          "verses": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.2.3",
+            "MAL.2.4",
+            "MAL.2.5",
+            "MAL.2.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 8,
+          "verses": [
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "MAL.2.6",
+            "MAL.2.7",
+            "MAL.2.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MAL.2.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.2.8",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.11",
+            "MAL.2.12"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "MAL.2.12",
+            "MAL.2.13",
+            "MAL.2.14"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.2.14",
+            "MAL.2.15"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MAL.2.15",
+            "MAL.2.16"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MAL.2.16"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "MAL.2.16",
+            "MAL.2.17"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/MAL.2.EASY",
+        "reference": {
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 3,
       "chapter_usfm": "MAL.3",
@@ -189,74 +1012,110 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.3.1",
+          "line_type": "p",
           "text": "The Lord Almighty says, ‘Look! I will send someone to speak my message. He will prepare the way before me. Then the Lord that you are waiting for will quickly return to his temple. The one who brings the message about my covenant will certainly come. He is the one that you really want to see."
         },
         {
           "verse": 2,
+          "usfm": "MAL.3.2",
+          "line_type": "p",
           "text": "But when he comes, he will be like a hot fire that makes metal pure. He will be like strong soap that makes clothes completely clean. Nobody will be able to stand in front of him when he appears. On that day, nobody will remain the same."
         },
         {
           "verse": 3,
+          "usfm": "MAL.3.3",
+          "line_type": "p",
           "text": "He will work like a man who uses a hot fire to make gold and silver pure. He will make the Levites clean and pure. He will remove their dirt. Then they can offer proper sacrifices to the Lord."
         },
         {
           "verse": 4,
+          "usfm": "MAL.3.4",
+          "line_type": "p",
           "text": "The Lord will accept the gifts that the people of Judah and Jerusalem offer to him. He will be happy with them as he was in earlier times."
         },
         {
           "verse": 5,
+          "usfm": "MAL.3.5",
+          "line_type": "p",
           "text": "At that time, I will come among you as your judge. I will speak against those who have done wrong things. I will punish the magicians, the adulterers and those who tell lies against other people. I will punish those people who are cruel to their workers and those who deceive widows or children who have no family. And I will punish those who do not help foreigners who live among them. People who do those things show that they do not respect me.’That is what the Lord Almighty says."
         },
         {
           "verse": 6,
+          "usfm": "MAL.3.6",
+          "line_type": "p",
           "text": "‘I am the Lord and I do not change. Because of my promises to my people, I have not destroyed you, descendants of Jacob."
         },
         {
           "verse": 7,
+          "usfm": "MAL.3.7",
+          "line_type": "p",
           "text": "I have told you my commands. But you do not listen to me any longer. Since the time of your ancestors, you have not obeyed me. Now, return to me! Then I will return to bless you.’That is what the Lord Almighty says.‘But you ask, “How do we return to you?”"
         },
         {
           "verse": 8,
+          "usfm": "MAL.3.8",
+          "line_type": "p",
           "text": "I say to you, “A man should not rob God. But you are robbing me.”But you ask, “How do we rob you?” I say, “You do not give to me the tithes and the offerings that you should give.”"
         },
         {
           "verse": 9,
+          "usfm": "MAL.3.9",
+          "line_type": "p",
           "text": "Yes, all of you are robbing me. The whole nation is guilty. So you will receive the punishment of a curse."
         },
         {
           "verse": 10,
+          "usfm": "MAL.3.10",
+          "line_type": "p",
           "text": "Now you must bring the whole tithe that belongs to me. Store it in my temple, so that there will be food in my house. Obey me and then see what I will do.’That is what the Lord Almighty says.‘You will see how much I will bless you! You will not have enough room to store all the good things that I will give to you. I will pour blessings out of the sky like rain."
         },
         {
           "verse": 11,
+          "usfm": "MAL.3.11",
+          "line_type": "p",
           "text": "I will stop insects from eating your crops. The grapes will not fall from your vines before they are ready to eat."
         },
         {
           "verse": 12,
+          "usfm": "MAL.3.12",
+          "line_type": "p",
           "text": "You will be happy to live in your land. The people of all the other nations will see that God has blessed you.’That is what the Lord Almighty says."
         },
         {
           "verse": 13,
+          "usfm": "MAL.3.13",
+          "line_type": "p",
           "text": "The Lord says, ‘You have spoken bad words against me.But you ask, “What have we said against you?”"
         },
         {
           "verse": 14,
+          "usfm": "MAL.3.14",
+          "line_type": "p",
           "text": "You have said, “We serve God, but that has not helped us at all. We are careful to do what he tells us to do. When we do wrong things, we have sad faces to show the Lord Almighty that we are sorry."
         },
         {
           "verse": 15,
+          "usfm": "MAL.3.15",
+          "line_type": "p",
           "text": "But it is proud people that God blesses! Yes, it is the people who do evil things who become rich! God does not even punish people who like to test him. That is what we think.” ’"
         },
         {
           "verse": 16,
+          "usfm": "MAL.3.16",
+          "line_type": "p",
           "text": "Then the people who respected the Lord talked to each other. The Lord listened to what they said. While the Lord watched, someone wrote names on a scroll. Those were the names of the people who respected the Lord and who gave honour to his name. They wrote down their names so that people would remember them."
         },
         {
           "verse": 17,
+          "usfm": "MAL.3.17",
+          "line_type": "p",
           "text": "The Lord Almighty says, ‘These people will belong to me. One day I will come to judge everyone. At that time I will bring together all my own special people. I will not punish them. I will take care of them, like a father takes care of his son who serves him."
         },
         {
           "verse": 18,
+          "usfm": "MAL.3.18",
+          "line_type": "p",
           "text": "Because of that, you will see again that I am kind to righteous people, but I punish wicked people. I show the difference between people who serve me faithfully and those who do not.’"
         }
       ],
@@ -267,19 +1126,333 @@
           "text": "God promises to send a messenger to his people"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "The Israelites are robbing God"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "God will bless people who are faithful to him"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "MAL.3.3",
+          "note_ref": "3:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The purpose of the hot fire is not to destroy the metal but to make it pure. So on this day the Lord will remove from people everything that is not good."
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.3.9",
+          "note_ref": "3:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The Israelites had to take some of their crops (a tithe) to the temple. The tithe would help the work of the priests and the Levites in the temple. God chose the Levites to do special work for him in his temple. They helped the priests in the temple."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.3.1",
+            "MAL.3.2",
+            "MAL.3.3",
+            "MAL.3.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.3.4",
+            "MAL.3.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MAL.3.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.3.5",
+            "MAL.3.6",
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MAL.3.7",
+            "MAL.3.8"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.3.8",
+            "MAL.3.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MAL.3.10",
+            "MAL.3.9"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MAL.3.10"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.3.10",
+            "MAL.3.11",
+            "MAL.3.12"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MAL.3.12"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.3.12",
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.3.13",
+            "MAL.3.14",
+            "MAL.3.15"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MAL.3.15",
+            "MAL.3.16"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 18,
+          "verses": [
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "MAL.3.16",
+            "MAL.3.17",
+            "MAL.3.18"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/MAL.3.EASY",
+        "reference": {
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 4,
       "chapter_usfm": "MAL.4",
@@ -288,26 +1461,38 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.4.1",
+          "line_type": "p",
           "text": "‘The great day when I come to judge people will certainly happen. Punishment will come like the great fire of a hot oven. It will destroy all the proud people who do evil things. It will completely destroy them, like a fire that destroys dry grass. Nothing will remain.’That is what the Lord Almighty says."
         },
         {
           "verse": 2,
+          "usfm": "MAL.4.2",
+          "line_type": "p",
           "text": "‘But it will be different for you who respect my name. On that day, I will come to make you well again, like the sun that rises to shine on you. I will show that you are right. When that happens, you will be very happy. You will jump up and down like young cows when someone lets them go free."
         },
         {
           "verse": 3,
+          "usfm": "MAL.4.3",
+          "line_type": "p",
           "text": "Then you will walk over the wicked people. They will be like ashes under your feet. That will happen on the day when I do these things.’That is what the Lord Almighty says."
         },
         {
           "verse": 4,
+          "usfm": "MAL.4.4",
+          "line_type": "p",
           "text": "‘Remember the laws that I gave to my servant Moses at Mount Sinai. Those rules and commands were for all the Israelites to obey."
         },
         {
           "verse": 5,
+          "usfm": "MAL.4.5",
+          "line_type": "p",
           "text": "Look! I will send my prophet Elijah to you. He will come before that great day of the Lord arrives. That will be a day that makes people afraid."
         },
         {
           "verse": 6,
+          "usfm": "MAL.4.6",
+          "line_type": "p",
           "text": "He will speak my message, so that fathers and their children return to each other as friends. Then I will not have to come and bring punishment on the land.’"
         }
       ],
@@ -318,9 +1503,179 @@
           "text": "The great day when God will judge people"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 4,
+          "usfm": "MAL.4.4",
+          "note_ref": "4:4",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Moses was a great leader of the Israelites, who gave God's laws to the people."
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.4.4",
+          "note_ref": "4:4",
+          "note_type": "footnote",
+          "references": [
+            "EXO.20.1+EXO.20.2+EXO.20.3+EXO.20.4+EXO.20.5+EXO.20.6+EXO.20.7+EXO.20.8+EXO.20.9+EXO.20.10+EXO.20.11+EXO.20.12+EXO.20.13+EXO.20.14+EXO.20.15+EXO.20.16+EXO.20.17"
+          ],
+          "text": "See Exodus 20:1-17."
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.4.5",
+          "note_ref": "4:5",
+          "note_type": "footnote",
+          "references": [
+            "1KI.17.1",
+            "MAT.17.10+MAT.17.11+MAT.17.12+MAT.17.13"
+          ],
+          "text": "Elijah was a prophet who spoke God's message to the people. See 1 Kings 17:1. Here, God promises that another prophet like Elijah will come. See Matthew 17:10-13."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.4.1",
+            "MAL.4.2",
+            "MAL.4.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "MAL.4.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.4.3",
+            "MAL.4.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.4.4",
+            "MAL.4.5",
+            "MAL.4.6"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/MAL.4.EASY",
+        "reference": {
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "MAT.INTRO1"
+          ],
+          "human": "Matthew Intro",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

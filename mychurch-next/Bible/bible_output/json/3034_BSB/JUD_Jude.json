@@ -11,6 +11,7 @@
   "total_verses": 25,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JUD",
       "chapter": 1,
       "chapter_usfm": "JUD.1",
@@ -19,121 +20,502 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JUD.1.1",
+          "line_type": "p",
           "text": "Jude, a servant of Jesus Christ and a brother of James,To those who are called, loved by God the Father, and kept in Jesus Christ:"
         },
         {
           "verse": 2,
+          "usfm": "JUD.1.2",
+          "line_type": "p",
           "text": "Mercy, peace, and love be multiplied to you."
         },
         {
           "verse": 3,
+          "usfm": "JUD.1.3",
+          "line_type": "p",
           "text": "Beloved, although I made every effort to write to you about the salvation we share, I felt it necessary to write and urge you to contend earnestly for the faith entrusted once for all to the saints."
         },
         {
           "verse": 4,
+          "usfm": "JUD.1.4",
+          "line_type": "p",
           "text": "For certain men have crept in among you unnoticed — ungodly ones who were designated long ago for condemnation. They turn the grace of our God into a license for immorality, and they deny our only Master and Lord, Jesus Christ."
         },
         {
           "verse": 5,
+          "usfm": "JUD.1.5",
+          "line_type": "p",
           "text": "Although you are fully aware of this, I want to remind you that after Jesus had delivered His people out of the land of Egypt, He destroyed those who did not believe."
         },
         {
           "verse": 6,
+          "usfm": "JUD.1.6",
+          "line_type": "p",
           "text": "And the angels who did not stay within their own domain but abandoned their proper dwelling— these He has kept in eternal chains under darkness, bound for judgment on that great day."
         },
         {
           "verse": 7,
+          "usfm": "JUD.1.7",
+          "line_type": "p",
           "text": "In like manner, Sodom and Gomorrah and the cities around them, who indulged in sexual immorality and pursued strange flesh, are on display as an example of those who sustain the punishment of eternal fire."
         },
         {
           "verse": 8,
+          "usfm": "JUD.1.8",
+          "line_type": "p",
           "text": "Yet in the same way these dreamers defile their bodies, reject authority, and slander glorious beings."
         },
         {
           "verse": 9,
+          "usfm": "JUD.1.9",
+          "line_type": "p",
           "text": "But even the archangel Michael, when he disputed with the devil over the body of Moses, did not presume to bring a slanderous charge against him, but said, “The Lord rebuke you!”"
         },
         {
           "verse": 10,
+          "usfm": "JUD.1.10",
+          "line_type": "p",
           "text": "These men, however, slander what they do not understand, and like irrational animals, they will be destroyed by the things they do instinctively."
         },
         {
           "verse": 11,
+          "usfm": "JUD.1.11",
+          "line_type": "p",
           "text": "Woe to them! They have traveled the path of Cain; they have rushed for profit into the error of Balaam; they have perished in Korah’s rebellion."
         },
         {
           "verse": 12,
+          "usfm": "JUD.1.12",
+          "line_type": "p",
           "text": "These men are hidden reefs in your love feasts, shamelessly feasting with you but shepherding only themselves. They are clouds without water, carried along by the wind; fruitless trees in autumn, twice dead after being uprooted."
         },
         {
           "verse": 13,
+          "usfm": "JUD.1.13",
+          "line_type": "p",
           "text": "They are wild waves of the sea, foaming up their own shame; wandering stars, for whom blackest darkness has been reserved forever."
         },
         {
           "verse": 14,
+          "usfm": "JUD.1.14",
+          "line_type": "p",
           "text": "Enoch, the seventh from Adam, also prophesied about them:“Behold, the Lord is comingwith myriads of His holy ones"
         },
         {
           "verse": 15,
+          "usfm": "JUD.1.15",
+          "line_type": "q2",
           "text": "to execute judgment on everyone,and to convict all the ungodlyof every ungodly act of wickednessand every harsh word spoken against Him by ungodly sinners.”"
         },
         {
           "verse": 16,
+          "usfm": "JUD.1.16",
+          "line_type": "p",
           "text": "These men are discontented grumblers, following after their own lusts; their mouths spew arrogance; they flatter others for their own advantage."
         },
         {
           "verse": 17,
+          "usfm": "JUD.1.17",
+          "line_type": "p",
           "text": "But you, beloved, remember what was foretold by the apostles of our Lord Jesus Christ"
         },
         {
           "verse": 18,
+          "usfm": "JUD.1.18",
+          "line_type": "p",
           "text": "when they said to you, “In the last times there will be scoffers who will follow after their own ungodly desires.”"
         },
         {
           "verse": 19,
+          "usfm": "JUD.1.19",
+          "line_type": "p",
           "text": "These are the ones who cause divisions, who are worldly and devoid of the Spirit."
         },
         {
           "verse": 20,
+          "usfm": "JUD.1.20",
+          "line_type": "p",
           "text": "But you, beloved, by building yourselves up in your most holy faith and praying in the Holy Spirit,"
         },
         {
           "verse": 21,
+          "usfm": "JUD.1.21",
+          "line_type": "p",
           "text": "keep yourselves in the love of God as you await the mercy of our Lord Jesus Christ to bring you eternal life."
         },
         {
           "verse": 22,
+          "usfm": "JUD.1.22",
+          "line_type": "p",
           "text": "And indeed, have mercy on those who doubt;"
         },
         {
           "verse": 23,
+          "usfm": "JUD.1.23",
+          "line_type": "p",
           "text": "save others by snatching them from the fire; and to still others show mercy tempered with fear, hating even the clothing stained by the flesh."
         },
         {
           "verse": 24,
+          "usfm": "JUD.1.24",
+          "line_type": "p",
           "text": "Now to Him who is able to keep you from stumbling and to present you unblemished in His glorious presence, with great joy —"
         },
         {
           "verse": 25,
+          "usfm": "JUD.1.25",
+          "line_type": "p",
           "text": "to the only God our Savior be glory, majesty, dominion, and authority through Jesus Christ our Lord before all time, and now, and for all eternity.Amen."
         }
       ],
       "verse_count": 25,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "God’s Judgment on the Ungodly"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "A Call to Persevere"
         },
         {
-          "before_verse": 23,
+          "before_verse": 24,
           "text": "Doxology"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 5,
+          "usfm": "JUD.1.5",
+          "note_ref": "1:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "NE, WH, BYZ, and TR the Lord"
+        },
+        {
+          "verse": 9,
+          "usfm": "JUD.1.9",
+          "note_ref": "1:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "This account is attributed by Origen to the Testament of Moses, also called the Assumption of Moses."
+        },
+        {
+          "verse": 12,
+          "usfm": "JUD.1.12",
+          "note_ref": "1:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or are blemishes"
+        },
+        {
+          "verse": 15,
+          "usfm": "JUD.1.15",
+          "note_ref": "1:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "See the First Book of Enoch (1 Enoch 1:9)."
+        },
+        {
+          "verse": 18,
+          "usfm": "JUD.1.18",
+          "note_ref": "1:18",
+          "note_type": "footnote",
+          "references": [],
+          "text": "See 2 Peter 3:3."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JUD.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JUD.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JUD.1.1",
+            "JUD.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "JUD.1.2",
+            "JUD.1.3",
+            "JUD.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "JUD.1.4",
+            "JUD.1.5",
+            "JUD.1.6",
+            "JUD.1.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 11,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "JUD.1.10",
+            "JUD.1.11",
+            "JUD.1.7",
+            "JUD.1.8",
+            "JUD.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "JUD.1.11",
+            "JUD.1.12",
+            "JUD.1.13"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "JUD.1.13",
+            "JUD.1.14"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JUD.1.14"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "JUD.1.14"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "JUD.1.14",
+            "JUD.1.15"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "JUD.1.15"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "JUD.1.15"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "JUD.1.15"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "JUD.1.15",
+            "JUD.1.16"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 19,
+          "verses": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "usfms": [
+            "JUD.1.16",
+            "JUD.1.17",
+            "JUD.1.18",
+            "JUD.1.19"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "JUD.1.19",
+            "JUD.1.20",
+            "JUD.1.21"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 23,
+          "verses": [
+            21,
+            22,
+            23
+          ],
+          "usfms": [
+            "JUD.1.21",
+            "JUD.1.22",
+            "JUD.1.23"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 25,
+          "verses": [
+            23,
+            24,
+            25
+          ],
+          "usfms": [
+            "JUD.1.23",
+            "JUD.1.24",
+            "JUD.1.25"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "p",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "JUD.1.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -144,7 +526,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/JUD/1-813f1c86a3844dbf4591c919bc26a5fe.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/JUD.1.BSB",
+        "reference": {
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.1"
+          ],
+          "human": "Revelation 1",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

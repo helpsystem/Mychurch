@@ -11,6 +11,7 @@
   "total_verses": 21,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "OBA",
       "chapter": 1,
       "chapter_usfm": "OBA.1",
@@ -19,111 +20,450 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "OBA.1.1",
+          "line_type": "p",
           "text": "The vision of Obadiah. Thus says my Lord Yahweh concerning Edom: We have heard a report from Yahweh, and a messenger has been sent among the nations: “Rise up and let us rise against it for battle.”"
         },
         {
           "verse": 2,
+          "usfm": "OBA.1.2",
+          "line_type": "p",
           "text": "“Look, I will make you insignificant among the nations. You will be utterly despised!"
         },
         {
           "verse": 3,
+          "usfm": "OBA.1.3",
+          "line_type": "p",
           "text": "The pride of your heart has deceived you, you who live in the clefts of a rock, the heights of its dwelling, you who say in your heart: ‘Who can bring me down to the ground?’"
         },
         {
           "verse": 4,
+          "usfm": "OBA.1.4",
+          "line_type": "p",
           "text": "Even if you soar like the eagle, even if your nest is set among the stars, from there I will bring you down!” declares Yahweh:"
         },
         {
           "verse": 5,
+          "usfm": "OBA.1.5",
+          "line_type": "p",
           "text": "“If thieves came to you, if plunderers of the night—How you have been destroyed!—would they not steal what they wanted? If grape gatherers came, would they not leave gleanings?"
         },
         {
           "verse": 6,
+          "usfm": "OBA.1.6",
+          "line_type": "p",
           "text": "How Esau has been pillaged; his treasures have been ransacked!"
         },
         {
           "verse": 7,
+          "usfm": "OBA.1.7",
+          "line_type": "p",
           "text": "All of your allies have driven you up to the boundary; your confederates have deceived you and have prevailed against you. Those who eat your bread have set an ambush for you, there is no understanding of it."
         },
         {
           "verse": 8,
+          "usfm": "OBA.1.8",
+          "line_type": "p",
           "text": "On that day,” declares Yahweh, “will I not destroy the wise men from Edom, and understanding from the mountain of Esau?"
         },
         {
           "verse": 9,
+          "usfm": "OBA.1.9",
+          "line_type": "p",
           "text": "And your warriors will be shattered, O Teman, so that everyone from the mountain of Esau will be cut off because of the slaughter!"
         },
         {
           "verse": 10,
+          "usfm": "OBA.1.10",
+          "line_type": "p",
           "text": "“Because of the violence done to your brother Jacob, shame will cover you and you will be cut off forever."
         },
         {
           "verse": 11,
+          "usfm": "OBA.1.11",
+          "line_type": "p",
           "text": "On the day you stood nearby, on the day strangers took his wealth, and foreigners entered his gates and cast lots over Jerusalem, you were also like one of them."
         },
         {
           "verse": 12,
+          "usfm": "OBA.1.12",
+          "line_type": "p",
           "text": "But you should not have gloated over your brother’s day, on the day of his misfortune, and you should not have rejoiced over the people of Judah on the day of their perishing, and you should not have opened your mouth wide on the day of distress."
         },
         {
           "verse": 13,
+          "usfm": "OBA.1.13",
+          "line_type": "p",
           "text": "You should not have entered the gate of my people on the day of their disaster. You also should not have gloated over his misery on the day of his disaster, and you should not have stretched out your hands on the day of his disaster."
         },
         {
           "verse": 14,
+          "usfm": "OBA.1.14",
+          "line_type": "p",
           "text": "And you should not have stood at the crossroads to cut off his fugitives and you should not have handed over his survivors on the day of distress."
         },
         {
           "verse": 15,
+          "usfm": "OBA.1.15",
+          "line_type": "p",
           "text": "“For the day of Yahweh is near against all the nations! Just as you have done, it will be done to you. Your deeds will return on your own head."
         },
         {
           "verse": 16,
+          "usfm": "OBA.1.16",
+          "line_type": "p",
           "text": "For just as you have drunk on my holy mountain, all the nations will drink continually. They will drink and they will slurp, and they will be as if they had never been."
         },
         {
           "verse": 17,
+          "usfm": "OBA.1.17",
+          "line_type": "p",
           "text": "But on Mount Zion there will be an escape, and it will be holy, and the house of Jacob will take possession of their dispossessors."
         },
         {
           "verse": 18,
+          "usfm": "OBA.1.18",
+          "line_type": "p",
           "text": "And the house of Jacob will be a fire and the house of Joseph a flame, and the house of Esau stubble; and they will set them on fire and will consume them. And there will not be a survivor for the house of Esau,” for Yahweh has spoken."
         },
         {
           "verse": 19,
+          "usfm": "OBA.1.19",
+          "line_type": "p",
           "text": "Those of the Negev will take possession of the mountain of Esau, and those of the Shephelah will possess the land of the Philistines, and they shall take possession of the territory of Ephraim and the territory of Samaria, and Benjamin will take possession of Gilead."
         },
         {
           "verse": 20,
+          "usfm": "OBA.1.20",
+          "line_type": "p",
           "text": "And the exiles of this army of the people of Israel will possess Canaan up to Zarephath, and the exiles of Jerusalem who are in Sepharad will take possession of the cities of the Negev."
         },
         {
           "verse": 21,
+          "usfm": "OBA.1.21",
+          "line_type": "p",
           "text": "And those who have been saved will go up on Mount Zion to rule the mountain of Esau. And the kingdom will belong to Yahweh."
         }
       ],
       "verse_count": 21,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Edom’s Approaching Destruction"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Edom’s Treachery against Judah"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "Future Judgment of the Nations"
         },
         {
-          "before_verse": 18,
+          "before_verse": 19,
           "text": "Future Blessing for Israel"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "OBA.1.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, Edom"
+        },
+        {
+          "verse": 2,
+          "usfm": "OBA.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The NET Bible note for this verse points out: “The Hebrew perfect verb form used here usually describes past events. However, here and several times in the following verses it is best understood as portraying certain fulfillment of events that at the time of writing were still future. It is the perfect of certitude”"
+        },
+        {
+          "verse": 4,
+          "usfm": "OBA.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a declaration of”"
+        },
+        {
+          "verse": 5,
+          "usfm": "OBA.1.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “their sufficiency”"
+        },
+        {
+          "verse": 7,
+          "usfm": "OBA.1.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “men of your covenant”"
+        },
+        {
+          "verse": 7,
+          "usfm": "OBA.1.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “men of your peace”"
+        },
+        {
+          "verse": 7,
+          "usfm": "OBA.1.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The preposition בּ plus אֵין indicates the absence of a thing within a location"
+        },
+        {
+          "verse": 7,
+          "usfm": "OBA.1.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “in him”"
+        },
+        {
+          "verse": 8,
+          "usfm": "OBA.1.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a declaration of”"
+        },
+        {
+          "verse": 9,
+          "usfm": "OBA.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “each”"
+        },
+        {
+          "verse": 11,
+          "usfm": "OBA.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the day of your standing nearby”"
+        },
+        {
+          "verse": 11,
+          "usfm": "OBA.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the day of the taking captive by strangers”"
+        },
+        {
+          "verse": 12,
+          "usfm": "OBA.1.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The Hebrew expression “to look upon” often has the sense of “to feast the eyes upon” or “to gloat over”"
+        },
+        {
+          "verse": 12,
+          "usfm": "OBA.1.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “son”"
+        },
+        {
+          "verse": 16,
+          "usfm": "OBA.1.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the mountain of my holiness”"
+        },
+        {
+          "verse": 20,
+          "usfm": "OBA.1.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “exile”"
+        },
+        {
+          "verse": 20,
+          "usfm": "OBA.1.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “exile”"
+        },
+        {
+          "verse": 21,
+          "usfm": "OBA.1.21",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “will be for”"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "OBA.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 9,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "OBA.1.1",
+            "OBA.1.2",
+            "OBA.1.3",
+            "OBA.1.4",
+            "OBA.1.5",
+            "OBA.1.6",
+            "OBA.1.7",
+            "OBA.1.8",
+            "OBA.1.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 14,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "OBA.1.10",
+            "OBA.1.11",
+            "OBA.1.12",
+            "OBA.1.13",
+            "OBA.1.14"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "OBA.1.15",
+            "OBA.1.16",
+            "OBA.1.17",
+            "OBA.1.18"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "OBA.1.19",
+            "OBA.1.20",
+            "OBA.1.21"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 21,
+          "parsed_count": 21,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/OBA.1.LEB",
+        "reference": {
+          "usfm": [
+            "OBA.1"
+          ],
+          "human": "Obadiah 1",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.9"
+          ],
+          "human": "Amos 9",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "Jonah 1",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

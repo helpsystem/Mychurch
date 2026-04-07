@@ -11,6 +11,7 @@
   "total_verses": 15,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "3JN",
       "chapter": 1,
       "chapter_usfm": "3JN.1",
@@ -19,81 +20,274 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "3JN.1.1",
+          "line_type": "p",
           "text": "From the Elder—To my dear Gaius, whom I truly love."
         },
         {
           "verse": 2,
+          "usfm": "3JN.1.2",
+          "line_type": "p",
           "text": "My dear friend, I pray that everything may go well with you and that you may be in good health—as I know you are well in spirit."
         },
         {
           "verse": 3,
+          "usfm": "3JN.1.3",
+          "line_type": "p",
           "text": "I was so happy when some Christians arrived and told me how faithful you are to the truth—just as you always live in the truth."
         },
         {
           "verse": 4,
+          "usfm": "3JN.1.4",
+          "line_type": "p",
           "text": "Nothing makes me happier than to hear that my children live in the truth."
         },
         {
           "verse": 5,
+          "usfm": "3JN.1.5",
+          "line_type": "p",
           "text": "My dear friend, you are so faithful in the work you do for other Christians, even when they are strangers."
         },
         {
           "verse": 6,
+          "usfm": "3JN.1.6",
+          "line_type": "p",
           "text": "They have spoken to the church here about your love. Please help them to continue their trip in a way that will please God."
         },
         {
           "verse": 7,
+          "usfm": "3JN.1.7",
+          "line_type": "p",
           "text": "For they set out on their trip in the service of Christ without accepting any help from unbelievers."
         },
         {
           "verse": 8,
+          "usfm": "3JN.1.8",
+          "line_type": "p",
           "text": "We Christians, then, must help these people, so that we may share in their work for the truth."
         },
         {
           "verse": 9,
+          "usfm": "3JN.1.9",
+          "line_type": "p",
           "text": "I wrote a short letter to the church; but Diotrephes, who likes to be their leader, will not pay any attention to what I say."
         },
         {
           "verse": 10,
+          "usfm": "3JN.1.10",
+          "line_type": "p",
           "text": "When I come, then, I will bring up everything he has done: the terrible things he says about us and the lies he tells! But that is not enough for him; he will not receive the Christians when they come, and even stops those who want to receive them and tries to drive them out of the church!"
         },
         {
           "verse": 11,
+          "usfm": "3JN.1.11",
+          "line_type": "p",
           "text": "My dear friend, do not imitate what is bad, but imitate what is good. Whoever does good belongs to God; whoever does what is bad has not seen God."
         },
         {
           "verse": 12,
+          "usfm": "3JN.1.12",
+          "line_type": "p",
           "text": "Everyone speaks well of Demetrius; truth itself speaks well of him. And we add our testimony, and you know that what we say is true."
         },
         {
           "verse": 13,
+          "usfm": "3JN.1.13",
+          "line_type": "p",
           "text": "I have so much to tell you, but I do not want to do it with pen and ink."
         },
         {
           "verse": 14,
+          "usfm": "3JN.1.14",
+          "line_type": "p",
           "text": "I hope to see you soon, and then we will talk personally."
         },
         {
           "verse": 15,
+          "usfm": "3JN.1.15",
+          "line_type": "p",
           "text": "Peace be with you.All your friends send greetings. Greet all our friends personally."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Gaius Is Praised"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Diotrephes and Demetrius"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Final Greetings"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "3JN.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "ACT.19.29",
+            "ROM.16.23",
+            "1CO.1.14"
+          ],
+          "text": "Ac 19.29; Ro 16.23; 1 Co 1.14"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "3JN.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "3JN.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "3JN.1.1",
+            "3JN.1.2",
+            "3JN.1.3",
+            "3JN.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 8,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "3JN.1.4",
+            "3JN.1.5",
+            "3JN.1.6",
+            "3JN.1.7",
+            "3JN.1.8"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "3JN.1.10",
+            "3JN.1.8",
+            "3JN.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "3JN.1.10",
+            "3JN.1.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "3JN.1.11",
+            "3JN.1.12"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "3JN.1.12",
+            "3JN.1.13",
+            "3JN.1.14"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "3JN.1.14",
+            "3JN.1.15"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "3JN.1.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -104,7 +298,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/3JN/1-6ce471d72c71e67d2e340cb77b413f8a.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/3JN.1.GNT",
+        "reference": {
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "3JN.INTRO1"
+          ],
+          "human": "3 John Introduction",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "JUD.INTRO1"
+          ],
+          "human": "Jude Introduction",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

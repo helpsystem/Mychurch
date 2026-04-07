@@ -11,6 +11,7 @@
   "total_verses": 48,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 1,
       "chapter_usfm": "JON.1",
@@ -19,80 +20,289 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.1.1",
+          "line_type": "p",
           "text": "و کلام خداوند بر یونس پسر اَمِتّای نازل شده، گفت:"
         },
         {
           "verse": 2,
+          "usfm": "JON.1.2",
+          "line_type": "p",
           "text": "«برخیز و به نینوا شهر بزرگ برو و به ضد آن فریاد برآور، زیرا که شرارت ایشان به حضور من برآمده است.»"
         },
         {
           "verse": 3,
+          "usfm": "JON.1.3",
+          "line_type": "p",
           "text": "اما یونس برخاست تا از حضور خداوند به ترشیش فرار کند. پس به یافا فرود آمده، کشتی‌ای یافت که عازم ترشیش بود. پس کرایه‌اش را داده، سوار شد تا همراه ایشان از حضور خداوند به ترشیش برود."
         },
         {
           "verse": 4,
+          "usfm": "JON.1.4",
+          "line_type": "p",
           "text": "اما خداوند باد شدیدی بر دریا وزانید که تلاطم بزرگی در دریا پدید آمد، چنانکه نزدیک بود که کشتی در هم بشکند."
         },
         {
           "verse": 5,
+          "usfm": "JON.1.5",
+          "line_type": "p",
           "text": "ملاحان ترسان شده، هر کدام نزد خدای خود التماس نمودند و باری را که در کشتی بود، به دریا ریختند تا آن را سبک سازند. اما یونس در درون کشتی آمده دراز کشید و خواب سنگینی او را در ربود."
         },
         {
           "verse": 6,
+          "usfm": "JON.1.6",
+          "line_type": "p",
           "text": "و ناخدای کشتی نزد او آمده، وی را گفت: «چگونه می‌توانی راحت بخوابی؟ برخیز و خدای خود را بخوان، شاید که آن خدا ما را به خاطر آوَرَد تا هلاک نشویم.»"
         },
         {
           "verse": 7,
+          "usfm": "JON.1.7",
+          "line_type": "p",
           "text": "و به یکدیگر گفتند: «بیایید قرعه بیندازیم تا بدانیم که این بلا به خاطر چه کسی بر ما وارد شده است؟» پس چون قرعه انداختند، قرعه به نام یونس افتاد."
         },
         {
           "verse": 8,
+          "usfm": "JON.1.8",
+          "line_type": "p",
           "text": "پس او را گفتند: «ما را اطلاع ده که این بلا به خاطر چه کسی بر ما نازل شده؟ شغل تو چیست و از کجا آمده‌ای و وطنت کدام است و از چه قوم هستی؟»"
         },
         {
           "verse": 9,
+          "usfm": "JON.1.9",
+          "line_type": "p",
           "text": "او ایشان را جواب داد: «من عبرانی هستم و ترس یهوه خدای آسمان را به دل دارم که دریا و خشکی را آفریده است.»"
         },
         {
           "verse": 10,
+          "usfm": "JON.1.10",
+          "line_type": "p",
           "text": "پس آن مردمان سخت‌ ترسان شدند و او را گفتند: «چه کرده‌ای؟» زیرا که ایشان می‌دانستند که از حضور خداوند فرار کرده است، چونکه ایشان را اطلاع داده بود."
         },
         {
           "verse": 11,
+          "usfm": "JON.1.11",
+          "line_type": "p",
           "text": "و او را گفتند: «با تو چه کنیم تا دریا برای ما ساکن شود؟» زیرا دریا در تلاطم همی افزود."
         },
         {
           "verse": 12,
+          "usfm": "JON.1.12",
+          "line_type": "p",
           "text": "یونس به ایشان گفت: «مرا برداشته، به دریا بیندازید و دریا برای شما ساکن خواهد شد، زیرا می‌دانم این تلاطم بزرگ به سبب من بر شما وارد آمده است.»"
         },
         {
           "verse": 13,
+          "usfm": "JON.1.13",
+          "line_type": "p",
           "text": "اما آن مردمان سعی نمودند تا کشتی را به خشکی برسانند، اما نتوانستند، زیرا که دریا به ضد ایشان زیاده و زیاده تلاطم می‌نمود."
         },
         {
           "verse": 14,
+          "usfm": "JON.1.14",
+          "line_type": "p",
           "text": "پس نزد یهوه دعا کرده، گفتند: «آه، ‌ای خداوند، به‌ خاطر جان این شخص هلاک نشویم و خون بی‌گناه را بر ما مگذار زیرا تو، ‌ای خداوند، هر‌ چه بخواهی، می‌کنی.»"
         },
         {
           "verse": 15,
+          "usfm": "JON.1.15",
+          "line_type": "p",
           "text": "پس یونس را برداشته، در دریا انداختند و دریا از تلاطمش آرام شد."
         },
         {
           "verse": 16,
+          "usfm": "JON.1.16",
+          "line_type": "p",
           "text": "آن مردان از خداوند سخت‌ ترسان شدند و برای خداوند قربانی‌ها تقدیم کردند و نذرها نمودند."
         },
         {
           "verse": 17,
+          "usfm": "JON.1.17",
+          "line_type": "p",
           "text": "و اما خداوند ماهی بزرگی برگماشت که یونس را فرو بلعید. یونس سه روز و سه شب در شکم ماهی ماند."
         }
       ],
       "verse_count": 17,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JON.1.1",
+            "JON.1.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "JON.1.2",
+            "JON.1.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "JON.1.3",
+            "JON.1.4",
+            "JON.1.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "JON.1.5",
+            "JON.1.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 10,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.1.10",
+            "JON.1.6",
+            "JON.1.7",
+            "JON.1.8",
+            "JON.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "JON.1.10",
+            "JON.1.11",
+            "JON.1.12"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 17,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "JON.1.12",
+            "JON.1.13",
+            "JON.1.14",
+            "JON.1.15",
+            "JON.1.16",
+            "JON.1.17"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4205/JON.1.RCPV",
+        "reference": {
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "یونس 1",
+          "version_id": 4205
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "JON.INTRO1"
+          ],
+          "human": "یونس ‮نکاتی چند درباره کتاب یونس‬",
+          "toc": true,
+          "version_id": 4205
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "یونس 2",
+          "toc": true,
+          "version_id": 4205
+        }
+      },
+      "version_meta": {
+        "id": 4205,
+        "abbreviation": "RCPV",
+        "local_abbreviation": "RCPV",
+        "title": "کتاب مقدس - ترجمه کلاسیک بازنگری شده",
+        "local_title": "کتاب مقدس - ترجمه کلاسیک بازنگری شده",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 2,
       "chapter_usfm": "JON.2",
@@ -101,52 +311,473 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.2.1",
+          "line_type": "p",
           "text": "و یونس از شکم ماهی نزد یهوه خدای خود دعا نمود"
         },
         {
           "verse": 2,
+          "usfm": "JON.2.2",
+          "line_type": "p",
           "text": "و گفت:«در تنگی خود خداوند را خواندمو مرا قبول فرمود.از شکم عالم مردگان التماس نمودم،و صدای مرا شنیدی."
         },
         {
           "verse": 3,
+          "usfm": "JON.2.3",
+          "line_type": "q1",
           "text": "زیرا که مرا به ژرفا در دل دریاها انداختی،و سیلها مرا احاطه نمود.تمامی خیزابها و موجهای تو بر من گذشت."
         },
         {
           "verse": 4,
+          "usfm": "JON.2.4",
+          "line_type": "q1",
           "text": "و گفتم: ”از چشم تو افتادم.لیکن معبد قُدس تو را باز خواهم دید.“"
         },
         {
           "verse": 5,
+          "usfm": "JON.2.5",
+          "line_type": "q1",
           "text": "آبها مرا به زیر کشید تا جانم را بگیرد؛ژرفا مرا در میان گرفت؛خزه‌ها دور سرم پیچیده شد."
         },
         {
           "verse": 6,
+          "usfm": "JON.2.6",
+          "line_type": "q1",
           "text": "به بُن کوه‌ها فرو رفتم،و زمین به بندهای خود مرا برای همیشه در‌گرفت.اما تو، ‌ای یهوه خدایم،حیات مرا از گور بیرون کشیدی."
         },
         {
           "verse": 7,
+          "usfm": "JON.2.7",
+          "line_type": "q1",
           "text": "چون جان من در درونم بی‌تاب شد،خداوند را به یاد آوردمو دعای من نزد تو به معبد مقدست رسید."
         },
         {
           "verse": 8,
+          "usfm": "JON.2.8",
+          "line_type": "q1",
           "text": "آنانی که به بتهای پوچ ارزش می‌دهند،امیدشان را به محبت بی‌زوال ترک می‌نمایند."
         },
         {
           "verse": 9,
+          "usfm": "JON.2.9",
+          "line_type": "q1",
           "text": "اما من به آواز شکرگزاریبرای تو قربانی خواهم گذرانید،و به آنچه نذر کردم، وفا خواهم نمود.نجات از آنِ خداوند است.»"
         },
         {
           "verse": 10,
+          "usfm": "JON.2.10",
+          "line_type": "m",
           "text": "پس خداوند ماهی را امر فرمود و ماهی یونس را بر خشکی قی کرد."
         }
       ],
       "verse_count": 10,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JON.2.1",
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "JON.2.2",
+            "JON.2.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JON.2.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "JON.2.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "JON.2.3",
+            "JON.2.4"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "JON.2.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "JON.2.4",
+            "JON.2.5"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JON.2.5"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "JON.2.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "JON.2.5",
+            "JON.2.6"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JON.2.6"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JON.2.6"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "JON.2.6"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JON.2.6",
+            "JON.2.7"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JON.2.7"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JON.2.7"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "JON.2.7",
+            "JON.2.8"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JON.2.8"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "JON.2.8",
+            "JON.2.9"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JON.2.9"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JON.2.9"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "JON.2.9"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "m",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.2.10",
+            "JON.2.9"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4205/JON.2.RCPV",
+        "reference": {
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "یونس 2",
+          "version_id": 4205
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "یونس 1",
+          "toc": true,
+          "version_id": 4205
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "یونس 3",
+          "toc": true,
+          "version_id": 4205
+        }
+      },
+      "version_meta": {
+        "id": 4205,
+        "abbreviation": "RCPV",
+        "local_abbreviation": "RCPV",
+        "title": "کتاب مقدس - ترجمه کلاسیک بازنگری شده",
+        "local_title": "کتاب مقدس - ترجمه کلاسیک بازنگری شده",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 3,
       "chapter_usfm": "JON.3",
@@ -155,52 +786,197 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.3.1",
+          "line_type": "p",
           "text": "پس کلام خداوند بار دوم بر یونس نازل شده، گفت:"
         },
         {
           "verse": 2,
+          "usfm": "JON.3.2",
+          "line_type": "p",
           "text": "«برخیز و به نینوا شهر بزرگ برو و آن پیامی را که من به تو خواهم گفت، به ایشان ندا کن.»"
         },
         {
           "verse": 3,
+          "usfm": "JON.3.3",
+          "line_type": "p",
           "text": "آنگاه یونس برخاسته، مطابق فرمان خداوند به نینوا رفت و نینوا شهری بزرگ بود و گردش در درون آن سه روز طول می‌کشید."
         },
         {
           "verse": 4,
+          "usfm": "JON.3.4",
+          "line_type": "p",
           "text": "یونس به شهر داخل شده و به مسافت یک روز رفت و به ندا کردن آغاز کرد و گفت: «بعد از چهل روز نینوا سرنگون خواهد شد.»"
         },
         {
           "verse": 5,
+          "usfm": "JON.3.5",
+          "line_type": "p",
           "text": "مردمان نینوا به خدا ایمان آوردند و به روزه اعلام کرده، از بزرگ تا کوچک پلاس پوشیدند."
         },
         {
           "verse": 6,
+          "usfm": "JON.3.6",
+          "line_type": "p",
           "text": "و چون پادشاه نینوا از این امر اطلاع یافت، از تخت خود برخاسته، ردای خود را از برکند و پلاس پوشیده، بر خاکستر نشست."
         },
         {
           "verse": 7,
+          "usfm": "JON.3.7",
+          "line_type": "p",
           "text": "پادشاه فرمانی صادر کرد و فرمان در سراسر نینوا جار کشیده شد: «به فرمان پادشاه و بزرگانش، هیچ انسان یا حیوان، گله یا رمه، چیزی نخورند و نچرند و آب ننوشند."
         },
         {
           "verse": 8,
+          "usfm": "JON.3.8",
+          "line_type": "p",
           "text": "انسان و حیوان پلاس پوشیده، نزد خدا به شدت التماس نمایند و هر کس از راه بد خود و از ظلمی که در دست او است، بازگشت نماید."
         },
         {
           "verse": 9,
+          "usfm": "JON.3.9",
+          "line_type": "p",
           "text": "کسی چه می‌داند؟ شاید خدا منصرف شده، از شدت خشم خود برگردد، تا هلاک نشویم.»"
         },
         {
           "verse": 10,
+          "usfm": "JON.3.10",
+          "line_type": "p",
           "text": "پس چون خدا کارهای ایشان را دید که از راه زشت خود بازگشت نمودند، آنگاه خدا از بلایی که گفته بود که به ایشان برساند، منصرف شد و آن را به عمل نیاورد."
         }
       ],
       "verse_count": 10,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JON.3.1",
+            "JON.3.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "JON.3.2",
+            "JON.3.3",
+            "JON.3.4",
+            "JON.3.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 9,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "JON.3.5",
+            "JON.3.6",
+            "JON.3.7",
+            "JON.3.8",
+            "JON.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "JON.3.10",
+            "JON.3.9"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4205/JON.3.RCPV",
+        "reference": {
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "یونس 3",
+          "version_id": 4205
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "یونس 2",
+          "toc": true,
+          "version_id": 4205
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "یونس 4",
+          "toc": true,
+          "version_id": 4205
+        }
+      },
+      "version_meta": {
+        "id": 4205,
+        "abbreviation": "RCPV",
+        "local_abbreviation": "RCPV",
+        "title": "کتاب مقدس - ترجمه کلاسیک بازنگری شده",
+        "local_title": "کتاب مقدس - ترجمه کلاسیک بازنگری شده",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 4,
       "chapter_usfm": "JON.4",
@@ -209,54 +985,202 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.4.1",
+          "line_type": "p",
           "text": "اما این امر یونس را بسیار ناپسند آمد و خشمش افروخته شد."
         },
         {
           "verse": 2,
+          "usfm": "JON.4.2",
+          "line_type": "p",
           "text": "و نزد خداوند دعا نموده، گفت: «آه، ‌ای خداوند، همین را نمی‌گفتم حینی که در ولایت خود بودم؟ از این سبب بود که شتابان به ترشیش گریختم، زیرا می‌دانستم که تو خدای فیّاض و رحیم هستی، و دیر به خشم می‌آیی و محبت تو بی‌پایان است. و از فرستادن بلا منصرف می‌شوی؟"
         },
         {
           "verse": 3,
+          "usfm": "JON.4.3",
+          "line_type": "p",
           "text": "پس حال، ‌ای خداوند، جانم را از من بگیر، زیرا که مردن، از زنده ماندن برای من بهتر است.»"
         },
         {
           "verse": 4,
+          "usfm": "JON.4.4",
+          "line_type": "p",
           "text": "اما خداوند گفت: «آیا درست است که خشمناک شوی؟»"
         },
         {
           "verse": 5,
+          "usfm": "JON.4.5",
+          "line_type": "p",
           "text": "یونس از شهر بیرون رفته، به طرف شرقی شهر نشست و در آنجا سایه‌بانی برای خود ساخته، زیر سایه‌اش نشست تا ببیند بر شهر ‌چه واقع خواهد شد."
         },
         {
           "verse": 6,
+          "usfm": "JON.4.6",
+          "line_type": "p",
           "text": "یهوه خدا گیاهی رویانید و آن را بالای سر یونس رشد داد تا بر سر وی سایه افکنده، او را از ناراحتی‌اش بکاهد. یونس از آن گیاه بی‌نهایت شادمان شد."
         },
         {
           "verse": 7,
+          "usfm": "JON.4.7",
+          "line_type": "p",
           "text": "اما در فردای آن روز، در وقت سپیده صبح، خدا کِرمی را برگماشت که گیاه را زد و خشک شد."
         },
         {
           "verse": 8,
+          "usfm": "JON.4.8",
+          "line_type": "p",
           "text": "و چون آفتاب برآمد، خدا بادی سوزان از جانب شرق وزانید و آفتاب بر سر یونس تابید به حدی که بی‌تاب شده، آرزوی مرگ نمود و گفت: «مردن برایم از زنده ماندن بهتر است.»"
         },
         {
           "verse": 9,
+          "usfm": "JON.4.9",
+          "line_type": "p",
           "text": "آنگاه خدا به یونس جواب داد: «آیا درست است که به جهت گیاهی غضبناک شوی؟» یونس گفت: «درست است که تا به حد مرگ غضبناک شوم.»"
         },
         {
           "verse": 10,
+          "usfm": "JON.4.10",
+          "line_type": "p",
           "text": "خداوند گفت: «تو برای گیاهی که برایش زحمتی نکشیدی و آن را نرویانیدی، دل سوزاندی، گیاهی که در یک شب سر برکشید و در یک شب پژمرد."
         },
         {
           "verse": 11,
+          "usfm": "JON.4.11",
+          "line_type": "p",
           "text": "آیا دل من به جهت نینوا شهر بزرگ نسوزد که در آن بیشتر از صد و بیست هزار انسان می‌باشند که دست راست و چپ خود را تشخیص نمی‌دهند، با حیوانات بسیار؟»"
         }
       ],
       "verse_count": 11,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "JON.4.1",
+            "JON.4.2",
+            "JON.4.3",
+            "JON.4.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "JON.4.4",
+            "JON.4.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "JON.4.5",
+            "JON.4.6",
+            "JON.4.7",
+            "JON.4.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "JON.4.10",
+            "JON.4.11",
+            "JON.4.8",
+            "JON.4.9"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/4205/JON.4.RCPV",
+        "reference": {
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "یونس 4",
+          "version_id": 4205
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "یونس 3",
+          "toc": true,
+          "version_id": 4205
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "MIC.INTRO1"
+          ],
+          "human": "میکاه ‮نکاتی چند درباره کتاب میکاه‬",
+          "toc": true,
+          "version_id": 4205
+        }
+      },
+      "version_meta": {
+        "id": 4205,
+        "abbreviation": "RCPV",
+        "local_abbreviation": "RCPV",
+        "title": "کتاب مقدس - ترجمه کلاسیک بازنگری شده",
+        "local_title": "کتاب مقدس - ترجمه کلاسیک بازنگری شده",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Korpu Company"
+        },
+        "audio_enabled": false
+      }
     }
   ]
 }

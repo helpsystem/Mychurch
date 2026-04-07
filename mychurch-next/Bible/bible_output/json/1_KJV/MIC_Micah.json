@@ -11,6 +11,7 @@
   "total_verses": 105,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 1,
       "chapter_usfm": "MIC.1",
@@ -19,81 +20,181 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.1.1",
+          "line_type": "p",
           "text": "The word of the LORD that came to Micah the Morasthite in the days of Jotham, Ahaz, and Hezekiah, kings of Judah, which he saw concerning Samaria and Jerusalem."
         },
         {
           "verse": 2,
+          "usfm": "MIC.1.2",
+          "line_type": "p",
           "text": "Hear, all ye people; hearken, O earth, and all that therein is: and let the Lord GOD be witness against you, the Lord from his holy temple."
         },
         {
           "verse": 3,
+          "usfm": "MIC.1.3",
+          "line_type": "p",
           "text": "For, behold, the LORD cometh forth out of his place, and will come down, and tread upon the high places of the earth."
         },
         {
           "verse": 4,
+          "usfm": "MIC.1.4",
+          "line_type": "p",
           "text": "And the mountains shall be molten under him, and the valleys shall be cleft, as wax before the fire, and as the waters that are poured down a steep place."
         },
         {
           "verse": 5,
+          "usfm": "MIC.1.5",
+          "line_type": "p",
           "text": "For the transgression of Jacob is all this, and for the sins of the house of Israel. What is the transgression of Jacob? is it not Samaria? and what are the high places of Judah? are they not Jerusalem?"
         },
         {
           "verse": 6,
+          "usfm": "MIC.1.6",
+          "line_type": "p",
           "text": "Therefore I will make Samaria as an heap of the field, and as plantings of a vineyard: and I will pour down the stones thereof into the valley, and I will discover the foundations thereof."
         },
         {
           "verse": 7,
+          "usfm": "MIC.1.7",
+          "line_type": "p",
           "text": "And all the graven images thereof shall be beaten to pieces, and all the hires thereof shall be burned with the fire, and all the idols thereof will I lay desolate: for she gathered it of the hire of an harlot, and they shall return to the hire of an harlot."
         },
         {
           "verse": 8,
+          "usfm": "MIC.1.8",
+          "line_type": "p",
           "text": "Therefore I will wail and howl, I will go stripped and naked: I will make a wailing like the dragons, and mourning as the owls."
         },
         {
           "verse": 9,
+          "usfm": "MIC.1.9",
+          "line_type": "p",
           "text": "For her wound is incurable; for it is come unto Judah; he is come unto the gate of my people, even to Jerusalem."
         },
         {
           "verse": 10,
+          "usfm": "MIC.1.10",
+          "line_type": "p",
           "text": "Declare ye it not at Gath, weep ye not at all: in the house of Aphrah roll thyself in the dust."
         },
         {
           "verse": 11,
+          "usfm": "MIC.1.11",
+          "line_type": "p",
           "text": "Pass ye away, thou inhabitant of Saphir, having thy shame naked: the inhabitant of Zaanan came not forth in the mourning of Beth-ezel; he shall receive of you his standing."
         },
         {
           "verse": 12,
+          "usfm": "MIC.1.12",
+          "line_type": "p",
           "text": "For the inhabitant of Maroth waited carefully for good: but evil came down from the LORD unto the gate of Jerusalem."
         },
         {
           "verse": 13,
+          "usfm": "MIC.1.13",
+          "line_type": "p",
           "text": "O thou inhabitant of Lachish, bind the chariot to the swift beast: she is the beginning of the sin to the daughter of Zion: for the transgressions of Israel were found in thee."
         },
         {
           "verse": 14,
+          "usfm": "MIC.1.14",
+          "line_type": "p",
           "text": "Therefore shalt thou give presents to Moresheth-gath: the houses of Achzib shall be a lie to the kings of Israel."
         },
         {
           "verse": 15,
+          "usfm": "MIC.1.15",
+          "line_type": "p",
           "text": "Yet will I bring an heir unto thee, O inhabitant of Mareshah: he shall come unto Adullam the glory of Israel."
         },
         {
           "verse": 16,
+          "usfm": "MIC.1.16",
+          "line_type": "p",
           "text": "Make thee bald, and poll thee for thy delicate children; enlarge thy baldness as the eagle; for they are gone into captivity from thee."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "The House of Israel"
         },
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "The House of Judah"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 9,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.1.1",
+            "MIC.1.2",
+            "MIC.1.3",
+            "MIC.1.4",
+            "MIC.1.5",
+            "MIC.1.6",
+            "MIC.1.7",
+            "MIC.1.8",
+            "MIC.1.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 16,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "MIC.1.10",
+            "MIC.1.11",
+            "MIC.1.12",
+            "MIC.1.13",
+            "MIC.1.14",
+            "MIC.1.15",
+            "MIC.1.16",
+            "MIC.1.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -104,9 +205,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/MIC/1-77fbe22ba1259ec8f4822b8be1b876ab.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/MIC.1.KJV",
+        "reference": {
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "Micah 1",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "Jonah 4",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 2,
       "chapter_usfm": "MIC.2",
@@ -115,60 +273,160 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.2.1",
+          "line_type": "p",
           "text": "Woe to them that devise iniquity, and work evil upon their beds! when the morning is light, they practise it, because it is in the power of their hand."
         },
         {
           "verse": 2,
+          "usfm": "MIC.2.2",
+          "line_type": "p",
           "text": "And they covet fields, and take them by violence; and houses, and take them away: so they oppress a man and his house, even a man and his heritage."
         },
         {
           "verse": 3,
+          "usfm": "MIC.2.3",
+          "line_type": "p",
           "text": "Therefore thus saith the LORD; Behold, against this family do I devise an evil, from which ye shall not remove your necks; neither shall ye go haughtily: for this time is evil."
         },
         {
           "verse": 4,
+          "usfm": "MIC.2.4",
+          "line_type": "p",
           "text": "In that day shall one take up a parable against you, and lament with a doleful lamentation, and say, We be utterly spoiled: he hath changed the portion of my people: how hath he removed it from me! turning away he hath divided our fields."
         },
         {
           "verse": 5,
+          "usfm": "MIC.2.5",
+          "line_type": "p",
           "text": "Therefore thou shalt have none that shall cast a cord by lot in the congregation of the LORD."
         },
         {
           "verse": 6,
+          "usfm": "MIC.2.6",
+          "line_type": "p",
           "text": "Prophesy ye not, say they to them that prophesy: they shall not prophesy to them, that they shall not take shame."
         },
         {
           "verse": 7,
+          "usfm": "MIC.2.7",
+          "line_type": "p",
           "text": "O thou that art named the house of Jacob, is the spirit of the LORD straitened? are these his doings? do not my words do good to him that walketh uprightly?"
         },
         {
           "verse": 8,
+          "usfm": "MIC.2.8",
+          "line_type": "p",
           "text": "Even of late my people is risen up as an enemy: ye pull off the robe with the garment from them that pass by securely as men averse from war."
         },
         {
           "verse": 9,
+          "usfm": "MIC.2.9",
+          "line_type": "p",
           "text": "The women of my people have ye cast out from their pleasant houses; from their children have ye taken away my glory for ever."
         },
         {
           "verse": 10,
+          "usfm": "MIC.2.10",
+          "line_type": "p",
           "text": "Arise ye, and depart; for this is not your rest: because it is polluted, it shall destroy you, even with a sore destruction."
         },
         {
           "verse": 11,
+          "usfm": "MIC.2.11",
+          "line_type": "p",
           "text": "If a man walking in the spirit and falsehood do lie, saying, I will prophesy unto thee of wine and of strong drink; he shall even be the prophet of this people."
         },
         {
           "verse": 12,
+          "usfm": "MIC.2.12",
+          "line_type": "p",
           "text": "I will surely assemble, O Jacob, all of thee; I will surely gather the remnant of Israel; I will put them together as the sheep of Bozrah, as the flock in the midst of their fold: they shall make great noise by reason of the multitude of men."
         },
         {
           "verse": 13,
+          "usfm": "MIC.2.13",
+          "line_type": "p",
           "text": "The breaker is come up before them: they have broken up, and have passed through the gate, and are gone out by it: and their king shall pass before them, and the LORD on the head of them."
         }
       ],
       "verse_count": 13,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "MIC.2.1",
+            "MIC.2.2",
+            "MIC.2.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 6,
+          "verses": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.2.3",
+            "MIC.2.4",
+            "MIC.2.5",
+            "MIC.2.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 11,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "MIC.2.10",
+            "MIC.2.11",
+            "MIC.2.6",
+            "MIC.2.7",
+            "MIC.2.8",
+            "MIC.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.2.11",
+            "MIC.2.12",
+            "MIC.2.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -179,9 +437,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/MIC/2-52a32bbd02d968f7b3f78b578f030cc0.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/MIC.2.KJV",
+        "reference": {
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "Micah 1",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 3,
       "chapter_usfm": "MIC.3",
@@ -190,56 +505,152 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.3.1",
+          "line_type": "p",
           "text": "And I said, Hear, I pray you, O heads of Jacob, and ye princes of the house of Israel; Is it not for you to know judgment?"
         },
         {
           "verse": 2,
+          "usfm": "MIC.3.2",
+          "line_type": "p",
           "text": "Who hate the good, and love the evil; who pluck off their skin from off them, and their flesh from off their bones;"
         },
         {
           "verse": 3,
+          "usfm": "MIC.3.3",
+          "line_type": "p",
           "text": "who also eat the flesh of my people, and flay their skin from off them; and they break their bones, and chop them in pieces, as for the pot, and as flesh within the caldron."
         },
         {
           "verse": 4,
+          "usfm": "MIC.3.4",
+          "line_type": "p",
           "text": "Then shall they cry unto the LORD, but he will not hear them: he will even hide his face from them at that time, as they have behaved themselves ill in their doings."
         },
         {
           "verse": 5,
+          "usfm": "MIC.3.5",
+          "line_type": "p",
           "text": "Thus saith the LORD concerning the prophets that make my people err, that bite with their teeth, and cry, Peace; and he that putteth not into their mouths, they even prepare war against him."
         },
         {
           "verse": 6,
+          "usfm": "MIC.3.6",
+          "line_type": "p",
           "text": "Therefore night shall be unto you, that ye shall not have a vision; and it shall be dark unto you, that ye shall not divine; and the sun shall go down over the prophets, and the day shall be dark over them."
         },
         {
           "verse": 7,
+          "usfm": "MIC.3.7",
+          "line_type": "p",
           "text": "Then shall the seers be ashamed, and the diviners confounded: yea, they shall all cover their lips; for there is no answer of God."
         },
         {
           "verse": 8,
+          "usfm": "MIC.3.8",
+          "line_type": "p",
           "text": "But truly I am full of power by the spirit of the LORD, and of judgment, and of might, to declare unto Jacob his transgression, and to Israel his sin."
         },
         {
           "verse": 9,
+          "usfm": "MIC.3.9",
+          "line_type": "p",
           "text": "Hear this, I pray you, ye heads of the house of Jacob, and princes of the house of Israel, that abhor judgment, and pervert all equity."
         },
         {
           "verse": 10,
+          "usfm": "MIC.3.10",
+          "line_type": "p",
           "text": "They build up Zion with blood, and Jerusalem with iniquity."
         },
         {
           "verse": 11,
+          "usfm": "MIC.3.11",
+          "line_type": "p",
           "text": "The heads thereof judge for reward, and the priests thereof teach for hire, and the prophets thereof divine for money: yet will they lean upon the LORD, and say, Is not the LORD among us? none evil can come upon us."
         },
         {
           "verse": 12,
+          "usfm": "MIC.3.12",
+          "line_type": "p",
           "text": "Therefore shall Zion for your sake be plowed as a field, and Jerusalem shall become heaps, and the mountain of the house as the high places of the forest."
         }
       ],
       "verse_count": 12,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.3.1",
+            "MIC.3.2",
+            "MIC.3.3",
+            "MIC.3.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MIC.3.4",
+            "MIC.3.5",
+            "MIC.3.6",
+            "MIC.3.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.3.7",
+            "MIC.3.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 12,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MIC.3.10",
+            "MIC.3.11",
+            "MIC.3.12",
+            "MIC.3.8",
+            "MIC.3.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -250,9 +661,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/MIC/3-1cdd8483ec056620e635faf6c98f60cf.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 12,
+          "parsed_count": 12,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/MIC.3.KJV",
+        "reference": {
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.2"
+          ],
+          "human": "Micah 2",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 4,
       "chapter_usfm": "MIC.4",
@@ -261,60 +729,160 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.4.1",
+          "line_type": "p",
           "text": "But in the last days it shall come to pass, that the mountain of the house of the LORD shall be established in the top of the mountains, and it shall be exalted above the hills; and people shall flow unto it."
         },
         {
           "verse": 2,
+          "usfm": "MIC.4.2",
+          "line_type": "p",
           "text": "And many nations shall come, and say, Come, and let us go up to the mountain of the LORD, and to the house of the God of Jacob; and he will teach us of his ways, and we will walk in his paths: for the law shall go forth of Zion, and the word of the LORD from Jerusalem."
         },
         {
           "verse": 3,
+          "usfm": "MIC.4.3",
+          "line_type": "p",
           "text": "And he shall judge among many people, and rebuke strong nations afar off; and they shall beat their swords into plowshares, and their spears into pruninghooks: nation shall not lift up a sword against nation, neither shall they learn war any more."
         },
         {
           "verse": 4,
+          "usfm": "MIC.4.4",
+          "line_type": "p",
           "text": "But they shall sit every man under his vine and under his fig tree; and none shall make them afraid: for the mouth of the LORD of hosts hath spoken it."
         },
         {
           "verse": 5,
+          "usfm": "MIC.4.5",
+          "line_type": "p",
           "text": "For all people will walk every one in the name of his god, and we will walk in the name of the LORD our God for ever and ever."
         },
         {
           "verse": 6,
+          "usfm": "MIC.4.6",
+          "line_type": "p",
           "text": "In that day, saith the LORD, will I assemble her that halteth, and I will gather her that is driven out, and her that I have afflicted;"
         },
         {
           "verse": 7,
+          "usfm": "MIC.4.7",
+          "line_type": "p",
           "text": "and I will make her that halted a remnant, and her that was cast far off a strong nation: and the LORD shall reign over them in mount Zion from henceforth, even for ever."
         },
         {
           "verse": 8,
+          "usfm": "MIC.4.8",
+          "line_type": "p",
           "text": "And thou, O tower of the flock, the strong hold of the daughter of Zion, unto thee shall it come, even the first dominion; the kingdom shall come to the daughter of Jerusalem."
         },
         {
           "verse": 9,
+          "usfm": "MIC.4.9",
+          "line_type": "p",
           "text": "Now why dost thou cry out aloud? is there no king in thee? is thy counsellor perished? for pangs have taken thee as a woman in travail."
         },
         {
           "verse": 10,
+          "usfm": "MIC.4.10",
+          "line_type": "p",
           "text": "Be in pain, and labour to bring forth, O daughter of Zion, like a woman in travail: for now shalt thou go forth out of the city, and thou shalt dwell in the field, and thou shalt go even to Babylon; there shalt thou be delivered; there the LORD shall redeem thee from the hand of thine enemies."
         },
         {
           "verse": 11,
+          "usfm": "MIC.4.11",
+          "line_type": "p",
           "text": "Now also many nations are gathered against thee, that say, Let her be defiled, and let our eye look upon Zion."
         },
         {
           "verse": 12,
+          "usfm": "MIC.4.12",
+          "line_type": "p",
           "text": "But they know not the thoughts of the LORD, neither understand they his counsel: for he shall gather them as the sheaves into the floor."
         },
         {
           "verse": 13,
+          "usfm": "MIC.4.13",
+          "line_type": "p",
           "text": "Arise and thresh, O daughter of Zion: for I will make thine horn iron, and I will make thy hoofs brass: and thou shalt beat in pieces many people: and I will consecrate their gain unto the LORD, and their substance unto the Lord of the whole earth."
         }
       ],
       "verse_count": 13,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.4.1",
+            "MIC.4.2",
+            "MIC.4.3",
+            "MIC.4.4",
+            "MIC.4.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.4.5",
+            "MIC.4.6",
+            "MIC.4.7",
+            "MIC.4.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.4.10",
+            "MIC.4.8",
+            "MIC.4.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.4.10",
+            "MIC.4.11",
+            "MIC.4.12",
+            "MIC.4.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -325,9 +893,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/MIC/4-bfafe69667a3d9bde78928c9ca9d15c2.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/MIC.4.KJV",
+        "reference": {
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.3"
+          ],
+          "human": "Micah 3",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 5,
       "chapter_usfm": "MIC.5",
@@ -336,73 +961,193 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.5.1",
+          "line_type": "p",
           "text": "Now gather thyself in troops, O daughter of troops: he hath laid siege against us: they shall smite the judge of Israel with a rod upon the cheek."
         },
         {
           "verse": 2,
+          "usfm": "MIC.5.2",
+          "line_type": "p",
           "text": "But thou, Beth-lehem Ephratah, though thou be little among the thousands of Judah, yet out of thee shall he come forth unto me that is to be ruler in Israel; whose goings forth have been from of old, from everlasting."
         },
         {
           "verse": 3,
+          "usfm": "MIC.5.3",
+          "line_type": "p",
           "text": "Therefore will he give them up, until the time that she which travaileth hath brought forth: then the remnant of his brethren shall return unto the children of Israel."
         },
         {
           "verse": 4,
+          "usfm": "MIC.5.4",
+          "line_type": "p",
           "text": "And he shall stand and feed in the strength of the LORD, in the majesty of the name of the LORD his God; and they shall abide: for now shall he be great unto the ends of the earth."
         },
         {
           "verse": 5,
+          "usfm": "MIC.5.5",
+          "line_type": "p",
           "text": "And this man shall be the peace, when the Assyrian shall come into our land: and when he shall tread in our palaces, then shall we raise against him seven shepherds, and eight principal men."
         },
         {
           "verse": 6,
+          "usfm": "MIC.5.6",
+          "line_type": "p",
           "text": "And they shall waste the land of Assyria with the sword, and the land of Nimrod in the entrances thereof: thus shall he deliver us from the Assyrian, when he cometh into our land, and when he treadeth within our borders."
         },
         {
           "verse": 7,
+          "usfm": "MIC.5.7",
+          "line_type": "p",
           "text": "And the remnant of Jacob shall be in the midst of many people as a dew from the LORD, as the showers upon the grass, that tarrieth not for man, nor waiteth for the sons of men."
         },
         {
           "verse": 8,
+          "usfm": "MIC.5.8",
+          "line_type": "p",
           "text": "And the remnant of Jacob shall be among the Gentiles in the midst of many people as a lion among the beasts of the forest, as a young lion among the flocks of sheep: who, if he go through, both treadeth down, and teareth in pieces, and none can deliver."
         },
         {
           "verse": 9,
+          "usfm": "MIC.5.9",
+          "line_type": "p",
           "text": "Thine hand shall be lifted up upon thine adversaries, and all thine enemies shall be cut off."
         },
         {
           "verse": 10,
+          "usfm": "MIC.5.10",
+          "line_type": "p",
           "text": "And it shall come to pass in that day, saith the LORD, that I will cut off thy horses out of the midst of thee, and I will destroy thy chariots:"
         },
         {
           "verse": 11,
+          "usfm": "MIC.5.11",
+          "line_type": "p",
           "text": "and I will cut off the cities of thy land, and throw down all thy strong holds:"
         },
         {
           "verse": 12,
+          "usfm": "MIC.5.12",
+          "line_type": "p",
           "text": "and I will cut off witchcrafts out of thine hand; and thou shalt have no more soothsayers:"
         },
         {
           "verse": 13,
+          "usfm": "MIC.5.13",
+          "line_type": "p",
           "text": "thy graven images also will I cut off, and thy standing images out of the midst of thee; and thou shalt no more worship the work of thine hands."
         },
         {
           "verse": 14,
+          "usfm": "MIC.5.14",
+          "line_type": "p",
           "text": "And I will pluck up thy groves out of the midst of thee: so will I destroy thy cities."
         },
         {
           "verse": 15,
+          "usfm": "MIC.5.15",
+          "line_type": "p",
           "text": "And I will execute vengeance in anger and fury upon the heathen, such as they have not heard."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Little Town of Beth-lehem"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MIC.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MIC.5.1",
+            "MIC.5.2",
+            "MIC.5.3",
+            "MIC.5.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.5.4",
+            "MIC.5.5",
+            "MIC.5.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 9,
+          "verses": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "MIC.5.6",
+            "MIC.5.7",
+            "MIC.5.8",
+            "MIC.5.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 15,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "MIC.5.10",
+            "MIC.5.11",
+            "MIC.5.12",
+            "MIC.5.13",
+            "MIC.5.14",
+            "MIC.5.15",
+            "MIC.5.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -413,9 +1158,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/MIC/5-ca4ef9fce62c3ee3db92034067f9cb7f.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/MIC.5.KJV",
+        "reference": {
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.4"
+          ],
+          "human": "Micah 4",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 6,
       "chapter_usfm": "MIC.6",
@@ -424,77 +1226,189 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.6.1",
+          "line_type": "p",
           "text": "Hear ye now what the LORD saith; Arise, contend thou before the mountains, and let the hills hear thy voice."
         },
         {
           "verse": 2,
+          "usfm": "MIC.6.2",
+          "line_type": "p",
           "text": "Hear ye, O mountains, the LORD's controversy, and ye strong foundations of the earth: for the LORD hath a controversy with his people, and he will plead with Israel."
         },
         {
           "verse": 3,
+          "usfm": "MIC.6.3",
+          "line_type": "p",
           "text": "O my people, what have I done unto thee? and wherein have I wearied thee? testify against me."
         },
         {
           "verse": 4,
+          "usfm": "MIC.6.4",
+          "line_type": "p",
           "text": "For I brought thee up out of the land of Egypt, and redeemed thee out of the house of servants; and I sent before thee Moses, Aaron, and Miriam."
         },
         {
           "verse": 5,
+          "usfm": "MIC.6.5",
+          "line_type": "p",
           "text": "O my people, remember now what Balak king of Moab consulted, and what Balaam the son of Beor answered him from Shittim unto Gilgal; that ye may know the righteousness of the LORD."
         },
         {
           "verse": 6,
+          "usfm": "MIC.6.6",
+          "line_type": "p",
           "text": "Wherewith shall I come before the LORD, and bow myself before the high God? shall I come before him with burnt offerings, with calves of a year old?"
         },
         {
           "verse": 7,
+          "usfm": "MIC.6.7",
+          "line_type": "p",
           "text": "Will the LORD be pleased with thousands of rams, or with ten thousands of rivers of oil? shall I give my firstborn for my transgression, the fruit of my body for the sin of my soul?"
         },
         {
           "verse": 8,
+          "usfm": "MIC.6.8",
+          "line_type": "p",
           "text": "He hath shewed thee, O man, what is good; and what doth the LORD require of thee, but to do justly, and to love mercy, and to walk humbly with thy God?"
         },
         {
           "verse": 9,
+          "usfm": "MIC.6.9",
+          "line_type": "p",
           "text": "The LORD's voice crieth unto the city, and the man of wisdom shall see thy name: hear ye the rod, and who hath appointed it."
         },
         {
           "verse": 10,
+          "usfm": "MIC.6.10",
+          "line_type": "p",
           "text": "Are there yet the treasures of wickedness in the house of the wicked, and the scant measure that is abominable?"
         },
         {
           "verse": 11,
+          "usfm": "MIC.6.11",
+          "line_type": "p",
           "text": "Shall I count them pure with the wicked balances, and with the bag of deceitful weights?"
         },
         {
           "verse": 12,
+          "usfm": "MIC.6.12",
+          "line_type": "p",
           "text": "For the rich men thereof are full of violence, and the inhabitants thereof have spoken lies, and their tongue is deceitful in their mouth."
         },
         {
           "verse": 13,
+          "usfm": "MIC.6.13",
+          "line_type": "p",
           "text": "Therefore also will I make thee sick in smiting thee, in making thee desolate because of thy sins."
         },
         {
           "verse": 14,
+          "usfm": "MIC.6.14",
+          "line_type": "p",
           "text": "Thou shalt eat, but not be satisfied; and thy casting down shall be in the midst of thee; and thou shalt take hold, but shalt not deliver; and that which thou deliverest will I give up to the sword."
         },
         {
           "verse": 15,
+          "usfm": "MIC.6.15",
+          "line_type": "p",
           "text": "Thou shalt sow, but thou shalt not reap; thou shalt tread the olives, but thou shalt not anoint thee with oil; and sweet wine, but shalt not drink wine."
         },
         {
           "verse": 16,
+          "usfm": "MIC.6.16",
+          "line_type": "p",
           "text": "For the statutes of Omri are kept, and all the works of the house of Ahab, and ye walk in their counsels; that I should make thee a desolation, and the inhabitants thereof an hissing: therefore ye shall bear the reproach of my people."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "His Call to the City"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "MIC.6.1",
+            "MIC.6.2",
+            "MIC.6.3",
+            "MIC.6.4",
+            "MIC.6.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "MIC.6.5",
+            "MIC.6.6",
+            "MIC.6.7",
+            "MIC.6.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 15,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "MIC.6.10",
+            "MIC.6.11",
+            "MIC.6.12",
+            "MIC.6.13",
+            "MIC.6.14",
+            "MIC.6.15",
+            "MIC.6.8",
+            "MIC.6.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "MIC.6.15",
+            "MIC.6.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -505,9 +1419,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/MIC/6-a4f2b3a1ce8aa92c975777dedb200f43.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/MIC.6.KJV",
+        "reference": {
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.5"
+          ],
+          "human": "Micah 5",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "Micah 7",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MIC",
       "chapter": 7,
       "chapter_usfm": "MIC.7",
@@ -516,93 +1487,233 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MIC.7.1",
+          "line_type": "p",
           "text": "Woe is me! for I am as when they have gathered the summer fruits, as the grapegleanings of the vintage: there is no cluster to eat: my soul desired the firstripe fruit."
         },
         {
           "verse": 2,
+          "usfm": "MIC.7.2",
+          "line_type": "p",
           "text": "The good man is perished out of the earth: and there is none upright among men: they all lie in wait for blood; they hunt every man his brother with a net."
         },
         {
           "verse": 3,
+          "usfm": "MIC.7.3",
+          "line_type": "p",
           "text": "That they may do evil with both hands earnestly, the prince asketh, and the judge asketh for a reward; and the great man, he uttereth his mischievous desire: so they wrap it up."
         },
         {
           "verse": 4,
+          "usfm": "MIC.7.4",
+          "line_type": "p",
           "text": "The best of them is as a brier: the most upright is sharper than a thorn hedge: the day of thy watchmen and thy visitation cometh; now shall be their perplexity."
         },
         {
           "verse": 5,
+          "usfm": "MIC.7.5",
+          "line_type": "p",
           "text": "Trust ye not in a friend, put ye not confidence in a guide: keep the doors of thy mouth from her that lieth in thy bosom."
         },
         {
           "verse": 6,
+          "usfm": "MIC.7.6",
+          "line_type": "p",
           "text": "For the son dishonoureth the father, the daughter riseth up against her mother, the daughter in law against her mother in law; a man's enemies are the men of his own house."
         },
         {
           "verse": 7,
+          "usfm": "MIC.7.7",
+          "line_type": "p",
           "text": "Therefore I will look unto the LORD; I will wait for the God of my salvation: my God will hear me."
         },
         {
           "verse": 8,
+          "usfm": "MIC.7.8",
+          "line_type": "p",
           "text": "Rejoice not against me, O mine enemy: when I fall, I shall arise; when I sit in darkness, the LORD shall be a light unto me."
         },
         {
           "verse": 9,
+          "usfm": "MIC.7.9",
+          "line_type": "p",
           "text": "I will bear the indignation of the LORD, because I have sinned against him, until he plead my cause, and execute judgment for me: he will bring me forth to the light, and I shall behold his righteousness."
         },
         {
           "verse": 10,
+          "usfm": "MIC.7.10",
+          "line_type": "p",
           "text": "Then she that is mine enemy shall see it, and shame shall cover her which said unto me, Where is the LORD thy God? mine eyes shall behold her: now shall she be trodden down as the mire of the streets."
         },
         {
           "verse": 11,
+          "usfm": "MIC.7.11",
+          "line_type": "p",
           "text": "In the day that thy walls are to be built, in that day shall the decree be far removed."
         },
         {
           "verse": 12,
+          "usfm": "MIC.7.12",
+          "line_type": "p",
           "text": "In that day also he shall come even to thee from Assyria, and from the fortified cities, and from the fortress even to the river, and from sea to sea, and from mountain to mountain."
         },
         {
           "verse": 13,
+          "usfm": "MIC.7.13",
+          "line_type": "p",
           "text": "Notwithstanding the land shall be desolate because of them that dwell therein, for the fruit of their doings."
         },
         {
           "verse": 14,
+          "usfm": "MIC.7.14",
+          "line_type": "p",
           "text": "Feed thy people with thy rod, the flock of thine heritage, which dwell solitarily in the wood, in the midst of Carmel: let them feed in Bashan and Gilead, as in the days of old."
         },
         {
           "verse": 15,
+          "usfm": "MIC.7.15",
+          "line_type": "p",
           "text": "According to the days of thy coming out of the land of Egypt will I shew unto him marvellous things."
         },
         {
           "verse": 16,
+          "usfm": "MIC.7.16",
+          "line_type": "p",
           "text": "The nations shall see and be confounded at all their might: they shall lay their hand upon their mouth, their ears shall be deaf."
         },
         {
           "verse": 17,
+          "usfm": "MIC.7.17",
+          "line_type": "p",
           "text": "They shall lick the dust like a serpent, they shall move out of their holes like worms of the earth: they shall be afraid of the LORD our God, and shall fear because of thee."
         },
         {
           "verse": 18,
+          "usfm": "MIC.7.18",
+          "line_type": "p",
           "text": "Who is a God like unto thee, that pardoneth iniquity, and passeth by the transgression of the remnant of his heritage? he retaineth not his anger for ever, because he delighteth in mercy."
         },
         {
           "verse": 19,
+          "usfm": "MIC.7.19",
+          "line_type": "p",
           "text": "He will turn again, he will have compassion upon us; he will subdue our iniquities; and thou wilt cast all their sins into the depths of the sea."
         },
         {
           "verse": 20,
+          "usfm": "MIC.7.20",
+          "line_type": "p",
           "text": "Thou wilt perform the truth to Jacob, and the mercy to Abraham, which thou hast sworn unto our fathers from the days of old."
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Her Trust in God"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 6,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MIC.7.1",
+            "MIC.7.2",
+            "MIC.7.3",
+            "MIC.7.4",
+            "MIC.7.5",
+            "MIC.7.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 10,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "MIC.7.10",
+            "MIC.7.6",
+            "MIC.7.7",
+            "MIC.7.8",
+            "MIC.7.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "MIC.7.10",
+            "MIC.7.11",
+            "MIC.7.12",
+            "MIC.7.13"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 17,
+          "verses": [
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "MIC.7.13",
+            "MIC.7.14",
+            "MIC.7.15",
+            "MIC.7.16",
+            "MIC.7.17"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 20,
+          "verses": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "MIC.7.17",
+            "MIC.7.18",
+            "MIC.7.19",
+            "MIC.7.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -613,7 +1724,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/MIC/7-16e9fa12bd528d0987b96a7eb7fd9f64.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/MIC.7.KJV",
+        "reference": {
+          "usfm": [
+            "MIC.7"
+          ],
+          "human": "Micah 7",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MIC.6"
+          ],
+          "human": "Micah 6",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "NAM.1"
+          ],
+          "human": "Nahum 1",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 50,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 1,
       "chapter_usfm": "ZEC.1",
@@ -19,42 +20,62 @@
       "verses": [
         {
           "verse": 7,
+          "usfm": "ZEC.1.7",
+          "line_type": "m",
           "text": "On the twenty-fourth day of the eleventh month in the second year of the reign of Darius, the Message of God was given to the prophet Zechariah son of Berechiah, son of Iddo:"
         },
         {
           "verse": 8,
+          "usfm": "ZEC.1.8",
+          "line_type": "p",
           "text": "One night I looked out and saw a man astride a red horse. He was in the shadows in a grove of birches. Behind him were more horses—a red, a chestnut, and a white."
         },
         {
           "verse": 9,
+          "usfm": "ZEC.1.9",
+          "line_type": "p",
           "text": "I said, “Sir, what are these horses doing here? What’s the meaning of this?”The Angel-Messenger said, “Let me show you.”"
         },
         {
           "verse": 10,
+          "usfm": "ZEC.1.10",
+          "line_type": "p",
           "text": "Then the rider in the birch grove spoke up, “These are the riders that God sent to check things out on earth.”"
         },
         {
           "verse": 11,
+          "usfm": "ZEC.1.11",
+          "line_type": "p",
           "text": "They reported their findings to the Angel of God in the birch grove: “We have looked over the whole earth and all is well. Everything’s under control.”"
         },
         {
           "verse": 12,
+          "usfm": "ZEC.1.12",
+          "line_type": "p",
           "text": "The Angel of God reported back, “O God-of-the-Angel-Armies, how long are you going to stay angry with Jerusalem and the cities of Judah? When are you going to let up? Isn’t seventy years long enough?” God reassured the Angel-Messenger—good words, comforting words—who then addressed me: “Tell them this. Tell them that God-of-the-Angel-Armies has spoken. This is God’s Message: ‘I care deeply for Jerusalem and Zion. I feel very possessive of them. But I’m thoroughly angry with the godless nations that act as if they own the whole world. I was only moderately angry earlier, but now they’ve gone too far. I’m going into action. “‘I’ve come back to Jerusalem, but with compassion this time.’This is God speaking.‘I’ll see to it that my Temple is rebuilt.’A Decree of God-of-the-Angel-Armies!‘The rebuilding operation is already staked out.’Say it again—a Decree of God-of-the-Angel-Armies:‘My cities will prosper again, God will comfort Zion again,Jerusalem will be back in my favor again.’”"
         },
         {
           "verse": 18,
+          "usfm": "ZEC.1.18",
+          "line_type": "m",
           "text": "I looked up, and was surprised by another vision: four horns!"
         },
         {
           "verse": 19,
+          "usfm": "ZEC.1.19",
+          "line_type": "p",
           "text": "I asked the Messenger-Angel, “And what’s the meaning of this?”He said, “These are the powers that have scattered Judah, Israel, and Jerusalem abroad.”"
         },
         {
           "verse": 20,
+          "usfm": "ZEC.1.20",
+          "line_type": "p",
           "text": "Then God expanded the vision to include four blacksmiths."
         },
         {
           "verse": 21,
+          "usfm": "ZEC.1.21",
+          "line_type": "p",
           "text": "I asked, “And what are these all about?”He said, “Since the ‘horns’ scattered Judah so badly that no one had any hope left, these blacksmiths have arrived to combat the horns. They’ll dehorn the godless nations who used their horns to scatter Judah to the four winds.”"
         }
       ],
@@ -65,11 +86,197 @@
           "text": "First Vision: Four Riders"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Second Vision: Four Horns and Four Blacksmiths"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ZEC.1.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "ZEC.1.7",
+            "ZEC.1.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "ZEC.1.8",
+            "ZEC.1.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEC.1.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "ZEC.1.10",
+            "ZEC.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "ZEC.1.10",
+            "ZEC.1.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "ZEC.1.11",
+            "ZEC.1.12"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEC.1.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "m",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ZEC.1.18"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "ZEC.1.18",
+            "ZEC.1.19"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ZEC.1.19"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "ZEC.1.19",
+            "ZEC.1.20"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "ZEC.1.20",
+            "ZEC.1.21"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "ZEC.1.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -80,9 +287,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/1-5bd5e62a9a88a5b79a2bc24ddaa563a0.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.1.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.1"
+          ],
+          "human": "Zechariah 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HAG.2"
+          ],
+          "human": "Haggai 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.2"
+          ],
+          "human": "Zechariah 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 2,
       "chapter_usfm": "ZEC.2",
@@ -91,16 +355,82 @@
       "verses": [
         {
           "verse": 10,
+          "usfm": "ZEC.2.10",
+          "line_type": "q1",
           "text": "“Shout and celebrate, Daughter of Zion!I’m on my way. I’m moving into your neighborhood!” God’s Decree.* * * Many godless nations will be linked up with God at that time. (“They will become my family! I’ll live in their homes!”) And then you’ll know for sure that God-of-the-Angel-Armies sent me on this mission. God will reclaim his Judah inheritance in the Holy Land. He’ll again make clear that Jerusalem is his choice.* * *"
         },
         {
           "verse": 13,
+          "usfm": "ZEC.2.13",
+          "line_type": "p",
           "text": "Quiet, everyone! Shh! Silence before God. Something’s afoot in his holy house. He’s on the move!"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEC.2.10"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEC.2.10"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q3",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEC.2.10"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEC.2.10"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEC.2.13"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -111,9 +441,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/2-5b74452caa68081d5a7cc9c46d8021bc.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.2.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.2"
+          ],
+          "human": "Zechariah 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.1"
+          ],
+          "human": "Zechariah 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.3"
+          ],
+          "human": "Zechariah 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 3,
       "chapter_usfm": "ZEC.3",
@@ -122,16 +509,58 @@
       "verses": [
         {
           "verse": 5,
+          "usfm": "ZEC.3.5",
+          "line_type": "p",
           "text": "I spoke up and said, “How about a clean new turban for his head also?” And they did it—put a clean new turban on his head. Then they finished dressing him, with God’s Angel looking on. God’s Angel then charged Joshua, “Orders from God-of-the-Angel-Armies: ‘If you live the way I tell you and remain obedient in my service, then you’ll make the decisions around here and oversee my affairs. And all my attendants standing here will be at your service. “‘Careful, High Priest Joshua—both you and your friends sitting here with you, for your friends are in on this, too! Here’s what I’m doing next: I’m introducing my servant Branch. And note this: This stone that I’m placing before Joshua, a single stone with seven eyes’—Decree of God-of-the-Angel-Armies—‘I’ll engrave with these words: “I’ll strip this land of its filthy sin, all at once, in a single day.”"
         },
         {
           "verse": 10,
+          "usfm": "ZEC.3.10",
+          "line_type": "p",
           "text": "“‘At that time, everyone will get along with one another, with friendly visits across the fence, friendly visits on one another’s porches.’”"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEC.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEC.3.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ZEC.3.10"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -142,9 +571,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/3-1633355c3d8ca76c22468875adf0802a.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.3.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.3"
+          ],
+          "human": "Zechariah 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.2"
+          ],
+          "human": "Zechariah 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.4"
+          ],
+          "human": "Zechariah 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 4,
       "chapter_usfm": "ZEC.4",
@@ -153,24 +639,120 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEC.4.1",
+          "line_type": "m",
           "text": "The Messenger-Angel again called me to attention. It was like being wakened out of deep sleep. He said, “What do you see?”I answered, “I see a lampstand of solid gold with a bowl on top. Seven lamps, each with seven spouts, are set on the bowl. And there are two olive trees, one on either side of the bowl.”"
         },
         {
           "verse": 4,
+          "usfm": "ZEC.4.4",
+          "line_type": "p",
           "text": "Then I asked the Messenger-Angel, “What does this mean, sir?” The Messenger-Angel said, “Can’t you tell?”“No, sir,” I said.Then he said, “This is God’s Message to Zerubbabel: ‘You can’t force these things. They only come about through my Spirit,’ says God-of-the-Angel-Armies. ‘So, big mountain, who do you think you are? Next to Zerubbabel you’re nothing but a molehill. He’ll proceed to set the Cornerstone in place, accompanied by cheers: Yes! Yes! Do it!’” After that, the Word of God came to me: “Zerubbabel started rebuilding this Temple and he will complete it. That will be your confirmation that God-of-the-Angel-Armies sent me to you. Does anyone dare despise this day of small beginnings? They’ll change their tune when they see Zerubbabel setting the last stone in place!”Going back to the vision, the Messenger-Angel said, “The seven lamps are the eyes of God probing the dark corners of the world like searchlights.” “And the two olive trees on either side of the lampstand?” I asked. “What’s the meaning of them? And while you’re at it, the two branches of the olive trees that feed oil to the lamps—what do they mean?”"
         },
         {
           "verse": 13,
+          "usfm": "ZEC.4.13",
+          "line_type": "p",
           "text": "He said, “You haven’t figured that out?”I said, “No, sir.”"
         },
         {
           "verse": 14,
+          "usfm": "ZEC.4.14",
+          "line_type": "p",
           "text": "He said, “These are the two who stand beside the Master of the whole earth and supply golden lamp oil worldwide.”"
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEC.4.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEC.4.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEC.4.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ZEC.4.13"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "ZEC.4.13",
+            "ZEC.4.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -181,9 +763,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/4-6173445361ced5fb62d33985350e5ac5.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.4.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.4"
+          ],
+          "human": "Zechariah 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.3"
+          ],
+          "human": "Zechariah 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.5"
+          ],
+          "human": "Zechariah 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 5,
       "chapter_usfm": "ZEC.5",
@@ -192,49 +831,227 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEC.5.1",
+          "line_type": "m",
           "text": "I looked up again and saw—surprise!—a book on the wing! A book flying!"
         },
         {
           "verse": 2,
+          "usfm": "ZEC.5.2",
+          "line_type": "p",
           "text": "The Messenger-Angel said to me, “What do you see now?”I said, “I see a book flying, a huge book—thirty feet long and fifteen wide!” He told me, “This book is the verdict going out worldwide against thieves and liars. The first half of the book disposes of everyone who steals; the second half takes care of everyone who lies. I launched it”—Decree of God-of-the-Angel-Armies—“and so it will fly into the house of every thief and every liar. It will land in each house and tear it down, timbers and stones.”"
         },
         {
           "verse": 5,
+          "usfm": "ZEC.5.5",
+          "line_type": "m",
           "text": "The Messenger-Angel appeared and said, “Look up. Tell me what you see.”"
         },
         {
           "verse": 6,
+          "usfm": "ZEC.5.6",
+          "line_type": "p",
           "text": "I said, “What in the world is that?”He said, “This is a bushel basket on a journey. It holds the sin of everyone, everywhere.”"
         },
         {
           "verse": 7,
+          "usfm": "ZEC.5.7",
+          "line_type": "p",
           "text": "Then the lid made of lead was removed from the basket—and there was a woman sitting in it!"
         },
         {
           "verse": 8,
+          "usfm": "ZEC.5.8",
+          "line_type": "p",
           "text": "He said, “This is Miss Wickedness.” He pushed her back down into the basket and clamped the lead lid over her."
         },
         {
           "verse": 9,
+          "usfm": "ZEC.5.9",
+          "line_type": "p",
           "text": "Then I looked up and to my surprise saw two women flying. On outstretched wings they airlifted the bushel basket into the sky."
         },
         {
           "verse": 10,
+          "usfm": "ZEC.5.10",
+          "line_type": "p",
           "text": "I said to the Messenger-Angel, “Where are they taking the bushel basket?”"
         },
         {
           "verse": 11,
+          "usfm": "ZEC.5.11",
+          "line_type": "p",
           "text": "He said, “East to the land of Shinar. They will build a garage to house it. When it’s finished, the basket will be stored there.”"
         }
       ],
       "verse_count": 9,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Seventh Vision: A Woman in a Basket"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "ZEC.5.1",
+            "ZEC.5.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEC.5.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "ZEC.5.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ZEC.5.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "ZEC.5.5",
+            "ZEC.5.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEC.5.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "ZEC.5.6",
+            "ZEC.5.7"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "ZEC.5.7",
+            "ZEC.5.8"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "ZEC.5.8",
+            "ZEC.5.9"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "ZEC.5.10",
+            "ZEC.5.9"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "ZEC.5.10",
+            "ZEC.5.11"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -245,9 +1062,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/5-09b288ecee56ef873aa820c67c10a930.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 9,
+          "parsed_count": 9,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.5.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.5"
+          ],
+          "human": "Zechariah 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.4"
+          ],
+          "human": "Zechariah 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.6"
+          ],
+          "human": "Zechariah 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 6,
       "chapter_usfm": "ZEC.6",
@@ -256,33 +1130,143 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEC.6.1",
+          "line_type": "m",
           "text": "Once again I looked up—another strange sight! Four chariots charging out from between two mountains. The mountains were bronze. The first chariot was drawn by red horses, the second chariot by black horses, the third chariot by white horses, and the fourth chariot by dappled horses. All the horses were powerful."
         },
         {
           "verse": 4,
+          "usfm": "ZEC.6.4",
+          "line_type": "p",
           "text": "I asked the Messenger-Angel, “Sir, what’s the meaning here?” The angel answered, “These are the four winds of heaven, which originate with the Master of the whole earth. The black horses are headed north with the white ones right after them. The dappled horses are headed south.” The powerful horses galloped out, bursting with energy, eager to patrol through the earth. The Messenger-Angel commanded: “On your way! Survey the earth!” and they were off in every direction."
         },
         {
           "verse": 8,
+          "usfm": "ZEC.6.8",
+          "line_type": "p",
           "text": "Then he called to me and said, “Look at them go! The ones going north are conveying a sense of my Spirit, serene and secure. No more trouble from that direction.” Then this Message from God came to me: “Take up a collection from the exiles. Target Heldai, Tobiah, and Jedaiah. They’ve just arrived from Babylon. You’ll find them at the home of Josiah son of Zephaniah. Collect silver and gold from them and fashion crowns. Place one on the head of Joshua son of Jehozadak, the high priest, and give him this message: “‘A Message from God-of-the-Angel-Armies. Be alert. We have a man here whose name is Branch. He will branch out from where he is and build the Temple of God. Yes, he’s the one. He’ll build the Temple of God. Then he’ll assume the role of royalty, take his place on the throne and rule—a priest sitting on the throne!—showing that king and priest can coexist in harmony.’"
         },
         {
           "verse": 14,
+          "usfm": "ZEC.6.14",
+          "line_type": "p",
           "text": "“The other crown will be in the Temple of God as a symbol of royalty, under the custodial care of Helem, Tobiah, Jedaiah, and Hen son of Zephaniah."
         },
         {
           "verse": 15,
+          "usfm": "ZEC.6.15",
+          "line_type": "p",
           "text": "“People will come from faraway places to pitch in and rebuild the Temple of God. This will confirm that God-of-the-Angel-Armies did, in fact, send me to you. All this follows as you put your minds to a life of responsive obedience to the voice of your God.”"
         }
       ],
       "verse_count": 5,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "A Man Named Branch"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.6.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.6.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEC.6.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ZEC.6.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEC.6.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "m",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEC.6.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEC.6.14"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "ZEC.6.14",
+            "ZEC.6.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -293,9 +1277,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/6-9c7269fb50726a2197ac12f4fe1a5f01.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.6.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.6"
+          ],
+          "human": "Zechariah 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.5"
+          ],
+          "human": "Zechariah 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.7"
+          ],
+          "human": "Zechariah 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 7,
       "chapter_usfm": "ZEC.7",
@@ -304,12 +1345,40 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEC.7.1",
+          "line_type": "m",
           "text": "On the fourth day of the ninth month, in the fourth year of the reign of King Darius, God’s Message again came to Zechariah. The town of Bethel had sent a delegation headed by Sarezer and Regem-Melech to pray for God’s blessing and to confer with the priests of the Temple of God-of-the-Angel-Armies, and also with the prophets. They posed this question: “Should we plan for a day of mourning and abstinence next August, the seventieth anniversary of Jerusalem’s fall, as we have been doing all these years?” God-of-the-Angel-Armies gave me this Message for them, for all the people and for the priests: “When you held days of fasting every fifth and seventh month all these seventy years, were you doing it for me? And when you held feasts, was that for me? Hardly. You’re interested in religion, I’m interested in people. “There’s nothing new to say on the subject. Don’t you still have the message of the earlier prophets from the time when Jerusalem was still a thriving, bustling city and the outlying countryside, the Negev and Shephelah, was populated? [This is the message that God gave Zechariah.] Well, the message hasn’t changed. God-of-the-Angel-Armies said then and says now:“‘Treat one another justly.Love your neighbors.Be compassionate with each other.Don’t take advantage of widows, orphans, visitors, and the poor.Don’t plot and scheme against one another—that’s evil.’ “But did your ancestors listen? No, they set their jaws in defiance. They shut their ears. They steeled themselves against God’s revelation and the Spirit-filled sermons preached by the earlier prophets by order of God-of-the-Angel-Armies. And God became angry, really angry, because he told them everything plainly and they wouldn’t listen to a word he said. “So [this is what God-of-the-Angel-Armies said] if they won’t listen to me, I won’t listen to them. I scattered them to the four winds. They ended up strangers wherever they were. Their ‘promised land’ became a vacant lot—weeds and tin cans and thistles. Not a sign of life. They turned a dreamland into a wasteland.”"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.7.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.7.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -320,9 +1389,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/7-146ee021683eab2a836b878cdae772e6.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.7.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.7"
+          ],
+          "human": "Zechariah 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.6"
+          ],
+          "human": "Zechariah 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.8"
+          ],
+          "human": "Zechariah 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 8,
       "chapter_usfm": "ZEC.8",
@@ -331,29 +1457,185 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "ZEC.8.3",
+          "line_type": "q1",
           "text": "“I’ve come back to Zion,I’ve moved back to Jerusalem.Jerusalem’s new names will be Truth City,and Mountain of God-of-the-Angel-Armies,and Mount Holiness.”* * * A Message from God-of-the-Angel-Armies:“Old men and old women will come back to Jerusalem, sit on benches on the streets and spin tales, move around safely with their canes—a good city to grow old in. And boys and girls will fill the public parks, laughing and playing—a good city to grow up in.”* * *"
         },
         {
           "verse": 6,
+          "usfm": "ZEC.8.6",
+          "line_type": "p",
           "text": "A Message from God-of-the-Angel-Armies:“Do the problems of returning and rebuilding by just a few survivors seem too much? But is anything too much for me? Not if I have my say.”* * * A Message from God-of-the-Angel-Armies:“I’ll collect my people from countries to the east and countries to the west. I’ll bring them back and move them into Jerusalem. They’ll be my people and I’ll be their God. I’ll stick with them and do right by them.”* * * A Message from God-of-the-Angel-Armies:“Get a grip on things. Hold tight, you who are listening to what I say through the preaching of the prophets. The Temple of God-of-the-Angel-Armies has been reestablished. The Temple is being rebuilt. We’ve come through a hard time: You worked for a pittance and were lucky to get that; the streets were dangerous; you could never let down your guard; I had turned the world into an armed camp. “But things have changed. I’m taking the side of my core of surviving people:Sowing and harvesting will resume,Vines will grow grapes,Gardens will flourish,Dew and rain will make everything green. “My core survivors will get everything they need—and more. You’ve gotten a reputation as a bad-news people, you people of Judah and Israel, but I’m coming to save you. From now on, you’re the good-news people. Don’t be afraid. Keep a firm grip on what I’m doing.” A Message from God-of-the-Angel-Armies:“In the same way that I decided to punish you when your ancestors made me angry, and didn’t pull my punches, at this time I’ve decided to bless Jerusalem and the country of Judah. Don’t be afraid. And now here’s what I want you to do: Tell the truth, the whole truth, when you speak. Do the right thing by one another, both personally and in your courts. Don’t cook up plans to take unfair advantage of others. Don’t do or say what isn’t so. I hate all that stuff. Keep your lives simple and honest.” Decree of God.* * * Again I received a Message from God-of-the-Angel-Armies:“The days of mourning set for the fourth, fifth, seventh, and tenth months will be turned into days of feasting for Judah—celebration and holiday. Embrace truth! Love peace!”* * * A Message from God-of-the-Angel-Armies:“People and their leaders will come from all over to see what’s going on. The leaders will confer with one another: ‘Shouldn’t we try to get in on this? Get in on God’s blessings? Pray to God-of-the-Angel-Armies? What’s keeping us? Let’s go!’"
         },
         {
           "verse": 22,
+          "usfm": "ZEC.8.22",
+          "line_type": "p",
           "text": "“Lots of people, powerful nations—they’ll come to Jerusalem looking for what they can get from God-of-the-Angel-Armies, looking to get a blessing from God.”* * *"
         },
         {
           "verse": 23,
+          "usfm": "ZEC.8.23",
+          "line_type": "p",
           "text": "A Message from God-of-the-Angel-Armies:“At that time, ten men speaking a variety of languages will grab the sleeve of one Jew, hold tight, and say, ‘Let us go with you. We’ve heard that God is with you.’”"
         }
       ],
       "verse_count": 4,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Keep Your Lives Simple and Honest"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEC.8.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEC.8.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEC.8.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEC.8.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEC.8.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEC.8.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEC.8.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEC.8.6"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEC.8.6"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "ZEC.8.22"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "ZEC.8.22",
+            "ZEC.8.23"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "ZEC.8.23"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -364,9 +1646,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/8-71e9c34e772c6c155df267c8494f7089.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.8.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.8"
+          ],
+          "human": "Zechariah 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.7"
+          ],
+          "human": "Zechariah 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.9"
+          ],
+          "human": "Zechariah 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 9,
       "chapter_usfm": "ZEC.9",
@@ -381,6 +1720,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -391,9 +1731,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/9-3973a17ccba1101823ef98809131549b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.9.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.9"
+          ],
+          "human": "Zechariah 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.8"
+          ],
+          "human": "Zechariah 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.10"
+          ],
+          "human": "Zechariah 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 10,
       "chapter_usfm": "ZEC.10",
@@ -402,12 +1799,76 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEC.10.1",
+          "line_type": "q1",
           "text": "Pray to God for rain—it’s time for the spring rain—to God, the rainmaker,Spring thunderstorm maker,maker of grain and barley. “Store-bought gods babble gibberish.Religious experts spout rubbish.They pontificate hot air.Their prescriptions are nothing but smoke.And so the people wander like lost sheep,poor lost sheep without a shepherd.I’m furious with the so-called shepherds.They’re worse than billy goats, and I’ll treat them like goats.”* * * God-of-the-Angel-Armies will step inand take care of his flock, the people of Judah.He’ll revive their spirits,make them proud to be on God’s side.God will use them in his work of rebuilding,use them as foundations and pillars,Use them as tools and instruments,use them to oversee his work.They’ll be a workforce to be proud of, working as one,their heads held high, striding through swamps and mud,Courageous and vigorous because God is with them,undeterred by the world’s thugs.* * * “I’ll put muscle in the people of Judah;I’ll save the people of Joseph.I know their pain and will make them good as new.They’ll get a fresh start, as if nothing had ever happened.And why? Because I am their very own God,I’ll do what needs to be done for them.The people of Ephraim will be famous,their lives brimming with joy.Their children will get in on it, too—oh, let them feel blessed by God!I’ll whistle and they’ll all come running.I’ve set them free—oh, how they’ll flourish!Even though I scattered them to the far corners of earth,they’ll remember me in the faraway places.They’ll keep the story alive in their children,and they will come back.I’ll bring them back from the Egyptian westand round them up from the Assyrian east.I’ll bring them back to sweet Gilead,back to leafy Lebanon.Every square foot of landwill be marked by homecoming.They’ll sail through troubled seas, brush aside brash ocean waves.Roaring rivers will turn to a trickle.Gaudy Assyria will be stripped bare,bully Egypt exposed as a fraud.But my people—oh, I’ll make them strong, God-strong!and they’ll live my way.” God says so!* * *"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.10.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.10.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.10.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.10.1"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.10.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -418,9 +1879,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/10-b5547d1c07ae13f5efd444e9baf0bc48.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.10.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.10"
+          ],
+          "human": "Zechariah 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.9"
+          ],
+          "human": "Zechariah 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.11"
+          ],
+          "human": "Zechariah 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 11,
       "chapter_usfm": "ZEC.11",
@@ -429,26 +1947,38 @@
       "verses": [
         {
           "verse": 6,
+          "usfm": "ZEC.11.6",
+          "line_type": "p",
           "text": "God’s Decree: “I’m washing my hands of the people of this land. From now on they’re all on their own. It’s dog-eat-dog, survival of the fittest, and every person for themselves. Don’t look for help from me.” So I took over from the crass, money-grubbing owners, and shepherded the sheep marked for slaughter. I got myself two shepherd staffs. I named one Lovely and the other Harmony. Then I went to work shepherding the sheep. Within a month I got rid of the corrupt shepherds. I got tired of putting up with them—and they couldn’t stand me."
         },
         {
           "verse": 9,
+          "usfm": "ZEC.11.9",
+          "line_type": "p",
           "text": "And then I got tired of the sheep and said, “I’ve had it with you—no more shepherding from me. If you die, you die; if you’re attacked, you’re attacked. Whoever survives can eat what’s left.” Then I took the staff named Lovely and broke it across my knee, breaking the beautiful covenant I had made with all the peoples. In one stroke, both staff and covenant were broken. The money-hungry owners saw me do it and knew God was behind it."
         },
         {
           "verse": 12,
+          "usfm": "ZEC.11.12",
+          "line_type": "p",
           "text": "Then I addressed them: “Pay me what you think I’m worth.” They paid me an insulting sum, counting out thirty silver coins."
         },
         {
           "verse": 13,
+          "usfm": "ZEC.11.13",
+          "line_type": "p",
           "text": "God told me, “Throw it in the poor box.” This stingy wage was all they thought of me and my work! So I took the thirty silver coins and threw them into the poor box in God’s Temple."
         },
         {
           "verse": 14,
+          "usfm": "ZEC.11.14",
+          "line_type": "p",
           "text": "Then I broke the other staff, Harmony, across my knee, breaking the family ties between Judah and Israel. God then said, “Dress up like a stupid shepherd. I’m going to install just such a shepherd in this land—a shepherd indifferent to victims, who ignores the lost, abandons the injured, and disdains decent citizens. He’ll only be in it for what he can get out of it, using and abusing any and all."
         },
         {
           "verse": 17,
+          "usfm": "ZEC.11.17",
+          "line_type": "q1",
           "text": "“Doom to you, useless shepherd,walking off and leaving the sheep!A curse on your arm!A curse on your right eye!Your arm will hang limp and useless.Your right eye will go stone blind.”"
         }
       ],
@@ -460,6 +1990,180 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEC.11.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEC.11.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEC.11.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEC.11.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ZEC.11.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "ZEC.11.12",
+            "ZEC.11.13"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "ZEC.11.13",
+            "ZEC.11.14"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ZEC.11.14"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEC.11.17"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEC.11.17"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEC.11.17"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEC.11.17"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEC.11.17"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ZEC.11.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -470,9 +2174,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/11-bd4107f8760b907d548c7521e862b495.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.11.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.11"
+          ],
+          "human": "Zechariah 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.10"
+          ],
+          "human": "Zechariah 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.12"
+          ],
+          "human": "Zechariah 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 12,
       "chapter_usfm": "ZEC.12",
@@ -481,20 +2242,100 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "ZEC.12.3",
+          "line_type": "p",
           "text": "“On the Big Day, I’ll turn Jerusalem into a huge stone blocking the way for everyone. All who try to lift it will rupture themselves. All the pagan nations will come together and try to get rid of it. “On the Big Day”—this is God speaking—“I’ll throw all the war horses into a crazed panic, and their riders along with them. But I’ll keep my eye on Judah, watching out for her at the same time that I make the enemy horses go blind. The families of Judah will then realize, ‘Why, our leaders are strong and able through God-of-the-Angel-Armies, their personal God.’"
         },
         {
           "verse": 6,
+          "usfm": "ZEC.12.6",
+          "line_type": "p",
           "text": "“On the Big Day, I’ll turn the families of Judah into something like a burning match in a tinder-dry forest, like a fiercely flaming torch in a barn full of hay. They’ll burn up everything and everyone in sight—people to the right, people to the left—while Jerusalem fills up with people moving in and making themselves at home—home again in Jerusalem. “I, God, will begin by restoring the common households of Judah so that the glory of David’s family and the leaders in Jerusalem won’t overshadow the ordinary people in Judah. On the Big Day, I’ll look after everyone who lives in Jerusalem so that the lowliest, weakest person will be as glorious as David and the family of David itself will be godlike, like the Angel of God leading the people."
         },
         {
           "verse": 9,
+          "usfm": "ZEC.12.9",
+          "line_type": "p",
           "text": "“On the Big Day, I’ll make a clean sweep of all the godless nations that fought against Jerusalem. “Next I’ll deal with the family of David and those who live in Jerusalem. I’ll pour a spirit of grace and prayer over them. They’ll then be able to recognize me as the One they so grievously wounded—that piercing spear-thrust! And they’ll weep—oh, how they’ll weep! Deep mourning as of a parent grieving the loss of the firstborn child. The lamentation in Jerusalem that day will be massive, as famous as the lamentation over Hadad-Rimmon on the fields of Megiddo:Everyone will weep and grieve,the land and everyone in it:The family of David off by itselfand their women off by themselves;The family of Nathan off by itselfand their women off by themselves;The family of Levi off by itselfand their women off by themselves;The family of Shimei off by itselfand their women off by themselves;And all the rest of the families off by themselvesand their women off by themselves.”"
         }
       ],
       "verse_count": 3,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEC.12.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ZEC.12.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEC.12.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ZEC.12.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEC.12.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEC.12.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -505,9 +2346,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/12-56faf6603532eb6549b0f04050c63704.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.12.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.12"
+          ],
+          "human": "Zechariah 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.11"
+          ],
+          "human": "Zechariah 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.13"
+          ],
+          "human": "Zechariah 13",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 13,
       "chapter_usfm": "ZEC.13",
@@ -516,12 +2414,40 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ZEC.13.1",
+          "line_type": "m",
           "text": "“On the Big Day, a fountain will be opened for the family of David and all the leaders of Jerusalem for washing away their sins, for scrubbing their stained and soiled lives clean. “On the Big Day”—this is God-of-the-Angel-Armies speaking—“I will wipe out the store-bought gods, erase their names from memory. People will forget they ever heard of them. And I’ll get rid of the prophets who polluted the air with their diseased words. If anyone dares persist in spreading diseased, polluting words, his very own parents will step in and say, ‘That’s it! You’re finished! Your lies about God put everyone in danger,’ and then they’ll stab him to death in the very act of prophesying lies about God—his own parents, mind you! “On the Big Day, the lying prophets will be publicly exposed and humiliated. Then they’ll wish they’d never swindled people with their ‘visions.’ No more masquerading in prophet clothes. But they’ll deny they’ve even heard of such things: ‘Me, a prophet? Not me. I’m a farmer—grew up on the farm.’ And if someone says, ‘And so where did you get that black eye?’ they’ll say, ‘I ran into a door at a friend’s house.’* * * “Sword, get moving against my shepherd,against my close associate!”Decree of God-of-the-Angel-Armies.“Kill the shepherd! Scatter the sheep!The back of my hand against even the lambs!All across the country”—God’s Decree—“two-thirds will be devastatedand one-third survive.I’ll deliver the surviving third to the refinery fires.I’ll refine them as silver is refined,test them for purity as gold is tested.Then they’ll pray to me by nameand I’ll answer them personally.I’ll say, ‘That’s my people.’They’ll say, ‘God—my God!’”"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.13.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ZEC.13.1"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -532,9 +2458,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/13-2cde678111f95ef558087a9d55e0e15b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.13.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.13"
+          ],
+          "human": "Zechariah 13",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.12"
+          ],
+          "human": "Zechariah 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.14"
+          ],
+          "human": "Zechariah 14",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ZEC",
       "chapter": 14,
       "chapter_usfm": "ZEC.14",
@@ -543,16 +2526,60 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "ZEC.14.8",
+          "line_type": "p",
           "text": "What a Day that will be! Fresh flowing rivers out of Jerusalem, half to the eastern sea, half to the western sea, flowing year-round, summer and winter!"
         },
         {
           "verse": 9,
+          "usfm": "ZEC.14.9",
+          "line_type": "p",
           "text": "God will be king over all the earth, one God and only one. What a Day that will be!* * * The land will stretch out spaciously around Jerusalem—to Geba in the north and Rimmon in the south, with Jerusalem towering at the center, and the commanding city gates—Gate of Benjamin to First Gate to Corner Gate to Hananel Tower to the Royal Winery—ringing the city full of people. Never again will Jerusalem be totally destroyed. From now on it will be a safe city. But this is what will happen to all who fought against Jerusalem: God will visit them with a terrible plague. People’s flesh will rot off their bones while they are walking around; their eyes will rot in their sockets and their tongues in their mouths; people will be dying on their feet! Mass hysteria when that happens—total panic! Fellow soldiers fighting and killing each other—holy terror! And then Judah will jump into the fray! Treasures from all the nations will be piled high—gold, silver, the latest fashions. The plague will also hit the animals—horses, mules, camels, donkeys. Everything alive in the military camps will be hit by the plague.* * * All the survivors from the godless nations that fought against Jerusalem will travel to Jerusalem every year to worship the King, God-of-the-Angel-Armies, and celebrate the Feast of Booths. If any of these survivors fail to make the annual pilgrimage to Jerusalem to worship the King, God-of-the-Angel-Armies, there will be no rain. If the Egyptians don’t make the pilgrimage and worship, there will be no rain for them. Every nation that does not go up to celebrate the Feast of Booths will be hit with the plague. Egypt and any other nation that does not make pilgrimage to celebrate the Feast of Booths gets punished. On that Day, the Big Day, all the horses’ harness bells will be inscribed “Holy to God.” The cooking pots in the Temple of God will be as sacred as chalices and plates on the altar. In fact, all the pots and pans in all the kitchens of Jerusalem and Judah will be holy to God-of-the-Angel-Armies. People who come to worship, preparing meals and sacrifices, will use them. On that Big Day there will be no buying or selling in the Temple of God-of-the-Angel-Armies."
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ZEC.14.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "ZEC.14.8",
+            "ZEC.14.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ZEC.14.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -563,7 +2590,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ZEC/14-e0df217e167316aeb4e574b68c463b50.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ZEC.14.MSG",
+        "reference": {
+          "usfm": [
+            "ZEC.14"
+          ],
+          "human": "Zechariah 14",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.13"
+          ],
+          "human": "Zechariah 13",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

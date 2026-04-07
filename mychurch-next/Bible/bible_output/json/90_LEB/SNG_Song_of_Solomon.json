@@ -11,6 +11,7 @@
   "total_verses": 117,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 1,
       "chapter_usfm": "SNG.1",
@@ -19,105 +20,398 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.1.1",
+          "line_type": null,
           "text": "The Song of Songs, which is for Solomon."
         },
         {
           "verse": 2,
+          "usfm": "SNG.1.2",
+          "line_type": null,
           "text": "May you kiss me passionately with your lips, for your love is better than wine."
         },
         {
           "verse": 3,
+          "usfm": "SNG.1.3",
+          "line_type": null,
           "text": "As fragrance, your perfumes are delightful; your name is poured out perfume; therefore young women love you."
         },
         {
           "verse": 4,
+          "usfm": "SNG.1.4",
+          "line_type": null,
           "text": "Draw me after you, let us run! May the king bring me into his chambers! Let us be joyful and let us rejoice in you; let us extol your love more than wine. Rightly do they love you!"
         },
         {
           "verse": 5,
+          "usfm": "SNG.1.5",
+          "line_type": null,
           "text": "I am black but beautiful, O maidens of Jerusalem, like the tents of Kedar, like the curtains of Solomon."
         },
         {
           "verse": 6,
+          "usfm": "SNG.1.6",
+          "line_type": null,
           "text": "Do not gaze at me because I am black, because the sun has stared at me. The sons of my mother were angry with me; they made me keeper of the vineyards, but my own “vineyard” I did not keep."
         },
         {
           "verse": 7,
+          "usfm": "SNG.1.7",
+          "line_type": null,
           "text": "Tell me, you whom my heart loves, where do you pasture your flock, where do your sheep lie down at the noon? For why should I be like one who is veiled beside the flocks of your companions?"
         },
         {
           "verse": 8,
+          "usfm": "SNG.1.8",
+          "line_type": null,
           "text": "If you do not know, O fairest among women, follow the tracks of the flock, and pasture your little lambs beside the tents of the shepherds."
         },
         {
           "verse": 9,
+          "usfm": "SNG.1.9",
+          "line_type": null,
           "text": "To a mare among the chariots of Pharaoh, I compare you, my beloved."
         },
         {
           "verse": 10,
+          "usfm": "SNG.1.10",
+          "line_type": null,
           "text": "Your cheeks are beautiful with ornaments, your neck with strings of jewels."
         },
         {
           "verse": 11,
+          "usfm": "SNG.1.11",
+          "line_type": null,
           "text": "We will make ornaments of gold for you with studs of silver."
         },
         {
           "verse": 12,
+          "usfm": "SNG.1.12",
+          "line_type": null,
           "text": "While the king was on his couch, my nard gave its fragrance."
         },
         {
           "verse": 13,
+          "usfm": "SNG.1.13",
+          "line_type": null,
           "text": "My beloved is to me a pouch of myrrh, he spends the night between my breasts."
         },
         {
           "verse": 14,
+          "usfm": "SNG.1.14",
+          "line_type": null,
           "text": "My beloved is to me a cluster of blossoms of henna in the vineyards of En Gedi."
         },
         {
           "verse": 15,
+          "usfm": "SNG.1.15",
+          "line_type": null,
           "text": "Look! You are beautiful, my beloved. Look! You are beautiful; your eyes are doves."
         },
         {
           "verse": 16,
+          "usfm": "SNG.1.16",
+          "line_type": null,
           "text": "Look! You are beautiful, my beloved, truly pleasant. Truly our couch is verdant;"
         },
         {
           "verse": 17,
+          "usfm": "SNG.1.17",
+          "line_type": null,
           "text": "the beams of our house are cedar; our rafter is cypress."
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Maiden’s Soliloquy"
         },
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Maiden’s Self-Description"
         },
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Dialogue between Shepherdess and Shepherd"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Man’s Poetic Praise of His Beloved"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Maiden’s Poetic Praise of Her Beloved"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "Mutual Admiration"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "SNG.1.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "This construction conveys a superlative connotation, e.g., “The most exquisite song”"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.1.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “by Solomon” or “about/concerning Solomon”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "In the maiden’s soliloquy, she thinks about her beloved in her thoughts (“May he kiss me!”), then poetically speaks to him as if he were in her presence (“for your love is better than wine”). To avoid confusion, the translation uses the second-person form throughout vv. 2–4"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “May he kiss me”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “with the kisses of his mouth”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The shift from the third person “he … his” to the second person “you … your” in vv. 2–4 should not be interpreted as suggesting two different referents, that is, one male whom the maiden is addressing as “you,” and another to whom she refers as “he.” Rather, this shift is a poetic device (called “grammatical differentiation”) that is not uncommon in Hebrew poetry (e.g., Gen 49:4; Deut 32:15; Psa 23:2–5; Isa 1:29; 42:20; 54:1; Jer 22:24; Amos 4:1; Mic 7:19; Lam 3:1; Song 4:2; 6:6). This shift is characteristic of a soliloquy, a dramatic or literary form in which a character reveals her thoughts without addressing a listener who is actually present (e.g., 2 Sam 19:4). In this case, the maiden’s private thoughts about her beloved (v. 2a) shift to an imaginary address to her beloved (vv. 2b–4a)"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.1.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “your oil lotions”"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.1.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “good”"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.1.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “oil lotion”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “The king has brought me into his chambers”"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.1.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “black and beautiful”"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.1.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “O daughters of Jerusalem”"
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "This is figurative for the maiden’s physical appearance; her skin was darkly tanned"
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “my vineyard that for me”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.1.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “soul”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.1.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “For to what will I be like”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.1.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The reading of the MT (“like one who is veiled”) is supported by the LXX. However, several ancient versions (Syriac Peshitta, Latin Vulgate, Symmachus) reflect an alternate Hebrew textual tradition in which two letters are transposed, resulting in the reading “like one who wanders about.” This makes good sense contextually, since the maiden does not know where her beloved would be at noon"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.1.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “in the tracks”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.1.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “your kids”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “my mare”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “chariot horses”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “droplets”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the bag”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “he lays”"
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.1.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “green”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/SNG.1.LEB",
+        "reference": {
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "Song of Solomon 1",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ECC.12"
+          ],
+          "human": "Ecclesiastes 12",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Solomon 2",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 2,
       "chapter_usfm": "SNG.2",
@@ -126,97 +420,446 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.2.1",
+          "line_type": null,
           "text": "I am a rose of Sharon, a lily of the valleys."
         },
         {
           "verse": 2,
+          "usfm": "SNG.2.2",
+          "line_type": null,
           "text": "Like a lily among the thorns, so is my love among the maidens."
         },
         {
           "verse": 3,
+          "usfm": "SNG.2.3",
+          "line_type": null,
           "text": "As an apple tree among the trees of the forest, so is my beloved among the young men. In his shade I sat down with delight, and his fruit was sweet to my palate."
         },
         {
           "verse": 4,
+          "usfm": "SNG.2.4",
+          "line_type": null,
           "text": "He brought me to the house of the wine, and his intention was love toward me."
         },
         {
           "verse": 5,
+          "usfm": "SNG.2.5",
+          "line_type": null,
           "text": "Sustain me with the raisins, refresh me with the apples, for I am lovesick."
         },
         {
           "verse": 6,
+          "usfm": "SNG.2.6",
+          "line_type": null,
           "text": "His left hand is under my head, and his right hand embraces me."
         },
         {
           "verse": 7,
+          "usfm": "SNG.2.7",
+          "line_type": null,
           "text": "I adjure you, O maidens of Jerusalem, by the gazelles or by the does of the field, do not arouse or awaken love until it pleases!"
         },
         {
           "verse": 8,
+          "usfm": "SNG.2.8",
+          "line_type": null,
           "text": "The voice of my beloved! Look! Here he comes leaping upon the mountains, bounding over the hills!"
         },
         {
           "verse": 9,
+          "usfm": "SNG.2.9",
+          "line_type": null,
           "text": "My beloved is like a gazelle or a young stag. Look! He is standing behind our wall, gazing through the window, looking through the lattice."
         },
         {
           "verse": 10,
+          "usfm": "SNG.2.10",
+          "line_type": null,
           "text": "My beloved answered and said to me, “Arise, my beloved! Come, my beauty!"
         },
         {
           "verse": 11,
+          "usfm": "SNG.2.11",
+          "line_type": null,
           "text": "For look! The winter is over; the rainy season has turned and gone away."
         },
         {
           "verse": 12,
+          "usfm": "SNG.2.12",
+          "line_type": null,
           "text": "The blossoms appear in the land; the time of singing has arrived; the voice of the turtledove is heard in our land."
         },
         {
           "verse": 13,
+          "usfm": "SNG.2.13",
+          "line_type": null,
           "text": "The fig tree puts forth her figs, and the vines are in blossom; they give fragrance. Arise, my beloved! Come, my beauty!”"
         },
         {
           "verse": 14,
+          "usfm": "SNG.2.14",
+          "line_type": null,
           "text": "My dove, in the clefts of the rock, in the secluded place in the mountain, Let me see your face, let me hear your voice; for your voice is sweet and your face is lovely."
         },
         {
           "verse": 15,
+          "usfm": "SNG.2.15",
+          "line_type": null,
           "text": "Catch for us the foxes, the little foxes destroying vineyards, for our vineyards are in blossom!"
         },
         {
           "verse": 16,
+          "usfm": "SNG.2.16",
+          "line_type": null,
           "text": "My beloved belongs to me and I belong to him; he pastures his flock among the lilies."
         },
         {
           "verse": 17,
+          "usfm": "SNG.2.17",
+          "line_type": null,
           "text": "Until the day breathes and the shadows flee, turn, my beloved! Be like a gazelle or young stag on the cleft mountains."
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Banquet Hall of Love"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Double Refrain: Embrace and Adjuration"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Rendezvous in the Countryside"
         },
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "Poetic Refrain(s)"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "SNG.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "More likely “meadow saffron” or “crocus.” Hebrew scholars and botanists suggest the term refers to Ashodelos (lily family), Narcissus tazetta (narcissus or daffodil), or Colchicum autumnale (meadow saffron or crocus) (e.g., Isa 35:1). The location of this flower in Sharon suggests a common wild flower rather than a rose. The maiden compares herself to a simple, common flower of the field"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.2.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “brambles”"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.2.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I sat down and I delighted”"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.2.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “for I myself am sick with love”"
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.2.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “would embrace me”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.2.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “O daughters of Jerusalem”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.2.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Do not stir up or awaken the love until it is willing,” or “Do not disturb or interrupt our lovemaking until it is satisfied”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “this one”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the fawn of the stag”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “This is he”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.2.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Arise, you”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.2.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “And come, you”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the rain”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “is over; it is gone”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “is seen”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “on the earth”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Most likely, a subtle word play occurs here since there are two different words in Hebrew spelled the same way: “pruning” and “singing.” The former plays upon the first line and the latter upon the third line"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the time of the song arrived”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.2.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Arise, to you!”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.2.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “My beauty, come, you”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.2.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “in the secret place”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.2.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “in the covering”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.2.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “foothold in the rock”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.2.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “cliff”"
+        },
+        {
+          "verse": 15,
+          "usfm": "SNG.2.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “while”"
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.2.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “My beloved for me and I for him”"
+        },
+        {
+          "verse": 17,
+          "usfm": "SNG.2.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Be like for you”"
+        },
+        {
+          "verse": 17,
+          "usfm": "SNG.2.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “a buck gazelle”"
+        },
+        {
+          "verse": 17,
+          "usfm": "SNG.2.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the fawn of the stag”"
+        },
+        {
+          "verse": 17,
+          "usfm": "SNG.2.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “the mountains of Bether”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/SNG.2.LEB",
+        "reference": {
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Solomon 2",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.1"
+          ],
+          "human": "Song of Solomon 1",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Solomon 3",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 3,
       "chapter_usfm": "SNG.3",
@@ -225,65 +868,298 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.3.1",
+          "line_type": null,
           "text": "On my bed in the night, I sought him whom my heart loves. I sought him, but I did not find him."
         },
         {
           "verse": 2,
+          "usfm": "SNG.3.2",
+          "line_type": null,
           "text": "Now I will arise, and I will go about in the city, in the streets and in the squares; I will seek him whom my heart loves. I sought him, but I did not find him."
         },
         {
           "verse": 3,
+          "usfm": "SNG.3.3",
+          "line_type": null,
           "text": "The sentinels who go about in the city found me. “Have you seen the one whom my heart loves?”"
         },
         {
           "verse": 4,
+          "usfm": "SNG.3.4",
+          "line_type": null,
           "text": "Scarcely had I passed by them when I found him whom my heart loves. I held him and I would not let him go until I brought him to the house of my mother, into the bedroom chamber of she who conceived me."
         },
         {
           "verse": 5,
+          "usfm": "SNG.3.5",
+          "line_type": null,
           "text": "I adjure you, O maidens of Jerusalem, by the gazelles or by the does of the field, do not arouse or awaken love until it pleases!"
         },
         {
           "verse": 6,
+          "usfm": "SNG.3.6",
+          "line_type": null,
           "text": "What is this coming up from the desert like a column of smoke, perfumed with myrrh and frankincense from all the fragrant powders of the merchant?"
         },
         {
           "verse": 7,
+          "usfm": "SNG.3.7",
+          "line_type": null,
           "text": "Look! It is Solomon’s portable couch! Sixty mighty men surround it, the mighty men of Israel."
         },
         {
           "verse": 8,
+          "usfm": "SNG.3.8",
+          "line_type": null,
           "text": "All of them wield swords; they are trained in warfare, each with his sword at his thigh to guard against terror in the night."
         },
         {
           "verse": 9,
+          "usfm": "SNG.3.9",
+          "line_type": null,
           "text": "King Solomon made for himself a sedan chair from the wood of Lebanon."
         },
         {
           "verse": 10,
+          "usfm": "SNG.3.10",
+          "line_type": null,
           "text": "He made its column of silver, its back of gold, its seat of purple; its interior is inlaid with leather by the maidens of Jerusalem."
         },
         {
           "verse": 11,
+          "usfm": "SNG.3.11",
+          "line_type": null,
           "text": "Come out and look, O maidens of Zion, at King Solomon, at the crown with which his mother crowned him on the day of his wedding, on the day of the joy of his heart!"
         }
       ],
       "verse_count": 11,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Adjuration Refrain"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Royal Wedding Procession"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "SNG.3.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “I seek”"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.3.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “soul”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.3.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “soul”"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “soul”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.3.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “As little that I passed”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.3.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “soul”"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.3.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “O daughters of Jerusalem”"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.3.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Do not stir up or awaken the love until it is willing,” or “Do not disturb or interrupt our love-making until it is satisfied”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.3.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “couch” or “portable sedan chair”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.3.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “her”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.3.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “holders of sword”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.3.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “learnt of war”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.3.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “because of the fear”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.3.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “The king, Solomon”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.3.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “its support,” “its base,” “its headrest,” “its litter,” “its cover”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.3.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “love.” The Hebrew term here translated “leather” is spelled the same as the term for “love.” Most likely this is an example of a word play that puns on the intentional ambiguity: “Its interior was inlaid with leather//love by the maidens of Jerusalem”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.3.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “by the daughters of Jerusalem”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.3.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “O daughters of Zion”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.3.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the king, Solomon”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/SNG.3.LEB",
+        "reference": {
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Solomon 3",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.2"
+          ],
+          "human": "Song of Solomon 2",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Solomon 4",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 4,
       "chapter_usfm": "SNG.4",
@@ -292,85 +1168,264 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.4.1",
+          "line_type": null,
           "text": "Oh my! You are beautiful, my beloved! Oh my! You are beautiful! Your eyes are doves from behind your veil. Your hair is like a flock of goats that move down from the mountains of Gilead."
         },
         {
           "verse": 2,
+          "usfm": "SNG.4.2",
+          "line_type": null,
           "text": "Your teeth are like a flock of shorn ewes that came up from the washing, all of them bearing twins, and there is none bereaved among them."
         },
         {
           "verse": 3,
+          "usfm": "SNG.4.3",
+          "line_type": null,
           "text": "Your lips are like a thread of crimson, and your mouth is lovely. Your temple is like pomegranate from behind your veil."
         },
         {
           "verse": 4,
+          "usfm": "SNG.4.4",
+          "line_type": null,
           "text": "Your neck is like the tower of David, built in courses; a thousand ornaments are hung on it, all the shields of the warriors."
         },
         {
           "verse": 5,
+          "usfm": "SNG.4.5",
+          "line_type": null,
           "text": "Your two breasts are like two fawns, twins of a gazelle that feed among the lilies."
         },
         {
           "verse": 6,
+          "usfm": "SNG.4.6",
+          "line_type": null,
           "text": "Until the day breathes and the shadows flee, I will go to the mountain of the myrrh, to the hill of the frankincense."
         },
         {
           "verse": 7,
+          "usfm": "SNG.4.7",
+          "line_type": null,
           "text": "You are completely beautiful, my beloved! You are flawless!"
         },
         {
           "verse": 8,
+          "usfm": "SNG.4.8",
+          "line_type": null,
           "text": "Come with me from Lebanon, my bride! Come with me from Lebanon! Look from the top of Amana, from the top of Senir and Hermon, from the dwelling places of the lions, from the mountains of leopard."
         },
         {
           "verse": 9,
+          "usfm": "SNG.4.9",
+          "line_type": null,
           "text": "You have stolen (my) heart, my sister bride! You have stolen my heart with one glance from your eyes, with one ornament from your necklaces."
         },
         {
           "verse": 10,
+          "usfm": "SNG.4.10",
+          "line_type": null,
           "text": "How beautiful is your love, my sister bride! How better is your love than wine, and the fragrance of your oils than any spice!"
         },
         {
           "verse": 11,
+          "usfm": "SNG.4.11",
+          "line_type": null,
           "text": "Your lips drip nectar, my bride; honey and milk are under your lips; the scent of your garments is like the scent of Lebanon."
         },
         {
           "verse": 12,
+          "usfm": "SNG.4.12",
+          "line_type": null,
           "text": "A garden locked is my sister bride, a spring enclosed, a fountain sealed."
         },
         {
           "verse": 13,
+          "usfm": "SNG.4.13",
+          "line_type": null,
           "text": "Your shoots are an orchard of pomegranates with choice fruit, henna with nard;"
         },
         {
           "verse": 14,
+          "usfm": "SNG.4.14",
+          "line_type": null,
           "text": "nard and saffron, calamus and cinnamon spice with all trees of frankincense, myrrh and aloes with all chief spices."
         },
         {
           "verse": 15,
+          "usfm": "SNG.4.15",
+          "line_type": null,
           "text": "A garden fountain, a well of living water, flowing (streams) from Lebanon."
         },
         {
           "verse": 16,
+          "usfm": "SNG.4.16",
+          "line_type": null,
           "text": "Awake, O north wind! Come, O south wind! Blow upon my garden! Let its fragrances waft forth! Let my beloved come to his garden, let him eat his choice fruit!"
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "The Mountains and Fragrance of Lebanon"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "The Locked Garden of Delights Is Unlocked"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "SNG.4.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Behold!” Or “Look!”"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.4.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Behold!” Or “Look!”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.4.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “shields”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.4.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “There is no flaw in you!”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.4.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “You must come”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.4.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “With me”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.4.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “a source locked”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.4.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “your channel”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.4.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “fruit of choice things”"
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.4.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “perfumes”"
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.4.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “His perfumes can waft down”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/SNG.4.LEB",
+        "reference": {
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Solomon 4",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.3"
+          ],
+          "human": "Song of Solomon 3",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Solomon 5",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 5,
       "chapter_usfm": "SNG.5",
@@ -379,89 +1434,412 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.5.1",
+          "line_type": null,
           "text": "I have come to my garden, my sister bride, I have gathered my myrrh with my spice, I have eaten my honeycomb with my honey, I have drunk my wine with my milk! Eat, O friends! Drink and become drunk with love!"
         },
         {
           "verse": 2,
+          "usfm": "SNG.5.2",
+          "line_type": null,
           "text": "I was asleep but my heart was awake. A sound! My beloved knocking! “Open to me, my sister, my beloved, my dove, my perfect one! For my head is full of dew, my hair drenched from the moist night air.”"
         },
         {
           "verse": 3,
+          "usfm": "SNG.5.3",
+          "line_type": null,
           "text": "I have taken off my tunic, must I put it on? I have bathed my feet, must I soil them?"
         },
         {
           "verse": 4,
+          "usfm": "SNG.5.4",
+          "line_type": null,
           "text": "My beloved thrust his hand into the opening, and my inmost yearned for him."
         },
         {
           "verse": 5,
+          "usfm": "SNG.5.5",
+          "line_type": null,
           "text": "I myself arose to open to my beloved; my hands dripped with myrrh, my fingers with liquid myrrh upon the handles of the bolt."
         },
         {
           "verse": 6,
+          "usfm": "SNG.5.6",
+          "line_type": null,
           "text": "I opened myself to my beloved, but my beloved had turned and gone; my heart sank when he turned away. I sought him, but I did not find him; I called him, but he did not answer me."
         },
         {
           "verse": 7,
+          "usfm": "SNG.5.7",
+          "line_type": null,
           "text": "The sentinels making rounds in the city found me; they beat me, they wounded me; they took my cloak away from me— those sentinels on the walls!"
         },
         {
           "verse": 8,
+          "usfm": "SNG.5.8",
+          "line_type": null,
           "text": "I adjure you, O maidens of Jerusalem, if you find my beloved, what will you tell him? Tell him that I am lovesick!"
         },
         {
           "verse": 9,
+          "usfm": "SNG.5.9",
+          "line_type": null,
           "text": "How is your beloved better than another lover, O most beautiful among women? How is your beloved better than another lover, that you adjure us thus?"
         },
         {
           "verse": 10,
+          "usfm": "SNG.5.10",
+          "line_type": null,
           "text": "My beloved is radiant and ruddy, distinguished among ten thousand."
         },
         {
           "verse": 11,
+          "usfm": "SNG.5.11",
+          "line_type": null,
           "text": "His head is gold, refined gold; his locks are wavy, black as a raven."
         },
         {
           "verse": 12,
+          "usfm": "SNG.5.12",
+          "line_type": null,
           "text": "His eyes are like doves beside springs of water, bathed in milk, set like mounted jewels."
         },
         {
           "verse": 13,
+          "usfm": "SNG.5.13",
+          "line_type": null,
           "text": "His cheeks are like beds of spice, a tower of fragrances; his lips are lilies dripping liquid myrrh."
         },
         {
           "verse": 14,
+          "usfm": "SNG.5.14",
+          "line_type": null,
           "text": "His arms are rods of gold engraved with jewels; his belly is polished ivory covered with sapphires."
         },
         {
           "verse": 15,
+          "usfm": "SNG.5.15",
+          "line_type": null,
           "text": "His legs are columns of alabaster, set on bases of gold; his appearance is like Lebanon, choice as its cedars."
         },
         {
           "verse": 16,
+          "usfm": "SNG.5.16",
+          "line_type": null,
           "text": "His mouth is sweet, and he is altogether desirable. This is my beloved; this is my friend, O young women of Jerusalem."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Maiden’s Dream: Seeking and Not Finding"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Adjuration Refrain"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Maiden’s Praise of Her Beloved"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "SNG.5.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Drink and become drunk, O lovers!”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.5.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “and”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.5.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “The sound of my beloved knocking!”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.5.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “my locks with drops of night”"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.5.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “How will I put it on?”"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.5.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “How will I soil them?”"
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.5.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “my beloved had left; he was gone”"
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.5.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “my soul left”"
+        },
+        {
+          "verse": 6,
+          "usfm": "SNG.5.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “when he was speaking.” Translations equivocate on how to translate this verb, since there are two terms in Hebrew spelled identically: “to speak” and “to turn aside” (HALOT 1:210). The context suggests the latter"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.5.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “mantle”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.5.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the sentinels of the walls”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.5.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “O daughters of Jerusalem”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.5.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “sick with love”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.5.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “What is your beloved more than another beloved …?”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.5.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “What is your beloved more than another beloved …?”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.5.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “red”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.5.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “more than”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.5.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “streams”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.5.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “dwelling in a setting”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.5.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “seated at a suitable mounting”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.5.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “cylinders”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.5.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “rings”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.5.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “filled with”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.5.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “body”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.5.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “works of ivory set with sapphire”"
+        },
+        {
+          "verse": 15,
+          "usfm": "SNG.5.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “marble”"
+        },
+        {
+          "verse": 15,
+          "usfm": "SNG.5.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the cedars”"
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.5.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “his palate”"
+        },
+        {
+          "verse": 16,
+          "usfm": "SNG.5.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “O daughters of Jerusalem”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/SNG.5.LEB",
+        "reference": {
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Solomon 5",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.4"
+          ],
+          "human": "Song of Solomon 4",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Solomon 6",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 6,
       "chapter_usfm": "SNG.6",
@@ -470,81 +1848,318 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.6.1",
+          "line_type": null,
           "text": "Where has your beloved gone, O most beautiful among women? Where has your beloved turned that we may seek him with you?"
         },
         {
           "verse": 2,
+          "usfm": "SNG.6.2",
+          "line_type": null,
           "text": "My beloved has gone down to his garden, to the garden bed of the spice, to pasture his flock and to gather lilies in the garden."
         },
         {
           "verse": 3,
+          "usfm": "SNG.6.3",
+          "line_type": null,
           "text": "I belong to my beloved and he belongs to me; he pastures his flock among the lilies."
         },
         {
           "verse": 4,
+          "usfm": "SNG.6.4",
+          "line_type": null,
           "text": "You are beautiful, my beloved, as Tirzah, lovely as Jerusalem, overwhelming as an army with banners."
         },
         {
           "verse": 5,
+          "usfm": "SNG.6.5",
+          "line_type": null,
           "text": "Turn away your eyes from before me, for they overwhelm me. Your hair is like a flock of the goats that moves down from Gilead."
         },
         {
           "verse": 6,
+          "usfm": "SNG.6.6",
+          "line_type": null,
           "text": "Your teeth are like a flock of the ewes that have come up from the washing, all of them bearing twins, and there is none bereaved among them."
         },
         {
           "verse": 7,
+          "usfm": "SNG.6.7",
+          "line_type": null,
           "text": "Your cheeks behind your veil are like halves of a pomegranate."
         },
         {
           "verse": 8,
+          "usfm": "SNG.6.8",
+          "line_type": null,
           "text": "Sixty queens there are, eighty concubines, and maidens beyond number."
         },
         {
           "verse": 9,
+          "usfm": "SNG.6.9",
+          "line_type": null,
           "text": "My dove, she is the one; my perfect, she is the only one; she is the favorite of her mother who bore her. Maidens see her and consider her fortunate; queens and concubines praise her:"
         },
         {
           "verse": 10,
+          "usfm": "SNG.6.10",
+          "line_type": null,
           "text": "“Who is this that looks down like the dawn, beautiful as the moon, bright as the sun, overwhelming as an army with banners?”"
         },
         {
           "verse": 11,
+          "usfm": "SNG.6.11",
+          "line_type": null,
           "text": "I went down to the orchard of the walnut trees to look at the blossoms of the valley, to see whether the vines have sprouted, whether the pomegranates have blossomed."
         },
         {
           "verse": 12,
+          "usfm": "SNG.6.12",
+          "line_type": null,
           "text": "I did not know my heart set me in a chariot of my princely people."
         },
         {
           "verse": 13,
+          "usfm": "SNG.6.13",
+          "line_type": null,
           "text": "Turn, turn, O Shulammite! Turn, turn so that we may look upon you! Why do you look upon the Shulammite as at a dance of the two armies?"
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Mutual Possession Refrain"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Solomon’s Praise of His Beloved"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "The Maiden’s Beauty Is without Peer"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "The Journey to the Valley"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "SNG.6.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I for my beloved and he for me”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.6.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “terrible as the bannered ones”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.6.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from behind”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.6.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “she is one”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.6.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The term “one” functions here as an adjective of quality: “unique, singular, the only one”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.6.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “she is one”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.6.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “the only daughter of her mother.” Although the latter option is permissible, the term is used elsewhere of the heir as the favored child (e.g., Gen 22:2; Prov 4:3). This nuance is supported by the parallel term “favorite”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.6.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “she is the pure one.” Since there are two Hebrew terms spelled the same way, some relate this to the adjective that means “pure.” Others relate it to the verb that means “to choose, select.” The parallelism favors the latter"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.6.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the favorite for”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.6.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “call her happy” or “call her blessed” or “bless her”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.6.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “pure as the glow”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.6.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “bright as the heat of the sun.” The Hebrew term “glow” poetically refers to the bright rays of the sun (Psa 19:7; Isa 24:23; 30:26)"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.6.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “terrible as the bannered ones”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.6.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “soul”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.6.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Before I was aware, my soul made me like the chariots of Amminadib” (KJV, ASV) or “Before I knew it, my desire set me mid the chariots of Ammi-nadib” (JPS) or “Before I was aware, my soul set me over the chariots of my noble people” (NASB) or “Before I realized it, my desire set me among the royal chariots of my people” (NIV) or “… among the chariots of Amminadab” (NIV margin) or “… among the chariots of the people of the prince” (NIV margin)"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.6.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Song of Songs 6:13–7:13 in the English Bible is 7:1–14 in the Hebrew Bible"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.6.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Return, return …!”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.6.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “O perfect one,” “O peaceful one,” “O bride.” Many interpreters take this moniker as suggesting the maiden was from the village of Shulem (alternately called Shunem)"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.6.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Return, return …!”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/SNG.6.LEB",
+        "reference": {
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Solomon 6",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.5"
+          ],
+          "human": "Song of Solomon 5",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Solomon 7",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 7,
       "chapter_usfm": "SNG.7",
@@ -553,73 +2168,318 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.7.1",
+          "line_type": null,
           "text": "How beautiful are your feet in sandals, O royal princess! The curves of your thighs are like jewels, the work of the hands of a craftsman."
         },
         {
           "verse": 2,
+          "usfm": "SNG.7.2",
+          "line_type": null,
           "text": "Your navel is a round wine-mixing bowl that does not lack mixed wine! Your belly is a heap of wheat encircled with lilies."
         },
         {
           "verse": 3,
+          "usfm": "SNG.7.3",
+          "line_type": null,
           "text": "Your two breasts are like two fawns, twins of a gazelle."
         },
         {
           "verse": 4,
+          "usfm": "SNG.7.4",
+          "line_type": null,
           "text": "Your neck is like a tower of ivory; your eyes are pools in Heshbon at the gate of Beth Rabbim. Your nose is like the tower of Lebanon looking out over Damascus."
         },
         {
           "verse": 5,
+          "usfm": "SNG.7.5",
+          "line_type": null,
           "text": "Your head crowns you like Carmel; the flowing locks of your head are like purple tapestry; a king is held captive in the tresses!"
         },
         {
           "verse": 6,
+          "usfm": "SNG.7.6",
+          "line_type": null,
           "text": "How beautiful you are and how pleasant, O loved one in the delights!"
         },
         {
           "verse": 7,
+          "usfm": "SNG.7.7",
+          "line_type": null,
           "text": "Your stature is like the palm tree, and your breasts are like clusters."
         },
         {
           "verse": 8,
+          "usfm": "SNG.7.8",
+          "line_type": null,
           "text": "I say, “I will climb up the palm tree; I will lay hold of its fruit clusters.” Let your breasts be pleasing like clusters of the vine and the scent of your breath like the apples."
         },
         {
           "verse": 9,
+          "usfm": "SNG.7.9",
+          "line_type": null,
           "text": "Your palate is like the best wine that goes down for my beloved, smoothly gliding over my lips and teeth."
         },
         {
           "verse": 10,
+          "usfm": "SNG.7.10",
+          "line_type": null,
           "text": "I belong to my beloved, and he desires me!"
         },
         {
           "verse": 11,
+          "usfm": "SNG.7.11",
+          "line_type": null,
           "text": "Come, my beloved, let us go out to the countryside; let us spend the night in the villages."
         },
         {
           "verse": 12,
+          "usfm": "SNG.7.12",
+          "line_type": null,
           "text": "Let us rise early to go to the vineyards; let us see whether the vine has budded, whether the grape blossom has opened, and whether the pomegranates are in bloom; there I will give my love to you."
         },
         {
           "verse": 13,
+          "usfm": "SNG.7.13",
+          "line_type": null,
           "text": "The mandrakes give off their fragrance, and over our doorway is every kind of delicious fruit; both fresh and dried fruit I have stored up for you, O my beloved."
         }
       ],
       "verse_count": 13,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Mutual Possession Refrain"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Rendezvous in the Countryside"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "SNG.7.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “O daughter of leader”"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.7.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “thigh”"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.7.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “ornaments”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.7.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a bowl of the roundness”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.7.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “blended”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.7.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “looking out over the face of Damascus”"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.7.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Your head is on you like the Carmel”"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.7.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Because of its height and fertility, Mount Carmel is often associated with royalty"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.7.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the purple”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.7.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “this your height”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.7.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “over lips of sleepers.” One Hebrew textual tradition preserves the reading “lips of those who sleep” (MT). Another Hebrew tradition reads “my lips and my teeth,” as reflected by the ancient versions (LXX, Latin Vulgate, Aramaic Targum, Syriac Peshitta). The latter is adopted here since it makes the most sense poetically"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.7.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I am for my beloved”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.7.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “and his desire is for me.” Or “and his desire belongs to me”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.7.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “go forth into the field”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.7.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “lodge”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.7.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “let us go”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.7.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “sprouted”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.7.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “have bloomed”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.7.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “over our doorways all choice things”"
+        },
+        {
+          "verse": 13,
+          "usfm": "SNG.7.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “new also old I have laid up”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 13,
+          "parsed_count": 13,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/SNG.7.LEB",
+        "reference": {
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Solomon 7",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.6"
+          ],
+          "human": "Song of Solomon 6",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "SNG.8"
+          ],
+          "human": "Song of Solomon 8",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "SNG",
       "chapter": 8,
       "chapter_usfm": "SNG.8",
@@ -628,91 +2488,457 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "SNG.8.1",
+          "line_type": null,
           "text": "How I wish that you were my little brother, who nursed upon my mother’s breasts! If I met you outside, I would kiss you, and no one would despise me!"
         },
         {
           "verse": 2,
+          "usfm": "SNG.8.2",
+          "line_type": null,
           "text": "I would surely bring you to the house of my mother, who would surely teach me; I would give you spiced wine to drink, the sweet wine of my pomegranates."
         },
         {
           "verse": 3,
+          "usfm": "SNG.8.3",
+          "line_type": null,
           "text": "His left hand is under my head, and his right hand embraces me."
         },
         {
           "verse": 4,
+          "usfm": "SNG.8.4",
+          "line_type": null,
           "text": "I adjure you, O maidens of Jerusalem, do not arouse or awaken love until it pleases!"
         },
         {
           "verse": 5,
+          "usfm": "SNG.8.5",
+          "line_type": null,
           "text": "Who is this coming up from the wilderness, leaning upon her beloved? Under the apple tree I awakened you; there your mother conceived you; there she who was in labor gave birth to you."
         },
         {
           "verse": 6,
+          "usfm": "SNG.8.6",
+          "line_type": null,
           "text": "Set me as a seal upon your heart, as a seal upon your arm; for love is strong as death; passion is fierce as Sheol; its flashes are flashes of fire; it is a blazing flame."
         },
         {
           "verse": 7,
+          "usfm": "SNG.8.7",
+          "line_type": null,
           "text": "Many waters cannot quench love; rivers cannot sweep it away. If a man were to give all the wealth of his house for love, he would be utterly scorned."
         },
         {
           "verse": 8,
+          "usfm": "SNG.8.8",
+          "line_type": null,
           "text": "We have a little sister, and she does not yet have any breasts. What should we do for our sister on the day when she is betrothed?"
         },
         {
           "verse": 9,
+          "usfm": "SNG.8.9",
+          "line_type": null,
           "text": "If she is a wall, we will adorn her with a turret of silver; but if she is a door, we will barricade her with boards of cedar."
         },
         {
           "verse": 10,
+          "usfm": "SNG.8.10",
+          "line_type": null,
           "text": "I was a wall, and my breasts were like the towers, so my betrothed viewed me with great delight."
         },
         {
           "verse": 11,
+          "usfm": "SNG.8.11",
+          "line_type": null,
           "text": "Solomon had a vineyard at Baal-hamon; he entrusted his vineyard to the keepers; people paid a thousand silver pieces for its fruit."
         },
         {
           "verse": 12,
+          "usfm": "SNG.8.12",
+          "line_type": null,
           "text": "My own “vineyard” belongs to me; the “thousand” are for you, O Solomon, and “two hundred” for those who tend its fruit."
         },
         {
           "verse": 13,
+          "usfm": "SNG.8.13",
+          "line_type": null,
           "text": "O you who dwell in the garden, my companions are listening to your voice. Let me hear it!"
         },
         {
           "verse": 14,
+          "usfm": "SNG.8.14",
+          "line_type": null,
           "text": "Flee, my beloved! Be like a gazelle or a young stag upon the perfumed mountains!"
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Double Refrain: Embrace and Adjuration"
         },
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Up from the Wilderness and under the Apple Tree"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "The Nature of Genuine Romantic Love"
         },
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Maiden’s Virtuous Chastity and Voluptuous Beauty"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Solomon’s Vineyard and the Maiden’s Gift"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Closing Words of Mutual Love"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "SNG.8.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “O that he would give you like a brother to me”"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.8.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The Hebrew construction (which is somewhat misleading if rendered in a woodenly literal sense) is an idiom expressing one’s fanciful wish"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.8.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “at the breast of my mother”"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.8.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will find you in the street”"
+        },
+        {
+          "verse": 1,
+          "usfm": "SNG.8.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “also they would not despise me”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.8.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I would lead you and I would bring you”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.8.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The combination of the two verbs creates a hendiadys which may be rendered more cogently as “I would surely bring you …”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.8.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “she will teach me”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.8.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I would give you to drink from the wine of the spice”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.8.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “juice”"
+        },
+        {
+          "verse": 2,
+          "usfm": "SNG.8.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The traditional Hebrew reads the singular “my pomegranate.” However, the plural reading “my pomegranates” is attested in numerous medieval Hebrew manuscripts and is reflected in the ancient versions (Greek Septuagint, Aramaic Targum, Syriac Peshitta). The latter makes the most sense in this context as a euphemistic description of the maiden’s delights"
+        },
+        {
+          "verse": 3,
+          "usfm": "SNG.8.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “embraced”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.8.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “O daughters of Jerusalem”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.8.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Why must you … before it pleases?”"
+        },
+        {
+          "verse": 4,
+          "usfm": "SNG.8.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Do not stir up or awaken the love until it is willing,” or “Do not disturb or interrupt our lovemaking until it is satisfied”"
+        },
+        {
+          "verse": 5,
+          "usfm": "SNG.8.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “was in labor with you”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.8.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “and rivers cannot engulf it”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.8.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “in the love”"
+        },
+        {
+          "verse": 7,
+          "usfm": "SNG.8.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “they will utterly scorn him”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.8.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a little sister for us”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.8.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “and there is no breast for her”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.8.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “on the day when it is spoken of her”"
+        },
+        {
+          "verse": 8,
+          "usfm": "SNG.8.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “on the day when she is spoken for”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.8.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “we will build upon her a camp of silver”"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.8.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The term translated “turret” refers to the decorative parapet adorning the top of a building. This image is likely figurative for a silver tiara set upon the head"
+        },
+        {
+          "verse": 9,
+          "usfm": "SNG.8.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “we will enclose her”"
+        },
+        {
+          "verse": 10,
+          "usfm": "SNG.8.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “then I was in his eyes as one who finds peace”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.8.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “A vineyard was for Solomon”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.8.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “he gave the vineyard to the keepers”"
+        },
+        {
+          "verse": 11,
+          "usfm": "SNG.8.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “each one brought a thousand silver pieces for his fruit”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.8.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “My vineyard that for me before my face”"
+        },
+        {
+          "verse": 12,
+          "usfm": "SNG.8.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “and two hundred for the keepers of his fruit”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.8.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “and be like for you to a gazelle”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.8.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “to the fawn of the stag”"
+        },
+        {
+          "verse": 14,
+          "usfm": "SNG.8.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the mountains of spices”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/SNG.8.LEB",
+        "reference": {
+          "usfm": [
+            "SNG.8"
+          ],
+          "human": "Song of Solomon 8",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "SNG.7"
+          ],
+          "human": "Song of Solomon 7",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ISA.1"
+          ],
+          "human": "Isaiah 1",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

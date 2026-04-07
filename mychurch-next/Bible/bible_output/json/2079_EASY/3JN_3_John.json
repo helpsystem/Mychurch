@@ -11,6 +11,7 @@
   "total_verses": 15,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "3JN",
       "chapter": 1,
       "chapter_usfm": "3JN.1",
@@ -19,62 +20,92 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "3JN.1.1",
+          "line_type": "p",
           "text": "This letter comes from me, the leader of the believers. I am writing to you, my friend Gaius. I love you because we believe God's true message."
         },
         {
           "verse": 2,
+          "usfm": "3JN.1.2",
+          "line_type": "p",
           "text": "My friend, I pray that God will help you to live well. I know that you are well in your spirit. I pray that your body will also be well."
         },
         {
           "verse": 3,
+          "usfm": "3JN.1.3",
+          "line_type": "p",
           "text": "I was very happy when I heard news about you. Some Christian friends came here to tell me about you. They said that you are living in a good way. That is the way that God's true message tells us to live."
         },
         {
           "verse": 4,
+          "usfm": "3JN.1.4",
+          "line_type": "p",
           "text": "I am happy when I hear that my children are living like that. When they obey God's true message, it makes me very happy."
         },
         {
           "verse": 5,
+          "usfm": "3JN.1.5",
+          "line_type": "p",
           "text": "My friend, you do many things to help other believers. You help them even when they are strangers to you. This shows that you are serving God well."
         },
         {
           "verse": 6,
+          "usfm": "3JN.1.6",
+          "line_type": "p",
           "text": "These men have spoken to the group of believers here about your love. Please continue to help them when they visit you. Give them the things that they need to continue on their journey. That will make God happy."
         },
         {
           "verse": 7,
+          "usfm": "3JN.1.7",
+          "line_type": "p",
           "text": "They are travelling to different places to tell people about Jesus Christ. They do not accept any gifts from those people who are not Christians."
         },
         {
           "verse": 8,
+          "usfm": "3JN.1.8",
+          "line_type": "p",
           "text": "Because of that, we Christians must help them with the things that they need. In this way we will be working together with them as they tell people the true message about Christ."
         },
         {
           "verse": 9,
+          "usfm": "3JN.1.9",
+          "line_type": "p",
           "text": "I have already written something to the group of believers. But Diotrephes refuses to accept our authority. He really wants to be the only leader among them."
         },
         {
           "verse": 10,
+          "usfm": "3JN.1.10",
+          "line_type": "p",
           "text": "So, when I arrive there myself, I will speak to the believers about this. I will tell them clearly about the bad things that Diotrephes is doing. He tells other people bad things about us that are not true. Even that is not enough for him. He himself refuses to welcome the believers who are visiting. He also stops anyone else who wants to welcome those visitors. Instead, he sends them away from the group of believers."
         },
         {
           "verse": 11,
+          "usfm": "3JN.1.11",
+          "line_type": "p",
           "text": "My friend, do not copy what bad people do. Instead, you should copy the good things that people do. The person who does good things shows that he belongs to God. But anyone who does bad things does not know God."
         },
         {
           "verse": 12,
+          "usfm": "3JN.1.12",
+          "line_type": "p",
           "text": "All the believers say that Demetrius is a good person. He obeys God's true message. That also shows clearly that he is a good person. We also say the same thing about him. You know very well that what we say about him is true."
         },
         {
           "verse": 13,
+          "usfm": "3JN.1.13",
+          "line_type": "p",
           "text": "I would like to tell you many more things. But I do not want to write them in a letter."
         },
         {
           "verse": 14,
+          "usfm": "3JN.1.14",
+          "line_type": "p",
           "text": "Instead, I hope to come and visit you soon. Then I can see you and we can talk together."
         },
         {
           "verse": 15,
+          "usfm": "3JN.1.15",
+          "line_type": "p",
           "text": "I pray that God will give you peace. All your Christian friends here say ‘hello’ to you. Say ‘hello’ for me to each of my friends there, one by one."
         }
       ],
@@ -85,25 +116,214 @@
           "text": "John writes to his friend Gaius"
         },
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Continue to help other believers"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Diotrephes is causing problems"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Copy what good people like Demetrius do"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "John hopes to visit Gaius soon"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 7,
+          "usfm": "3JN.1.7",
+          "note_ref": "1:7",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Christ is a name for Jesus in the Greek language that means the same as Messiah in the Hebrew language. It means someone that God chose as a special king for his people."
+        },
+        {
+          "verse": 10,
+          "usfm": "3JN.1.10",
+          "note_ref": "1:10",
+          "note_type": "footnote",
+          "references": [
+            "3JN.1.7"
+          ],
+          "text": "These visitors were Christians who were travelling to different places to teach the message about Jesus Christ. See 3 John 1:7."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "3JN.1.1",
+            "3JN.1.2",
+            "3JN.1.3",
+            "3JN.1.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 8,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "3JN.1.4",
+            "3JN.1.5",
+            "3JN.1.6",
+            "3JN.1.7",
+            "3JN.1.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "3JN.1.10",
+            "3JN.1.8",
+            "3JN.1.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "3JN.1.10",
+            "3JN.1.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "3JN.1.11",
+            "3JN.1.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "3JN.1.12",
+            "3JN.1.13",
+            "3JN.1.14"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "3JN.1.14",
+            "3JN.1.15"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/2079/3JN.1.EASY",
+        "reference": {
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "version_id": 2079
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "3JN.INTRO1"
+          ],
+          "human": "3 John Intro",
+          "toc": true,
+          "version_id": 2079
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "JUD.INTRO1"
+          ],
+          "human": "Jude Intro",
+          "toc": true,
+          "version_id": 2079
+        }
+      },
+      "version_meta": {
+        "id": 2079,
+        "abbreviation": "EASY",
+        "local_abbreviation": "EASY",
+        "title": "EasyEnglish Bible 2024",
+        "local_title": "EasyEnglish Bible 2024",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "MissionAssist"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 113,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 1,
       "chapter_usfm": "1TI.1",
@@ -19,101 +20,314 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.1.1",
+          "line_type": "m",
           "text": "This letter is from Paul, an apostle of Christ Jesus, appointed by the command of God our Savior and Christ Jesus, who gives us hope."
         },
         {
           "verse": 2,
+          "usfm": "1TI.1.2",
+          "line_type": "p",
           "text": "I am writing to Timothy, my true son in the faith.May God the Father and Christ Jesus our Lord give you grace, mercy, and peace."
         },
         {
           "verse": 3,
+          "usfm": "1TI.1.3",
+          "line_type": "m",
           "text": "When I left for Macedonia, I urged you to stay there in Ephesus and stop those whose teaching is contrary to the truth."
         },
         {
           "verse": 4,
+          "usfm": "1TI.1.4",
+          "line_type": "m",
           "text": "Don’t let them waste their time in endless discussion of myths and spiritual pedigrees. These things only lead to meaningless speculations, which don’t help people live a life of faith in God."
         },
         {
           "verse": 5,
+          "usfm": "1TI.1.5",
+          "line_type": "p",
           "text": "The purpose of my instruction is that all believers would be filled with love that comes from a pure heart, a clear conscience, and genuine faith."
         },
         {
           "verse": 6,
+          "usfm": "1TI.1.6",
+          "line_type": "p",
           "text": "But some people have missed this whole point. They have turned away from these things and spend their time in meaningless discussions."
         },
         {
           "verse": 7,
+          "usfm": "1TI.1.7",
+          "line_type": "p",
           "text": "They want to be known as teachers of the law of Moses, but they don’t know what they are talking about, even though they speak so confidently."
         },
         {
           "verse": 8,
+          "usfm": "1TI.1.8",
+          "line_type": "p",
           "text": "We know that the law is good when used correctly."
         },
         {
           "verse": 9,
+          "usfm": "1TI.1.9",
+          "line_type": "p",
           "text": "For the law was not intended for people who do what is right. It is for people who are lawless and rebellious, who are ungodly and sinful, who consider nothing sacred and defile what is holy, who kill their father or mother or commit other murders."
         },
         {
           "verse": 10,
+          "usfm": "1TI.1.10",
+          "line_type": "p",
           "text": "The law is for people who are sexually immoral, or who practice homosexuality, or are slave traders, liars, promise breakers, or who do anything else that contradicts the wholesome teaching"
         },
         {
           "verse": 11,
+          "usfm": "1TI.1.11",
+          "line_type": "p",
           "text": "that comes from the glorious Good News entrusted to me by our blessed God."
         },
         {
           "verse": 12,
+          "usfm": "1TI.1.12",
+          "line_type": "m",
           "text": "I thank Christ Jesus our Lord, who has given me strength to do his work. He considered me trustworthy and appointed me to serve him,"
         },
         {
           "verse": 13,
+          "usfm": "1TI.1.13",
+          "line_type": "m",
           "text": "even though I used to blaspheme the name of Christ. In my insolence, I persecuted his people. But God had mercy on me because I did it in ignorance and unbelief."
         },
         {
           "verse": 14,
+          "usfm": "1TI.1.14",
+          "line_type": "m",
           "text": "Oh, how generous and gracious our Lord was! He filled me with the faith and love that come from Christ Jesus."
         },
         {
           "verse": 15,
+          "usfm": "1TI.1.15",
+          "line_type": "p",
           "text": "This is a trustworthy saying, and everyone should accept it: “Christ Jesus came into the world to save sinners”—and I am the worst of them all."
         },
         {
           "verse": 16,
+          "usfm": "1TI.1.16",
+          "line_type": "p",
           "text": "But God had mercy on me so that Christ Jesus could use me as a prime example of his great patience with even the worst sinners. Then others will realize that they, too, can believe in him and receive eternal life."
         },
         {
           "verse": 17,
+          "usfm": "1TI.1.17",
+          "line_type": "p",
           "text": "All honor and glory to God forever and ever! He is the eternal King, the unseen one who never dies; he alone is God. Amen."
         },
         {
           "verse": 18,
+          "usfm": "1TI.1.18",
+          "line_type": "m",
           "text": "Timothy, my son, here are my instructions for you, based on the prophetic words spoken about you earlier. May they help you fight well in the Lord’s battles."
         },
         {
           "verse": 19,
+          "usfm": "1TI.1.19",
+          "line_type": "m",
           "text": "Cling to your faith in Christ, and keep your conscience clear. For some people have deliberately violated their consciences; as a result, their faith has been shipwrecked."
         },
         {
           "verse": 20,
+          "usfm": "1TI.1.20",
+          "line_type": "m",
           "text": "Hymenaeus and Alexander are two examples. I threw them out and handed them over to Satan so they might learn not to blaspheme God."
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Warnings against False Teachings"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Paul’s Gratitude for God’s Mercy"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Timothy’s Responsibility"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 4,
+          "usfm": "1TI.1.4",
+          "note_ref": "1:4a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek in myths and endless genealogies, which cause speculation."
+        },
+        {
+          "verse": 4,
+          "usfm": "1TI.1.4",
+          "note_ref": "1:4b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek a stewardship of God in faith."
+        },
+        {
+          "verse": 10,
+          "usfm": "1TI.1.10",
+          "note_ref": "1:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or kidnappers."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1TI.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1TI.1.1",
+            "1TI.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "1TI.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "1TI.1.2",
+            "1TI.1.3",
+            "1TI.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "1TI.1.4",
+            "1TI.1.5",
+            "1TI.1.6",
+            "1TI.1.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 11,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "1TI.1.10",
+            "1TI.1.11",
+            "1TI.1.7",
+            "1TI.1.8",
+            "1TI.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 14,
+          "verses": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "1TI.1.11",
+            "1TI.1.12",
+            "1TI.1.13",
+            "1TI.1.14"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 17,
+          "verses": [
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "1TI.1.14",
+            "1TI.1.15",
+            "1TI.1.16",
+            "1TI.1.17"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "m",
+          "start_verse": 17,
+          "end_verse": 20,
+          "verses": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "1TI.1.17",
+            "1TI.1.18",
+            "1TI.1.19",
+            "1TI.1.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -156,9 +370,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1TI/1-01ee2b36bf9a6e7ef1f72d0d9f620b50.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1TI.1.NLT",
+        "reference": {
+          "usfm": [
+            "1TI.1"
+          ],
+          "human": "1 Timothy 1",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TH.3"
+          ],
+          "human": "2 Thessalonians 3",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.2"
+          ],
+          "human": "1 Timothy 2",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 2,
       "chapter_usfm": "1TI.2",
@@ -167,68 +438,211 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.2.1",
+          "line_type": "m",
           "text": "I urge you, first of all, to pray for all people. Ask God to help them; intercede on their behalf, and give thanks for them."
         },
         {
           "verse": 2,
+          "usfm": "1TI.2.2",
+          "line_type": "m",
           "text": "Pray this way for kings and all who are in authority so that we can live peaceful and quiet lives marked by godliness and dignity."
         },
         {
           "verse": 3,
+          "usfm": "1TI.2.3",
+          "line_type": "m",
           "text": "This is good and pleases God our Savior,"
         },
         {
           "verse": 4,
+          "usfm": "1TI.2.4",
+          "line_type": "m",
           "text": "who wants everyone to be saved and to understand the truth."
         },
         {
           "verse": 5,
+          "usfm": "1TI.2.5",
+          "line_type": "m",
           "text": "For,There is one God and one Mediator who can reconcile God and humanity—the man Christ Jesus."
         },
         {
           "verse": 6,
+          "usfm": "1TI.2.6",
+          "line_type": "m",
           "text": "He gave his life to purchase freedom for everyone.This is the message God gave to the world at just the right time."
         },
         {
           "verse": 7,
+          "usfm": "1TI.2.7",
+          "line_type": "m",
           "text": "And I have been chosen as a preacher and apostle to teach the Gentiles this message about faith and truth. I’m not exaggerating—just telling the truth."
         },
         {
           "verse": 8,
+          "usfm": "1TI.2.8",
+          "line_type": "p",
           "text": "In every place of worship, I want men to pray with holy hands lifted up to God, free from anger and controversy."
         },
         {
           "verse": 9,
+          "usfm": "1TI.2.9",
+          "line_type": "p",
           "text": "And I want women to be modest in their appearance. They should wear decent and appropriate clothing and not draw attention to themselves by the way they fix their hair or by wearing gold or pearls or expensive clothes."
         },
         {
           "verse": 10,
+          "usfm": "1TI.2.10",
+          "line_type": "p",
           "text": "For women who claim to be devoted to God should make themselves attractive by the good things they do."
         },
         {
           "verse": 11,
+          "usfm": "1TI.2.11",
+          "line_type": "p",
           "text": "Women should learn quietly and submissively."
         },
         {
           "verse": 12,
+          "usfm": "1TI.2.12",
+          "line_type": "p",
           "text": "I do not let women teach men or have authority over them. Let them listen quietly."
         },
         {
           "verse": 13,
+          "usfm": "1TI.2.13",
+          "line_type": "p",
           "text": "For God made Adam first, and afterward he made Eve."
         },
         {
           "verse": 14,
+          "usfm": "1TI.2.14",
+          "line_type": "p",
           "text": "And it was not Adam who was deceived by Satan. The woman was deceived, and sin was the result."
         },
         {
           "verse": 15,
+          "usfm": "1TI.2.15",
+          "line_type": "p",
           "text": "But women will be saved through childbearing, assuming they continue to live in faith, love, holiness, and modesty."
         }
       ],
       "verse_count": 15,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 9,
+          "usfm": "1TI.2.9",
+          "note_ref": "2:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or to pray in modest apparel."
+        },
+        {
+          "verse": 12,
+          "usfm": "1TI.2.12",
+          "note_ref": "2:12",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or teach men or usurp their authority."
+        },
+        {
+          "verse": 15,
+          "usfm": "1TI.2.15",
+          "note_ref": "2:15",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or will be saved by accepting their role as mothers, or will be saved by the birth of the Child."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "1TI.2.1",
+            "1TI.2.2",
+            "1TI.2.3",
+            "1TI.2.4",
+            "1TI.2.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "1TI.2.6",
+            "1TI.2.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "1TI.2.7",
+            "1TI.2.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1TI.2.10",
+            "1TI.2.8",
+            "1TI.2.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 15,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "1TI.2.10",
+            "1TI.2.11",
+            "1TI.2.12",
+            "1TI.2.13",
+            "1TI.2.14",
+            "1TI.2.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -271,9 +685,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1TI/2-e7683a45b64231bc94874dbf127c4588.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1TI.2.NLT",
+        "reference": {
+          "usfm": [
+            "1TI.2"
+          ],
+          "human": "1 Timothy 2",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.1"
+          ],
+          "human": "1 Timothy 1",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.3"
+          ],
+          "human": "1 Timothy 3",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 3,
       "chapter_usfm": "1TI.3",
@@ -282,77 +753,362 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.3.1",
+          "line_type": "m",
           "text": "This is a trustworthy saying: “If someone aspires to be a church leader, he desires an honorable position.”"
         },
         {
           "verse": 2,
+          "usfm": "1TI.3.2",
+          "line_type": "m",
           "text": "So a church leader must be a man whose life is above reproach. He must be faithful to his wife. He must exercise self-control, live wisely, and have a good reputation. He must enjoy having guests in his home, and he must be able to teach."
         },
         {
           "verse": 3,
+          "usfm": "1TI.3.3",
+          "line_type": "m",
           "text": "He must not be a heavy drinker or be violent. He must be gentle, not quarrelsome, and not love money."
         },
         {
           "verse": 4,
+          "usfm": "1TI.3.4",
+          "line_type": "m",
           "text": "He must manage his own family well, having children who respect and obey him."
         },
         {
           "verse": 5,
+          "usfm": "1TI.3.5",
+          "line_type": "m",
           "text": "For if a man cannot manage his own household, how can he take care of God’s church?"
         },
         {
           "verse": 6,
+          "usfm": "1TI.3.6",
+          "line_type": "p",
           "text": "A church leader must not be a new believer, because he might become proud, and the devil would cause him to fall."
         },
         {
           "verse": 7,
+          "usfm": "1TI.3.7",
+          "line_type": "p",
           "text": "Also, people outside the church must speak well of him so that he will not be disgraced and fall into the devil’s trap."
         },
         {
           "verse": 8,
+          "usfm": "1TI.3.8",
+          "line_type": "p",
           "text": "In the same way, deacons must be well respected and have integrity. They must not be heavy drinkers or dishonest with money."
         },
         {
           "verse": 9,
+          "usfm": "1TI.3.9",
+          "line_type": "p",
           "text": "They must be committed to the mystery of the faith now revealed and must live with a clear conscience."
         },
         {
           "verse": 10,
+          "usfm": "1TI.3.10",
+          "line_type": "p",
           "text": "Before they are appointed as deacons, let them be closely examined. If they pass the test, then let them serve as deacons."
         },
         {
           "verse": 11,
+          "usfm": "1TI.3.11",
+          "line_type": "p",
           "text": "In the same way, their wives must be respected and must not slander others. They must exercise self-control and be faithful in everything they do."
         },
         {
           "verse": 12,
+          "usfm": "1TI.3.12",
+          "line_type": "p",
           "text": "A deacon must be faithful to his wife, and he must manage his children and household well."
         },
         {
           "verse": 13,
+          "usfm": "1TI.3.13",
+          "line_type": "p",
           "text": "Those who do well as deacons will be rewarded with respect from others and will have increased confidence in their faith in Christ Jesus."
         },
         {
           "verse": 14,
+          "usfm": "1TI.3.14",
+          "line_type": "m",
           "text": "I am writing these things to you now, even though I hope to be with you soon,"
         },
         {
           "verse": 15,
+          "usfm": "1TI.3.15",
+          "line_type": "m",
           "text": "so that if I am delayed, you will know how people must conduct themselves in the household of God. This is the church of the living God, which is the pillar and foundation of the truth."
         },
         {
           "verse": 16,
+          "usfm": "1TI.3.16",
+          "line_type": "p",
           "text": "Without question, this is the great mystery of our faith:Christ was revealed in a human bodyand vindicated by the Spirit.He was seen by angelsand announced to the nations.He was believed in throughout the worldand taken to heaven in glory."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "The Truths of Our Faith"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TI.3.1",
+          "note_ref": "3:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or an overseer, or a bishop; also in 3:2, 6."
+        },
+        {
+          "verse": 2,
+          "usfm": "1TI.3.2",
+          "note_ref": "3:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or must have only one wife, or must be married only once; Greek reads must be the husband of one wife; also in 3:12."
+        },
+        {
+          "verse": 3,
+          "usfm": "1TI.3.3",
+          "note_ref": "3:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek must not drink too much wine; similarly in 3:8."
+        },
+        {
+          "verse": 6,
+          "usfm": "1TI.3.6",
+          "note_ref": "3:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or he might fall into the same judgment as the devil."
+        },
+        {
+          "verse": 11,
+          "usfm": "1TI.3.11",
+          "note_ref": "3:11",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or the women deacons. The Greek word can be translated women or wives."
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "3:16a",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or of godliness."
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "3:16b",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek He who; other manuscripts read God."
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "3:16c",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or in his spirit."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "1TI.3.1",
+            "1TI.3.2",
+            "1TI.3.3",
+            "1TI.3.4",
+            "1TI.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "1TI.3.5",
+            "1TI.3.6",
+            "1TI.3.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 10,
+          "verses": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1TI.3.10",
+            "1TI.3.7",
+            "1TI.3.8",
+            "1TI.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "1TI.3.10",
+            "1TI.3.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 13,
+          "verses": [
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "1TI.3.11",
+            "1TI.3.12",
+            "1TI.3.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "m",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "1TI.3.13",
+            "1TI.3.14",
+            "1TI.3.15"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "1TI.3.15",
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -395,9 +1151,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1TI/3-1c225b16120c1cb478453d376714a8d5.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1TI.3.NLT",
+        "reference": {
+          "usfm": [
+            "1TI.3"
+          ],
+          "human": "1 Timothy 3",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.2"
+          ],
+          "human": "1 Timothy 2",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.4"
+          ],
+          "human": "1 Timothy 4",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 4,
       "chapter_usfm": "1TI.4",
@@ -406,77 +1219,234 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.4.1",
+          "line_type": "m",
           "text": "Now the Holy Spirit tells us clearly that in the last times some will turn away from the true faith; they will follow deceptive spirits and teachings that come from demons."
         },
         {
           "verse": 2,
+          "usfm": "1TI.4.2",
+          "line_type": "m",
           "text": "These people are hypocrites and liars, and their consciences are dead."
         },
         {
           "verse": 3,
+          "usfm": "1TI.4.3",
+          "line_type": "p",
           "text": "They will say it is wrong to be married and wrong to eat certain foods. But God created those foods to be eaten with thanks by faithful people who know the truth."
         },
         {
           "verse": 4,
+          "usfm": "1TI.4.4",
+          "line_type": "p",
           "text": "Since everything God created is good, we should not reject any of it but receive it with thanks."
         },
         {
           "verse": 5,
+          "usfm": "1TI.4.5",
+          "line_type": "p",
           "text": "For we know it is made acceptable by the word of God and prayer."
         },
         {
           "verse": 6,
+          "usfm": "1TI.4.6",
+          "line_type": "m",
           "text": "If you explain these things to the brothers and sisters, Timothy, you will be a worthy servant of Christ Jesus, one who is nourished by the message of faith and the good teaching you have followed."
         },
         {
           "verse": 7,
+          "usfm": "1TI.4.7",
+          "line_type": "m",
           "text": "Do not waste time arguing over godless ideas and old wives’ tales. Instead, train yourself to be godly."
         },
         {
           "verse": 8,
+          "usfm": "1TI.4.8",
+          "line_type": "m",
           "text": "“Physical training is good, but training for godliness is much better, promising benefits in this life and in the life to come.”"
         },
         {
           "verse": 9,
+          "usfm": "1TI.4.9",
+          "line_type": "m",
           "text": "This is a trustworthy saying, and everyone should accept it."
         },
         {
           "verse": 10,
+          "usfm": "1TI.4.10",
+          "line_type": "m",
           "text": "This is why we work hard and continue to struggle, for our hope is in the living God, who is the Savior of all people and particularly of all believers."
         },
         {
           "verse": 11,
+          "usfm": "1TI.4.11",
+          "line_type": "p",
           "text": "Teach these things and insist that everyone learn them."
         },
         {
           "verse": 12,
+          "usfm": "1TI.4.12",
+          "line_type": "p",
           "text": "Don’t let anyone think less of you because you are young. Be an example to all believers in what you say, in the way you live, in your love, your faith, and your purity."
         },
         {
           "verse": 13,
+          "usfm": "1TI.4.13",
+          "line_type": "p",
           "text": "Until I get there, focus on reading the Scriptures to the church, encouraging the believers, and teaching them."
         },
         {
           "verse": 14,
+          "usfm": "1TI.4.14",
+          "line_type": "p",
           "text": "Do not neglect the spiritual gift you received through the prophecy spoken over you when the elders of the church laid their hands on you."
         },
         {
           "verse": 15,
+          "usfm": "1TI.4.15",
+          "line_type": "p",
           "text": "Give your complete attention to these matters. Throw yourself into your tasks so that everyone will see your progress."
         },
         {
           "verse": 16,
+          "usfm": "1TI.4.16",
+          "line_type": "p",
           "text": "Keep a close watch on how you live and on your teaching. Stay true to what is right for the sake of your own salvation and the salvation of those who hear you."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "A Good Servant of Christ Jesus"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "1TI.4.2",
+          "note_ref": "4:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek are seared."
+        },
+        {
+          "verse": 5,
+          "usfm": "1TI.4.5",
+          "note_ref": "4:5",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or made holy."
+        },
+        {
+          "verse": 6,
+          "usfm": "1TI.4.6",
+          "note_ref": "4:6",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek brothers."
+        },
+        {
+          "verse": 10,
+          "usfm": "1TI.4.10",
+          "note_ref": "4:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some manuscripts read continue to suffer."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1TI.4.1",
+            "1TI.4.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "1TI.4.2",
+            "1TI.4.3",
+            "1TI.4.4",
+            "1TI.4.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "m",
+          "start_verse": 5,
+          "end_verse": 10,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1TI.4.10",
+            "1TI.4.5",
+            "1TI.4.6",
+            "1TI.4.7",
+            "1TI.4.8",
+            "1TI.4.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "1TI.4.10",
+            "1TI.4.11",
+            "1TI.4.12",
+            "1TI.4.13"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 16,
+          "verses": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "1TI.4.13",
+            "1TI.4.14",
+            "1TI.4.15",
+            "1TI.4.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -519,9 +1489,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1TI/4-6f2624ef2de6495e1c077dcf91c546f2.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1TI.4.NLT",
+        "reference": {
+          "usfm": [
+            "1TI.4"
+          ],
+          "human": "1 Timothy 4",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.3"
+          ],
+          "human": "1 Timothy 3",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.5"
+          ],
+          "human": "1 Timothy 5",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 5,
       "chapter_usfm": "1TI.5",
@@ -530,108 +1557,421 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.5.1",
+          "line_type": "m",
           "text": "Never speak harshly to an older man, but appeal to him respectfully as you would to your own father. Talk to younger men as you would to your own brothers."
         },
         {
           "verse": 2,
+          "usfm": "1TI.5.2",
+          "line_type": "m",
           "text": "Treat older women as you would your mother, and treat younger women with all purity as you would your own sisters."
         },
         {
           "verse": 3,
+          "usfm": "1TI.5.3",
+          "line_type": "p",
           "text": "Take care of any widow who has no one else to care for her."
         },
         {
           "verse": 4,
+          "usfm": "1TI.5.4",
+          "line_type": "p",
           "text": "But if she has children or grandchildren, their first responsibility is to show godliness at home and repay their parents by taking care of them. This is something that pleases God."
         },
         {
           "verse": 5,
+          "usfm": "1TI.5.5",
+          "line_type": "p",
           "text": "Now a true widow, a woman who is truly alone in this world, has placed her hope in God. She prays night and day, asking God for his help."
         },
         {
           "verse": 6,
+          "usfm": "1TI.5.6",
+          "line_type": "p",
           "text": "But the widow who lives only for pleasure is spiritually dead even while she lives."
         },
         {
           "verse": 7,
+          "usfm": "1TI.5.7",
+          "line_type": "p",
           "text": "Give these instructions to the church so that no one will be open to criticism."
         },
         {
           "verse": 8,
+          "usfm": "1TI.5.8",
+          "line_type": "p",
           "text": "But those who won’t care for their relatives, especially those in their own household, have denied the true faith. Such people are worse than unbelievers."
         },
         {
           "verse": 9,
+          "usfm": "1TI.5.9",
+          "line_type": "p",
           "text": "A widow who is put on the list for support must be a woman who is at least sixty years old and was faithful to her husband."
         },
         {
           "verse": 10,
+          "usfm": "1TI.5.10",
+          "line_type": "p",
           "text": "She must be well respected by everyone because of the good she has done. Has she brought up her children well? Has she been kind to strangers and served other believers humbly? Has she helped those who are in trouble? Has she always been ready to do good?"
         },
         {
           "verse": 11,
+          "usfm": "1TI.5.11",
+          "line_type": "p",
           "text": "The younger widows should not be on the list, because their physical desires will overpower their devotion to Christ and they will want to remarry."
         },
         {
           "verse": 12,
+          "usfm": "1TI.5.12",
+          "line_type": "p",
           "text": "Then they would be guilty of breaking their previous pledge."
         },
         {
           "verse": 13,
+          "usfm": "1TI.5.13",
+          "line_type": "p",
           "text": "And if they are on the list, they will learn to be lazy and will spend their time gossiping from house to house, meddling in other people’s business and talking about things they shouldn’t."
         },
         {
           "verse": 14,
+          "usfm": "1TI.5.14",
+          "line_type": "p",
           "text": "So I advise these younger widows to marry again, have children, and take care of their own homes. Then the enemy will not be able to say anything against them."
         },
         {
           "verse": 15,
+          "usfm": "1TI.5.15",
+          "line_type": "p",
           "text": "For I am afraid that some of them have already gone astray and now follow Satan."
         },
         {
           "verse": 16,
+          "usfm": "1TI.5.16",
+          "line_type": "p",
           "text": "If a woman who is a believer has relatives who are widows, she must take care of them and not put the responsibility on the church. Then the church can care for the widows who are truly alone."
         },
         {
           "verse": 17,
+          "usfm": "1TI.5.17",
+          "line_type": "p",
           "text": "Elders who do their work well should be respected and paid well, especially those who work hard at both preaching and teaching."
         },
         {
           "verse": 18,
+          "usfm": "1TI.5.18",
+          "line_type": "p",
           "text": "For the Scripture says, “You must not muzzle an ox to keep it from eating as it treads out the grain.” And in another place, “Those who work deserve their pay!”"
         },
         {
           "verse": 19,
+          "usfm": "1TI.5.19",
+          "line_type": "p",
           "text": "Do not listen to an accusation against an elder unless it is confirmed by two or three witnesses."
         },
         {
           "verse": 20,
+          "usfm": "1TI.5.20",
+          "line_type": "p",
           "text": "Those who sin should be reprimanded in front of the whole church; this will serve as a strong warning to others."
         },
         {
           "verse": 21,
+          "usfm": "1TI.5.21",
+          "line_type": "p",
           "text": "I solemnly command you in the presence of God and Christ Jesus and the highest angels to obey these instructions without taking sides or showing favoritism to anyone."
         },
         {
           "verse": 22,
+          "usfm": "1TI.5.22",
+          "line_type": "p",
           "text": "Never be in a hurry about appointing a church leader. Do not share in the sins of others. Keep yourself pure."
         },
         {
           "verse": 23,
+          "usfm": "1TI.5.23",
+          "line_type": "p",
           "text": "Don’t drink only water. You ought to drink a little wine for the sake of your stomach because you are sick so often."
         },
         {
           "verse": 24,
+          "usfm": "1TI.5.24",
+          "line_type": "p",
           "text": "Remember, the sins of some people are obvious, leading them to certain judgment. But there are others whose sins will not be revealed until later."
         },
         {
           "verse": 25,
+          "usfm": "1TI.5.25",
+          "line_type": "p",
           "text": "In the same way, the good deeds of some people are obvious. And the good deeds done in secret will someday come to light."
         }
       ],
       "verse_count": 25,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TI.5.1",
+          "note_ref": "5:1",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or an elder."
+        },
+        {
+          "verse": 3,
+          "usfm": "1TI.5.3",
+          "note_ref": "5:3",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Honor."
+        },
+        {
+          "verse": 9,
+          "usfm": "1TI.5.9",
+          "note_ref": "5:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek was the wife of one husband."
+        },
+        {
+          "verse": 10,
+          "usfm": "1TI.5.10",
+          "note_ref": "5:10",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek and washed the feet of God’s holy people?"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TI.5.17",
+          "note_ref": "5:17",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek should be worthy of double honor."
+        },
+        {
+          "verse": 18,
+          "usfm": "1TI.5.18",
+          "note_ref": "5:18",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Deut 25:4; Luke 10:7."
+        },
+        {
+          "verse": 22,
+          "usfm": "1TI.5.22",
+          "note_ref": "5:22",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek about the laying on of hands."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1TI.5.1",
+            "1TI.5.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "1TI.5.2",
+            "1TI.5.3",
+            "1TI.5.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "1TI.5.4",
+            "1TI.5.5",
+            "1TI.5.6",
+            "1TI.5.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "1TI.5.7",
+            "1TI.5.8"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1TI.5.10",
+            "1TI.5.8",
+            "1TI.5.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 15,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "1TI.5.10",
+            "1TI.5.11",
+            "1TI.5.12",
+            "1TI.5.13",
+            "1TI.5.14",
+            "1TI.5.15"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "1TI.5.15",
+            "1TI.5.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 18,
+          "verses": [
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "1TI.5.16",
+            "1TI.5.17",
+            "1TI.5.18"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 20,
+          "verses": [
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "1TI.5.18",
+            "1TI.5.19",
+            "1TI.5.20"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "1TI.5.20",
+            "1TI.5.21"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "1TI.5.21",
+            "1TI.5.22"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "1TI.5.22",
+            "1TI.5.23"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 25,
+          "verses": [
+            23,
+            24,
+            25
+          ],
+          "usfms": [
+            "1TI.5.23",
+            "1TI.5.24",
+            "1TI.5.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -674,9 +2014,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1TI/5-1d1989543d0251f4d667037347b2a8a6.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1TI.5.NLT",
+        "reference": {
+          "usfm": [
+            "1TI.5"
+          ],
+          "human": "1 Timothy 5",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.4"
+          ],
+          "human": "1 Timothy 4",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.6"
+          ],
+          "human": "1 Timothy 6",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 6,
       "chapter_usfm": "1TI.6",
@@ -685,101 +2082,288 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.6.1",
+          "line_type": "p",
           "text": "All slaves should show full respect for their masters so they will not bring shame on the name of God and his teaching."
         },
         {
           "verse": 2,
+          "usfm": "1TI.6.2",
+          "line_type": "p",
           "text": "If the masters are believers, that is no excuse for being disrespectful. Those slaves should work all the harder because their efforts are helping other believers who are well loved.Teach these things, Timothy, and encourage everyone to obey them."
         },
         {
           "verse": 3,
+          "usfm": "1TI.6.3",
+          "line_type": "m",
           "text": "Some people may contradict our teaching, but these are the wholesome teachings of the Lord Jesus Christ. These teachings promote a godly life."
         },
         {
           "verse": 4,
+          "usfm": "1TI.6.4",
+          "line_type": "m",
           "text": "Anyone who teaches something different is arrogant and lacks understanding. Such a person has an unhealthy desire to quibble over the meaning of words. This stirs up arguments ending in jealousy, division, slander, and evil suspicions."
         },
         {
           "verse": 5,
+          "usfm": "1TI.6.5",
+          "line_type": "m",
           "text": "These people always cause trouble. Their minds are corrupt, and they have turned their backs on the truth. To them, a show of godliness is just a way to become wealthy."
         },
         {
           "verse": 6,
+          "usfm": "1TI.6.6",
+          "line_type": "p",
           "text": "Yet true godliness with contentment is itself great wealth."
         },
         {
           "verse": 7,
+          "usfm": "1TI.6.7",
+          "line_type": "p",
           "text": "After all, we brought nothing with us when we came into the world, and we can’t take anything with us when we leave it."
         },
         {
           "verse": 8,
+          "usfm": "1TI.6.8",
+          "line_type": "p",
           "text": "So if we have enough food and clothing, let us be content."
         },
         {
           "verse": 9,
+          "usfm": "1TI.6.9",
+          "line_type": "p",
           "text": "But people who long to be rich fall into temptation and are trapped by many foolish and harmful desires that plunge them into ruin and destruction."
         },
         {
           "verse": 10,
+          "usfm": "1TI.6.10",
+          "line_type": "p",
           "text": "For the love of money is the root of all kinds of evil. And some people, craving money, have wandered from the true faith and pierced themselves with many sorrows."
         },
         {
           "verse": 11,
+          "usfm": "1TI.6.11",
+          "line_type": "m",
           "text": "But you, Timothy, are a man of God; so run from all these evil things. Pursue righteousness and a godly life, along with faith, love, perseverance, and gentleness."
         },
         {
           "verse": 12,
+          "usfm": "1TI.6.12",
+          "line_type": "m",
           "text": "Fight the good fight for the true faith. Hold tightly to the eternal life to which God has called you, which you have declared so well before many witnesses."
         },
         {
           "verse": 13,
+          "usfm": "1TI.6.13",
+          "line_type": "m",
           "text": "And I charge you before God, who gives life to all, and before Christ Jesus, who gave a good testimony before Pontius Pilate,"
         },
         {
           "verse": 14,
+          "usfm": "1TI.6.14",
+          "line_type": "m",
           "text": "that you obey this command without wavering. Then no one can find fault with you from now until our Lord Jesus Christ comes again."
         },
         {
           "verse": 15,
+          "usfm": "1TI.6.15",
+          "line_type": "m",
           "text": "For,At just the right time Christ will be revealed from heaven by the blessed and only almighty God, the King of all kings and Lord of all lords."
         },
         {
           "verse": 16,
+          "usfm": "1TI.6.16",
+          "line_type": "p",
           "text": "He alone can never die, and he lives in light so brilliant that no human can approach him. No human eye has ever seen him, nor ever will. All honor and power to him forever! Amen."
         },
         {
           "verse": 17,
+          "usfm": "1TI.6.17",
+          "line_type": "p",
           "text": "Teach those who are rich in this world not to be proud and not to trust in their money, which is so unreliable. Their trust should be in God, who richly gives us all we need for our enjoyment."
         },
         {
           "verse": 18,
+          "usfm": "1TI.6.18",
+          "line_type": "p",
           "text": "Tell them to use their money to do good. They should be rich in good works and generous to those in need, always being ready to share with others."
         },
         {
           "verse": 19,
+          "usfm": "1TI.6.19",
+          "line_type": "p",
           "text": "By doing this they will be storing up their treasure as a good foundation for the future so that they may experience true life."
         },
         {
           "verse": 20,
+          "usfm": "1TI.6.20",
+          "line_type": "p",
           "text": "Timothy, guard what God has entrusted to you. Avoid godless, foolish discussions with those who oppose you with their so-called knowledge."
         },
         {
           "verse": 21,
+          "usfm": "1TI.6.21",
+          "line_type": "p",
           "text": "Some people have wandered from the faith by following such foolishness.May God’s grace be with you all."
         }
       ],
       "verse_count": 21,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "False Teaching and True Riches"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Paul’s Final Instructions"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "1TI.6.2",
+          "note_ref": "6:2",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Greek brothers."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1TI.6.1",
+            "1TI.6.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 2,
+          "end_verse": 5,
+          "verses": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "1TI.6.2",
+            "1TI.6.3",
+            "1TI.6.4",
+            "1TI.6.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 8,
+          "verses": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "1TI.6.5",
+            "1TI.6.6",
+            "1TI.6.7",
+            "1TI.6.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1TI.6.10",
+            "1TI.6.8",
+            "1TI.6.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 10,
+          "end_verse": 15,
+          "verses": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "1TI.6.10",
+            "1TI.6.11",
+            "1TI.6.12",
+            "1TI.6.13",
+            "1TI.6.14",
+            "1TI.6.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 19,
+          "verses": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "usfms": [
+            "1TI.6.16",
+            "1TI.6.17",
+            "1TI.6.18",
+            "1TI.6.19"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 21,
+          "verses": [
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "1TI.6.19",
+            "1TI.6.20",
+            "1TI.6.21"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "1TI.6.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1920,
@@ -822,7 +2406,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1430/m4a/32k/1TI/6-6cd72d2540c28a8d09db8e71c3a90977.m3u8?version_id=116"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 21,
+          "parsed_count": 21,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/116/1TI.6.NLT",
+        "reference": {
+          "usfm": [
+            "1TI.6"
+          ],
+          "human": "1 Timothy 6",
+          "version_id": 116
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.5"
+          ],
+          "human": "1 Timothy 5",
+          "toc": true,
+          "version_id": 116
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TI.1"
+          ],
+          "human": "2 Timothy 1",
+          "toc": true,
+          "version_id": 116
+        }
+      },
+      "version_meta": {
+        "id": 116,
+        "abbreviation": "NLT",
+        "local_abbreviation": "NLT",
+        "title": "New Living Translation",
+        "local_title": "New Living Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

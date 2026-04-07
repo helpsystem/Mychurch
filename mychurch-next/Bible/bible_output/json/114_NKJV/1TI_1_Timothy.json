@@ -11,6 +11,7 @@
   "total_verses": 113,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 1,
       "chapter_usfm": "1TI.1",
@@ -19,101 +20,480 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.1.1",
+          "line_type": "p",
           "text": "Paul, an apostle of Jesus Christ, by the commandment of God our Savior and the Lord Jesus Christ, our hope,"
         },
         {
           "verse": 2,
+          "usfm": "1TI.1.2",
+          "line_type": "p",
           "text": "To Timothy, a true son in the faith:Grace, mercy, and peace from God our Father and Jesus Christ our Lord."
         },
         {
           "verse": 3,
+          "usfm": "1TI.1.3",
+          "line_type": "p",
           "text": "As I urged you when I went into Macedonia—remain in Ephesus that you may charge some that they teach no other doctrine,"
         },
         {
           "verse": 4,
+          "usfm": "1TI.1.4",
+          "line_type": "p",
           "text": "nor give heed to fables and endless genealogies, which cause disputes rather than godly edification which is in faith."
         },
         {
           "verse": 5,
+          "usfm": "1TI.1.5",
+          "line_type": "p",
           "text": "Now the purpose of the commandment is love from a pure heart, from a good conscience, and from sincere faith,"
         },
         {
           "verse": 6,
+          "usfm": "1TI.1.6",
+          "line_type": "p",
           "text": "from which some, having strayed, have turned aside to idle talk,"
         },
         {
           "verse": 7,
+          "usfm": "1TI.1.7",
+          "line_type": "p",
           "text": "desiring to be teachers of the law, understanding neither what they say nor the things which they affirm."
         },
         {
           "verse": 8,
+          "usfm": "1TI.1.8",
+          "line_type": "p",
           "text": "But we know that the law is good if one uses it lawfully,"
         },
         {
           "verse": 9,
+          "usfm": "1TI.1.9",
+          "line_type": "p",
           "text": "knowing this: that the law is not made for a righteous person, but for the lawless and insubordinate, for the ungodly and for sinners, for the unholy and profane, for murderers of fathers and murderers of mothers, for manslayers,"
         },
         {
           "verse": 10,
+          "usfm": "1TI.1.10",
+          "line_type": "p",
           "text": "for fornicators, for sodomites, for kidnappers, for liars, for perjurers, and if there is any other thing that is contrary to sound doctrine,"
         },
         {
           "verse": 11,
+          "usfm": "1TI.1.11",
+          "line_type": "p",
           "text": "according to the glorious gospel of the blessed God which was committed to my trust."
         },
         {
           "verse": 12,
+          "usfm": "1TI.1.12",
+          "line_type": "p",
           "text": "And I thank Christ Jesus our Lord who has enabled me, because He counted me faithful, putting me into the ministry,"
         },
         {
           "verse": 13,
+          "usfm": "1TI.1.13",
+          "line_type": "p",
           "text": "although I was formerly a blasphemer, a persecutor, and an insolent man; but I obtained mercy because I did it ignorantly in unbelief."
         },
         {
           "verse": 14,
+          "usfm": "1TI.1.14",
+          "line_type": "p",
           "text": "And the grace of our Lord was exceedingly abundant, with faith and love which are in Christ Jesus."
         },
         {
           "verse": 15,
+          "usfm": "1TI.1.15",
+          "line_type": "p",
           "text": "This is a faithful saying and worthy of all acceptance, that Christ Jesus came into the world to save sinners, of whom I am chief."
         },
         {
           "verse": 16,
+          "usfm": "1TI.1.16",
+          "line_type": "p",
           "text": "However, for this reason I obtained mercy, that in me first Jesus Christ might show all longsuffering, as a pattern to those who are going to believe on Him for everlasting life."
         },
         {
           "verse": 17,
+          "usfm": "1TI.1.17",
+          "line_type": "p",
           "text": "Now to the King eternal, immortal, invisible, to God who alone is wise, be honor and glory forever and ever. Amen."
         },
         {
           "verse": 18,
+          "usfm": "1TI.1.18",
+          "line_type": "p",
           "text": "This charge I commit to you, son Timothy, according to the prophecies previously made concerning you, that by them you may wage the good warfare,"
         },
         {
           "verse": 19,
+          "usfm": "1TI.1.19",
+          "line_type": "p",
           "text": "having faith and a good conscience, which some having rejected, concerning the faith have suffered shipwreck,"
         },
         {
           "verse": 20,
+          "usfm": "1TI.1.20",
+          "line_type": "p",
           "text": "of whom are Hymenaeus and Alexander, whom I delivered to Satan that they may learn not to blaspheme."
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "No Other Doctrine"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Glory to God for His Grace"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Fight the Good Fight"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "1TI.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 16:1, 2; Rom. 1:7; 2 Tim. 1:2; Titus 1:4"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TI.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 1:3"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TI.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 20:1, 3"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TI.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 16:17; 2 Cor. 11:4; Gal. 1:6, 7; 1 Tim. 6:3"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TI.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Tim. 6:3, 4, 20; Titus 1:14"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TI.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 13:8–10; Gal. 5:14"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TI.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph. 6:24"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TI.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Tim. 6:4, 20"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 7:12, 16"
+        },
+        {
+          "verse": 11,
+          "usfm": "1TI.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Tim. 6:15"
+        },
+        {
+          "verse": 11,
+          "usfm": "1TI.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 9:17"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TI.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 15:10"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TI.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 7:25"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TI.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Col. 1:25"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TI.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 8:3; 1 Cor. 15:9"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TI.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 4:21"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TI.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 5:20; 1 Cor. 3:10; 2 Cor. 4:15; Gal. 1:13–16"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TI.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Thess. 1:3; 1 Tim. 2:15; 4:12; 6:11; 2 Tim. 1:13; 2:22; Titus 2:2"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TI.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Tim. 3:1; 4:9; 2 Tim. 2:11; Titus 3:8"
+        },
+        {
+          "verse": 15,
+          "usfm": "1TI.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 53:5; 61:1; Hos. 6:1–3; Matt. 1:21; 9:13"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TI.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 10:16"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TI.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 1:23"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TI.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 11:27"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TI.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 16:27"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TI.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Chr. 29:11"
+        },
+        {
+          "verse": 20,
+          "usfm": "1TI.1.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 2:17, 18"
+        },
+        {
+          "verse": 20,
+          "usfm": "1TI.1.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 4:14"
+        },
+        {
+          "verse": 20,
+          "usfm": "1TI.1.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 13:45"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "1TI.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "1TI.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "1TI.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 7,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "1TI.1.3",
+            "1TI.1.4",
+            "1TI.1.5",
+            "1TI.1.6",
+            "1TI.1.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 11,
+          "verses": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "1TI.1.10",
+            "1TI.1.11",
+            "1TI.1.8",
+            "1TI.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 17,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "1TI.1.12",
+            "1TI.1.13",
+            "1TI.1.14",
+            "1TI.1.15",
+            "1TI.1.16",
+            "1TI.1.17"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 20,
+          "verses": [
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "1TI.1.18",
+            "1TI.1.19",
+            "1TI.1.20"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -132,9 +512,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TI/1-2893d53ad77f3d8f9a56672107e53fc6.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/1TI.1.NKJV",
+        "reference": {
+          "usfm": [
+            "1TI.1"
+          ],
+          "human": "I Timothy 1",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TH.3"
+          ],
+          "human": "II Thessalonians 3",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.2"
+          ],
+          "human": "I Timothy 2",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 2,
       "chapter_usfm": "1TI.2",
@@ -143,73 +580,284 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.2.1",
+          "line_type": "p",
           "text": "Therefore I exhort first of all that supplications, prayers, intercessions, and giving of thanks be made for all men,"
         },
         {
           "verse": 2,
+          "usfm": "1TI.2.2",
+          "line_type": "p",
           "text": "for kings and all who are in authority, that we may lead a quiet and peaceable life in all godliness and reverence."
         },
         {
           "verse": 3,
+          "usfm": "1TI.2.3",
+          "line_type": "p",
           "text": "For this is good and acceptable in the sight of God our Savior,"
         },
         {
           "verse": 4,
+          "usfm": "1TI.2.4",
+          "line_type": "p",
           "text": "who desires all men to be saved and to come to the knowledge of the truth."
         },
         {
           "verse": 5,
+          "usfm": "1TI.2.5",
+          "line_type": "p",
           "text": "For there is one God and one Mediator between God and men, the Man Christ Jesus,"
         },
         {
           "verse": 6,
+          "usfm": "1TI.2.6",
+          "line_type": "p",
           "text": "who gave Himself a ransom for all, to be testified in due time,"
         },
         {
           "verse": 7,
+          "usfm": "1TI.2.7",
+          "line_type": "p",
           "text": "for which I was appointed a preacher and an apostle—I am speaking the truth in Christ and not lying—a teacher of the Gentiles in faith and truth."
         },
         {
           "verse": 8,
+          "usfm": "1TI.2.8",
+          "line_type": "p",
           "text": "I desire therefore that the men pray everywhere, lifting up holy hands, without wrath and doubting;"
         },
         {
           "verse": 9,
+          "usfm": "1TI.2.9",
+          "line_type": "p",
           "text": "in like manner also, that the women adorn themselves in modest apparel, with propriety and moderation, not with braided hair or gold or pearls or costly clothing,"
         },
         {
           "verse": 10,
+          "usfm": "1TI.2.10",
+          "line_type": "p",
           "text": "but, which is proper for women professing godliness, with good works."
         },
         {
           "verse": 11,
+          "usfm": "1TI.2.11",
+          "line_type": "p",
           "text": "Let a woman learn in silence with all submission."
         },
         {
           "verse": 12,
+          "usfm": "1TI.2.12",
+          "line_type": "p",
           "text": "And I do not permit a woman to teach or to have authority over a man, but to be in silence."
         },
         {
           "verse": 13,
+          "usfm": "1TI.2.13",
+          "line_type": "p",
           "text": "For Adam was formed first, then Eve."
         },
         {
           "verse": 14,
+          "usfm": "1TI.2.14",
+          "line_type": "p",
           "text": "And Adam was not deceived, but the woman being deceived, fell into transgression."
         },
         {
           "verse": 15,
+          "usfm": "1TI.2.15",
+          "line_type": "p",
           "text": "Nevertheless she will be saved in childbearing if they continue in faith, love, and holiness, with self-control."
         }
       ],
       "verse_count": 15,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Men and Women in the Church"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "1TI.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezra 6:10"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TI.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Rom. 13:1)"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TI.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 12:2"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TI.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 1:9"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TI.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 18:23, 32; John 3:17; 1 Tim. 4:10; Titus 2:11; 2 Pet. 3:9"
+        },
+        {
+          "verse": 4,
+          "usfm": "1TI.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 17:3)"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TI.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 8:6; Gal. 3:20"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TI.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Heb. 9:15)"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TI.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mark 10:45"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TI.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph. 3:7, 8; 1 Tim. 1:11; 2 Tim. 1:11"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TI.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Gal. 1:15, 16)"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Luke 23:34"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 134:2"
+        },
+        {
+          "verse": 9,
+          "usfm": "1TI.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Pet. 3:3"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TI.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Pet. 3:4"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TI.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 14:34; Titus 2:5"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 7,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "1TI.2.1",
+            "1TI.2.2",
+            "1TI.2.3",
+            "1TI.2.4",
+            "1TI.2.5",
+            "1TI.2.6",
+            "1TI.2.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 15,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "1TI.2.10",
+            "1TI.2.11",
+            "1TI.2.12",
+            "1TI.2.13",
+            "1TI.2.14",
+            "1TI.2.15",
+            "1TI.2.8",
+            "1TI.2.9"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -228,9 +876,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TI/2-f61d8ec97bb0416f1ce632ba41650c19.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/1TI.2.NKJV",
+        "reference": {
+          "usfm": [
+            "1TI.2"
+          ],
+          "human": "I Timothy 2",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.1"
+          ],
+          "human": "I Timothy 1",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.3"
+          ],
+          "human": "I Timothy 3",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 3,
       "chapter_usfm": "1TI.3",
@@ -239,81 +944,322 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.3.1",
+          "line_type": "p",
           "text": "This is a faithful saying: If a man desires the position of a bishop, he desires a good work."
         },
         {
           "verse": 2,
+          "usfm": "1TI.3.2",
+          "line_type": "p",
           "text": "A bishop then must be blameless, the husband of one wife, temperate, sober-minded, of good behavior, hospitable, able to teach;"
         },
         {
           "verse": 3,
+          "usfm": "1TI.3.3",
+          "line_type": "p",
           "text": "not given to wine, not violent, not greedy for money, but gentle, not quarrelsome, not covetous;"
         },
         {
           "verse": 4,
+          "usfm": "1TI.3.4",
+          "line_type": "p",
           "text": "one who rules his own house well, having his children in submission with all reverence"
         },
         {
           "verse": 5,
+          "usfm": "1TI.3.5",
+          "line_type": "p",
           "text": "(for if a man does not know how to rule his own house, how will he take care of the church of God?);"
         },
         {
           "verse": 6,
+          "usfm": "1TI.3.6",
+          "line_type": "p",
           "text": "not a novice, lest being puffed up with pride he fall into the same condemnation as the devil."
         },
         {
           "verse": 7,
+          "usfm": "1TI.3.7",
+          "line_type": "p",
           "text": "Moreover he must have a good testimony among those who are outside, lest he fall into reproach and the snare of the devil."
         },
         {
           "verse": 8,
+          "usfm": "1TI.3.8",
+          "line_type": "p",
           "text": "Likewise deacons must be reverent, not double-tongued, not given to much wine, not greedy for money,"
         },
         {
           "verse": 9,
+          "usfm": "1TI.3.9",
+          "line_type": "p",
           "text": "holding the mystery of the faith with a pure conscience."
         },
         {
           "verse": 10,
+          "usfm": "1TI.3.10",
+          "line_type": "p",
           "text": "But let these also first be tested; then let them serve as deacons, being found blameless."
         },
         {
           "verse": 11,
+          "usfm": "1TI.3.11",
+          "line_type": "p",
           "text": "Likewise, their wives must be reverent, not slanderers, temperate, faithful in all things."
         },
         {
           "verse": 12,
+          "usfm": "1TI.3.12",
+          "line_type": "p",
           "text": "Let deacons be the husbands of one wife, ruling their children and their own houses well."
         },
         {
           "verse": 13,
+          "usfm": "1TI.3.13",
+          "line_type": "p",
           "text": "For those who have served well as deacons obtain for themselves a good standing and great boldness in the faith which is in Christ Jesus."
         },
         {
           "verse": 14,
+          "usfm": "1TI.3.14",
+          "line_type": "p",
           "text": "These things I write to you, though I hope to come to you shortly;"
         },
         {
           "verse": 15,
+          "usfm": "1TI.3.15",
+          "line_type": "p",
           "text": "but if I am delayed, I write so that you may know how you ought to conduct yourself in the house of God, which is the church of the living God, the pillar and ground of the truth."
         },
         {
           "verse": 16,
+          "usfm": "1TI.3.16",
+          "line_type": "p",
           "text": "And without controversy great is the mystery of godliness:God was manifested in the flesh,Justified in the Spirit,Seen by angels,Preached among the Gentiles,Believed on in the world,Received up in glory."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 7,
+          "before_verse": 8,
           "text": "Qualifications of Deacons"
         },
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "The Great Mystery"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 7,
+          "usfm": "1TI.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Tim. 6:9; 2 Tim. 2:26"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezek. 44:21"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TI.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 25:21"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(John 1:14; 1 Pet. 1:20; 1 John 1:2; 3:5, 8)"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Matt. 3:16; Rom. 1:4)"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 28:2"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 10:34; Rom. 10:18"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rom. 16:26; 2 Cor. 1:19; Col. 1:6, 23"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Luke 24:51"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 7,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "1TI.3.1",
+            "1TI.3.2",
+            "1TI.3.3",
+            "1TI.3.4",
+            "1TI.3.5",
+            "1TI.3.6",
+            "1TI.3.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 13,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "1TI.3.10",
+            "1TI.3.11",
+            "1TI.3.12",
+            "1TI.3.13",
+            "1TI.3.8",
+            "1TI.3.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 16,
+          "verses": [
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "1TI.3.14",
+            "1TI.3.15",
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "1TI.3.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -332,9 +1278,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TI/3-260396c06dab41988f75ea2f6c4c826d.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/1TI.3.NKJV",
+        "reference": {
+          "usfm": [
+            "1TI.3"
+          ],
+          "human": "I Timothy 3",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.2"
+          ],
+          "human": "I Timothy 2",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.4"
+          ],
+          "human": "I Timothy 4",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 4,
       "chapter_usfm": "1TI.4",
@@ -343,81 +1346,274 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.4.1",
+          "line_type": "p",
           "text": "Now the Spirit expressly says that in latter times some will depart from the faith, giving heed to deceiving spirits and doctrines of demons,"
         },
         {
           "verse": 2,
+          "usfm": "1TI.4.2",
+          "line_type": "p",
           "text": "speaking lies in hypocrisy, having their own conscience seared with a hot iron,"
         },
         {
           "verse": 3,
+          "usfm": "1TI.4.3",
+          "line_type": "p",
           "text": "forbidding to marry, and commanding to abstain from foods which God created to be received with thanksgiving by those who believe and know the truth."
         },
         {
           "verse": 4,
+          "usfm": "1TI.4.4",
+          "line_type": "p",
           "text": "For every creature of God is good, and nothing is to be refused if it is received with thanksgiving;"
         },
         {
           "verse": 5,
+          "usfm": "1TI.4.5",
+          "line_type": "p",
           "text": "for it is sanctified by the word of God and prayer."
         },
         {
           "verse": 6,
+          "usfm": "1TI.4.6",
+          "line_type": "p",
           "text": "If you instruct the brethren in these things, you will be a good minister of Jesus Christ, nourished in the words of faith and of the good doctrine which you have carefully followed."
         },
         {
           "verse": 7,
+          "usfm": "1TI.4.7",
+          "line_type": "p",
           "text": "But reject profane and old wives’ fables, and exercise yourself toward godliness."
         },
         {
           "verse": 8,
+          "usfm": "1TI.4.8",
+          "line_type": "p",
           "text": "For bodily exercise profits a little, but godliness is profitable for all things, having promise of the life that now is and of that which is to come."
         },
         {
           "verse": 9,
+          "usfm": "1TI.4.9",
+          "line_type": "p",
           "text": "This is a faithful saying and worthy of all acceptance."
         },
         {
           "verse": 10,
+          "usfm": "1TI.4.10",
+          "line_type": "p",
           "text": "For to this end we both labor and suffer reproach, because we trust in the living God, who is the Savior of all men, especially of those who believe."
         },
         {
           "verse": 11,
+          "usfm": "1TI.4.11",
+          "line_type": "p",
           "text": "These things command and teach."
         },
         {
           "verse": 12,
+          "usfm": "1TI.4.12",
+          "line_type": "p",
           "text": "Let no one despise your youth, but be an example to the believers in word, in conduct, in love, in spirit, in faith, in purity."
         },
         {
           "verse": 13,
+          "usfm": "1TI.4.13",
+          "line_type": "p",
           "text": "Till I come, give attention to reading, to exhortation, to doctrine."
         },
         {
           "verse": 14,
+          "usfm": "1TI.4.14",
+          "line_type": "p",
           "text": "Do not neglect the gift that is in you, which was given to you by prophecy with the laying on of the hands of the eldership."
         },
         {
           "verse": 15,
+          "usfm": "1TI.4.15",
+          "line_type": "p",
           "text": "Meditate on these things; give yourself entirely to them, that your progress may be evident to all."
         },
         {
           "verse": 16,
+          "usfm": "1TI.4.16",
+          "line_type": "p",
           "text": "Take heed to yourself and to the doctrine. Continue in them, for in doing this you will save both yourself and those who hear you."
         }
       ],
       "verse_count": 16,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "A Good Servant of Jesus Christ"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Take Heed to Your Ministry"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TI.4.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 3:13; Rev. 16:14"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TI.4.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 7:15"
+        },
+        {
+          "verse": 2,
+          "usfm": "1TI.4.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph. 4:19"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TI.4.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 3:14"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TI.4.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 2:16; Titus 1:14"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TI.4.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Heb. 5:14"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.4.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1 Cor. 8:8"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.4.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 37:9"
+        },
+        {
+          "verse": 10,
+          "usfm": "1TI.4.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps. 36:6"
+        },
+        {
+          "verse": 12,
+          "usfm": "1TI.4.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Phil. 3:17; Titus 2:7; 1 Pet. 5:3"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TI.4.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 1:6"
+        },
+        {
+          "verse": 14,
+          "usfm": "1TI.4.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 6:6; 1 Tim. 5:22"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "1TI.4.1",
+            "1TI.4.2",
+            "1TI.4.3",
+            "1TI.4.4",
+            "1TI.4.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 11,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "usfms": [
+            "1TI.4.10",
+            "1TI.4.11",
+            "1TI.4.6",
+            "1TI.4.7",
+            "1TI.4.8",
+            "1TI.4.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 16,
+          "verses": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "1TI.4.12",
+            "1TI.4.13",
+            "1TI.4.14",
+            "1TI.4.15",
+            "1TI.4.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -436,9 +1632,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TI/4-9344b587a7dbd4108369e7116f49d6a6.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/1TI.4.NKJV",
+        "reference": {
+          "usfm": [
+            "1TI.4"
+          ],
+          "human": "I Timothy 4",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.3"
+          ],
+          "human": "I Timothy 3",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.5"
+          ],
+          "human": "I Timothy 5",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 5,
       "chapter_usfm": "1TI.5",
@@ -447,117 +1700,388 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.5.1",
+          "line_type": "p",
           "text": "Do not rebuke an older man, but exhort him as a father, younger men as brothers,"
         },
         {
           "verse": 2,
+          "usfm": "1TI.5.2",
+          "line_type": "p",
           "text": "older women as mothers, younger women as sisters, with all purity."
         },
         {
           "verse": 3,
+          "usfm": "1TI.5.3",
+          "line_type": "p",
           "text": "Honor widows who are really widows."
         },
         {
           "verse": 4,
+          "usfm": "1TI.5.4",
+          "line_type": "p",
           "text": "But if any widow has children or grandchildren, let them first learn to show piety at home and to repay their parents; for this is good and acceptable before God."
         },
         {
           "verse": 5,
+          "usfm": "1TI.5.5",
+          "line_type": "p",
           "text": "Now she who is really a widow, and left alone, trusts in God and continues in supplications and prayers night and day."
         },
         {
           "verse": 6,
+          "usfm": "1TI.5.6",
+          "line_type": "p",
           "text": "But she who lives in pleasure is dead while she lives."
         },
         {
           "verse": 7,
+          "usfm": "1TI.5.7",
+          "line_type": "p",
           "text": "And these things command, that they may be blameless."
         },
         {
           "verse": 8,
+          "usfm": "1TI.5.8",
+          "line_type": "p",
           "text": "But if anyone does not provide for his own, and especially for those of his household, he has denied the faith and is worse than an unbeliever."
         },
         {
           "verse": 9,
+          "usfm": "1TI.5.9",
+          "line_type": "p",
           "text": "Do not let a widow under sixty years old be taken into the number, and not unless she has been the wife of one man,"
         },
         {
           "verse": 10,
+          "usfm": "1TI.5.10",
+          "line_type": "p",
           "text": "well reported for good works: if she has brought up children, if she has lodged strangers, if she has washed the saints’ feet, if she has relieved the afflicted, if she has diligently followed every good work."
         },
         {
           "verse": 11,
+          "usfm": "1TI.5.11",
+          "line_type": "p",
           "text": "But refuse the younger widows; for when they have begun to grow wanton against Christ, they desire to marry,"
         },
         {
           "verse": 12,
+          "usfm": "1TI.5.12",
+          "line_type": "p",
           "text": "having condemnation because they have cast off their first faith."
         },
         {
           "verse": 13,
+          "usfm": "1TI.5.13",
+          "line_type": "p",
           "text": "And besides they learn to be idle, wandering about from house to house, and not only idle but also gossips and busybodies, saying things which they ought not."
         },
         {
           "verse": 14,
+          "usfm": "1TI.5.14",
+          "line_type": "p",
           "text": "Therefore I desire that the younger widows marry, bear children, manage the house, give no opportunity to the adversary to speak reproachfully."
         },
         {
           "verse": 15,
+          "usfm": "1TI.5.15",
+          "line_type": "p",
           "text": "For some have already turned aside after Satan."
         },
         {
           "verse": 16,
+          "usfm": "1TI.5.16",
+          "line_type": "p",
           "text": "If any believing man or woman has widows, let them relieve them, and do not let the church be burdened, that it may relieve those who are really widows."
         },
         {
           "verse": 17,
+          "usfm": "1TI.5.17",
+          "line_type": "p",
           "text": "Let the elders who rule well be counted worthy of double honor, especially those who labor in the word and doctrine."
         },
         {
           "verse": 18,
+          "usfm": "1TI.5.18",
+          "line_type": "p",
           "text": "For the Scripture says, “You shall not muzzle an ox while it treads out the grain,” and, “The laborer is worthy of his wages.”"
         },
         {
           "verse": 19,
+          "usfm": "1TI.5.19",
+          "line_type": "p",
           "text": "Do not receive an accusation against an elder except from two or three witnesses."
         },
         {
           "verse": 20,
+          "usfm": "1TI.5.20",
+          "line_type": "p",
           "text": "Those who are sinning rebuke in the presence of all, that the rest also may fear."
         },
         {
           "verse": 21,
+          "usfm": "1TI.5.21",
+          "line_type": "p",
           "text": "I charge you before God and the Lord Jesus Christ and the elect angels that you observe these things without prejudice, doing nothing with partiality."
         },
         {
           "verse": 22,
+          "usfm": "1TI.5.22",
+          "line_type": "p",
           "text": "Do not lay hands on anyone hastily, nor share in other people’s sins; keep yourself pure."
         },
         {
           "verse": 23,
+          "usfm": "1TI.5.23",
+          "line_type": "p",
           "text": "No longer drink only water, but use a little wine for your stomach’s sake and your frequent infirmities."
         },
         {
           "verse": 24,
+          "usfm": "1TI.5.24",
+          "line_type": "p",
           "text": "Some men’s sins are clearly evident, preceding them to judgment, but those of some men follow later."
         },
         {
           "verse": 25,
+          "usfm": "1TI.5.25",
+          "line_type": "p",
           "text": "Likewise, the good works of some are clearly evident, and those that are otherwise cannot be hidden."
         }
       ],
       "verse_count": 25,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Honor True Widows"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Honor the Elders"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 4,
+          "usfm": "1TI.5.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gen. 45:10"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TI.5.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Acts 26:7"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.5.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is. 58:7; 2 Cor. 12:14"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.5.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 3:5"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.5.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 18:17"
+        },
+        {
+          "verse": 18,
+          "usfm": "1TI.5.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 25:4; 1 Cor. 9:7–9"
+        },
+        {
+          "verse": 18,
+          "usfm": "1TI.5.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lev. 19:13; Deut. 24:15; Matt. 10:10; Luke 10:7; 1 Cor. 9:14"
+        },
+        {
+          "verse": 19,
+          "usfm": "1TI.5.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 17:6; 19:15; Matt. 18:16"
+        },
+        {
+          "verse": 21,
+          "usfm": "1TI.5.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Deut. 1:17"
+        },
+        {
+          "verse": 22,
+          "usfm": "1TI.5.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph. 5:6, 7; 2 John 11"
+        },
+        {
+          "verse": 24,
+          "usfm": "1TI.5.24",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gal. 5:19–21"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1TI.5.1",
+            "1TI.5.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 8,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "1TI.5.3",
+            "1TI.5.4",
+            "1TI.5.5",
+            "1TI.5.6",
+            "1TI.5.7",
+            "1TI.5.8"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "1TI.5.10",
+            "1TI.5.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 16,
+          "verses": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "1TI.5.11",
+            "1TI.5.12",
+            "1TI.5.13",
+            "1TI.5.14",
+            "1TI.5.15",
+            "1TI.5.16"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 20,
+          "verses": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "usfms": [
+            "1TI.5.17",
+            "1TI.5.18",
+            "1TI.5.19",
+            "1TI.5.20"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "1TI.5.21",
+            "1TI.5.22"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "1TI.5.23"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "1TI.5.24",
+            "1TI.5.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -576,9 +2100,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TI/5-ad28c41077dfeb28ef0d152543498250.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/1TI.5.NKJV",
+        "reference": {
+          "usfm": [
+            "1TI.5"
+          ],
+          "human": "I Timothy 5",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.4"
+          ],
+          "human": "I Timothy 4",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TI.6"
+          ],
+          "human": "I Timothy 6",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "1TI",
       "chapter": 6,
       "chapter_usfm": "1TI.6",
@@ -587,109 +2168,388 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "1TI.6.1",
+          "line_type": "p",
           "text": "Let as many bondservants as are under the yoke count their own masters worthy of all honor, so that the name of God and His doctrine may not be blasphemed."
         },
         {
           "verse": 2,
+          "usfm": "1TI.6.2",
+          "line_type": "p",
           "text": "And those who have believing masters, let them not despise them because they are brethren, but rather serve them because those who are benefited are believers and beloved. Teach and exhort these things."
         },
         {
           "verse": 3,
+          "usfm": "1TI.6.3",
+          "line_type": "p",
           "text": "If anyone teaches otherwise and does not consent to wholesome words, even the words of our Lord Jesus Christ, and to the doctrine which accords with godliness,"
         },
         {
           "verse": 4,
+          "usfm": "1TI.6.4",
+          "line_type": "p",
           "text": "he is proud, knowing nothing, but is obsessed with disputes and arguments over words, from which come envy, strife, reviling, evil suspicions,"
         },
         {
           "verse": 5,
+          "usfm": "1TI.6.5",
+          "line_type": "p",
           "text": "useless wranglings of men of corrupt minds and destitute of the truth, who suppose that godliness is a means of gain. From such withdraw yourself."
         },
         {
           "verse": 6,
+          "usfm": "1TI.6.6",
+          "line_type": "p",
           "text": "Now godliness with contentment is great gain."
         },
         {
           "verse": 7,
+          "usfm": "1TI.6.7",
+          "line_type": "p",
           "text": "For we brought nothing into this world, and it is certain we can carry nothing out."
         },
         {
           "verse": 8,
+          "usfm": "1TI.6.8",
+          "line_type": "p",
           "text": "And having food and clothing, with these we shall be content."
         },
         {
           "verse": 9,
+          "usfm": "1TI.6.9",
+          "line_type": "p",
           "text": "But those who desire to be rich fall into temptation and a snare, and into many foolish and harmful lusts which drown men in destruction and perdition."
         },
         {
           "verse": 10,
+          "usfm": "1TI.6.10",
+          "line_type": "p",
           "text": "For the love of money is a root of all kinds of evil, for which some have strayed from the faith in their greediness, and pierced themselves through with many sorrows."
         },
         {
           "verse": 11,
+          "usfm": "1TI.6.11",
+          "line_type": "p",
           "text": "But you, O man of God, flee these things and pursue righteousness, godliness, faith, love, patience, gentleness."
         },
         {
           "verse": 12,
+          "usfm": "1TI.6.12",
+          "line_type": "p",
           "text": "Fight the good fight of faith, lay hold on eternal life, to which you were also called and have confessed the good confession in the presence of many witnesses."
         },
         {
           "verse": 13,
+          "usfm": "1TI.6.13",
+          "line_type": "p",
           "text": "I urge you in the sight of God who gives life to all things, and before Christ Jesus who witnessed the good confession before Pontius Pilate,"
         },
         {
           "verse": 14,
+          "usfm": "1TI.6.14",
+          "line_type": "p",
           "text": "that you keep this commandment without spot, blameless until our Lord Jesus Christ’s appearing,"
         },
         {
           "verse": 15,
+          "usfm": "1TI.6.15",
+          "line_type": "p",
           "text": "which He will manifest in His own time, He who is the blessed and only Potentate, the King of kings and Lord of lords,"
         },
         {
           "verse": 16,
+          "usfm": "1TI.6.16",
+          "line_type": "p",
           "text": "who alone has immortality, dwelling in unapproachable light, whom no man has seen or can see, to whom be honor and everlasting power. Amen."
         },
         {
           "verse": 17,
+          "usfm": "1TI.6.17",
+          "line_type": "p",
           "text": "Command those who are rich in this present age not to be haughty, nor to trust in uncertain riches but in the living God, who gives us richly all things to enjoy."
         },
         {
           "verse": 18,
+          "usfm": "1TI.6.18",
+          "line_type": "p",
           "text": "Let them do good, that they be rich in good works, ready to give, willing to share,"
         },
         {
           "verse": 19,
+          "usfm": "1TI.6.19",
+          "line_type": "p",
           "text": "storing up for themselves a good foundation for the time to come, that they may lay hold on eternal life."
         },
         {
           "verse": 20,
+          "usfm": "1TI.6.20",
+          "line_type": "p",
           "text": "O Timothy! Guard what was committed to your trust, avoiding the profane and idle babblings and contradictions of what is falsely called knowledge—"
         },
         {
           "verse": 21,
+          "usfm": "1TI.6.21",
+          "line_type": "p",
           "text": "by professing it some have strayed concerning the faith.Grace be with you. Amen."
         }
       ],
       "verse_count": 21,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "Error and Greed"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "The Good Confession"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Instructions to the Rich"
         },
         {
-          "before_verse": 19,
+          "before_verse": 20,
           "text": "Guard the Faith"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "1TI.6.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eph. 6:5; Titus 2:9; 1 Pet. 2:18"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TI.6.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 1:13"
+        },
+        {
+          "verse": 3,
+          "usfm": "1TI.6.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Titus 1:1"
+        },
+        {
+          "verse": 5,
+          "usfm": "1TI.6.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2 Tim. 3:5"
+        },
+        {
+          "verse": 6,
+          "usfm": "1TI.6.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Phil. 4:11; Heb. 13:5"
+        },
+        {
+          "verse": 7,
+          "usfm": "1TI.6.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Job 1:21; Ps. 49:17; Eccl. 5:15"
+        },
+        {
+          "verse": 8,
+          "usfm": "1TI.6.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Prov. 30:8, 9"
+        },
+        {
+          "verse": 13,
+          "usfm": "1TI.6.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Matt. 27:2; John 18:36, 37"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.6.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dan. 2:22"
+        },
+        {
+          "verse": 16,
+          "usfm": "1TI.6.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "John 6:46"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TI.6.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jer. 9:23; 48:7"
+        },
+        {
+          "verse": 17,
+          "usfm": "1TI.6.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Eccl. 5:18, 19"
+        },
+        {
+          "verse": 19,
+          "usfm": "1TI.6.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(Matt. 6:20, 21; 19:21)"
+        },
+        {
+          "verse": 20,
+          "usfm": "1TI.6.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "(2 Tim. 1:12, 14)"
+        },
+        {
+          "verse": 20,
+          "usfm": "1TI.6.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Titus 1:14"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "1TI.6.1",
+            "1TI.6.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 5,
+          "verses": [
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "1TI.6.3",
+            "1TI.6.4",
+            "1TI.6.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 10,
+          "verses": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "1TI.6.10",
+            "1TI.6.6",
+            "1TI.6.7",
+            "1TI.6.8",
+            "1TI.6.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 16,
+          "verses": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "1TI.6.11",
+            "1TI.6.12",
+            "1TI.6.13",
+            "1TI.6.14",
+            "1TI.6.15",
+            "1TI.6.16"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 19,
+          "verses": [
+            17,
+            18,
+            19
+          ],
+          "usfms": [
+            "1TI.6.17",
+            "1TI.6.18",
+            "1TI.6.19"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "1TI.6.20",
+            "1TI.6.21"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "1TI.6.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 2332,
@@ -708,7 +2568,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/2334/m4a/32k/1TI/6-157054ceeec013c4ce0bdcbf57c8ce99.m3u8?version_id=114"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 21,
+          "parsed_count": 21,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/114/1TI.6.NKJV",
+        "reference": {
+          "usfm": [
+            "1TI.6"
+          ],
+          "human": "I Timothy 6",
+          "version_id": 114
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "1TI.5"
+          ],
+          "human": "I Timothy 5",
+          "toc": true,
+          "version_id": 114
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "2TI.1"
+          ],
+          "human": "II Timothy 1",
+          "toc": true,
+          "version_id": 114
+        }
+      },
+      "version_meta": {
+        "id": 114,
+        "abbreviation": "NKJV",
+        "local_abbreviation": "NKJV",
+        "title": "New King James Version",
+        "local_title": "New King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Thomas Nelson, Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

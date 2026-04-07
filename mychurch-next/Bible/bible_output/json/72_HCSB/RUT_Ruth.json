@@ -11,6 +11,7 @@
   "total_verses": 85,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "RUT",
       "chapter": 1,
       "chapter_usfm": "RUT.1",
@@ -19,101 +20,670 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "RUT.1.1",
+          "line_type": "p",
           "text": "During the time of the judges, there was a famine in the land. A man left Bethlehem in Judah with his wife and two sons to live in the land of Moab for a while."
         },
         {
           "verse": 2,
+          "usfm": "RUT.1.2",
+          "line_type": "p",
           "text": "The man’s name was Elimelech, and his wife’s name was Naomi. The names of his two sons were Mahlon and Chilion. They were Ephrathites from Bethlehem in Judah. They entered the land of Moab and settled there."
         },
         {
           "verse": 3,
+          "usfm": "RUT.1.3",
+          "line_type": "p",
           "text": "Naomi’s husband Elimelech died, and she was left with her two sons."
         },
         {
           "verse": 4,
+          "usfm": "RUT.1.4",
+          "line_type": "p",
           "text": "Her sons took Moabite women as their wives: one was named Orpah and the second was named Ruth. After they lived in Moab about 10 years,"
         },
         {
           "verse": 5,
+          "usfm": "RUT.1.5",
+          "line_type": "p",
           "text": "both Mahlon and Chilion also died, and Naomi was left without her two children and without her husband."
         },
         {
           "verse": 6,
+          "usfm": "RUT.1.6",
+          "line_type": "p",
           "text": "She and her daughters-in-law prepared to leave the land of Moab, because she had heard in Moab that the Lord had paid attention to His people’s need by providing them food."
         },
         {
           "verse": 7,
+          "usfm": "RUT.1.7",
+          "line_type": "p",
           "text": "She left the place where she had been living, accompanied by her two daughters-in-law, and traveled along the road leading back to the land of Judah."
         },
         {
           "verse": 8,
+          "usfm": "RUT.1.8",
+          "line_type": "p",
           "text": "She said to them, “Each of you go back to your mother’s home. May the Lord show faithful love to you as you have shown to the dead and to me."
         },
         {
           "verse": 9,
+          "usfm": "RUT.1.9",
+          "line_type": "p",
           "text": "May the Lord enable each of you to find security in the house of your new husband.” She kissed them, and they wept loudly."
         },
         {
           "verse": 10,
+          "usfm": "RUT.1.10",
+          "line_type": "p",
           "text": "“No,” they said to her. “We will go with you to your people.”"
         },
         {
           "verse": 11,
+          "usfm": "RUT.1.11",
+          "line_type": "p",
           "text": "But Naomi replied, “Return home, my daughters. Why do you want to go with me? Am I able to have any more sons who could become your husbands?"
         },
         {
           "verse": 12,
+          "usfm": "RUT.1.12",
+          "line_type": "p",
           "text": "Return home, my daughters. Go on, for I am too old to have another husband. Even if I thought there was still hope for me to have a husband tonight and to bear sons,"
         },
         {
           "verse": 13,
+          "usfm": "RUT.1.13",
+          "line_type": "p",
           "text": "would you be willing to wait for them to grow up? Would you restrain yourselves from remarrying? No, my daughters, my life is much too bitter for you to share, because the Lord’s hand has turned against me.”"
         },
         {
           "verse": 14,
+          "usfm": "RUT.1.14",
+          "line_type": "p",
           "text": "Again they wept loudly, and Orpah kissed her mother-in-law, but Ruth clung to her."
         },
         {
           "verse": 15,
+          "usfm": "RUT.1.15",
+          "line_type": "p",
           "text": "Naomi said, “Look, your sister-in-law has gone back to her people and to her god. Follow your sister-in-law.”"
         },
         {
           "verse": 16,
+          "usfm": "RUT.1.16",
+          "line_type": "p",
           "text": "But Ruth replied:Do not persuade me to leave youor go back and not follow you.For wherever you go, I will go,and wherever you live, I will live;your people will be my people,and your God will be my God."
         },
         {
           "verse": 17,
+          "usfm": "RUT.1.17",
+          "line_type": "p",
           "text": "Where you die, I will die,and there I will be buried.May Yahweh punish me, and do so severely,if anything but death separates you and me."
         },
         {
           "verse": 18,
+          "usfm": "RUT.1.18",
+          "line_type": "m",
           "text": "When Naomi saw that Ruth was determined to go with her, she stopped trying to persuade her."
         },
         {
           "verse": 19,
+          "usfm": "RUT.1.19",
+          "line_type": "p",
           "text": "The two of them traveled until they came to Bethlehem. When they entered Bethlehem, the whole town was excited about their arrival and the local women exclaimed, “Can this be Naomi? ”"
         },
         {
           "verse": 20,
+          "usfm": "RUT.1.20",
+          "line_type": "p",
           "text": "“Don’t call me Naomi. Call me Mara,” she answered, “for the Almighty has made me very bitter."
         },
         {
           "verse": 21,
+          "usfm": "RUT.1.21",
+          "line_type": "p",
           "text": "I went away full, but the Lord has brought me back empty. Why do you call me Naomi, since the Lord has pronounced judgment on me, and the Almighty has afflicted me? ”"
         },
         {
           "verse": 22,
+          "usfm": "RUT.1.22",
+          "line_type": "p",
           "text": "So Naomi came back from the land of Moab with her daughter-in-law Ruth the Moabitess. They arrived in Bethlehem at the beginning of the barley harvest."
         }
       ],
       "verse_count": 22,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Ruth’s Loyalty to Naomi"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "RUT.1.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit In the days of the judging"
+        },
+        {
+          "verse": 1,
+          "usfm": "RUT.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jdg 2:16-18"
+        },
+        {
+          "verse": 1,
+          "usfm": "RUT.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 12:10; 26:1; 43:1; 2Kg 8:1"
+        },
+        {
+          "verse": 1,
+          "usfm": "RUT.1.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= House of Bread"
+        },
+        {
+          "verse": 1,
+          "usfm": "RUT.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jdg 17:7; 19:1"
+        },
+        {
+          "verse": 2,
+          "usfm": "RUT.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= My God Is King"
+        },
+        {
+          "verse": 2,
+          "usfm": "RUT.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= Pleasant"
+        },
+        {
+          "verse": 2,
+          "usfm": "RUT.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= Sickly"
+        },
+        {
+          "verse": 2,
+          "usfm": "RUT.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= Weak or failing"
+        },
+        {
+          "verse": 2,
+          "usfm": "RUT.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 35:19; 1Sm 17:12; 1Ch 4:4; Mc 5:2"
+        },
+        {
+          "verse": 6,
+          "usfm": "RUT.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 4:31; 1Sm 2:21"
+        },
+        {
+          "verse": 8,
+          "usfm": "RUT.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 24:28"
+        },
+        {
+          "verse": 9,
+          "usfm": "RUT.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 3:1"
+        },
+        {
+          "verse": 11,
+          "usfm": "RUT.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit More to me sons in my womb"
+        },
+        {
+          "verse": 11,
+          "usfm": "RUT.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 38:11; Dt 25:5"
+        },
+        {
+          "verse": 13,
+          "usfm": "RUT.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit marrying a man"
+        },
+        {
+          "verse": 13,
+          "usfm": "RUT.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit daughters, for more bitter to me than you"
+        },
+        {
+          "verse": 13,
+          "usfm": "RUT.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jdg 2:15; Jb 19:21; Ps 32:4; 38:2; 39:10"
+        },
+        {
+          "verse": 15,
+          "usfm": "RUT.1.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or gods"
+        },
+        {
+          "verse": 15,
+          "usfm": "RUT.1.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jdg 11:24; 1Kg 11:7; Jr 48:7,13,46"
+        },
+        {
+          "verse": 17,
+          "usfm": "RUT.1.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "A solemn oath formula; 1Sm 3:17; 2Sm 3:9,35; 1Kg 2:23; 2Kg 6:31"
+        },
+        {
+          "verse": 17,
+          "usfm": "RUT.1.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 3:17; 2Sm 3:9,35; 1Kg 2:23; 2Kg 6:31"
+        },
+        {
+          "verse": 19,
+          "usfm": "RUT.1.19",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit excited because of them"
+        },
+        {
+          "verse": 19,
+          "usfm": "RUT.1.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 21:10"
+        },
+        {
+          "verse": 20,
+          "usfm": "RUT.1.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= Bitter"
+        },
+        {
+          "verse": 20,
+          "usfm": "RUT.1.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit answered them"
+        },
+        {
+          "verse": 20,
+          "usfm": "RUT.1.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 49:25; Ex 6:3; Nm 24:4; Jb 6:4"
+        },
+        {
+          "verse": 20,
+          "usfm": "RUT.1.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 15:23"
+        },
+        {
+          "verse": 21,
+          "usfm": "RUT.1.21",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 3:17"
+        },
+        {
+          "verse": 21,
+          "usfm": "RUT.1.21",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "LXX, Syr, Vg read has humiliated"
+        },
+        {
+          "verse": 22,
+          "usfm": "RUT.1.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 9:31; Lv 23:10-11"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "RUT.1.1",
+            "RUT.1.2",
+            "RUT.1.3",
+            "RUT.1.4",
+            "RUT.1.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "RUT.1.6",
+            "RUT.1.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "RUT.1.8",
+            "RUT.1.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "RUT.1.10"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 15,
+          "verses": [
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "RUT.1.11",
+            "RUT.1.12",
+            "RUT.1.13",
+            "RUT.1.14",
+            "RUT.1.15"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "RUT.1.16"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "RUT.1.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "RUT.1.16"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "RUT.1.16"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "RUT.1.16"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "RUT.1.16"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "RUT.1.16"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "RUT.1.17"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "RUT.1.17"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "RUT.1.17"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "RUT.1.17"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "RUT.1.17"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "m",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "RUT.1.18"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "RUT.1.19"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "RUT.1.20",
+            "RUT.1.21"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "RUT.1.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -124,9 +694,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/RUT/1-ce7141347e70592d38b2e862bc4571f8.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/RUT.1.HCSB",
+        "reference": {
+          "usfm": [
+            "RUT.1"
+          ],
+          "human": "Ruth 1",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JDG.21"
+          ],
+          "human": "Judges 21",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "RUT.2"
+          ],
+          "human": "Ruth 2",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "RUT",
       "chapter": 2,
       "chapter_usfm": "RUT.2",
@@ -135,100 +762,549 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "RUT.2.1",
+          "line_type": "p",
           "text": "Now Naomi had a relative on her husband’s side named Boaz. He was a prominent man of noble character from Elimelech’s family."
         },
         {
           "verse": 2,
+          "usfm": "RUT.2.2",
+          "line_type": "p",
           "text": "Ruth the Moabitess asked Naomi, “Will you let me go into the fields and gather fallen grain behind someone who allows me to? ”Naomi answered her, “Go ahead, my daughter.”"
         },
         {
           "verse": 3,
+          "usfm": "RUT.2.3",
+          "line_type": "p",
           "text": "So Ruth left and entered the field to gather grain behind the harvesters. She happened to be in the portion of land belonging to Boaz, who was from Elimelech’s family."
         },
         {
           "verse": 4,
+          "usfm": "RUT.2.4",
+          "line_type": "p",
           "text": "Later, when Boaz arrived from Bethlehem, he said to the harvesters, “The Lord be with you.” “The Lord bless you,” they replied."
         },
         {
           "verse": 5,
+          "usfm": "RUT.2.5",
+          "line_type": "p",
           "text": "Boaz asked his servant who was in charge of the harvesters, “Whose young woman is this? ”"
         },
         {
           "verse": 6,
+          "usfm": "RUT.2.6",
+          "line_type": "p",
           "text": "The servant answered, “She is the young Moabite woman who returned with Naomi from the land of Moab."
         },
         {
           "verse": 7,
+          "usfm": "RUT.2.7",
+          "line_type": "p",
           "text": "She asked, ‘Will you let me gather fallen grain among the bundles behind the harvesters? ’ She came and has remained from early morning until now, except that she rested a little in the shelter.”"
         },
         {
           "verse": 8,
+          "usfm": "RUT.2.8",
+          "line_type": "p",
           "text": "Then Boaz said to Ruth, “Listen, my daughter. Don’t go and gather grain in another field, and don’t leave this one, but stay here close to my female servants."
         },
         {
           "verse": 9,
+          "usfm": "RUT.2.9",
+          "line_type": "p",
           "text": "See which field they are harvesting, and follow them. Haven’t I ordered the young men not to touch you? When you are thirsty, go and drink from the jars the young men have filled.”"
         },
         {
           "verse": 10,
+          "usfm": "RUT.2.10",
+          "line_type": "p",
           "text": "She bowed with her face to the ground and said to him, “Why are you so kind to notice me, although I am a foreigner? ”"
         },
         {
           "verse": 11,
+          "usfm": "RUT.2.11",
+          "line_type": "p",
           "text": "Boaz answered her, “Everything you have done for your mother-in-law since your husband’s death has been fully reported to me: how you left your father and mother and the land of your birth, and how you came to a people you didn’t previously know."
         },
         {
           "verse": 12,
+          "usfm": "RUT.2.12",
+          "line_type": "p",
           "text": "May the Lord reward you for what you have done, and may you receive a full reward from the Lord God of Israel, under whose wings you have come for refuge.”"
         },
         {
           "verse": 13,
+          "usfm": "RUT.2.13",
+          "line_type": "p",
           "text": "“My lord,” she said, “you have been so kind to me, for you have comforted and encouraged your slave, although I am not like one of your female servants.”"
         },
         {
           "verse": 14,
+          "usfm": "RUT.2.14",
+          "line_type": "p",
           "text": "At mealtime Boaz told her, “Come over here and have some bread and dip it in the vinegar sauce.” So she sat beside the harvesters, and he offered her roasted grain. She ate and was satisfied and had some left over."
         },
         {
           "verse": 15,
+          "usfm": "RUT.2.15",
+          "line_type": "p",
           "text": "When she got up to gather grain, Boaz ordered his young men, “Let her even gather grain among the bundles, and don’t humiliate her."
         },
         {
           "verse": 16,
+          "usfm": "RUT.2.16",
+          "line_type": "p",
           "text": "Pull out some stalks from the bundles for her and leave them for her to gather. Don’t rebuke her.”"
         },
         {
           "verse": 17,
+          "usfm": "RUT.2.17",
+          "line_type": "p",
           "text": "So Ruth gathered grain in the field until evening. She beat out what she had gathered, and it was about 26 quarts of barley."
         },
         {
           "verse": 18,
+          "usfm": "RUT.2.18",
+          "line_type": "p",
           "text": "She picked up the grain and went into the town, where her mother-in-law saw what she had gleaned. Then she brought out what she had left over from her meal and gave it to her."
         },
         {
           "verse": 19,
+          "usfm": "RUT.2.19",
+          "line_type": "p",
           "text": "Then her mother-in-law said to her, “Where did you gather barley today, and where did you work? May the Lord bless the man who noticed you.” Ruth told her mother-in-law about the men she had worked with and said, “The name of the man I worked with today is Boaz.”"
         },
         {
           "verse": 20,
+          "usfm": "RUT.2.20",
+          "line_type": "p",
           "text": "Then Naomi said to her daughter-in-law, “May he be blessed by the Lord, who has not forsaken his kindness to the living or the dead.” Naomi continued, “The man is a close relative. He is one of our family redeemers.”"
         },
         {
           "verse": 21,
+          "usfm": "RUT.2.21",
+          "line_type": "p",
           "text": "Ruth the Moabitess said, “He also told me, ‘Stay with my young men until they have finished all of my harvest.’ ”"
         },
         {
           "verse": 22,
+          "usfm": "RUT.2.22",
+          "line_type": "p",
           "text": "So Naomi said to her daughter-in-law Ruth, “My daughter, it is good for you to work with his female servants, so that nothing will happen to you in another field.”"
         },
         {
           "verse": 23,
+          "usfm": "RUT.2.23",
+          "line_type": "p",
           "text": "Ruth stayed close to Boaz’s female servants and gathered grain until the barley and the wheat harvests were finished. And she lived with her mother-in-law."
         }
       ],
       "verse_count": 23,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "RUT.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 1:2"
+        },
+        {
+          "verse": 2,
+          "usfm": "RUT.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 19:9-10; 23:22"
+        },
+        {
+          "verse": 3,
+          "usfm": "RUT.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Pr 16:33; 20:24"
+        },
+        {
+          "verse": 4,
+          "usfm": "RUT.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 20:13"
+        },
+        {
+          "verse": 4,
+          "usfm": "RUT.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Nm 6:24"
+        },
+        {
+          "verse": 7,
+          "usfm": "RUT.2.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "LXX reads until evening she has not stopped in the field ; Vg reads now and she did not return to the house ; Hb uncertain"
+        },
+        {
+          "verse": 8,
+          "usfm": "RUT.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit Haven’t you heard, my daughter?"
+        },
+        {
+          "verse": 9,
+          "usfm": "RUT.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Either sexual or physical harassment"
+        },
+        {
+          "verse": 10,
+          "usfm": "RUT.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 25:23,41"
+        },
+        {
+          "verse": 12,
+          "usfm": "RUT.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 24:19"
+        },
+        {
+          "verse": 12,
+          "usfm": "RUT.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 1:16; Ps 17:8; 36:7; 57:1; 63:7"
+        },
+        {
+          "verse": 13,
+          "usfm": "RUT.2.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit and spoken to the heart of"
+        },
+        {
+          "verse": 17,
+          "usfm": "RUT.2.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit about an ephah"
+        },
+        {
+          "verse": 19,
+          "usfm": "RUT.2.19",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 41:1"
+        },
+        {
+          "verse": 20,
+          "usfm": "RUT.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Sm 2:5"
+        },
+        {
+          "verse": 20,
+          "usfm": "RUT.2.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or His"
+        },
+        {
+          "verse": 20,
+          "usfm": "RUT.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 1:8"
+        },
+        {
+          "verse": 20,
+          "usfm": "RUT.2.20",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 25:25-26; Ru 3:9,12; 4:1-8,14; Ps 19:14; Is 41:14"
+        },
+        {
+          "verse": 22,
+          "usfm": "RUT.2.22",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit go out"
+        },
+        {
+          "verse": 23,
+          "usfm": "RUT.2.23",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 16:9"
+        },
+        {
+          "verse": 23,
+          "usfm": "RUT.2.23",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some Hb mss, Vg read she returned to"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "RUT.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "RUT.2.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "RUT.2.2",
+            "RUT.2.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "RUT.2.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "RUT.2.4"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "RUT.2.5"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "RUT.2.6",
+            "RUT.2.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "RUT.2.8",
+            "RUT.2.9"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "RUT.2.10"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "RUT.2.11",
+            "RUT.2.12"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "RUT.2.13"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "RUT.2.14"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 18,
+          "verses": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "RUT.2.15",
+            "RUT.2.16",
+            "RUT.2.17",
+            "RUT.2.18"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "RUT.2.19"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "RUT.2.19"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "RUT.2.20"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "RUT.2.21"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "RUT.2.22",
+            "RUT.2.23"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -239,9 +1315,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/RUT/2-5d465d9f13373366365ef7f47f9783ca.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 23,
+          "parsed_count": 23,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/RUT.2.HCSB",
+        "reference": {
+          "usfm": [
+            "RUT.2"
+          ],
+          "human": "Ruth 2",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "RUT.1"
+          ],
+          "human": "Ruth 1",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "RUT.3"
+          ],
+          "human": "Ruth 3",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "RUT",
       "chapter": 3,
       "chapter_usfm": "RUT.3",
@@ -250,80 +1383,393 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "RUT.3.1",
+          "line_type": "p",
           "text": "Ruth’s mother-in-law Naomi said to her, “My daughter, shouldn’t I find security for you, so that you will be taken care of?"
         },
         {
           "verse": 2,
+          "usfm": "RUT.3.2",
+          "line_type": "p",
           "text": "Now isn’t Boaz our relative? Haven’t you been working with his female servants? This evening he will be winnowing barley on the threshing floor."
         },
         {
           "verse": 3,
+          "usfm": "RUT.3.3",
+          "line_type": "p",
           "text": "Wash, put on perfumed oil, and wear your best clothes. Go down to the threshing floor, but don’t let the man know you are there until he has finished eating and drinking."
         },
         {
           "verse": 4,
+          "usfm": "RUT.3.4",
+          "line_type": "p",
           "text": "When he lies down, notice the place where he’s lying, go in and uncover his feet, and lie down. Then he will explain to you what you should do.”"
         },
         {
           "verse": 5,
+          "usfm": "RUT.3.5",
+          "line_type": "p",
           "text": "So Ruth said to her, “I will do everything you say.”"
         },
         {
           "verse": 6,
+          "usfm": "RUT.3.6",
+          "line_type": "p",
           "text": "She went down to the threshing floor and did everything her mother-in-law had instructed her."
         },
         {
           "verse": 7,
+          "usfm": "RUT.3.7",
+          "line_type": "p",
           "text": "After Boaz ate, drank, and was in good spirits, he went to lie down at the end of the pile of barley. Then she went in secretly, uncovered his feet, and lay down."
         },
         {
           "verse": 8,
+          "usfm": "RUT.3.8",
+          "line_type": "p",
           "text": "At midnight, Boaz was startled, turned over, and there lying at his feet was a woman!"
         },
         {
           "verse": 9,
+          "usfm": "RUT.3.9",
+          "line_type": "p",
           "text": "So he asked, “Who are you? ”“I am Ruth, your slave,” she replied. “Spread your cloak over me, for you are a family redeemer.”"
         },
         {
           "verse": 10,
+          "usfm": "RUT.3.10",
+          "line_type": "p",
           "text": "Then he said, “May the Lord bless you, my daughter. You have shown more kindness now than before, because you have not pursued younger men, whether rich or poor."
         },
         {
           "verse": 11,
+          "usfm": "RUT.3.11",
+          "line_type": "p",
           "text": "Now don’t be afraid, my daughter. I will do for you whatever you say, since all the people in my town know that you are a woman of noble character."
         },
         {
           "verse": 12,
+          "usfm": "RUT.3.12",
+          "line_type": "p",
           "text": "Yes, it is true that I am a family redeemer, but there is a redeemer closer than I am."
         },
         {
           "verse": 13,
+          "usfm": "RUT.3.13",
+          "line_type": "p",
           "text": "Stay here tonight, and in the morning, if he wants to redeem you, that’s good. Let him redeem you. But if he doesn’t want to redeem you, as the Lord lives, I will. Now lie down until morning.”"
         },
         {
           "verse": 14,
+          "usfm": "RUT.3.14",
+          "line_type": "p",
           "text": "So she lay down at his feet until morning but got up while it was still dark. Then Boaz said, “Don’t let it be known that a woman came to the threshing floor.”"
         },
         {
           "verse": 15,
+          "usfm": "RUT.3.15",
+          "line_type": "p",
           "text": "And he told Ruth, “Bring the shawl you’re wearing and hold it out.” When she held it out, he shoveled six measures of barley into her shawl, and she went into the town."
         },
         {
           "verse": 16,
+          "usfm": "RUT.3.16",
+          "line_type": "p",
           "text": "She went to her mother-in-law, Naomi, who asked her, “How did it go, my daughter? ”Then Ruth told her everything the man had done for her."
         },
         {
           "verse": 17,
+          "usfm": "RUT.3.17",
+          "line_type": "p",
           "text": "She said, “He gave me these six measures of barley, because he said, ‘Don’t go back to your mother-in-law empty-handed.’ ”"
         },
         {
           "verse": 18,
+          "usfm": "RUT.3.18",
+          "line_type": "p",
           "text": "Naomi said, “My daughter, wait until you find out how things go, for he won’t rest unless he resolves this today.”"
         }
       ],
       "verse_count": 18,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "RUT.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 25:5-10"
+        },
+        {
+          "verse": 5,
+          "usfm": "RUT.3.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Alt Hb tradition reads say to me"
+        },
+        {
+          "verse": 7,
+          "usfm": "RUT.3.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit and his heart was glad"
+        },
+        {
+          "verse": 9,
+          "usfm": "RUT.3.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Spread the edge of your garment ; lit Spread the wing of your garment ; Ru 2:12"
+        },
+        {
+          "verse": 9,
+          "usfm": "RUT.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezk 16:8"
+        },
+        {
+          "verse": 9,
+          "usfm": "RUT.3.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 2:12"
+        },
+        {
+          "verse": 10,
+          "usfm": "RUT.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 2:20"
+        },
+        {
+          "verse": 10,
+          "usfm": "RUT.3.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit kindness at the last than at the first"
+        },
+        {
+          "verse": 11,
+          "usfm": "RUT.3.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some Hb mss, Orig, Syr, Tg, Vg read say to me"
+        },
+        {
+          "verse": 11,
+          "usfm": "RUT.3.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit all the gate of my people"
+        },
+        {
+          "verse": 11,
+          "usfm": "RUT.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 2:1; Pr 12:4; 31:10"
+        },
+        {
+          "verse": 13,
+          "usfm": "RUT.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 25:5; Ru 4:5"
+        },
+        {
+          "verse": 13,
+          "usfm": "RUT.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jdg 8:19; 1Sm 14:39,45; 19:6; 2Sm 4:9; 12:5; 2Kg 2:2,6"
+        },
+        {
+          "verse": 14,
+          "usfm": "RUT.3.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit up before a man could recognize his companion"
+        },
+        {
+          "verse": 14,
+          "usfm": "RUT.3.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "LXX; MT reads the"
+        },
+        {
+          "verse": 15,
+          "usfm": "RUT.3.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some Hb mss, Aram, Syr, Vg; other Hb mss read he"
+        },
+        {
+          "verse": 16,
+          "usfm": "RUT.3.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit Who are you"
+        },
+        {
+          "verse": 17,
+          "usfm": "RUT.3.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Alt Hb tradition, LXX, Syr, Tg read said to me"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "RUT.3.1",
+            "RUT.3.2",
+            "RUT.3.3",
+            "RUT.3.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 7,
+          "verses": [
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "RUT.3.5",
+            "RUT.3.6",
+            "RUT.3.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "RUT.3.8",
+            "RUT.3.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "RUT.3.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 13,
+          "verses": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "RUT.3.10",
+            "RUT.3.11",
+            "RUT.3.12",
+            "RUT.3.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "RUT.3.14",
+            "RUT.3.15"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "RUT.3.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "RUT.3.16",
+            "RUT.3.17"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "RUT.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -334,9 +1780,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/RUT/3-feb2c4c5fcca56d65281bc8a4ceef7c7.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/RUT.3.HCSB",
+        "reference": {
+          "usfm": [
+            "RUT.3"
+          ],
+          "human": "Ruth 3",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "RUT.2"
+          ],
+          "human": "Ruth 2",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "RUT.4"
+          ],
+          "human": "Ruth 4",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "RUT",
       "chapter": 4,
       "chapter_usfm": "RUT.4",
@@ -345,101 +1848,406 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "RUT.4.1",
+          "line_type": "p",
           "text": "Boaz went to the gate of the town and sat down there. Soon the family redeemer Boaz had spoken about came by. Boaz called him by name and said, “Come over here and sit down.” So he went over and sat down."
         },
         {
           "verse": 2,
+          "usfm": "RUT.4.2",
+          "line_type": "p",
           "text": "Then Boaz took 10 men of the town’s elders and said, “Sit here.” And they sat down."
         },
         {
           "verse": 3,
+          "usfm": "RUT.4.3",
+          "line_type": "p",
           "text": "He said to the redeemer, “Naomi, who has returned from the land of Moab, is selling a piece of land that belonged to our brother Elimelech."
         },
         {
           "verse": 4,
+          "usfm": "RUT.4.4",
+          "line_type": "p",
           "text": "I thought I should inform you: Buy it back in the presence of those seated here and in the presence of the elders of my people. If you want to redeem it, do so. But if you do not want to redeem it, tell me so that I will know, because there isn’t anyone other than you to redeem it, and I am next after you.”“I want to redeem it,” he answered."
         },
         {
           "verse": 5,
+          "usfm": "RUT.4.5",
+          "line_type": "p",
           "text": "Then Boaz said, “On the day you buy the land from Naomi, you will also acquire Ruth the Moabitess, the wife of the deceased man, to perpetuate the man’s name on his property.”"
         },
         {
           "verse": 6,
+          "usfm": "RUT.4.6",
+          "line_type": "p",
           "text": "The redeemer replied, “I can’t redeem it myself, or I will ruin my own inheritance. Take my right of redemption, because I can’t redeem it.”"
         },
         {
           "verse": 7,
+          "usfm": "RUT.4.7",
+          "line_type": "p",
           "text": "At an earlier period in Israel, a man removed his sandal and gave it to the other party in order to make any matter legally binding concerning the right of redemption or the exchange of property. This was the method of legally binding a transaction in Israel."
         },
         {
           "verse": 8,
+          "usfm": "RUT.4.8",
+          "line_type": "p",
           "text": "So the redeemer removed his sandal and said to Boaz, “Buy back the property yourself.”"
         },
         {
           "verse": 9,
+          "usfm": "RUT.4.9",
+          "line_type": "p",
           "text": "Boaz said to the elders and all the people, “You are witnesses today that I am buying from Naomi everything that belonged to Elimelech, Chilion, and Mahlon."
         },
         {
           "verse": 10,
+          "usfm": "RUT.4.10",
+          "line_type": "p",
           "text": "I will also acquire Ruth the Moabitess, Mahlon’s widow, as my wife, to perpetuate the deceased man’s name on his property, so that his name will not disappear among his relatives or from the gate of his home. You are witnesses today.”"
         },
         {
           "verse": 11,
+          "usfm": "RUT.4.11",
+          "line_type": "p",
           "text": "The elders and all the people who were at the gate said, “We are witnesses. May the Lord make the woman who is entering your house like Rachel and Leah, who together built the house of Israel. May you be powerful in Ephrathah and famous in Bethlehem."
         },
         {
           "verse": 12,
+          "usfm": "RUT.4.12",
+          "line_type": "p",
           "text": "May your house become like the house of Perez, the son Tamar bore to Judah, because of the offspring the Lord will give you by this young woman.”"
         },
         {
           "verse": 13,
+          "usfm": "RUT.4.13",
+          "line_type": "p",
           "text": "Boaz took Ruth and she became his wife. When he was intimate with her, the Lord enabled her to conceive, and she gave birth to a son."
         },
         {
           "verse": 14,
+          "usfm": "RUT.4.14",
+          "line_type": "p",
           "text": "Then the women said to Naomi, “Praise the Lord, who has not left you without a family redeemer today. May his name become well known in Israel."
         },
         {
           "verse": 15,
+          "usfm": "RUT.4.15",
+          "line_type": "p",
           "text": "He will renew your life and sustain you in your old age. Indeed, your daughter-in-law, who loves you and is better to you than seven sons, has given birth to him.”"
         },
         {
           "verse": 16,
+          "usfm": "RUT.4.16",
+          "line_type": "p",
           "text": "Naomi took the child, placed him on her lap, and took care of him."
         },
         {
           "verse": 17,
+          "usfm": "RUT.4.17",
+          "line_type": "p",
           "text": "The neighbor women said, “A son has been born to Naomi,” and they named him Obed. He was the father of Jesse, the father of David."
         },
         {
           "verse": 18,
+          "usfm": "RUT.4.18",
+          "line_type": "p",
           "text": "Now this is the genealogy of Perez:Perez fathered Hezron."
         },
         {
           "verse": 19,
+          "usfm": "RUT.4.19",
+          "line_type": null,
           "text": "Hezron fathered Ram, who fathered Amminadab."
         },
         {
           "verse": 20,
+          "usfm": "RUT.4.20",
+          "line_type": null,
           "text": "Amminadab fathered Nahshon,who fathered Salmon."
         },
         {
           "verse": 21,
+          "usfm": "RUT.4.21",
+          "line_type": null,
           "text": "Salmon fathered Boaz,who fathered Obed."
         },
         {
           "verse": 22,
+          "usfm": "RUT.4.22",
+          "line_type": null,
           "text": "And Obed fathered Jesse,who fathered David."
         }
       ],
       "verse_count": 22,
       "headings": [
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "David’s Genealogy from Judah’s Son"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "RUT.4.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 3:11-12; 2Sm 15:2; 18:4,24,33; 19:8; Ps 127:5"
+        },
+        {
+          "verse": 1,
+          "usfm": "RUT.4.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit Boaz said so-and-so come"
+        },
+        {
+          "verse": 2,
+          "usfm": "RUT.4.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 19:12; 21:3-6; 1Kg 21:8; Pr 31:23"
+        },
+        {
+          "verse": 3,
+          "usfm": "RUT.4.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 25:25"
+        },
+        {
+          "verse": 4,
+          "usfm": "RUT.4.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit should uncover your ear, saying"
+        },
+        {
+          "verse": 4,
+          "usfm": "RUT.4.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some Hb mss, LXX, Syr, Vg; other Hb mss read if he does"
+        },
+        {
+          "verse": 5,
+          "usfm": "RUT.4.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Vg; MT reads Naomi and from"
+        },
+        {
+          "verse": 5,
+          "usfm": "RUT.4.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 38:6-11; Lv 25:23-34; Dt 25:5-10"
+        },
+        {
+          "verse": 7,
+          "usfm": "RUT.4.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 25:8-10"
+        },
+        {
+          "verse": 11,
+          "usfm": "RUT.4.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 29:25-30; 35:16-18"
+        },
+        {
+          "verse": 12,
+          "usfm": "RUT.4.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 38; 46:12; Ru 4:18"
+        },
+        {
+          "verse": 15,
+          "usfm": "RUT.4.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 1:16-17; 2:11-12"
+        },
+        {
+          "verse": 17,
+          "usfm": "RUT.4.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= Servant"
+        },
+        {
+          "verse": 19,
+          "usfm": "RUT.4.19",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "LXX reads Aram ; Mt 1:3-4"
+        },
+        {
+          "verse": 22,
+          "usfm": "RUT.4.22",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 1:3-6"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "RUT.4.1",
+            "RUT.4.2",
+            "RUT.4.3",
+            "RUT.4.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "RUT.4.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "RUT.4.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "RUT.4.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "RUT.4.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "RUT.4.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "RUT.4.10",
+            "RUT.4.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "RUT.4.11",
+            "RUT.4.12"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 17,
+          "verses": [
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "usfms": [
+            "RUT.4.13",
+            "RUT.4.14",
+            "RUT.4.15",
+            "RUT.4.16",
+            "RUT.4.17"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "RUT.4.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -450,7 +2258,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/RUT/4-353f1ec06a63d2816a48ffeab7e9078e.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/RUT.4.HCSB",
+        "reference": {
+          "usfm": [
+            "RUT.4"
+          ],
+          "human": "Ruth 4",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "RUT.3"
+          ],
+          "human": "Ruth 3",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1SA.1"
+          ],
+          "human": "1 Samuel 1",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

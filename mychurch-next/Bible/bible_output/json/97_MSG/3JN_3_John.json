@@ -11,6 +11,7 @@
   "total_verses": 2,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "3JN",
       "chapter": 1,
       "chapter_usfm": "3JN.1",
@@ -19,10 +20,14 @@
       "verses": [
         {
           "verse": 11,
+          "usfm": "3JN.1.11",
+          "line_type": "p",
           "text": "Friend, don’t go along with evil. Model the good. The person who does good does God’s work. The person who does evil falsifies God, doesn’t know the first thing about God."
         },
         {
           "verse": 12,
+          "usfm": "3JN.1.12",
+          "line_type": "p",
           "text": "Everyone has a good word for Demetrius—the Truth itself stands up for Demetrius! We concur, and you know we don’t hand out endorsements lightly. I have a lot more things to tell you, but I’d rather not use pen and ink. I hope to be there soon in person and have a heart-to-heart talk.Peace to you. The friends here say hello. Greet our friends there by name."
         }
       ],
@@ -34,6 +39,46 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "3JN.1.11"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "3JN.1.11",
+            "3JN.1.12"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "3JN.1.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -44,7 +89,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/3JN/1-3a32761202861c00b375a9f18b7605e8.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/3JN.1.MSG",
+        "reference": {
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "2 John 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

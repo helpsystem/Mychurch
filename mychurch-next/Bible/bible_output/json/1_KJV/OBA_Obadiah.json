@@ -11,6 +11,7 @@
   "total_verses": 21,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "OBA",
       "chapter": 1,
       "chapter_usfm": "OBA.1",
@@ -19,97 +20,253 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "OBA.1.1",
+          "line_type": "p",
           "text": "The vision of Obadiah. Thus saith the Lord GOD concerning Edom; We have heard a rumour from the LORD, and an ambassador is sent among the heathen, Arise ye, and let us rise up against her in battle."
         },
         {
           "verse": 2,
+          "usfm": "OBA.1.2",
+          "line_type": "p",
           "text": "Behold, I have made thee small among the heathen: thou art greatly despised."
         },
         {
           "verse": 3,
+          "usfm": "OBA.1.3",
+          "line_type": "p",
           "text": "The pride of thine heart hath deceived thee, thou that dwellest in the clefts of the rock, whose habitation is high; that saith in his heart, Who shall bring me down to the ground?"
         },
         {
           "verse": 4,
+          "usfm": "OBA.1.4",
+          "line_type": "p",
           "text": "Though thou exalt thyself as the eagle, and though thou set thy nest among the stars, thence will I bring thee down, saith the LORD."
         },
         {
           "verse": 5,
+          "usfm": "OBA.1.5",
+          "line_type": "p",
           "text": "If thieves came to thee, if robbers by night, (how art thou cut off!) would they not have stolen till they had enough? if the grapegatherers came to thee, would they not leave some grapes?"
         },
         {
           "verse": 6,
+          "usfm": "OBA.1.6",
+          "line_type": "p",
           "text": "How are the things of Esau searched out! how are his hidden things sought up!"
         },
         {
           "verse": 7,
+          "usfm": "OBA.1.7",
+          "line_type": "p",
           "text": "All the men of thy confederacy have brought thee even to the border: the men that were at peace with thee have deceived thee, and prevailed against thee; they that eat thy bread have laid a wound under thee: there is none understanding in him."
         },
         {
           "verse": 8,
+          "usfm": "OBA.1.8",
+          "line_type": "p",
           "text": "Shall I not in that day, saith the LORD, even destroy the wise men out of Edom, and understanding out of the mount of Esau?"
         },
         {
           "verse": 9,
+          "usfm": "OBA.1.9",
+          "line_type": "p",
           "text": "And thy mighty men, O Teman, shall be dismayed, to the end that every one of the mount of Esau may be cut off by slaughter."
         },
         {
           "verse": 10,
+          "usfm": "OBA.1.10",
+          "line_type": "p",
           "text": "For thy violence against thy brother Jacob shame shall cover thee, and thou shalt be cut off for ever."
         },
         {
           "verse": 11,
+          "usfm": "OBA.1.11",
+          "line_type": "p",
           "text": "In the day that thou stoodest on the other side, in the day that the strangers carried away captive his forces, and foreigners entered into his gates, and cast lots upon Jerusalem, even thou wast as one of them."
         },
         {
           "verse": 12,
+          "usfm": "OBA.1.12",
+          "line_type": "p",
           "text": "But thou shouldest not have looked on the day of thy brother in the day that he became a stranger; neither shouldest thou have rejoiced over the children of Judah in the day of their destruction; neither shouldest thou have spoken proudly in the day of distress."
         },
         {
           "verse": 13,
+          "usfm": "OBA.1.13",
+          "line_type": "p",
           "text": "Thou shouldest not have entered into the gate of my people in the day of their calamity; yea, thou shouldest not have looked on their affliction in the day of their calamity, nor have laid hands on their substance in the day of their calamity;"
         },
         {
           "verse": 14,
+          "usfm": "OBA.1.14",
+          "line_type": "p",
           "text": "neither shouldest thou have stood in the crossway, to cut off those of his that did escape; neither shouldest thou have delivered up those of his that did remain in the day of distress."
         },
         {
           "verse": 15,
+          "usfm": "OBA.1.15",
+          "line_type": "p",
           "text": "For the day of the LORD is near upon all the heathen: as thou hast done, it shall be done unto thee: thy reward shall return upon thine own head."
         },
         {
           "verse": 16,
+          "usfm": "OBA.1.16",
+          "line_type": "p",
           "text": "For as ye have drunk upon my holy mountain, so shall all the heathen drink continually, yea, they shall drink, and they shall swallow down, and they shall be as though they had not been."
         },
         {
           "verse": 17,
+          "usfm": "OBA.1.17",
+          "line_type": "p",
           "text": "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
         },
         {
           "verse": 18,
+          "usfm": "OBA.1.18",
+          "line_type": "p",
           "text": "And the house of Jacob shall be a fire, and the house of Joseph a flame, and the house of Esau for stubble, and they shall kindle in them, and devour them; and there shall not be any remaining of the house of Esau; for the LORD hath spoken it."
         },
         {
           "verse": 19,
+          "usfm": "OBA.1.19",
+          "line_type": "p",
           "text": "And they of the south shall possess the mount of Esau; and they of the plain the Philistines: and they shall possess the fields of Ephraim, and the fields of Samaria: and Benjamin shall possess Gilead."
         },
         {
           "verse": 20,
+          "usfm": "OBA.1.20",
+          "line_type": "p",
           "text": "And the captivity of this host of the children of Israel shall possess that of the Canaanites, even unto Zarephath; and the captivity of Jerusalem, which is in Sepharad, shall possess the cities of the south."
         },
         {
           "verse": 21,
+          "usfm": "OBA.1.21",
+          "line_type": "p",
           "text": "And saviours shall come up on mount Zion to judge the mount of Esau; and the kingdom shall be the LORD's."
         }
       ],
       "verse_count": 21,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Edom's Violence"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "OBA.1.1",
+            "OBA.1.2",
+            "OBA.1.3",
+            "OBA.1.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 9,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "OBA.1.4",
+            "OBA.1.5",
+            "OBA.1.6",
+            "OBA.1.7",
+            "OBA.1.8",
+            "OBA.1.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 14,
+          "verses": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "OBA.1.10",
+            "OBA.1.11",
+            "OBA.1.12",
+            "OBA.1.13",
+            "OBA.1.14",
+            "OBA.1.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 16,
+          "verses": [
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "OBA.1.14",
+            "OBA.1.15",
+            "OBA.1.16"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 18,
+          "verses": [
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "OBA.1.16",
+            "OBA.1.17",
+            "OBA.1.18"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 21,
+          "verses": [
+            18,
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "OBA.1.18",
+            "OBA.1.19",
+            "OBA.1.20",
+            "OBA.1.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 8,
@@ -120,7 +277,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/8/m4a/32k/OBA/1-096a53478525d29f349cfacc3585606d.m3u8?version_id=1"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 21,
+          "parsed_count": 21,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/1/OBA.1.KJV",
+        "reference": {
+          "usfm": [
+            "OBA.1"
+          ],
+          "human": "Obadiah 1",
+          "version_id": 1
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "AMO.9"
+          ],
+          "human": "Amos 9",
+          "toc": true,
+          "version_id": 1
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "Jonah 1",
+          "toc": true,
+          "version_id": 1
+        }
+      },
+      "version_meta": {
+        "id": 1,
+        "abbreviation": "KJV",
+        "local_abbreviation": "KJV",
+        "title": "King James Version",
+        "local_title": "King James Version",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Cambridge Univ. Press & BFBS"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

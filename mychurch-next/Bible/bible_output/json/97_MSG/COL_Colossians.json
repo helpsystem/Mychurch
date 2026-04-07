@@ -11,6 +11,7 @@
   "total_verses": 12,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "COL",
       "chapter": 1,
       "chapter_usfm": "COL.1",
@@ -29,6 +30,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -39,9 +41,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/COL/1-bb7c3b011766c85c4069f58d41c8a6c5.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/COL.1.MSG",
+        "reference": {
+          "usfm": [
+            "COL.1"
+          ],
+          "human": "Colossians 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "PHP.4"
+          ],
+          "human": "Philippians 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "COL.2"
+          ],
+          "human": "Colossians 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "COL",
       "chapter": 2,
       "chapter_usfm": "COL.2",
@@ -50,21 +109,75 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "COL.2.1",
+          "line_type": "p",
           "text": "I want you to realize that I continue to work as hard as I know how for you, and also for the Christians over at Laodicea. Not many of you have met me face-to-face, but that doesn’t make any difference. Know that I’m on your side, right alongside you. You’re not in this alone. I want you woven into a tapestry of love, in touch with everything there is to know of God. Then you will have minds confident and at rest, focused on Christ, God’s great mystery. All the richest treasures of wisdom and knowledge are embedded in that mystery and nowhere else. And we’ve been shown the mystery! I’m telling you this because I don’t want anyone leading you off on some wild-goose chase, after other so-called mysteries, or “the Secret.”"
         },
         {
           "verse": 5,
+          "usfm": "COL.2.5",
+          "line_type": "p",
           "text": "I’m a long way off, true, and you may never lay eyes on me, but believe me, I’m on your side, right beside you. I am delighted to hear of the careful and orderly ways you conduct your affairs, and impressed with the solid substance of your faith in Christ. My counsel for you is simple and straightforward: Just go ahead with what you’ve been given. You received Christ Jesus, the Master; now live him. You’re deeply rooted in him. You’re well constructed upon him. You know your way around the faith. Now do what you’ve been taught. School’s out; quit studying the subject and start living it! And let your living spill over into thanksgiving. Watch out for people who try to dazzle you with big words and intellectual double-talk. They want to drag you off into endless arguments that never amount to anything. They spread their ideas through the empty traditions of human beings and the empty superstitions of spirit beings. But that’s not the way of Christ. Everything of God gets expressed in him, so you can see and hear him clearly. You don’t need a telescope, a microscope, or a horoscope to realize the fullness of Christ, and the emptiness of the universe without him. When you come to him, that fullness comes together for you, too. His power extends over everything. Entering into this fullness is not something you figure out or achieve. It’s not a matter of being circumcised or keeping a long list of laws. No, you’re already in—insiders—not through some secretive initiation rite but rather through what Christ has already gone through for you, destroying the power of sin. If it’s an initiation ritual you’re after, you’ve already been through it by submitting to baptism. Going under the water was a burial of your old life; coming up out of it was a resurrection, God raising you from the dead as he did Christ. When you were stuck in your old sin-dead life, you were incapable of responding to God. God brought you alive—right along with Christ! Think of it! All sins forgiven, the slate wiped clean, that old arrest warrant canceled and nailed to Christ’s cross. He stripped all the spiritual tyrants in the universe of their sham authority at the Cross and marched them naked through the streets. So don’t put up with anyone pressuring you in details of diet, worship services, or holy days. All those things are mere shadows cast before what was to come; the substance is Christ. Don’t tolerate people who try to run your life, ordering you to bow and scrape, insisting that you join their obsession with angels and that you seek out visions. They’re a lot of hot air, that’s all they are. They’re completely out of touch with the source of life, Christ, who puts us together in one piece, whose very breath and blood flow through us. He is the Head and we are the body. We can grow up healthy in God only as he nourishes us. So, then, if with Christ you’ve put all that puffed-up and childish religion behind you, why do you let yourselves be bullied by it? “Don’t touch this! Don’t taste that! Don’t go near this!” Do you think things that are here today and gone tomorrow are worth that kind of attention? Such things sound impressive if said in a deep enough voice. They even give the illusion of being pious and humble and austere. But they’re just another way of showing off, making yourselves look important."
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "From the Shadows to the Substance"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "COL.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "COL.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "COL.2.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "COL.2.5"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -75,9 +188,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/COL/2-c57fa9bedd8ace393678f0a37bf36854.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/COL.2.MSG",
+        "reference": {
+          "usfm": [
+            "COL.2"
+          ],
+          "human": "Colossians 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "COL.1"
+          ],
+          "human": "Colossians 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "COL.3"
+          ],
+          "human": "Colossians 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "COL",
       "chapter": 3,
       "chapter_usfm": "COL.3",
@@ -86,24 +256,100 @@
       "verses": [
         {
           "verse": 18,
+          "usfm": "COL.3.18",
+          "line_type": "p",
           "text": "Wives, understand and support your husbands by submitting to them in ways that honor the Master."
         },
         {
           "verse": 19,
+          "usfm": "COL.3.19",
+          "line_type": "p",
           "text": "Husbands, go all out in love for your wives. Don’t take advantage of them."
         },
         {
           "verse": 20,
+          "usfm": "COL.3.20",
+          "line_type": "p",
           "text": "Children, do what your parents tell you. This delights the Master no end."
         },
         {
           "verse": 21,
+          "usfm": "COL.3.21",
+          "line_type": "p",
           "text": "Parents, don’t come down too hard on your children or you’ll crush their spirits. Servants, do what you’re told by your earthly masters. And don’t just do the minimum that will get you by. Do your best. Work from the heart for your real Master, for God, confident that you’ll get paid in full when you come into your inheritance. Keep in mind always that the ultimate Master you’re serving is Christ. The sullen servant who does shoddy work will be held responsible. Being a follower of Jesus doesn’t cover up bad work."
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "COL.3.18"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "COL.3.18",
+            "COL.3.19"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "COL.3.19",
+            "COL.3.20"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "COL.3.20",
+            "COL.3.21"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "COL.3.21"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -114,9 +360,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/COL/3-0b58474b4c69059d686a2211c7cf50a9.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/COL.3.MSG",
+        "reference": {
+          "usfm": [
+            "COL.3"
+          ],
+          "human": "Colossians 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "COL.2"
+          ],
+          "human": "Colossians 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "COL.4"
+          ],
+          "human": "Colossians 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "COL",
       "chapter": 4,
       "chapter_usfm": "COL.4",
@@ -125,37 +428,143 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "COL.4.1",
+          "line_type": "p",
           "text": "And masters, treat your servants considerately. Be fair with them. Don’t forget for a minute that you, too, serve a Master—God in heaven. Pray diligently. Stay alert, with your eyes wide open in gratitude. Don’t forget to pray for us, that God will open doors for telling the mystery of Christ, even while I’m locked up in this jail. Pray that every time I open my mouth I’ll be able to make Christ plain as day to them. Use your heads as you live and work among outsiders. Don’t miss a trick. Make the most of every opportunity. Be gracious in your speech. The goal is to bring out the best in others in a conversation, not put them down, not cut them out. My good friend Tychicus will tell you all about me. He’s a trusted minister and companion in the service of the Master. I’ve sent him to you so that you would know how things are with us, and so he could encourage you in your faith. And I’ve sent Onesimus with him. Onesimus is one of you, and has become such a trusted and dear brother! Together they’ll bring you up-to-date on everything that has been going on here. Aristarchus, who is in jail here with me, sends greetings; also Mark, cousin of Barnabas (you received a letter regarding him; if he shows up, welcome him); and also Jesus, the one they call Justus. These are the only ones left from the old crowd who have stuck with me in working for God’s kingdom. Don’t think they haven’t been a big help! Epaphras, who is one of you, says hello. What a trooper he has been! He’s been tireless in his prayers for you, praying that you’ll stand firm, mature and confident in everything God wants you to do. I’ve watched him closely, and can report on how hard he has worked for you and for those in Laodicea and Hierapolis."
         },
         {
           "verse": 14,
+          "usfm": "COL.4.14",
+          "line_type": "p",
           "text": "Luke, good friend and physician, and Demas both send greetings."
         },
         {
           "verse": 15,
+          "usfm": "COL.4.15",
+          "line_type": "p",
           "text": "Say hello to our friends in Laodicea; also to Nympha and the church that meets in her house."
         },
         {
           "verse": 16,
+          "usfm": "COL.4.16",
+          "line_type": "p",
           "text": "After this letter has been read to you, make sure it gets read also in Laodicea. And get the letter that went to Laodicea and have it read to you."
         },
         {
           "verse": 17,
+          "usfm": "COL.4.17",
+          "line_type": "p",
           "text": "And, oh, yes, tell Archippus, “Do your best in the job you received from the Master. Do your very best.”"
         },
         {
           "verse": 18,
+          "usfm": "COL.4.18",
+          "line_type": "p",
           "text": "I’m signing off in my own handwriting—Paul. Remember to pray for me in this jail. Grace be with you."
         }
       ],
       "verse_count": 6,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "Pray for Open Doors"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "COL.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "COL.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "COL.4.14"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "COL.4.14",
+            "COL.4.15"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "COL.4.15",
+            "COL.4.16"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "COL.4.16",
+            "COL.4.17"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "COL.4.17",
+            "COL.4.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -166,7 +575,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/COL/4-64483bb4f05445ba893cd1e8447305d4.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/COL.4.MSG",
+        "reference": {
+          "usfm": [
+            "COL.4"
+          ],
+          "human": "Colossians 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "COL.3"
+          ],
+          "human": "Colossians 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "1TH.1"
+          ],
+          "human": "1 Thessalonians 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

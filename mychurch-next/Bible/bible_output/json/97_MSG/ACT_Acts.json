@@ -11,6 +11,7 @@
   "total_verses": 83,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 1,
       "chapter_usfm": "ACT.1",
@@ -19,25 +20,79 @@
       "verses": [
         {
           "verse": 6,
+          "usfm": "ACT.1.6",
+          "line_type": "p",
           "text": "When they were together for the last time they asked, “Master, are you going to restore the kingdom to Israel now? Is this the time?” He told them, “You don’t get to know the time. Timing is the Father’s business. What you’ll get is the Holy Spirit. And when the Holy Spirit comes on you, you will be able to be my witnesses in Jerusalem, all over Judea and Samaria, even to the ends of the world.” These were his last words. As they watched, he was taken up and disappeared in a cloud. They stood there, staring into the empty sky. Suddenly two men appeared—in white robes! They said, “You Galileans!—why do you just stand here looking up at an empty sky? This very Jesus who was taken up from among you to heaven will come as certainly—and mysteriously—as he left.” So they left the mountain called Olives and returned to Jerusalem. It was a little over half a mile. They went to the upper room they had been using as a meeting place:Peter,John,James,Andrew,Philip,Thomas,Bartholomew,Matthew,James, son of Alphaeus,Simon the Zealot,Judas, son of James."
         },
         {
           "verse": 14,
+          "usfm": "ACT.1.14",
+          "line_type": "m",
           "text": "They agreed they were in this for good, completely together in prayer, the women included. Also Jesus’ mother, Mary, and his brothers. During this time, Peter stood up in the company—there were about 120 of them in the room at the time—and said, “Friends, long ago the Holy Spirit spoke through David regarding Judas, who became the guide to those who arrested Jesus. That Scripture had to be fulfilled, and now has been. Judas was one of us and had his assigned place in this ministry. “As you know, he took the evil bribe money and bought a small farm. There he came to a bad end, rupturing his belly and spilling his guts. Everybody in Jerusalem knows this by now; they call the place Murder Meadow. It’s exactly what we find written in the Psalms:Let his farm become hauntedSo no one can ever live there.“And also what was written later:Let someone else take over his post. “Judas must now be replaced. The replacement must come from the company of men who stayed together with us from the time Jesus was baptized by John up to the day of his ascension, designated along with us as a witness to his resurrection.” They nominated two: Joseph Barsabbas, nicknamed Justus, and Matthias. Then they prayed, “You, O God, know every one of us inside and out. Make plain which of these two men you choose to take the place in this ministry and leadership that Judas threw away in order to go his own way.” They then drew straws. Matthias won and was counted in with the eleven apostles."
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Returning to Jerusalem"
         },
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "Replacing Judas"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ACT.1.6"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ACT.1.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "m",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ACT.1.14"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ACT.1.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -48,9 +103,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/1-d899b1a9eb3db3c6cea2d095a0e509bf.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.1.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.1"
+          ],
+          "human": "Acts 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JHN.21"
+          ],
+          "human": "John 21",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.2"
+          ],
+          "human": "Acts 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 2,
       "chapter_usfm": "ACT.2",
@@ -59,29 +171,125 @@
       "verses": [
         {
           "verse": 12,
+          "usfm": "ACT.2.12",
+          "line_type": "p",
           "text": "Their heads were spinning; they couldn’t make head or tail of any of it. They talked back and forth, confused: “What’s going on here?”"
         },
         {
           "verse": 13,
+          "usfm": "ACT.2.13",
+          "line_type": "p",
           "text": "Others joked, “They’re drunk on cheap wine.” That’s when Peter stood up and, backed by the other eleven, spoke out with bold urgency: “Fellow Jews, all of you who are visiting Jerusalem, listen carefully and get this story straight. These people aren’t drunk as some of you suspect. They haven’t had time to get drunk—it’s only nine o’clock in the morning. This is what the prophet Joel announced would happen:“In the Last Days,” God says,“I will pour out my Spiriton every kind of people:Your sons will prophesy,also your daughters;Your young men will see visions,your old men dream dreams.When the time comes,I’ll pour out my SpiritOn those who serve me, men and women both,and they’ll prophesy.I’ll set wonders in the sky aboveand signs on the earth below,Blood and fire and billowing smoke,the sun turning black and the moon blood-red,Before the Day of the Lord arrives,the Day tremendous and marvelous;And whoever calls out for helpto me, God, will be saved.” “Fellow Israelites, listen carefully to these words: Jesus the Nazarene, a man thoroughly accredited by God to you—the miracles and wonders and signs that God did through him are common knowledge—this Jesus, following the deliberate and well-thought-out plan of God, was betrayed by men who took the law into their own hands, and was handed over to you. And you pinned him to a cross and killed him. But God untied the death ropes and raised him up. Death was no match for him. David said it all:I saw God before me for all time.Nothing can shake me; he’s right by my side.I’m glad from the inside out, ecstatic;I’ve pitched my tent in the land of hope.I know you’ll never dump me in Hades;I’ll never even smell the stench of death.You’ve got my feet on the life-path,with your face shining sun-joy all around. “Dear friends, let me be completely frank with you. Our ancestor David is dead and buried—his tomb is in plain sight today. But being also a prophet and knowing that God had solemnly sworn that a descendant of his would rule his kingdom, seeing far ahead, he talked of the resurrection of the Messiah—‘no trip to Hades, no stench of death.’ This Jesus, God raised up. And every one of us here is a witness to it. Then, raised to the heights at the right hand of God and receiving the promise of the Holy Spirit from the Father, he poured out the Spirit he had just received. That is what you see and hear. For David himself did not ascend to heaven, but he did say,God said to my Master, “Sit at my right handUntil I make your enemies a stool for resting your feet.”“All Israel, then, know this: There’s no longer room for doubt—God made him Master and Messiah, this Jesus whom you killed on a cross.”"
         },
         {
           "verse": 37,
+          "usfm": "ACT.2.37",
+          "line_type": "p",
           "text": "Cut to the quick, those who were there listening asked Peter and the other apostles, “Brothers! Brothers! So now what do we do?” Peter said, “Change your life. Turn to God and be baptized, each of you, in the name of Jesus Christ, so your sins are forgiven. Receive the gift of the Holy Spirit. The promise is targeted to you and your children, but also to all who are far away—whomever, in fact, our Master God invites.”"
         },
         {
           "verse": 40,
+          "usfm": "ACT.2.40",
+          "line_type": "p",
           "text": "He went on in this vein for a long time, urging them over and over, “Get out while you can; get out of this sick and stupid culture!” That day about three thousand took him at his word, were baptized and were signed up. They committed themselves to the teaching of the apostles, the life together, the common meal, and the prayers.* * * Everyone around was in awe—all those wonders and signs done through the apostles! And all the believers lived in a wonderful harmony, holding everything in common. They sold whatever they owned and pooled their resources so that each person’s need was met. They followed a daily discipline of worship in the Temple followed by meals at home, every meal a celebration, exuberant and joyful, as they praised God. People in general liked what they saw. Every day their number grew as God added those who were saved."
         }
       ],
       "verse_count": 4,
       "headings": [
         {
-          "before_verse": 13,
+          "before_verse": 14,
           "text": "Peter Speaks Up"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ACT.2.12"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "ACT.2.12",
+            "ACT.2.13"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "m",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "ACT.2.13"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 37,
+          "end_verse": 37,
+          "verses": [
+            37
+          ],
+          "usfms": [
+            "ACT.2.37"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 37,
+          "end_verse": 37,
+          "verses": [
+            37
+          ],
+          "usfms": [
+            "ACT.2.37"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 40,
+          "end_verse": 40,
+          "verses": [
+            40
+          ],
+          "usfms": [
+            "ACT.2.40"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 40,
+          "end_verse": 40,
+          "verses": [
+            40
+          ],
+          "usfms": [
+            "ACT.2.40"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -92,9 +300,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/2-04d9551042029abfc568acc7960d4f75.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.2.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.2"
+          ],
+          "human": "Acts 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.1"
+          ],
+          "human": "Acts 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.3"
+          ],
+          "human": "Acts 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 3,
       "chapter_usfm": "ACT.3",
@@ -103,17 +368,45 @@
       "verses": [
         {
           "verse": 11,
+          "usfm": "ACT.3.11",
+          "line_type": "p",
           "text": "The man threw his arms around Peter and John, ecstatic. All the people ran up to where they were at Solomon’s Porch to see it for themselves. When Peter saw he had a congregation, he addressed the people:“Oh, Israelites, why does this take you by such complete surprise, and why stare at us as if our power or piety made him walk? The God of Abraham and Isaac and Jacob, the God of our ancestors, has glorified his Son Jesus. The very One that Pilate called innocent, you repudiated. You repudiated the Holy One, the Just One, and asked for a murderer in his place. You no sooner killed the Author of Life than God raised him from the dead—and we’re the witnesses. Faith in Jesus’ name put this man, whose condition you know so well, on his feet—yes, faith and nothing but faith put this man healed and whole right before your eyes. “And now, friends, I know you had no idea what you were doing when you killed Jesus, and neither did your leaders. But God, who through the preaching of all the prophets had said all along that his Messiah would be killed, knew exactly what you were doing and used it to fulfill his plans. “Now it’s time to change your ways! Turn to face God so he can wipe away your sins, pour out showers of blessing to refresh you, and send you the Messiah he prepared for you, namely, Jesus. For the time being he must remain out of sight in heaven until everything is restored to order again just the way God, through the preaching of his holy prophets of old, said it would be. Moses, for instance, said, ‘Your God will raise up for you a prophet just like me from your family. Listen to every word he speaks to you. Every last living soul who refuses to listen to that prophet will be wiped out from the people.’ “All the prophets from Samuel on down said the same thing, said most emphatically that these days would come. These prophets, along with the covenant God made with your ancestors, are your family tree. God’s covenant-word to Abraham provides the text: ‘By your offspring all the families of the earth will be blessed.’ But you are first in line: God, having raised up his Son, sent him to bless you as you turn, one by one, from your evil ways.”"
         }
       ],
       "verse_count": 1,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Turn to Face God"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ACT.3.11"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ACT.3.11"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -124,9 +417,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/3-810c6a5dc07234cca58091c96376dc22.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.3.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.3"
+          ],
+          "human": "Acts 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.2"
+          ],
+          "human": "Acts 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.4"
+          ],
+          "human": "Acts 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 4,
       "chapter_usfm": "ACT.4",
@@ -135,6 +485,8 @@
       "verses": [
         {
           "verse": 31,
+          "usfm": "ACT.4.31",
+          "line_type": "p",
           "text": "While they were praying, the place where they were meeting trembled and shook. They were all filled with the Holy Spirit and continued to speak God’s Word with fearless confidence. The whole congregation of believers was united as one—one heart, one mind! They didn’t even claim ownership of their own possessions. No one said, “That’s mine; you can’t have it.” They shared everything. The apostles gave powerful witness to the resurrection of the Master Jesus, and grace was on all of them. And so it turned out that not a person among them was needy. Those who owned fields or houses sold them and brought the price of the sale to the apostles and made an offering of it. The apostles then distributed it according to each person’s need. Joseph, called by the apostles “Barnabas” (which means “Son of Comfort”), a Levite born in Cyprus, sold a field that he owned, brought the money, and made an offering of it to the apostles."
         }
       ],
@@ -146,6 +498,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 31,
+          "end_verse": 31,
+          "verses": [
+            31
+          ],
+          "usfms": [
+            "ACT.4.31"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 31,
+          "end_verse": 31,
+          "verses": [
+            31
+          ],
+          "usfms": [
+            "ACT.4.31"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -156,9 +534,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/4-e5343b263de64d82ac530e05a2f61828.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.4.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.4"
+          ],
+          "human": "Acts 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.3"
+          ],
+          "human": "Acts 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.5"
+          ],
+          "human": "Acts 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 5,
       "chapter_usfm": "ACT.5",
@@ -167,25 +602,79 @@
       "verses": [
         {
           "verse": 11,
+          "usfm": "ACT.5.11",
+          "line_type": "p",
           "text": "By this time the whole church and, in fact, everyone who heard of these things had a healthy respect for God. They knew God was not to be trifled with. Through the work of the apostles, many God-signs were set up among the people, many wonderful things done. They all met regularly and in remarkable harmony on the Temple porch named after Solomon. But even though people admired them a lot, outsiders were wary about joining them. On the other hand, those who put their trust in the Master were added right and left, men and women both. They even carried the sick out into the streets and laid them on stretchers and bedrolls, hoping they would be touched by Peter’s shadow when he walked by. They came from the villages surrounding Jerusalem, throngs of them, bringing the sick and bedeviled. And they all were healed. Provoked mightily by all this, the Chief Priest and those on his side, mainly the sect of Sadducees, went into action, arrested the apostles and put them in the town jail. But during the night an angel of God opened the jailhouse door and led them out. He said, “Go to the Temple and take your stand. Tell the people everything there is to say about this Life.”Promptly obedient, they entered the Temple at daybreak and went on with their teaching. Meanwhile, the Chief Priest and his cronies convened the High Council, Israel’s senate, and sent to the jail to have the prisoners brought in. When the police got there, they couldn’t find them anywhere in the jail. They went back and reported, “We found the jail locked tight as a drum and the guards posted at the doors, but when we went inside we didn’t find a soul.”"
         },
         {
           "verse": 24,
+          "usfm": "ACT.5.24",
+          "line_type": "p",
           "text": "The chief of the Temple police and the high priests were puzzled. “What’s going on here anyway?” Just then someone showed up and said, “Did you know that the men you put in jail are back in the Temple teaching the people?” The chief and his police went and got them, but they handled them gently, fearful that the people would riot and turn on them. Bringing them back, they stood them before the High Council. The Chief Priest said, “Didn’t we give you strict orders not to teach in Jesus’ name? And here you have filled Jerusalem with your teaching and are trying your best to blame us for the death of this man.” Peter and the apostles answered, “It’s necessary to obey God rather than men. The God of our ancestors raised up Jesus, the One you killed by hanging him on a cross. God set him on high at his side, Prince and Savior, to give Israel the gift of a changed life and sins forgiven. And we are witnesses to these things. The Holy Spirit, whom God gives to those who obey him, corroborates every detail.” When they heard that, they were furious and wanted to kill them on the spot. But one of the council members stood up, a Pharisee by the name of Gamaliel, a teacher of God’s Law who was honored by everyone. He ordered the men taken out of the room for a short time, then said, “Fellow Israelites, be careful what you do to these men. Not long ago Theudas made something of a splash, claiming to be somebody, and got about four hundred men to join him. He was killed, his followers dispersed, and nothing came of it. A little later, at the time of the census, Judas the Galilean appeared and acquired a following. He also fizzled out and the people following him were scattered to the four winds. “So I am telling you: Hands off these men! Let them alone. If this program or this work is merely human, it will fall apart, but if it is of God, there is nothing you can do about it—and you better not be found fighting against God!” That convinced them. They called the apostles back in. After giving them a thorough whipping, they warned them not to speak in Jesus’ name and sent them off. The apostles went out of the High Council overjoyed because they had been given the honor of being dishonored on account of the Name. Every day they were in the Temple and homes, teaching and preaching Christ Jesus, not letting up for a minute."
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "They All Met Regularly"
         },
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "To Obey God Rather than Men"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ACT.5.11"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ACT.5.11"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "ACT.5.24"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "ACT.5.24"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -196,9 +685,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/5-2d1a7794221a1df4b024ca9d8d462fd7.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.5.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.5"
+          ],
+          "human": "Acts 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.4"
+          ],
+          "human": "Acts 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.6"
+          ],
+          "human": "Acts 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 6,
       "chapter_usfm": "ACT.6",
@@ -207,20 +753,88 @@
       "verses": [
         {
           "verse": 7,
+          "usfm": "ACT.6.7",
+          "line_type": "p",
           "text": "The Word of God prospered. The number of disciples in Jerusalem increased dramatically. Not least, a great many priests submitted themselves to the faith.* * * Stephen, brimming with God’s grace and energy, was doing wonderful things among the people, unmistakable signs that God was among them. But then some men from the meeting place whose membership was made up of freed slaves, Cyrenians, Alexandrians, and some others from Cilicia and Asia, went up against him trying to argue him down. But they were no match for his wisdom and spirit when he spoke."
         },
         {
           "verse": 11,
+          "usfm": "ACT.6.11",
+          "line_type": "p",
           "text": "So in secret they bribed men to lie: “We heard him cursing Moses and God.” That stirred up the people, the religious leaders, and religion scholars. They grabbed Stephen and took him before the High Council. They put forward their bribed witnesses to testify: “This man talks nonstop against this Holy Place and God’s Law. We even heard him say that Jesus of Nazareth would tear this place down and throw out all the customs Moses gave us.”"
         },
         {
           "verse": 15,
+          "usfm": "ACT.6.15",
+          "line_type": "p",
           "text": "As all those who sat on the High Council looked at Stephen, they found they couldn’t take their eyes off him—his face was like the face of an angel!"
         }
       ],
       "verse_count": 3,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ACT.6.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "ACT.6.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ACT.6.11"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ACT.6.11"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ACT.6.15"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -231,9 +845,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/6-d6c65f3c19f0ea629979eeb49e257c36.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.6.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.6"
+          ],
+          "human": "Acts 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.5"
+          ],
+          "human": "Acts 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.7"
+          ],
+          "human": "Acts 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 7,
       "chapter_usfm": "ACT.7",
@@ -242,16 +913,70 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "ACT.7.1",
+          "line_type": "m",
           "text": "Then the Chief Priest said, “What do you have to say for yourself?” Stephen replied, “Friends, fathers, and brothers, the God of glory appeared to our father Abraham when he was still in Mesopotamia, before the move to Haran, and told him, ‘Leave your country and family and go to the land I’ll show you.’ “So he left the country of the Chaldees and moved to Haran. After the death of his father, he immigrated to this country where you now live, but God gave him nothing, not so much as a foothold. He did promise to give the country to him and his son later on, even though Abraham had no son at the time. God let him know that his offspring would move to an alien country where they would be enslaved and brutalized for four hundred years. ‘But,’ God said, ‘I will step in and take care of those slaveholders and bring my people out so they can worship me in this place.’"
         },
         {
           "verse": 8,
+          "usfm": "ACT.7.8",
+          "line_type": "p",
           "text": "“Then he made a covenant with him and signed it in Abraham’s flesh by circumcision. When Abraham had his son Isaac, within eight days he reproduced the sign of circumcision in him. Isaac became father of Jacob, and Jacob father of twelve ‘fathers,’ each faithfully passing on the covenant sign. “But then those ‘fathers,’ burning up with jealousy, sent Joseph off to Egypt as a slave. God was right there with him, though—he not only rescued him from all his troubles but brought him to the attention of Pharaoh, king of Egypt. He was so impressed with Joseph that he put him in charge of the whole country, including his own personal affairs. “Later a famine descended on that entire region, stretching from Egypt to Canaan, bringing terrific hardship. Our hungry fathers looked high and low for food, but the cupboard was bare. Jacob heard there was food in Egypt and sent our fathers to scout it out. Having confirmed the report, they went back to Egypt a second time to get food. On that visit, Joseph revealed his true identity to his brothers and introduced the Jacob family to Pharaoh. Then Joseph sent for his father, Jacob, and everyone else in the family, seventy-five in all. That’s how the Jacob family got to Egypt. “Jacob died, and our fathers after him. They were taken to Shechem and buried in the tomb for which Abraham paid a good price to the sons of Hamor. “When the four hundred years were nearly up, the time God promised Abraham for deliverance, the population of our people in Egypt had become very large. And there was now a king over Egypt who had never heard of Joseph. He exploited our race mercilessly. He went so far as forcing us to abandon our newborn infants, exposing them to the elements to die a cruel death. “In just such a time Moses was born, a most beautiful baby. He was hidden at home for three months. When he could be hidden no longer, he was put outside—and immediately rescued by Pharaoh’s daughter, who mothered him as her own son. Moses was educated in the best schools in Egypt. He was equally impressive as a thinker and an athlete. “When he was forty years old, he wondered how everything was going with his Hebrew kin and went out to look things over. He saw an Egyptian abusing one of them and stepped in, avenging his underdog brother by knocking the Egyptian flat. He thought his brothers would be glad that he was on their side, and even see him as an instrument of God to deliver them. But they didn’t see it that way. The next day two of them were fighting and he tried to break it up, told them to shake hands and get along with each other: ‘Friends, you are brothers, why are you beating up on each other?’ “The one who had started the fight said, ‘Who put you in charge of us? Are you going to kill me like you killed that Egyptian yesterday?’ When Moses heard that, realizing that the word was out, he ran for his life and lived in exile over in Midian. During the years of exile, two sons were born to him. “Forty years later, in the wilderness of Mount Sinai, an angel appeared to him in the guise of flames of a burning bush. Moses, not believing his eyes, went up to take a closer look. He heard God’s voice: ‘I am the God of your fathers, the God of Abraham, Isaac, and Jacob.’ Frightened nearly out of his skin, Moses shut his eyes and turned away. “God said, ‘Kneel and pray. You are in a holy place, on holy ground. I’ve seen the agony of my people in Egypt. I’ve heard their groans. I’ve come to help them. So get yourself ready; I’m sending you back to Egypt.’ “This is the same Moses whom they earlier rejected, saying, ‘Who put you in charge of us?’ This is the Moses that God, using the angel flaming in the burning bush, sent back as ruler and redeemer. He led them out of their slavery. He did wonderful things, setting up God-signs all through Egypt, down at the Red Sea, and out in the wilderness for forty years. This is the Moses who said to his congregation, ‘God will raise up a prophet just like me from your descendants.’ This is the Moses who stood between the angel speaking at Sinai and your fathers assembled in the wilderness and took the life-giving words given to him and handed them over to us, words our fathers would have nothing to do with. “They craved the old Egyptian ways, whining to Aaron, ‘Make us gods we can see and follow. This Moses who got us out here miles from nowhere—who knows what’s happened to him!’ That was the time when they made a calf-idol, brought sacrifices to it, and congratulated each other on the wonderful religious program they had put together. “God wasn’t at all pleased; but he let them do it their way, worship every new god that came down the pike—and live with the consequences, consequences described by the prophet Amos:Did you bring me offerings of animals and grainsthose forty wilderness years, O Israel?Hardly. You were too busy building shrinesto war gods, to sex goddesses,Worshiping them with all your might.That’s why I put you in exile in Babylon. “And all this time our ancestors had a tent shrine for true worship, made to the exact specifications God provided Moses. They had it with them as they followed Joshua, when God cleared the land of pagans, and still had it right down to the time of David. David asked God for a permanent place for worship. But Solomon built it. “Yet that doesn’t mean that Most High God lives in a building made by carpenters and masons. The prophet Isaiah put it well when he wrote,“Heaven is my throne room;I rest my feet on earth.So what kind of housewill you build me?” says God.“Where I can get away and relax?It’s already built, and I built it.” “And you continue, so bullheaded! Calluses on your hearts, flaps on your ears! Deliberately ignoring the Holy Spirit, you’re just like your ancestors. Was there ever a prophet who didn’t get the same treatment? Your ancestors killed anyone who dared talk about the coming of the Just One. And you’ve kept up the family tradition—traitors and murderers, all of you. You had God’s Law handed to you by angels—gift-wrapped!—and you squandered it!” At that point they went wild, a rioting mob of catcalls and whistles and invective. But Stephen, full of the Holy Spirit, hardly noticed—he only had eyes for God, whom he saw in all his glory with Jesus standing at his side. He said, “Oh! I see heaven wide open and the Son of Man standing at God’s side!” Yelling and hissing, the mob drowned him out. Now in full stampede, they dragged him out of town and pelted him with rocks. The ringleaders took off their coats and asked a young man named Saul to watch them. As the rocks rained down, Stephen prayed, “Master Jesus, take my life.” Then he knelt down, praying loud enough for everyone to hear, “Master, don’t blame them for this sin”—his last words. Then he died.Saul was right there, congratulating the killers."
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ACT.7.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "ACT.7.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ACT.7.8"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ACT.7.8"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -262,9 +987,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/7-9a67b12cdd1f95d7e5d6b2104aee8e5f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.7.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.7"
+          ],
+          "human": "Acts 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.6"
+          ],
+          "human": "Acts 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.8"
+          ],
+          "human": "Acts 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 8,
       "chapter_usfm": "ACT.8",
@@ -273,25 +1055,83 @@
       "verses": [
         {
           "verse": 24,
+          "usfm": "ACT.8.24",
+          "line_type": "p",
           "text": "“Oh!” said Simon, “pray for me! Pray to the Master that nothing like that will ever happen to me!”"
         },
         {
           "verse": 25,
+          "usfm": "ACT.8.25",
+          "line_type": "p",
           "text": "And with that, the apostles were on their way, continuing to witness and spread the Message of God’s salvation, preaching in every Samaritan town they passed through on their return to Jerusalem. Later God’s angel spoke to Philip: “At noon today I want you to walk over to that desolate road that goes from Jerusalem down to Gaza.” He got up and went. He met an Ethiopian eunuch coming down the road. The eunuch had been on a pilgrimage to Jerusalem and was returning to Ethiopia, where he was minister in charge of all the finances of Candace, queen of the Ethiopians. He was riding in a chariot and reading the prophet Isaiah. The Spirit told Philip, “Climb into the chariot.” Running up alongside, Philip heard the eunuch reading Isaiah and asked, “Do you understand what you’re reading?” He answered, “How can I without some help?” and invited Philip into the chariot with him. The passage he was reading was this:As a sheep led to slaughter,and quiet as a lamb being sheared,He was silent, saying nothing.He was mocked and put down, never got a fair trial.But who now can count his kinsince he’s been taken from the earth? The eunuch said, “Tell me, who is the prophet talking about: himself or some other?” Philip grabbed his chance. Using this passage as his text, he preached Jesus to him. As they continued down the road, they came to a stream of water. The eunuch said, “Here’s water. Why can’t I be baptized?” He ordered the chariot to stop. They both went down to the water, and Philip baptized him on the spot. When they came up out of the water, the Spirit of God suddenly took Philip off, and that was the last the eunuch saw of him. But he didn’t mind. He had what he’d come for and went on down the road as happy as he could be."
         },
         {
           "verse": 40,
+          "usfm": "ACT.8.40",
+          "line_type": "p",
           "text": "Philip showed up in Azotus and continued north, preaching the Message in all the villages along that route until he arrived at Caesarea."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 25,
+          "before_verse": 26,
           "text": "The Ethiopian Eunuch"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "ACT.8.24"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "ACT.8.24",
+            "ACT.8.25"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "m",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "ACT.8.25"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 40,
+          "end_verse": 40,
+          "verses": [
+            40
+          ],
+          "usfms": [
+            "ACT.8.40"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -302,9 +1142,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/8-371af6a5b344cfc58621ddbdb0d6abe9.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.8.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.8"
+          ],
+          "human": "Acts 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.7"
+          ],
+          "human": "Acts 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.9"
+          ],
+          "human": "Acts 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 9,
       "chapter_usfm": "ACT.9",
@@ -313,29 +1210,121 @@
       "verses": [
         {
           "verse": 10,
+          "usfm": "ACT.9.10",
+          "line_type": "p",
           "text": "There was a disciple in Damascus by the name of Ananias. The Master spoke to him in a vision: “Ananias.”“Yes, Master?” he answered. “Get up and go over to Straight Avenue. Ask at the house of Judas for a man from Tarsus. His name is Saul. He’s there praying. He has just had a dream in which he saw a man named Ananias enter the house and lay hands on him so he could see again.” Ananias protested, “Master, you can’t be serious. Everybody’s talking about this man and the terrible things he’s been doing, his reign of terror against your people in Jerusalem! And now he’s shown up here with papers from the Chief Priest that give him license to do the same to us.” But the Master said, “Don’t argue. Go! I have picked him as my personal representative to non-Jews and kings and Jews. And now I’m about to show him what he’s in for—the hard suffering that goes with this job.” So Ananias went and found the house, placed his hands on blind Saul, and said, “Brother Saul, the Master sent me, the same Jesus you saw on your way here. He sent me so you could see again and be filled with the Holy Spirit.” No sooner were the words out of his mouth than something like scales fell from Saul’s eyes—he could see again! He got to his feet, was baptized, and sat down with them to a hearty meal. Saul spent a few days getting acquainted with the Damascus disciples, but then went right to work, wasting no time, preaching in the meeting places that this Jesus was the Son of God. They were caught off guard by this and, not at all sure they could trust him, they kept saying, “Isn’t this the man who wreaked havoc in Jerusalem among the believers? And didn’t he come here to do the same thing—arrest us and drag us off to jail in Jerusalem for sentencing by the high priests?”"
         },
         {
           "verse": 22,
+          "usfm": "ACT.9.22",
+          "line_type": "p",
           "text": "But their suspicions didn’t slow Saul down for even a minute. His momentum was up now and he plowed straight into the opposition, disarming the Damascus Jews and trying to show them that this Jesus was the Messiah. After this had gone on quite a long time, some Jews conspired to kill him, but Saul got wind of it. They were watching the city gates around the clock so they could kill him. Then one night the disciples engineered his escape by lowering him over the wall in a basket. Back in Jerusalem he tried to join the disciples, but they were all afraid of him. They didn’t trust him one bit. Then Barnabas took him under his wing. He introduced him to the apostles and stood up for him, told them how Saul had seen and spoken to the Master on the Damascus Road and how in Damascus itself he had laid his life on the line with his bold preaching in Jesus’ name. After that he was accepted as one of them, going in and out of Jerusalem with no questions asked, uninhibited as he preached in the Master’s name. But then he ran afoul of a group called Hellenists—he had been engaged in a running argument with them—who plotted his murder. When his friends learned of the plot, they got him out of town, took him to Caesarea, and then shipped him off to Tarsus."
         },
         {
           "verse": 31,
+          "usfm": "ACT.9.31",
+          "line_type": "p",
           "text": "Things calmed down after that and the church had smooth sailing for a while. All over the country—Judea, Samaria, Galilee—the church grew. They were permeated with a deep sense of reverence for God. The Holy Spirit was with them, strengthening them. They prospered wonderfully. Peter went off on a mission to visit all the churches. In the course of his travels he arrived in Lydda and met with the believers there. He came across a man—his name was Aeneas—who had been in bed eight years paralyzed. Peter said, “Aeneas, Jesus Christ heals you. Get up and make your bed!” And he did it—jumped right out of bed. Everybody who lived in Lydda and Sharon saw him walking around and woke up to the fact that God was alive and active among them. Down the road a way in Joppa there was a disciple named Tabitha, “Gazelle” in our language. She was well-known for doing good and helping out. During the time Peter was in the area she became sick and died. Her friends prepared her body for burial and put her in a cool room. Some of the disciples had heard that Peter was visiting in nearby Lydda and sent two men to ask if he would be so kind as to come over. Peter got right up and went with them. They took him into the room where Tabitha’s body was laid out. Her old friends, most of them widows, were in the room mourning. They showed Peter pieces of clothing the Gazelle had made while she was with them. Peter put the widows all out of the room. He knelt and prayed. Then he spoke directly to the body: “Tabitha, get up.” She opened her eyes. When she saw Peter, she sat up. He took her hand and helped her up. Then he called in the believers and widows, and presented her to them alive. When this became known all over Joppa, many put their trust in the Master. Peter stayed on a long time in Joppa as a guest of Simon the Tanner."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Plots Against Saul"
         },
         {
-          "before_verse": 31,
+          "before_verse": 32,
           "text": "Tabitha"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ACT.9.10"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ACT.9.10"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ACT.9.10"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "ACT.9.22"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "ACT.9.22"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 31,
+          "end_verse": 31,
+          "verses": [
+            31
+          ],
+          "usfms": [
+            "ACT.9.31"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "m",
+          "start_verse": 31,
+          "end_verse": 31,
+          "verses": [
+            31
+          ],
+          "usfms": [
+            "ACT.9.31"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -346,9 +1335,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/9-c6512cdffefe8bcf876cf9844a08556b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.9.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.9"
+          ],
+          "human": "Acts 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.8"
+          ],
+          "human": "Acts 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.10"
+          ],
+          "human": "Acts 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 10,
       "chapter_usfm": "ACT.10",
@@ -357,33 +1403,145 @@
       "verses": [
         {
           "verse": 14,
+          "usfm": "ACT.10.14",
+          "line_type": "p",
           "text": "Peter said, “Oh, no, Lord. I’ve never so much as tasted food that was not kosher.”"
         },
         {
           "verse": 15,
+          "usfm": "ACT.10.15",
+          "line_type": "p",
           "text": "The voice came a second time: “If God says it’s okay, it’s okay.”"
         },
         {
           "verse": 16,
+          "usfm": "ACT.10.16",
+          "line_type": "p",
           "text": "This happened three times, and then the blanket was pulled back up into the skies. As Peter, puzzled, sat there trying to figure out what it all meant, the men sent by Cornelius showed up at Simon’s front door. They called in, asking if there was a Simon, also called Peter, staying there. Peter, lost in thought, didn’t hear them, so the Spirit whispered to him, “Three men are knocking at the door looking for you. Get down there and go with them. Don’t ask any questions. I sent them to get you.”"
         },
         {
           "verse": 21,
+          "usfm": "ACT.10.21",
+          "line_type": "p",
           "text": "Peter went down and said to the men, “I think I’m the man you’re looking for. What’s up?” They said, “Captain Cornelius, a God-fearing man well-known for his fair play—ask any Jew in this part of the country—was commanded by a holy angel to get you and bring you to his house so he could hear what you had to say.” Peter invited them in and made them feel at home. The next morning he got up and went with them. Some of his friends from Joppa went along. A day later they entered Caesarea. Cornelius was expecting them and had his relatives and close friends waiting with him. The minute Peter came through the door, Cornelius was up on his feet greeting him—and then down on his face worshiping him! Peter pulled him up and said, “None of that—I’m a man and only a man, no different from you.” Talking things over, they went on into the house, where Cornelius introduced Peter to everyone who had come. Peter addressed them, “You know, I’m sure that this is highly irregular. Jews just don’t do this—visit and relax with people of another race. But God has just shown me that no race is better than any other. So the minute I was sent for, I came, no questions asked. But now I’d like to know why you sent for me.” Cornelius said, “Four days ago at about this time, midafternoon, I was home praying. Suddenly there was a man right in front of me, flooding the room with light. He said, ‘Cornelius, your daily prayers and neighborly acts have brought you to God’s attention. I want you to send to Joppa to get Simon, the one they call Peter. He’s staying with Simon the Tanner down by the sea.’"
         },
         {
           "verse": 33,
+          "usfm": "ACT.10.33",
+          "line_type": "p",
           "text": "“So I did it—I sent for you. And you’ve been good enough to come. And now we’re all here in God’s presence, ready to listen to whatever the Master put in your heart to tell us.” Peter fairly exploded with his good news: “It’s God’s own truth, nothing could be plainer: God plays no favorites! It makes no difference who you are or where you’re from—if you want God and are ready to do as he says, the door is open. The Message he sent to the children of Israel—that through Jesus Christ everything is being put together again—well, he’s doing it everywhere, among everyone. “You know the story of what happened in Judea. It began in Galilee after John preached a total life-change. Then Jesus arrived from Nazareth, anointed by God with the Holy Spirit, ready for action. He went through the country helping people and healing everyone who was beaten down by the Devil. He was able to do all this because God was with him. “And we saw it, saw it all, everything he did in the land of the Jews and in Jerusalem where they killed him, hung him from a cross. But in three days God had him up, alive, and out where he could be seen. Not everyone saw him—he wasn’t put on public display. Witnesses had been carefully handpicked by God beforehand—us! We were the ones, there to eat and drink with him after he came back from the dead. He commissioned us to announce this in public, to bear solemn witness that he is in fact the One whom God destined as Judge of the living and dead. But we’re not alone in this. Our witness that he is the means to forgiveness of sins is backed up by the witness of all the prophets.” No sooner were these words out of Peter’s mouth than the Holy Spirit came on the listeners. The believing Jews who had come with Peter couldn’t believe it, couldn’t believe that the gift of the Holy Spirit was poured out on “outsider” non-Jews, but there it was—they heard them speaking in tongues, heard them praising God. Then Peter said, “Do I hear any objections to baptizing these friends with water? They’ve received the Holy Spirit exactly as we did.” Hearing no objections, he ordered that they be baptized in the name of Jesus Christ.Then they asked Peter to stay on for a few days."
         }
       ],
       "verse_count": 5,
       "headings": [
         {
-          "before_verse": 21,
+          "before_verse": 22,
           "text": "God Plays No Favorites"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ACT.10.14"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "ACT.10.14",
+            "ACT.10.15"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "ACT.10.15",
+            "ACT.10.16"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ACT.10.16"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "ACT.10.21"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "ACT.10.21"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 33,
+          "end_verse": 33,
+          "verses": [
+            33
+          ],
+          "usfms": [
+            "ACT.10.33"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 33,
+          "end_verse": 33,
+          "verses": [
+            33
+          ],
+          "usfms": [
+            "ACT.10.33"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -394,9 +1552,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/10-d77531e18feeb760382e8e2b73f62aea.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.10.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.10"
+          ],
+          "human": "Acts 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.9"
+          ],
+          "human": "Acts 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.11"
+          ],
+          "human": "Acts 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 11,
       "chapter_usfm": "ACT.11",
@@ -405,12 +1620,40 @@
       "verses": [
         {
           "verse": 18,
+          "usfm": "ACT.11.18",
+          "line_type": "p",
           "text": "Hearing it all laid out like that, they quieted down. And then, as it sank in, they started praising God. “It’s really happened! God has broken through to the other nations, opened them up to Life!” Those who had been scattered by the persecution triggered by Stephen’s death traveled as far as Phoenicia, Cyprus, and Antioch, but they were still only speaking and dealing with their fellow Jews. Then some of the men from Cyprus and Cyrene who had come to Antioch started talking to Greeks, giving them the Message of the Master Jesus. God was pleased with what they were doing and put his stamp of approval on it—quite a number of the Greeks believed and turned to the Master. When the church in Jerusalem got wind of this, they sent Barnabas to Antioch to check on things. As soon as he arrived, he saw that God was behind and in it all. He threw himself in with them, got behind them, urging them to stay with it the rest of their lives. He was a good man that way, enthusiastic and confident in the Holy Spirit’s ways. The community grew large and strong in the Master. Then Barnabas went on to Tarsus to look for Saul. He found him and brought him back to Antioch. They were there a whole year, meeting with the church and teaching a lot of people. It was in Antioch that the disciples were for the first time called Christians. It was about this same time that some prophets came to Antioch from Jerusalem. One of them named Agabus stood up one day and, prompted by the Spirit, warned that a severe famine was about to devastate the country. (The famine eventually came during the rule of Claudius.) So the disciples decided that each of them would send whatever they could to their fellow Christians in Judea to help out. They sent Barnabas and Saul to deliver the collection to the leaders in Jerusalem."
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ACT.11.18"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ACT.11.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -421,9 +1664,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/11-5e60dfed932e494264f3e37fcc9145a7.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.11.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.11"
+          ],
+          "human": "Acts 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.10"
+          ],
+          "human": "Acts 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.12"
+          ],
+          "human": "Acts 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 12,
       "chapter_usfm": "ACT.12",
@@ -432,33 +1732,123 @@
       "verses": [
         {
           "verse": 5,
+          "usfm": "ACT.12.5",
+          "line_type": "p",
           "text": "All the time that Peter was under heavy guard in the jailhouse, the church prayed for him most strenuously."
         },
         {
           "verse": 6,
+          "usfm": "ACT.12.6",
+          "line_type": "p",
           "text": "Then the time came for Herod to bring him out for the kill. That night, even though shackled to two soldiers, one on either side, Peter slept like a baby. And there were guards at the door keeping their eyes on the place. Herod was taking no chances! Suddenly there was an angel at his side and light flooding the room. The angel shook Peter and got him up: “Hurry!” The handcuffs fell off his wrists. The angel said, “Get dressed. Put on your shoes.” Peter did it. Then, “Grab your coat and let’s get out of here.” Peter followed him, but didn’t believe it was really an angel—he thought he was dreaming. Past the first guard and then the second, they came to the iron gate that led into the city. It swung open before them on its own, and they were out on the street, free as the breeze. At the first intersection the angel left him, going his own way. That’s when Peter realized it was no dream. “I can’t believe it—this really happened! The Master sent his angel and rescued me from Herod’s vicious little production and the spectacle the Jewish mob was looking forward to.” Still shaking his head, amazed, he went to Mary’s house, the Mary who was John Mark’s mother. The house was packed with praying friends. When he knocked on the door to the courtyard, a young woman named Rhoda came to see who it was. But when she recognized his voice—Peter’s voice!—she was so excited and eager to tell everyone Peter was there that she forgot to open the door and left him standing in the street. But they wouldn’t believe her, dismissing her, dismissing her report. “You’re crazy,” they said. She stuck by her story, insisting. They still wouldn’t believe her and said, “It must be his angel.” All this time poor Peter was standing out in the street, knocking away. Finally they opened up and saw him—and went wild! Peter put his hands up and calmed them down. He described how the Master had gotten him out of jail, then said, “Tell James and the brothers what’s happened.” He left them and went off to another place. At daybreak the jail was in an uproar. “Where is Peter? What’s happened to Peter?” When Herod sent for him and they could neither produce him nor explain why not, he ordered their execution: “Off with their heads!” Fed up with Judea and Jews, he went for a vacation to Caesarea. But things went from bad to worse for Herod. Now people from Tyre and Sidon put him on the warpath. But they got Blastus, King Herod’s right-hand man, to put in a good word for them and got a delegation together to iron things out. Because they were dependent on Judea for food supplies, they couldn’t afford to let this go on too long. On the day set for their meeting, Herod, robed in pomposity, took his place on the throne and regaled them with a lot of hot air. The people played their part to the hilt and shouted flatteries: “The voice of God! The voice of God!”"
         },
         {
           "verse": 23,
+          "usfm": "ACT.12.23",
+          "line_type": "p",
           "text": "That was the last straw. God had had enough of Herod’s arrogance and sent an angel to strike him down. Herod had given God no credit for anything. Down he went. Rotten to the core, a maggoty old man if there ever was one, he died."
         },
         {
           "verse": 24,
+          "usfm": "ACT.12.24",
+          "line_type": "p",
           "text": "Meanwhile, the ministry of God’s Word grew by leaps and bounds."
         },
         {
           "verse": 25,
+          "usfm": "ACT.12.25",
+          "line_type": "p",
           "text": "Barnabas and Saul, once they had delivered the relief offering to the church in Jerusalem, went back to Antioch. This time they took John with them, the one they called Mark."
         }
       ],
       "verse_count": 5,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "The Death of Herod"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "ACT.12.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "ACT.12.5",
+            "ACT.12.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ACT.12.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "ACT.12.23"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 24,
+          "verses": [
+            23,
+            24
+          ],
+          "usfms": [
+            "ACT.12.23",
+            "ACT.12.24"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "ACT.12.24",
+            "ACT.12.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -469,9 +1859,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/12-5d12631e6cdbc4c908d30b94e9ecaa91.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.12.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.12"
+          ],
+          "human": "Acts 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.11"
+          ],
+          "human": "Acts 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.13"
+          ],
+          "human": "Acts 13",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 13,
       "chapter_usfm": "ACT.13",
@@ -480,21 +1927,75 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "ACT.13.3",
+          "line_type": "p",
           "text": "So they commissioned them. In that circle of intensity and obedience, of fasting and praying, they laid hands on their heads and sent them off. Sent off on their new assignment by the Holy Spirit, Barnabas and Saul went down to Seleucia and caught a ship for Cyprus. The first thing they did when they put in at Salamis was preach God’s Word in the Jewish meeting places. They had John along to help out as needed. They traveled the length of the island, and at Paphos came upon a Jewish wizard who had worked himself into the confidence of the governor, Sergius Paulus, an intelligent man not easily taken in by charlatans. The wizard’s name was Bar-Jesus. He was as crooked as a corkscrew. The governor invited Barnabas and Saul in, wanting to hear God’s Word firsthand from them. But Dr. Know-It-All (that’s the wizard’s name in plain English) stirred up a ruckus, trying to divert the governor from becoming a believer. But Saul (or Paul), full of the Holy Spirit and looking him straight in the eye, said, “You bag of wind, you parody of a devil—why, you stay up nights inventing schemes to cheat people out of God. But now you’ve come up against God himself, and your game is up. You’re about to go blind—no sunlight for you for a good long stretch.” He was plunged immediately into a shadowy mist and stumbled around, begging people to take his hand and show him the way."
         },
         {
           "verse": 12,
+          "usfm": "ACT.13.12",
+          "line_type": "p",
           "text": "When the governor saw what happened, he became a believer, full of enthusiasm over what they were saying about the Master. From Paphos, Paul and company put out to sea, sailing on to Perga in Pamphylia. That’s where John called it quits and went back to Jerusalem. From Perga the rest of them traveled on to Antioch in Pisidia. On the Sabbath they went to the meeting place and took their places. After the reading of the Scriptures—God’s Law and the Prophets—the president of the meeting asked them, “Friends, do you have anything you want to say? A word of encouragement, perhaps?” Paul stood up, paused and took a deep breath, then said, “Fellow Israelites and friends of God, listen. God took a special interest in our ancestors, pulled our people who were beaten down in Egyptian exile to their feet, and led them out of there in grand style. He took good care of them for nearly forty years in that godforsaken wilderness and then, having wiped out seven enemies who stood in the way, gave them the land of Canaan for their very own—a span in all of about 450 years. “Up to the time of Samuel the prophet, God provided judges to lead them. But then they asked for a king, and God gave them Saul, son of Kish, out of the tribe of Benjamin. After Saul had ruled forty years, God removed him from office and put King David in his place, with this commendation: ‘I’ve searched the land and found this David, son of Jesse. He’s a man whose heart beats to my heart, a man who will do what I tell him.’ “From out of David’s descendants God produced a Savior for Israel, Jesus, exactly as he promised—but only after John had thoroughly alerted the people to his arrival by preparing them for a total life-change. As John was finishing up his work, he said, ‘Did you think I was the One? No, I’m not the One. But the One you’ve been waiting for all these years is just around the corner, about to appear. And I’m about to disappear.’ “Dear brothers and sisters, children of Abraham, and friends of God, this message of salvation has been precisely targeted to you. The citizens and rulers in Jerusalem didn’t recognize who he was and condemned him to death. They couldn’t find a good reason, but demanded that Pilate execute him anyway. They did just what the prophets said they would do, but had no idea they were following to the letter the script of the prophets, even though those same prophets are read every Sabbath in their meeting places. “After they had done everything the prophets said they would do, they took him down from the cross and buried him. And then God raised him from death. There is no disputing that—he appeared over and over again many times and places to those who had known him well in the Galilean years, and these same people continue to give witness that he is alive. “And we’re here today bringing you good news: the Message that what God promised the fathers has come true for the children—for us! He raised Jesus, exactly as described in the second Psalm:My Son! My very own Son!Today I celebrate you!“When he raised him from the dead, he did it for good—no going back to that rot and decay for him. That’s why Isaiah said, ‘I’ll give to all of you David’s guaranteed blessings.’ So also the psalmist’s prayer: ‘You’ll never let your Holy One see death’s rot and decay.’ “David, of course, having completed the work God set out for him, has been in the grave, dust and ashes, a long time now. But the One God raised up—no dust and ashes for him! I want you to know, my very dear friends, that it is on account of this resurrected Jesus that the forgiveness of your sins can be promised. He accomplishes, in those who believe, everything that the Law of Moses could never make good on. But everyone who believes in this raised-up Jesus is declared good and right and whole before God. “Don’t take this lightly. You don’t want the prophet’s revelation to describe you:Watch out, cynics;Look hard—watch your world fall to pieces.I’m doing something right before your eyesThat you won’t believe, though it’s staring you in the face.” When the service was over, Paul and Barnabas were invited back to preach again the next Sabbath. As the meeting broke up, a good many Jews and converts to Judaism went along with Paul and Barnabas, who urged them in long conversations to stick with what they’d started, this living in and by God’s grace. When the next Sabbath came around, practically the whole city showed up to hear the Word of God. Some of the Jews, seeing the crowds, went wild with jealousy and tore into Paul, contradicting everything he was saying, making an ugly scene. But Paul and Barnabas didn’t back down. Standing their ground they said, “It was required that God’s Word be spoken first of all to you, the Jews. But seeing that you want no part of it—you’ve made it quite clear that you have no taste or inclination for eternal life—the door is open to all the outsiders. And we’re on our way through it, following orders, doing what God commanded when he said,I’ve set you upas light to all nations.You’ll proclaim salvationto the four winds and seven seas!” When the non-Jewish outsiders heard this, they could hardly believe their good fortune. All who were marked out for real life put their trust in God—they honored God’s Word by receiving that life. And this Message of salvation spread like wildfire all through the region. Some of the Jews convinced the most respected women and leading men of the town that their precious way of life was about to be destroyed. Alarmed, they turned on Paul and Barnabas and forced them to leave. Paul and Barnabas shrugged their shoulders and went on to the next town, Iconium, brimming with joy and the Holy Spirit, two happy disciples.* * *"
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Don’t Take This Lightly"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ACT.13.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ACT.13.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ACT.13.12"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ACT.13.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -505,9 +2006,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/13-9690f17b0f41fcfe5da451cc94ace497.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.13.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.13"
+          ],
+          "human": "Acts 13",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.12"
+          ],
+          "human": "Acts 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.14"
+          ],
+          "human": "Acts 14",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 14,
       "chapter_usfm": "ACT.14",
@@ -526,6 +2084,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -536,9 +2095,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/14-e6640eaee896ebe7803ea901291e793f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.14.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.14"
+          ],
+          "human": "Acts 14",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.13"
+          ],
+          "human": "Acts 13",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.15"
+          ],
+          "human": "Acts 15",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 15,
       "chapter_usfm": "ACT.15",
@@ -547,25 +2163,95 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "ACT.15.3",
+          "line_type": "p",
           "text": "After they were sent off and on their way, they told everyone they met as they traveled through Phoenicia and Samaria about the breakthrough to the non-Jewish outsiders. Everyone who heard the news cheered—it was terrific news! When they got to Jerusalem, Paul and Barnabas were graciously received by the whole church, including the apostles and leaders. They reported on their recent journey and how God had used them to open things up to the outsiders. Some Pharisees stood up to say their piece. They had become believers, but continued to hold to the hard party line of the Pharisees. “You have to circumcise the pagan converts,” they said. “You must make them keep the Law of Moses.” The apostles and leaders called a special meeting to consider the matter. The arguments went on and on, back and forth, getting more and more heated. Then Peter took the floor: “Friends, you well know that from early on God made it quite plain that he wanted the pagans to hear the Message of this good news and embrace it—and not in any secondhand or roundabout way, but firsthand, straight from my mouth. And God, who can’t be fooled by any pretense on our part but always knows a person’s thoughts, gave them the Holy Spirit exactly as he gave him to us. He treated the outsiders exactly as he treated us, beginning at the very center of who they were and working from that center outward, cleaning up their lives as they trusted and believed him. “So why are you now trying to out-god God, loading these new believers down with rules that crushed our ancestors and crushed us, too? Don’t we believe that we are saved because the Master Jesus amazingly and out of sheer generosity moved to save us just as he did those from beyond our nation? So what are we arguing about?” There was dead silence. No one said a word. With the room quiet, Barnabas and Paul reported matter-of-factly on the miracles and wonders God had done among the other nations through their ministry. The silence deepened; you could hear a pin drop. James broke the silence. “Friends, listen. Simeon has told us the story of how God at the very outset made sure that racial outsiders were included. This is in perfect agreement with the words of the prophets:After this, I’m coming back;I’ll rebuild David’s ruined house;I’ll put all the pieces together again;I’ll make it look like newSo outsiders who seek will find,so they’ll have a place to come to,All the pagan peoplesincluded in what I’m doing.“God said it and now he’s doing it. It’s no afterthought; he’s always known he would do this. “So here is my decision: We’re not going to unnecessarily burden non-Jewish people who turn to the Master. We’ll write them a letter and tell them, ‘Be careful to not get involved in activities connected with idols, to guard the morality of sex and marriage, to not serve food offensive to Jewish Christians—blood, for instance.’ This is basic wisdom from Moses, preached and honored for centuries now in city after city as we have met and kept the Sabbath.” Everyone agreed: apostles, leaders, all the people. They picked Judas (nicknamed Barsabbas) and Silas—they both carried considerable weight in the church—and sent them to Antioch with Paul and Barnabas with this letter:From the apostles and leaders, your friends, to our friends in Antioch, Syria, and Cilicia:Hello! We heard that some men from our church went to you and said things that confused and upset you. Mind you, they had no authority from us; we didn’t send them. We have agreed unanimously to pick representatives and send them to you with our good friends Barnabas and Paul. We picked men we knew you could trust, Judas and Silas—they’ve looked death in the face time and again for the sake of our Master Jesus Christ. We’ve sent them to confirm in a face-to-face meeting with you what we’ve written. It seemed to the Holy Spirit and to us that you should not be saddled with any crushing burden, but be responsible only for these bare necessities: Be careful not to get involved in activities connected with idols; avoid serving food offensive to Jewish Christians (blood, for instance); and guard the morality of sex and marriage.These guidelines are sufficient to keep relations congenial between us. And God be with you! And so off they went to Antioch. On arrival, they gathered the church and read the letter. The people were greatly relieved and pleased. Judas and Silas, good preachers both of them, strengthened their new friends with many words of courage and hope. Then it was time to go home. They were sent off by their new friends with laughter and embraces all around to report back to those who had sent them."
         },
         {
           "verse": 35,
+          "usfm": "ACT.15.35",
+          "line_type": "p",
           "text": "Paul and Barnabas stayed on in Antioch, teaching and preaching the Word of God. But they weren’t alone. There were a number of teachers and preachers at that time in Antioch."
         },
         {
           "verse": 36,
+          "usfm": "ACT.15.36",
+          "line_type": "p",
           "text": "After a few days of this, Paul said to Barnabas, “Let’s go back and visit all our friends in each of the towns where we preached the Word of God. Let’s see how they’re doing.” Barnabas wanted to take John along, the John nicknamed Mark. But Paul wouldn’t have him; he wasn’t about to take along a quitter who, as soon as the going got tough, had jumped ship on them in Pamphylia. Tempers flared, and they ended up going their separate ways: Barnabas took Mark and sailed for Cyprus; Paul chose Silas and, offered up by their friends to the grace of the Master, went to Syria and Cilicia to put grit in those congregations."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "Barnabas and Paul Go Their Separate Ways"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ACT.15.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ACT.15.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 35,
+          "end_verse": 35,
+          "verses": [
+            35
+          ],
+          "usfms": [
+            "ACT.15.35"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 35,
+          "end_verse": 36,
+          "verses": [
+            35,
+            36
+          ],
+          "usfms": [
+            "ACT.15.35",
+            "ACT.15.36"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 36,
+          "end_verse": 36,
+          "verses": [
+            36
+          ],
+          "usfms": [
+            "ACT.15.36"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -576,9 +2262,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/15-649a457739c665c7ece4e9a276d73717.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.15.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.15"
+          ],
+          "human": "Acts 15",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.14"
+          ],
+          "human": "Acts 14",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.16"
+          ],
+          "human": "Acts 16",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 16,
       "chapter_usfm": "ACT.16",
@@ -587,21 +2330,75 @@
       "verses": [
         {
           "verse": 15,
+          "usfm": "ACT.16.15",
+          "line_type": "p",
           "text": "After she was baptized, along with everyone in her household, she said in a surge of hospitality, “If you’re confident that I’m in this with you and believe in the Master truly, come home with me and be my guests.” We hesitated, but she wouldn’t take no for an answer. One day, on our way to the place of prayer, a slave girl ran into us. She was a psychic and, with her fortunetelling, made a lot of money for the people who owned her. She started following Paul around, calling everyone’s attention to us by yelling out, “These men are working for the Most High God. They’re laying out the road of salvation for you!” She did this for a number of days until Paul, finally fed up with her, turned and commanded the spirit that possessed her, “Out! In the name of Jesus Christ, get out of her!” And it was gone, just like that. When her owners saw that their lucrative little business was suddenly bankrupt, they went after Paul and Silas, roughed them up and dragged them into the market square. Then the police arrested them and pulled them into a court with the accusation, “These men are disturbing the peace—dangerous Jewish agitators subverting our Roman law and order.” By this time the crowd had turned into a restless mob out for blood. The judges went along with the mob, had Paul and Silas’s clothes ripped off and ordered a public beating. After beating them black-and-blue, they threw them into jail, telling the jailkeeper to put them under heavy guard so there would be no chance of escape. He did just that—threw them into the maximum security cell in the jail and clamped leg irons on them. Along about midnight, Paul and Silas were at prayer and singing a robust hymn to God. The other prisoners couldn’t believe their ears. Then, without warning, a huge earthquake! The jailhouse tottered, every door flew open, all the prisoners were loose. Startled from sleep, the jailer saw all the doors swinging loose on their hinges. Assuming that all the prisoners had escaped, he pulled out his sword and was about to do himself in, figuring he was as good as dead anyway, when Paul stopped him: “Don’t do that! We’re all still here! Nobody’s run away!” The jailer got a torch and ran inside. Badly shaken, he collapsed in front of Paul and Silas. He led them out of the jail and asked, “Sirs, what do I have to do to be saved, to really live?” They said, “Put your entire trust in the Master Jesus. Then you’ll live as you were meant to live—and everyone in your house included!” They went on to spell out in detail the story of the Master—the entire family got in on this part. They never did get to bed that night. The jailer made them feel at home, dressed their wounds, and then—he couldn’t wait till morning!—was baptized, he and everyone in his family. There in his home, he had food set out for a festive meal. It was a night to remember: He and his entire family had put their trust in God; everyone in the house was in on the celebration. At daybreak, the court judges sent officers with the instructions, “Release these men.” The jailer gave Paul the message, “The judges sent word that you’re free to go on your way. Congratulations! Go in peace!”"
         },
         {
           "verse": 37,
+          "usfm": "ACT.16.37",
+          "line_type": "p",
           "text": "But Paul wouldn’t budge. He told the officers, “They beat us up in public and threw us in jail, Roman citizens in good standing! And now they want to get us out of the way on the sly without anyone knowing? Nothing doing! If they want us out of here, let them come themselves and lead us out in broad daylight.” When the officers reported this, the judges panicked. They had no idea that Paul and Silas were Roman citizens. They hurried over and apologized, personally escorted them from the jail, and then asked them if they wouldn’t please leave the city. Walking out of the jail, Paul and Silas went straight to Lydia’s house, saw their friends again, encouraged them in the faith, and only then went on their way."
         }
       ],
       "verse_count": 2,
       "headings": [
         {
-          "before_verse": 15,
+          "before_verse": 16,
           "text": "Beaten Up and Thrown in Jail"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ACT.16.15"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "ACT.16.15"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 37,
+          "end_verse": 37,
+          "verses": [
+            37
+          ],
+          "usfms": [
+            "ACT.16.37"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 37,
+          "end_verse": 37,
+          "verses": [
+            37
+          ],
+          "usfms": [
+            "ACT.16.37"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -612,9 +2409,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/16-d839d5f72b43a9e061bde432c4ef0036.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.16.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.16"
+          ],
+          "human": "Acts 16",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.15"
+          ],
+          "human": "Acts 15",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.17"
+          ],
+          "human": "Acts 17",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 17,
       "chapter_usfm": "ACT.17",
@@ -623,6 +2477,8 @@
       "verses": [
         {
           "verse": 16,
+          "usfm": "ACT.17.16",
+          "line_type": "m",
           "text": "The longer Paul waited in Athens for Silas and Timothy, the angrier he got—all those idols! The city was a junkyard of idols. He discussed it with the Jews and other like-minded people at their meeting place. And every day he went out on the streets and talked with anyone who happened along. He got to know some of the Epicurean and Stoic intellectuals pretty well through these conversations. Some of them dismissed him with sarcasm: “What a moron!” But others, listening to him go on about Jesus and the resurrection, were intrigued: “That’s a new slant on the gods. Tell us more.” These people got together and asked him to make a public presentation over at the Areopagus, where things were a little quieter. They said, “This is a new one on us. We’ve never heard anything quite like it. Where did you come up with this anyway? Explain it so we can understand.” Downtown Athens was a great place for gossip. There were always people hanging around, natives and tourists alike, waiting for the latest tidbit on most anything. So Paul took his stand in the open space at the Areopagus and laid it out for them. “It is plain to see that you Athenians take your religion seriously. When I arrived here the other day, I was fascinated with all the shrines I came across. And then I found one inscribed, to the god nobody knows. I’m here to introduce you to this God so you can worship intelligently, know who you’re dealing with. “The God who made the world and everything in it, this Master of sky and land, doesn’t live in custom-made shrines or need the human race to run errands for him, as if he couldn’t take care of himself. He makes the creatures; the creatures don’t make him. Starting from scratch, he made the entire human race and made the earth hospitable, with plenty of time and space for living so we could seek after God, and not just grope around in the dark but actually find him. He doesn’t play hide-and-seek with us. He’s not remote; he’s near. We live and move in him, can’t get away from him! One of your poets said it well: ‘We’re the God-created.’ Well, if we are the God-created, it doesn’t make a lot of sense to think we could hire a sculptor to chisel a god out of stone for us, does it? “God overlooks it as long as you don’t know any better—but that time is past. The unknown is now known, and he’s calling for a radical life-change. He has set a day when the entire human race will be judged and everything set right. And he has already appointed the judge, confirming him before everyone by raising him from the dead.” At the phrase “raising him from the dead,” the listeners split: Some laughed at him and walked off making jokes; others said, “Let’s do this again. We want to hear more.” But that was it for the day, and Paul left. There were still others, it turned out, who were convinced then and there, and stuck with Paul—among them Dionysius the Areopagite and a woman named Damaris."
         }
       ],
@@ -638,6 +2494,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ACT.17.16"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "ACT.17.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -648,9 +2530,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/17-cc826e4809cef295e4c2701ed6313f44.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.17.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.17"
+          ],
+          "human": "Acts 17",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.16"
+          ],
+          "human": "Acts 16",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.18"
+          ],
+          "human": "Acts 18",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 18,
       "chapter_usfm": "ACT.18",
@@ -659,25 +2598,95 @@
       "verses": [
         {
           "verse": 17,
+          "usfm": "ACT.18.17",
+          "line_type": "p",
           "text": "Now the street rabble turned on Sosthenes, the new meeting-place president, and beat him up in plain sight of the court. Gallio didn’t raise a finger. He could not have cared less."
         },
         {
           "verse": 18,
+          "usfm": "ACT.18.18",
+          "line_type": "m",
           "text": "Paul stayed a while longer in Corinth, but then it was time to take leave of his friends. Saying his good-byes, he sailed for Syria, Priscilla and Aquila with him. Before boarding the ship in the harbor town of Cenchrea, he had his head shaved as part of a vow he had taken. They landed in Ephesus, where Priscilla and Aquila got off and stayed. Paul left the ship briefly to go to the meeting place and preach to the Jews. They wanted him to stay longer, but he said he couldn’t. But after saying good-bye, he promised, “I’ll be back, God willing.” From Ephesus he sailed to Caesarea. He greeted the church there, and then went on to Antioch, completing the journey."
         },
         {
           "verse": 23,
+          "usfm": "ACT.18.23",
+          "line_type": "p",
           "text": "After spending a considerable time with the Antioch Christians, Paul set off again for Galatia and Phrygia, retracing his old tracks, one town after another, putting fresh heart into the disciples. A man named Apollos came to Ephesus. He was a Jew, born in Alexandria, Egypt, and a terrific speaker, eloquent and powerful in his preaching of the Scriptures. He was well-educated in the way of the Master and fiery in his enthusiasm. Apollos was accurate in everything he taught about Jesus up to a point, but he only went as far as the baptism of John. He preached with power in the meeting place. When Priscilla and Aquila heard him, they took him aside and told him the rest of the story. When Apollos decided to go on to Achaia province, his Ephesian friends gave their blessing and wrote a letter of recommendation for him, urging the disciples there to welcome him with open arms. The welcome paid off: Apollos turned out to be a great help to those who had become believers through God’s immense generosity. He was particularly effective in public debate with the Jews as he brought out proof after convincing proof from the Scriptures that Jesus was in fact God’s Messiah."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "Ephesus"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "ACT.18.17"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "ACT.18.17",
+            "ACT.18.18"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ACT.18.18"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "ACT.18.23"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "ACT.18.23"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -688,9 +2697,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/18-14055a93eeb19c8090a1899bef315c73.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.18.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.18"
+          ],
+          "human": "Acts 18",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.17"
+          ],
+          "human": "Acts 17",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.19"
+          ],
+          "human": "Acts 19",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 19,
       "chapter_usfm": "ACT.19",
@@ -699,29 +2765,111 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "ACT.19.3",
+          "line_type": "p",
           "text": "“How were you baptized, then?” asked Paul.“In John’s baptism.”"
         },
         {
           "verse": 4,
+          "usfm": "ACT.19.4",
+          "line_type": "p",
           "text": "“That explains it,” said Paul. “John preached a baptism of radical life-change so that people would be ready to receive the One coming after him, who turned out to be Jesus. If you’ve been baptized in John’s baptism, you’re ready now for the real thing, for Jesus.” And they were. As soon as they heard of it, they were baptized in the name of the Master Jesus. Paul put his hands on their heads and the Holy Spirit entered them. From that moment on, they were praising God in tongues and talking about God’s actions. Altogether there were about twelve people there that day. Paul then went straight to the meeting place. He had the run of the place for three months, doing his best to make the things of the kingdom of God real and convincing to them. But then resistance began to form as some of them began spreading evil rumors through the congregation about the Christian way of life. So Paul left, taking the disciples with him, and set up shop in the school of Tyrannus, holding class there daily. He did this for two years, giving everyone in the province of Asia, Jews as well as Greeks, ample opportunity to hear the Message of the Master. God did powerful things through Paul, things quite out of the ordinary. The word got around and people started taking pieces of clothing—handkerchiefs and scarves and the like—that had touched Paul’s skin and then touching the sick with them. The touch did it—they were healed and whole. Some itinerant Jewish exorcists who happened to be in town at the time tried their hand at what they assumed to be Paul’s “game.” They pronounced the name of the Master Jesus over victims of evil spirits, saying, “I command you by the Jesus preached by Paul!” The seven sons of a certain Sceva, a Jewish high priest, were trying to do this on a man when the evil spirit talked back: “I know Jesus and I’ve heard of Paul, but who are you?” Then the possessed man went berserk—jumped the exorcists, beat them up, and tore off their clothes. Naked and bloody, they got away as best they could. It was soon news all over Ephesus among both Jews and Greeks. The realization spread that God was in and behind this. Curiosity about Paul developed into reverence for the Master Jesus. Many of those who thus believed stepped out into the light and made a clean break with their secret sorceries. All kinds of witches and warlocks came out of the woodwork with their books of spells and incantations and made a huge bonfire of them. Someone estimated their worth at fifty thousand silver coins. In such ways it became evident that the Word of the Master was now sovereign and prevailed in Ephesus. After all this had reached its peak, Paul decided it was time to move on to Macedonia and Achaia provinces, and from there to Jerusalem. “Then,” he said, “I’m off to Rome. I’ve got to see Rome!” He sent two of his assistants, Timothy and Erastus, on to Macedonia and then stayed for a while and wrapped things up in Asia. But before he got away, a huge ruckus occurred over what was now being referred to as “the Way.” A certain silversmith, Demetrius, conducted a brisk trade in the manufacture of shrines to the goddess Artemis, employing a number of artisans in his business. He rounded up his workers and others similarly employed and said, “Men, you well know that we have a good thing going here—and you’ve seen how Paul has barged in and discredited what we’re doing by telling people that there’s no such thing as a god made with hands. A lot of people are going along with him, not only here in Ephesus but all through Asia province."
         },
         {
           "verse": 27,
+          "usfm": "ACT.19.27",
+          "line_type": "p",
           "text": "“Not only is our little business in danger of falling apart, but the temple of our famous goddess Artemis will certainly end up a pile of rubble as her glorious reputation fades to nothing. And this is no mere local matter—the whole world worships our Artemis!” That set them off in a frenzy. They ran into the street yelling, “Great Artemis of the Ephesians! Great Artemis of the Ephesians!” They put the whole city in an uproar, stampeding into the stadium, and grabbing two of Paul’s associates on the way, the Macedonians Gaius and Aristarchus. Paul wanted to go in, too, but the disciples wouldn’t let him. Prominent religious leaders in the city who had become friendly to Paul concurred: “By no means go near that mob!” Some were yelling one thing, some another. Most of them had no idea what was going on or why they were there. As the Jews pushed Alexander to the front to try to gain control, different factions clamored to get him on their side. But he brushed them off and quieted the mob with an impressive sweep of his arms. But the moment he opened his mouth and they knew he was a Jew, they shouted him down: “Great Artemis of the Ephesians! Great Artemis of the Ephesians!”—on and on and on, for over two hours. Finally, the town clerk got the mob quieted down and said, “Fellow citizens, is there anyone anywhere who doesn’t know that our dear city Ephesus is protector of glorious Artemis and her sacred stone image that fell straight out of heaven? Since this is beyond contradiction, you had better get hold of yourselves. This is conduct unworthy of Artemis. These men you’ve dragged in here have done nothing to harm either our temple or our goddess. “So if Demetrius and his guild of artisans have a complaint, they can take it to court and make all the accusations they want. If anything else is bothering you, bring it to the regularly scheduled town meeting and let it be settled there. There is no excuse for what’s happened today. We’re putting our city in serious danger. Rome, remember, does not look kindly on rioters.” With that, he sent them home."
         }
       ],
       "verse_count": 3,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Witches Came out of the Woodwork"
         },
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "The Goddess Artemis"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ACT.19.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ACT.19.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "ACT.19.3",
+            "ACT.19.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ACT.19.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "ACT.19.27"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "ACT.19.27"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -732,9 +2880,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/19-d9ebffb55e43ec665f582320688f7823.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.19.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.19"
+          ],
+          "human": "Acts 19",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.18"
+          ],
+          "human": "Acts 18",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.20"
+          ],
+          "human": "Acts 20",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 20,
       "chapter_usfm": "ACT.20",
@@ -743,10 +2948,14 @@
       "verses": [
         {
           "verse": 28,
+          "usfm": "ACT.20.28",
+          "line_type": "p",
           "text": "“Now it’s up to you. Be on your toes—both for yourselves and your congregation of sheep. The Holy Spirit has put you in charge of these people—God’s people they are—to guard and protect them. God himself thought they were worth dying for. “I know that as soon as I’m gone, vicious wolves are going to show up and rip into this flock, men from your very own ranks twisting words so as to seduce disciples into following them instead of Jesus. So stay awake and keep up your guard. Remember those three years I kept at it with you, never letting up, pouring my heart out with you, one after another."
         },
         {
           "verse": 32,
+          "usfm": "ACT.20.32",
+          "line_type": "p",
           "text": "“Now I’m turning you over to God, our marvelous God whose gracious Word can make you into what he wants you to be and give you everything you could possibly need in this community of holy friends. “I’ve never, as you so well know, had any taste for wealth or fashion. With these bare hands I took care of my own basic needs and those who worked with me. In everything I’ve done, I have demonstrated to you how necessary it is to work on behalf of the weak and not exploit them. You’ll not likely go wrong here if you keep remembering that our Master said, ‘You’re far happier giving than getting.’” Then Paul went down on his knees, all of them kneeling with him, and prayed. And then a river of tears. Much clinging to Paul, not wanting to let him go. They knew they would never see him again—he had told them quite plainly. The pain cut deep. Then, bravely, they walked him down to the ship."
         }
       ],
@@ -758,6 +2967,56 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "ACT.20.28"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "ACT.20.28"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 32,
+          "end_verse": 32,
+          "verses": [
+            32
+          ],
+          "usfms": [
+            "ACT.20.32"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 32,
+          "end_verse": 32,
+          "verses": [
+            32
+          ],
+          "usfms": [
+            "ACT.20.32"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -768,9 +3027,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/20-3e1a421b7cb1403544588384c546fb69.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.20.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.20"
+          ],
+          "human": "Acts 20",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.19"
+          ],
+          "human": "Acts 19",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.21"
+          ],
+          "human": "Acts 21",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 21,
       "chapter_usfm": "ACT.21",
@@ -779,45 +3095,171 @@
       "verses": [
         {
           "verse": 14,
+          "usfm": "ACT.21.14",
+          "line_type": "p",
           "text": "We saw that we weren’t making even a dent in his resolve, and gave up. “It’s in God’s hands now,” we said. “Master, you handle it.” It wasn’t long before we had our luggage together and were on our way to Jerusalem. Some of the disciples from Caesarea went with us and took us to the home of Mnason, who received us warmly as his guests. A native of Cyprus, he had been among the earliest disciples. In Jerusalem, our friends, glad to see us, received us with open arms. The first thing next morning, we took Paul to see James. All the church leaders were there. After a time of greeting and small talk, Paul told the story, detail by detail, of what God had done among the non-Jewish people through his ministry. They listened with delight and gave God the glory. They had a story to tell, too: “And just look at what’s been happening here—thousands upon thousands of God-fearing Jews have become believers in Jesus! But there’s also a problem because they are more zealous than ever in observing the laws of Moses. They’ve been told that you advise believing Jews who live surrounded by unbelieving outsiders to go light on Moses, telling them that they don’t need to circumcise their children or keep up the old traditions. This isn’t sitting at all well with them. “We’re worried about what will happen when they discover you’re in town. There’s bound to be trouble. So here is what we want you to do: There are four men from our company who have taken a vow involving ritual purification, but have no money to pay the expenses. Join these men in their vows and pay their expenses. Then it will become obvious to everyone that there is nothing to the rumors going around about you and that you are in fact scrupulous in your reverence for the laws of Moses."
         },
         {
           "verse": 25,
+          "usfm": "ACT.21.25",
+          "line_type": "p",
           "text": "“In asking you to do this, we’re not going back on our agreement regarding non-Jews who have become believers. We continue to hold fast to what we wrote in that letter, namely, to be careful not to get involved in activities connected with idols; to avoid serving food offensive to Jewish Christians; to guard the morality of sex and marriage.”"
         },
         {
           "verse": 26,
+          "usfm": "ACT.21.26",
+          "line_type": "p",
           "text": "So Paul did it—took the men, joined them in their vows, and paid their way. The next day he went to the Temple to make it official and stay there until the proper sacrifices had been offered and completed for each of them. When the seven days of their purification were nearly up, some Jews from around Ephesus spotted him in the Temple. At once they turned the place upside-down. They grabbed Paul and started yelling at the top of their lungs, “Help! You Israelites, help! This is the man who is going all over the world telling lies against us and our religion and this place. He’s even brought Greeks in here and defiled this holy place.” (What had happened was that they had seen Paul and Trophimus, the Ephesian Greek, walking together in the city and had just assumed that he had also taken him to the Temple and shown him around.)"
         },
         {
           "verse": 30,
+          "usfm": "ACT.21.30",
+          "line_type": "p",
           "text": "Soon the whole city was in an uproar, people running from everywhere to the Temple to get in on the action. They grabbed Paul, dragged him outside, and locked the Temple gates so he couldn’t get back in and gain sanctuary. As they were trying to kill him, word came to the captain of the guard, “A riot! The whole city’s boiling over!” He acted swiftly. His soldiers and centurions ran to the scene at once. As soon as the mob saw the captain and his soldiers, they quit beating Paul. The captain came up and put Paul under arrest. He first ordered him handcuffed, and then asked who he was and what he had done. All he got from the crowd were shouts, one yelling this, another that. It was impossible to tell one word from another in the mob hysteria, so the captain ordered Paul taken to the military barracks. But when they got to the Temple steps, the mob became so violent that the soldiers had to carry Paul. As they carried him away, the crowd followed, shouting, “Kill him! Kill him!” When they got to the barracks and were about to go in, Paul said to the captain, “Can I say something to you?”He answered, “Oh, I didn’t know you spoke Greek. I thought you were the Egyptian who not long ago started a riot here, and then hid out in the desert with his four thousand thugs.”"
         },
         {
           "verse": 39,
+          "usfm": "ACT.21.39",
+          "line_type": "p",
           "text": "Paul said, “No, I’m a Jew, born in Tarsus. And I’m a citizen still of that influential city. I have a simple request: Let me speak to the crowd.”"
         },
         {
           "verse": 40,
+          "usfm": "ACT.21.40",
+          "line_type": "m",
           "text": "Standing on the barracks steps, Paul turned and held his arms up. A hush fell over the crowd as Paul began to speak. He spoke in Hebrew."
         }
       ],
       "verse_count": 6,
       "headings": [
         {
-          "before_verse": 14,
+          "before_verse": 15,
           "text": "Jerusalem"
         },
         {
-          "before_verse": 26,
+          "before_verse": 27,
           "text": "Paul Under Arrest"
         },
         {
-          "before_verse": 39,
+          "before_verse": 40,
           "text": "Paul Tells His Story"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ACT.21.14"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "ACT.21.14"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 25,
+          "end_verse": 25,
+          "verses": [
+            25
+          ],
+          "usfms": [
+            "ACT.21.25"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 25,
+          "end_verse": 26,
+          "verses": [
+            25,
+            26
+          ],
+          "usfms": [
+            "ACT.21.25",
+            "ACT.21.26"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "ACT.21.26"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 30,
+          "end_verse": 30,
+          "verses": [
+            30
+          ],
+          "usfms": [
+            "ACT.21.30"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 30,
+          "end_verse": 30,
+          "verses": [
+            30
+          ],
+          "usfms": [
+            "ACT.21.30"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 39,
+          "end_verse": 39,
+          "verses": [
+            39
+          ],
+          "usfms": [
+            "ACT.21.39"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "m",
+          "start_verse": 39,
+          "end_verse": 40,
+          "verses": [
+            39,
+            40
+          ],
+          "usfms": [
+            "ACT.21.39",
+            "ACT.21.40"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -828,9 +3270,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/21-7a592e005650e3373b6386da71809af7.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.21.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.21"
+          ],
+          "human": "Acts 21",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.20"
+          ],
+          "human": "Acts 20",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.22"
+          ],
+          "human": "Acts 22",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 22,
       "chapter_usfm": "ACT.22",
@@ -839,37 +3338,167 @@
       "verses": [
         {
           "verse": 21,
+          "usfm": "ACT.22.21",
+          "line_type": "p",
           "text": "“But he said, ‘Don’t argue. Go. I’m sending you on a long journey to outsider non-Jews.’” The people in the crowd had listened attentively up to this point, but now they broke loose, shouting out, “Kill him! He’s an insect! Stomp on him!” They shook their fists. They filled the air with curses. That’s when the captain intervened and ordered Paul taken into the barracks. By now the captain was thoroughly exasperated. He decided to interrogate Paul under torture in order to get to the bottom of this, to find out what he had done that provoked this outraged violence. As they spread-eagled him with strips of leather, getting him ready for the whip, Paul said to the centurion standing there, “Is this legal: torturing a Roman citizen without a fair trial?”"
         },
         {
           "verse": 26,
+          "usfm": "ACT.22.26",
+          "line_type": "p",
           "text": "When the centurion heard that, he went directly to the captain. “Do you realize what you’ve done? This man is a Roman citizen!”"
         },
         {
           "verse": 27,
+          "usfm": "ACT.22.27",
+          "line_type": "p",
           "text": "The captain came back and took charge. “Is what I hear right? You’re a Roman citizen?”Paul said, “I certainly am.”"
         },
         {
           "verse": 28,
+          "usfm": "ACT.22.28",
+          "line_type": "p",
           "text": "The captain was impressed. “I paid a huge sum for my citizenship. How much did it cost you?”“Nothing,” said Paul. “It cost me nothing. I was free from the day of my birth.”"
         },
         {
           "verse": 29,
+          "usfm": "ACT.22.29",
+          "line_type": "p",
           "text": "That put a stop to the interrogation. And it put the fear of God into the captain. He had put a Roman citizen in chains and come within a whisker of putting him under torture!"
         },
         {
           "verse": 30,
+          "usfm": "ACT.22.30",
+          "line_type": "p",
           "text": "The next day, determined to get to the root of the trouble and know for sure what was behind the Jewish accusation, the captain released Paul and ordered a meeting of the high priests and the High Council to see what they could make of it. Paul was led in and took his place before them."
         }
       ],
       "verse_count": 6,
       "headings": [
         {
-          "before_verse": 21,
+          "before_verse": 22,
           "text": "A Roman Citizen"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "ACT.22.21"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "m",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "ACT.22.21"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 26,
+          "end_verse": 26,
+          "verses": [
+            26
+          ],
+          "usfms": [
+            "ACT.22.26"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 26,
+          "end_verse": 27,
+          "verses": [
+            26,
+            27
+          ],
+          "usfms": [
+            "ACT.22.26",
+            "ACT.22.27"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "ACT.22.27"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 28,
+          "verses": [
+            27,
+            28
+          ],
+          "usfms": [
+            "ACT.22.27",
+            "ACT.22.28"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "ACT.22.28"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 29,
+          "verses": [
+            28,
+            29
+          ],
+          "usfms": [
+            "ACT.22.28",
+            "ACT.22.29"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 30,
+          "verses": [
+            29,
+            30
+          ],
+          "usfms": [
+            "ACT.22.29",
+            "ACT.22.30"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -880,9 +3509,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/22-bfdee619bd4c9cc879bc70ebad964002.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.22.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.22"
+          ],
+          "human": "Acts 22",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.21"
+          ],
+          "human": "Acts 21",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.23"
+          ],
+          "human": "Acts 23",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 23,
       "chapter_usfm": "ACT.23",
@@ -891,45 +3577,215 @@
       "verses": [
         {
           "verse": 4,
+          "usfm": "ACT.23.4",
+          "line_type": "p",
           "text": "The aides were scandalized: “How dare you talk to God’s Chief Priest like that!”"
         },
         {
           "verse": 5,
+          "usfm": "ACT.23.5",
+          "line_type": "p",
           "text": "Paul acted surprised. “How was I to know he was Chief Priest? He doesn’t act like a Chief Priest. You’re right, the Scripture does say, ‘Don’t speak abusively to a ruler of the people.’ Sorry.”"
         },
         {
           "verse": 6,
+          "usfm": "ACT.23.6",
+          "line_type": "p",
           "text": "Paul, knowing some of the council was made up of Sadducees and others of Pharisees and how they hated each other, decided to exploit their antagonism: “Friends, I am a stalwart Pharisee from a long line of Pharisees. It’s because of my Pharisee convictions—the hope and resurrection of the dead—that I’ve been hauled into this court.” The moment he said this, the council split right down the middle, Pharisees and Sadducees going at each other in heated argument. Sadducees have nothing to do with a resurrection or angels or even a spirit. If they can’t see it, they don’t believe it. Pharisees believe it all. And so a huge and noisy quarrel broke out. Then some of the religion scholars on the Pharisee side shouted down the others: “We don’t find anything wrong with this man! And what if a spirit has spoken to him? Or maybe an angel? What if it turns out we’re fighting against God?”"
         },
         {
           "verse": 10,
+          "usfm": "ACT.23.10",
+          "line_type": "p",
           "text": "That was fuel on the fire. The quarrel flamed up and became so violent the captain was afraid they would tear Paul apart, limb from limb. He ordered the soldiers to get him out of there and escort him back to the safety of the barracks."
         },
         {
           "verse": 11,
+          "usfm": "ACT.23.11",
+          "line_type": "m",
           "text": "That night the Master appeared to Paul: “It’s going to be all right. Everything is going to turn out for the best. You’ve been a good witness for me here in Jerusalem. Now you’re going to be my witness in Rome!” Next day the Jews worked up a plot against Paul. They took a solemn oath that they would neither eat nor drink until they had killed him. Over forty of them ritually bound themselves to this murder pact and presented themselves to the high priests and religious leaders. “We’ve bound ourselves by a solemn oath to eat nothing until we have killed Paul. But we need your help. Send a request from the council to the captain to bring Paul back so that you can investigate the charges in more detail. We’ll do the rest. Before he gets anywhere near you, we’ll have killed him. You won’t be involved.” Paul’s nephew, his sister’s son, overheard them plotting the ambush. He went immediately to the barracks and told Paul. Paul called over one of the centurions and said, “Take this young man to the captain. He has something important to tell him.”"
         },
         {
           "verse": 18,
+          "usfm": "ACT.23.18",
+          "line_type": "p",
           "text": "The centurion brought him to the captain and said, “The prisoner Paul asked me to bring this young man to you. He said he has something urgent to tell you.”"
         },
         {
           "verse": 19,
+          "usfm": "ACT.23.19",
+          "line_type": "p",
           "text": "The captain took him by the arm and led him aside privately. “What is it? What do you have to tell me?” Paul’s nephew said, “The Jews have worked up a plot against Paul. They’re going to ask you to bring Paul to the council first thing in the morning on the pretext that they want to investigate the charges against him in more detail. But it’s a trick to get him out of your safekeeping so they can murder him. Right now there are more than forty men lying in ambush for him. They’ve all taken a vow to neither eat nor drink until they’ve killed him. The ambush is set—all they’re waiting for is for you to send him over.”"
         },
         {
           "verse": 22,
+          "usfm": "ACT.23.22",
+          "line_type": "p",
           "text": "The captain dismissed the nephew with a warning: “Don’t breathe a word of this to a soul.” The captain called up two centurions. “Get two hundred soldiers ready to go immediately to Caesarea. Also seventy cavalry and two hundred light infantry. I want them ready to march by nine o’clock tonight. And you’ll need a couple of mules for Paul and his gear. We’re going to present this man safe and sound to Governor Felix.” Then he wrote this letter:From Claudius Lysias, to the Most Honorable Governor Felix:Greetings!I rescued this man from a Jewish mob. They had seized him and were about to kill him when I learned that he was a Roman citizen. So I sent in my soldiers. Wanting to know what he had done wrong, I had him brought before their council. It turned out to be a squabble turned vicious over some of their religious differences, but nothing remotely criminal.The next thing I knew, they had cooked up a plot to murder him. I decided that for his own safety I’d better get him out of here in a hurry. So I’m sending him to you. I’m informing his accusers that he’s now under your jurisdiction. The soldiers, following orders, took Paul that same night to safety in Antipatris. In the morning the soldiers returned to their barracks in Jerusalem, sending Paul on to Caesarea under guard of the cavalry. The cavalry entered Caesarea and handed Paul and the letter over to the governor. After reading the letter, the governor asked Paul what province he came from and was told “Cilicia.” Then he said, “I’ll take up your case when your accusers show up.” He ordered him locked up for the meantime in King Herod’s official quarters."
         }
       ],
       "verse_count": 8,
       "headings": [
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "A Plot Against Paul"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "ACT.23.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "ACT.23.4",
+            "ACT.23.5"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "ACT.23.5",
+            "ACT.23.6"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "ACT.23.6"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "ACT.23.10"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "m",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "ACT.23.10",
+            "ACT.23.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "ACT.23.11"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "ACT.23.18"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "ACT.23.18",
+            "ACT.23.19"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "ACT.23.19"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "ACT.23.22"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "ACT.23.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -940,9 +3796,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/23-d64d416a3bfec28a765dcab2be05560a.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 8,
+          "parsed_count": 8,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.23.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.23"
+          ],
+          "human": "Acts 23",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.22"
+          ],
+          "human": "Acts 22",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.24"
+          ],
+          "human": "Acts 24",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 24,
       "chapter_usfm": "ACT.24",
@@ -951,16 +3864,58 @@
       "verses": [
         {
           "verse": 9,
+          "usfm": "ACT.24.9",
+          "line_type": "p",
           "text": "The Jews joined in: “Hear, hear! That’s right!” The governor motioned to Paul that it was now his turn. Paul said, “I count myself fortunate to be defending myself before you, Governor, knowing how fair-minded you’ve been in judging us all these years. I’ve been back in the country only twelve days—you can check out these dates easily enough. I came with the express purpose of worshiping in Jerusalem on Pentecost, and I’ve been minding my own business the whole time. Nobody can say they saw me arguing in the Temple or working up a crowd in the streets. Not one of their charges can be backed up with evidence or witnesses. “But I do freely admit this: In regard to the Way, which they malign as a dead-end street, I serve and worship the very same God served and worshiped by all our ancestors and embrace everything written in all our Scriptures. And I admit to living in hopeful anticipation that God will raise the dead, both the good and the bad. If that’s my crime, my accusers are just as guilty as I am. “Believe me, I do my level best to keep a clear conscience before God and my neighbors in everything I do. I’ve been out of the country for a number of years and now I’m back. While I was away, I took up a collection for the poor and brought that with me, along with offerings for the Temple. It was while making those offerings that they found me quietly at my prayers in the Temple. There was no crowd, there was no disturbance. It was some Jews from around Ephesus who started all this trouble. And you’ll notice they’re not here today. They’re cowards, too cowardly to accuse me in front of you. “So ask these others what crime they’ve caught me in. Don’t let them hide behind this smooth-talking Tertullus. The only thing they have on me is that one sentence I shouted out in the council: ‘It’s because I believe in the resurrection that I’ve been hauled into this court!’ Does that sound to you like grounds for a criminal case?” Felix waffled. He knew far more about the Way than he let on, and could have settled the case then and there. But uncertain of his best move politically, he played for time. “When Captain Lysias comes down, I’ll decide your case.” He gave orders to the centurion to keep Paul in custody, but to more or less give him the run of the place and not prevent his friends from helping him. A few days later Felix and his wife, Drusilla, who was Jewish, sent for Paul and listened to him talk about a life of believing in Jesus Christ. As Paul continued to insist on right relations with God and his people, about a life of moral discipline and the coming Judgment, Felix felt things getting a little too close for comfort and dismissed him. “That’s enough for today. I’ll call you back when it’s convenient.” At the same time he was secretly hoping that Paul would offer him a substantial bribe. These conversations were repeated frequently."
         },
         {
           "verse": 27,
+          "usfm": "ACT.24.27",
+          "line_type": "p",
           "text": "After two years of this, Felix was replaced by Porcius Festus. Still playing up to the Jews and ignoring justice, Felix left Paul in prison."
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ACT.24.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ACT.24.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 27,
+          "end_verse": 27,
+          "verses": [
+            27
+          ],
+          "usfms": [
+            "ACT.24.27"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -971,9 +3926,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/24-ec43a6ae74e09756d76cf55afdd19f43.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.24.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.24"
+          ],
+          "human": "Acts 24",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.23"
+          ],
+          "human": "Acts 23",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.25"
+          ],
+          "human": "Acts 25",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 25,
       "chapter_usfm": "ACT.25",
@@ -982,28 +3994,152 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "ACT.25.8",
+          "line_type": "p",
           "text": "Then Paul took the stand and said simply, “I’ve done nothing wrong against the Jewish religion, or the Temple, or Caesar. Period.”"
         },
         {
           "verse": 9,
+          "usfm": "ACT.25.9",
+          "line_type": "p",
           "text": "Festus, though, wanted to get on the good side of the Jews and so said, “How would you like to go up to Jerusalem, and let me conduct your trial there?” Paul answered, “I’m standing at this moment before Caesar’s bar of justice, where I have a perfect right to stand. And I’m going to keep standing here. I’ve done nothing wrong to the Jews, and you know it as well as I do. If I’ve committed a crime and deserve death, name the day. I can face it. But if there’s nothing to their accusations—and you know there isn’t—nobody can force me to go along with their nonsense. We’ve fooled around here long enough. I appeal to Caesar.”"
         },
         {
           "verse": 12,
+          "usfm": "ACT.25.12",
+          "line_type": "p",
           "text": "Festus huddled with his advisors briefly and then gave his verdict: “You’ve appealed to Caesar; you’ll go to Caesar!”* * * A few days later King Agrippa and his wife, Bernice, visited Caesarea to welcome Festus to his new post. After several days, Festus brought up Paul’s case to the king. “I have a man on my hands here, a prisoner left by Felix. When I was in Jerusalem, the high priests and Jewish leaders brought a bunch of accusations against him and wanted me to sentence him to death. I told them that wasn’t the way we Romans did things. Just because a man is accused, we don’t throw him out to the dogs. We make sure the accused has a chance to face his accusers and defend himself of the charges. So when they came down here I got right on the case. I took my place in the courtroom and put the man on the stand. “The accusers came at him from all sides, but their accusations turned out to be nothing more than arguments about their religion and a dead man named Jesus, who the prisoner claimed was alive. Since I’m a newcomer here and don’t understand everything involved in cases like this, I asked if he’d be willing to go to Jerusalem and be tried there. Paul refused and demanded a hearing before His Majesty in our highest court. So I ordered him returned to custody until I could send him to Caesar in Rome.”"
         },
         {
           "verse": 22,
+          "usfm": "ACT.25.22",
+          "line_type": "p",
           "text": "Agrippa said, “I’d like to see this man and hear his story.”“Good,” said Festus. “We’ll bring him in first thing in the morning and you’ll hear it for yourself.”"
         },
         {
           "verse": 23,
+          "usfm": "ACT.25.23",
+          "line_type": "p",
           "text": "The next day everybody who was anybody in Caesarea found his way to the Great Hall, along with the top military brass. Agrippa and Bernice made a flourishing grand entrance and took their places. Festus then ordered Paul brought in. Festus said, “King Agrippa and distinguished guests, take a good look at this man. A bunch of Jews petitioned me first in Jerusalem, and later here, to do away with him. They have been most vehement in demanding his execution. I looked into it and decided that he had committed no crime. He requested a trial before Caesar and I agreed to send him to Rome. But what am I going to write to my master, Caesar? All the charges made by the Jews were fabrications, and I’ve uncovered nothing else. “That’s why I’ve brought him before this company, and especially you, King Agrippa: so we can come up with something in the nature of a charge that will hold water. For it seems to me silly to send a prisoner all that way for a trial and not be able to document what he did wrong.”"
         }
       ],
       "verse_count": 5,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "ACT.25.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "ACT.25.8",
+            "ACT.25.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "ACT.25.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ACT.25.12"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ACT.25.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "ACT.25.22"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "ACT.25.22"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "ACT.25.22",
+            "ACT.25.23"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "ACT.25.23"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1014,9 +4150,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/25-a9da49bfcfb52a6c51858f19aff40ba9.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.25.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.25"
+          ],
+          "human": "Acts 25",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.24"
+          ],
+          "human": "Acts 24",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.26"
+          ],
+          "human": "Acts 26",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 26,
       "chapter_usfm": "ACT.26",
@@ -1025,24 +4218,108 @@
       "verses": [
         {
           "verse": 24,
+          "usfm": "ACT.26.24",
+          "line_type": "p",
           "text": "That was too much for Festus. He interrupted with a shout: “Paul, you’re crazy! You’ve read too many books, spent too much time staring off into space! Get a grip on yourself, get back in the real world!” But Paul stood his ground. “With all respect, Festus, Your Honor, I’m not crazy. I’m both accurate and sane in what I’m saying. The king knows what I’m talking about. I’m sure that nothing of what I’ve said sounds crazy to him. He’s known all about it for a long time. You must realize that this wasn’t done behind the scenes. You believe the prophets, don’t you, King Agrippa? Don’t answer that—I know you believe.”"
         },
         {
           "verse": 28,
+          "usfm": "ACT.26.28",
+          "line_type": "p",
           "text": "But Agrippa did answer: “Keep this up much longer and you’ll make a Christian out of me!”"
         },
         {
           "verse": 29,
+          "usfm": "ACT.26.29",
+          "line_type": "p",
           "text": "Paul, still in chains, said, “That’s what I’m praying for, whether now or later, and not only you but everyone listening today, to become like me—except, of course, for this prison jewelry!” The king and the governor, along with Bernice and their advisors, got up and went into the next room to talk over what they had heard. They quickly agreed on Paul’s innocence, saying, “There’s nothing in this man deserving prison, let alone death.”"
         },
         {
           "verse": 32,
+          "usfm": "ACT.26.32",
+          "line_type": "p",
           "text": "Agrippa told Festus, “He could be set free right now if he hadn’t requested the hearing before Caesar.”"
         }
       ],
       "verse_count": 4,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "ACT.26.24"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "ACT.26.24"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "ACT.26.28"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 29,
+          "verses": [
+            28,
+            29
+          ],
+          "usfms": [
+            "ACT.26.28",
+            "ACT.26.29"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 29,
+          "verses": [
+            29
+          ],
+          "usfms": [
+            "ACT.26.29"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 32,
+          "end_verse": 32,
+          "verses": [
+            32
+          ],
+          "usfms": [
+            "ACT.26.32"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1053,9 +4330,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/26-630ccce5f10ef36552a1943862df9345.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 4,
+          "parsed_count": 4,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.26.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.26"
+          ],
+          "human": "Acts 26",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.25"
+          ],
+          "human": "Acts 25",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.27"
+          ],
+          "human": "Acts 27",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 27,
       "chapter_usfm": "ACT.27",
@@ -1064,16 +4398,70 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "ACT.27.3",
+          "line_type": "p",
           "text": "The next day we put in at Sidon. Julius treated Paul most decently—let him get off the ship and enjoy the hospitality of his friends there. Out to sea again, we sailed north under the protection of the northeast shore of Cyprus because winds out of the west were against us, and then along the coast westward to the port of Myra. There the centurion found an Egyptian ship headed for Italy and transferred us on board. We ran into bad weather and found it impossible to stay on course. After much difficulty, we finally made it to the southern coast of the island of Crete and docked at Good Harbor (appropriate name!). By this time we had lost a lot of time. We had passed the autumn equinox, so it would be stormy weather from now on through the winter, too dangerous for sailing. Paul warned, “I see only disaster ahead for cargo and ship—to say nothing of our lives!—if we put out to sea now.”"
         },
         {
           "verse": 12,
+          "usfm": "ACT.27.12",
+          "line_type": "p",
           "text": "But it was not the best harbor for staying the winter. Phoenix, a few miles further on, was more suitable. The centurion set Paul’s warning aside and let the ship captain and the shipowner talk him into trying for the next harbor. When a gentle southerly breeze came up, they weighed anchor, thinking it would be smooth sailing. But they were no sooner out to sea than a gale-force wind, the infamous nor’easter, struck. They lost all control of the ship. It was a cork in the storm. We came under the lee of the small island named Clauda, and managed to get a lifeboat ready and reef the sails. But rocky shoals prevented us from getting close. We only managed to avoid them by throwing out drift anchors. Next day, out on the high seas again and badly damaged now by the storm, we dumped the cargo overboard. The third day the sailors lightened the ship further by throwing off all the tackle and provisions. It had been many days since we had seen either sun or stars. Wind and waves were battering us unmercifully, and we lost all hope of rescue. With our appetite for both food and life long gone, Paul took his place in our midst and said, “Friends, you really should have listened to me back in Crete. We could have avoided all this trouble and trial. But there’s no need to dwell on that now. From now on, things are looking up! I can assure you that there’ll not be a single drowning among us, although I can’t say as much for the ship—the ship itself is doomed. “Last night God’s angel stood at my side, an angel of this God I serve, saying to me, ‘Don’t give up, Paul. You’re going to stand before Caesar yet—and everyone sailing with you is also going to make it.’ So, dear friends, take heart. I believe God will do exactly what he told me. But we’re going to shipwreck on some island or other.” On the fourteenth night, adrift somewhere on the Adriatic Sea, at about midnight the sailors sensed that we were approaching land. Sounding, they measured a depth of 120 feet, and shortly after that ninety feet. Afraid that we were about to run aground, they threw out four anchors and prayed for daylight. Some of the sailors tried to jump ship. They let down the lifeboat, pretending they were going to set out more anchors from the bow. Paul saw through their guise and told the centurion and his soldiers, “If these sailors don’t stay with the ship, we’re all going down.” So the soldiers cut the lines to the lifeboat and let it drift off. With dawn about to break, Paul called everyone together and proposed breakfast: “This is the fourteenth day we’ve gone without food. None of us has felt like eating! But I urge you to eat something now. You’ll need strength for the rescue ahead. You’re going to come out of this without even a scratch!” He broke the bread, gave thanks to God, passed it around, and they all ate heartily—276 of us, all told! With the meal finished and everyone full, the ship was further lightened by dumping the grain overboard. At daybreak, no one recognized the land—but then they did notice a bay with a nice beach. They decided to try to run the ship up on the beach. They cut the anchors, loosed the tiller, raised the sail, and ran before the wind toward the beach. But we didn’t make it. Still far from shore, we hit a reef and the ship began to break up. The soldiers decided to kill the prisoners so none could escape by swimming, but the centurion, determined to save Paul, stopped them. He gave orders for anyone who could swim to dive in and go for it, and for the rest to grab a plank. Everyone made it to shore safely.* * *"
         }
       ],
       "verse_count": 2,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ACT.27.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "ACT.27.3"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ACT.27.12"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "ACT.27.12"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1084,9 +4472,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/27-05891b05168f17c712da5923cbd6b79f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.27.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.27"
+          ],
+          "human": "Acts 27",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.26"
+          ],
+          "human": "Acts 26",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ACT.28"
+          ],
+          "human": "Acts 28",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "ACT",
       "chapter": 28,
       "chapter_usfm": "ACT.28",
@@ -1095,10 +4540,14 @@
       "verses": [
         {
           "verse": 23,
+          "usfm": "ACT.28.23",
+          "line_type": "p",
           "text": "They agreed on a time. When the day arrived, they came back to his home with a number of their friends. Paul talked to them all day, from morning to evening, explaining everything involved in the kingdom of God, and trying to persuade them all about Jesus by pointing out what Moses and the prophets had written about him. Some of them were persuaded by what he said, but others refused to believe a word of it. When the unbelievers got cantankerous and started bickering with each other, Paul interrupted: “I have just one more thing to say to you. The Holy Spirit sure knew what he was talking about when he addressed our ancestors through Isaiah the prophet:Go to this people and tell them this:“You’re going to listen with your ears,but you won’t hear a word;You’re going to stare with your eyes,but you won’t see a thing.These people are blockheads!They stick their fingers in their earsso they won’t have to listen;They screw their eyes shutso they won’t have to look,so they won’t have to deal with me face-to-faceand let me heal them.”"
         },
         {
           "verse": 28,
+          "usfm": "ACT.28.28",
+          "line_type": "p",
           "text": "“You’ve had your chance. The non-Jewish outsiders are next on the list. And believe me, they’re going to receive it with open arms!” Paul lived for two years in his rented house. He welcomed everyone who came to visit. He urgently presented all matters of the kingdom of God. He explained everything about Jesus Christ. His door was always open."
         }
       ],
@@ -1110,6 +4559,56 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "ACT.28.23"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "ACT.28.23"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "ACT.28.28"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 28,
+          "end_verse": 28,
+          "verses": [
+            28
+          ],
+          "usfms": [
+            "ACT.28.28"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -1120,7 +4619,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/ACT/28-a15fb9faa339ab883c00b6557fbd15e6.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 2,
+          "parsed_count": 2,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/ACT.28.MSG",
+        "reference": {
+          "usfm": [
+            "ACT.28"
+          ],
+          "human": "Acts 28",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ACT.27"
+          ],
+          "human": "Acts 27",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "ROM.1"
+          ],
+          "human": "Romans 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

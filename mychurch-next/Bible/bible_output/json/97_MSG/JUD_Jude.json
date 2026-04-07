@@ -11,6 +11,7 @@
   "total_verses": 1,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JUD",
       "chapter": 1,
       "chapter_usfm": "JUD.1",
@@ -19,6 +20,8 @@
       "verses": [
         {
           "verse": 8,
+          "usfm": "JUD.1.8",
+          "line_type": "p",
           "text": "This is exactly the same program of these latest infiltrators: dirty sex, rule and rulers thrown out, glory dragged in the mud. The Archangel Michael, who went to the mat with the Devil as they fought over the body of Moses, wouldn’t have dared level him with a blasphemous curse, but said simply, “No you don’t. God will take care of you!” But these people sneer at anything they can’t understand, and by doing whatever they feel like doing—living by animal instinct only—they participate in their own destruction. I’m fed up with them! They’ve gone down Cain’s road; they’ve been sucked into Balaam’s error by greed; they’re canceled out in Korah’s rebellion. These people are eyesores at your love feasts as you worship and eat together. They’re giving you a black eye—carousing shamelessly, grabbing anything that isn’t nailed down. They’re—Puffs of smoke pushed by gusts of wind;late autumn trees stripped clean of leaf and fruit,Doubly dead, pulled up by the roots;wild ocean waves leaving nothing on the beachbut the foam of their shame;Lost stars in outer spaceon their way to the black hole. Enoch, the seventh after Adam, prophesied of them: “Look! The Master comes with thousands of holy angels to bring judgment against them all, convicting each person of every defiling act of shameless sacrilege, of every dirty word they have spewed of their pious filth.” These are the complainers, the bellyachers, grabbing for the biggest piece of the pie, talking big, saying anything they think will get them ahead. But remember, dear friends, that the apostles of our Master, Jesus Christ, told us this would happen: “In the last days there will be people who don’t take these things seriously anymore. They’ll treat them like a joke, and make a religion of their own whims and lusts.” These are the ones who split churches, thinking only of themselves. There’s nothing to them, no sign of the Spirit!* * * But you, dear friends, carefully build yourselves up in this most holy faith by praying in the Holy Spirit, staying right at the center of God’s love, keeping your arms open and outstretched, ready for the mercy of our Master, Jesus Christ. This is the unending life, the real life! Go easy on those who hesitate in the faith. Go after those who take the wrong way. Be tender with sinners, but not soft on sin. The sin itself stinks to high heaven. And now to him who can keep you on your feet, standing tall in his bright presence, fresh and celebrating—to our one God, our only Savior, through Jesus Christ, our Master, be glory, majesty, strength, and rule before all time, and now, and to the end of all time. Yes."
         }
       ],
@@ -34,6 +37,32 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JUD.1.8"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "JUD.1.8"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -44,7 +73,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/JUD/1-8950c9b3c695205cc370af925a573b97.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/JUD.1.MSG",
+        "reference": {
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "REV.1"
+          ],
+          "human": "Revelation 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

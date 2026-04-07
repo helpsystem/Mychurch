@@ -11,6 +11,7 @@
   "total_verses": 154,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 1,
       "chapter_usfm": "LAM.1",
@@ -19,96 +20,1017 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "LAM.1.1",
+          "line_type": "q1",
           "text": "How lonely lies Jerusalem, once so full of people!Once honored by the world, she is now like a widow;The noblest of cities has fallen into slavery."
         },
         {
           "verse": 2,
+          "usfm": "LAM.1.2",
+          "line_type": "q1",
           "text": "All night long she cries; tears run down her cheeks.Of all her former friends, not one is left to comfort her.Her allies have betrayed her and are all against her now."
         },
         {
           "verse": 3,
+          "usfm": "LAM.1.3",
+          "line_type": "q1",
           "text": "Judah's people are helpless slaves, forced away from home.They live in other lands, with no place to call their own—Surrounded by enemies, with no way to escape."
         },
         {
           "verse": 4,
+          "usfm": "LAM.1.4",
+          "line_type": "q1",
           "text": "No one comes to the Temple now to worship on the holy days.The young women who sang there suffer, and the priests can only groan.The city gates stand empty, and Zion is in agony."
         },
         {
           "verse": 5,
+          "usfm": "LAM.1.5",
+          "line_type": "q1",
           "text": "Her enemies succeeded; they hold her in their power.The Lord has made her suffer for all her many sins;Her children have been captured and taken away."
         },
         {
           "verse": 6,
+          "usfm": "LAM.1.6",
+          "line_type": "q1",
           "text": "The splendor of Jerusalem is a thing of the past.Her leaders are like deer that are weak from hunger,Whose strength is almost gone as they flee from the hunters."
         },
         {
           "verse": 7,
+          "usfm": "LAM.1.7",
+          "line_type": "q1",
           "text": "A lonely ruin now, Jerusalem recalls her ancient splendor.When she fell to the enemy, there was no one to help her;Her conquerors laughed at her downfall."
         },
         {
           "verse": 8,
+          "usfm": "LAM.1.8",
+          "line_type": "q1",
           "text": "Her honor is gone; she is naked and held in contempt.She groans and hides her face in shame.Jerusalem made herself filthy with terrible sin."
         },
         {
           "verse": 9,
+          "usfm": "LAM.1.9",
+          "line_type": "q1",
           "text": "Her uncleanness was easily seen, but she showed no concern for her fate.Her downfall was terrible; no one can comfort her.Her enemies have won, and she cries to the Lord for mercy."
         },
         {
           "verse": 10,
+          "usfm": "LAM.1.10",
+          "line_type": "q1",
           "text": "The enemies robbed her of all her treasures.She saw them enter the Temple itself,Where the Lord had forbidden Gentiles to go."
         },
         {
           "verse": 11,
+          "usfm": "LAM.1.11",
+          "line_type": "q1",
           "text": "Her people groan as they look for something to eat;They exchange their treasures for food to keep themselves alive.“Look at me, Lord,” the city cries; “see me in my misery.”"
         },
         {
           "verse": 12,
+          "usfm": "LAM.1.12",
+          "line_type": "q1",
           "text": "“Look at me!” she cries to everyone who passes by.“No one has ever had pain like mine,Pain that the Lord brought on me in the time of his anger."
         },
         {
           "verse": 13,
+          "usfm": "LAM.1.13",
+          "line_type": "q1",
           "text": "“He sent fire from above, a fire that burned inside me.He set a trap for me and brought me to the ground.Then he abandoned me and left me in constant pain."
         },
         {
           "verse": 14,
+          "usfm": "LAM.1.14",
+          "line_type": "q1",
           "text": "“He took note of all my sins and tied them all together;He hung them around my neck, and I grew weak beneath the weight.The Lord gave me to my foes, and I was helpless against them."
         },
         {
           "verse": 15,
+          "usfm": "LAM.1.15",
+          "line_type": "q1",
           "text": "“The Lord laughed at all my strongest soldiers;He sent an army to destroy my young men.He crushed my people like grapes in a wine press."
         },
         {
           "verse": 16,
+          "usfm": "LAM.1.16",
+          "line_type": "q1",
           "text": "“That is why my eyes are overflowing with tears.No one can comfort me; no one can give me courage.The enemy has conquered me; my people have nothing left."
         },
         {
           "verse": 17,
+          "usfm": "LAM.1.17",
+          "line_type": "q1",
           "text": "“I stretch out my hands, but no one will help me.The Lord has called enemies against me from every side;They treat me like some filthy thing."
         },
         {
           "verse": 18,
+          "usfm": "LAM.1.18",
+          "line_type": "q1",
           "text": "“But the Lord is just, for I have disobeyed him.Listen to me, people everywhere; look at me in my pain.My young men and women have been taken away captive."
         },
         {
           "verse": 19,
+          "usfm": "LAM.1.19",
+          "line_type": "q1",
           "text": "“I called to my allies, but they refused to help me.The priests and the leaders died in the city streets,Looking for food to keep themselves alive."
         },
         {
           "verse": 20,
+          "usfm": "LAM.1.20",
+          "line_type": "q1",
           "text": "“Look, O Lord, at my agony, at the anguish of my soul!My heart is broken in sorrow for my sins.There is murder in the streets; even indoors there is death."
         },
         {
           "verse": 21,
+          "usfm": "LAM.1.21",
+          "line_type": "q1",
           "text": "“Listen to my groans; there is no one to comfort me.My enemies are glad that you brought disaster on me.Bring the day you promised; make my enemies suffer as I do."
         },
         {
           "verse": 22,
+          "usfm": "LAM.1.22",
+          "line_type": "q1",
           "text": "“Condemn them for all their wickedness;Punish them as you punished me for my sins.I groan in misery, and I am sick at heart.”"
         }
       ],
       "verse_count": 22,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "LAM.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ba 4.12"
+        },
+        {
+          "verse": 3,
+          "usfm": "LAM.1.3",
+          "note_ref": "1.3:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "are helpless … home; or fled from home, from the misery of slavery."
+        },
+        {
+          "verse": 12,
+          "usfm": "LAM.1.12",
+          "note_ref": "1.12:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Look … by; or May this not happen to you that pass by; or Does this mean nothing to you that pass by?"
+        },
+        {
+          "verse": 21,
+          "usfm": "LAM.1.21",
+          "note_ref": "1.21:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation Listen; Hebrew They listened."
+        },
+        {
+          "verse": 21,
+          "usfm": "LAM.1.21",
+          "note_ref": "1.21:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One ancient translation Bring; Hebrew You brought."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.1.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "LAM.1.1",
+            "LAM.1.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "LAM.1.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "LAM.1.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "LAM.1.2",
+            "LAM.1.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "LAM.1.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "LAM.1.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "LAM.1.3",
+            "LAM.1.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "LAM.1.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "LAM.1.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "LAM.1.4",
+            "LAM.1.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "LAM.1.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "LAM.1.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "LAM.1.5",
+            "LAM.1.6"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "LAM.1.6"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "LAM.1.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "LAM.1.6",
+            "LAM.1.7"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "LAM.1.7"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "LAM.1.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "LAM.1.7",
+            "LAM.1.8"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "LAM.1.8"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "LAM.1.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "LAM.1.8",
+            "LAM.1.9"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "LAM.1.9"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "LAM.1.9"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "LAM.1.10",
+            "LAM.1.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "LAM.1.10"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "LAM.1.10"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "LAM.1.10",
+            "LAM.1.11"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "LAM.1.11"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "LAM.1.11"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "LAM.1.11",
+            "LAM.1.12"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "LAM.1.12"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "LAM.1.12"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "LAM.1.12",
+            "LAM.1.13"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "LAM.1.13"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "LAM.1.13"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "LAM.1.13",
+            "LAM.1.14"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "LAM.1.14"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "LAM.1.14"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "LAM.1.14",
+            "LAM.1.15"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "LAM.1.15"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "LAM.1.15"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "LAM.1.15",
+            "LAM.1.16"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "LAM.1.16"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "LAM.1.16"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "LAM.1.16",
+            "LAM.1.17"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "LAM.1.17"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "LAM.1.17"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "LAM.1.17",
+            "LAM.1.18"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "LAM.1.18"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "LAM.1.18"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "LAM.1.18",
+            "LAM.1.19"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "LAM.1.19"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "LAM.1.19"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "LAM.1.19",
+            "LAM.1.20"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "LAM.1.20"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "LAM.1.20"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "LAM.1.20",
+            "LAM.1.21"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "LAM.1.21"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "LAM.1.21"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "LAM.1.21",
+            "LAM.1.22"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "LAM.1.22"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "LAM.1.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -119,9 +1041,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/LAM/1-56797e35898b76ba98644962a8ffe4ea.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/LAM.1.GNT",
+        "reference": {
+          "usfm": [
+            "LAM.1"
+          ],
+          "human": "Lamentations 1",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "LAM.INTRO1"
+          ],
+          "human": "Lamentations Introduction",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "LAM.2"
+          ],
+          "human": "Lamentations 2",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 2,
       "chapter_usfm": "LAM.2",
@@ -130,96 +1109,985 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "LAM.2.1",
+          "line_type": "q1",
           "text": "The Lord in his anger has covered Zion with darkness.Its heavenly splendor he has turned into ruins.On the day of his anger he abandoned even his Temple."
         },
         {
           "verse": 2,
+          "usfm": "LAM.2.2",
+          "line_type": "q1",
           "text": "The Lord destroyed without mercy every village in JudahAnd tore down the forts that defended the land.He brought disgrace on the kingdom and its rulers."
         },
         {
           "verse": 3,
+          "usfm": "LAM.2.3",
+          "line_type": "q1",
           "text": "In his fury he shattered the strength of Israel;He refused to help us when the enemy came.He raged against us like fire, destroying everything."
         },
         {
           "verse": 4,
+          "usfm": "LAM.2.4",
+          "line_type": "q1",
           "text": "He aimed his arrows at us like an enemy;He killed all those who were our joy and delight.Here in Jerusalem we felt his burning anger."
         },
         {
           "verse": 5,
+          "usfm": "LAM.2.5",
+          "line_type": "q1",
           "text": "Like an enemy, the Lord has destroyed Israel;He has left her forts and palaces in ruins.He has brought on the people of Judah unending sorrow."
         },
         {
           "verse": 6,
+          "usfm": "LAM.2.6",
+          "line_type": "q1",
           "text": "He smashed to pieces the Temple where we worshiped him;He has put an end to holy days and Sabbaths.King and priest alike have felt the force of his anger."
         },
         {
           "verse": 7,
+          "usfm": "LAM.2.7",
+          "line_type": "q1",
           "text": "The Lord rejected his altar and deserted his holy Temple;He allowed the enemy to tear down its walls.They shouted in victory where once we had worshiped in joy."
         },
         {
           "verse": 8,
+          "usfm": "LAM.2.8",
+          "line_type": "q1",
           "text": "The Lord was determined that the walls of Zion should fall;He measured them off to make sure of total destruction.The towers and walls now lie in ruins together."
         },
         {
           "verse": 9,
+          "usfm": "LAM.2.9",
+          "line_type": "q1",
           "text": "The gates lie buried in rubble, their bars smashed to pieces.The king and the noblemen now are in exile.The Law is no longer taught, and the prophets have no visions from the Lord."
         },
         {
           "verse": 10,
+          "usfm": "LAM.2.10",
+          "line_type": "q1",
           "text": "Jerusalem's old men sit on the ground in silence,With dust on their heads and sackcloth on their bodies.Young women bow their heads to the ground."
         },
         {
           "verse": 11,
+          "usfm": "LAM.2.11",
+          "line_type": "q1",
           "text": "My eyes are worn out with weeping; my soul is in anguish.I am exhausted with grief at the destruction of my people.Children and babies are fainting in the streets of the city."
         },
         {
           "verse": 12,
+          "usfm": "LAM.2.12",
+          "line_type": "q1",
           "text": "Hungry and thirsty, they cry to their mothers;They fall in the streets as though they were wounded,And slowly die in their mothers' arms."
         },
         {
           "verse": 13,
+          "usfm": "LAM.2.13",
+          "line_type": "q1",
           "text": "O Jerusalem, beloved Jerusalem, what can I say?How can I comfort you? No one has ever suffered like this.Your disaster is boundless as the ocean; there is no possible hope."
         },
         {
           "verse": 14,
+          "usfm": "LAM.2.14",
+          "line_type": "q1",
           "text": "Your prophets had nothing to tell you but lies;Their preaching deceived you by never exposing your sin.They made you think you did not need to repent."
         },
         {
           "verse": 15,
+          "usfm": "LAM.2.15",
+          "line_type": "q1",
           "text": "People passing by the city look at you in scorn.They shake their heads and laugh at Jerusalem's ruins:“Is this that lovely city? Is this the pride of the world?”"
         },
         {
           "verse": 16,
+          "usfm": "LAM.2.16",
+          "line_type": "q1",
           "text": "All your enemies mock you and glare at you with hate.They curl their lips and sneer, “We have destroyed it!This is the day we have waited for!”"
         },
         {
           "verse": 17,
+          "usfm": "LAM.2.17",
+          "line_type": "q1",
           "text": "The Lord has finally done what he threatened to do:He has destroyed us without mercy, as he warned us long ago.He gave our enemies victory, gave them joy at our downfall."
         },
         {
           "verse": 18,
+          "usfm": "LAM.2.18",
+          "line_type": "q1",
           "text": "O Jerusalem, let your very walls cry out to the Lord!Let your tears flow like rivers night and day;Wear yourself out with weeping and grief!"
         },
         {
           "verse": 19,
+          "usfm": "LAM.2.19",
+          "line_type": "q1",
           "text": "All through the night get up again and again to cry out to the Lord;Pour out your heart and beg him for mercy on your children—Children starving to death on every street corner!"
         },
         {
           "verse": 20,
+          "usfm": "LAM.2.20",
+          "line_type": "q1",
           "text": "Look, O Lord! Why are you punishing us like this?Women are eating the bodies of the children they loved!Priests and prophets are being killed in the Temple itself!"
         },
         {
           "verse": 21,
+          "usfm": "LAM.2.21",
+          "line_type": "q1",
           "text": "Young and old alike lie dead in the streets,Young men and women, killed by enemy swords.You slaughtered them without mercy on the day of your anger."
         },
         {
           "verse": 22,
+          "usfm": "LAM.2.22",
+          "line_type": "q1",
           "text": "You invited my enemies to hold a carnival of terror all around me,And no one could escape on that day of your anger.They murdered my children, whom I had raised and loved."
         }
       ],
       "verse_count": 22,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 18,
+          "usfm": "LAM.2.18",
+          "note_ref": "2.18:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probable text O Jerusalem … Lord; Hebrew Their hearts cried out to the Lord, O wall of Jerusalem."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.2.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.2.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.2.1"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "LAM.2.1",
+            "LAM.2.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "LAM.2.2"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "LAM.2.2"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "LAM.2.2",
+            "LAM.2.3"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "LAM.2.3"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "LAM.2.3"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "LAM.2.3",
+            "LAM.2.4"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "LAM.2.4"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "LAM.2.4"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "LAM.2.4",
+            "LAM.2.5"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "LAM.2.5"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "LAM.2.5"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "LAM.2.5",
+            "LAM.2.6"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "LAM.2.6"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "LAM.2.6"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "LAM.2.6",
+            "LAM.2.7"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "LAM.2.7"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "LAM.2.7"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "LAM.2.7",
+            "LAM.2.8"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "LAM.2.8"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "LAM.2.8"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "LAM.2.8",
+            "LAM.2.9"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "LAM.2.9"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "LAM.2.9"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "LAM.2.10",
+            "LAM.2.9"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "LAM.2.10"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "LAM.2.10"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "LAM.2.10",
+            "LAM.2.11"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "LAM.2.11"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "LAM.2.11"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "LAM.2.11",
+            "LAM.2.12"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "LAM.2.12"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "LAM.2.12"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "LAM.2.12",
+            "LAM.2.13"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "LAM.2.13"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "LAM.2.13"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "LAM.2.13",
+            "LAM.2.14"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "LAM.2.14"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "LAM.2.14"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "LAM.2.14",
+            "LAM.2.15"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "LAM.2.15"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "LAM.2.15"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "LAM.2.15",
+            "LAM.2.16"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "LAM.2.16"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "LAM.2.16"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "LAM.2.16",
+            "LAM.2.17"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "LAM.2.17"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "LAM.2.17"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "LAM.2.17",
+            "LAM.2.18"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "LAM.2.18"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "LAM.2.18"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "LAM.2.18",
+            "LAM.2.19"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "LAM.2.19"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "LAM.2.19"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "LAM.2.19",
+            "LAM.2.20"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "LAM.2.20"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "LAM.2.20"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "LAM.2.20",
+            "LAM.2.21"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "LAM.2.21"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "LAM.2.21"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "LAM.2.21",
+            "LAM.2.22"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "LAM.2.22"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "LAM.2.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -230,9 +2098,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/LAM/2-93c98ba7d929f64906c281780d45655e.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/LAM.2.GNT",
+        "reference": {
+          "usfm": [
+            "LAM.2"
+          ],
+          "human": "Lamentations 2",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "LAM.1"
+          ],
+          "human": "Lamentations 1",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "LAM.3"
+          ],
+          "human": "Lamentations 3",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 3,
       "chapter_usfm": "LAM.3",
@@ -241,272 +2166,1345 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "LAM.3.1",
+          "line_type": "q1",
           "text": "I am one who knows what it is to be punished by God."
         },
         {
           "verse": 2,
+          "usfm": "LAM.3.2",
+          "line_type": "q2",
           "text": "He drove me deeper and deeper into darkness"
         },
         {
           "verse": 3,
+          "usfm": "LAM.3.3",
+          "line_type": "q2",
           "text": "And beat me again and again with merciless blows."
         },
         {
           "verse": 4,
+          "usfm": "LAM.3.4",
+          "line_type": "q1",
           "text": "He has left my flesh open and raw, and has broken my bones."
         },
         {
           "verse": 5,
+          "usfm": "LAM.3.5",
+          "line_type": "q2",
           "text": "He has shut me in a prison of misery and anguish."
         },
         {
           "verse": 6,
+          "usfm": "LAM.3.6",
+          "line_type": "q2",
           "text": "He has forced me to live in the stagnant darkness of death."
         },
         {
           "verse": 7,
+          "usfm": "LAM.3.7",
+          "line_type": "q1",
           "text": "He has bound me in chains; I am a prisoner with no hope of escape."
         },
         {
           "verse": 8,
+          "usfm": "LAM.3.8",
+          "line_type": "q2",
           "text": "I cry aloud for help, but God refuses to listen;"
         },
         {
           "verse": 9,
+          "usfm": "LAM.3.9",
+          "line_type": "q2",
           "text": "I stagger as I walk; stone walls block me wherever I turn."
         },
         {
           "verse": 10,
+          "usfm": "LAM.3.10",
+          "line_type": "q1",
           "text": "He waited for me like a bear; he pounced on me like a lion."
         },
         {
           "verse": 11,
+          "usfm": "LAM.3.11",
+          "line_type": "q2",
           "text": "He chased me off the road, tore me to pieces, and left me."
         },
         {
           "verse": 12,
+          "usfm": "LAM.3.12",
+          "line_type": "q2",
           "text": "He drew his bow and made me the target for his arrows."
         },
         {
           "verse": 13,
+          "usfm": "LAM.3.13",
+          "line_type": "q1",
           "text": "He shot his arrows deep into my body."
         },
         {
           "verse": 14,
+          "usfm": "LAM.3.14",
+          "line_type": "q2",
           "text": "People laugh at me all day long; I am a joke to them all."
         },
         {
           "verse": 15,
+          "usfm": "LAM.3.15",
+          "line_type": "q2",
           "text": "Bitter suffering is all he has given me for food and drink."
         },
         {
           "verse": 16,
+          "usfm": "LAM.3.16",
+          "line_type": "q1",
           "text": "He rubbed my face in the ground and broke my teeth on rocks."
         },
         {
           "verse": 17,
+          "usfm": "LAM.3.17",
+          "line_type": "q2",
           "text": "I have forgotten what health and peace and happiness are."
         },
         {
           "verse": 18,
+          "usfm": "LAM.3.18",
+          "line_type": "q2",
           "text": "I do not have much longer to live; my hope in the Lord is gone."
         },
         {
           "verse": 19,
+          "usfm": "LAM.3.19",
+          "line_type": "q1",
           "text": "The thought of my pain, my homelessness, is bitter poison."
         },
         {
           "verse": 20,
+          "usfm": "LAM.3.20",
+          "line_type": "q2",
           "text": "I think of it constantly, and my spirit is depressed."
         },
         {
           "verse": 21,
+          "usfm": "LAM.3.21",
+          "line_type": "q2",
           "text": "Yet hope returns when I remember this one thing:"
         },
         {
           "verse": 22,
+          "usfm": "LAM.3.22",
+          "line_type": "q1",
           "text": "The Lord's unfailing love and mercy still continue,"
         },
         {
           "verse": 23,
+          "usfm": "LAM.3.23",
+          "line_type": "q2",
           "text": "Fresh as the morning, as sure as the sunrise."
         },
         {
           "verse": 24,
+          "usfm": "LAM.3.24",
+          "line_type": "q2",
           "text": "The Lord is all I have, and so in him I put my hope."
         },
         {
           "verse": 25,
+          "usfm": "LAM.3.25",
+          "line_type": "q1",
           "text": "The Lord is good to everyone who trusts in him,"
         },
         {
           "verse": 26,
+          "usfm": "LAM.3.26",
+          "line_type": "q2",
           "text": "So it is best for us to wait in patience—to wait for him to save us—"
         },
         {
           "verse": 27,
+          "usfm": "LAM.3.27",
+          "line_type": "q2",
           "text": "And it is best to learn this patience in our youth."
         },
         {
           "verse": 28,
+          "usfm": "LAM.3.28",
+          "line_type": "q1",
           "text": "When we suffer, we should sit alone in silent patience;"
         },
         {
           "verse": 29,
+          "usfm": "LAM.3.29",
+          "line_type": "q2",
           "text": "We should bow in submission, for there may still be hope."
         },
         {
           "verse": 30,
+          "usfm": "LAM.3.30",
+          "line_type": "q2",
           "text": "Though beaten and insulted, we should accept it all."
         },
         {
           "verse": 31,
+          "usfm": "LAM.3.31",
+          "line_type": "q1",
           "text": "The Lord is merciful and will not reject us forever."
         },
         {
           "verse": 32,
+          "usfm": "LAM.3.32",
+          "line_type": "q2",
           "text": "He may bring us sorrow, but his love for us is sure and strong."
         },
         {
           "verse": 33,
+          "usfm": "LAM.3.33",
+          "line_type": "q2",
           "text": "He takes no pleasure in causing us grief or pain."
         },
         {
           "verse": 34,
+          "usfm": "LAM.3.34",
+          "line_type": "q1",
           "text": "The Lord knows when our spirits are crushed in prison;"
         },
         {
           "verse": 35,
+          "usfm": "LAM.3.35",
+          "line_type": "q2",
           "text": "He knows when we are denied the rights he gave us;"
         },
         {
           "verse": 36,
+          "usfm": "LAM.3.36",
+          "line_type": "q2",
           "text": "When justice is perverted in court, he knows."
         },
         {
           "verse": 37,
+          "usfm": "LAM.3.37",
+          "line_type": "q1",
           "text": "The will of the Lord alone is always carried out."
         },
         {
           "verse": 38,
+          "usfm": "LAM.3.38",
+          "line_type": "q2",
           "text": "Good and evil alike take place at his command."
         },
         {
           "verse": 39,
+          "usfm": "LAM.3.39",
+          "line_type": "q2",
           "text": "Why should we ever complain when we are punished for our sin?"
         },
         {
           "verse": 40,
+          "usfm": "LAM.3.40",
+          "line_type": "q1",
           "text": "Let us examine our ways and turn back to the Lord."
         },
         {
           "verse": 41,
+          "usfm": "LAM.3.41",
+          "line_type": "q2",
           "text": "Let us open our hearts to God in heaven and pray,"
         },
         {
           "verse": 42,
+          "usfm": "LAM.3.42",
+          "line_type": "q2",
           "text": "“We have sinned and rebelled, and you, O Lord, have not forgiven us."
         },
         {
           "verse": 43,
+          "usfm": "LAM.3.43",
+          "line_type": "q1",
           "text": "“You pursued us and killed us; your mercy was hidden by your anger,"
         },
         {
           "verse": 44,
+          "usfm": "LAM.3.44",
+          "line_type": "q2",
           "text": "By a cloud of fury too thick for our prayers to get through."
         },
         {
           "verse": 45,
+          "usfm": "LAM.3.45",
+          "line_type": "q2",
           "text": "You have made us the garbage dump of the world."
         },
         {
           "verse": 46,
+          "usfm": "LAM.3.46",
+          "line_type": "q1",
           "text": "“We are insulted and mocked by all our enemies."
         },
         {
           "verse": 47,
+          "usfm": "LAM.3.47",
+          "line_type": "q2",
           "text": "We have been through disaster and ruin; we live in danger and fear."
         },
         {
           "verse": 48,
+          "usfm": "LAM.3.48",
+          "line_type": "q2",
           "text": "My eyes flow with rivers of tears at the destruction of my people."
         },
         {
           "verse": 49,
+          "usfm": "LAM.3.49",
+          "line_type": "q1",
           "text": "“My tears will pour out in a ceaseless stream"
         },
         {
           "verse": 50,
+          "usfm": "LAM.3.50",
+          "line_type": "q2",
           "text": "Until the Lord looks down from heaven and sees us."
         },
         {
           "verse": 51,
+          "usfm": "LAM.3.51",
+          "line_type": "q2",
           "text": "My heart is grieved when I see what has happened to the women of the city."
         },
         {
           "verse": 52,
+          "usfm": "LAM.3.52",
+          "line_type": "q1",
           "text": "“I was trapped like a bird by enemies who had no cause to hate me."
         },
         {
           "verse": 53,
+          "usfm": "LAM.3.53",
+          "line_type": "q2",
           "text": "They threw me alive into a pit and closed the opening with a stone."
         },
         {
           "verse": 54,
+          "usfm": "LAM.3.54",
+          "line_type": "q2",
           "text": "Water began to close over me, and I thought death was near."
         },
         {
           "verse": 55,
+          "usfm": "LAM.3.55",
+          "line_type": "q1",
           "text": "“From the bottom of the pit, O Lord, I cried out to you,"
         },
         {
           "verse": 56,
+          "usfm": "LAM.3.56",
+          "line_type": "q2",
           "text": "And when I begged you to listen to my cry, you heard."
         },
         {
           "verse": 57,
+          "usfm": "LAM.3.57",
+          "line_type": "q2",
           "text": "You answered me and told me not to be afraid."
         },
         {
           "verse": 58,
+          "usfm": "LAM.3.58",
+          "line_type": "q1",
           "text": "“You came to my rescue, Lord, and saved my life."
         },
         {
           "verse": 59,
+          "usfm": "LAM.3.59",
+          "line_type": "q2",
           "text": "Judge in my favor; you know the wrongs done against me."
         },
         {
           "verse": 60,
+          "usfm": "LAM.3.60",
+          "line_type": "q2",
           "text": "You know how my enemies hate me and how they plot against me."
         },
         {
           "verse": 61,
+          "usfm": "LAM.3.61",
+          "line_type": "q1",
           "text": "“You have heard them insult me, O Lord; you know all their plots."
         },
         {
           "verse": 62,
+          "usfm": "LAM.3.62",
+          "line_type": "q2",
           "text": "All day long they talk about me and make their plans."
         },
         {
           "verse": 63,
+          "usfm": "LAM.3.63",
+          "line_type": "q2",
           "text": "From morning till night they make fun of me."
         },
         {
           "verse": 64,
+          "usfm": "LAM.3.64",
+          "line_type": "q1",
           "text": "“Punish them for what they have done, O Lord;"
         },
         {
           "verse": 65,
+          "usfm": "LAM.3.65",
+          "line_type": "q2",
           "text": "Curse them and fill them with despair!"
         },
         {
           "verse": 66,
+          "usfm": "LAM.3.66",
+          "line_type": "q2",
           "text": "Hunt them down and wipe them off the earth!”"
         }
       ],
       "verse_count": 66,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 37,
+          "usfm": "LAM.3.37",
+          "note_ref": "3.37:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The will … out; or No one can make anything happen unless the Lord is willing."
+        },
+        {
+          "verse": 39,
+          "usfm": "LAM.3.39",
+          "note_ref": "3.39:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Why should … sin?; or Why should we complain about being punished for sin, as long as we are still alive?"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "LAM.3.1",
+            "LAM.3.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "LAM.3.2",
+            "LAM.3.3"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "LAM.3.3",
+            "LAM.3.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "LAM.3.4",
+            "LAM.3.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "LAM.3.5",
+            "LAM.3.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "LAM.3.6",
+            "LAM.3.7"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "LAM.3.7",
+            "LAM.3.8"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "LAM.3.8",
+            "LAM.3.9"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "LAM.3.10",
+            "LAM.3.9"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "LAM.3.10",
+            "LAM.3.11"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "LAM.3.11",
+            "LAM.3.12"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "LAM.3.12",
+            "LAM.3.13"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "LAM.3.13",
+            "LAM.3.14"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "LAM.3.14",
+            "LAM.3.15"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "LAM.3.15",
+            "LAM.3.16"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "LAM.3.16",
+            "LAM.3.17"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "LAM.3.17",
+            "LAM.3.18"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "LAM.3.18",
+            "LAM.3.19"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "LAM.3.19",
+            "LAM.3.20"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "LAM.3.20",
+            "LAM.3.21"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "LAM.3.21",
+            "LAM.3.22"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "LAM.3.22",
+            "LAM.3.23"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 23,
+          "end_verse": 24,
+          "verses": [
+            23,
+            24
+          ],
+          "usfms": [
+            "LAM.3.23",
+            "LAM.3.24"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "LAM.3.24",
+            "LAM.3.25"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 25,
+          "end_verse": 26,
+          "verses": [
+            25,
+            26
+          ],
+          "usfms": [
+            "LAM.3.25",
+            "LAM.3.26"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q2",
+          "start_verse": 26,
+          "end_verse": 27,
+          "verses": [
+            26,
+            27
+          ],
+          "usfms": [
+            "LAM.3.26",
+            "LAM.3.27"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q1",
+          "start_verse": 27,
+          "end_verse": 28,
+          "verses": [
+            27,
+            28
+          ],
+          "usfms": [
+            "LAM.3.27",
+            "LAM.3.28"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q2",
+          "start_verse": 28,
+          "end_verse": 29,
+          "verses": [
+            28,
+            29
+          ],
+          "usfms": [
+            "LAM.3.28",
+            "LAM.3.29"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 29,
+          "end_verse": 30,
+          "verses": [
+            29,
+            30
+          ],
+          "usfms": [
+            "LAM.3.29",
+            "LAM.3.30"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 30,
+          "end_verse": 31,
+          "verses": [
+            30,
+            31
+          ],
+          "usfms": [
+            "LAM.3.30",
+            "LAM.3.31"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 31,
+          "end_verse": 32,
+          "verses": [
+            31,
+            32
+          ],
+          "usfms": [
+            "LAM.3.31",
+            "LAM.3.32"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q2",
+          "start_verse": 32,
+          "end_verse": 33,
+          "verses": [
+            32,
+            33
+          ],
+          "usfms": [
+            "LAM.3.32",
+            "LAM.3.33"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q1",
+          "start_verse": 33,
+          "end_verse": 34,
+          "verses": [
+            33,
+            34
+          ],
+          "usfms": [
+            "LAM.3.33",
+            "LAM.3.34"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q2",
+          "start_verse": 34,
+          "end_verse": 35,
+          "verses": [
+            34,
+            35
+          ],
+          "usfms": [
+            "LAM.3.34",
+            "LAM.3.35"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 35,
+          "end_verse": 36,
+          "verses": [
+            35,
+            36
+          ],
+          "usfms": [
+            "LAM.3.35",
+            "LAM.3.36"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 36,
+          "end_verse": 37,
+          "verses": [
+            36,
+            37
+          ],
+          "usfms": [
+            "LAM.3.36",
+            "LAM.3.37"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 37,
+          "end_verse": 38,
+          "verses": [
+            37,
+            38
+          ],
+          "usfms": [
+            "LAM.3.37",
+            "LAM.3.38"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q2",
+          "start_verse": 38,
+          "end_verse": 39,
+          "verses": [
+            38,
+            39
+          ],
+          "usfms": [
+            "LAM.3.38",
+            "LAM.3.39"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q1",
+          "start_verse": 39,
+          "end_verse": 40,
+          "verses": [
+            39,
+            40
+          ],
+          "usfms": [
+            "LAM.3.39",
+            "LAM.3.40"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q2",
+          "start_verse": 40,
+          "end_verse": 41,
+          "verses": [
+            40,
+            41
+          ],
+          "usfms": [
+            "LAM.3.40",
+            "LAM.3.41"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 41,
+          "end_verse": 42,
+          "verses": [
+            41,
+            42
+          ],
+          "usfms": [
+            "LAM.3.41",
+            "LAM.3.42"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 42,
+          "end_verse": 43,
+          "verses": [
+            42,
+            43
+          ],
+          "usfms": [
+            "LAM.3.42",
+            "LAM.3.43"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 43,
+          "end_verse": 44,
+          "verses": [
+            43,
+            44
+          ],
+          "usfms": [
+            "LAM.3.43",
+            "LAM.3.44"
+          ]
+        },
+        {
+          "index": 45,
+          "type": "q2",
+          "start_verse": 44,
+          "end_verse": 45,
+          "verses": [
+            44,
+            45
+          ],
+          "usfms": [
+            "LAM.3.44",
+            "LAM.3.45"
+          ]
+        },
+        {
+          "index": 46,
+          "type": "q1",
+          "start_verse": 45,
+          "end_verse": 46,
+          "verses": [
+            45,
+            46
+          ],
+          "usfms": [
+            "LAM.3.45",
+            "LAM.3.46"
+          ]
+        },
+        {
+          "index": 47,
+          "type": "q2",
+          "start_verse": 46,
+          "end_verse": 47,
+          "verses": [
+            46,
+            47
+          ],
+          "usfms": [
+            "LAM.3.46",
+            "LAM.3.47"
+          ]
+        },
+        {
+          "index": 48,
+          "type": "q2",
+          "start_verse": 47,
+          "end_verse": 48,
+          "verses": [
+            47,
+            48
+          ],
+          "usfms": [
+            "LAM.3.47",
+            "LAM.3.48"
+          ]
+        },
+        {
+          "index": 49,
+          "type": "q1",
+          "start_verse": 48,
+          "end_verse": 49,
+          "verses": [
+            48,
+            49
+          ],
+          "usfms": [
+            "LAM.3.48",
+            "LAM.3.49"
+          ]
+        },
+        {
+          "index": 50,
+          "type": "q2",
+          "start_verse": 49,
+          "end_verse": 50,
+          "verses": [
+            49,
+            50
+          ],
+          "usfms": [
+            "LAM.3.49",
+            "LAM.3.50"
+          ]
+        },
+        {
+          "index": 51,
+          "type": "q2",
+          "start_verse": 50,
+          "end_verse": 51,
+          "verses": [
+            50,
+            51
+          ],
+          "usfms": [
+            "LAM.3.50",
+            "LAM.3.51"
+          ]
+        },
+        {
+          "index": 52,
+          "type": "q1",
+          "start_verse": 51,
+          "end_verse": 52,
+          "verses": [
+            51,
+            52
+          ],
+          "usfms": [
+            "LAM.3.51",
+            "LAM.3.52"
+          ]
+        },
+        {
+          "index": 53,
+          "type": "q2",
+          "start_verse": 52,
+          "end_verse": 53,
+          "verses": [
+            52,
+            53
+          ],
+          "usfms": [
+            "LAM.3.52",
+            "LAM.3.53"
+          ]
+        },
+        {
+          "index": 54,
+          "type": "q2",
+          "start_verse": 53,
+          "end_verse": 54,
+          "verses": [
+            53,
+            54
+          ],
+          "usfms": [
+            "LAM.3.53",
+            "LAM.3.54"
+          ]
+        },
+        {
+          "index": 55,
+          "type": "q1",
+          "start_verse": 54,
+          "end_verse": 55,
+          "verses": [
+            54,
+            55
+          ],
+          "usfms": [
+            "LAM.3.54",
+            "LAM.3.55"
+          ]
+        },
+        {
+          "index": 56,
+          "type": "q2",
+          "start_verse": 55,
+          "end_verse": 56,
+          "verses": [
+            55,
+            56
+          ],
+          "usfms": [
+            "LAM.3.55",
+            "LAM.3.56"
+          ]
+        },
+        {
+          "index": 57,
+          "type": "q2",
+          "start_verse": 56,
+          "end_verse": 57,
+          "verses": [
+            56,
+            57
+          ],
+          "usfms": [
+            "LAM.3.56",
+            "LAM.3.57"
+          ]
+        },
+        {
+          "index": 58,
+          "type": "q1",
+          "start_verse": 57,
+          "end_verse": 58,
+          "verses": [
+            57,
+            58
+          ],
+          "usfms": [
+            "LAM.3.57",
+            "LAM.3.58"
+          ]
+        },
+        {
+          "index": 59,
+          "type": "q2",
+          "start_verse": 58,
+          "end_verse": 59,
+          "verses": [
+            58,
+            59
+          ],
+          "usfms": [
+            "LAM.3.58",
+            "LAM.3.59"
+          ]
+        },
+        {
+          "index": 60,
+          "type": "q2",
+          "start_verse": 59,
+          "end_verse": 60,
+          "verses": [
+            59,
+            60
+          ],
+          "usfms": [
+            "LAM.3.59",
+            "LAM.3.60"
+          ]
+        },
+        {
+          "index": 61,
+          "type": "q1",
+          "start_verse": 60,
+          "end_verse": 61,
+          "verses": [
+            60,
+            61
+          ],
+          "usfms": [
+            "LAM.3.60",
+            "LAM.3.61"
+          ]
+        },
+        {
+          "index": 62,
+          "type": "q2",
+          "start_verse": 61,
+          "end_verse": 62,
+          "verses": [
+            61,
+            62
+          ],
+          "usfms": [
+            "LAM.3.61",
+            "LAM.3.62"
+          ]
+        },
+        {
+          "index": 63,
+          "type": "q2",
+          "start_verse": 62,
+          "end_verse": 63,
+          "verses": [
+            62,
+            63
+          ],
+          "usfms": [
+            "LAM.3.62",
+            "LAM.3.63"
+          ]
+        },
+        {
+          "index": 64,
+          "type": "q1",
+          "start_verse": 63,
+          "end_verse": 64,
+          "verses": [
+            63,
+            64
+          ],
+          "usfms": [
+            "LAM.3.63",
+            "LAM.3.64"
+          ]
+        },
+        {
+          "index": 65,
+          "type": "q2",
+          "start_verse": 64,
+          "end_verse": 65,
+          "verses": [
+            64,
+            65
+          ],
+          "usfms": [
+            "LAM.3.64",
+            "LAM.3.65"
+          ]
+        },
+        {
+          "index": 66,
+          "type": "q2",
+          "start_verse": 65,
+          "end_verse": 66,
+          "verses": [
+            65,
+            66
+          ],
+          "usfms": [
+            "LAM.3.65",
+            "LAM.3.66"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -517,9 +3515,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/LAM/3-022a7402df9ec06171b064847cdc534e.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 66,
+          "parsed_count": 66,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/LAM.3.GNT",
+        "reference": {
+          "usfm": [
+            "LAM.3"
+          ],
+          "human": "Lamentations 3",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "LAM.2"
+          ],
+          "human": "Lamentations 2",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "LAM.4"
+          ],
+          "human": "Lamentations 4",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 4,
       "chapter_usfm": "LAM.4",
@@ -528,96 +3583,742 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "LAM.4.1",
+          "line_type": "q1",
           "text": "Our glittering gold has grown dull;the stones of the Temple lie scattered in the streets."
         },
         {
           "verse": 2,
+          "usfm": "LAM.4.2",
+          "line_type": "q1",
           "text": "Zion's young people were as precious to us as gold,but now they are treated like common clay pots."
         },
         {
           "verse": 3,
+          "usfm": "LAM.4.3",
+          "line_type": "q1",
           "text": "Even a mother wolf will nurse her cubs,but my people are like ostriches, cruel to their young."
         },
         {
           "verse": 4,
+          "usfm": "LAM.4.4",
+          "line_type": "q1",
           "text": "They let their babies die of hunger and thirst;children are begging for food that no one will give them."
         },
         {
           "verse": 5,
+          "usfm": "LAM.4.5",
+          "line_type": "q1",
           "text": "People who once ate the finest foods die starving in the streets;those raised in luxury are pawing through garbage for food."
         },
         {
           "verse": 6,
+          "usfm": "LAM.4.6",
+          "line_type": "q1",
           "text": "My people have been punished even more than the inhabitants of Sodom,which met a sudden downfall at the hands of God."
         },
         {
           "verse": 7,
+          "usfm": "LAM.4.7",
+          "line_type": "q1",
           "text": "Our princes were undefiled and pure as snow,vigorous and strong, glowing with health."
         },
         {
           "verse": 8,
+          "usfm": "LAM.4.8",
+          "line_type": "q1",
           "text": "Now they lie unknown in the streets, their faces blackened in death;their skin, dry as wood, has shriveled on their bones."
         },
         {
           "verse": 9,
+          "usfm": "LAM.4.9",
+          "line_type": "q1",
           "text": "Those who died in the war were better off than those who died later,who starved slowly to death, with no food to keep them alive."
         },
         {
           "verse": 10,
+          "usfm": "LAM.4.10",
+          "line_type": "q1",
           "text": "The disaster that came to my people brought horror;loving mothers boiled their own children for food."
         },
         {
           "verse": 11,
+          "usfm": "LAM.4.11",
+          "line_type": "q1",
           "text": "The Lord turned loose the full force of his fury;he lit a fire in Zion that burned it to the ground."
         },
         {
           "verse": 12,
+          "usfm": "LAM.4.12",
+          "line_type": "q1",
           "text": "No one anywhere, not even rulers of foreign nations,believed that any invader could enter Jerusalem's gates."
         },
         {
           "verse": 13,
+          "usfm": "LAM.4.13",
+          "line_type": "q1",
           "text": "But it happened, because her prophets sinned and her priests were guiltyof causing the death of innocent people."
         },
         {
           "verse": 14,
+          "usfm": "LAM.4.14",
+          "line_type": "q1",
           "text": "Her leaders wandered through the streets as though blind,so stained with blood that no one would touch them."
         },
         {
           "verse": 15,
+          "usfm": "LAM.4.15",
+          "line_type": "q1",
           "text": "“Get away!” people shouted. “You're defiled! Don't touch me!”So they wandered from nation to nation, welcomed by no one."
         },
         {
           "verse": 16,
+          "usfm": "LAM.4.16",
+          "line_type": "q1",
           "text": "The Lord had no more concern for them; he scattered them himself.He showed no regard for our priests and leaders."
         },
         {
           "verse": 17,
+          "usfm": "LAM.4.17",
+          "line_type": "q1",
           "text": "For help that never came, we looked until we could look no longer.We kept waiting for help from a nation that had none to give."
         },
         {
           "verse": 18,
+          "usfm": "LAM.4.18",
+          "line_type": "q1",
           "text": "The enemy was watching for us; we could not even walk in the streets.Our days were over; the end had come."
         },
         {
           "verse": 19,
+          "usfm": "LAM.4.19",
+          "line_type": "q1",
           "text": "Swifter than eagles swooping from the sky, they chased us down.They tracked us down in the hills; they took us by surprise in the desert."
         },
         {
           "verse": 20,
+          "usfm": "LAM.4.20",
+          "line_type": "q1",
           "text": "They captured the source of our life, the king the Lord had chosen,the one we had trusted to protect us from every invader."
         },
         {
           "verse": 21,
+          "usfm": "LAM.4.21",
+          "line_type": "q1",
           "text": "Laugh on, people of Edom and Uz; be glad while you can.Your disaster is coming too; you too will stagger naked in shame."
         },
         {
           "verse": 22,
+          "usfm": "LAM.4.22",
+          "line_type": "q1",
           "text": "Zion has paid for her sin; the Lord will not keep us in exile any longer.But Edom, the Lord will punish you; he will expose your guilty acts."
         }
       ],
       "verse_count": 22,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 6,
+          "usfm": "LAM.4.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.19.24"
+          ],
+          "text": "Gn 19.24"
+        },
+        {
+          "verse": 7,
+          "usfm": "LAM.4.7",
+          "note_ref": "4.7:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "princes; or Nazirites."
+        },
+        {
+          "verse": 10,
+          "usfm": "LAM.4.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DEU.28.57",
+            "EZK.5.10"
+          ],
+          "text": "Dt 28.57; Ez 5.10"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.4.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.4.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "LAM.4.1",
+            "LAM.4.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "LAM.4.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "LAM.4.2",
+            "LAM.4.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "LAM.4.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "LAM.4.3",
+            "LAM.4.4"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "LAM.4.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "LAM.4.4",
+            "LAM.4.5"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "LAM.4.5"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "LAM.4.5",
+            "LAM.4.6"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "LAM.4.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "LAM.4.6",
+            "LAM.4.7"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "LAM.4.7"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "LAM.4.7",
+            "LAM.4.8"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "LAM.4.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "LAM.4.8",
+            "LAM.4.9"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "LAM.4.9"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "LAM.4.10",
+            "LAM.4.9"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "LAM.4.10"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "LAM.4.10",
+            "LAM.4.11"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "LAM.4.11"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "LAM.4.11",
+            "LAM.4.12"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "LAM.4.12"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "LAM.4.12",
+            "LAM.4.13"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "LAM.4.13"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "LAM.4.13",
+            "LAM.4.14"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "LAM.4.14"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "LAM.4.14",
+            "LAM.4.15"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "LAM.4.15"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "LAM.4.15",
+            "LAM.4.16"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "LAM.4.16"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "LAM.4.16",
+            "LAM.4.17"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "LAM.4.17"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "LAM.4.17",
+            "LAM.4.18"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "LAM.4.18"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "LAM.4.18",
+            "LAM.4.19"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "LAM.4.19"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "LAM.4.19",
+            "LAM.4.20"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "LAM.4.20"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "LAM.4.20",
+            "LAM.4.21"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "LAM.4.21"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "LAM.4.21",
+            "LAM.4.22"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "LAM.4.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -628,9 +4329,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/LAM/4-b5eda91ca821dfdae6534a5dcd3b4142.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/LAM.4.GNT",
+        "reference": {
+          "usfm": [
+            "LAM.4"
+          ],
+          "human": "Lamentations 4",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "LAM.3"
+          ],
+          "human": "Lamentations 3",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "LAM.5"
+          ],
+          "human": "Lamentations 5",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "LAM",
       "chapter": 5,
       "chapter_usfm": "LAM.5",
@@ -639,96 +4397,712 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "LAM.5.1",
+          "line_type": "q1",
           "text": "Remember, O Lord, what has happened to us.Look at us, and see our disgrace."
         },
         {
           "verse": 2,
+          "usfm": "LAM.5.2",
+          "line_type": "q1",
           "text": "Our property is in the hands of strangers;foreigners are living in our homes."
         },
         {
           "verse": 3,
+          "usfm": "LAM.5.3",
+          "line_type": "q1",
           "text": "Our fathers have been killed by the enemy,and now our mothers are widows."
         },
         {
           "verse": 4,
+          "usfm": "LAM.5.4",
+          "line_type": "q1",
           "text": "We must pay for the water we drink;we must buy the wood we need for fuel."
         },
         {
           "verse": 5,
+          "usfm": "LAM.5.5",
+          "line_type": "q1",
           "text": "Driven hard like donkeys or camels,we are tired, but are allowed no rest."
         },
         {
           "verse": 6,
+          "usfm": "LAM.5.6",
+          "line_type": "q1",
           "text": "To get food enough to stay alive,we went begging to Egypt and Assyria."
         },
         {
           "verse": 7,
+          "usfm": "LAM.5.7",
+          "line_type": "q1",
           "text": "Our ancestors sinned, but now they are gone,and we are suffering for their sins."
         },
         {
           "verse": 8,
+          "usfm": "LAM.5.8",
+          "line_type": "q1",
           "text": "Our rulers are no better than slaves,and no one can save us from their power."
         },
         {
           "verse": 9,
+          "usfm": "LAM.5.9",
+          "line_type": "q1",
           "text": "Murderers roam through the countryside;we risk our lives when we look for food."
         },
         {
           "verse": 10,
+          "usfm": "LAM.5.10",
+          "line_type": "q1",
           "text": "Hunger has made us burn with feveruntil our skin is as hot as an oven."
         },
         {
           "verse": 11,
+          "usfm": "LAM.5.11",
+          "line_type": "q1",
           "text": "Our wives have been raped on Mount Zion itself;in every Judean village our daughters have been forced to submit."
         },
         {
           "verse": 12,
+          "usfm": "LAM.5.12",
+          "line_type": "q1",
           "text": "Our leaders have been taken and hanged;our elders are shown no respect."
         },
         {
           "verse": 13,
+          "usfm": "LAM.5.13",
+          "line_type": "q1",
           "text": "Our young men are forced to grind grain like slaves;boys go staggering under heavy loads of wood."
         },
         {
           "verse": 14,
+          "usfm": "LAM.5.14",
+          "line_type": "q1",
           "text": "The old people no longer sit at the city gate,and the young people no longer make music."
         },
         {
           "verse": 15,
+          "usfm": "LAM.5.15",
+          "line_type": "q1",
           "text": "Happiness has gone out of our lives;grief has taken the place of our dances."
         },
         {
           "verse": 16,
+          "usfm": "LAM.5.16",
+          "line_type": "q1",
           "text": "Nothing is left of all we were proud of.We sinned, and now we are doomed."
         },
         {
           "verse": 17,
+          "usfm": "LAM.5.17",
+          "line_type": "q1",
           "text": "We are sick at our very heartsand can hardly see through our tears,"
         },
         {
           "verse": 18,
+          "usfm": "LAM.5.18",
+          "line_type": "q1",
           "text": "because Mount Zion lies lonely and deserted,and wild jackals prowl through its ruins."
         },
         {
           "verse": 19,
+          "usfm": "LAM.5.19",
+          "line_type": "q1",
           "text": "But you, O Lord, are king foreverand will rule to the end of time."
         },
         {
           "verse": 20,
+          "usfm": "LAM.5.20",
+          "line_type": "q1",
           "text": "Why have you abandoned us so long?Will you ever remember us again?"
         },
         {
           "verse": 21,
+          "usfm": "LAM.5.21",
+          "line_type": "q1",
           "text": "Bring us back to you, Lord! Bring us back!Restore our ancient glory."
         },
         {
           "verse": 22,
+          "usfm": "LAM.5.22",
+          "line_type": "q1",
           "text": "Or have you rejected us forever?Is there no limit to your anger?"
         }
       ],
       "verse_count": 22,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.5.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q2",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "LAM.5.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q1",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "LAM.5.1",
+            "LAM.5.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "q2",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "LAM.5.2"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "q1",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "LAM.5.2",
+            "LAM.5.3"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q2",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "LAM.5.3"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "LAM.5.3",
+            "LAM.5.4"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "q2",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "LAM.5.4"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "q1",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "LAM.5.4",
+            "LAM.5.5"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "q2",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "LAM.5.5"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "q1",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "LAM.5.5",
+            "LAM.5.6"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "q2",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "LAM.5.6"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "q1",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "LAM.5.6",
+            "LAM.5.7"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "LAM.5.7"
+          ]
+        },
+        {
+          "index": 15,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 8,
+          "verses": [
+            7,
+            8
+          ],
+          "usfms": [
+            "LAM.5.7",
+            "LAM.5.8"
+          ]
+        },
+        {
+          "index": 16,
+          "type": "q2",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "LAM.5.8"
+          ]
+        },
+        {
+          "index": 17,
+          "type": "q1",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "LAM.5.8",
+            "LAM.5.9"
+          ]
+        },
+        {
+          "index": 18,
+          "type": "q2",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "LAM.5.9"
+          ]
+        },
+        {
+          "index": 19,
+          "type": "q1",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "LAM.5.10",
+            "LAM.5.9"
+          ]
+        },
+        {
+          "index": 20,
+          "type": "q2",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "LAM.5.10"
+          ]
+        },
+        {
+          "index": 21,
+          "type": "q1",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "LAM.5.10",
+            "LAM.5.11"
+          ]
+        },
+        {
+          "index": 22,
+          "type": "q2",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "LAM.5.11"
+          ]
+        },
+        {
+          "index": 23,
+          "type": "q1",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "LAM.5.11",
+            "LAM.5.12"
+          ]
+        },
+        {
+          "index": 24,
+          "type": "q2",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "LAM.5.12"
+          ]
+        },
+        {
+          "index": 25,
+          "type": "q1",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "LAM.5.12",
+            "LAM.5.13"
+          ]
+        },
+        {
+          "index": 26,
+          "type": "q2",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "LAM.5.13"
+          ]
+        },
+        {
+          "index": 27,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "LAM.5.13",
+            "LAM.5.14"
+          ]
+        },
+        {
+          "index": 28,
+          "type": "q2",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "LAM.5.14"
+          ]
+        },
+        {
+          "index": 29,
+          "type": "q1",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "LAM.5.14",
+            "LAM.5.15"
+          ]
+        },
+        {
+          "index": 30,
+          "type": "q2",
+          "start_verse": 15,
+          "end_verse": 15,
+          "verses": [
+            15
+          ],
+          "usfms": [
+            "LAM.5.15"
+          ]
+        },
+        {
+          "index": 31,
+          "type": "q1",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "LAM.5.15",
+            "LAM.5.16"
+          ]
+        },
+        {
+          "index": 32,
+          "type": "q2",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "LAM.5.16"
+          ]
+        },
+        {
+          "index": 33,
+          "type": "q1",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "LAM.5.16",
+            "LAM.5.17"
+          ]
+        },
+        {
+          "index": 34,
+          "type": "q2",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "LAM.5.17"
+          ]
+        },
+        {
+          "index": 35,
+          "type": "q1",
+          "start_verse": 17,
+          "end_verse": 18,
+          "verses": [
+            17,
+            18
+          ],
+          "usfms": [
+            "LAM.5.17",
+            "LAM.5.18"
+          ]
+        },
+        {
+          "index": 36,
+          "type": "q2",
+          "start_verse": 18,
+          "end_verse": 18,
+          "verses": [
+            18
+          ],
+          "usfms": [
+            "LAM.5.18"
+          ]
+        },
+        {
+          "index": 37,
+          "type": "q1",
+          "start_verse": 18,
+          "end_verse": 19,
+          "verses": [
+            18,
+            19
+          ],
+          "usfms": [
+            "LAM.5.18",
+            "LAM.5.19"
+          ]
+        },
+        {
+          "index": 38,
+          "type": "q2",
+          "start_verse": 19,
+          "end_verse": 19,
+          "verses": [
+            19
+          ],
+          "usfms": [
+            "LAM.5.19"
+          ]
+        },
+        {
+          "index": 39,
+          "type": "q1",
+          "start_verse": 19,
+          "end_verse": 20,
+          "verses": [
+            19,
+            20
+          ],
+          "usfms": [
+            "LAM.5.19",
+            "LAM.5.20"
+          ]
+        },
+        {
+          "index": 40,
+          "type": "q2",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "LAM.5.20"
+          ]
+        },
+        {
+          "index": 41,
+          "type": "q1",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "LAM.5.20",
+            "LAM.5.21"
+          ]
+        },
+        {
+          "index": 42,
+          "type": "q2",
+          "start_verse": 21,
+          "end_verse": 21,
+          "verses": [
+            21
+          ],
+          "usfms": [
+            "LAM.5.21"
+          ]
+        },
+        {
+          "index": 43,
+          "type": "q1",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "LAM.5.21",
+            "LAM.5.22"
+          ]
+        },
+        {
+          "index": 44,
+          "type": "q2",
+          "start_verse": 22,
+          "end_verse": 22,
+          "verses": [
+            22
+          ],
+          "usfms": [
+            "LAM.5.22"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -739,7 +5113,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/LAM/5-7e95711ef4fde2de09772179956adc57.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 22,
+          "parsed_count": 22,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/LAM.5.GNT",
+        "reference": {
+          "usfm": [
+            "LAM.5"
+          ],
+          "human": "Lamentations 5",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "LAM.4"
+          ],
+          "human": "Lamentations 4",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "EZK.INTRO1"
+          ],
+          "human": "Ezekiel Introduction",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

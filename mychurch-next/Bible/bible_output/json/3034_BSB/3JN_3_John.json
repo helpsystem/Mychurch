@@ -11,6 +11,7 @@
   "total_verses": 14,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "3JN",
       "chapter": 1,
       "chapter_usfm": "3JN.1",
@@ -19,77 +20,282 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "3JN.1.1",
+          "line_type": "p",
           "text": "The elder,To the beloved Gaius, whom I love in the truth:"
         },
         {
           "verse": 2,
+          "usfm": "3JN.1.2",
+          "line_type": "p",
           "text": "Beloved, I pray that in every way you may prosper and enjoy good health, as your soul also prospers."
         },
         {
           "verse": 3,
+          "usfm": "3JN.1.3",
+          "line_type": "p",
           "text": "For I was overjoyed when the brothers came and testified about your devotion to the truth, in which you continue to walk."
         },
         {
           "verse": 4,
+          "usfm": "3JN.1.4",
+          "line_type": "p",
           "text": "I have no greater joy than to hear that my children are walking in the truth."
         },
         {
           "verse": 5,
+          "usfm": "3JN.1.5",
+          "line_type": "p",
           "text": "Beloved, you are faithful in what you are doing for the brothers, and especially since they are strangers to you."
         },
         {
           "verse": 6,
+          "usfm": "3JN.1.6",
+          "line_type": "p",
           "text": "They have testified to the church about your love. You will do well to send them on their way in a manner worthy of God."
         },
         {
           "verse": 7,
+          "usfm": "3JN.1.7",
+          "line_type": "p",
           "text": "For they went out on behalf of the Name, accepting nothing from the Gentiles."
         },
         {
           "verse": 8,
+          "usfm": "3JN.1.8",
+          "line_type": "p",
           "text": "Therefore we ought to support such men, so that we may be fellow workers for the truth."
         },
         {
           "verse": 9,
+          "usfm": "3JN.1.9",
+          "line_type": "p",
           "text": "I have written to the church about this, but Diotrephes, who loves to be first, will not accept our instruction."
         },
         {
           "verse": 10,
+          "usfm": "3JN.1.10",
+          "line_type": "p",
           "text": "So if I come, I will call attention to his malicious slander against us. And unsatisfied with that, he refuses to welcome the brothers and forbids those who want to do so, even putting them out of the church."
         },
         {
           "verse": 11,
+          "usfm": "3JN.1.11",
+          "line_type": "p",
           "text": "Beloved, do not imitate what is evil, but what is good. The one who does good is of God; the one who does evil has not seen God."
         },
         {
           "verse": 12,
+          "usfm": "3JN.1.12",
+          "line_type": "p",
           "text": "Demetrius has received a good testimony from everyone, and from the truth itself. We also testify for him, and you know that our testimony is true."
         },
         {
           "verse": 13,
+          "usfm": "3JN.1.13",
+          "line_type": "p",
           "text": "I have many things to write to you, but I would prefer not to do so with pen and ink."
         },
         {
           "verse": 14,
+          "usfm": "3JN.1.14",
+          "line_type": "p",
           "text": "Instead, I hope to see you soon and speak with you face to face.Peace to you.The friends here send you greetings.Greet each of our friends there by name."
         }
       ],
       "verse_count": 14,
       "headings": [
         {
-          "before_verse": 4,
+          "before_verse": 5,
           "text": "Gaius Commended for Hospitality"
         },
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Diotrephes and Demetrius"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "Conclusion"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 9,
+          "usfm": "3JN.1.9",
+          "note_ref": "1:9",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally I have written something to the church"
+        },
+        {
+          "verse": 14,
+          "usfm": "3JN.1.14",
+          "note_ref": "1:14",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally and we will speak mouth to mouth; some translators begin a new verse (15) after face to face."
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "3JN.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "3JN.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "3JN.1.1",
+            "3JN.1.2",
+            "3JN.1.3",
+            "3JN.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 8,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "3JN.1.4",
+            "3JN.1.5",
+            "3JN.1.6",
+            "3JN.1.7",
+            "3JN.1.8"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "3JN.1.10",
+            "3JN.1.8",
+            "3JN.1.9"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "3JN.1.10",
+            "3JN.1.11"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 12,
+          "verses": [
+            11,
+            12
+          ],
+          "usfms": [
+            "3JN.1.11",
+            "3JN.1.12"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 14,
+          "verses": [
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "3JN.1.12",
+            "3JN.1.13",
+            "3JN.1.14"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "3JN.1.14"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "3JN.1.14"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "3JN.1.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 1804,
@@ -100,7 +306,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/1804/m4a/32k/3JN/1-5d1ae85e542feb65fa37ef247ca8afaa.m3u8?version_id=3034"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/3034/3JN.1.BSB",
+        "reference": {
+          "usfm": [
+            "3JN.1"
+          ],
+          "human": "3 John 1",
+          "version_id": 3034
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2JN.1"
+          ],
+          "human": "2 John 1",
+          "toc": true,
+          "version_id": 3034
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "toc": true,
+          "version_id": 3034
+        }
+      },
+      "version_meta": {
+        "id": 3034,
+        "abbreviation": "BSB",
+        "local_abbreviation": "BSB",
+        "title": "Berean Standard Bible",
+        "local_title": "Berean Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "BSB Publishing, LLC"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 48,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 1,
       "chapter_usfm": "JON.1",
@@ -19,85 +20,395 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.1.1",
+          "line_type": "p",
           "text": "And the word of Yahweh came to Jonah the son of Amittai, saying,"
         },
         {
           "verse": 2,
+          "usfm": "JON.1.2",
+          "line_type": "p",
           "text": "“Get up! Go to the great city Nineveh and cry out against her, because their evil has come up before me.”"
         },
         {
           "verse": 3,
+          "usfm": "JON.1.3",
+          "line_type": "p",
           "text": "But Jonah set out to flee toward Tarshish from the presence of Yahweh. And he went down to Joppa and found a merchant ship going to Tarshish, and paid her fare, and went on board her to go with them toward Tarshish from the presence of Yahweh."
         },
         {
           "verse": 4,
+          "usfm": "JON.1.4",
+          "line_type": "p",
           "text": "And Yahweh hurled a great wind upon the sea, and it was a great storm on the sea, and the merchant ship was in danger of breaking up."
         },
         {
           "verse": 5,
+          "usfm": "JON.1.5",
+          "line_type": "p",
           "text": "And the mariners were afraid, and each cried out to his god. And they threw the contents that were in the merchant ship into the sea to lighten it for them. And meanwhile Jonah went down into the hold of the vessel and lay down and fell asleep."
         },
         {
           "verse": 6,
+          "usfm": "JON.1.6",
+          "line_type": "p",
           "text": "And the captain of the ship approached him and said to him, “Why are you sound asleep? Get up! Call on your god! Perhaps your god will take notice of us and we won’t perish!”"
         },
         {
           "verse": 7,
+          "usfm": "JON.1.7",
+          "line_type": "p",
           "text": "And they said to one another, “Come, let us cast lots so that we may know on whose account this disaster has come on us!” And they cast lots, and the lot fell on Jonah."
         },
         {
           "verse": 8,
+          "usfm": "JON.1.8",
+          "line_type": "p",
           "text": "So they said to him, “Please tell us whoever is responsible that this disaster has come upon us! What is your occupation? And from where do you come? What is your country? And from which people are you?”"
         },
         {
           "verse": 9,
+          "usfm": "JON.1.9",
+          "line_type": "p",
           "text": "And he said to them, “I am a Hebrew, and I fear Yahweh, the God of heaven, who made the sea and the dry land.”"
         },
         {
           "verse": 10,
+          "usfm": "JON.1.10",
+          "line_type": "p",
           "text": "Then the men were greatly afraid, and they said to him, “What is this you have done?” because they knew that he was fleeing from the presence of Yahweh (because he had told them)."
         },
         {
           "verse": 11,
+          "usfm": "JON.1.11",
+          "line_type": "p",
           "text": "So they said to him, “What shall we do to you so that the sea may quiet down for us?” because the sea was growing more and more tempestuous."
         },
         {
           "verse": 12,
+          "usfm": "JON.1.12",
+          "line_type": "p",
           "text": "And he said to them, “Pick me up and hurl me into the sea so that the sea may quiet down for you, because I know that on account of me this great storm has come upon you all.”"
         },
         {
           "verse": 13,
+          "usfm": "JON.1.13",
+          "line_type": "p",
           "text": "But the men rowed hard to bring the ship back to the dry land, and they could not do so because the sea was growing more and more tempestuous against them."
         },
         {
           "verse": 14,
+          "usfm": "JON.1.14",
+          "line_type": "p",
           "text": "So they cried out to Yahweh, and they said, “O Yahweh! Please do not let us perish because of this man’s life, and do not make us guilty of innocent blood, because you, O Yahweh, did what you wanted.”"
         },
         {
           "verse": 15,
+          "usfm": "JON.1.15",
+          "line_type": "p",
           "text": "And they picked Jonah up and hurled him into the sea, and the sea ceased from its raging."
         },
         {
           "verse": 16,
+          "usfm": "JON.1.16",
+          "line_type": "p",
           "text": "So the men feared Yahweh greatly, and they offered a sacrifice to Yahweh and made vows."
         },
         {
           "verse": 17,
+          "usfm": "JON.1.17",
+          "line_type": "p",
           "text": "And Yahweh provided a large fish to swallow up Jonah, and Jonah was in the belly of the fish three days and three nights."
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Jonah Is Swallowed by a Fish and Prays to Yahweh"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "JON.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “to my face”"
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.1.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from to face of”"
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.1.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from to face of”"
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “threatened to be broken up”"
+        },
+        {
+          "verse": 5,
+          "usfm": "JON.1.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “objects”"
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “commander”"
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “in a deep sleep”"
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the god,” with the article indicating previous reference"
+        },
+        {
+          "verse": 7,
+          "usfm": "JON.1.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “each to his friend/companion”"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.1.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “were afraid with a great fear”"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.1.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the men” but this is redundant in English"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.1.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from before the face of”"
+        },
+        {
+          "verse": 11,
+          "usfm": "JON.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “going/growing and storming”"
+        },
+        {
+          "verse": 13,
+          "usfm": "JON.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Here the direct object is supplied from context"
+        },
+        {
+          "verse": 13,
+          "usfm": "JON.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “going/growing and storming”"
+        },
+        {
+          "verse": 14,
+          "usfm": "JON.1.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “do not give innocent blood on us”"
+        },
+        {
+          "verse": 16,
+          "usfm": "JON.1.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “with a great fear”"
+        },
+        {
+          "verse": 16,
+          "usfm": "JON.1.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “vowed”"
+        },
+        {
+          "verse": 17,
+          "usfm": "JON.1.17",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jonah 1:17–2:10 in the English Bible is 2:1–11 in the Hebrew Bible"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "JON.1.1",
+            "JON.1.2",
+            "JON.1.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 16,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "JON.1.10",
+            "JON.1.11",
+            "JON.1.12",
+            "JON.1.13",
+            "JON.1.14",
+            "JON.1.15",
+            "JON.1.16",
+            "JON.1.4",
+            "JON.1.5",
+            "JON.1.6",
+            "JON.1.7",
+            "JON.1.8",
+            "JON.1.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "JON.1.17"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/JON.1.LEB",
+        "reference": {
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "Jonah 1",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "OBA.1"
+          ],
+          "human": "Obadiah 1",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "Jonah 2",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 2,
       "chapter_usfm": "JON.2",
@@ -106,52 +417,230 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.2.1",
+          "line_type": "p",
           "text": "And Jonah prayed to Yahweh his God from the belly of the fish"
         },
         {
           "verse": 2,
+          "usfm": "JON.2.2",
+          "line_type": "p",
           "text": "and said, “I called from my distress to Yahweh, and he answered me; from the belly of Sheol I cried for help— you heard my voice."
         },
         {
           "verse": 3,
+          "usfm": "JON.2.3",
+          "line_type": null,
           "text": "And you threw me into the deep, into the heart of the seas, and the sea currents surrounded me; all your breakers and your surging waves passed over me."
         },
         {
           "verse": 4,
+          "usfm": "JON.2.4",
+          "line_type": null,
           "text": "And I said, ‘I am banished from your sight; how will I continue to look on your holy temple?’"
         },
         {
           "verse": 5,
+          "usfm": "JON.2.5",
+          "line_type": null,
           "text": "The waters encompassed me up to my neck; the deep surrounded me; seaweed was wrapped around my head."
         },
         {
           "verse": 6,
+          "usfm": "JON.2.6",
+          "line_type": null,
           "text": "I went down to the foundations of the mountains; the Underworld—its bars were around me forever. But you brought up my life from the pit, Yahweh my God."
         },
         {
           "verse": 7,
+          "usfm": "JON.2.7",
+          "line_type": null,
           "text": "When my life was ebbing away from me, I remembered Yahweh, and my prayer came to you, to your holy temple."
         },
         {
           "verse": 8,
+          "usfm": "JON.2.8",
+          "line_type": null,
           "text": "Those who worship vain idols forsake their loyal love."
         },
         {
           "verse": 9,
+          "usfm": "JON.2.9",
+          "line_type": null,
           "text": "But I, with a voice of thanksgiving, will sacrifice to you; I will fulfill what I have vowed. Deliverance belongs to Yahweh!”"
         },
         {
           "verse": 10,
+          "usfm": "JON.2.10",
+          "line_type": "p",
           "text": "And Yahweh spoke to the fish, and it vomited Jonah out on the dry land."
         }
       ],
       "verse_count": 10,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "JON.2.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from distress for me”"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.2.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "“Sheol” is a Hebrew term for the place where the dead reside (i.e. the Underworld)"
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.2.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “expelled,” or “driven away”"
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.2.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “however, I will continue to look on your holy temple”"
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.2.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “will I do again to look,” meaning “will I continue to look”"
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.2.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “on the temple of your holiness”"
+        },
+        {
+          "verse": 7,
+          "usfm": "JON.2.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “to the temple of your holiness”"
+        },
+        {
+          "verse": 8,
+          "usfm": "JON.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "This could mean (1) they forsake the loyal love they should show to God or (2) they forfeit forsake the loyal love that God would have shown to them"
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “salvation”"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JON.2.1",
+            "JON.2.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JON.2.10"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/JON.2.LEB",
+        "reference": {
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "Jonah 2",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.1"
+          ],
+          "human": "Jonah 1",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "Jonah 3",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 3,
       "chapter_usfm": "JON.3",
@@ -160,57 +649,283 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.3.1",
+          "line_type": "p",
           "text": "And the word of Yahweh came to Jonah a second time, saying,"
         },
         {
           "verse": 2,
+          "usfm": "JON.3.2",
+          "line_type": "p",
           "text": "“Get up! Go to Nineveh, the great city, and proclaim to it the message that I am telling you.”"
         },
         {
           "verse": 3,
+          "usfm": "JON.3.3",
+          "line_type": "p",
           "text": "So Jonah got up and went to Nineveh according to the word of Yahweh. Now Nineveh was an extraordinarily great city—a journey of three days across."
         },
         {
           "verse": 4,
+          "usfm": "JON.3.4",
+          "line_type": "p",
           "text": "And Jonah began to go into the city a journey of one day, and he cried out and said, “Forty more days and Nineveh will be demolished!”"
         },
         {
           "verse": 5,
+          "usfm": "JON.3.5",
+          "line_type": "p",
           "text": "And the people of Nineveh believed in God, and they proclaimed a fast and put on sackcloth—from the greatest of them to the least important."
         },
         {
           "verse": 6,
+          "usfm": "JON.3.6",
+          "line_type": "p",
           "text": "And the news reached the king of Nineveh, and he rose from his throne and removed his royal robe, put on sackcloth, and sat in the ashes."
         },
         {
           "verse": 7,
+          "usfm": "JON.3.7",
+          "line_type": "p",
           "text": "And he had a proclamation made, and said, “In Nineveh, by a decree of the king and his nobles: “No human being or animal, no herd or flock, shall taste anything! They must not eat, and they must not drink water!"
         },
         {
           "verse": 8,
+          "usfm": "JON.3.8",
+          "line_type": "p",
           "text": "And the human beings and the animals must be covered with sackcloth! And they must call forcefully to God, and each must turn from his evil way and from the violence that is in his hands."
         },
         {
           "verse": 9,
+          "usfm": "JON.3.9",
+          "line_type": "p",
           "text": "Who knows? God may relent and change his mind and turn from his blazing anger so that we will not perish.”"
         },
         {
           "verse": 10,
+          "usfm": "JON.3.10",
+          "line_type": "p",
           "text": "And God saw their deeds—that they turned from their evil ways—and God changed his mind about the evil that he had said he would bring upon them, and he did not do it."
         }
       ],
       "verse_count": 10,
       "headings": [
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "The King’s Proclamation"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 3,
+          "usfm": "JON.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “set out”"
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a great city to God” or “a great city to the gods,” a disputed phrase which may refer to God’s estimate or ownership of Nineveh, to the presence of many idols, or an idiom referring to the size of Nineveh (this translation takes the last view)"
+        },
+        {
+          "verse": 3,
+          "usfm": "JON.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "This phrase may also refer to a journey on which business was done, so that “three days” is the total elapsed time"
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.3.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “overthrown”"
+        },
+        {
+          "verse": 5,
+          "usfm": "JON.3.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “to the smallest of them”"
+        },
+        {
+          "verse": 8,
+          "usfm": "JON.3.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “their”"
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.3.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from the heat of his anger”"
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.3.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “and”"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.3.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Here the direct object is supplied from context in the English translation"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 5,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "usfms": [
+            "JON.3.1",
+            "JON.3.2",
+            "JON.3.3",
+            "JON.3.4",
+            "JON.3.5"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 7,
+          "verses": [
+            6,
+            7
+          ],
+          "usfms": [
+            "JON.3.6",
+            "JON.3.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "JON.3.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 9,
+          "verses": [
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "JON.3.7",
+            "JON.3.8",
+            "JON.3.9"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "JON.3.10"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/JON.3.LEB",
+        "reference": {
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "Jonah 3",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.2"
+          ],
+          "human": "Jonah 2",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "Jonah 4",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JON",
       "chapter": 4,
       "chapter_usfm": "JON.4",
@@ -219,54 +934,347 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JON.4.1",
+          "line_type": "p",
           "text": "And this was greatly displeasing to Jonah, and he became furious."
         },
         {
           "verse": 2,
+          "usfm": "JON.4.2",
+          "line_type": "p",
           "text": "And he prayed to Yahweh and said, “O Yahweh, was this not what I said while I was in my homeland? Therefore I originally fled to Tarshish, because I knew that you are a gracious and compassionate God, slow to anger and having great steadfast love, and one who relents concerning calamity."
         },
         {
           "verse": 3,
+          "usfm": "JON.4.3",
+          "line_type": "p",
           "text": "And so then, Yahweh, please take my life from me, because for me death is better than life!”"
         },
         {
           "verse": 4,
+          "usfm": "JON.4.4",
+          "line_type": "p",
           "text": "And Yahweh said, “Is it right for you to be angry?”"
         },
         {
           "verse": 5,
+          "usfm": "JON.4.5",
+          "line_type": "p",
           "text": "And Jonah went out from the city and sat down east of the city, and he made for himself a shelter there. And he sat under it in the shade, waiting to see what would happen with the city."
         },
         {
           "verse": 6,
+          "usfm": "JON.4.6",
+          "line_type": "p",
           "text": "And Yahweh God appointed a plant, and he made it grow up over Jonah to be a shade over his head, to save him from his discomfort. And Jonah was very glad about the plant."
         },
         {
           "verse": 7,
+          "usfm": "JON.4.7",
+          "line_type": "p",
           "text": "So God appointed a worm at daybreak the next day, and it attacked the plant, and it withered."
         },
         {
           "verse": 8,
+          "usfm": "JON.4.8",
+          "line_type": "p",
           "text": "And when the sun rose, God appointed a scorching east wind, and the sun beat down on Jonah’s head and he grew faint. And he asked that he could die and said, “My death is better than my life!”"
         },
         {
           "verse": 9,
+          "usfm": "JON.4.9",
+          "line_type": "p",
           "text": "So God said to Jonah, “Is it right for you to be angry about the plant?” And he said, “It is right for me to be angry enough to die!”"
         },
         {
           "verse": 10,
+          "usfm": "JON.4.10",
+          "line_type": "p",
           "text": "But Yahweh said, “You are troubled about the plant, for which you did not labor nor cause it to grow. It grew up in a night and it perished in a night!"
         },
         {
           "verse": 11,
+          "usfm": "JON.4.11",
+          "line_type": "p",
           "text": "And should I not be concerned about Nineveh, the great city, in which there are more than one hundred and twenty thousand people who do not know right from left, plus many animals?”"
         }
       ],
       "verse_count": 11,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JON.4.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “it”"
+        },
+        {
+          "verse": 1,
+          "usfm": "JON.4.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “was displeasing with great displeasure”"
+        },
+        {
+          "verse": 1,
+          "usfm": "JON.4.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “it was hot for him”"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.4.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “my word”"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.4.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I did the first time to flee”"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.4.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “and great of steadfast love”"
+        },
+        {
+          "verse": 2,
+          "usfm": "JON.4.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, calamity sent by God as judgment"
+        },
+        {
+          "verse": 4,
+          "usfm": "JON.4.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Rightfully is it hot for you”; some take this to mean “Are you so very angry?” (Targum Jonah 4:4; see also JPS, NEB, NET)"
+        },
+        {
+          "verse": 5,
+          "usfm": "JON.4.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “until he would see”"
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.4.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Probably a castor oil plant, though some have suggested some type of gourd plant"
+        },
+        {
+          "verse": 6,
+          "usfm": "JON.4.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “was glad with great joy”"
+        },
+        {
+          "verse": 7,
+          "usfm": "JON.4.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “at the coming up of the dawn”"
+        },
+        {
+          "verse": 8,
+          "usfm": "JON.4.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “and it happened at the rising of the sun”"
+        },
+        {
+          "verse": 8,
+          "usfm": "JON.4.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “and he asked his soul to die”"
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.4.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “rightfully is it hot for you”; some take this to mean “Are you so very angry?” (Targum Jonah 4:4; see also JPS, NEB, NET)"
+        },
+        {
+          "verse": 9,
+          "usfm": "JON.4.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Rightfully it is hot for me until death”"
+        },
+        {
+          "verse": 10,
+          "usfm": "JON.4.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Which was a son of a night and as a son of a night it perished”"
+        },
+        {
+          "verse": 11,
+          "usfm": "JON.4.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “which there are in it”"
+        },
+        {
+          "verse": 11,
+          "usfm": "JON.4.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “than two ten myriad” (12 x 10,000)"
+        },
+        {
+          "verse": 11,
+          "usfm": "JON.4.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "“hand” is often supplied, but it is not clear just what deficiency is meant by this expression, which occurs only here in biblical Hebrew"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "JON.4.1",
+            "JON.4.2",
+            "JON.4.3",
+            "JON.4.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 9,
+          "verses": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "usfms": [
+            "JON.4.5",
+            "JON.4.6",
+            "JON.4.7",
+            "JON.4.8",
+            "JON.4.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "JON.4.10",
+            "JON.4.11"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/JON.4.LEB",
+        "reference": {
+          "usfm": [
+            "JON.4"
+          ],
+          "human": "Jonah 4",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JON.3"
+          ],
+          "human": "Jonah 3",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MIC.1"
+          ],
+          "human": "Micah 1",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

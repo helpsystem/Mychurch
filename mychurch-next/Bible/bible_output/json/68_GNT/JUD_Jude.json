@@ -11,6 +11,7 @@
   "total_verses": 25,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JUD",
       "chapter": 1,
       "chapter_usfm": "JUD.1",
@@ -19,121 +20,451 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JUD.1.1",
+          "line_type": "p",
           "text": "From Jude, servant of Jesus Christ, and brother of James—To those who have been called by God, who live in the love of God the Father and the protection of Jesus Christ:"
         },
         {
           "verse": 2,
+          "usfm": "JUD.1.2",
+          "line_type": "p",
           "text": "May mercy, peace, and love be yours in full measure."
         },
         {
           "verse": 3,
+          "usfm": "JUD.1.3",
+          "line_type": "p",
           "text": "My dear friends, I was doing my best to write to you about the salvation we share in common, when I felt the need of writing at once to encourage you to fight on for the faith which once and for all God has given to his people."
         },
         {
           "verse": 4,
+          "usfm": "JUD.1.4",
+          "line_type": "p",
           "text": "For some godless people have slipped in unnoticed among us, persons who distort the message about the grace of our God in order to excuse their immoral ways, and who reject Jesus Christ, our only Master and Lord. Long ago the Scriptures predicted the condemnation they have received."
         },
         {
           "verse": 5,
+          "usfm": "JUD.1.5",
+          "line_type": "p",
           "text": "For even though you know all this, I want to remind you of how the Lord once rescued the people of Israel from Egypt, but afterward destroyed those who did not believe."
         },
         {
           "verse": 6,
+          "usfm": "JUD.1.6",
+          "line_type": "p",
           "text": "Remember the angels who did not stay within the limits of their proper authority, but abandoned their own dwelling place: they are bound with eternal chains in the darkness below, where God is keeping them for that great Day on which they will be condemned."
         },
         {
           "verse": 7,
+          "usfm": "JUD.1.7",
+          "line_type": "p",
           "text": "Remember Sodom and Gomorrah, and the nearby towns, whose people acted as those angels did and indulged in sexual immorality and perversion: they suffer the punishment of eternal fire as a plain warning to all."
         },
         {
           "verse": 8,
+          "usfm": "JUD.1.8",
+          "line_type": "p",
           "text": "In the same way also, these people have visions which make them sin against their own bodies; they despise God's authority and insult the glorious beings above."
         },
         {
           "verse": 9,
+          "usfm": "JUD.1.9",
+          "line_type": "p",
           "text": "Not even the chief angel Michael did this. In his quarrel with the Devil, when they argued about who would have the body of Moses, Michael did not dare condemn the Devil with insulting words, but said, “The Lord rebuke you!”"
         },
         {
           "verse": 10,
+          "usfm": "JUD.1.10",
+          "line_type": "p",
           "text": "But these people attack with insults anything they do not understand; and those things that they know by instinct, like wild animals, are the very things that destroy them."
         },
         {
           "verse": 11,
+          "usfm": "JUD.1.11",
+          "line_type": "p",
           "text": "How terrible for them! They have followed the way that Cain took. For the sake of money they have given themselves over to the error that Balaam committed. They have rebelled as Korah rebelled, and like him they are destroyed."
         },
         {
           "verse": 12,
+          "usfm": "JUD.1.12",
+          "line_type": "p",
           "text": "With their shameless carousing they are like dirty spots in your fellowship meals. They take care only of themselves. They are like clouds carried along by the wind, but bringing no rain. They are like trees that bear no fruit, even in autumn, trees that have been pulled up by the roots and are completely dead."
         },
         {
           "verse": 13,
+          "usfm": "JUD.1.13",
+          "line_type": "p",
           "text": "They are like wild waves of the sea, with their shameful deeds showing up like foam. They are like wandering stars, for whom God has reserved a place forever in the deepest darkness."
         },
         {
           "verse": 14,
+          "usfm": "JUD.1.14",
+          "line_type": "p",
           "text": "It was Enoch, the seventh direct descendant from Adam, who long ago prophesied this about them: “The Lord will come with many thousands of his holy angels"
         },
         {
           "verse": 15,
+          "usfm": "JUD.1.15",
+          "line_type": "p",
           "text": "to bring judgment on all, to condemn them all for the godless deeds they have performed and for all the terrible words that godless sinners have spoken against him!”"
         },
         {
           "verse": 16,
+          "usfm": "JUD.1.16",
+          "line_type": "p",
           "text": "These people are always grumbling and blaming others; they follow their own evil desires; they brag about themselves and flatter others in order to get their own way."
         },
         {
           "verse": 17,
+          "usfm": "JUD.1.17",
+          "line_type": "p",
           "text": "But remember, my friends, what you were told in the past by the apostles of our Lord Jesus Christ."
         },
         {
           "verse": 18,
+          "usfm": "JUD.1.18",
+          "line_type": "p",
           "text": "They said to you, “When the last days come, people will appear who will make fun of you, people who follow their own godless desires.”"
         },
         {
           "verse": 19,
+          "usfm": "JUD.1.19",
+          "line_type": "p",
           "text": "These are the people who cause divisions, who are controlled by their natural desires, who do not have the Spirit."
         },
         {
           "verse": 20,
+          "usfm": "JUD.1.20",
+          "line_type": "p",
           "text": "But you, my friends, keep on building yourselves up on your most sacred faith. Pray in the power of the Holy Spirit,"
         },
         {
           "verse": 21,
+          "usfm": "JUD.1.21",
+          "line_type": "p",
           "text": "and keep yourselves in the love of God, as you wait for our Lord Jesus Christ in his mercy to give you eternal life."
         },
         {
           "verse": 22,
+          "usfm": "JUD.1.22",
+          "line_type": "p",
           "text": "Show mercy toward those who have doubts;"
         },
         {
           "verse": 23,
+          "usfm": "JUD.1.23",
+          "line_type": "p",
           "text": "save others by snatching them out of the fire; and to others show mercy mixed with fear, but hate their very clothes, stained by their sinful lusts."
         },
         {
           "verse": 24,
+          "usfm": "JUD.1.24",
+          "line_type": "p",
           "text": "To him who is able to keep you from falling and to bring you faultless and joyful before his glorious presence—"
         },
         {
           "verse": 25,
+          "usfm": "JUD.1.25",
+          "line_type": "p",
           "text": "to the only God our Savior, through Jesus Christ our Lord, be glory, majesty, might, and authority, from all ages past, and now, and forever and ever! Amen."
         }
       ],
       "verse_count": 25,
       "headings": [
         {
-          "before_verse": 2,
+          "before_verse": 3,
           "text": "False Teachers"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Warnings and Instructions"
         },
         {
-          "before_verse": 23,
+          "before_verse": 24,
           "text": "Prayer of Praise"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JUD.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "MAT.13.55",
+            "MRK.6.3"
+          ],
+          "text": "Mt 13.55; Mk 6.3"
+        },
+        {
+          "verse": 5,
+          "usfm": "JUD.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "EXO.12.51",
+            "NUM.14.29",
+            "NUM.14.30"
+          ],
+          "text": "Ex 12.51; Nu 14.29,30"
+        },
+        {
+          "verse": 5,
+          "usfm": "JUD.1.5",
+          "note_ref": "1.5:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "the Lord; some manuscripts have Jesus, which in Greek is the same as Joshua."
+        },
+        {
+          "verse": 7,
+          "usfm": "JUD.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.19.1+GEN.19.2+GEN.19.3+GEN.19.4+GEN.19.5+GEN.19.6+GEN.19.7+GEN.19.8+GEN.19.9+GEN.19.10+GEN.19.11+GEN.19.12+GEN.19.13+GEN.19.14+GEN.19.15+GEN.19.16+GEN.19.17+GEN.19.18+GEN.19.19+GEN.19.20+GEN.19.21+GEN.19.22+GEN.19.23+GEN.19.24"
+          ],
+          "text": "Gn 19.1-24"
+        },
+        {
+          "verse": 9,
+          "usfm": "JUD.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "DAN.10.13",
+            "DAN.10.21",
+            "DAN.12.1",
+            "REV.12.7",
+            "DEU.34.6",
+            "ZEC.3.2"
+          ],
+          "text": "Dn 10.13,21; 12.1; Rev 12.7; Dt 34.6; Zec 3.2"
+        },
+        {
+          "verse": 11,
+          "usfm": "JUD.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.4.3+GEN.4.4+GEN.4.5+GEN.4.6+GEN.4.7+GEN.4.8",
+            "NUM.22.1+NUM.22.2+NUM.22.3+NUM.22.4+NUM.22.5+NUM.22.6+NUM.22.7+NUM.22.8+NUM.22.9+NUM.22.10+NUM.22.11+NUM.22.12+NUM.22.13+NUM.22.14+NUM.22.15+NUM.22.16+NUM.22.17+NUM.22.18+NUM.22.19+NUM.22.20+NUM.22.21+NUM.22.22+NUM.22.23+NUM.22.24+NUM.22.25+NUM.22.26+NUM.22.27+NUM.22.28+NUM.22.29+NUM.22.30+NUM.22.31+NUM.22.32+NUM.22.33+NUM.22.34+NUM.22.35",
+            "NUM.16.1+NUM.16.2+NUM.16.3+NUM.16.4+NUM.16.5+NUM.16.6+NUM.16.7+NUM.16.8+NUM.16.9+NUM.16.10+NUM.16.11+NUM.16.12+NUM.16.13+NUM.16.14+NUM.16.15+NUM.16.16+NUM.16.17+NUM.16.18+NUM.16.19+NUM.16.20+NUM.16.21+NUM.16.22+NUM.16.23+NUM.16.24+NUM.16.25+NUM.16.26+NUM.16.27+NUM.16.28+NUM.16.29+NUM.16.30+NUM.16.31+NUM.16.32+NUM.16.33+NUM.16.34+NUM.16.35"
+          ],
+          "text": "Gn 4.3-8; Nu 22.1-35; Nu 16.1-35"
+        },
+        {
+          "verse": 14,
+          "usfm": "JUD.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "GEN.5.18",
+            "GEN.5.21+GEN.5.22+GEN.5.23+GEN.5.24"
+          ],
+          "text": "Gn 5.18,21-24"
+        },
+        {
+          "verse": 14,
+          "usfm": "JUD.1.14",
+          "note_ref": "1.14:",
+          "note_type": "footnote",
+          "references": [],
+          "text": "seventh: This numbering includes both the first and the last in the series of seven names from Adam to Enoch."
+        },
+        {
+          "verse": 18,
+          "usfm": "JUD.1.18",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [
+            "2PE.3.3"
+          ],
+          "text": "2 P 3.3"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JUD.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JUD.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "JUD.1.1",
+            "JUD.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 4,
+          "verses": [
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "JUD.1.2",
+            "JUD.1.3",
+            "JUD.1.4"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 7,
+          "verses": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "JUD.1.4",
+            "JUD.1.5",
+            "JUD.1.6",
+            "JUD.1.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 13,
+          "verses": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "usfms": [
+            "JUD.1.10",
+            "JUD.1.11",
+            "JUD.1.12",
+            "JUD.1.13",
+            "JUD.1.7",
+            "JUD.1.8",
+            "JUD.1.9"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 15,
+          "verses": [
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "JUD.1.13",
+            "JUD.1.14",
+            "JUD.1.15"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 15,
+          "end_verse": 16,
+          "verses": [
+            15,
+            16
+          ],
+          "usfms": [
+            "JUD.1.15",
+            "JUD.1.16"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 21,
+          "verses": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "usfms": [
+            "JUD.1.16",
+            "JUD.1.17",
+            "JUD.1.18",
+            "JUD.1.19",
+            "JUD.1.20",
+            "JUD.1.21"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 23,
+          "verses": [
+            21,
+            22,
+            23
+          ],
+          "usfms": [
+            "JUD.1.21",
+            "JUD.1.22",
+            "JUD.1.23"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 25,
+          "verses": [
+            23,
+            24,
+            25
+          ],
+          "usfms": [
+            "JUD.1.23",
+            "JUD.1.24",
+            "JUD.1.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 363,
@@ -144,7 +475,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/363/m4a/32k/JUD/1-6058913e8fff860a05bdff391f3ed040.m3u8?version_id=68"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 25,
+          "parsed_count": 25,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/68/JUD.1.GNT",
+        "reference": {
+          "usfm": [
+            "JUD.1"
+          ],
+          "human": "Jude 1",
+          "version_id": 68
+        },
+        "previous": {
+          "canonical": false,
+          "usfm": [
+            "JUD.INTRO1"
+          ],
+          "human": "Jude Introduction",
+          "toc": true,
+          "version_id": 68
+        },
+        "next": {
+          "canonical": false,
+          "usfm": [
+            "REV.INTRO1"
+          ],
+          "human": "Revelation Introduction",
+          "toc": true,
+          "version_id": 68
+        }
+      },
+      "version_meta": {
+        "id": 68,
+        "abbreviation": "GNT",
+        "local_abbreviation": "GNT",
+        "title": "Good News Translation",
+        "local_title": "Good News Translation",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "American Bible Society"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 17,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 1,
       "chapter_usfm": "MAL.1",
@@ -19,53 +20,247 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.1.1",
+          "line_type": "m",
           "text": "A Message. God’s Word to Israel through Malachi: God said, “I love you.”You replied, “Really? How have you loved us?”“Look at history” (this is God’s answer). “Look at how differently I’ve treated you, Jacob, from Esau: I loved Jacob and hated Esau. I reduced pretentious Esau to a molehill, turned his whole country into a ghost town.”"
         },
         {
           "verse": 4,
+          "usfm": "MAL.1.4",
+          "line_type": "p",
           "text": "When Edom (Esau) said, “We’ve been knocked down, but we’ll get up and start over, good as new,” God-of-the-Angel-Armies said, “Just try it and see how far you get. When I knock you down, you stay down. People will take one look at you and say, ‘Land of Evil!’ and ‘the God-cursed tribe!’"
         },
         {
           "verse": 5,
+          "usfm": "MAL.1.5",
+          "line_type": "p",
           "text": "“Yes, take a good look. Then you’ll see how faithfully I’ve loved you and you’ll want even more, saying, ‘May God be even greater, beyond the borders of Israel!’* * *"
         },
         {
           "verse": 6,
+          "usfm": "MAL.1.6",
+          "line_type": "p",
           "text": "“Isn’t it true that a son honors his father and a worker his master? So if I’m your Father, where’s the honor? If I’m your Master, where’s the respect?” God-of-the-Angel-Armies is calling you on the carpet: “You priests despise me!“You say, ‘Not so! How do we despise you?’“By your shoddy, sloppy, defiling worship.“You ask, ‘What do you mean, “defiling”? What’s defiling about it?’ “When you say, ‘The altar of God is not important anymore; worship of God is no longer a priority,’ that’s defiling. And when you offer worthless animals for sacrifices in worship, animals that you’re trying to get rid of—blind and sick and crippled animals—isn’t that defiling? Try a trick like that with your banker or your senator—how far do you think it will get you?” God-of-the-Angel-Armies asks you."
         },
         {
           "verse": 9,
+          "usfm": "MAL.1.9",
+          "line_type": "p",
           "text": "“Get on your knees and pray that I will be gracious to you. You priests have gotten everyone in trouble. With this kind of conduct, do you think I’ll pay attention to you?” God-of-the-Angel-Armies asks you."
         },
         {
           "verse": 10,
+          "usfm": "MAL.1.10",
+          "line_type": "p",
           "text": "“Why doesn’t one of you just shut the Temple doors and lock them? Then none of you can get in and play at religion with this silly, empty-headed worship. I am not pleased. The God-of-the-Angel-Armies is not pleased. And I don’t want any more of this so-called worship!"
         },
         {
           "verse": 11,
+          "usfm": "MAL.1.11",
+          "line_type": "m",
           "text": "“I am honored all over the world. And there are people who know how to worship me all over the world, who honor me by bringing their best to me. They’re saying it everywhere: ‘God is greater, this God-of-the-Angel-Armies.’ “All except you. Instead of honoring me, you profane me. You profane me when you say, ‘Worship is not important, and what we bring to worship is of no account,’ and when you say, ‘I’m bored—this doesn’t do anything for me.’ You act so superior, sticking your noses in the air—act superior to me, God-of-the-Angel-Armies! And when you do offer something to me, it’s a hand-me-down, or broken, or useless. Do you think I’m going to accept it? This is God speaking to you!"
         },
         {
           "verse": 14,
+          "usfm": "MAL.1.14",
+          "line_type": "p",
           "text": "“A curse on the person who makes a big show of doing something great for me—an expensive sacrifice, say—and then at the last minute brings in something puny and worthless! I’m a great king, God-of-the-Angel-Armies, honored far and wide, and I’ll not put up with it!”"
         }
       ],
       "verse_count": 8,
       "headings": [
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Offering"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "God"
         },
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Something Hand-Me-Down, Broken, or Useless"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.1.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MAL.1.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.1.4",
+            "MAL.1.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.1.5",
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 10,
+          "verses": [
+            9,
+            10
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "m",
+          "start_verse": 10,
+          "end_verse": 11,
+          "verses": [
+            10,
+            11
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.11"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MAL.1.11"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MAL.1.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -76,9 +271,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MAL/1-a429b34dda851bd77fec9e02baff469d.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 8,
+          "parsed_count": 8,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MAL.1.MSG",
+        "reference": {
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.14"
+          ],
+          "human": "Zechariah 14",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 2,
       "chapter_usfm": "MAL.2",
@@ -87,14 +339,20 @@
       "verses": [
         {
           "verse": 10,
+          "usfm": "MAL.2.10",
+          "line_type": "p",
           "text": "Don’t we all come from one Father? Aren’t we all created by the same God? So why can’t we get along? Why do we desecrate the covenant of our ancestors that binds us together? Judah has cheated on God—a sickening violation of trust in Israel and Jerusalem: Judah has desecrated the holiness of God by falling in love and running off with foreign women, women who worship alien gods. God’s curse on those who do this! Drive them out of house and home! They’re no longer fit to be part of the community no matter how many offerings they bring to God-of-the-Angel-Armies. And here’s a second offense: You fill the place of worship with your whining and sniveling because you don’t get what you want from God. Do you know why? Simple. Because God was there as a witness when you spoke your marriage vows to your young bride, and now you’ve broken those vows, broken the faith-bond with your vowed companion, your covenant wife. God, not you, made marriage. His Spirit inhabits even the smallest details of marriage. And what does he want from marriage? Children of God, that’s what. So guard the spirit of marriage within you. Don’t cheat on your spouse."
         },
         {
           "verse": 16,
+          "usfm": "MAL.2.16",
+          "line_type": "p",
           "text": "“I hate divorce,” says the God of Israel. God-of-the-Angel-Armies says, “I hate the violent dismembering of the ‘one flesh’ of marriage.” So watch yourselves. Don’t let your guard down. Don’t cheat."
         },
         {
           "verse": 17,
+          "usfm": "MAL.2.17",
+          "line_type": "p",
           "text": "You make God tired with all your talk.“How do we tire him out?” you ask.By saying, “God loves sinners and sin alike. God loves all.” And also by saying, “Judgment? God’s too nice to judge.”"
         }
       ],
@@ -106,6 +364,82 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MAL.2.10"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 10,
+          "verses": [
+            10
+          ],
+          "usfms": [
+            "MAL.2.10"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MAL.2.16"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "MAL.2.16",
+            "MAL.2.17"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -116,9 +450,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MAL/2-5f42dd2f07c3ad9740c76ac836358b81.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MAL.2.MSG",
+        "reference": {
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 3,
       "chapter_usfm": "MAL.3",
@@ -127,33 +518,167 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.3.1",
+          "line_type": "m",
           "text": "“Look! I’m sending my messenger on ahead to clear the way for me. Suddenly, out of the blue, the Leader you’ve been looking for will enter his Temple—yes, the Messenger of the Covenant, the one you’ve been waiting for. Look! He’s on his way!” A Message from the mouth of God-of-the-Angel-Armies. But who will be able to stand up to that coming? Who can survive his appearance?He’ll be like white-hot fire from the smelter’s furnace. He’ll be like the strongest lye soap at the laundry. He’ll take his place as a refiner of silver, as a cleanser of dirty clothes. He’ll scrub the Levite priests clean, refine them like gold and silver, until they’re fit for God, fit to present offerings of righteousness. Then, and only then, will Judah and Jerusalem be fit and pleasing to God, as they used to be in the years long ago.* * *"
         },
         {
           "verse": 5,
+          "usfm": "MAL.3.5",
+          "line_type": "p",
           "text": "“Yes, I’m on my way to visit you with Judgment. I’ll present compelling evidence against sorcerers, adulterers, liars, those who exploit workers, those who take advantage of widows and orphans, those who are inhospitable to the homeless—anyone and everyone who doesn’t honor me.” A Message from God-of-the-Angel-Armies.* * * “I am God—yes, I Am. I haven’t changed. And because I haven’t changed, you, the descendants of Jacob, haven’t been destroyed. You have a long history of ignoring my commands. You haven’t done a thing I’ve told you. Return to me so I can return to you,” says God-of-the-Angel-Armies.“You ask, ‘But how do we return?’ “Begin by being honest. Do honest people rob God? But you rob me day after day.“You ask, ‘How have we robbed you?’“The tithe and the offering—that’s how! And now you’re under a curse—the whole lot of you—because you’re robbing me. Bring your full tithe to the Temple treasury so there will be ample provisions in my Temple. Test me in this and see if I don’t open up heaven itself to you and pour out blessings beyond your wildest dreams. For my part, I will defend you against marauders, protect your wheat fields and vegetable gardens against plunderers.” The Message of God-of-the-Angel-Armies."
         },
         {
           "verse": 12,
+          "usfm": "MAL.3.12",
+          "line_type": "p",
           "text": "“You’ll be voted ‘Happiest Nation.’ You’ll experience what it’s like to be a country of grace.” God-of-the-Angel-Armies says so."
         },
         {
           "verse": 13,
+          "usfm": "MAL.3.13",
+          "line_type": "m",
           "text": "God says, “You have spoken hard, rude words to me.“You ask, ‘When did we ever do that?’ “When you said, ‘It doesn’t pay to serve God. What do we ever get out of it? When we did what he said and went around with long faces, serious about God-of-the-Angel-Armies, what difference did it make? Those who take life into their own hands are the lucky ones. They break all the rules and get ahead anyway. They push God to the limit and get by with it.’”"
         },
         {
           "verse": 16,
+          "usfm": "MAL.3.16",
+          "line_type": "p",
           "text": "Then those whose lives honored God got together and talked it over. God saw what they were doing and listened in. A book was opened in God’s presence and minutes were taken of the meeting, with the names of the God-fearers written down, all the names of those who honored God’s name. God-of-the-Angel-Armies said, “They’re mine, all mine. They’ll get special treatment when I go into action. I treat them with the same consideration and kindness that parents give the child who honors them. Once more you’ll see the difference it makes between being a person who does the right thing and one who doesn’t, between serving God and not serving him.”"
         }
       ],
       "verse_count": 5,
       "headings": [
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "The Difference Between Serving God and Not Serving Him"
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "m",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.3.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.3.1"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MAL.3.5"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 5,
+          "verses": [
+            5
+          ],
+          "usfms": [
+            "MAL.3.5"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 12,
+          "verses": [
+            12
+          ],
+          "usfms": [
+            "MAL.3.12"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "m",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.3.12",
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MAL.3.16"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MAL.3.16"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -164,9 +689,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MAL/3-488c6083bcfabfba0adae796cb2ab9e6.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MAL.3.MSG",
+        "reference": {
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 4,
       "chapter_usfm": "MAL.4",
@@ -175,12 +757,40 @@
       "verses": [
         {
           "verse": 4,
+          "usfm": "MAL.4.4",
+          "line_type": "p",
           "text": "“Remember and keep the revelation I gave through my servant Moses, the revelation I commanded at Horeb for all Israel, all the rules and procedures for right living. “But also look ahead: I’m sending Elijah the prophet to clear the way for the Big Day of God—the decisive Judgment Day! He will convince parents to look after their children and children to look up to their parents. If they refuse, I’ll come and put the land under a curse.”"
         }
       ],
       "verse_count": 1,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MAL.4.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "MAL.4.4"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -191,7 +801,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/MAL/4-6767098577023caf05259a690361cf42.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 1,
+          "parsed_count": 1,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/MAL.4.MSG",
+        "reference": {
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAT.1"
+          ],
+          "human": "Matthew 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

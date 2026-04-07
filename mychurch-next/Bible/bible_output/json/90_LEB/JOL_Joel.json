@@ -11,6 +11,7 @@
   "total_verses": 73,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "JOL",
       "chapter": 1,
       "chapter_usfm": "JOL.1",
@@ -19,97 +20,257 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JOL.1.1",
+          "line_type": "p",
           "text": "The word of Yahweh that came to Joel son of Pethuel."
         },
         {
           "verse": 2,
+          "usfm": "JOL.1.2",
+          "line_type": null,
           "text": "Hear this, O elders, and give ear, all the inhabitants of the land. Has this happened in your days? Or the days of your ancestors?"
         },
         {
           "verse": 3,
+          "usfm": "JOL.1.3",
+          "line_type": null,
           "text": "Tell it to your children, and your children to their children, and their children to the following generation."
         },
         {
           "verse": 4,
+          "usfm": "JOL.1.4",
+          "line_type": null,
           "text": "What the cutting locust left, the swarming locust has eaten. What the swarming locust left, the hopping locust has eaten. And what the hopping locust left, the destroying locust has eaten."
         },
         {
           "verse": 5,
+          "usfm": "JOL.1.5",
+          "line_type": null,
           "text": "Wake up, drunkards, and weep! Wail, all drinkers of wine, over the new wine, for it is cut off from your mouth."
         },
         {
           "verse": 6,
+          "usfm": "JOL.1.6",
+          "line_type": null,
           "text": "Because a nation has invaded my land, strong and beyond counting. Its teeth are the teeth of a lion, and its fangs are those of a lioness."
         },
         {
           "verse": 7,
+          "usfm": "JOL.1.7",
+          "line_type": null,
           "text": "It has made my vine a desolation, and my fig tree a completely splintered stump. It has stripped them bare and thrown them down; their branches have turned white."
         },
         {
           "verse": 8,
+          "usfm": "JOL.1.8",
+          "line_type": null,
           "text": "Lament like a virgin girded in sackcloth for the husband of her youth."
         },
         {
           "verse": 9,
+          "usfm": "JOL.1.9",
+          "line_type": null,
           "text": "The offering and libation are withheld from the house of Yahweh. The priests mourn, the ministers of Yahweh."
         },
         {
           "verse": 10,
+          "usfm": "JOL.1.10",
+          "line_type": null,
           "text": "The field is destroyed; the earth mourns because the grain is destroyed, the new wine dries up, the olive oil languishes."
         },
         {
           "verse": 11,
+          "usfm": "JOL.1.11",
+          "line_type": null,
           "text": "Be ashamed, farmers; Wail, vinedressers, over the wheat and over the barley, because the harvest of the field is ruined."
         },
         {
           "verse": 12,
+          "usfm": "JOL.1.12",
+          "line_type": null,
           "text": "The vine withers and the fig tree droops. The pomegranate tree, and also the palm tree, the apple tree —all the trees of the field—are dried up. Indeed, joy is dried up among the sons of men."
         },
         {
           "verse": 13,
+          "usfm": "JOL.1.13",
+          "line_type": null,
           "text": "Gird yourselves and lament, O priests! Wail, O ministers of the altar! Come spend the night in sackcloth, O ministers of my God, because offering and libation are withheld from the house of your God."
         },
         {
           "verse": 14,
+          "usfm": "JOL.1.14",
+          "line_type": null,
           "text": "Solemnize a fast! Call an assembly! Gather the elders, all of the inhabitants of the land in the house of Yahweh your God, and cry out to Yahweh."
         },
         {
           "verse": 15,
+          "usfm": "JOL.1.15",
+          "line_type": null,
           "text": "Ah! For the day! For the day of Yahweh is near. It will come like destruction from Shaddai."
         },
         {
           "verse": 16,
+          "usfm": "JOL.1.16",
+          "line_type": null,
           "text": "Is not food cut off before our eyes, from the house of our God, joy and gladness?"
         },
         {
           "verse": 17,
+          "usfm": "JOL.1.17",
+          "line_type": null,
           "text": "The seeds shrivel under their clods; the storehouses are desolate. The grain storage places are destroyed because grain has dried out."
         },
         {
           "verse": 18,
+          "usfm": "JOL.1.18",
+          "line_type": null,
           "text": "How the beasts groan; the herds of cattle wander around because there is no pasture for them; the flocks of sheep are in distress."
         },
         {
           "verse": 19,
+          "usfm": "JOL.1.19",
+          "line_type": null,
           "text": "To you, O Yahweh, I cry out, because fire has devoured the pastures of the desert, and flames burned all the trees of the field."
         },
         {
           "verse": 20,
+          "usfm": "JOL.1.20",
+          "line_type": null,
           "text": "Also, the beasts of the field long for you, because the courses of water are dried up, and fire has devoured the pastures of the desert."
         }
       ],
       "verse_count": 20,
       "headings": [
         {
-          "before_verse": 1,
+          "before_verse": 2,
           "text": "A Lament Over the Land"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 6,
+          "usfm": "JOL.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “come up against”"
+        },
+        {
+          "verse": 6,
+          "usfm": "JOL.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “without number”"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “temple”"
+        },
+        {
+          "verse": 15,
+          "usfm": "JOL.1.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Often translated “the Almighty”"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.1.18",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “beast”"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.1.19",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “flame”"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "JOL.1.1"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 20,
+          "parsed_count": 20,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/JOL.1.LEB",
+        "reference": {
+          "usfm": [
+            "JOL.1"
+          ],
+          "human": "Joel 1",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.14"
+          ],
+          "human": "Hosea 14",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOL.2"
+          ],
+          "human": "Joel 2",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOL",
       "chapter": 2,
       "chapter_usfm": "JOL.2",
@@ -118,153 +279,525 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JOL.2.1",
+          "line_type": null,
           "text": "Blow the trumpet in Zion, and sound the alarm on my holy mountain! Let all the inhabitants of the land tremble, for the day of Yahweh is coming —it is indeed near."
         },
         {
           "verse": 2,
+          "usfm": "JOL.2.2",
+          "line_type": null,
           "text": "A day of darkness and gloom, a day of cloud and thick darkness, like the dawn spreads on the mountains, a great and strong army! There has been nothing like it from old, and after it nothing will be again for generations to come."
         },
         {
           "verse": 3,
+          "usfm": "JOL.2.3",
+          "line_type": null,
           "text": "Before them a fire devours, and behind them a flame burns. Like the garden of Eden is the land before them, and after them it is like a desolate desert, and nothing can escape them."
         },
         {
           "verse": 4,
+          "usfm": "JOL.2.4",
+          "line_type": null,
           "text": "Like the appearance of horses is their appearance, and like horsemen they run;"
         },
         {
           "verse": 5,
+          "usfm": "JOL.2.5",
+          "line_type": null,
           "text": "like the sound of chariots on the tops of the mountains, they leap about; like the sound of a flame of fire devouring stubble; like a strong army arranged in rows for battle."
         },
         {
           "verse": 6,
+          "usfm": "JOL.2.6",
+          "line_type": null,
           "text": "From before them nations writhe, all faces turn pale."
         },
         {
           "verse": 7,
+          "usfm": "JOL.2.7",
+          "line_type": null,
           "text": "They run like mighty warriors, they scale the wall like men of war; each goes on its own way, and they do not swerve from their paths."
         },
         {
           "verse": 8,
+          "usfm": "JOL.2.8",
+          "line_type": null,
           "text": "They do not jostle one another; each goes on its own trail; and through the falling weapons, they are not halted."
         },
         {
           "verse": 9,
+          "usfm": "JOL.2.9",
+          "line_type": null,
           "text": "In the city they rush forth; on the walls they run. Into the houses they climb up; through the windows they enter like a thief."
         },
         {
           "verse": 10,
+          "usfm": "JOL.2.10",
+          "line_type": null,
           "text": "Before them the earth quakes; the heavens tremble; the sun and the moon grow dark, and the stars have withheld their splendor"
         },
         {
           "verse": 11,
+          "usfm": "JOL.2.11",
+          "line_type": null,
           "text": "And Yahweh utters his voice before his army, because his encampment is very large; strong is the one who carries out his decree, for great is the day of Yahweh and exceedingly fearful. Who can endure it?"
         },
         {
           "verse": 12,
+          "usfm": "JOL.2.12",
+          "line_type": null,
           "text": "“And even now,” declares Yahweh, “return to me with all your heart, with fasting, and weeping, and wailing.”"
         },
         {
           "verse": 13,
+          "usfm": "JOL.2.13",
+          "line_type": null,
           "text": "Rend your hearts and not your garments, and return to Yahweh your God, because he is gracious and compassionate, slow to anger and great in loyal love, and relenting from harm."
         },
         {
           "verse": 14,
+          "usfm": "JOL.2.14",
+          "line_type": null,
           "text": "Who knows whether he will turn and relent, and leave a blessing behind him, an offering and a libation, for Yahweh your God?"
         },
         {
           "verse": 15,
+          "usfm": "JOL.2.15",
+          "line_type": null,
           "text": "Blow the trumpet in Zion, sanctify a fast, call an assembly;"
         },
         {
           "verse": 16,
+          "usfm": "JOL.2.16",
+          "line_type": null,
           "text": "gather the people, consecrate the assembly; assemble the elders, gather the children, even those who are breast-feeding; let the bridegroom come out from his private room, and the bride from her canopy."
         },
         {
           "verse": 17,
+          "usfm": "JOL.2.17",
+          "line_type": null,
           "text": "Between the colonnade and the altar, let the priests, the ministers of Yahweh, weep. And let them say, “Take pity, Yahweh, on your people. Do not make your inheritance a reproach, a byword among the nations. Why should they say among the nations, ‘Where is their God?’ ”"
         },
         {
           "verse": 18,
+          "usfm": "JOL.2.18",
+          "line_type": null,
           "text": "Then Yahweh became jealous for his land and took pity on his people."
         },
         {
           "verse": 19,
+          "usfm": "JOL.2.19",
+          "line_type": null,
           "text": "And Yahweh answered and said to his people, “Look at me, I am sending to you grain, new wine, and olive oil, and you will be satisfied by it. I will not give you over any more as a disgrace among the nations."
         },
         {
           "verse": 20,
+          "usfm": "JOL.2.20",
+          "line_type": null,
           "text": "The northerners I will remove from you; I will drive them to a desert and desolate land, its front to the eastern sea, and its rear into the western sea; its stench and odor will rise up because he has done great things."
         },
         {
           "verse": 21,
+          "usfm": "JOL.2.21",
+          "line_type": null,
           "text": "Do not fear, O land, rejoice and be glad, because Yahweh has done great things."
         },
         {
           "verse": 22,
+          "usfm": "JOL.2.22",
+          "line_type": null,
           "text": "Do not fear, wild animals of the field, because the pastures of the desert have put forth new green shoots, because the tree has produced its fruit, the fig tree and the vine have yielded their produce."
         },
         {
           "verse": 23,
+          "usfm": "JOL.2.23",
+          "line_type": null,
           "text": "Be glad, O children of Zion, be glad and rejoice in Yahweh your God, because he has given for you the autumn rains for your righteousness, and he has poured down for you rainwater, the autumn and spring rains, as before."
         },
         {
           "verse": 24,
+          "usfm": "JOL.2.24",
+          "line_type": null,
           "text": "The threshing floors will be full with grain, and the vats will overflow with new wine and olive oil."
         },
         {
           "verse": 25,
+          "usfm": "JOL.2.25",
+          "line_type": null,
           "text": "I will repay you the years that the locust has eaten, the hopper, the destroyer, and the cutter, my mighty troops that I sent against you."
         },
         {
           "verse": 26,
+          "usfm": "JOL.2.26",
+          "line_type": null,
           "text": "And you will eat abundantly and be satisfied, and praise the name of Yahweh your God, who has dealt with you wondrously. My people will never be ashamed."
         },
         {
           "verse": 27,
+          "usfm": "JOL.2.27",
+          "line_type": null,
           "text": "And you will know that I am in the midst of Israel, and I am Yahweh, your God, and there is no other. My people will never be ashamed again."
         },
         {
           "verse": 28,
+          "usfm": "JOL.2.28",
+          "line_type": null,
           "text": "And it will happen afterward thus: I will pour out my Spirit on all flesh, and your sons and your daughters will prophesy, and your elders will dream dreams; your young men shall see visions."
         },
         {
           "verse": 29,
+          "usfm": "JOL.2.29",
+          "line_type": null,
           "text": "And also on the male slaves and on the female slaves, I will pour out my Spirit in those days."
         },
         {
           "verse": 30,
+          "usfm": "JOL.2.30",
+          "line_type": "p",
           "text": "And I will set wonders in the heavens, and on earth, blood and fire and columns of smoke."
         },
         {
           "verse": 31,
+          "usfm": "JOL.2.31",
+          "line_type": "p",
           "text": "The sun will be changed to darkness, and the moon to blood, before the coming of the great and awesome day of Yahweh."
         },
         {
           "verse": 32,
+          "usfm": "JOL.2.32",
+          "line_type": "p",
           "text": "And it will happen—everyone who calls on the name of Yahweh will be rescued, because on Mount Zion and in Jerusalem there will be those who escape, as Yahweh said, and among the survivors whom Yahweh is calling."
         }
       ],
       "verse_count": 32,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "A Call to Repentance"
         },
         {
-          "before_verse": 17,
+          "before_verse": 18,
           "text": "The Response and Promise of Yahweh"
         },
         {
-          "before_verse": 27,
+          "before_verse": 28,
           "text": "Yahweh’s Spirit Poured Out"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JOL.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “shofar”"
+        },
+        {
+          "verse": 1,
+          "usfm": "JOL.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “mountain of my holiness”"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.2.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “until years of generations”"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.2.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “before the presence of it”"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.2.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “before the presence of it”"
+        },
+        {
+          "verse": 6,
+          "usfm": "JOL.2.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “From in front of it,” or “From the presence of it”"
+        },
+        {
+          "verse": 6,
+          "usfm": "JOL.2.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “gather paleness”"
+        },
+        {
+          "verse": 7,
+          "usfm": "JOL.2.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, the “great and strong army” (see 2:2)"
+        },
+        {
+          "verse": 8,
+          "usfm": "JOL.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “each man his brother”"
+        },
+        {
+          "verse": 8,
+          "usfm": "JOL.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “weapon”"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.2.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “wall”"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.2.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Before the presence of it”"
+        },
+        {
+          "verse": 10,
+          "usfm": "JOL.2.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “gathered”"
+        },
+        {
+          "verse": 11,
+          "usfm": "JOL.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “gives”"
+        },
+        {
+          "verse": 12,
+          "usfm": "JOL.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a declaration of”"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.2.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “heart”"
+        },
+        {
+          "verse": 13,
+          "usfm": "JOL.2.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “patient”; literally “long of anger”"
+        },
+        {
+          "verse": 15,
+          "usfm": "JOL.2.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “Shofar”"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.2.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “The northern army”"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.2.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, the northern army"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.2.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, Yahweh (see v. 21)"
+        },
+        {
+          "verse": 23,
+          "usfm": "JOL.2.23",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “vindication”"
+        },
+        {
+          "verse": 23,
+          "usfm": "JOL.2.23",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “brought down”"
+        },
+        {
+          "verse": 26,
+          "usfm": "JOL.2.26",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “to do a wonder”"
+        },
+        {
+          "verse": 26,
+          "usfm": "JOL.2.26",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “will forever not be ashamed”"
+        },
+        {
+          "verse": 27,
+          "usfm": "JOL.2.27",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “will forever no longer be ashamed”"
+        },
+        {
+          "verse": 28,
+          "usfm": "JOL.2.28",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Joel 2:28–32 in the English Bible is 3:1–5 in the Hebrew Bible"
+        },
+        {
+          "verse": 30,
+          "usfm": "JOL.2.30",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “give”"
+        },
+        {
+          "verse": 32,
+          "usfm": "JOL.2.32",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally, “an escape”"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 30,
+          "end_verse": 32,
+          "verses": [
+            30,
+            31,
+            32
+          ],
+          "usfms": [
+            "JOL.2.30",
+            "JOL.2.31",
+            "JOL.2.32"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 32,
+          "parsed_count": 32,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/JOL.2.LEB",
+        "reference": {
+          "usfm": [
+            "JOL.2"
+          ],
+          "human": "Joel 2",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOL.1"
+          ],
+          "human": "Joel 1",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOL.3"
+          ],
+          "human": "Joel 3",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "JOL",
       "chapter": 3,
       "chapter_usfm": "JOL.3",
@@ -273,99 +806,332 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "JOL.3.1",
+          "line_type": "p",
           "text": "For look! In those days, and in that time, when I will return the fortunes of Judah and Jerusalem,"
         },
         {
           "verse": 2,
+          "usfm": "JOL.3.2",
+          "line_type": "p",
           "text": "I will gather all the nations, and I will bring them down to the valley of Jehoshaphat, and I will argue a case against them there concerning my people and my inheritance Israel whom they have scattered among the nations, and my land that they have divided."
         },
         {
           "verse": 3,
+          "usfm": "JOL.3.3",
+          "line_type": "p",
           "text": "For my people they cast lots, and they traded the male child for the prostitute, and the female child they sold for wine and they drank it."
         },
         {
           "verse": 4,
+          "usfm": "JOL.3.4",
+          "line_type": "p",
           "text": "What are you to me, O Tyre and O Sidon, and all of the regions of Philistia? Are you repaying to me what is deserved? If you are recompensing me, I will return swiftly and quickly what you deserve on your head!"
         },
         {
           "verse": 5,
+          "usfm": "JOL.3.5",
+          "line_type": "p",
           "text": "For you have taken my silver and my gold, and my beautiful treasures you have carried into your temples."
         },
         {
           "verse": 6,
+          "usfm": "JOL.3.6",
+          "line_type": "p",
           "text": "And the sons of Judah and Jerusalem you sold to the sons of the Greeks, in order to remove them from their border."
         },
         {
           "verse": 7,
+          "usfm": "JOL.3.7",
+          "line_type": "p",
           "text": "Look! I am rousing them from the place where you have sold them, and I will return what you deserve on your head!"
         },
         {
           "verse": 8,
+          "usfm": "JOL.3.8",
+          "line_type": "p",
           "text": "I will sell your sons and your daughters into the hand of the children of Judah, and they will sell them to the Sabeans and to a nation far away, for Yahweh has spoken."
         },
         {
           "verse": 9,
+          "usfm": "JOL.3.9",
+          "line_type": null,
           "text": "Proclaim this among the nations: Prepare for war! Stir up the mighty warriors; let them approach and come up; let all the men of war approach."
         },
         {
           "verse": 10,
+          "usfm": "JOL.3.10",
+          "line_type": null,
           "text": "Beat your cutting tools of iron into swords and your pruning hooks into spears; let the weakling say, ‘I am a mighty warrior!’"
         },
         {
           "verse": 11,
+          "usfm": "JOL.3.11",
+          "line_type": null,
           "text": "Hurry and come, all the nations, from all around, and gather yourselves there. Bring down your mighty warriors, O Yahweh!"
         },
         {
           "verse": 12,
+          "usfm": "JOL.3.12",
+          "line_type": null,
           "text": "Let the nations be roused and let them come up to the valley of Jehoshaphat, for there I will sit to judge all the nations from all around."
         },
         {
           "verse": 13,
+          "usfm": "JOL.3.13",
+          "line_type": null,
           "text": "Send forth the sickle, for the harvest is ripe! Go tread, for the winepress is full! The vats overflow, because their evil is great!"
         },
         {
           "verse": 14,
+          "usfm": "JOL.3.14",
+          "line_type": null,
           "text": "Commotion, commotion in the valley of decision! For the day of Yahweh is near in the valley of decision!"
         },
         {
           "verse": 15,
+          "usfm": "JOL.3.15",
+          "line_type": null,
           "text": "The sun and the moon grow dark, and the stars have withheld their splendor."
         },
         {
           "verse": 16,
+          "usfm": "JOL.3.16",
+          "line_type": null,
           "text": "And Yahweh roars from Zion; from Jerusalem he utters his voice, and the heavens and the earth shake. But Yahweh is a refuge for his people, and a protection for the children of Israel."
         },
         {
           "verse": 17,
+          "usfm": "JOL.3.17",
+          "line_type": null,
           "text": "And you will know that I, Yahweh your God, am dwelling in Zion, my holy mountain. And Jerusalem will be a place of holiness, and strangers will pass through it no longer."
         },
         {
           "verse": 18,
+          "usfm": "JOL.3.18",
+          "line_type": null,
           "text": "And it will happen on that day; the mountains will drip new wine, and the hills will flow with milk, and all the channels of Judah will flow with water. A spring from the house of Yahweh will come forth, and it will water the valley of Acacia Trees."
         },
         {
           "verse": 19,
+          "usfm": "JOL.3.19",
+          "line_type": null,
           "text": "Egypt will become a desolation, and Edom will become a desolate desert, because of the violence they did against the children of Judah, in whose land they have shed innocent blood."
         },
         {
           "verse": 20,
+          "usfm": "JOL.3.20",
+          "line_type": null,
           "text": "But Judah will be inhabited forever, and Jerusalem for all generations."
         },
         {
           "verse": 21,
+          "usfm": "JOL.3.21",
+          "line_type": null,
           "text": "I will cleanse their bloodguilt that I did not cleanse, for Yahweh is dwelling in Zion."
         }
       ],
       "verse_count": 21,
       "headings": [
         {
-          "before_verse": 8,
+          "before_verse": 9,
           "text": "Yahweh’s Judgment in the Valley of Jehoshaphat"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "JOL.3.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Joel 3:1–21 in the English Bible is 4:1–21 in the Hebrew Bible"
+        },
+        {
+          "verse": 1,
+          "usfm": "JOL.3.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “restore”"
+        },
+        {
+          "verse": 2,
+          "usfm": "JOL.3.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a matter with them”"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “lot”"
+        },
+        {
+          "verse": 3,
+          "usfm": "JOL.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “gave”"
+        },
+        {
+          "verse": 9,
+          "usfm": "JOL.3.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Sanctify a battle”"
+        },
+        {
+          "verse": 15,
+          "usfm": "JOL.3.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “gathered”"
+        },
+        {
+          "verse": 18,
+          "usfm": "JOL.3.18",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “the wadi Shittim”"
+        },
+        {
+          "verse": 19,
+          "usfm": "JOL.3.19",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “desert of desolation”"
+        },
+        {
+          "verse": 20,
+          "usfm": "JOL.3.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “for each generation”"
+        },
+        {
+          "verse": 21,
+          "usfm": "JOL.3.21",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will not leave unpunished their blood”"
+        },
+        {
+          "verse": 21,
+          "usfm": "JOL.3.21",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “I did not consider innocent”"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "JOL.3.1",
+            "JOL.3.2",
+            "JOL.3.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 8,
+          "verses": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "usfms": [
+            "JOL.3.4",
+            "JOL.3.5",
+            "JOL.3.6",
+            "JOL.3.7",
+            "JOL.3.8"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 21,
+          "parsed_count": 21,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/JOL.3.LEB",
+        "reference": {
+          "usfm": [
+            "JOL.3"
+          ],
+          "human": "Joel 3",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "JOL.2"
+          ],
+          "human": "Joel 2",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "AMO.1"
+          ],
+          "human": "Amos 1",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

@@ -11,6 +11,7 @@
   "total_verses": 55,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 1,
       "chapter_usfm": "MAL.1",
@@ -19,58 +20,86 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.1.1",
+          "line_type": "p",
           "text": "An oracle: The word of the Lord to Israel through Malachi."
         },
         {
           "verse": 2,
+          "usfm": "MAL.1.2",
+          "line_type": "p",
           "text": "“I have loved you,” says the Lord.But you ask: “How have You loved us? ”“Wasn’t Esau Jacob’s brother? ” This is the Lord’s declaration. “Even so, I loved Jacob,"
         },
         {
           "verse": 3,
+          "usfm": "MAL.1.3",
+          "line_type": "p",
           "text": "but I hated Esau. I turned his mountains into a wasteland, and gave his inheritance to the desert jackals.”"
         },
         {
           "verse": 4,
+          "usfm": "MAL.1.4",
+          "line_type": "p",
           "text": "Though Edom says: “We have been devastated, but we will rebuild the ruins,” the Lord of Hosts says this: “They may build, but I will demolish. They will be called a wicked country and the people the Lord has cursed forever."
         },
         {
           "verse": 5,
+          "usfm": "MAL.1.5",
+          "line_type": "p",
           "text": "Your own eyes will see this, and you yourselves will say, ‘The Lord is great, even beyond the borders of Israel.’"
         },
         {
           "verse": 6,
+          "usfm": "MAL.1.6",
+          "line_type": "p",
           "text": "“A son honors his father, and a servant his master. But if I am a father, where is My honor? And if I am a master, where is your fear of Me? says Yahweh of Hosts to you priests, who despise My name.”Yet you ask: “How have we despised Your name? ”"
         },
         {
           "verse": 7,
+          "usfm": "MAL.1.7",
+          "line_type": "p",
           "text": "“By presenting defiled food on My altar.”You ask: “How have we defiled You? ” When you say: “The Lord’s table is contemptible.”"
         },
         {
           "verse": 8,
+          "usfm": "MAL.1.8",
+          "line_type": "p",
           "text": "“When you present a blind animal for sacrifice, is it not wrong? And when you present a lame or sick animal, is it not wrong? Bring it to your governor! Would he be pleased with you or show you favor? ” asks the Lord of Hosts."
         },
         {
           "verse": 9,
+          "usfm": "MAL.1.9",
+          "line_type": "p",
           "text": "“And now ask for God’s favor. Will He be gracious to us? Since this has come from your hands, will He show any of you favor? ” asks the Lord of Hosts."
         },
         {
           "verse": 10,
+          "usfm": "MAL.1.10",
+          "line_type": "p",
           "text": "“I wish one of you would shut the temple doors, so you would no longer kindle a useless fire on My altar! I am not pleased with you,” says the Lord of Hosts, “and I will accept no offering from your hands."
         },
         {
           "verse": 11,
+          "usfm": "MAL.1.11",
+          "line_type": "p",
           "text": "“For My name will be great among the nations, from the rising of the sun to its setting. Incense and pure offerings will be presented in My name in every place because My name will be great among the nations,” says Yahweh of Hosts."
         },
         {
           "verse": 12,
+          "usfm": "MAL.1.12",
+          "line_type": "p",
           "text": "But you are profaning it when you say: “The Lord’s table is defiled, and its product, its food, is contemptible.”"
         },
         {
           "verse": 13,
+          "usfm": "MAL.1.13",
+          "line_type": "p",
           "text": "You also say: “Look, what a nuisance! ” “And you scorn it,” says the Lord of Hosts. “You bring stolen, lame, or sick animals. You bring this as an offering! Am I to accept that from your hands? ” asks the Lord."
         },
         {
           "verse": 14,
+          "usfm": "MAL.1.14",
+          "line_type": "p",
           "text": "“The deceiver is cursed who has an acceptable male in his flock and makes a vow but sacrifices a defective animal to the Lord. For I am a great King,” says Yahweh of Hosts, “and My name will be feared among the nations."
         }
       ],
@@ -85,11 +114,472 @@
           "text": "’s Love for Israel"
         },
         {
-          "before_verse": 5,
+          "before_verse": 6,
           "text": "Disobedience of the Priests"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is 13:1; Zch 9:1; 12:1"
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hs 1:1; Jl 1:1; Mc 1:1; Zph 1:1"
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jr 37:2; Hg 1:1"
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.1.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= My Messenger"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 4:37; 7:6-8; 10:14-15; Neh 13:26; Ps 78:68"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.1.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 25:25-26; 36:19"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 25:23; Rm 9:10-13"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.1.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is 34:5-17; Jr 49:7-22; Ezk 35:1-15"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or will return and build"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mal 3:12,15"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Lord is angry with"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.1.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is 34:5-17; Jr 49:17-18; Mal 1:14; 2:2; 3:9; 4:6"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.1.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or great over"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.1.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 67:1-7; 72:8-11; Ezk 39:7; Zch 12:1-10; Rm 11:11-12"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.1.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 2:30; Dn 5:23; Hg 1:8"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezk 22:26"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.1.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezk 41:22; 44:16"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.1.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 22:18-25; Dt 15:21; 17:1"
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 13:12; Pr 19:6; Dn 9:13"
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.1.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Nm 6:25-26"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Ch 28:24"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Pr 1:17; Is 1:14"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 22:19-21"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.1.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is 1:10-17; Jr 6:20; Am 5:21-23; Mc 6:6-8"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.1.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 113:3; Is 45:6; 59:19; Mt 8:11"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Burnt offerings"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or is great . . . are presented . . . is great"
+        },
+        {
+          "verse": 12,
+          "usfm": "MAL.1.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 22:2; Ezk 13:19; 22:26; 36:20-23; Mal 2:10-11"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit blow at"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Ancient Jewish tradition reads Me"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 2:29"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.1.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or injured"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.1.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Sm 24:24"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.1.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 22:18-25; 27:9-10; Nm 30:2; Dt 23:21-23; Ec 5:4-7"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.1.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Because I am . . . Yahweh of Hosts, My name"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "MAL.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 2,
+          "verses": [
+            2
+          ],
+          "usfms": [
+            "MAL.1.2"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 2,
+          "end_verse": 3,
+          "verses": [
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.1.2",
+            "MAL.1.3"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 5,
+          "verses": [
+            4,
+            5
+          ],
+          "usfms": [
+            "MAL.1.4",
+            "MAL.1.5"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "MAL.1.6"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.1.7"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 10,
+          "verses": [
+            8,
+            9,
+            10
+          ],
+          "usfms": [
+            "MAL.1.10",
+            "MAL.1.8",
+            "MAL.1.9"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 11,
+          "end_verse": 11,
+          "verses": [
+            11
+          ],
+          "usfms": [
+            "MAL.1.11"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 12,
+          "end_verse": 13,
+          "verses": [
+            12,
+            13
+          ],
+          "usfms": [
+            "MAL.1.12",
+            "MAL.1.13"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 14,
+          "verses": [
+            14
+          ],
+          "usfms": [
+            "MAL.1.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -100,9 +590,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/MAL/1-04890cedf0f650a1d841f41c90197763.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/MAL.1.HCSB",
+        "reference": {
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "ZEC.14"
+          ],
+          "human": "Zechariah 14",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 2,
       "chapter_usfm": "MAL.2",
@@ -111,93 +658,668 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.2.1",
+          "line_type": "p",
           "text": "“Therefore, this decree is for you priests:"
         },
         {
           "verse": 2,
+          "usfm": "MAL.2.2",
+          "line_type": "p",
           "text": "If you don’t listen, and if you don’t take it to heart to honor My name,” says Yahweh of Hosts, “I will send a curse among you, and I will curse your blessings. In fact, I have already begun to curse them because you are not taking it to heart."
         },
         {
           "verse": 3,
+          "usfm": "MAL.2.3",
+          "line_type": "p",
           "text": "“Look, I am going to rebuke your descendants, and I will spread animal waste over your faces, the waste from your festival sacrifices, and you will be taken away with it."
         },
         {
           "verse": 4,
+          "usfm": "MAL.2.4",
+          "line_type": "p",
           "text": "Then you will know that I sent you this decree so My covenant with Levi may continue,” says the Lord of Hosts."
         },
         {
           "verse": 5,
+          "usfm": "MAL.2.5",
+          "line_type": "p",
           "text": "“My covenant with him was one of life and peace, and I gave these to him; it called for reverence, and he revered Me and stood in awe of My name."
         },
         {
           "verse": 6,
+          "usfm": "MAL.2.6",
+          "line_type": "p",
           "text": "True instruction was in his mouth, and nothing wrong was found on his lips. He walked with Me in peace and fairness and turned many from sin."
         },
         {
           "verse": 7,
+          "usfm": "MAL.2.7",
+          "line_type": "p",
           "text": "For the lips of a priest should guard knowledge, and people should seek instruction from his mouth, because he is the messenger of the Lord of Hosts."
         },
         {
           "verse": 8,
+          "usfm": "MAL.2.8",
+          "line_type": "p",
           "text": "“You, on the other hand, have turned from the way. You have caused many to stumble by your instruction. You have violated the covenant of Levi,” says the Lord of Hosts."
         },
         {
           "verse": 9,
+          "usfm": "MAL.2.9",
+          "line_type": "p",
           "text": "“So I in turn have made you despised and humiliated before all the people because you are not keeping My ways but are showing partiality in your instruction.”"
         },
         {
           "verse": 10,
+          "usfm": "MAL.2.10",
+          "line_type": "p",
           "text": "Don’t all of us have one Father? Didn’t one God create us? Why then do we act treacherously against one another, profaning the covenant of our fathers?"
         },
         {
           "verse": 11,
+          "usfm": "MAL.2.11",
+          "line_type": "p",
           "text": "Judah has acted treacherously, and a detestable thing has been done in Israel and in Jerusalem. For Judah has profaned the Lord’s sanctuary, which He loves, and has married the daughter of a foreign god."
         },
         {
           "verse": 12,
+          "usfm": "MAL.2.12",
+          "line_type": "p",
           "text": "To the man who does this, may the Lord cut off any descendants from the tents of Jacob, even if they present an offering to the Lord of Hosts."
         },
         {
           "verse": 13,
+          "usfm": "MAL.2.13",
+          "line_type": "p",
           "text": "And this is another thing you do: you cover the Lord’s altar with tears, with weeping and groaning, because He no longer respects your offerings or receives them gladly from your hands."
         },
         {
           "verse": 14,
+          "usfm": "MAL.2.14",
+          "line_type": "p",
           "text": "Yet you ask, “For what reason? ” Because the Lord has been a witness between you and the wife of your youth. You have acted treacherously against her, though she was your marriage partner and your wife by covenant."
         },
         {
           "verse": 15,
+          "usfm": "MAL.2.15",
+          "line_type": "p",
           "text": "Didn’t the one God make us with a remnant of His life-breath? And what does the One seek? A godly offspring. So watch yourselves carefully, and do not act treacherously against the wife of your youth."
         },
         {
           "verse": 16,
+          "usfm": "MAL.2.16",
+          "line_type": "p",
           "text": "“If he hates and divorces his wife, ” says the Lord God of Israel, “he covers his garment with injustice,” says the Lord of Hosts. Therefore, watch yourselves carefully, and do not act treacherously."
         },
         {
           "verse": 17,
+          "usfm": "MAL.2.17",
+          "line_type": "p",
           "text": "You have wearied the Lord with your words.Yet you ask, “How have we wearied Him? ”When you say, “Everyone who does what is evil is good in the Lord’s sight, and He is pleased with them,” or “Where is the God of justice? ”"
         }
       ],
       "verse_count": 17,
       "headings": [
         {
-          "before_verse": 9,
+          "before_verse": 10,
           "text": "Judah’s Marital Unfaithfulness"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Judgment at the"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "Lord"
         },
         {
-          "before_verse": 16,
+          "before_verse": 17,
           "text": "’s Coming"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.2.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Nah 1:14"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is 42:25; 57:1; Jr 12:11"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.2.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 28:20; Pr 3:33; 28:27; Mal 3:9"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hs 4:6-8"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Dung or entrails"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.2.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 29:14; Lv 16:27"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.2.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Nm 25:11-13; Dt 10:8; 33:8-11; Neh 13:29; Jr 33:17-22"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Sm 25:6; Pr 3:2"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.2.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mal 1:6"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 5:22,24; 6:9; Mc 6:8"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.2.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is 53:6; Jr 23:22; Ezk 3:19-20"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.2.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Ch 36:15-16; Hg 1:13"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 32:8; Dt 31:29; Mal 3:7"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.2.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Pr 4:16; Is 8:14-15; Hs 14:1"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.2.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit corrupted"
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mal 1:6-7"
+        },
+        {
+          "verse": 9,
+          "usfm": "MAL.2.9",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 19:15; Dt 10:17; Ps 82:2; Mt 22:16; 1Tm 5:21; Jms 2:1,9"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 4:22-23; Is 63:16; Hs 11:1; Mal 1:6; Jn 8:41"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 32:6; Is 43:1-7; 64:8"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 21:8; Jdg 9:23; Jb 6:15; Is 21:2; Jr 3:20"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Nm 30:2; Ps 55:20; 89:34; Mal 1:12"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.2.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Kg 8:21"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 18:22-30; Ezr 9:1-14; Neh 13:4-9"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jr 16:18; Ezk 44:7"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or profaned what is holy to the Lord"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 36:1-6; Zph 3:4"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 78:68-69"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "= a woman who worshiped a foreign god"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.2.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 7:3-4; Ezr 9:1-2,10-14; Neh 13:23-30"
+        },
+        {
+          "verse": 12,
+          "usfm": "MAL.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 12:19; 31:14"
+        },
+        {
+          "verse": 12,
+          "usfm": "MAL.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "One Hb ms, LXX, DSS read off one witnessing or answering"
+        },
+        {
+          "verse": 12,
+          "usfm": "MAL.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit off one waking or answering ; Hb obscure"
+        },
+        {
+          "verse": 12,
+          "usfm": "MAL.2.12",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ru 4:10; 1Sm 24:21"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 6:6-10"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.2.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Kg 8:28-30; Is 56:7"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 31:50-53; Jdg 11:10; 1Sm 12:5"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Pr 2:16-17; 5:18; Is 54:6"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ec 4:10"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.2.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezk 16:8,59-62; Hs 2:16-20"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.2.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or Did the One not make them? So their flesh and spirit belong to Him, or No one who does this even has a remnant of the Spirit in him ; Hb obscure"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.2.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit So guard yourselves in your spirit"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.2.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 23:13; Jos 23:11"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 29:31; Dt 21:15-17; 22:13,16; Jdg 15:2; Pr 30:23"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 24:1-4"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or The Lord God of Israel says that He hates divorce and the one who"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 6:11,13; Ps 73:6; Jr 22:3; Hab 1:2-3"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.2.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lit Therefore, guard yourselves in your spirit"
+        },
+        {
+          "verse": 17,
+          "usfm": "MAL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is 43:22-24"
+        },
+        {
+          "verse": 17,
+          "usfm": "MAL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 25:16; Mal 3:15"
+        },
+        {
+          "verse": 17,
+          "usfm": "MAL.2.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Neh 9:33; Is 40:27"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 2,
+          "verses": [
+            1,
+            2
+          ],
+          "usfms": [
+            "MAL.2.1",
+            "MAL.2.2"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 7,
+          "verses": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "usfms": [
+            "MAL.2.3",
+            "MAL.2.4",
+            "MAL.2.5",
+            "MAL.2.6",
+            "MAL.2.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 9,
+          "verses": [
+            8,
+            9
+          ],
+          "usfms": [
+            "MAL.2.8",
+            "MAL.2.9"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 10,
+          "end_verse": 12,
+          "verses": [
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.2.10",
+            "MAL.2.11",
+            "MAL.2.12"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.2.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.2.14",
+            "MAL.2.15"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "MAL.2.16"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "MAL.2.17"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -208,9 +1330,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/MAL/2-f5ad6792c14eaa377f76d5cf42ae419f.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/MAL.2.HCSB",
+        "reference": {
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.1"
+          ],
+          "human": "Malachi 1",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 3,
       "chapter_usfm": "MAL.3",
@@ -219,89 +1398,562 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.3.1",
+          "line_type": "p",
           "text": "“See, I am going to send My messenger, and he will clear the way before Me. Then the Lord you seek will suddenly come to His temple, the Messenger of the covenant you desire — see, He is coming,” says the Lord of Hosts."
         },
         {
           "verse": 2,
+          "usfm": "MAL.3.2",
+          "line_type": "p",
           "text": "But who can endure the day of His coming? And who will be able to stand when He appears? For He will be like a refiner’s fire and like cleansing lye."
         },
         {
           "verse": 3,
+          "usfm": "MAL.3.3",
+          "line_type": "p",
           "text": "He will be like a refiner and purifier of silver; He will purify the sons of Levi and refine them like gold and silver. Then they will present offerings to the Lord in righteousness."
         },
         {
           "verse": 4,
+          "usfm": "MAL.3.4",
+          "line_type": "p",
           "text": "And the offerings of Judah and Jerusalem will please the Lord as in days of old and years gone by."
         },
         {
           "verse": 5,
+          "usfm": "MAL.3.5",
+          "line_type": "p",
           "text": "“I will come to you in judgment, and I will be ready to witness against sorcerers and adulterers; against those who swear falsely; against those who oppress the widow and the fatherless, and cheat the wage earner; and against those who deny justice to the foreigner. They do not fear Me,” says the Lord of Hosts."
         },
         {
           "verse": 6,
+          "usfm": "MAL.3.6",
+          "line_type": "p",
           "text": "“Because I, Yahweh, have not changed, you descendants of Jacob have not been destroyed."
         },
         {
           "verse": 7,
+          "usfm": "MAL.3.7",
+          "line_type": "p",
           "text": "“Since the days of your fathers, you have turned from My statutes; you have not kept them. Return to Me, and I will return to you,” says the Lord of Hosts.But you ask: “How can we return? ”"
         },
         {
           "verse": 8,
+          "usfm": "MAL.3.8",
+          "line_type": "p",
           "text": "“Will a man rob God? Yet you are robbing Me! ”You ask: “How do we rob You? ”“By not making the payments of the tenth and the contributions."
         },
         {
           "verse": 9,
+          "usfm": "MAL.3.9",
+          "line_type": "p",
           "text": "You are suffering under a curse, yet you — the whole nation — are still robbing Me."
         },
         {
           "verse": 10,
+          "usfm": "MAL.3.10",
+          "line_type": "p",
           "text": "Bring the full tenth into the storehouse so that there may be food in My house. Test Me in this way,” says the Lord of Hosts. “See if I will not open the floodgates of heaven and pour out a blessing for you without measure."
         },
         {
           "verse": 11,
+          "usfm": "MAL.3.11",
+          "line_type": "p",
           "text": "I will rebuke the devourer for you, so that it will not ruin the produce of your land and your vine in your field will not fail to produce fruit,” says the Lord of Hosts."
         },
         {
           "verse": 12,
+          "usfm": "MAL.3.12",
+          "line_type": "p",
           "text": "“Then all the nations will consider you fortunate, for you will be a delightful land,” says the Lord of Hosts."
         },
         {
           "verse": 13,
+          "usfm": "MAL.3.13",
+          "line_type": "p",
           "text": "“Your words against Me are harsh,” says the Lord.Yet you ask: “What have we spoken against You? ”"
         },
         {
           "verse": 14,
+          "usfm": "MAL.3.14",
+          "line_type": "p",
           "text": "You have said: “It is useless to serve God. What have we gained by keeping His requirements and walking mournfully before the Lord of Hosts?"
         },
         {
           "verse": 15,
+          "usfm": "MAL.3.15",
+          "line_type": "p",
           "text": "So now we consider the arrogant to be fortunate. Not only do those who commit wickedness prosper, they even test God and escape.”"
         },
         {
           "verse": 16,
+          "usfm": "MAL.3.16",
+          "line_type": "p",
           "text": "At that time those who feared the Lord spoke to one another. The Lord took notice and listened. So a book of remembrance was written before Him for those who feared Yahweh and had high regard for His name."
         },
         {
           "verse": 17,
+          "usfm": "MAL.3.17",
+          "line_type": "p",
           "text": "“They will be Mine,” says the Lord of Hosts, “a special possession on the day I am preparing. I will have compassion on them as a man has compassion on his son who serves him."
         },
         {
           "verse": 18,
+          "usfm": "MAL.3.18",
+          "line_type": "p",
           "text": "So you will again see the difference between the righteous and the wicked, between one who serves God and one who does not serve Him."
         }
       ],
       "verse_count": 18,
       "headings": [
         {
-          "before_verse": 6,
+          "before_verse": 7,
           "text": "Robbing God"
         },
         {
-          "before_verse": 12,
+          "before_verse": 13,
           "text": "The Righteous and the Wicked"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 23:20; 33:2; 2Ch 36:15-16"
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Is 40:3; Mk 1:2; Lk 1:76"
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Hs 5:6"
+        },
+        {
+          "verse": 1,
+          "usfm": "MAL.3.1",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 24:7-10"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Rv 6:17"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 4:24; Is 1:25; Zch 13:9"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.3.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jr 2:22"
+        },
+        {
+          "verse": 3,
+          "usfm": "MAL.3.3",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 12:6; Pr 17:3; Ezk 22:22"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.3.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Am 9:11"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 20:14,16; 22:18-24; Dt 18:10; 24:14,17; Jr 5:2,7; 7:6,9"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.3.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 10:17-20; Mal 2:5"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Nm 23:19; 1Sm 15:29; Ps 33:11; 119:89-91; Rm 11:29; Heb 6:17-18; Jms 1:17"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.3.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 124; Hs 11:9"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jos 1:7; 23:6; 1Kg 8:58; 2Kg 17:15; Ezr 9:7; Am 2:4; Mal 2:8"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 4:30; 30:2; 2Ch 30:6,9; Is 55:7; Jl 2:13; Zch 1:3"
+        },
+        {
+          "verse": 7,
+          "usfm": "MAL.3.7",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "1Kg 8:33; Jr 15:19; 24:7"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Pr 22:22-23"
+        },
+        {
+          "verse": 8,
+          "usfm": "MAL.3.8",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 7:14,32-33; 27:30-32; Nm 18:8-24; Dt 12:5-19; 14:22-29; 26:12"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jos 6:19,24; 1Kg 7:51"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "2Ch 31:4-10; Neh 10:34-39; Ezk 44:28-31"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 4:1-9; Jdg 6:36-40"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 7:11; 8:2; Dt 11:16-17"
+        },
+        {
+          "verse": 10,
+          "usfm": "MAL.3.10",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 28:12; Is 41:18-20; Jl 2:18-32; Am 9:13-15"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.3.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Perhaps locusts"
+        },
+        {
+          "verse": 11,
+          "usfm": "MAL.3.11",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jl 1:4; 2:25"
+        },
+        {
+          "verse": 13,
+          "usfm": "MAL.3.13",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 119:23; Ezk 35:13"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lv 8:35; Dt 11:1"
+        },
+        {
+          "verse": 14,
+          "usfm": "MAL.3.14",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 35:14; 38:6"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 119:21,85; Is 13:11; Jr 43:2"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Gn 30:13; Ps 72:17; Pr 31:28"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 78:18,41,56; 95:9"
+        },
+        {
+          "verse": 15,
+          "usfm": "MAL.3.15",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ezk 17:15"
+        },
+        {
+          "verse": 16,
+          "usfm": "MAL.3.16",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 32:32; Est 6:1; Dn 12:1"
+        },
+        {
+          "verse": 17,
+          "usfm": "MAL.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ex 19:5; Dt 7:6; 14:2; 26:18; Ps 135:4"
+        },
+        {
+          "verse": 17,
+          "usfm": "MAL.3.17",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 103:13; Jl 2:18; Zch 11:5-6"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 4,
+          "verses": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "usfms": [
+            "MAL.3.1",
+            "MAL.3.2",
+            "MAL.3.3",
+            "MAL.3.4"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 5,
+          "end_verse": 6,
+          "verses": [
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.3.5",
+            "MAL.3.6"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "MAL.3.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MAL.3.8"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 8,
+          "verses": [
+            8
+          ],
+          "usfms": [
+            "MAL.3.8"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 8,
+          "end_verse": 12,
+          "verses": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "usfms": [
+            "MAL.3.10",
+            "MAL.3.11",
+            "MAL.3.12",
+            "MAL.3.8",
+            "MAL.3.9"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "MAL.3.13"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 14,
+          "end_verse": 15,
+          "verses": [
+            14,
+            15
+          ],
+          "usfms": [
+            "MAL.3.14",
+            "MAL.3.15"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 18,
+          "verses": [
+            16,
+            17,
+            18
+          ],
+          "usfms": [
+            "MAL.3.16",
+            "MAL.3.17",
+            "MAL.3.18"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -312,9 +1964,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/MAL/3-a81b5851be498be9ff698b5330917586.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 18,
+          "parsed_count": 18,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/MAL.3.HCSB",
+        "reference": {
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.2"
+          ],
+          "human": "Malachi 2",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "MAL",
       "chapter": 4,
       "chapter_usfm": "MAL.4",
@@ -323,26 +2032,38 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "MAL.4.1",
+          "line_type": "p",
           "text": "“For indeed, the day is coming, burning like a furnace, when all the arrogant and everyone who commits wickedness will become stubble. The coming day will consume them,” says the Lord of Hosts, “not leaving them root or branches."
         },
         {
           "verse": 2,
+          "usfm": "MAL.4.2",
+          "line_type": "p",
           "text": "But for you who fear My name, the sun of righteousness will rise with healing in its wings, and you will go out and playfully jump like calves from the stall."
         },
         {
           "verse": 3,
+          "usfm": "MAL.4.3",
+          "line_type": "p",
           "text": "You will trample the wicked, for they will be ashes under the soles of your feet on the day I am preparing,” says the Lord of Hosts."
         },
         {
           "verse": 4,
+          "usfm": "MAL.4.4",
+          "line_type": "p",
           "text": "“Remember the instruction of Moses My servant, the statutes and ordinances I commanded him at Horeb for all Israel."
         },
         {
           "verse": 5,
+          "usfm": "MAL.4.5",
+          "line_type": "p",
           "text": "Look, I am going to send you Elijah the prophet before the great and awesome Day of the Lord comes."
         },
         {
           "verse": 6,
+          "usfm": "MAL.4.6",
+          "line_type": "p",
           "text": "And he will turn the hearts of fathers to their children and the hearts of children to their fathers. Otherwise, I will come and strike the land with a curse.”"
         }
       ],
@@ -353,11 +2074,110 @@
           "text": "Lord"
         },
         {
-          "before_verse": 3,
+          "before_verse": 4,
           "text": "A Final Warning"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "MAL.4.2",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Ps 37:6; Is 58:8"
+        },
+        {
+          "verse": 2,
+          "usfm": "MAL.4.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or like stall-fed calves"
+        },
+        {
+          "verse": 4,
+          "usfm": "MAL.4.4",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Dt 4:10,15; 5:2"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.4.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Mt 11:13-14"
+        },
+        {
+          "verse": 5,
+          "usfm": "MAL.4.5",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Jl 2:31; Ac 2:20"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.4.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Mal 3:24 in Hb"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.4.6",
+          "note_ref": "",
+          "note_type": "cross_reference",
+          "references": [],
+          "text": "Lk 1:17"
+        },
+        {
+          "verse": 6,
+          "usfm": "MAL.4.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or earth"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 3,
+          "verses": [
+            1,
+            2,
+            3
+          ],
+          "usfms": [
+            "MAL.4.1",
+            "MAL.4.2",
+            "MAL.4.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 6,
+          "verses": [
+            4,
+            5,
+            6
+          ],
+          "usfms": [
+            "MAL.4.4",
+            "MAL.4.5",
+            "MAL.4.6"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 17,
@@ -368,7 +2188,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/17/m4a/32k/MAL/4-ee454556cfb4ffd88285331b4199071d.m3u8?version_id=72"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 6,
+          "parsed_count": 6,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/72/MAL.4.HCSB",
+        "reference": {
+          "usfm": [
+            "MAL.4"
+          ],
+          "human": "Malachi 4",
+          "version_id": 72
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "MAL.3"
+          ],
+          "human": "Malachi 3",
+          "toc": true,
+          "version_id": 72
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "MAT.1"
+          ],
+          "human": "Matthew 1",
+          "toc": true,
+          "version_id": 72
+        }
+      },
+      "version_meta": {
+        "id": 72,
+        "abbreviation": "HCSB",
+        "local_abbreviation": "HCSB",
+        "title": "Holman Christian Standard Bible",
+        "local_title": "Holman Christian Standard Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "LifeWay Christian Resources"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

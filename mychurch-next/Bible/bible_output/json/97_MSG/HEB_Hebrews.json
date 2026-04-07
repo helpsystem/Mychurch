@@ -11,6 +11,7 @@
   "total_verses": 18,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 1,
       "chapter_usfm": "HEB.1",
@@ -19,14 +20,20 @@
       "verses": [
         {
           "verse": 7,
+          "usfm": "HEB.1.7",
+          "line_type": "p",
           "text": "Regarding angels he says,The messengers are winds,the servants are tongues of fire. But he says to the Son,You’re God, and on the throne for good;your rule makes everything right.You love it when things are right;you hate it when things are wrong.That is why God, your God,poured fragrant oil on your head,Marking you out as king,far above your dear companions. And again to the Son,You, Master, started it all, laid earth’s foundations,then crafted the stars in the sky.Earth and sky will wear out, but not you;they become threadbare like an old coat;You’ll fold them up like a worn-out cloak,and lay them away on the shelf.But you’ll stay the same, year after year;you’ll never fade, you’ll never wear out."
         },
         {
           "verse": 13,
+          "usfm": "HEB.1.13",
+          "line_type": "m",
           "text": "And did he ever say anything like this to an angel?Sit alongside me here on my throneUntil I make your enemies a stool for your feet."
         },
         {
           "verse": 14,
+          "usfm": "HEB.1.14",
+          "line_type": "p",
           "text": "Isn’t it obvious that all angels are sent to help out with those lined up to receive salvation?"
         }
       ],
@@ -38,6 +45,106 @@
         }
       ],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HEB.1.7"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "q1",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HEB.1.7"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "q2",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HEB.1.7"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "m",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HEB.1.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "m",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HEB.1.13"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HEB.1.13"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "q1",
+          "start_verse": 13,
+          "end_verse": 13,
+          "verses": [
+            13
+          ],
+          "usfms": [
+            "HEB.1.13"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 13,
+          "end_verse": 14,
+          "verses": [
+            13,
+            14
+          ],
+          "usfms": [
+            "HEB.1.13",
+            "HEB.1.14"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -48,9 +155,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/1-a917e3a9828972cabea98928767c282b.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 3,
+          "parsed_count": 3,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.1.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.1"
+          ],
+          "human": "Hebrews 1",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "PHM.1"
+          ],
+          "human": "Philemon 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.2"
+          ],
+          "human": "Hebrews 2",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 2,
       "chapter_usfm": "HEB.2",
@@ -65,6 +229,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -75,9 +240,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/2-1be0a3c3da0c3bb8360ab7fd3ee8cc7e.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.2.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.2"
+          ],
+          "human": "Hebrews 2",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.1"
+          ],
+          "human": "Hebrews 1",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.3"
+          ],
+          "human": "Hebrews 3",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 3,
       "chapter_usfm": "HEB.3",
@@ -87,6 +309,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -97,9 +320,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/3-627d29bcc19fd51072795960d9d60164.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.3.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.3"
+          ],
+          "human": "Hebrews 3",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.2"
+          ],
+          "human": "Hebrews 2",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.4"
+          ],
+          "human": "Hebrews 4",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 4,
       "chapter_usfm": "HEB.4",
@@ -114,6 +394,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -124,9 +405,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/4-53cda1da73aa09aa4a60675b61c1fae8.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.4.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.4"
+          ],
+          "human": "Hebrews 4",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.3"
+          ],
+          "human": "Hebrews 3",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.5"
+          ],
+          "human": "Hebrews 5",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 5,
       "chapter_usfm": "HEB.5",
@@ -141,6 +479,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -151,9 +490,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/5-87bf3217bfacf533756b62d9c321c4ff.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.5.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.5"
+          ],
+          "human": "Hebrews 5",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.4"
+          ],
+          "human": "Hebrews 4",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.6"
+          ],
+          "human": "Hebrews 6",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 6,
       "chapter_usfm": "HEB.6",
@@ -168,6 +564,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -178,9 +575,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/6-4ac95976b3fab5d87248f86defe1ab57.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.6.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.6"
+          ],
+          "human": "Hebrews 6",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.5"
+          ],
+          "human": "Hebrews 5",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.7"
+          ],
+          "human": "Hebrews 7",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 7,
       "chapter_usfm": "HEB.7",
@@ -195,6 +649,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -205,9 +660,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/7-a6946c95b2c16acf31556545963b05d1.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.7.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.7"
+          ],
+          "human": "Hebrews 7",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.6"
+          ],
+          "human": "Hebrews 6",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.8"
+          ],
+          "human": "Hebrews 8",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 8,
       "chapter_usfm": "HEB.8",
@@ -217,6 +729,7 @@
       "verse_count": 0,
       "headings": [],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -227,9 +740,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/8-4b8f59fbca2603927cb67a0caf924344.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.8.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.8"
+          ],
+          "human": "Hebrews 8",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.7"
+          ],
+          "human": "Hebrews 7",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.9"
+          ],
+          "human": "Hebrews 9",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 9,
       "chapter_usfm": "HEB.9",
@@ -244,6 +814,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -254,9 +825,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/9-268cba5415a204d1e4acf9c0a8112754.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.9.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.9"
+          ],
+          "human": "Hebrews 9",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.8"
+          ],
+          "human": "Hebrews 8",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.10"
+          ],
+          "human": "Hebrews 10",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 10,
       "chapter_usfm": "HEB.10",
@@ -271,6 +899,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -281,9 +910,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/10-acfce9b19a4fecb863c980d6ddc2c36c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.10.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.10"
+          ],
+          "human": "Hebrews 10",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.9"
+          ],
+          "human": "Hebrews 9",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.11"
+          ],
+          "human": "Hebrews 11",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 11,
       "chapter_usfm": "HEB.11",
@@ -292,48 +978,250 @@
       "verses": [
         {
           "verse": 3,
+          "usfm": "HEB.11.3",
+          "line_type": "p",
           "text": "By faith, we see the world called into existence by God’s word, what we see created by what we don’t see."
         },
         {
           "verse": 4,
+          "usfm": "HEB.11.4",
+          "line_type": "p",
           "text": "By an act of faith, Abel brought a better sacrifice to God than Cain. It was what he believed, not what he brought, that made the difference. That’s what God noticed and approved as righteous. After all these centuries, that belief continues to catch our notice. By an act of faith, Enoch skipped death completely. “They looked all over and couldn’t find him because God had taken him.” We know on the basis of reliable testimony that before he was taken “he pleased God.” It’s impossible to please God apart from faith. And why? Because anyone who wants to approach God must believe both that he exists and that he cares enough to respond to those who seek him."
         },
         {
           "verse": 7,
+          "usfm": "HEB.11.7",
+          "line_type": "p",
           "text": "By faith, Noah built a ship in the middle of dry land. He was warned about something he couldn’t see, and acted on what he was told. The result? His family was saved. His act of faith drew a sharp line between the evil of the unbelieving world and the rightness of the believing world. As a result, Noah became intimate with God. By an act of faith, Abraham said yes to God’s call to travel to an unknown place that would become his home. When he left he had no idea where he was going. By an act of faith he lived in the country promised him, lived as a stranger camping in tents. Isaac and Jacob did the same, living under the same promise. Abraham did it by keeping his eye on an unseen city with real, eternal foundations—the City designed and built by God. By faith, barren Sarah was able to become pregnant, old woman as she was at the time, because she believed the One who made a promise would do what he said. That’s how it happened that from one man’s dead and shriveled loins there are now people numbering into the millions.* * * Each one of these people of faith died not yet having in hand what was promised, but still believing. How did they do it? They saw it way off in the distance, waved their greeting, and accepted the fact that they were transients in this world. People who live this way make it plain that they are looking for their true home. If they were homesick for the old country, they could have gone back any time they wanted. But they were after a far better country than that—heaven country. You can see why God is so proud of them, and has a City waiting for them. By faith, Abraham, at the time of testing, offered Isaac back to God. Acting in faith, he was as ready to return the promised son, his only son, as he had been to receive him—and this after he had already been told, “Your descendants shall come from Isaac.” Abraham figured that if God wanted to, he could raise the dead. In a sense, that’s what happened when he received Isaac back, alive from off the altar."
         },
         {
           "verse": 20,
+          "usfm": "HEB.11.20",
+          "line_type": "p",
           "text": "By an act of faith, Isaac reached into the future as he blessed Jacob and Esau."
         },
         {
           "verse": 21,
+          "usfm": "HEB.11.21",
+          "line_type": "p",
           "text": "By an act of faith, Jacob on his deathbed blessed each of Joseph’s sons in turn, blessing them with God’s blessing, not his own—as he bowed worshipfully upon his staff."
         },
         {
           "verse": 22,
+          "usfm": "HEB.11.22",
+          "line_type": "p",
           "text": "By an act of faith, Joseph, while dying, prophesied the exodus of Israel, and made arrangements for his own burial."
         },
         {
           "verse": 23,
+          "usfm": "HEB.11.23",
+          "line_type": "p",
           "text": "By an act of faith, Moses’ parents hid him away for three months after his birth. They saw the child’s beauty, and they braved the king’s decree. By faith, Moses, when grown, refused the privileges of the Egyptian royal house. He chose a hard life with God’s people rather than an opportunistic soft life of sin with the oppressors. He valued suffering in the Messiah’s camp far greater than Egyptian wealth because he was looking ahead, anticipating the payoff. By an act of faith, he turned his heel on Egypt, indifferent to the king’s blind rage. He had his eye on the One no eye can see, and kept right on going. By an act of faith, he kept the Passover Feast and sprinkled Passover blood on each house so that the destroyer of the firstborn wouldn’t touch them."
         },
         {
           "verse": 29,
+          "usfm": "HEB.11.29",
+          "line_type": "p",
           "text": "By an act of faith, Israel walked through the Red Sea on dry ground. The Egyptians tried it and drowned."
         },
         {
           "verse": 30,
+          "usfm": "HEB.11.30",
+          "line_type": "p",
           "text": "By faith, the Israelites marched around the walls of Jericho for seven days, and the walls fell flat."
         },
         {
           "verse": 31,
+          "usfm": "HEB.11.31",
+          "line_type": "p",
           "text": "By an act of faith, Rahab, the Jericho harlot, welcomed the spies and escaped the destruction that came on those who refused to trust God.* * * I could go on and on, but I’ve run out of time. There are so many more—Gideon, Barak, Samson, Jephthah, David, Samuel, the prophets. . . . Through acts of faith, they toppled kingdoms, made justice work, took the promises for themselves. They were protected from lions, fires, and sword thrusts, turned disadvantage to advantage, won battles, routed alien armies. Women received their loved ones back from the dead. There were those who, under torture, refused to give in and go free, preferring something better: resurrection. Others braved abuse and whips, and, yes, chains and dungeons. We have stories of those who were stoned, sawed in two, murdered in cold blood; stories of vagrants wandering the earth in animal skins, homeless, friendless, powerless—the world didn’t deserve them!—making their way as best they could on the cruel edges of the world. Not one of these people, even though their lives of faith were exemplary, got their hands on what was promised. God had a better plan for us: that their faith and our faith would come together to make one completed whole, their lives of faith not complete apart from ours."
         }
       ],
       "verse_count": 10,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 3,
+          "verses": [
+            3
+          ],
+          "usfms": [
+            "HEB.11.3"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 3,
+          "end_verse": 4,
+          "verses": [
+            3,
+            4
+          ],
+          "usfms": [
+            "HEB.11.3",
+            "HEB.11.4"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 4,
+          "end_verse": 4,
+          "verses": [
+            4
+          ],
+          "usfms": [
+            "HEB.11.4"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HEB.11.7"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 7,
+          "end_verse": 7,
+          "verses": [
+            7
+          ],
+          "usfms": [
+            "HEB.11.7"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 20,
+          "verses": [
+            20
+          ],
+          "usfms": [
+            "HEB.11.20"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 20,
+          "end_verse": 21,
+          "verses": [
+            20,
+            21
+          ],
+          "usfms": [
+            "HEB.11.20",
+            "HEB.11.21"
+          ]
+        },
+        {
+          "index": 8,
+          "type": "p",
+          "start_verse": 21,
+          "end_verse": 22,
+          "verses": [
+            21,
+            22
+          ],
+          "usfms": [
+            "HEB.11.21",
+            "HEB.11.22"
+          ]
+        },
+        {
+          "index": 9,
+          "type": "p",
+          "start_verse": 22,
+          "end_verse": 23,
+          "verses": [
+            22,
+            23
+          ],
+          "usfms": [
+            "HEB.11.22",
+            "HEB.11.23"
+          ]
+        },
+        {
+          "index": 10,
+          "type": "p",
+          "start_verse": 23,
+          "end_verse": 23,
+          "verses": [
+            23
+          ],
+          "usfms": [
+            "HEB.11.23"
+          ]
+        },
+        {
+          "index": 11,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 29,
+          "verses": [
+            29
+          ],
+          "usfms": [
+            "HEB.11.29"
+          ]
+        },
+        {
+          "index": 12,
+          "type": "p",
+          "start_verse": 29,
+          "end_verse": 30,
+          "verses": [
+            29,
+            30
+          ],
+          "usfms": [
+            "HEB.11.29",
+            "HEB.11.30"
+          ]
+        },
+        {
+          "index": 13,
+          "type": "p",
+          "start_verse": 30,
+          "end_verse": 31,
+          "verses": [
+            30,
+            31
+          ],
+          "usfms": [
+            "HEB.11.30",
+            "HEB.11.31"
+          ]
+        },
+        {
+          "index": 14,
+          "type": "p",
+          "start_verse": 31,
+          "end_verse": 31,
+          "verses": [
+            31
+          ],
+          "usfms": [
+            "HEB.11.31"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -344,9 +1232,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/11-81edfb95ad881bad494468b95bd8bc82.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 10,
+          "parsed_count": 10,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.11.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.11"
+          ],
+          "human": "Hebrews 11",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.10"
+          ],
+          "human": "Hebrews 10",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.12"
+          ],
+          "human": "Hebrews 12",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 12,
       "chapter_usfm": "HEB.12",
@@ -361,6 +1306,7 @@
         }
       ],
       "footnotes": [],
+      "blocks": [],
       "audio": [
         {
           "audio_version_id": 85,
@@ -371,9 +1317,66 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/12-a64984654502669223fc9355c414d31f.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 0,
+          "parsed_count": 0,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.12.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.12"
+          ],
+          "human": "Hebrews 12",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.11"
+          ],
+          "human": "Hebrews 11",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HEB.13"
+          ],
+          "human": "Hebrews 13",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HEB",
       "chapter": 13,
       "chapter_usfm": "HEB.13",
@@ -382,28 +1385,128 @@
       "verses": [
         {
           "verse": 9,
+          "usfm": "HEB.13.9",
+          "line_type": "p",
           "text": "Don’t be lured away from him by the latest speculations about him. The grace of Christ is the only good ground for life. Products named after Christ don’t seem to do much for those who buy them. The altar from which God gives us the gift of himself is not for exploitation by insiders who grab and loot. In the old system, the animals are killed and the bodies disposed of outside the camp. The blood is then brought inside to the altar as a sacrifice for sin. It’s the same with Jesus. He was crucified outside the city gates—that is where he poured out the sacrificial blood that was brought to God’s altar to cleanse his people. So let’s go outside, where Jesus is, where the action is—not trying to be privileged insiders, but taking our share in the abuse of Jesus. This “insider world” is not our home. We have our eyes peeled for the City about to come. Let’s take our place outside with Jesus, no longer pouring out the sacrificial blood of animals but pouring out sacrificial praises from our lips to God in Jesus’ name.* * *"
         },
         {
           "verse": 16,
+          "usfm": "HEB.13.16",
+          "line_type": "p",
           "text": "Make sure you don’t take things for granted and go slack in working for the common good; share what you have with others. God takes particular pleasure in acts of worship—a different kind of “sacrifice”—that take place in kitchen and workplace and on the streets."
         },
         {
           "verse": 17,
+          "usfm": "HEB.13.17",
+          "line_type": "p",
           "text": "Be responsive to your pastoral leaders. Listen to their counsel. They are alert to the condition of your lives and work under the strict supervision of God. Contribute to the joy of their leadership, not its drudgery. Why would you want to make things harder for them? Pray for us. We have no doubts about what we’re doing or why, but it’s hard going and we need your prayers. All we care about is living well before God. Pray that we may be together soon.May God, who puts all things together,makes all things whole,Who made a lasting mark through the sacrifice of Jesus,the sacrifice of blood that sealed the eternal covenant,Who led Jesus, our Great Shepherd,up and alive from the dead,Now put you together, provide youwith everything you need to please him,Make us into what gives him most pleasure,by means of the sacrifice of Jesus, the Messiah.All glory to Jesus forever and always!Oh, yes, yes, yes. Friends, please take what I’ve written most seriously. I’ve kept this as brief as possible; I haven’t piled on a lot of extras. You’ll be glad to know that Timothy has been let out of prison. If he leaves soon, I’ll come with him and get to see you myself."
         },
         {
           "verse": 24,
+          "usfm": "HEB.13.24",
+          "line_type": "p",
           "text": "Say hello to your pastoral leaders and all the congregations. Everyone here in Italy wants to be remembered to you."
         },
         {
           "verse": 25,
+          "usfm": "HEB.13.25",
+          "line_type": "p",
           "text": "Grace be with you, every one."
         }
       ],
       "verse_count": 5,
       "headings": [],
       "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HEB.13.9"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 9,
+          "end_verse": 9,
+          "verses": [
+            9
+          ],
+          "usfms": [
+            "HEB.13.9"
+          ]
+        },
+        {
+          "index": 3,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 16,
+          "verses": [
+            16
+          ],
+          "usfms": [
+            "HEB.13.16"
+          ]
+        },
+        {
+          "index": 4,
+          "type": "p",
+          "start_verse": 16,
+          "end_verse": 17,
+          "verses": [
+            16,
+            17
+          ],
+          "usfms": [
+            "HEB.13.16",
+            "HEB.13.17"
+          ]
+        },
+        {
+          "index": 5,
+          "type": "p",
+          "start_verse": 17,
+          "end_verse": 17,
+          "verses": [
+            17
+          ],
+          "usfms": [
+            "HEB.13.17"
+          ]
+        },
+        {
+          "index": 6,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 24,
+          "verses": [
+            24
+          ],
+          "usfms": [
+            "HEB.13.24"
+          ]
+        },
+        {
+          "index": 7,
+          "type": "p",
+          "start_verse": 24,
+          "end_verse": 25,
+          "verses": [
+            24,
+            25
+          ],
+          "usfms": [
+            "HEB.13.24",
+            "HEB.13.25"
+          ]
+        }
+      ],
       "audio": [
         {
           "audio_version_id": 85,
@@ -414,7 +1517,63 @@
           "hls_url": "https://audio-hls.youversionapi.com/85/m4a/32k/HEB/13-7c45aed9ae22aec8032f38760a29bb2c.m3u8?version_id=97"
         }
       ],
-      "has_audio": true
+      "has_audio": true,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/97/HEB.13.MSG",
+        "reference": {
+          "usfm": [
+            "HEB.13"
+          ],
+          "human": "Hebrews 13",
+          "version_id": 97
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HEB.12"
+          ],
+          "human": "Hebrews 12",
+          "toc": true,
+          "version_id": 97
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JAS.1"
+          ],
+          "human": "James 1",
+          "toc": true,
+          "version_id": 97
+        }
+      },
+      "version_meta": {
+        "id": 97,
+        "abbreviation": "MSG",
+        "local_abbreviation": "MSG",
+        "title": "The Message",
+        "local_title": "The Message",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Tyndale House Publishers Inc."
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }

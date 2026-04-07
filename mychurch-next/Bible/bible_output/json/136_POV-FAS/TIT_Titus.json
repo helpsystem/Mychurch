@@ -1,0 +1,623 @@
+{
+  "book_id": "TIT",
+  "book_name_en": "Titus",
+  "book_name_fa": "تیتوس",
+  "testament": "NT",
+  "version_id": 136,
+  "version_abbr": "POV",
+  "version_name": "ترجمۀ قدیم",
+  "language": "fa",
+  "chapter_count": 3,
+  "total_verses": 45,
+  "chapters": [
+    {
+      "schema_version": 6,
+      "book_id": "TIT",
+      "chapter": 1,
+      "chapter_usfm": "TIT.1",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "TIT.1.1",
+          "line_type": "p",
+          "text": "پولس، غلام خدا و رسول عیسی مسیح برحسب ایمان برگزیدگان خدا و معرفت آن راستی که در دینداری است،"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.1.2",
+          "line_type": "p",
+          "text": "به امید حیات جاودانی که خدایی که دروغ نمی تواند گفت، اززمانهای ازلی وعده آن را داد،"
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.1.3",
+          "line_type": "p",
+          "text": "اما در زمان معین، کلام خود را ظاهر کرد به موعظهای که برحسب حکم نجاتدهنده ما خدا به من سپرده شد،"
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.1.4",
+          "line_type": "p",
+          "text": "تیطس را که فرزند حقیقی من برحسب ایمان عام است، فیض و رحمت و سلامتی از جانب خدای پدرو نجاتدهنده ما عیسی مسیح خداوند باد."
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.1.5",
+          "line_type": "p",
+          "text": "بدین جهت تو را در کریت واگذاشتم تا آنچه را که باقیمانده است اصلاح نمایی و چنانکه من به تو امر نمودم، کشیشان در هر شهر مقرر کنی."
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.1.6",
+          "line_type": "p",
+          "text": "اگر کسی بیملامت و شوهر یک زن باشد که فرزندان مومن دارد، بری از تهمت فجور و تمرد،"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.1.7",
+          "line_type": "p",
+          "text": "زیرا که اسقف میباید چون وکیل خدابی ملامت باشد و خودرای یا تندمزاج یا میگساریا زننده یا طماع سود قبیح نباشد،"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.1.8",
+          "line_type": "p",
+          "text": "بلکه مهمان دوست و خیردوست و خرداندیش و عادل ومقدس و پرهیزکار؛"
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.1.9",
+          "line_type": "p",
+          "text": "و متمسک به کلام امین برحسب تعلیمی که یافته تا بتواند به تعلیم صحیح نصیحت کند و مخالفان را توبیخ نماید."
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.1.10",
+          "line_type": "p",
+          "text": "زیرا که یاوهگویان و فریبندگان، بسیار ومتمرد میباشند، علی الخصوص آنانی که از اهل ختنه هستند؛"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.1.11",
+          "line_type": "p",
+          "text": "که دهان ایشان را باید بست زیراخانهها را بالکل واژگون میسازند و برای سودقبیح، تعالیم ناشایسته میدهند."
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.1.12",
+          "line_type": "p",
+          "text": "یکی از ایشان که نبی خاص ایشان است، گفته است که «اهل کریت همیشه دروغگو و وحوش شریر وشکم پرست بیکاره میباشند.»"
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.1.13",
+          "line_type": "p",
+          "text": "این شهادت راست است؛ از این جهت ایشان را به سختی توبیخ فرما تا در ایمان، صحیح باشند،"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.1.14",
+          "line_type": "p",
+          "text": "و گوش نگیرند به افسانه های یهود و احکام مردمانی که ازراستی انحراف میجویند."
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.1.15",
+          "line_type": "p",
+          "text": "هرچیز برای پاکان پاک است، لیکن آلودگان و بیایمانان را هیچچیزپاک نیست، بلکه فهم و ضمیر ایشان نیز ملوث است؛"
+        },
+        {
+          "verse": 16,
+          "usfm": "TIT.1.16",
+          "line_type": "p",
+          "text": "مدعی معرفت خدا میباشند، اما به افعال خود او را انکار میکنند، چونکه مکروه ومتمرد هستند و بجهت هر عمل نیکو مردود."
+        }
+      ],
+      "verse_count": 16,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 16,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "usfms": [
+            "TIT.1.1",
+            "TIT.1.10",
+            "TIT.1.11",
+            "TIT.1.12",
+            "TIT.1.13",
+            "TIT.1.14",
+            "TIT.1.15",
+            "TIT.1.16",
+            "TIT.1.2",
+            "TIT.1.3",
+            "TIT.1.4",
+            "TIT.1.5",
+            "TIT.1.6",
+            "TIT.1.7",
+            "TIT.1.8",
+            "TIT.1.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/TIT.1.POV",
+        "reference": {
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "تیطس 1",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "2TI.4"
+          ],
+          "human": "۲تیموتائوس 4",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "تیطس 2",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "TIT",
+      "chapter": 2,
+      "chapter_usfm": "TIT.2",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "TIT.2.1",
+          "line_type": "p",
+          "text": "اما تو سخنان شایسته تعلیم صحیح را بگو:"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.2.2",
+          "line_type": "p",
+          "text": "که مردان پیر، هشیار و باوقار وخرداندیش و در ایمان و محبت و صبر، صحیح باشند."
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.2.3",
+          "line_type": "p",
+          "text": "همچنین زنان پیر، در سیرت متقی باشند و نه غیبتگو و نه بنده شراب زیاده بلکه معلمات تعلیم نیکو،"
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.2.4",
+          "line_type": "p",
+          "text": "تا زنان جوان را خرد بیاموزند که شوهردوست و فرزنددوست باشند،"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.2.5",
+          "line_type": "p",
+          "text": "وخرداندیش و عفیفه و خانه نشین و نیکو و مطیع شوهران خود که مبادا کلام خدا متهم شود."
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.2.6",
+          "line_type": "p",
+          "text": "و به همین نسق جوانان را نصیحت فرما تا خرداندیش باشند."
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.2.7",
+          "line_type": "p",
+          "text": "و خود را در همهچیز نمونه اعمال نیکو بسازو در تعلیم خود صفا و وقار و اخلاص را بکار بر،"
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.2.8",
+          "line_type": "p",
+          "text": "و کلام صحیح بیعیب را تا دشمن چونکه فرصت بدگفتن در حق ما نیابد، خجل شود."
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.2.9",
+          "line_type": "p",
+          "text": "غلامان را نصیحت نما که آقایان خود رااطاعت کنند و در هر امر ایشان را راضی سازند ونقیض گو نباشند؛"
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.2.10",
+          "line_type": "p",
+          "text": "و دزدی نکنند بلکه کمال دیانت را ظاهر سازند تا تعلیم نجاتدهنده ما خدارا در هر چیز زینت دهند."
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.2.11",
+          "line_type": "p",
+          "text": "زیرا که فیض خدا که برای همه مردم نجاتبخش است، ظاهر شده،"
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.2.12",
+          "line_type": "p",
+          "text": "ما را تادیب میکند که بیدینی و شهوات دنیوی را ترک کرده، با خرداندیشی و عدالت و دینداری در این جهان زیست کنیم."
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.2.13",
+          "line_type": "p",
+          "text": "و آن امید مبارک و تجلی جلال خدای عظیم و نجاتدهنده خود ما عیسی مسیح را انتظار کشیم،"
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.2.14",
+          "line_type": "p",
+          "text": "که خود را در راه ما فدا ساخت تا ما را از هر ناراستی برهاند و امتی برای خودطاهر سازد که ملک خاص او و غیور در اعمال نیکو باشند."
+        },
+        {
+          "verse": 15,
+          "usfm": "TIT.2.15",
+          "line_type": "p",
+          "text": "این را بگو و نصیحت فرما و درکمال اقتدار توبیخ نما و هیچکس تو را حقیرنشمارد."
+        }
+      ],
+      "verse_count": 15,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 15,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "usfms": [
+            "TIT.2.1",
+            "TIT.2.10",
+            "TIT.2.11",
+            "TIT.2.12",
+            "TIT.2.13",
+            "TIT.2.14",
+            "TIT.2.15",
+            "TIT.2.2",
+            "TIT.2.3",
+            "TIT.2.4",
+            "TIT.2.5",
+            "TIT.2.6",
+            "TIT.2.7",
+            "TIT.2.8",
+            "TIT.2.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/TIT.2.POV",
+        "reference": {
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "تیطس 2",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.1"
+          ],
+          "human": "تیطس 1",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "تیطس 3",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    },
+    {
+      "schema_version": 6,
+      "book_id": "TIT",
+      "chapter": 3,
+      "chapter_usfm": "TIT.3",
+      "version_id": 136,
+      "version_abbr": "POV",
+      "verses": [
+        {
+          "verse": 1,
+          "usfm": "TIT.3.1",
+          "line_type": "p",
+          "text": "بیاد ایشان آور که حکام و سلاطین رااطاعت کنند و فرمانبرداری نمایند و برای هرکار نیکو مستعد باشند،"
+        },
+        {
+          "verse": 2,
+          "usfm": "TIT.3.2",
+          "line_type": "p",
+          "text": "و هیچکس را بدنگویند و جنگجو نباشند بلکه ملایم و کمال حلم را با جمیع مردم بهجا آورند."
+        },
+        {
+          "verse": 3,
+          "usfm": "TIT.3.3",
+          "line_type": "p",
+          "text": "زیرا که ما نیز سابق بیفهم و نافرمانبردار وگمراه و بنده انواع شهوات و لذات بوده، در خبث و حسد بسر میبردیم که لایق نفرت بودیم و بریکدیگر بغض میداشتیم."
+        },
+        {
+          "verse": 4,
+          "usfm": "TIT.3.4",
+          "line_type": "p",
+          "text": "لیکن چون مهربانی ولطف نجاتدهنده ما خدا ظاهر شد،"
+        },
+        {
+          "verse": 5,
+          "usfm": "TIT.3.5",
+          "line_type": "p",
+          "text": "نه بهسبب اعمالی که ما به عدالت کرده بودیم، بلکه محض رحمت خود ما را نجات داد به غسل تولد تازه وتازگیای که از روحالقدس است؛"
+        },
+        {
+          "verse": 6,
+          "usfm": "TIT.3.6",
+          "line_type": "p",
+          "text": "که او را به ما به دولتمندی افاضه نمود، به توسط نجاتدهنده ماعیسی مسیح،"
+        },
+        {
+          "verse": 7,
+          "usfm": "TIT.3.7",
+          "line_type": "p",
+          "text": "تا به فیض او عادل شمرده شده، وارث گردیم بحسب امید حیات جاودانی."
+        },
+        {
+          "verse": 8,
+          "usfm": "TIT.3.8",
+          "line_type": "p",
+          "text": "این سخن امین است و در این امور میخواهم تو قدغن بلیغ فرمایی تا آنانی که به خدا ایمان آورند، بکوشند که در اعمال نیکو مواظبت نمایند، زیرا که این امور برای انسان نیکو و مفیداست."
+        },
+        {
+          "verse": 9,
+          "usfm": "TIT.3.9",
+          "line_type": "p",
+          "text": "و از مباحثات نامعقول و نسب نامهها و نزاعهاو جنگهای شرعی اعراض نما زیرا که بیثمر وباطل است."
+        },
+        {
+          "verse": 10,
+          "usfm": "TIT.3.10",
+          "line_type": "p",
+          "text": "و از کسیکه از اهل بدعت باشد، بعد از یک دو نصیحت اجتناب نما،"
+        },
+        {
+          "verse": 11,
+          "usfm": "TIT.3.11",
+          "line_type": "p",
+          "text": "چون میدانی که چنین کس مرتد و از خود ملزم شده درگناه رفتار میکند."
+        },
+        {
+          "verse": 12,
+          "usfm": "TIT.3.12",
+          "line_type": "p",
+          "text": "وقتی که ارتیماس یا تیخیکس را نزد توفرستم، سعی کن که در نیکوپولیس نزد من آیی زیرا که عزیمت دارم زمستان را در آنجا بسر برم."
+        },
+        {
+          "verse": 13,
+          "usfm": "TIT.3.13",
+          "line_type": "p",
+          "text": "زیناس خطیب و اپلس را در سفر ایشان به سعی امداد کن تا محتاج هیچچیز نباشند."
+        },
+        {
+          "verse": 14,
+          "usfm": "TIT.3.14",
+          "line_type": "p",
+          "text": "و کسان ما نیز تعلیم بگیرند که در کارهای نیکومشغول باشند برای رفع احتیاجات ضروری، تابی ثمر نباشند."
+        }
+      ],
+      "verse_count": 14,
+      "headings": [],
+      "footnotes": [],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 14,
+          "verses": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "usfms": [
+            "TIT.3.1",
+            "TIT.3.10",
+            "TIT.3.11",
+            "TIT.3.12",
+            "TIT.3.13",
+            "TIT.3.14",
+            "TIT.3.2",
+            "TIT.3.3",
+            "TIT.3.4",
+            "TIT.3.5",
+            "TIT.3.6",
+            "TIT.3.7",
+            "TIT.3.8",
+            "TIT.3.9"
+          ]
+        }
+      ],
+      "audio": [],
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/136/TIT.3.POV",
+        "reference": {
+          "usfm": [
+            "TIT.3"
+          ],
+          "human": "تیطس 3",
+          "version_id": 136
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "TIT.2"
+          ],
+          "human": "تیطس 2",
+          "toc": true,
+          "version_id": 136
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "PHM.1"
+          ],
+          "human": "فیلیمون 1",
+          "toc": true,
+          "version_id": 136
+        }
+      },
+      "version_meta": {
+        "id": 136,
+        "abbreviation": "POV-FAS",
+        "local_abbreviation": "POV-FAS",
+        "title": "Persian Old Version",
+        "local_title": "Persian Old Version",
+        "language": {
+          "iso_639_1": "fa",
+          "iso_639_3": "pes",
+          "language_tag": "pes",
+          "local_name": "فارسی",
+          "text_direction": "rtl"
+        },
+        "publisher": {
+          "name": "Elam Ministries"
+        },
+        "audio_enabled": false
+      }
+    }
+  ]
+}

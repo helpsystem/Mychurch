@@ -11,6 +11,7 @@
   "total_verses": 197,
   "chapters": [
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 1,
       "chapter_usfm": "HOS.1",
@@ -19,56 +20,338 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.1.1",
+          "line_type": "p",
           "text": "The word of Yahweh that came to Hosea son of Beeri, in the days of Uzziah, Jotham, Ahaz, and Hezekiah, the kings of Judah, and in the days of Jeroboam the son of Joash, king of Israel."
         },
         {
           "verse": 2,
+          "usfm": "HOS.1.2",
+          "line_type": null,
           "text": "At the beginning when Yahweh spoke through Hosea, Yahweh said to Hosea, “Go, take for yourself a wife and children of whoredom, because the land commits great whoredom forsaking Yahweh.”"
         },
         {
           "verse": 3,
+          "usfm": "HOS.1.3",
+          "line_type": null,
           "text": "So he went and took Gomer daughter of Diblaim, and she conceived and bore him a son."
         },
         {
           "verse": 4,
+          "usfm": "HOS.1.4",
+          "line_type": null,
           "text": "And Yahweh said to him, “Name him Jezreel; because in a little while I will punish the house of Jehu for the blood of Jezreel, and I will put an end to the kingdom of the house of Israel."
         },
         {
           "verse": 5,
+          "usfm": "HOS.1.5",
+          "line_type": null,
           "text": "On that day I will break the bow of Israel in the Valley of Jezreel.”"
         },
         {
           "verse": 6,
+          "usfm": "HOS.1.6",
+          "line_type": "p",
           "text": "And she conceived again and bore a daughter, and he said to him, “Name her Lo-ruhamah, for I will no longer have pity on the house of Israel or forgive them."
         },
         {
           "verse": 7,
+          "usfm": "HOS.1.7",
+          "line_type": null,
           "text": "But I will have pity on the house of Judah and I will save them by Yahweh their God, and will not deliver them by bow, sword, war, horses, or horsemen."
         },
         {
           "verse": 8,
+          "usfm": "HOS.1.8",
+          "line_type": null,
           "text": "And when she had weaned Lo-ruhamah, she conceived and bore a son."
         },
         {
           "verse": 9,
+          "usfm": "HOS.1.9",
+          "line_type": null,
           "text": "And he said, “Name him Lo-ammi, for you are not my people and I am not your God."
         },
         {
           "verse": 10,
+          "usfm": "HOS.1.10",
+          "line_type": null,
           "text": "The number of the children of Israel will be like the sand of the sea that cannot be measured or counted; and in the place where it is said to them, “You are not my people,” it will be said to them, “Children of the living God.”"
         },
         {
           "verse": 11,
+          "usfm": "HOS.1.11",
+          "line_type": null,
           "text": "Then the children of Judah and Israel will be gathered together, and they will appoint for themselves one head; and they will take possession of the land, for great is the day of Jezreel."
         }
       ],
       "verse_count": 11,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “At the beginning of the talking of Yahweh”"
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.1.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from behind Yahweh”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Call his name”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jezreel means “God sows”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will visit sin upon”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “the dynasty of Jehu”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “bloodshed”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jezreel means “God sows”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.1.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “the dynasty of Israel”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.1.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “And it will happen on that day”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Yahweh"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Call her name”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lo-ruhamah means “Not pitied”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.1.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “raise them up”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.1.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lo-ruhamah means “Not pitied”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Yahweh"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “Call his name”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lo-ammi means “not my people”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.1.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “not yours”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.1.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hosea 1:10–2:23 in the English Bible is 2:1–25 in the Hebrew Bible"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “they will go up from”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.1.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jezreel means “God sows”"
+        }
+      ],
+      "blocks": [
+        {
+          "index": 1,
+          "type": "p",
+          "start_verse": 1,
+          "end_verse": 1,
+          "verses": [
+            1
+          ],
+          "usfms": [
+            "HOS.1.1"
+          ]
+        },
+        {
+          "index": 2,
+          "type": "p",
+          "start_verse": 6,
+          "end_verse": 6,
+          "verses": [
+            6
+          ],
+          "usfms": [
+            "HOS.1.6"
+          ]
+        }
+      ],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.1.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.1"
+          ],
+          "human": "Hosea 1",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "DAN.12"
+          ],
+          "human": "Daniel 12",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 2,
       "chapter_usfm": "HOS.2",
@@ -77,104 +360,441 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.2.1",
+          "line_type": null,
           "text": "Say to your brother, “Ammi,” and to your sister, “Ruhamah.”"
         },
         {
           "verse": 2,
+          "usfm": "HOS.2.2",
+          "line_type": null,
           "text": "Plead with your mother, plead— because she is not my wife, and I am not her husband. Let her put away her whoring from before her, and her adultery from between her breasts."
         },
         {
           "verse": 3,
+          "usfm": "HOS.2.3",
+          "line_type": null,
           "text": "Lest I strip her naked and expose her like the day when she was born; I will make her like the desert and turn her into parched land; I will kill her with thirst."
         },
         {
           "verse": 4,
+          "usfm": "HOS.2.4",
+          "line_type": null,
           "text": "And I will not have pity on her children, because they are children of whoredom."
         },
         {
           "verse": 5,
+          "usfm": "HOS.2.5",
+          "line_type": null,
           "text": "Because their mother was unfaithful; she who conceived them has acted shamefully, for she said: “I will go after my lovers, the ones who give me my bread, my water, my wool, and my flax, my oil, and my drink.”"
         },
         {
           "verse": 6,
+          "usfm": "HOS.2.6",
+          "line_type": null,
           "text": "Therefore, Look! I am going to hedge her path with thorns, and I will build a stone wall, a stone wall against her, and she will not find her paths."
         },
         {
           "verse": 7,
+          "usfm": "HOS.2.7",
+          "line_type": null,
           "text": "Then she will pursue her lovers, but she will not overtake them; she will seek them and not find them; and she will say, “I will go and return to my first husband because it was better for me then than now.”"
         },
         {
           "verse": 8,
+          "usfm": "HOS.2.8",
+          "line_type": null,
           "text": "But she did not know that it was I who gave her grain, new wine, and oil, and who gave her silver in abundance, and gold which they made into a Baal."
         },
         {
           "verse": 9,
+          "usfm": "HOS.2.9",
+          "line_type": null,
           "text": "Therefore I will take again my grain in its time, and my wine in its season; and I will take away my wool and my flax, which were to cover her nakedness."
         },
         {
           "verse": 10,
+          "usfm": "HOS.2.10",
+          "line_type": null,
           "text": "And now I will uncover her nakedness before the eyes of her lovers, and no one will rescue her from my hand."
         },
         {
           "verse": 11,
+          "usfm": "HOS.2.11",
+          "line_type": null,
           "text": "And I will put an end to all her mirth, her festivals, her new moons, and her Sabbaths, and all her appointed festivals;"
         },
         {
           "verse": 12,
+          "usfm": "HOS.2.12",
+          "line_type": null,
           "text": "and I will lay waste to her vines and her fig trees, of which she said, “They are my payment for prostitution, which my lovers gave to me.” I will make them a forest, and the wild animals of the field will devour them."
         },
         {
           "verse": 13,
+          "usfm": "HOS.2.13",
+          "line_type": null,
           "text": "I will punish her for the days of the Baals, to whom she burns incense, and she decked herself with her ornamental ring and jewelry, and she went after her lovers, and forgot me —a declaration of Yahweh."
         },
         {
           "verse": 14,
+          "usfm": "HOS.2.14",
+          "line_type": null,
           "text": "Therefore, Look! I am going to allure her and bring her into the desert, and I will speak tenderly to her."
         },
         {
           "verse": 15,
+          "usfm": "HOS.2.15",
+          "line_type": null,
           "text": "From there I will give her her vineyards, and the Valley of Achor as a doorway of hope. And there she will respond, as in the days of her youth, just as in the day of her coming out of the land of Egypt."
         },
         {
           "verse": 16,
+          "usfm": "HOS.2.16",
+          "line_type": null,
           "text": "And on that day— a declaration of Yahweh— you will call me, “My husband;” you will no longer call me, “My Baal.”"
         },
         {
           "verse": 17,
+          "usfm": "HOS.2.17",
+          "line_type": null,
           "text": "I will remove the names of the Baals from her mouth, and they will no longer be mentioned by their name."
         },
         {
           "verse": 18,
+          "usfm": "HOS.2.18",
+          "line_type": null,
           "text": "I will make a covenant for them on that day, with the animals of the field, with the birds of the heaven, and with the creeping things of the ground; the bow, the sword, and the war I will abolish from the land, and I will let them lie down in safety."
         },
         {
           "verse": 19,
+          "usfm": "HOS.2.19",
+          "line_type": null,
           "text": "And I will take you as my wife forever; I will take you as a wife for myself in righteousness and in justice, in steadfast love and in mercy."
         },
         {
           "verse": 20,
+          "usfm": "HOS.2.20",
+          "line_type": null,
           "text": "I will take you as my wife in faithfulness, and you will know Yahweh."
         },
         {
           "verse": 21,
+          "usfm": "HOS.2.21",
+          "line_type": null,
           "text": "On that day I will answer, declares Yahweh, I will answer the heavens, and they will answer the earth."
         },
         {
           "verse": 22,
+          "usfm": "HOS.2.22",
+          "line_type": null,
           "text": "And the earth will answer the grain, the wine, and the oil, and they will answer Jezreel."
         },
         {
           "verse": 23,
+          "usfm": "HOS.2.23",
+          "line_type": null,
           "text": "I will sow her for myself in the land; I will have pity on Lo-ruhama; I will say to Lo-ammi, “You are my people,” and he himself will say, “you are my God.”"
         }
       ],
       "verse_count": 23,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “brothers”"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Ammi means “My people”"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “sisters”"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.2.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Ruhamah means “Pitied”"
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.2.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “from her face”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.2.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “their mother played the whore”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.2.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “your path”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.2.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “with the thorns”"
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.2.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the ones who love her”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “festival”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “new moon”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “Sabbath”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.2.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “festival”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “vine”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “fig tree”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.2.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “animal”"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.2.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “To visit sins upon her;” see 1:4"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.2.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will speak to her heart”"
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.2.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally, “And it will happen on that day”"
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.2.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “Ishi”"
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.2.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “Baali”"
+        },
+        {
+          "verse": 18,
+          "usfm": "HOS.2.18",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “animal”"
+        },
+        {
+          "verse": 18,
+          "usfm": "HOS.2.18",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “bird”"
+        },
+        {
+          "verse": 18,
+          "usfm": "HOS.2.18",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “creeping thing”"
+        },
+        {
+          "verse": 20,
+          "usfm": "HOS.2.20",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will take you as a wife to me”"
+        },
+        {
+          "verse": 21,
+          "usfm": "HOS.2.21",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “a declaration of Yahweh"
+        },
+        {
+          "verse": 22,
+          "usfm": "HOS.2.22",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Jezreel means “God sows”"
+        },
+        {
+          "verse": 23,
+          "usfm": "HOS.2.23",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lo-ruhama means “Not pitied”"
+        },
+        {
+          "verse": 23,
+          "usfm": "HOS.2.23",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Lo-ammi means “Not my people”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 23,
+          "parsed_count": 23,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.2.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.1"
+          ],
+          "human": "Hosea 1",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 3,
       "chapter_usfm": "HOS.3",
@@ -183,32 +803,133 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.3.1",
+          "line_type": null,
           "text": "And Yahweh said to me again, “Go, love a woman who has a lover and is committing adultery, just like the love of Yahweh for the children of Israel, but they are turning to other gods and love raisin cakes.”"
         },
         {
           "verse": 2,
+          "usfm": "HOS.3.2",
+          "line_type": null,
           "text": "So I bought her for fifteen shekels of silver and a homer of barely and a measure of wine."
         },
         {
           "verse": 3,
+          "usfm": "HOS.3.3",
+          "line_type": null,
           "text": "And I said to her, “You must remain as mine for many days, and you will not play the whore; you will not belong to a man, and I will belong to you.”"
         },
         {
           "verse": 4,
+          "usfm": "HOS.3.4",
+          "line_type": null,
           "text": "The children of Israel will remain for many days without a king and prince, without sacrifice and stone pillar, ephod and teraphim."
         },
         {
           "verse": 5,
+          "usfm": "HOS.3.5",
+          "line_type": null,
           "text": "Afterward the children of Israel will return and seek Yahweh their God and David their king. They will come in fear to Yahweh and to his goodness at the end of days."
         }
       ],
       "verse_count": 5,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.3.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “who is beloved of a friend”"
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.3.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “a measure of barley”; the LXX has “a nebel of wine,” although some modern translations, e.g. NASB, have “a homer and a half of barley”"
+        },
+        {
+          "verse": 3,
+          "usfm": "HOS.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “You must sit at home for me”"
+        },
+        {
+          "verse": 3,
+          "usfm": "HOS.3.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “you will not be”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 5,
+          "parsed_count": 5,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.3.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.2"
+          ],
+          "human": "Hosea 2",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 4,
       "chapter_usfm": "HOS.4",
@@ -217,88 +938,369 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.4.1",
+          "line_type": null,
           "text": "Hear the word of Yahweh, O children of Israel, for Yahweh has an indictment against the inhabitants of the land. There is no faithfulness or loyalty, there is no knowledge of God in the land."
         },
         {
           "verse": 2,
+          "usfm": "HOS.4.2",
+          "line_type": null,
           "text": "Swearing and lying, murdering and stealing, and adultery break out, and bloodshed follows bloodshed."
         },
         {
           "verse": 3,
+          "usfm": "HOS.4.3",
+          "line_type": null,
           "text": "Therefore the land mourns, and all those living in it languish with the animals of the field, and the birds of the heaven, and even the fish of the sea are being swept away."
         },
         {
           "verse": 4,
+          "usfm": "HOS.4.4",
+          "line_type": null,
           "text": "Yet, let no one contend, and let no one accuse, for with you, O priest, is my contention."
         },
         {
           "verse": 5,
+          "usfm": "HOS.4.5",
+          "line_type": null,
           "text": "You will stumble by day, and the priest also will stumble with you at night. And I will destroy your mother;"
         },
         {
           "verse": 6,
+          "usfm": "HOS.4.6",
+          "line_type": null,
           "text": "My people are destroyed for lack of knowledge; because you have rejected knowledge, I reject you from acting as a priest for me. And since you have forgotten the law of your God, I will also forget your children."
         },
         {
           "verse": 7,
+          "usfm": "HOS.4.7",
+          "line_type": null,
           "text": "When they became many, their sin increased against me; they changed their glory into shame."
         },
         {
           "verse": 8,
+          "usfm": "HOS.4.8",
+          "line_type": null,
           "text": "They feed on the sin of my people, they are greedy for their iniquity."
         },
         {
           "verse": 9,
+          "usfm": "HOS.4.9",
+          "line_type": null,
           "text": "And it will be like people, like priest; I will punish them for their ways, and I will requite them for their deeds."
         },
         {
           "verse": 10,
+          "usfm": "HOS.4.10",
+          "line_type": null,
           "text": "They will eat and not be satisfied; they will play the whore and not multiply, because they have forsaken Yahweh to devote themselves to"
         },
         {
           "verse": 11,
+          "usfm": "HOS.4.11",
+          "line_type": null,
           "text": "whoredom. Wine and new wine take away the understanding."
         },
         {
           "verse": 12,
+          "usfm": "HOS.4.12",
+          "line_type": null,
           "text": "My people, consult their wooden idols, and their divining rod gives them oracles; because a spirit of whoredom led them astray, and they played the whore from under their God."
         },
         {
           "verse": 13,
+          "usfm": "HOS.4.13",
+          "line_type": null,
           "text": "On the tops of the mountains they sacrifice, and on the hills they make offerings, under oak, poplar, and terebinth, because their shade is good. Therefore your daughters play the whore, and all your daughters-in-law commit adultery."
         },
         {
           "verse": 14,
+          "usfm": "HOS.4.14",
+          "line_type": null,
           "text": "I will not punish your daughters when they play the whore, or your daughters-in-law when they commit adultery; because they go aside with whores, and they sacrifice with temple prostitutes, a people that does not understand comes to ruin."
         },
         {
           "verse": 15,
+          "usfm": "HOS.4.15",
+          "line_type": null,
           "text": "Even though you, O Israel, are playing the whore, do not let Judah become guilty; do not enter Gilgal, or go up to Beth-aven; and do not swear, “As Yahweh lives!”"
         },
         {
           "verse": 16,
+          "usfm": "HOS.4.16",
+          "line_type": null,
           "text": "Indeed, like a stubborn heifer, Israel is stubborn; Now Yahweh will feed them, like a lamb in broad pasture."
         },
         {
           "verse": 17,
+          "usfm": "HOS.4.17",
+          "line_type": null,
           "text": "Ephraim is joined to idols; let him alone."
         },
         {
           "verse": 18,
+          "usfm": "HOS.4.18",
+          "line_type": null,
           "text": "When their drinking has ended, they surely indulge in sexual orgies. They love lewdness more than their glory."
         },
         {
           "verse": 19,
+          "usfm": "HOS.4.19",
+          "line_type": null,
           "text": "A wind has wrapped them in its wings, and they will be ashamed because of their altars."
         }
       ],
       "verse_count": 19,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.4.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The LXX adds “and adultery breaks out in the land”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.4.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The Hebrew is unclear; the NASB translates “For your people are like those who contend with the priest”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.4.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “to me”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.4.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “sons”"
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.4.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew uncertain; MT “I will exchange”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.4.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “They eat the sins of my people”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.4.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “they lift up their throat”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.4.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “him”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.4.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “his”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.4.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “him”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.4.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “his”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.4.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “to watch over whoredom”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.4.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “take away heart”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.4.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “their wood”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.4.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, “they played the whore forsaking their God”; See Ezek 23:5"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.4.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “its”"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.4.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “brides”"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.4.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will not visit sins upon your daughters”"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.4.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “brides”"
+        },
+        {
+          "verse": 15,
+          "usfm": "HOS.4.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the life of Yahweh”"
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.4.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Can Yahweh feed them, like a lamb in broad pasture?”"
+        },
+        {
+          "verse": 18,
+          "usfm": "HOS.4.18",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “her”"
+        },
+        {
+          "verse": 19,
+          "usfm": "HOS.4.19",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “her”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 19,
+          "parsed_count": 19,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.4.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.3"
+          ],
+          "human": "Hosea 3",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 5,
       "chapter_usfm": "HOS.5",
@@ -307,72 +1309,233 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.5.1",
+          "line_type": null,
           "text": "Hear this, O priests! Give heed, O house of Israel! Listen, O house of the king! Because the judgment applies to you; because you have been a snare for Mizpah, and a net spread out on Tabor;"
         },
         {
           "verse": 2,
+          "usfm": "HOS.5.2",
+          "line_type": null,
           "text": "they dug a deep pit in Shittim, but I am a punishment for all of them."
         },
         {
           "verse": 3,
+          "usfm": "HOS.5.3",
+          "line_type": null,
           "text": "I myself know Ephraim, and Israel is not hidden from me; because now you have played the whore, O Ephraim— Israel is defiled."
         },
         {
           "verse": 4,
+          "usfm": "HOS.5.4",
+          "line_type": null,
           "text": "Their deeds do not permit them to return them to God. Because a spirit of whoredom is in their midst, they do not know Yahweh."
         },
         {
           "verse": 5,
+          "usfm": "HOS.5.5",
+          "line_type": null,
           "text": "The pride of Israel testifies against him, and Israel and Ephraim stumble in their guilt, and Judah stumbles with them."
         },
         {
           "verse": 6,
+          "usfm": "HOS.5.6",
+          "line_type": null,
           "text": "With their flocks and herds they will go to seek Yahweh, but they will not find him; he has withdrawn from them."
         },
         {
           "verse": 7,
+          "usfm": "HOS.5.7",
+          "line_type": null,
           "text": "They have dealt faithlessly with Yahweh because they have borne illegitimate children. Now the new moon will devour them with their fields."
         },
         {
           "verse": 8,
+          "usfm": "HOS.5.8",
+          "line_type": null,
           "text": "Blow the horn in Gibeah, the trumpet in Ramah. Sound the alarm in Beth-aven; look behind you, Benjamin."
         },
         {
           "verse": 9,
+          "usfm": "HOS.5.9",
+          "line_type": null,
           "text": "Ephraim will be a desolation in the day of punishment; among the tribes of Israel I will reveal what is true."
         },
         {
           "verse": 10,
+          "usfm": "HOS.5.10",
+          "line_type": null,
           "text": "The princes of Judah have become like those who remove a landmark; on them I will pour out my wrath like water."
         },
         {
           "verse": 11,
+          "usfm": "HOS.5.11",
+          "line_type": null,
           "text": "Ephraim is oppressed, crushed in judgment, because he was determined to go after filth."
         },
         {
           "verse": 12,
+          "usfm": "HOS.5.12",
+          "line_type": null,
           "text": "But I am like a maggot to Ephraim and like rottenness to the house of Judah."
         },
         {
           "verse": 13,
+          "usfm": "HOS.5.13",
+          "line_type": null,
           "text": "And when Ephraim saw his illness, and Judah his wound, Ephraim went to Assyria, he sent to the great king. But he was unable to cure you and heal your wound."
         },
         {
           "verse": 14,
+          "usfm": "HOS.5.14",
+          "line_type": null,
           "text": "Because I will be like a lion to Ephraim and like a fierce strong lion to the house of Judah. I myself will tear and I will go; I will carry off, and there is no one who delivers."
         },
         {
           "verse": 15,
+          "usfm": "HOS.5.15",
+          "line_type": null,
           "text": "I will return again to my place until they acknowledge their guilt and seek my face; in their distress they will search me."
         }
       ],
       "verse_count": 15,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.5.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew uncertain"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.5.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “against his face;” see 7:10"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.5.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “flock”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.5.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “herd”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.5.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “shofar”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.5.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew uncertain; another possible translation is “that he follows human commands”"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.5.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Some translate literally “King Jareb” (see the NASB, NKJV)"
+        },
+        {
+          "verse": 15,
+          "usfm": "HOS.5.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will go, I will return”"
+        },
+        {
+          "verse": 15,
+          "usfm": "HOS.5.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “they will beg favor of”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.5.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.4"
+          ],
+          "human": "Hosea 4",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 6,
       "chapter_usfm": "HOS.6",
@@ -381,61 +1544,166 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.6.1",
+          "line_type": null,
           "text": "Come, let us return to Yahweh; because it is he who has torn, and he will heal us; he has struck us down and will bind us up."
         },
         {
           "verse": 2,
+          "usfm": "HOS.6.2",
+          "line_type": null,
           "text": "He will revive us after two days; on the third day he will raise us up, that we may live in his presence."
         },
         {
           "verse": 3,
+          "usfm": "HOS.6.3",
+          "line_type": null,
           "text": "Let us know, let us press on to know Yahweh; his rising is sure like the dawn. He will come like the showers to us, like the spring rain that waters the earth."
         },
         {
           "verse": 4,
+          "usfm": "HOS.6.4",
+          "line_type": null,
           "text": "What will I do with you, O Ephraim? What will I do with you, O Judah? Your love is like a morning cloud, like the dew that goes away early in the morning."
         },
         {
           "verse": 5,
+          "usfm": "HOS.6.5",
+          "line_type": null,
           "text": "Therefore, I have hewn them by the prophets; I have killed them by the words of my mouth, and my judgment goes forth like the light."
         },
         {
           "verse": 6,
+          "usfm": "HOS.6.6",
+          "line_type": null,
           "text": "Because I desire steadfast love and not sacrifice, and knowledge of God rather than burnt offerings."
         },
         {
           "verse": 7,
+          "usfm": "HOS.6.7",
+          "line_type": null,
           "text": "But like Adam, they transgressed the covenant; there they dealt faithlessly with me."
         },
         {
           "verse": 8,
+          "usfm": "HOS.6.8",
+          "line_type": null,
           "text": "Gilead is a city of evil, a cunning city because of blood."
         },
         {
           "verse": 9,
+          "usfm": "HOS.6.9",
+          "line_type": null,
           "text": "Like bandits lying in wait, so is a band of priests; they murder on the road to Shechem; indeed, they commit a monstrous crime."
         },
         {
           "verse": 10,
+          "usfm": "HOS.6.10",
+          "line_type": null,
           "text": "In the house of Israel I have seen something horrible; Ephraim’s unfaithfulness is there. Israel is defiled."
         },
         {
           "verse": 11,
+          "usfm": "HOS.6.11",
+          "line_type": null,
           "text": "For you also, O Judah, a harvest is appointed, when I restore the fortunes of my people,"
         }
       ],
       "verse_count": 11,
       "headings": [
         {
-          "before_verse": 10,
+          "before_verse": 11,
           "text": "Ephraim’s Guilt"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.6.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “before his face”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.6.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “your judgments”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.6.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The Hebrew is difficult; NRSV translates “tracked with blood”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 11,
+          "parsed_count": 11,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.6.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.5"
+          ],
+          "human": "Hosea 5",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 7,
       "chapter_usfm": "HOS.7",
@@ -444,76 +1712,303 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.7.1",
+          "line_type": null,
           "text": "when I would heal Israel, and the corruption of Ephraim is revealed, and the wicked deeds of Samaria; because they deal in falsehood, the thief breaks in, and the bandit raids the outside."
         },
         {
           "verse": 2,
+          "usfm": "HOS.7.2",
+          "line_type": null,
           "text": "But they did not consider that I remember all their wickedness. Now their deeds surround them; they are before my face."
         },
         {
           "verse": 3,
+          "usfm": "HOS.7.3",
+          "line_type": null,
           "text": "By their wickedness they make the king glad, and the officials by their treacheries."
         },
         {
           "verse": 4,
+          "usfm": "HOS.7.4",
+          "line_type": null,
           "text": "All of them commit adultery, like a burning oven whose baker has stopped from stirring the fire, and from kneading the dough until it is leavened."
         },
         {
           "verse": 5,
+          "usfm": "HOS.7.5",
+          "line_type": null,
           "text": "On the day of our king, the princes became sick with the heat of wine; he stretched out his hand with mockers."
         },
         {
           "verse": 6,
+          "usfm": "HOS.7.6",
+          "line_type": null,
           "text": "Because they are kindled like an oven, their heart burns within them; all night their anger smolders, in the morning it blazes like a flaming fire."
         },
         {
           "verse": 7,
+          "usfm": "HOS.7.7",
+          "line_type": null,
           "text": "All of them are hot as an oven, and they devour their rulers. All their kings have fallen; there is none who calls to me amongst them."
         },
         {
           "verse": 8,
+          "usfm": "HOS.7.8",
+          "line_type": null,
           "text": "Ephraim mixes himself with the nations; Ephraim is a bread cake not turned over."
         },
         {
           "verse": 9,
+          "usfm": "HOS.7.9",
+          "line_type": null,
           "text": "Foreigners devour his strength, and he does not know it; mold is also sprinkled upon him, and he does not know it."
         },
         {
           "verse": 10,
+          "usfm": "HOS.7.10",
+          "line_type": null,
           "text": "The pride of Israel testifies against him— they do not return to Yahweh their God; they do not seek him for all of this."
         },
         {
           "verse": 11,
+          "usfm": "HOS.7.11",
+          "line_type": null,
           "text": "Ephraim was like a dove, silly, without sense; they call to Egypt, they go to Assyria."
         },
         {
           "verse": 12,
+          "usfm": "HOS.7.12",
+          "line_type": null,
           "text": "Just as they go, I will cast my net over them; I will bring them down like the birds of the heavens; I will discipline them according to a report to their assembly."
         },
         {
           "verse": 13,
+          "usfm": "HOS.7.13",
+          "line_type": null,
           "text": "Woe to them, because they have strayed from me! Destruction to them, because they have rebelled against me! I myself would redeem them, but they speak lies against me."
         },
         {
           "verse": 14,
+          "usfm": "HOS.7.14",
+          "line_type": null,
           "text": "They do not cry out to me from their heart, but they wail on their beds; because of grain and new wine they lacerate themselves; they depart from me."
         },
         {
           "verse": 15,
+          "usfm": "HOS.7.15",
+          "line_type": null,
           "text": "And I myself trained and strengthened their arms; but they plan evil against me."
         },
         {
           "verse": 16,
+          "usfm": "HOS.7.16",
+          "line_type": null,
           "text": "They turn, not to the Most High, like a slack bow; their officials will fall by the sword because of the anger of their tongue. This is their scorn in the land of Egypt."
         }
       ],
       "verse_count": 16,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.7.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “comes in”"
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.7.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “But they did not say to their heart”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.7.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "This phrase refers to the effects of wine on the body"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.7.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “they drew near;” other ancient translations read “they are kindled”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.7.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “sleeps”"
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.7.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “they eat”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.7.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Foreigners eat”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.7.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “grey hair,” but in this case the word refers to the “hairs of mold” on food"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.7.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “answers against his face”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.7.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “in all of this”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.7.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “without heart”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.7.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “bird”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.7.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “sky”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.7.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew uncertain"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.7.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “gash”"
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.7.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew uncertain; the NRSV translates “to that which does not profit”; the NASB translates “but not upward”"
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.7.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The NRSV translates “So much for their babbling”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.7.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.6"
+          ],
+          "human": "Hosea 6",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 8,
       "chapter_usfm": "HOS.8",
@@ -522,68 +2017,227 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.8.1",
+          "line_type": null,
           "text": "Put to your lips the trumpet like a vulture over the house of Yahweh, because they have broken my covenant and rebelled against my law."
         },
         {
           "verse": 2,
+          "usfm": "HOS.8.2",
+          "line_type": null,
           "text": "They cry out to me, “My God! We, Israel, know you!”"
         },
         {
           "verse": 3,
+          "usfm": "HOS.8.3",
+          "line_type": null,
           "text": "Israel has spurned the good; the enemy will pursue him."
         },
         {
           "verse": 4,
+          "usfm": "HOS.8.4",
+          "line_type": null,
           "text": "They appointed kings, but not through me; they made officials, but without my knowledge. With their silver and gold they made idols for themselves for their own destruction."
         },
         {
           "verse": 5,
+          "usfm": "HOS.8.5",
+          "line_type": null,
           "text": "Your calf is rejected, O Samaria; my anger burns against them. How long will they be incapable of innocence?"
         },
         {
           "verse": 6,
+          "usfm": "HOS.8.6",
+          "line_type": null,
           "text": "Because it is from Israel, an artisan made it, it is not a god; for the calf of Samaria will be broken to pieces."
         },
         {
           "verse": 7,
+          "usfm": "HOS.8.7",
+          "line_type": null,
           "text": "Because they sow the wind, they will reap the whirlwind. The standing grain does not have heads; it will not yield flour. And if it would yield, strangers would devour it."
         },
         {
           "verse": 8,
+          "usfm": "HOS.8.8",
+          "line_type": null,
           "text": "Israel is swallowed up; now they are among the nations, like an object that no one desires."
         },
         {
           "verse": 9,
+          "usfm": "HOS.8.9",
+          "line_type": null,
           "text": "For they have gone up to Assyria, a wild donkey alone to itself; Ephraim has sold itself for lovers."
         },
         {
           "verse": 10,
+          "usfm": "HOS.8.10",
+          "line_type": null,
           "text": "Even though they have sold themselves to the nations, now I will gather them. They will soon writhe from the burden of kings and princes."
         },
         {
           "verse": 11,
+          "usfm": "HOS.8.11",
+          "line_type": null,
           "text": "When Ephraim multiplied altars to expiate sins, they became to him altars to sin on."
         },
         {
           "verse": 12,
+          "usfm": "HOS.8.12",
+          "line_type": null,
           "text": "I write for him myriads of my instruction; they are regarded as a strange thing."
         },
         {
           "verse": 13,
+          "usfm": "HOS.8.13",
+          "line_type": null,
           "text": "They offer sacrifices of my choice and they eat flesh; Yahweh does not accept them. Now he will remember their iniquity and punish their sins; they will return to Egypt."
         },
         {
           "verse": 14,
+          "usfm": "HOS.8.14",
+          "line_type": null,
           "text": "Israel has forgotten his maker and built palaces, and Judah has multiplied fortified cities; but I will send fire on his cities and it will devour her strongholds."
         }
       ],
       "verse_count": 14,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.8.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “transgressed my covenant”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.8.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “his”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.8.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “cut off”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.8.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “he rejects” or “has rejected you”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.8.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “Until when”"
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.8.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “head”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.8.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “king”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.8.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “my law”"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.8.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew uncertain; or “loved ones”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.8.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.7"
+          ],
+          "human": "Hosea 7",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 9,
       "chapter_usfm": "HOS.9",
@@ -592,80 +2246,237 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.9.1",
+          "line_type": null,
           "text": "Do not rejoice, O Israel, do not exult like the nations! For you played the whore, departing from your God; you loved a harlot’s wage on all the threshing floors of grain."
         },
         {
           "verse": 2,
+          "usfm": "HOS.9.2",
+          "line_type": null,
           "text": "Threshing floor and wine vat will not feed them, and new wine will fail her."
         },
         {
           "verse": 3,
+          "usfm": "HOS.9.3",
+          "line_type": null,
           "text": "They will not remain in the land of Yahweh. But Ephraim will return to Egypt, and in Assyria they will eat unclean food."
         },
         {
           "verse": 4,
+          "usfm": "HOS.9.4",
+          "line_type": null,
           "text": "They will not pour drink offerings of wine to Yahweh, and their sacrifices will not please him. They are like mourners’ bread for them; all those who eat it will be defiled. For their bread will be for their hunger; it will not come to the house of Yahweh."
         },
         {
           "verse": 5,
+          "usfm": "HOS.9.5",
+          "line_type": null,
           "text": "What will you do on the day of the appointed time, and on the day of the festival of Yahweh?"
         },
         {
           "verse": 6,
+          "usfm": "HOS.9.6",
+          "line_type": null,
           "text": "For look! If they flee from the destruction, Egypt will gather them; Memphis will bury them. Nettles will possess their precious things of silver; thorns will be in their tents."
         },
         {
           "verse": 7,
+          "usfm": "HOS.9.7",
+          "line_type": null,
           "text": "The days of punishment have come; the days of retribution have come; Israel knows! The prophet is a fool, the man of the spirit is acting like a madman. Because of the greatness of your sin, your hostility is great."
         },
         {
           "verse": 8,
+          "usfm": "HOS.9.8",
+          "line_type": null,
           "text": "The prophet keeps watch over Ephraim for my God; the snare of a fowler is on all his ways, and hostility in the house of his God."
         },
         {
           "verse": 9,
+          "usfm": "HOS.9.9",
+          "line_type": null,
           "text": "They deeply corrupted themselves as in the days of Gibeah; he will remember their sin, he will punish their sins."
         },
         {
           "verse": 10,
+          "usfm": "HOS.9.10",
+          "line_type": null,
           "text": "Like the grapes in the wilderness, I found Israel. Like early ripened fruit on the fig tree in the first season, I saw your ancestors. They themselves came to Baal Peor, and they consecrated themselves to shame. And they became detestable things, like the thing they love."
         },
         {
           "verse": 11,
+          "usfm": "HOS.9.11",
+          "line_type": null,
           "text": "Ephraim’s glory is like a bird; it will fly away— no birth, no pregnancy, and no conception."
         },
         {
           "verse": 12,
+          "usfm": "HOS.9.12",
+          "line_type": null,
           "text": "Even though they bring up their children, I will bereave them before maturity. Woe to them indeed, when I depart from them!"
         },
         {
           "verse": 13,
+          "usfm": "HOS.9.13",
+          "line_type": null,
           "text": "Ephraim, as I see it, is like a palm in a meadow; but Ephraim must bring out his children to the slayer."
         },
         {
           "verse": 14,
+          "usfm": "HOS.9.14",
+          "line_type": null,
           "text": "Give them, O Yahweh— what will you give them? Give them a miscarrying womb and dry breasts."
         },
         {
           "verse": 15,
+          "usfm": "HOS.9.15",
+          "line_type": null,
           "text": "Every evil of theirs began at Gilgal, so I began to hate them there; because of the evil of their deeds I will drive them out from my house. I will love them no more; all their officials are rebels."
         },
         {
           "verse": 16,
+          "usfm": "HOS.9.16",
+          "line_type": null,
           "text": "Ephraim is stricken, their root is dried up, they shall not bear fruit. Even if they give birth, I will kill the cherished offspring of their womb."
         },
         {
           "verse": 17,
+          "usfm": "HOS.9.17",
+          "line_type": null,
           "text": "My God will reject them because they did not listen to him, and they will be wanderers among the nations."
         }
       ],
       "verse_count": 17,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.9.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, Israel"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.9.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “for their soul”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.9.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “Noph”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.9.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “They made deep, they corrupted themselves”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.9.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “in the beginning”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.9.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “fathers”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.9.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “like loving things”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.9.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “until no one is left”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 17,
+          "parsed_count": 17,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.9.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.8"
+          ],
+          "human": "Hosea 8",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 10,
       "chapter_usfm": "HOS.10",
@@ -674,72 +2485,297 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.10.1",
+          "line_type": null,
           "text": "Israel is a luxuriant vine; he yields fruit for himself. The more his fruit increased, the more he made numerous altars. The more his land prospered, the more he improved his stone pillars."
         },
         {
           "verse": 2,
+          "usfm": "HOS.10.2",
+          "line_type": null,
           "text": "Their heart is false; now they must bear their guilt. He himself will break down their altars; he will destroy their stone pillars."
         },
         {
           "verse": 3,
+          "usfm": "HOS.10.3",
+          "line_type": null,
           "text": "For now they will say, “We have no king; indeed, we did not fear Yahweh, and what can a king do for us?”"
         },
         {
           "verse": 4,
+          "usfm": "HOS.10.4",
+          "line_type": null,
           "text": "They utter words of vain oaths when making covenants, and judgment blossoms like a poisonous plant on the furrows of the field."
         },
         {
           "verse": 5,
+          "usfm": "HOS.10.5",
+          "line_type": null,
           "text": "The inhabitants of Samaria tremble for the calf of Beth-aven. Indeed, his people will mourn for it, and his idolatrous priests will wail over it— over its glory because it has departed from it."
         },
         {
           "verse": 6,
+          "usfm": "HOS.10.6",
+          "line_type": null,
           "text": "It will also be brought to Assyria, as tribute to the great king. Ephraim will obtain disgrace and Israel will be ashamed from his advice."
         },
         {
           "verse": 7,
+          "usfm": "HOS.10.7",
+          "line_type": null,
           "text": "Samaria will be destroyed; her king is like a chip on the surface of the water."
         },
         {
           "verse": 8,
+          "usfm": "HOS.10.8",
+          "line_type": null,
           "text": "The high places of Aven, the sin of Israel, will be destroyed. Thorn and thistle will grow on their altars. They will say to the mountains, “Cover us,” and to the hills, “Fall on us.”"
         },
         {
           "verse": 9,
+          "usfm": "HOS.10.9",
+          "line_type": null,
           "text": "From the days of Gibeah you have sinned, O Israel; there they have remained. Will not war in Gibeah overtake them against the children of evil?"
         },
         {
           "verse": 10,
+          "usfm": "HOS.10.10",
+          "line_type": null,
           "text": "In my desire I will punish them; nations will be gathered against them when they are punished for their double iniquities."
         },
         {
           "verse": 11,
+          "usfm": "HOS.10.11",
+          "line_type": null,
           "text": "Ephraim was a trained heifer, that loved to thresh grain, and I myself spared the fairness of her neck; I will make Ephraim break the ground, Judah will plow, Jacob must till for himself."
         },
         {
           "verse": 12,
+          "usfm": "HOS.10.12",
+          "line_type": null,
           "text": "Sow for yourselves righteousness; reap loyal love. Break up for yourself fallow ground; it is time to seek Yahweh so he will come and rain righteousness upon you."
         },
         {
           "verse": 13,
+          "usfm": "HOS.10.13",
+          "line_type": null,
           "text": "You have plowed wickedness, you have reaped injustice, you have eaten the fruit of lies, because you have trusted in your strength, in the multitude of your warriors."
         },
         {
           "verse": 14,
+          "usfm": "HOS.10.14",
+          "line_type": null,
           "text": "The tumult of war will rise up against your people, and all your fortresses will be destroyed, as Shalman destroyed Beth-arbel; on the day of war mothers were dashed to pieces with their children."
         },
         {
           "verse": 15,
+          "usfm": "HOS.10.15",
+          "line_type": null,
           "text": "So it will be done to you, O Bethel, because of the evil of your wickedness; at dawn, the king of Israel will be utterly destroyed."
         }
       ],
       "verse_count": 15,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.10.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “ravaged vine”"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.10.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “they”"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.10.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “made beautiful”"
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.10.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, “Yahweh himself”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.10.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “cutting covenant”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.10.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “inhabitant”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.10.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “calves”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.10.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “rejoice”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.10.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "See 5:13; some translate literally “King Jareb”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.10.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “counsel”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.10.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “they stood”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.10.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "The LXX translates “I will come”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.10.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "So Qere; Masoretic Hebrew text (Kethib) “their two eyes”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.10.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “passed over”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.10.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “reap according to loyal love”"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.10.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “lie”"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.10.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “upon their children”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 15,
+          "parsed_count": 15,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.10.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.9"
+          ],
+          "human": "Hosea 9",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 11,
       "chapter_usfm": "HOS.11",
@@ -748,65 +2784,324 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.11.1",
+          "line_type": null,
           "text": "When Israel was a child, I loved him, and out of Egypt I called my son."
         },
         {
           "verse": 2,
+          "usfm": "HOS.11.2",
+          "line_type": null,
           "text": "When I called them, they went from my face. They sacrificed to the Baals, and they sacrificed to idols."
         },
         {
           "verse": 3,
+          "usfm": "HOS.11.3",
+          "line_type": null,
           "text": "And I myself taught Ephraim to walk; I took them in my arms, but they did not know that I healed them."
         },
         {
           "verse": 4,
+          "usfm": "HOS.11.4",
+          "line_type": null,
           "text": "I drew them with human ties, with the bands of love. I was to them like one who lifted up a yoke on their jaws, though I bent down to them and let them eat."
         },
         {
           "verse": 5,
+          "usfm": "HOS.11.5",
+          "line_type": null,
           "text": "He will return to the land of Egypt, and Assyria will be his king, because they refused to return."
         },
         {
           "verse": 6,
+          "usfm": "HOS.11.6",
+          "line_type": null,
           "text": "The sword rages in his cities; it consumes his false prophets and devours because of their plans."
         },
         {
           "verse": 7,
+          "usfm": "HOS.11.7",
+          "line_type": null,
           "text": "My people are bent on backsliding from me. To the Most High they call, he does not raise them at all."
         },
         {
           "verse": 8,
+          "usfm": "HOS.11.8",
+          "line_type": null,
           "text": "How can I give you up, O Ephraim? How can I hand you over, O Israel? How can I make you like Admah? How can I treat you like Zeboiim? My heart is disturbed within me; all my compassions are aroused."
         },
         {
           "verse": 9,
+          "usfm": "HOS.11.9",
+          "line_type": null,
           "text": "I will not execute my fierce anger, I will not again destroy Ephraim; because I am God and not a mortal, the Holy One in your midst; and I will not come in wrath."
         },
         {
           "verse": 10,
+          "usfm": "HOS.11.10",
+          "line_type": null,
           "text": "They will go after Yahweh; he roars like a lion. When he roars, his children will come trembling from the sea."
         },
         {
           "verse": 11,
+          "usfm": "HOS.11.11",
+          "line_type": null,
           "text": "They will tremble like birds from Egypt, and like doves from the land of Assyria; and I will let them return to their homes— a declaration of Yahweh."
         },
         {
           "verse": 12,
+          "usfm": "HOS.11.12",
+          "line_type": null,
           "text": "Ephraim has surrounded me with lies, and the house of Israel with deceit; and Judah is still wandering with God and is faithful to the Holy One."
         }
       ],
       "verse_count": 12,
       "headings": [
         {
-          "before_verse": 11,
+          "before_verse": 12,
           "text": "Israel’s History"
         }
       ],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.11.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “When they called”; the LXX and modern translations read “When I called”"
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.11.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “their face”"
+        },
+        {
+          "verse": 3,
+          "usfm": "HOS.11.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew uncertain"
+        },
+        {
+          "verse": 3,
+          "usfm": "HOS.11.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “his”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.11.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “ropes of a human”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.11.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “like one who imposed”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.11.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “infants to their cheeks”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.11.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “him”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.11.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “him”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.11.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “They will not return”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.11.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is “Israel’s king”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.11.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “My heart is overturned”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.11.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “together”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.11.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “I will not do”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.11.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the anger of my nose”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.11.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “human”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.11.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "That is, “the West”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.11.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “bird”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.11.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “dove”"
+        },
+        {
+          "verse": 11,
+          "usfm": "HOS.11.11",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “I will cause them to live”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.11.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hosea 11:12–12:14 in the English Bible is 12:1–15 in the Hebrew Bible"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.11.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “lie”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 12,
+          "parsed_count": 12,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.11.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.10"
+          ],
+          "human": "Hosea 10",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 12,
       "chapter_usfm": "HOS.12",
@@ -815,68 +3110,251 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.12.1",
+          "line_type": null,
           "text": "Ephraim herds the wind and is pursuing the east wind all day long; he multiplies deception and violence and he makes a treaty with Assyria, and oil is brought to Egypt."
         },
         {
           "verse": 2,
+          "usfm": "HOS.12.2",
+          "line_type": null,
           "text": "Yahweh has a quarrel with Judah and will punish Jacob according to his ways and repay him according to his deeds."
         },
         {
           "verse": 3,
+          "usfm": "HOS.12.3",
+          "line_type": null,
           "text": "In the womb he deceived his brother, and in his manhood he struggled with God."
         },
         {
           "verse": 4,
+          "usfm": "HOS.12.4",
+          "line_type": null,
           "text": "He struggled with the angel and prevailed; he pleaded for his mercy. He met him at Bethel, and there he spoke with him."
         },
         {
           "verse": 5,
+          "usfm": "HOS.12.5",
+          "line_type": null,
           "text": "Yahweh the God of hosts, Yahweh is his renowned name!"
         },
         {
           "verse": 6,
+          "usfm": "HOS.12.6",
+          "line_type": null,
           "text": "But you, you must return to your God; keep love and justice, and wait continually for your God."
         },
         {
           "verse": 7,
+          "usfm": "HOS.12.7",
+          "line_type": null,
           "text": "The trader, in his hand are scales of deceit; he loves to oppress."
         },
         {
           "verse": 8,
+          "usfm": "HOS.12.8",
+          "line_type": null,
           "text": "And Ephraim said, “Surely, I am rich, I gained wealth for myself; in all my toil they have not found guilt in me that is sin."
         },
         {
           "verse": 9,
+          "usfm": "HOS.12.9",
+          "line_type": null,
           "text": "But I am Yahweh your God since the land of Egypt; I will make you live in tents again, like the days of the appointed festival."
         },
         {
           "verse": 10,
+          "usfm": "HOS.12.10",
+          "line_type": null,
           "text": "I spoke to the prophets; I myself multiplied revelations and through the hand of the prophets I will destroy."
         },
         {
           "verse": 11,
+          "usfm": "HOS.12.11",
+          "line_type": null,
           "text": "If in Gilead there is evil, surely they will come to nothing. In Gilgal they sacrifice bulls, also their altars will be like stone heaps on furrows of the field."
         },
         {
           "verse": 12,
+          "usfm": "HOS.12.12",
+          "line_type": null,
           "text": "Jacob fled to the open field of Aram, and Israel served for a wife, and for a wife he watched over sheep."
         },
         {
           "verse": 13,
+          "usfm": "HOS.12.13",
+          "line_type": null,
           "text": "And by a prophet Yahweh brought Israel up from Egypt, and by a prophet he was watched over."
         },
         {
           "verse": 14,
+          "usfm": "HOS.12.14",
+          "line_type": null,
           "text": "Ephraim has caused bitter provocation, and his Lord will hold him responsible for his crimes and pay back to him his insults."
         }
       ],
       "verse_count": 14,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.12.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “Ephraim befriends the wind”"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.12.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “they”"
+        },
+        {
+          "verse": 1,
+          "usfm": "HOS.12.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “cuts a covenant with Assyria”"
+        },
+        {
+          "verse": 2,
+          "usfm": "HOS.12.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "This word in Hebrew conveys a legal setting"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.12.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “us”"
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.12.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “false balances”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.12.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “I found”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.12.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “from”"
+        },
+        {
+          "verse": 10,
+          "usfm": "HOS.12.10",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “revelation”"
+        },
+        {
+          "verse": 12,
+          "usfm": "HOS.12.12",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “the land of Aram”"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.12.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Israel"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.12.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “will bring down on him his blood”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 14,
+          "parsed_count": 14,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.12.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.11"
+          ],
+          "human": "Hosea 11",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 13,
       "chapter_usfm": "HOS.13",
@@ -885,76 +3363,271 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.13.1",
+          "line_type": null,
           "text": "When Ephraim spoke, there was terror; he was exalted in Israel, but he incurred guilt through Baal and died."
         },
         {
           "verse": 2,
+          "usfm": "HOS.13.2",
+          "line_type": null,
           "text": "And now they sin again, and they make for themselves a molten idol, idols from their silver metal according to their understanding, all of them the work of skilled craftsmen. To these they say, “Sacrifice!” People are kissing bull calves."
         },
         {
           "verse": 3,
+          "usfm": "HOS.13.3",
+          "line_type": null,
           "text": "Therefore, they will be like the morning cloud, and like the dew of early morning going away, like chaff swirling from the threshing floor, or like smoke from a window."
         },
         {
           "verse": 4,
+          "usfm": "HOS.13.4",
+          "line_type": null,
           "text": "I am Yahweh your God since the land of Egypt; you know no god except me, and no one saves besides me."
         },
         {
           "verse": 5,
+          "usfm": "HOS.13.5",
+          "line_type": null,
           "text": "I fed you in the desert, in the land of drought."
         },
         {
           "verse": 6,
+          "usfm": "HOS.13.6",
+          "line_type": null,
           "text": "When I fed them, they were satisfied; they were satisfied and their heart was lifted up; therefore they forgot me."
         },
         {
           "verse": 7,
+          "usfm": "HOS.13.7",
+          "line_type": null,
           "text": "And I will be like a lion to them; I lie in wait beside the way, like a leopard."
         },
         {
           "verse": 8,
+          "usfm": "HOS.13.8",
+          "line_type": null,
           "text": "I will attack them like a bear robbed of her offspring, and I will tear open the covering of their heart; there I will devour them like a lion, like an animal of the field would mutilate them."
         },
         {
           "verse": 9,
+          "usfm": "HOS.13.9",
+          "line_type": null,
           "text": "I will destroy you, O Israel; who will help you?"
         },
         {
           "verse": 10,
+          "usfm": "HOS.13.10",
+          "line_type": null,
           "text": "Where now is your king that he may save you? Where in all your cities are your judges, of whom you said, “Give to me a king and rulers?”"
         },
         {
           "verse": 11,
+          "usfm": "HOS.13.11",
+          "line_type": null,
           "text": "I gave you a king in my anger, and I took him in my wrath."
         },
         {
           "verse": 12,
+          "usfm": "HOS.13.12",
+          "line_type": null,
           "text": "The sin of Ephraim is wrapped up; his sin is concealed."
         },
         {
           "verse": 13,
+          "usfm": "HOS.13.13",
+          "line_type": null,
           "text": "The labor pains of childbirth come for him; he is an unwise son because at the proper time, he does not present himself at the mouth of the womb."
         },
         {
           "verse": 14,
+          "usfm": "HOS.13.14",
+          "line_type": null,
           "text": "Should I redeem them from the power of Sheol? Should I deliver them from death? Where are your plagues, O Death? Where is your destruction, O Sheol? Compassion is hidden from my eyes."
         },
         {
           "verse": 15,
+          "usfm": "HOS.13.15",
+          "line_type": null,
           "text": "Although he may flourish among reeds, the east wind will come, a wind of Yahweh rising from the desert; his fountain will dry up, his spring will be parched. It will plunder his treasury, every object of desire."
         },
         {
           "verse": 16,
+          "usfm": "HOS.13.16",
+          "line_type": null,
           "text": "Samaria will be guilty, because she has rebelled against her God; they will fall by the sword, their children will be dashed to pieces, and their pregnant women will be ripped open."
         }
       ],
       "verse_count": 16,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 1,
+          "usfm": "HOS.13.1",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “speaks”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.13.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “from”"
+        },
+        {
+          "verse": 5,
+          "usfm": "HOS.13.5",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "So LXX; Hebrew “I knew you”"
+        },
+        {
+          "verse": 6,
+          "usfm": "HOS.13.6",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “According to their pasture”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.13.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “He destroys you”"
+        },
+        {
+          "verse": 9,
+          "usfm": "HOS.13.9",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “for in me, in your help”"
+        },
+        {
+          "verse": 13,
+          "usfm": "HOS.13.13",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the place where the sons burst forth”"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.13.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “the hand”"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.13.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "“Sheol” is a Hebrew term for the place where the dead reside, i.e., the underworld"
+        },
+        {
+          "verse": 14,
+          "usfm": "HOS.13.14",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "“Sheol” is a Hebrew term for the place where the dead reside, i.e., the underworld"
+        },
+        {
+          "verse": 15,
+          "usfm": "HOS.13.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “brothers”"
+        },
+        {
+          "verse": 15,
+          "usfm": "HOS.13.15",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “its treasury”"
+        },
+        {
+          "verse": 16,
+          "usfm": "HOS.13.16",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hosea 13:16–14:9 in the English Bible is 14:1–10 in the Hebrew Bible"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 16,
+          "parsed_count": 16,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.13.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.12"
+          ],
+          "human": "Hosea 12",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "HOS.14"
+          ],
+          "human": "Hosea 14",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     },
     {
+      "schema_version": 6,
       "book_id": "HOS",
       "chapter": 14,
       "chapter_usfm": "HOS.14",
@@ -963,46 +3636,194 @@
       "verses": [
         {
           "verse": 1,
+          "usfm": "HOS.14.1",
+          "line_type": null,
           "text": "Return to Yahweh your God, O Israel, for you have stumbled because of your sin."
         },
         {
           "verse": 2,
+          "usfm": "HOS.14.2",
+          "line_type": null,
           "text": "Take words with you, and return to Yahweh. Say to him, “Take away all guilt; accept good, and we will offer the fruit of our lips."
         },
         {
           "verse": 3,
+          "usfm": "HOS.14.3",
+          "line_type": null,
           "text": "Assyria will not save us; we will not ride on horses, and we will say no more, “Our God,” to the work of our hands because in you the fatherless child finds mercy."
         },
         {
           "verse": 4,
+          "usfm": "HOS.14.4",
+          "line_type": null,
           "text": "I will heal their disloyalty; I will love them freely because my anger has turned back from them."
         },
         {
           "verse": 5,
+          "usfm": "HOS.14.5",
+          "line_type": null,
           "text": "I will be like the dew to Israel; he will blossom like the lily plant, and he will strike his roots like the trees of Lebanon."
         },
         {
           "verse": 6,
+          "usfm": "HOS.14.6",
+          "line_type": null,
           "text": "His new plant shoots will spread out; his splendor will be like the olive tree, and his scent like the trees of Lebanon."
         },
         {
           "verse": 7,
+          "usfm": "HOS.14.7",
+          "line_type": null,
           "text": "They will again dwell in my shadow; they will grow grain and they will blossom like the plant vine; his fame will be like the wine of Lebanon."
         },
         {
           "verse": 8,
+          "usfm": "HOS.14.8",
+          "line_type": null,
           "text": "O Ephraim, what have I to do with idols? I myself have answered and looked after you. I am like a luxuriant cypress; your fruit comes from me."
         },
         {
           "verse": 9,
+          "usfm": "HOS.14.9",
+          "line_type": null,
           "text": "Who is wise that he can understand these things? Who is discerning that he knows them? The ways of Yahweh are right, and the righteous walk in them; but transgressors stumble in them."
         }
       ],
       "verse_count": 9,
       "headings": [],
-      "footnotes": [],
+      "footnotes": [
+        {
+          "verse": 2,
+          "usfm": "HOS.14.2",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew uncertain"
+        },
+        {
+          "verse": 3,
+          "usfm": "HOS.14.3",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “horse”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.14.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “backsliding”"
+        },
+        {
+          "verse": 4,
+          "usfm": "HOS.14.4",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “him”"
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.14.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “They shall return, they shall dwell”"
+        },
+        {
+          "verse": 7,
+          "usfm": "HOS.14.7",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “his”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.14.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Literally “what for me”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.14.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Hebrew “him”"
+        },
+        {
+          "verse": 8,
+          "usfm": "HOS.14.8",
+          "note_ref": "",
+          "note_type": "footnote",
+          "references": [],
+          "text": "Or “your faithfulness”"
+        }
+      ],
+      "blocks": [],
       "audio": [],
-      "has_audio": false
+      "has_audio": false,
+      "quality": {
+        "verse_alignment": {
+          "ok": true,
+          "raw_count": 9,
+          "parsed_count": 9,
+          "missing": [],
+          "extra": [],
+          "empty_text": 0
+        }
+      },
+      "chapter_meta": {
+        "source_url": "https://www.bible.com/bible/90/HOS.14.LEB",
+        "reference": {
+          "usfm": [
+            "HOS.14"
+          ],
+          "human": "Hosea 14",
+          "version_id": 90
+        },
+        "previous": {
+          "canonical": true,
+          "usfm": [
+            "HOS.13"
+          ],
+          "human": "Hosea 13",
+          "toc": true,
+          "version_id": 90
+        },
+        "next": {
+          "canonical": true,
+          "usfm": [
+            "JOL.1"
+          ],
+          "human": "Joel 1",
+          "toc": true,
+          "version_id": 90
+        }
+      },
+      "version_meta": {
+        "id": 90,
+        "abbreviation": "LEB",
+        "local_abbreviation": "LEB",
+        "title": "Lexham English Bible",
+        "local_title": "Lexham English Bible",
+        "language": {
+          "iso_639_1": "en",
+          "iso_639_3": "eng",
+          "language_tag": "eng",
+          "local_name": "English",
+          "text_direction": "ltr"
+        },
+        "publisher": {
+          "name": "Logos Bible Software"
+        },
+        "audio_enabled": true
+      }
     }
   ]
 }
