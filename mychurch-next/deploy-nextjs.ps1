@@ -39,7 +39,7 @@ $VPS_NEXT_PATH = "/root/mychurch-v2/mychurch-next"
 $LOCAL_ENV_PATH = ".\.env.local"
 
 Write-Host "`n[1/4] Setting up fresh codebase on VPS..." -ForegroundColor Yellow
-$gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df && git checkout main && git pull origin main"
+$gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df && git checkout main && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
 ssh ${VPS_USER}@${VPS_HOST} $gitPullCmd
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Failed to sync repository on VPS." -ForegroundColor Red
@@ -65,8 +65,7 @@ else {
 
 # Step 3: Run the build and PM2 process directly via SSH
 Write-Host "`n[3/4] Installing and Building Next.js on VPS..." -ForegroundColor Yellow
-$deployCmd = "set -e; cd $VPS_NEXT_PATH; export NEXT_TELEMETRY_DISABLED=1; export NODE_OPTIONS=--max-old-space-size=3072; if [ ! -f /swapfile ]; then (fallocate -l 2G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=2048) >/dev/null 2>&1; chmod 600 /swapfile; mkswap /swapfile >/dev/null 2>&1 || true; swapon /swapfile >/dev/null 2>&1 || true; fi; if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then echo 'Dependencies unchanged, skipping npm install'; else npm ci --no-audit --no-fund; cp package-lock.json .deps-lock.json; fi; npm run build; if pm2 show mychurch-next > /dev/null 2>&1; then pm2 restart mychurch-next --update-env; else pm2 start npm --name 'mychurch-next' -- start; fi; pm2 save"
-
+$deployCmd = "set -e; cd $VPS_NEXT_PATH; export NEXT_TELEMETRY_DISABLED=1; export NEXT_DISABLE_ESLINT=1; if [ ! -f /swapfile ] || [ $(stat -c%s /swapfile 2>/dev/null || echo 0) -lt 4294967296 ]; then swapoff /swapfile >/dev/null 2>&1 || true; rm -f /swapfile; (fallocate -l 4G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=4096) >/dev/null 2>&1; chmod 600 /swapfile; mkswap /swapfile >/dev/null 2>&1 || true; swapon /swapfile >/dev/null 2>&1 || true; fi; if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then echo 'Dependencies unchanged, skipping npm install'; else npm ci --no-audit --no-fund; cp package-lock.json .deps-lock.json; fi; export NODE_OPTIONS=--max-old-space-size=2048; if npm run build -- --no-lint; then echo 'Build succeeded on first attempt'; else echo 'First build attempt failed, retrying with reduced workers'; rm -rf .next/cache; export NODE_OPTIONS=--max-old-space-size=1536; export NEXT_PRIVATE_BUILD_WORKER=1; npm run build -- --no-lint; fi; if pm2 show mychurch-next > /dev/null 2>&1; then pm2 restart mychurch-next --update-env; else pm2 start npm --name 'mychurch-next' -- start; fi; pm2 save"
 ssh $VPS_USER@$VPS_HOST $deployCmd
 if ($LASTEXITCODE -ne 0) {
         Write-Host "VPS build/deploy failed. Stop and fix before applying NGINX." -ForegroundColor Red

@@ -6,10 +6,10 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
-  // experimental: {
-  //   workerThreads: false,
-  //   cpus: 1,
-  // },
+  experimental: {
+    workerThreads: false,
+    cpus: 1,
+  },
   turbopack: {
     root: '.',
   },
