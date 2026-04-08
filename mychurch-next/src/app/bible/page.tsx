@@ -6,6 +6,8 @@ import {
   Columns2, Search, Loader2, List, X, ExternalLink, Highlighter, Copy, GitCompareArrows, Share2, Link2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -60,6 +62,7 @@ export default function BibleReaderPage() {
   const [compareRows, setCompareRows] = useState<CompareVersionRow[]>([]);
   const [compareReferenceAbbr, setCompareReferenceAbbr] = useState<string>("");
   const [compareLanguageFilter, setCompareLanguageFilter] = useState<"all" | "en" | "fa">("all");
+  const [compareHideMissing, setCompareHideMissing] = useState(true);
   const [compareError, setCompareError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [bookSearch, setBookSearch] = useState("");
@@ -257,12 +260,14 @@ export default function BibleReaderPage() {
   };
 
   const compareVisibleRows = compareRows.filter((row) => compareLanguageFilter === "all" || row.language === compareLanguageFilter);
+  const compareMissingRowsCount = compareVisibleRows.filter((row) => !row.hasContent).length;
+  const compareDisplayRows = compareHideMissing ? compareVisibleRows.filter((row) => row.hasContent) : compareVisibleRows;
   const compareReferenceRow = compareVisibleRows.find((row) => row.abbr === compareReferenceAbbr && row.hasContent)
     || compareVisibleRows.find((row) => row.hasContent)
     || compareVisibleRows[0]
     || null;
   const compareReferenceMap = new Map((compareReferenceRow?.entries || []).map((entry) => [entry.verseNum, entry.text]));
-  const compareComparableRows = compareVisibleRows.filter((row) => row.abbr !== (compareReferenceRow?.abbr || ""));
+  const compareComparableRows = compareDisplayRows.filter((row) => row.abbr !== (compareReferenceRow?.abbr || ""));
   const compareVerseNums = Array.from(
     new Set([
       ...(compareReferenceRow?.entries || []).map((entry) => entry.verseNum),
@@ -275,313 +280,65 @@ export default function BibleReaderPage() {
       alert(language === "fa" ? "برای خروجی PDF ابتدا آیات و ترجمه‌ها را انتخاب کنید." : "Select verses and translations before exporting PDF.");
       return;
     }
+    try {
+      const doc = new jsPDF({ unit: "pt", format: "a4" });
+      const marginX = 40;
+      const pageHeight = doc.internal.pageSize.getHeight();
+      let cursorY = 44;
 
-    const printableRows = compareComparableRows.map((row, index) => ({
-      ...row,
-      accent: ["#2563eb", "#7c3aed", "#059669", "#f59e0b", "#db2777", "#0ea5e9"][index % 6],
-    }));
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(15);
+      doc.text(`Bible Compare - ${selectedBookLabel} ${selectedRef}`, marginX, cursorY);
 
-    const escapeHtml = (value: string) =>
-      value
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/\"/g, "&quot;")
-        .replace(/'/g, "&#39;");
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      cursorY += 18;
+      doc.text(`Reference: ${compareReferenceRow.abbr} - ${compareReferenceRow.name}`, marginX, cursorY);
 
-    const filterLabel = compareLanguageFilter === "all"
-      ? (language === "fa" ? "همه ترجمه‌ها" : "All translations")
-      : compareLanguageFilter === "fa"
-        ? (language === "fa" ? "فقط فارسی" : "Persian only")
-        : (language === "fa" ? "فقط انگلیسی" : "English only");
+      autoTable(doc, {
+        startY: cursorY + 12,
+        head: [["Verse", "Reference"]],
+        body: compareVerseNums.map((verseNum) => [
+          String(verseNum),
+          compareReferenceMap.get(verseNum) || "-",
+        ]),
+        styles: { font: "helvetica", fontSize: 9, cellPadding: 4, overflow: "linebreak" },
+        headStyles: { fillColor: [245, 158, 11], textColor: [255, 255, 255], fontStyle: "bold" },
+        columnStyles: { 0: { cellWidth: 64 }, 1: { cellWidth: 430 } },
+      });
 
-    const referenceRows = compareVerseNums.map((verseNum) => {
-      const refText = compareReferenceMap.get(verseNum) || "-";
-      return `
-        <tr>
-          <td class="verse-cell">${verseNum}</td>
-          <td class="text-cell" dir="${compareReferenceRow.language === "fa" ? "rtl" : "ltr"}">${escapeHtml(refText)}</td>
-        </tr>
-      `;
-    }).join("");
+      cursorY = (doc as jsPDF & { lastAutoTable?: { finalY: number } }).lastAutoTable?.finalY || cursorY + 30;
 
-    const translationTables = printableRows
-        .map((row) => {
-          const rowsHtml = compareVerseNums.map((verseNum) => {
-            const targetText = row.entries.find((entry) => entry.verseNum === verseNum)?.text || "-";
-            return `
-              <tr>
-                <td class="verse-cell">${verseNum}</td>
-                <td class="text-cell" dir="${row.language === "fa" ? "rtl" : "ltr"}">${escapeHtml(targetText)}</td>
-              </tr>
-            `;
-          }).join("");
+      compareComparableRows.forEach((row) => {
+        if (cursorY > pageHeight - 120) {
+          doc.addPage();
+          cursorY = 44;
+        }
 
-          return `
-            <section class="translation-card" style="--accent:${row.accent}">
-              <div class="translation-card-head">
-                <span class="translation-card-abbr">${escapeHtml(row.abbr)}</span>
-                <span class="translation-card-name">${escapeHtml(row.name)}</span>
-              </div>
-              <table class="translation-table">
-                <thead>
-                  <tr>
-                    <th class="verse-head">Verse</th>
-                    <th class="text-head">${escapeHtml(row.abbr)}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${rowsHtml}
-                </tbody>
-              </table>
-            </section>
-          `;
-        })
-        .join("");
+        cursorY += 18;
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.text(`${row.abbr} - ${row.name}`, marginX, cursorY);
 
-    const printWindow = window.open("", "_blank", "noopener,noreferrer,width=1240,height=900");
-    if (!printWindow) {
-      alert(language === "fa" ? "Popup مسدود شده است. لطفاً popup را برای سایت فعال کنید." : "Popup was blocked. Please allow popups for this site.");
-      return;
+        autoTable(doc, {
+          startY: cursorY + 8,
+          head: [["Verse", row.abbr]],
+          body: compareVerseNums.map((verseNum) => [
+            String(verseNum),
+            row.entries.find((entry) => entry.verseNum === verseNum)?.text || "-",
+          ]),
+          styles: { font: "helvetica", fontSize: 9, cellPadding: 4, overflow: "linebreak" },
+          headStyles: { fillColor: [37, 99, 235], textColor: [255, 255, 255], fontStyle: "bold" },
+          columnStyles: { 0: { cellWidth: 64 }, 1: { cellWidth: 430 } },
+        });
+
+        cursorY = (doc as jsPDF & { lastAutoTable?: { finalY: number } }).lastAutoTable?.finalY || cursorY + 24;
+      });
+
+      doc.save(`bible-compare-${selectedBook}-${selectedChapter}-${Date.now()}.pdf`);
+    } catch {
+      alert(language === "fa" ? "خطا در ساخت PDF. دوباره تلاش کنید." : "Failed to generate PDF. Please try again.");
     }
-
-    printWindow.document.write(`
-      <!doctype html>
-      <html lang="fa" dir="rtl">
-        <head>
-          <meta charset="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>${escapeHtml(selectedBookLabel)} ${escapeHtml(selectedRef)} - Bible Compare</title>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
-          <style>
-            :root {
-              --bg: #f7f9fc;
-              --ink: #0f172a;
-              --muted: #475569;
-              --card: rgba(255,255,255,0.92);
-              --line: rgba(15,23,42,0.09);
-            }
-            * { box-sizing: border-box; }
-            html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: 'Vazirmatn', sans-serif; }
-            body { padding: 24px; }
-            .sheet {
-              max-width: 1120px;
-              margin: 0 auto;
-              background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-              border: 1px solid rgba(37,99,235,0.12);
-              border-radius: 28px;
-              overflow: hidden;
-              box-shadow: 0 30px 80px rgba(15,23,42,0.10);
-            }
-            .hero {
-              background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #7c3aed 100%);
-              color: white;
-              padding: 28px 30px 22px;
-              position: sticky;
-              top: 0;
-              z-index: 50;
-            }
-            .hero-top {
-              display: flex;
-              justify-content: space-between;
-              gap: 16px;
-              align-items: flex-start;
-            }
-            .title { font-size: 30px; font-weight: 900; line-height: 1.15; margin: 0 0 8px; }
-            .subtitle { font-size: 14px; opacity: 0.85; margin: 0; }
-            .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-            .pill {
-              display: inline-flex;
-              align-items: center;
-              gap: 8px;
-              padding: 9px 14px;
-              border-radius: 999px;
-              background: rgba(255,255,255,0.12);
-              border: 1px solid rgba(255,255,255,0.18);
-              font-size: 12px;
-              font-weight: 800;
-              letter-spacing: 0.01em;
-              backdrop-filter: blur(10px);
-            }
-            .content { padding: 22px; }
-            .section-note {
-              display: flex;
-              justify-content: space-between;
-              gap: 12px;
-              align-items: center;
-              margin-bottom: 18px;
-              color: var(--muted);
-              font-size: 13px;
-              font-weight: 700;
-            }
-            .reference-panel {
-              margin-bottom: 18px;
-              background: linear-gradient(180deg, rgba(245,158,11,0.12), rgba(245,158,11,0.04));
-              border: 1px solid rgba(245,158,11,0.20);
-              border-radius: 22px;
-              padding: 14px;
-              break-inside: avoid;
-              page-break-inside: avoid;
-            }
-            .reference-title {
-              margin: 0 0 10px;
-              font-size: 14px;
-              font-weight: 900;
-              color: #92400e;
-            }
-            .translations-wrap {
-              display: grid;
-              grid-template-columns: 1fr;
-              gap: 14px;
-            }
-            .translation-card {
-              overflow: hidden;
-              border-radius: 18px;
-              border: 1px solid var(--line);
-              background: white;
-              break-inside: avoid;
-              page-break-inside: avoid;
-            }
-            .translation-card-head {
-              display: flex;
-              justify-content: space-between;
-              gap: 10px;
-              align-items: center;
-              padding: 10px 12px;
-              background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, white), rgba(255,255,255,0.9));
-              border-bottom: 1px solid rgba(15,23,42,0.06);
-            }
-            .translation-card-abbr {
-              display: inline-flex;
-              align-items: center;
-              border-radius: 999px;
-              background: var(--accent);
-              color: white;
-              padding: 5px 9px;
-              font-size: 11px;
-              font-weight: 900;
-              letter-spacing: 0.02em;
-            }
-            .translation-card-name {
-              flex: 1;
-              min-width: 0;
-              color: #0f172a;
-              font-size: 11px;
-              font-weight: 800;
-              text-align: end;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-            .translation-table {
-              width: 100%;
-              border-collapse: collapse;
-            }
-            .translation-table th,
-            .translation-table td {
-              border-top: 1px solid rgba(15,23,42,0.08);
-              padding: 8px 10px;
-              vertical-align: top;
-            }
-            .translation-table thead th {
-              background: #f8fafc;
-              font-size: 11px;
-              font-weight: 900;
-              color: #334155;
-            }
-            .verse-head,
-            .verse-cell {
-              width: 72px;
-              text-align: center;
-              font-weight: 900;
-              color: #1e293b;
-              white-space: nowrap;
-            }
-            .text-head,
-            .text-cell {
-              text-align: start;
-              color: #0f172a;
-              font-size: 11px;
-              line-height: 1.9;
-            }
-            @media print {
-              @page { size: A4; margin: 14mm; }
-              body { padding: 0; background: white; }
-              .sheet { box-shadow: none; border: none; border-radius: 0; overflow: visible; background: white; }
-              .hero {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                border-radius: 0;
-                box-shadow: none;
-              }
-              .content { padding: 210px 18px 18px; }
-              .reference-panel,
-              .translation-card { break-inside: avoid; page-break-inside: avoid; }
-            }
-          </style>
-        </head>
-        <body>
-          <div class="sheet">
-            <header class="hero">
-              <div class="hero-top">
-                <div>
-                  <h1 class="title">${escapeHtml(selectedBookLabel)} ${escapeHtml(selectedRef)}</h1>
-                  <p class="subtitle">${escapeHtml(compareReferenceRow.name)} · ${escapeHtml(filterLabel)}</p>
-                </div>
-                <div class="pill">Bible Compare PDF</div>
-              </div>
-              <div class="meta-row">
-                <div class="pill">Reference: ${escapeHtml(compareReferenceRow.abbr)} - ${escapeHtml(compareReferenceRow.name)}</div>
-                <div class="pill">Translations: ${compareComparableRows.length}</div>
-                <div class="pill">Verses: ${compareVerseNums.length}</div>
-              </div>
-            </header>
-            <div class="content">
-              <div class="section-note">
-                <span>Reference appears once at the top. Tabular view is only for compared translations.</span>
-                <span>${escapeHtml(selectedBookLabel)} · ${escapeHtml(selectedRef)}</span>
-              </div>
-
-              <section class="reference-panel">
-                <h2 class="reference-title">Reference: ${escapeHtml(compareReferenceRow.abbr)} - ${escapeHtml(compareReferenceRow.name)}</h2>
-                <table class="translation-table">
-                  <thead>
-                    <tr>
-                      <th class="verse-head">Verse</th>
-                      <th class="text-head">Reference Text</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${referenceRows}
-                  </tbody>
-                </table>
-              </section>
-
-              <section class="translations-wrap">
-                ${translationTables}
-              </section>
-            </div>
-          </div>
-        </body>
-      </html>
-    `);
-    printWindow.document.close();
-
-    const triggerPrint = () => {
-      try {
-        printWindow.focus();
-        printWindow.print();
-      } catch {
-        // no-op: user can still manually print from opened window
-      }
-    };
-
-    printWindow.addEventListener("load", () => window.setTimeout(triggerPrint, 250), { once: true });
-    window.setTimeout(triggerPrint, 900);
   };
 
   const loadCompareRows = useCallback(async () => {
@@ -1085,6 +842,20 @@ export default function BibleReaderPage() {
                       <option value="fa">فقط فارسی</option>
                       <option value="en">Only English</option>
                     </select>
+                    <label className="mt-2 flex items-center gap-2 text-xs text-zinc-300" dir="rtl">
+                      <input
+                        type="checkbox"
+                        checked={compareHideMissing}
+                        onChange={(event) => setCompareHideMissing(event.target.checked)}
+                        className="h-4 w-4 rounded border-zinc-600 bg-zinc-950 text-blue-500"
+                      />
+                      <span>فقط ترجمه‌هایی که متن آیه دارند نمایش داده شود</span>
+                    </label>
+                    {compareMissingRowsCount > 0 && (
+                      <p className="mt-2 text-[11px] text-amber-300">
+                        {compareMissingRowsCount} ترجمه برای این آیه در دیتابیس متن ندارند و با `-` نمایش داده می‌شوند.
+                      </p>
+                    )}
                   </div>
 
                   <button
@@ -1142,7 +913,7 @@ export default function BibleReaderPage() {
 
                   <div className="h-[calc(70vh-170px)] min-h-[320px] overflow-y-auto pr-1">
                     <div className="mb-3 rounded-2xl border border-zinc-700 bg-zinc-900/70 p-3 text-xs text-zinc-400">
-                      {compareLanguageFilter === "all" ? "All languages" : compareLanguageFilter === "fa" ? "فقط فارسی" : "Only English"} · {compareVisibleRows.length} ترجمه
+                      {compareLanguageFilter === "all" ? "All languages" : compareLanguageFilter === "fa" ? "فقط فارسی" : "Only English"} · {compareDisplayRows.length} ترجمه
                     </div>
 
                     {compareVisibleRows.length === 0 ? (
