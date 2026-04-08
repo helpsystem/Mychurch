@@ -298,7 +298,11 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     const slide = session.slides[index];
     setEditingSlideIndex(index);
 
-    if (slide.type === SlideType.LYRICS) {
+    if (slide.type === SlideType.SCRIPTURE) {
+      const content = slide.content as SlideContentScripture;
+      setScripturePages(content.pages || []);
+      setActiveModal('SCRIPTURE');
+    } else if (slide.type === SlideType.LYRICS) {
       const content = slide.content as SlideContentLyrics;
       setLyricsTitle(content.title);
       setLyricsText(content.lines?.map(l => l.text).join('\n') || '');
@@ -779,6 +783,63 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setDraggedIndex(null);
   };
 
+  const applyScripturePages = useCallback((pages: ScripturePage[]) => {
+    if (!pages.length) return;
+
+    if (editingSlideIndex !== null) {
+      setSession((prev) => {
+        const updatedSlides = [...prev.slides];
+        const replacement: Slide = {
+          ...updatedSlides[editingSlideIndex],
+          type: SlideType.SCRIPTURE,
+          content: { pages: [pages[0]] }
+        };
+
+        const extraSlides: Slide[] = pages.slice(1).map((page, idx) => ({
+          id: crypto.randomUUID(),
+          order: editingSlideIndex + idx + 1,
+          type: SlideType.SCRIPTURE,
+          content: { pages: [page] },
+          notes: '',
+          zoom: 1.15,
+        }));
+
+        updatedSlides.splice(editingSlideIndex, 1, replacement, ...extraSlides);
+        return {
+          ...prev,
+          slides: updatedSlides.map((slide, idx) => ({ ...slide, order: idx })),
+        };
+      });
+
+      onSlideSelect(editingSlideIndex);
+      setEditingSlideIndex(null);
+      setActiveModal('NONE');
+      resetForms();
+      return;
+    }
+
+    setSession((prev) => {
+      const baseOrder = prev.slides.length;
+      const newSlides: Slide[] = pages.map((page, idx) => ({
+        id: crypto.randomUUID(),
+        order: baseOrder + idx,
+        type: SlideType.SCRIPTURE,
+        content: { pages: [page] },
+        notes: '',
+        zoom: 1.15,
+      }));
+
+      return {
+        ...prev,
+        slides: [...prev.slides, ...newSlides],
+      };
+    });
+
+    onSlideSelect(session.slides.length);
+    setActiveModal('NONE');
+    resetForms();
+  }, [editingSlideIndex, onSlideSelect, resetForms, session.slides.length, setSession]);
+
   // Render slide thumbnail
   const renderThumbnail = (slide: Slide, index: number) => {
     const isActive = index === activeSlideIndex;
@@ -801,14 +862,26 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         {/* Thumbnail Preview */}
         <div className="aspect-video bg-slate-800 p-2 flex items-center justify-center">
           {slide.type === SlideType.SCRIPTURE && (
-            <div className="text-center">
+            <div className="w-full text-center px-1">
               <BookOpen className="w-6 h-6 text-amber-400 mx-auto mb-1" />
               <p className="text-[10px] text-white truncate">
                 {(slide.content as SlideContentScripture).pages[0]?.bookName[lang]}
               </p>
               <p className="text-[9px] text-slate-400 truncate" dir="ltr">
-                {(slide.content as SlideContentScripture).pages[0]?.bookName.en}
+                {(slide.content as SlideContentScripture).pages[0]?.bookName.en} {(slide.content as SlideContentScripture).pages[0]?.chapter}:{(slide.content as SlideContentScripture).pages[0]?.verses}
               </p>
+              {((slide.content as SlideContentScripture).pages[0]?.textPrimary?.length || 0) > 1 && (
+                <div className="mt-1.5 space-y-0.5 text-left">
+                  {(slide.content as SlideContentScripture).pages[0]?.textPrimary?.slice(0, 2).map((line, lineIdx) => (
+                    <p key={lineIdx} className="text-[8px] text-slate-300/90 truncate">
+                      {line}
+                    </p>
+                  ))}
+                  {((slide.content as SlideContentScripture).pages[0]?.textPrimary?.length || 0) > 2 && (
+                    <p className="text-[8px] text-amber-300/90">+{((slide.content as SlideContentScripture).pages[0]?.textPrimary?.length || 0) - 2} more</p>
+                  )}
+                </div>
+              )}
             </div>
           )}
           {slide.type === SlideType.LYRICS && (
@@ -1101,13 +1174,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       {activeModal === 'SCRIPTURE' && useNewVersePicker && (
         <ScriptureSelector
           lang={lang}
-          onAddSlides={(pages) => {
-            // Add each page as a separate slide
-            pages.forEach(page => {
-              const content: SlideContentScripture = { pages: [page] };
-              addSlide(SlideType.SCRIPTURE, content);
-            });
-          }}
+          onAddSlides={applyScripturePages}
           onClose={() => { setActiveModal('NONE'); resetForms(); }}
         />
       )}

@@ -93,6 +93,7 @@ const formatTime = (value: number) => {
 export default function BiblePresentationSelector({ onClose, onAddSlides, lang }: BiblePresentationSelectorProps) {
   const isRTL = lang === "fa";
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const bookDropdownRef = useRef<HTMLDivElement | null>(null);
 
   const [versions, setVersions] = useState<BibleVersion[]>([]);
   const [books, setBooks] = useState<BookItem[]>([]);
@@ -512,6 +513,19 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     audioRef.current.currentTime = audioProgress;
   }, [audioProgress, audioTracks.length]);
 
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (!showBookList) return;
+      const target = event.target as Node;
+      if (bookDropdownRef.current && !bookDropdownRef.current.contains(target)) {
+        setShowBookList(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [showBookList]);
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-[#0e0e0f] text-white" dir="ltr">
       <audio
@@ -524,24 +538,24 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         onEnded={() => setIsPlaying(false)}
       />
 
-      <div className="shrink-0 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 px-4 py-3 flex flex-wrap items-center gap-2 md:gap-3">
+      <div className="shrink-0 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 px-4 py-3 flex flex-wrap items-center gap-2 md:gap-3 relative z-10">
         <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-blue-400 shrink-0" />
         <span className={`font-bold text-white text-sm md:text-base shrink-0 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? "انتخاب آیه کتاب مقدس" : "Select Bible Verse"}</span>
 
-        <div className="relative">
-          <button onClick={() => { setShowBookList((value) => !value); setShowChapterGrid(false); }} className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2 text-xs md:text-sm font-bold transition-all text-left min-w-[11rem] md:min-w-[14rem] max-w-[16rem] md:max-w-none" aria-label="Select Bible book">
+        <div ref={bookDropdownRef} className="relative z-[110]">
+          <button type="button" onClick={(event) => { event.stopPropagation(); setShowBookList((value) => !value); setShowChapterGrid(false); }} className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2 text-xs md:text-sm font-bold transition-all text-left min-w-[11rem] md:min-w-[14rem] max-w-[16rem] md:max-w-none" aria-label="Select Bible book">
             <BookOpen className="w-4 h-4 text-blue-400 shrink-0" />
             <span className="flex-1 truncate text-white">{currentBook ? (isRTL ? <span className="font-[Vazirmatn]">{currentBook.book_name_fa}</span> : currentBook.book_name_en) : (isRTL ? "انتخاب کتاب..." : "Select a book...")}</span>
             <List className="w-3.5 h-3.5 text-slate-500 shrink-0" />
           </button>
           {showBookList && (
-            <div className="absolute top-full mt-1 left-0 right-0 z-50 max-h-[55vh] overflow-y-auto bg-[#18181b] border border-white/20 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 min-w-[18rem]">
+            <div className="absolute top-full mt-1 left-0 right-0 z-[120] max-h-[55vh] overflow-y-auto bg-[#18181b] border border-white/20 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 min-w-[18rem]">
               <div className="relative mb-2">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500" />
                 <input value={bookSearch} onChange={(event) => setBookSearch(event.target.value)} placeholder={isRTL ? "جستجوی کتاب..." : "Search books..."} className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-sm outline-none focus:border-blue-500/50 text-white" />
               </div>
               {filteredBooks.length ? filteredBooks.map((book) => (
-                <button key={book.book_id} onClick={() => selectBook(book)} className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left transition-all hover:bg-white/10 ${selectedBookId === book.book_id ? "bg-blue-500/20 text-blue-400 font-bold" : "text-zinc-300"}`}>
+                <button type="button" key={book.book_id} onClick={() => selectBook(book)} className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left transition-all hover:bg-white/10 ${selectedBookId === book.book_id ? "bg-blue-500/20 text-blue-400 font-bold" : "text-zinc-300"}`}>
                   <span className="font-[Vazirmatn] text-[13px]" dir="rtl">{book.book_name_fa}</span>
                   <span className="text-zinc-500 text-xs" dir="ltr">{book.book_name_en}</span>
                 </button>
@@ -595,7 +609,8 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         </div>
       )}
 
-      <main className="flex-1 overflow-y-auto bg-[#0e0e0f] pb-32 px-4 relative">
+      <div className="flex-1 flex overflow-hidden relative z-10">
+        <main className="flex-1 overflow-y-auto bg-[#0e0e0f] px-4 pb-32">
         {currentBook && (
           <div className="text-center pt-8 pb-6 border-b border-white/5" dir="ltr">
             <p className="text-xs uppercase tracking-[0.3em] text-slate-500 mb-1">{currentBook.book_name_en}</p>
@@ -708,7 +723,126 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             {!parallelVerses.length && !verses.length && !faVerses.length && !loading && <p className="text-center text-slate-600 py-16">{isRTL ? "آیه‌ای یافت نشد" : "No verses found"}</p>}
           </div>
         )}
-      </main>
+        </main>
+
+        {selectedVerses.length > 0 && (
+          <div className={`w-80 bg-slate-900/95 border-l border-white/10 overflow-hidden flex flex-col ${isRTL ? 'border-l border-r-0' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="shrink-0 bg-gradient-to-r from-amber-600/20 to-amber-500/10 border-b border-amber-500/20 px-4 py-3">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className={`font-bold text-amber-300 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {selectedVerses.length} {isRTL ? 'آیه انتخاب‌شده' : 'Verses Selected'}
+                </h3>
+                <button
+                  onClick={() => setSelectedVerses([])}
+                  className="p-1 text-slate-400 hover:text-red-400 transition-colors rounded"
+                  title={isRTL ? 'پاک کردن همه' : 'Clear all'}
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+              <p className="text-xs text-slate-400">
+                {isRTL
+                  ? `${selectedReferences.length} بخش‌شناسی از کتاب‌ها`
+                  : `${selectedReferences.length} section(s)`}
+              </p>
+            </div>
+
+            <div className="flex-1 overflow-y-auto">
+              <div className="divide-y divide-white/5 p-3 space-y-0">
+                {selectedVerses.map((verse, idx) => (
+                  <div
+                    key={verse.id}
+                    className="py-3 first:pt-0 last:pb-0 text-sm leading-relaxed"
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-1.5">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex gap-2 items-center mb-1">
+                          <span className="text-[11px] font-bold text-amber-400 shrink-0">
+                            {verse.book_name_fa}
+                          </span>
+                          <span className="text-[10px] text-slate-500 shrink-0">
+                            {isRTL ? `${verse.chapter}:${verse.verse_num}` : `${verse.chapter}:${verse.verse_num}`}
+                          </span>
+                        </div>
+                        <p
+                          className="text-xs text-slate-300 leading-snug truncate"
+                          title={verse.en}
+                        >
+                          EN: {verse.en ? verse.en.substring(0, 60) : '—'}...
+                        </p>
+                        <p
+                          className="text-xs text-slate-400 leading-snug truncate font-[Vazirmatn]"
+                          title={verse.fa}
+                        >
+                          FA: {verse.fa ? verse.fa.substring(0, 60) : '—'}...
+                        </p>
+                      </div>
+                      <button
+                        onClick={() =>
+                          setSelectedVerses((prev) =>
+                            prev.filter((v) => v.id !== verse.id)
+                          )
+                        }
+                        className="p-1 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded transition-colors shrink-0 mt-0.5"
+                        title={isRTL ? 'حذف' : 'Remove'}
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="shrink-0 bg-slate-950/50 border-t border-white/5 px-4 py-3 space-y-2">
+              <div className="flex items-center gap-1 bg-black/30 rounded-lg p-1 border border-white/10">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSlideBuildMode("single");
+                    persist("bp_slide_mode", "single");
+                  }}
+                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] font-bold transition ${slideBuildMode === "single" ? "bg-amber-600/40 text-amber-300" : "text-slate-400 hover:text-slate-200"}`}
+                  title={isRTL ? 'یک اسلاید برای همه' : 'Single slide'}
+                >
+                  {isRTL ? "تک" : "Single"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSlideBuildMode("perReference");
+                    persist("bp_slide_mode", "perReference");
+                  }}
+                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] font-bold transition ${slideBuildMode === "perReference" ? "bg-amber-600/40 text-amber-300" : "text-slate-400 hover:text-slate-200"}`}
+                  title={isRTL ? 'اسلاید برای هر بخش' : 'Per section'}
+                >
+                  {isRTL ? "بخشی" : "Group"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSlideBuildMode("perVerse");
+                    persist("bp_slide_mode", "perVerse");
+                  }}
+                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] font-bold transition ${slideBuildMode === "perVerse" ? "bg-amber-600/40 text-amber-300" : "text-slate-400 hover:text-slate-200"}`}
+                  title={isRTL ? 'اسلاید برای هر آیه' : 'Per verse'}
+                >
+                  {isRTL ? "تکی" : "Verse"}
+                </button>
+              </div>
+              <button
+                onClick={handleAddSlides}
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white px-4 py-2.5 rounded-lg font-bold shadow-lg transition-all text-sm"
+              >
+                <span>✓</span>
+                <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
+                  {isRTL ? "افزودن اسلایدها" : "Add Slides"}
+                </span>
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
 
       {audioTracks.length > 0 && (
         <div className="fixed bottom-20 md:bottom-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-2xl border-y md:border-b-0 md:border-t border-white/10 px-4 py-3 shadow-2xl" dir="ltr">
@@ -735,48 +869,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         </div>
       )}
 
-      <div className={`fixed bottom-52 md:bottom-24 left-0 right-0 z-40 flex items-center justify-center gap-2 md:gap-3 pointer-events-none transition-all duration-500 ${selectedVerses.length > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`} dir="ltr">
-        <div className="pointer-events-auto bg-amber-500 text-black px-4 md:px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-4 font-bold flex-wrap max-w-[95vw] border border-amber-300/40">
-          <span className={`text-sm font-black border-r border-black/20 pr-4 shrink-0 ${isRTL ? "font-[Vazirmatn]" : ""}`}>{selectedVerses.length} {isRTL ? "آیه انتخاب شده" : "verses selected"}</span>
-          <div className="flex-1 flex flex-wrap gap-1.5 min-w-0 overflow-hidden">
-            {selectedReferences.slice(0, 4).map((reference) => <span key={reference} className="text-xs bg-black/15 text-black/80 px-2 py-0.5 rounded-full font-[Vazirmatn] shrink-0">{reference}</span>)}
-            {selectedReferences.length > 4 && <span className="text-xs bg-black/15 text-black/80 px-2 py-0.5 rounded-full shrink-0">…</span>}
-          </div>
-          <div className="flex items-center gap-1 bg-black/15 rounded-lg p-1 border border-black/15">
-            <button
-              onClick={() => {
-                setSlideBuildMode("single");
-                persist("bp_slide_mode", "single");
-              }}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-black transition ${slideBuildMode === "single" ? "bg-black text-white" : "text-black/70 hover:bg-black/10"}`}
-            >
-              {isRTL ? "تک" : "Single"}
-            </button>
-            <button
-              onClick={() => {
-                setSlideBuildMode("perReference");
-                persist("bp_slide_mode", "perReference");
-              }}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-black transition ${slideBuildMode === "perReference" ? "bg-black text-white" : "text-black/70 hover:bg-black/10"}`}
-            >
-              {isRTL ? "چندبخشی" : "Per Group"}
-            </button>
-            <button
-              onClick={() => {
-                setSlideBuildMode("perVerse");
-                persist("bp_slide_mode", "perVerse");
-              }}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-black transition ${slideBuildMode === "perVerse" ? "bg-black text-white" : "text-black/70 hover:bg-black/10"}`}
-            >
-              {isRTL ? "هر آیه" : "Per Verse"}
-            </button>
-          </div>
-          <button onClick={() => setSelectedVerses([])} className={`flex items-center gap-1.5 hover:opacity-70 transition-opacity shrink-0 text-sm ${isRTL ? "font-[Vazirmatn]" : ""}`}><Trash2 className="w-4 h-4" />{isRTL ? "پاک کردن" : "Clear"}</button>
-          <button onClick={handleAddSlides} className={`flex items-center gap-2 bg-black text-white px-5 py-2 rounded-xl hover:bg-black/80 transition-all font-bold shadow-xl shrink-0 ${isRTL ? "font-[Vazirmatn]" : ""}`}>{isRTL ? "افزودن اسلایدها" : "Add Slides"}</button>
-        </div>
-      </div>
 
-      <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] transition-all duration-500 opacity-0 translate-y-20 pointer-events-none ${selectedVerses.length > 0 ? "opacity-0" : ""}`} />
     </div>
   );
 }
