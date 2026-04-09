@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  Play, BookOpen, Music, Video, Heart, Mic, Phone, Settings, Globe, Users, Clock
+  Play, BookOpen, Music, Video, Heart, Mic, Phone, Settings, Globe, Users, Clock, Bell, X
 } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -17,6 +17,24 @@ import { FloatingNav } from "@/components/ui/aceternity/floating-nav";
 
 export default function HomePage() {
   const { t } = useLanguage();
+  const [showUpdateNotice, setShowUpdateNotice] = useState(false);
+  const [deployBuildId, setDeployBuildId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const buildId = (window as any).__NEXT_DATA__?.buildId as string | undefined;
+    if (!buildId) return;
+
+    setDeployBuildId(buildId);
+    const storageKey = "mychurch:last-seen-build-id";
+    const seenBuildId = window.localStorage.getItem(storageKey);
+
+    if (seenBuildId && seenBuildId !== buildId) {
+      setShowUpdateNotice(true);
+    }
+
+    window.localStorage.setItem(storageKey, buildId);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background relative selection:bg-primary/30 font-sans flex flex-col">
@@ -28,6 +46,31 @@ export default function HomePage() {
 
         {/* Unified Navigation Bar */}
         <PublicHeader />
+        {showUpdateNotice && (
+          <div className="mx-auto mt-4 w-[min(92vw,1100px)] rounded-2xl border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-emerald-100 backdrop-blur-md shadow-lg">
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 rounded-lg bg-emerald-400/20 p-2">
+                <Bell className="h-4 w-4 text-emerald-300" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm md:text-base font-bold">سایت با نسخه جدید بروز شد</p>
+                <p className="mt-1 text-xs md:text-sm text-emerald-100/90">
+                  آخرین انتشار با موفقیت روی سایت اعمال شده است.
+                  {deployBuildId ? ` (Build: ${deployBuildId.slice(0, 8)})` : ""}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowUpdateNotice(false)}
+                className="rounded-lg border border-emerald-300/30 bg-emerald-400/10 p-1.5 text-emerald-100 hover:bg-emerald-300/20 transition"
+                aria-label="بستن اعلان بروزرسانی"
+                title="بستن"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="w-full relative overflow-hidden">
             <Vortex particleCount={250} className="w-full flex items-center justify-center">
@@ -122,7 +165,7 @@ export default function HomePage() {
 
                 <div className="space-y-4">
                   <h3 className="text-2xl md:text-3xl font-black leading-tight text-foreground/90 text-right leading-relaxed" dir="rtl">
-                    "خدا روح است و هر که او را می‌پرستد، باید به روح و راستی بپرستد."
+                    "Ø®Ø¯Ø§ Ø±ÙˆØ­ Ø§Ø³Øª Ùˆ Ù‡Ø± Ú©Ù‡ Ø§Ùˆ Ø±Ø§ Ù…ÛŒâ€ŒÙ¾Ø±Ø³ØªØ¯ØŒ Ø¨Ø§ÛŒØ¯ Ø¨Ù‡ Ø±ÙˆØ­ Ùˆ Ø±Ø§Ø³ØªÛŒ Ø¨Ù¾Ø±Ø³ØªØ¯."
                   </h3>
                   <h3 className="text-xl md:text-2xl font-bold leading-tight text-foreground/70 text-left font-serif italic" dir="ltr">
                     "God is spirit, and his worshipers must worship in the Spirit and in truth."
@@ -130,7 +173,7 @@ export default function HomePage() {
                 </div>
 
                 <p className="text-primary font-bold text-lg bg-black/20 inline-block px-4 py-1.5 rounded-lg border border-white/5 backdrop-blur-sm shadow-inner">
-                  یوحنا ۴:۲۴ | John 4:24
+                  ÛŒÙˆØ­Ù†Ø§ Û´:Û²Û´ | John 4:24
                 </p>
               </div>
               <Link href="/bible" className="shrink-0">
@@ -188,3 +231,4 @@ function Box(props: any) {
     </svg>
   );
 }
+
