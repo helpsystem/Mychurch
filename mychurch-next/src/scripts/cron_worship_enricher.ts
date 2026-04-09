@@ -23,13 +23,14 @@ async function runMassEnrichment() {
     const reportDetails = [];
 
     try {
-        // 1. Fetch up to 10 unprocessed songs
+        // 1. Fetch up to 10 unprocessed songs (skipping verified songs to avoid extra token spend)
         const { rows: pendingSongs } = await query(`
             SELECT id, title_fa 
             FROM church_worship_songs 
             WHERE timing_data IS NULL 
               AND lyrics_fa IS NOT NULL
               AND audio_url IS NOT NULL
+              AND (is_verified IS NULL OR is_verified = FALSE)
             ORDER BY created_at DESC
             LIMIT 10
         `);

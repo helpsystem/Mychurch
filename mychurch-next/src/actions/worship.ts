@@ -20,6 +20,7 @@ export interface WorshipSong {
     likes_count?: number;
     timepoints?: Array<{ time: number; lyricFA: string; lyricEN?: string }>;
     timing_data?: import('@/types/worship-sync').SystemTimingV2 | null;
+    is_verified?: boolean;
     created_at?: Date;
 }
 
@@ -49,6 +50,8 @@ export async function initializeWorshipDB() {
                 created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
                 PRIMARY KEY (user_id, song_id)
             );
+            
+            ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS is_verified BOOLEAN DEFAULT FALSE;
         `);
         console.log('[Action] Worship DB initialized');
     } catch (e) {
@@ -115,6 +118,19 @@ export async function deleteWorshipSong(id: string): Promise<{ success: boolean 
         return { success: false };
     }
 }
+
+export async function toggleSongVerification(id: string, isVerified: boolean): Promise<{ success: boolean; message?: string }> {
+    try {
+        await query("UPDATE church_worship_songs SET is_verified = $1 WHERE id = $2", [isVerified, id]);
+        revalidatePath('/worship');
+        revalidatePath('/admin/worship');
+        return { success: true };
+    } catch (e: any) {
+        console.error('Error toggling song verification', e);
+        return { success: false, message: e.message };
+    }
+}
+
 
 export async function toggleLikeWorshipSong(songId: string, userId: string): Promise<{ success: boolean; liked: boolean; count: number }> {
     try {
@@ -362,6 +378,23 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         }
 
         console.log(`[AI-Wizard] Updating DB for ${song.title_fa}...`);
+        
+        let finalLyricsFa = aiData.lyrics_fa_clean || aiData.lyrics_fa || song.lyrics_fa;
+        let finalLyricsFinglish = aiData.lyrics_finglish_clean || aiData.lyrics_finglish || song.lyrics_finglish;
+        let finalTranslationEn = aiData.translation_en || aiData.lyrics_en || song.lyrics_en;
+        let finalChords = aiData.chords || song.chords;
+        let finalCategory = aiData.category || song.category;
+        
+        // Prevent accidental overwrite of confirmed data
+        if (song.is_verified) {
+            console.log(`[AI-Wizard] Song is verified. Skiping text fields overwrite, only applying timing_data.`);
+            finalLyricsFa = song.lyrics_fa || '';
+            finalLyricsFinglish = song.lyrics_finglish || '';
+            finalTranslationEn = song.lyrics_en || '';
+            finalChords = song.chords || '';
+            finalCategory = song.category || '';
+        }
+
         await query(`
             UPDATE church_worship_songs
             SET lyrics_fa = $1,
@@ -372,11 +405,11 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                 timing_data = $6
             WHERE id = $7
         `, [
-            aiData.lyrics_fa_clean || aiData.lyrics_fa || song.lyrics_fa,
-            aiData.lyrics_finglish_clean || aiData.lyrics_finglish || song.lyrics_finglish,
-            aiData.translation_en || aiData.lyrics_en || song.lyrics_en,
-            aiData.chords || song.chords,
-            aiData.category || song.category,
+            finalLyricsFa,
+            finalLyricsFinglish,
+            finalTranslationEn,
+            finalChords,
+            finalCategory,
             timingData ? JSON.stringify(timingData) : null,
             id
         ]);

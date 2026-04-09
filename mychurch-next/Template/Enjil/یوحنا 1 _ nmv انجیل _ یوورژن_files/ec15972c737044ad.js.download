@@ -1,0 +1,46 @@
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="538c770c-0445-10ee-0568-a91b24e58344")}catch(e){}}();
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,603776,e=>{"use strict";var t=e.i(350461),n=e.i(391398),r=e.i(194182),o=e.i(191788);function i(){let[e,i]=(0,o.useState)(!1),a=t.default?.env?.NEXT_PUBLIC_BRANCH_KEY?"key_live_jpmoQCKshT4dmEI1OZyuGmlmjffQNTlA":window?.BRANCH_KEY?window.BRANCH_KEY:void 0;return(0,o.useEffect)(()=>{window.location.hash&&"#reset"===window.location.hash&&i(!0)},[]),(0,n.jsxs)(n.Fragment,{children:[e?(0,n.jsx)("div",{children:(0,n.jsx)("button",{className:"btn",onClick:()=>{localStorage.removeItem("BRANCH_WEBSDK_KEYjourneyDismissals"),window.location.reload()},style:{background:"#333",color:"#fff",padding:"4px"},children:"Show Banner"})}):"",(0,n.jsx)(r.default,{id:"show-banner-iframe",strategy:"lazyOnload",children:`
+        (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking getBrowserFingerprintId".split(" "), 0);
+
+        branch.init("${a}", function(err, data) {
+        });
+        branch.getBrowserFingerprintId((err, fingerprint) => {
+          if (err) {
+            return;
+          }
+          window.BRANCH_INITIATED = true;
+          window.BRANCH_ID = fingerprint;
+        });
+
+        branch.addListener('didShowJourney', () => {
+          let bottomWidgets = document.getElementById('bottom-widgets');
+          const cookieBanner = document.querySelector('.cc-banner');
+          if (bottomWidgets) {
+            let bannerIframe = null;
+            const bannerIframeCheck = setInterval(function() {
+              bannerIframe = document.getElementById('branch-banner-iframe');
+              if (bannerIframe && bottomWidgets.offsetHeight > 1) {
+                clearInterval(bannerIframeCheck);
+                bannerIframe.classList.add('branch-banner-iframe-loaded');
+                bannerIframe.style.bottom = (bottomWidgets.offsetHeight - 1) + 'px';
+                if (cookieBanner) {
+                  cookieBanner.style.bottom = (bottomWidgets.offsetHeight - 1) + bannerIframe.offsetHeight + 'px';
+                }
+                setInterval(() => {
+                  bottomWidgets = document.getElementById('bottom-widgets');
+                  if (bottomWidgets) {
+                    bannerIframe.style.bottom = (bottomWidgets.offsetHeight - 1) + 'px';
+                  }
+                  if (cookieBanner) {
+                    cookieBanner.style.bottom = (bottomWidgets.offsetHeight - 1) + bannerIframe.offsetHeight + 'px';
+                  }
+                }, 1000);
+              }
+            }, 50);
+          }
+        });
+
+        `})]})}e.s([],411795),e.i(411795),e.s(["AppBannerIframe",()=>i],603776)},815756,e=>{e.n(e.i(603776))}]);
+
+//# debugId=538c770c-0445-10ee-0568-a91b24e58344
+//# sourceMappingURL=6c5e5f2e83156360.js.map

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
     Plus, Search, Edit2, Trash2, Youtube, Music, Clock,
     Sparkles, Languages, Loader2, Save, X, Upload, CheckCircle,
-    Database, Guitar, Eraser, Play, Eye, Zap, Type, Download, Link as LinkIcon
+    Database, Guitar, Eraser, Play, Eye, Zap, Type, Download, Link as LinkIcon, Shield, ShieldCheck, ShieldAlert
 } from "lucide-react";
 import { 
     type WorshipSong,
@@ -12,7 +12,8 @@ import {
     createWorshipSong, 
     updateWorshipSong, 
     deleteWorshipSong, 
-    extractWorshipSongAI
+    extractWorshipSongAI,
+    toggleSongVerification
 } from "@/actions/worship";
 import { uploadToHiDrive, moveExternalToInternal } from "@/actions/hidrive";
 import { migrateLegacyWorshipData } from "@/actions/migration";
@@ -25,7 +26,7 @@ export default function WorshipAdminClient() {
     const [songs, setSongs] = useState<WorshipSong[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState("");
-    const [filter, setFilter] = useState<"all" | "audio" | "timing" | "missing_lyrics">("all");
+    const [filter, setFilter] = useState<"all" | "audio" | "timing" | "missing_lyrics" | "verified" | "unverified">("all");
 
     // Editor State
     const [editingSong, setEditingSong] = useState<WorshipSong | null>(null);
@@ -298,6 +299,22 @@ export default function WorshipAdminClient() {
             setProcessingAiId(null);
         }
     };
+
+    const handleToggleVerify = async (id: string, currentStatus: boolean) => {
+        const newStatus = !currentStatus;
+        if (newStatus && !confirm("آیا از تایید نهایی و قفل کردن این سرود اطمینان دارید؟ هوش مصنوعی دیگر متن‌های آن را تغییر نخواهد داد.")) return;
+        
+        try {
+            const res = await toggleSongVerification(id, newStatus);
+            if (res.success) {
+                await loadSongs();
+            } else {
+                alert("خطا در تغییر وضعیت: " + res.message);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
     // --- End AI Handlers ---
 
     const filteredSongs = songs.filter(s => {
@@ -310,6 +327,8 @@ export default function WorshipAdminClient() {
         if (filter === "audio") return !!s.audio_url;
         if (filter === "timing") return s.timepoints && s.timepoints.length > 5;
         if (filter === "missing_lyrics") return !s.lyrics_fa;
+        if (filter === "verified") return s.is_verified === true;
+        if (filter === "unverified") return s.is_verified !== true;
 
         return true;
     });
@@ -618,6 +637,8 @@ export default function WorshipAdminClient() {
                 {/* 🎛 Instant Filter Chips */}
                 <div className="flex items-center gap-2 p-3 bg-card border-b border-border/50 overflow-x-auto hide-scrollbar">
                     <button onClick={() => setFilter("all")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "all" ? "bg-primary text-primary-foreground shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>همه سرودها</button>
+                    <button onClick={() => setFilter("verified")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "verified" ? "bg-green-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>✅ تایید شده</button>
+                    <button onClick={() => setFilter("unverified")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "unverified" ? "bg-indigo-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>⏳ نیاز به بررسی</button>
                     <button onClick={() => setFilter("audio")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "audio" ? "bg-blue-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>🎵 دارای فایل صوتی</button>
                     <button onClick={() => setFilter("timing")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "timing" ? "bg-emerald-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>⭐ کارائوکه فعال</button>
                     <button onClick={() => setFilter("missing_lyrics")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "missing_lyrics" ? "bg-yellow-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>⚠️ بدون متن فارسی</button>
@@ -679,6 +700,11 @@ export default function WorshipAdminClient() {
                                                     ) : (
                                                         <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-rose-500/10 text-rose-500 text-[10px] font-bold border border-rose-500/20" title="فاقد تایمینگ سینک شده"><Clock className="w-3 h-3" /> تایم ✗</span>
                                                     )}
+                                                    {song.is_verified && (
+                                                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-indigo-500/10 text-indigo-500 text-[10px] font-bold border border-indigo-500/20" title="تایید شده توسط אدمین (محافظت شده)">
+                                                            <ShieldCheck className="w-3 h-3" /> قفل
+                                                        </span>
+                                                    )}
                                                     {hasFinglishField && (
                                                         <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-orange-500/10 text-orange-400 text-[10px] font-black border border-orange-500/20 uppercase">Finglish ✓</span>
                                                     )}
@@ -687,6 +713,18 @@ export default function WorshipAdminClient() {
                                             <td className="p-4 text-left">
                                                 <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                                     
+                                                    {/* Toggle Verified Button */}
+                                                    <button 
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleToggleVerify(song.id, !!song.is_verified);
+                                                        }}
+                                                        className={`p-2 rounded-lg transition ${song.is_verified ? 'bg-green-500/10 text-green-500 hover:bg-green-500/20' : 'bg-secondary text-muted-foreground hover:bg-secondary/80'}`} 
+                                                        title={song.is_verified ? "تایید شده (کلیک برای باز کردن)" : "تایید نهایی و قفل (جلوگیری از ویرایش بات)"}
+                                                    >
+                                                        {song.is_verified ? <ShieldCheck className="w-4 h-4" /> : <Shield className="w-4 h-4" />}
+                                                    </button>
+
                                                     {/* AI Wizard Button */}
                                                     <button 
                                                         onClick={(e) => {

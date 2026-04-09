@@ -1,8 +1,6 @@
 "use server";
 
 import { query } from "@/lib/db";
-import { createClient } from "@/utils/supabase/server";
-import { revalidatePath } from "next/cache";
 
 export interface AIConfig {
     id: string;
@@ -46,6 +44,7 @@ export async function getAIConfig(): Promise<AIConfig> {
 }
 
 export async function updateAIConfig(config: Partial<AIConfig>) {
+    const { createClient } = await import("@/utils/supabase/server");
     const supabase = await createClient();
     
     // Auth check (Admin only)
@@ -62,6 +61,7 @@ export async function updateAIConfig(config: Partial<AIConfig>) {
     
     if (error) throw new Error(error.message);
     
+    const { revalidatePath } = await import("next/cache");
     revalidatePath('/admin/settings');
     return { success: true };
 }

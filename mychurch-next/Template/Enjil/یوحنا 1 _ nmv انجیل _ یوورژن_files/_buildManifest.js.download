@@ -1,0 +1,370 @@
+self.__BUILD_MANIFEST = {
+  "/": [
+    "static/chunks/1e5d599f7bd57669.js"
+  ],
+  "/404": [
+    "static/chunks/a625ecc4c54ae42b.js"
+  ],
+  "/[versionId]/[path]": [
+    "static/chunks/3caba2fdc6aaef56.js"
+  ],
+  "/_error": [
+    "static/chunks/fdbcc5df2b5cbbd7.js"
+  ],
+  "/about": [
+    "static/chunks/244e9cc6e15a7658.js"
+  ],
+  "/app": [
+    "static/chunks/1e646cd45ee2d7d6.js"
+  ],
+  "/app/stories/[slug]": [
+    "static/chunks/b94a86a8c5b88f50.js"
+  ],
+  "/audio-bible-app-versions": [
+    "static/chunks/201be9093e29d2e4.js"
+  ],
+  "/audio-bible-app-versions/[version]": [
+    "static/chunks/ccf6db049cfc9f77.js"
+  ],
+  "/audio-bible/[versionId]/[usfm]": [
+    "static/chunks/8fc78923d5f2f8c5.js"
+  ],
+  "/authenticate": [
+    "static/chunks/ad001aa2e5945f62.js"
+  ],
+  "/bible": [
+    "static/chunks/adffb7d22136eea9.js"
+  ],
+  "/bible-app-lite": [
+    "static/chunks/a37e8bf71e3500f9.js"
+  ],
+  "/bible-study/devotionals/[usfm]": [
+    "static/chunks/905a302b5cff67d4.js"
+  ],
+  "/bible-verses": [
+    "static/chunks/281624c538c9ea65.js"
+  ],
+  "/bible-verses/[versionId]": [
+    "static/chunks/73c0ece4a90313b5.js"
+  ],
+  "/bible-verses/[versionId]/[usfm]": [
+    "static/chunks/6a256c2600afea3a.js"
+  ],
+  "/bible/[versionId]": [
+    "static/chunks/e1b317d4d177577c.js"
+  ],
+  "/bible/[versionId]/[usfm]": [
+    "static/chunks/927e27779b4512b0.js"
+  ],
+  "/bible/[versionId]/[usfm]/[parallel]": [
+    "static/chunks/5295e84c8f59279e.js"
+  ],
+  "/bible/compare/[usfm]": [
+    "static/chunks/d5aef562ab8d70cc.js"
+  ],
+  "/billion": [
+    "static/chunks/0caacb7d9019375d.js"
+  ],
+  "/billion/stories/[slug]": [
+    "static/chunks/69a5200fa4ae823b.js"
+  ],
+  "/confirm-update-email/[token]": [
+    "static/chunks/9dfafea5684e7533.js"
+  ],
+  "/confirmation": [
+    "static/chunks/e4176b51c03ba4db.js"
+  ],
+  "/discover": [
+    "static/chunks/f55d0cef7c4e70f5.js"
+  ],
+  "/events": [
+    "static/chunks/18f4c26ba5877270.js"
+  ],
+  "/events/[id]": [
+    "static/chunks/d642de2fd9ec08de.js"
+  ],
+  "/features/events-faq": [
+    "static/chunks/2204af0c16e3b507.js"
+  ],
+  "/features/events-resources": [
+    "static/chunks/d34e855145555603.js"
+  ],
+  "/giving-impact": [
+    "static/chunks/8010b5e1fb82a2e1.js"
+  ],
+  "/global-bible-month": [
+    "static/chunks/4516c94f50941f44.js"
+  ],
+  "/global-bible-month/news": [
+    "static/chunks/8ee9fec80f99eb77.js"
+  ],
+  "/kids": [
+    "static/chunks/010ba7a40bc6f1b5.js"
+  ],
+  "/languages": [
+    "static/chunks/676682587ed74895.js"
+  ],
+  "/languages/[lang]": [
+    "static/chunks/5065fc0c71051428.js"
+  ],
+  "/organizations": [
+    "static/chunks/69c4c9bde144d626.js"
+  ],
+  "/organizations/[id]": [
+    "static/chunks/868889a950b74fa7.js"
+  ],
+  "/popular-bible-verses": [
+    "static/chunks/b0ac3ab9fbe91280.js"
+  ],
+  "/prayer": [
+    "static/chunks/9a09cc513732a655.js"
+  ],
+  "/privacy": [
+    "static/chunks/e8589c1a3d25e7ce.js"
+  ],
+  "/privacy/[date]": [
+    "static/chunks/1ad5abbeabe08b4f.js"
+  ],
+  "/reading-plans": [
+    "static/chunks/026c4548437a4cad.js"
+  ],
+  "/reading-plans-collection/[slug]": [
+    "static/chunks/868ac7d40d9e307f.js"
+  ],
+  "/reading-plans/[plan]": [
+    "static/chunks/19d688bf080d5135.js"
+  ],
+  "/reading-plans/[plan]/day/[day]": [
+    "static/chunks/79d25275f463a041.js"
+  ],
+  "/reading-plans/[plan]/together/[togetherId]/invitation": [
+    "static/chunks/3ad638a52455d0c8.js"
+  ],
+  "/reading-plans/[plan]/together/[togetherId]/participants": [
+    "static/chunks/8b84628f4dbdeebb.js"
+  ],
+  "/refresh": [
+    "static/chunks/d46352770e7181a3.js"
+  ],
+  "/resetPassword": [
+    "static/chunks/9d453156837bced1.js"
+  ],
+  "/sardius-test": [
+    "static/chunks/0d52e16306adbdf4.js"
+  ],
+  "/search/[category]": [
+    "static/chunks/b8433a6750315511.js"
+  ],
+  "/snapshot": [
+    "static/chunks/1e4031563215e7de.js"
+  ],
+  "/stories": [
+    "static/chunks/173ffe09a9c02ca2.js"
+  ],
+  "/stories/[story]": [
+    "static/chunks/d9b31bd8219372da.js"
+  ],
+  "/subscription/[id]/day/[day]/talk-it-over/[comment]": [
+    "static/chunks/4c7807a5f0697b07.js"
+  ],
+  "/terms": [
+    "static/chunks/5ca34d78e75a760a.js"
+  ],
+  "/users/[username]": [
+    "static/chunks/3430eb3b22244a8f.js"
+  ],
+  "/users/[username]/completed-reading-plans": [
+    "static/chunks/9de0286a6c662e6b.js"
+  ],
+  "/users/[username]/edit": [
+    "static/chunks/282afa8dfe0bec72.js"
+  ],
+  "/users/[username]/friends": [
+    "static/chunks/5ba3653005effa31.js"
+  ],
+  "/users/[username]/reading-plans": [
+    "static/chunks/a72c46b97b42f19f.js"
+  ],
+  "/users/[username]/reading-plans/[plan]/subscription/[sub]/day/[day]": [
+    "static/chunks/9924acba11ed4fc8.js"
+  ],
+  "/users/[username]/reading-plans/[plan]/subscription/[sub]/day/[day]/completed": [
+    "static/chunks/706ab971cba7a57e.js"
+  ],
+  "/users/[username]/reading-plans/[plan]/subscription/[sub]/day/[day]/segment/[segment]": [
+    "static/chunks/7f2e91a48c465018.js"
+  ],
+  "/users/[username]/saved-reading-plans": [
+    "static/chunks/b62f29449286ff76.js"
+  ],
+  "/verse-images/[usfm]/[imageId]": [
+    "static/chunks/c215f081436788ca.js"
+  ],
+  "/verse-of-the-day": [
+    "static/chunks/1a0389537d0bdfcb.js"
+  ],
+  "/verse-of-the-day/[usfm]/[imageId]": [
+    "static/chunks/c53f559b77d0c6cc.js"
+  ],
+  "/versions": [
+    "static/chunks/c3c15a7ecab8f8b0.js"
+  ],
+  "/versions/[version]": [
+    "static/chunks/76bd896479af926b.js"
+  ],
+  "/videos": [
+    "static/chunks/1cfd1e5c1673df40.js"
+  ],
+  "/videos/[video]": [
+    "static/chunks/2cac14c027e2c326.js"
+  ],
+  "/videos/collections/[collection]": [
+    "static/chunks/db76d42b105cb3a0.js"
+  ],
+  "/videos/publishers/[publisher]": [
+    "static/chunks/347c8568ad47be24.js"
+  ],
+  "/~/friendships/accept/[token]/[id]": [
+    "static/chunks/0488fc441e89c85d.js"
+  ],
+  "__rewrites": {
+    "afterFiles": [],
+    "beforeFiles": [
+      {
+        "has": [
+          {
+            "type": "query",
+            "key": "parallel",
+            "value": "(?<parallel>.*)"
+          }
+        ],
+        "source": "/:nextInternalLocale(en|af|am|ar|be|bg|bn|ca|ckb|cs|cy|da|de|el|en\\-GB|es|es\\-ES|et|fa|fi|fr|gu|he|hi|hr|ht|hu|hy|id|ig|is|it|ja|ka|km|kn|ko|ln|lt|lv|mg|mk|ml|mn|mr|ms|my|my\\-MM|ne|nl|no|pa|pl|pt|pt\\-PT|ro|ru|si|sk|sl|sn|sq|sr|sv|sw|ta|te|tg|th|tl|tr|uk|ur|uz|vi|xh|yo|zh\\-CN|zh\\-HK|zh\\-TW|zu)/bible/:versionId/:usfm",
+        "destination": "/:nextInternalLocale/bible/:versionId/:usfm/:parallel"
+      },
+      {
+        "source": "/:nextInternalLocale(en|af|am|ar|be|bg|bn|ca|ckb|cs|cy|da|de|el|en\\-GB|es|es\\-ES|et|fa|fi|fr|gu|he|hi|hr|ht|hu|hy|id|ig|is|it|ja|ka|km|kn|ko|ln|lt|lv|mg|mk|ml|mn|mr|ms|my|my\\-MM|ne|nl|no|pa|pl|pt|pt\\-PT|ro|ru|si|sk|sl|sn|sq|sr|sv|sw|ta|te|tg|th|tl|tr|uk|ur|uz|vi|xh|yo|zh\\-CN|zh\\-HK|zh\\-TW|zu)/.well-known/apple-developer-domain-association.txt",
+        "destination": "/:nextInternalLocale/app-store/apple-developer-domain-association-prod.txt"
+      },
+      {
+        "source": "/:nextInternalLocale(en|af|am|ar|be|bg|bn|ca|ckb|cs|cy|da|de|el|en\\-GB|es|es\\-ES|et|fa|fi|fr|gu|he|hi|hr|ht|hu|hy|id|ig|is|it|ja|ka|km|kn|ko|ln|lt|lv|mg|mk|ml|mn|mr|ms|my|my\\-MM|ne|nl|no|pa|pl|pt|pt\\-PT|ro|ru|si|sk|sl|sn|sq|sr|sv|sw|ta|te|tg|th|tl|tr|uk|ur|uz|vi|xh|yo|zh\\-CN|zh\\-HK|zh\\-TW|zu)/apple-app-site-association",
+        "destination": "/:nextInternalLocale/app-store/apple-app-site-association-prod"
+      },
+      {
+        "source": "/:nextInternalLocale(en|af|am|ar|be|bg|bn|ca|ckb|cs|cy|da|de|el|en\\-GB|es|es\\-ES|et|fa|fi|fr|gu|he|hi|hr|ht|hu|hy|id|ig|is|it|ja|ka|km|kn|ko|ln|lt|lv|mg|mk|ml|mn|mr|ms|my|my\\-MM|ne|nl|no|pa|pl|pt|pt\\-PT|ro|ru|si|sk|sl|sn|sq|sr|sv|sw|ta|te|tg|th|tl|tr|uk|ur|uz|vi|xh|yo|zh\\-CN|zh\\-HK|zh\\-TW|zu)/.well-known/apple-app-site-association",
+        "destination": "/:nextInternalLocale/app-store/apple-app-site-association-prod"
+      },
+      {
+        "source": "/en/30-day-bible-challenge",
+        "destination": "/30-day-bible-challenge/english.html"
+      },
+      {
+        "source": "/es/30-day-bible-challenge",
+        "destination": "/30-day-bible-challenge/spanish.html"
+      },
+      {
+        "source": "/fr/30-day-bible-challenge",
+        "destination": "/30-day-bible-challenge/french.html"
+      },
+      {
+        "source": "/pt/30-day-bible-challenge",
+        "destination": "/30-day-bible-challenge/portugeuse.html"
+      },
+      {
+        "source": "/:lang((?!en|es|fr|pt)[^/]+)/30-day-bible-challenge",
+        "destination": "/30-day-bible-challenge/english.html"
+      }
+    ],
+    "fallback": []
+  },
+  "sortedPages": [
+    "/",
+    "/404",
+    "/_app",
+    "/_error",
+    "/about",
+    "/api/bible/configuration",
+    "/api/bible/version/[id]",
+    "/api/bible/versions",
+    "/api/collection",
+    "/api/cookies",
+    "/api/global-bible-month/challenge",
+    "/api/healthz",
+    "/api/installations/install",
+    "/api/plan-subscribe/[planId]",
+    "/api/preferred-locale",
+    "/api/preferred-locale.test",
+    "/api/probes/startup",
+    "/app",
+    "/app/stories/[slug]",
+    "/audio-bible/[versionId]/[usfm]",
+    "/audio-bible-app-versions",
+    "/audio-bible-app-versions/[version]",
+    "/authenticate",
+    "/bible",
+    "/bible/compare/[usfm]",
+    "/bible/[versionId]",
+    "/bible/[versionId]/[usfm]",
+    "/bible/[versionId]/[usfm]/[parallel]",
+    "/bible-app-lite",
+    "/bible-study/devotionals/[usfm]",
+    "/bible-verses",
+    "/bible-verses/[versionId]",
+    "/bible-verses/[versionId]/[usfm]",
+    "/billion",
+    "/billion/stories/[slug]",
+    "/confirm-update-email/[token]",
+    "/confirmation",
+    "/discover",
+    "/events",
+    "/events/[id]",
+    "/features/events-faq",
+    "/features/events-resources",
+    "/giving-impact",
+    "/global-bible-month",
+    "/global-bible-month/news",
+    "/kids",
+    "/languages",
+    "/languages/[lang]",
+    "/organizations",
+    "/organizations/[id]",
+    "/popular-bible-verses",
+    "/prayer",
+    "/privacy",
+    "/privacy/[date]",
+    "/reading-plans",
+    "/reading-plans/[plan]",
+    "/reading-plans/[plan]/day/[day]",
+    "/reading-plans/[plan]/together/[togetherId]/invitation",
+    "/reading-plans/[plan]/together/[togetherId]/participants",
+    "/reading-plans-collection/[slug]",
+    "/refresh",
+    "/resetPassword",
+    "/sardius-test",
+    "/search/[category]",
+    "/snapshot",
+    "/stories",
+    "/stories/[story]",
+    "/subscription/[id]/day/[day]/talk-it-over/[comment]",
+    "/terms",
+    "/users/[username]",
+    "/users/[username]/completed-reading-plans",
+    "/users/[username]/edit",
+    "/users/[username]/friends",
+    "/users/[username]/reading-plans",
+    "/users/[username]/reading-plans/[plan]/subscription/[sub]/day/[day]",
+    "/users/[username]/reading-plans/[plan]/subscription/[sub]/day/[day]/completed",
+    "/users/[username]/reading-plans/[plan]/subscription/[sub]/day/[day]/segment/[segment]",
+    "/users/[username]/saved-reading-plans",
+    "/verse-images/[usfm]/[imageId]",
+    "/verse-of-the-day",
+    "/verse-of-the-day/[usfm]/[imageId]",
+    "/versions",
+    "/versions/[version]",
+    "/videos",
+    "/videos/collections/[collection]",
+    "/videos/publishers/[publisher]",
+    "/videos/[video]",
+    "/~/friendships/accept/[token]/[id]",
+    "/[versionId]/[path]"
+  ]
+};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
