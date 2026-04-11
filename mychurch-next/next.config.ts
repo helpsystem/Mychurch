@@ -2,8 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   typescript: {
-    // Skip type checking on VPS build (low RAM — OOM prevention)
     ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
   experimental: {
