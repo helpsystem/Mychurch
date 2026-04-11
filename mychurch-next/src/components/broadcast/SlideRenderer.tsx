@@ -423,10 +423,24 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                         {/* Header */}
                                         <div className="flex items-center justify-between shrink-0" style={{ padding: `${1.5 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${0.1 * slideZoom}rem solid rgba(99,102,241,0.2)` }}>
                                             <div>
-                                                <h3 className="font-black text-white font-[Vazirmatn]" style={{ fontSize: `${4 * slideZoom}rem`, lineHeight: 1.2 }}>
+                                                <h3
+                                                    className="font-black text-white"
+                                                    style={{
+                                                        fontSize: `${4 * slideZoom}rem`,
+                                                        lineHeight: 1.2,
+                                                        fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)',
+                                                    }}
+                                                >
                                                     {activeReference.bookName.fa} {activeReference.chapter}:{activeReference.verses}
                                                 </h3>
-                                                <p className="text-indigo-300 font-semibold" style={{ fontSize: `${2.2 * slideZoom}rem`, marginTop: `${0.3 * slideZoom}rem` }}>
+                                                <p
+                                                    className="text-indigo-300 font-semibold"
+                                                    style={{
+                                                        fontSize: `${2.2 * slideZoom}rem`,
+                                                        marginTop: `${0.3 * slideZoom}rem`,
+                                                        fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)',
+                                                    }}
+                                                >
                                                     {activeReference.bookName.en} {activeReference.chapter}:{activeReference.verses}
                                                 </p>
                                             </div>
@@ -509,7 +523,17 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                         </div>
                         
                         <div className="max-w-6xl w-full text-center space-y-5 sm:space-y-6">
-                            <div className="leading-[1.85] font-bold text-white" dir={page.primaryLanguage === 'en' ? 'ltr' : 'rtl'} style={{ fontSize: `${3.1 * slideZoom}rem`, textShadow: "0 4px 12px rgba(0,0,0,0.5)", fontFamily: page.fontFa || "var(--font-vazirmatn)" }}>
+                            <div
+                                className="leading-[1.85] font-bold text-white"
+                                dir={page.primaryLanguage === 'en' ? 'ltr' : 'rtl'}
+                                style={{
+                                    fontSize: `${3.1 * slideZoom}rem`,
+                                    textShadow: "0 4px 12px rgba(0,0,0,0.5)",
+                                    fontFamily: page.primaryLanguage === 'en'
+                                        ? (page.fontEn || "var(--font-inter)")
+                                        : (page.fontFa || "var(--font-vazirmatn)"),
+                                }}
+                            >
                                 {page.textPrimary.map((verse, idx) => (
                                     <div key={idx} className="flex flex-wrap items-start justify-center gap-2 mb-2 sm:mb-2.5">
                                         <VerseNumberBadge size="md">
@@ -526,7 +550,12 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                 <div
                                     className="leading-[1.75] text-amber-200/80 italic"
                                     dir={page.primaryLanguage === 'en' ? 'rtl' : 'ltr'}
-                                    style={{ fontSize: `${1.8 * slideZoom}rem`, fontFamily: page.fontEn || "var(--font-inter)" }}
+                                    style={{
+                                        fontSize: `${1.8 * slideZoom}rem`,
+                                        fontFamily: page.primaryLanguage === 'en'
+                                            ? (page.fontFa || "var(--font-vazirmatn)")
+                                            : (page.fontEn || "var(--font-inter)"),
+                                    }}
                                 >
                                     {page.textSecondary.map((verse, idx) => (
                                         <div key={idx} className="flex flex-wrap items-start justify-center gap-2 mb-1.5 sm:mb-2">
