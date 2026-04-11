@@ -4,9 +4,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
   experimental: {
     workerThreads: false,
