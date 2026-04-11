@@ -177,6 +177,14 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         }
         
         console.log(`[AI-Wizard] Processing song: ${song.title_fa}`);
+        const { getAIConfig } = await import("./ai-config");
+        const aiConfig = await getAIConfig();
+        const apiKey = process.env.GEMINI_API_KEY || aiConfig.gemini_api_key;
+        if (!apiKey) throw new Error("Gemini API key not configured.");
+        
+        console.log(`[AI-Wizard] Initializing Unified GoogleGenAI SDK...`);
+        const genAI = new GoogleGenAI({ apiKey });
+
         let audioPart = null;
         if (song.audio_url) {
             try {
@@ -193,17 +201,16 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                 }
 
                 if (fs.existsSync(filePath)) {
-                    console.log(`[AI-Wizard] Loading local audio: ${filePath}`);
-                    const audioBuffer = fs.readFileSync(filePath);
-                    const base64Audio = audioBuffer.toString('base64');
+                    console.log(`[AI-Wizard] Uploading local audio to Gemini API: ${filePath}`);
                     let mimeType = "audio/mpeg";
                     if (filePath.endsWith('.m4a')) mimeType = "audio/mp4";
                     else if (filePath.endsWith('.ogg')) mimeType = "audio/ogg";
                     
+                    const uploadResult = await genAI.files.upload({ file: filePath, config: { mimeType } });
                     audioPart = {
-                        inlineData: {
-                            mimeType: mimeType,
-                            data: base64Audio
+                        fileData: {
+                            fileUri: uploadResult.uri,
+                            mimeType: uploadResult.mimeType || mimeType
                         }
                     };
                 } else if (filePath.startsWith('http')) {
@@ -212,22 +219,25 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                     const res = await fetch(safeUrl);
                     if (res.ok) {
                         const buffer = await res.arrayBuffer();
-                        const base64Audio = Buffer.from(buffer).toString('base64');
+                        const tempPath = path.join(process.cwd(), 'tmp', `temp_audio_${Date.now()}.mp3`);
+                        if (!fs.existsSync(path.join(process.cwd(), 'tmp'))) fs.mkdirSync(path.join(process.cwd(), 'tmp'));
+                        fs.writeFileSync(tempPath, Buffer.from(buffer));
+                        
+                        console.log(`[AI-Wizard] Uploading downloaded audio to Gemini API...`);
+                        const uploadResult = await genAI.files.upload({ file: tempPath, config: { mimeType: "audio/mpeg" } });
                         audioPart = {
-                            inlineData: {
-                                mimeType: "audio/mpeg",
-                                data: base64Audio
+                            fileData: {
+                                fileUri: uploadResult.uri,
+                                mimeType: uploadResult.mimeType || "audio/mpeg"
                             }
                         };
+                        fs.unlinkSync(tempPath);
                     }
                 }
             } catch (e) {
-                console.error("[AI-Wizard] Audio read error", e);
+                console.error("[AI-Wizard] Audio read/upload error", e);
             }
         }
-
-        const { getAIConfig } = await import("./ai-config");
-        const aiConfig = await getAIConfig();
 
         const prompt = `
             Analyze this Farsi worship song and provide structured metadata and precise timing.
@@ -274,57 +284,18 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         let responseText = "";
         
         try {
-            console.log(`[AI-Wizard] Initializing Unified GoogleGenAI SDK...`);
-            let genAI;
-            let modelName = 'gemini-2.0-flash';
-            let responseTextRaw = null;
-            
-            if (aiConfig.active_provider === 'vertex' && aiConfig.vertex_project_id) {
-                try {
-                    console.log(`[AI-Wizard] Mode: Vertex AI (Project: ${aiConfig.vertex_project_id})`);
-                    genAI = new GoogleGenAI({
-                        vertexai: true,
-                        project: aiConfig.vertex_project_id,
-                        location: aiConfig.vertex_region || 'us-central1',
-                        googleAuthOptions: { credentials: aiConfig.vertex_service_account }
-                    });
-                    modelName = 'gemini-1.5-flash'; 
-
-                    console.log(`[AI-Wizard] Calling ${modelName}...`);
-                    const response = await genAI.models.generateContent({
-                        model: modelName,
-                        contents: parts,
-                        config: {
-                            responseMimeType: "application/json",
-                            maxOutputTokens: 8192,
-                        }
-                    });
-                    responseTextRaw = response.text || "";
-                } catch (e) {
-                    console.error("[AI-Wizard] Vertex AI failed, falling back to Gemini Studio:", e);
+            const modelName = 'gemini-2.0-flash';
+            console.log(`[AI-Wizard] Mode: Google AI Studio`);
+            console.log(`[AI-Wizard] Calling ${modelName}...`);
+            const response = await genAI.models.generateContent({
+                model: modelName,
+                contents: parts,
+                config: {
+                    responseMimeType: "application/json",
+                    maxOutputTokens: 8192,
                 }
-            }
-            
-            if (!responseTextRaw) {
-                console.log(`[AI-Wizard] Mode: Google AI Studio`);
-                const apiKey = process.env.GEMINI_API_KEY || aiConfig.gemini_api_key;
-                if (!apiKey) throw new Error("Gemini API key not configured.");
-                
-                genAI = new GoogleGenAI({ apiKey });
-                modelName = 'gemini-2.0-flash';
-                console.log(`[AI-Wizard] Calling ${modelName}...`);
-                const response = await genAI.models.generateContent({
-                    model: modelName,
-                    contents: parts,
-                    config: {
-                        responseMimeType: "application/json",
-                        maxOutputTokens: 8192,
-                    }
-                });
-                responseTextRaw = response.text || "";
-            }
-
-            responseText = responseTextRaw || "";
+            });
+            responseText = response.text || "";
         } catch (e: any) {
             console.error("[AI-Wizard] AI SDK failed:", e);
         }

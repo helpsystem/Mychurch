@@ -43,7 +43,7 @@ $VPS_NEXT_PATH = "/root/mychurch-v2/mychurch-next"
 $LOCAL_ENV_PATH = ".\.env.local"
 
 Write-Host "`n[1/4] Setting up fresh codebase on VPS..." -ForegroundColor Yellow
-$gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df && git checkout main && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
+$gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df && (git checkout main || true) && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
 ssh ${VPS_USER}@${VPS_HOST} $gitPullCmd
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Failed to sync repository on VPS." -ForegroundColor Red
