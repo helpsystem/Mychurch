@@ -40,6 +40,20 @@ export default function LiveConsole() {
     const [savedSessions, setSavedSessions] = React.useState<BroadcastSession[]>([]);
     const [isLoadingSessions, setIsLoadingSessions] = React.useState(false);
     const [isGeneratingViewerLink, setIsGeneratingViewerLink] = React.useState(false);
+    const lastKeyTimeRef = React.useRef<number>(0);
+    const [isOnline, setIsOnline] = React.useState(true);
+
+    useEffect(() => {
+        setIsOnline(typeof window !== 'undefined' ? window.navigator.onLine : true);
+        const handleOnline = () => setIsOnline(true);
+        const handleOffline = () => setIsOnline(false);
+        window.addEventListener('online', handleOnline);
+        window.addEventListener('offline', handleOffline);
+        return () => {
+            window.removeEventListener('online', handleOnline);
+            window.removeEventListener('offline', handleOffline);
+        };
+    }, []);
 
     const handleOpenLoadModal = async () => {
         setIsLoadModalOpen(true);
@@ -173,6 +187,9 @@ export default function LiveConsole() {
 
     useEffect(() => {
         const onKeyDown = (event: KeyboardEvent) => {
+            const now = Date.now();
+            if (now - lastKeyTimeRef.current < 250) return; // Prevent double firing duplicate slide jumps
+
             const target = event.target as HTMLElement | null;
             if (target?.closest('input, textarea, select, [contenteditable=true]')) {
                 return;
@@ -180,24 +197,28 @@ export default function LiveConsole() {
 
             if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
                 event.preventDefault();
+                lastKeyTimeRef.current = now;
                 goNextStep();
             } else if (event.key === 'ArrowLeft' || event.key === 'PageUp' || event.key === 'Backspace') {
                 event.preventDefault();
+                lastKeyTimeRef.current = now;
                 goPrevStep();
             } else if (event.key === 'Home') {
                 event.preventDefault();
+                lastKeyTimeRef.current = now;
                 setActiveSlideIndex(0);
                 setInternalPageIndex(0);
             } else if (event.key === 'End') {
                 event.preventDefault();
+                lastKeyTimeRef.current = now;
                 const lastIndex = Math.max(0, slides.length - 1);
                 setActiveSlideIndex(lastIndex);
                 setInternalPageIndex(0);
             }
         };
 
-        window.addEventListener('keydown', onKeyDown);
-        return () => window.removeEventListener('keydown', onKeyDown);
+        window.addEventListener('keydown', onKeyDown, { capture: true });
+        return () => window.removeEventListener('keydown', onKeyDown, { capture: true });
     }, [goNextStep, goPrevStep, setActiveSlideIndex, setInternalPageIndex, slides.length]);
 
     return (
@@ -217,6 +238,11 @@ export default function LiveConsole() {
                         {isConnected && (
                             <span className="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 ml-2 animate-pulse flex items-center gap-1 uppercase" title="Listening for Remote Control">
                                 <RadioReceiver className="w-3 h-3" /> Remote Sync
+                            </span>
+                        )}
+                        {!isOnline && (
+                            <span className="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 ml-2 flex items-center gap-1 uppercase" title="Network Disconnected">
+                                <RadioReceiver className="w-3 h-3" /> Offline (DB Sync Paused)
                             </span>
                         )}
                     </div>
@@ -247,6 +273,30 @@ export default function LiveConsole() {
 
             {/* Main Workspace */}
             <div className="flex-1 flex overflow-hidden">
+                {/* Global Asset Preloader for 0-latency live transitions */}
+                <div className="hidden" aria-hidden="true">
+                    {slides.map(s => {
+                        if (s.type === 'MEDIA') {
+                            const c = s.content as any;
+                            if (c.mediaType === 'image') return <img key={s.id} src={c.url} alt="preload" />;
+                            if (c.mediaType === 'video') return <video key={s.id} src={c.url} preload="auto" />;
+                        }
+                        if (s.type === 'GENERIC' || s.type === 'LIVEDATA') {
+                            const c = s.content as any;
+                            const bg = c.background;
+                            if (bg?.type === 'image') return <img key={s.id + 'bg'} src={bg.value} alt="preload" />;
+                            if (bg?.type === 'video') return <video key={s.id + 'bg'} src={bg.value} preload="auto" />;
+                        }
+                        if (s.type === 'LYRICS') {
+                            const c = s.content as any;
+                            if (c.displayOptions?.backgroundType === 'image' && c.displayOptions.backgroundUrl) {
+                                return <img key={s.id} src={c.displayOptions.backgroundUrl} alt="preload" />;
+                            }
+                        }
+                        return null;
+                    })}
+                </div>
+
                 {/* Left Panel */}
                 <BroadcastSidebar />
 

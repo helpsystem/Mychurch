@@ -69,7 +69,21 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     const [showEnglish, setShowEnglish] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [audioError, setAudioError] = useState(false);
-    const [syncDelay, setSyncDelay] = useState(0); // For live timing correction
+    
+    // For live timing correction - persistent per audio file
+    const [syncDelay, setSyncDelay] = useState<number>(() => {
+        if (typeof window === 'undefined') return 0;
+        try {
+            const saved = window.localStorage.getItem(`worship_sync_${encodeURIComponent(audioSrc.slice(-50))}`);
+            return saved ? parseFloat(saved) : 0;
+        } catch { return 0; }
+    });
+
+    useEffect(() => {
+        if (typeof window !== 'undefined' && audioSrc) {
+            window.localStorage.setItem(`worship_sync_${encodeURIComponent(audioSrc.slice(-50))}`, syncDelay.toString());
+        }
+    }, [syncDelay, audioSrc]);
 
     // Normalized data handling
     const [lines, setLines] = useState<LineSegment[]>([]);
