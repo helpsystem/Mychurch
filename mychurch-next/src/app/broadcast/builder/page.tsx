@@ -5,6 +5,10 @@ import { BroadcastSession } from "@/types/broadcast";
 
 export const dynamic = "force-dynamic";
 
+type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
+    date: string;
+};
+
 export default async function SlideBuilderPage({
     searchParams,
 }: {
@@ -40,5 +44,10 @@ export default async function SlideBuilderPage({
         };
     }
 
-    return <BuilderClientWrapper initialSession={initialSession} />;
+    const serializedSession: SerializedBroadcastSession = {
+        ...initialSession,
+        date: initialSession.date.toISOString(),
+    };
+
+    return <BuilderClientWrapper initialSession={serializedSession} />;
 }

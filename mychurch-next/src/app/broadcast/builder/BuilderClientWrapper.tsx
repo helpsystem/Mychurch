@@ -12,8 +12,15 @@ import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
 import { useRouter } from "next/navigation";
 import TemplateManager from "@/components/broadcast/TemplateManager";
 
-export default function BuilderClientWrapper({ initialSession }: { initialSession: BroadcastSession }) {
-    const [session, setSession] = useState<BroadcastSession>(initialSession);
+type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
+    date: string;
+};
+
+export default function BuilderClientWrapper({ initialSession }: { initialSession: SerializedBroadcastSession }) {
+    const [session, setSession] = useState<BroadcastSession>(() => ({
+        ...initialSession,
+        date: new Date(initialSession.date),
+    }));
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const [isPending, startTransition] = useTransition();
     const [isOpeningPresenter, setIsOpeningPresenter] = useState(false);

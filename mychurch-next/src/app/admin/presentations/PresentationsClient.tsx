@@ -9,9 +9,18 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/providers/LanguageProvider";
 
-export default function PresentationsClient({ initialPresentations }: { initialPresentations: BroadcastSession[] }) {
+type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
+    date: string;
+};
+
+export default function PresentationsClient({ initialPresentations }: { initialPresentations: SerializedBroadcastSession[] }) {
     const [searchTerm, setSearchTerm] = useState("");
-    const [presentations, setPresentations] = useState<BroadcastSession[]>(initialPresentations);
+    const [presentations, setPresentations] = useState<BroadcastSession[]>(() =>
+        initialPresentations.map((presentation) => ({
+            ...presentation,
+            date: new Date(presentation.date),
+        }))
+    );
     const [sharingId, setSharingId] = useState<string | null>(null);
     const [viewingId, setViewingId] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
