@@ -3,10 +3,47 @@ import { createClient } from "@/utils/supabase/server";
 import { query } from "@/lib/db";
 import { exec } from "child_process";
 import { promisify } from "util";
+import { getAIConfig, updateAIConfig, type AIConfig } from "@/actions/ai-config";
 
 const execAsync = promisify(exec);
 const CRON_JOB_NAME = "ai-mass-enricher";
 const SCRIPT_PATH = "src/scripts/cron_worship_enricher.ts";
+
+type WorshipAutomationMode = AIConfig["worship_ai_schedule_mode"];
+
+function buildCronExpression(config: AIConfig): string | null {
+    if (!config.worship_ai_enabled || config.worship_ai_schedule_mode === 'off' || config.worship_ai_schedule_mode === 'manual') {
+        return null;
+    }
+
+    const [hour, minute] = config.worship_ai_schedule_time.split(':').map((value) => Number(value));
+    const safeHour = Number.isFinite(hour) ? Math.max(0, Math.min(23, hour)) : 3;
+    const safeMinute = Number.isFinite(minute) ? Math.max(0, Math.min(59, minute)) : 0;
+
+    if (config.worship_ai_schedule_mode === 'daily') {
+        return `${safeMinute} ${safeHour} * * *`;
+    }
+
+    if (config.worship_ai_schedule_mode === 'weekly') {
+        const day = Math.max(0, Math.min(6, Number(config.worship_ai_schedule_day_of_week)));
+        return `${safeMinute} ${safeHour} * * ${day}`;
+    }
+
+    const dayOfMonth = Math.max(1, Math.min(31, Number(config.worship_ai_schedule_day_of_month)));
+    return `${safeMinute} ${safeHour} ${dayOfMonth} * *`;
+}
+
+async function syncWorshipCronJob(config: AIConfig) {
+    const cronSchedule = buildCronExpression(config);
+
+    if (!config.worship_ai_enabled || !cronSchedule) {
+        await execAsync(`pm2 stop ${CRON_JOB_NAME} >/dev/null 2>&1 || true; pm2 delete ${CRON_JOB_NAME} >/dev/null 2>&1 || true`);
+        return { isRunning: false, cronSchedule: null };
+    }
+
+    await execAsync(`pm2 delete ${CRON_JOB_NAME} >/dev/null 2>&1 || true; pm2 start "npx tsx --env-file .env.local ${SCRIPT_PATH}" --name "${CRON_JOB_NAME}" --cron-restart="${cronSchedule}" --no-autorestart`);
+    return { isRunning: true, cronSchedule };
+}
 
 export async function GET() {
     try {
@@ -26,6 +63,8 @@ export async function GET() {
             FROM church_worship_songs
         `);
 
+        const config = await getAIConfig();
+
         // Check if PM2 is running
         let isRunning = false;
         try {
@@ -39,7 +78,8 @@ export async function GET() {
 
         return NextResponse.json({
             stats: totals[0],
-            isRunning
+            isRunning,
+            config
         });
     } catch (err: any) {
         return NextResponse.json({ error: err.message }, { status: 500 });
@@ -55,26 +95,51 @@ export async function POST(req: Request) {
         const { data: userRecord } = await supabase.from('users').select('role').eq('email', user.email).single();
         if (!userRecord || userRecord.role !== 'Admin') return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-        const { action, interval } = await req.json();
+        const payload = await req.json();
+        const action = payload?.action;
+        const requestedConfig: Partial<AIConfig> = {
+            worship_ai_enabled: payload?.worship_ai_enabled,
+            worship_ai_schedule_mode: payload?.worship_ai_schedule_mode,
+            worship_ai_schedule_time: payload?.worship_ai_schedule_time,
+            worship_ai_schedule_day_of_week: payload?.worship_ai_schedule_day_of_week,
+            worship_ai_schedule_day_of_month: payload?.worship_ai_schedule_day_of_month,
+        };
 
         switch (action) {
             case 'start':
-                const minutes = interval || "5";
-                const cronSchedule = `*/${minutes} * * * *`;
-                // Start or restart if exists
-                await execAsync(`pm2 start "npx tsx --env-file .env.local ${SCRIPT_PATH}" --name "${CRON_JOB_NAME}" --cron-restart="${cronSchedule}" --no-autorestart || pm2 restart ${CRON_JOB_NAME} --cron-restart="${cronSchedule}"`);
-                return NextResponse.json({ success: true, message: "Started successfully" });
+                {
+                    const currentConfig = await getAIConfig();
+                    const nextConfig = { ...currentConfig, ...requestedConfig, worship_ai_enabled: true } as AIConfig;
+                    await updateAIConfig(nextConfig);
+                    const result = await syncWorshipCronJob(nextConfig);
+                    return NextResponse.json({ success: true, message: result.cronSchedule ? `Scheduled successfully (${result.cronSchedule})` : "Saved as manual mode" });
+                }
                 
             case 'stop':
-                await execAsync(`pm2 stop ${CRON_JOB_NAME} || true`);
-                return NextResponse.json({ success: true, message: "Stopped successfully" });
+                {
+                    const currentConfig = await getAIConfig();
+                    const nextConfig = { ...currentConfig, ...requestedConfig, worship_ai_enabled: false, worship_ai_schedule_mode: 'off' } as AIConfig;
+                    await updateAIConfig(nextConfig);
+                    await syncWorshipCronJob(nextConfig);
+                    return NextResponse.json({ success: true, message: "Stopped successfully" });
+                }
 
             case 'run_once':
-                // We'll execute it directly without PM2 for an instant blocking run, or using PM2 run
-                // Doing via node child process directly to get immediate feedback. Or just use PM2 start but without cron.
-                // Since PM2 limits logs, it's safer to just run it as a standalone script for 'run once', or restart the PM2 task immediately.
-                await execAsync(`pm2 restart ${CRON_JOB_NAME}`);
+                await execAsync(`cd /root/mychurch-v2/mychurch-next && NEXT_TELEMETRY_DISABLED=1 NEXT_DISABLE_ESLINT=1 NODE_OPTIONS=--max-old-space-size=1536 npx tsx --env-file .env.local ${SCRIPT_PATH}`);
                 return NextResponse.json({ success: true, message: "Triggered execution successfully" });
+
+            case 'save':
+                {
+                    const currentConfig = await getAIConfig();
+                    const nextConfig = { ...currentConfig, ...requestedConfig } as AIConfig;
+                    await updateAIConfig(nextConfig);
+                    const result = await syncWorshipCronJob(nextConfig);
+                    return NextResponse.json({
+                        success: true,
+                        message: result.cronSchedule ? `Saved and scheduled (${result.cronSchedule})` : "Saved. Manual mode / off does not keep PM2 scheduled.",
+                        config: nextConfig,
+                    });
+                }
 
             default:
                 return NextResponse.json({ error: "Unknown action" }, { status: 400 });

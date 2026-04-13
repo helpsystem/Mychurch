@@ -2,12 +2,23 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, X, CheckCircle, XCircle, AlertTriangle, Clock, RefreshCw, Play, Square, Settings, Zap, Database } from 'lucide-react';
+import { Bot, X, CheckCircle, XCircle, AlertTriangle, Clock, RefreshCw, Play, Square, Settings, Zap, Database, ToggleLeft, ToggleRight } from 'lucide-react';
 
 interface CronStats {
     total_songs: string;
     eligible_songs: string;
     enriched_songs: string;
+}
+
+type WorshipAutomationMode = 'off' | 'manual' | 'daily' | 'weekly' | 'monthly';
+
+interface WorshipAutomationConfig {
+    id: string;
+    worship_ai_enabled: boolean;
+    worship_ai_schedule_mode: WorshipAutomationMode;
+    worship_ai_schedule_time: string;
+    worship_ai_schedule_day_of_week: number;
+    worship_ai_schedule_day_of_month: number;
 }
 
 interface CronLog {
@@ -26,8 +37,15 @@ export default function CronDashboard() {
     const [isOpen, setIsOpen] = useState(false);
     const [logs, setLogs] = useState<CronLog[]>([]);
     const [stats, setStats] = useState<CronStats | null>(null);
+    const [config, setConfig] = useState<WorshipAutomationConfig>({
+        id: 'default',
+        worship_ai_enabled: false,
+        worship_ai_schedule_mode: 'off',
+        worship_ai_schedule_time: '03:00',
+        worship_ai_schedule_day_of_week: 1,
+        worship_ai_schedule_day_of_month: 1,
+    });
     const [isRunning, setIsRunning] = useState(false);
-    const [interval, setIntervalVal] = useState("5");
     const [isLoading, setIsLoading] = useState(false);
     const [isActionLoading, setIsActionLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -42,6 +60,16 @@ export default function CronDashboard() {
                 const data = await resStatus.json();
                 setStats(data.stats);
                 setIsRunning(data.isRunning);
+                if (data.config) {
+                    setConfig({
+                        id: data.config.id || 'default',
+                        worship_ai_enabled: Boolean(data.config.worship_ai_enabled),
+                        worship_ai_schedule_mode: (data.config.worship_ai_schedule_mode || 'off') as WorshipAutomationMode,
+                        worship_ai_schedule_time: data.config.worship_ai_schedule_time || '03:00',
+                        worship_ai_schedule_day_of_week: Number.isFinite(Number(data.config.worship_ai_schedule_day_of_week)) ? Number(data.config.worship_ai_schedule_day_of_week) : 1,
+                        worship_ai_schedule_day_of_month: Number.isFinite(Number(data.config.worship_ai_schedule_day_of_month)) ? Number(data.config.worship_ai_schedule_day_of_month) : 1,
+                    });
+                }
             }
 
             // Fetch Logs
@@ -63,13 +91,20 @@ export default function CronDashboard() {
         }
     }, [isOpen]);
 
-    const handleAction = async (action: 'start' | 'stop' | 'run_once') => {
+    const handleAction = async (action: 'start' | 'stop' | 'run_once' | 'save') => {
         setIsActionLoading(true);
         try {
             const res = await fetch('/api/admin/cron-control', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action, interval })
+                body: JSON.stringify({
+                    action,
+                    worship_ai_enabled: config.worship_ai_enabled,
+                    worship_ai_schedule_mode: config.worship_ai_schedule_mode,
+                    worship_ai_schedule_time: config.worship_ai_schedule_time,
+                    worship_ai_schedule_day_of_week: config.worship_ai_schedule_day_of_week,
+                    worship_ai_schedule_day_of_month: config.worship_ai_schedule_day_of_month,
+                })
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.error);
@@ -86,6 +121,15 @@ export default function CronDashboard() {
     const eligible = parseInt(stats?.eligible_songs || "0");
     const enriched = parseInt(stats?.enriched_songs || "0");
     const progressPercent = eligible > 0 ? Math.round((enriched / eligible) * 100) : 0;
+    const scheduleSummary = config.worship_ai_schedule_mode === 'daily'
+        ? `روزانه ساعت ${config.worship_ai_schedule_time}`
+        : config.worship_ai_schedule_mode === 'weekly'
+            ? `هفتگی، روز ${config.worship_ai_schedule_day_of_week} ساعت ${config.worship_ai_schedule_time}`
+            : config.worship_ai_schedule_mode === 'monthly'
+                ? `ماهیانه، روز ${config.worship_ai_schedule_day_of_month} ساعت ${config.worship_ai_schedule_time}`
+                : config.worship_ai_schedule_mode === 'manual'
+                    ? 'دستی (بدون زمان‌بندی)'
+                    : 'خاموش';
 
     return (
         <>
@@ -153,7 +197,7 @@ export default function CronDashboard() {
                                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                                     {/* STATUS WIDGET */}
                                     <div className="col-span-1 bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-inner">
-                                        <h3 className="text-slate-400 text-sm font-bold flex items-center gap-2 mb-4 uppercase tracking-widest"><Settings className="w-4 h-4" /> وضعیت سیستـم (PM2)</h3>
+                                        <h3 className="text-slate-400 text-sm font-bold flex items-center gap-2 mb-4 uppercase tracking-widest"><Settings className="w-4 h-4" /> وضعیت سیستم (PM2)</h3>
                                         <div className="flex items-center justify-between mb-6">
                                             <div className="flex items-center gap-3">
                                                 <div className={`w-4 h-4 rounded-full ${isRunning ? 'bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.6)] animate-pulse' : 'bg-red-500'}`}></div>
@@ -162,51 +206,145 @@ export default function CronDashboard() {
                                         </div>
 
                                         <div className="space-y-3">
+                                            <button
+                                                type="button"
+                                                onClick={() => setConfig((prev) => ({ ...prev, worship_ai_enabled: !prev.worship_ai_enabled, worship_ai_schedule_mode: prev.worship_ai_enabled ? 'off' : prev.worship_ai_schedule_mode === 'off' ? 'manual' : prev.worship_ai_schedule_mode }))}
+                                                className={`w-full flex justify-between items-center gap-3 py-3 px-4 rounded-xl font-bold transition border ${config.worship_ai_enabled ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30' : 'bg-red-500/10 text-red-300 border-red-500/30'}`}
+                                            >
+                                                <span className="flex items-center gap-2">
+                                                    {config.worship_ai_enabled ? <ToggleRight className="w-5 h-5" /> : <ToggleLeft className="w-5 h-5" />}
+                                                    {config.worship_ai_enabled ? 'استخراج AI روشن است' : 'استخراج AI خاموش است'}
+                                                </span>
+                                                <span className="text-[11px] uppercase tracking-[0.2em] opacity-80">{config.worship_ai_enabled ? 'ON' : 'OFF'}</span>
+                                            </button>
+
                                             <div className="flex gap-2">
-                                                <button 
-                                                    onClick={() => handleAction('start')}
-                                                    disabled={isRunning || isActionLoading}
+                                                <button
+                                                    onClick={() => handleAction('save')}
+                                                    disabled={isActionLoading}
                                                     className="flex-1 flex justify-center items-center gap-2 py-3 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed"
                                                 >
-                                                    <Play className="w-4 h-4" /> روشن کن
+                                                    <Play className="w-4 h-4" /> اعمال تنظیمات
                                                 </button>
-                                                <button 
+                                                <button
                                                     onClick={() => handleAction('stop')}
-                                                    disabled={!isRunning || isActionLoading}
+                                                    disabled={isActionLoading}
                                                     className="flex-1 flex justify-center items-center gap-2 py-3 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed"
                                                 >
-                                                    <Square className="w-4 h-4" /> توقف
+                                                    <Square className="w-4 h-4" /> خاموش کن
                                                 </button>
                                             </div>
-                                            <button 
+
+                                            <button
                                                 onClick={() => handleAction('run_once')}
                                                 disabled={isActionLoading}
                                                 className="w-full flex justify-center items-center gap-2 py-3 bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg rounded-xl font-bold transition"
                                             >
-                                                <Zap className="w-4 h-4" /> یک بار هم‌اکنون اجرا کن
+                                                <Zap className="w-4 h-4" /> اجرای دستی همین الان
                                             </button>
-                                            
-                                            <div className="mt-4 pt-4 border-t border-slate-800">
-                                                <label className="text-xs font-bold text-slate-500 mb-2 block">فاصله زمانی اجرا (دقیقه)</label>
-                                                <select 
-                                                    value={interval}
-                                                    onChange={e => setIntervalVal(e.target.value)}
-                                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-indigo-500 rtl"
-                                                    disabled={isRunning}
-                                                >
-                                                    <option value="5">هر ۵ دقیقه (پیشنهادی)</option>
-                                                    <option value="15">هر ۱۵ دقیقه</option>
-                                                    <option value="60">هر یک ساعت</option>
-                                                </select>
-                                                <p className="text-[10px] text-slate-500 mt-2">برای تغییر زمان، ابتدا ربات را خاموش کنید.</p>
+                                            <p className="text-[10px] text-slate-500 leading-relaxed">
+                                                حالت <span className="text-slate-300 font-bold">manual</span> برای اجرای دستی بدون زمان‌بندی خودکار است. وضعیت پیش‌فرض روی <span className="text-red-300 font-bold">خاموش</span> می‌ماند.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* SCHEDULER WIDGET */}
+                                    <div className="col-span-1 bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-inner">
+                                        <h3 className="text-slate-400 text-sm font-bold flex items-center gap-2 mb-4 uppercase tracking-widest"><Clock className="w-4 h-4" /> زمان‌بندی استخراج سرودهای پرستشی</h3>
+
+                                        <div className="space-y-4">
+                                            <div className="space-y-2">
+                                                <label className="text-xs font-bold text-slate-500 block">وضعیت</label>
+                                                <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-950 px-4 py-3">
+                                                    <div>
+                                                        <p className="font-bold text-white text-sm">{config.worship_ai_enabled ? 'فعال' : 'غیرفعال'}</p>
+                                                        <p className="text-[11px] text-slate-500 mt-0.5">تنظیمات فعلی: {scheduleSummary}</p>
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setConfig((prev) => ({ ...prev, worship_ai_enabled: !prev.worship_ai_enabled, worship_ai_schedule_mode: prev.worship_ai_enabled ? 'off' : prev.worship_ai_schedule_mode === 'off' ? 'manual' : prev.worship_ai_schedule_mode }))}
+                                                        className={`px-3 py-2 rounded-lg font-bold transition flex items-center gap-2 border ${config.worship_ai_enabled ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25' : 'bg-red-500/10 text-red-400 border-red-500/25'}`}
+                                                    >
+                                                        {config.worship_ai_enabled ? <ToggleRight className="w-4 h-4" /> : <ToggleLeft className="w-4 h-4" />}
+                                                        {config.worship_ai_enabled ? 'روشن' : 'خاموش'}
+                                                    </button>
+                                                </div>
                                             </div>
+
+                                            <div className="space-y-2">
+                                                <label className="text-xs font-bold text-slate-500 block">نوع اجرا</label>
+                                                <select
+                                                    value={config.worship_ai_schedule_mode}
+                                                    onChange={(event) => setConfig((prev) => ({ ...prev, worship_ai_schedule_mode: event.target.value as WorshipAutomationMode }))}
+                                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-indigo-500 rtl"
+                                                >
+                                                    <option value="off">خاموش</option>
+                                                    <option value="manual">دستی</option>
+                                                    <option value="daily">روزانه</option>
+                                                    <option value="weekly">هفتگی</option>
+                                                    <option value="monthly">ماهیانه</option>
+                                                </select>
+                                            </div>
+
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                <div className="space-y-2">
+                                                    <label className="text-xs font-bold text-slate-500 block">ساعت اجرا</label>
+                                                    <input
+                                                        type="time"
+                                                        value={config.worship_ai_schedule_time}
+                                                        onChange={(event) => setConfig((prev) => ({ ...prev, worship_ai_schedule_time: event.target.value }))}
+                                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-indigo-500"
+                                                        disabled={!config.worship_ai_enabled || config.worship_ai_schedule_mode === 'off' || config.worship_ai_schedule_mode === 'manual'}
+                                                    />
+                                                </div>
+
+                                                <div className="space-y-2">
+                                                    <label className="text-xs font-bold text-slate-500 block">روز هفته</label>
+                                                    <select
+                                                        value={config.worship_ai_schedule_day_of_week}
+                                                        onChange={(event) => setConfig((prev) => ({ ...prev, worship_ai_schedule_day_of_week: Number(event.target.value) }))}
+                                                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-indigo-500 rtl"
+                                                        disabled={config.worship_ai_schedule_mode !== 'weekly'}
+                                                    >
+                                                        <option value={0}>یکشنبه</option>
+                                                        <option value={1}>دوشنبه</option>
+                                                        <option value={2}>سه‌شنبه</option>
+                                                        <option value={3}>چهارشنبه</option>
+                                                        <option value={4}>پنجشنبه</option>
+                                                        <option value={5}>جمعه</option>
+                                                        <option value={6}>شنبه</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-2">
+                                                <label className="text-xs font-bold text-slate-500 block">روز ماه</label>
+                                                <select
+                                                    value={config.worship_ai_schedule_day_of_month}
+                                                    onChange={(event) => setConfig((prev) => ({ ...prev, worship_ai_schedule_day_of_month: Number(event.target.value) }))}
+                                                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-indigo-500 rtl"
+                                                    disabled={config.worship_ai_schedule_mode !== 'monthly'}
+                                                >
+                                                    {Array.from({ length: 31 }, (_, index) => index + 1).map((day) => (
+                                                        <option key={day} value={day}>روز {day}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+
+                                            <button
+                                                onClick={() => handleAction('save')}
+                                                disabled={isActionLoading}
+                                                className="w-full flex justify-center items-center gap-2 py-3.5 bg-gradient-to-r from-emerald-500 to-indigo-500 text-white rounded-xl font-black transition disabled:opacity-50"
+                                            >
+                                                <Database className="w-4 h-4" /> ذخیره و اعمال زمان‌بندی
+                                            </button>
                                         </div>
                                     </div>
 
                                     {/* PROGRESS WIDGET */}
-                                    <div className="col-span-1 lg:col-span-2 bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-inner">
+                                    <div className="col-span-1 lg:col-span-1 bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-inner">
                                         <h3 className="text-slate-400 text-sm font-bold flex items-center gap-2 mb-4 uppercase tracking-widest"><Database className="w-4 h-4" /> پیشرفت غنی‌سازی دیتابیس</h3>
-                                        
+
                                         <div className="grid grid-cols-3 gap-4 mb-8">
                                             <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
                                                 <span className="text-2xl font-mono text-white">{stats?.total_songs || 0}</span>
@@ -228,7 +366,7 @@ export default function CronDashboard() {
                                                 <span className="text-sm font-mono text-slate-400">{enriched} / {eligible}</span>
                                             </div>
                                             <div className="w-full bg-slate-950 rounded-full h-6 border border-slate-800 overflow-hidden relative">
-                                                <div 
+                                                <div
                                                     className="bg-gradient-to-l from-emerald-400 to-indigo-500 h-6 transition-all duration-1000 ease-out flex items-center justify-end px-2"
                                                     style={{ width: `${progressPercent}%` }}
                                                 >
