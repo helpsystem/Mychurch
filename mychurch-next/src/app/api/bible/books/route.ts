@@ -29,11 +29,17 @@ export async function GET(req: Request) {
       [versionAbbr]
     );
 
-    if (!versions.length) {
-      return NextResponse.json({ error: `Version '${versionAbbr}' not found` }, { status: 404 });
+    const fallback = !versions.length
+      ? await dbAll<{ version_id: number; abbr: string }>(
+          "SELECT version_id, abbr FROM versions ORDER BY version_id ASC LIMIT 1"
+        )
+      : [];
+
+    if (!versions.length && !fallback.length) {
+      return NextResponse.json({ books: [] });
     }
 
-    const versionId = versions[0].version_id;
+    const versionId = versions.length ? versions[0].version_id : fallback[0].version_id;
 
     const books = await dbAll<{
       book_id: string;

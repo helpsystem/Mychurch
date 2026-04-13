@@ -48,7 +48,7 @@ export default function BibleReaderPage() {
   const [books, setBooks] = useState<BibleBook[]>([]);
   const [selectedVersionEn, setSelectedVersionEn] = useState("BSB");
   const [selectedVersionFa, setSelectedVersionFa] = useState("NMV");
-  const [selectedBook, setSelectedBook] = useState("GEN");
+  const [selectedBook, setSelectedBook] = useState("");
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [readingMode, setReadingMode] = useState<ReadingMode>("parallel");
   const [fontSize, setFontSize] = useState(18);
@@ -110,22 +110,42 @@ export default function BibleReaderPage() {
   useEffect(() => {
     fetch("/api/bible/versions")
       .then(r => r.json())
-      .then(d => setVersions(d.versions || []))
+      .then(d => {
+        const items: BibleVersion[] = d.versions || [];
+        setVersions(items);
+
+        if (!items.some((version) => version.abbr === selectedVersionEn)) {
+          const nextEn = items.find((version) => version.language !== "fa") || items[0];
+          if (nextEn) setSelectedVersionEn(nextEn.abbr);
+        }
+
+        if (!items.some((version) => version.abbr === selectedVersionFa)) {
+          const nextFa = items.find((version) => version.language === "fa") || items[0];
+          if (nextFa) setSelectedVersionFa(nextFa.abbr);
+        }
+      })
       .catch(console.error);
-  }, []);
+  }, [selectedVersionEn, selectedVersionFa]);
 
   // Load books (always load by En version for book metadata)
   useEffect(() => {
     fetch(`/api/bible/books?version=${selectedVersionEn}`)
       .then(r => r.json())
       .then(d => {
-        setBooks(d.books || []);
-        const bk = d.books?.find((b: BibleBook) => b.book_id === selectedBook);
-        setCurrentBook(bk ?? null);
+        const items: BibleBook[] = d.books || [];
+        setBooks(items);
+
+        const matched = items.find((b: BibleBook) => b.book_id === selectedBook);
+        const nextBook = matched || items[0] || null;
+
+        if (nextBook && nextBook.book_id !== selectedBook) {
+          setSelectedBook(nextBook.book_id);
+        }
+
+        setCurrentBook(nextBook);
       })
       .catch(console.error);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedVersionEn]);
+  }, [selectedBook, selectedVersionEn]);
 
   const [verses, setVerses] = useState<BibleVerse[]>([]);
   const [faVerses, setFaVerses] = useState<BibleVerse[]>([]);
@@ -135,6 +155,7 @@ export default function BibleReaderPage() {
 
   // Load chapter
   const loadChapter = useCallback(async () => {
+    if (!selectedBook || !currentBook) return;
     setLoading(true);
     try {
       if (readingMode === "parallel") {
@@ -163,7 +184,7 @@ export default function BibleReaderPage() {
     } finally {
       setLoading(false);
     }
-  }, [selectedVersionEn, selectedVersionFa, selectedBook, selectedChapter, readingMode, language]);
+  }, [currentBook, selectedVersionEn, selectedVersionFa, selectedBook, selectedChapter, readingMode, language]);
 
   useEffect(() => {
     loadChapter();

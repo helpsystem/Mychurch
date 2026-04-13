@@ -36,47 +36,83 @@ export async function GET(req: Request) {
       dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1", [versionFa]),
     ]);
 
-    if (!vEn || !vFa) {
-      return NextResponse.json({ error: "One or both versions not found" }, { status: 404 });
+    const [fallbackEn, fallbackFa] = await Promise.all([
+      vEn
+        ? Promise.resolve(undefined)
+        : dbGet<{ version_id: number }>(
+            "SELECT version_id FROM versions WHERE LOWER(language) IN ('english','en') ORDER BY version_id ASC LIMIT 1"
+          ),
+      vFa
+        ? Promise.resolve(undefined)
+        : dbGet<{ version_id: number }>(
+            "SELECT version_id FROM versions WHERE LOWER(language) IN ('persian','fa','فارسی') ORDER BY version_id ASC LIMIT 1"
+          ),
+    ]);
+
+    const enVersionId = vEn?.version_id ?? fallbackEn?.version_id;
+    const faVersionId = vFa?.version_id ?? fallbackFa?.version_id;
+
+    if (!enVersionId || !faVersionId) {
+      return NextResponse.json({ parallel: [], audioEn: [], audioFa: [] });
     }
 
     // Fetch verses for both versions in parallel
     const [enVerses, faVerses] = await Promise.all([
       dbAll<VerseRow>(
         `SELECT verse_num, text FROM verses WHERE version_id = ? AND book_id = ? AND chapter_num = ? ORDER BY verse_num ASC`,
-        [vEn.version_id, bookId.toUpperCase(), chapterNum]
+        [enVersionId, bookId.toUpperCase(), chapterNum]
       ),
       dbAll<VerseRow>(
         `SELECT verse_num, text FROM verses WHERE version_id = ? AND book_id = ? AND chapter_num = ? ORDER BY verse_num ASC`,
-        [vFa.version_id, bookId.toUpperCase(), chapterNum]
+        [faVersionId, bookId.toUpperCase(), chapterNum]
       ),
     ]);
 
     // Audio - fetch for both English and Farsi versions
-    const [audioEn, audioFa] = await Promise.all([
-      dbAll<{
-        audio_version_id: number;
-        title: string;
-        dramatized: number;
-        mp3_url: string;
-        hls_url: string;
-      }>(
-        `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
-         WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
-        [vEn.version_id, bookId.toUpperCase(), chapterNum]
-      ),
-      dbAll<{
-        audio_version_id: number;
-        title: string;
-        dramatized: number;
-        mp3_url: string;
-        hls_url: string;
-      }>(
-        `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
-         WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
-        [vFa.version_id, bookId.toUpperCase(), chapterNum]
-      )
-    ]);
+    let audioEn: Array<{
+      audio_version_id: number;
+      title: string;
+      dramatized: number;
+      mp3_url: string;
+      hls_url: string;
+    }> = [];
+    let audioFa: Array<{
+      audio_version_id: number;
+      title: string;
+      dramatized: number;
+      mp3_url: string;
+      hls_url: string;
+    }> = [];
+
+    try {
+      [audioEn, audioFa] = await Promise.all([
+        dbAll<{
+          audio_version_id: number;
+          title: string;
+          dramatized: number;
+          mp3_url: string;
+          hls_url: string;
+        }>(
+          `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
+           WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
+          [enVersionId, bookId.toUpperCase(), chapterNum]
+        ),
+        dbAll<{
+          audio_version_id: number;
+          title: string;
+          dramatized: number;
+          mp3_url: string;
+          hls_url: string;
+        }>(
+          `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
+           WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
+          [faVersionId, bookId.toUpperCase(), chapterNum]
+        ),
+      ]);
+    } catch {
+      audioEn = [];
+      audioFa = [];
+    }
 
     // Build maps for both languages and align using the union of verse numbers.
     const faMap = new Map(faVerses.map((v) => [v.verse_num, v.text]));

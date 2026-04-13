@@ -41,11 +41,16 @@ export async function GET() {
       publisher: string;
     }>("SELECT version_id, abbr, name, language, publisher FROM versions ORDER BY name ASC");
 
-    // Fetch which version_ids have audio entries
-    const audioVersions = await dbAll<{ version_id: number }>(
-      "SELECT DISTINCT version_id FROM audio"
-    );
-    const audioSet = new Set(audioVersions.map(a => a.version_id));
+    let audioSet = new Set<number>();
+    try {
+      // Some deployments may not have the optional audio table yet.
+      const audioVersions = await dbAll<{ version_id: number }>(
+        "SELECT DISTINCT version_id FROM audio"
+      );
+      audioSet = new Set(audioVersions.map((a) => a.version_id));
+    } catch {
+      audioSet = new Set<number>();
+    }
 
     const versions = rows.map(v => {
       const normalizedAbbr = normalizeAbbr(v.abbr);

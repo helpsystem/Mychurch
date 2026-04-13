@@ -29,8 +29,11 @@ export async function GET(req: Request) {
       "SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1",
       [versionAbbr]
     );
-    if (!ver) return NextResponse.json({ error: "Version not found" }, { status: 404 });
-    const versionId = ver.version_id;
+    const fallbackVer = !ver
+      ? await dbGet<{ version_id: number }>("SELECT version_id FROM versions ORDER BY version_id ASC LIMIT 1")
+      : undefined;
+    const versionId = ver?.version_id ?? fallbackVer?.version_id;
+    if (!versionId) return NextResponse.json({ verses: [], headings: [], audio: [] });
 
     // Fetch verses
     const verses = await dbAll<{
@@ -44,28 +47,44 @@ export async function GET(req: Request) {
     );
 
     // Fetch headings (section titles that appear before a verse)
-    const headings = await dbAll<{
-      before_verse: number;
-      text: string;
-    }>(
-      `SELECT before_verse, text FROM headings
-       WHERE version_id = ? AND book_id = ? AND chapter_num = ?
-       ORDER BY before_verse ASC`,
-      [versionId, bookId.toUpperCase(), chapterNum]
-    );
+    let headings: Array<{ before_verse: number; text: string }> = [];
+    try {
+      headings = await dbAll<{
+        before_verse: number;
+        text: string;
+      }>(
+        `SELECT before_verse, text FROM headings
+         WHERE version_id = ? AND book_id = ? AND chapter_num = ?
+         ORDER BY before_verse ASC`,
+        [versionId, bookId.toUpperCase(), chapterNum]
+      );
+    } catch {
+      headings = [];
+    }
 
     // Fetch audio links for this chapter
-    const audio = await dbAll<{
+    let audio: Array<{
       audio_version_id: number;
       title: string;
       dramatized: number;
       mp3_url: string;
       hls_url: string;
-    }>(
-      `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
-       WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
-      [versionId, bookId.toUpperCase(), chapterNum]
-    );
+    }> = [];
+    try {
+      audio = await dbAll<{
+        audio_version_id: number;
+        title: string;
+        dramatized: number;
+        mp3_url: string;
+        hls_url: string;
+      }>(
+        `SELECT audio_version_id, title, dramatized, mp3_url, hls_url FROM audio
+         WHERE version_id = ? AND book_id = ? AND chapter_num = ?`,
+        [versionId, bookId.toUpperCase(), chapterNum]
+      );
+    } catch {
+      audio = [];
+    }
 
     // Get book info
     const book = await dbGet<{ book_name_en: string; book_name_fa: string; chapter_count: number }>(
