@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
     Plus, Download, Trash2, Eye, TrendingUp, FileText, DollarSign,
     Clock, CheckCircle, XCircle, Search, Filter, RefreshCw, Tv,
-    Link2, Copy, Check, ExternalLink
+    Link2, Copy, Check, ExternalLink, Pencil
 } from "lucide-react";
 import { format } from "date-fns";
 
@@ -326,6 +326,10 @@ export default function DejDashboard() {
                                                             <Link href={`/dej/invoice/${inv.id}`}
                                                                 className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition" title="View Invoice">
                                                                 <Eye className="w-4 h-4" />
+                                                            </Link>
+                                                            <Link href={`/dej/invoice/${inv.id}?edit=1`}
+                                                                className="p-2 rounded-lg bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 transition" title="Edit Invoice">
+                                                                <Pencil className="w-4 h-4" />
                                                             </Link>
                                                             <button onClick={() => handleDelete(inv.id, inv.invoice_number)}
                                                                 className="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/30 text-red-400 transition" title="Delete Invoice">
