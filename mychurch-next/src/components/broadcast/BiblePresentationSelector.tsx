@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BookOpen, ChevronLeft, ChevronRight, Columns2, List, Loader2, Music2, Pause, Play, Search, Trash2, X } from "lucide-react";
 import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
+import SelectedVersesModal from "./SelectedVersesModal";
 
 interface BibleVersion {
   version_id: number;
@@ -124,6 +125,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const [loading, setLoading] = useState(false);
   const [selectedVerses, setSelectedVerses] = useState<SelectedVerseEntry[]>([]);
   const [lastInteractedVerse, setLastInteractedVerse] = useState<number | null>(null);
+  const [verseManagerOpen, setVerseManagerOpen] = useState(false);
 
   const currentBook = books.find((book) => book.book_id === selectedBookId) || null;
   const filteredBooks = bookSearch
@@ -729,9 +731,13 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
           <div className={`w-80 bg-slate-900/95 border-l border-white/10 overflow-hidden flex flex-col ${isRTL ? 'border-l border-r-0' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
             <div className="shrink-0 bg-gradient-to-r from-amber-600/20 to-amber-500/10 border-b border-amber-500/20 px-4 py-3">
               <div className="flex items-center justify-between mb-2">
-                <h3 className={`font-bold text-amber-300 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                <button
+                  onClick={() => setVerseManagerOpen(true)}
+                  className={`font-bold text-amber-300 text-sm cursor-pointer hover:text-amber-200 transition-colors ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                  title={isRTL ? 'کلیک برای مدیریت آیات' : 'Click to manage verses'}
+                >
                   {selectedVerses.length} {isRTL ? 'آیه انتخاب‌شده' : 'Verses Selected'}
-                </h3>
+                </button>
                 <button
                   onClick={() => setSelectedVerses([])}
                   className="p-1 text-slate-400 hover:text-red-400 transition-colors rounded"
@@ -869,6 +875,20 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         </div>
       )}
 
+      {/* Verse Manager Modal */}
+      <SelectedVersesModal
+        isOpen={verseManagerOpen}
+        verses={selectedVerses}
+        onClose={() => setVerseManagerOpen(false)}
+        onReorder={setSelectedVerses}
+        onRemove={(verseId) =>
+          setSelectedVerses((prev) =>
+            prev.filter((v) => v.id !== verseId)
+          )
+        }
+        onClear={() => setSelectedVerses([])}
+        lang={lang}
+      />
 
     </div>
   );
