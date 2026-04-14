@@ -69,7 +69,48 @@ else {
 
 # Step 3: Run the build and PM2 process directly via SSH
 Write-Host "`n[3/4] Installing and Building Next.js on VPS..." -ForegroundColor Yellow
-$deployCmd = ('set -e; cd {0}; export NEXT_TELEMETRY_DISABLED=1; export NEXT_DISABLE_ESLINT=1; current_swap_size=$(stat -c%s /swapfile 2>/dev/null || echo 0); if [ ! -f /swapfile ] || [ "$current_swap_size" -lt 4294967296 ]; then swapoff /swapfile >/dev/null 2>&1 || true; rm -f /swapfile; (fallocate -l 4G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=4096) >/dev/null 2>&1; chmod 600 /swapfile; mkswap /swapfile >/dev/null 2>&1 || true; swapon /swapfile >/dev/null 2>&1 || true; fi; if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then echo ''Dependencies unchanged, skipping npm install''; else npm ci --no-audit --no-fund; cp package-lock.json .deps-lock.json; fi; export NODE_OPTIONS=--max-old-space-size=2048; if npm run build; then echo ''Build succeeded on first attempt''; else echo ''First build attempt failed, retrying with reduced workers''; rm -rf .next/cache; export NODE_OPTIONS=--max-old-space-size=1536; export NEXT_PRIVATE_BUILD_WORKER=1; npm run build; fi; if pm2 show mychurch-next > /dev/null 2>&1; then pm2 restart mychurch-next --update-env; else pm2 start npm --name ''mychurch-next'' -- start; fi; pm2 save' -f $VPS_NEXT_PATH)
+$deployCmd = @"
+set -e
+cd $VPS_NEXT_PATH
+export NEXT_TELEMETRY_DISABLED=1
+export NEXT_DISABLE_ESLINT=1
+
+current_swap_size=\$(stat -c%s /swapfile 2>/dev/null || echo 0)
+if [ ! -f /swapfile ] || [ "\$current_swap_size" -lt 4294967296 ]; then
+    swapoff /swapfile >/dev/null 2>&1 || true
+    rm -f /swapfile
+    (fallocate -l 4G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=4096) >/dev/null 2>&1
+    chmod 600 /swapfile
+    mkswap /swapfile >/dev/null 2>&1 || true
+    swapon /swapfile >/dev/null 2>&1 || true
+fi
+
+if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then
+    echo 'Dependencies unchanged, skipping npm install'
+else
+    npm ci --no-audit --no-fund
+    cp package-lock.json .deps-lock.json
+fi
+
+# Prevent silent hangs by hard-limiting build time; if first pass fails/hangs, retry with reduced workers.
+export NODE_OPTIONS=--max-old-space-size=2048
+if timeout 25m npm run build; then
+    echo 'Build succeeded on first attempt'
+else
+    echo 'First build attempt failed or timed out, retrying with reduced workers'
+    rm -rf .next/cache
+    export NODE_OPTIONS=--max-old-space-size=1536
+    export NEXT_PRIVATE_BUILD_WORKER=1
+    timeout 25m npm run build
+fi
+
+if pm2 show mychurch-next > /dev/null 2>&1; then
+    pm2 restart mychurch-next --update-env
+else
+    pm2 start npm --name 'mychurch-next' -- start
+fi
+pm2 save
+"@
 ssh $VPS_USER@$VPS_HOST $deployCmd
 if ($LASTEXITCODE -ne 0) {
         Write-Host "VPS build/deploy failed. Stop and fix before applying NGINX." -ForegroundColor Red

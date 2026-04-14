@@ -207,7 +207,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       const parallelData = await parallelResponse.json();
       const nextParallel: ParallelVerse[] = parallelData.parallel || [];
       setParallelVerses(nextParallel);
-      setAudioTracks((lang === "fa" ? parallelData.audioFa : parallelData.audioEn) || parallelData.audioEn || parallelData.audioFa || []);
+      setAudioTracks(lang === "fa" ? (parallelData.audioFa || []) : (parallelData.audioEn || []));
       setSelectedTrackIdx(0);
 
       if (readingMode === "parallel") {
