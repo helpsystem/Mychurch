@@ -95,12 +95,16 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const isRTL = lang === "fa";
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const bookDropdownRef = useRef<HTMLDivElement | null>(null);
+  const selectedBookIdRef = useRef("GEN");
 
   const [versions, setVersions] = useState<BibleVersion[]>([]);
   const [books, setBooks] = useState<BookItem[]>([]);
   const [selectedVersionEn, setSelectedVersionEn] = useState(() => load("bp_ver_en", "BSB"));
   const [selectedVersionFa, setSelectedVersionFa] = useState(() => load("bp_ver_fa", "NMV"));
   const [selectedBookId, setSelectedBookId] = useState("GEN");
+  const [versePopupVisible, setVersePopupVisible] = useState(false);
+  const [versePopupLastVerse, setVersePopupLastVerse] = useState<{ bookFa: string; chapter: number; verse: number } | null>(null);
+  const versePopupTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [bookSearch, setBookSearch] = useState("");
   const [verseSearch, setVerseSearch] = useState("");
@@ -189,14 +193,18 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         const items: BookItem[] = data.books || [];
         setBooks(items);
         if (!items.length) return;
-        if (!items.some((book) => book.book_id === selectedBookId)) {
+        // Use ref to read current selectedBookId without it being a dependency
+        const currentBookId = selectedBookIdRef.current;
+        if (!items.some((book) => book.book_id === currentBookId)) {
           const nextBook = items.find((book) => book.book_id === "JHN") || items[0];
           setSelectedBookId(nextBook.book_id);
+          selectedBookIdRef.current = nextBook.book_id;
           setSelectedChapter(1);
         }
       })
       .catch(() => undefined);
-  }, [selectedBookId, selectedVersionEn]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedVersionEn]);
 
   const loadChapter = useCallback(async () => {
     if (!currentBook || !selectedVersionEn || !selectedVersionFa) return;
@@ -262,9 +270,18 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
   const selectBook = (book: BookItem) => {
     setSelectedBookId(book.book_id);
+    selectedBookIdRef.current = book.book_id;
     setSelectedChapter(1);
     setShowBookList(false);
     setBookSearch("");
+  };
+
+  const showVersePopup = (verseNum: number) => {
+    if (!currentBook) return;
+    setVersePopupLastVerse({ bookFa: currentBook.book_name_fa, chapter: selectedChapter, verse: verseNum });
+    setVersePopupVisible(true);
+    if (versePopupTimerRef.current) clearTimeout(versePopupTimerRef.current);
+    versePopupTimerRef.current = setTimeout(() => setVersePopupVisible(false), 3500);
   };
 
   const getVerseTexts = (verseNum: number) => {
@@ -294,6 +311,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         fa: texts.fa,
       }].sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
     });
+    showVersePopup(verseNum);
   };
 
   const isCurrentVerseSelected = (verseNum: number) => selectedVerses.some((entry) => entry.book_id === currentBook?.book_id && entry.chapter === selectedChapter && entry.verse_num === verseNum);
@@ -338,6 +356,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     });
 
     setLastInteractedVerse(toVerseNum);
+    showVersePopup(toVerseNum);
   };
 
   const handleVerseClick = (verseNum: number, shiftKey: boolean) => {
@@ -871,6 +890,39 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
               </div>
               <span className="w-9 tabular-nums">{formatTime(audioDuration)}</span>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Verse Selection Feedback Popup */}
+      {versePopupVisible && versePopupLastVerse && (
+        <div
+          className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[200] animate-fade-in-up"
+          onClick={() => setVersePopupVisible(false)}
+          style={{ animation: 'fadeInUp 0.25s ease' }}
+        >
+          <div className="flex items-center gap-3 bg-slate-900/95 backdrop-blur-xl border border-amber-500/40 rounded-2xl shadow-2xl px-5 py-3 min-w-[280px] max-w-[420px] cursor-pointer hover:border-amber-400/60 transition-all">
+            <div className="w-9 h-9 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0">
+              <span className="text-amber-400 text-base font-black">{selectedVerses.length}</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-amber-300 font-bold font-[Vazirmatn]" dir="rtl">
+                {versePopupLastVerse.bookFa} {versePopupLastVerse.chapter}:{versePopupLastVerse.verse} — انتخاب شد
+              </p>
+              <p className="text-[11px] text-slate-400 mt-0.5 font-[Vazirmatn]" dir="rtl">
+                مجموع: {selectedVerses.length} آیه انتخابی
+                {selectedVerses.length > 0 && (
+                  <span className="text-amber-500/70 mr-2">• کلیک برای بستن</span>
+                )}
+              </p>
+            </div>
+            <button
+              onClick={(e) => { e.stopPropagation(); setVerseManagerOpen(true); setVersePopupVisible(false); }}
+              className="shrink-0 px-2.5 py-1 text-[10px] font-bold text-amber-300 bg-amber-500/20 rounded-lg hover:bg-amber-500/30 transition-colors font-[Vazirmatn]"
+              title="مدیریت آیات"
+            >
+              مدیریت
+            </button>
           </div>
         </div>
       )}
