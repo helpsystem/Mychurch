@@ -17,6 +17,23 @@ async function runMassEnrichment() {
     console.log("=========================================");
     console.log(`[Cron] Starting Mass Enrichment Job: ${new Date().toISOString()}`);
 
+    // Safety Check: Verify job is enabled before proceeding
+    try {
+        const { rows: config } = await query(`
+            SELECT worship_ai_enabled 
+            FROM church_ai_settings 
+            LIMIT 1
+        `);
+
+        const isEnabled = config?.[0]?.worship_ai_enabled;
+        if (!isEnabled) {
+            console.log("[Cron] ⛔ Job is DISABLED in settings. Skipping enrichment.");
+            process.exit(0);
+        }
+    } catch (err) {
+        console.error("[Cron] ⚠️ Could not verify job status. Continuing anyway...", err);
+    }
+
     let totalProcessed = 0;
     let successCount = 0;
     let failureCount = 0;
