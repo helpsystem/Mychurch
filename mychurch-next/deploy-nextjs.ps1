@@ -92,19 +92,11 @@ else
     cp package-lock.json .deps-lock.json
 fi
 
-# Prevent silent hangs by hard-limiting build time; if first pass fails/hangs, retry with reduced workers.
-export NODE_OPTIONS=--max-old-space-size=2048
-if timeout 40m npm run build; then
-  echo 'Build succeeded on first attempt'
-else
-  echo 'First build attempt failed or timed out, retrying with reduced workers'
-  rm -rf .next/cache .next/lock
-  pkill -f "next build" || true
-  sleep 5
-  export NODE_OPTIONS=--max-old-space-size=1536
-  export NEXT_PRIVATE_BUILD_WORKER=1
-  timeout 40m npm run build
-fi
+# Build using a deterministic low-memory profile for slower VPS nodes.
+rm -rf .next/cache .next/lock
+export NODE_OPTIONS=--max-old-space-size=1536
+export NEXT_PRIVATE_BUILD_WORKER=1
+timeout 80m npm run build
 
 if pm2 show mychurch-next > /dev/null 2>&1; then
     pm2 restart mychurch-next --update-env
