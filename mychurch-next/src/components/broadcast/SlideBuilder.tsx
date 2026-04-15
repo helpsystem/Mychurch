@@ -19,11 +19,12 @@ import {
 import {
   BookOpen, Music, FileImage, Video, Plus, GripVertical, Upload,
   PieChart, BarChart, LineChart, Activity,
-  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall
+  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall, Eye
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
 import ScriptureSelector from './ScriptureSelector';
 import WorshipSongSelector from './WorshipSongSelector';
+import SlidePreviewModal from './SlidePreviewModal';
 
 interface SlideBuilderProps {
   session: BroadcastSession;
@@ -69,6 +70,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
   // Modal State
   const [activeModal, setActiveModal] = useState<ModalType>('NONE');
+  
+  // Preview Modal State
+  const [previewSlideIndex, setPreviewSlideIndex] = useState<number | null>(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   // Live Data State
   const [liveDataTitle, setLiveDataTitle] = useState('');
@@ -954,6 +959,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
         {/* Actions */}
         <div className="absolute bottom-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={(e) => { e.stopPropagation(); setPreviewSlideIndex(index); setIsPreviewOpen(true); }}
+            className="p-1 bg-purple-600/80 rounded hover:bg-purple-500"
+            title={isRTL ? 'پیش‌نمایش' : 'Preview'}
+          >
+            <Eye className="w-3 h-3 text-white" />
+          </button>
           <button
             onClick={(e) => { e.stopPropagation(); startEditSlide(index); }}
             className="p-1 bg-blue-600/80 rounded hover:bg-blue-500"
@@ -2329,6 +2341,19 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             </div>
           </div>
         </div>
+      )}
+
+      {/* Slide Preview Modal */}
+      {previewSlideIndex !== null && session.slides[previewSlideIndex] && (
+        <SlidePreviewModal
+          slide={session.slides[previewSlideIndex]}
+          isOpen={isPreviewOpen}
+          onClose={() => {
+            setIsPreviewOpen(false);
+            setPreviewSlideIndex(null);
+          }}
+          lang={lang}
+        />
       )}
     </div>
   );
