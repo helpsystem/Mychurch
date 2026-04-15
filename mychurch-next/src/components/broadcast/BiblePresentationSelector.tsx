@@ -556,18 +556,18 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         onEnded={() => setIsPlaying(false)}
       />
 
-      <div className="shrink-0 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 px-4 py-3 flex flex-wrap items-center gap-2 md:gap-3 relative z-10 overflow-visible">
+      <div className="shrink-0 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 px-4 py-3 flex flex-wrap items-center gap-2 md:gap-3 relative z-[220] overflow-visible">
         <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-blue-400 shrink-0" />
         <span className={`font-bold text-white text-sm md:text-base shrink-0 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? "انتخاب آیه کتاب مقدس" : "Select Bible Verse"}</span>
 
-        <div ref={bookDropdownRef} className="relative z-[50]">
+        <div ref={bookDropdownRef} className="relative z-[230]">
           <button type="button" onClick={(event) => { event.stopPropagation(); setShowBookList((value) => !value); setShowChapterGrid(false); }} className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2 text-xs md:text-sm font-bold transition-all text-left min-w-[11rem] md:min-w-[14rem] max-w-[16rem] md:max-w-none" aria-label="Select Bible book">
             <BookOpen className="w-4 h-4 text-blue-400 shrink-0" />
             <span className="flex-1 truncate text-white">{currentBook ? (isRTL ? <span className="font-[Vazirmatn]">{currentBook.book_name_fa}</span> : currentBook.book_name_en) : (isRTL ? "انتخاب کتاب..." : "Select a book...")}</span>
             <List className="w-3.5 h-3.5 text-slate-500 shrink-0" />
           </button>
           {showBookList && (
-            <div className="absolute top-full mt-1 left-0 z-[50] max-h-[55vh] overflow-y-auto bg-[#18181b] border border-white/20 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 min-w-[18rem] w-max">
+            <div className="absolute top-full mt-1 left-0 z-[240] max-h-[55vh] overflow-y-auto bg-[#18181b] border border-white/20 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 min-w-[18rem] w-max">
               <div className="relative mb-2">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500" />
                 <input value={bookSearch} onChange={(event) => setBookSearch(event.target.value)} placeholder={isRTL ? "جستجوی کتاب..." : "Search books..."} className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-sm outline-none focus:border-blue-500/50 text-white" />
@@ -627,7 +627,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         </div>
       )}
 
-      <div className="flex-1 flex overflow-hidden relative z-10">
+      <div className="flex-1 flex overflow-hidden relative z-0">
         <main className="flex-1 overflow-y-auto bg-[#0e0e0f] px-4 pb-32">
         {currentBook && (
           <div className="text-center pt-8 pb-6 border-b border-white/5" dir="ltr">
