@@ -110,47 +110,110 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
                     {/* Expanded Content */}
                     {isExpanded && (
                       <div className="border-t border-white/10 bg-black/30 px-4 py-4 space-y-3">
-                        {/* Primary Text */}
-                        {page.textPrimary && page.textPrimary.length > 0 && (
-                          <div className="space-y-2">
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">
-                              {page.bookName.fa}
-                            </p>
-                            <div
-                              className="text-sm text-slate-300 leading-relaxed font-[Vazirmatn] space-y-1"
-                              dir="rtl"
-                            >
-                              {page.textPrimary.map((line, lineIdx) => (
-                                <div key={lineIdx} className="flex gap-2">
-                                  <span className="text-slate-500 text-xs flex-shrink-0 min-w-fit">
-                                    {page.verseNumbers?.[lineIdx] || lineIdx + 1}
-                                  </span>
-                                  <p>{line}</p>
-                                </div>
-                              ))}
+                        {/* Render Content */}
+                        {page.textPrimary && page.textPrimary.length > 0 ? (
+                          <>
+                            {/* Primary Text */}
+                            <div className="space-y-2">
+                              <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">
+                                {page.bookName.fa}
+                              </p>
+                              <div
+                                className="text-sm text-slate-300 leading-relaxed font-[Vazirmatn] space-y-1"
+                                dir="rtl"
+                              >
+                                {page.textPrimary.map((line, lineIdx) => (
+                                  <div key={lineIdx} className="flex gap-2">
+                                    <span className="text-slate-500 text-xs flex-shrink-0 min-w-fit mt-0.5">
+                                      {page.verseNumbers?.[lineIdx] || lineIdx + 1}
+                                    </span>
+                                    <p>{line}</p>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        )}
 
-                        {/* Secondary Text */}
-                        {page.textSecondary && page.textSecondary.length > 0 && (
-                          <div className="space-y-2 border-t border-white/10 pt-3 mt-3">
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">
-                              {page.bookName.en}
-                            </p>
-                            <div
-                              className="text-sm text-slate-300 leading-relaxed space-y-1"
-                              dir="ltr"
-                            >
-                              {page.textSecondary.map((line, lineIdx) => (
-                                <div key={lineIdx} className="flex gap-2">
-                                  <span className="text-slate-500 text-xs flex-shrink-0 min-w-fit">
-                                    {page.verseNumbers?.[lineIdx] || lineIdx + 1}
-                                  </span>
-                                  <p>{line}</p>
+                            {/* Secondary Text */}
+                            {page.textSecondary && page.textSecondary.length > 0 && (
+                              <div className="space-y-2 border-t border-white/10 pt-3 mt-3">
+                                <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">
+                                  {page.bookName.en}
+                                </p>
+                                <div
+                                  className="text-sm text-slate-300 leading-relaxed space-y-1"
+                                  dir="ltr"
+                                >
+                                  {page.textSecondary.map((line, lineIdx) => (
+                                    <div key={lineIdx} className="flex gap-2">
+                                      <span className="text-slate-500 text-xs flex-shrink-0 min-w-fit mt-0.5">
+                                        {page.verseNumbers?.[lineIdx] || lineIdx + 1}
+                                      </span>
+                                      <p>{line}</p>
+                                    </div>
+                                  ))}
                                 </div>
-                              ))}
-                            </div>
+                              </div>
+                            )}
+                          </>
+                        ) : page.referenceItems && page.referenceItems.length > 0 ? (
+                          <div className="space-y-5">
+                            {page.referenceItems.map((refItem, refIdx) => {
+                              const isRefFa = page.primaryLanguage === 'fa' || !page.primaryLanguage;
+                              const primaryRefText = isRefFa ? refItem.textFa : refItem.textEn;
+                              const secondaryRefText = isRefFa ? refItem.textEn : refItem.textFa;
+                              
+                              return (
+                                <div key={refItem.id || refIdx} className="space-y-3 pb-4 border-b border-white/5 last:border-0 last:pb-0">
+                                  {/* Primary Ref Text */}
+                                  {primaryRefText && primaryRefText.length > 0 && (
+                                    <div className="space-y-2">
+                                      <p className="text-xs font-bold text-blue-400/90 tracking-wider">
+                                        {isRefFa ? refItem.bookName.fa : refItem.bookName.en} {refItem.chapter}:{refItem.verses}
+                                      </p>
+                                      <div
+                                        className="text-sm text-slate-300 leading-relaxed font-[Vazirmatn] space-y-1"
+                                        dir={isRefFa ? "rtl" : "ltr"}
+                                      >
+                                        {primaryRefText.map((line, lineIdx) => (
+                                          <div key={lineIdx} className="flex gap-2">
+                                            <span className="text-slate-500 text-xs flex-shrink-0 min-w-fit mt-0.5">
+                                              {refItem.verseNumbers?.[lineIdx] || lineIdx + 1}
+                                            </span>
+                                            <p>{line}</p>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+                                  
+                                  {/* Secondary Ref Text */}
+                                  {secondaryRefText && secondaryRefText.length > 0 && (
+                                    <div className="space-y-2 pt-2">
+                                      <p className="text-[10px] font-bold text-slate-500 tracking-wider">
+                                        {isRefFa ? refItem.bookName.en : refItem.bookName.fa} {refItem.chapter}:{refItem.verses}
+                                      </p>
+                                      <div
+                                        className="text-xs text-slate-400 leading-relaxed space-y-1 font-[Vazirmatn]"
+                                        dir={isRefFa ? "ltr" : "rtl"}
+                                      >
+                                        {secondaryRefText.map((line, lineIdx) => (
+                                          <div key={lineIdx} className="flex gap-2">
+                                            <span className="text-slate-600 text-[10px] flex-shrink-0 min-w-fit mt-0.5">
+                                              {refItem.verseNumbers?.[lineIdx] || lineIdx + 1}
+                                            </span>
+                                            <p>{line}</p>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <div className="text-center py-4 text-slate-500 text-sm">
+                            {isRTL ? "محتوایی برای نمایش یافت نشد" : "No content to display"}
                           </div>
                         )}
 
