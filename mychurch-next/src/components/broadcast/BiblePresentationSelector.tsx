@@ -817,17 +817,17 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             </div>
 
             <div className="shrink-0 bg-slate-950/50 border-t border-white/5 px-4 py-3 space-y-2">
-              <div className="flex items-center gap-1 bg-black/30 rounded-lg p-1 border border-white/10">
+              <div className={`flex items-stretch gap-1 bg-black/30 rounded-lg p-1 border border-white/10 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                 <button
                   type="button"
                   onClick={() => {
                     setSlideBuildMode("single");
                     persist("bp_slide_mode", "single");
                   }}
-                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] font-bold transition ${slideBuildMode === "single" ? "bg-amber-600/40 text-amber-300" : "text-slate-400 hover:text-slate-200"}`}
-                  title={isRTL ? 'یک اسلاید برای همه' : 'Single slide'}
+                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] leading-tight font-bold transition ${slideBuildMode === "single" ? "bg-amber-600/40 text-amber-300 shadow-sm" : "text-slate-400 hover:text-slate-200"}`}
+                  title={isRTL ? "تمام آیات در یک اسلاید واحد قرار می‌گیرند (با قابلیت بازشوندگی داخلی). مناسب برای ساخت کالکشن آیات." : "All selected verses are merged into a single slide with internal accordion. Good for verse collections."}
                 >
-                  {isRTL ? "تک" : "Single"}
+                  {isRTL ? "همه در یک اسلاید" : "Multi in One"}
                 </button>
                 <button
                   type="button"
@@ -835,10 +835,10 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     setSlideBuildMode("perReference");
                     persist("bp_slide_mode", "perReference");
                   }}
-                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] font-bold transition ${slideBuildMode === "perReference" ? "bg-amber-600/40 text-amber-300" : "text-slate-400 hover:text-slate-200"}`}
-                  title={isRTL ? 'اسلاید برای هر بخش' : 'Per section'}
+                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] leading-tight font-bold transition ${slideBuildMode === "perReference" ? "bg-amber-600/40 text-amber-300 shadow-sm" : "text-slate-400 hover:text-slate-200"}`}
+                  title={isRTL ? "برای هر بخش پیوسته (مثلاً آیات ۱ الی ۵) یک اسلاید جداگانه ساخته می‌شود. (حالت پیش‌نهادی)" : "Creates a separate slide for each contiguous block of verses. (Recommended)"}
                 >
-                  {isRTL ? "بخشی" : "Group"}
+                  {isRTL ? "بخش‌بخش (مرجع)" : "By Section"}
                 </button>
                 <button
                   type="button"
@@ -846,10 +846,10 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     setSlideBuildMode("perVerse");
                     persist("bp_slide_mode", "perVerse");
                   }}
-                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] font-bold transition ${slideBuildMode === "perVerse" ? "bg-amber-600/40 text-amber-300" : "text-slate-400 hover:text-slate-200"}`}
-                  title={isRTL ? 'اسلاید برای هر آیه' : 'Per verse'}
+                  className={`flex-1 px-2 py-1.5 rounded-md text-[10px] leading-tight font-bold transition ${slideBuildMode === "perVerse" ? "bg-amber-600/40 text-amber-300 shadow-sm" : "text-slate-400 hover:text-slate-200"}`}
+                  title={isRTL ? "هر تک آیه کاملاً یک اسلاید مجزا خواهد شد. مناسب برای ورق زدن آیه به آیه هنگام موعظه." : "Every individual verse forms a standalone separate slide. Best for verse-by-verse preaching."}
                 >
-                  {isRTL ? "تکی" : "Verse"}
+                  {isRTL ? "هر آیه مجزا" : "Per Verse"}
                 </button>
               </div>
               <button
