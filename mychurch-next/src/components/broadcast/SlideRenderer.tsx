@@ -283,8 +283,8 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                             >
                                 {/* Header */}
                                 <div className="shrink-0 flex items-center justify-between" style={{ padding: `${headerPaddingY}rem ${headerPaddingX}rem`, borderBottom: `${headerBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.25)' : 'rgba(99,102,241,0.25)'}` }}>
-                                    <h2 className={`font-black leading-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: page.fontFa || 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
-                                    <span style={{ fontFamily: page.fontFa || 'var(--font-vazirmatn)', fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
+                                    <h2 className={`font-black leading-tight font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: page.fontFa || 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
+                                    <span style={{ fontFamily: page.fontFa || 'var(--font-vazirmatn)', fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold font-[Vazirmatn] ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
                                         {references.length} آیه
                                     </span>
                                 </div>
@@ -338,7 +338,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                         >{idx + 1}</span>
                                                         {/* Book name */}
                                                         <span
-                                                            className={`font-bold leading-snug ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
+                                                            className={`font-bold leading-snug font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
                                                             style={{ fontSize: `${2.4 * slideZoom}rem`, marginLeft: `${0.5 * slideZoom}rem` }}
                                                         >{ref.bookName.fa}</span>
                                                         {/* Chapter:verse badge */}
