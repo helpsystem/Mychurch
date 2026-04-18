@@ -283,8 +283,8 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                             >
                                 {/* Header */}
                                 <div className="shrink-0 flex items-center justify-between" style={{ padding: `${headerPaddingY}rem ${headerPaddingX}rem`, borderBottom: `${headerBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.25)' : 'rgba(99,102,241,0.25)'}` }}>
-                                    <h2 className={`font-black leading-tight font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: page.fontFa || 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
-                                    <span style={{ fontFamily: page.fontFa || 'var(--font-vazirmatn)', fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold font-[Vazirmatn] ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
+                                    <h2 className={`font-black leading-tight font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
+                                    <span style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold font-[Vazirmatn] ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
                                         {references.length} آیه
                                     </span>
                                 </div>
@@ -296,7 +296,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                             key={column.dir}
                                             dir={column.dir}
                                             className={`text-${column.dir === 'rtl' ? 'right' : 'left'} font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'} ${column.dir === 'rtl' ? 'font-[Vazirmatn]' : ''}`}
-                                            style={{ fontFamily: column.dir === 'rtl' ? (page.fontFa || 'var(--font-vazirmatn)') : (page.fontEn || 'var(--font-inter)'), fontSize: `${1.6 * slideZoom}rem` }}
+                                            style={{ fontFamily: column.dir === 'rtl' ? 'var(--font-vazirmatn)' : 'var(--font-inter)', fontSize: `${1.6 * slideZoom}rem` }}
                                         >
                                             {column.label}
                                         </div>
@@ -319,7 +319,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                     <div
                                                         dir="rtl"
                                                         className={`flex items-center gap-0 ${useWavyPaper ? (page.primaryLanguage === 'en' ? 'border-l border-[#8a4d0f]/15' : 'border-l border-[#8a4d0f]/15') : (page.primaryLanguage === 'en' ? 'border-l border-slate-700/40' : 'border-l border-slate-700/40')}`}
-                                                        style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: ref.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}
+                                                        style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: 'var(--font-vazirmatn)' }}
                                                     >
                                                         {/* Row badge */}
                                                         <span
@@ -361,7 +361,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                     <div
                                                         dir="ltr"
                                                         className="flex items-center"
-                                                        style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: ref.fontEn || page.fontEn || 'var(--font-inter)' }}
+                                                        style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: 'var(--font-inter)' }}
                                                     >
                                                         {/* Row badge */}
                                                         <span
