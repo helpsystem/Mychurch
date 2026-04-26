@@ -1,7 +1,9 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
+import fs from "fs/promises";
+import path from "path";
 import { revalidatePath } from "next/cache";
+import { createClient } from "@/utils/supabase/server";
 
 export interface MediaAsset {
     name: string;
@@ -13,8 +15,18 @@ export interface MediaAsset {
     galleryId?: string;
 }
 
+const MEDIA_DIR = path.join(process.cwd(), "public", "media");
+
+async function ensureMediaDir() {
+    try {
+        await fs.mkdir(MEDIA_DIR, { recursive: true });
+    } catch (error) {
+        // Directory already exists
+    }
+}
+
 function getFileType(filename: string): MediaAsset["type"] {
-    const ext = filename.substring(filename.lastIndexOf('.')).toLowerCase();
+    const ext = path.extname(filename).toLowerCase();
     if (ext.match(/\.(jpg|jpeg|png|gif|webp|svg)$/)) return "image";
     if (ext.match(/\.(mp4|webm|mkv|mov)$/)) return "video";
     if (ext.match(/\.(mp3|wav|ogg|m4a)$/)) return "audio";
@@ -22,40 +34,34 @@ function getFileType(filename: string): MediaAsset["type"] {
 }
 
 export async function listMediaFiles(): Promise<MediaAsset[]> {
-    const supabase = await createClient();
+    await ensureMediaDir();
 
     try {
-        // 1. Get files from Storage
-        const { data: files, error: storageError } = await supabase
-            .storage
-            .from('media')
-            .list('', {
-                limit: 1000,
-                offset: 0,
-                sortBy: { column: 'created_at', order: 'desc' },
-            });
+        const files = await fs.readdir(MEDIA_DIR);
+        let assets: MediaAsset[] = [];
 
-        if (storageError) {
-            console.error("Storage list error:", storageError);
-            return [];
+        for (const file of files) {
+            if (file.startsWith('.')) continue;
+
+            const filePath = path.join(MEDIA_DIR, file);
+            const stats = await fs.stat(filePath);
+
+            if (stats.isFile()) {
+                assets.push({
+                    name: file,
+                    url: `/media/${file}`,
+                    type: getFileType(file),
+                    size: stats.size,
+                    createdAt: stats.birthtimeMs || stats.mtimeMs // fallback for Linux
+                });
+            }
         }
 
-        // Filter out the empty placeholder file (usually .emptyFolderPlaceholder)
-        const validFiles = files?.filter(f => f.name !== '.emptyFolderPlaceholder') || [];
+        // Sort newest first
+        assets = assets.sort((a, b) => b.createdAt - a.createdAt);
 
-        // 2. Get public URLs and map types
-        let assets: MediaAsset[] = validFiles.map(file => {
-            const { data } = supabase.storage.from('media').getPublicUrl(file.name);
-            return {
-                name: file.name,
-                url: data.publicUrl,
-                type: getFileType(file.name),
-                size: file.metadata?.size || 0,
-                createdAt: new Date(file.created_at).getTime()
-            };
-        });
-
-        // 3. Check which images are in the Public Gallery
+        // Check which images are in the Public Gallery
+        const supabase = await createClient();
         const { data: galleryImages } = await supabase
             .from('gallery_images')
             .select('id, src');
@@ -80,20 +86,17 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
 
 export async function deleteMediaFile(filename: string): Promise<{ success: boolean; error?: string }> {
     try {
-        const supabase = await createClient();
-        
-        // 1. Check if it's in the gallery
-        const { data } = supabase.storage.from('media').getPublicUrl(filename);
-        if (data?.publicUrl) {
-            await supabase.from('gallery_images').delete().eq('src', data.publicUrl);
-        }
+        const safeFilename = path.basename(filename);
+        const filePath = path.join(MEDIA_DIR, safeFilename);
 
-        // 2. Delete from storage
-        const { error } = await supabase.storage.from('media').remove([filename]);
+        const publicUrl = `/media/${safeFilename}`;
         
-        if (error) {
-            throw error;
-        }
+        // Remove from local file system
+        await fs.unlink(filePath);
+
+        // Remove from gallery DB if it exists
+        const supabase = await createClient();
+        await supabase.from('gallery_images').delete().eq('src', publicUrl);
 
         revalidatePath("/admin/media");
         revalidatePath("/gallery");
