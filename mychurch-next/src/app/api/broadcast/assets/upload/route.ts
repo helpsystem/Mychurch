@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { mkdir, writeFile } from 'fs/promises';
 import { join } from 'path';
+import { hasRoleOrPermission } from '@/lib/access-control';
 
 type UploadTarget = 'uploads' | 'media';
 
@@ -50,6 +51,11 @@ function buildPublicUrl(target: UploadTarget, relativePath: string): string {
 
 export async function POST(request: Request) {
   try {
+    const allowed = await hasRoleOrPermission(['canManageMedia', 'canManageWorship']);
+    if (!allowed) {
+      return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 403 });
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
     const targetRaw = (formData.get('target') as string | null) || 'uploads';

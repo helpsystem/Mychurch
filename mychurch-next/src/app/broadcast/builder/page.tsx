@@ -2,6 +2,7 @@ import React from "react";
 import { getPresentationById } from "@/actions/presentations";
 import BuilderClientWrapper from "./BuilderClientWrapper";
 import { BroadcastSession } from "@/types/broadcast";
+import { requireRole } from "@/utils/rbac";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,8 @@ export default async function SlideBuilderPage({
 }: {
     searchParams: { id?: string | string[] } | Promise<{ id?: string | string[] }>;
 }) {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
     const resolvedParams = searchParams instanceof Promise ? await searchParams : searchParams;
     const rawId = resolvedParams?.id;
     const id = Array.isArray(rawId) ? rawId[0] : rawId;

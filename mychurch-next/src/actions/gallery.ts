@@ -1,6 +1,7 @@
 "use server"
 
 import { createClient } from "@/utils/supabase/server";
+import { normalizeAssetUrl } from "@/lib/access-control";
 
 export interface GalleryImage {
     id: string;
@@ -28,7 +29,7 @@ export async function fetchGalleryImages(): Promise<GalleryImage[]> {
 
         return data.map(row => ({
             id: row.id,
-            src: row.src,
+            src: normalizeAssetUrl(row.src),
             width: row.width || 800,
             height: row.height || 600,
             title: row.title || undefined,

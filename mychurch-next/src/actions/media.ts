@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import path from "path";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
+import { hasRoleOrPermission, normalizeAssetUrl } from "@/lib/access-control";
 
 export interface MediaAsset {
     name: string;
@@ -40,6 +41,16 @@ async function ensureMediaDir() {
     }
 }
 
+async function canAccessMediaLibrary(): Promise<boolean> {
+    return hasRoleOrPermission(["canManageMedia", "canManageWorship"]);
+}
+
+function buildGalleryUrlVariants(fileName: string): string[] {
+    const normalized = buildMediaUrl(fileName);
+    const legacy = `/media/${fileName}`;
+    return [normalized, legacy];
+}
+
 function getFileType(filename: string): MediaAsset["type"] {
     const ext = path.extname(filename).toLowerCase();
     if (ext.match(/\.(jpg|jpeg|png|gif|webp|svg)$/)) return "image";
@@ -49,6 +60,10 @@ function getFileType(filename: string): MediaAsset["type"] {
 }
 
 export async function listMediaFiles(): Promise<MediaAsset[]> {
+    if (!(await canAccessMediaLibrary())) {
+        return [];
+    }
+
     await ensureMediaDir();
 
     try {
@@ -83,7 +98,8 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
 
         if (galleryImages) {
             assets = assets.map(asset => {
-                const galleryEntry = galleryImages.find(g => g.src === asset.url);
+                const variants = buildGalleryUrlVariants(asset.name);
+                const galleryEntry = galleryImages.find(g => variants.includes(normalizeAssetUrl(g.src)));
                 return {
                     ...asset,
                     inGallery: !!galleryEntry,
@@ -100,18 +116,22 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
 }
 
 export async function deleteMediaFile(filename: string): Promise<{ success: boolean; error?: string }> {
+    if (!(await canAccessMediaLibrary())) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     try {
         const safeFilename = path.basename(filename);
         const filePath = path.join(MEDIA_DIR, safeFilename);
 
-        const publicUrl = buildMediaUrl(safeFilename);
+        const urlVariants = buildGalleryUrlVariants(safeFilename);
         
         // Remove from local file system
         await fs.unlink(filePath);
 
         // Remove from gallery DB if it exists
         const supabase = await createClient();
-        await supabase.from('gallery_images').delete().eq('src', publicUrl);
+        await supabase.from('gallery_images').delete().in('src', urlVariants);
 
         revalidatePath("/admin/media");
         revalidatePath("/gallery");
@@ -123,6 +143,10 @@ export async function deleteMediaFile(filename: string): Promise<{ success: bool
 }
 
 export async function renameMediaFile(oldFilename: string, requestedName: string): Promise<{ success: boolean; newName?: string; error?: string }> {
+    if (!(await canAccessMediaLibrary())) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     try {
         const safeOldFilename = path.basename(oldFilename);
         const oldPath = path.join(MEDIA_DIR, safeOldFilename);
@@ -164,7 +188,7 @@ export async function renameMediaFile(oldFilename: string, requestedName: string
                 src: buildMediaUrl(candidate),
                 title: path.basename(candidate, ext),
             })
-            .eq("src", buildMediaUrl(safeOldFilename));
+            .in("src", buildGalleryUrlVariants(safeOldFilename));
 
         revalidatePath("/admin/media");
         revalidatePath("/gallery");
@@ -176,17 +200,29 @@ export async function renameMediaFile(oldFilename: string, requestedName: string
 }
 
 export async function toggleGalleryVisibility(asset: MediaAsset): Promise<{ success: boolean; error?: string }> {
+    if (!(await canAccessMediaLibrary())) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     try {
         const supabase = await createClient();
+        const normalizedAssetUrl = normalizeAssetUrl(asset.url);
 
         if (asset.inGallery && asset.galleryId) {
             // Remove from gallery
             const { error } = await supabase.from('gallery_images').delete().eq('id', asset.galleryId);
             if (error) throw error;
+        } else if (asset.inGallery && !asset.galleryId) {
+            const fallbackName = path.basename(normalizedAssetUrl);
+            const { error } = await supabase
+                .from('gallery_images')
+                .delete()
+                .in('src', buildGalleryUrlVariants(fallbackName));
+            if (error) throw error;
         } else {
             // Add to gallery
             const { error } = await supabase.from('gallery_images').insert({
-                src: asset.url,
+                src: normalizedAssetUrl,
                 width: 800, // Default fallback
                 height: 600, // Default fallback
                 title: asset.name.split('.')[0],

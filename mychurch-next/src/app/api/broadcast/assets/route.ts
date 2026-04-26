@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readdir, stat } from 'fs/promises';
 import { existsSync } from 'fs';
 import { join, relative } from 'path';
+import { hasRoleOrPermission } from '@/lib/access-control';
 
 type AssetType = 'image' | 'video' | 'audio' | 'other';
 
@@ -70,6 +71,11 @@ async function walk(dirPath: string, baseDir: string, source: AssetItem['source'
 
 export async function GET(req: NextRequest) {
   try {
+    const allowed = await hasRoleOrPermission(['canManageMedia', 'canManageWorship']);
+    if (!allowed) {
+      return NextResponse.json({ success: false, assets: [], error: 'Unauthorized' }, { status: 403 });
+    }
+
     const wantedType = (req.nextUrl.searchParams.get('type') || 'all').toLowerCase();
     const sourceParam = (req.nextUrl.searchParams.get('source') || 'all').toLowerCase();
 

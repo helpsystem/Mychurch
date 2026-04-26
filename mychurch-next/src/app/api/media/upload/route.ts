@@ -1,9 +1,15 @@
 import { NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
+import { hasRoleOrPermission } from '@/lib/access-control';
 
 export async function POST(request: Request) {
     try {
+        const allowed = await hasRoleOrPermission(['canManageMedia', 'canManageWorship']);
+        if (!allowed) {
+            return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 403 });
+        }
+
         const data = await request.formData();
         const file: File | null = data.get('file') as unknown as File;
 

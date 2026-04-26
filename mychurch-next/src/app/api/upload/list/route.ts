@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readdir, stat, mkdir } from 'fs/promises';
 import { join, relative } from 'path';
 import { existsSync } from 'fs';
+import { hasRoleOrPermission } from '@/lib/access-control';
 
 const uploadsBaseDir = join(process.cwd(), 'public', 'uploads');
 
@@ -43,6 +44,11 @@ async function walkFiles(dirPath: string, baseDir: string): Promise<Array<{ path
 
 export async function GET(req: NextRequest) {
     try {
+        const allowed = await hasRoleOrPermission(['canManageWidgets', 'canManageMedia', 'canManageWorship']);
+        if (!allowed) {
+            return NextResponse.json({ success: false, error: 'Unauthorized', files: [] }, { status: 403 });
+        }
+
         const folder = (req.nextUrl.searchParams.get('folder') || '').replace(/\.{2,}/g, '').replace(/^\/+/, '').trim();
         const targetDir = folder ? join(uploadsBaseDir, folder) : uploadsBaseDir;
 
