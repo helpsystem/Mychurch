@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useTransition, useCallback, useRef } from "react";
-import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus } from "lucide-react";
-import { type MediaAsset, deleteMediaFile, listMediaFiles } from "@/actions/media";
+import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus, Globe, GlobeLock } from "lucide-react";
+import { type MediaAsset, deleteMediaFile, listMediaFiles, toggleGalleryVisibility } from "@/actions/media";
 import { useRouter } from "next/navigation";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -90,6 +90,20 @@ export default function MediaClient({ initialFiles }: { initialFiles: MediaAsset
                 }
             });
         }
+    };
+
+    const handleToggleGallery = (asset: MediaAsset) => {
+        startTransition(async () => {
+            const result = await toggleGalleryVisibility(asset);
+            if (result.success) {
+                toast.success(asset.inGallery ? "از گالری حذف شد" : "به گالری پابلیک اضافه شد");
+                await refreshFiles();
+                // Update preview file state to reflect the change immediately
+                setPreviewFile(prev => prev ? { ...prev, inGallery: !prev.inGallery } : null);
+            } else {
+                toast.error("خطا در همگام‌سازی با گالری: " + result.error);
+            }
+        });
     };
 
     // Derived filtered lists
@@ -244,7 +258,10 @@ export default function MediaClient({ initialFiles }: { initialFiles: MediaAsset
                                 <p className="text-xs font-medium truncate w-full" title={f.name}>{f.name}</p>
                                 <div className="flex justify-between items-center mt-1">
                                     <span className="text-[10px] text-muted-foreground">{formatBytes(f.size)}</span>
-                                    {getTypeIcon(f.type, "w-3 h-3")}
+                                    <div className="flex items-center gap-1.5">
+                                        {f.inGallery && <Globe className="w-3 h-3 text-emerald-500" title="در گالری عمومی سایت قرار دارد" />}
+                                        {getTypeIcon(f.type, "w-3 h-3")}
+                                    </div>
                                 </div>
                             </div>
 
@@ -299,7 +316,30 @@ export default function MediaClient({ initialFiles }: { initialFiles: MediaAsset
                             <div className="text-muted-foreground">
                                 سایز / Size: <span className="text-white font-mono">{formatBytes(previewFile.size)}</span>
                             </div>
-                            <div className="space-x-2">
+                            <div className="space-x-2 flex items-center">
+                                {previewFile.type === 'image' && (
+                                    <button
+                                        onClick={() => handleToggleGallery(previewFile)}
+                                        disabled={isPending}
+                                        className={`px-4 py-2 rounded-lg transition disabled:opacity-50 font-[Vazirmatn] flex items-center gap-2 ${
+                                            previewFile.inGallery 
+                                                ? "bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500 hover:text-white border border-emerald-500/20" 
+                                                : "bg-neutral-800 text-muted-foreground hover:bg-emerald-500 hover:text-white border border-border/10"
+                                        }`}
+                                    >
+                                        {previewFile.inGallery ? (
+                                            <>
+                                                <Globe className="w-4 h-4" /> 
+                                                حذف از گالری عمومی
+                                            </>
+                                        ) : (
+                                            <>
+                                                <GlobeLock className="w-4 h-4" /> 
+                                                افزودن به گالری عمومی
+                                            </>
+                                        )}
+                                    </button>
+                                )}
                                 <a
                                     href={previewFile.url}
                                     target="_blank"

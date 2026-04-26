@@ -1,9 +1,16 @@
 import { NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
+import { createClient } from '@/utils/supabase/server';
 
 export async function POST(request: Request) {
     try {
+        const supabase = await createClient();
+        
+        // 1. Verify Authentication & RBAC (Optional but recommended)
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+            return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+        }
+
         const data = await request.formData();
         const file: File | null = data.get('file') as unknown as File;
 
@@ -11,27 +18,29 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, error: 'No file uploaded' }, { status: 400 });
         }
 
-        const bytes = await file.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-
-        // Ensure media directory exists
-        const mediaDir = join(process.cwd(), 'public', 'media');
-        try {
-            await mkdir(mediaDir, { recursive: true });
-        } catch (e) {
-            // Already exists
-        }
-
-        // Generate unique filename preserving extension but sanitizing original name
+        // 2. Generate unique filename preserving extension but sanitizing original name
         const ext = file.name.substring(file.name.lastIndexOf('.'));
         const originalName = file.name.substring(0, file.name.lastIndexOf('.')).replace(/[^a-zA-Z0-9_-]/g, '');
         const filename = `${originalName}-${Date.now()}${ext}`;
-        const filePath = join(mediaDir, filename);
 
-        await writeFile(filePath, buffer);
+        // 3. Upload to Supabase Storage ('media' bucket)
+        const { data: uploadData, error: uploadError } = await supabase
+            .storage
+            .from('media')
+            .upload(filename, file, {
+                cacheControl: '3600',
+                upsert: false
+            });
 
-        // Return the public URL
-        return NextResponse.json({ success: true, url: `/media/${filename}` });
+        if (uploadError) {
+            console.error('Storage upload error:', uploadError);
+            throw uploadError;
+        }
+
+        // 4. Get Public URL
+        const { data: publicUrlData } = supabase.storage.from('media').getPublicUrl(filename);
+
+        return NextResponse.json({ success: true, url: publicUrlData.publicUrl });
     } catch (error: any) {
         console.error('Error uploading media file:', error);
         return NextResponse.json({ success: false, error: error.message || 'Upload failed' }, { status: 500 });
