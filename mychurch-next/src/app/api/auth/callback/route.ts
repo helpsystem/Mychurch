@@ -41,5 +41,11 @@ export async function GET(request: Request) {
         }
     }
 
-    return NextResponse.redirect(new URL(next, requestUrl.origin));
+    let origin = requestUrl.origin;
+    // Fix for Next.js sometimes thinking localhost is https due to x-forwarded-proto
+    if (origin.startsWith('https://localhost:')) {
+        origin = origin.replace('https://', 'http://');
+    }
+
+    return NextResponse.redirect(new URL(next, origin));
 }
