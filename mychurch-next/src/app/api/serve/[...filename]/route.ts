@@ -7,16 +7,29 @@ export async function GET(request: Request, context: any) {
     try {
         const params = await context.params;
         const filenameParts = Array.isArray(params?.filename) ? params.filename : [params?.filename];
-        const safeParts = filenameParts.filter(Boolean).map((part: string) => part.replace(/\.{2,}/g, ''));
+        const safeParts = filenameParts
+            .filter(Boolean)
+            .map((part: string) => decodeURIComponent(part))
+            .map((part: string) => part.replace(/\.{2,}/g, '').replace(/^\/+|\/+$/g, ''));
 
         if (safeParts.length === 0) {
             return new NextResponse('File not found', { status: 404 });
         }
 
-        const filePath = join(process.cwd(), 'public', 'uploads', ...safeParts);
+        const [rootCandidate, ...rest] = safeParts;
+        const useMediaRoot = rootCandidate === 'media';
+        const relativeParts = useMediaRoot ? rest : safeParts;
+
+        if (relativeParts.length === 0) {
+            return new NextResponse('File not found', { status: 404 });
+        }
+
+        const filePath = useMediaRoot
+            ? join(process.cwd(), 'public', 'media', ...relativeParts)
+            : join(process.cwd(), 'public', 'uploads', ...relativeParts);
         const fileStat = await stat(filePath);
 
-        const fileName = safeParts[safeParts.length - 1];
+        const fileName = relativeParts[relativeParts.length - 1];
         const ext = fileName.split('.').pop()?.toLowerCase();
         let mimeType = 'image/jpeg';
         if (ext === 'png') mimeType = 'image/png';

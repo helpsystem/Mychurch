@@ -17,6 +17,21 @@ export interface MediaAsset {
 
 const MEDIA_DIR = path.join(process.cwd(), "public", "media");
 
+function buildMediaUrl(fileName: string): string {
+    // Serve media through API route to avoid direct nginx static path conflicts.
+    return `/api/serve/media/${encodeURIComponent(fileName)}`;
+}
+
+function safeBaseName(input: string): string {
+    return input
+        .trim()
+        .replace(/[^a-zA-Z0-9 _.-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^[-. ]+|[-. ]+$/g, "")
+        .slice(0, 120);
+}
+
 async function ensureMediaDir() {
     try {
         await fs.mkdir(MEDIA_DIR, { recursive: true });
@@ -49,7 +64,7 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
             if (stats.isFile()) {
                 assets.push({
                     name: file,
-                    url: `/media/${file}`,
+                    url: buildMediaUrl(file),
                     type: getFileType(file),
                     size: stats.size,
                     createdAt: stats.birthtimeMs || stats.mtimeMs // fallback for Linux
@@ -89,7 +104,7 @@ export async function deleteMediaFile(filename: string): Promise<{ success: bool
         const safeFilename = path.basename(filename);
         const filePath = path.join(MEDIA_DIR, safeFilename);
 
-        const publicUrl = `/media/${safeFilename}`;
+        const publicUrl = buildMediaUrl(safeFilename);
         
         // Remove from local file system
         await fs.unlink(filePath);
@@ -103,6 +118,59 @@ export async function deleteMediaFile(filename: string): Promise<{ success: bool
         return { success: true };
     } catch (error: any) {
         console.error("Error deleting media file:", error);
+        return { success: false, error: error.message };
+    }
+}
+
+export async function renameMediaFile(oldFilename: string, requestedName: string): Promise<{ success: boolean; newName?: string; error?: string }> {
+    try {
+        const safeOldFilename = path.basename(oldFilename);
+        const oldPath = path.join(MEDIA_DIR, safeOldFilename);
+
+        const ext = path.extname(safeOldFilename);
+        const oldBase = path.basename(safeOldFilename, ext);
+        const cleanRequested = safeBaseName(requestedName) || oldBase;
+        const targetBase = path.basename(cleanRequested, ext);
+
+        if (!targetBase) {
+            return { success: false, error: "Invalid file name" };
+        }
+
+        let candidate = `${targetBase}${ext}`;
+        let counter = 1;
+        while (candidate !== safeOldFilename) {
+            const candidatePath = path.join(MEDIA_DIR, candidate);
+            try {
+                await fs.access(candidatePath);
+                candidate = `${targetBase}-${counter}${ext}`;
+                counter += 1;
+            } catch {
+                break;
+            }
+        }
+
+        if (candidate === safeOldFilename) {
+            return { success: true, newName: safeOldFilename };
+        }
+
+        const newPath = path.join(MEDIA_DIR, candidate);
+        await fs.rename(oldPath, newPath);
+
+        // Keep gallery references in sync when filename changes.
+        const supabase = await createClient();
+        await supabase
+            .from("gallery_images")
+            .update({
+                src: buildMediaUrl(candidate),
+                title: path.basename(candidate, ext),
+            })
+            .eq("src", buildMediaUrl(safeOldFilename));
+
+        revalidatePath("/admin/media");
+        revalidatePath("/gallery");
+        return { success: true, newName: candidate };
+    } catch (error: any) {
+        console.error("Error renaming media file:", error);
         return { success: false, error: error.message };
     }
 }

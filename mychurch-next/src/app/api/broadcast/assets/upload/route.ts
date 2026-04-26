@@ -44,7 +44,7 @@ function resolveTargetRoot(target: UploadTarget): string {
 
 function buildPublicUrl(target: UploadTarget, relativePath: string): string {
   const normalized = relativePath.replace(/\\/g, '/');
-  if (target === 'media') return `/media/${normalized}`;
+  if (target === 'media') return `/api/serve/media/${normalized}`;
   return `/api/serve/${normalized}`;
 }
 

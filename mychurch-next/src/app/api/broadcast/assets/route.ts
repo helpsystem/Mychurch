@@ -32,7 +32,7 @@ function detectType(fileName: string): AssetType {
 function toPublicUrl(source: AssetItem['source'], relPath: string): string {
   const normalized = relPath.replace(/\\/g, '/');
   if (source === 'uploads') return `/api/serve/${normalized}`;
-  if (source === 'media') return `/media/${normalized}`;
+  if (source === 'media') return `/api/serve/media/${normalized}`;
   return `/images/${normalized}`;
 }
 

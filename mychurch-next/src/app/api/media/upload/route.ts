@@ -22,16 +22,24 @@ export async function POST(request: Request) {
             // Already exists
         }
 
-        // Generate unique filename preserving extension but sanitizing original name
-        const ext = file.name.substring(file.name.lastIndexOf('.'));
-        const originalName = file.name.substring(0, file.name.lastIndexOf('.')).replace(/[^a-zA-Z0-9_-]/g, '');
+        // Generate a WordPress-like friendly filename while preserving extension.
+        const original = file.name || 'media-file';
+        const dotIndex = original.lastIndexOf('.');
+        const ext = dotIndex > -1 ? original.substring(dotIndex) : '';
+        const baseRaw = dotIndex > -1 ? original.substring(0, dotIndex) : original;
+        const originalName = baseRaw
+            .replace(/[^a-zA-Z0-9 _.-]/g, '')
+            .trim()
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^[-.]+|[-.]+$/g, '') || 'media-file';
         const filename = `${originalName}-${Date.now()}${ext}`;
         const filePath = join(mediaDir, filename);
 
         await writeFile(filePath, buffer);
 
-        // Return the public URL
-        return NextResponse.json({ success: true, url: `/media/${filename}` });
+        // Return API-served URL to avoid nginx static path conflicts.
+        return NextResponse.json({ success: true, url: `/api/serve/media/${encodeURIComponent(filename)}` });
     } catch (error: any) {
         console.error('Error uploading media file:', error);
         return NextResponse.json({ success: false, error: error.message || 'Upload failed' }, { status: 500 });

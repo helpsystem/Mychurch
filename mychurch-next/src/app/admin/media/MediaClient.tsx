@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useTransition, useCallback, useRef } from "react";
-import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus, Globe, GlobeLock } from "lucide-react";
-import { type MediaAsset, deleteMediaFile, listMediaFiles, toggleGalleryVisibility } from "@/actions/media";
+import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus, Globe, GlobeLock, Pencil, Link as LinkIcon } from "lucide-react";
+import { type MediaAsset, deleteMediaFile, listMediaFiles, renameMediaFile, toggleGalleryVisibility } from "@/actions/media";
 import { useRouter } from "next/navigation";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -104,6 +104,42 @@ export default function MediaClient({ initialFiles }: { initialFiles: MediaAsset
                 toast.error("خطا در همگام‌سازی با گالری: " + result.error);
             }
         });
+    };
+
+    const handleRename = (asset: MediaAsset) => {
+        const extIndex = asset.name.lastIndexOf('.');
+        const currentBase = extIndex > -1 ? asset.name.substring(0, extIndex) : asset.name;
+        const nextName = prompt("نام جدید فایل را وارد کنید / Enter new file name", currentBase);
+        if (!nextName || !nextName.trim()) return;
+
+        startTransition(async () => {
+            const result = await renameMediaFile(asset.name, nextName.trim());
+            if (result.success) {
+                toast.success("نام فایل با موفقیت تغییر کرد");
+                await refreshFiles();
+                if (previewFile?.name === asset.name) {
+                    const updatedName = result.newName || asset.name;
+                    const updatedExtIndex = updatedName.lastIndexOf('.');
+                    setPreviewFile((prev) => prev ? {
+                        ...prev,
+                        name: updatedName,
+                        url: `/api/serve/media/${encodeURIComponent(updatedName)}`,
+                    } : null);
+                }
+            } else {
+                toast.error("خطا در تغییر نام فایل", { description: result.error || "Rename failed" });
+            }
+        });
+    };
+
+    const handleCopyUrl = async (asset: MediaAsset) => {
+        try {
+            const absoluteUrl = `${window.location.origin}${asset.url}`;
+            await navigator.clipboard.writeText(absoluteUrl);
+            toast.success("لینک فایل کپی شد");
+        } catch {
+            toast.error("کپی لینک ناموفق بود");
+        }
     };
 
     // Derived filtered lists
@@ -317,6 +353,21 @@ export default function MediaClient({ initialFiles }: { initialFiles: MediaAsset
                                 سایز / Size: <span className="text-white font-mono">{formatBytes(previewFile.size)}</span>
                             </div>
                             <div className="space-x-2 flex items-center">
+                                <button
+                                    onClick={() => handleCopyUrl(previewFile)}
+                                    className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition font-[Vazirmatn] flex items-center gap-2"
+                                >
+                                    <LinkIcon className="w-4 h-4" />
+                                    کپی لینک
+                                </button>
+                                <button
+                                    onClick={() => handleRename(previewFile)}
+                                    disabled={isPending}
+                                    className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition disabled:opacity-50 font-[Vazirmatn] flex items-center gap-2"
+                                >
+                                    <Pencil className="w-4 h-4" />
+                                    تغییر نام
+                                </button>
                                 {previewFile.type === 'image' && (
                                     <button
                                         onClick={() => handleToggleGallery(previewFile)}
