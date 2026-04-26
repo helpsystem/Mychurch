@@ -2,6 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { hasAdminRoleOrPermission } from "@/lib/access-control";
 
 export type UserRow = {
     id: number;
@@ -12,7 +13,15 @@ export type UserRow = {
     permissions: Record<string, boolean>;
 };
 
+async function canManageUsers(): Promise<boolean> {
+    return hasAdminRoleOrPermission(["canManageUsers"]);
+}
+
 export async function getUsers(): Promise<UserRow[]> {
+    if (!(await canManageUsers())) {
+        return [];
+    }
+
     try {
         const supabase = await createClient();
         const { data, error } = await supabase
@@ -44,6 +53,10 @@ export async function getUsers(): Promise<UserRow[]> {
 }
 
 export async function updateUserRole(id: number, newRole: string) {
+    if (!(await canManageUsers())) {
+        return false;
+    }
+
     try {
         const supabase = await createClient();
         const { error } = await supabase
@@ -62,6 +75,10 @@ export async function updateUserRole(id: number, newRole: string) {
 }
 
 export async function updateUserPermissions(id: number, permissions: Record<string, boolean>) {
+    if (!(await canManageUsers())) {
+        return false;
+    }
+
     try {
         const supabase = await createClient();
         const { error } = await supabase
@@ -80,6 +97,10 @@ export async function updateUserPermissions(id: number, permissions: Record<stri
 }
 
 export async function deleteUser(id: number) {
+    if (!(await canManageUsers())) {
+        return false;
+    }
+
     try {
         const supabase = await createClient();
         const { error } = await supabase

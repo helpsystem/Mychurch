@@ -2,6 +2,7 @@
 
 import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { hasAdminRoleOrPermission } from "@/lib/access-control";
 
 export interface Leader {
     id: number;
@@ -12,7 +13,15 @@ export interface Leader {
     image_url?: string;
 }
 
+async function canManageLeaders(): Promise<boolean> {
+    return hasAdminRoleOrPermission(["canManageUsers"]);
+}
+
 export async function getLeaders(): Promise<Leader[]> {
+    if (!(await canManageLeaders())) {
+        return [];
+    }
+
     try {
         const { rows } = await query('SELECT * FROM leaders ORDER BY id ASC');
         return rows as Leader[];
@@ -28,6 +37,10 @@ export async function getLeaders(): Promise<Leader[]> {
 }
 
 export async function deleteLeader(id: number): Promise<{ success: boolean; error?: string }> {
+    if (!(await canManageLeaders())) {
+        return { success: false, error: 'Unauthorized' };
+    }
+
     try {
         await query('DELETE FROM leaders WHERE id = $1', [id]);
         revalidatePath('/admin/leaders');
@@ -39,6 +52,10 @@ export async function deleteLeader(id: number): Promise<{ success: boolean; erro
 }
 
 export async function upsertLeader(leader: Omit<Leader, 'id'> & { id?: number }): Promise<{ success: boolean; error?: string }> {
+    if (!(await canManageLeaders())) {
+        return { success: false, error: 'Unauthorized' };
+    }
+
     try {
         if (leader.id) {
             await query(

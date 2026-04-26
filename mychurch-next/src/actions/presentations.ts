@@ -5,6 +5,10 @@ import { revalidatePath } from "next/cache";
 import { BroadcastSession } from "@/types/broadcast";
 import { requireRole } from "@/utils/rbac";
 
+async function ensureBroadcastAccess() {
+    await requireRole(["Admin", "Leader", "Operator"]);
+}
+
 // Fallback in-memory storage for offline testing
 let mockPresentations: BroadcastSession[] = [];
 let schemaEnsurePromise: Promise<void> | null = null;
@@ -107,6 +111,8 @@ function normalizeSession(input: BroadcastSession): BroadcastSession {
 }
 
 export async function getPresentations(): Promise<BroadcastSession[]> {
+    await ensureBroadcastAccess();
+
     try {
         const { rows } = await query(`
             SELECT *
@@ -122,6 +128,8 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
 }
 
 export async function getPresentationById(id: string): Promise<BroadcastSession | null> {
+    await ensureBroadcastAccess();
+
     try {
         const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
         if (rows.length === 0) return null;
@@ -134,7 +142,7 @@ export async function getPresentationById(id: string): Promise<BroadcastSession 
 }
 
 export async function savePresentation(session: BroadcastSession): Promise<{ success: boolean; serverSaved: boolean; fallbackSaved?: boolean; error?: string }> {
-    await requireRole(["Admin", "Leader", "Operator"]);
+    await ensureBroadcastAccess();
 
     const safeSession = normalizeSession(session);
     if (!safeSession.id || !safeSession.title) {
@@ -142,7 +150,6 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
     }
 
     try {
-        await requireRole(["Admin", "Leader", "Operator"]);
         await ensurePresentationsSchemaOnce();
 
         await query(`
@@ -198,7 +205,7 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
 }
 
 export async function deletePresentation(id: string): Promise<{ success: boolean; error?: string }> {
-    await requireRole(["Admin", "Leader", "Operator"]);
+    await ensureBroadcastAccess();
 
     if (!id || id.length > 255) {
         return { success: false, error: "Invalid presentation id" };

@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
+import { hasRoleOrPermission } from '@/lib/access-control';
 
 export async function POST(req: Request) {
   try {
+    const allowed = await hasRoleOrPermission(['canManageWorship', 'canManageMedia']);
+    if (!allowed) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+    }
+
     const { input } = await req.json();
 
     if (!input || !input.trim()) {

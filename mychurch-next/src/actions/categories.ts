@@ -2,6 +2,7 @@
 
 import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { hasAdminRoleOrPermission } from "@/lib/access-control";
 
 export interface Category {
     id: number;
@@ -10,7 +11,15 @@ export interface Category {
     item_count: number;
 }
 
+async function canManageCategories(): Promise<boolean> {
+    return hasAdminRoleOrPermission(["canManageWidgets"]);
+}
+
 export async function getCategories(): Promise<Category[]> {
+    if (!(await canManageCategories())) {
+        return [];
+    }
+
     try {
         const { rows } = await query('SELECT * FROM categories ORDER BY id ASC');
         return rows as Category[];
@@ -26,6 +35,10 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 export async function deleteCategory(id: number): Promise<{ success: boolean; error?: string }> {
+    if (!(await canManageCategories())) {
+        return { success: false, error: 'Unauthorized' };
+    }
+
     try {
         await query('DELETE FROM categories WHERE id = $1', [id]);
         revalidatePath('/admin/categories');
@@ -37,6 +50,10 @@ export async function deleteCategory(id: number): Promise<{ success: boolean; er
 }
 
 export async function upsertCategory(cat: Omit<Category, 'id' | 'item_count'> & { id?: number }): Promise<{ success: boolean; error?: string }> {
+    if (!(await canManageCategories())) {
+        return { success: false, error: 'Unauthorized' };
+    }
+
     try {
         if (cat.id) {
             await query(

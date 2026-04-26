@@ -2,6 +2,7 @@
 
 import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { requireRole } from "@/utils/rbac";
 
 import { GoogleGenAI } from "@google/genai";
 
@@ -22,6 +23,10 @@ export interface WorshipSong {
     timing_data?: import('@/types/worship-sync').SystemTimingV2 | null;
     is_verified?: boolean;
     created_at?: Date;
+}
+
+async function ensureWorshipManagementAccess() {
+    await requireRole(["Admin", "Leader", "Operator"]);
 }
 
 export async function initializeWorshipDB() {
@@ -75,6 +80,8 @@ export async function getWorshipSongs(): Promise<WorshipSong[]> {
 }
 
 export async function createWorshipSong(data: Partial<WorshipSong>): Promise<{ success: boolean; id?: string }> {
+    await ensureWorshipManagementAccess();
+
     try {
         const { rows } = await query(
             `INSERT INTO church_worship_songs (title_fa, title_en, artist, youtube_id, audio_url, lyrics_fa, lyrics_en, lyrics_finglish, chords, category)
@@ -91,6 +98,8 @@ export async function createWorshipSong(data: Partial<WorshipSong>): Promise<{ s
 }
 
 export async function updateWorshipSong(id: string, data: Partial<WorshipSong>): Promise<{ success: boolean }> {
+    await ensureWorshipManagementAccess();
+
     try {
         await query(
             `UPDATE church_worship_songs 
@@ -108,6 +117,8 @@ export async function updateWorshipSong(id: string, data: Partial<WorshipSong>):
 }
 
 export async function deleteWorshipSong(id: string): Promise<{ success: boolean }> {
+    await ensureWorshipManagementAccess();
+
     try {
         await query(`DELETE FROM church_worship_songs WHERE id = $1`, [id]);
         revalidatePath('/worship');
@@ -120,6 +131,8 @@ export async function deleteWorshipSong(id: string): Promise<{ success: boolean 
 }
 
 export async function toggleSongVerification(id: string, isVerified: boolean): Promise<{ success: boolean; message?: string }> {
+    await ensureWorshipManagementAccess();
+
     try {
         await query("UPDATE church_worship_songs SET is_verified = $1 WHERE id = $2", [isVerified, id]);
         revalidatePath('/worship');
@@ -163,6 +176,8 @@ export async function toggleLikeWorshipSong(songId: string, userId: string): Pro
 }
 
 export async function extractWorshipSongAI(id: string): Promise<{ success: boolean; message?: string }> {
+    await ensureWorshipManagementAccess();
+
     console.log(`[AI-Wizard] Starting extraction for ID: ${id}`);
     try {
         const { rows } = await query("SELECT * FROM church_worship_songs WHERE id = $1", [id]);
@@ -400,6 +415,8 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
 }
 
 export async function getWorshipEnrichmentStats() {
+    await ensureWorshipManagementAccess();
+
     try {
         const { rows } = await query(`
             SELECT 
@@ -417,6 +434,8 @@ export async function getWorshipEnrichmentStats() {
 }
 
 export async function scanMissingAudio() {
+    await ensureWorshipManagementAccess();
+
     try {
         const fs = require('fs');
         const path = require('path');
@@ -454,6 +473,8 @@ export async function scanMissingAudio() {
 }
 
 export async function linkWorshipAudio(songId: string, fileName: string) {
+    await ensureWorshipManagementAccess();
+
     try {
         const audioUrl = `/worship/audio/kalameh/${fileName}`;
         await query("UPDATE church_worship_songs SET audio_url = $1 WHERE id = $2", [audioUrl, songId]);

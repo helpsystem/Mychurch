@@ -1,6 +1,7 @@
 // src/app/api/ai/letters/route.ts
 import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
+import { hasRoleOrPermission } from "@/lib/access-control";
 
 const getSystemPrompt = (mode: string, lang: string, topic?: string, body?: string) => {
   if (mode === "generate") {
@@ -49,6 +50,11 @@ ${body}`;
 
 export async function POST(req: Request) {
   try {
+    const allowed = await hasRoleOrPermission(["canManageWorship", "canManageMedia"]);
+    if (!allowed) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+    }
+
     const { mode, lang, topic, body } = await req.json();
 
     if (!mode || !lang) {

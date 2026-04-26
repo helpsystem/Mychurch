@@ -1,7 +1,7 @@
 "use server"
 
 import { createClient } from "@/utils/supabase/server";
-import { normalizeAssetUrl } from "@/lib/access-control";
+import { hasAdminRoleOrPermission, normalizeAssetUrl } from "@/lib/access-control";
 
 export interface GalleryImage {
     id: string;
@@ -44,6 +44,11 @@ export async function fetchGalleryImages(): Promise<GalleryImage[]> {
 }
 
 export async function deleteGalleryImage(id: string) {
+    const allowed = await hasAdminRoleOrPermission(["canManageMedia"]);
+    if (!allowed) {
+        throw new Error("Unauthorized");
+    }
+
     const supabase = await createClient();
     const { error } = await supabase.from("gallery_images").delete().eq("id", id);
     if (error) {

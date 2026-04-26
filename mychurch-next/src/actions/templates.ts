@@ -5,6 +5,10 @@ import { revalidatePath } from "next/cache";
 import { SlideTemplate, SessionTemplate, Slide } from "@/types/broadcast";
 import { requireRole } from "@/utils/rbac";
 
+async function ensureTemplateAccess() {
+    await requireRole(["Admin", "Leader", "Operator"]);
+}
+
 // ═══════════════════════════════════════════════════════════════════════════
 // DATABASE SCHEMA SETUP
 // ═══════════════════════════════════════════════════════════════════════════
@@ -63,6 +67,7 @@ export async function saveSlideAsTemplate(
     description?: { fa: string; en: string },
     tags?: string[]
 ): Promise<SlideTemplate> {
+    await ensureTemplateAccess();
     await ensureTemplatesSchema();
     
     const template: SlideTemplate = {
@@ -104,6 +109,7 @@ export async function saveSlideAsTemplate(
  * Get all slide templates
  */
 export async function getSlideTemplates(category?: string): Promise<SlideTemplate[]> {
+    await ensureTemplateAccess();
     await ensureTemplatesSchema();
 
     let sql = `SELECT * FROM slide_templates ORDER BY created_at DESC`;
@@ -134,6 +140,7 @@ export async function getSlideTemplates(category?: string): Promise<SlideTemplat
  * Delete a slide template
  */
 export async function deleteSlideTemplate(templateId: string): Promise<void> {
+    await ensureTemplateAccess();
     await query(`DELETE FROM slide_templates WHERE id = $1`, [templateId]);
     revalidatePath('/admin/broadcast');
 }
@@ -153,6 +160,7 @@ export async function saveSessionAsTemplate(
     tags?: string[],
     isPublic: boolean = false
 ): Promise<SessionTemplate> {
+    await ensureTemplateAccess();
     await ensureTemplatesSchema();
 
     const template: SessionTemplate = {
@@ -198,6 +206,7 @@ export async function saveSessionAsTemplate(
  * Get all session templates
  */
 export async function getSessionTemplates(category?: string): Promise<SessionTemplate[]> {
+    await ensureTemplateAccess();
     await ensureTemplatesSchema();
 
     let sql = `SELECT * FROM session_templates ORDER BY created_at DESC`;
@@ -230,6 +239,7 @@ export async function getSessionTemplates(category?: string): Promise<SessionTem
  * Toggle favorite status
  */
 export async function toggleFavoriteTemplate(templateId: string): Promise<void> {
+    await ensureTemplateAccess();
     await query(
         `UPDATE session_templates SET is_favorite = NOT is_favorite WHERE id = $1`,
         [templateId]
@@ -241,6 +251,7 @@ export async function toggleFavoriteTemplate(templateId: string): Promise<void> 
  * Delete a session template
  */
 export async function deleteSessionTemplate(templateId: string): Promise<void> {
+    await ensureTemplateAccess();
     await query(`DELETE FROM session_templates WHERE id = $1`, [templateId]);
     revalidatePath('/admin/broadcast');
 }
@@ -249,6 +260,7 @@ export async function deleteSessionTemplate(templateId: string): Promise<void> {
  * Search templates
  */
 export async function searchTemplates(searchTerm: string): Promise<{ slides: SlideTemplate[]; sessions: SessionTemplate[] }> {
+    await ensureTemplateAccess();
     await ensureTemplatesSchema();
 
     const searchPattern = `%${searchTerm}%`;

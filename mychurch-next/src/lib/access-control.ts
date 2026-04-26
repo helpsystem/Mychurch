@@ -55,6 +55,21 @@ export async function hasRoleOrPermission(permissionKeys: string[] = []): Promis
   return permissionKeys.some((key) => Boolean(context.permissions?.[key]));
 }
 
+export async function hasAdminRoleOrPermission(permissionKeys: string[] = []): Promise<boolean> {
+  const context = await getAccessContext();
+  if (!context.authenticated) return false;
+
+  if (context.role === "Admin") {
+    return true;
+  }
+
+  if (permissionKeys.length === 0) {
+    return false;
+  }
+
+  return permissionKeys.some((key) => Boolean(context.permissions?.[key]));
+}
+
 export function normalizeAssetUrl(url: string): string {
   if (!url) return url;
   if (/^https?:\/\//i.test(url)) return url;

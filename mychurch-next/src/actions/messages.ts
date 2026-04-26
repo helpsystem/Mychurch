@@ -2,6 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { hasAdminRoleOrPermission } from "@/lib/access-control";
 
 export type MessageRow = {
     id: string;
@@ -15,6 +16,10 @@ export type MessageRow = {
     is_read: boolean;
     created_at: string;
 };
+
+async function canManageMessages(): Promise<boolean> {
+    return hasAdminRoleOrPermission(["canManageMedia"]);
+}
 
 export async function submitMessage(data: Omit<MessageRow, "id" | "is_read" | "created_at">) {
     try {
@@ -34,6 +39,10 @@ export async function submitMessage(data: Omit<MessageRow, "id" | "is_read" | "c
 }
 
 export async function getMessages(): Promise<MessageRow[]> {
+    if (!(await canManageMessages())) {
+        return [];
+    }
+
     try {
         const supabase = await createClient();
         const { data, error } = await supabase
@@ -51,6 +60,10 @@ export async function getMessages(): Promise<MessageRow[]> {
 }
 
 export async function markMessageRead(id: string, is_read: boolean) {
+    if (!(await canManageMessages())) {
+        return { success: false };
+    }
+
     try {
         const supabase = await createClient();
         const { error } = await supabase
@@ -69,6 +82,10 @@ export async function markMessageRead(id: string, is_read: boolean) {
 }
 
 export async function deleteMessage(id: string) {
+    if (!(await canManageMessages())) {
+        return { success: false };
+    }
+
     try {
         const supabase = await createClient();
         const { error } = await supabase

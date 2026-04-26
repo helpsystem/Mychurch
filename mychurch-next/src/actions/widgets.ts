@@ -2,6 +2,7 @@
 
 import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { hasAdminRoleOrPermission } from "@/lib/access-control";
 
 export interface DashboardWidget {
     id: string;
@@ -15,6 +16,10 @@ export interface DashboardWidget {
 
 export type Widget = DashboardWidget;
 
+async function canManageWidgets(): Promise<boolean> {
+    return hasAdminRoleOrPermission(["canManageWidgets"]);
+}
+
 export async function getWidgets(): Promise<DashboardWidget[]> {
     try {
         const { rows } = await query('SELECT * FROM widgets ORDER BY name ASC');
@@ -26,6 +31,10 @@ export async function getWidgets(): Promise<DashboardWidget[]> {
 }
 
 export async function toggleWidget(id: string, currentStatus: boolean): Promise<{ success: boolean; error?: string }> {
+    if (!(await canManageWidgets())) {
+        return { success: false, error: 'Unauthorized' };
+    }
+
     try {
         await query('UPDATE widgets SET is_active = $1, updated_at = NOW() WHERE id = $2', [!currentStatus, id]);
 
@@ -63,6 +72,10 @@ export async function getGlobalPopupData(): Promise<{ isActive: boolean, config:
 }
 
 export async function updateWidgetConfig(id: string, config: any): Promise<boolean> {
+    if (!(await canManageWidgets())) {
+        return false;
+    }
+
     try {
         await query('UPDATE widgets SET config = $1, updated_at = NOW() WHERE id = $2', [config, id]);
 
