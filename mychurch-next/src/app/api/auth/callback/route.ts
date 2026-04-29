@@ -41,7 +41,10 @@ export async function GET(request: Request) {
         }
     }
 
-    let origin = requestUrl.origin;
+    const host = request.headers.get('x-forwarded-host') || request.headers.get('host');
+    const protocol = request.headers.get('x-forwarded-proto') || 'https';
+    let origin = host ? `${protocol}://${host}` : requestUrl.origin;
+
     // Fix for Next.js sometimes thinking localhost is https due to x-forwarded-proto
     if (origin.startsWith('https://localhost:')) {
         origin = origin.replace('https://', 'http://');
