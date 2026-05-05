@@ -109,6 +109,11 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
                     <p className="font-bold text-white mb-2">Security note / نکته امنیتی</p>
                     <p>Provider secret keys stay on the server. Use sandbox tokens for testing and update the admin settings to switch providers.</p>
                 </div>
+
+                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5 text-sm text-emerald-100/90">
+                    <p className="font-bold mb-2">Gift Display Status / وضعیت نمایشی هدایا</p>
+                    <p>After gift checkout starts and when payment returns, events are logged for Admin and Leader notifications in the Gifts section.</p>
+                </div>
             </div>
         </div>
     );

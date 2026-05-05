@@ -1,16 +1,32 @@
 import { NextResponse } from "next/server";
+import { recordGiftEvent } from "@/actions/gift-events";
 import { getPaymentConfig, getPaymentSecretKey } from "@/actions/payment-config";
 import { resolvePublicSiteUrl } from "@/lib/site-url";
 
 export async function POST() {
     const config = await getPaymentConfig();
+    const giftRef = (globalThis.crypto && (globalThis.crypto as any).randomUUID)
+        ? (globalThis.crypto as any).randomUUID()
+        : `gift-${Date.now()}`;
 
     if (!config.enabled) {
         return NextResponse.json({ error: "Payments are currently disabled" }, { status: 403 });
     }
 
     if (config.payment_link_url && config.checkout_mode === "payment") {
-        return NextResponse.json({ url: config.payment_link_url, mode: "payment_link" });
+        await recordGiftEvent({
+            provider: config.provider,
+            status: "checkout_started",
+            amount: Number(config.monthly_amount),
+            currency: config.currency || "usd",
+            giftRef,
+            source: "checkout-api",
+            metadata: { payment_link_mode: true },
+        });
+
+        const paymentLinkUrlObj = new URL(config.payment_link_url);
+        paymentLinkUrlObj.searchParams.set("gift_ref", giftRef);
+        return NextResponse.json({ url: paymentLinkUrlObj.toString(), mode: "payment_link", gift_ref: giftRef });
     }
 
     const secretKey = await getPaymentSecretKey(config.provider);
@@ -24,11 +40,28 @@ export async function POST() {
     const siteUrl = resolvePublicSiteUrl();
     const successPath = config.success_path || "/payment?status=success";
     const cancelPath = config.cancel_path || "/payment?status=cancelled";
-    const successUrl = new URL(successPath, siteUrl).toString();
-    const cancelUrl = new URL(cancelPath, siteUrl).toString();
+    const successURLObject = new URL(successPath, siteUrl);
+    const cancelURLObject = new URL(cancelPath, siteUrl);
+    successURLObject.searchParams.set("gift_ref", giftRef);
+    cancelURLObject.searchParams.set("gift_ref", giftRef);
+    const successUrl = successURLObject.toString();
+    const cancelUrl = cancelURLObject.toString();
     const amountInCents = Math.max(100, Math.round(Number(config.monthly_amount) * 100));
     const mode = config.checkout_mode === "payment" ? "payment" : "subscription";
     const productName = config.display_name_en || config.display_name_fa || "Monthly Support";
+
+    await recordGiftEvent({
+        provider: config.provider,
+        status: "checkout_started",
+        amount: Number(config.monthly_amount),
+        currency: config.currency || "usd",
+        giftRef,
+        source: "checkout-api",
+        metadata: {
+            checkout_mode: config.checkout_mode,
+            payment_link_mode: false,
+        },
+    });
 
     const params = new URLSearchParams();
     params.set("mode", mode);
@@ -104,16 +137,43 @@ export async function POST() {
             const linkData = await linkRes.json();
             if (!linkRes.ok) {
                 const message = linkData?.message || linkData?.errors || "Failed to create Square payment link";
+                await recordGiftEvent({
+                    provider: "square",
+                    status: "error",
+                    amount: Number(config.monthly_amount),
+                    currency: config.currency || "usd",
+                    giftRef,
+                    source: "checkout-api",
+                    metadata: { message: typeof message === "string" ? message : linkData?.errors || null },
+                });
                 return NextResponse.json({ error: typeof message === "string" ? message : JSON.stringify(message) }, { status: 400 });
             }
 
             const url = linkData?.payment_link?.url;
             if (!url) {
+                await recordGiftEvent({
+                    provider: "square",
+                    status: "error",
+                    amount: Number(config.monthly_amount),
+                    currency: config.currency || "usd",
+                    giftRef,
+                    source: "checkout-api",
+                    metadata: { message: "Square did not return a payment link URL" },
+                });
                 return NextResponse.json({ error: "Square did not return a payment link URL" }, { status: 400 });
             }
 
-            return NextResponse.json({ url, mode: "checkout" });
+            return NextResponse.json({ url, mode: "checkout", gift_ref: giftRef });
         } catch (err: any) {
+            await recordGiftEvent({
+                provider: "square",
+                status: "error",
+                amount: Number(config.monthly_amount),
+                currency: config.currency || "usd",
+                giftRef,
+                source: "checkout-api",
+                metadata: { message: err?.message || String(err) },
+            });
             return NextResponse.json({ error: err?.message || String(err) }, { status: 400 });
         }
     }
@@ -131,12 +191,30 @@ export async function POST() {
     const data = await response.json();
     if (!response.ok) {
         const message = data?.error?.message || data?.error || "Failed to create Stripe checkout session";
+        await recordGiftEvent({
+            provider: "stripe",
+            status: "error",
+            amount: Number(config.monthly_amount),
+            currency: config.currency || "usd",
+            giftRef,
+            source: "checkout-api",
+            metadata: { message },
+        });
         return NextResponse.json({ error: message }, { status: 400 });
     }
 
     if (!data?.url) {
+        await recordGiftEvent({
+            provider: "stripe",
+            status: "error",
+            amount: Number(config.monthly_amount),
+            currency: config.currency || "usd",
+            giftRef,
+            source: "checkout-api",
+            metadata: { message: "Stripe did not return a checkout URL" },
+        });
         return NextResponse.json({ error: "Stripe did not return a checkout URL" }, { status: 400 });
     }
 
-    return NextResponse.json({ url: data.url, mode: "checkout" });
+    return NextResponse.json({ url: data.url, mode: "checkout", gift_ref: giftRef });
 }
