@@ -65,7 +65,7 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
                             <CheckCircle2 className="w-5 h-5 mt-0.5" />
                             <div>
                                 <p className="font-bold">پرداخت با موفقیت شروع/تکمیل شد</p>
-                                <p className="text-sm text-emerald-100/80">Your Stripe checkout flow completed or was confirmed successfully.</p>
+                                <p className="text-sm text-emerald-100/80">Your payment was completed or confirmed successfully.</p>
                             </div>
                         </div>
                     )}
@@ -107,7 +107,7 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
 
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-white/70">
                     <p className="font-bold text-white mb-2">Security note / نکته امنیتی</p>
-                    <p>Stripe secret key stays on the server. You can switch from personal Stripe to the church account later by updating the settings page.</p>
+                    <p>Provider secret keys stay on the server. Use sandbox tokens for testing and update the admin settings to switch providers.</p>
                 </div>
             </div>
         </div>

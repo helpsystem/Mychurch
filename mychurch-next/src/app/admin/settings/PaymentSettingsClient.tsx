@@ -17,9 +17,17 @@ export default function PaymentSettingsClient({ initialConfig }: PaymentSettings
     const handleSave = async () => {
         setIsSaving(true);
         try {
+            const payload: any = { ...config };
+            if (config.provider === "square") {
+                payload.square_access_token = secretKeyInput || null;
+                payload.stripe_secret_key = null;
+            } else {
+                payload.stripe_secret_key = secretKeyInput || null;
+                payload.square_access_token = null;
+            }
+
             await updatePaymentConfig({
-                ...config,
-                stripe_secret_key: secretKeyInput || null,
+                ...payload,
             });
             setSecretKeyInput("");
             toast.success("Payment settings saved successfully");
@@ -43,8 +51,8 @@ export default function PaymentSettingsClient({ initialConfig }: PaymentSettings
                             <ShieldCheck className="w-6 h-6" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold text-white">Stripe Payments</h2>
-                            <p className="text-sm text-muted-foreground">Temporary personal connection now, easy switch to church later.</p>
+                            <h2 className="text-xl font-bold text-white">Payments</h2>
+                            <p className="text-sm text-muted-foreground">Configure Stripe or Square (use sandbox tokens for testing).</p>
                         </div>
                     </div>
 
@@ -154,8 +162,54 @@ export default function PaymentSettingsClient({ initialConfig }: PaymentSettings
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
+                        <label className="text-xs font-black uppercase tracking-widest text-muted-foreground pl-1">Provider</label>
+                        <select
+                            value={config.provider}
+                            onChange={(e) => setConfig({ ...config, provider: e.target.value as PaymentConfigClient["provider"] })}
+                            className="w-full bg-neutral-950 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-sm text-white"
+                        >
+                            <option value="stripe">Stripe</option>
+                            <option value="square">Square</option>
+                        </select>
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-xs font-black uppercase tracking-widest text-muted-foreground pl-1">Payment Link URL</label>
+                        <input
+                            value={config.payment_link_url || ""}
+                            onChange={(e) => setConfig({ ...config, payment_link_url: e.target.value })}
+                            className="w-full bg-neutral-950 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-sm text-white"
+                            placeholder="https://buy.stripe.com/... or Square payment link"
+                        />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <label className="text-xs font-black uppercase tracking-widest text-muted-foreground pl-1">Square Application ID</label>
+                        <input
+                            value={config.square_application_id || ""}
+                            onChange={(e) => setConfig({ ...config, square_application_id: e.target.value })}
+                            className="w-full bg-neutral-950 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-sm text-white font-mono"
+                            placeholder="sandbox-sq0idb-... or sq0idp-..."
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label className="text-xs font-black uppercase tracking-widest text-muted-foreground pl-1">Square Location ID (optional)</label>
+                        <input
+                            value={config.square_location_id || ""}
+                            onChange={(e) => setConfig({ ...config, square_location_id: e.target.value })}
+                            className="w-full bg-neutral-950 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-sm text-white font-mono"
+                            placeholder="LXXXXXXXXXXXX"
+                        />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
                         <label className="text-xs font-black uppercase tracking-widest text-muted-foreground pl-1 flex items-center gap-2">
-                            <KeyRound className="w-3 h-3" /> Publishable Key
+                            <KeyRound className="w-3 h-3" /> Stripe Publishable Key
                         </label>
                         <input
                             type="password"
@@ -165,16 +219,17 @@ export default function PaymentSettingsClient({ initialConfig }: PaymentSettings
                             placeholder="pk_test_..."
                         />
                     </div>
+
                     <div className="space-y-2">
                         <label className="text-xs font-black uppercase tracking-widest text-muted-foreground pl-1 flex items-center gap-2">
-                            <EyeOff className="w-3 h-3" /> Secret Key
+                            <EyeOff className="w-3 h-3" /> Secret Key (Stripe or Square)
                         </label>
                         <input
                             type="password"
                             value={secretKeyInput}
                             onChange={(e) => setSecretKeyInput(e.target.value)}
                             className="w-full bg-neutral-950 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all text-sm text-white font-mono"
-                            placeholder={config.stripe_secret_key_configured ? "Leave blank to keep existing secret" : "sk_test_..."}
+                            placeholder={config.stripe_secret_key_configured || config.square_access_token_configured ? "Leave blank to keep existing secret" : "sk_test_... / sandbox token"}
                         />
                         <p className="text-[10px] text-muted-foreground pl-1 flex items-center gap-1">
                             <AlertCircle className="w-3 h-3" /> Only admins can update this key. It is never shown back in the UI.
@@ -205,7 +260,7 @@ export default function PaymentSettingsClient({ initialConfig }: PaymentSettings
 
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/80 space-y-2">
                     <p className="font-bold text-white flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Deployment note</p>
-                    <p>Use your personal Stripe now, then switch keys and payment link later for the church without changing the public page.</p>
+                    <p>Use sandbox credentials for testing, then switch to production credentials later without changing the public payment page.</p>
                     <p className="text-white/60">برای جلوگیری از خطا، کلید secret فقط روی سرور نگه‌داری می‌شود و در UI نمایش داده نمی‌شود.</p>
                 </div>
             </section>

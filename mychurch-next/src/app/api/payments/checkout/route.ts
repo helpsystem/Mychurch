@@ -13,12 +13,12 @@ export async function POST() {
         return NextResponse.json({ url: config.payment_link_url, mode: "payment_link" });
     }
 
-    const secretKey = await getPaymentSecretKey();
+    const secretKey = await getPaymentSecretKey(config.provider);
     if (!secretKey) {
         if (config.payment_link_url) {
             return NextResponse.json({ url: config.payment_link_url, mode: "payment_link" });
         }
-        return NextResponse.json({ error: "Stripe secret key is not configured" }, { status: 400 });
+        return NextResponse.json({ error: "Payment provider secret key is not configured" }, { status: 400 });
     }
 
     const siteUrl = resolvePublicSiteUrl();
@@ -43,6 +43,82 @@ export async function POST() {
         params.set("line_items[0][price_data][recurring][interval]", "month");
     }
 
+    // Handle Square provider
+    if (config.provider === "square") {
+        try {
+            const appId = config.square_application_id || process.env.SQUARE_APPLICATION_ID || null;
+            const isSandbox = typeof appId === "string" && appId.startsWith("sandbox");
+            const base = isSandbox ? "https://connect.squareupsandbox.com" : "https://connect.squareup.com";
+
+            // Fetch locations to determine a location_id if not configured
+            let locationId = config.square_location_id || null;
+            if (!locationId) {
+                const locRes = await fetch(`${base}/v2/locations`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${secretKey}`,
+                        "Content-Type": "application/json",
+                    },
+                });
+                const locData = await locRes.json();
+                if (Array.isArray(locData?.locations) && locData.locations.length > 0) {
+                    locationId = locData.locations[0].id;
+                }
+            }
+
+            if (!locationId) {
+                throw new Error("Square location_id not found or configured");
+            }
+
+            const idempotency_key = (globalThis.crypto && (globalThis.crypto as any).randomUUID) ? (globalThis.crypto as any).randomUUID() : String(Date.now());
+
+            const body = {
+                idempotency_key,
+                order: {
+                    location_id: locationId,
+                    line_items: [
+                        {
+                            name: productName,
+                            quantity: "1",
+                            base_price_money: {
+                                amount: amountInCents,
+                                currency: (config.currency || "USD").toUpperCase(),
+                            },
+                        },
+                    ],
+                },
+                checkout_options: {
+                    redirect_url: successUrl,
+                },
+            };
+
+            const linkRes = await fetch(`${base}/v2/online-checkout/payment-links`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${secretKey}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+            });
+
+            const linkData = await linkRes.json();
+            if (!linkRes.ok) {
+                const message = linkData?.message || linkData?.errors || "Failed to create Square payment link";
+                return NextResponse.json({ error: typeof message === "string" ? message : JSON.stringify(message) }, { status: 400 });
+            }
+
+            const url = linkData?.payment_link?.url;
+            if (!url) {
+                return NextResponse.json({ error: "Square did not return a payment link URL" }, { status: 400 });
+            }
+
+            return NextResponse.json({ url, mode: "checkout" });
+        } catch (err: any) {
+            return NextResponse.json({ error: err?.message || String(err) }, { status: 400 });
+        }
+    }
+
+    // Fallback: Stripe
     const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
         method: "POST",
         headers: {

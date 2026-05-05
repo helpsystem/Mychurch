@@ -6,7 +6,7 @@ import { getUserRole } from "@/utils/rbac";
 export interface PaymentConfig {
     id: string;
     enabled: boolean;
-    provider: "stripe";
+    provider: "stripe" | "square";
     checkout_mode: "subscription" | "payment";
     monthly_amount: number;
     currency: string;
@@ -17,6 +17,9 @@ export interface PaymentConfig {
     payment_link_url: string | null;
     stripe_publishable_key: string | null;
     stripe_secret_key: string | null;
+    square_application_id: string | null;
+    square_access_token: string | null;
+    square_location_id: string | null;
     success_path: string;
     cancel_path: string;
     updated_at?: string;
@@ -24,6 +27,7 @@ export interface PaymentConfig {
 
 export interface PaymentConfigClient extends Omit<PaymentConfig, "stripe_secret_key"> {
     stripe_secret_key_configured: boolean;
+    square_access_token_configured: boolean;
 }
 
 const DEFAULT_PAYMENT_CONFIG: PaymentConfig = {
@@ -40,6 +44,9 @@ const DEFAULT_PAYMENT_CONFIG: PaymentConfig = {
     payment_link_url: null,
     stripe_publishable_key: null,
     stripe_secret_key: null,
+    square_application_id: null,
+    square_access_token: null,
+    square_location_id: null,
     success_path: "/payment?status=success",
     cancel_path: "/payment?status=cancelled",
 };
@@ -54,15 +61,15 @@ function normalizePath(value: unknown, fallback: string) {
 }
 
 function normalizePaymentConfig(data?: Partial<PaymentConfig> | null): PaymentConfigClient {
-    const { stripe_secret_key: _defaultSecret, ...safeDefaults } = DEFAULT_PAYMENT_CONFIG;
-    const { stripe_secret_key: _incomingSecret, ...safeIncoming } = data ?? {};
+    const { stripe_secret_key: _defaultSecret, square_access_token: _defaultSquare, ...safeDefaults } = DEFAULT_PAYMENT_CONFIG;
+    const { stripe_secret_key: _incomingSecret, square_access_token: _incomingSquare, ...safeIncoming } = data ?? {};
 
     return {
         ...safeDefaults,
         ...safeIncoming,
         id: data?.id || "default",
         enabled: Boolean(data?.enabled),
-        provider: data?.provider === "stripe" ? "stripe" : DEFAULT_PAYMENT_CONFIG.provider,
+        provider: data?.provider === "square" ? "square" : DEFAULT_PAYMENT_CONFIG.provider,
         checkout_mode: data?.checkout_mode === "payment" ? "payment" : "subscription",
         monthly_amount: Number.isFinite(Number(data?.monthly_amount)) ? Number(data?.monthly_amount) : DEFAULT_PAYMENT_CONFIG.monthly_amount,
         currency: (typeof data?.currency === "string" && data.currency.trim()) ? data.currency.trim().toLowerCase() : DEFAULT_PAYMENT_CONFIG.currency,
@@ -73,6 +80,9 @@ function normalizePaymentConfig(data?: Partial<PaymentConfig> | null): PaymentCo
         payment_link_url: typeof data?.payment_link_url === "string" && data.payment_link_url.trim() ? data.payment_link_url.trim() : null,
         stripe_publishable_key: typeof data?.stripe_publishable_key === "string" && data.stripe_publishable_key.trim() ? data.stripe_publishable_key.trim() : null,
         stripe_secret_key_configured: Boolean(data?.stripe_secret_key),
+        square_application_id: typeof data?.square_application_id === "string" && data.square_application_id.trim() ? data.square_application_id.trim() : null,
+        square_access_token_configured: Boolean(data?.square_access_token),
+        square_location_id: typeof data?.square_location_id === "string" && data.square_location_id.trim() ? data.square_location_id.trim() : null,
         success_path: normalizePath(data?.success_path, DEFAULT_PAYMENT_CONFIG.success_path),
         cancel_path: normalizePath(data?.cancel_path, DEFAULT_PAYMENT_CONFIG.cancel_path),
         updated_at: data?.updated_at,
@@ -84,7 +94,7 @@ async function ensurePaymentSettingsSchema() {
         CREATE TABLE IF NOT EXISTS church_payment_settings (
             id TEXT PRIMARY KEY DEFAULT 'default',
             enabled BOOLEAN DEFAULT FALSE,
-            provider TEXT DEFAULT 'stripe' CHECK (provider IN ('stripe')),
+            provider TEXT DEFAULT 'stripe' CHECK (provider IN ('stripe','square')),
             checkout_mode TEXT DEFAULT 'subscription' CHECK (checkout_mode IN ('subscription', 'payment')),
             monthly_amount NUMERIC(12, 2) DEFAULT 25,
             currency TEXT DEFAULT 'usd',
@@ -95,6 +105,9 @@ async function ensurePaymentSettingsSchema() {
             payment_link_url TEXT,
             stripe_publishable_key TEXT,
             stripe_secret_key TEXT,
+            square_application_id TEXT,
+            square_access_token TEXT,
+            square_location_id TEXT,
             success_path TEXT DEFAULT '/payment?status=success',
             cancel_path TEXT DEFAULT '/payment?status=cancelled',
             updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
@@ -113,6 +126,9 @@ async function ensurePaymentSettingsSchema() {
     await query(`ALTER TABLE church_payment_settings ADD COLUMN IF NOT EXISTS payment_link_url TEXT`);
     await query(`ALTER TABLE church_payment_settings ADD COLUMN IF NOT EXISTS stripe_publishable_key TEXT`);
     await query(`ALTER TABLE church_payment_settings ADD COLUMN IF NOT EXISTS stripe_secret_key TEXT`);
+    await query(`ALTER TABLE church_payment_settings ADD COLUMN IF NOT EXISTS square_application_id TEXT`);
+    await query(`ALTER TABLE church_payment_settings ADD COLUMN IF NOT EXISTS square_access_token TEXT`);
+    await query(`ALTER TABLE church_payment_settings ADD COLUMN IF NOT EXISTS square_location_id TEXT`);
     await query(`ALTER TABLE church_payment_settings ADD COLUMN IF NOT EXISTS success_path TEXT DEFAULT '/payment?status=success'`);
     await query(`ALTER TABLE church_payment_settings ADD COLUMN IF NOT EXISTS cancel_path TEXT DEFAULT '/payment?status=cancelled'`);
 
@@ -140,16 +156,31 @@ export async function getPaymentConfig(): Promise<PaymentConfigClient> {
     }
 }
 
-export async function getPaymentSecretKey(): Promise<string | null> {
+export async function getPaymentSecretKey(provider?: PaymentConfig["provider"]): Promise<string | null> {
     try {
         await ensurePaymentSettingsSchema();
-        const { rows } = await query("SELECT stripe_secret_key FROM church_payment_settings WHERE id = 'default'");
-        const stored = rows[0]?.stripe_secret_key;
-        const envKey = process.env.STRIPE_SECRET_KEY || process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY || null;
-        return typeof stored === "string" && stored.trim() ? stored.trim() : envKey;
+        const { rows } = await query("SELECT stripe_secret_key, square_access_token FROM church_payment_settings WHERE id = 'default'");
+        const storedStripe = rows[0]?.stripe_secret_key;
+        const storedSquare = rows[0]?.square_access_token;
+        const envStripe = process.env.STRIPE_SECRET_KEY || process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY || null;
+        const envSquare = process.env.SQUARE_ACCESS_TOKEN || null;
+
+        if (provider === "square") {
+            if (typeof storedSquare === "string" && storedSquare.trim()) return storedSquare.trim();
+            return envSquare;
+        }
+
+        // Default to Stripe for backwards compatibility.
+        if (typeof storedStripe === "string" && storedStripe.trim()) return storedStripe.trim();
+        if (envStripe) return envStripe;
+        if (typeof storedSquare === "string" && storedSquare.trim()) return storedSquare.trim();
+        return envSquare;
     } catch (error) {
         console.error("[PaymentConfig] Error reading secret key:", error);
-        return process.env.STRIPE_SECRET_KEY || null;
+        if (provider === "square") {
+            return process.env.SQUARE_ACCESS_TOKEN || null;
+        }
+        return process.env.STRIPE_SECRET_KEY || process.env.SQUARE_ACCESS_TOKEN || null;
     }
 }
 
@@ -168,13 +199,14 @@ async function assertAdminAccess() {
     }
 }
 
-export async function updatePaymentConfig(config: Partial<PaymentConfigClient> & { stripe_secret_key?: string | null }) {
+export async function updatePaymentConfig(config: Partial<PaymentConfigClient> & { stripe_secret_key?: string | null, square_access_token?: string | null }) {
     await ensurePaymentSettingsSchema();
     await assertAdminAccess();
 
     const currentConfig = await getPaymentConfig();
     const nextConfig = normalizePaymentConfig({ ...currentConfig, ...config });
     const secretKey = typeof config.stripe_secret_key === "string" ? config.stripe_secret_key.trim() : "";
+    const squareSecret = typeof config.square_access_token === "string" ? config.square_access_token.trim() : "";
 
     const { createClient } = await import("@/utils/supabase/server");
     const supabase = await createClient();
@@ -192,6 +224,8 @@ export async function updatePaymentConfig(config: Partial<PaymentConfigClient> &
         description_fa: nextConfig.description_fa,
         payment_link_url: nextConfig.payment_link_url,
         stripe_publishable_key: nextConfig.stripe_publishable_key,
+        square_application_id: nextConfig.square_application_id,
+        square_location_id: nextConfig.square_location_id,
         success_path: nextConfig.success_path,
         cancel_path: nextConfig.cancel_path,
         updated_at: new Date().toISOString(),
@@ -199,6 +233,9 @@ export async function updatePaymentConfig(config: Partial<PaymentConfigClient> &
 
     if (secretKey) {
         payload.stripe_secret_key = secretKey;
+    }
+    if (squareSecret) {
+        payload.square_access_token = squareSecret;
     }
 
     const { error } = await supabase
