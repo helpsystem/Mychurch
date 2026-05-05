@@ -1,0 +1,1 @@
+ssh root@samanabyar.online "sed -i '/proxy_cache_bypass/a \        proxy_buffer_size 128k;\n        proxy_buffers 4 256k;\n        proxy_busy_buffers_size 256k;' /etc/nginx/sites-available/iranianchurchdc && systemctl restart nginx"
