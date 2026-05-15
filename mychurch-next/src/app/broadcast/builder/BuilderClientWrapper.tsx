@@ -25,9 +25,17 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     const [isPending, startTransition] = useTransition();
     const [isOpeningPresenter, setIsOpeningPresenter] = useState(false);
     const [templateModalOpen, setTemplateModalOpen] = useState(false);
+    const [isAutoSaveInProgress, setIsAutoSaveInProgress] = useState(false);
     const viewerChannelRef = useRef<BroadcastChannel | null>(null);
+    const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const { t, language } = useLanguage();
     const router = useRouter();
+
+    useEffect(() => {
+        return () => {
+            if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+        };
+    }, []);
 
     useEffect(() => {
         const sessionId = session.id;
@@ -67,6 +75,12 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     }, [session.id, session.slides, activeSlideIndex]);
 
     useEffect(() => {
+        return () => {
+            if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+        };
+    }, []);
+
+    useEffect(() => {
         if (!session.id || !viewerChannelRef.current) return;
         const currentSlide = session.slides[activeSlideIndex] || null;
         viewerChannelRef.current.postMessage({
@@ -98,6 +112,17 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
         },
     };
 
+    const canTransitionTo = (from: BroadcastSession['status'], to: BroadcastSession['status']): boolean => {
+        if (from === to) return false;
+        const allowedTransitions: Record<BroadcastSession['status'], BroadcastSession['status'][]> = {
+            draft: ['ready'],
+            ready: ['live', 'draft'],
+            live: ['ended'],
+            ended: ['ready'],
+        };
+        return allowedTransitions[from]?.includes(to) ?? false;
+    };
+
     const formatDateForInput = (value: Date | string) => {
         const date = value instanceof Date ? value : new Date(value);
         if (Number.isNaN(date.getTime())) return "";
@@ -117,43 +142,57 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
 
 
     const handleSave = () => {
-        startTransition(async () => {
-             const res = await savePresentation(session);
-             if (!res.success) {
-                 toast.error(res.error || t.saveError || "Error");
-                 return;
-             }
+        if (isPending || isAutoSaveInProgress) {
+            toast.info(language === 'fa' ? 'ذخیره در حال انجام است...' : 'Save in progress...');
+            return;
+        }
 
-             if (res.serverSaved) {
-                 const statusLabel = statusInfo[session.status]?.label || "وضعیت نامشخص";
-                 toast.success(`ذخیره شد: ${statusLabel}`);
+        if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
 
-                 if (session.status === "ready" || session.status === "live") {
-                     try {
-                         const tokenRes = await fetch('/api/broadcast/viewer-token', {
-                             method: 'POST',
-                             headers: { 'Content-Type': 'application/json' },
-                             body: JSON.stringify({ sessionId: session.id }),
-                         });
+        saveTimeoutRef.current = setTimeout(() => {
+            startTransition(async () => {
+                setIsAutoSaveInProgress(true);
+                try {
+                    const res = await savePresentation(session);
+                    if (!res.success) {
+                        toast.error(res.error || t.saveError || "Error");
+                        return;
+                    }
 
-                         const tokenData = await tokenRes.json();
-                         if (!tokenRes.ok || !tokenData?.token) {
-                             throw new Error(tokenData?.error || 'token_failed');
-                         }
+                    if (res.serverSaved) {
+                        const statusLabel = statusInfo[session.status]?.label || "وضعیت نامشخص";
+                        toast.success(`ذخیره شد: ${statusLabel}`);
 
-                         router.push(`/broadcast/view?session=${encodeURIComponent(session.id)}&token=${encodeURIComponent(tokenData.token)}`);
-                         return;
-                     } catch {
-                         toast.error("ذخیره انجام شد اما لینک Viewer امن ساخته نشد.");
-                         return;
-                     }
-                 }
+                        if (session.status === "ready" || session.status === "live") {
+                            try {
+                                const tokenRes = await fetch('/api/broadcast/viewer-token', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ sessionId: session.id }),
+                                });
 
-                 return;
-             }
+                                const tokenData = await tokenRes.json();
+                                if (!tokenRes.ok || !tokenData?.token) {
+                                    throw new Error(tokenData?.error || 'token_failed');
+                                }
 
-             toast.error(res.error || "ذخیره در سرور انجام نشد. در همین صفحه بمانید و دوباره تلاش کنید.");
-        });
+                                router.push(`/broadcast/view?session=${encodeURIComponent(session.id)}&token=${encodeURIComponent(tokenData.token)}`);
+                                return;
+                            } catch {
+                                toast.error("ذخیره انجام شد اما لینک Viewer امن ساخته نشد.");
+                                return;
+                            }
+                        }
+
+                        return;
+                    }
+
+                    toast.error(res.error || "ذخیره در سرور انجام نشد. در همین صفحه بمانید و دوباره تلاش کنید.");
+                } finally {
+                    setIsAutoSaveInProgress(false);
+                }
+            });
+        }, 500);
     };
 
     const handleOpenPresenter = async () => {
@@ -211,16 +250,28 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                             aria-label="Session Date"
                         />
                     </div>
-                    <select 
+                    <select
                         title="Presentation Status"
                         value={session.status}
-                        onChange={(e) => setSession({...session, status: e.target.value as any})}
+                        onChange={(e) => {
+                          const newStatus = e.target.value as BroadcastSession['status'];
+                          if (['draft', 'ready', 'live', 'ended'].includes(newStatus)) {
+                            if (canTransitionTo(session.status, newStatus)) {
+                              setSession({...session, status: newStatus});
+                            } else {
+                              toast.error(language === 'fa'
+                                ? `تغییر از ${statusInfo[session.status].label} به ${statusInfo[newStatus].label} مجاز نیست`
+                                : `Cannot transition from ${statusInfo[session.status].label} to ${statusInfo[newStatus].label}`
+                              );
+                            }
+                          }
+                        }}
                         className="bg-neutral-900 border border-white/20 rounded-md text-xs px-2 py-1 text-muted-foreground focus:outline-none"
                     >
-                        <option value="draft">{statusInfo.draft.label}</option>
-                        <option value="ready">{statusInfo.ready.label}</option>
-                        <option value="live">{statusInfo.live.label}</option>
-                        <option value="ended">{statusInfo.ended.label}</option>
+                        <option value="draft" disabled={!canTransitionTo(session.status, 'draft')}>{statusInfo.draft.label}</option>
+                        <option value="ready" disabled={!canTransitionTo(session.status, 'ready')}>{statusInfo.ready.label}</option>
+                        <option value="live" disabled={!canTransitionTo(session.status, 'live')}>{statusInfo.live.label}</option>
+                        <option value="ended" disabled={!canTransitionTo(session.status, 'ended')}>{statusInfo.ended.label}</option>
                     </select>
                 </div>
                 

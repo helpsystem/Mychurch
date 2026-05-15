@@ -50,6 +50,17 @@ export default function PresentationsClient({ initialPresentations }: { initialP
         },
     ];
 
+    const canTransitionTo = (from: BroadcastSession['status'], to: BroadcastSession['status']): boolean => {
+        if (from === to) return false;
+        const allowedTransitions: Record<BroadcastSession['status'], BroadcastSession['status'][]> = {
+            draft: ['ready', 'deleted'],
+            ready: ['live', 'draft', 'deleted'],
+            live: ['ended'],
+            ended: ['ready', 'deleted'],
+        };
+        return allowedTransitions[from]?.includes(to) ?? false;
+    };
+
     const statusLabel: Record<BroadcastSession['status'], string> = {
         draft: 'پیش نویس',
         ready: 'آماده پخش',

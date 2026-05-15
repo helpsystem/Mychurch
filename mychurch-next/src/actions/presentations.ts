@@ -180,7 +180,10 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
         }
 
         const persisted = verify.rows[0];
-        const persistedSlideCount = Array.isArray(persisted.slides_json) ? persisted.slides_json.length : 0;
+        const slidesArray = Array.isArray(persisted.slides_json)
+            ? persisted.slides_json
+            : JSON.parse(persisted.slides_json || '[]');
+        const persistedSlideCount = slidesArray.length;
         if (persisted.status !== safeSession.status || persistedSlideCount !== safeSession.slides.length) {
             return { success: false, serverSaved: false, error: 'ذخیره ناقص بود. لطفا دوباره ذخیره کنید.' };
         }

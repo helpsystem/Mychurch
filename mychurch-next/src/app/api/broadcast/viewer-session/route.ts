@@ -1,9 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
 import { query } from "@/lib/db";
-import { createHmac, timingSafeEqual } from "crypto";
+import crypto from "crypto";
 
-const TOKEN_SECRET = process.env.BROADCAST_VIEWER_TOKEN_SECRET || process.env.NEXTAUTH_SECRET || "dev-only-change-me";
 const MAX_SESSION_ID_LENGTH = 128;
+
+function getSecret(): string {
+  return (
+    process.env.BROADCAST_VIEWER_SECRET ||
+    process.env.BROADCAST_VIEWER_TOKEN_SECRET ||
+    process.env.NEXTAUTH_SECRET ||
+    "dev-broadcast-secret"
+  );
+}
+
+function toBase64Url(input: Buffer | string): string {
+  return Buffer.from(input)
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+}
+
+function fromBase64Url(input: string): Buffer {
+  const base64 = input.replace(/-/g, "+").replace(/_/g, "/");
+  const padded = base64 + "=".repeat((4 - (base64.length % 4)) % 4);
+  return Buffer.from(padded, "base64");
+}
+
+function sign(payloadBase64Url: string): string {
+  return toBase64Url(
+    crypto.createHmac("sha256", getSecret()).update(payloadBase64Url).digest()
+  );
+}
 
 function normalizeSessionId(sessionId: unknown): string | null {
   if (typeof sessionId !== "string") return null;
@@ -13,37 +41,33 @@ function normalizeSessionId(sessionId: unknown): string | null {
   return trimmed;
 }
 
-function fromBase64Url(value: string): string {
-  const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
-  const padLen = (4 - (normalized.length % 4)) % 4;
-  const padded = normalized + "=".repeat(padLen);
-  return Buffer.from(padded, "base64").toString("utf8");
-}
-
-function sign(payloadBase64Url: string): string {
-  return createHmac("sha256", TOKEN_SECRET).update(payloadBase64Url).digest("base64url");
-}
-
 function verifyToken(token: string, sessionId: string): { ok: boolean; reason?: string } {
-  const [payload, signature] = token.split(".");
-  if (!payload || !signature) return { ok: false, reason: "malformed" };
+  const parts = token.split(".");
+  if (parts.length !== 2) return { ok: false, reason: "malformed" };
 
-  const expectedSig = sign(payload);
-  const sigBuffer = Buffer.from(signature);
-  const expectedBuffer = Buffer.from(expectedSig);
-  if (sigBuffer.length !== expectedBuffer.length || !timingSafeEqual(sigBuffer, expectedBuffer)) {
-    return { ok: false, reason: "bad-signature" };
+  const [payloadPart, sigPart] = parts;
+  const expectedSig = sign(payloadPart);
+
+  const sigA = Buffer.from(sigPart);
+  const sigB = Buffer.from(expectedSig);
+  if (sigA.length !== sigB.length || !crypto.timingSafeEqual(sigA, sigB)) {
+    return { ok: false, reason: "signature" };
   }
 
   try {
-    const parsed = JSON.parse(fromBase64Url(payload)) as { s?: string; e?: number };
-    if (parsed.s !== sessionId) return { ok: false, reason: "session-mismatch" };
-    if (typeof parsed.e !== "number" || Number.isNaN(parsed.e)) return { ok: false, reason: "bad-exp" };
-    const now = Math.floor(Date.now() / 1000);
-    if (parsed.e < now) return { ok: false, reason: "expired" };
+    const decoded = JSON.parse(fromBase64Url(payloadPart).toString("utf8")) as {
+      s?: string;
+      e?: number;
+    };
+
+    if (!decoded?.s || decoded.s !== sessionId) return { ok: false, reason: "session" };
+    if (!decoded?.e || Math.floor(Date.now() / 1000) > decoded.e) {
+      return { ok: false, reason: "expired" };
+    }
+
     return { ok: true };
   } catch {
-    return { ok: false, reason: "bad-payload" };
+    return { ok: false, reason: "payload" };
   }
 }
 
@@ -71,7 +95,21 @@ export async function GET(req: NextRequest) {
     }
 
     const row = rows[0] as { id: string; slides_json?: unknown; slides?: unknown };
-    const rawSlides = Array.isArray(row.slides_json) ? row.slides_json : Array.isArray(row.slides) ? row.slides : [];
+    let rawSlides: unknown[];
+
+    if (Array.isArray(row.slides_json)) {
+      rawSlides = row.slides_json;
+    } else if (typeof row.slides_json === 'string') {
+      try {
+        rawSlides = JSON.parse(row.slides_json);
+      } catch {
+        rawSlides = [];
+      }
+    } else if (Array.isArray(row.slides)) {
+      rawSlides = row.slides;
+    } else {
+      rawSlides = [];
+    }
 
     return NextResponse.json({ ok: true, sessionId: row.id, slides: rawSlides });
   } catch {
