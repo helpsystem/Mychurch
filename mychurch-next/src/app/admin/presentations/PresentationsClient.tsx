@@ -53,10 +53,10 @@ export default function PresentationsClient({ initialPresentations }: { initialP
     const canTransitionTo = (from: BroadcastSession['status'], to: BroadcastSession['status']): boolean => {
         if (from === to) return false;
         const allowedTransitions: Record<BroadcastSession['status'], BroadcastSession['status'][]> = {
-            draft: ['ready', 'deleted'],
-            ready: ['live', 'draft', 'deleted'],
+            draft: ['ready'],
+            ready: ['live', 'draft'],
             live: ['ended'],
-            ended: ['ready', 'deleted'],
+            ended: ['ready'],
         };
         return allowedTransitions[from]?.includes(to) ?? false;
     };
