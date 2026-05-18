@@ -12,6 +12,8 @@ export interface MediaAsset {
     type: "image" | "video" | "audio" | "other";
     size: number;
     createdAt: number;
+    folder?: string;
+    visibility?: 'public' | 'admin' | 'user';
     inGallery?: boolean;
     galleryId?: string;
 }
@@ -82,7 +84,9 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
                     url: buildMediaUrl(file),
                     type: getFileType(file),
                     size: stats.size,
-                    createdAt: stats.birthtimeMs || stats.mtimeMs // fallback for Linux
+                    createdAt: stats.birthtimeMs || stats.mtimeMs, // fallback for Linux
+                    folder: '',
+                    visibility: 'admin'
                 });
             }
         }
@@ -90,11 +94,11 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
         // Sort newest first
         assets = assets.sort((a, b) => b.createdAt - a.createdAt);
 
-        // Check which images are in the Public Gallery
+        // Check which images are in the Public Gallery and get their visibility
         const supabase = await createClient();
         const { data: galleryImages } = await supabase
             .from('gallery_images')
-            .select('id, src');
+            .select('id, src, visibility, folder');
 
         if (galleryImages) {
             assets = assets.map(asset => {
@@ -103,7 +107,9 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
                 return {
                     ...asset,
                     inGallery: !!galleryEntry,
-                    galleryId: galleryEntry?.id
+                    galleryId: galleryEntry?.id,
+                    visibility: (galleryEntry?.visibility as 'public' | 'admin' | 'user' | null) || 'admin',
+                    folder: galleryEntry?.folder || ''
                 };
             });
         }
@@ -226,6 +232,8 @@ export async function toggleGalleryVisibility(asset: MediaAsset): Promise<{ succ
                 width: 800, // Default fallback
                 height: 600, // Default fallback
                 title: asset.name.split('.')[0],
+                visibility: 'admin',
+                folder: ''
             });
             if (error) throw error;
         }
@@ -237,4 +245,56 @@ export async function toggleGalleryVisibility(asset: MediaAsset): Promise<{ succ
         console.error("Error toggling gallery visibility:", error);
         return { success: false, error: error.message };
     }
+}
+
+export async function updateMediaVisibility(
+    assetUrl: string,
+    visibility: 'public' | 'admin' | 'user'
+): Promise<{ success: boolean; error?: string }> {
+    if (!(await canAccessMediaLibrary())) {
+        return { success: false, error: "Unauthorized" };
+    }
+
+    try {
+        const supabase = await createClient();
+        const normalizedUrl = normalizeAssetUrl(assetUrl);
+
+        if (!assetUrl) {
+            return { success: false, error: "Invalid asset URL" };
+        }
+
+        // Update visibility in gallery_images
+        const { error } = await supabase
+            .from('gallery_images')
+            .update({ visibility })
+            .in('src', buildGalleryUrlVariants(path.basename(assetUrl)));
+
+        if (error) throw error;
+
+        revalidatePath("/admin/media");
+        revalidatePath("/gallery");
+        return { success: true };
+    } catch (error: any) {
+        console.error("Error updating media visibility:", error);
+        return { success: false, error: error.message };
+    }
+}
+
+export async function canViewMediaByVisibility(visibility?: 'public' | 'admin' | 'user'): Promise<boolean> {
+    if (!visibility || visibility === 'public') {
+        return true;
+    }
+
+    if (visibility === 'admin') {
+        return hasRoleOrPermission(['Admin', 'Leader']);
+    }
+
+    if (visibility === 'user') {
+        // Any authenticated user can view 'user' visibility
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        return !!user;
+    }
+
+    return false;
 }

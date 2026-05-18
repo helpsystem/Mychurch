@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useTransition, useCallback, useRef } from "react";
-import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus, Globe, GlobeLock, Pencil, Link as LinkIcon } from "lucide-react";
-import { type MediaAsset, deleteMediaFile, listMediaFiles, renameMediaFile, toggleGalleryVisibility } from "@/actions/media";
+import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus, Globe, GlobeLock, Pencil, Link as LinkIcon, Lock, Users } from "lucide-react";
+import { type MediaAsset, deleteMediaFile, listMediaFiles, renameMediaFile, toggleGalleryVisibility, updateMediaVisibility } from "@/actions/media";
 import { useRouter } from "next/navigation";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -140,6 +140,22 @@ export default function MediaClient({ initialFiles }: { initialFiles: MediaAsset
         } catch {
             toast.error("کپی لینک ناموفق بود");
         }
+    };
+
+    const handleChangeVisibility = (asset: MediaAsset, newVisibility: 'public' | 'admin' | 'user') => {
+        startTransition(async () => {
+            const result = await updateMediaVisibility(asset.url, newVisibility);
+            if (result.success) {
+                const visibilityNames = { public: 'عمومی', admin: 'تنها ادمین', user: 'کاربران ثبت‌نام‌شده' };
+                toast.success(`دسترسی فایل تغییر کرد`, { description: `اکنون ${visibilityNames[newVisibility]}` });
+                await refreshFiles();
+                if (previewFile) {
+                    setPreviewFile({ ...previewFile, visibility: newVisibility });
+                }
+            } else {
+                toast.error("خطا در تغییر دسترسی", { description: result.error || "Change visibility failed" });
+            }
+        });
     };
 
     // Derived filtered lists
@@ -348,64 +364,94 @@ export default function MediaClient({ initialFiles }: { initialFiles: MediaAsset
                             )}
                         </div>
 
-                        <div className="p-4 bg-neutral-950 flex justify-between items-center text-sm">
-                            <div className="text-muted-foreground">
-                                سایز / Size: <span className="text-white font-mono">{formatBytes(previewFile.size)}</span>
-                            </div>
-                            <div className="space-x-2 flex items-center">
-                                <button
-                                    onClick={() => handleCopyUrl(previewFile)}
-                                    className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition font-[Vazirmatn] flex items-center gap-2"
-                                >
-                                    <LinkIcon className="w-4 h-4" />
-                                    کپی لینک
-                                </button>
-                                <button
-                                    onClick={() => handleRename(previewFile)}
-                                    disabled={isPending}
-                                    className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition disabled:opacity-50 font-[Vazirmatn] flex items-center gap-2"
-                                >
-                                    <Pencil className="w-4 h-4" />
-                                    تغییر نام
-                                </button>
-                                {previewFile.type === 'image' && (
+                        <div className="p-4 bg-neutral-950 space-y-4">
+                            {/* Visibility Controls */}
+                            {previewFile.inGallery && (
+                                <div className="space-y-2">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-muted-foreground">دسترسی / Visibility</label>
+                                    <div className="flex flex-wrap gap-2">
+                                        {(['public', 'admin', 'user'] as const).map(level => {
+                                            const labels = { public: 'عمومی / Public', admin: 'تنها ادمین / Admin Only', user: 'کاربران ثبت‌نام‌شده / Users' };
+                                            const icons = { public: <Globe className="w-3.5 h-3.5" />, admin: <Lock className="w-3.5 h-3.5" />, user: <Users className="w-3.5 h-3.5" /> };
+                                            return (
+                                                <button
+                                                    key={level}
+                                                    onClick={() => handleChangeVisibility(previewFile, level)}
+                                                    disabled={isPending}
+                                                    className={`px-3 py-1.5 rounded-lg transition disabled:opacity-50 font-[Vazirmatn] flex items-center gap-2 text-xs font-bold ${
+                                                        previewFile.visibility === level
+                                                            ? 'bg-blue-500 text-white border border-blue-600'
+                                                            : 'bg-neutral-800 text-muted-foreground hover:text-white border border-border/20'
+                                                    }`}
+                                                >
+                                                    {icons[level]}
+                                                    {labels[level]}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="flex justify-between items-center text-sm">
+                                <div className="text-muted-foreground">
+                                    سایز / Size: <span className="text-white font-mono">{formatBytes(previewFile.size)}</span>
+                                </div>
+                                <div className="space-x-2 flex items-center flex-wrap justify-end gap-2">
                                     <button
-                                        onClick={() => handleToggleGallery(previewFile)}
-                                        disabled={isPending}
-                                        className={`px-4 py-2 rounded-lg transition disabled:opacity-50 font-[Vazirmatn] flex items-center gap-2 ${
-                                            previewFile.inGallery 
-                                                ? "bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500 hover:text-white border border-emerald-500/20" 
-                                                : "bg-neutral-800 text-muted-foreground hover:bg-emerald-500 hover:text-white border border-border/10"
-                                        }`}
+                                        onClick={() => handleCopyUrl(previewFile)}
+                                        className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition font-[Vazirmatn] flex items-center gap-2 text-xs"
                                     >
-                                        {previewFile.inGallery ? (
-                                            <>
-                                                <Globe className="w-4 h-4" /> 
-                                                حذف از گالری عمومی
-                                            </>
-                                        ) : (
-                                            <>
-                                                <GlobeLock className="w-4 h-4" /> 
-                                                افزودن به گالری عمومی
-                                            </>
-                                        )}
+                                        <LinkIcon className="w-4 h-4" />
+                                        کپی لینک
                                     </button>
-                                )}
-                                <a
-                                    href={previewFile.url}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition inline-block font-[Vazirmatn]"
-                                >
-                                    لینک مستقیم / Open
-                                </a>
-                                <button
-                                    onClick={() => handleDelete(previewFile.name)}
-                                    disabled={isPending}
-                                    className="px-4 py-2 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition disabled:opacity-50 font-[Vazirmatn]"
-                                >
-                                    حذف / Delete
-                                </button>
+                                    <button
+                                        onClick={() => handleRename(previewFile)}
+                                        disabled={isPending}
+                                        className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition disabled:opacity-50 font-[Vazirmatn] flex items-center gap-2 text-xs"
+                                    >
+                                        <Pencil className="w-4 h-4" />
+                                        تغییر نام
+                                    </button>
+                                    {previewFile.type === 'image' && (
+                                        <button
+                                            onClick={() => handleToggleGallery(previewFile)}
+                                            disabled={isPending}
+                                            className={`px-4 py-2 rounded-lg transition disabled:opacity-50 font-[Vazirmatn] flex items-center gap-2 text-xs font-bold ${
+                                                previewFile.inGallery 
+                                                    ? "bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500 hover:text-white border border-emerald-500/20" 
+                                                    : "bg-neutral-800 text-muted-foreground hover:bg-emerald-500 hover:text-white border border-border/10"
+                                            }`}
+                                        >
+                                            {previewFile.inGallery ? (
+                                                <>
+                                                    <Globe className="w-4 h-4" /> 
+                                                    حذف از گالری
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <GlobeLock className="w-4 h-4" /> 
+                                                    افزودن به گالری
+                                                </>
+                                            )}
+                                        </button>
+                                    )}
+                                    <a
+                                        href={previewFile.url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition inline-block font-[Vazirmatn] text-xs"
+                                    >
+                                        لینک مستقیم
+                                    </a>
+                                    <button
+                                        onClick={() => handleDelete(previewFile.name)}
+                                        disabled={isPending}
+                                        className="px-4 py-2 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition disabled:opacity-50 font-[Vazirmatn] text-xs"
+                                    >
+                                        حذف
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

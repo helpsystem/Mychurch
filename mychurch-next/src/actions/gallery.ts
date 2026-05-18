@@ -1,7 +1,7 @@
 "use server"
 
 import { createClient } from "@/utils/supabase/server";
-import { hasAdminRoleOrPermission, normalizeAssetUrl } from "@/lib/access-control";
+import { hasAdminRoleOrPermission, normalizeAssetUrl, hasRoleOrPermission } from "@/lib/access-control";
 
 export interface GalleryImage {
     id: string;
@@ -11,10 +11,11 @@ export interface GalleryImage {
     title?: string;
     description?: string;
     category?: string;
+    visibility?: 'public' | 'admin' | 'user';
     uploaded_at?: string;
 }
 
-export async function fetchGalleryImages(): Promise<GalleryImage[]> {
+export async function fetchGalleryImages(filterByVisibility = true): Promise<GalleryImage[]> {
     try {
         const supabase = await createClient();
         const { data, error } = await supabase
@@ -27,7 +28,7 @@ export async function fetchGalleryImages(): Promise<GalleryImage[]> {
             return [];
         }
 
-        return data.map(row => ({
+        let images = data.map(row => ({
             id: row.id,
             src: normalizeAssetUrl(row.src),
             width: row.width || 800,
@@ -35,8 +36,25 @@ export async function fetchGalleryImages(): Promise<GalleryImage[]> {
             title: row.title || undefined,
             description: row.description || undefined,
             category: row.category || undefined,
+            visibility: row.visibility || 'admin',
             uploaded_at: row.uploaded_at,
         }));
+
+        // Filter by visibility if requested
+        if (filterByVisibility) {
+            const isAdmin = await hasRoleOrPermission(['Admin', 'Leader']);
+            const { data: { user } } = await supabase.auth.getUser();
+            const isAuthenticated = !!user;
+
+            images = images.filter(img => {
+                if (img.visibility === 'public') return true;
+                if (img.visibility === 'admin') return isAdmin;
+                if (img.visibility === 'user') return isAuthenticated;
+                return false;
+            });
+        }
+
+        return images;
     } catch (e) {
         console.error("[gallery] Critical failure in fetchGalleryImages:", e);
         return [];

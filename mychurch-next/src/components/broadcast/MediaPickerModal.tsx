@@ -80,13 +80,17 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
         // Search Filter
         if (searchQuery.trim()) {
             const query = searchQuery.toLowerCase();
-            result = result.filter(a => a.name.toLowerCase().includes(query));
+            result = result.filter(a => [a.name, a.folder].filter(Boolean).join(' ').toLowerCase().includes(query));
         }
 
         // Tab Filter
         if (activeTab !== "all") {
             result = result.filter(a => a.type === activeTab);
         }
+
+        // Visibility Filter: Only show items that can be selected by the presenter
+        // Since this modal is used by admins/leaders for presentation, show all visibility levels
+        // (real filtering happens in gallery view)
 
         // Sort
         return result.sort((a, b) => {
