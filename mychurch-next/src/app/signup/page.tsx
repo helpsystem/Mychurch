@@ -12,6 +12,13 @@ export default function SignupPage() {
     const [isPending, startTransition] = useTransition();
     const [error, setError] = useState<string | null>(null);
     const [isSuccess, setIsSuccess] = useState(false);
+    
+    // CAPTCHA State
+    const [captchaQ, setCaptchaQ] = useState(() => {
+        const a = Math.floor(Math.random() * 10) + 1;
+        const b = Math.floor(Math.random() * 10) + 1;
+        return { a, b, answer: a + b };
+    });
 
     const handleGoogleLogin = async () => {
         const { createClient } = await import("@/utils/supabase/client");
@@ -39,6 +46,25 @@ export default function SignupPage() {
         setError(null);
 
         const formData = new FormData(e.currentTarget);
+
+        // 1. Honeypot Check
+        const honeypot = formData.get("nickname");
+        if (honeypot) {
+            // Fake success for bots to drop them
+            setIsSuccess(true);
+            return;
+        }
+
+        // 2. Math CAPTCHA Check
+        const userCaptcha = Number(formData.get("captcha"));
+        if (userCaptcha !== captchaQ.answer) {
+            setError("پاسخ امنیتی اشتباه است / Security check failed");
+            // Generate a new question
+            const a = Math.floor(Math.random() * 10) + 1;
+            const b = Math.floor(Math.random() * 10) + 1;
+            setCaptchaQ({ a, b, answer: a + b });
+            return;
+        }
 
         startTransition(async () => {
             const result = await signUp(formData);
@@ -155,6 +181,33 @@ export default function SignupPage() {
                                     required
                                     minLength={6}
                                     className="w-full bg-black/50 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-inner font-mono"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Honeypot Field (Invisible to Humans) */}
+                        <div className="absolute opacity-0 -z-10" aria-hidden="true">
+                            <label htmlFor="nickname">Nickname (Do not fill)</label>
+                            <input type="text" id="nickname" name="nickname" tabIndex={-1} autoComplete="off" />
+                        </div>
+
+                        {/* Math CAPTCHA */}
+                        <div className="space-y-1.5 pt-2">
+                            <label className="text-sm font-bold text-muted-foreground flex justify-between font-[Vazirmatn]" htmlFor="captcha">
+                                <span className="font-sans">Security Check</span>
+                                <span>سوال امنیتی</span>
+                            </label>
+                            <div className="relative">
+                                <div className="absolute left-0 top-0 bottom-0 px-4 bg-white/10 border-r border-white/10 rounded-l-xl flex items-center justify-center font-bold text-white font-mono min-w-[80px]">
+                                    {captchaQ.a} + {captchaQ.b} =
+                                </div>
+                                <input
+                                    id="captcha"
+                                    name="captcha"
+                                    type="number"
+                                    placeholder="?"
+                                    required
+                                    className="w-full bg-black/50 border border-white/10 rounded-xl pl-[90px] pr-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-inner font-mono text-center text-lg"
                                 />
                             </div>
                         </div>
