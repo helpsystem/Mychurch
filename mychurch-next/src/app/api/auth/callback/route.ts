@@ -39,6 +39,67 @@ export async function GET(request: Request) {
             } catch (syncError) {
                 console.error("[AuthCallback] DB Sync Error:", syncError);
             }
+
+            // [NEW] Send Welcome Email for New OAuth Signups (created within last 60 seconds)
+            const isNewUser = user.created_at && (Date.now() - new Date(user.created_at).getTime()) < 60000;
+            if (isNewUser) {
+                try {
+                    console.log(`[AuthCallback] 🌟 New Google Auth User detected, sending welcome email: ${user.email}`);
+                    const { sendMail } = await import("@/lib/mailer");
+                    const path = await import("path");
+                    const fs = await import("fs");
+                    
+                    const fullName = user.user_metadata?.full_name || user.email?.split('@')[0];
+                    const supportEmail = process.env.SMTP_USER || "iranianchurchdc.us@gmail.com";
+                    const origin = resolveAuthCallbackOrigin(requestUrl, request.headers);
+                    const loginUrl = `${origin}/login`;
+                    
+                    const logoPath = path.join(process.cwd(), "public/logo-transparent.png");
+                    const heroPath = path.join(process.cwd(), "public/images/email/jesus-hero.png");
+                    
+                    const attachments = [];
+                    if (fs.existsSync(heroPath)) {
+                        attachments.push({ filename: 'jesus-hero.png', path: heroPath, cid: 'jesus-hero' });
+                    }
+                    if (fs.existsSync(logoPath)) {
+                        attachments.push({ filename: 'logo-transparent.png', path: logoPath, cid: 'logo-premium' });
+                    }
+
+                    await sendMail({
+                        to: user.email!,
+                        subject: "به خانواده کلیسای ایرانی واشنگتن خوش آمدید | Welcome",
+                        replyTo: supportEmail,
+                        attachments: attachments.length > 0 ? attachments : undefined,
+                        text: `سلام ${fullName} عزیز،\nثبت‌نام شما با گوگل انجام شد.\n\nورود به پنل:\n${loginUrl}`,
+                        html: `
+                        <!DOCTYPE html>
+                        <html lang="fa" dir="rtl">
+                        <head>
+                            <meta charset="UTF-8">
+                            <style>
+                                body { margin: 0; background-color: #0c0a09; color: #ffffff; font-family: sans-serif; text-align: center; }
+                                .card { max-width: 600px; margin: 40px auto; background-color: #1c1917; padding: 40px; border-radius: 20px; }
+                                .title { color: #ba955c; font-size: 24px; font-weight: bold; }
+                                .cta { display: inline-block; padding: 14px 28px; background: #ba955c; color: #000; text-decoration: none; border-radius: 12px; font-weight: bold; margin-top: 20px; }
+                                .hero { width: 100%; border-radius: 12px; margin-bottom: 20px; }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="card">
+                                ${fs.existsSync(heroPath) ? '<img src="cid:jesus-hero" class="hero" />' : ''}
+                                <h1 class="title">خوش آمدید ${fullName}</h1>
+                                <p>ثبت‌نام شما با حساب گوگل موفقیت‌آمیز بود.</p>
+                                <p dir="ltr">Dear ${fullName}, your account was successfully created via Google.</p>
+                                <a href="${loginUrl}" class="cta">ورود به حساب / Sign In</a>
+                            </div>
+                        </body>
+                        </html>
+                        `
+                    });
+                } catch (mailError) {
+                    console.error("[AuthCallback] ❌ Failed to send welcome email:", mailError);
+                }
+            }
         }
     }
 
