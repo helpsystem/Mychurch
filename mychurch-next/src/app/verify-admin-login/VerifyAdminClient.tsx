@@ -80,7 +80,7 @@ export default function VerifyAdminClient({ email }: { email: string }) {
                 className="w-full mb-6 py-3 rounded-xl bg-secondary/50 hover:bg-secondary border border-border text-sm font-bold transition-all disabled:opacity-50 flex items-center justify-center gap-2"
             >
                 {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Mail className="w-4 h-4" />}
-                {cooldown > 0 ? \`ارسال مجدد کد (\${cooldown} ثانیه)\` : "ارسال کد تایید به ایمیل"}
+                {cooldown > 0 ? 'ارسال مجدد کد (' + cooldown + ' ثانیه)' : "ارسال کد تایید به ایمیل"}
             </button>
 
             <form onSubmit={handleVerify} className="space-y-4">
