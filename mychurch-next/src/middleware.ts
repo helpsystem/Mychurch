@@ -50,6 +50,18 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(url);
     }
 
+    // 2FA Protection for Admin Panel
+    if (pathname.startsWith('/admin')) {
+        const isVerified = request.cookies.get('admin_2fa_verified')?.value === 'true';
+        if (!isVerified) {
+            const url = request.nextUrl.clone();
+            const proto = request.headers.get('x-forwarded-proto') || 'http';
+            if (proto === 'https') url.protocol = 'https:';
+            url.pathname = '/verify-admin-login';
+            return NextResponse.redirect(url);
+        }
+    }
+
     // Detailed Role checking is done strictly within Server Components (e.g. layout.tsx)
     // using the `requireRole()` pattern, because `pg` cannot be run on Edge.
 

@@ -144,6 +144,12 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                 <p className="text-sm text-primary font-bold flex items-center justify-center gap-1.5 mb-4">
                                     <Shield className="w-4 h-4" /> {initialUser?.role || "User"}
                                 </p>
+                                
+                                <button type="button" onClick={() => {
+                                    import('@/actions/auth').then(m => m.logout());
+                                }} className="w-full py-2 mb-6 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500/20 text-sm font-bold transition-colors flex items-center justify-center gap-2">
+                                    <X className="w-4 h-4" /> خروج از حساب
+                                </button>
 
                                 {isAiAvatarEnabled && (
                                     <div className="w-full bg-indigo-500/8 border border-indigo-500/20 rounded-2xl p-5">
