@@ -20,8 +20,16 @@ export async function POST(request: Request) {
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
 
+        const folder = data.get('folder') as string;
+        let mediaDir = join(process.cwd(), 'public', 'media');
+        
+        if (folder) {
+            // sanitize folder path
+            const cleanFolder = folder.replace(/\\/g, '/').replace(/[^a-zA-Z0-9/ _.-]/g, '');
+            mediaDir = join(mediaDir, cleanFolder);
+        }
+
         // Ensure media directory exists
-        const mediaDir = join(process.cwd(), 'public', 'media');
         try {
             await mkdir(mediaDir, { recursive: true });
         } catch (e) {
@@ -45,7 +53,15 @@ export async function POST(request: Request) {
         await writeFile(filePath, buffer);
 
         // Return API-served URL to avoid nginx static path conflicts.
-        return NextResponse.json({ success: true, url: `/api/serve/media/${encodeURIComponent(filename)}` });
+        let relativePath = filename;
+        if (folder) {
+            const cleanFolder = folder.replace(/\\/g, '/').replace(/[^a-zA-Z0-9/ _.-]/g, '');
+            relativePath = `${cleanFolder}/${filename}`;
+        }
+        const parts = relativePath.split('/');
+        const encoded = parts.map(p => encodeURIComponent(p)).join('/');
+
+        return NextResponse.json({ success: true, url: `/api/serve/media/${encoded}` });
     } catch (error: any) {
         console.error('Error uploading media file:', error);
         return NextResponse.json({ success: false, error: error.message || 'Upload failed' }, { status: 500 });
