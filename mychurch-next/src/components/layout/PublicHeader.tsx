@@ -62,9 +62,6 @@ export function PublicHeader() {
                     📖 {t?.bible || "کتاب مقدس"}
                     <span className="absolute -top-2 -right-3 text-[9px] bg-amber-400 text-black font-black px-1.5 rounded-full">NEW</span>
                 </Link>
-                <Link href="/documents" className="hover:text-primary transition-colors cursor-pointer">
-                    {t?.documents || "مدارک رسمی"}
-                </Link>
                 <Link href="/contact" className="hover:text-primary transition-colors cursor-pointer">
                     {t?.contact || "تماس"}
                 </Link>

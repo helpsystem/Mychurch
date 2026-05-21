@@ -39,15 +39,20 @@ export async function saveDocument(
       return { error: 'Unauthorized', status: 401 };
     }
 
-    // Verify user role (only Admins can save documents)
+    // Verify user role (Admins, Leaders, or users with canManageDocuments)
     const { data: userRecord, error: roleError } = await supabase
       .from('users')
-      .select('role')
+      .select('role, permissions')
       .eq('email', user.email)
       .single();
 
-    if (roleError || !userRecord || userRecord.role !== 'Admin') {
-      return { error: 'Forbidden - Admin role required', status: 403 };
+    if (roleError || !userRecord) {
+      return { error: 'Forbidden', status: 403 };
+    }
+    
+    const canManage = userRecord.role === 'Admin' || userRecord.role === 'Leader' || userRecord.permissions?.canManageDocuments;
+    if (!canManage) {
+      return { error: 'Forbidden - Insufficient permissions', status: 403 };
     }
 
     // Insert document
@@ -119,15 +124,20 @@ export async function getDocuments(
       return { error: 'Unauthorized', status: 401 };
     }
 
-    // Verify Admin role
+    // Verify Admin/Leader role
     const { data: userRecord, error: roleError } = await supabase
       .from('users')
-      .select('role')
+      .select('role, permissions')
       .eq('email', user.email)
       .single();
 
-    if (roleError || !userRecord || userRecord.role !== 'Admin') {
+    if (roleError || !userRecord) {
       return { error: 'Forbidden', status: 403 };
+    }
+    
+    const canManage = userRecord.role === 'Admin' || userRecord.role === 'Leader' || userRecord.permissions?.canManageDocuments;
+    if (!canManage) {
+      return { error: 'Forbidden - Insufficient permissions', status: 403 };
     }
 
     let query = supabase
@@ -189,15 +199,20 @@ export async function updateDocument(
       return { error: 'Unauthorized', status: 401 };
     }
 
-    // Verify Admin role
+    // Verify Admin/Leader role
     const { data: userRecord } = await supabase
       .from('users')
-      .select('role')
+      .select('role, permissions')
       .eq('email', user.email)
       .single();
 
-    if (!userRecord || userRecord.role !== 'Admin') {
+    if (!userRecord) {
       return { error: 'Forbidden', status: 403 };
+    }
+    
+    const canManage = userRecord.role === 'Admin' || userRecord.role === 'Leader' || userRecord.permissions?.canManageDocuments;
+    if (!canManage) {
+      return { error: 'Forbidden - Insufficient permissions', status: 403 };
     }
 
     // Verify document ownership/access
@@ -256,12 +271,17 @@ export async function finalizeDocument(documentId: string) {
 
     const { data: userRecord } = await supabase
       .from('users')
-      .select('role')
+      .select('role, permissions')
       .eq('email', user.email)
       .single();
 
-    if (!userRecord || userRecord.role !== 'Admin') {
+    if (!userRecord) {
       return { error: 'Forbidden', status: 403 };
+    }
+
+    const canManage = userRecord.role === 'Admin' || userRecord.role === 'Leader' || userRecord.permissions?.canManageDocuments;
+    if (!canManage) {
+      return { error: 'Forbidden - Insufficient permissions', status: 403 };
     }
 
     const { data: updated, error } = await supabase
@@ -307,12 +327,17 @@ export async function deleteDocument(documentId: string) {
 
     const { data: userRecord } = await supabase
       .from('users')
-      .select('role')
+      .select('role, permissions')
       .eq('email', user.email)
       .single();
 
-    if (!userRecord || userRecord.role !== 'Admin') {
+    if (!userRecord) {
       return { error: 'Forbidden', status: 403 };
+    }
+
+    const canManage = userRecord.role === 'Admin' || userRecord.role === 'Leader' || userRecord.permissions?.canManageDocuments;
+    if (!canManage) {
+      return { error: 'Forbidden - Insufficient permissions', status: 403 };
     }
 
     const { data: deleted, error } = await supabase
