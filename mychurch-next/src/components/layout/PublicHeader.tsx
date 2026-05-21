@@ -58,6 +58,12 @@ export function PublicHeader() {
                 <Link href="/worship" className="hover:text-primary transition-colors cursor-pointer">
                     🎵 {t?.worship || "سرودهای پرستشی"}
                 </Link>
+                <Link href="/prayers" className="hover:text-primary transition-colors cursor-pointer">
+                    🙏 {t?.prayers || "درخواست دعا"}
+                </Link>
+                <Link href="/payment" className="hover:text-primary transition-colors cursor-pointer">
+                    💳 {t?.payment || "پرداخت آنلاین"}
+                </Link>
                 <Link href="/bible" className="flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition-colors cursor-pointer font-bold relative group">
                     📖 {t?.bible || "کتاب مقدس"}
                     <span className="absolute -top-2 -right-3 text-[9px] bg-amber-400 text-black font-black px-1.5 rounded-full">NEW</span>

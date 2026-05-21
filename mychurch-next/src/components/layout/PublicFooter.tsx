@@ -53,6 +53,8 @@ export function PublicFooter() {
                         <li><Link href="/sermons" className="hover:text-primary transition-colors">{t?.sermons || "موعظه‌ها"}</Link></li>
                         <li><Link href="/worship" className="hover:text-primary transition-colors">{t?.worship || "پرستش"}</Link></li>
                         <li><Link href="/bible" className="hover:text-primary transition-colors">{t?.bible || "کتاب مقدس"}</Link></li>
+                        <li><Link href="/prayers" className="hover:text-primary transition-colors">{t?.prayers || "درخواست دعا"}</Link></li>
+                        <li><Link href="/payment" className="hover:text-primary transition-colors">{t?.payment || "پرداخت آنلاین"}</Link></li>
                     </ul>
                 </div>
 
