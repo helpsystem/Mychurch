@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
-import { Users, Mail, Send, Loader2, CheckCircle, Search, Clock, Languages, ArrowRightLeft } from "lucide-react";
+import { Users, Mail, Send, Loader2, CheckCircle, Search, Clock, Languages, ArrowRightLeft, Sparkles } from "lucide-react";
 import { sendNewsletterCampaign } from "@/actions/newsletter";
-import { translateText } from "@/actions/translate";
+import { translateText, enhanceText } from "@/actions/translate";
 
 interface Subscriber {
     id: string;
@@ -25,6 +25,7 @@ export default function NewsletterAdminClient({ initialSubscribers }: { initialS
     const [bodyEn, setBodyEn] = useState("");
 
     const [isTranslating, setIsTranslating] = useState(false);
+    const [isEnhancing, setIsEnhancing] = useState(false);
 
     const activeCount = subscribers.filter(s => s.status === 'active').length;
 
@@ -44,6 +45,21 @@ export default function NewsletterAdminClient({ initialSubscribers }: { initialS
             }
         } finally {
             setIsTranslating(false);
+        }
+    };
+
+    const handleEnhance = async (sourceText: string, language: 'en' | 'fa', setTargetState: (val: string) => void) => {
+        if (!sourceText.trim()) return;
+        setIsEnhancing(true);
+        try {
+            const res = await enhanceText(sourceText, language);
+            if (res.success && res.text) {
+                setTargetState(res.text);
+            } else {
+                alert(res.error || "AI Enhancement failed");
+            }
+        } finally {
+            setIsEnhancing(false);
         }
     };
 
@@ -104,10 +120,12 @@ export default function NewsletterAdminClient({ initialSubscribers }: { initialS
             {/* Main Content - Compose Email */}
             <div className="xl:col-span-2 space-y-6">
                 <div className="bg-neutral-900 border border-white/10 rounded-2xl p-6 relative overflow-hidden">
-                    {isTranslating && (
+                    {(isTranslating || isEnhancing) && (
                         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
                             <Loader2 className="w-10 h-10 text-primary animate-spin mb-4" />
-                            <p className="text-white font-bold font-[Vazirmatn]">در حال ترجمه توسط هوش مصنوعی...</p>
+                            <p className="text-white font-bold font-[Vazirmatn]">
+                                {isTranslating ? "در حال ترجمه توسط هوش مصنوعی..." : "در حال اصلاح متن توسط هوش مصنوعی..."}
+                            </p>
                         </div>
                     )}
 
@@ -127,9 +145,14 @@ export default function NewsletterAdminClient({ initialSubscribers }: { initialS
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center">
                                     <label className="text-sm font-bold text-emerald-400 font-[Vazirmatn]">موضوع (فارسی)</label>
-                                    <button type="button" onClick={() => handleTranslate(subjectFa, 'en', setSubjectEn)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
-                                        ترجمه به انگلیسی <ArrowRightLeft className="w-3 h-3" />
-                                    </button>
+                                    <div className="flex items-center gap-2">
+                                        <button type="button" onClick={() => handleEnhance(subjectFa, 'fa', setSubjectFa)} className="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-emerald-500/20">
+                                            اصلاح با AI <Sparkles className="w-3 h-3" />
+                                        </button>
+                                        <button type="button" onClick={() => handleTranslate(subjectFa, 'en', setSubjectEn)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
+                                            ترجمه به انگلیسی <ArrowRightLeft className="w-3 h-3" />
+                                        </button>
+                                    </div>
                                 </div>
                                 <input 
                                     value={subjectFa} onChange={(e) => setSubjectFa(e.target.value)}
@@ -142,9 +165,14 @@ export default function NewsletterAdminClient({ initialSubscribers }: { initialS
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center">
                                     <label className="text-sm font-bold text-blue-400 font-sans">Subject (English)</label>
-                                    <button type="button" onClick={() => handleTranslate(subjectEn, 'fa', setSubjectFa)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
-                                        Translate to FA <ArrowRightLeft className="w-3 h-3" />
-                                    </button>
+                                    <div className="flex items-center gap-2">
+                                        <button type="button" onClick={() => handleEnhance(subjectEn, 'en', setSubjectEn)} className="text-xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-blue-500/20">
+                                            AI Enhance <Sparkles className="w-3 h-3" />
+                                        </button>
+                                        <button type="button" onClick={() => handleTranslate(subjectEn, 'fa', setSubjectFa)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
+                                            Translate to FA <ArrowRightLeft className="w-3 h-3" />
+                                        </button>
+                                    </div>
                                 </div>
                                 <input 
                                     value={subjectEn} onChange={(e) => setSubjectEn(e.target.value)}
@@ -160,9 +188,14 @@ export default function NewsletterAdminClient({ initialSubscribers }: { initialS
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center">
                                     <label className="text-sm font-bold text-emerald-400 font-[Vazirmatn]">متن خبرنامه (فارسی)</label>
-                                    <button type="button" onClick={() => handleTranslate(bodyFa, 'en', setBodyEn)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
-                                        ترجمه به انگلیسی <ArrowRightLeft className="w-3 h-3" />
-                                    </button>
+                                    <div className="flex items-center gap-2">
+                                        <button type="button" onClick={() => handleEnhance(bodyFa, 'fa', setBodyFa)} className="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-emerald-500/20">
+                                            اصلاح و نگارش AI <Sparkles className="w-3 h-3" />
+                                        </button>
+                                        <button type="button" onClick={() => handleTranslate(bodyFa, 'en', setBodyEn)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
+                                            ترجمه به انگلیسی <ArrowRightLeft className="w-3 h-3" />
+                                        </button>
+                                    </div>
                                 </div>
                                 <textarea 
                                     value={bodyFa} onChange={(e) => setBodyFa(e.target.value)}
@@ -175,9 +208,14 @@ export default function NewsletterAdminClient({ initialSubscribers }: { initialS
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center">
                                     <label className="text-sm font-bold text-blue-400 font-sans">Newsletter Body (English)</label>
-                                    <button type="button" onClick={() => handleTranslate(bodyEn, 'fa', setBodyFa)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
-                                        Translate to FA <ArrowRightLeft className="w-3 h-3" />
-                                    </button>
+                                    <div className="flex items-center gap-2">
+                                        <button type="button" onClick={() => handleEnhance(bodyEn, 'en', setBodyEn)} className="text-xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-blue-500/20">
+                                            AI Enhance <Sparkles className="w-3 h-3" />
+                                        </button>
+                                        <button type="button" onClick={() => handleTranslate(bodyEn, 'fa', setBodyFa)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
+                                            Translate to FA <ArrowRightLeft className="w-3 h-3" />
+                                        </button>
+                                    </div>
                                 </div>
                                 <textarea 
                                     value={bodyEn} onChange={(e) => setBodyEn(e.target.value)}
