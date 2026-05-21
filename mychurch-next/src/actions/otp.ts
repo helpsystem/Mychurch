@@ -66,7 +66,8 @@ export async function verifyAdminOTP(code: string) {
 
     if (isValid) {
         // Set 2FA verified cookie for 24 hours
-        cookies().set('admin_2fa_verified', 'true', {
+        const cookieStore = await cookies();
+        cookieStore.set('admin_2fa_verified', 'true', {
             maxAge: 24 * 60 * 60, // 24 hours
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
