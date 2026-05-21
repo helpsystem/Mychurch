@@ -417,7 +417,7 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
                             <div className="flex justify-between items-center text-sm">
                                 <div className="text-muted-foreground flex flex-col gap-1">
                                     <span>سایز: {formatBytes(previewFile.size)}</span>
-                                    <span>مسیر: {previewFile.folder ? \`/\${previewFile.folder}\` : '/'}</span>
+                                    <span>مسیر: {previewFile.folder ? `/${previewFile.folder}` : '/'}</span>
                                 </div>
                                 <div className="flex gap-2 flex-wrap justify-end">
                                     <button onClick={() => handleCopyUrl(previewFile)} className="px-3 py-1.5 bg-neutral-800 rounded-lg text-xs">کپی لینک</button>
