@@ -3,9 +3,10 @@
 import React, { useEffect, useState, useRef, useTransition } from "react";
 import { updateWidgetConfig, DashboardWidget } from "@/actions/widgets";
 import { translateFaToEn, translateEnToFa } from "@/actions/ai";
-import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film } from "lucide-react";
+import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film, ImagePlus } from "lucide-react";
 import { NowruzPopup } from "@/components/widgets/NowruzPopup";
 import { toast } from "sonner";
+import { MediaPicker } from "@/components/admin/media/MediaPicker";
 
 interface Props {
     widget: DashboardWidget;
@@ -214,6 +215,7 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const [libraryFolder, setLibraryFolder] = useState('');
     const [libraryTarget, setLibraryTarget] = useState<'background' | 'videoPoster' | 'heroIcon' | 'particleAsset'>('background');
     const [libraryAssets, setLibraryAssets] = useState<UploadAsset[]>([]);
+    const [pickerTarget, setPickerTarget] = useState<'image' | 'video' | 'videoPoster' | 'heroIcon' | 'particleAsset' | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const heroIconFileInputRef = useRef<HTMLInputElement>(null);
     const particleAssetFileInputRef = useRef<HTMLInputElement>(null);
@@ -758,14 +760,22 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                         {mediaType === 'video' ? <Film className="w-4 h-4 text-emerald-400" /> : <ImageIcon className="w-4 h-4 text-emerald-400" />} مدیا پس‌زمینه پاپ‌آپ
                                     </span>
                                     
-                                    <button 
-                                        onClick={() => fileInputRef.current?.click()}
-                                        disabled={isUploading}
-                                        className="text-sm flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50"
-                                    >
-                                        {isUploading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <UploadCloud className="w-4 h-4" />}
-                                        {isUploading ? "درحال آپلود..." : "آپلود مستقیم عکس/ویدیو"}
-                                    </button>
+                                    <div className="flex gap-2">
+                                        <button 
+                                            onClick={(e) => { e.preventDefault(); setPickerTarget(mediaType === 'video' ? 'video' : 'image'); }}
+                                            className="text-sm flex items-center gap-2 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 hover:bg-indigo-500/30 px-3 py-2 rounded-xl transition-all"
+                                        >
+                                            <ImagePlus className="w-4 h-4" /> انتخاب از گالری
+                                        </button>
+                                        <button 
+                                            onClick={(e) => { e.preventDefault(); fileInputRef.current?.click(); }}
+                                            disabled={isUploading}
+                                            className="text-sm flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50"
+                                        >
+                                            {isUploading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <UploadCloud className="w-4 h-4" />}
+                                            {isUploading ? "درحال آپلود..." : "آپلود مستقیم"}
+                                        </button>
+                                    </div>
                                     <input type="file" ref={fileInputRef} onChange={handleUpload} accept="image/*,video/mp4,video/webm,video/quicktime" className="hidden" />
                                 </label>
 
@@ -803,14 +813,23 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                             className="w-full bg-secondary/80 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-left font-mono text-sm"
                                             dir="ltr"
                                         />
-                                        <input
-                                            title="پوستر ویدیو"
-                                            placeholder="URL تصویر پوستر ویدیو (اختیاری)"
-                                            value={videoPosterUrl}
-                                            onChange={(e) => setVideoPosterUrl(e.target.value)}
-                                            className="w-full bg-secondary/80 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-left font-mono text-sm"
-                                            dir="ltr"
-                                        />
+                                        <div className="flex gap-2">
+                                            <input
+                                                title="پوستر ویدیو"
+                                                placeholder="URL تصویر پوستر ویدیو (اختیاری)"
+                                                value={videoPosterUrl}
+                                                onChange={(e) => setVideoPosterUrl(e.target.value)}
+                                                className="w-full bg-secondary/80 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-left font-mono text-sm"
+                                                dir="ltr"
+                                            />
+                                            <button 
+                                                onClick={(e) => { e.preventDefault(); setPickerTarget('videoPoster'); }}
+                                                className="px-3 rounded-xl border border-white/10 bg-secondary hover:bg-white/10 shrink-0"
+                                                title="انتخاب از گالری"
+                                            >
+                                                <ImagePlus className="w-4 h-4" />
+                                            </button>
+                                        </div>
                                         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
                                             <label className="flex items-center gap-2 bg-secondary rounded-xl px-3 py-2"><input type="checkbox" checked={videoAutoplay} onChange={(e) => setVideoAutoplay(e.target.checked)} className="accent-primary" /> Autoplay</label>
                                             <label className="flex items-center gap-2 bg-secondary rounded-xl px-3 py-2"><input type="checkbox" checked={videoMuted} onChange={(e) => setVideoMuted(e.target.checked)} className="accent-primary" /> Muted</label>
@@ -1314,6 +1333,30 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     </button>
                 </div>
             </div>
+
+            {pickerTarget && (
+                <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onClick={() => setPickerTarget(null)}>
+                    <div className="bg-background border border-white/10 rounded-2xl w-full max-w-6xl h-[85vh] flex flex-col overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+                        <MediaPicker 
+                            mode="modal" 
+                            allowedTypes={
+                                pickerTarget === 'video' ? ['video'] 
+                                : pickerTarget === 'videoPoster' || pickerTarget === 'image' || pickerTarget === 'heroIcon' || pickerTarget === 'particleAsset' ? ['image'] 
+                                : ['all']
+                            }
+                            onSelect={(url) => {
+                                if (pickerTarget === 'image') setImageUrl(url);
+                                if (pickerTarget === 'video') setVideoUrl(url);
+                                if (pickerTarget === 'videoPoster') setVideoPosterUrl(url);
+                                if (pickerTarget === 'heroIcon') setHeroIconUrl(url);
+                                if (pickerTarget === 'particleAsset') setParticleAssetUrl(url);
+                                setPickerTarget(null);
+                            }}
+                            onClose={() => setPickerTarget(null)}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

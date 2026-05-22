@@ -7,6 +7,7 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 import { User, Shield, Camera, Sparkles, Download, Expand, X, CheckCircle, Loader2, MapPin } from "lucide-react";
 import { updateUserProfile } from "@/actions/user";
 import { AddressAutocomplete, type AddressData } from "@/components/profile/AddressAutocomplete";
+import { createClient } from "@/utils/supabase/client";
 
 interface Props {
     isAiAvatarEnabled: boolean;
@@ -27,6 +28,11 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
     const [isGenerating, setIsGenerating] = useState(false);
     const [gender, setGender] = useState<'male' | 'female'>('male');
     const [lightboxOpen, setLightboxOpen] = useState(false);
+
+    // Password state
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [isChangingPassword, setIsChangingPassword] = useState(false);
 
     // Personal info state
     const [formData, setFormData] = useState({
@@ -77,6 +83,30 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
         a.href = generatedImageUrl;
         a.download = 'christian-ai-profile.png';
         document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    };
+
+    const handleChangePassword = async () => {
+        if (newPassword !== confirmPassword) {
+            alert("رمز عبور و تکرار آن یکسان نیستند");
+            return;
+        }
+        if (newPassword.length < 6) {
+            alert("رمز عبور باید حداقل ۶ کاراکتر باشد");
+            return;
+        }
+        setIsChangingPassword(true);
+        try {
+            const supabase = createClient();
+            const { error } = await supabase.auth.updateUser({ password: newPassword });
+            if (error) throw error;
+            alert("رمز عبور با موفقیت تغییر کرد");
+            setNewPassword("");
+            setConfirmPassword("");
+        } catch (e: any) {
+            alert("خطا در تغییر رمز عبور: " + e.message);
+        } finally {
+            setIsChangingPassword(false);
+        }
     };
 
     const handleSave = async (e: React.FormEvent) => {
@@ -208,6 +238,48 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                         onChange={e => setFormData({ ...formData, bio: e.target.value })}
                                         className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground resize-none"
                                         placeholder="معرفی کوتاهی از خود بنویسید..." />
+                                </div>
+                            </div>
+
+                            {/* ── Security / Password Section ── */}
+                            <div className="bg-card border border-border rounded-3xl p-8">
+                                <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-foreground">
+                                    <Shield className="w-5 h-5 text-indigo-500" /> تغییر رمز عبور
+                                </h3>
+                                <div className="space-y-4">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <label className="text-sm font-medium text-muted-foreground">رمز عبور جدید</label>
+                                            <input 
+                                                type="password" 
+                                                placeholder="حداقل ۶ کاراکتر"
+                                                value={newPassword}
+                                                onChange={e => setNewPassword(e.target.value)}
+                                                className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" 
+                                                dir="ltr" 
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label className="text-sm font-medium text-muted-foreground">تکرار رمز عبور جدید</label>
+                                            <input 
+                                                type="password" 
+                                                placeholder="تکرار رمز عبور"
+                                                value={confirmPassword}
+                                                onChange={e => setConfirmPassword(e.target.value)}
+                                                className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" 
+                                                dir="ltr" 
+                                            />
+                                        </div>
+                                    </div>
+                                    <button 
+                                        type="button" 
+                                        onClick={handleChangePassword}
+                                        disabled={isChangingPassword || !newPassword || newPassword !== confirmPassword}
+                                        className="mt-4 px-6 py-2.5 rounded-xl bg-secondary hover:bg-secondary/80 text-foreground text-sm font-bold transition-colors disabled:opacity-50 flex items-center gap-2"
+                                    >
+                                        {isChangingPassword && <Loader2 className="w-4 h-4 animate-spin" />}
+                                        تغییر رمز عبور
+                                    </button>
                                 </div>
                             </div>
 
