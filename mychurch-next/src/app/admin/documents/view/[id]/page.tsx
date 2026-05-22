@@ -44,7 +44,7 @@ const DEFAULT_CHURCH = {
 export default function DocumentViewerPage() {
   const params = useParams();
   const router = useRouter();
-  const id = params.id as string;
+  const id = (params?.id || "") as string;
   
   const [doc, setDoc] = useState<DocHistoryItem | null>(null);
   const [loading, setLoading] = useState(true);

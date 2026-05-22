@@ -83,7 +83,6 @@ export function MobileNavigation() {
     { label: t?.prayers || "درخواست دعا", path: "/prayers", icon: Heart },
     { label: t?.payment || "پرداخت آنلاین", path: "/payment", icon: CreditCard },
     { label: t?.contact || "تماس", path: "/contact", icon: Phone },
-    { label: "پشتیبانی", path: "/profile/support", icon: Shield },
   ];
 
   return (

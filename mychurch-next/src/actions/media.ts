@@ -64,7 +64,7 @@ function getFileType(filename: string): MediaAsset["type"] {
     return "other";
 }
 
-async function walkDir(dir: string, baseDir: string = dir): Promise<{name: string, url: string, type: any, size: number, createdAt: number, folder: string, visibility: any}[]> {
+async function walkDir(dir: string, baseDir: string = dir): Promise<{name: string, url: string, type: any, size: number, createdAt: number, folder: string, visibility: any, _relativePath: string}[]> {
     let results: any[] = [];
     const list = await fs.readdir(dir, { withFileTypes: true });
     for (const item of list) {
@@ -98,10 +98,10 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
     await ensureMediaDir();
 
     try {
-        let assets = await walkDir(MEDIA_DIR);
+        const rawAssets = await walkDir(MEDIA_DIR);
 
         // Sort newest first
-        assets = assets.sort((a, b) => b.createdAt - a.createdAt);
+        const sortedRaw = rawAssets.sort((a, b) => b.createdAt - a.createdAt);
 
         // Check which images are in the Public Gallery and get their visibility
         const supabase = await createClient();
@@ -109,8 +109,10 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
             .from('gallery_images')
             .select('id, src, visibility, folder');
 
+        let assets: MediaAsset[] = [];
+
         if (galleryImages) {
-            assets = assets.map(asset => {
+            assets = sortedRaw.map(asset => {
                 const variants = buildGalleryUrlVariants(asset._relativePath);
                 const galleryEntry = galleryImages.find(g => variants.includes(normalizeAssetUrl(g.src)));
                 const { _relativePath, ...cleanAsset } = asset;
@@ -123,7 +125,7 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
                 };
             });
         } else {
-            assets = assets.map(a => {
+            assets = sortedRaw.map(a => {
                 const { _relativePath, ...cleanAsset } = a;
                 return cleanAsset;
             });

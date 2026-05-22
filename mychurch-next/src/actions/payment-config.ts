@@ -25,7 +25,7 @@ export interface PaymentConfig {
     updated_at?: string;
 }
 
-export interface PaymentConfigClient extends Omit<PaymentConfig, "stripe_secret_key"> {
+export interface PaymentConfigClient extends Omit<PaymentConfig, "stripe_secret_key" | "square_access_token"> {
     stripe_secret_key_configured: boolean;
     square_access_token_configured: boolean;
 }
@@ -193,7 +193,7 @@ async function assertAdminAccess() {
         throw new Error("Unauthorized");
     }
 
-    const role = await getUserRole(user.email);
+    const role = await getUserRole();
     if (role !== "Admin") {
         throw new Error("Unauthorized");
     }

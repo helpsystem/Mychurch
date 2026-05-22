@@ -2,6 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { Resend } from "resend";
+import { query } from "@/lib/db";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

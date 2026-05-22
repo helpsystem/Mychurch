@@ -12,6 +12,9 @@ export const dictionaries = {
         broadcast: "Broadcast Console",
         gallery: "Gallery",
         documents: "Official Documents",
+        prayers: "Prayer Requests",
+        payment: "Online Payment",
+        latestSermons: "Latest Sermons",
 
         // Home Page
         heroTitle: "Global Online Platform",
@@ -136,6 +139,9 @@ export const dictionaries = {
         broadcast: "کنسول پخش",
         gallery: "گالری",
         documents: "مدارک رسمی",
+        prayers: "درخواست دعا",
+        payment: "پرداخت آنلاین",
+        latestSermons: "تازه‌ترین پیام‌ها",
 
         // Home Page
         heroTitle: "پلتفرم آنلاین جهانی",

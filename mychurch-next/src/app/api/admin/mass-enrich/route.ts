@@ -78,7 +78,7 @@ export async function GET() {
                     [artist, youtubeId, lyricsFa, titleFa, song.title.en || ""]
                 );
                 
-                if (res.rowCount > 0) {
+                if (res.rowCount && res.rowCount > 0) {
                     updatedCount++;
                 }
             }

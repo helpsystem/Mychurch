@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Megaphone, Mail, Send, Save, Eye, Users, History, Calendar, Clock } from "lucide-react";
+import { Megaphone, Mail, Send, Save, Eye, Users, History, Calendar, Clock, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { createAnnouncement, sendMassEmail, sendTestMassEmail, Announcement } from "@/actions/communications";
 

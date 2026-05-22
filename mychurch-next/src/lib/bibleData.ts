@@ -1,4 +1,4 @@
-import { BibleBook, Language } from '../types';
+import { BibleBook, AppLanguage as Language } from '@/types/broadcast';
 
 // Testament classifications
 export const OLD_TESTAMENT_BOOKS = [
@@ -16,7 +16,7 @@ export const NEW_TESTAMENT_BOOKS = [
     "1John", "2John", "3John", "Jude", "Revelation"
 ];
 
-export const INITIAL_BIBLE_BOOKS: BibleBook[] = [
+const RAW_INITIAL_BIBLE_BOOKS = [
     // Old Testament
     { key: "Genesis", name: { en: "Genesis", fa: "تکوین" }, chapters: 50 },
     { key: "Exodus", name: { en: "Exodus", fa: "خروج" }, chapters: 40 },
@@ -87,6 +87,14 @@ export const INITIAL_BIBLE_BOOKS: BibleBook[] = [
     { key: "Jude", name: { en: "Jude", fa: "یهودا" }, chapters: 1 },
     { key: "Revelation", name: { en: "Revelation", fa: "مکاشفه" }, chapters: 22 },
 ];
+
+export const INITIAL_BIBLE_BOOKS: BibleBook[] = RAW_INITIAL_BIBLE_BOOKS.map(book => ({
+    key: book.key,
+    name: book.name,
+    chapters: book.chapters,
+    testament: OLD_TESTAMENT_BOOKS.includes(book.key) ? 'OT' : 'NT'
+}));
+
 
 // Content is now structured as: Book -> Chapter -> Language -> Verses
 export const INITIAL_BIBLE_CONTENT: Record<string, Record<string, Record<Language, string[]>>> = {

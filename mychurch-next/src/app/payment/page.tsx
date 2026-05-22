@@ -5,9 +5,13 @@ import PaymentPageClient from "./PaymentPageClient";
 
 export const dynamic = "force-dynamic";
 
-export default async function PaymentPage({ searchParams }: { searchParams?: { status?: string; gift_ref?: string } | Promise<{ status?: string; gift_ref?: string }> }) {
+export default async function PaymentPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
     const config = await getPaymentConfig();
-    const params = (await Promise.resolve(searchParams ?? {})) || {};
+    const params = await searchParams;
 
     const status = typeof params.status === "string" ? params.status : null;
     const giftRef = typeof params.gift_ref === "string" && params.gift_ref.trim() ? params.gift_ref.trim() : null;

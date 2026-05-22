@@ -22,7 +22,7 @@ export default function AdminPrayersClient({ initialPrayers }: { initialPrayers:
     const componentRef = useRef<HTMLDivElement>(null);
 
     const handlePrint = useReactToPrint({
-        content: () => componentRef.current,
+        contentRef: componentRef,
         documentTitle: `Prayer_Requests_${new Date().toISOString().split('T')[0]}`,
     });
 

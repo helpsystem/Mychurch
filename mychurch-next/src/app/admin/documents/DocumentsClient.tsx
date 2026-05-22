@@ -891,6 +891,9 @@ export default function ChurchDocumentsPage() {
   const [docHistory, setDocHistory] = useState<DocHistoryItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Letter fields (declared early to avoid hoisting/ReferenceError in persistHistoryItem)
+  const [selectedTpl, setSelectedTpl] = useState<typeof LETTER_TEMPLATES[number] | null>(null);
+
   const mapDbDocumentToHistory = (doc: any): DocHistoryItem => {
     const content = doc?.document_content && typeof doc.document_content === "object" ? doc.document_content : {};
     const docType: DocHistoryItem["type"] =
@@ -1054,7 +1057,6 @@ export default function ChurchDocumentsPage() {
   const [activeTab, setActiveTab] = useState<"letters" | "receipts" | "inkind" | "invoice" | "history">("letters");
 
   // Letter fields
-  const [selectedTpl, setSelectedTpl] = useState<typeof LETTER_TEMPLATES[number] | null>(null);
   const [editLang, setEditLang] = useState<"en" | "fa">("en");
   const [bodyEn, setBodyEn] = useState("");
   const [bodyFa, setBodyFa] = useState("");

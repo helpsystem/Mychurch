@@ -46,7 +46,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
               <h2 className="text-xl font-bold text-white mb-1">
                 {isRTL ? "پیش‌نمایش اسلاید کتاب مقدس" : "Scripture Slide Preview"}
               </h2>
-              <p className="text-sm text-slate-400">{slide.content?.title || "Scripture"}</p>
+              <p className="text-sm text-slate-400">{(slide.content as any)?.title || "Scripture"}</p>
             </div>
             <button
               onClick={onClose}
@@ -268,7 +268,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
             <h2 className="text-xl font-bold text-white mb-1">
               {isRTL ? "پیش‌نمایش اسلاید" : "Slide Preview"}
             </h2>
-            <p className="text-sm text-slate-400">{slide.content?.title || "Content"}</p>
+            <p className="text-sm text-slate-400">{(slide.content as any)?.title || "Content"}</p>
           </div>
           <button
             onClick={onClose}

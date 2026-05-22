@@ -28,7 +28,8 @@ const newItem = (defaultRate = 0): WorkItem => ({
 });
 
 export default function FreelancerSubmitPage() {
-    const { token } = useParams<{ token: string }>();
+    const params = useParams();
+    const token = params ? (params.token as string) : "";
     const [linkData, setLinkData] = useState<LinkData | null>(null);
     const [linkError, setLinkError] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);

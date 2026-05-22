@@ -204,7 +204,7 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
     // Calculate Folders & Files
     // Filter by type if allowedTypes is specified and we are picking.
     const isModal = mode === "modal";
-    const typeFiltered = files.filter(f => isModal ? (allowedTypes.includes("all") || allowedTypes.includes(f.type)) : true);
+    const typeFiltered = files.filter(f => isModal ? (allowedTypes.includes("all") || (allowedTypes as any[]).includes(f.type)) : true);
     
     // Filter by Search (global)
     const searchFiltered = searchQuery 

@@ -20,7 +20,7 @@ import {
 import {
   BookOpen, Music, FileImage, Video, Plus, GripVertical, Upload,
   PieChart, BarChart, LineChart, Activity,
-  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall, Eye
+  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall, Eye, Heart
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
 import ScriptureSelector from './ScriptureSelector';
@@ -70,8 +70,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const t = BROADCAST_TRANSLATIONS[lang];
   const isRTL = lang === 'fa';
 
-  // Modal State
   const [activeModal, setActiveModal] = useState<ModalType>('NONE');
+  
+  // Asset Library State
+  const [isLoadingLibrary, setIsLoadingLibrary] = useState(false);
+  const [libraryError, setLibraryError] = useState('');
+  const [libraryAssets, setLibraryAssets] = useState<LibraryAsset[]>([]);
+  const [uploadingAsset, setUploadingAsset] = useState(false);
+  const [assetSearchQuery, setAssetSearchQuery] = useState('');
   
   // Preview Modal State
   const [previewSlideIndex, setPreviewSlideIndex] = useState<number | null>(null);

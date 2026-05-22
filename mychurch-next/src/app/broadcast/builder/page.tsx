@@ -13,11 +13,11 @@ type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
 export default async function SlideBuilderPage({
     searchParams,
 }: {
-    searchParams: { id?: string | string[] } | Promise<{ id?: string | string[] }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     await requireRole(["Admin", "Leader", "Operator"]);
 
-    const resolvedParams = searchParams instanceof Promise ? await searchParams : searchParams;
+    const resolvedParams = await searchParams;
     const rawId = resolvedParams?.id;
     const id = Array.isArray(rawId) ? rawId[0] : rawId;
 

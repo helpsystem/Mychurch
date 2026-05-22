@@ -45,7 +45,8 @@ const STATUS_BADGE = {
 const newItem = (): InvoiceItem => ({ description: "", quantity: 1, unit_price: 0, total: 0 });
 
 export default function ViewDejInvoice() {
-    const { id } = useParams<{ id: string }>();
+    const params = useParams();
+    const id = typeof params?.id === "string" ? params.id : undefined;
     const router = useRouter();
     const searchParams = useSearchParams();
     const [invoice, setInvoice] = useState<Invoice | null>(null);
@@ -64,7 +65,7 @@ export default function ViewDejInvoice() {
                 setInvoice(data);
                 setLoading(false);
                 // Auto-enter edit mode if ?edit=1 in URL
-                if (searchParams.get("edit") === "1") {
+                if (searchParams && searchParams.get("edit") === "1") {
                     setEditData(JSON.parse(JSON.stringify(data)));
                     setEditing(true);
                     // Clean the URL without reload

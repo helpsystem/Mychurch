@@ -81,7 +81,7 @@ export function AddressAutocomplete({ value, onChange }: Props) {
   const [isGeolocating, setIsGeolocating] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const handleSearch = useCallback((q: string) => {
     setQuery(q);

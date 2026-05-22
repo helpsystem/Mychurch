@@ -16,6 +16,13 @@ interface PopupConfig {
     imageFit?: "cover" | "contain" | "fill";
     imageHeight?: "sm" | "md" | "lg" | "xl";
     imageBgColor?: string;
+    videoUrl?: string;
+    videoPosterUrl?: string;
+    videoAutoplay?: boolean;
+    videoMuted?: boolean;
+    videoLoop?: boolean;
+    videoControls?: boolean;
+    videoPreload?: "auto" | "metadata" | "none";
     particleDensity?: "light" | "medium" | "heavy" | "insane";
     badge1Icon?: string; badge1Fa?: string; badge1En?: string;
     badge2Icon?: string; badge2Fa?: string; badge2En?: string;

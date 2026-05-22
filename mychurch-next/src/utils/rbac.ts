@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 export type Role = 'Admin' | 'Leader' | 'Operator' | 'User';
 
-async function getUserEmail(): Promise<string | null> {
+export async function getUserEmail(): Promise<string | null> {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
     return user?.email || null;
@@ -37,7 +37,8 @@ export async function getUserRole(): Promise<Role | null> {
 
     if (realRole === 'Admin' || realRole === 'Leader') {
         try {
-            const cookieRole = cookies().get('mychurch_view_as_role')?.value;
+            const cookieStore = await cookies();
+            const cookieRole = cookieStore.get('mychurch_view_as_role')?.value;
             if (cookieRole && ['Admin', 'Leader', 'Operator', 'User'].includes(cookieRole)) {
                 return cookieRole as Role;
             }
