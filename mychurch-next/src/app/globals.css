@@ -9,7 +9,7 @@
 }
 
 @theme {
-  --font-sans: var(--font-roboto);
+  --font-sans: var(--font-sans);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-vazirmatn: var(--font-vazirmatn);
   --font-homa: var(--font-homa);
@@ -42,6 +42,7 @@
 }
 
 :root {
+  --font-sans: var(--font-homa);
   /* Dark-first palette to guarantee readable contrast site-wide */
   --background: #09090b;
   --foreground: #fafafa;
@@ -85,6 +86,10 @@
   --border: #3f3f46;
   --input: #3f3f46;
   --ring: #3b82f6;
+}
+
+[dir="ltr"] {
+  --font-sans: var(--font-roboto);
 }
 
 @layer base {
