@@ -13,6 +13,35 @@ export default function GlobalError({
     useEffect(() => {
         console.error("Global Error Boundary Caught:", error);
 
+        if (typeof window !== "undefined") {
+            const errorMsg = (error?.message || "").toLowerCase();
+            const errorStack = (error?.stack || "").toLowerCase();
+            const isChunkError =
+                errorMsg.includes("chunk") ||
+                errorMsg.includes("loading") ||
+                errorMsg.includes("failed to fetch") ||
+                errorMsg.includes("dynamically imported module") ||
+                errorMsg.includes("server action") ||
+                errorStack.includes("chunk") ||
+                errorStack.includes("loading");
+
+            if (isChunkError) {
+                try {
+                    const lastReload = sessionStorage.getItem("last-chunk-reload");
+                    const now = Date.now();
+                    // Reload at most once every 15 seconds to prevent loop
+                    if (!lastReload || now - parseInt(lastReload, 10) > 15000) {
+                        sessionStorage.setItem("last-chunk-reload", now.toString());
+                        console.warn("Stale client assets or server actions detected. Reloading page...");
+                        window.location.reload();
+                        return;
+                    }
+                } catch (e) {
+                    console.error("Failed to execute chunk error auto-reload:", e);
+                }
+            }
+        }
+
         fetch("/api/admin/report-error", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -40,3 +69,4 @@ export default function GlobalError({
         />
     );
 }
+
