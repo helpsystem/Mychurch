@@ -1,9 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'B Homa';
+  src: url('/fonts/BHoma.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-roboto);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-vazirmatn: var(--font-vazirmatn);
+  --font-homa: var(--font-homa);
+  --font-roboto: var(--font-roboto);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -87,7 +97,7 @@
   }
 
   body, input, textarea, select, button {
-    font-family: var(--font-vazirmatn), var(--font-inter), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-homa), var(--font-vazirmatn), var(--font-roboto), system-ui, -apple-system, sans-serif;
   }
 
   /* ── Ensure form inputs always have readable text ─────────────────── */
@@ -117,7 +127,7 @@
   [dir="ltr"] textarea,
   [dir="ltr"] select,
   [dir="ltr"] button {
-    font-family: var(--font-inter), var(--font-vazirmatn), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-roboto), var(--font-inter), var(--font-homa), system-ui, -apple-system, sans-serif;
   }
 
   /* Utility to hide elements when a modal is open */
@@ -128,20 +138,28 @@
 
 /* Glassmorphism utilities */
 @layer utilities {
+  .font-homa {
+    font-family: var(--font-homa), var(--font-vazirmatn), sans-serif;
+  }
+
+  .font-roboto {
+    font-family: var(--font-roboto), var(--font-inter), sans-serif;
+  }
+
   .font-nastaliq {
-    font-family: var(--font-nastaliq), var(--font-vazirmatn), serif;
+    font-family: var(--font-nastaliq), var(--font-homa), var(--font-vazirmatn), serif;
   }
 
   .font-lalezar {
-    font-family: var(--font-lalezar), var(--font-vazirmatn), cursive;
+    font-family: var(--font-lalezar), var(--font-homa), var(--font-vazirmatn), cursive;
   }
 
   .font-playfair {
-    font-family: var(--font-playfair), var(--font-inter), serif;
+    font-family: var(--font-playfair), var(--font-roboto), var(--font-inter), serif;
   }
 
   .font-merriweather {
-    font-family: var(--font-merriweather), var(--font-inter), serif;
+    font-family: var(--font-merriweather), var(--font-roboto), var(--font-inter), serif;
   }
 
   .glass {

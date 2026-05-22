@@ -1997,6 +1997,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 onChange={(e) => setGenericFontFamily(e.target.value)}
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
               >
+                <option value="var(--font-homa)">Homa</option>
+                <option value="var(--font-roboto)">Roboto</option>
                 <option value="var(--font-vazirmatn)">Vazirmatn</option>
                 <option value="var(--font-nastaliq)">Nastaliq</option>
                 <option value="var(--font-lalezar)">Lalezar</option>
