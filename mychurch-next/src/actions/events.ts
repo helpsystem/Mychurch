@@ -45,59 +45,47 @@ export async function scheduleEvent(
         let accessCode = config.access_code;
         let apiScheduled = false;
 
-        // Try to schedule via FreeConferenceCall API v4 if enabled and keys are present
-        if (config.enabled && config.fcc_public_key && config.fcc_private_key) {
-            console.log("[FCC API] Authenticating with FreeConferenceCall API...");
+        // Try to schedule via FreeConferenceCall API v4 if enabled
+        if (config.enabled) {
+            console.log("[FCC API] Fetching valid FreeConferenceCall Access Token...");
             try {
-                const auth = Buffer.from(`${config.fcc_public_key.trim()}:${config.fcc_private_key.trim()}`).toString('base64');
-                const tokenRes = await fetch("https://www.freeconferencecall.com/api/v4/token", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Basic ${auth}`,
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: "grant_type=client_credentials"
-                });
-
-                if (tokenRes.ok) {
-                    const tokenData = await tokenRes.json();
-                    const token = tokenData.access_token;
-                    
-                    if (token) {
-                        console.log("[FCC API] Token obtained. Querying conferences...");
-                        const confRes = await fetch("https://www.freeconferencecall.com/api/v4/conferences", {
-                            method: "GET",
-                            headers: {
-                                "Authorization": `Bearer ${token}`
-                            }
-                        });
-
-                        if (confRes.ok) {
-                            const confData = await confRes.json();
-                            // Handle list or single structure
-                            const conferences = confData.conferences || (Array.isArray(confData) ? confData : null);
-                            if (conferences && conferences.length > 0) {
-                                const conf = conferences[0];
-                                dialIn = conf.dial_number || conf.dial_in_number || dialIn;
-                                accessCode = conf.access_code || accessCode;
-                                const meetingId = conf.meeting_id || conf.access_code;
-                                joinUrl = `https://join.freeconferencecall.com/${meetingId}`;
-                                apiScheduled = true;
-                                console.log("[FCC API] Live conference details loaded:", { dialIn, accessCode, joinUrl });
-                            } else if (confData.dial_number || confData.access_code) {
-                                dialIn = confData.dial_number || confData.dial_in_number || dialIn;
-                                accessCode = confData.access_code || accessCode;
-                                const meetingId = confData.meeting_id || confData.access_code;
-                                joinUrl = `https://join.freeconferencecall.com/${meetingId}`;
-                                apiScheduled = true;
-                                console.log("[FCC API] Live conference details loaded:", { dialIn, accessCode, joinUrl });
-                            }
-                        } else {
-                            console.warn(`[FCC API] Get conferences request failed: ${confRes.status}`);
+                const { getValidFccAccessToken } = await import("./conference-config");
+                const token = await getValidFccAccessToken();
+                
+                if (token) {
+                    console.log("[FCC API] Token obtained. Querying conferences...");
+                    const confRes = await fetch("https://www.freeconferencecall.com/api/v4/conferences", {
+                        method: "GET",
+                        headers: {
+                            "Authorization": `Bearer ${token}`
                         }
+                    });
+
+                    if (confRes.ok) {
+                        const confData = await confRes.json();
+                        // Handle list or single structure
+                        const conferences = confData.conferences || (Array.isArray(confData) ? confData : null);
+                        if (conferences && conferences.length > 0) {
+                            const conf = conferences[0];
+                            dialIn = conf.dial_number || conf.dial_in_number || dialIn;
+                            accessCode = conf.access_code || accessCode;
+                            const meetingId = conf.meeting_id || conf.access_code;
+                            joinUrl = `https://join.freeconferencecall.com/${meetingId}`;
+                            apiScheduled = true;
+                            console.log("[FCC API] Live conference details loaded:", { dialIn, accessCode, joinUrl });
+                        } else if (confData.dial_number || confData.access_code) {
+                            dialIn = confData.dial_number || confData.dial_in_number || dialIn;
+                            accessCode = confData.access_code || accessCode;
+                            const meetingId = confData.meeting_id || confData.access_code;
+                            joinUrl = `https://join.freeconferencecall.com/${meetingId}`;
+                            apiScheduled = true;
+                            console.log("[FCC API] Live conference details loaded:", { dialIn, accessCode, joinUrl });
+                        }
+                    } else {
+                        console.warn(`[FCC API] Get conferences request failed: ${confRes.status}`);
                     }
                 } else {
-                    console.warn(`[FCC API] Authentication token request failed: ${tokenRes.status}`);
+                    console.warn(`[FCC API] No valid access token found or token could not be refreshed.`);
                 }
             } catch (apiErr) {
                 console.error("[FCC API] Error during live API communication:", apiErr);

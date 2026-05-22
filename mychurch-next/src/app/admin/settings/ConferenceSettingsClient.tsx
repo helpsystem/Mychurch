@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { saveConferenceConfig, testFccConnection, ConferenceConfig } from "@/actions/conference-config";
+import React, { useState, useEffect } from "react";
+import { saveConferenceConfig, testFccConnection, exchangeFccCodeForToken, ConferenceConfig } from "@/actions/conference-config";
 import { 
     Video, Key, Phone, Save, CheckCircle2, 
     AlertCircle, Sparkles, Loader2
@@ -17,7 +17,45 @@ export default function ConferenceSettingsClient({ initialConfig }: ConferenceSe
     const [config, setConfig] = useState<ConferenceConfig>(initialConfig);
     const [isSaving, setIsSaving] = useState(false);
     const [isTesting, setIsTesting] = useState(false);
+    const [isExchanging, setIsExchanging] = useState(false);
     const [testResult, setTestResult] = useState<{ success: boolean; message: string } | null>(null);
+
+    // Handle code exchange on load
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
+        if (code) {
+            const exchangeCode = async () => {
+                setIsExchanging(true);
+                setTestResult(null);
+                const redirectUri = window.location.origin + window.location.pathname;
+                
+                toast.loading("در حال تکمیل فرآیند احراز هویت با FCC...", { id: "fcc-auth" });
+                try {
+                    const res = await exchangeFccCodeForToken(code, redirectUri);
+                    if (res.success) {
+                        toast.success("اتصال به حساب کاربری FCC با موفقیت برقرار شد!", { id: "fcc-auth" });
+                        setTestResult({ success: true, message: "احراز هویت با موفقیت انجام شد! اتصال سرور فعال است." });
+                        
+                        // Clean up URL and reload settings config
+                        setTimeout(() => {
+                            window.location.href = window.location.origin + window.location.pathname;
+                        }, 1500);
+                    } else {
+                        toast.error(res.error || "خطا در احراز هویت", { id: "fcc-auth" });
+                        setTestResult({ success: false, message: res.error || "خطا در فرآیند احراز هویت با سرور FCC" });
+                    }
+                } catch (err: any) {
+                    toast.error(err.message || "خطای سیستمی در احراز هویت", { id: "fcc-auth" });
+                    setTestResult({ success: false, message: err.message || "خطا در ارتباط با سرور جهت تبادل توکن" });
+                } finally {
+                    setIsExchanging(false);
+                }
+            };
+            exchangeCode();
+        }
+    }, []);
 
     const handleSave = async () => {
         setIsSaving(true);
@@ -36,15 +74,21 @@ export default function ConferenceSettingsClient({ initialConfig }: ConferenceSe
         }
     };
 
-    const handleTestConnection = async () => {
+    const handleAuthorize = () => {
         if (!config.fcc_public_key || !config.fcc_private_key) {
-            toast.error("لطفاً ابتدا کلیدهای عمومی و خصوصی API را وارد کنید.");
+            toast.error("لطفاً ابتدا کلیدهای عمومی و خصوصی API را ذخیره کنید.");
             return;
         }
+        const redirectUri = window.location.origin + window.location.pathname;
+        const authUrl = `https://www.freeconferencecall.com/api/v4/authorize?client_id=${config.fcc_public_key.trim()}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code`;
+        window.location.href = authUrl;
+    };
+
+    const handleTestConnection = async () => {
         setIsTesting(true);
         setTestResult(null);
         try {
-            const res = await testFccConnection(config.fcc_public_key, config.fcc_private_key);
+            const res = await testFccConnection();
             if (res.success) {
                 setTestResult({ success: true, message: res.message || "اتصال برقرار شد!" });
                 toast.success("تست اتصال موفقیت‌آمیز بود");
@@ -100,9 +144,16 @@ export default function ConferenceSettingsClient({ initialConfig }: ConferenceSe
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Credentials block */}
                 <div className="space-y-4">
-                    <h3 className="font-bold text-sm text-indigo-400 flex items-center gap-2 border-b border-white/5 pb-2 font-[Vazirmatn]">
-                        <Key className="w-4 h-4" /> کلیدهای API رسمی (اختیاری)
-                    </h3>
+                    <div className="flex items-center justify-between gap-2 border-b border-white/5 pb-2">
+                        <h3 className="font-bold text-sm text-indigo-400 flex items-center gap-2 font-[Vazirmatn]">
+                            <Key className="w-4 h-4" /> کلیدهای API و احراز هویت
+                        </h3>
+                        {config.fcc_access_token === "PRESENT" && (
+                            <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full font-bold">
+                                حساب متصل است
+                            </span>
+                        )}
+                    </div>
                     
                     <div className="space-y-2">
                         <label className="text-xs font-bold text-white/70 block pl-1 font-[Vazirmatn]">کلید عمومی (Public Key / Client ID)</label>
@@ -128,12 +179,30 @@ export default function ConferenceSettingsClient({ initialConfig }: ConferenceSe
                         />
                     </div>
 
-                    {/* Test Connection Button */}
-                    <div className="pt-2">
+                    <div className="bg-neutral-950/60 border border-white/5 rounded-xl p-3 text-[10px] leading-relaxed text-neutral-400 font-[Vazirmatn]">
+                        <strong>نکته مهم:</strong> برای اتصال موفق، باید آدرس زیر را در پنل توسعه‌دهندگان FreeConferenceCall خود به عنوان <strong>Redirect URI</strong> ثبت کرده باشید:
+                        <div className="font-mono text-left text-indigo-400 bg-neutral-900 px-2 py-1.5 rounded mt-1 select-all break-all overflow-auto max-h-12 text-[10px]" dir="ltr">
+                            {typeof window !== 'undefined' ? window.location.origin + window.location.pathname : 'https://www.iranianchurchdc.com/admin/settings'}
+                        </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap gap-3 pt-2">
+                        <button
+                            type="button"
+                            onClick={handleAuthorize}
+                            disabled={isExchanging || !config.fcc_public_key || !config.fcc_private_key}
+                            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl transition-all font-bold text-xs disabled:opacity-50 cursor-pointer active:scale-95 border border-indigo-500/30 shadow-lg font-[Vazirmatn]"
+                            title="اتصال به حساب کاربری FCC"
+                        >
+                            {isExchanging ? <Loader2 className="w-4 h-4 animate-spin" /> : <Key className="w-4 h-4" />}
+                            اتصال به حساب FCC
+                        </button>
+                        
                         <button
                             type="button"
                             onClick={handleTestConnection}
-                            disabled={isTesting || !config.fcc_public_key || !config.fcc_private_key}
+                            disabled={isTesting || isExchanging}
                             className="flex items-center gap-2 px-4 py-2.5 bg-neutral-800 hover:bg-neutral-700 text-white rounded-xl transition-all font-bold text-xs disabled:opacity-50 cursor-pointer active:scale-95 border border-white/10 shadow-lg font-[Vazirmatn]"
                             title="تست ارتباط با کلیدهای فعلی"
                         >
