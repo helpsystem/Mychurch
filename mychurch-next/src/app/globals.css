@@ -96,7 +96,7 @@
     @apply bg-background text-foreground antialiased selection:bg-primary/30;
   }
 
-  body, input, textarea, select, button {
+  body, input, textarea, select, button, h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-homa), var(--font-vazirmatn), var(--font-roboto), system-ui, -apple-system, sans-serif;
   }
 
@@ -126,7 +126,13 @@
   [dir="ltr"] input,
   [dir="ltr"] textarea,
   [dir="ltr"] select,
-  [dir="ltr"] button {
+  [dir="ltr"] button,
+  [dir="ltr"] h1,
+  [dir="ltr"] h2,
+  [dir="ltr"] h3,
+  [dir="ltr"] h4,
+  [dir="ltr"] h5,
+  [dir="ltr"] h6 {
     font-family: var(--font-roboto), var(--font-inter), var(--font-homa), system-ui, -apple-system, sans-serif;
   }
 
