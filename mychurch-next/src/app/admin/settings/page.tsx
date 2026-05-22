@@ -1,15 +1,18 @@
 import React from "react";
 import { getAIConfig } from "@/actions/ai-config";
 import { getPaymentConfig } from "@/actions/payment-config";
+import { getConferenceConfig } from "@/actions/conference-config";
 import SettingsClient from "./SettingsClient";
 import PaymentSettingsClient from "./PaymentSettingsClient";
+import ConferenceSettingsClient from "./ConferenceSettingsClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminSettingsPage() {
-    const [aiConfig, paymentConfig] = await Promise.all([
+    const [aiConfig, paymentConfig, conferenceConfig] = await Promise.all([
         getAIConfig(),
         getPaymentConfig(),
+        getConferenceConfig(),
     ]);
 
     return (
@@ -20,6 +23,15 @@ export default async function AdminSettingsPage() {
             </div>
 
             <SettingsClient initialConfig={aiConfig} />
+
+            <div className="space-y-3">
+                <h2 className="text-2xl font-black tracking-tight text-white">FreeConferenceCall Settings</h2>
+                <p className="text-sm text-muted-foreground">
+                    Configure online conference settings, APIs, dial-in credentials, and fallback settings for the church live streams.
+                </p>
+            </div>
+
+            <ConferenceSettingsClient initialConfig={conferenceConfig} />
 
             <div className="space-y-3">
                 <h2 className="text-2xl font-black tracking-tight text-white">Payment Settings</h2>

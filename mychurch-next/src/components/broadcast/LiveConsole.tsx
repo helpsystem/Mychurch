@@ -5,12 +5,13 @@ import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJs
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { getPresentations } from "@/actions/presentations";
+import { getPresentations, getPresentationById } from "@/actions/presentations";
 import { BroadcastSession } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { cn } from "@/lib/utils";
 import { PageVisuals } from "@/components/ui/PageVisuals";
 import { toast } from "sonner";
+import { useSearchParams } from "next/navigation";
 
 // Sub-components
 import { BroadcastSidebar } from "./BroadcastSidebar";
@@ -20,6 +21,9 @@ import { SlideGrid } from "./SlideGrid";
 
 export default function LiveConsole() {
     const { t } = useLanguage();
+    const searchParams = useSearchParams();
+    const presentationId = searchParams ? (searchParams.get("id") || searchParams.get("session")) : null;
+
     const isLive = useBroadcastStore(state => state.isLive);
     const setIsLive = useBroadcastStore(state => state.setIsLive);
     const setSlides = useBroadcastStore(state => state.setSlides);
@@ -42,6 +46,30 @@ export default function LiveConsole() {
     const [isGeneratingViewerLink, setIsGeneratingViewerLink] = React.useState(false);
     const lastKeyTimeRef = React.useRef<number>(0);
     const [isOnline, setIsOnline] = React.useState(true);
+
+    // Auto-load presentation from query parameter
+    useEffect(() => {
+        if (presentationId) {
+            const loadSessionFromUrl = async () => {
+                try {
+                    const session = await getPresentationById(presentationId);
+                    if (session) {
+                        setSessionId(session.id);
+                        setSlides(session.slides);
+                        setActiveSlideIndex(0, true);
+                        setInternalPageIndex(0, true);
+                        toast.success(`ارائه "${session.title}" با موفقیت بارگذاری شد`);
+                    } else {
+                        toast.error("ارائه مورد نظر یافت نشد");
+                    }
+                } catch (err) {
+                    console.error("Failed to auto-load presentation:", err);
+                    toast.error("خطا در بارگذاری خودکار ارائه");
+                }
+            };
+            loadSessionFromUrl();
+        }
+    }, [presentationId, setSessionId, setSlides, setActiveSlideIndex, setInternalPageIndex]);
 
     useEffect(() => {
         setIsOnline(typeof window !== 'undefined' ? window.navigator.onLine : true);
