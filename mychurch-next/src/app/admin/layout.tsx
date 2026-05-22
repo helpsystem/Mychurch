@@ -39,6 +39,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
     const permissions = permissionsResult.data?.permissions || {};
     const isAdmin = role === 'Admin';
+    
+    // Get the impersonated role if any
+    const { getUserRole } = await import("@/utils/rbac");
+    const currentRole = await getUserRole() || role;
 
     return (
         <div className="dark flex h-[100dvh] w-full bg-[#09090b] text-neutral-50 font-sans selection:bg-primary/30 relative overflow-hidden">
@@ -46,7 +50,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20 pointer-events-none" />
             {/* Admin Sidebar (Client component for mobile toggle) */}
             <AdminSidebar 
-                role={role} 
+                role={currentRole} 
+                realRole={role}
                 permissions={permissions} 
                 userEmail={userEmail} 
                 initials={initials} 

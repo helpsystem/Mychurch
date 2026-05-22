@@ -9,7 +9,9 @@ async function getUserEmail(): Promise<string | null> {
     return user?.email || null;
 }
 
-export async function getUserRole(): Promise<Role | null> {
+import { cookies } from "next/headers";
+
+export async function getRealUserRole(): Promise<Role | null> {
     const email = await getUserEmail();
     if (!email) return null;
 
@@ -27,6 +29,24 @@ export async function getUserRole(): Promise<Role | null> {
         console.error("Failed to fetch user role:", error);
         return null;
     }
+}
+
+export async function getUserRole(): Promise<Role | null> {
+    const realRole = await getRealUserRole();
+    if (!realRole) return null;
+
+    if (realRole === 'Admin' || realRole === 'Leader') {
+        try {
+            const cookieRole = cookies().get('mychurch_view_as_role')?.value;
+            if (cookieRole && ['Admin', 'Leader', 'Operator', 'User'].includes(cookieRole)) {
+                return cookieRole as Role;
+            }
+        } catch {
+            // ignore
+        }
+    }
+
+    return realRole;
 }
 
 export async function getUserPermissions(): Promise<Record<string, boolean>> {

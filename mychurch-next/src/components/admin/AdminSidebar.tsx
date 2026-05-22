@@ -14,13 +14,14 @@ import { logout } from "@/actions/auth";
 
 interface AdminSidebarProps {
     role: string;
+    realRole: string;
     permissions: any;
     userEmail: string;
     initials: string;
     isAdmin: boolean;
 }
 
-export default function AdminSidebar({ role, permissions, userEmail, initials, isAdmin }: AdminSidebarProps) {
+export default function AdminSidebar({ role, realRole, permissions, userEmail, initials, isAdmin }: AdminSidebarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
 
@@ -141,7 +142,7 @@ export default function AdminSidebar({ role, permissions, userEmail, initials, i
 
                 <div className="p-4 border-t border-border/10 space-y-2 relative z-10">
                     {isAdmin && (
-                        <ViewAsRoleSwitcher realRole={role} />
+                        <ViewAsRoleSwitcher currentRole={role} realRole={realRole} />
                     )}
 
                     <Link href="/profile" className="flex items-center gap-3 px-3 py-3 rounded-xl text-muted-foreground hover:bg-neutral-800 hover:text-foreground transition-colors group">

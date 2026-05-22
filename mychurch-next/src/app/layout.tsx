@@ -26,12 +26,16 @@ import { MobileNavigation } from "@/components/layout/MobileNavigation";
 import { GlobalPopupWrapper } from "@/components/widgets/GlobalPopupWrapper";
 import GlobalErrorReporter from "@/components/error/GlobalErrorReporter";
 import { AutoLogout } from "@/components/layout/AutoLogout";
+import { ImpersonationBanner } from "@/components/admin/ImpersonationBanner";
+import { getRealUserRole, getUserRole } from "@/utils/rbac";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const realRole = await getRealUserRole();
+  const currentRole = await getUserRole();
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning className="dark">
       <head>
@@ -65,6 +69,9 @@ export default function RootLayout({
       <body className={`antialiased bg-background text-foreground`} style={{ fontFamily: 'var(--font-vazirmatn)' }}>
         <LanguageProvider>
           <GlobalErrorReporter />
+          {realRole && currentRole && currentRole !== realRole && (
+            <ImpersonationBanner currentRole={currentRole} realRole={realRole} />
+          )}
           <AutoLogout timeoutMinutes={1440} />
           {children}
           <MobileNavigation />

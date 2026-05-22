@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Eye, User, Shield, Briefcase, Crown, X } from "lucide-react";
 import Link from "next/link";
+import { setImpersonationRole, clearImpersonationRole } from "@/actions/impersonation";
+import { useRouter } from "next/navigation";
 
 const ROLE_OPTIONS = [
     { value: "Admin", label: "Admin", icon: Crown, color: "text-primary", bg: "bg-primary/10", ring: "ring-primary/30" },
@@ -11,47 +13,27 @@ const ROLE_OPTIONS = [
     { value: "User", label: "User", icon: User, color: "text-gray-400", bg: "bg-gray-500/10", ring: "ring-gray-500/30" },
 ];
 
-const LS_KEY = "mychurch_view_as_role";
-
-export default function ViewAsRoleSwitcher({ realRole }: { realRole: string }) {
-    const [viewAs, setViewAs] = useState<string | null>(null);
+export default function ViewAsRoleSwitcher({ currentRole, realRole }: { currentRole: string, realRole: string }) {
     const [open, setOpen] = useState(false);
+    const router = useRouter();
 
-    useEffect(() => {
-        try {
-            const saved = localStorage.getItem(LS_KEY);
-            if (saved && saved !== realRole) setViewAs(saved);
-        } catch {
-            setViewAs(null);
-        }
-    }, [realRole]);
-
-    const handleSelect = (role: string) => {
-        try {
-            if (role === realRole) {
-                localStorage.removeItem(LS_KEY);
-                setViewAs(null);
-            } else {
-                localStorage.setItem(LS_KEY, role);
-                setViewAs(role);
-            }
-        } catch {
-            setViewAs(null);
+    const handleSelect = async (role: string) => {
+        if (role === realRole) {
+            await clearImpersonationRole();
+        } else {
+            await setImpersonationRole(role);
         }
         setOpen(false);
+        router.refresh();
     };
 
-    const clearImpersonation = () => {
-        try {
-            localStorage.removeItem(LS_KEY);
-        } catch {
-            // no-op
-        }
-        setViewAs(null);
+    const clearImpersonation = async () => {
+        await clearImpersonationRole();
+        router.refresh();
     };
 
-    const activeRole = ROLE_OPTIONS.find(r => r.value === (viewAs || realRole));
-    const isImpersonating = !!viewAs && viewAs !== realRole;
+    const activeRole = ROLE_OPTIONS.find(r => r.value === currentRole);
+    const isImpersonating = currentRole !== realRole;
     const Icon = activeRole?.icon || Eye;
 
     return (
@@ -61,7 +43,7 @@ export default function ViewAsRoleSwitcher({ realRole }: { realRole: string }) {
                 <div className="mx-2 mb-2 px-3 py-2 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-between gap-2">
                     <span className="text-yellow-400 text-xs font-bold flex items-center gap-1.5">
                         <Eye className="w-3.5 h-3.5" />
-                        مشاهده به عنوان: {viewAs}
+                        مشاهده به عنوان: {currentRole}
                     </span>
                     <button
                         onClick={clearImpersonation}
@@ -86,7 +68,7 @@ export default function ViewAsRoleSwitcher({ realRole }: { realRole: string }) {
                 <Eye className="w-4 h-4 shrink-0" />
                 <span className="flex-1 text-right">مشاهده به عنوان...</span>
                 <span className={`text-xs px-2 py-0.5 rounded-full ${activeRole?.bg} ${activeRole?.color} ring-1 ${activeRole?.ring}`}>
-                    {viewAs || realRole}
+                    {currentRole}
                 </span>
             </button>
 
@@ -104,7 +86,7 @@ export default function ViewAsRoleSwitcher({ realRole }: { realRole: string }) {
                     <div className="p-2 space-y-1">
                         {ROLE_OPTIONS.map(role => {
                             const RoleIcon = role.icon;
-                            const isActive = (viewAs || realRole) === role.value;
+                            const isActive = currentRole === role.value;
                             const isReal = realRole === role.value;
                             return (
                                 <button
