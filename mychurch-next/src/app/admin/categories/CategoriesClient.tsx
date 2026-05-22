@@ -4,11 +4,32 @@ import React, { useState, useTransition } from "react";
 import { Tags, Plus, Search, Trash2, Edit2, ShieldAlert, FolderOpen } from "lucide-react";
 import { toast } from "sonner";
 import { Category, deleteCategory } from "@/actions/categories";
+import { CategoryModal } from "@/components/admin/CategoryModal";
 
 export default function CategoriesClient({ initialCategories }: { initialCategories: Category[] }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [categories, setCategories] = useState<Category[]>(initialCategories);
     const [isPending, startTransition] = useTransition();
+
+    // Modal state
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingCategory, setEditingCategory] = useState<Category | null>(null);
+
+    const handleOpenCreate = () => {
+        setEditingCategory(null);
+        setIsModalOpen(true);
+    };
+
+    const handleOpenEdit = (category: Category) => {
+        setEditingCategory(category);
+        setIsModalOpen(true);
+    };
+
+    const handleModalSuccess = () => {
+        // Since revalidatePath is called on the server, we could refresh the page or rely on router.refresh() 
+        // if we use useRouter, but window.location.reload() or router.refresh() is fine.
+        window.location.reload();
+    };
 
     const handleDelete = (id: number) => {
         if (confirm("آیا از حذف این دسته‌بندی اطمینان دارید؟")) {
@@ -34,7 +55,7 @@ export default function CategoriesClient({ initialCategories }: { initialCategor
                     </h1>
                     <p className="text-muted-foreground mt-2">Organize content across sermons, galleries, and articles.</p>
                 </div>
-                <button className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-bold rounded-xl shadow-lg hover:bg-primary/90 transition-all font-[Vazirmatn]">
+                <button onClick={handleOpenCreate} className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-bold rounded-xl shadow-lg hover:bg-primary/90 transition-all font-[Vazirmatn]">
                     <Plus className="w-5 h-5" /> دسته‌بندی جدید
                 </button>
             </div>
@@ -66,7 +87,7 @@ export default function CategoriesClient({ initialCategories }: { initialCategor
                                     <FolderOpen className="w-6 h-6" />
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <button title="ویرایش" disabled={isPending} className="p-2 text-muted-foreground hover:text-primary transition-colors disabled:opacity-50">
+                                    <button onClick={() => handleOpenEdit(cat)} title="ویرایش" disabled={isPending} className="p-2 text-muted-foreground hover:text-primary transition-colors disabled:opacity-50">
                                         <Edit2 className="w-4 h-4" />
                                     </button>
                                     <button title="حذف" onClick={() => handleDelete(cat.id)} disabled={isPending} className="p-2 text-muted-foreground hover:text-red-500 transition-colors disabled:opacity-50">
@@ -95,6 +116,15 @@ export default function CategoriesClient({ initialCategories }: { initialCategor
                     </div>
                 )}
             </div>
+
+            {isModalOpen && (
+                <CategoryModal 
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    category={editingCategory}
+                    onSuccess={handleModalSuccess}
+                />
+            )}
         </div>
     );
 }

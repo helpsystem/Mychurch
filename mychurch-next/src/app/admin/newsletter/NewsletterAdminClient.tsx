@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
-import { Users, Mail, Send, Loader2, CheckCircle, Search, Clock, Languages, ArrowRightLeft, Sparkles } from "lucide-react";
+import { Users, Mail, Send, Loader2, CheckCircle, Search, Clock, Languages, ArrowRightLeft, Sparkles, History, Calendar } from "lucide-react";
 import { sendNewsletterCampaign } from "@/actions/newsletter";
 import { translateText, enhanceText } from "@/actions/translate";
 
@@ -12,8 +12,9 @@ interface Subscriber {
     subscribed_at: string;
 }
 
-export default function NewsletterAdminClient({ initialSubscribers }: { initialSubscribers: Subscriber[] }) {
+export default function NewsletterAdminClient({ initialSubscribers, initialLogs = [] }: { initialSubscribers: Subscriber[], initialLogs?: any[] }) {
     const [subscribers, setSubscribers] = useState(initialSubscribers);
+    const [activeTab, setActiveTab] = useState<"compose" | "history">("compose");
     const [searchTerm, setSearchTerm] = useState("");
     const [isPending, startTransition] = useTransition();
     const [sendResult, setSendResult] = useState<{ type: 'success' | 'error', msg: string } | null>(null);
@@ -138,112 +139,153 @@ export default function NewsletterAdminClient({ initialSubscribers }: { initialS
                         </div>
                     </div>
 
-                    <form onSubmit={handleSendCampaign} className="space-y-8">
+                    <div className="flex bg-black/50 p-1 rounded-xl w-fit mb-6 border border-white/10">
+                        <button 
+                            onClick={() => setActiveTab('compose')}
+                            className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${activeTab === 'compose' ? 'bg-primary text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                        >
+                            <span className="flex items-center gap-2"><Send className="w-4 h-4" /> ارسال جدید</span>
+                        </button>
+                        <button 
+                            onClick={() => setActiveTab('history')}
+                            className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${activeTab === 'history' ? 'bg-primary text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                        >
+                            <span className="flex items-center gap-2"><History className="w-4 h-4" /> تاریخچه</span>
+                        </button>
+                    </div>
+
+                    {activeTab === 'compose' ? (
+                        <form onSubmit={handleSendCampaign} className="space-y-8">
+                            
+                            {/* Subjects */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-center">
+                                        <label className="text-sm font-bold text-emerald-400 font-[Vazirmatn]">موضوع (فارسی)</label>
+                                        <div className="flex items-center gap-2">
+                                            <button type="button" onClick={() => handleEnhance(subjectFa, 'fa', setSubjectFa)} className="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-emerald-500/20">
+                                                اصلاح با AI <Sparkles className="w-3 h-3" />
+                                            </button>
+                                            <button type="button" onClick={() => handleTranslate(subjectFa, 'en', setSubjectEn)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
+                                                ترجمه <ArrowRightLeft className="w-3 h-3" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <input 
+                                        value={subjectFa} onChange={(e) => setSubjectFa(e.target.value)}
+                                        type="text" required dir="rtl"
+                                        placeholder="مثال: اخبار جدید کلیسا..."
+                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary transition-colors font-[Vazirmatn]"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-center">
+                                        <label className="text-sm font-bold text-blue-400 font-sans">Subject (English)</label>
+                                        <div className="flex items-center gap-2">
+                                            <button type="button" onClick={() => handleEnhance(subjectEn, 'en', setSubjectEn)} className="text-xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-blue-500/20">
+                                                AI Enhance <Sparkles className="w-3 h-3" />
+                                            </button>
+                                            <button type="button" onClick={() => handleTranslate(subjectEn, 'fa', setSubjectFa)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
+                                                Translate <ArrowRightLeft className="w-3 h-3" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <input 
+                                        value={subjectEn} onChange={(e) => setSubjectEn(e.target.value)}
+                                        type="text" required dir="ltr"
+                                        placeholder="e.g. Church Weekly News..."
+                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary transition-colors font-sans"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Bodies */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-center">
+                                        <label className="text-sm font-bold text-emerald-400 font-[Vazirmatn]">متن ایمیل (فارسی)</label>
+                                        <div className="flex items-center gap-2">
+                                            <button type="button" onClick={() => handleEnhance(bodyFa, 'fa', setBodyFa)} className="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-emerald-500/20">
+                                                اصلاح با AI <Sparkles className="w-3 h-3" />
+                                            </button>
+                                            <button type="button" onClick={() => handleTranslate(bodyFa, 'en', setBodyEn)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
+                                                ترجمه <ArrowRightLeft className="w-3 h-3" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <textarea 
+                                        value={bodyFa} onChange={(e) => setBodyFa(e.target.value)}
+                                        required dir="rtl" rows={8}
+                                        placeholder="متن فارسی خبرنامه..."
+                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors font-[Vazirmatn] resize-none"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-center">
+                                        <label className="text-sm font-bold text-blue-400 font-sans">Email Body (English)</label>
+                                        <div className="flex items-center gap-2">
+                                            <button type="button" onClick={() => handleEnhance(bodyEn, 'en', setBodyEn)} className="text-xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-blue-500/20">
+                                                AI Enhance <Sparkles className="w-3 h-3" />
+                                            </button>
+                                            <button type="button" onClick={() => handleTranslate(bodyEn, 'fa', setBodyFa)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
+                                                Translate <ArrowRightLeft className="w-3 h-3" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <textarea 
+                                        value={bodyEn} onChange={(e) => setBodyEn(e.target.value)}
+                                        required dir="ltr" rows={8}
+                                        placeholder="English newsletter text..."
+                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors font-sans resize-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={isPending}
+                                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl flex justify-center items-center gap-3 transition-all disabled:opacity-50 mt-8"
+                            >
+                                {isPending ? (
+                                    <><Loader2 className="w-5 h-5 animate-spin" /> در حال ارسال...</>
+                                ) : (
+                                    <><Send className="w-5 h-5" /> شروع ارسال کمپین</>
+                                )}
+                            </button>
+                        </form>
+                    ) : (
+                        <div className="bg-neutral-900 border border-white/10 rounded-2xl p-6 relative overflow-hidden font-[Vazirmatn]">
+                        <div className="flex items-center gap-3 mb-6 relative z-10">
+                            <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
+                                <History className="w-5 h-5" />
+                            </div>
+                            <h2 className="text-xl font-bold text-white">تاریخچه ارسال‌ها</h2>
+                        </div>
                         
-                        {/* Subjects */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center">
-                                    <label className="text-sm font-bold text-emerald-400 font-[Vazirmatn]">موضوع (فارسی)</label>
-                                    <div className="flex items-center gap-2">
-                                        <button type="button" onClick={() => handleEnhance(subjectFa, 'fa', setSubjectFa)} className="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-emerald-500/20">
-                                            اصلاح با AI <Sparkles className="w-3 h-3" />
-                                        </button>
-                                        <button type="button" onClick={() => handleTranslate(subjectFa, 'en', setSubjectEn)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
-                                            ترجمه به انگلیسی <ArrowRightLeft className="w-3 h-3" />
-                                        </button>
-                                    </div>
-                                </div>
-                                <input 
-                                    value={subjectFa} onChange={(e) => setSubjectFa(e.target.value)}
-                                    type="text" required dir="rtl"
-                                    placeholder="مثال: اخبار جدید کلیسا..."
-                                    className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary transition-colors font-[Vazirmatn]"
-                                />
+                        {initialLogs.length === 0 ? (
+                            <div className="text-center py-12 text-slate-500">
+                                هیچ کمپین ارسال شده‌ای یافت نشد.
                             </div>
-
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center">
-                                    <label className="text-sm font-bold text-blue-400 font-sans">Subject (English)</label>
-                                    <div className="flex items-center gap-2">
-                                        <button type="button" onClick={() => handleEnhance(subjectEn, 'en', setSubjectEn)} className="text-xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-blue-500/20">
-                                            AI Enhance <Sparkles className="w-3 h-3" />
-                                        </button>
-                                        <button type="button" onClick={() => handleTranslate(subjectEn, 'fa', setSubjectFa)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
-                                            Translate to FA <ArrowRightLeft className="w-3 h-3" />
-                                        </button>
+                        ) : (
+                            <div className="space-y-4">
+                                {initialLogs.map((log, i) => (
+                                    <div key={log.id || i} className="p-4 rounded-xl border border-white/10 bg-black/40 hover:bg-white/5 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="font-bold text-lg mb-1 text-white truncate">{log.subject}</h4>
+                                            <p className="text-sm text-slate-400 line-clamp-1">گیرندگان: {log.recipient_count} نفر</p>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-xs font-bold text-slate-400 shrink-0 bg-neutral-950 px-3 py-1.5 rounded-lg border border-white/5">
+                                            <Calendar className="w-3.5 h-3.5" />
+                                            <span dir="ltr">{new Date(log.sent_at).toLocaleString('fa-IR', { dateStyle: 'medium', timeStyle: 'short' })}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <input 
-                                    value={subjectEn} onChange={(e) => setSubjectEn(e.target.value)}
-                                    type="text" required dir="ltr"
-                                    placeholder="e.g. New Church Updates..."
-                                    className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary transition-colors font-sans"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Bodies */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center">
-                                    <label className="text-sm font-bold text-emerald-400 font-[Vazirmatn]">متن خبرنامه (فارسی)</label>
-                                    <div className="flex items-center gap-2">
-                                        <button type="button" onClick={() => handleEnhance(bodyFa, 'fa', setBodyFa)} className="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-emerald-500/20">
-                                            اصلاح و نگارش AI <Sparkles className="w-3 h-3" />
-                                        </button>
-                                        <button type="button" onClick={() => handleTranslate(bodyFa, 'en', setBodyEn)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
-                                            ترجمه به انگلیسی <ArrowRightLeft className="w-3 h-3" />
-                                        </button>
-                                    </div>
-                                </div>
-                                <textarea 
-                                    value={bodyFa} onChange={(e) => setBodyFa(e.target.value)}
-                                    required rows={12} dir="rtl"
-                                    placeholder="متن پیام خود را اینجا بنویسید..."
-                                    className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors font-[Vazirmatn] resize-y leading-relaxed"
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center">
-                                    <label className="text-sm font-bold text-blue-400 font-sans">Newsletter Body (English)</label>
-                                    <div className="flex items-center gap-2">
-                                        <button type="button" onClick={() => handleEnhance(bodyEn, 'en', setBodyEn)} className="text-xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-2 py-1 rounded flex items-center gap-1 transition-colors border border-blue-500/20">
-                                            AI Enhance <Sparkles className="w-3 h-3" />
-                                        </button>
-                                        <button type="button" onClick={() => handleTranslate(bodyEn, 'fa', setBodyFa)} className="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-white flex items-center gap-1 transition-colors">
-                                            Translate to FA <ArrowRightLeft className="w-3 h-3" />
-                                        </button>
-                                    </div>
-                                </div>
-                                <textarea 
-                                    value={bodyEn} onChange={(e) => setBodyEn(e.target.value)}
-                                    required rows={12} dir="ltr"
-                                    placeholder="Write your message here..."
-                                    className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors font-sans resize-y leading-relaxed"
-                                />
-                            </div>
-                        </div>
-
-                        {sendResult && (
-                            <div className={`p-4 rounded-xl flex items-center gap-3 font-[Vazirmatn] ${sendResult.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
-                                {sendResult.type === 'success' && <CheckCircle className="w-5 h-5 shrink-0" />}
-                                <span>{sendResult.msg}</span>
+                                ))}
                             </div>
                         )}
-
-                        <div className="pt-2">
-                            <button 
-                                type="submit" 
-                                disabled={isPending || activeCount === 0 || isTranslating}
-                                className="w-full bg-primary hover:bg-primary/90 text-black font-black px-8 py-4 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 font-[Vazirmatn] text-lg shadow-lg shadow-primary/20"
-                            >
-                                {isPending ? <Loader2 className="w-6 h-6 animate-spin" /> : <Send className="w-6 h-6" />}
-                                ارسال نهایی ایمیل برای {activeCount} عضو فعال
-                            </button>
-                        </div>
-                    </form>
+                    </div>
+                )}
                 </div>
             </div>
 

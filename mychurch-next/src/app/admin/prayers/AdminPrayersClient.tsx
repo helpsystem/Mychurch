@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState, useRef, useTransition } from "react";
-import { PrayerRequest, getPrayers } from "@/actions/prayers";
+import { PrayerRequest, getPrayers, updatePrayerStatus, answerPrayer } from "@/actions/prayers";
 import { useReactToPrint } from "react-to-print";
 import { toast } from "sonner";
 import { 
     Heart, CheckCircle2, Clock, Printer, Send, Filter,
-    CheckSquare, Square, Trash2, Edit, Sparkles, User, BadgeAlert
+    CheckSquare, Square, Trash2, Edit, Sparkles, User, BadgeAlert, Loader2
 } from "lucide-react";
-import { query } from "@/lib/db"; // we will need to add a server action for answering, but we'll mock update it here for UI first
 
 export default function AdminPrayersClient({ initialPrayers }: { initialPrayers: PrayerRequest[] }) {
     const [prayers, setPrayers] = useState<PrayerRequest[]>(initialPrayers);
@@ -34,28 +33,41 @@ export default function AdminPrayersClient({ initialPrayers }: { initialPrayers:
         setSelectedIds(next);
     };
 
+    const filteredPrayers = prayers.filter(p => statusFilter === 'all' || p.status === statusFilter);
+
     const toggleAll = () => {
         if (selectedIds.size === filteredPrayers.length) setSelectedIds(new Set());
         else setSelectedIds(new Set(filteredPrayers.map(p => p.id)));
     };
 
     const approvePrayer = (id: string) => {
-        // Optimistic UI update for demo
-        setPrayers(cur => cur.map(p => p.id === id ? { ...p, status: 'active' } : p));
-        toast.success("Prayer request approved and published.");
+        startTransition(async () => {
+            const res = await updatePrayerStatus(id, 'active');
+            if (res.success) {
+                setPrayers(cur => cur.map(p => p.id === id ? { ...p, status: 'active' } : p));
+                toast.success("Prayer request approved and published.");
+            } else {
+                toast.error(res.error || "Failed to approve prayer.");
+            }
+        });
     };
 
     const markAnswered = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!answeringUrl) return;
         
-        setPrayers(cur => cur.map(p => p.id === answeringUrl ? { ...p, status: 'answered', answer_text: answerText } : p));
-        setAnsweringUrl(null);
-        setAnswerText("");
-        toast.success("Testimony added! Prayer marked as answered.");
+        startTransition(async () => {
+            const res = await answerPrayer(answeringUrl, answerText);
+            if (res.success) {
+                setPrayers(cur => cur.map(p => p.id === answeringUrl ? { ...p, status: 'answered', answer_text: answerText } : p));
+                setAnsweringUrl(null);
+                setAnswerText("");
+                toast.success("Testimony added! Prayer marked as answered.");
+            } else {
+                toast.error(res.error || "Failed to record answer.");
+            }
+        });
     };
-
-    const filteredPrayers = prayers.filter(p => statusFilter === 'all' || p.status === statusFilter);
     const selectedPrayers = prayers.filter(p => selectedIds.has(p.id));
 
     return (

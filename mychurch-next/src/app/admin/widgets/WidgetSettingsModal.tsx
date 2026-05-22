@@ -1300,13 +1300,21 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                         {/* End of Grid */}
                         </div> 
                     ) : (
-                        <div className="space-y-4 h-full flex flex-col">
+                        <div className="space-y-4 h-full flex flex-col relative">
                             <div className="bg-amber-500/10 border border-amber-500/20 p-4 rounded-xl text-amber-500 text-sm leading-relaxed">
                                 این ابزار قالب تنظیمی اختصاصی ندارد. سیستم به صورت خودکار حالت ویرایشگر پیشرفته JSON را برای شما باز کرده است. فقط اگر با ساختار آن آشنایی دارید تغییر ایجاد کنید.
                             </div>
-                            <label className="block text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
-                                <Code2 className="w-4 h-4" /> تنظیمات خام (Raw JSON Config)
-                            </label>
+                            <div className="flex items-center justify-between mb-2">
+                                <label className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                                    <Code2 className="w-4 h-4" /> تنظیمات خام (Raw JSON Config)
+                                </label>
+                                <button 
+                                    onClick={(e) => { e.preventDefault(); setPickerTarget('image'); }}
+                                    className="text-xs flex items-center gap-2 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 hover:bg-indigo-500/30 px-3 py-1.5 rounded-lg transition-all"
+                                >
+                                    <ImagePlus className="w-4 h-4" /> گالری تصاویر (کپی لینک)
+                                </button>
+                            </div>
                             <textarea 
                                 title="ویرایشگر JSON"
                                 placeholder="{}"

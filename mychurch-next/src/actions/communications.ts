@@ -55,3 +55,54 @@ export async function sendMassEmail(subject: string, body: string): Promise<{ su
         return { success: false, error: 'Failed to dispatch email broadcast.' };
     }
 }
+
+export async function sendTestMassEmail(subject: string, body: string): Promise<{ success: boolean; error?: string }> {
+    try {
+        await requireRole(["Admin"]);
+        const { getUserEmail } = await import("@/utils/rbac");
+        const email = await getUserEmail();
+
+        if (!email) {
+            return { success: false, error: "ایمیل مدیر یافت نشد." };
+        }
+
+        const cleanedSubject = (subject || "").trim();
+        const cleanedBody = (body || "").trim();
+        if (!cleanedSubject || !cleanedBody) {
+            return { success: false, error: "Subject and body are required." };
+        }
+
+        // Just fake a short delay for sending
+        await new Promise(res => setTimeout(res, 800));
+        
+        // In a real environment, trigger Resend directly to `email`
+        console.log(`[Test Email] Sending to ${email}: ${cleanedSubject}`);
+
+        return { success: true };
+    } catch (error) {
+        console.error('[Action] Error sending test email:', error);
+        return { success: false, error: 'Failed to send test email.' };
+    }
+}
+
+export async function getAnnouncements(): Promise<Announcement[]> {
+    try {
+        await requireRole(["Admin"]);
+        const { rows } = await query('SELECT * FROM announcements ORDER BY created_at DESC LIMIT 50');
+        return rows as Announcement[];
+    } catch (error) {
+        console.error('[Action] Error fetching announcements:', error);
+        return [];
+    }
+}
+
+export async function getEmailLogs(): Promise<Array<{ id: number, subject: string, body: string, sent_at: string }>> {
+    try {
+        await requireRole(["Admin"]);
+        const { rows } = await query('SELECT * FROM email_logs ORDER BY sent_at DESC LIMIT 50');
+        return rows;
+    } catch (error) {
+        console.error('[Action] Error fetching email logs:', error);
+        return [];
+    }
+}

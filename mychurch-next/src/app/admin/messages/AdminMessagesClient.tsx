@@ -1,13 +1,51 @@
 "use client";
 
-import React, { useState } from "react";
-import { SupportTicket } from "@/actions/tickets";
+import React, { useState, useEffect, useTransition } from "react";
+import { SupportTicket, TicketMessage, getTicketMessages, replyToTicket, closeTicket } from "@/actions/tickets";
 import { Inbox, Filter, Send, User, ChevronLeft, CheckCircle2, Search, Mail } from "lucide-react";
 
 export default function AdminMessagesClient({ initialTickets }: { initialTickets: SupportTicket[] }) {
     const [tickets, setTickets] = useState<SupportTicket[]>(initialTickets);
     const [selectedTicket, setSelectedTicket] = useState<SupportTicket | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
+    
+    // Messages state
+    const [messages, setMessages] = useState<TicketMessage[]>([]);
+    const [replyText, setReplyText] = useState("");
+    const [isPending, startTransition] = useTransition();
+
+    useEffect(() => {
+        if (selectedTicket) {
+            getTicketMessages(selectedTicket.id).then(setMessages);
+        } else {
+            setMessages([]);
+        }
+    }, [selectedTicket]);
+
+    const handleReply = () => {
+        if (!selectedTicket || !replyText.trim()) return;
+        startTransition(async () => {
+            const res = await replyToTicket(selectedTicket.id, 'admin', 'Admin', replyText);
+            if (res.success) {
+                const updated = await getTicketMessages(selectedTicket.id);
+                setMessages(updated);
+                setReplyText("");
+                setTickets(prev => prev.map(t => t.id === selectedTicket.id ? { ...t, status: 'pending' } : t));
+                selectedTicket.status = 'pending';
+            }
+        });
+    };
+
+    const handleClose = () => {
+        if (!selectedTicket) return;
+        startTransition(async () => {
+            const res = await closeTicket(selectedTicket.id);
+            if (res.success) {
+                setTickets(prev => prev.map(t => t.id === selectedTicket.id ? { ...t, status: 'closed' } : t));
+                selectedTicket.status = 'closed';
+            }
+        });
+    };
 
     const filtered = tickets.filter(t => t.subject.includes(searchQuery) || (t.user_name && t.user_name.includes(searchQuery)));
 
@@ -72,42 +110,47 @@ export default function AdminMessagesClient({ initialTickets }: { initialTickets
                                     </div>
                                 </div>
                                 <div className="flex gap-2">
-                                    <button className="px-3 py-1.5 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-lg text-xs font-bold hover:bg-rose-500/20 transition-all">بستن تیکت</button>
+                                    {selectedTicket.status !== 'closed' && (
+                                        <button 
+                                            onClick={handleClose} 
+                                            disabled={isPending}
+                                            className="px-3 py-1.5 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-lg text-xs font-bold hover:bg-rose-500/20 transition-all disabled:opacity-50"
+                                        >
+                                            بستن تیکت
+                                        </button>
+                                    )}
                                 </div>
                             </div>
 
                             <div className="flex-1 p-6 overflow-y-auto space-y-6 flex flex-col bg-[url('/noise.png')] bg-repeat opacity-95">
-                                {/* Simulated Messages */}
-                                <div className="flex gap-4 max-w-[80%] self-start">
-                                    <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0">
-                                        <User className="w-5 h-5 text-slate-400" />
-                                    </div>
-                                    <div>
-                                        <div className="flex items-center justify-between mb-1">
-                                            <span className="text-xs text-slate-400 font-bold">{selectedTicket.user_name}</span>
-                                            <span className="text-[10px] text-slate-500 uppercase">{new Date(selectedTicket.created_at).toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'})}</span>
+                                {messages.map(msg => {
+                                    const isAdmin = msg.sender_id === 'admin';
+                                    return (
+                                        <div key={msg.id} className={`flex gap-4 max-w-[80%] ${isAdmin ? 'self-end' : 'self-start'}`}>
+                                            {!isAdmin && (
+                                                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center shrink-0">
+                                                    <User className="w-5 h-5 text-slate-400" />
+                                                </div>
+                                            )}
+                                            <div className={isAdmin ? 'text-left w-full' : ''}>
+                                                <div className={`flex items-center mb-1 ${isAdmin ? 'justify-end' : 'justify-between'}`}>
+                                                    {!isAdmin && <span className="text-xs text-slate-400 font-bold">{msg.sender_name}</span>}
+                                                    {isAdmin && <span className="text-[10px] text-slate-500 uppercase mr-2 text-right">NOW</span>}
+                                                    {isAdmin && <span className="text-xs text-indigo-400 font-bold text-right">شما ({msg.sender_name})</span>}
+                                                    {!isAdmin && <span className="text-[10px] text-slate-500 uppercase">{new Date(msg.created_at).toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'})}</span>}
+                                                </div>
+                                                <div className={`${isAdmin ? 'bg-indigo-600 text-white rounded-tl-none ml-auto' : 'bg-zinc-800 border border-white/5 text-slate-200 rounded-tr-none'} rounded-2xl p-4 text-sm leading-relaxed shadow-lg whitespace-pre-wrap`}>
+                                                    {msg.message_body}
+                                                </div>
+                                            </div>
+                                            {isAdmin && (
+                                                <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center shrink-0">
+                                                    <CheckCircle2 className="w-5 h-5 text-indigo-400" />
+                                                </div>
+                                            )}
                                         </div>
-                                        <div className="bg-zinc-800 border border-white/5 rounded-2xl p-4 text-slate-200 text-sm leading-relaxed rounded-tr-none shadow-lg whitespace-pre-wrap">
-                                            {/* In reality, we fetch messages from DB */}
-                                            شرح درخواست اولیه کاربر در اینجا نمایش داده می‌شود. به دلیل اینکه دیتابیس پیام‌ها هنوز توسط کاربر پر نشده است این متن نمایشی جایگزین می‌شود.
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div className="flex gap-4 max-w-[80%] self-end">
-                                    <div className="text-left w-full">
-                                        <div className="flex items-center justify-end mb-1">
-                                            <span className="text-[10px] text-slate-500 uppercase mr-2 text-right">NOW</span>
-                                            <span className="text-xs text-indigo-400 font-bold text-right">You (Admin)</span>
-                                        </div>
-                                        <div className="bg-indigo-600 rounded-2xl p-4 text-white text-sm leading-relaxed rounded-tl-none shadow-lg ml-auto whitespace-pre-wrap">
-                                            پاسخ شما به عنوان یک لیدر/ادمین با رنگ متمایز و در سمت راست چت نقش می‌بندد تا ظاهر یک CRM حرفه‌ای پیدا کند.
-                                        </div>
-                                    </div>
-                                    <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center shrink-0">
-                                        <CheckCircle2 className="w-5 h-5 text-indigo-400" />
-                                    </div>
-                                </div>
+                                    );
+                                })}
                             </div>
 
                             <div className="p-4 bg-zinc-950 border-t border-white/10 shrink-0">
@@ -117,11 +160,16 @@ export default function AdminMessagesClient({ initialTickets }: { initialTickets
                                 <div className="flex justify-between items-center gap-3">
                                     <textarea 
                                         rows={2}
-                                        placeholder="تایپ پاسخ برای کاربر..."
-                                        className="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none resize-none"
+                                        value={replyText}
+                                        onChange={e => setReplyText(e.target.value)}
+                                        disabled={selectedTicket.status === 'closed' || isPending}
+                                        placeholder={selectedTicket.status === 'closed' ? "این تیکت بسته شده است." : "تایپ پاسخ برای کاربر..."}
+                                        className="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none resize-none disabled:opacity-50"
                                     />
                                     <button 
-                                        className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 h-12 rounded-xl flex items-center justify-center gap-2 font-bold shrink-0 transition-colors shadow-lg"
+                                        onClick={handleReply}
+                                        disabled={!replyText.trim() || selectedTicket.status === 'closed' || isPending}
+                                        className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 h-12 rounded-xl flex items-center justify-center gap-2 font-bold shrink-0 transition-colors shadow-lg disabled:opacity-50"
                                     >
                                         ارسال <Send className="w-4 h-4 -mr-1" />
                                     </button>

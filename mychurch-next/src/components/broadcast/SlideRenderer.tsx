@@ -7,7 +7,7 @@ import {
     SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting, ScriptureReferenceItem
 } from "@/types/broadcast";
 import { cn } from "@/lib/utils";
-import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart } from "lucide-react";
+import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart, CheckCircle } from "lucide-react";
 
 const isNonEmptyText = (value: unknown) => typeof value === 'string' && value.trim().length > 0;
 
@@ -665,6 +665,41 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                     </div>
                                 );
                             })}
+                        </div>
+                    </div>
+                );
+            }
+
+            case SlideType.PRAYER: {
+                const content = slide.content as any; // SlideContentPrayer
+                return (
+                    <div className="w-full h-full flex bg-gradient-to-br from-rose-950 to-black p-12 relative overflow-hidden font-[Vazirmatn]">
+                        <div className="absolute top-0 right-0 w-1/2 h-full bg-rose-600/10 blur-[150px] -z-10" />
+                        
+                        <div className="flex-1 flex flex-col justify-center max-w-4xl z-10 space-y-8" dir="rtl">
+                            <div className="inline-flex items-center gap-3 bg-white/10 border border-white/20 px-4 py-2 rounded-full w-fit">
+                                <span className="text-2xl">🙏</span>
+                                <span className="text-rose-200 font-bold tracking-widest text-lg">درخواست دعا</span>
+                            </div>
+                            
+                            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
+                                {content.title}
+                            </h1>
+                            
+                            <p className="text-3xl text-slate-300 leading-relaxed max-w-3xl border-r-4 border-rose-500/50 pr-6">
+                                {content.content}
+                            </p>
+                            
+                            <div className="flex items-center gap-4 mt-8">
+                                <div className="text-xl text-rose-300 font-bold bg-rose-500/10 border border-rose-500/20 px-6 py-3 rounded-2xl w-fit">
+                                    توسط: {content.userName || 'ناشناس'}
+                                </div>
+                                {content.isAnswered && (
+                                    <div className="text-xl text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-6 py-3 rounded-2xl w-fit flex items-center gap-2">
+                                        <CheckCircle className="w-6 h-6" /> مستجاب شده
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 );

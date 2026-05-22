@@ -5,10 +5,31 @@ import { Crown, Plus, Search, Edit2, Trash2, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
 import { Leader, deleteLeader } from "@/actions/leaders";
 
+import { LeaderModal } from "@/components/admin/LeaderModal";
+
 export default function LeadersClient({ initialLeaders }: { initialLeaders: Leader[] }) {
     const [searchTerm, setSearchTerm] = useState("");
+    const [roleFilter, setRoleFilter] = useState("all");
     const [leaders, setLeaders] = useState<Leader[]>(initialLeaders);
     const [isPending, startTransition] = useTransition();
+
+    // Modal state
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingLeader, setEditingLeader] = useState<Leader | null>(null);
+
+    const handleOpenCreate = () => {
+        setEditingLeader(null);
+        setIsModalOpen(true);
+    };
+
+    const handleOpenEdit = (leader: Leader) => {
+        setEditingLeader(leader);
+        setIsModalOpen(true);
+    };
+
+    const handleModalSuccess = () => {
+        window.location.reload();
+    };
 
     const handleDelete = (id: number) => {
         if (confirm("آیا از حذف این رهبر اطمینان دارید؟")) {
@@ -24,6 +45,15 @@ export default function LeadersClient({ initialLeaders }: { initialLeaders: Lead
         }
     };
 
+    // Extract unique roles for the filter dropdown
+    const uniqueRoles = Array.from(new Set(initialLeaders.map(l => l.role))).filter(Boolean);
+
+    const filteredLeaders = leaders.filter(l => {
+        const matchesSearch = l.name.toLowerCase().includes(searchTerm.toLowerCase()) || l.email.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesRole = roleFilter === "all" || l.role === roleFilter;
+        return matchesSearch && matchesRole;
+    });
+
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -34,7 +64,7 @@ export default function LeadersClient({ initialLeaders }: { initialLeaders: Lead
                     </h1>
                     <p className="text-muted-foreground mt-2">Add, remove, or update the church leadership roster.</p>
                 </div>
-                <button className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-bold rounded-xl shadow-lg hover:bg-primary/90 transition-all font-[Vazirmatn]">
+                <button onClick={handleOpenCreate} className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-bold rounded-xl shadow-lg hover:bg-primary/90 transition-all font-[Vazirmatn]">
                     <Plus className="w-5 h-5" /> افزودن رهبر جدید
                 </button>
             </div>
@@ -53,10 +83,16 @@ export default function LeadersClient({ initialLeaders }: { initialLeaders: Lead
                     />
                 </div>
                 <div className="flex items-center gap-3 z-10 w-full md:w-auto">
-                    <select title="فیلتر بر اساس مقام" className="flex-1 md:w-48 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 font-[Vazirmatn]">
+                    <select 
+                        title="فیلتر بر اساس مقام" 
+                        value={roleFilter}
+                        onChange={(e) => setRoleFilter(e.target.value)}
+                        className="flex-1 md:w-48 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 font-[Vazirmatn] appearance-none"
+                    >
                         <option value="all">همه مقام‌ها</option>
-                        <option value="pastor">شبانان (Pastors)</option>
-                        <option value="worship">تیم پرستش (Worship)</option>
+                        {uniqueRoles.map(role => (
+                            <option key={role} value={role}>{role}</option>
+                        ))}
                     </select>
                 </div>
             </div>
@@ -76,7 +112,7 @@ export default function LeadersClient({ initialLeaders }: { initialLeaders: Lead
                             </tr>
                         </thead>
                         <tbody>
-                            {leaders.filter(l => l.name.toLowerCase().includes(searchTerm.toLowerCase())).map((leader) => (
+                            {filteredLeaders.map((leader) => (
                                 <tr key={leader.id} className="border-b border-white/5 hover:bg-white/5 transition-colors group">
                                     <td className="p-4 flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center border border-white/10 text-xs font-bold shrink-0 shadow-inner">
@@ -93,7 +129,7 @@ export default function LeadersClient({ initialLeaders }: { initialLeaders: Lead
                                     </td>
                                     <td className="p-4 text-center">
                                         <div className="flex items-center justify-center gap-2">
-                                            <button title="ویرایش رهبر" disabled={isPending} className="p-2 rounded-lg bg-black/40 border border-white/10 text-muted-foreground hover:text-primary transition-colors disabled:opacity-50">
+                                            <button onClick={() => handleOpenEdit(leader)} title="ویرایش رهبر" disabled={isPending} className="p-2 rounded-lg bg-black/40 border border-white/10 text-muted-foreground hover:text-primary transition-colors disabled:opacity-50">
                                                 <Edit2 className="w-4 h-4" />
                                             </button>
                                             <button title="حذف رهبر" disabled={isPending} onClick={() => handleDelete(leader.id)} className="p-2 rounded-lg bg-black/40 border border-white/10 text-muted-foreground hover:text-red-500 transition-colors disabled:opacity-50">
@@ -103,7 +139,7 @@ export default function LeadersClient({ initialLeaders }: { initialLeaders: Lead
                                     </td>
                                 </tr>
                             ))}
-                            {leaders.length === 0 && (
+                            {filteredLeaders.length === 0 && (
                                 <tr>
                                     <td colSpan={5} className="p-12 text-center text-muted-foreground">
                                         <div className="flex flex-col items-center justify-center gap-3">
@@ -117,6 +153,15 @@ export default function LeadersClient({ initialLeaders }: { initialLeaders: Lead
                     </table>
                 </div>
             </div>
+
+            {isModalOpen && (
+                <LeaderModal 
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    leader={editingLeader}
+                    onSuccess={handleModalSuccess}
+                />
+            )}
         </div>
     );
 }

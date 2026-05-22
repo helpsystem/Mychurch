@@ -7,7 +7,7 @@ import { Printer, Loader2, ArrowLeft, ShieldCheck, Download } from "lucide-react
 
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
-import { LetterDoc, DonationReceiptDoc, InvoiceDoc, DocHistoryItem } from "../../page";
+import { LetterDoc, DonationReceiptDoc, InvoiceDoc, DocHistoryItem } from "../../DocumentsClient";
 
 // We use the same configurable default church model for the public viewer.
 // In a real database scenario, this might come from the server or local context.

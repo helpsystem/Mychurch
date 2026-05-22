@@ -1,4 +1,4 @@
-import { getNewsletterSubscribers } from "@/actions/newsletter";
+import { getNewsletterSubscribers, getNewsletterLogs } from "@/actions/newsletter";
 import NewsletterAdminClient from "./NewsletterAdminClient";
 
 export const metadata = {
@@ -7,6 +7,7 @@ export const metadata = {
 
 export default async function NewsletterAdminPage() {
     const { data: subscribers, success, error } = await getNewsletterSubscribers();
+    const { data: logs } = await getNewsletterLogs();
 
     return (
         <div className="p-6 md:p-8 space-y-8" dir="rtl">
@@ -22,7 +23,7 @@ export default async function NewsletterAdminPage() {
                     خطا در دریافت لیست اعضا: {error}
                 </div>
             ) : (
-                <NewsletterAdminClient initialSubscribers={subscribers || []} />
+                <NewsletterAdminClient initialSubscribers={subscribers || []} initialLogs={logs || []} />
             )}
         </div>
     );

@@ -96,6 +96,17 @@ export async function sendNewsletterCampaign(subject: string, htmlContent: strin
     const emails = subscribers.map(s => s.email);
 
     try {
+        // Ensure log table exists
+        await query(`
+            CREATE TABLE IF NOT EXISTS newsletter_logs (
+                id SERIAL PRIMARY KEY,
+                subject VARCHAR(255) NOT NULL,
+                body TEXT NOT NULL,
+                recipient_count INT NOT NULL,
+                sent_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+
         // Send via Resend. Resend supports batch sending by passing an array to 'to' or BCC.
         // For privacy, it's best to use BCC so recipients don't see each other's emails.
         const { data, error } = await resend.emails.send({
@@ -111,9 +122,31 @@ export async function sendNewsletterCampaign(subject: string, htmlContent: strin
             return { success: false, error: error.message };
         }
 
+        // Log the successful campaign
+        await query(
+            'INSERT INTO newsletter_logs (subject, body, recipient_count) VALUES ($1, $2, $3)',
+            [subject, htmlContent, emails.length]
+        );
+
         return { success: true, message: `خبرنامه با موفقیت به ${emails.length} نفر ارسال شد.` };
     } catch (err: any) {
         console.error("Newsletter Send Error:", err);
         return { success: false, error: "خطای سیستم در ارسال ایمیل / System error sending emails" };
+    }
+}
+
+export async function getNewsletterLogs() {
+    try {
+        const { getUserRole } = await import("@/utils/rbac");
+        const role = await getUserRole();
+        if (role !== "Admin" && role !== "Leader") {
+            return { success: false, error: "Unauthorized" };
+        }
+
+        const { rows } = await query('SELECT * FROM newsletter_logs ORDER BY sent_at DESC LIMIT 50');
+        return { success: true, data: rows };
+    } catch (error) {
+        console.error('[Action] Error fetching newsletter logs:', error);
+        return { success: false, error: "Failed to load history" };
     }
 }

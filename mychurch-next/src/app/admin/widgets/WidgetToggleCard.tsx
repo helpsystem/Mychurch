@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { DashboardWidget, toggleWidget } from "@/actions/widgets";
 import { Settings } from "lucide-react";
 import { WidgetSettingsModal } from "./WidgetSettingsModal";
+import { WatermarkSettingsModal } from "./WatermarkSettingsModal";
 
 export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; icon: React.ReactNode }) {
     const [isPending, startTransition] = useTransition();
@@ -79,7 +80,12 @@ export function WidgetToggleCard({ widget, icon }: { widget: DashboardWidget; ic
                 </div>
             )}
 
-            {showSettings && mounted && createPortal(
+            {showSettings && mounted && widget.id === 'w_watermark' && createPortal(
+                <WatermarkSettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} currentConfig={widget.config || {}} />,
+                document.body
+            )}
+            
+            {showSettings && mounted && widget.id !== 'w_watermark' && createPortal(
                 <WidgetSettingsModal widget={widget} onClose={() => setShowSettings(false)} />,
                 document.body
             )}

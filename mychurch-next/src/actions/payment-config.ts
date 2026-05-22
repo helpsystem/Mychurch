@@ -205,50 +205,61 @@ export async function updatePaymentConfig(config: Partial<PaymentConfigClient> &
 
     const currentConfig = await getPaymentConfig();
     const nextConfig = normalizePaymentConfig({ ...currentConfig, ...config });
-    const secretKey = typeof config.stripe_secret_key === "string" ? config.stripe_secret_key.trim() : "";
-    const squareSecret = typeof config.square_access_token === "string" ? config.square_access_token.trim() : "";
+    const secretKey = typeof config.stripe_secret_key === "string" ? config.stripe_secret_key.trim() : null;
+    const squareSecret = typeof config.square_access_token === "string" ? config.square_access_token.trim() : null;
 
-    const { createClient } = await import("@/utils/supabase/server");
-    const supabase = await createClient();
+    try {
+        await query(`
+            UPDATE church_payment_settings 
+            SET enabled = $1, 
+                provider = $2, 
+                checkout_mode = $3, 
+                monthly_amount = $4, 
+                currency = $5, 
+                display_name_en = $6, 
+                display_name_fa = $7, 
+                description_en = $8, 
+                description_fa = $9, 
+                payment_link_url = $10, 
+                stripe_publishable_key = $11, 
+                square_application_id = $12, 
+                square_location_id = $13, 
+                success_path = $14, 
+                cancel_path = $15, 
+                updated_at = NOW()
+            WHERE id = $16
+        `, [
+            nextConfig.enabled,
+            nextConfig.provider,
+            nextConfig.checkout_mode,
+            nextConfig.monthly_amount,
+            nextConfig.currency,
+            nextConfig.display_name_en,
+            nextConfig.display_name_fa,
+            nextConfig.description_en,
+            nextConfig.description_fa,
+            nextConfig.payment_link_url,
+            nextConfig.stripe_publishable_key,
+            nextConfig.square_application_id,
+            nextConfig.square_location_id,
+            nextConfig.success_path,
+            nextConfig.cancel_path,
+            nextConfig.id
+        ]);
 
-    const payload: Record<string, unknown> = {
-        id: nextConfig.id,
-        enabled: nextConfig.enabled,
-        provider: nextConfig.provider,
-        checkout_mode: nextConfig.checkout_mode,
-        monthly_amount: nextConfig.monthly_amount,
-        currency: nextConfig.currency,
-        display_name_en: nextConfig.display_name_en,
-        display_name_fa: nextConfig.display_name_fa,
-        description_en: nextConfig.description_en,
-        description_fa: nextConfig.description_fa,
-        payment_link_url: nextConfig.payment_link_url,
-        stripe_publishable_key: nextConfig.stripe_publishable_key,
-        square_application_id: nextConfig.square_application_id,
-        square_location_id: nextConfig.square_location_id,
-        success_path: nextConfig.success_path,
-        cancel_path: nextConfig.cancel_path,
-        updated_at: new Date().toISOString(),
-    };
+        if (secretKey !== null && secretKey !== undefined) {
+            await query('UPDATE church_payment_settings SET stripe_secret_key = $1 WHERE id = $2', [secretKey, nextConfig.id]);
+        }
+        if (squareSecret !== null && squareSecret !== undefined) {
+            await query('UPDATE church_payment_settings SET square_access_token = $1 WHERE id = $2', [squareSecret, nextConfig.id]);
+        }
 
-    if (secretKey) {
-        payload.stripe_secret_key = secretKey;
+        const { revalidatePath } = await import("next/cache");
+        revalidatePath("/admin/settings");
+        revalidatePath("/payment");
+
+        return { success: true };
+    } catch (error: any) {
+        throw new Error(error.message || "Failed to update payment config");
     }
-    if (squareSecret) {
-        payload.square_access_token = squareSecret;
-    }
-
-    const { error } = await supabase
-        .from("church_payment_settings")
-        .upsert(payload);
-
-    if (error) {
-        throw new Error(error.message);
-    }
-
-    const { revalidatePath } = await import("next/cache");
-    revalidatePath("/admin/settings");
-    revalidatePath("/payment");
-
-    return { success: true };
 }

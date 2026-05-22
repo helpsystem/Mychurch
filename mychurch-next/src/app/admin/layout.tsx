@@ -38,11 +38,15 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     }
 
     const permissions = permissionsResult.data?.permissions || {};
-    const isAdmin = role === 'Admin';
     
     // Get the impersonated role if any
     const { getUserRole } = await import("@/utils/rbac");
     const currentRole = await getUserRole() || role;
+    
+    // Evaluate permissions and isAdmin based on the effective role
+    const effectiveIsAdmin = currentRole === 'Admin';
+    // If testing as User, clear permissions to see exactly what they'd see
+    const effectivePermissions = currentRole === 'User' ? {} : permissions;
 
     return (
         <div className="dark flex h-[100dvh] w-full bg-[#09090b] text-neutral-50 font-sans selection:bg-primary/30 relative overflow-hidden">
@@ -52,10 +56,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <AdminSidebar 
                 role={currentRole} 
                 realRole={role}
-                permissions={permissions} 
+                permissions={effectivePermissions} 
                 userEmail={userEmail} 
                 initials={initials} 
-                isAdmin={isAdmin} 
+                isAdmin={effectiveIsAdmin} 
             />
 
             {/* Admin Main Content Area */}

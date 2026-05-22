@@ -1,21 +1,39 @@
-"use client";
-
 import React from "react";
 import {
     Users, LayoutTemplate, Activity, Server,
-    ArrowRight, CheckCircle2, ShieldAlert
+    ArrowRight, CheckCircle2, ShieldAlert, Tags, Info
 } from "lucide-react";
+import { getDashboardStats } from "@/actions/dashboard";
+import Link from "next/link";
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+    const stats = await getDashboardStats();
+
+    const getActivityIcon = (type: string) => {
+        switch(type) {
+            case 'SUCCESS': return CheckCircle2;
+            case 'WARNING': return ShieldAlert;
+            case 'INFO': default: return Info;
+        }
+    };
+
+    const getActivityColor = (type: string) => {
+        switch(type) {
+            case 'SUCCESS': return 'text-emerald-500';
+            case 'WARNING': return 'text-red-500';
+            case 'INFO': default: return 'text-blue-500';
+        }
+    };
+
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Quick Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                    { title: "Active Users", value: "1,248", icon: Users, color: "text-blue-500", bg: "bg-blue-500/10" },
-                    { title: "Active Widgets", value: "4", icon: LayoutTemplate, color: "text-purple-500", bg: "bg-purple-500/10" },
-                    { title: "Server Load", value: "24%", icon: Activity, color: "text-emerald-500", bg: "bg-emerald-500/10" },
-                    { title: "DB Connections", value: "12", icon: Server, color: "text-amber-500", bg: "bg-amber-500/10" }
+                    { title: "Active Users", value: stats.activeUsers.toLocaleString(), icon: Users, color: "text-blue-500", bg: "bg-blue-500/10" },
+                    { title: "Active Widgets", value: stats.activeWidgets.toLocaleString(), icon: LayoutTemplate, color: "text-purple-500", bg: "bg-purple-500/10" },
+                    { title: "Total Categories", value: stats.totalCategories.toLocaleString(), icon: Tags, color: "text-emerald-500", bg: "bg-emerald-500/10" },
+                    { title: "DB Connections", value: stats.dbConnections.toLocaleString(), icon: Server, color: "text-amber-500", bg: "bg-amber-500/10" }
                 ].map((stat, i) => (
                     <div key={i} className="bg-neutral-900 border border-border/10 rounded-2xl p-6 shadow-sm">
                         <div className="flex items-start justify-between">
@@ -43,22 +61,22 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="space-y-4">
-                        {[
-                            { action: "Widget Configuration Updated", user: "Admin (Sami)", time: "2 mins ago", icon: CheckCircle2, color: "text-emerald-500" },
-                            { action: "Failed Login Attempt", user: "Unknown IP", time: "1 hour ago", icon: ShieldAlert, color: "text-red-500" },
-                            { action: "New Role Assigned", user: "Leader (John)", time: "3 hours ago", icon: Users, color: "text-blue-500" },
-                        ].map((log, i) => (
-                            <div key={i} className="flex items-center gap-4 p-3 rounded-xl hover:bg-neutral-800/50 transition-colors">
-                                <div className={`p-2 rounded-lg bg-neutral-950 border border-border/5 ${log.color}`}>
-                                    <log.icon className="w-4 h-4" />
+                        {stats.recentActivities.map((log) => {
+                            const Icon = getActivityIcon(log.type);
+                            const color = getActivityColor(log.type);
+                            return (
+                                <div key={log.id} className="flex items-center gap-4 p-3 rounded-xl hover:bg-neutral-800/50 transition-colors">
+                                    <div className={`p-2 rounded-lg bg-neutral-950 border border-border/5 ${color}`}>
+                                        <Icon className="w-4 h-4" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <h4 className="font-bold text-sm text-foreground">{log.action}</h4>
+                                        <p className="text-xs text-muted-foreground">{log.user}</p>
+                                    </div>
+                                    <span className="text-xs font-bold text-muted-foreground bg-neutral-950 px-2 py-1 rounded-md">{log.time}</span>
                                 </div>
-                                <div className="flex-1">
-                                    <h4 className="font-bold text-sm text-foreground">{log.action}</h4>
-                                    <p className="text-xs text-muted-foreground">{log.user}</p>
-                                </div>
-                                <span className="text-xs font-bold text-muted-foreground bg-neutral-950 px-2 py-1 rounded-md">{log.time}</span>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
 
@@ -67,27 +85,27 @@ export default function AdminDashboard() {
                     <h3 className="text-lg font-bold mb-6">Quick Actions</h3>
 
                     <div className="space-y-3 flex-1">
-                        <button className="w-full flex items-center justify-between p-4 rounded-xl border border-border/10 hover:border-primary/50 hover:bg-primary/5 transition-all text-left group">
+                        <Link href="/admin/widgets" className="w-full flex items-center justify-between p-4 rounded-xl border border-border/10 hover:border-primary/50 hover:bg-primary/5 transition-all text-left group">
                             <div>
                                 <h4 className="font-bold text-sm group-hover:text-primary transition-colors">Manage Widgets</h4>
                                 <p className="text-xs text-muted-foreground">Toggle site extensions</p>
                             </div>
                             <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </button>
-                        <button className="w-full flex items-center justify-between p-4 rounded-xl border border-border/10 hover:border-primary/50 hover:bg-primary/5 transition-all text-left group">
+                        </Link>
+                        <Link href="/admin/users" className="w-full flex items-center justify-between p-4 rounded-xl border border-border/10 hover:border-primary/50 hover:bg-primary/5 transition-all text-left group">
                             <div>
                                 <h4 className="font-bold text-sm group-hover:text-primary transition-colors">User Roles (RBAC)</h4>
                                 <p className="text-xs text-muted-foreground">Modify access levels</p>
                             </div>
                             <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </button>
-                        <button className="w-full flex items-center justify-between p-4 rounded-xl border border-border/10 hover:border-primary/50 hover:bg-primary/5 transition-all text-left group">
+                        </Link>
+                        <Link href="/admin/media" className="w-full flex items-center justify-between p-4 rounded-xl border border-border/10 hover:border-primary/50 hover:bg-primary/5 transition-all text-left group">
                             <div>
-                                <h4 className="font-bold text-sm group-hover:text-primary transition-colors">System Logs</h4>
-                                <p className="text-xs text-muted-foreground">View error reports</p>
+                                <h4 className="font-bold text-sm group-hover:text-primary transition-colors">Media Library</h4>
+                                <p className="text-xs text-muted-foreground">Upload and manage media</p>
                             </div>
                             <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

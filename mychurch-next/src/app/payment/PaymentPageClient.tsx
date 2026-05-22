@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import { PaymentConfigClient } from "@/actions/payment-config";
-import { AlertCircle, CheckCircle2, CreditCard, Loader2, ShieldCheck } from "lucide-react";
+import { AlertCircle, CheckCircle2, CreditCard, Loader2, ShieldCheck, Heart, Lock, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
+import Link from "next/link";
 
 interface PaymentPageClientProps {
     config: PaymentConfigClient;
@@ -41,78 +42,104 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
     const amountLabel = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: config.currency.toUpperCase(),
-        minimumFractionDigits: 2,
+        minimumFractionDigits: 0,
         maximumFractionDigits: 2,
     }).format(config.monthly_amount);
 
     return (
-        <div className="min-h-[100dvh] bg-[#050816] text-white px-4 py-10 flex items-center justify-center">
-            <div className="w-full max-w-3xl space-y-6">
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl shadow-2xl shadow-black/30 relative overflow-hidden">
-                    <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-emerald-500/10 blur-3xl" />
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400">
-                            <ShieldCheck className="w-7 h-7" />
+        <div className="min-h-screen bg-background relative flex flex-col font-sans overflow-hidden" dir="rtl">
+            {/* Background effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-background to-background" />
+            <div className="absolute top-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
+            
+            <div className="flex-1 flex items-center justify-center p-6 relative z-10 pt-24 pb-12">
+                <div className="w-full max-w-xl mx-auto animate-fade-in-up">
+                    
+                    {/* Header */}
+                    <div className="text-center mb-10">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-white/10 shadow-inner mb-6">
+                            <Heart className="w-8 h-8 text-pink-500 animate-pulse-slow" />
                         </div>
-                        <div>
-                            <h1 className="text-3xl font-black">{config.display_name_fa} / {config.display_name_en}</h1>
-                            <p className="text-white/60 mt-1">پرداخت ماهانه امن / Secure monthly payment</p>
-                        </div>
+                        <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tight">{config.display_name_fa}</h1>
+                        <p className="text-lg text-muted-foreground">{config.display_name_en}</p>
                     </div>
 
                     {status === "success" && (
-                        <div className="mb-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-emerald-200 flex items-start gap-3">
-                            <CheckCircle2 className="w-5 h-5 mt-0.5" />
+                        <div className="mb-8 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 flex items-start gap-4 shadow-lg shadow-emerald-500/5 animate-fade-in-up">
+                            <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                                <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                            </div>
                             <div>
-                                <p className="font-bold">پرداخت با موفقیت شروع/تکمیل شد</p>
-                                <p className="text-sm text-emerald-100/80">Your payment was completed or confirmed successfully.</p>
+                                <p className="font-bold text-lg text-emerald-200">پرداخت با موفقیت انجام شد</p>
+                                <p className="text-sm text-emerald-100/70 mt-1">از حمایت شما سپاسگزاریم. رسید پرداخت به ایمیل شما ارسال خواهد شد.</p>
                             </div>
                         </div>
                     )}
 
                     {status === "cancelled" && (
-                        <div className="mb-6 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-amber-100 flex items-start gap-3">
-                            <AlertCircle className="w-5 h-5 mt-0.5" />
+                        <div className="mb-8 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 flex items-start gap-4 shadow-lg shadow-amber-500/5 animate-fade-in-up">
+                            <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
+                                <AlertCircle className="w-5 h-5 text-amber-400" />
+                            </div>
                             <div>
-                                <p className="font-bold">پرداخت لغو شد</p>
-                                <p className="text-sm text-amber-100/80">Payment was cancelled. You can try again anytime.</p>
+                                <p className="font-bold text-lg text-amber-200">پرداخت لغو شد</p>
+                                <p className="text-sm text-amber-100/70 mt-1">فرآیند پرداخت متوقف شد. شما می‌توانید در هر زمان دوباره تلاش کنید.</p>
                             </div>
                         </div>
                     )}
 
-                    <div className="grid gap-4 md:grid-cols-2 mb-6">
-                        <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                            <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-2">Amount / مبلغ</p>
-                            <p className="text-3xl font-black text-emerald-400">{amountLabel}</p>
-                            <p className="text-sm text-white/60 mt-2">{config.checkout_mode === "subscription" ? "Recurring monthly" : "One-time payment"}</p>
+                    <div className="rounded-[2.5rem] border border-white/10 bg-secondary/40 backdrop-blur-xl shadow-2xl p-8 relative overflow-hidden">
+                        <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-indigo-500/10 blur-[80px]" />
+                        <div className="absolute -left-20 -bottom-20 w-64 h-64 rounded-full bg-pink-500/10 blur-[80px]" />
+                        
+                        {!config.enabled && (
+                            <div className="absolute inset-0 z-20 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center rounded-[2.5rem]">
+                                <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+                                <h3 className="text-2xl font-bold mb-2">درگاه پرداخت غیرفعال است</h3>
+                                <p className="text-muted-foreground font-medium">در حال حاضر امکان دریافت هدایا از طریق سیستم آنلاین وجود ندارد. لطفاً بعداً مراجعه کنید.</p>
+                            </div>
+                        )}
+
+                        <div className="text-center mb-8 relative z-10">
+                            <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-3">مبلغ پرداختی / Amount</p>
+                            <div className="text-5xl md:text-6xl font-black text-white drop-shadow-md mb-3 font-sans" dir="ltr">{amountLabel}</div>
+                            <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-white/80">
+                                {config.checkout_mode === "subscription" ? "پرداخت ماهانه (تکرار شونده)" : "پرداخت یک‌باره"}
+                            </div>
                         </div>
-                        <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                            <p className="text-xs uppercase tracking-[0.2em] text-white/50 mb-2">Status / وضعیت</p>
-                            <p className={`text-2xl font-black ${config.enabled ? "text-emerald-400" : "text-red-400"}`}>
-                                {config.enabled ? "Active / فعال" : "Inactive / غیرفعال"}
-                            </p>
-                            <p className="text-sm text-white/60 mt-2">{config.description_fa} / {config.description_en}</p>
+
+                        <div className="space-y-4 mb-10 relative z-10">
+                            <div className="flex items-start gap-4 p-4 rounded-2xl bg-background/50 border border-white/5">
+                                <ShieldCheck className="w-6 h-6 text-emerald-400 mt-0.5 shrink-0" />
+                                <div>
+                                    <p className="font-bold text-sm">پرداخت امن و رمزنگاری شده</p>
+                                    <p className="text-xs text-muted-foreground mt-1 font-medium">تمامی تراکنش‌ها توسط درگاه امن {config.provider === "square" ? "Square" : "Stripe"} با بالاترین سطح امنیت پردازش می‌شوند.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4 p-4 rounded-2xl bg-background/50 border border-white/5">
+                                <Lock className="w-6 h-6 text-blue-400 mt-0.5 shrink-0" />
+                                <div>
+                                    <p className="font-bold text-sm">حفظ حریم خصوصی</p>
+                                    <p className="text-xs text-muted-foreground mt-1 font-medium">اطلاعات کارت بانکی شما هرگز در سرورهای کلیسا ذخیره نخواهد شد.</p>
+                                </div>
+                            </div>
                         </div>
+
+                        <button
+                            onClick={handleCheckout}
+                            disabled={!config.enabled || isRedirecting}
+                            className="w-full relative z-10 flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-5 font-black text-white transition-all hover:from-indigo-500 hover:to-purple-500 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shadow-xl shadow-indigo-600/20"
+                        >
+                            {isRedirecting ? <Loader2 className="w-6 h-6 animate-spin" /> : <CreditCard className="w-6 h-6" />}
+                            {isRedirecting ? "در حال انتقال به درگاه امن..." : "ورود به صفحه پرداخت امن"}
+                        </button>
                     </div>
-
-                    <button
-                        onClick={handleCheckout}
-                        disabled={!config.enabled || isRedirecting}
-                        className="w-full md:w-auto inline-flex items-center justify-center gap-3 rounded-2xl bg-emerald-500 px-6 py-4 font-black text-black transition-all hover:bg-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        {isRedirecting ? <Loader2 className="w-5 h-5 animate-spin" /> : <CreditCard className="w-5 h-5" />}
-                        {isRedirecting ? "Redirecting..." : "Subscribe Monthly / پرداخت ماهانه"}
-                    </button>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 text-sm text-white/70">
-                    <p className="font-bold text-white mb-2">Security note / نکته امنیتی</p>
-                    <p>Provider secret keys stay on the server. Use sandbox tokens for testing and update the admin settings to switch providers.</p>
-                </div>
-
-                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5 text-sm text-emerald-100/90">
-                    <p className="font-bold mb-2">Gift Display Status / وضعیت نمایشی هدایا</p>
-                    <p>After gift checkout starts and when payment returns, events are logged for Admin and Leader notifications in the Gifts section.</p>
+                    
+                    <div className="mt-8 text-center flex items-center justify-center gap-4">
+                        <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-bold">
+                            <ArrowRight className="w-4 h-4" /> بازگشت به صفحه اصلی کلیسا
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

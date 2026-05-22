@@ -60,13 +60,12 @@ export function MobileNavigation() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  // Hide on admin or broadcast fullscreen routes, or if a modal is open
+  // Hide on admin or broadcast fullscreen routes
   if (
     pathname?.startsWith("/admin") ||
     pathname?.startsWith("/broadcast") ||
     pathname === "/login" ||
-    pathname === "/signup" ||
-    isModalOpen
+    pathname === "/signup"
   ) {
     return null;
   }
@@ -81,7 +80,6 @@ export function MobileNavigation() {
   const moreLinks = [
     { label: "درباره ما", path: "/about", icon: Info },
     { label: "گالری", path: "/gallery", icon: ImageIcon },
-    { label: "مدارک", path: "/documents", icon: FileText },
     { label: t?.prayers || "درخواست دعا", path: "/prayers", icon: Heart },
     { label: t?.payment || "پرداخت آنلاین", path: "/payment", icon: CreditCard },
     { label: t?.contact || "تماس", path: "/contact", icon: Phone },

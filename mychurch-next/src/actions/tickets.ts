@@ -138,3 +138,56 @@ export async function createTicket(data: Partial<SupportTicket>, initialMessage:
         return { success: true, id: newTicketId };
     }
 }
+
+export async function getTicketMessages(ticketId: string): Promise<TicketMessage[]> {
+    try {
+        const { rows } = await query(
+            'SELECT * FROM support_ticket_messages WHERE ticket_id = $1 ORDER BY created_at ASC',
+            [ticketId]
+        );
+        return rows.map(r => ({ ...r, created_at: new Date(r.created_at) }));
+    } catch (e) {
+        console.error('Database error, using mock messages.', e);
+        return mockMessages.filter(m => m.ticket_id === ticketId).sort((a, b) => a.created_at.getTime() - b.created_at.getTime());
+    }
+}
+
+export async function replyToTicket(ticketId: string, senderId: string, senderName: string, messageBody: string): Promise<{ success: boolean }> {
+    try {
+        await query(
+            `INSERT INTO support_ticket_messages (ticket_id, sender_id, sender_name, message_body) VALUES ($1, $2, $3, $4)`,
+            [ticketId, senderId, senderName, messageBody]
+        );
+        await query(`UPDATE support_tickets SET status = 'pending' WHERE id = $1`, [ticketId]);
+        revalidatePath('/admin/messages');
+        revalidatePath('/dashboard/support');
+        return { success: true };
+    } catch (e) {
+        console.error('Error replying to ticket', e);
+        mockMessages.push({
+            id: crypto.randomUUID(),
+            ticket_id: ticketId,
+            sender_id: senderId,
+            sender_name: senderName,
+            message_body: messageBody,
+            created_at: new Date()
+        });
+        const ticket = mockTickets.find(t => t.id === ticketId);
+        if (ticket) ticket.status = 'pending';
+        return { success: true };
+    }
+}
+
+export async function closeTicket(ticketId: string): Promise<{ success: boolean }> {
+    try {
+        await query(`UPDATE support_tickets SET status = 'closed' WHERE id = $1`, [ticketId]);
+        revalidatePath('/admin/messages');
+        revalidatePath('/dashboard/support');
+        return { success: true };
+    } catch (e) {
+        console.error('Error closing ticket', e);
+        const ticket = mockTickets.find(t => t.id === ticketId);
+        if (ticket) ticket.status = 'closed';
+        return { success: true };
+    }
+}

@@ -29,7 +29,8 @@ export enum SlideType {
     ANNOUNCEMENT = 'ANNOUNCEMENT',
     GENERIC = 'GENERIC',
     LIVEDATA = 'LIVEDATA',
-    MEETING = 'MEETING'
+    MEETING = 'MEETING',
+    PRAYER = 'PRAYER'
 }
 
 export interface ScripturePage {
@@ -176,6 +177,15 @@ export interface SlideContentMeeting {
     subject?: string;
 }
 
+export interface SlideContentPrayer {
+    prayerId?: string;
+    title: string;
+    content: string;
+    userName?: string;
+    isAnswered?: boolean;
+    answerText?: string;
+}
+
 export type SlideContent =
     | SlideContentScripture
     | SlideContentLyrics
@@ -183,7 +193,8 @@ export type SlideContent =
     | SlideContentAnnouncement
     | SlideContentGeneric
     | SlideContentLiveData
-    | SlideContentMeeting;
+    | SlideContentMeeting
+    | SlideContentPrayer;
 
 export interface Slide {
     id: string;

@@ -5,6 +5,7 @@ import { X, Save, RefreshCw, Upload, Image as ImageIcon } from "lucide-react";
 import { updateWidgetConfig } from "@/actions/widgets";
 import { WatermarkLogo } from "@/components/ui/WatermarkLogo";
 import { cn } from "@/lib/utils";
+import { MediaPickerModal } from "@/components/broadcast/MediaPickerModal";
 
 export type WatermarkPosition =
     | 'top-left' | 'top-right' | 'top-center'
@@ -39,6 +40,7 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
     const [isDragging, setIsDragging] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>(currentConfig?.imageUrl || '');
     const [isUploading, setIsUploading] = useState(false);
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -190,14 +192,24 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                                 ref={fileInputRef}
                                 onChange={handleFileUpload}
                             />
-                            <button
-                                onClick={() => fileInputRef.current?.click()}
-                                disabled={isUploading}
-                                className="px-5 py-3 bg-neutral-800 hover:bg-neutral-700 text-foreground font-bold rounded-xl whitespace-nowrap flex items-center gap-2 transition-colors disabled:opacity-50"
-                            >
-                                {isUploading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                                Upload
-                            </button>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setIsGalleryOpen(true)}
+                                    className="px-4 py-3 bg-indigo-600/20 text-indigo-400 hover:bg-indigo-600/30 border border-indigo-500/30 font-bold rounded-xl whitespace-nowrap flex items-center gap-2 transition-colors text-sm"
+                                    title="گالری"
+                                >
+                                    <ImageIcon className="w-4 h-4" /> Gallery
+                                </button>
+                                <button
+                                    onClick={() => fileInputRef.current?.click()}
+                                    disabled={isUploading}
+                                    className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 text-foreground font-bold rounded-xl whitespace-nowrap flex items-center gap-2 transition-colors disabled:opacity-50 text-sm"
+                                    title="آپلود مستقیم"
+                                >
+                                    {isUploading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                                    Upload
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -300,6 +312,15 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                     </button>
                 </div>
             </div>
+
+            <MediaPickerModal
+                isOpen={isGalleryOpen}
+                onClose={() => setIsGalleryOpen(false)}
+                onSelect={(url) => setImageUrl(url)}
+                allowedTypes={['image']}
+                isRTL={true}
+                title="انتخاب لوگو (واترمارک)"
+            />
         </div>
     );
 }

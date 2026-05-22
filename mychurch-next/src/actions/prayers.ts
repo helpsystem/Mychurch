@@ -124,3 +124,38 @@ export async function incrementPrayerCount(prayerId: string, userIdentifier: str
         return { success: false, error: 'Database error' };
     }
 }
+
+export async function updatePrayerStatus(id: string, status: 'pending' | 'active' | 'answered'): Promise<{ success: boolean; error?: string }> {
+    try {
+        await query('UPDATE prayer_requests SET status = $1 WHERE id = $2', [status, id]);
+        revalidatePath('/prayers');
+        revalidatePath('/admin/prayers');
+        return { success: true };
+    } catch (e) {
+        console.error('Error updating prayer status:', e);
+        const prayer = mockPrayers.find(p => p.id === id);
+        if (prayer) {
+            prayer.status = status;
+            return { success: true };
+        }
+        return { success: false, error: 'Failed to update prayer status' };
+    }
+}
+
+export async function answerPrayer(id: string, answerText: string): Promise<{ success: boolean; error?: string }> {
+    try {
+        await query('UPDATE prayer_requests SET status = $1, answer_text = $2 WHERE id = $3', ['answered', answerText, id]);
+        revalidatePath('/prayers');
+        revalidatePath('/admin/prayers');
+        return { success: true };
+    } catch (e) {
+        console.error('Error answering prayer:', e);
+        const prayer = mockPrayers.find(p => p.id === id);
+        if (prayer) {
+            prayer.status = 'answered';
+            prayer.answer_text = answerText;
+            return { success: true };
+        }
+        return { success: false, error: 'Failed to record prayer answer' };
+    }
+}

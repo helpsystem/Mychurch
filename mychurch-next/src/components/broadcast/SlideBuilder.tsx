@@ -8,9 +8,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   Slide, SlideType, BroadcastSession,
-  SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting, ChartDataPoint,
+  SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting, SlideContentPrayer, ChartDataPoint,
   ScripturePage, WorshipSong, BibleBook, AppLanguage, MediaDisplayConfig, BroadcastOverlayConfig
 } from '@/types/broadcast';
+import { getPrayers, PrayerRequest } from '@/actions/prayers';
 import {
   fetchWorshipSongs, searchSongs, parseLyrics,
   getBibleBooks, searchScripture, fetchBibleVerse,
@@ -35,7 +36,7 @@ interface SlideBuilderProps {
   onSlideSelect: (index: number) => void;
 }
 
-type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT' | 'GENERIC' | 'LIVEDATA' | 'MEETING';
+type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT' | 'GENERIC' | 'LIVEDATA' | 'MEETING' | 'PRAYER';
 
 type LibraryAsset = {
   name: string;
@@ -84,6 +85,15 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const [liveDataShowValues, setLiveDataShowValues] = useState(true);
   const [liveDataBackgroundType, setLiveDataBackgroundType] = useState<'color' | 'image' | 'video' | 'gradient' | 'wavyPaper'>('color');
   const [liveDataBackgroundValue, setLiveDataBackgroundValue] = useState('#000000');
+
+  // Prayer Form State
+  const [availablePrayers, setAvailablePrayers] = useState<PrayerRequest[]>([]);
+  const [selectedPrayerId, setSelectedPrayerId] = useState('');
+  const [prayerTitle, setPrayerTitle] = useState('');
+  const [prayerContent, setPrayerContent] = useState('');
+  const [prayerUserName, setPrayerUserName] = useState('');
+  const [prayerIsAnswered, setPrayerIsAnswered] = useState(false);
+  const [prayerAnswerText, setPrayerAnswerText] = useState('');
 
   // Data State
   const [songs, setSongs] = useState<WorshipSong[]>([]);
@@ -216,6 +226,9 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         loadLibraryAssets(liveDataBackgroundType);
       }
     }
+    if (activeModal === 'PRAYER') {
+      getPrayers('all').then(setAvailablePrayers);
+    }
   }, [activeModal, mediaType, genericBackgroundType, liveDataBackgroundType, loadLibraryAssets]);
 
   // Filter songs based on search - show all if button clicked, otherwise limit
@@ -260,6 +273,12 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setEditingSlideIndex(null);
     setLibraryError('');
     setAssetSearchQuery('');
+    setSelectedPrayerId('');
+    setPrayerTitle('');
+    setPrayerContent('');
+    setPrayerUserName('');
+    setPrayerIsAnswered(false);
+    setPrayerAnswerText('');
   };
 
   // Add slide to session
@@ -378,6 +397,15 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       setMeetingRoomName(content.roomName || '');
       setMeetingSubject(content.subject || '');
       setActiveModal('MEETING');
+    } else if (slide.type === SlideType.PRAYER) {
+      const content = slide.content as SlideContentPrayer;
+      setSelectedPrayerId(content.prayerId || '');
+      setPrayerTitle(content.title || '');
+      setPrayerContent(content.content || '');
+      setPrayerUserName(content.userName || '');
+      setPrayerIsAnswered(content.isAnswered || false);
+      setPrayerAnswerText(content.answerText || '');
+      setActiveModal('PRAYER');
     }
   }, [session.slides]);
 
@@ -702,6 +730,26 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       updateSlide(editingSlideIndex, content);
     } else {
       addSlide(SlideType.MEETING, content);
+    }
+  };
+
+  // Handle Prayer Submit
+  const handlePrayerSubmit = () => {
+    if (!prayerTitle || !prayerContent) return;
+
+    const content: SlideContentPrayer = {
+      prayerId: selectedPrayerId || undefined,
+      title: prayerTitle,
+      content: prayerContent,
+      userName: prayerUserName || undefined,
+      isAnswered: prayerIsAnswered,
+      answerText: prayerAnswerText || undefined
+    };
+
+    if (editingSlideIndex !== null) {
+      updateSlide(editingSlideIndex, content);
+    } else {
+      addSlide(SlideType.PRAYER, content);
     }
   };
 
@@ -1126,12 +1174,20 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <Music className="w-4 h-4" />
             <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.addLyrics}</span>
           </button>
+
           <button
             onClick={() => setActiveModal('MEDIA')}
             className="flex items-center gap-2 px-3 py-2 bg-blue-600/20 border border-blue-600/40 rounded-lg text-blue-400 hover:bg-blue-600/30 transition text-sm"
           >
             <FileImage className="w-4 h-4" />
             <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.addMedia}</span>
+          </button>
+          <button
+            onClick={() => setActiveModal('PRAYER')}
+            className="flex items-center gap-2 px-3 py-2 bg-rose-600/20 border border-rose-600/40 rounded-lg text-rose-400 hover:bg-rose-600/30 transition text-sm"
+          >
+            <Heart className="w-4 h-4" />
+            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'درخواست دعا' : 'Prayer Request'}</span>
           </button>
           <button
             onClick={() => setActiveModal('ANNOUNCEMENT')}
@@ -2277,6 +2333,113 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className={`px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               >
                 {t.add}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Prayer Modal */}
+      {activeModal === 'PRAYER' && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
+            <h3 className={`text-xl font-bold text-white mb-6 flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+              <Heart className="w-6 h-6 text-rose-400" />
+              {isRTL ? 'افزودن اسلاید درخواست دعا' : 'Add Prayer Request Slide'}
+            </h3>
+
+            <div className="space-y-4 mb-6" dir={isRTL ? 'rtl' : 'ltr'}>
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'انتخاب از لیست (اختیاری)' : 'Select from list (Optional)'}
+                </label>
+                <select
+                  value={selectedPrayerId}
+                  onChange={(e) => {
+                    const id = e.target.value;
+                    setSelectedPrayerId(id);
+                    const prayer = availablePrayers.find(p => p.id === id);
+                    if (prayer) {
+                      setPrayerTitle(prayer.title);
+                      setPrayerContent(prayer.content);
+                      setPrayerUserName(prayer.user_name);
+                      setPrayerIsAnswered(prayer.status === 'answered');
+                      setPrayerAnswerText(prayer.answer_text || '');
+                    }
+                  }}
+                  className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                >
+                  <option value="">{isRTL ? 'انتخاب درخواست...' : 'Select a request...'}</option>
+                  {availablePrayers.map(p => (
+                    <option key={p.id} value={p.id}>{p.title} - {p.user_name}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'عنوان / موضوع' : 'Title / Subject'}
+                </label>
+                <input
+                  type="text"
+                  value={prayerTitle}
+                  onChange={(e) => setPrayerTitle(e.target.value)}
+                  className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                />
+              </div>
+
+              <div>
+                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {isRTL ? 'شرح درخواست' : 'Content'}
+                </label>
+                <textarea
+                  value={prayerContent}
+                  onChange={(e) => setPrayerContent(e.target.value)}
+                  rows={4}
+                  className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white resize-none ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                    {isRTL ? 'نام شخص (اختیاری)' : 'Name (Optional)'}
+                  </label>
+                  <input
+                    type="text"
+                    value={prayerUserName}
+                    onChange={(e) => setPrayerUserName(e.target.value)}
+                    className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                  />
+                </div>
+                <div className="flex items-end pb-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="checkbox" 
+                      checked={prayerIsAnswered}
+                      onChange={(e) => setPrayerIsAnswered(e.target.checked)}
+                      className="w-4 h-4 rounded border-slate-600 text-rose-500 focus:ring-rose-500" 
+                    />
+                    <span className={`text-sm text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'مستجاب شده' : 'Answered'}
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-3 justify-end mt-6">
+              <button
+                onClick={() => { setActiveModal('NONE'); resetForms(); }}
+                className={`px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {t.cancel}
+              </button>
+              <button
+                onClick={handlePrayerSubmit}
+                disabled={!prayerTitle || !prayerContent}
+                className={`px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+              >
+                {editingSlideIndex !== null ? (isRTL ? 'به‌روزرسانی' : 'Update') : t.add}
               </button>
             </div>
           </div>

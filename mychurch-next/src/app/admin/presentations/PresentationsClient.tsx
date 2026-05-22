@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
-import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2, Play } from "lucide-react";
+import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2, Play, Video, Clock } from "lucide-react";
 import { toast } from "sonner";
 import { BroadcastSession } from "@/types/broadcast";
 import { deletePresentation, savePresentation } from "@/actions/presentations";
+import { scheduleEvent } from "@/actions/events";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -23,6 +24,13 @@ export default function PresentationsClient({ initialPresentations }: { initialP
     );
     const [sharingId, setSharingId] = useState<string | null>(null);
     const [viewingId, setViewingId] = useState<string | null>(null);
+    
+    // Scheduling State
+    const [schedulingPresId, setSchedulingPresId] = useState<string | null>(null);
+    const [scheduleDate, setScheduleDate] = useState("");
+    const [scheduleTime, setScheduleTime] = useState("");
+    const [isScheduling, setIsScheduling] = useState(false);
+
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
     const { t, language } = useLanguage();
@@ -150,6 +158,26 @@ export default function PresentationsClient({ initialPresentations }: { initialP
         }
     };
 
+    const handleScheduleEvent = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!schedulingPresId || !scheduleDate || !scheduleTime) return;
+        
+        setIsScheduling(true);
+        const pres = presentations.find(p => p.id === schedulingPresId);
+        if (!pres) return;
+
+        const dateTimeStr = `${scheduleDate}T${scheduleTime}:00`;
+        const res = await scheduleEvent(pres.title, dateTimeStr, pres.id);
+        
+        if (res.success) {
+            toast.success("جلسه با موفقیت زمان‌بندی شد و ایمیل‌ها ارسال گردید.");
+            setSchedulingPresId(null);
+        } else {
+            toast.error(res.error || "خطا در زمان‌بندی جلسه");
+        }
+        setIsScheduling(false);
+    };
+
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -241,6 +269,14 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                                  </button>
                               </div>
                               <div className="flex items-center gap-2">
+                                 {/* 📅 زمان‌بندی جلسه */}
+                                 <button 
+                                     onClick={() => setSchedulingPresId(pres.id)}
+                                     title="زمان‌بندی جلسه لایو (FreeConferenceCall)" 
+                                     className="p-2 text-indigo-400 hover:text-indigo-300 transition-colors bg-indigo-500/10 rounded-lg"
+                                 >
+                                     <Video className="w-4 h-4" />
+                                 </button>
                                  {/* ✏️ ویرایش — goes to /broadcast/builder */}
                                  <Link href={`/broadcast/builder?id=${pres.id}`} title={language === 'fa' ? 'ویرایش اسلایدها' : 'Edit slides'} className="p-2 text-muted-foreground hover:text-white transition-colors">
                                      <Edit2 className="w-4 h-4" />
@@ -262,6 +298,56 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                     </div>
                 )}
             </div>
+
+            {/* Schedule Modal */}
+            {schedulingPresId && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in" dir="rtl">
+                    <div className="bg-[#111] border border-white/10 rounded-3xl p-6 w-full max-w-md shadow-2xl relative">
+                        <button onClick={() => setSchedulingPresId(null)} className="absolute top-4 left-4 p-2 text-white/50 hover:text-white bg-white/5 rounded-full">✕</button>
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="p-3 bg-indigo-500/20 text-indigo-400 rounded-2xl">
+                                <Clock className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-xl">زمان‌بندی جلسه لایو</h3>
+                                <p className="text-sm text-muted-foreground">ارسال دعوتنامه و ایجاد کانکشن وب</p>
+                            </div>
+                        </div>
+                        
+                        <form onSubmit={handleScheduleEvent} className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-bold text-white/70 mb-2">تاریخ برگزاری</label>
+                                <input 
+                                    type="date" 
+                                    required
+                                    value={scheduleDate}
+                                    onChange={e => setScheduleDate(e.target.value)}
+                                    className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold text-white/70 mb-2">ساعت شروع (به وقت محلی)</label>
+                                <input 
+                                    type="time" 
+                                    required
+                                    value={scheduleTime}
+                                    onChange={e => setScheduleTime(e.target.value)}
+                                    className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500"
+                                    dir="ltr"
+                                />
+                            </div>
+                            
+                            <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-4 text-xs text-indigo-300 mt-4 leading-relaxed">
+                                <strong>توجه:</strong> با ذخیره این فرم، ایمیل اطلاع‌رسانی به صورت خودکار برای تمامی کاربران عضو شده در خبرنامه ارسال خواهد شد.
+                            </div>
+
+                            <button type="submit" disabled={isScheduling} className="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-500 transition disabled:opacity-50 flex items-center justify-center mt-6">
+                                {isScheduling ? <Loader2 className="w-5 h-5 animate-spin" /> : 'ثبت و ارسال دعوتنامه'}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
