@@ -84,7 +84,10 @@
 
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary/30;
-    font-family: var(--font-vazirmatn), var(--font-inter), sans-serif;
+  }
+
+  body, input, textarea, select, button {
+    font-family: var(--font-vazirmatn), var(--font-inter), system-ui, -apple-system, sans-serif;
   }
 
   /* ── Ensure form inputs always have readable text ─────────────────── */
@@ -109,8 +112,12 @@
     opacity: 1;
   }
 
-  [dir="ltr"] body {
-    font-family: var(--font-inter), var(--font-vazirmatn), sans-serif;
+  [dir="ltr"] body,
+  [dir="ltr"] input,
+  [dir="ltr"] textarea,
+  [dir="ltr"] select,
+  [dir="ltr"] button {
+    font-family: var(--font-inter), var(--font-vazirmatn), system-ui, -apple-system, sans-serif;
   }
 
   /* Utility to hide elements when a modal is open */

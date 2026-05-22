@@ -66,7 +66,7 @@ export default async function RootLayout({
           }
         `}} />
       </head>
-      <body className={`antialiased bg-background text-foreground`} style={{ fontFamily: 'var(--font-vazirmatn)' }}>
+      <body className="antialiased bg-background text-foreground">
         <LanguageProvider>
           <GlobalErrorReporter />
           {realRole && currentRole && currentRole !== realRole && (
