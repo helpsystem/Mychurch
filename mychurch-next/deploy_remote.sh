@@ -23,12 +23,12 @@ fi
 if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then
     echo 'Dependencies unchanged, skipping npm install'
 else
-    echo "Installing dependencies with verbose logging..."
-    npm ci --no-audit --no-fund --verbose 2>&1 | head -50
+    echo "Installing dependencies..."
+    npm ci --no-audit --no-fund
     if [ $? -ne 0 ]; then
         echo "npm ci failed, retrying after 10s..."
         sleep 10
-        npm ci --no-audit --no-fund --verbose || exit 1
+        npm ci --no-audit --no-fund || exit 1
     fi
     cp package-lock.json .deps-lock.json
     echo "Dependencies installed successfully"

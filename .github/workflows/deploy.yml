@@ -19,5 +19,10 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            chmod +x /root/Mychurch/scripts/deploy.sh
-            /root/Mychurch/scripts/deploy.sh
+            cd /root/mychurch-v2
+            git restore . || true
+            git clean -df || true
+            git checkout main
+            git pull origin main || (git fetch origin main && git reset --hard origin/main)
+            chmod +x /root/mychurch-v2/mychurch-next/deploy_remote.sh
+            /root/mychurch-v2/mychurch-next/deploy_remote.sh
