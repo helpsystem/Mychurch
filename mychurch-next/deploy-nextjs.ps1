@@ -89,6 +89,11 @@ if [ ! -f /swapfile ] || [ "$current_swap_size" -lt 5368709120 ]; then
     free -h | grep Swap || echo 'Swap configured'
 fi
 
+if pm2 show mychurch-next > /dev/null 2>&1; then
+    echo 'Stopping PM2 process mychurch-next to release file locks...'
+    pm2 stop mychurch-next || true
+fi
+
 if [ -d node_modules ]; then
     rm -rf node_modules
 fi
@@ -119,7 +124,7 @@ if ! timeout 120m npm run build; then
 fi
 
 if pm2 show mychurch-next > /dev/null 2>&1; then
-    pm2 restart mychurch-next --update-env
+    pm2 start mychurch-next --update-env || pm2 restart mychurch-next --update-env
 else
     pm2 start npm --name 'mychurch-next' -- start
 fi
