@@ -8,6 +8,94 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'B Homa';
+  src: url('/fonts/BHoma.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'B Homa';
+  src: url('/fonts/BHoma.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'B Homa';
+  src: url('/fonts/BHoma.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'B Homa';
+  src: url('/fonts/BHoma.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'B Homa';
+  src: url('/fonts/BHoma.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-sans: var(--font-sans);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -101,7 +189,7 @@
     @apply bg-background text-foreground antialiased selection:bg-primary/30;
   }
 
-  body, input, textarea, select, button, h1, h2, h3, h4, h5, h6 {
+  body, input, textarea, select, button, [role="button"], h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-homa), var(--font-vazirmatn), var(--font-roboto), system-ui, -apple-system, sans-serif;
   }
 
@@ -132,6 +220,7 @@
   [dir="ltr"] textarea,
   [dir="ltr"] select,
   [dir="ltr"] button,
+  [dir="ltr"] [role="button"],
   [dir="ltr"] h1,
   [dir="ltr"] h2,
   [dir="ltr"] h3,
