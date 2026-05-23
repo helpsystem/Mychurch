@@ -75,6 +75,32 @@ cd {0}
 export NEXT_TELEMETRY_DISABLED=1
 export NEXT_DISABLE_ESLINT=1
 
+echo '🔗 Restoring and verifying persistent upload directories...'
+mkdir -p /var/www/storage/uploads
+mkdir -p /var/www/storage/media
+
+# If public/uploads is a directory, migrate its contents and replace it with a symlink
+if [ -d public/uploads ] && [ ! -L public/uploads ]; then
+    echo 'Migrating public/uploads to persistent storage...'
+    cp -rn public/uploads/. /var/www/storage/uploads/ || true
+    rm -rf public/uploads
+fi
+rm -f public/uploads
+ln -sfn /var/www/storage/uploads public/uploads
+
+# If public/media is a directory, migrate its contents and replace it with a symlink
+if [ -d public/media ] && [ ! -L public/media ]; then
+    echo 'Migrating public/media to persistent storage...'
+    cp -rn public/media/. /var/www/storage/media/ || true
+    rm -rf public/media
+fi
+rm -f public/media
+ln -sfn /var/www/storage/media public/media
+
+# Ensure correct permissions
+chown -R www-data:www-data /var/www/storage/uploads /var/www/storage/media || true
+chmod -R 775 /var/www/storage/uploads /var/www/storage/media || true
+
 current_swap_size=$(stat -c%s /swapfile 2>/dev/null || echo 0)
 if [ ! -f /swapfile ] || [ "$current_swap_size" -lt 5368709120 ]; then
     echo 'Allocating 5GB swap for npm/build operations...'
