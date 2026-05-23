@@ -18,6 +18,7 @@ import { BroadcastSidebar } from "./BroadcastSidebar";
 import { BroadcastProperties } from "./BroadcastProperties";
 import { PreviewMonitor, ProgramMonitor } from "./Monitors";
 import { SlideGrid } from "./SlideGrid";
+import { DeviceSettingsModal } from "./DeviceSettingsModal";
 
 export default function LiveConsole() {
     const { t } = useLanguage();
@@ -40,7 +41,168 @@ export default function LiveConsole() {
     const { initRemoteSync, disconnectSync, isConnected } = useBroadcastStore();
     const viewerChannelRef = React.useRef<BroadcastChannel | null>(null);
 
+    // Hardware bindings
+    const {
+        mediaStream,
+        videoDevices,
+        audioDevices,
+        selectedVideoDevice,
+        selectedAudioDevice,
+        videoResolution,
+        isMirrored,
+        isBlur,
+        showDeviceSelector,
+        isCameraOn,
+        isMicOn,
+        setMediaStream,
+        setVideoDevices,
+        setAudioDevices,
+        setVideoDevice,
+        setAudioDevice,
+        setVideoResolution,
+        setIsMirrored,
+        setIsBlur,
+        setShowDeviceSelector,
+        setIsCameraOn,
+        setIsMicOn
+    } = useBroadcastStore(state => ({
+        mediaStream: state.mediaStream,
+        videoDevices: state.videoDevices,
+        audioDevices: state.audioDevices,
+        selectedVideoDevice: state.selectedVideoDevice,
+        selectedAudioDevice: state.selectedAudioDevice,
+        videoResolution: state.videoResolution,
+        isMirrored: state.isMirrored,
+        isBlur: state.isBlur,
+        showDeviceSelector: state.showDeviceSelector,
+        isCameraOn: state.isCameraOn,
+        isMicOn: state.isMicOn,
+        setMediaStream: state.setMediaStream,
+        setVideoDevices: state.setVideoDevices,
+        setAudioDevices: state.setAudioDevices,
+        setVideoDevice: state.setVideoDevice,
+        setAudioDevice: state.setAudioDevice,
+        setVideoResolution: state.setVideoResolution,
+        setIsMirrored: state.setIsMirrored,
+        setIsBlur: state.setIsBlur,
+        setShowDeviceSelector: state.setShowDeviceSelector,
+        setIsCameraOn: (state as any).setIsCameraOn || (() => {}),
+        setIsMicOn: (state as any).setIsMicOn || (() => {})
+    }));
+
     const [isLoadModalOpen, setIsLoadModalOpen] = React.useState(false);
+
+    // Enumerate available devices
+    const enumerateDevices = React.useCallback(async () => {
+        try {
+            if (typeof navigator === "undefined" || !navigator.mediaDevices) return;
+
+            // Request temporary permission to see labels
+            const tempStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }).catch(() => null);
+            if (tempStream) {
+                tempStream.getTracks().forEach(track => track.stop());
+            }
+
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const videos = devices.filter(d => d.kind === 'videoinput');
+            const audios = devices.filter(d => d.kind === 'audioinput');
+            setVideoDevices(videos);
+            setAudioDevices(audios);
+
+            // Default selections
+            if (!selectedVideoDevice && videos.length > 0) {
+                setVideoDevice(videos[0].deviceId);
+            }
+            if (!selectedAudioDevice && audios.length > 0) {
+                setAudioDevice(audios[0].deviceId);
+            }
+        } catch (err) {
+            console.error('Error enumerating devices:', err);
+        }
+    }, [selectedVideoDevice, selectedAudioDevice, setVideoDevices, setAudioDevices, setVideoDevice, setAudioDevice]);
+
+    // Apply selected devices with constraints
+    const applySelectedDevices = React.useCallback(async () => {
+        if (typeof navigator === "undefined" || !navigator.mediaDevices) return;
+
+        try {
+            // Stop existing tracks
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+            }
+
+            let videoConstraints: boolean | MediaTrackConstraints = selectedVideoDevice ? { deviceId: { exact: selectedVideoDevice } } : true;
+
+            // Resolution Ideal Sizes
+            if (videoResolution === 'hd') {
+                videoConstraints = {
+                    ...((videoConstraints as object) || {}),
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 },
+                    deviceId: selectedVideoDevice ? { exact: selectedVideoDevice } : undefined
+                };
+            } else if (videoResolution === 'fhd') {
+                videoConstraints = {
+                    ...((videoConstraints as object) || {}),
+                    width: { ideal: 1920 },
+                    height: { ideal: 1080 },
+                    deviceId: selectedVideoDevice ? { exact: selectedVideoDevice } : undefined
+                };
+            }
+
+            const constraints: MediaStreamConstraints = {
+                video: isCameraOn ? videoConstraints : false,
+                audio: isMicOn ? (selectedAudioDevice ? { deviceId: { exact: selectedAudioDevice } } : true) : false
+            };
+
+            // Stop stream if both are disabled
+            if (!isCameraOn && !isMicOn) {
+                setMediaStream(null);
+                return;
+            }
+
+            console.log("📷 Requesting UserMedia with constraints:", constraints);
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
+            setMediaStream(stream);
+
+            // Double check toggles
+            stream.getVideoTracks().forEach(t => t.enabled = isCameraOn);
+            stream.getAudioTracks().forEach(t => t.enabled = isMicOn);
+
+        } catch (err) {
+            console.error('Error applying media devices:', err);
+            toast.error('خطا در اتصال به دستگاه‌های منتخب');
+        }
+    }, [selectedVideoDevice, selectedAudioDevice, videoResolution, isCameraOn, isMicOn, mediaStream, setMediaStream]);
+
+    // Enumerate on mount
+    useEffect(() => {
+        enumerateDevices();
+    }, []);
+
+    // Re-apply on selected device or resolution change
+    useEffect(() => {
+        if (isCameraOn || isMicOn) {
+            applySelectedDevices();
+        }
+    }, [selectedVideoDevice, selectedAudioDevice, videoResolution]);
+
+    // Re-apply on camera/mic toggles
+    useEffect(() => {
+        applySelectedDevices();
+    }, [isCameraOn, isMicOn]);
+
+    // Auto-start camera on first console load
+    useEffect(() => {
+        const autoStart = async () => {
+            if (!mediaStream && !isCameraOn) {
+                // Set default camera states in store
+                useBroadcastStore.setState({ isCameraOn: true, isMicOn: true });
+            }
+        };
+        const timer = setTimeout(autoStart, 1000);
+        return () => clearTimeout(timer);
+    }, []);
     const [savedSessions, setSavedSessions] = React.useState<BroadcastSession[]>([]);
     const [isLoadingSessions, setIsLoadingSessions] = React.useState(false);
     const [isGeneratingViewerLink, setIsGeneratingViewerLink] = React.useState(false);
@@ -340,36 +502,36 @@ export default function LiveConsole() {
                     <SlideGrid />
 
                     {/* Action Footer */}
-                    <div className="h-16 shrink-0 flex items-center gap-4 border-t border-border/10 justify-center mt-2 p-2">
+                    <div className="h-16 shrink-0 flex items-center gap-4 border-t border-border/10 justify-center mt-2 p-2 font-[Vazirmatn]">
                         <button
                             onClick={() => {
                                 setActiveSlideIndex(0);
                                 setInternalPageIndex(0);
                             }}
                             disabled={slides.length === 0}
-                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20"
+                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]"
                             title="First Slide"
                         >
-                            <SkipBack className="w-4 h-4" /> اول
+                            <SkipBack className="w-4 h-4" /> {t.first || 'First'}
                         </button>
                         <button
                             onClick={goPrevStep}
                             disabled={slides.length === 0}
-                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20"
+                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]"
                             title="Previous"
                         >
-                            <ChevronLeft className="w-4 h-4" /> قبلی
+                            <ChevronLeft className="w-4 h-4" /> {t.prev || 'Prev'}
                         </button>
-                        <div className="px-4 py-2 rounded-lg border border-border/20 bg-neutral-900 text-xs text-muted-foreground min-w-[140px] text-center">
+                        <div className="px-4 py-2 rounded-lg border border-border/20 bg-neutral-900 text-xs text-muted-foreground min-w-[140px] text-center font-mono">
                             Slide {slides.length === 0 ? 0 : activeSlideIndex + 1}/{slides.length} | Page {internalPageIndex + 1}/{getCurrentPageCount()}
                         </div>
                         <button
                             onClick={goNextStep}
                             disabled={slides.length === 0}
-                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20"
+                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]"
                             title="Next"
                         >
-                            بعدی <ChevronRight className="w-4 h-4" />
+                            {t.next || 'Next'} <ChevronRight className="w-4 h-4" />
                         </button>
                         <button
                             onClick={() => {
@@ -378,39 +540,39 @@ export default function LiveConsole() {
                                 setInternalPageIndex(0);
                             }}
                             disabled={slides.length === 0}
-                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20"
+                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]"
                             title="Last Slide"
                         >
-                            آخر <SkipForward className="w-4 h-4" />
+                            {t.last || 'Last'} <SkipForward className="w-4 h-4" />
                         </button>
 
                         <button
                             onClick={() => setIsLive(!isLive)}
                             className={cn(
-                                "px-8 py-3 font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm tracking-wide",
+                                "px-8 py-3 font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm tracking-wide font-[Vazirmatn]",
                                 isLive ? "bg-neutral-800 text-white border border-border/20 hover:bg-neutral-700" : "bg-red-600 hover:bg-red-700 text-white shadow-red-500/20"
                             )}>
                             <Power className="w-4 h-4" /> {isLive ? (t.endStream || 'Stop') : (t.goLive || 'Go Live')}
                         </button>
-                        <Link href="/broadcast/builder" className="px-6 py-3 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20" title="Builder">
+                        <Link href="/broadcast/builder" className="px-6 py-3 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]" title="Builder">
                             <Edit3 className="w-4 h-4" /> {t.slideBuilder || 'Slide Builder'}
                         </Link>
-                        <button onClick={handleOpenLoadModal} className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm">
-                            <CloudDownload className="w-4 h-4" /> Cloud Load
+                        <button onClick={handleOpenLoadModal} className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]">
+                            <CloudDownload className="w-4 h-4" /> {t.cloudLoad || 'Cloud Load'}
                         </button>
                         <button
                             onClick={handleCopyViewerLink}
                             disabled={!sessionId || isGeneratingViewerLink}
-                            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm"
+                            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]"
                         >
-                            {isGeneratingViewerLink ? <Loader2 className="w-4 h-4 animate-spin" /> : <RadioReceiver className="w-4 h-4" />} Viewer Link
+                            {isGeneratingViewerLink ? <Loader2 className="w-4 h-4 animate-spin" /> : <RadioReceiver className="w-4 h-4" />} {t.viewerLink || 'Viewer Link'}
                         </button>
                         <Link
                             href={sessionId ? `/broadcast/view?session=${encodeURIComponent(sessionId)}` : '/broadcast/view'}
                             target="_blank"
-                            className="px-5 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm"
+                            className="px-5 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]"
                         >
-                            <ExternalLink className="w-4 h-4" /> Viewer
+                            <ExternalLink className="w-4 h-4" /> {t.viewer || 'Viewer'}
                         </Link>
                     </div>
                 </main>
@@ -466,6 +628,26 @@ export default function LiveConsole() {
                     </div>
                 </div>
             )}
+
+            {/* Device Settings Modal */}
+            <DeviceSettingsModal
+                isOpen={showDeviceSelector}
+                onClose={() => setShowDeviceSelector(false)}
+                videoDevices={videoDevices}
+                audioDevices={audioDevices}
+                selectedVideoDevice={selectedVideoDevice}
+                selectedAudioDevice={selectedAudioDevice}
+                onVideoDeviceChange={setVideoDevice}
+                onAudioDeviceChange={setAudioDevice}
+                onRefreshDevices={enumerateDevices}
+                videoResolution={videoResolution}
+                onResolutionChange={setVideoResolution}
+                isMirrored={isMirrored}
+                onMirrorChange={setIsMirrored}
+                isBlur={isBlur}
+                onBlurChange={setIsBlur}
+                isRTL={true}
+            />
         </div>
     );
 }

@@ -94,9 +94,10 @@ interface SlideRendererProps {
     previewZoom?: number;
     previewMode?: 'fit' | 'fixed';
     internalPageIndex?: number;
+    isTransparent?: boolean;
 }
 
-export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, internalPageIndex = 0 }: SlideRendererProps) {
+export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, internalPageIndex = 0, isTransparent = false }: SlideRendererProps) {
     const [activeReference, setActiveReference] = useState<ScriptureReferenceItem | null>(null);
     const slideZoom = Number.isFinite(slide?.zoom || 1) ? Math.max(0.5, Math.min(slide?.zoom || 1, 2.5)) : 1;
     const safeZoom = Number.isFinite(previewZoom) ? Math.max(0.25, Math.min(previewZoom, 3)) : 1;
@@ -116,6 +117,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
 
     // Common background utility
     const renderBackground = (bgConfig: any) => {
+        if (isTransparent) return null;
         if (!bgConfig) return <div className="absolute inset-0 bg-black -z-10" />;
         
         switch (bgConfig.type) {
@@ -189,7 +191,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                 return (
                     <div className="w-full h-full flex flex-col items-center justify-center p-12 text-center relative overflow-hidden">
                         {/* Dynamic Background */}
-                        {opts?.showBackground !== false && (
+                        {opts?.showBackground !== false && !isTransparent && (
                             <div className="absolute inset-0 -z-10">
                                 {opts?.backgroundType === 'image' && opts.backgroundUrl ? (
                                     <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${opts.backgroundUrl})`, opacity: opts.backgroundOpacity ? opts.backgroundOpacity / 100 : 0.6 }} />
@@ -514,8 +516,8 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                 }
 
                 return (
-                    <div className="w-full h-full flex flex-col bg-[url('/bg-dark-texture.jpg')] bg-cover bg-center items-center justify-center p-16 relative">
-                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm -z-10" />
+                    <div className={cn("w-full h-full flex flex-col items-center justify-center p-16 relative", isTransparent ? "" : "bg-[url('/bg-dark-texture.jpg')] bg-cover bg-center")}>
+                        {!isTransparent && <div className="absolute inset-0 bg-black/60 backdrop-blur-sm -z-10" />}
                         
                         {/* Reference Badge */}
                         <div className="absolute top-4 left-4 sm:top-8 sm:left-8 bg-amber-500/15 border border-amber-500/25 px-3 py-1.5 rounded-full backdrop-blur-md shadow-sm">

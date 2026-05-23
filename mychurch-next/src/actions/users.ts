@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { hasAdminRoleOrPermission } from "@/lib/access-control";
 
 export type UserRow = {
-    id: number;
+    id: string;
     name: string;
     email: string;
     role: string;
@@ -52,7 +52,7 @@ export async function getUsers(): Promise<UserRow[]> {
     }
 }
 
-export async function updateUserRole(id: number, newRole: string) {
+export async function updateUserRole(id: string, newRole: string) {
     if (!(await canManageUsers())) {
         return false;
     }
@@ -74,7 +74,7 @@ export async function updateUserRole(id: number, newRole: string) {
     }
 }
 
-export async function updateUserPermissions(id: number, permissions: Record<string, boolean>) {
+export async function updateUserPermissions(id: string, permissions: Record<string, boolean>) {
     if (!(await canManageUsers())) {
         return false;
     }
@@ -96,7 +96,7 @@ export async function updateUserPermissions(id: number, permissions: Record<stri
     }
 }
 
-export async function deleteUser(id: number) {
+export async function deleteUser(id: string) {
     if (!(await canManageUsers())) {
         return false;
     }

@@ -15,7 +15,7 @@ const AVAILABLE_PERMISSIONS = [
 
 export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] }) {
     const [isPending, startTransition] = useTransition();
-    const [editingUserId, setEditingUserId] = useState<number | null>(null);
+    const [editingUserId, setEditingUserId] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
 
     // Invite Modal State
@@ -26,17 +26,17 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
     const [inviteSuccess, setInviteSuccess] = useState("");
 
     // Permissions Modal State
-    const [permissionsModalUserId, setPermissionsModalUserId] = useState<number | null>(null);
+    const [permissionsModalUserId, setPermissionsModalUserId] = useState<string | null>(null);
     const [editingPermissions, setEditingPermissions] = useState<Record<string, boolean>>({});
 
-    const handleRoleChange = (id: number, newRole: string) => {
+    const handleRoleChange = (id: string, newRole: string) => {
         startTransition(async () => {
             await updateUserRole(id, newRole);
             setEditingUserId(null);
         });
     };
 
-    const handleDelete = (id: number) => {
+    const handleDelete = (id: string) => {
         if (confirm("آیا از حذف این کاربر اطمینان دارید؟")) {
             startTransition(async () => {
                 await deleteUser(id);

@@ -290,8 +290,16 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
                         <FolderPlus className="w-4 h-4"/> پوشه جدید
                     </button>
                     <div className="relative w-full sm:w-64">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <button
+                            type="button"
+                            onClick={() => document.getElementById("media-picker-search")?.focus()}
+                            className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-white transition-colors"
+                            title="جستجو"
+                        >
+                            <Search className="w-4 h-4" />
+                        </button>
                         <input
+                            id="media-picker-search"
                             type="text"
                             placeholder="جستجوی فایل..."
                             value={searchQuery}

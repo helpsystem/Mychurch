@@ -47,16 +47,43 @@ export async function POST(req: Request) {
       to,
       subject: "✅ Email System Test — Iranian Christian Church DC",
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 32px; background: #f9f9f9; border-radius: 12px;">
-          <h2 style="color: #1a1a2e;">✅ سیستم ایمیل کار می‌کند!</h2>
-          <p>این یک ایمیل تست از سرور <strong>samanabyar.online</strong> است.</p>
-          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-          <p style="color: #888; font-size: 12px;">
-            Sent at: ${new Date().toISOString()}<br/>
-            Server: samanabyar.online<br/>
-            Provider: Resend (iranianchurchdc.com)
-          </p>
-        </div>
+        <!DOCTYPE html>
+        <html lang="fa" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Email System Test</title>
+        </head>
+        <body style="margin: 0; padding: 0; background-color: #f9f9f9; color: #1c1917; font-family: Tahoma, Geneva, sans-serif; -webkit-font-smoothing: antialiased; direction: rtl;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9f9f9; padding: 40px 10px;">
+                <tr>
+                    <td align="center">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); padding: 32px; text-align: right;">
+                            <tr>
+                                <td>
+                                    <h2 style="color: #4f46e5; margin: 0 0 15px 0; font-size: 20px; font-family: Tahoma, Geneva, sans-serif;">✅ سیستم ایمیل کار می‌کند!</h2>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #334155; margin: 0 0 20px 0; font-family: Tahoma, Geneva, sans-serif;">این یک ایمیل تست از سرور <strong>samanabyar.online</strong> جهت اعتبارسنجی تنظیمات ایمیل کلیسا است.</p>
+                                    
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 20px 0;">
+                                        <tr>
+                                            <td style="border-top: 1px solid #e2e8f0; height: 1px;"></td>
+                                        </tr>
+                                    </table>
+                                    
+                                    <p dir="ltr" style="color: #64748b; font-size: 12px; line-height: 1.6; text-align: left; margin: 0; font-family: Arial, sans-serif;">
+                                        Sent at: ${new Date().toISOString()}<br/>
+                                        Server: samanabyar.online<br/>
+                                        Provider: Resend (iranianchurchdc.com)<br/>
+                                        Address: Iranian Christian Church, Washington D.C., USA
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </body>
+        </html>
       `,
     });
 

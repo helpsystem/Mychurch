@@ -7,11 +7,11 @@ import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 // ---- Page Components ----
 
 const CoverPage = React.forwardRef<HTMLDivElement, {}>((_, ref) => (
-    <div ref={ref} className="relative w-full h-full bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] flex flex-col items-center justify-center text-white select-none overflow-hidden rounded-l-xl shadow-2xl">
+    <div ref={ref} className="relative w-full h-full bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] flex flex-col items-center justify-center text-white select-none overflow-hidden rounded-l-xl shadow-2xl font-[Vazirmatn]">
         <div className="absolute inset-0 bg-[url('/logo-transparent.png')] bg-center bg-no-repeat bg-contain opacity-[0.04]" />
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
         <img src="/logo-transparent.png" alt="Church Logo" className="w-28 h-28 object-contain mb-6 drop-shadow-2xl" />
-        <h2 className="text-3xl font-black text-center leading-tight mb-2 drop-shadow-lg" dir="rtl">خبرنامه کلیسا</h2>
+        <h2 className="text-3xl font-black text-center leading-normal mb-2 drop-shadow-lg" dir="rtl">خبرنامه کلیسا</h2>
         <p className="text-blue-300 font-semibold text-lg mb-1" dir="rtl">کلیسای ایرانیان واشنگتن دی‌سی</p>
         <p className="text-white/40 text-sm font-mono mt-4" dir="ltr">Iran Church DC</p>
         <div className="absolute bottom-6 text-white/30 text-xs" dir="rtl">تلنگر برای ورق زدن ←</div>
@@ -22,10 +22,10 @@ CoverPage.displayName = 'CoverPage';
 const InnerPage = React.forwardRef<HTMLDivElement, { title: string; children: React.ReactNode; accent?: string }>((
     { title, children, accent = "blue" }, ref
 ) => (
-    <div ref={ref} className="relative w-full h-full bg-[#0d1117] text-white flex flex-col select-none overflow-hidden shadow-inner">
+    <div ref={ref} className="relative w-full h-full bg-[#0d1117] text-white flex flex-col select-none overflow-hidden shadow-inner font-[Vazirmatn]">
         <div className={`h-1 bg-gradient-to-r from-${accent}-500 to-purple-500 shrink-0`} />
         <div className="p-8 flex flex-col flex-1 overflow-hidden">
-            <h3 className={`text-xl font-black text-${accent}-400 mb-5 pb-3 border-b border-${accent}-500/20 uppercase tracking-widest`} dir="rtl">
+            <h3 className={`text-xl font-black text-${accent}-400 mb-5 pb-3 border-b border-${accent}-500/20 uppercase tracking-widest leading-normal`} dir="rtl">
                 {title}
             </h3>
             <div className="flex-1 text-white/75 leading-relaxed text-sm overflow-hidden" dir="rtl">
@@ -37,10 +37,10 @@ const InnerPage = React.forwardRef<HTMLDivElement, { title: string; children: Re
 InnerPage.displayName = 'InnerPage';
 
 const BackCoverPage = React.forwardRef<HTMLDivElement, {}>((_, ref) => (
-    <div ref={ref} className="relative w-full h-full bg-gradient-to-br from-[#0f3460] via-[#16213e] to-[#1a1a2e] flex flex-col items-center justify-center text-white select-none overflow-hidden rounded-r-xl shadow-2xl">
+    <div ref={ref} className="relative w-full h-full bg-gradient-to-br from-[#0f3460] via-[#16213e] to-[#1a1a2e] flex flex-col items-center justify-center text-white select-none overflow-hidden rounded-r-xl shadow-2xl font-[Vazirmatn]">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
         <BookOpen className="w-16 h-16 text-white/20 mb-6" />
-        <p className="text-white/50 text-sm font-medium text-center px-6 leading-relaxed" dir="rtl">
+        <p className="text-white/50 text-sm font-medium text-center px-6 leading-normal" dir="rtl">
             «زیرا خدا جهان را اینقدر محبت نمود که پسر یگانه خود را داد.»<br />
             <span className="text-white/30 text-xs mt-1 block">یوحنا ۳:۱۶</span>
         </p>
@@ -68,7 +68,7 @@ export function Flipbook() {
             </div>
 
             {/* The Book */}
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center overflow-x-auto select-none py-4 max-w-full">
                 <HTMLFlipBook
                     ref={bookRef}
                     width={320}

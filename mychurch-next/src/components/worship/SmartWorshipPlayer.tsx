@@ -22,6 +22,7 @@ interface SmartWorshipPlayerProps {
     backgroundBlur?: number;
     textShadow?: boolean;
     objectFit?: 'cover' | 'contain' | 'fill';
+    isTransparent?: boolean;
 }
 
 export const getSafeAudioUrl = (url: string | undefined): string => {
@@ -57,7 +58,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     backgroundOpacity = 60,
     backgroundBlur = 0,
     textShadow = true,
-    objectFit = 'cover'
+    objectFit = 'cover',
+    isTransparent = false
 }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -258,28 +260,30 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             ref={containerRef}
             dir="rtl"
             onContextMenu={(e) => e.preventDefault()}
-            className={`relative overflow-hidden bg-black text-white font-sans select-none ${isFullscreen ? 'h-screen w-screen' : 'w-full aspect-video rounded-2xl shadow-2xl'}`}
+            className={`relative overflow-hidden text-white font-sans select-none ${isFullscreen ? 'h-screen w-screen' : 'w-full aspect-video rounded-2xl shadow-2xl'} ${isTransparent ? 'bg-transparent' : 'bg-black'}`}
             style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" }}
         >
             {/* Background - with fallback gradient */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
-                {backgroundImage && (
-                    <img
-                        src={backgroundImage}
-                        alt="Background"
-                        className="w-full h-full transition-all duration-300 transform scale-105"
-                        style={{
-                            objectFit: objectFit,
-                            opacity: backgroundOpacity / 100,
-                            filter: `blur(${backgroundBlur}px)`
-                        }}
-                        onError={(e) => e.currentTarget.style.display = 'none'}
-                    />
-                )}
-                {/* Gradient Overlay removed or made optional? Keeping standard overlay for readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60" />
-            </div>
+            {!isTransparent && (
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
+                    {backgroundImage && (
+                        <img
+                            src={backgroundImage}
+                            alt="Background"
+                            className="w-full h-full transition-all duration-300 transform scale-105"
+                            style={{
+                                objectFit: objectFit,
+                                opacity: backgroundOpacity / 100,
+                                filter: `blur(${backgroundBlur}px)`
+                            }}
+                            onError={(e) => e.currentTarget.style.display = 'none'}
+                        />
+                    )}
+                    {/* Gradient Overlay removed or made optional? Keeping standard overlay for readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60" />
+                </div>
+            )}
 
             {/* Content Layer */}
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-8 lg:p-16">

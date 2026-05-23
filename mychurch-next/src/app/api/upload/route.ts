@@ -66,7 +66,7 @@ export async function POST(request: Request) {
         }
 
         // Generate unique filename while preserving extension for media-type detection.
-        const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '');
+        const safeName = file.name.replace(/[^a-zA-Z0-9\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF._-]/g, '');
         const filename = `media-${Date.now()}-${safeName}`;
         const path = join(uploadsDir, filename);
 

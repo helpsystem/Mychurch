@@ -20,6 +20,12 @@ interface BroadcastState {
     selectedVideoDevice: string;
     selectedAudioDevice: string;
     videoResolution: 'default' | 'hd' | 'fhd';
+    mediaStream: MediaStream | null;
+    videoDevices: MediaDeviceInfo[];
+    audioDevices: MediaDeviceInfo[];
+    isMirrored: boolean;
+    isBlur: boolean;
+    showDeviceSelector: boolean;
 
     // Network / Sync
     isConnected: boolean;
@@ -41,6 +47,14 @@ interface BroadcastState {
     setVideoResolution: (res: 'default' | 'hd' | 'fhd') => void;
     toggleCamera: () => void;
     toggleMic: () => void;
+    setMediaStream: (stream: MediaStream | null) => void;
+    setVideoDevices: (devices: MediaDeviceInfo[]) => void;
+    setAudioDevices: (devices: MediaDeviceInfo[]) => void;
+    setIsMirrored: (isMirrored: boolean) => void;
+    setIsBlur: (isBlur: boolean) => void;
+    setShowDeviceSelector: (show: boolean) => void;
+    setVideoDevice: (deviceId: string) => void;
+    setAudioDevice: (deviceId: string) => void;
 
     // Sync Actions
     setIsConnected: (connected: boolean) => void;
@@ -59,6 +73,7 @@ const DEFAULT_CONFIG: BroadcastOverlayConfig = {
     activeLowerThirdIndex: 0,
     showLowerThird: false,
     lowerThirdSize: 'standard',
+    lowerThirdTheme: 'modern',
     isRotating: false,
     rotationInterval: 10,
     prayerRequests: [],
@@ -83,6 +98,12 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     selectedVideoDevice: '',
     selectedAudioDevice: '',
     videoResolution: 'default',
+    mediaStream: null,
+    videoDevices: [],
+    audioDevices: [],
+    isMirrored: false,
+    isBlur: false,
+    showDeviceSelector: false,
 
     isConnected: false,
     syncChannel: null,
@@ -133,6 +154,14 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     setVideoResolution: (res) => set({ videoResolution: res }),
     toggleCamera: () => set((state) => ({ isCameraOn: !state.isCameraOn })),
     toggleMic: () => set((state) => ({ isMicOn: !state.isMicOn })),
+    setMediaStream: (stream) => set({ mediaStream: stream }),
+    setVideoDevices: (devices) => set({ videoDevices: devices }),
+    setAudioDevices: (devices) => set({ audioDevices: devices }),
+    setIsMirrored: (isMirrored) => set({ isMirrored }),
+    setIsBlur: (isBlur) => set({ isBlur }),
+    setShowDeviceSelector: (show) => set({ showDeviceSelector: show }),
+    setVideoDevice: (deviceId) => set({ selectedVideoDevice: deviceId }),
+    setAudioDevice: (deviceId) => set({ selectedAudioDevice: deviceId }),
 
     setIsConnected: (connected) => set({ isConnected: connected }),
 

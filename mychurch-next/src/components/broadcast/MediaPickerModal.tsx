@@ -54,15 +54,19 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
             for (let i = 0; i < files.length; i++) {
                 const formData = new FormData();
                 formData.append('file', files[i]);
-                await fetch('/api/media/upload', {
+                const response = await fetch('/api/media/upload', {
                     method: 'POST',
                     body: formData,
                 });
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.error || 'Upload failed');
+                }
             }
             await loadFiles();
-        } catch (error) {
+        } catch (error: any) {
             console.error("Upload failed", error);
-            alert(isRTL ? "خطا در آپلود فایل" : "Upload failed");
+            alert(isRTL ? `خطا در آپلود فایل: ${error.message || ""}` : `Upload failed: ${error.message || ""}`);
         } finally {
             setUploading(false);
             if (fileInputRef.current) fileInputRef.current.value = "";
@@ -184,8 +188,16 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
 
                     <div className="flex items-center gap-3">
                         <div className="relative">
-                            <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                            <button
+                                type="button"
+                                onClick={() => document.getElementById("media-modal-search")?.focus()}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                                title={translate.search}
+                            >
+                                <Search className="w-4 h-4" />
+                            </button>
                             <input
+                                id="media-modal-search"
                                 type="text"
                                 placeholder={translate.search}
                                 value={searchQuery}

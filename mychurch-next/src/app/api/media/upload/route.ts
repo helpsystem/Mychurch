@@ -42,7 +42,7 @@ export async function POST(request: Request) {
         const ext = dotIndex > -1 ? original.substring(dotIndex) : '';
         const baseRaw = dotIndex > -1 ? original.substring(0, dotIndex) : original;
         const originalName = baseRaw
-            .replace(/[^a-zA-Z0-9 _.-]/g, '')
+            .replace(/[^a-zA-Z0-9\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF _.-]/g, '')
             .trim()
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-')

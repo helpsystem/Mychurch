@@ -236,24 +236,62 @@ async function sendAdminAlertEmail(payload: {
 
   const subject = `🚨 [${payload.ai.severity.toUpperCase()}] Client Error ${payload.code || "UNKNOWN"}`;
   const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 760px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden;">
-      <div style="padding: 16px 20px; background: #111827; color: #fff;">
-        <h2 style="margin: 0; font-size: 18px;">Client Error Alert</h2>
-      </div>
-      <div style="padding: 20px; line-height: 1.6; color: #111827;">
-        <p><strong>Severity:</strong> ${payload.ai.severity}</p>
-        <p><strong>AI Summary:</strong> ${payload.ai.summary}</p>
-        <p><strong>Probable Cause:</strong> ${payload.ai.probableCause}</p>
-        <p><strong>Suggested Fix:</strong> ${payload.ai.suggestedFix}</p>
-        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 16px 0;" />
-        <p><strong>Code:</strong> ${payload.code || "N/A"}</p>
-        <p><strong>Source:</strong> ${payload.source || "N/A"}</p>
-        <p><strong>URL:</strong> ${payload.url || "N/A"}</p>
-        <p><strong>Timestamp:</strong> ${payload.timestamp}</p>
-        <p><strong>Admin Ticket ID:</strong> ${payload.ticketId || "Not created"}</p>
-        <p><strong>Message:</strong><br/>${payload.message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
-      </div>
-    </div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Client Error Alert</title>
+    </head>
+    <body style="margin: 0; padding: 0; background-color: #f9fafb; color: #111827; font-family: Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9fafb; padding: 20px 10px;">
+            <tr>
+                <td align="center">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 760px; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                        <!-- Header -->
+                        <tr style="background-color: #111827; color: #ffffff;">
+                            <td style="padding: 16px 20px;">
+                                <h2 style="margin: 0; font-size: 18px; font-weight: bold;">Client Error Alert</h2>
+                            </td>
+                        </tr>
+                        <!-- Content -->
+                        <tr>
+                            <td style="padding: 20px; line-height: 1.6; color: #111827; font-size: 14px;">
+                                <p style="margin: 0 0 10px 0;"><strong>Severity:</strong> <span style="color: ${payload.ai.severity === 'critical' || payload.ai.severity === 'high' ? '#dc2626' : '#d97706'}; font-weight: bold;">${payload.ai.severity.toUpperCase()}</span></p>
+                                <p style="margin: 0 0 10px 0;"><strong>AI Summary:</strong> ${payload.ai.summary}</p>
+                                <p style="margin: 0 0 10px 0;"><strong>Probable Cause:</strong> ${payload.ai.probableCause}</p>
+                                <p style="margin: 0 0 10px 0;"><strong>Suggested Fix:</strong> ${payload.ai.suggestedFix}</p>
+                                
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 16px 0;">
+                                    <tr>
+                                        <td style="border-top: 1px solid #e5e7eb; height: 1px;"></td>
+                                    </tr>
+                                </table>
+                                
+                                <p style="margin: 0 0 10px 0;"><strong>Code:</strong> ${payload.code || "N/A"}</p>
+                                <p style="margin: 0 0 10px 0;"><strong>Source:</strong> ${payload.source || "N/A"}</p>
+                                <p style="margin: 0 0 10px 0;"><strong>URL:</strong> ${payload.url || "N/A"}</p>
+                                <p style="margin: 0 0 10px 0;"><strong>Timestamp:</strong> ${payload.timestamp}</p>
+                                <p style="margin: 0 0 15px 0;"><strong>Admin Ticket ID:</strong> ${payload.ticketId || "Not created"}</p>
+                                
+                                <p style="margin: 0 0 5px 0;"><strong>Message:</strong></p>
+                                <div style="background-color: #f3f4f6; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 12px; white-space: pre-wrap; word-break: break-all; border: 1px solid #e5e7eb; color: #374151;">
+                                    ${payload.message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Footer -->
+                        <tr style="background-color: #f9fafb; border-top: 1px solid #e5e7eb;">
+                            <td style="padding: 15px 20px; font-size: 11px; color: #6b7280; text-align: center;">
+                                MyChurch Error Diagnostic System • samanabyar.online
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>
   `;
 
   try {

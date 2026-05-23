@@ -133,32 +133,64 @@ async function runMassEnrichment() {
             to: 'help.system@ymail.com',
             subject: `[AI Mass Enricher] Report - ${successCount}/${totalProcessed} Succeeded`,
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; border-radius: 8px; overflow: hidden;">
-                    <div style="background-color: #f4f4f4; padding: 20px; text-align: center;">
-                        <h2 style="margin: 0; color: #333;">🤖 AI Cron Job Report</h2>
-                    </div>
-                    <div style="padding: 20px;">
-                        <p><strong>Job Name:</strong> AI_MASS_ENRICHMENT</p>
-                        <p><strong>Status:</strong> ${jobStatus}</p>
-                        <p><strong>Duration:</strong> ${(durationMs / 1000).toFixed(2)}s</p>
-                        <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-                        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
-                            <thead>
-                                <tr>
-                                    <th style="padding: 8px; border-bottom: 2px solid #ddd;">Song Title</th>
-                                    <th style="padding: 8px; border-bottom: 2px solid #ddd;">Status</th>
-                                    <th style="padding: 8px; border-bottom: 2px solid #ddd;">Error</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${htmlTableRows}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div style="background-color: #fafafa; padding: 15px; text-align: center; font-size: 12px; color: #888;">
-                        Generative AI Automation by MyChurch
-                    </div>
-                </div>
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>AI Cron Job Report</title>
+                </head>
+                <body style="margin: 0; padding: 0; background-color: #f9fafb; color: #1f2937; font-family: Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9fafb; padding: 40px 10px;">
+                        <tr>
+                            <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                                    <!-- Header -->
+                                    <tr style="background-color: #f3f4f6; text-align: center;">
+                                        <td style="padding: 20px; border-bottom: 1px solid #e5e7eb;">
+                                            <h2 style="margin: 0; color: #111827; font-size: 18px; font-weight: bold;">🤖 AI Cron Job Report</h2>
+                                        </td>
+                                    </tr>
+                                    <!-- Content -->
+                                    <tr>
+                                        <td style="padding: 20px; font-size: 14px; line-height: 1.5;">
+                                            <p style="margin: 0 0 8px 0;"><strong>Job Name:</strong> AI_MASS_ENRICHMENT</p>
+                                            <p style="margin: 0 0 8px 0;"><strong>Status:</strong> <span style="font-weight: bold; color: ${jobStatus === 'Success' ? '#16a34a' : '#dc2626'};">${jobStatus}</span></p>
+                                            <p style="margin: 0 0 20px 0;"><strong>Duration:</strong> ${(durationMs / 1000).toFixed(2)}s</p>
+                                            
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px;">
+                                                <tr>
+                                                    <td style="border-top: 1px solid #e5e7eb; height: 1px;"></td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; text-align: left; font-size: 13px;">
+                                                <thead>
+                                                    <tr style="border-bottom: 2px solid #e5e7eb; background-color: #f9fafb;">
+                                                        <th style="padding: 10px; text-align: left; font-weight: bold; color: #374151;">Song Title</th>
+                                                        <th style="padding: 10px; text-align: left; font-weight: bold; color: #374151;">Status</th>
+                                                        <th style="padding: 10px; text-align: left; font-weight: bold; color: #374151;">Error</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    ${htmlTableRows}
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Footer -->
+                                    <tr style="background-color: #fafafa; border-top: 1px solid #e5e7eb; text-align: center;">
+                                        <td style="padding: 15px; font-size: 12px; color: #888888; line-height: 1.4;">
+                                            Generative AI Automation by MyChurch<br/>
+                                            Address: Iranian Christian Church, Washington D.C., USA
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+                </html>
             `
         });
         console.log(`[Cron] Warning/Success email dispatched to admin.`);

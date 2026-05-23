@@ -108,14 +108,66 @@ export async function sendNewsletterCampaign(subject: string, htmlContent: strin
             )
         `);
 
-        // Send via Resend. Resend supports batch sending by passing an array to 'to' or BCC.
-        // For privacy, it's best to use BCC so recipients don't see each other's emails.
+        const wrappedHtmlContent = `
+        <!DOCTYPE html>
+        <html lang="fa" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>${subject}</title>
+        </head>
+        <body style="margin: 0; padding: 0; background-color: #f6f9fc; color: #333333; font-family: Tahoma, Geneva, sans-serif; -webkit-font-smoothing: antialiased; direction: rtl;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f6f9fc; padding: 40px 10px;">
+                <tr>
+                    <td align="center">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e1e8ed; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                            <!-- Header -->
+                            <tr style="background-color: #4f46e5; text-align: center;">
+                                <td style="padding: 30px 20px;">
+                                    <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold; letter-spacing: 0.5px; font-family: Tahoma, Geneva, sans-serif;">خبرنامه کلیسای ایرانی دی‌سی</h1>
+                                </td>
+                            </tr>
+                            <!-- Content Area -->
+                            <tr>
+                                <td style="padding: 40px 30px; text-align: right; color: #333333; line-height: 1.8; font-size: 16px; font-family: Tahoma, Geneva, sans-serif;">
+                                    ${htmlContent}
+                                </td>
+                            </tr>
+                            <!-- Footer -->
+                            <tr style="background-color: #f8fafc; border-top: 1px solid #f1f5f9; text-align: center;">
+                                <td style="padding: 25px 30px; font-size: 12px; color: #64748b; line-height: 1.6; font-family: Arial, sans-serif;">
+                                    <p style="margin: 0 0 10px 0; font-family: Tahoma, Geneva, sans-serif;">شما این ایمیل را به دلیل عضویت در خبرنامه کلیسای ایرانی واشنگتن دریافت کرده‌اید.</p>
+                                    <p style="margin: 0 0 15px 0;">Iranian Christian Church of Washington D.C.<br/>Address: Iranian Christian Church, Washington D.C., USA</p>
+                                    <p style="margin: 0;">
+                                        <a href="https://www.iranianchurchdc.com/unsubscribe" style="color: #4f46e5; text-decoration: underline;">لغو عضویت (Unsubscribe)</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </body>
+        </html>
+        `;
+
+        const plainText = wrappedHtmlContent
+            .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+
         const { data, error } = await resend.emails.send({
             from: "MyChurch <newsletter@iranianchurchdc.com>", // Make sure to verify this domain in Resend
             to: ["newsletter@iranianchurchdc.com"], // Dummy TO
             bcc: emails, // Send to everyone else hidden
             subject: subject,
-            html: htmlContent,
+            html: wrappedHtmlContent,
+            text: plainText,
+            headers: {
+                "Precedence": "bulk",
+                "List-Unsubscribe": "<mailto:unsubscribe@iranianchurchdc.com>, <https://www.iranianchurchdc.com/unsubscribe>"
+            }
         });
 
         if (error) {

@@ -69,6 +69,13 @@ export const dictionaries = {
         slideBuilder: "SLIDE BUILDER",
         saveAll: "Save All",
         properties: "PROPERTIES",
+        first: "First",
+        prev: "Prev",
+        next: "Next",
+        last: "Last",
+        cloudLoad: "Cloud Load",
+        viewerLink: "Viewer Link",
+        viewer: "Viewer",
 
         // Worship Archive
         worshipTitle: "Worship Team Center",
@@ -196,6 +203,13 @@ export const dictionaries = {
         slideBuilder: "اسلاید ساز",
         saveAll: "ذخیره همه",
         properties: "تنظیمات",
+        first: "اول",
+        prev: "قبلی",
+        next: "بعدی",
+        last: "آخر",
+        cloudLoad: "بارگذاری ابری",
+        viewerLink: "لینک نمایشگر",
+        viewer: "نمایشگر",
 
         // Worship Archive
         worshipTitle: "مرکز تیم پرستش",

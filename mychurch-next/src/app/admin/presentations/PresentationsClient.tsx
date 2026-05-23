@@ -309,8 +309,14 @@ export default function PresentationsClient({ initialPresentations }: { initialP
             {/* Presentations Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-[Vazirmatn]" dir="rtl">
                 {presentations.filter(p => p.title.toLowerCase().includes(searchTerm.toLowerCase())).map((pres) => (
-                    <div key={pres.id} className="glass-strong rounded-3xl overflow-hidden border border-white/10 flex flex-col justify-between group hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10 relative">
-                        <div className="absolute inset-0 bg-noise opacity-[0.08] pointer-events-none" />
+                    <div 
+                        key={pres.id} 
+                        className={cn(
+                            "glass-strong rounded-3xl border border-white/10 flex flex-col justify-between group hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10 relative",
+                            (activeMenuId === pres.id || activeStatusDropdownId === pres.id) ? "z-30" : "z-10"
+                        )}
+                    >
+                        <div className="absolute inset-0 bg-noise opacity-[0.08] pointer-events-none rounded-3xl" />
                         
                         <div className="relative z-10 p-6 flex-grow">
                             <div className="flex items-start justify-between mb-4">
@@ -381,7 +387,7 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                         </div>
 
                          {/* Action Buttons Footer */}
-                         <div className="flex items-center justify-between p-4 bg-black/40 border-t border-white/10 relative z-10 group-hover:bg-indigo-950/20 transition-colors gap-3">
+                         <div className="flex items-center justify-between p-4 bg-black/40 border-t border-white/10 relative z-10 group-hover:bg-indigo-950/20 transition-colors gap-3 rounded-b-[23px]">
                               
                               {/* Primary & Secondary buttons container */}
                               <div className="flex items-center gap-2 flex-grow">

@@ -76,22 +76,62 @@ export async function GET(request: Request) {
                         <html lang="fa" dir="rtl">
                         <head>
                             <meta charset="UTF-8">
-                            <style>
-                                body { margin: 0; background-color: #0c0a09; color: #ffffff; font-family: sans-serif; text-align: center; }
-                                .card { max-width: 600px; margin: 40px auto; background-color: #1c1917; padding: 40px; border-radius: 20px; }
-                                .title { color: #ba955c; font-size: 24px; font-weight: bold; }
-                                .cta { display: inline-block; padding: 14px 28px; background: #ba955c; color: #000; text-decoration: none; border-radius: 12px; font-weight: bold; margin-top: 20px; }
-                                .hero { width: 100%; border-radius: 12px; margin-bottom: 20px; }
-                            </style>
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>خوش آمدید | Welcome</title>
                         </head>
-                        <body>
-                            <div class="card">
-                                ${fs.existsSync(heroPath) ? '<img src="cid:jesus-hero" class="hero" />' : ''}
-                                <h1 class="title">خوش آمدید ${fullName}</h1>
-                                <p>ثبت‌نام شما با حساب گوگل موفقیت‌آمیز بود.</p>
-                                <p dir="ltr">Dear ${fullName}, your account was successfully created via Google.</p>
-                                <a href="${loginUrl}" class="cta">ورود به حساب / Sign In</a>
-                            </div>
+                        <body style="margin: 0; padding: 0; background-color: #0c0a09; color: #ffffff; font-family: Tahoma, Geneva, sans-serif; -webkit-font-smoothing: antialiased; direction: rtl;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #0c0a09; padding: 40px 10px;">
+                                <tr>
+                                    <td align="center">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #1c1917; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; overflow: hidden;">
+                                            ${fs.existsSync(heroPath) ? `
+                                            <tr>
+                                                <td>
+                                                    <img src="cid:jesus-hero" alt="Welcome to Church" width="100%" style="display: block; width: 100%; max-width: 100%; border: 0;" />
+                                                </td>
+                                            </tr>
+                                            ` : ''}
+                                            <tr>
+                                                <td style="padding: 40px; text-align: right;">
+                                                    ${fs.existsSync(logoPath) ? `
+                                                    <img src="cid:logo-premium" alt="Iranian Christian Church DC" width="56" height="56" style="margin-bottom: 24px; border: 0;" />
+                                                    ` : ''}
+                                                    
+                                                    <h1 style="font-size: 24px; font-weight: bold; margin: 0 0 8px 0; color: #ba955c; font-family: Tahoma, Geneva, sans-serif;">خوش آمدید ${fullName}</h1>
+                                                    <h2 dir="ltr" style="font-size: 15px; font-weight: 600; margin: 0 0 24px 0; color: #a8a29e; font-family: Arial, sans-serif; text-align: left;">Welcome to Iranian Christian Church D.C.</h2>
+                                                    
+                                                    <p style="font-size: 16px; line-height: 1.8; margin: 0 0 16px 0; color: #e7e5e4; font-family: Tahoma, Geneva, sans-serif;">
+                                                        ثبت‌نام شما با حساب گوگل موفقیت‌آمیز بود.
+                                                    </p>
+                                                    
+                                                    <p dir="ltr" style="font-size: 14px; line-height: 1.7; margin: 0 0 24px 0; color: #a8a29e; font-family: Arial, sans-serif; text-align: left; font-style: italic;">
+                                                        Dear ${fullName}, your account was successfully created via Google.
+                                                    </p>
+
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr>
+                                                            <td align="center" style="padding: 10px 0;">
+                                                                <a href="${loginUrl}" style="display: inline-block; padding: 14px 28px; border-radius: 12px; background-color: #ba955c; color: #000000; text-decoration: none; font-weight: bold; font-size: 15px; font-family: Tahoma, Geneva, sans-serif;">ورود به حساب / Sign In</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <p dir="ltr" style="margin-top: 30px; font-size: 12px; color: #78716c; line-height: 1.8; text-align: center; font-family: Arial, sans-serif;">
+                                                        Website: ${origin}<br/>
+                                                        Support: ${supportEmail}<br/>
+                                                        Address: Iranian Christian Church, Washington D.C., USA
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.2); padding: 20px; font-size: 12px; color: #78716c; text-align: center; font-family: Arial, sans-serif;">
+                                                    © ${new Date().getFullYear()} Iranian Christian Church D.C. — ${origin}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
                         </body>
                         </html>
                         `

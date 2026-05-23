@@ -282,6 +282,7 @@ export interface BroadcastOverlayConfig {
     activeLowerThirdIndex: number;
     showLowerThird: boolean;
     lowerThirdSize: LowerThirdSize;
+    lowerThirdTheme?: 'modern' | 'classic';
     isRotating: boolean;
     rotationInterval: number;
     prayerRequests: PrayerRequest[];

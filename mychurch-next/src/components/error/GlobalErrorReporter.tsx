@@ -57,6 +57,23 @@ export default function GlobalErrorReporter() {
       lastFingerprint = fingerprint;
       lastSentAt = now;
 
+      // Auto-reload on chunk load failure (Webpack hash mismatch or missing files on deploy)
+      if (payload.code === "CHUNK_LOAD_FAILURE") {
+        try {
+          const lastReloadStr = sessionStorage.getItem("last-chunk-reload");
+          const lastReload = lastReloadStr ? parseInt(lastReloadStr, 10) : 0;
+          if (now - lastReload > 10000) { // Throttle reloads to every 10 seconds to avoid infinite loops
+            sessionStorage.setItem("last-chunk-reload", String(now));
+            console.warn("Chunk load failure detected. Forcing page refresh in 1.5 seconds...");
+            setTimeout(() => {
+              window.location.reload();
+            }, 1500);
+          }
+        } catch (e) {
+          console.error("Failed to parse/set sessionStorage last-chunk-reload", e);
+        }
+      }
+
       const body = {
         message: payload.message || "Unknown client error",
         code: payload.code || null,

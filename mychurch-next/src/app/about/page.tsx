@@ -16,40 +16,40 @@ export default function AboutPage() {
     const { t } = useLanguage();
 
     return (
-        <div className="min-h-screen bg-background relative selection:bg-primary/30 font-sans flex flex-col">
+        <div className="min-h-screen bg-background relative selection:bg-primary/30 font-[Vazirmatn] flex flex-col">
             <PublicHeader />
 
             <PageVisuals soft />
 
-            <main className="relative z-10 flex-1 pt-32 pb-24 px-6 lg:px-12 max-w-7xl mx-auto w-full">
+            <main className="relative z-10 flex-1 pt-32 pb-24 px-4 md:px-6 lg:px-12 max-w-7xl mx-auto w-full text-right" dir="rtl">
                 {/* Header */}
                 <div className="mb-16">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold border border-primary/20 shadow-sm backdrop-blur-md mb-6">
                         درباره ما
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/60 leading-[1.1] drop-shadow-sm mb-6">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/60 leading-[1.3] md:leading-[1.2] drop-shadow-sm mb-6">
                         تاریخچه و ماموریت <br className="hidden md:block" />کلیسای ایرانیان مسیحی واشنگتن دی‌سی
                     </h1>
-                    <p className="text-xl text-muted-foreground font-medium max-w-3xl leading-relaxed">
+                    <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-3xl leading-relaxed">
                         ما یک خانواده بزرگ از ایمانداران هستیم که با هدف پرستش خداوند، آموزش کلام خدا و محبت به یکدیگر دور هم جمع شده‌ایم. از زمان تاسیس در سال ۱۹۹۰، محوریت ما فقط بازتاب عشق مسیح به جهان بوده است.
                     </p>
                 </div>
 
                 {/* Vision & Mission Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
-                    <div className="glass p-8 rounded-3xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
+                    <div className="glass p-6 md:p-8 rounded-3xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
                         <div className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-blue-500/20 blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity" />
                         <Heart className="w-8 h-8 text-blue-500 mb-6" />
-                        <h3 className="text-2xl font-bold mb-4">چشم‌انداز (Vision)</h3>
+                        <h3 className="text-xl md:text-2xl font-bold mb-4">چشم‌انداز (Vision)</h3>
                         <p className="text-muted-foreground leading-relaxed">
                             ما می‌خواهیم جامعه‌ای باشیم که در آن هر فردی اهمیت دارد. شهری روی تپه که نور آن خاموش نمی‌شود، و پناهگاهی امن برای تمام ایرانیان و فارسی‌زبانانی که در جستجوی امید و نجات حقیقی در مسیح هستند.
                         </p>
                     </div>
 
-                    <div className="glass p-8 rounded-3xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
+                    <div className="glass p-6 md:p-8 rounded-3xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
                         <div className="absolute -left-8 -top-8 w-32 h-32 rounded-full bg-emerald-500/20 blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity" />
                         <BookOpen className="w-8 h-8 text-emerald-500 mb-6" />
-                        <h3 className="text-2xl font-bold mb-4">ماموریت (Mission)</h3>
+                        <h3 className="text-xl md:text-2xl font-bold mb-4">ماموریت (Mission)</h3>
                         <p className="text-muted-foreground leading-relaxed">
                             ماموریت ما موعظه کامل انجیل، شاگردسازی، تعلیم سالم بر اساس کلام زنده خدا و تجهیز ایمانداران برای ایجاد تاثیر مثبت در جامعه و خانواده‌هایشان است. ما معتقدیم که با کلام خدا می‌توانیم دنیا را تغییر دهیم.
                         </p>
@@ -60,10 +60,10 @@ export default function AboutPage() {
                 <div className="mb-24">
                     <div className="mb-8 flex items-center gap-4">
                         <div className="w-2 h-8 bg-purple-500 rounded-full" />
-                        <h2 className="text-3xl font-bold">خبرنامه دیجیتال این هفته</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold">خبرنامه دیجیتال این هفته</h2>
                     </div>
-                    <p className="text-muted-foreground mb-8" dir="rtl">نشریه هفتگی کلیسا را ورق بزنید — از برنامه جلسات تا درخواست‌های دعایی:</p>
-                    <div className="glass rounded-3xl p-6 flex justify-center overflow-hidden">
+                    <p className="text-muted-foreground mb-8">نشریه هفتگی کلیسا را ورق بزنید — از برنامه جلسات تا درخواست‌های دعایی:</p>
+                    <div className="glass rounded-3xl p-4 md:p-6 flex justify-center overflow-hidden">
                         <Flipbook />
                     </div>
                 </div>
@@ -71,7 +71,7 @@ export default function AboutPage() {
                 {/* Team Section */}
                 <div className="mb-8 flex items-center gap-4">
                     <div className="w-2 h-8 bg-primary rounded-full" />
-                    <h2 className="text-3xl font-bold">خادمین کلیسا</h2>
+                    <h2 className="text-2xl md:text-3xl font-bold">خادمین کلیسا</h2>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Pastor Card */}
@@ -81,7 +81,7 @@ export default function AboutPage() {
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                         </div>
                         <div className="p-6">
-                            <h3 className="text-2xl font-black mb-1 text-foreground" dir="rtl">کشیش جواد پیشقدمیان</h3>
+                            <h3 className="text-xl md:text-2xl font-black mb-1 text-foreground" dir="rtl">کشیش جواد پیشقدمیان</h3>
                             <span className="text-xs font-bold text-muted-foreground font-serif uppercase tracking-widest block mb-1" dir="ltr">Rev. Javad Pishghadamian</span>
                             <p className="text-primary text-sm font-bold mb-4 uppercase tracking-wider">کشیش ارشد</p>
                             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -97,7 +97,7 @@ export default function AboutPage() {
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                         </div>
                         <div className="p-6">
-                            <h3 className="text-2xl font-black mb-1 text-foreground" dir="rtl">سامان آبیار</h3>
+                            <h3 className="text-xl md:text-2xl font-black mb-1 text-foreground" dir="rtl">سامان آبیار</h3>
                             <span className="text-xs font-bold text-muted-foreground font-serif uppercase tracking-widest block mb-1" dir="ltr">Saman Abyar</span>
                             <p className="text-emerald-500 text-sm font-bold mb-4 uppercase tracking-wider">معاون و مدیریت فنی (Admin)</p>
                             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -113,7 +113,7 @@ export default function AboutPage() {
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                         </div>
                         <div className="p-6">
-                            <h3 className="text-2xl font-black mb-1 text-foreground" dir="rtl">نازی رستی</h3>
+                            <h3 className="text-xl md:text-2xl font-black mb-1 text-foreground" dir="rtl">نازی رستی</h3>
                             <span className="text-xs font-bold text-muted-foreground font-serif uppercase tracking-widest block mb-1" dir="ltr">Nazi Raasti</span>
                             <p className="text-purple-500 text-sm font-bold mb-4 uppercase tracking-wider">رهبر مطالعه کتاب مقدس بانوان</p>
                             <p className="text-muted-foreground text-sm leading-relaxed">

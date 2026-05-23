@@ -9,13 +9,21 @@ interface EmailPayload {
     to: string[];
     subject: string;
     html: string;
+    text?: string;
 }
 
-export async function sendEmail({ to, subject, html }: EmailPayload) {
+export async function sendEmail({ to, subject, html, text }: EmailPayload) {
     if (!resend) {
         console.warn("RESEND_API_KEY is not set. Email not sent.", { to, subject });
         return { success: false, error: "Email configuration missing" };
     }
+
+    // Auto-generate clean plain text from HTML to avoid spam filters
+    const plainText = text || html
+        .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
 
     try {
         const { data, error } = await resend.emails.send({
@@ -24,6 +32,11 @@ export async function sendEmail({ to, subject, html }: EmailPayload) {
             to,
             subject,
             html,
+            text: plainText,
+            headers: {
+                "Precedence": to.length > 1 ? "bulk" : "list",
+                "List-Unsubscribe": to.length > 1 ? `<mailto:unsubscribe@iranianchurchdc.com>, <https://www.iranianchurchdc.com/unsubscribe?email=${encodeURIComponent(to[0] || "")}>` : undefined
+            } as any
         });
 
         if (error) {

@@ -149,61 +149,67 @@ ${supportEmail}
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <style>
-                        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
-                        body { margin: 0; padding: 0; background-color: #0c0a09; color: #ffffff; font-family: 'Vazirmatn', Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-                        .wrap { width: 100%; padding: 40px 10px; background-color: #0c0a09; }
-                        .card { max-width: 600px; margin: 0 auto; background-color: #1c1917; border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
-                        .hero { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
-                        .content { padding: 40px; }
-                        .logo { width: 56px; height: 56px; margin-bottom: 24px; filter: drop-shadow(0 0 10px rgba(186,149,92,0.4)); }
-                        .fa-title { font-size: 26px; font-weight: 900; margin: 0 0 8px; color: #ba955c; }
-                        .en-title { font-size: 15px; font-weight: 600; margin: 0 0 24px; color: #a8a29e; font-family: sans-serif; letter-spacing: -0.01em; }
-                        .fa-text { font-size: 16px; line-height: 1.9; margin: 0 0 16px; color: #e7e5e4; }
-                        .en-text { font-size: 14px; line-height: 1.7; margin: 0 0 24px; color: #a8a29e; font-family: sans-serif; font-style: italic; }
-                        .note { border: 1px solid rgba(186,149,92,0.3); background: rgba(186,149,92,0.1); border-radius: 12px; padding: 16px; margin: 20px 0 30px; color: #d6d3d1; font-size: 14px; text-align: right; }
-                        .cta-wrap { text-align: center; margin: 30px 0 10px; }
-                        .cta { display: inline-block; padding: 14px 28px; border-radius: 12px; background: #ba955c; color: #000000 !important; text-decoration: none; font-weight: 900; font-size: 15px; }
-                        .meta { margin-top: 24px; font-size: 12px; color: #78716c; line-height: 1.8; text-align: center; }
-                        .footer { border-top: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2); padding: 20px; font-size: 12px; color: #78716c; text-align: center; }
-                    </style>
+                    <title>تایید حساب کاربری | Account Verification</title>
                 </head>
-                <body>
-                    <div class="wrap" dir="rtl">
-                        <div class="card">
-                            ${fs.existsSync(heroPath) ? '<img src="cid:jesus-hero" alt="Welcome to Church" class="hero" />' : ''}
-                            <div class="content">
-                                ${fs.existsSync(logoPath) ? '<img src="cid:logo-premium" alt="Iranian Christian Church DC" class="logo" />' : ''}
-                                
-                                <h1 class="fa-title">به خانواده کلیسای ایرانی واشنگتن خوش آمدید</h1>
-                                <h2 class="en-title" dir="ltr">Welcome to Iranian Christian Church D.C.</h2>
-                                
-                                <p class="fa-text">
-                                    سلام <strong>${fullName}</strong> عزیز،<br/>
-                                    ثبت‌نام شما انجام شد. برای فعال شدن حساب، ایمیل تایید Supabase را باز کنید و لینک تایید را بزنید.
-                                </p>
-                                
-                                <p class="en-text" dir="ltr">
-                                    Dear ${fullName}, your account was created successfully.
-                                    Please confirm your email using the verification message sent by Supabase.
-                                </p>
+                <body style="margin: 0; padding: 0; background-color: #0c0a09; color: #ffffff; font-family: Tahoma, Geneva, sans-serif; -webkit-font-smoothing: antialiased; direction: rtl;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #0c0a09; padding: 40px 10px;">
+                        <tr>
+                            <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #1c1917; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; overflow: hidden;">
+                                    ${fs.existsSync(heroPath) ? `
+                                    <tr>
+                                        <td>
+                                            <img src="cid:jesus-hero" alt="Welcome to Church" width="100%" style="display: block; width: 100%; max-width: 100%; border: 0;" />
+                                        </td>
+                                    </tr>
+                                    ` : ''}
+                                    <tr>
+                                        <td style="padding: 40px; text-align: right;">
+                                            ${fs.existsSync(logoPath) ? `
+                                            <img src="cid:logo-premium" alt="Iranian Christian Church DC" width="56" height="56" style="margin-bottom: 24px; border: 0;" />
+                                            ` : ''}
+                                            
+                                            <h1 style="font-size: 24px; font-weight: bold; margin: 0 0 8px 0; color: #ba955c; font-family: Tahoma, Geneva, sans-serif;">به خانواده کلیسای ایرانی واشنگتن خوش آمدید</h1>
+                                            <h2 dir="ltr" style="font-size: 15px; font-weight: 600; margin: 0 0 24px 0; color: #a8a29e; font-family: Arial, sans-serif; text-align: left;">Welcome to Iranian Christian Church D.C.</h2>
+                                            
+                                            <p style="font-size: 16px; line-height: 1.8; margin: 0 0 16px 0; color: #e7e5e4; font-family: Tahoma, Geneva, sans-serif;">
+                                                سلام <strong>${fullName}</strong> عزیز،<br/>
+                                                ثبت‌نام شما انجام شد. برای فعال شدن حساب، ایمیل تایید Supabase را باز کنید و لینک تایید را بزنید.
+                                            </p>
+                                            
+                                            <p dir="ltr" style="font-size: 14px; line-height: 1.7; margin: 0 0 24px 0; color: #a8a29e; font-family: Arial, sans-serif; text-align: left; font-style: italic;">
+                                                Dear ${fullName}, your account was created successfully.
+                                                Please confirm your email using the verification message sent by Supabase.
+                                            </p>
 
-                                <div class="note">
-                                    <strong>توجه / Note:</strong> در صورتی که ایمیل تاییدیه (Verification Email) را دریافت نکردید، لطفاً پوشه <strong>Spam</strong> یا <strong>Junk</strong> خود را بررسی کنید.
-                                </div>
+                                            <div style="border: 1px solid rgba(186, 149, 92, 0.3); background-color: rgba(186, 149, 92, 0.1); border-radius: 12px; padding: 16px; margin: 20px 0 30px 0; color: #d6d3d1; font-size: 14px; line-height: 1.6; text-align: right; font-family: Tahoma, Geneva, sans-serif;">
+                                                <strong>توجه / Note:</strong> در صورتی که ایمیل تاییدیه (Verification Email) را دریافت نکردید، لطفاً پوشه <strong>Spam</strong> یا <strong>Junk</strong> خود را بررسی کنید.
+                                            </div>
 
-                                <div class="cta-wrap">
-                                    <a href="${loginUrl}" class="cta">ورود به حساب / Sign In</a>
-                                </div>
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="center" style="padding: 10px 0;">
+                                                        <a href="${loginUrl}" style="display: inline-block; padding: 14px 28px; border-radius: 12px; background-color: #ba955c; color: #000000; text-decoration: none; font-weight: bold; font-size: 15px; font-family: Tahoma, Geneva, sans-serif;">ورود به حساب / Sign In</a>
+                                                    </td>
+                                                </tr>
+                                            </table>
 
-                                <div class="meta" dir="ltr">
-                                    Website: ${siteUrl}<br/>
-                                    Support: ${supportEmail}
-                                </div>
-                            </div>
-                            <div class="footer">© ${new Date().getFullYear()} Iranian Christian Church D.C. — ${siteUrl}</div>
-                        </div>
-                    </div>
+                                            <p dir="ltr" style="margin-top: 30px; font-size: 12px; color: #78716c; line-height: 1.8; text-align: center; font-family: Arial, sans-serif;">
+                                                Website: ${siteUrl}<br/>
+                                                Support: ${supportEmail}<br/>
+                                                Address: Iranian Christian Church, Washington D.C., USA
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.2); padding: 20px; font-size: 12px; color: #78716c; text-align: center; font-family: Arial, sans-serif;">
+                                            © ${new Date().getFullYear()} Iranian Christian Church D.C. — ${siteUrl}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
                 </body>
                 </html>
             `

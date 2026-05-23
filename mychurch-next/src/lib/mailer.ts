@@ -38,7 +38,8 @@ export interface Attachment {
 }
 
 export interface MailOptions {
-  to: string | string[];
+  to?: string | string[];
+  bcc?: string | string[];
   subject: string;
   text?: string;
   html?: string;
@@ -48,20 +49,38 @@ export interface MailOptions {
 }
 
 export async function sendMail(options: MailOptions) {
-  const { from, to, subject, text, html, replyTo, attachments } = options;
+  const { from, to, bcc, subject, text, html, replyTo, attachments } = options;
   const { resendTransporter, fallbackTransporter } = getTransporters();
   
   const DEFAULT_FROM = process.env.MAIL_FROM || process.env.SMTP_FROM || "Iranian Christian Church DC <noreply@iranianchurchdc.com>";
 
-  const mailPayload = {
+  const plainText = text || html
+      ?.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+      ?.replace(/<[^>]+>/g, ' ')
+      ?.replace(/\s+/g, ' ')
+      ?.trim();
+
+  const isBulk = bcc || (Array.isArray(to) && to.length > 1);
+
+  const mailPayload: any = {
     from: from ?? DEFAULT_FROM,
-    to: Array.isArray(to) ? to.join(", ") : to,
     subject: subject,
-    text: text,
+    text: plainText,
     html: html,
     replyTo: replyTo,
     attachments: attachments,
+    headers: {
+      "Precedence": isBulk ? "bulk" : "list",
+      "List-Unsubscribe": isBulk ? "<mailto:unsubscribe@iranianchurchdc.com>, <https://www.iranianchurchdc.com/unsubscribe>" : undefined
+    }
   };
+
+  if (to) {
+    mailPayload.to = Array.isArray(to) ? to.join(", ") : to;
+  }
+  if (bcc) {
+    mailPayload.bcc = Array.isArray(bcc) ? bcc.join(", ") : bcc;
+  }
 
   try {
     // Try primary provider (Resend)
