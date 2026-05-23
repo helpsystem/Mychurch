@@ -8,7 +8,8 @@ import { cn } from "@/lib/utils";
 
 export function BroadcastSidebar() {
     const { t } = useLanguage();
-    const { activeSceneId, setActiveSceneId } = useBroadcastStore();
+    const activeSceneId = useBroadcastStore(state => state.activeSceneId);
+    const setActiveSceneId = useBroadcastStore(state => state.setActiveSceneId);
 
     const scenes = [
         { id: "scene_1", name: t.worship || 'Worship', icon: Mic },

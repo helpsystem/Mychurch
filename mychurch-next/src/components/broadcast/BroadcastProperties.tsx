@@ -8,15 +8,13 @@ import { cn } from "@/lib/utils";
 
 export function BroadcastProperties() {
     const { t } = useLanguage();
-    const { 
-        config, 
-        updateConfig, 
-        isCameraOn, 
-        toggleCamera, 
-        isMicOn, 
-        toggleMic,
-        setShowDeviceSelector 
-    } = useBroadcastStore();
+    const config = useBroadcastStore(state => state.config);
+    const updateConfig = useBroadcastStore(state => state.updateConfig);
+    const isCameraOn = useBroadcastStore(state => state.isCameraOn);
+    const toggleCamera = useBroadcastStore(state => state.toggleCamera);
+    const isMicOn = useBroadcastStore(state => state.isMicOn);
+    const toggleMic = useBroadcastStore(state => state.toggleMic);
+    const setShowDeviceSelector = useBroadcastStore(state => state.setShowDeviceSelector);
 
     return (
         <aside className="w-72 bg-neutral-900 border-l border-border/10 flex flex-col font-[Vazirmatn]">

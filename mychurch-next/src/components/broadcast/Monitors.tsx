@@ -113,7 +113,7 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
         };
     }, [sessionId]);
 
-    const handleTimeUpdate = (time: number) => {
+    const handleTimeUpdate = React.useCallback((time: number) => {
         // Broadcast the exact audio time to the viewer window
         if (channelRef.current && isLive) {
             channelRef.current.postMessage({
@@ -121,7 +121,7 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                 payload: { currentTime: time }
             });
         }
-    };
+    }, [isLive]);
 
     const renderSlideOrKaraoke = (isTrans: boolean, isPreview: boolean = false) => {
         if (activeSlide?.type === SlideType.LYRICS && (activeSlide.content as SlideContentLyrics).hasTiming) {

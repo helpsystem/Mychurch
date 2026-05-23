@@ -102,6 +102,35 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
     const slideZoom = Number.isFinite(slide?.zoom || 1) ? Math.max(0.5, Math.min(slide?.zoom || 1, 2.5)) : 1;
     const safeZoom = Number.isFinite(previewZoom) ? Math.max(0.25, Math.min(previewZoom, 3)) : 1;
 
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const [scale, setScale] = useState(1);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        // Set initial scale to avoid flicker
+        const rect = container.getBoundingClientRect();
+        if (rect.width && rect.height) {
+            const scaleX = rect.width / 1920;
+            const scaleY = rect.height / 1080;
+            setScale(Math.min(scaleX, scaleY));
+        }
+
+        const observer = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                const width = entry.contentRect.width || entry.target.getBoundingClientRect().width || 1920;
+                const height = entry.contentRect.height || entry.target.getBoundingClientRect().height || 1080;
+                const scaleX = width / 1920;
+                const scaleY = height / 1080;
+                setScale(Math.min(scaleX, scaleY));
+            }
+        });
+
+        observer.observe(container);
+        return () => observer.disconnect();
+    }, []);
+
     useEffect(() => {
         setActiveReference(null);
     }, [slide?.id]);
@@ -719,7 +748,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
     return (
         <div className={cn("relative w-full h-full overflow-hidden shrink-0", className)}>
             {/* Resolution Scaling Container (Forces 16:9 1080p aspect internally for broadcast accuracy) */}
-            <div className="absolute inset-0" style={{ containerType: 'size' }}>
+            <div ref={containerRef} className="absolute inset-0">
                 <div 
                     className="absolute"
                     style={{ 
@@ -728,7 +757,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                         left: '50%',
                         top: '50%',
                         // Keep outer frame constrained to parent; zoom is applied inside the frame.
-                        transform: 'translate(-50%, -50%) scale(min(calc(100cqw / 1920px), calc(100cqh / 1080px)))',
+                        transform: `translate(-50%, -50%) scale(${scale})`,
                         transformOrigin: 'center center'
                     }}
                 >

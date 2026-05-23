@@ -8,6 +8,7 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { getPresentations, getPresentationById } from "@/actions/presentations";
 import { BroadcastSession } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
+import { useShallow } from "zustand/react/shallow";
 import { cn } from "@/lib/utils";
 import { PageVisuals } from "@/components/ui/PageVisuals";
 import { toast } from "sonner";
@@ -38,7 +39,9 @@ export default function LiveConsole() {
     const nextSlide = useBroadcastStore(state => state.nextSlide);
     const prevSlide = useBroadcastStore(state => state.prevSlide);
     const config = useBroadcastStore(state => state.config);
-    const { initRemoteSync, disconnectSync, isConnected } = useBroadcastStore();
+    const initRemoteSync = useBroadcastStore(state => state.initRemoteSync);
+    const disconnectSync = useBroadcastStore(state => state.disconnectSync);
+    const isConnected = useBroadcastStore(state => state.isConnected);
     const viewerChannelRef = React.useRef<BroadcastChannel | null>(null);
 
     // Hardware bindings
@@ -65,7 +68,7 @@ export default function LiveConsole() {
         setShowDeviceSelector,
         setIsCameraOn,
         setIsMicOn
-    } = useBroadcastStore(state => ({
+    } = useBroadcastStore(useShallow(state => ({
         mediaStream: state.mediaStream,
         videoDevices: state.videoDevices,
         audioDevices: state.audioDevices,
@@ -88,7 +91,7 @@ export default function LiveConsole() {
         setShowDeviceSelector: state.setShowDeviceSelector,
         setIsCameraOn: (state as any).setIsCameraOn || (() => {}),
         setIsMicOn: (state as any).setIsMicOn || (() => {})
-    }));
+    })));
 
     const [isLoadModalOpen, setIsLoadModalOpen] = React.useState(false);
 
