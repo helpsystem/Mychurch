@@ -258,6 +258,84 @@ export async function sendGiftThankYouEmail(email: string, name: string | null, 
 }
 
 // Process successful payment, extract customer details, record event, and trigger thank-you email
+interface StripeCustomerDetails {
+    payerEmail: string | null;
+    payerName: string | null;
+    amount: number;
+    currency: string;
+    receiptUrl: string | null;
+    paymentIntentId: string | null;
+    chargeId: string | null;
+}
+
+// Helper to recursively fetch customer details from Stripe sessions, intents, or charges
+async function retrieveStripeCustomerDetails(secretKey: string, id: string): Promise<StripeCustomerDetails> {
+    let payerEmail: string | null = null;
+    let payerName: string | null = null;
+    let amount = 25;
+    let currency = "usd";
+    let receiptUrl: string | null = null;
+    let paymentIntentId: string | null = null;
+    let chargeId: string | null = null;
+
+    try {
+        if (id.startsWith("cs_")) {
+            const res = await fetch(`https://api.stripe.com/v1/checkout/sessions/${id}`, {
+                headers: { Authorization: `Bearer ${secretKey}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                payerEmail = data.customer_details?.email || null;
+                payerName = data.customer_details?.name || null;
+                amount = (data.amount_total || 0) / 100;
+                currency = data.currency || "usd";
+                if (data.payment_intent) {
+                    paymentIntentId = data.payment_intent;
+                    const piDetails = await retrieveStripeCustomerDetails(secretKey, data.payment_intent);
+                    if (piDetails.receiptUrl) receiptUrl = piDetails.receiptUrl;
+                    if (piDetails.chargeId) chargeId = piDetails.chargeId;
+                }
+            }
+        } else if (id.startsWith("pi_")) {
+            paymentIntentId = id;
+            const res = await fetch(`https://api.stripe.com/v1/payment_intents/${id}`, {
+                headers: { Authorization: `Bearer ${secretKey}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                amount = (data.amount || 0) / 100;
+                currency = data.currency || "usd";
+                payerEmail = data.receipt_email || null;
+                if (data.charges?.data?.length > 0) {
+                    const charge = data.charges.data[0];
+                    chargeId = charge.id;
+                    payerEmail = payerEmail || charge.billing_details?.email || charge.receipt_email || null;
+                    payerName = charge.billing_details?.name || null;
+                    receiptUrl = charge.receipt_url || null;
+                }
+            }
+        } else if (id.startsWith("ch_")) {
+            chargeId = id;
+            const res = await fetch(`https://api.stripe.com/v1/charges/${id}`, {
+                headers: { Authorization: `Bearer ${secretKey}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                amount = (data.amount || 0) / 100;
+                currency = data.currency || "usd";
+                payerEmail = data.billing_details?.email || data.receipt_email || null;
+                payerName = data.billing_details?.name || null;
+                receiptUrl = data.receipt_url || null;
+                paymentIntentId = data.payment_intent || null;
+            }
+        }
+    } catch (e) {
+        console.error("[Stripe Customer Lookup] Error:", e);
+    }
+
+    return { payerEmail, payerName, amount, currency, receiptUrl, paymentIntentId, chargeId };
+}
+
 export async function processPaymentSuccess(giftRef: string, sessionId?: string, orderId?: string) {
     await ensureGiftEventsSchema();
 
@@ -269,6 +347,9 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
     let payerEmail: string | null = null;
     let payerName: string | null = null;
     let receiptUrl: string | null = null;
+    let stripePaymentIntent: string | null = null;
+    let stripeChargeId: string | null = null;
+    let squarePaymentId: string | null = null;
 
     if (secretKey) {
         if (config.provider === "square") {
@@ -280,46 +361,18 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
                 amount = (p.amount_money?.amount || 0) / 100;
                 currency = p.amount_money?.currency || "usd";
                 receiptUrl = p.receipt_url || null;
+                squarePaymentId = p.id || null;
             }
         } else if (sessionId) {
-            // Retrieve session from Stripe
-            try {
-                const response = await fetch(`https://api.stripe.com/v1/checkout/sessions/${sessionId}`, {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${secretKey}`,
-                    },
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    payerEmail = data.customer_details?.email || null;
-                    payerName = data.customer_details?.name || null;
-                    amount = (data.amount_total || 0) / 100;
-                    currency = data.currency || "usd";
-                    
-                    // Fetch latest charge to get receipt_url
-                    if (data.payment_intent) {
-                        const piRes = await fetch(`https://api.stripe.com/v1/payment_intents/${data.payment_intent}`, {
-                            headers: { Authorization: `Bearer ${secretKey}` }
-                        });
-                        if (piRes.ok) {
-                            const piData = await piRes.json();
-                            const chargeId = piData.latest_charge;
-                            if (chargeId) {
-                                const chargeRes = await fetch(`https://api.stripe.com/v1/charges/${chargeId}`, {
-                                    headers: { Authorization: `Bearer ${secretKey}` }
-                                });
-                                if (chargeRes.ok) {
-                                    const chargeData = await chargeRes.json();
-                                    receiptUrl = chargeData.receipt_url || null;
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch (err) {
-                console.error("[Stripe Session Lookup] Error:", err);
-            }
+            // Retrieve session details recursively from Stripe
+            const stripeDetails = await retrieveStripeCustomerDetails(secretKey, sessionId);
+            payerEmail = stripeDetails.payerEmail;
+            payerName = stripeDetails.payerName;
+            amount = stripeDetails.amount;
+            currency = stripeDetails.currency;
+            receiptUrl = stripeDetails.receiptUrl;
+            stripePaymentIntent = stripeDetails.paymentIntentId;
+            stripeChargeId = stripeDetails.chargeId;
         }
     }
 
@@ -329,7 +382,10 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
         payer_email: payerEmail,
         receipt_url: receiptUrl,
         stripe_session_id: sessionId || null,
+        stripe_payment_intent: stripePaymentIntent,
+        stripe_charge_id: stripeChargeId,
         square_order_id: orderId || null,
+        square_payment_id: squarePaymentId,
         email_sent: false
     };
 
@@ -371,7 +427,7 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
     }
 }
 
-// Find Square payment by reference_id or order_id
+// Find Square payment by reference_id, order_id, or payment_id
 async function findSquarePayment(secretKey: string, appId: string | null, giftRef: string, orderId?: string): Promise<any | null> {
     const isSandbox = typeof appId === "string" && appId.startsWith("sandbox");
     const base = isSandbox ? "https://connect.squareupsandbox.com" : "https://connect.squareup.com";
@@ -392,6 +448,7 @@ async function findSquarePayment(secretKey: string, appId: string | null, giftRe
         
         return data.payments.find((p: any) => 
             p.reference_id === giftRef || 
+            p.id === giftRef ||
             (orderId && p.order_id === orderId)
         ) || null;
     } catch (error) {
@@ -403,10 +460,13 @@ async function findSquarePayment(secretKey: string, appId: string | null, giftRe
 export async function getGiftEvents(limit = 100): Promise<GiftEvent[]> {
     await ensureGiftEventsSchema();
 
+    // Select all non-pending events OR pending events created within the last 72 hours
     const { rows } = await query(
         `
         SELECT id, provider, status, amount, currency, gift_ref, source, metadata, created_at
         FROM church_gift_events
+        WHERE status != 'checkout_started'
+           OR created_at >= timezone('utc'::text, now()) - interval '72 hours'
         ORDER BY created_at DESC
         LIMIT $1
     `,
@@ -479,9 +539,21 @@ export async function resendGiftEmailAction(giftRef: string) {
     try {
         await ensureGiftEventsSchema();
         
-        // Find in local DB
+        // Find in local DB matching multiple metadata ID keys
         const { rows } = await query(
-            "SELECT amount, currency, metadata FROM church_gift_events WHERE gift_ref = $1 AND status = 'success'",
+            `
+            SELECT amount, currency, metadata 
+            FROM church_gift_events 
+            WHERE (
+                gift_ref = $1 
+                OR metadata->>'stripe_session_id' = $1 
+                OR metadata->>'stripe_payment_intent' = $1 
+                OR metadata->>'stripe_charge_id' = $1 
+                OR metadata->>'square_order_id' = $1 
+                OR metadata->>'square_payment_id' = $1 
+                OR id::text = $1
+            ) AND status = 'success'
+            `,
             [giftRef]
         );
 
@@ -500,7 +572,7 @@ export async function resendGiftEmailAction(giftRef: string) {
             payerName = meta.payer_name || null;
             receiptUrl = meta.receipt_url || null;
         } else {
-            // If not logged in DB, fetch from remote APIs
+            // If not logged in DB, fetch details dynamically from Stripe/Square APIs
             const config = await getPaymentConfig();
             const secretKey = await getPaymentSecretKey(config.provider);
             if (secretKey) {
@@ -514,19 +586,13 @@ export async function resendGiftEmailAction(giftRef: string) {
                         receiptUrl = p.receipt_url || null;
                     }
                 } else {
-                    // Try stripe
-                    try {
-                        const response = await fetch(`https://api.stripe.com/v1/checkout/sessions/${giftRef}`, {
-                            headers: { Authorization: `Bearer ${secretKey}` }
-                        });
-                        if (response.ok) {
-                            const data = await response.json();
-                            payerEmail = data.customer_details?.email || null;
-                            payerName = data.customer_details?.name || null;
-                            amount = (data.amount_total || 0) / 100;
-                            currency = data.currency || "usd";
-                        }
-                    } catch (e) {}
+                    // Fetch details recursively from Stripe
+                    const stripeDetails = await retrieveStripeCustomerDetails(secretKey, giftRef);
+                    payerEmail = stripeDetails.payerEmail;
+                    payerName = stripeDetails.payerName;
+                    amount = stripeDetails.amount;
+                    currency = stripeDetails.currency;
+                    receiptUrl = stripeDetails.receiptUrl;
                 }
             }
         }
