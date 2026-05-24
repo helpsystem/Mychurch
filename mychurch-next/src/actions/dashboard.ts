@@ -1,7 +1,7 @@
 "use server";
 
 import { query } from "@/lib/db";
-import { hasAdminRoleOrPermission } from "@/lib/access-control";
+import { hasRoleOrPermission } from "@/lib/access-control";
 import pool from "@/lib/db";
 
 export interface DashboardStats {
@@ -19,7 +19,7 @@ export interface DashboardStats {
 }
 
 export async function getDashboardStats(): Promise<DashboardStats> {
-    if (!(await hasAdminRoleOrPermission([]))) {
+    if (!(await hasRoleOrPermission([]))) {
         throw new Error("Unauthorized");
     }
 
