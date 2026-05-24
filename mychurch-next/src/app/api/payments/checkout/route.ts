@@ -44,6 +44,9 @@ export async function POST() {
     const cancelURLObject = new URL(cancelPath, siteUrl);
     successURLObject.searchParams.set("gift_ref", giftRef);
     cancelURLObject.searchParams.set("gift_ref", giftRef);
+    if (config.provider !== "square") {
+        successURLObject.searchParams.set("session_id", "{CHECKOUT_SESSION_ID}");
+    }
     const successUrl = successURLObject.toString();
     const cancelUrl = cancelURLObject.toString();
     const amountInCents = Math.max(100, Math.round(Number(config.monthly_amount) * 100));
@@ -109,6 +112,7 @@ export async function POST() {
                 idempotency_key,
                 order: {
                     location_id: locationId,
+                    reference_id: giftRef,
                     line_items: [
                         {
                             name: productName,

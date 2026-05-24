@@ -167,6 +167,7 @@ export async function getPaymentSecretKey(provider?: PaymentConfig["provider"]):
 
         if (provider === "square") {
             if (typeof storedSquare === "string" && storedSquare.trim()) return storedSquare.trim();
+            if (typeof storedStripe === "string" && storedStripe.startsWith("EAAA")) return storedStripe.trim();
             return envSquare;
         }
 

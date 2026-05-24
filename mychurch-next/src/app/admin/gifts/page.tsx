@@ -17,10 +17,14 @@ function formatAmount(amount: number, currency: string) {
 export default async function AdminGiftsPage() {
     await requireRole(["Admin", "Leader"]);
 
-    const [events, summary] = await Promise.all([
-        getGiftEvents(150),
-        getGiftNotificationsSummary(),
-    ]);
+    const events = await getGiftEvents(150);
+
+    const summary = {
+        last_24h: events.filter(e => new Date(e.created_at).getTime() > Date.now() - 24 * 60 * 60 * 1000).length,
+        total_success: events.filter(e => e.status === "success").length,
+        total_cancelled: events.filter(e => e.status === "cancelled").length,
+        total: events.length
+    };
 
     return (
         <div className="space-y-6">
@@ -71,30 +75,52 @@ export default async function AdminGiftsPage() {
                             <tr>
                                 <th className="px-4 py-3 text-left">Time</th>
                                 <th className="px-4 py-3 text-left">Status</th>
-                                <th className="px-4 py-3 text-left">Provider</th>
+                                <th className="px-4 py-3 text-left">Payer</th>
+                                <th className="px-4 py-3 text-left">Email</th>
                                 <th className="px-4 py-3 text-left">Amount</th>
-                                <th className="px-4 py-3 text-left">Gift Ref</th>
+                                <th className="px-4 py-3 text-left">Provider</th>
                                 <th className="px-4 py-3 text-left">Source</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {events.map((event) => (
-                                <tr key={event.id} className="border-t border-white/5 text-white/80">
-                                    <td className="px-4 py-3">{new Date(event.created_at).toLocaleString()}</td>
-                                    <td className="px-4 py-3">
-                                        <span className="rounded-full border border-white/10 px-2 py-1 text-xs">
-                                            {event.status}
-                                        </span>
-                                    </td>
-                                    <td className="px-4 py-3 uppercase">{event.provider}</td>
-                                    <td className="px-4 py-3">{formatAmount(Number(event.amount), event.currency)}</td>
-                                    <td className="px-4 py-3 font-mono text-xs">{event.gift_ref}</td>
-                                    <td className="px-4 py-3">{event.source}</td>
-                                </tr>
-                            ))}
+                            {events.map((event) => {
+                                const metadata = (event.metadata || {}) as Record<string, any>;
+                                const payerName = metadata.payer_name || "-";
+                                const payerEmail = metadata.payer_email || "-";
+                                const receiptUrl = metadata.receipt_url || null;
+
+                                return (
+                                    <tr key={event.id} className="border-t border-white/5 text-white/80">
+                                        <td className="px-4 py-3">{new Date(event.created_at).toLocaleString()}</td>
+                                        <td className="px-4 py-3">
+                                            <span className="rounded-full border border-white/10 px-2 py-1 text-xs">
+                                                {event.status}
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3 font-semibold text-white">{payerName}</td>
+                                        <td className="px-4 py-3 font-mono text-xs">{payerEmail}</td>
+                                        <td className="px-4 py-3">{formatAmount(Number(event.amount), event.currency)}</td>
+                                        <td className="px-4 py-3 uppercase">{event.provider}</td>
+                                        <td className="px-4 py-3">
+                                            {receiptUrl ? (
+                                                <a 
+                                                    href={receiptUrl} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer" 
+                                                    className="text-emerald-400 hover:underline inline-flex items-center gap-1"
+                                                >
+                                                    Receipt / رسید ↗
+                                                </a>
+                                            ) : (
+                                                event.source
+                                            )}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                             {events.length === 0 && (
                                 <tr>
-                                    <td colSpan={6} className="px-4 py-10 text-center text-white/50">
+                                    <td colSpan={7} className="px-4 py-10 text-center text-white/50">
                                         No gift events yet.
                                     </td>
                                 </tr>
