@@ -140,8 +140,9 @@ fi
 
 # Build using a deterministic low-memory profile for slower VPS nodes.
 rm -rf .next/cache .next/lock
-export NODE_OPTIONS=--max-old-space-size=1536
-export NEXT_PRIVATE_BUILD_WORKER=1
+export NODE_OPTIONS="--max-old-space-size=2048"
+export NEXT_CPU_LIMIT=1
+export NEXT_PRIVATE_BUILD_WORKER=0
 echo 'Building Next.js (timeout: 120 minutes)...'
 if ! timeout 120m npm run build; then
     echo 'Build failed, retrying after 30s...'
