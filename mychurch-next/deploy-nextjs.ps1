@@ -78,6 +78,7 @@ export NEXT_DISABLE_ESLINT=1
 echo '🔗 Restoring and verifying persistent upload directories...'
 mkdir -p /var/www/storage/uploads
 mkdir -p /var/www/storage/media
+mkdir -p /var/www/storage/worship/audio
 
 # If public/uploads is a directory, migrate its contents and replace it with a symlink
 if [ -d public/uploads ] && [ ! -L public/uploads ]; then
@@ -97,9 +98,19 @@ fi
 rm -f public/media
 ln -sfn /var/www/storage/media public/media
 
+# If public/worship/audio is a directory, migrate its contents and replace it with a symlink
+if [ -d public/worship/audio ] && [ ! -L public/worship/audio ]; then
+    echo 'Migrating public/worship/audio to persistent storage...'
+    cp -rn public/worship/audio/. /var/www/storage/worship/audio/ || true
+    rm -rf public/worship/audio
+fi
+rm -f public/worship/audio
+mkdir -p public/worship
+ln -sfn /var/www/storage/worship/audio public/worship/audio
+
 # Ensure correct permissions
-chown -R www-data:www-data /var/www/storage/uploads /var/www/storage/media || true
-chmod -R 775 /var/www/storage/uploads /var/www/storage/media || true
+chown -R www-data:www-data /var/www/storage/uploads /var/www/storage/media /var/www/storage/worship || true
+chmod -R 775 /var/www/storage/uploads /var/www/storage/media /var/www/storage/worship || true
 
 current_swap_size=$(stat -c%s /swapfile 2>/dev/null || echo 0)
 if [ ! -f /swapfile ] || [ "$current_swap_size" -lt 5368709120 ]; then

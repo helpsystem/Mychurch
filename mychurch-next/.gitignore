@@ -43,3 +43,5 @@ next-env.d.ts
 # uploads and media directories (persistent on VPS)
 /public/uploads
 /public/media
+/public/worship/audio
+
