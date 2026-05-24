@@ -2,6 +2,7 @@ import React from "react";
 import { Gift, Bell, CheckCircle2, XCircle, Clock3 } from "lucide-react";
 import { requireRole } from "@/utils/rbac";
 import { getGiftEvents, getGiftNotificationsSummary } from "@/actions/gift-events";
+import ResendEmailButton from "./ResendEmailButton";
 
 export const dynamic = "force-dynamic";
 
@@ -80,6 +81,7 @@ export default async function AdminGiftsPage() {
                                 <th className="px-4 py-3 text-left">Amount</th>
                                 <th className="px-4 py-3 text-left">Provider</th>
                                 <th className="px-4 py-3 text-left">Source</th>
+                                <th className="px-4 py-3 text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,12 +117,17 @@ export default async function AdminGiftsPage() {
                                                 event.source
                                             )}
                                         </td>
+                                        <td className="px-4 py-3 text-right">
+                                            {event.status === "success" && (
+                                                <ResendEmailButton giftRef={event.gift_ref} email={payerEmail} />
+                                            )}
+                                        </td>
                                     </tr>
                                 );
                             })}
                             {events.length === 0 && (
                                 <tr>
-                                    <td colSpan={7} className="px-4 py-10 text-center text-white/50">
+                                    <td colSpan={8} className="px-4 py-10 text-center text-white/50">
                                         No gift events yet.
                                     </td>
                                 </tr>

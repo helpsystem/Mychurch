@@ -13,13 +13,21 @@ interface PaymentPageClientProps {
 
 export default function PaymentPageClient({ config, status }: PaymentPageClientProps) {
     const [isRedirecting, setIsRedirecting] = useState(false);
+    const [amountInput, setAmountInput] = useState(String(config.monthly_amount || "25"));
 
     const handleCheckout = async () => {
+        const amt = Number(amountInput);
+        if (!amt || isNaN(amt) || amt <= 0) {
+            toast.error("لطفاً یک مبلغ معتبر وارد کنید / Please enter a valid amount");
+            return;
+        }
+
         setIsRedirecting(true);
         try {
             const response = await fetch("/api/payments/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount: amt })
             });
 
             const data = await response.json();
@@ -38,13 +46,6 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
             setIsRedirecting(false);
         }
     };
-
-    const amountLabel = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: config.currency.toUpperCase(),
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-    }).format(config.monthly_amount);
 
     return (
         <div className="min-h-screen bg-background relative flex flex-col font-sans overflow-hidden" dir="rtl">
@@ -101,14 +102,41 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
                         )}
 
                         <div className="text-center mb-8 relative z-10">
-                            <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-3">مبلغ پرداختی / Amount</p>
-                            <div className="text-5xl md:text-6xl font-black text-white drop-shadow-md mb-3 font-sans" dir="ltr">{amountLabel}</div>
+                            <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-3">مبلغ پرداختی (دلار) / Amount (USD)</p>
+                            
+                            <div className="flex items-center justify-center gap-2 mb-4">
+                                <span className="text-4xl md:text-5xl font-black text-muted-foreground font-sans">$</span>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    step="0.01"
+                                    value={amountInput}
+                                    onChange={(e) => setAmountInput(e.target.value)}
+                                    className="w-40 bg-neutral-950/60 border border-white/10 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all text-3xl font-black text-white text-center font-sans"
+                                    placeholder="25"
+                                />
+                            </div>
+
                             <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-white/80">
                                 {config.checkout_mode === "subscription" ? "پرداخت ماهانه (تکرار شونده)" : "پرداخت یک‌باره"}
                             </div>
                         </div>
 
-                        <div className="space-y-4 mb-10 relative z-10">
+                        {/* Gateway Disclaimer Notice */}
+                        <div className="flex items-start gap-4 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-right mb-6 relative z-10">
+                            <AlertCircle className="w-6 h-6 text-amber-400 mt-0.5 shrink-0" />
+                            <div>
+                                <p className="font-bold text-sm text-amber-200">توجه درگاه پرداخت</p>
+                                <p className="text-xs text-amber-100/70 mt-1 leading-relaxed font-medium">
+                                    در حال حاضر درگاه پرداخت <strong>MyStudioInk</strong> به صورت موقت روی سایت فعال است و کاملاً امن و تایید شده می‌باشد. به زودی درگاه رسمی کلیسا جایگزین آن خواهد شد.
+                                </p>
+                                <p className="text-[10px] text-amber-100/50 mt-1 leading-relaxed font-sans" dir="ltr">
+                                    Note: The MyStudioInk payment gateway is temporarily active and fully secure. The official church gateway will be placed here soon.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4 mb-8 relative z-10">
                             <div className="flex items-start gap-4 p-4 rounded-2xl bg-background/50 border border-white/5">
                                 <ShieldCheck className="w-6 h-6 text-emerald-400 mt-0.5 shrink-0" />
                                 <div>

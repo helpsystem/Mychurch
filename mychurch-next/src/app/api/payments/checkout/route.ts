@@ -3,7 +3,7 @@ import { recordGiftEvent } from "@/actions/gift-events";
 import { getPaymentConfig, getPaymentSecretKey } from "@/actions/payment-config";
 import { resolvePublicSiteUrl } from "@/lib/site-url";
 
-export async function POST() {
+export async function POST(request: Request) {
     const config = await getPaymentConfig();
     const giftRef = (globalThis.crypto && (globalThis.crypto as any).randomUUID)
         ? (globalThis.crypto as any).randomUUID()
@@ -13,11 +13,19 @@ export async function POST() {
         return NextResponse.json({ error: "Payments are currently disabled" }, { status: 403 });
     }
 
+    let amount = Number(config.monthly_amount);
+    try {
+        const body = await request.json();
+        if (body && Number.isFinite(Number(body.amount)) && Number(body.amount) > 0) {
+            amount = Number(body.amount);
+        }
+    } catch (e) {}
+
     if (config.payment_link_url && config.checkout_mode === "payment") {
         await recordGiftEvent({
             provider: config.provider,
             status: "checkout_started",
-            amount: Number(config.monthly_amount),
+            amount: amount,
             currency: config.currency || "usd",
             giftRef,
             source: "checkout-api",
@@ -49,14 +57,14 @@ export async function POST() {
     }
     const successUrl = successURLObject.toString();
     const cancelUrl = cancelURLObject.toString();
-    const amountInCents = Math.max(100, Math.round(Number(config.monthly_amount) * 100));
+    const amountInCents = Math.max(100, Math.round(amount * 100));
     const mode = config.checkout_mode === "payment" ? "payment" : "subscription";
     const productName = config.display_name_en || config.display_name_fa || "Monthly Support";
 
     await recordGiftEvent({
         provider: config.provider,
         status: "checkout_started",
-        amount: Number(config.monthly_amount),
+        amount: amount,
         currency: config.currency || "usd",
         giftRef,
         source: "checkout-api",
@@ -144,7 +152,7 @@ export async function POST() {
                 await recordGiftEvent({
                     provider: "square",
                     status: "error",
-                    amount: Number(config.monthly_amount),
+                    amount: amount,
                     currency: config.currency || "usd",
                     giftRef,
                     source: "checkout-api",
@@ -158,7 +166,7 @@ export async function POST() {
                 await recordGiftEvent({
                     provider: "square",
                     status: "error",
-                    amount: Number(config.monthly_amount),
+                    amount: amount,
                     currency: config.currency || "usd",
                     giftRef,
                     source: "checkout-api",
@@ -172,7 +180,7 @@ export async function POST() {
             await recordGiftEvent({
                 provider: "square",
                 status: "error",
-                amount: Number(config.monthly_amount),
+                amount: amount,
                 currency: config.currency || "usd",
                 giftRef,
                 source: "checkout-api",
@@ -198,7 +206,7 @@ export async function POST() {
         await recordGiftEvent({
             provider: "stripe",
             status: "error",
-            amount: Number(config.monthly_amount),
+            amount: amount,
             currency: config.currency || "usd",
             giftRef,
             source: "checkout-api",
@@ -211,7 +219,7 @@ export async function POST() {
         await recordGiftEvent({
             provider: "stripe",
             status: "error",
-            amount: Number(config.monthly_amount),
+            amount: amount,
             currency: config.currency || "usd",
             giftRef,
             source: "checkout-api",

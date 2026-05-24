@@ -250,7 +250,6 @@ export async function sendGiftThankYouEmail(email: string, name: string | null, 
             to: email,
             subject: "سپاسگزاری بابت هدیه شما | Thank you for your gift",
             replyTo: supportEmail,
-            text: `با تشکر صمیمانه بابت هدیه شما به مبلغ ${formattedAmount}.\nThank you so much for your generous gift of ${formattedAmount}.`,
             html: htmlContent,
         });
     } catch (error) {
@@ -474,4 +473,71 @@ export async function getGiftNotificationsSummary() {
     );
 
     return rows[0] || { last_24h: 0, total_success: 0, total_cancelled: 0, total: 0 };
+}
+
+export async function resendGiftEmailAction(giftRef: string) {
+    try {
+        await ensureGiftEventsSchema();
+        
+        // Find in local DB
+        const { rows } = await query(
+            "SELECT amount, currency, metadata FROM church_gift_events WHERE gift_ref = $1 AND status = 'success'",
+            [giftRef]
+        );
+
+        let amount = 25;
+        let currency = "usd";
+        let payerEmail: string | null = null;
+        let payerName: string | null = null;
+        let receiptUrl: string | null = null;
+
+        if (rows.length > 0) {
+            const row = rows[0];
+            amount = Number(row.amount);
+            currency = row.currency || "usd";
+            const meta = row.metadata || {};
+            payerEmail = meta.payer_email || null;
+            payerName = meta.payer_name || null;
+            receiptUrl = meta.receipt_url || null;
+        } else {
+            // If not logged in DB, fetch from remote APIs
+            const config = await getPaymentConfig();
+            const secretKey = await getPaymentSecretKey(config.provider);
+            if (secretKey) {
+                if (config.provider === "square") {
+                    const p = await findSquarePayment(secretKey, config.square_application_id, giftRef);
+                    if (p) {
+                        payerEmail = p.buyer_email_address || null;
+                        payerName = p.card_details?.card?.cardholder_name || null;
+                        amount = (p.amount_money?.amount || 0) / 100;
+                        currency = p.amount_money?.currency || "usd";
+                        receiptUrl = p.receipt_url || null;
+                    }
+                } else {
+                    // Try stripe
+                    try {
+                        const response = await fetch(`https://api.stripe.com/v1/checkout/sessions/${giftRef}`, {
+                            headers: { Authorization: `Bearer ${secretKey}` }
+                        });
+                        if (response.ok) {
+                            const data = await response.json();
+                            payerEmail = data.customer_details?.email || null;
+                            payerName = data.customer_details?.name || null;
+                            amount = (data.amount_total || 0) / 100;
+                            currency = data.currency || "usd";
+                        }
+                    } catch (e) {}
+                }
+            }
+        }
+
+        if (!payerEmail) {
+            return { error: "اطلاعات ایمیل پرداخت‌کننده یافت نشد / Payer email details not found" };
+        }
+
+        await sendGiftThankYouEmail(payerEmail, payerName, amount, currency, receiptUrl);
+        return { success: true };
+    } catch (error: any) {
+        return { error: error.message || "Failed to resend email" };
+    }
 }
