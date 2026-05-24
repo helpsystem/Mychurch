@@ -131,7 +131,9 @@ export const dictionaries = {
         pip: "Picture in Picture",
         split: "Split Screen",
         slidesOnly: "Slides Only",
-        noSlides: "No slides matching criteria"
+        noSlides: "No slides matching criteria",
+        hardwareSources: "Hardware Sources",
+        overlays: "Overlays & Widgets"
     },
     fa: {
         // Navigation
@@ -265,7 +267,9 @@ export const dictionaries = {
         pip: "تصویر در تصویر",
         split: "تقسیم صفحه",
         slidesOnly: "فقط اسلاید",
-        noSlides: "اسلایدی یافت نشد"
+        noSlides: "اسلایدی یافت نشد",
+        hardwareSources: "ورودی‌های سخت‌افزار",
+        overlays: "لایه‌های جانبی و ابزارک‌ها"
     }
 };
 
