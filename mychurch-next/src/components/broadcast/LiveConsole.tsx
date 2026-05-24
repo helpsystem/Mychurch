@@ -12,7 +12,7 @@ import { useShallow } from "zustand/react/shallow";
 import { cn } from "@/lib/utils";
 import { PageVisuals } from "@/components/ui/PageVisuals";
 import { toast } from "sonner";
-import { useSearchParams } from "next/navigation";
+
 
 // Sub-components
 import { BroadcastSidebar } from "./BroadcastSidebar";
@@ -21,10 +21,13 @@ import { PreviewMonitor, ProgramMonitor } from "./Monitors";
 import { SlideGrid } from "./SlideGrid";
 import { DeviceSettingsModal } from "./DeviceSettingsModal";
 
-export default function LiveConsole() {
+interface LiveConsoleProps {
+    initialPresentationId?: string | null;
+}
+
+export default function LiveConsole({ initialPresentationId = null }: LiveConsoleProps) {
     const { t } = useLanguage();
-    const searchParams = useSearchParams();
-    const presentationId = searchParams ? (searchParams.get("id") || searchParams.get("session")) : null;
+    const presentationId = initialPresentationId;
 
     const isLive = useBroadcastStore(state => state.isLive);
     const setIsLive = useBroadcastStore(state => state.setIsLive);
