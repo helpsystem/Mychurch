@@ -139,9 +139,9 @@ else
     rm -rf node_modules
     npm ci --no-audit --no-fund --ignore-scripts
     if [ $? -ne 0 ]; then
-        echo 'npm ci failed, retrying after 10s...'
-        sleep 10
-        npm ci --no-audit --no-fund --ignore-scripts || exit 1
+        echo 'npm ci failed, cleaning npm cache and falling back to npm install...'
+        npm cache clean --force
+        npm install --no-audit --no-fund --ignore-scripts || exit 1
     fi
     cp package-lock.json .deps-lock.json
     echo 'Dependencies installed successfully'
