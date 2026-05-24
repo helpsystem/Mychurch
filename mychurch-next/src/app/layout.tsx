@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import React, { Suspense } from "react";
 import "./globals.css";
 import { LanguageProvider } from "@/providers/LanguageProvider";
 
@@ -77,8 +78,12 @@ export default async function RootLayout({
           )}
           <AutoLogout timeoutMinutes={1440} />
           {children}
-          <MobileNavigation />
-          <GlobalPopupWrapper />
+          <Suspense fallback={null}>
+            <MobileNavigation />
+          </Suspense>
+          <Suspense fallback={null}>
+            <GlobalPopupWrapper />
+          </Suspense>
         </LanguageProvider>
       </body>
     </html>
