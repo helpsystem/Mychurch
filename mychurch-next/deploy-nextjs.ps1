@@ -129,16 +129,14 @@ fi
 if pm2 show mychurch-next > /dev/null 2>&1; then
     echo 'Stopping PM2 process mychurch-next to release file locks...'
     pm2 stop mychurch-next || true
-fi
-
-if [ -d node_modules ]; then
-    rm -rf node_modules
+    sleep 3
 fi
 
 if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then
     echo 'Dependencies unchanged, skipping npm install'
 else
     echo 'Installing dependencies...'
+    rm -rf node_modules
     npm ci --no-audit --no-fund --ignore-scripts
     if [ $? -ne 0 ]; then
         echo 'npm ci failed, retrying after 10s...'
