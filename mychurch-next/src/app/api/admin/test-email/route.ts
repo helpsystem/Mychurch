@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
     const data = await sendMail({
       to,
-      subject: "✅ Email System Test — Iranian Christian Church DC",
+      subject: "✅ تست سیستم ایمیل | Email System Test — Iranian Christian Church DC",
       html: `
         <!DOCTYPE html>
         <html lang="fa" dir="rtl">
@@ -54,21 +54,28 @@ export async function POST(req: Request) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Email System Test</title>
         </head>
-        <body style="margin: 0; padding: 0; background-color: #f9f9f9; color: #1c1917; font-family: Tahoma, Geneva, sans-serif; -webkit-font-smoothing: antialiased; direction: rtl;">
+        <body style="margin: 0; padding: 0; background-color: #f9f9f9; color: #1c1917; font-family: 'Vazirmatn', Tahoma, Geneva, sans-serif; -webkit-font-smoothing: antialiased; direction: rtl;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9f9f9; padding: 40px 10px;">
                 <tr>
                     <td align="center">
                         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); padding: 32px; text-align: right;">
                             <tr>
                                 <td>
-                                    <h2 style="color: #4f46e5; margin: 0 0 15px 0; font-size: 20px; font-family: Tahoma, Geneva, sans-serif;">✅ سیستم ایمیل کار می‌کند!</h2>
-                                    <p style="font-size: 15px; line-height: 1.6; color: #334155; margin: 0 0 20px 0; font-family: Tahoma, Geneva, sans-serif;">این یک ایمیل تست از سرور <strong>samanabyar.online</strong> جهت اعتبارسنجی تنظیمات ایمیل کلیسا است.</p>
+                                    <!-- Farsi Section -->
+                                    <h2 style="color: #ba955c; margin: 0 0 10px 0; font-size: 20px; font-family: 'Vazirmatn', Tahoma, sans-serif; direction: rtl;">✅ سیستم ایمیل کار می‌کند!</h2>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #334155; margin: 0 0 20px 0; font-family: 'Vazirmatn', Tahoma, sans-serif; direction: rtl;">این یک ایمیل تست از سرور <strong>samanabyar.online</strong> جهت اعتبارسنجی تنظیمات ایمیل کلیسا است.</p>
                                     
-                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 20px 0;">
-                                        <tr>
-                                            <td style="border-top: 1px solid #e2e8f0; height: 1px;"></td>
-                                        </tr>
-                                    </table>
+                                    <!-- Divider -->
+                                    <div style="width: 100%; height: 1px; background-color: #e2e8f0; margin: 20px 0;"></div>
+                                    
+                                    <!-- English Section -->
+                                    <div dir="ltr" style="text-align: left;">
+                                        <h3 style="color: #4f46e5; margin: 0 0 10px 0; font-size: 18px; font-family: Arial, sans-serif; direction: ltr;">✅ Email system is working!</h3>
+                                        <p style="font-size: 14px; line-height: 1.6; color: #334155; margin: 0 0 20px 0; font-family: Arial, sans-serif; direction: ltr;">This is a test email from the server <strong>samanabyar.online</strong> to validate the church email configuration settings.</p>
+                                    </div>
+                                    
+                                    <!-- Divider -->
+                                    <div style="width: 100%; height: 1px; background-color: #e2e8f0; margin: 20px 0;"></div>
                                     
                                     <p dir="ltr" style="color: #64748b; font-size: 12px; line-height: 1.6; text-align: left; margin: 0; font-family: Arial, sans-serif;">
                                         Sent at: ${new Date().toISOString()}<br/>

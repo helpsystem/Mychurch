@@ -33,7 +33,7 @@ export async function sendAdminOTP() {
             to: user.email,
             subject: "کد ورود به پنل مدیریت | Admin 2FA Code",
             replyTo: supportEmail,
-            text: `کد ورود شما: ${code}\nاین کد تا 10 دقیقه معتبر است.`,
+            text: `کد ورود شما: ${code}\nاین کد تا 10 دقیقه معتبر است.\n\nYour login code: ${code}\nThis code is valid for 10 minutes.`,
             html: `
             <!DOCTYPE html>
             <html lang="fa" dir="rtl">
@@ -42,25 +42,42 @@ export async function sendAdminOTP() {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>کد تایید ورود | Admin 2FA Code</title>
             </head>
-            <body style="margin: 0; padding: 0; background-color: #0c0a09; color: #ffffff; font-family: Tahoma, Geneva, sans-serif; -webkit-font-smoothing: antialiased; direction: rtl;">
+            <body style="margin: 0; padding: 0; background-color: #0c0a09; color: #ffffff; font-family: 'Vazirmatn', Tahoma, Geneva, sans-serif; -webkit-font-smoothing: antialiased; direction: rtl;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #0c0a09; padding: 40px 10px;">
                     <tr>
                         <td align="center">
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px; background-color: #1c1917; border: 1px solid #333333; border-radius: 15px; overflow: hidden; padding: 30px; text-align: center;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 550px; background-color: #1c1917; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; overflow: hidden; padding: 35px 30px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);">
                                 <tr>
                                     <td>
-                                        <h2 style="color: #ba955c; margin: 0 0 15px 0; font-size: 22px; font-family: Tahoma, Geneva, sans-serif;">تاییدیه ورود به پنل مدیریت</h2>
-                                        <p style="font-size: 16px; margin: 0 0 30px 0; color: #e7e5e4; line-height: 1.6; font-family: Tahoma, Geneva, sans-serif;">یک درخواست برای ورود به پنل مدیریت با حساب شما ثبت شده است.</p>
+                                        <!-- Header Image or Icon -->
+                                        <div style="margin-bottom: 24px; display: inline-block;">
+                                            <span style="font-size: 40px; line-height: 1;">🔐</span>
+                                        </div>
+
+                                        <!-- Farsi Section -->
+                                        <h2 style="color: #ba955c; margin: 0 0 8px 0; font-size: 22px; font-weight: bold; font-family: 'Vazirmatn', Tahoma, sans-serif;">تاییدیه ورود به پنل مدیریت</h2>
+                                        <p style="font-size: 15px; margin: 0 0 20px 0; color: #e7e5e4; line-height: 1.6; font-family: 'Vazirmatn', Tahoma, sans-serif;">یک درخواست برای ورود به پنل مدیریت با حساب شما ثبت شده است.</p>
                                         
-                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #000000; border-radius: 10px; margin: 20px 0;">
+                                        <!-- OTP Display Box -->
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #000000; border: 1px solid rgba(186, 149, 92, 0.3); border-radius: 12px; margin: 25px 0;">
                                             <tr>
-                                                <td style="padding: 20px; font-size: 32px; letter-spacing: 5px; font-weight: bold; color: #ba955c; font-family: Courier New, Courier, monospace; text-align: center;">
+                                                <td style="padding: 20px; font-size: 36px; letter-spacing: 6px; font-weight: bold; color: #ba955c; font-family: 'Courier New', Courier, monospace; text-align: center;">
                                                     ${code}
                                                 </td>
                                             </tr>
                                         </table>
+
+                                        <!-- English Section -->
+                                        <div dir="ltr" style="text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; margin-top: 20px;">
+                                            <h3 style="color: #ba955c; margin: 0 0 8px 0; font-size: 18px; font-weight: 600; font-family: Arial, sans-serif;">Admin Access Verification</h3>
+                                            <p style="font-size: 14px; margin: 0 0 20px 0; color: #a8a29e; line-height: 1.5; font-family: Arial, sans-serif;">A login request for the admin console has been initiated for your account.</p>
+                                        </div>
                                         
-                                        <p style="margin: 30px 0 0 0; font-size: 14px; color: #888888; font-family: Tahoma, Geneva, sans-serif;">این کد تنها به مدت ۱۰ دقیقه معتبر است.</p>
+                                        <!-- Expiry details -->
+                                        <div style="margin-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 15px;">
+                                            <p style="margin: 0 0 4px 0; font-size: 13px; color: #78716c; font-family: 'Vazirmatn', Tahoma, sans-serif;">این کد تنها به مدت <strong>۱۰ دقیقه</strong> معتبر است.</p>
+                                            <p dir="ltr" style="margin: 0; font-size: 12px; color: #78716c; font-family: Arial, sans-serif;">This code is only valid for <strong>10 minutes</strong>.</p>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
