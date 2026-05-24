@@ -96,11 +96,11 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                 <nav className="flex-1 overflow-y-auto p-4 space-y-1 relative z-10 custom-scrollbar">
                     <NavItem href="/admin" icon={LayoutDashboard}>Dashboard</NavItem>
 
-                    {(isAdmin || permissions?.canManageWorship) && (
+                    {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (
                         <NavItem href="/admin/presentations" icon={MonitorPlay}>Presentations</NavItem>
                     )}
 
-                    {(isAdmin || permissions?.canManageWorship) && (
+                    {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (
                         <NavItem href="/admin/worship" icon={Music}>Worship Media</NavItem>
                     )}
 

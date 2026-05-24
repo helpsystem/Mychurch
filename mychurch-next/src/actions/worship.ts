@@ -57,6 +57,7 @@ export async function initializeWorshipDB() {
             );
             
             ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS is_verified BOOLEAN DEFAULT FALSE;
+            ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS timing_data JSONB;
         `);
         console.log('[Action] Worship DB initialized');
     } catch (e) {
@@ -155,7 +156,7 @@ export async function toggleLikeWorshipSong(songId: string, userId: string): Pro
         if (existingLike.length > 0) {
             await query("DELETE FROM user_likes WHERE user_id = $1 AND song_id = $2", [userId, songId]);
             const { rows } = await query(
-                "UPDATE worship_songs SET likes_count = GREATEST(0, likes_count - 1) WHERE id = $1 RETURNING likes_count",
+                "UPDATE church_worship_songs SET likes_count = GREATEST(0, likes_count - 1) WHERE id = $1 RETURNING likes_count",
                 [songId]
             );
             revalidatePath('/worship');
@@ -163,7 +164,7 @@ export async function toggleLikeWorshipSong(songId: string, userId: string): Pro
         } else {
             await query("INSERT INTO user_likes (user_id, song_id) VALUES ($1, $2)", [userId, songId]);
             const { rows } = await query(
-                "UPDATE worship_songs SET likes_count = likes_count + 1 WHERE id = $1 RETURNING likes_count",
+                "UPDATE church_worship_songs SET likes_count = likes_count + 1 WHERE id = $1 RETURNING likes_count",
                 [songId]
             );
             revalidatePath('/worship');
