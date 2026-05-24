@@ -535,7 +535,7 @@ export async function getGiftNotificationsSummary() {
     return rows[0] || { last_24h: 0, total_success: 0, total_cancelled: 0, total: 0 };
 }
 
-export async function resendGiftEmailAction(giftRef: string) {
+export async function resendGiftEmailAction(giftRef: string, overrideEmail?: string) {
     try {
         await ensureGiftEventsSchema();
         
@@ -559,7 +559,7 @@ export async function resendGiftEmailAction(giftRef: string) {
 
         let amount = 25;
         let currency = "usd";
-        let payerEmail: string | null = null;
+        let payerEmail: string | null = overrideEmail || null;
         let payerName: string | null = null;
         let receiptUrl: string | null = null;
 
@@ -568,18 +568,21 @@ export async function resendGiftEmailAction(giftRef: string) {
             amount = Number(row.amount);
             currency = row.currency || "usd";
             const meta = row.metadata || {};
-            payerEmail = meta.payer_email || null;
+            payerEmail = payerEmail || meta.payer_email || null;
             payerName = meta.payer_name || null;
             receiptUrl = meta.receipt_url || null;
         } else {
-            // If not logged in DB, fetch details dynamically from Stripe/Square APIs
+            // Resolve which provider to use dynamically based on prefix
             const config = await getPaymentConfig();
-            const secretKey = await getPaymentSecretKey(config.provider);
+            const isStripeId = giftRef.startsWith("cs_") || giftRef.startsWith("pi_") || giftRef.startsWith("ch_");
+            const lookupProvider = isStripeId ? "stripe" : (giftRef.startsWith("py_") ? "square" : config.provider);
+
+            const secretKey = await getPaymentSecretKey(lookupProvider);
             if (secretKey) {
-                if (config.provider === "square") {
+                if (lookupProvider === "square") {
                     const p = await findSquarePayment(secretKey, config.square_application_id, giftRef);
                     if (p) {
-                        payerEmail = p.buyer_email_address || null;
+                        payerEmail = payerEmail || p.buyer_email_address || null;
                         payerName = p.card_details?.card?.cardholder_name || null;
                         amount = (p.amount_money?.amount || 0) / 100;
                         currency = p.amount_money?.currency || "usd";
@@ -588,7 +591,7 @@ export async function resendGiftEmailAction(giftRef: string) {
                 } else {
                     // Fetch details recursively from Stripe
                     const stripeDetails = await retrieveStripeCustomerDetails(secretKey, giftRef);
-                    payerEmail = stripeDetails.payerEmail;
+                    payerEmail = payerEmail || stripeDetails.payerEmail;
                     payerName = stripeDetails.payerName;
                     amount = stripeDetails.amount;
                     currency = stripeDetails.currency;
