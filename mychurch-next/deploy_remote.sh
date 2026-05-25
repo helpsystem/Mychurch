@@ -16,19 +16,18 @@ if [ ! -f /swapfile ] || [ "$current_swap_size" -lt 5368709120 ]; then
     free -h | grep Swap || echo "Swap configured"
 fi
 
-if [ -d node_modules ]; then
-    rm -rf node_modules
-fi
-
 if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then
     echo 'Dependencies unchanged, skipping npm install'
 else
     echo "Installing dependencies..."
-    npm ci --no-audit --no-fund
+    if [ -d node_modules ]; then
+        rm -rf node_modules
+    fi
+    npm install --legacy-peer-deps --no-audit --no-fund
     if [ $? -ne 0 ]; then
-        echo "npm ci failed, retrying after 10s..."
+        echo "npm install failed, retrying after 10s..."
         sleep 10
-        npm ci --no-audit --no-fund || exit 1
+        npm install --legacy-peer-deps --no-audit --no-fund || exit 1
     fi
     cp package-lock.json .deps-lock.json
     echo "Dependencies installed successfully"
@@ -43,7 +42,7 @@ timeout 120m npm run build || (echo "Build failed, retrying after 30s..." && sle
 if pm2 show mychurch-next > /dev/null 2>&1; then
     pm2 restart mychurch-next --update-env
 else
-    pm2 start npm --name 'mychurch-next' -- start
+    pm2 start npm --name 'mychurch-next' --max-memory-restart 800M -- start
 fi
 pm2 save
 
