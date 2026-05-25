@@ -43,7 +43,7 @@ const DEFAULT_CHURCH = {
   denomination: "Persian Evangelical Church – 501(c)(3)",
   letterheadTheme: "modern", // modern, classic, elegant, minimal, custom
   customHeaderImage: "",
-  paperSize: "A4", // Default to A4 as requested
+  paperSize: "Letter", // Default to US Letter as requested by user
   watermarkOpacity: 0.03, // 0 to 1
   showWatermark: true,
   signatureImage: "",
@@ -2130,7 +2130,7 @@ export default function ChurchDocumentsPage() {
                   refNo={toEnglishDigits(docNumber)} 
                   church={church} 
                 />
-                <style>{`@media print { body { margin: 0; } }`}</style>
+                <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
               </div>
             </div>
           </div>
@@ -2264,7 +2264,7 @@ export default function ChurchDocumentsPage() {
             <div className="hidden print:block">
               <div ref={receiptRef}>
                 <DonationReceiptDoc receipt={receipt} receiptNo={receiptNo} isInKind={activeTab === "inkind"} inKindItems={inKindItems} church={church} />
-                <style>{`@media print { body { margin: 0; } }`}</style>
+                <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
               </div>
             </div>
           </div>
@@ -2388,6 +2388,7 @@ export default function ChurchDocumentsPage() {
               <div className="bg-white p-2 rounded-xl shadow-2xl scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100 origin-top border border-white/20 transition-transform">
                 <div ref={invoiceRef}>
                   <InvoiceDoc invoiceTo={invoiceTo} invoiceAddress={invoiceAddress} invoiceName={invoiceName} invoiceDate={invoiceDate} invoiceItems={invoiceItems} invoiceTotalAmount={invoiceTotalAmount} invoiceWallet={invoiceWallet} invoiceNotes={invoiceNotes} invoiceNo={invoiceNo} church={church} lang={invoiceLang} />
+                  <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
                 </div>
               </div>
             </div>

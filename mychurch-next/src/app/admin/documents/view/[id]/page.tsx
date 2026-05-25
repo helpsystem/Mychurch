@@ -164,8 +164,9 @@ export default function DocumentViewerPage() {
                   lang="en" // Default to English LTR for invoices unless explicitly saved otherwise
                   isPdf={false}
                />
-             </div>
+              </div>
           )}
+          <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
         </div>
       </main>
       
