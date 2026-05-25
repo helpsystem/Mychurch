@@ -32,7 +32,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             .single(),
     ]);
 
-    const role = roleResult.data?.role;
+    const rawRole = roleResult.data?.role;
+    const roleStr = rawRole ? String(rawRole) : null;
+    const role = roleStr ? (roleStr.charAt(0).toUpperCase() + roleStr.slice(1).toLowerCase()) : null;
+
     if (!role || !['Admin', 'Leader', 'Operator'].includes(role)) {
         redirect('/unauthorized');
     }

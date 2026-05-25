@@ -22,6 +22,9 @@ export interface WorshipSong {
     timepoints?: Array<{ time: number; lyricFA: string; lyricEN?: string }>;
     timing_data?: import('@/types/worship-sync').SystemTimingV2 | null;
     is_verified?: boolean;
+    audio_health_status?: 'ok' | 'broken' | 'unknown' | 'no_audio';
+    audio_health_checked_at?: Date;
+    audio_health_error?: string;
     created_at?: Date;
 }
 
@@ -72,6 +75,7 @@ export async function getWorshipSongs(): Promise<WorshipSong[]> {
         return rows.map(r => ({ 
             ...r, 
             created_at: new Date(r.created_at),
+            audio_health_checked_at: r.audio_health_checked_at ? new Date(r.audio_health_checked_at) : undefined,
             likes_count: r.likes_count || 0 
         }));
     } catch (e) {

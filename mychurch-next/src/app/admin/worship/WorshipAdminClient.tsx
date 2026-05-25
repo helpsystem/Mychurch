@@ -15,7 +15,7 @@ import {
     extractWorshipSongAI,
     toggleSongVerification
 } from "@/actions/worship";
-import { uploadToHiDrive, moveExternalToInternal } from "@/actions/hidrive";
+import { uploadToLocal, moveExternalToLocal } from "@/actions/storage";
 import { migrateLegacyWorshipData } from "@/actions/migration";
 import { SmartWorshipPlayer, getSafeAudioUrl } from "@/components/worship/SmartWorshipPlayer";
 import BulkEnrichmentModal from "./BulkEnrichmentModal";
@@ -26,7 +26,8 @@ export default function WorshipAdminClient() {
     const [songs, setSongs] = useState<WorshipSong[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState("");
-    const [filter, setFilter] = useState<"all" | "audio" | "timing" | "missing_lyrics" | "verified" | "unverified">("all");
+    const [filter, setFilter] = useState<"all" | "audio" | "timing" | "missing_lyrics" | "verified" | "unverified" | "broken_audio">("all");
+    const [isCheckingLinks, setIsCheckingLinks] = useState(false);
 
     // Editor State
     const [editingSong, setEditingSong] = useState<WorshipSong | null>(null);
@@ -243,10 +244,10 @@ export default function WorshipAdminClient() {
         }
         setIsConverting(true);
         try {
-            const res = await moveExternalToInternal(editingSong.audio_url, editingSong.title_fa);
+            const res = await moveExternalToLocal(editingSong.audio_url, editingSong.title_fa);
             if (res.success && res.url) {
                 setEditingSong(prev => prev ? { ...prev, audio_url: res.url! } : prev);
-                alert("✨ فایل با موفقیت به استوریج داخلی منتقل شد!");
+                alert("✨ فایل با موفقیت به استوریج داخلی سرور منتقل شد!");
             } else {
                 throw new Error(res.error);
             }
@@ -266,10 +267,10 @@ export default function WorshipAdminClient() {
             const reader = new FileReader();
             reader.onload = async () => {
                 const buffer = Buffer.from(reader.result as ArrayBuffer);
-                const res = await uploadToHiDrive(buffer, file.name);
+                const res = await uploadToLocal(buffer, file.name);
                 if (res.success && res.url) {
                     setEditingSong(prev => prev ? { ...prev, audio_url: res.url! } : prev);
-                    alert("✨ فایل با موفقیت آپلود شد!");
+                    alert("✨ فایل با موفقیت در سرور آپلود شد!");
                 } else {
                     alert("خطا در آپلود: " + res.error);
                 }
@@ -315,7 +316,25 @@ export default function WorshipAdminClient() {
             console.error(error);
         }
     };
-    // --- End AI Handlers ---
+    // --- Audio Health Check ---
+    const handleRunHealthCheck = async () => {
+        setIsCheckingLinks(true);
+        try {
+            const res = await fetch("/api/admin/audio-health-check", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ action: "run", limit: 50 })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            alert(`بررسی کامل شد: ${data.checked} لینک چک شد. ${data.broken} لینک معیوب پیدا شد.`);
+            await loadSongs();
+        } catch (err: any) {
+            alert("خطا در بررسی لینک‌ها: " + err.message);
+        } finally {
+            setIsCheckingLinks(false);
+        }
+    };
 
     const filteredSongs = songs.filter(s => {
         const matchSearch = s.title_fa.includes(search) ||
@@ -329,6 +348,7 @@ export default function WorshipAdminClient() {
         if (filter === "missing_lyrics") return !s.lyrics_fa;
         if (filter === "verified") return s.is_verified === true;
         if (filter === "unverified") return s.is_verified !== true;
+        if (filter === "broken_audio") return s.audio_health_status === 'broken';
 
         return true;
     });
@@ -371,6 +391,16 @@ export default function WorshipAdminClient() {
                         title="مرکز هوشمند غنی‌سازی اطلاعات (Bulk AI & Audio Match)"
                     >
                         <Zap className="w-5 h-5" /> هوشمند سازی
+                    </button>
+
+                    <button
+                        onClick={handleRunHealthCheck}
+                        disabled={isCheckingLinks}
+                        className="flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-xl font-bold transition shadow-sm border border-rose-400/20"
+                        title="بررسی سلامت لینک‌های صوتی (حداکثر ۵۰ لینک)"
+                    >
+                        {isCheckingLinks ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShieldAlert className="w-5 h-5" />}
+                        بررسی لینک‌ها
                     </button>
 
                     <CronDashboard />
@@ -479,7 +509,7 @@ export default function WorshipAdminClient() {
                                             onChange={(e) => setEditingSong({ ...editingSong, audio_url: e.target.value })}
                                             className="flex-1 bg-secondary/50 text-foreground border border-border/50 rounded-xl px-4 py-2 focus:ring-2 focus:ring-primary outline-none dir-ltr"
                                             dir="ltr"
-                                            placeholder="https://webdav.hidrive.ionos.com/.../song.mp3"
+                                            placeholder="/uploads/audio/song.mp3"
                                         />
                                         {editingSong.audio_url?.startsWith('http') && (
                                             <button
@@ -497,7 +527,7 @@ export default function WorshipAdminClient() {
                                     <div className="flex items-center gap-2">
                                         <label className={`flex-1 flex items-center justify-center gap-2 bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 border border-blue-500/30 py-2 rounded-xl text-xs font-bold cursor-pointer transition ${isUploading ? 'opacity-50 pointer-events-none' : ''}`}>
                                             {isUploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                                            {isUploading ? 'در حال آپلود...' : 'آپلود فایل صوتی مستقیم (HiDrive)'}
+                                            {isUploading ? 'در حال آپلود...' : 'آپلود فایل صوتی مستقیم (سرور لوکال)'}
                                             <input type="file" accept="audio/*" className="hidden" onChange={handleAudioFileUpload} disabled={isUploading} />
                                         </label>
                                     </div>
@@ -640,6 +670,7 @@ export default function WorshipAdminClient() {
                     <button onClick={() => setFilter("verified")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "verified" ? "bg-green-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>✅ تایید شده</button>
                     <button onClick={() => setFilter("unverified")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "unverified" ? "bg-indigo-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>⏳ نیاز به بررسی</button>
                     <button onClick={() => setFilter("audio")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "audio" ? "bg-blue-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>🎵 دارای فایل صوتی</button>
+                    <button onClick={() => setFilter("broken_audio")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "broken_audio" ? "bg-rose-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>🔴 لینک معیوب</button>
                     <button onClick={() => setFilter("timing")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "timing" ? "bg-emerald-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>⭐ کارائوکه فعال</button>
                     <button onClick={() => setFilter("missing_lyrics")} className={`px-4 py-1.5 rounded-full text-sm font-bold transition whitespace-nowrap ${filter === "missing_lyrics" ? "bg-yellow-500 text-white shadow-sm" : "bg-secondary/50 text-muted-foreground hover:bg-secondary border border-border/50"}`}>⚠️ بدون متن فارسی</button>
                 </div>
@@ -703,6 +734,16 @@ export default function WorshipAdminClient() {
                                                     {song.is_verified && (
                                                         <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-indigo-500/10 text-indigo-500 text-[10px] font-bold border border-indigo-500/20" title="تایید شده توسط אدمین (محافظت شده)">
                                                             <ShieldCheck className="w-3 h-3" /> قفل
+                                                        </span>
+                                                    )}
+                                                    {song.audio_health_status === 'broken' && (
+                                                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-rose-500/10 text-rose-500 text-[10px] font-bold border border-rose-500/20" title={`لینک معیوب: ${song.audio_health_error || 'خطای دسترسی'}`}>
+                                                            <ShieldAlert className="w-3 h-3" /> لینک خراب
+                                                        </span>
+                                                    )}
+                                                    {song.audio_health_status === 'ok' && (
+                                                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-green-500/10 text-green-500 text-[10px] font-bold border border-green-500/20" title="لینک سالم است">
+                                                            <CheckCircle className="w-3 h-3" /> سالم
                                                         </span>
                                                     )}
                                                     {hasFinglishField && (

@@ -23,8 +23,13 @@ export async function getRealUserRole(): Promise<Role | null> {
             .eq('email', email)
             .single();
 
-        if (error || !data) return null;
-        return data.role as Role;
+        if (error || !data || !data.role) return null;
+        
+        // Capitalize first letter to match Role type
+        const rawRole = String(data.role);
+        const formattedRole = rawRole.charAt(0).toUpperCase() + rawRole.slice(1).toLowerCase();
+        
+        return formattedRole as Role;
     } catch (error) {
         console.error("Failed to fetch user role:", error);
         return null;

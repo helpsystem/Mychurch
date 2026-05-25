@@ -252,8 +252,9 @@ export async function sendGiftThankYouEmail(email: string, name: string | null, 
             replyTo: supportEmail,
             html: htmlContent,
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error("[Mailer] Failed to send thank-you email:", error);
+        throw new Error(error.message || "Failed to send email");
     }
 }
 
@@ -484,6 +485,13 @@ export async function getGiftEvents(limit = 100): Promise<GiftEvent[]> {
             remoteEvents = await fetchStripePayments(secretKey);
         }
     }
+
+    const now = Date.now();
+    remoteEvents = remoteEvents.filter(evt => {
+        if (evt.status !== "checkout_started") return true;
+        const ageHours = (now - new Date(evt.created_at).getTime()) / (1000 * 60 * 60);
+        return ageHours <= 72;
+    });
 
     const mergedMap = new Map<string, GiftEvent>();
     
