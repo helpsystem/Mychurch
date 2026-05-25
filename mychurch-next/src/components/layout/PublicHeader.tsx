@@ -10,7 +10,7 @@ import { createClient } from "@/utils/supabase/client";
 import { Session } from "@supabase/supabase-js";
 
 export function PublicHeader() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [session, setSession] = useState<Session | null>(null);
 
     useEffect(() => {
