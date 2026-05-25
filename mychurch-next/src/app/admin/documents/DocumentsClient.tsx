@@ -1,19 +1,19 @@
 // src/app/documents/page.tsx
 "use client";
 
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { useReactToPrint } from "react-to-print";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { emailDocument } from "@/actions/documentMailer";
-import { deleteDocument, getDocuments, saveDocument } from "@/actions/documents";
+import { deleteDocument, getDocuments, saveDocument, updateDocument } from "@/actions/documents";
 import { toast } from "sonner";
 import {
   FileText, Printer, Plus, Building2, CreditCard, Package,
   FileSignature, Check, DollarSign, X, Settings, Wand2,
   Languages, Loader2, Sparkles, Hash, ChevronDown, Save, Send,
-  Globe, Phone, Mail, User, MapPin, Calendar, History as HistoryIcon, Search, Trash2, Copy
+  Globe, Phone, Mail, User, MapPin, Calendar, History as HistoryIcon, Search, Trash2, Copy, Pencil
 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
@@ -36,8 +36,8 @@ const DEFAULT_CHURCH = {
   address: "Washington, DC Metropolitan Area",
   ein: "XX-XXXXXXX",
   phone: "+1 (XXX) XXX-XXXX",
-  email: "info@samanabyar.online",
-  web: "samanabyar.online",
+  email: "info@iranianchurchdc.com",
+  web: "www.iranianchurchdc.com",
   logo: "/logo-transparent.png",
   pastor: "Rev. Sam Yarebeygi",
   denomination: "Persian Evangelical Church – 501(c)(3)",
@@ -89,15 +89,23 @@ const THEMES = [
 
 
 // ─── Utility: Force English Digits ──────────────────────────────────────────
+export function toEnglishDigits(str: string): string {
+  if (!str) return "";
+  const persianDigits = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
+  const arabicDigits = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+  let result = String(str);
+  for (let i = 0; i < 10; i++) {
+    result = result.replace(persianDigits[i], String(i)).replace(arabicDigits[i], String(i));
+  }
+  return result;
+}
+
 function formatDigits(text: string) {
-  if (!text) return "";
-  // In some environments, numbers might be localized to Persian digits.
-  // We can force them to English digits if needed, though usually standard fonts handle this with tabular-nums.
-  return text;
+  return toEnglishDigits(text);
 }
 
 // ─── Component: QR Code ──────────────────────────────────────────────────────
-const SITE_URL = typeof window !== "undefined" ? window.location.origin : "https://samanabyar.online";
+const SITE_URL = typeof window !== "undefined" ? window.location.origin : "https://www.iranianchurchdc.com";
 
 function DocumentQR({ data }: { data: string }) {
   // If data looks like a reference number, generate a verify URL; otherwise use as-is
@@ -947,21 +955,36 @@ export default function ChurchDocumentsPage() {
 
   const persistHistoryItem = useCallback(async (item: DocHistoryItem) => {
     const documentType = item.type === "letter" ? "letter" : item.type === "invoice" ? "invoice" : "receipt";
+    const isUpdate = docHistory.some(existing => existing.id === item.id);
 
-    const result = await saveDocument(
-      {
+    let result;
+    if (isUpdate) {
+      result = await updateDocument(item.id, {
         document_type: documentType,
         title: item.subject || "No Subject",
         description: `Reference: ${item.refNo}`,
-        template_name: selectedTpl?.id,
         document_content: item,
         recipient_name: item.recipient,
         recipient_address: item.donorAddress,
         tags: [item.type],
         is_draft: false,
-      },
-      false
-    );
+      });
+    } else {
+      result = await saveDocument(
+        {
+          document_type: documentType,
+          title: item.subject || "No Subject",
+          description: `Reference: ${item.refNo}`,
+          template_name: selectedTpl?.id,
+          document_content: item,
+          recipient_name: item.recipient,
+          recipient_address: item.donorAddress,
+          tags: [item.type],
+          is_draft: false,
+        },
+        false
+      );
+    }
 
     if (result.error) {
       toast.error(isRtl ? "ذخیره در دیتابیس انجام نشد" : "Failed to save in database");
@@ -969,13 +992,20 @@ export default function ChurchDocumentsPage() {
     }
 
     return (result.data as any)?.id || null;
-  }, [isRtl, selectedTpl?.id]);
+  }, [isRtl, selectedTpl?.id, docHistory]);
 
   const addHistoryItem = useCallback(async (item: DocHistoryItem) => {
-    setDocHistory(prev => [item, ...prev]);
+    setDocHistory(prev => {
+      const exists = prev.some(i => i.id === item.id);
+      if (exists) {
+        return prev.map(i => i.id === item.id ? item : i);
+      } else {
+        return [item, ...prev];
+      }
+    });
 
     const savedId = await persistHistoryItem(item);
-    if (savedId) {
+    if (savedId && savedId !== item.id) {
       setDocHistory(prev => prev.map(i => (i.id === item.id ? { ...i, id: savedId } : i)));
     }
   }, [persistHistoryItem]);
@@ -1064,6 +1094,103 @@ export default function ChurchDocumentsPage() {
   const [letterToAddress, setLetterToAddress] = useState("");
   const [letterSubject, setLetterSubject] = useState("");
   const [recipientName, setRecipientName] = useState("");
+  
+  // Dynamic placeholders state
+  const [placeholderValues, setPlaceholderValues] = useState<Record<string, string>>({});
+  const [editorMode, setEditorMode] = useState<"edit" | "preview">("edit");
+  const [editingDocId, setEditingDocId] = useState<string | null>(null);
+
+  const handleEditDocument = (item: DocHistoryItem) => {
+    setEditingDocId(item.id);
+    if (item.type === "letter") {
+      setActiveTab("letters");
+      setDocNumber(item.refNo);
+      setRecipientName(item.recipient);
+      setLetterTo(item.recipient);
+      setLetterSubject(item.subject);
+      setBodyEn(item.bodyEn || "");
+      setBodyFa(item.bodyFa || "");
+      setPlaceholderValues({});
+      setEditorMode("edit");
+    } else if (item.type === "invoice") {
+      setActiveTab("invoice");
+      setInvoiceNo(item.refNo.replace("INV-", ""));
+      setInvoiceTo(item.recipient);
+      setInvoiceName(item.subject.replace("Invoice for ", ""));
+      setInvoiceDate(item.date);
+      setInvoiceItems(item.invoiceItems || [{ id: crypto.randomUUID(), description: "", total: 0 }]);
+      setInvoiceWallet(item.invoiceWallet || "");
+    } else {
+      setActiveTab(item.type === "inkind" ? "inkind" : "receipts");
+      setReceiptNo(item.refNo.replace("RCP-", ""));
+      setReceipt({
+        donorName: item.donorName || item.recipient || "",
+        donorAddress: item.donorAddress || "",
+        amount: item.amount || 0,
+        date: item.date,
+        method: "Check/Cash",
+        description: item.subject,
+      });
+      if (item.type === "inkind") {
+        setInKindItems(item.inKindItems || []);
+      }
+    }
+    toast.success(isRtl ? `در حال ویرایش سند شماره ${item.refNo}` : `Editing document ${item.refNo}`);
+  };
+
+  // Scan all inputs for [...] placeholders
+  const detectedPlaceholders = useMemo(() => {
+    const listEn = (bodyEn || "").match(/\[([^\]]+)\]/g) || [];
+    const listFa = (bodyFa || "").match(/\[([^\]]+)\]/g) || [];
+    const listSub = (letterSubject || "").match(/\[([^\]]+)\]/g) || [];
+    const listTo = (letterTo || "").match(/\[([^\]]+)\]/g) || [];
+    const listRec = (recipientName || "").match(/\[([^\]]+)\]/g) || [];
+    
+    const allMatches = [...listEn, ...listFa, ...listSub, ...listTo, ...listRec];
+    const unique = new Set<string>();
+    
+    allMatches.forEach(item => {
+      const key = item.slice(1, -1);
+      unique.add(key);
+    });
+    
+    return Array.from(unique);
+  }, [bodyEn, bodyFa, letterSubject, letterTo, recipientName]);
+
+  const replacePlaceholders = (text: string, values: Record<string, string>): string => {
+    if (!text) return "";
+    return text.replace(/\[([^\]]+)\]/g, (match: string, key: string) => {
+      const parsedVal = values[key] !== undefined && values[key] !== "" ? values[key] : match;
+      return toEnglishDigits(parsedVal); // Force numbers to be English!
+    });
+  };
+
+  const renderHighlightedText = (text: string, values: Record<string, string>) => {
+    if (!text) return "...";
+    const parts = text.split(/(\[[^\]]+\])/g);
+    return parts.map((part, index) => {
+      const match = part.match(/^\[([^\]]+)\]$/);
+      if (match) {
+        const key = match[1];
+        const val = values[key];
+        if (val) {
+          return (
+            <span key={index} className="text-blue-400 font-bold underline bg-blue-500/10 px-1.5 py-0.5 rounded" title={`Placeholder: [${key}]`}>
+              {toEnglishDigits(val)}
+            </span>
+          );
+        } else {
+          return (
+            <span key={index} className="text-red-400 font-bold bg-red-400/10 px-1.5 py-0.5 rounded animate-pulse" title={`Missing: [${key}]`}>
+              {part}
+            </span>
+          );
+        }
+      }
+      return part;
+    });
+  };
+
   const [aiTopic, setAiTopic] = useState("");
   const [docNumber, setDocNumber] = useState(() => `ICW-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9000 + 1000))}`);
 
@@ -1164,15 +1291,15 @@ export default function ChurchDocumentsPage() {
 
   const handlePrintLetter = () => {
     const newItem: DocHistoryItem = {
-      id: crypto.randomUUID(),
+      id: editingDocId || crypto.randomUUID(),
       type: "letter",
       date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
       timestamp: Date.now(),
-      refNo: docNumber,
-      recipient: recipientName || letterTo || "Unspecified",
-      subject: letterSubject || "No Subject",
-      bodyEn,
-      bodyFa,
+      refNo: toEnglishDigits(docNumber),
+      recipient: replacePlaceholders(recipientName || letterTo || "Unspecified", placeholderValues),
+      subject: replacePlaceholders(letterSubject || "No Subject", placeholderValues),
+      bodyEn: replacePlaceholders(bodyEn, placeholderValues),
+      bodyFa: replacePlaceholders(bodyFa, placeholderValues),
     };
     void addHistoryItem(newItem);
     onPrintLetter();
@@ -1205,6 +1332,8 @@ export default function ChurchDocumentsPage() {
     setBodyFa(tpl.bodyFa);
     setLetterTo(tpl.toEn);
     setLetterSubject(tpl.subjectEn);
+    setPlaceholderValues({});
+    setEditorMode("edit");
   };
 
   // Save template
@@ -1238,6 +1367,8 @@ export default function ChurchDocumentsPage() {
     setLetterTo("");
     setLetterToAddress("");
     setSelectedTpl(null);
+    setPlaceholderValues({});
+    setEditorMode("edit");
   };
 
   useEffect(() => {
@@ -1735,6 +1866,36 @@ export default function ChurchDocumentsPage() {
 
             {/* Editor */}
             <div className="lg:col-span-2 space-y-4">
+              {editingDocId && (
+                <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 flex items-center justify-between gap-4 text-amber-400 text-sm animate-fade-in">
+                  <div className="flex items-center gap-2">
+                    <Pencil className="w-4 h-4 animate-pulse" />
+                    <span>
+                      {isRtl
+                        ? `در حال ویرایش سند بایگانی شده (شماره سند: ${docNumber})`
+                        : `Editing archived document (Ref: ${docNumber})`}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setEditingDocId(null);
+                      setSelectedTpl(null);
+                      setBodyEn("");
+                      setBodyFa("");
+                      setLetterTo("");
+                      setLetterToAddress("");
+                      setLetterSubject("");
+                      setRecipientName("");
+                      setPlaceholderValues({});
+                      toast.info(isRtl ? "ویرایش لغو شد" : "Editing cancelled");
+                    }}
+                    className="text-xs bg-amber-500/20 hover:bg-amber-500/30 px-3 py-1.5 rounded-lg font-bold transition-all text-amber-300"
+                  >
+                    {isRtl ? "انصراف" : "Cancel"}
+                  </button>
+                </div>
+              )}
+
               <div className="glass rounded-2xl border border-white/10 p-6 space-y-4">
 
                 {/* Header row */}
@@ -1787,6 +1948,37 @@ export default function ChurchDocumentsPage() {
                   </div>
                 </div>
 
+                {/* ── Dynamic Placeholders Form ── */}
+                {detectedPlaceholders.length > 0 && (
+                  <div className="bg-blue-500/5 border border-blue-500/20 rounded-xl p-4 space-y-3 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl -z-10" />
+                    <div className="flex items-center gap-2 text-blue-400">
+                      <FileText className="w-4 h-4" />
+                      <span className="text-sm font-bold">{isRtl ? "مشخصات متغیر الگو" : "Template Placeholders"}</span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {detectedPlaceholders.map(key => (
+                        <div key={key} className="space-y-1">
+                          <label className="text-xs text-muted-foreground block font-medium">
+                            {key}
+                          </label>
+                          <input
+                            value={placeholderValues[key] || ""}
+                            onChange={e => setPlaceholderValues(prev => ({ ...prev, [key]: toEnglishDigits(e.target.value) }))}
+                            placeholder={isRtl ? `وارد کنید [${key}]` : `Enter [${key}]`}
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-blue-500/50 transition-colors placeholder:text-muted-foreground/30 font-sans"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-[10px] text-muted-foreground/60 italic">
+                      {isRtl
+                        ? "* این مقادیر در زمان چاپ یا ذخیره، جایگزین جاهای خالی نامه خواهند شد. تمامی اعداد به انگلیسی ثبت می‌شوند."
+                        : "* These values will replace placeholders automatically during print or save. All numbers are enforced in English."}
+                    </p>
+                  </div>
+                )}
+
                 {/* AI Topic Generator */}
                 <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-3">
                   <div className="flex items-center gap-2">
@@ -1817,9 +2009,32 @@ export default function ChurchDocumentsPage() {
                 {/* Text Editor */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <label className="text-xs text-muted-foreground font-bold uppercase tracking-wider">
-                      {editLang === "en" ? "📝 English Text" : "📝 متن فارسی"}
-                    </label>
+                    <div className="flex items-center gap-2">
+                      <label className="text-xs text-muted-foreground font-bold uppercase tracking-wider">
+                        {editLang === "en" ? "📝 English Text" : "📝 متن فارسی"}
+                      </label>
+                      {/* Editor/Preview Mode Toggle */}
+                      {detectedPlaceholders.length > 0 && (
+                        <div className="flex bg-white/5 border border-white/10 rounded-lg p-0.5 ml-2">
+                          <button
+                            onClick={() => setEditorMode("edit")}
+                            className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${
+                              editorMode === "edit" ? "bg-blue-500 text-white" : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            {isRtl ? "ویرایش" : "Edit"}
+                          </button>
+                          <button
+                            onClick={() => setEditorMode("preview")}
+                            className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${
+                              editorMode === "preview" ? "bg-blue-500 text-white" : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            {isRtl ? "پیش‌نمایش" : "Preview"}
+                          </button>
+                        </div>
+                      )}
+                    </div>
                     <div className="flex gap-2 flex-wrap">
                       <AIButton
                         label={isRtl ? "ویرایش حرفه‌ای" : "Polish Text"}
@@ -1837,17 +2052,26 @@ export default function ChurchDocumentsPage() {
                       />
                     </div>
                   </div>
-                  <textarea
-                    dir={editLang === "fa" ? "rtl" : "ltr"}
-                    value={editLang === "en" ? bodyEn : bodyFa}
-                    onChange={e => editLang === "en" ? setBodyEn(e.target.value) : setBodyFa(e.target.value)}
-                    rows={16}
-                    title={isRtl ? "متن نامه" : "Letter body"}
-                    placeholder={editLang === "en"
-                      ? "Type or generate your letter..."
-                      : "متن نامه را تایپ کنید..."}
-                    className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-sm bg-transparent focus:outline-none focus:border-primary/50 resize-y transition-colors font-mono leading-relaxed placeholder-white/20"
-                  />
+                  {editorMode === "preview" ? (
+                    <div
+                      dir={editLang === "fa" ? "rtl" : "ltr"}
+                      className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-sm bg-transparent resize-y transition-colors font-mono leading-relaxed min-h-[384px] whitespace-pre-wrap overflow-y-auto"
+                    >
+                      {renderHighlightedText(editLang === "en" ? bodyEn : bodyFa, placeholderValues)}
+                    </div>
+                  ) : (
+                    <textarea
+                      dir={editLang === "fa" ? "rtl" : "ltr"}
+                      value={editLang === "en" ? bodyEn : bodyFa}
+                      onChange={e => editLang === "en" ? setBodyEn(e.target.value) : setBodyFa(e.target.value)}
+                      rows={16}
+                      title={isRtl ? "متن نامه" : "Letter body"}
+                      placeholder={editLang === "en"
+                        ? "Type or generate your letter..."
+                        : "متن نامه را تایپ کنید..."}
+                      className="w-full glass border border-white/10 rounded-xl px-4 py-3 text-sm bg-transparent focus:outline-none focus:border-primary/50 resize-y transition-colors font-mono leading-relaxed placeholder-white/20"
+                    />
+                  )}
                   <div className="flex justify-end gap-2">
                     <button
                       onClick={handleSaveTemplate}
@@ -1871,13 +2095,19 @@ export default function ChurchDocumentsPage() {
                     <Printer className="w-4 h-4" />{isRtl ? "چاپ / ذخیره PDF" : "Print / Save PDF"}
                   </button>
                   <button onClick={() => {
-                    const id = crypto.randomUUID();
+                    const id = editingDocId || crypto.randomUUID();
                     const newItem: DocHistoryItem = {
-                      id, type: "letter", date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
-                      timestamp: Date.now(), refNo: docNumber, recipient: recipientName || letterTo || "Unspecified",
-                      subject: letterSubject || "No Subject", bodyEn, bodyFa
+                      id,
+                      type: "letter",
+                      date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+                      timestamp: Date.now(),
+                      refNo: toEnglishDigits(docNumber),
+                      recipient: replacePlaceholders(recipientName || letterTo || "Unspecified", placeholderValues),
+                      subject: replacePlaceholders(letterSubject || "No Subject", placeholderValues),
+                      bodyEn: replacePlaceholders(bodyEn, placeholderValues),
+                      bodyFa: replacePlaceholders(bodyFa, placeholderValues),
                     };
-                     void addHistoryItem(newItem);
+                    void addHistoryItem(newItem);
                     alert(isRtl ? "در تاریخچه ذخیره شد" : "Saved to History");
                   }} className="glass border border-white/10 px-4 py-2.5 rounded-xl text-sm font-bold hover:border-white/20 transition-all">
                     {isRtl ? "فقط ذخیره در تاریخچه" : "Just Save to History"}
@@ -1889,9 +2119,17 @@ export default function ChurchDocumentsPage() {
             {/* Hidden print */}
             <div className="hidden print:block">
               <div ref={letterRef}>
-                <LetterDoc bodyEn={bodyEn} bodyFa={bodyFa} editLang={editLang}
-                  to={letterTo} toAddress={letterToAddress} subject={letterSubject}
-                  recipientName={recipientName} refNo={docNumber} church={church} />
+                <LetterDoc 
+                  bodyEn={replacePlaceholders(bodyEn, placeholderValues)} 
+                  bodyFa={replacePlaceholders(bodyFa, placeholderValues)} 
+                  editLang={editLang}
+                  to={replacePlaceholders(letterTo, placeholderValues)} 
+                  toAddress={replacePlaceholders(letterToAddress, placeholderValues)} 
+                  subject={replacePlaceholders(letterSubject, placeholderValues)}
+                  recipientName={replacePlaceholders(recipientName, placeholderValues)} 
+                  refNo={toEnglishDigits(docNumber)} 
+                  church={church} 
+                />
                 <style>{`@media print { body { margin: 0; } }`}</style>
               </div>
             </div>
@@ -2246,6 +2484,13 @@ export default function ChurchDocumentsPage() {
                                 className="p-2.5 rounded-xl glass border border-white/10 text-primary hover:bg-primary/20 hover:text-primary transition-all shadow-lg"
                               >
                                 <Printer className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => handleEditDocument(item)}
+                                title={isRtl ? "ویرایش سند" : "Edit Document"}
+                                className="p-2.5 rounded-xl glass border border-white/10 text-amber-400 hover:bg-amber-500/20 hover:text-amber-300 transition-all shadow-lg"
+                              >
+                                <Pencil className="w-4 h-4" />
                               </button>
                               {isAdmin && (
                                 <button

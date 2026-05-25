@@ -63,7 +63,7 @@ export async function POST(req: Request) {
                                 <td>
                                     <!-- Farsi Section -->
                                     <h2 style="color: #ba955c; margin: 0 0 10px 0; font-size: 20px; font-family: 'Vazirmatn', Tahoma, sans-serif; direction: rtl;">✅ سیستم ایمیل کار می‌کند!</h2>
-                                    <p style="font-size: 15px; line-height: 1.6; color: #334155; margin: 0 0 20px 0; font-family: 'Vazirmatn', Tahoma, sans-serif; direction: rtl;">این یک ایمیل تست از سرور <strong>samanabyar.online</strong> جهت اعتبارسنجی تنظیمات ایمیل کلیسا است.</p>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #334155; margin: 0 0 20px 0; font-family: 'Vazirmatn', Tahoma, sans-serif; direction: rtl;">این یک ایمیل تست از سرور <strong>www.iranianchurchdc.com</strong> جهت اعتبارسنجی تنظیمات ایمیل کلیسا است.</p>
                                     
                                     <!-- Divider -->
                                     <div style="width: 100%; height: 1px; background-color: #e2e8f0; margin: 20px 0;"></div>
@@ -71,7 +71,7 @@ export async function POST(req: Request) {
                                     <!-- English Section -->
                                     <div dir="ltr" style="text-align: left;">
                                         <h3 style="color: #4f46e5; margin: 0 0 10px 0; font-size: 18px; font-family: Arial, sans-serif; direction: ltr;">✅ Email system is working!</h3>
-                                        <p style="font-size: 14px; line-height: 1.6; color: #334155; margin: 0 0 20px 0; font-family: Arial, sans-serif; direction: ltr;">This is a test email from the server <strong>samanabyar.online</strong> to validate the church email configuration settings.</p>
+                                        <p style="font-size: 14px; line-height: 1.6; color: #334155; margin: 0 0 20px 0; font-family: Arial, sans-serif; direction: ltr;">This is a test email from the server <strong>www.iranianchurchdc.com</strong> to validate the church email configuration settings.</p>
                                     </div>
                                     
                                     <!-- Divider -->
@@ -79,7 +79,7 @@ export async function POST(req: Request) {
                                     
                                     <p dir="ltr" style="color: #64748b; font-size: 12px; line-height: 1.6; text-align: left; margin: 0; font-family: Arial, sans-serif;">
                                         Sent at: ${new Date().toISOString()}<br/>
-                                        Server: samanabyar.online<br/>
+                                        Server: www.iranianchurchdc.com<br/>
                                         Provider: Resend (iranianchurchdc.com)<br/>
                                         Address: Iranian Christian Church, Washington D.C., USA
                                     </p>

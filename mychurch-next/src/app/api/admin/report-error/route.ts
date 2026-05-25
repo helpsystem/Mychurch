@@ -283,7 +283,7 @@ async function sendAdminAlertEmail(payload: {
                         <!-- Footer -->
                         <tr style="background-color: #f9fafb; border-top: 1px solid #e5e7eb;">
                             <td style="padding: 15px 20px; font-size: 11px; color: #6b7280; text-align: center;">
-                                MyChurch Error Diagnostic System • samanabyar.online
+                                MyChurch Error Diagnostic System • www.iranianchurchdc.com
                             </td>
                         </tr>
                     </table>

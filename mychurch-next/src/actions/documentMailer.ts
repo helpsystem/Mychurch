@@ -22,7 +22,7 @@ export async function emailDocument(recipientEmail: string, subject: string, htm
                         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 800px; background-color: #ffffff; border: 1px solid #e4e4e7; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); padding: 40px;">
                             <tr>
                                 <td style="text-align: center; padding-bottom: 30px;">
-                                    <img src="https://samanabyar.online/logo-transparent.png" alt="Church Logo" style="height: 60px; border: 0; margin-bottom: 15px;" />
+                                    <img src="https://www.iranianchurchdc.com/logo-transparent.png" alt="Church Logo" style="height: 60px; border: 0; margin-bottom: 15px;" />
                                     <!-- Farsi Header -->
                                     <h2 style="color: #ba955c; margin: 0 0 4px 0; font-size: 20px; font-weight: bold; font-family: 'Vazirmatn', Tahoma, sans-serif; direction: rtl; text-align: center;">سند رسمی کلیسا</h2>
                                     <p style="color: #78716c; margin: 0 0 12px 0; font-size: 13px; font-family: 'Vazirmatn', Tahoma, sans-serif; direction: rtl; text-align: center;">کلیسای مسیحی ایرانی واشنگتن دی‌سی</p>
@@ -45,7 +45,7 @@ export async function emailDocument(recipientEmail: string, subject: string, htm
                                     <!-- Farsi Footer -->
                                     <p style="margin: 0 0 6px 0; direction: rtl; text-align: center;">این یک مکاتبه رسمی خودکار از کلیسای مسیحی ایرانی واشنگتن دی‌سی است.</p>
                                     <p style="margin: 0 0 6px 0; direction: rtl; text-align: center;">نشانی: کلیسای ایرانی، واشنگتن دی‌سی، ایالات متحده</p>
-                                    <p style="margin: 0 0 15px 0; direction: rtl; text-align: center;">اگر سوالی دارید، لطفا به این ایمیل پاسخ دهید یا با ما از طریق <a href="mailto:info@samanabyar.online" style="color: #ba955c; text-decoration: underline;">info@samanabyar.online</a> تماس بگیرید.</p>
+                                    <p style="margin: 0 0 15px 0; direction: rtl; text-align: center;">اگر سوالی دارید، لطفا به این ایمیل پاسخ دهید یا با ما از طریق <a href="mailto:info@iranianchurchdc.com" style="color: #ba955c; text-decoration: underline;">info@iranianchurchdc.com</a> تماس بگیرید.</p>
                                     
                                     <!-- Divider -->
                                     <div style="width: 40px; height: 1px; background-color: #e4e4e7; margin: 15px auto;"></div>
@@ -53,7 +53,7 @@ export async function emailDocument(recipientEmail: string, subject: string, htm
                                     <!-- English Footer -->
                                     <p style="margin: 0 0 4px 0; direction: ltr; text-align: center; font-family: Arial, sans-serif;">This is an automated official communication from the Iranian Christian Church of Washington DC.</p>
                                     <p style="margin: 0 0 4px 0; direction: ltr; text-align: center; font-family: Arial, sans-serif;">Address: Iranian Christian Church, Washington D.C., USA</p>
-                                    <p style="margin: 0; direction: ltr; text-align: center; font-family: Arial, sans-serif;">If you have any questions, please reply to this email or contact us at <a href="mailto:info@samanabyar.online" style="color: #4f46e5; text-decoration: underline;">info@samanabyar.online</a></p>
+                                    <p style="margin: 0; direction: ltr; text-align: center; font-family: Arial, sans-serif;">If you have any questions, please reply to this email or contact us at <a href="mailto:info@iranianchurchdc.com" style="color: #4f46e5; text-decoration: underline;">info@iranianchurchdc.com</a></p>
                                 </td>
                             </tr>
                         </table>

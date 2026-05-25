@@ -9,12 +9,12 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 // Install: npm install qrcode (already in many Next.js setups)
 
 const PRESETS = [
-    { label: "صفحه اصلی", value: "https://samanabyar.online/" },
-    { label: "پرستش", value: "https://samanabyar.online/worship" },
-    { label: "کتاب مقدس", value: "https://samanabyar.online/bible" },
-    { label: "تماس با ما", value: "https://samanabyar.online/contact" },
-    { label: "موعظه‌ها", value: "https://samanabyar.online/sermons" },
-    { label: "دانلود اپ", value: "https://samanabyar.online/download" },
+    { label: "صفحه اصلی", value: "https://www.iranianchurchdc.com/" },
+    { label: "پرستش", value: "https://www.iranianchurchdc.com/worship" },
+    { label: "کتاب مقدس", value: "https://www.iranianchurchdc.com/bible" },
+    { label: "تماس با ما", value: "https://www.iranianchurchdc.com/contact" },
+    { label: "موعظه‌ها", value: "https://www.iranianchurchdc.com/sermons" },
+    { label: "دانلود اپ", value: "https://www.iranianchurchdc.com/download" },
 ];
 
 const COLORS = [
@@ -28,7 +28,7 @@ const COLORS = [
 
 export default function QRStudioPage() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [text, setText] = useState("https://samanabyar.online/");
+    const [text, setText] = useState("https://www.iranianchurchdc.com/");
     const [label, setLabel] = useState("کلیسای ایرانیان واشنگتن");
     const [colorSet, setColorSet] = useState(COLORS[0]);
     const [size, setSize] = useState(300);

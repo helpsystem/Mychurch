@@ -44,7 +44,7 @@ const BackCoverPage = React.forwardRef<HTMLDivElement, {}>((_, ref) => (
             «زیرا خدا جهان را اینقدر محبت نمود که پسر یگانه خود را داد.»<br />
             <span className="text-white/30 text-xs mt-1 block">یوحنا ۳:۱۶</span>
         </p>
-        <div className="absolute bottom-6 text-white/20 text-xs" dir="ltr">samanabyar.online</div>
+        <div className="absolute bottom-6 text-white/20 text-xs" dir="ltr">www.iranianchurchdc.com</div>
     </div>
 ));
 BackCoverPage.displayName = 'BackCoverPage';
@@ -149,7 +149,7 @@ export function Flipbook() {
                         <div className="space-y-4 text-sm">
                             <div className="flex items-center gap-3">
                                 <span className="text-emerald-400">🌐</span>
-                                <span className="font-mono text-xs text-white/70">samanabyar.online</span>
+                                <span className="font-mono text-xs text-white/70">www.iranianchurchdc.com</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <span className="text-emerald-400">📍</span>
