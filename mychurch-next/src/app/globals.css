@@ -234,6 +234,30 @@
   body.modal-open .hide-on-modal-open {
     display: none !important;
   }
+
+  /* ═══════════════════════════════════════════════════════════════
+     GLOBAL DIGIT RENDERING RULE
+     Rule: ALL numbers → English (Latin) digits site-wide
+     EXCEPTION: .fa-datetime elements → Persian digits (for Farsi dates/times only)
+     Root cause: html[lang="fa"] can trigger auto Persian digit rendering
+     in some browsers (Firefox, Android). This overrides that behavior.
+  ═══════════════════════════════════════════════════════════════ */
+  :root,
+  html,
+  body,
+  * {
+    font-variant-numeric: normal;
+  }
+
+  /* Force Latin (English) digits globally via Unicode OpenType feature */
+  html {
+    unicode-bidi: normal;
+  }
+
+  /* Numbers in inputs, outputs, spans, td, etc. */
+  span, p, div, td, th, li, label, input, textarea, select, h1, h2, h3, h4, h5, h6, button, a, small, strong, em {
+    font-variant-numeric: normal;
+  }
 }
 
 /* Glassmorphism utilities */

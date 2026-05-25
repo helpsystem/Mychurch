@@ -240,7 +240,7 @@ export default function AdminPrayersClient({ initialPrayers }: { initialPrayers:
                 <div ref={componentRef} className="print-area p-8 bg-white text-black font-[Vazirmatn]" dir="rtl">
                     <div className="text-center mb-8 border-b-2 border-black pb-4">
                         <h1 className="text-3xl font-black">لیست دعای کلیسای ایرانیان واشنگتن</h1>
-                        <p className="text-sm mt-2 font-mono">Date Printed: {new Date().toLocaleDateString()}</p>
+                        <p className="text-sm mt-2 font-mono" dir="ltr">Date Printed: {new Date().toLocaleDateString("en-US")}</p>
                     </div>
 
                     <div className="space-y-6">

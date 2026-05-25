@@ -618,7 +618,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                                             <div>
                                                 <h3 className="font-bold text-lg text-white group-hover:text-indigo-400 transition-colors">{session.title}</h3>
                                                 <p className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
-                                                    <span>{new Date(session.date).toLocaleDateString()}</span>
+                                                    <span dir="ltr">{new Date(session.date).toLocaleDateString("en-US")}</span>
                                                     <span>•</span>
                                                     <span>{session.slides?.length || 0} Slides</span>
                                                 </p>
