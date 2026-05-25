@@ -109,10 +109,6 @@ function formatDigits(text: string) {
 
 // ─── Print CSS (injected once per document render) ───────────────────────────
 const PRINT_CSS = `
-@page {
-  size: letter;
-  margin: 15mm 15mm 22mm 15mm;
-}
 @media print {
   html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .no-print { display: none !important; }
@@ -174,8 +170,16 @@ const PRINT_CSS = `
 }
 `;
 
-function PrintStyles() {
-  return <style dangerouslySetInnerHTML={{ __html: PRINT_CSS }} />;
+function PrintStyles({ paperSize = "Letter" }: { paperSize?: string }) {
+  const sizeVal = paperSize.toLowerCase() === "a4" ? "a4" : paperSize.toLowerCase() === "a5" ? "a5" : "letter";
+  const css = `
+@page {
+  size: ${sizeVal};
+  margin: 15mm 15mm 22mm 15mm;
+}
+${PRINT_CSS}
+`;
+  return <style dangerouslySetInnerHTML={{ __html: css }} />;
 }
 
 // ─── Print QR Fixed Footer (shown on every print page) ───────────────────────
@@ -608,10 +612,12 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
   const verifyUrl = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(refNo)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=letter`;
   const qrData = verifyUrl;
 
+  const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.Letter;
+
   return (
     <DocumentSecurity>
-    <PrintStyles />
-    <div className={`print-doc-wrap w-[215.9mm] min-h-[279.4mm] bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative border-0 overflow-visible shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
+    <PrintStyles paperSize={church.paperSize} />
+    <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative border-0 overflow-visible shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -726,10 +732,12 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
   const verifyUrl = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(`RCP-${receiptNo}`)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=receipt&amount=${total || receipt.amount}`;
   const qrData = verifyUrl;
 
+  const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.Letter;
+
   return (
     <DocumentSecurity>
-    <PrintStyles />
-    <div className={`print-doc-wrap w-[215.9mm] min-h-[279.4mm] bg-white text-slate-800 p-[20mm] font-sans text-sm border-0 shadow-2xl relative overflow-visible flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
+    <PrintStyles paperSize={church.paperSize} />
+    <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[20mm] font-sans text-sm border-0 shadow-2xl relative overflow-visible flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       
@@ -898,10 +906,12 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
   // Each invoice gets its own unique QR verify URL
   const qrData = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(`INV-${invoiceNo}`)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=invoice&amount=${invoiceTotalAmount}`;
 
+  const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.Letter;
+
   return (
     <DocumentSecurity>
-    <PrintStyles />
-    <div className={`print-doc-wrap w-[215.9mm] min-h-[279.4mm] bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative overflow-visible mx-auto print:shadow-none ${isPdf ? "" : "shadow-2xl border-0"}`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
+    <PrintStyles paperSize={church.paperSize} />
+    <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative overflow-visible mx-auto print:shadow-none ${isPdf ? "" : "shadow-2xl border-0"}`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -1560,7 +1570,7 @@ export default function ChurchDocumentsPage() {
       const canvas = await html2canvas(ref.current, {
         scale: 2.5,         // higher resolution for sharper QR codes
         useCORS: true,
-        allowTaint: true,
+        allowTaint: false,
         backgroundColor: "#ffffff",
         logging: false,
         imageTimeout: 10000,
@@ -1570,10 +1580,11 @@ export default function ChurchDocumentsPage() {
 
       // ── PDF with Owner Password (prevents editing, allows printing) ──
       const refNo = emailModal?.refNo || "DOC";
+      const paperFormat = church.paperSize ? church.paperSize.toLowerCase() : "letter";
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "mm",
-        format: "letter",
+        format: paperFormat === "a4" ? "a4" : paperFormat === "a5" ? "a5" : "letter",
         // Encrypt: no user password (anyone can open), owner-only editing
         ...({
           encryption: {
