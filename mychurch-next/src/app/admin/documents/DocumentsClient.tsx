@@ -104,25 +104,128 @@ function formatDigits(text: string) {
   return toEnglishDigits(text);
 }
 
+// ─── Print CSS (injected once per document render) ───────────────────────────
+const PRINT_CSS = `
+@page {
+  size: letter;
+  margin: 15mm 15mm 22mm 15mm;
+}
+@media print {
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none !important; }
+  .print-doc-wrap { width: 100% !important; min-height: unset !important;
+    box-shadow: none !important; border: none !important; padding: 0 !important;
+    margin: 0 !important; overflow: visible !important;
+  }
+  /* Fixed QR footer on every page */
+  .print-qr-fixed {
+    position: fixed !important;
+    bottom: 4mm !important;
+    right: 10mm !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 1mm !important;
+    background: white !important;
+    padding: 2mm !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 4mm !important;
+  }
+  /* Page number via CSS counter */
+  .print-page-counter {
+    position: fixed !important;
+    bottom: 6mm !important;
+    left: 10mm !important;
+    font-size: 8pt !important;
+    color: #94a3b8 !important;
+    font-family: monospace !important;
+    font-weight: bold !important;
+    letter-spacing: 0.1em !important;
+    counter-increment: page !important;
+  }
+  /* Continuation header for pages 2+ */
+  .print-cont-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 3mm 10mm !important;
+    border-bottom: 1.5pt solid #1e293b !important;
+    background: white !important;
+    font-size: 8pt !important;
+    color: #64748b !important;
+    font-weight: bold !important;
+    letter-spacing: 0.08em !important;
+    page-break-before: always !important;
+  }
+  /* Ensure tables repeat header on new pages */
+  thead { display: table-header-group !important; }
+  tfoot { display: table-footer-group !important; }
+  tr { page-break-inside: avoid !important; }
+  /* Force English digits in all numeric content */
+  * { font-variant-numeric: lining-nums !important; }
+}
+`;
+
+function PrintStyles() {
+  return <style dangerouslySetInnerHTML={{ __html: PRINT_CSS }} />;
+}
+
+// ─── Print QR Fixed Footer (shown on every print page) ───────────────────────
+function PrintQRFixed({ qrData, refNo, isRtl }: { qrData: string; refNo: string; isRtl?: boolean }) {
+  const url = qrData.startsWith("http") ? qrData : `https://www.iranianchurchdc.com/verify/${encodeURIComponent(qrData)}`;
+  return (
+    <div className="print-qr-fixed hidden print:flex">
+      <QRCodeSVG
+        value={url}
+        size={64}
+        level="M"
+        bgColor="#ffffff"
+        fgColor="#000000"
+        marginSize={1}
+        imageSettings={{ src: "/logo-transparent.png", height: 14, width: 14, excavate: true }}
+      />
+      <div style={{ fontSize: '6pt', color: '#94a3b8', fontWeight: 'bold', textAlign: 'center', fontFamily: 'monospace', letterSpacing: '0.05em' }}>
+        {isRtl ? 'اسکن برای تأیید' : 'SCAN TO VERIFY'}
+      </div>
+      <div style={{ fontSize: '5.5pt', color: '#cbd5e1', fontFamily: 'monospace', textAlign: 'center', wordBreak: 'break-all', maxWidth: '64px' }}>
+        {refNo}
+      </div>
+    </div>
+  );
+}
+
+// ─── Print Page Number Counter ────────────────────────────────────────────────
+function PrintPageNumber({ churchName }: { churchName: string }) {
+  return (
+    <div className="print-page-counter hidden print:block" style={{ fontFamily: 'monospace', fontSize: '8pt', color: '#94a3b8' }}>
+      {churchName} — Page <span className="pageNumber" /> of <span className="totalPages" />
+    </div>
+  );
+}
+
 // ─── Component: QR Code ──────────────────────────────────────────────────────
 const SITE_URL = typeof window !== "undefined" ? window.location.origin : "https://www.iranianchurchdc.com";
 
-function DocumentQR({ data }: { data: string }) {
-  // If data looks like a reference number, generate a verify URL; otherwise use as-is
+function DocumentQR({ data, size = 80 }: { data: string; size?: number }) {
   const url = data.startsWith("http") ? data : `${SITE_URL}/verify/${encodeURIComponent(data)}`;
 
   return (
     <QRCodeSVG 
       value={url} 
-      size={80} // corresponds to w-20 h-20
+      size={size}
       level="M" 
-      bgColor="#ffffff00" 
+      bgColor="#ffffff"
       fgColor="#000000"
       marginSize={1}
       imageSettings={{
         src: "/logo-transparent.png",
-        height: 20,
-        width: 20,
+        height: 18,
+        width: 18,
         excavate: true,
       }}
     />
@@ -461,24 +564,25 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
 }) {
   const isRtl = editLang === "fa";
   const design = isRtl ? church.designFa : church.designEn;
-  const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.A4;
   const dateStr = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const qrData = `VERIFY:${refNo}:${dateStr}:${church.ein}`;
 
   return (
     <DocumentSecurity>
-    <div className={`${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative border-0 overflow-hidden shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
+    <PrintStyles />
+    <div className={`print-doc-wrap w-[215.9mm] min-h-[279.4mm] bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative border-0 overflow-visible shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
 
        {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
-      <Letterhead church={church} lang={editLang} docRef={refNo} date={dateStr} />
+      <Letterhead church={church} lang={editLang} docRef={toEnglishDigits(refNo)} date={dateStr} />
 
       <div className="mb-8 space-y-2 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
         {recipientName && <div className="flex items-start gap-4">
           <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "گیرنده:" : "Attention:"}</span>
-          <span className="font-bold text-slate-900 border-b border-slate-200 pb-1 flex-1">{recipientName}</span>
+          <span className="font-bold text-slate-900 border-b border-slate-200 pb-1 flex-1">{toEnglishDigits(recipientName)}</span>
         </div>}
         {to && <div className="flex items-start gap-4">
           <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "به:" : "To:"}</span>
@@ -490,7 +594,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
         </div>}
         {subject && <div className="flex items-start gap-4 mt-6">
           <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "موضوع:" : "Re  Subject:"}</span>
-          <span className="font-black text-slate-900 text-lg uppercase tracking-tight leading-tight">{subject}</span>
+          <span className="font-black text-slate-900 text-lg uppercase tracking-tight leading-tight">{toEnglishDigits(subject)}</span>
         </div>}
       </div>
 
@@ -503,7 +607,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
           fontStyle: design.isItalicBody ? "italic" : "normal"
         }}
       >
-        {(editLang === "en" ? bodyEn : bodyFa) || "..."}
+        {toEnglishDigits((editLang === "en" ? bodyEn : bodyFa) || "...")}
       </div>
 
       <div className="mt-auto pt-6 border-t-2 border-slate-900 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"}>
@@ -548,20 +652,21 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
           </div>
         </div>
 
+        {/* Screen QR (hidden on print — replaced by PrintQRFixed) */}
         {church.showVerifyQR && (
-          <div className={`flex flex-col gap-1 ${isRtl ? 'items-start text-left' : 'items-end text-right'}`}>
+          <div className={`print:hidden flex flex-col gap-1 ${isRtl ? 'items-start text-left' : 'items-end text-right'}`}>
             <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-              <DocumentQR data={`VERIFY:${refNo}:${dateStr}:${church.ein}`} />
+              <DocumentQR data={qrData} />
             </div>
             <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest">{isRtl ? 'اسکن برای تایید' : 'Scan to Verify'}</div>
-            <div className="text-[7px] font-mono uppercase text-slate-400">{refNo}</div>
+            <div className="text-[7px] font-mono uppercase text-slate-400">{toEnglishDigits(refNo)}</div>
           </div>
         )}
       </div>
 
-      <div className={`absolute bottom-6 font-mono font-bold ${isRtl ? "left-10" : "right-10"} text-[10px] text-slate-300`}>
-        PAGE {pageNum || 1} / {totalPages || 1}
-      </div>
+      {/* Print-only: Fixed QR on every page + page number */}
+      {church.showVerifyQR && <PrintQRFixed qrData={qrData} refNo={toEnglishDigits(refNo)} isRtl={isRtl} />}
+      <PrintPageNumber churchName={church.nameEn} />
     </div>
     </DocumentSecurity>
   );
@@ -573,21 +678,21 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
   receipt: Record<string, string | number>; receiptNo: string; isInKind: boolean;
   inKindItems: { name: string; qty: number; value: number }[]; church: typeof DEFAULT_CHURCH;
 }) {
-  const design = church.designEn; // Receipts are primarily English
+  const design = church.designEn;
   const total = inKindItems.reduce((s, i) => s + i.value * i.qty, 0);
-  const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.A4;
   const dateStr = receipt.date as string || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const qrData = `RECEIPT:${receiptNo}:${church.ein}:${total || receipt.amount}`;
 
   return (
     <DocumentSecurity>
-    <div className={`${paperClass} bg-white text-slate-800 p-[20mm] font-sans text-sm border-0 shadow-2xl relative overflow-hidden flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
-      {/* Decorative Abstract Shapes */}
+    <PrintStyles />
+    <div className={`print-doc-wrap w-[215.9mm] min-h-[279.4mm] bg-white text-slate-800 p-[20mm] font-sans text-sm border-0 shadow-2xl relative overflow-visible flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       
       {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
-      <Letterhead church={church} lang="en" docRef={`RCP-${receiptNo}`} date={dateStr} />
+      <Letterhead church={church} lang="en" docRef={`RCP-${toEnglishDigits(receiptNo)}`} date={toEnglishDigits(dateStr)} />
 
       <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
         <div>
@@ -605,7 +710,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
         <div className="space-y-3">
           <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Donor Information</div>
           <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-            <div className="font-black text-lg text-slate-900 uppercase tracking-tight">{receipt.donorName as string || "—"}</div>
+            <div className="font-black text-lg text-slate-900 uppercase tracking-tight">{toEnglishDigits(receipt.donorName as string || "—")}</div>
             <div className="text-slate-600 font-medium">{receipt.donorAddress as string || "—"}</div>
           </div>
         </div>
@@ -614,11 +719,11 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
           <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
             <div className="flex justify-between items-center border-b border-slate-100 pb-2">
               <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Receipt No</span>
-              <span className="font-mono font-black text-slate-900">{receiptNo}</span>
+              <span className="font-mono font-black text-slate-900">{toEnglishDigits(receiptNo)}</span>
             </div>
             <div className="flex justify-between items-center border-b border-slate-100 pb-2">
               <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Date Issued</span>
-              <span className="font-bold text-slate-900">{dateStr}</span>
+              <span className="font-bold text-slate-900">{toEnglishDigits(dateStr)}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Organization EIN</span>
@@ -643,15 +748,15 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                 inKindItems.filter(i => i.name).map((item, idx) => (
                   <tr key={idx} className="hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 font-bold text-slate-800">{item.name}</td>
-                    <td className="px-6 py-4 text-right font-mono text-slate-500">{item.qty}</td>
-                    <td className="px-6 py-4 text-right font-mono font-black text-slate-900">${(item.value * item.qty).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                    <td className="px-6 py-4 text-right font-mono text-slate-500">{toEnglishDigits(String(item.qty))}</td>
+                    <td className="px-6 py-4 text-right font-mono font-black text-slate-900">${toEnglishDigits((item.value * item.qty).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
                   </tr>
                 ))
               ) : (
                 <tr>
                   <td className="px-6 py-5 font-bold text-slate-800">General Church Offering / Tithe</td>
                   <td className="px-6 py-5 text-right font-mono text-slate-500">1</td>
-                  <td className="px-6 py-5 text-right font-mono font-black text-slate-900">${Number(receipt.amount || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                  <td className="px-6 py-5 text-right font-mono font-black text-slate-900">${toEnglishDigits(Number(receipt.amount || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
                 </tr>
               )}
             </tbody>
@@ -659,7 +764,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
               <tr className="bg-slate-50 border-t-[3px] border-slate-900">
                 <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[11px] text-slate-500">Grand Total Contribution</td>
                 <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50" style={{ fontSize: `${design.bodySize + 6}px` }}>
-                  ${(isInKind ? total : Number(receipt.amount || 0)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  ${toEnglishDigits((isInKind ? total : Number(receipt.amount || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
                 </td>
               </tr>
             </tfoot>
@@ -699,20 +804,28 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
           </div>
         </div>
 
+        {/* Screen QR (hidden on print — replaced by PrintQRFixed) */}
         {church.showVerifyQR && (
-          <div className="flex flex-col items-end gap-1 text-right">
+          <div className="print:hidden flex flex-col items-end gap-1 text-right">
              <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-                <DocumentQR data={`RECEIPT:${receiptNo}:${church.ein}:${total || receipt.amount}`} />
+                <DocumentQR data={qrData} />
              </div>
              <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan for Auth</div>
-             <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{receiptNo}</div>
+             <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(receiptNo)}</div>
           </div>
         )}
       </div>
+
+      {/* Print-only: Fixed QR on every page + page number */}
+      {church.showVerifyQR && <PrintQRFixed qrData={qrData} refNo={toEnglishDigits(receiptNo)} />}
+      <PrintPageNumber churchName={church.nameEn} />
     </div>
     </DocumentSecurity>
   );
 }
+
+
+
 
 export interface DocHistoryItem {
   id: string;
@@ -737,23 +850,21 @@ export interface DocHistoryItem {
 export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate, invoiceItems, invoiceTotalAmount, invoiceWallet, invoiceNotes, invoiceNo, church, lang, isPdf }: {
   invoiceTo: string; invoiceAddress?: string; invoiceName: string; invoiceDate: string; invoiceItems: any[]; invoiceTotalAmount: number; invoiceWallet: string; invoiceNotes?: string; invoiceNo: string; church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; isPdf?: boolean;
 }) {
-  const paperClass = isPdf ? "w-full min-h-[1056px]" : (PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.A4);
-  const design = church.designEn; 
+  const design = church.designEn;
+  const qrData = `INV-${invoiceNo}:${invoiceTotalAmount}`;
+  const dateStr = new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
   return (
     <DocumentSecurity>
-    <div className={`${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative overflow-hidden mx-auto print:shadow-none ${isPdf ? "" : "shadow-2xl border-0"}`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
+    <PrintStyles />
+    <div className={`print-doc-wrap w-[215.9mm] min-h-[279.4mm] bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative overflow-visible mx-auto print:shadow-none ${isPdf ? "" : "shadow-2xl border-0"}`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       
       {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
-      <div className="page-container flex justify-end text-[10px] text-slate-400 mb-2">
-        Page <span className="page mx-1">1</span> of <span className="pages mx-1">1</span>
-      </div>
-
-      <Letterhead church={church} lang="en" docRef={`INV-${invoiceNo}`} date={new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })} />
+      <Letterhead church={church} lang="en" docRef={`INV-${toEnglishDigits(invoiceNo)}`} date={toEnglishDigits(dateStr)} />
 
       <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
         <div>
@@ -781,15 +892,15 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
           <div className="space-y-1.5">
             <div className="flex justify-between items-center">
               <span className="text-slate-400 font-bold text-[10px] uppercase">Invoice No</span>
-              <span className="font-mono font-black text-slate-900 text-xs">{invoiceNo}</span>
+              <span className="font-mono font-black text-slate-900 text-xs">{toEnglishDigits(invoiceNo)}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-slate-400 font-bold text-[10px] uppercase">Date Issued</span>
-              <span className="font-bold text-slate-900 text-xs">{new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+              <span className="font-bold text-slate-900 text-xs">{toEnglishDigits(dateStr)}</span>
             </div>
             <div className="flex justify-between items-center pt-2 border-t border-slate-100">
               <span className="text-slate-900 font-black text-[10px] uppercase">Total Due</span>
-              <span className="font-mono font-black text-blue-700 text-lg">${invoiceTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+              <span className="font-mono font-black text-blue-700 text-lg">${toEnglishDigits(invoiceTotalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</span>
             </div>
           </div>
         </div>
@@ -809,13 +920,13 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
             <tbody className="divide-y divide-slate-100">
               {invoiceItems.map((item, index) => (
                 <tr key={item.id} className="group">
-                  <td className="py-5 font-mono text-slate-400 text-xs">01</td>
+                  <td className="py-5 font-mono text-slate-400 text-xs">{String(index + 1).padStart(2, '0')}</td>
                   <td className="py-5">
                     <div className="font-bold text-slate-800">{item.description}</div>
                     <div className="text-[10px] text-slate-400 mt-0.5">Professional Services / Church Ministry</div>
                   </td>
-                  <td className="py-5 text-right font-mono text-slate-500 text-xs">${Number(item.total).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                  <td className="py-5 text-right font-mono font-black text-slate-900">${Number(item.total).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                  <td className="py-5 text-right font-mono text-slate-500 text-xs">${toEnglishDigits(Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                  <td className="py-5 text-right font-mono font-black text-slate-900">${toEnglishDigits(Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
                 </tr>
               ))}
             </tbody>
@@ -824,7 +935,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                 <td colSpan={2} className="py-8"></td>
                 <td className="py-8 border-t-2 border-slate-100 text-right font-bold text-slate-400 text-[10px] uppercase tracking-widest">Grand Total</td>
                 <td className="py-8 border-t-2 border-slate-100 text-right font-black font-mono text-blue-700 text-2xl">
-                  ${invoiceTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  ${toEnglishDigits(invoiceTotalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
                 </td>
               </tr>
             </tfoot>
@@ -857,21 +968,24 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
 
       <div className="mt-10 pt-6 border-t font-mono text-[8px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10">
         <div>
-          <span>Generated by MyChurch Broadcast Console © 2026</span>
+          <span>Generated by Iranian Christian Church of Washington DC © 2026</span>
           <div className="mt-1 text-slate-200">System Integrity Verified • No Unauthorized Reproduction</div>
         </div>
-        <span>Secure ID: {crypto.randomUUID().slice(0, 18).toUpperCase()}</span>
+        {/* Screen QR (hidden on print — replaced by PrintQRFixed) */}
+        {church.showVerifyQR && (
+          <div className="print:hidden flex flex-col items-end gap-1 text-right">
+            <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
+              <DocumentQR data={qrData} />
+            </div>
+            <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
+            <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(invoiceNo)}</div>
+          </div>
+        )}
       </div>
 
-      {church.showVerifyQR && (
-        <div className="absolute bottom-10 right-10 flex flex-col items-end gap-1 text-right z-20">
-          <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
-            <DocumentQR data={`INV-${invoiceNo}:${invoiceTotalAmount}`} />
-          </div>
-          <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
-          <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{invoiceNo}</div>
-        </div>
-      )}
+      {/* Print-only: Fixed QR on every page + page number */}
+      {church.showVerifyQR && <PrintQRFixed qrData={qrData} refNo={toEnglishDigits(invoiceNo)} />}
+      <PrintPageNumber churchName={church.nameEn} />
     </div>
     </DocumentSecurity>
   );
