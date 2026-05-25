@@ -3,8 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { Clock, CalendarDays } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export function FooterClock() {
+    const { language } = useLanguage();
+    const isFa = language === "fa";
+    
     const [time, setTime] = useState<Date | null>(null);
     const [isAnalog, setIsAnalog] = useState(true);
 
@@ -38,11 +42,18 @@ export function FooterClock() {
     const hourDegrees = ((hours % 12 + minutes / 60) / 12) * 360;
 
     // Date/Time formatting
-    const formattedDateFa = new Intl.DateTimeFormat('fa-IR', {
+    const formattedDate = new Intl.DateTimeFormat(isFa ? 'fa-IR' : 'en-US', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric',
+    }).format(time);
+
+    const formattedTime = new Intl.DateTimeFormat(isFa ? 'fa-IR' : 'en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: !isFa
     }).format(time);
 
     const formattedTimeEn = new Intl.DateTimeFormat('en-US', {
@@ -58,7 +69,7 @@ export function FooterClock() {
             <button
                 onClick={() => setIsAnalog(!isAnalog)}
                 className="relative shrink-0 w-8 h-8 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all focus:outline-none ring-1 ring-border/50 hover:ring-primary/50"
-                title="تغییر نمای ساعت"
+                title={isFa ? "تغییر نمای ساعت" : "Toggle Clock View"}
             >
                 <Clock className="w-4 h-4" />
             </button>
@@ -103,25 +114,27 @@ export function FooterClock() {
                             transition={{ duration: 0.3, ease: "easeOut" }}
                             className="absolute flex flex-col items-center justify-center inset-0 rounded-full border border-border/20 bg-secondary/20"
                         >
-                            <span className="text-[11px] font-black tracking-tighter text-foreground leading-none mt-1" dir="ltr">
-                                {formattedTimeEn.split(' ')[0]}
+                            <span className="text-[11px] font-black tracking-tighter text-foreground leading-none mt-1" dir={isFa ? "rtl" : "ltr"}>
+                                {formattedTime.split(' ')[0]}
                             </span>
-                            <span className="text-[8px] font-bold text-primary tracking-widest leading-none mt-0.5" dir="ltr">
-                                {formattedTimeEn.split(' ')[1]}
-                            </span>
+                            {!isFa && formattedTime.split(' ')[1] && (
+                                <span className="text-[8px] font-bold text-primary tracking-widest leading-none mt-0.5" dir="ltr">
+                                    {formattedTime.split(' ')[1]}
+                                </span>
+                            )}
                         </motion.div>
                     )}
                 </AnimatePresence>
             </div>
 
             {/* Date Display */}
-            <div className="flex flex-col justify-center border-r border-border/20 pr-4">
+            <div className={`flex flex-col justify-center border-r border-border/20 pr-4 ${isFa ? "text-right" : "text-left"}`}>
                 <span className="text-xs font-bold text-foreground flex items-center gap-1.5 whitespace-nowrap">
                     <CalendarDays className="w-3 h-3 text-primary/70" />
-                    {formattedDateFa}
+                    {formattedDate}
                 </span>
-                <span className="text-[10px] text-muted-foreground font-medium mt-0.5 whitespace-nowrap opacity-80" dir="ltr">
-                    {formattedTimeEn} (Local)
+                <span className="text-[10px] text-muted-foreground font-medium mt-0.5 whitespace-nowrap opacity-80" dir={isFa ? "rtl" : "ltr"}>
+                    {formattedTime} {isFa ? "(به وقت محلی)" : "(Local Time)"}
                 </span>
             </div>
         </div>

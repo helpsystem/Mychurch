@@ -78,15 +78,15 @@ export function PublicHeader() {
 
                 {session ? (
                     <div className="flex items-center gap-2">
-                        <Link href="/profile" className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 font-bold transition-colors shadow-sm cursor-pointer border border-indigo-500/20" title="My Profile">
-                            <User className="w-4 h-4" /> پروفایل من
+                        <Link href="/profile" className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 font-bold transition-colors shadow-sm cursor-pointer border border-indigo-500/20" title={language === 'fa' ? 'پروفایل من' : 'My Profile'}>
+                            <User className="w-4 h-4" /> {language === 'fa' ? 'پروفایل من' : 'My Profile'}
                         </Link>
-                        <Link href="/admin" className="hidden md:flex items-center gap-2 p-2 rounded-xl bg-secondary/50 text-foreground hover:bg-secondary font-medium transition-colors shadow-sm cursor-pointer border border-border/10" title="Admin Dashboard">
+                        <Link href="/admin" className="hidden md:flex items-center gap-2 p-2 rounded-xl bg-secondary/50 text-foreground hover:bg-secondary font-medium transition-colors shadow-sm cursor-pointer border border-border/10" title={language === 'fa' ? 'داشبورد مدیریت' : 'Admin Dashboard'}>
                             <Shield className="w-5 h-5" />
                         </Link>
                     </div>
                 ) : (
-                    <Link href="/login" className="hidden md:flex items-center gap-2 p-2 rounded-xl bg-secondary/50 text-foreground hover:bg-secondary font-medium transition-colors shadow-sm cursor-pointer border border-border/10" title="Member Login">
+                    <Link href="/login" className="hidden md:flex items-center gap-2 p-2 rounded-xl bg-secondary/50 text-foreground hover:bg-secondary font-medium transition-colors shadow-sm cursor-pointer border border-border/10" title={language === 'fa' ? 'ورود اعضا' : 'Member Login'}>
                         <User className="w-5 h-5" />
                     </Link>
                 )}

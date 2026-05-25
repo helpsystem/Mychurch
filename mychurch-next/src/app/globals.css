@@ -48,53 +48,7 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Vazirmatn';
-  src: url('/fonts/BHoma.ttf') format('truetype'), local('Vazirmatn');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
 
 @theme {
   --font-sans: var(--font-sans);
@@ -130,7 +84,7 @@
 }
 
 :root {
-  --font-sans: var(--font-homa);
+  --font-sans: var(--font-vazirmatn);
   /* Dark-first palette to guarantee readable contrast site-wide */
   --background: #09090b;
   --foreground: #fafafa;
@@ -189,7 +143,11 @@
     @apply bg-background text-foreground antialiased selection:bg-primary/30;
   }
 
-  body, input, textarea, select, button, [role="button"], h1, h2, h3, h4, h5, h6 {
+  body, input, textarea, select, button, [role="button"] {
+    font-family: var(--font-vazirmatn), var(--font-roboto), system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-homa), var(--font-vazirmatn), var(--font-roboto), system-ui, -apple-system, sans-serif;
   }
 

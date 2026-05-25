@@ -8,6 +8,7 @@ import { User, Shield, Camera, Sparkles, Download, Expand, X, CheckCircle, Loade
 import { updateUserProfile } from "@/actions/user";
 import { AddressAutocomplete, type AddressData } from "@/components/profile/AddressAutocomplete";
 import { createClient } from "@/utils/supabase/client";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 interface Props {
     isAiAvatarEnabled: boolean;
@@ -19,7 +20,9 @@ const emptyAddress: AddressData = {
     country: "", postal_code: "", lat: null, lng: null,
 };
 
-export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Props) {
+    const { language } = useLanguage();
+    const isFa = language === "fa";
+
     const [isSaving, setIsSaving] = useState(false);
     const [saveSuccess, setSaveSuccess] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -73,7 +76,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
             const data = await res.json();
             if (!res.ok) throw new Error(data.error);
             setGeneratedImageUrl(data.url);
-        } catch (e: any) { alert("خطا: " + e.message); }
+        } catch (e: any) { alert((isFa ? "خطا: " : "Error: ") + e.message); }
         finally { setIsGenerating(false); }
     };
 
@@ -87,11 +90,11 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
 
     const handleChangePassword = async () => {
         if (newPassword !== confirmPassword) {
-            alert("رمز عبور و تکرار آن یکسان نیستند");
+            alert(isFa ? "رمز عبور و تکرار آن یکسان نیستند" : "Passwords do not match");
             return;
         }
         if (newPassword.length < 6) {
-            alert("رمز عبور باید حداقل ۶ کاراکتر باشد");
+            alert(isFa ? "رمز عبور باید حداقل ۶ کاراکتر باشد" : "Password must be at least 6 characters");
             return;
         }
         setIsChangingPassword(true);
@@ -99,11 +102,11 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
             const supabase = createClient();
             const { error } = await supabase.auth.updateUser({ password: newPassword });
             if (error) throw error;
-            alert("رمز عبور با موفقیت تغییر کرد");
+            alert(isFa ? "رمز عبور با موفقیت تغییر کرد" : "Password changed successfully");
             setNewPassword("");
             setConfirmPassword("");
         } catch (e: any) {
-            alert("خطا در تغییر رمز عبور: " + e.message);
+            alert((isFa ? "خطا در تغییر رمز عبور: " : "Error changing password: ") + e.message);
         } finally {
             setIsChangingPassword(false);
         }
@@ -111,15 +114,15 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
 
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!initialUser?.email) return alert("خطا: اطلاعات کاربر یافت نشد");
+        if (!initialUser?.email) return alert(isFa ? "خطا: اطلاعات کاربر یافت نشد" : "Error: User details not found");
         setIsSaving(true);
         try {
             const res = await updateUserProfile(initialUser.email, { ...formData, ...address });
             if (res.success) {
                 setSaveSuccess(true);
                 setTimeout(() => setSaveSuccess(false), 3000);
-            } else { throw new Error("ذخیره‌سازی ناموفق بود"); }
-        } catch (err: any) { alert("خطا: " + err.message); }
+            } else { throw new Error(isFa ? "ذخیره‌سازی ناموفق بود" : "Failed to save profile"); }
+        } catch (err: any) { alert((isFa ? "خطا: " : "Error: ") + err.message); }
         finally { setIsSaving(false); }
     };
 
@@ -132,24 +135,24 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
             {/* Lightbox */}
             {lightboxOpen && generatedImageUrl && (
                 <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setLightboxOpen(false)}>
-                    <button className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center" title="بستن" onClick={() => setLightboxOpen(false)}>
+                    <button className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center" title={isFa ? "بستن" : "Close"} onClick={() => setLightboxOpen(false)}>
                         <X className="w-5 h-5 text-white" />
                     </button>
                     <div className="relative max-w-2xl w-full" onClick={e => e.stopPropagation()}>
                         <img src={generatedImageUrl} alt="Avatar" className="w-full rounded-2xl shadow-2xl" />
                         <div className="flex justify-center gap-3 mt-4">
                             <button onClick={handleDownload} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-500 text-white font-bold">
-                                <Download className="w-4 h-4" /> دریافت عکس
+                                <Download className="w-4 h-4" /> {isFa ? "دریافت عکس" : "Download Image"}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
 
-            <main className="relative z-10 flex-1 pt-32 pb-24 px-6 lg:px-12 max-w-5xl mx-auto w-full">
+            <main className="relative z-10 flex-1 pt-32 pb-24 px-6 lg:px-12 max-w-5xl mx-auto w-full" dir={isFa ? "rtl" : "ltr"}>
                 <div className="mb-12">
-                    <h1 className="text-4xl font-black text-foreground mb-2">حساب کاربری من</h1>
-                    <p className="text-muted-foreground">تنظیمات پروفایل و ارتباط با کلیسا.</p>
+                    <h1 className="text-4xl font-black text-foreground mb-2">{isFa ? "حساب کاربری من" : "My Profile"}</h1>
+                    <p className="text-muted-foreground">{isFa ? "تنظیمات پروفایل و ارتباط با کلیسا." : "Profile settings and communication with the church."}</p>
                 </div>
 
                 <form onSubmit={handleSave} className="space-y-8">
@@ -164,13 +167,13 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                             : <User className="w-12 h-12 text-muted-foreground" />}
                                     </div>
                                     {isAiAvatarEnabled && (
-                                        <label className="absolute bottom-0 right-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:scale-105 transition-transform z-20" title="آپلود عکس">
+                                        <label className="absolute bottom-0 right-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:scale-105 transition-transform z-20" title={isFa ? "آپلود عکس" : "Upload Photo"}>
                                             <Camera className="w-5 h-5" />
-                                            <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} aria-label="آپلود عکس پروفایل" />
+                                            <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} aria-label={isFa ? "آپلود عکس پروفایل" : "Upload Profile Photo"} />
                                         </label>
                                     )}
                                 </div>
-                                <h2 className="text-xl font-bold mb-1 text-foreground">{formData.name || "کاربر جدید"}</h2>
+                                <h2 className="text-xl font-bold mb-1 text-foreground">{formData.name || (isFa ? "کاربر جدید" : "New User")}</h2>
                                 <p className="text-sm text-primary font-bold flex items-center justify-center gap-1.5 mb-4">
                                     <Shield className="w-4 h-4" /> {initialUser?.role || "User"}
                                 </p>
@@ -178,22 +181,22 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                 <button type="button" onClick={() => {
                                     import('@/actions/auth').then(m => m.logout());
                                 }} className="w-full py-2 mb-6 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500/20 text-sm font-bold transition-colors flex items-center justify-center gap-2">
-                                    <X className="w-4 h-4" /> خروج از حساب
+                                    <X className="w-4 h-4" /> {isFa ? "خروج از حساب" : "Logout"}
                                 </button>
 
                                 {isAiAvatarEnabled && (
                                     <div className="w-full bg-indigo-500/8 border border-indigo-500/20 rounded-2xl p-5">
                                         <h3 className="font-bold text-sm mb-3 text-indigo-500 dark:text-indigo-400 flex items-center gap-2">
-                                            <Sparkles className="w-4 h-4" /> پروفایل با هوش مصنوعی
+                                            <Sparkles className="w-4 h-4" /> {isFa ? "پروفایل با هوش مصنوعی" : "AI Avatar Generator"}
                                         </h3>
                                         <div className="flex gap-2 mb-4">
-                                            <button type="button" onClick={() => setGender('male')} className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-all ${gender === 'male' ? 'bg-blue-500 border-blue-500 text-white' : 'bg-secondary border-border text-muted-foreground hover:text-foreground'}`}>👨 مرد</button>
-                                            <button type="button" onClick={() => setGender('female')} className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-all ${gender === 'female' ? 'bg-pink-500 border-pink-500 text-white' : 'bg-secondary border-border text-muted-foreground hover:text-foreground'}`}>👩 زن</button>
+                                            <button type="button" onClick={() => setGender('male')} className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-all ${gender === 'male' ? 'bg-blue-500 border-blue-500 text-white' : 'bg-secondary border-border text-muted-foreground hover:text-foreground'}`}>{isFa ? "👨 مرد" : "👨 Male"}</button>
+                                            <button type="button" onClick={() => setGender('female')} className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-all ${gender === 'female' ? 'bg-pink-500 border-pink-500 text-white' : 'bg-secondary border-border text-muted-foreground hover:text-foreground'}`}>{isFa ? "👩 زن" : "👩 Female"}</button>
                                         </div>
                                         <button type="button" onClick={handleGenerate} disabled={!selectedFile || isGenerating}
                                             className="w-full py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-bold disabled:opacity-50 flex items-center justify-center gap-2">
                                             {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-                                            {isGenerating ? "در حال پردازش..." : "ایجاد تصویر با AI"}
+                                            {isGenerating ? (isFa ? "در حال پردازش..." : "Processing...") : (isFa ? "ایجاد تصویر با AI" : "Generate AI Avatar")}
                                         </button>
                                     </div>
                                 )}
@@ -205,54 +208,54 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                             {/* Personal Info */}
                             <div className="bg-card border border-border rounded-3xl p-8">
                                 <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-foreground">
-                                    <User className="w-5 h-5 text-primary" /> اطلاعات شخصی
+                                    <User className="w-5 h-5 text-primary" /> {isFa ? "اطلاعات شخصی" : "Personal Information"}
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label htmlFor="fullname" className="text-sm font-medium text-muted-foreground">نام و نام خانوادگی</label>
+                                        <label htmlFor="fullname" className="text-sm font-medium text-muted-foreground">{isFa ? "نام و نام خانوادگی" : "Full Name"}</label>
                                         <input id="fullname" type="text" value={formData.name}
                                             onChange={e => setFormData({ ...formData, name: e.target.value })}
                                             className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-medium text-muted-foreground">آدرس ایمیل</label>
+                                        <label htmlFor="email" className="text-sm font-medium text-muted-foreground">{isFa ? "آدرس ایمیل" : "Email Address"}</label>
                                         <input id="email" type="email" disabled value={initialUser?.email || ""}
                                             className="w-full bg-secondary/50 border border-border rounded-xl px-4 py-3 text-muted-foreground cursor-not-allowed" dir="ltr" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="phone" className="text-sm font-medium text-muted-foreground">شماره تماس</label>
+                                        <label htmlFor="phone" className="text-sm font-medium text-muted-foreground">{isFa ? "شماره تماس" : "Phone Number"}</label>
                                         <input id="phone" type="tel" value={formData.phone} placeholder="+1..."
                                             onChange={e => setFormData({ ...formData, phone: e.target.value })}
                                             className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" dir="ltr" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="whatsapp" className="text-sm font-medium text-muted-foreground">شماره واتس‌اپ</label>
+                                        <label htmlFor="whatsapp" className="text-sm font-medium text-muted-foreground">{isFa ? "شماره واتس‌اپ" : "WhatsApp Number"}</label>
                                         <input id="whatsapp" type="tel" value={formData.whatsapp_number} placeholder="+1..."
                                             onChange={e => setFormData({ ...formData, whatsapp_number: e.target.value })}
                                             className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" dir="ltr" />
                                     </div>
                                 </div>
                                 <div className="space-y-2 mt-6">
-                                    <label htmlFor="bio" className="text-sm font-medium text-muted-foreground">درباره من (Bio)</label>
+                                    <label htmlFor="bio" className="text-sm font-medium text-muted-foreground">{isFa ? "درباره من (Bio)" : "About Me (Bio)"}</label>
                                     <textarea id="bio" rows={3} value={formData.bio}
                                         onChange={e => setFormData({ ...formData, bio: e.target.value })}
                                         className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground resize-none"
-                                        placeholder="معرفی کوتاهی از خود بنویسید..." />
+                                        placeholder={isFa ? "معرفی کوتاهی از خود بنویسید..." : "Write a short bio..."} />
                                 </div>
                             </div>
 
                             {/* ── Security / Password Section ── */}
                             <div className="bg-card border border-border rounded-3xl p-8">
                                 <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-foreground">
-                                    <Shield className="w-5 h-5 text-indigo-500" /> تغییر رمز عبور
+                                    <Shield className="w-5 h-5 text-indigo-500" /> {isFa ? "تغییر رمز عبور" : "Change Password"}
                                 </h3>
                                 <div className="space-y-4">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-medium text-muted-foreground">رمز عبور جدید</label>
+                                            <label className="text-sm font-medium text-muted-foreground">{isFa ? "رمز عبور جدید" : "New Password"}</label>
                                             <input 
                                                 type="password" 
-                                                placeholder="حداقل ۶ کاراکتر"
+                                                placeholder={isFa ? "حداقل ۶ کاراکتر" : "At least 6 characters"}
                                                 value={newPassword}
                                                 onChange={e => setNewPassword(e.target.value)}
                                                 className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" 
@@ -260,10 +263,10 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-sm font-medium text-muted-foreground">تکرار رمز عبور جدید</label>
+                                            <label className="text-sm font-medium text-muted-foreground">{isFa ? "تکرار رمز عبور جدید" : "Confirm New Password"}</label>
                                             <input 
                                                 type="password" 
-                                                placeholder="تکرار رمز عبور"
+                                                placeholder={isFa ? "تکرار رمز عبور" : "Confirm password"}
                                                 value={confirmPassword}
                                                 onChange={e => setConfirmPassword(e.target.value)}
                                                 className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" 
@@ -278,7 +281,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                         className="mt-4 px-6 py-2.5 rounded-xl bg-secondary hover:bg-secondary/80 text-foreground text-sm font-bold transition-colors disabled:opacity-50 flex items-center gap-2"
                                     >
                                         {isChangingPassword && <Loader2 className="w-4 h-4 animate-spin" />}
-                                        تغییر رمز عبور
+                                        {isFa ? "تغییر رمز عبور" : "Change Password"}
                                     </button>
                                 </div>
                             </div>
@@ -286,7 +289,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                             {/* ── Address Section ── */}
                             <div className="bg-card border border-border rounded-3xl p-8">
                                 <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-foreground">
-                                    <MapPin className="w-5 h-5 text-emerald-500" /> آدرس پستی
+                                    <MapPin className="w-5 h-5 text-emerald-500" /> {isFa ? "آدرس پستی" : "Postal Address"}
                                 </h3>
                                 <AddressAutocomplete value={address} onChange={setAddress} />
                             </div>
@@ -297,13 +300,13 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                     <div className="flex justify-end gap-3 items-center pt-2">
                         {saveSuccess && (
                             <span className="text-emerald-500 text-sm font-bold flex items-center gap-1">
-                                <CheckCircle className="w-4 h-4" /> ذخیره شد
+                                <CheckCircle className="w-4 h-4" /> {isFa ? "ذخیره شد" : "Saved Successfully"}
                             </span>
                         )}
                         <button type="submit" disabled={isSaving}
                             className="px-8 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold transition-colors disabled:opacity-50 flex items-center gap-2 shadow-lg shadow-primary/20">
                             {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
-                            ذخیره تمام تغییرات
+                            {isFa ? "ذخیره تمام تغییرات" : "Save All Changes"}
                         </button>
                     </div>
                 </form>

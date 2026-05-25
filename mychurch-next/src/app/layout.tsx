@@ -60,9 +60,9 @@ export default async function RootLayout({
           :root {
             --font-inter: 'Roboto', 'Inter', sans-serif;
             --font-roboto: 'Roboto', sans-serif;
-            --font-vazirmatn: 'B Homa', 'BHoma', 'Homa', 'Vazirmatn', sans-serif;
+            --font-vazirmatn: 'Vazirmatn', sans-serif;
             --font-homa: 'B Homa', 'BHoma', 'Homa', 'Vazirmatn', sans-serif;
-            --font-sans: 'B Homa', 'BHoma', 'Homa', 'Vazirmatn', sans-serif;
+            --font-sans: 'Vazirmatn', sans-serif;
             --font-nastaliq: 'Noto Nastaliq Urdu', serif;
             --font-lalezar: 'Lalezar', cursive;
             --font-playfair: 'Playfair Display', serif;
