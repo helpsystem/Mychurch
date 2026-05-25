@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 
 interface Timepoint {
     time: number;
@@ -14,10 +14,25 @@ export async function POST(
         const { id } = await params;
         const supabase = await createClient();
 
+        // ===== Security Check: Admin or Leader Role Required =====
         const { data: { user }, error: authError } = await supabase.auth.getUser();
         if (authError || !user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
+
+        const { data: userRecord } = await supabase
+            .from('users')
+            .select('role')
+            .eq('email', user.email)
+            .single();
+
+        if (!userRecord || (userRecord.role !== 'Admin' && userRecord.role !== 'Leader')) {
+            return NextResponse.json(
+                { error: "Forbidden: Admin or Leader access required" },
+                { status: 403 }
+            );
+        }
+        // ===== End Security Check =====
 
         const { timepoints, timing_data, lyrics_fa } = await req.json() as { timepoints: Timepoint[], timing_data?: any, lyrics_fa?: string };
  
@@ -33,13 +48,15 @@ export async function POST(
             updatePayload.lyrics_fa_clean = lyrics_fa;
         }
 
-        const { error } = await supabase
+        // Bypassing RLS safely with createAdminClient for authorized Admin/Leader
+        const adminSupabase = await createAdminClient();
+        const { error } = await adminSupabase
             .from("church_worship_songs")
             .update(updatePayload)
             .eq("id", id);
  
         if (error) throw error;
-  
+   
         return NextResponse.json({ 
             success: true, 
             timepoints_count: timepoints?.length || 0,
@@ -62,7 +79,7 @@ export async function GET(
         const { id } = await params;
         const supabase = await createClient();
 
-        // ===== Security Check: Admin Role Required =====
+        // ===== Security Check: Admin or Leader Role Required =====
         const { data: { user }, error: authError } = await supabase.auth.getUser();
         if (authError || !user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -74,9 +91,9 @@ export async function GET(
             .eq('email', user.email)
             .single();
 
-        if (!userRecord || userRecord.role !== 'Admin') {
+        if (!userRecord || (userRecord.role !== 'Admin' && userRecord.role !== 'Leader')) {
             return NextResponse.json(
-                { error: "Forbidden: Admin access required" },
+                { error: "Forbidden: Admin or Leader access required" },
                 { status: 403 }
             );
         }
@@ -102,3 +119,4 @@ export async function GET(
         return NextResponse.json({ error: "Failed to fetch timing data" }, { status: 500 });
     }
 }
+

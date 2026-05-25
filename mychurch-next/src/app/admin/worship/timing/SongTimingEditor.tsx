@@ -93,6 +93,62 @@ export default function SongTimingEditor({
         }
     }, [timingData, lyricsFa, songId]);
 
+    // Sync flat timepoints into currentTiming structure
+    useEffect(() => {
+        if (!currentTiming || timepoints.length === 0) return;
+
+        // Create a deep copy of currentTiming
+        const updated = JSON.parse(JSON.stringify(currentTiming)) as SystemTimingV2;
+        
+        let flatWordIndex = 0;
+        updated.lines = updated.lines.map((line) => {
+            let lineStart = line.start;
+            let lineEnd = line.end;
+
+            const wordsWithTimes = line.words.map((wordObj) => {
+                const tp = timepoints[flatWordIndex];
+                let start = wordObj.start;
+                let end = wordObj.end;
+
+                if (tp) {
+                    start = tp.time;
+                    // End time is start of next word, or start + 0.5s for the last word
+                    const nextTp = timepoints[flatWordIndex + 1];
+                    end = nextTp ? nextTp.time : tp.time + 0.5;
+                }
+
+                flatWordIndex++;
+                return { ...wordObj, start, end };
+            });
+
+            // Update line start and end based on its words
+            if (wordsWithTimes.length > 0) {
+                const activeWords = wordsWithTimes.filter(w => w.start > 0 || w.end > 0);
+                if (activeWords.length > 0) {
+                    lineStart = activeWords[0].start;
+                    lineEnd = activeWords[activeWords.length - 1].end;
+                }
+            }
+
+            return {
+                ...line,
+                words: wordsWithTimes,
+                start: lineStart,
+                end: lineEnd
+            };
+        });
+
+        // Calculate totalDuration
+        if (timepoints.length > 0) {
+            updated.totalDuration = timepoints[timepoints.length - 1].time + 1.0;
+        }
+
+        // Only update state if it is structurally different to prevent infinite loops
+        if (JSON.stringify(updated) !== JSON.stringify(currentTiming)) {
+            setCurrentTiming(updated);
+        }
+    }, [timepoints]);
+
     // Media Handlers
     const togglePlay = () => {
         if (!audioRef.current) return;
