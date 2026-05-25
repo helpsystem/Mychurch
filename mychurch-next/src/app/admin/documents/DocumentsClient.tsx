@@ -179,23 +179,59 @@ function PrintStyles() {
 
 // ─── Print QR Fixed Footer (shown on every print page) ───────────────────────
 function PrintQRFixed({ qrData, refNo, isRtl }: { qrData: string; refNo: string; isRtl?: boolean }) {
-  const url = qrData.startsWith("http") ? qrData : `https://www.iranianchurchdc.com/verify/${encodeURIComponent(qrData)}`;
+  // qrData is always a full verify URL — scanning opens the church verification page
+  const url = qrData;
   return (
-    <div className="print-qr-fixed hidden print:flex">
-      <QRCodeSVG
-        value={url}
-        size={64}
-        level="M"
-        bgColor="#ffffff"
-        fgColor="#000000"
-        marginSize={1}
-        imageSettings={{ src: "/logo-transparent.png", height: 14, width: 14, excavate: true }}
-      />
-      <div style={{ fontSize: '6pt', color: '#94a3b8', fontWeight: 'bold', textAlign: 'center', fontFamily: 'monospace', letterSpacing: '0.05em' }}>
-        {isRtl ? 'اسکن برای تأیید' : 'SCAN TO VERIFY'}
+    <div
+      className="hidden print:flex"
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: "28mm",
+        background: "#fff",
+        borderTop: "2px solid #1e293b",
+        zIndex: 9999,
+        display: "none", // overridden by print:flex via @media print in PrintStyles
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 20mm",
+        pageBreakAfter: "avoid",
+      }}
+    >
+      {/* Left: Church identity + doc ref + warning */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "2px", maxWidth: "55%" }}>
+        <div style={{ fontSize: "8pt", fontWeight: 900, color: "#0f172a", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "monospace" }}>
+          Iranian Christian Church of Washington DC
+        </div>
+        <div style={{ fontSize: "6.5pt", color: "#64748b", fontFamily: "monospace" }}>
+          iranianchurchdc.com &nbsp;·&nbsp; info@iranianchurchdc.com
+        </div>
+        <div style={{ fontSize: "6.5pt", color: "#94a3b8", fontFamily: "monospace", marginTop: "2px" }}>
+          {isRtl ? "شماره سند:" : "Document Ref:"} <span style={{ color: "#1e40af", fontWeight: 700 }}>{refNo}</span>
+        </div>
+        <div style={{ fontSize: "5.5pt", color: "#dc2626", fontWeight: 900, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace", marginTop: "1px" }}>
+          ⚠ PROTECTED · DO NOT ALTER · VERIFY AUTHENTICITY BY SCANNING QR
+        </div>
       </div>
-      <div style={{ fontSize: '5.5pt', color: '#cbd5e1', fontFamily: 'monospace', textAlign: 'center', wordBreak: 'break-all', maxWidth: '64px' }}>
-        {refNo}
+
+      {/* Right: QR code + label */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
+        <div style={{ padding: "4px", border: "2px solid #1e293b", borderRadius: "6px", background: "#fff" }}>
+          <QRCodeSVG
+            value={url}
+            size={68}
+            level="H"
+            bgColor="#ffffff"
+            fgColor="#000000"
+            marginSize={0}
+            imageSettings={{ src: "/logo-transparent.png", height: 16, width: 16, excavate: true }}
+          />
+        </div>
+        <div style={{ fontSize: "5.5pt", fontWeight: 900, color: "#475569", letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "monospace" }}>
+          {isRtl ? "اسکن برای تأیید" : "SCAN TO VERIFY"}
+        </div>
       </div>
     </div>
   );
@@ -567,7 +603,9 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
   const isRtl = editLang === "fa";
   const design = isRtl ? church.designFa : church.designEn;
   const dateStr = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-  const qrData = `VERIFY:${refNo}:${dateStr}:${church.ein}`;
+  // Each letter gets its own unique verify URL — scanned QR opens the verification page
+  const verifyUrl = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(refNo)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=letter`;
+  const qrData = verifyUrl;
 
   return (
     <DocumentSecurity>
@@ -683,7 +721,9 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
   const design = church.designEn;
   const total = inKindItems.reduce((s, i) => s + i.value * i.qty, 0);
   const dateStr = receipt.date as string || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-  const qrData = `RECEIPT:${receiptNo}:${church.ein}:${total || receipt.amount}`;
+  // Each receipt has its own unique QR verify URL
+  const verifyUrl = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(`RCP-${receiptNo}`)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=receipt&amount=${total || receipt.amount}`;
+  const qrData = verifyUrl;
 
   return (
     <DocumentSecurity>
@@ -853,8 +893,9 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
   invoiceTo: string; invoiceAddress?: string; invoiceName: string; invoiceDate: string; invoiceItems: any[]; invoiceTotalAmount: number; invoiceWallet: string; invoiceNotes?: string; invoiceNo: string; church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; isPdf?: boolean;
 }) {
   const design = church.designEn;
-  const qrData = `INV-${invoiceNo}:${invoiceTotalAmount}`;
   const dateStr = new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  // Each invoice gets its own unique QR verify URL
+  const qrData = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(`INV-${invoiceNo}`)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=invoice&amount=${invoiceTotalAmount}`;
 
   return (
     <DocumentSecurity>
@@ -1514,32 +1555,59 @@ export default function ChurchDocumentsPage() {
       const html2canvasMod = await import("html2canvas");
       const jsPDF = jspdfMod.default || (jspdfMod as any).jsPDF;
       const html2canvas = html2canvasMod.default;
-      
+
       const canvas = await html2canvas(ref.current, {
-        scale: 2,
+        scale: 2.5,         // higher resolution for sharper QR codes
         useCORS: true,
         allowTaint: true,
         backgroundColor: "#ffffff",
         logging: false,
+        imageTimeout: 10000,
       });
-      const imgData = canvas.toDataURL("image/jpeg", 0.92);
-      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "letter" });
+
+      const imgData = canvas.toDataURL("image/jpeg", 0.95);
+
+      // ── PDF with Owner Password (prevents editing, allows printing) ──
+      const refNo = emailModal?.refNo || "DOC";
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "letter",
+        // Encrypt: no user password (anyone can open), owner-only editing
+        ...({
+          encryption: {
+            userPassword: "",
+            ownerPassword: `IranChurch-${refNo}-${new Date().getFullYear()}`,
+            userPermissions: ["print", "print-high", "copy"],  // allow print + copy text, NO edit
+          }
+        } as any)
+      });
+
+      // ── PDF Metadata (shown in "Document Properties") ──
+      pdf.setProperties({
+        title: `${emailModal?.subject || "Official Document"} — Ref: ${refNo}`,
+        subject: `Issued by Iranian Christian Church of Washington DC`,
+        author: `Iranian Christian Church of Washington DC (iranianchurchdc.com)`,
+        keywords: `official, church, verified, ${refNo}`,
+        creator: `MyChurch Document System`,
+      });
+
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
-      const imgW = pageW;
       const imgH = (canvas.height * pageW) / canvas.width;
-      
+
+      // ── Render pages ──
       let yPos = 0;
       let heightLeft = imgH;
-      pdf.addImage(imgData, "JPEG", 0, yPos, imgW, imgH);
+      pdf.addImage(imgData, "JPEG", 0, yPos, pageW, imgH);
       heightLeft -= pageH;
       while (heightLeft > 0) {
         yPos = heightLeft - imgH;
         pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 0, yPos, imgW, imgH);
+        pdf.addImage(imgData, "JPEG", 0, yPos, pageW, imgH);
         heightLeft -= pageH;
       }
-      
+
       const pdfBase64 = pdf.output("datauristring").split(",")[1];
       await handleSendEmail(pdfBase64);
     } catch (err) {
