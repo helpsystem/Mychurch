@@ -302,24 +302,12 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
         if (audioPart) parts.push(audioPart);
 
         let responseText = "";
-        let modelName = 'gemini-2.0-flash';
-        
-        try {
-            console.log(`[AI-Wizard] Calling ${modelName}...`);
-            const response = await genAI.models.generateContent({
-                model: modelName,
-                contents: parts,
-                config: {
-                    responseMimeType: "application/json",
-                    maxOutputTokens: 8192,
-                }
-            });
-            responseText = response.text || "";
-        } catch (e: any) {
-            console.warn(`[AI-Wizard] Primary model ${modelName} failed (${e.message || 'Unknown'}). Attempting automatic fallback to gemini-1.5-flash...`);
+        const candidateModels = ['gemini-2.0-flash', 'gemini-2.5-flash', 'gemini-1.5-flash'];
+        let lastError: any = null;
+
+        for (const modelName of candidateModels) {
             try {
-                modelName = 'gemini-1.5-flash';
-                console.log(`[AI-Wizard] Calling fallback model ${modelName}...`);
+                console.log(`[AI-Wizard] Calling model ${modelName}...`);
                 const response = await genAI.models.generateContent({
                     model: modelName,
                     contents: parts,
@@ -329,10 +317,19 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                     }
                 });
                 responseText = response.text || "";
-            } catch (fallbackError: any) {
-                console.error("[AI-Wizard] Fallback AI SDK failed:", fallbackError);
-                throw new Error(`AI SDK Data Issue: ${fallbackError.message || e.message || 'Unknown'}`);
+                if (responseText) {
+                    console.log(`[AI-Wizard] Successfully generated content using ${modelName}`);
+                    break;
+                }
+            } catch (e: any) {
+                console.warn(`[AI-Wizard] Model ${modelName} failed: ${e.message || 'Unknown'}. Trying next candidate model...`);
+                lastError = e;
             }
+        }
+
+        if (!responseText) {
+            console.error("[AI-Wizard] All candidate models failed.");
+            throw new Error(`AI SDK Data Issue: ${lastError?.message || 'Unknown'}`);
         }
 
         if (!responseText) throw new Error("No output returned from AI");
