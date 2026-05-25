@@ -372,10 +372,31 @@ export default function SongTimingEditor({
                     <div className="text-6xl font-mono font-black text-primary tabular-nums tracking-wider mb-2">
                         {formatTime(currentTime)}
                     </div>
-                    <div className="text-xs text-slate-400 mb-6 flex items-center justify-center gap-2">
+                    <div className="text-xs text-slate-400 mb-4 flex items-center justify-center gap-2">
                         <Layout className="w-3 h-3" />
                         <span>{markedCount} از {words.length} کلمه سینک شد</span>
                     </div>
+
+                    {/* Syncing HUD */}
+                    {currentWordIndex < words.length && (
+                        <div className="bg-slate-950/60 rounded-3xl p-4 max-w-md mx-auto mb-6 border border-white/5 flex flex-col items-center gap-2 animate-in fade-in duration-300">
+                            <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">کلمه فعلی برای ثبت (Spacebar)</span>
+                            <div className="flex items-center justify-center gap-4 dir-ltr" dir="ltr">
+                                {currentWordIndex > 0 && (
+                                    <span className="text-sm text-slate-600 line-through opacity-50 font-[Vazirmatn]">{words[currentWordIndex - 1]}</span>
+                                )}
+                                <span className="text-4xl font-black text-primary animate-pulse scale-110 px-4 py-1.5 bg-primary/10 rounded-2xl border border-primary/20 font-[Vazirmatn]">{words[currentWordIndex]}</span>
+                                {currentWordIndex + 1 < words.length && (
+                                    <span className="text-sm text-slate-400 font-[Vazirmatn]">{words[currentWordIndex + 1]}</span>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                    {currentWordIndex >= words.length && words.length > 0 && (
+                        <div className="bg-emerald-500/10 text-emerald-500 rounded-3xl p-4 max-w-md mx-auto mb-6 border border-emerald-500/20 text-sm font-bold animate-in fade-in duration-300">
+                            🎉 تمامی کلمات با موفقیت سینک شدند!
+                        </div>
+                    )}
                     
                     <div className="h-2 bg-slate-800 rounded-full overflow-hidden mx-auto max-w-sm mb-8 shadow-inner">
                         <div className="h-full bg-gradient-to-r from-primary to-blue-400 transition-all duration-300" style={{ width: `${progress}%` }} />
@@ -412,43 +433,79 @@ export default function SongTimingEditor({
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                 <div className={cn("bg-slate-900/40 border border-white/5 rounded-3xl p-8 transition-all duration-300", selectedWord ? "lg:col-span-3" : "lg:col-span-4")}>
                     <div className="space-y-16">
-                        {currentTiming?.lines.map((lineObj, lIdx) => (
-                            <div key={lIdx} className="space-y-6 group/line">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                    <input 
-                                        className="bg-transparent border-b border-transparent focus:border-primary focus:outline-none text-xl font-bold text-white w-full py-1 transition-colors"
-                                        value={lineObj.line}
-                                        onChange={(e) => handleLineTextUpdate(lIdx, e.target.value)}
-                                        dir="rtl"
-                                        title={`ویرایش متن اصلی خط ${lIdx + 1}`}
-                                        placeholder="متن فارسی را اینجا بنویسید..."
-                                    />
+                        {(() => {
+                            let flatIndexCounter = 0;
+                            return currentTiming?.lines.map((lineObj, lIdx) => (
+                                <div key={lIdx} className="space-y-6 group/line">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                        <input 
+                                            className="bg-transparent border-b border-transparent focus:border-primary focus:outline-none text-xl font-bold text-white w-full py-1 transition-colors"
+                                            value={lineObj.line}
+                                            onChange={(e) => handleLineTextUpdate(lIdx, e.target.value)}
+                                            dir="rtl"
+                                            title={`ویرایش متن اصلی خط ${lIdx + 1}`}
+                                            placeholder="متن فارسی را اینجا بنویسید..."
+                                        />
+                                    </div>
+                                    
+                                    <div className="flex flex-wrap gap-x-6 gap-y-10 leading-loose items-end">
+                                        {lineObj.words.map((wordObj, wIdx) => {
+                                            const flatIndex = flatIndexCounter++;
+                                            const isSelected = selectedWord?.lineIndex === lIdx && selectedWord?.wordIndex === wIdx;
+                                            const isSynced = flatIndex < currentWordIndex;
+                                            const isCurrent = flatIndex === currentWordIndex;
+                                            const isUpcoming = flatIndex > currentWordIndex;
+
+                                            return (
+                                                <button
+                                                    key={wIdx}
+                                                    type="button"
+                                                    onClick={() => setSelectedWord({ lineIndex: lIdx, wordIndex: wIdx })}
+                                                    className={cn(
+                                                        "relative flex flex-col items-center group/word transition-all duration-300", 
+                                                        isSelected && "scale-110 z-10"
+                                                    )}
+                                                >
+                                                    {wordObj.finglish && (
+                                                        <span className={cn(
+                                                            "text-[10px] font-black uppercase tracking-tighter mb-1 drop-shadow-sm transition-colors",
+                                                            isCurrent ? "text-blue-300 font-bold" : isSynced ? "text-emerald-400" : "text-slate-500"
+                                                        )}>
+                                                            {wordObj.finglish}
+                                                        </span>
+                                                    )}
+                                                    <span className={cn(
+                                                        "text-2xl font-[Vazirmatn] px-3 py-1.5 rounded-xl transition-all shadow-md border",
+                                                        isSelected && "ring-2 ring-primary/60 border-primary shadow-primary/10",
+                                                        isCurrent && "bg-gradient-to-r from-primary to-blue-600 text-white font-black ring-4 ring-primary/40 animate-pulse shadow-lg scale-110 border-primary-foreground/30",
+                                                        isSynced && !isCurrent && "bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20",
+                                                        isUpcoming && !isSelected && "text-slate-400 bg-slate-900/40 border-white/5 opacity-50 hover:opacity-80"
+                                                    )}>
+                                                        {wordObj.word}
+                                                    </span>
+                                                    {wordObj.english && (
+                                                        <span className={cn(
+                                                            "text-[9px] font-serif italic mt-1 font-bold transition-colors",
+                                                            isCurrent ? "text-emerald-300" : isSynced ? "text-emerald-500" : "text-slate-600"
+                                                        )}>
+                                                            {wordObj.english}
+                                                        </span>
+                                                    )}
+                                                    <span className={cn(
+                                                        "absolute -bottom-6 text-[8px] font-mono transition-colors",
+                                                        isCurrent ? "text-primary font-bold animate-pulse" : isSynced ? "text-emerald-400/80" : "text-slate-600"
+                                                    )}>
+                                                        {(wordObj.start || 0).toFixed(2)}s
+                                                    </span>
+                                                    {isSelected && <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-slate-900 animate-pulse" />}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
-                                
-                                <div className="flex flex-wrap gap-x-6 gap-y-10 leading-loose items-end">
-                                    {lineObj.words.map((wordObj, wIdx) => {
-                                        const isSelected = selectedWord?.lineIndex === lIdx && selectedWord?.wordIndex === wIdx;
-                                        return (
-                                            <button
-                                                key={wIdx}
-                                                type="button"
-                                                onClick={() => setSelectedWord({ lineIndex: lIdx, wordIndex: wIdx })}
-                                                className={cn("relative flex flex-col items-center group/word transition-all", isSelected && "scale-110 z-10")}
-                                            >
-                                                {wordObj.finglish && <span className="text-[10px] font-black text-blue-400 uppercase tracking-tighter mb-1 drop-shadow-sm">{wordObj.finglish}</span>}
-                                                <span className={cn("text-2xl font-[Vazirmatn] px-2 py-1 rounded-lg transition-colors shadow-lg", isSelected ? "bg-primary text-white ring-2 ring-primary/50 shadow-primary/20" : "text-white/90 hover:bg-white/10")}>
-                                                    {wordObj.word}
-                                                </span>
-                                                {wordObj.english && <span className="text-[9px] font-serif text-emerald-400 italic mt-1 font-bold">{wordObj.english}</span>}
-                                                <span className="absolute -bottom-6 text-[8px] font-mono text-slate-500">{(wordObj.start || 0).toFixed(2)}s</span>
-                                                {isSelected && <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-slate-900 animate-pulse" />}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        ))}
+                            ));
+                        })()}
                     </div>
                 </div>
 
