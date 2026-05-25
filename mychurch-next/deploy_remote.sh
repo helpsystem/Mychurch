@@ -33,12 +33,38 @@ else
     echo "Dependencies installed successfully"
 fi
 
+# Zero-Downtime build setup
+echo "Setting up clean zero-downtime shadow build..."
+BUILD_DIR="/root/mychurch-v2/mychurch-next-build-temp"
+rm -rf "$BUILD_DIR"
+mkdir -p "$BUILD_DIR"
+
+# Copy all source files except node_modules, .next, and git directories
+echo "Copying source files to shadow directory..."
+rsync -a --exclude='node_modules' --exclude='.next' --exclude='.git' /root/mychurch-v2/mychurch-next/ "$BUILD_DIR/"
+
+# Symlink node_modules from active directory to avoid massive disk usage
+echo "Symlinking node_modules..."
+ln -s /root/mychurch-v2/mychurch-next/node_modules "$BUILD_DIR/node_modules"
+
+# Perform build inside shadow directory
+cd "$BUILD_DIR"
 rm -rf .next/cache .next/lock
 export NODE_OPTIONS=--max-old-space-size=1536
 export NEXT_PRIVATE_BUILD_WORKER=1
-echo "Building Next.js (timeout: 120 minutes)..."
+echo "Building Next.js in shadow directory (timeout: 120 minutes)..."
 timeout 120m npm run build || (echo "Build failed, retrying after 30s..." && sleep 30 && timeout 120m npm run build)
 
+# atomic swap of builds inside mychurch-next
+echo "Performing zero-downtime build folder swap..."
+rm -rf /root/mychurch-v2/mychurch-next/.next_old
+if [ -d /root/mychurch-v2/mychurch-next/.next ]; then
+    mv /root/mychurch-v2/mychurch-next/.next /root/mychurch-v2/mychurch-next/.next_old
+fi
+mv "$BUILD_DIR/.next" /root/mychurch-v2/mychurch-next/.next
+
+# Restart service instantly
+echo "Restarting mychurch-next PM2 process..."
 if pm2 show mychurch-next > /dev/null 2>&1; then
     pm2 restart mychurch-next --update-env
 else
@@ -46,4 +72,8 @@ else
 fi
 pm2 save
 
-echo "Remote deploy script finished"
+# Clean up shadow folders
+rm -rf "$BUILD_DIR"
+rm -rf /root/mychurch-v2/mychurch-next/.next_old
+
+echo "Remote deploy script finished with zero-downtime!"
