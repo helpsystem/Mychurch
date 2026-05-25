@@ -369,7 +369,24 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
             timingData = aiData.timing_data || null;
         }
 
-        console.log(`[AI-Wizard] Updating DB for ${song.title_fa}...`);
+        // Synthesize flat timepoints for manual timing editor & legacy sync
+        const flatTimepoints: Array<{ time: number; word: string }> = [];
+        if (timingData && Array.isArray(timingData.lines)) {
+            timingData.lines.forEach((line: any) => {
+                if (Array.isArray(line.words)) {
+                    line.words.forEach((w: any) => {
+                        if (w && typeof w === 'object' && w.word) {
+                            flatTimepoints.push({
+                                time: Number(w.start) || 0,
+                                word: String(w.word)
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        console.log(`[AI-Wizard] Updating DB for ${song.title_fa} with timingData and ${flatTimepoints.length} flat timepoints...`);
         
         let finalLyricsFa = aiData.lyrics_fa_clean || aiData.lyrics_fa || song.lyrics_fa;
         let finalLyricsFinglish = aiData.lyrics_finglish_clean || aiData.lyrics_finglish || song.lyrics_finglish;
@@ -394,8 +411,9 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
                 lyrics_en = $3,
                 chords = $4,
                 category = $5,
-                timing_data = $6
-            WHERE id = $7
+                timing_data = $6,
+                timepoints = $7
+            WHERE id = $8
         `, [
             finalLyricsFa,
             finalLyricsFinglish,
@@ -403,6 +421,7 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
             finalChords,
             finalCategory,
             timingData ? JSON.stringify(timingData) : null,
+            flatTimepoints.length > 0 ? JSON.stringify(flatTimepoints) : null,
             id
         ]);
         try {
