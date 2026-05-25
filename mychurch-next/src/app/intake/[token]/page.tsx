@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { getIntakeRequest, submitIntakeForm } from "@/actions/intakeRequests";
-import type { IntakeField } from "@/actions/intakeRequests";
+import type { IntakeField } from "@/types/intake";
 import { CheckCircle2, Loader2, AlertCircle, FileText, Building2, Globe, ChevronRight } from "lucide-react";
 
 interface IntakeData {

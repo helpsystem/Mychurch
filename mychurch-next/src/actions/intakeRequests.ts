@@ -1,53 +1,20 @@
 'use server';
 
+/**
+ * Intake Request Server Actions
+ * 
+ * IMPORTANT: This file uses "use server" — it may ONLY export async functions.
+ * All types and constants are in @/types/intake
+ */
+
 import { createClient } from '@/utils/supabase/server';
 import { requireRole } from '@/utils/rbac';
 import { sendMail } from '@/lib/mailer';
 import { randomBytes } from 'crypto';
+import type { CreateIntakeOptions, IntakeStatus } from '@/types/intake';
 
-export type IntakeStatus = 'pending' | 'submitted' | 'used' | 'expired';
-
-export interface IntakeField {
-  key: string;
-  label: string;
-  labelFa: string;
-  type: 'text' | 'textarea' | 'email' | 'phone' | 'date' | 'select';
-  required: boolean;
-  options?: string[]; // for select
-}
-
-export interface CreateIntakeOptions {
-  templateType: 'letter' | 'receipt' | 'invoice';
-  templateName?: string;
-  templateLetterId?: string;
-  requiredFields: IntakeField[];
-  messageToUser?: string;
-  folderName?: string;
-}
-
-// ─── Predefined fields for quick selection ────────────────────────────────────
-export const INTAKE_FIELD_PRESETS: IntakeField[] = [
-  { key: 'full_name',      label: 'Full Name',          labelFa: 'نام و نام خانوادگی',    type: 'text',     required: true  },
-  { key: 'first_name',     label: 'First Name',         labelFa: 'نام',                    type: 'text',     required: true  },
-  { key: 'last_name',      label: 'Last Name',          labelFa: 'نام خانوادگی',          type: 'text',     required: true  },
-  { key: 'email',          label: 'Email Address',      labelFa: 'آدرس ایمیل',             type: 'email',    required: false },
-  { key: 'phone',          label: 'Phone Number',       labelFa: 'شماره تلفن',             type: 'phone',    required: false },
-  { key: 'address',        label: 'Full Address',       labelFa: 'آدرس کامل',              type: 'textarea', required: false },
-  { key: 'city',           label: 'City',               labelFa: 'شهر',                    type: 'text',     required: false },
-  { key: 'state',          label: 'State',              labelFa: 'ایالت',                  type: 'text',     required: false },
-  { key: 'zip',            label: 'ZIP Code',           labelFa: 'کد پستی',               type: 'text',     required: false },
-  { key: 'country',        label: 'Country',            labelFa: 'کشور',                   type: 'text',     required: false },
-  { key: 'case_number',    label: 'Case Number',        labelFa: 'شماره پرونده',           type: 'text',     required: false },
-  { key: 'date_of_birth',  label: 'Date of Birth',      labelFa: 'تاریخ تولد',             type: 'date',     required: false },
-  { key: 'nationality',    label: 'Nationality',        labelFa: 'ملیت',                   type: 'text',     required: false },
-  { key: 'membership_id',  label: 'Membership ID',      labelFa: 'شناسه عضویت',            type: 'text',     required: false },
-  { key: 'organization',   label: 'Organization/Agency',labelFa: 'سازمان / ارگان',         type: 'text',     required: false },
-  { key: 'request_type',   label: 'Request Type',       labelFa: 'نوع درخواست',            type: 'select',   required: true,
-    options: ['Immigration/Visa', 'Tax/IRS', 'Employment', 'Membership', 'Legal', 'Financial', 'Other']
-  },
-  { key: 'description',    label: 'Additional Details', labelFa: 'توضیحات تکمیلی',        type: 'textarea', required: false },
-  { key: 'custom_field',   label: 'Custom Field',       labelFa: 'فیلد دلخواه',            type: 'text',     required: false },
-];
+export type { IntakeStatus } from '@/types/intake';
+export type { IntakeField, CreateIntakeOptions } from '@/types/intake';
 
 // ─── Create a new intake request ─────────────────────────────────────────────
 export async function createIntakeRequest(opts: CreateIntakeOptions) {
@@ -71,7 +38,7 @@ export async function createIntakeRequest(opts: CreateIntakeOptions) {
         required_fields: opts.requiredFields,
         message_to_user: opts.messageToUser || '',
         folder_name: opts.folderName || 'General',
-        expires_at: null, // no expiry by default
+        expires_at: null,
       })
       .select()
       .single();
@@ -105,7 +72,6 @@ export async function getIntakeRequest(token: string) {
 export async function submitIntakeForm(token: string, submittedData: Record<string, string>) {
   const supabase = await createClient();
 
-  // Fetch the request
   const { data: request, error: fetchError } = await supabase
     .from('intake_requests')
     .select('*')
@@ -115,7 +81,6 @@ export async function submitIntakeForm(token: string, submittedData: Record<stri
   if (fetchError || !request) return { error: 'Invalid link' };
   if (request.status !== 'pending') return { error: 'already_submitted' };
 
-  // Update status
   const { error: updateError } = await supabase
     .from('intake_requests')
     .update({
@@ -127,7 +92,6 @@ export async function submitIntakeForm(token: string, submittedData: Record<stri
 
   if (updateError) return { error: updateError.message };
 
-  // Send confirmation email to user if they provided an email
   const userEmail = submittedData['email'];
   if (userEmail) {
     try {
@@ -177,7 +141,6 @@ export async function submitIntakeForm(token: string, submittedData: Record<stri
       });
     } catch (emailErr) {
       console.warn('[Intake] Failed to send confirmation email:', emailErr);
-      // Don't fail the submission if email fails
     }
   }
 

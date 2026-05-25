@@ -8,7 +8,8 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { emailDocument } from "@/actions/documentMailer";
 import { deleteDocument, getDocuments, saveDocument, updateDocument } from "@/actions/documents";
-import { createIntakeRequest, getMyIntakeRequests, markIntakeAsUsed, deleteIntakeRequest, INTAKE_FIELD_PRESETS, type IntakeField, type IntakeStatus } from "@/actions/intakeRequests";
+import { createIntakeRequest, getMyIntakeRequests, markIntakeAsUsed, deleteIntakeRequest } from "@/actions/intakeRequests";
+import { INTAKE_FIELD_PRESETS, type IntakeField, type IntakeStatus } from "@/types/intake";
 import { toast } from "sonner";
 import {
   FileText, Printer, Plus, Building2, CreditCard, Package,
