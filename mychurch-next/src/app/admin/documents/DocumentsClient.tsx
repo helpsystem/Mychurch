@@ -8,12 +8,14 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { emailDocument } from "@/actions/documentMailer";
 import { deleteDocument, getDocuments, saveDocument, updateDocument } from "@/actions/documents";
+import { createIntakeRequest, getMyIntakeRequests, markIntakeAsUsed, deleteIntakeRequest, INTAKE_FIELD_PRESETS, type IntakeField, type IntakeStatus } from "@/actions/intakeRequests";
 import { toast } from "sonner";
 import {
   FileText, Printer, Plus, Building2, CreditCard, Package,
   FileSignature, Check, DollarSign, X, Settings, Wand2,
   Languages, Loader2, Sparkles, Hash, ChevronDown, Save, Send,
-  Globe, Phone, Mail, User, MapPin, Calendar, History as HistoryIcon, Search, Trash2, Copy, Pencil
+  Globe, Phone, Mail, User, MapPin, Calendar, History as HistoryIcon, Search, Trash2, Copy, Pencil,
+  Link2, Share2, CheckSquare, Square, FolderOpen, Folder, Star, Inbox, ChevronRight, ClipboardList, ExternalLink, RefreshCw
 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
@@ -1198,9 +1200,120 @@ export default function ChurchDocumentsPage() {
 
 
   // Tab
-  const [activeTab, setActiveTab] = useState<"letters" | "receipts" | "inkind" | "invoice" | "history">("letters");
+  const [activeTab, setActiveTab] = useState<"letters" | "receipts" | "inkind" | "invoice" | "history" | "intake">("letters");
 
-  // Letter fields
+  // ── Folder & Multi-select state ──────────────────────────────────────────────
+  const DEFAULT_FOLDERS = ["Inbox", "Immigration", "Tax", "Membership", "Donation", "Legal", "General", "Starred"];
+  const [folders, setFolders] = useState<string[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("mychurch_doc_folders");
+      try { return saved ? JSON.parse(saved) : DEFAULT_FOLDERS; } catch { return DEFAULT_FOLDERS; }
+    }
+    return DEFAULT_FOLDERS;
+  });
+  const [activeFolder, setActiveFolder] = useState<string>("Inbox");
+  const [docFolders, setDocFolders] = useState<Record<string, string>>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("mychurch_doc_folder_map");
+      try { return saved ? JSON.parse(saved) : {}; } catch { return {}; }
+    }
+    return {};
+  });
+  const [starredDocs, setStarredDocs] = useState<Set<string>>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("mychurch_doc_starred");
+      try { return new Set(JSON.parse(saved || "[]")); } catch { return new Set(); }
+    }
+    return new Set();
+  });
+  const [selectedDocs, setSelectedDocs] = useState<Set<string>>(new Set());
+  const [newFolderInput, setNewFolderInput] = useState("");
+
+  // ── Intake Request state ──────────────────────────────────────────────────────
+  const [intakeRequests, setIntakeRequests] = useState<any[]>([]);
+  const [intakeLoading, setIntakeLoading] = useState(false);
+  const [showIntakeCreate, setShowIntakeCreate] = useState(false);
+  const [intakeFields, setIntakeFields] = useState<IntakeField[]>([]);
+  const [intakeTemplateType, setIntakeTemplateType] = useState<"letter" | "receipt" | "invoice">("letter");
+  const [intakeMessage, setIntakeMessage] = useState("");
+  const [intakeFolder, setIntakeFolder] = useState("Inbox");
+  const [intakeCreating, setIntakeCreating] = useState(false);
+  const [createdIntakeToken, setCreatedIntakeToken] = useState<string | null>(null);
+
+  // ── Persist folder data ──
+  useEffect(() => { localStorage.setItem("mychurch_doc_folders", JSON.stringify(folders)); }, [folders]);
+  useEffect(() => { localStorage.setItem("mychurch_doc_folder_map", JSON.stringify(docFolders)); }, [docFolders]);
+  useEffect(() => { localStorage.setItem("mychurch_doc_starred", JSON.stringify([...starredDocs])); }, [starredDocs]);
+
+  const toggleStar = (id: string) => setStarredDocs(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const moveDocToFolder = (id: string, folder: string) => setDocFolders(prev => ({ ...prev, [id]: folder }));
+  const toggleSelect = (id: string) => setSelectedDocs(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const selectAll = (ids: string[]) => setSelectedDocs(new Set(ids));
+  const clearSelect = () => setSelectedDocs(new Set());
+  const moveSelectedToFolder = (folder: string) => {
+    setDocFolders(prev => { const n = { ...prev }; selectedDocs.forEach(id => { n[id] = folder; }); return n; });
+    clearSelect();
+    toast.success(isRtl ? `انتقال به پوشه ${folder}` : `Moved to folder: ${folder}`);
+  };
+
+  const loadIntakeRequests = async () => {
+    setIntakeLoading(true);
+    try {
+      const result = await getMyIntakeRequests();
+      if (result.data) setIntakeRequests(result.data);
+    } catch (e) { console.error(e); }
+    finally { setIntakeLoading(false); }
+  };
+
+  useEffect(() => {
+    if (activeTab === "intake") void loadIntakeRequests();
+  }, [activeTab]);
+
+  const handleCreateIntakeLink = async () => {
+    if (intakeFields.length === 0) { toast.error(isRtl ? "حداقل یک فیلد انتخاب کنید" : "Select at least one field"); return; }
+    setIntakeCreating(true);
+    try {
+      const result = await createIntakeRequest({
+        templateType: intakeTemplateType,
+        requiredFields: intakeFields,
+        messageToUser: intakeMessage,
+        folderName: intakeFolder,
+      });
+      if (result.error) { toast.error(result.error); return; }
+      setCreatedIntakeToken(result.token || null);
+      void loadIntakeRequests();
+      toast.success(isRtl ? "لینک ساخته شد!" : "Intake link created!");
+    } catch (e: any) { toast.error(e.message); }
+    finally { setIntakeCreating(false); }
+  };
+
+  const handleUseIntakeData = (req: any) => {
+    const data = req.submitted_data || {};
+    if (req.template_type === "letter") {
+      setActiveTab("letters");
+      setRecipientName(data.full_name || data.first_name ? `${data.first_name || ""} ${data.last_name || ""}`.trim() : "");
+      setLetterTo(data.organization || "");
+      setLetterToAddress(data.address || "");
+      const placeholders: Record<string, string> = {};
+      Object.entries(data).forEach(([k, v]) => { placeholders[k] = v as string; });
+      setPlaceholderValues(placeholders);
+      void markIntakeAsUsed(req.id);
+      toast.success(isRtl ? "اطلاعات به فرم نامه وارد شد" : "Data imported into letter form");
+    } else if (req.template_type === "receipt") {
+      setActiveTab("receipts");
+      setReceipt(prev => ({ ...prev, donorName: data.full_name || "", donorAddress: data.address || "" }));
+      void markIntakeAsUsed(req.id);
+      toast.success(isRtl ? "اطلاعات به فرم رسید وارد شد" : "Data imported into receipt form");
+    } else if (req.template_type === "invoice") {
+      setActiveTab("invoice");
+      setInvoiceTo(data.organization || data.full_name || "");
+      setInvoiceAddress(data.address || "");
+      void markIntakeAsUsed(req.id);
+      toast.success(isRtl ? "اطلاعات به فرم فاکتور وارد شد" : "Data imported into invoice form");
+    }
+  };
+
+  // Letter fields (keep this next line intact)
   const [editLang, setEditLang] = useState<"en" | "fa">("en");
   const [bodyEn, setBodyEn] = useState("");
   const [bodyFa, setBodyFa] = useState("");
@@ -2096,14 +2209,21 @@ export default function ChurchDocumentsPage() {
             { id: "receipts", icon: <CreditCard className="w-4 h-4" />, en: "Donation Receipt", fa: "رسید کمک مالی" },
             { id: "inkind", icon: <Package className="w-4 h-4" />, en: "In-Kind Receipt", fa: "رسید لوازم" },
             { id: "invoice", icon: <DollarSign className="w-4 h-4" />, en: "Invoice", fa: "فاکتور / هزینه" },
-            { id: "history", icon: <HistoryIcon className="w-4 h-4" />, en: "History & Sent", fa: "تاریخچه و آرشیو" },
+            { id: "intake", icon: <Inbox className="w-4 h-4" />, en: "Requests", fa: "درخواست‌ها",
+              badge: intakeRequests.filter(r => r.status === "submitted").length || undefined },
+            { id: "history", icon: <HistoryIcon className="w-4 h-4" />, en: "Archive", fa: "آرشیو و پوشه‌ها" },
           ].map(tab => (
             <button key={tab.id} onClick={() => setActiveTab(tab.id as any)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap relative ${
                 activeTab === tab.id ? "bg-primary text-primary-foreground shadow-lg" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {tab.icon}{isRtl ? tab.fa : tab.en}
+              {(tab as any).badge > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[9px] font-black rounded-full flex items-center justify-center">
+                  {(tab as any).badge}
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -2717,30 +2837,394 @@ export default function ChurchDocumentsPage() {
           </div>
         )}
 
+        {/* ══ INTAKE REQUESTS TAB ══ */}
+        {activeTab === "intake" && (
+          <div className="space-y-6">
+
+            {/* Header */}
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <h2 className="text-xl font-black flex items-center gap-2">
+                  <Inbox className="w-5 h-5 text-indigo-400" />{isRtl ? "فرم‌های درخواست اطلاعات" : "Information Request Forms"}
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">{isRtl ? "لینک ارسال برای کاربر → پر کردن فرم → import خودکار در نامه" : "Send link to user → User fills form → Auto-import into document"}</p>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => void loadIntakeRequests()} className="glass border border-white/10 rounded-xl p-2.5 hover:border-white/20 transition-all" title="Refresh">
+                  <RefreshCw className={`w-4 h-4 ${intakeLoading ? "animate-spin" : ""}`} />
+                </button>
+                <button onClick={() => { setShowIntakeCreate(true); setCreatedIntakeToken(null); setIntakeFields([]); setIntakeMessage(""); }}
+                  className="flex items-center gap-2 bg-indigo-500 text-white px-5 py-2.5 rounded-xl font-black text-sm shadow-lg shadow-indigo-500/25 hover:scale-105 transition-all">
+                  <Plus className="w-4 h-4" />{isRtl ? "ساخت لینک جدید" : "Create Request Link"}
+                </button>
+              </div>
+            </div>
+
+            {/* Create Intake Modal */}
+            {showIntakeCreate && (
+              <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md" onClick={() => { if (!intakeCreating) setShowIntakeCreate(false); }}>
+                <div className="relative w-full max-w-2xl bg-zinc-950 border border-white/10 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
+                  
+                  {/* Modal header */}
+                  <div className="flex items-center gap-3 p-6 border-b border-white/10">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center flex-shrink-0">
+                      <Link2 className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-black text-lg">{isRtl ? "ساخت لینک فرم درخواست" : "Create Intake Request Link"}</h3>
+                      <p className="text-xs text-muted-foreground">{isRtl ? "کاربر اطلاعات خود را در این فرم پر می‌کند" : "User fills their information in this form"}</p>
+                    </div>
+                    <button onClick={() => setShowIntakeCreate(false)} className="ml-auto text-muted-foreground hover:text-foreground"><X className="w-5 h-5" /></button>
+                  </div>
+
+                  {!createdIntakeToken ? (
+                    <div className="overflow-y-auto flex-1 p-6 space-y-5">
+                      {/* Document type */}
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-2 block">{isRtl ? "نوع سند" : "Document Type"}</label>
+                        <div className="flex gap-2">
+                          {(["letter", "receipt", "invoice"] as const).map(t => (
+                            <button key={t} onClick={() => setIntakeTemplateType(t)}
+                              className={`flex-1 py-2.5 rounded-xl border text-xs font-black transition-all capitalize ${
+                                intakeTemplateType === t ? "bg-indigo-500/20 border-indigo-500 text-indigo-400" : "glass border-white/10 text-muted-foreground"
+                              }`}>{t === "letter" ? (isRtl ? "نامه" : "Letter") : t === "receipt" ? (isRtl ? "رسید" : "Receipt") : (isRtl ? "فاکتور" : "Invoice")}</button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Fields to collect */}
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-2 block">
+                          {isRtl ? "فیلدهای مورد نیاز (انتخاب کنید)" : "Required Fields (select all you need)"}
+                        </label>
+                        <div className="grid grid-cols-2 gap-2">
+                          {INTAKE_FIELD_PRESETS.map(preset => {
+                            const isSelected = intakeFields.some(f => f.key === preset.key);
+                            return (
+                              <button
+                                key={preset.key}
+                                onClick={() => setIntakeFields(prev =>
+                                  isSelected ? prev.filter(f => f.key !== preset.key) : [...prev, preset]
+                                )}
+                                className={`flex items-center gap-2 px-3 py-2 rounded-xl border text-xs font-bold transition-all text-left ${
+                                  isSelected ? "bg-indigo-500/15 border-indigo-500/50 text-indigo-300" : "glass border-white/10 text-muted-foreground hover:border-white/20"
+                                }`}
+                              >
+                                {isSelected ? <Check className="w-3 h-3 flex-shrink-0" /> : <Plus className="w-3 h-3 flex-shrink-0 opacity-40" />}
+                                <span>{isRtl ? preset.labelFa : preset.label}</span>
+                                {preset.required && isSelected && <span className="ml-auto text-red-400">*</span>}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {intakeFields.length > 0 && (
+                          <p className="text-xs text-indigo-400 mt-2 font-bold">{intakeFields.length} {isRtl ? "فیلد انتخاب شده" : "fields selected"}</p>
+                        )}
+                      </div>
+
+                      {/* Folder */}
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-2 block">{isRtl ? "پوشه مقصد" : "Destination Folder"}</label>
+                        <select value={intakeFolder} onChange={e => setIntakeFolder(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500">
+                          {folders.map(f => <option key={f} value={f}>{f}</option>)}
+                        </select>
+                      </div>
+
+                      {/* Message to user */}
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-2 block">{isRtl ? "پیام برای کاربر (اختیاری)" : "Message to User (optional)"}</label>
+                        <textarea
+                          value={intakeMessage}
+                          onChange={e => setIntakeMessage(e.target.value)}
+                          rows={3}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 resize-none"
+                          placeholder={isRtl ? "پیام شخصی‌سازی برای کاربر..." : "Personalized message for the user..."}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    // Link created — show share options
+                    <div className="p-8 space-y-6">
+                      <div className="text-center">
+                        <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Check className="w-8 h-8 text-emerald-400" />
+                        </div>
+                        <h3 className="text-xl font-black text-emerald-400 mb-1">{isRtl ? "لینک ساخته شد!" : "Link Created!"}</h3>
+                        <p className="text-sm text-muted-foreground">{isRtl ? "این لینک را برای کاربر ارسال کنید" : "Share this link with the user"}</p>
+                      </div>
+
+                      <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
+                        <p className="text-xs text-muted-foreground mb-2 font-bold">{isRtl ? "لینک فرم" : "Form Link"}</p>
+                        <div className="flex items-center gap-2">
+                          <code className="flex-1 text-xs font-mono text-indigo-400 break-all">
+                            {typeof window !== "undefined" ? `${window.location.origin}/intake/${createdIntakeToken}` : `/intake/${createdIntakeToken}`}
+                          </code>
+                          <button
+                            onClick={() => {
+                              const link = `${window.location.origin}/intake/${createdIntakeToken}`;
+                              navigator.clipboard.writeText(link);
+                              toast.success(isRtl ? "لینک کپی شد" : "Link copied!");
+                            }}
+                            className="flex-shrink-0 p-2 glass border border-white/10 rounded-xl hover:border-white/20 transition-all"
+                          ><Copy className="w-4 h-4" /></button>
+                        </div>
+                      </div>
+
+                      {/* Share buttons */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <button
+                          onClick={() => {
+                            const link = `${window.location.origin}/intake/${createdIntakeToken}`;
+                            const text = isRtl ? `لطفاً اطلاعات خود را در این فرم وارد کنید:\n${link}` : `Please fill in your information in this form:\n${link}`;
+                            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+                          }}
+                          className="flex items-center justify-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-xl py-3 text-sm font-black hover:bg-emerald-500/20 transition-all"
+                        >
+                          <Share2 className="w-4 h-4" /> WhatsApp
+                        </button>
+                        <button
+                          onClick={() => {
+                            const link = `${window.location.origin}/intake/${createdIntakeToken}`;
+                            const text = isRtl ? `لطفاً اطلاعات خود را وارد کنید:` : `Please fill in your information:`;
+                            window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`, "_blank");
+                          }}
+                          className="flex items-center justify-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-xl py-3 text-sm font-black hover:bg-blue-500/20 transition-all"
+                        >
+                          <Send className="w-4 h-4" /> Telegram
+                        </button>
+                        <button
+                          onClick={() => {
+                            const link = `${window.location.origin}/intake/${createdIntakeToken}`;
+                            openEmailModal({
+                              docType: intakeTemplateType,
+                              subject: isRtl ? "فرم اطلاعات کلیسا" : "Church Information Request Form",
+                              refNo: createdIntakeToken?.slice(0, 8) || "INTAKE",
+                              htmlSummary: `<p>${isRtl ? "لطفاً اطلاعات خود را در فرم زیر وارد کنید:" : "Please fill in your information using the link below:"}</p><p style="margin:16px 0"><a href="${link}" style="background:#4f46e5;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:14px;display:inline-block">${isRtl ? "ورود به فرم" : "Open Form"}</a></p><p style="color:#64748b;font-size:12px;">Link: ${link}</p>`,
+                            });
+                            setShowIntakeCreate(false);
+                          }}
+                          className="flex items-center justify-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded-xl py-3 text-sm font-black hover:bg-indigo-500/20 transition-all"
+                        >
+                          <Mail className="w-4 h-4" /> Email
+                        </button>
+                        <button
+                          onClick={() => {
+                            const link = `${window.location.origin}/intake/${createdIntakeToken}`;
+                            window.open(link, "_blank");
+                          }}
+                          className="flex items-center justify-center gap-2 glass border border-white/10 text-muted-foreground rounded-xl py-3 text-sm font-bold hover:border-white/20 transition-all"
+                        >
+                          <ExternalLink className="w-4 h-4" /> {isRtl ? "پیش‌نمایش" : "Preview Form"}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Footer actions */}
+                  {!createdIntakeToken && (
+                    <div className="p-6 border-t border-white/10 flex gap-3">
+                      <button onClick={() => setShowIntakeCreate(false)} className="flex-1 glass border border-white/10 rounded-xl py-3 font-bold text-sm hover:border-white/20 transition-all">
+                        {isRtl ? "انصراف" : "Cancel"}
+                      </button>
+                      <button
+                        onClick={() => void handleCreateIntakeLink()}
+                        disabled={intakeCreating || intakeFields.length === 0}
+                        className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-xl py-3 font-black text-sm shadow-lg shadow-indigo-500/25 hover:scale-[1.02] transition-all disabled:opacity-50 disabled:pointer-events-none"
+                      >
+                        {intakeCreating ? <><Loader2 className="w-4 h-4 animate-spin" />{isRtl ? "در حال ساخت..." : "Creating..."}</> : <><Link2 className="w-4 h-4" />{isRtl ? "ساخت لینک" : "Generate Link"}</>}
+                      </button>
+                    </div>
+                  )}
+                  {createdIntakeToken && (
+                    <div className="p-6 border-t border-white/10">
+                      <button onClick={() => setShowIntakeCreate(false)} className="w-full glass border border-white/10 rounded-xl py-3 font-bold text-sm hover:border-white/20 transition-all">
+                        {isRtl ? "بستن" : "Close"}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Requests List */}
+            {intakeLoading ? (
+              <div className="flex items-center justify-center py-24"><Loader2 className="w-8 h-8 animate-spin text-indigo-400" /></div>
+            ) : intakeRequests.length === 0 ? (
+              <div className="glass border border-white/10 rounded-3xl py-24 flex flex-col items-center gap-4 opacity-40">
+                <ClipboardList className="w-16 h-16" />
+                <p className="font-black uppercase tracking-widest">{isRtl ? "هنوز لینکی ساخته نشده" : "No intake requests yet"}</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {intakeRequests.map(req => (
+                  <div key={req.id} className={`glass border rounded-2xl p-5 transition-all ${
+                    req.status === "submitted" ? "border-indigo-500/40 bg-indigo-500/5" :
+                    req.status === "used" ? "border-emerald-500/30 opacity-60" :
+                    "border-white/10"
+                  }`}>
+                    <div className="flex items-start gap-4">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                        req.status === "submitted" ? "bg-indigo-500/20" :
+                        req.status === "used" ? "bg-emerald-500/20" :
+                        "bg-white/5"
+                      }`}>
+                        {req.status === "submitted" ? <Inbox className="w-5 h-5 text-indigo-400" /> :
+                         req.status === "used" ? <Check className="w-5 h-5 text-emerald-400" /> :
+                         <ClipboardList className="w-5 h-5 text-muted-foreground" />}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full border font-black uppercase ${
+                            req.status === "submitted" ? "bg-indigo-500/10 text-indigo-400 border-indigo-500/20" :
+                            req.status === "used" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" :
+                            "bg-white/5 text-muted-foreground border-white/10"
+                          }`}>{req.status}</span>
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground font-bold uppercase">{req.template_type}</span>
+                          <span className="text-[10px] text-muted-foreground">{new Date(req.created_at).toLocaleDateString("en-US")}</span>
+                          {req.folder_name && <span className="text-[10px] flex items-center gap-1 text-muted-foreground"><Folder className="w-3 h-3" />{req.folder_name}</span>}
+                        </div>
+                        {req.status === "submitted" && req.submitted_data && (
+                          <div className="mt-2 bg-white/5 rounded-xl p-3 text-xs space-y-1">
+                            {Object.entries(req.submitted_data as Record<string, string>).slice(0, 5).map(([k, v]) => (
+                              <div key={k} className="flex gap-2">
+                                <span className="text-muted-foreground font-bold w-28 flex-shrink-0">{k.replace(/_/g, " ")}:</span>
+                                <span className="font-semibold truncate">{v as string}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        <div className="flex items-center gap-2 mt-3 flex-wrap">
+                          <div className="flex items-center gap-1 glass border border-white/10 rounded-lg px-2 py-1">
+                            <code className="text-[10px] text-muted-foreground truncate max-w-[200px]">
+                              {typeof window !== "undefined" ? `${window.location.origin}/intake/${req.token}` : `/intake/${req.token}`}
+                            </code>
+                            <button onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/intake/${req.token}`); toast.success("Copied!"); }} className="ml-1">
+                              <Copy className="w-3 h-3 text-muted-foreground hover:text-foreground" />
+                            </button>
+                          </div>
+                          {req.status === "submitted" && (
+                            <button
+                              onClick={() => handleUseIntakeData(req)}
+                              className="flex items-center gap-1.5 bg-indigo-500 text-white text-xs px-3 py-1.5 rounded-lg font-black hover:bg-indigo-400 transition-all"
+                            >
+                              <ChevronRight className="w-3.5 h-3.5" />{isRtl ? "ایجاد سند" : "Use in Document"}
+                            </button>
+                          )}
+                          <button
+                            onClick={() => window.open(`/intake/${req.token}`, "_blank")}
+                            className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+                            title="Open form"
+                          ><ExternalLink className="w-3.5 h-3.5" /></button>
+                          <button
+                            onClick={async () => { if (confirm(isRtl ? "حذف شود؟" : "Delete?")) { await deleteIntakeRequest(req.id); void loadIntakeRequests(); } }}
+                            className="text-xs text-red-500 hover:text-red-400 transition-colors flex items-center gap-1"
+                          ><Trash2 className="w-3.5 h-3.5" /></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
                 {/* ══ HISTORY TAB ══ */}
         {activeTab === "history" && (
-          <div className="space-y-6">
-            <div className="flex flex-col gap-4">
-               {/* Search Bar */}
-               <div className="relative flex-1">
-                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                 <input
-                   value={searchQuery}
-                   onChange={e => setSearchQuery(e.target.value)}
-                   placeholder={isRtl ? "جستجو در تاریخچه (شماره، گیرنده، موضوع پرداختی، مبلغ...)" : "Instant Search (Ref, Recipient, Subject, Amount...)"}
-                   className="w-full glass border border-white/10 rounded-2xl pl-12 pr-4 py-3 text-sm focus:outline-none focus:border-primary/50"
-                 />
-               </div>
-               
-               {/* Category Chips and Clear */}
-               <div className="flex items-center justify-between flex-wrap gap-4">
-                 <div className="flex gap-2 flex-wrap text-xs">
+          <div className="space-y-4">
+            {/* ── Layout: Folder Sidebar + Main ── */}
+            <div className="flex gap-6 items-start">
+
+              {/* Folder Sidebar */}
+              <div className="w-52 flex-shrink-0 glass border border-white/10 rounded-2xl p-3 sticky top-28">
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-3 px-2">{isRtl ? "پوشه‌ها" : "Folders"}</h3>
+                <div className="space-y-0.5">
+                  {folders.map(folder => {
+                    const count = folder === "Starred"
+                      ? [...starredDocs].length
+                      : docHistory.filter(d => (docFolders[d.id] || "Inbox") === folder).length;
+                    return (
+                      <button
+                        key={folder}
+                        onClick={() => setActiveFolder(folder)}
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                          activeFolder === folder ? "bg-primary/15 text-primary border border-primary/20" : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                        }`}
+                      >
+                        {folder === "Starred" ? <Star className="w-3.5 h-3.5" /> : folder === "Inbox" ? <Inbox className="w-3.5 h-3.5" /> : <Folder className="w-3.5 h-3.5" />}
+                        <span className="flex-1 text-left truncate">{folder}</span>
+                        {count > 0 && <span className="text-[9px] font-black bg-white/10 px-1.5 py-0.5 rounded-full">{count}</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+                {/* Add folder */}
+                <div className="mt-3 pt-3 border-t border-white/10">
+                  {newFolderInput !== null && (
+                    <div className="flex gap-1">
+                      <input
+                        value={newFolderInput}
+                        onChange={e => setNewFolderInput(e.target.value)}
+                        onKeyDown={e => {
+                          if (e.key === "Enter" && newFolderInput.trim()) {
+                            setFolders(prev => [...prev, newFolderInput.trim()]);
+                            setNewFolderInput("");
+                          }
+                        }}
+                        placeholder={isRtl ? "نام پوشه..." : "Folder name..."}
+                        className="flex-1 bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-[11px] focus:outline-none focus:border-primary/50"
+                      />
+                      <button
+                        onClick={() => { if (newFolderInput.trim()) { setFolders(prev => [...prev, newFolderInput.trim()]); setNewFolderInput(""); } }}
+                        className="p-1.5 bg-primary/20 text-primary rounded-lg hover:bg-primary/30 transition-all"
+                      ><Plus className="w-3 h-3" /></button>
+                    </div>
+                  )}
+                  <button onClick={() => setNewFolderInput("")} className="w-full text-[10px] text-muted-foreground hover:text-foreground flex items-center gap-1.5 px-2 py-1.5 rounded-lg hover:bg-white/5 transition-all mt-1">
+                    <Plus className="w-3 h-3" />{isRtl ? "پوشه جدید" : "New folder"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Main content area */}
+              <div className="flex-1 min-w-0 space-y-4">
+                {/* Search + filter bar */}
+                <div className="flex flex-wrap gap-3 items-center">
+                  <div className="relative flex-1 min-w-[200px]">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <input
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                      placeholder={isRtl ? "جستجو (شماره، نام، موضوع، مبلغ...)" : "Search (Ref, Recipient, Subject, Amount...)"}
+                      className="w-full glass border border-white/10 rounded-2xl pl-12 pr-4 py-3 text-sm focus:outline-none focus:border-primary/50"
+                    />
+                  </div>
+                </div>
+
+                {/* Type chips */}
+                <div className="flex flex-wrap gap-2 text-xs">
                    <button onClick={() => setHistoryCat("all")} className={`px-4 py-1.5 rounded-full border transition-all ${historyCat === "all" ? "bg-primary border-primary text-white" : "glass border-white/10 text-muted-foreground hover:border-white/20"}`}>{isRtl ? "همه" : "All"}</button>
                    <button onClick={() => setHistoryCat("letter")} className={`px-4 py-1.5 rounded-full border transition-all ${historyCat === "letter" ? "bg-blue-500 border-blue-500 text-white" : "glass border-white/10 text-muted-foreground hover:border-white/20"}`}>{isRtl ? "نامه‌ها" : "Letters"}</button>
                    <button onClick={() => setHistoryCat("receipt")} className={`px-4 py-1.5 rounded-full border transition-all ${historyCat === "receipt" ? "bg-green-500 border-green-500 text-white" : "glass border-white/10 text-muted-foreground hover:border-white/20"}`}>{isRtl ? "رسید نقدی" : "Cash Receipts"}</button>
                    <button onClick={() => setHistoryCat("inkind")} className={`px-4 py-1.5 rounded-full border transition-all ${historyCat === "inkind" ? "bg-amber-500 border-amber-500 text-white" : "glass border-white/10 text-muted-foreground hover:border-white/20"}`}>{isRtl ? "رسید کالا" : "In-Kind Receipts"}</button>
                    <button onClick={() => setHistoryCat("invoice")} className={`px-4 py-1.5 rounded-full border transition-all ${historyCat === "invoice" ? "bg-purple-500 border-purple-500 text-white" : "glass border-white/10 text-muted-foreground hover:border-white/20"}`}>{isRtl ? "فاکتورها" : "Invoices"}</button>
                  </div>
+                 
+                 {/* Multi-select toolbar */}
+                {selectedDocs.size > 0 && (
+                  <div className="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-xl px-4 py-2 text-sm animate-fade-in">
+                    <span className="font-black text-primary">{selectedDocs.size} {isRtl ? "انتخاب شده" : "selected"}</span>
+                    <div className="flex items-center gap-2 ml-2">
+                      <span className="text-xs text-muted-foreground">{isRtl ? "انتقال به:" : "Move to:"}</span>
+                      {folders.filter(f => f !== "Starred").map(f => (
+                        <button key={f} onClick={() => moveSelectedToFolder(f)}
+                          className="text-xs px-2 py-1 glass border border-white/10 rounded-lg hover:border-primary/40 transition-all">{f}</button>
+                      ))}
+                    </div>
+                    <button onClick={clearSelect} className="ml-auto text-muted-foreground hover:text-foreground"><X className="w-4 h-4" /></button>
+                  </div>
+                )}
                  
                   <button onClick={() => { if(confirm(isRtl ? "آیا از پاکسازی کل تاریخچه اطمینان دارید؟" : "Are you sure you want to clear all history?")) { void handleClearHistory(); } }} 
                     className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1.5 px-3 py-2 rounded-xl hover:bg-red-500/10 transition-all">
@@ -2749,30 +3233,51 @@ export default function ChurchDocumentsPage() {
                </div>
             </div>
 
-            <div className="glass border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse" dir={isRtl ? "rtl" : "ltr"}>
-                  <thead>
-                    <tr className="bg-white/[0.02] border-b border-white/10">
-                      <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "تاریخ" : "Date"}</th>
-                      <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "شماره" : "Ref No"}</th>
-                      <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "نوع" : "Type"}</th>
-                      <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "گیرنده / درخواست‌کننده" : "Recipient / Donor"}</th>
-                      <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "موضوع" : "Subject"}</th>
-                      <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "مبلغ" : "Amount"}</th>
-                      <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground text-center">{isRtl ? "عملیات" : "Actions"}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-white/5">
+                <div className="glass border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse" dir={isRtl ? "rtl" : "ltr"}>
+                      <thead>
+                        <tr className="bg-white/[0.02] border-b border-white/10">
+                          <th className="px-4 py-4 w-8">
+                            <button onClick={() => {
+                              const visible = docHistory.filter(item => historyCat === "all" || item.type === historyCat).filter(item => activeFolder === "Starred" ? starredDocs.has(item.id) : (docFolders[item.id] || "Inbox") === activeFolder).map(i => i.id);
+                              selectedDocs.size === visible.length ? clearSelect() : selectAll(visible);
+                            }} className="text-muted-foreground hover:text-foreground transition-colors">
+                              {selectedDocs.size > 0 ? <CheckSquare className="w-4 h-4 text-primary" /> : <Square className="w-4 h-4" />}
+                            </button>
+                          </th>
+                          <th className="px-2 py-4 w-8"></th>
+                          <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "تاریخ" : "Date"}</th>
+                          <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "شماره" : "Ref No"}</th>
+                          <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "نوع" : "Type"}</th>
+                          <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "گیرنده" : "Recipient"}</th>
+                          <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "موضوع" : "Subject"}</th>
+                          <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "مبلغ" : "Amount"}</th>
+                          <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">{isRtl ? "پوشه" : "Folder"}</th>
+                          <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground text-center">{isRtl ? "عملیات" : "Actions"}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
                     {docHistory
                       .filter(item => historyCat === "all" || item.type === historyCat)
+                      .filter(item => activeFolder === "Starred" ? starredDocs.has(item.id) : (docFolders[item.id] || "Inbox") === activeFolder)
                       .filter(item =>
                         [item.refNo, item.recipient, item.subject, item.date, item.amount?.toString() || ""].some(s => s.toLowerCase().includes(searchQuery.toLowerCase()))
                       )
                       .map(item => (
-                        <tr key={item.id} className="hover:bg-white/[0.01] transition-colors group text-sm">
-                          <td className="px-6 py-4 font-mono text-muted-foreground whitespace-nowrap">{item.date}</td>
-                          <td className="px-6 py-4 font-black flex items-center gap-2">
+                        <tr key={item.id} className={`hover:bg-white/[0.01] transition-colors group text-sm ${selectedDocs.has(item.id) ? "bg-primary/5" : ""}`}>
+                          <td className="px-4 py-4">
+                            <button onClick={() => toggleSelect(item.id)} className="text-muted-foreground hover:text-foreground">
+                              {selectedDocs.has(item.id) ? <CheckSquare className="w-4 h-4 text-primary" /> : <Square className="w-4 h-4" />}
+                            </button>
+                          </td>
+                          <td className="px-2 py-4">
+                            <button onClick={() => toggleStar(item.id)} className="transition-colors">
+                              <Star className={`w-4 h-4 ${starredDocs.has(item.id) ? "text-amber-400 fill-amber-400" : "text-muted-foreground hover:text-amber-400"}`} />
+                            </button>
+                          </td>
+                          <td className="px-4 py-4 font-mono text-muted-foreground whitespace-nowrap">{item.date}</td>
+                          <td className="px-4 py-4 font-black flex items-center gap-2">
                              {item.type === "letter" && <span className="w-2 h-2 rounded-full bg-blue-500"></span>}
                              {item.type === "receipt" && <span className="w-2 h-2 rounded-full bg-green-500"></span>}
                              {item.type === "inkind" && <span className="w-2 h-2 rounded-full bg-amber-500"></span>}
