@@ -33,8 +33,11 @@ function getTransporters() {
 
 export interface Attachment {
   filename: string;
-  path: string;
-  cid: string;
+  path?: string;
+  cid?: string;
+  content?: string;
+  encoding?: string;
+  contentType?: string;
 }
 
 export interface MailOptions {

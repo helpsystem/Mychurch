@@ -1335,6 +1335,18 @@ export default function ChurchDocumentsPage() {
   const [invoiceNo, setInvoiceNo] = useState(() => String(Math.floor(Math.random() * 90000 + 10000)));
   const [historyCat, setHistoryCat] = useState<"all" | "letter" | "receipt" | "inkind" | "invoice">("all");
 
+  // ── Email Modal State ──────────────────────────────────────────────────────
+  const [emailModal, setEmailModal] = useState<{
+    open: boolean;
+    docType: "letter" | "receipt" | "invoice" | "inkind";
+    subject: string;
+    refNo: string;
+    htmlSummary: string;
+    printRef?: React.RefObject<HTMLDivElement>;
+  } | null>(null);
+  const [emailAddress, setEmailAddress] = useState("");
+  const [emailSending, setEmailSending] = useState(false);
+
   const handleAddInvoiceItem = () => setInvoiceItems(prev => [...prev, { id: crypto.randomUUID(), description: "", total: 0 }]);
   const handleRemoveInvoiceItem = (id: string) => setInvoiceItems(prev => prev.filter(item => item.id !== id));
   const handleInvoiceItemChange = (id: string, field: "description" | "total", value: any) => {
@@ -1343,10 +1355,96 @@ export default function ChurchDocumentsPage() {
   const invoiceTotalAmount = invoiceItems.reduce((sum, item) => sum + (Number(item.total) || 0), 0);
 
   const handleCopyLink = (item: DocHistoryItem) => {
-    // Generates a link to the new Public Viewer Route
     const link = `${window.location.origin}/documents/view/${item.id}`;
     navigator.clipboard.writeText(link);
     alert(isRtl ? "لینک کپی شد" : "Link copied to clipboard!");
+  };
+
+  // ── Email Document Handler ────────────────────────────────────────────────
+  const handleSendEmail = async (pdfBase64?: string) => {
+    if (!emailModal || !emailAddress.trim()) {
+      toast.error(isRtl ? "لطفاً ایمیل گیرنده را وارد کنید" : "Please enter recipient email");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailAddress.trim())) {
+      toast.error(isRtl ? "ایمیل معتبر نیست" : "Invalid email address");
+      return;
+    }
+    setEmailSending(true);
+    try {
+      const result = await emailDocument(
+        emailAddress.trim(),
+        emailModal.subject,
+        emailModal.htmlSummary,
+        pdfBase64,
+        `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.pdf`
+      );
+      if (result.success) {
+        toast.success(isRtl ? `ایمیل با موفقیت به ${emailAddress} ارسال شد` : `Email sent successfully to ${emailAddress}`);
+        setEmailModal(null);
+        setEmailAddress("");
+      } else {
+        toast.error(result.error || (isRtl ? "ارسال ناموفق بود" : "Failed to send"));
+      }
+    } catch (e: any) {
+      toast.error(e.message || "Error sending email");
+    } finally {
+      setEmailSending(false);
+    }
+  };
+
+  const handleGeneratePdfAndEmail = async (ref: React.RefObject<HTMLDivElement | null>) => {
+    if (!ref.current) { await handleSendEmail(); return; }
+    try {
+      const jspdfMod = await import("jspdf");
+      const html2canvasMod = await import("html2canvas");
+      const jsPDF = jspdfMod.default || (jspdfMod as any).jsPDF;
+      const html2canvas = html2canvasMod.default;
+      
+      const canvas = await html2canvas(ref.current, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+        logging: false,
+      });
+      const imgData = canvas.toDataURL("image/jpeg", 0.92);
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "letter" });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const imgW = pageW;
+      const imgH = (canvas.height * pageW) / canvas.width;
+      
+      let yPos = 0;
+      let heightLeft = imgH;
+      pdf.addImage(imgData, "JPEG", 0, yPos, imgW, imgH);
+      heightLeft -= pageH;
+      while (heightLeft > 0) {
+        yPos = heightLeft - imgH;
+        pdf.addPage();
+        pdf.addImage(imgData, "JPEG", 0, yPos, imgW, imgH);
+        heightLeft -= pageH;
+      }
+      
+      const pdfBase64 = pdf.output("datauristring").split(",")[1];
+      await handleSendEmail(pdfBase64);
+    } catch (err) {
+      console.error("PDF generation error:", err);
+      toast.error(isRtl ? "تولید PDF ناموفق بود، ارسال بدون فایل..." : "PDF generation failed, sending without file...");
+      await handleSendEmail();
+    }
+  };
+
+  const openEmailModal = (opts: {
+    docType: "letter" | "receipt" | "invoice" | "inkind";
+    subject: string;
+    refNo: string;
+    htmlSummary: string;
+    printRef?: React.RefObject<HTMLDivElement>;
+  }) => {
+    setEmailModal({ open: true, ...opts });
+    setEmailAddress("");
   };
 
   const [loadingInvoiceGen, setLoadingInvoiceGen] = useState(false);
@@ -1575,8 +1673,94 @@ export default function ChurchDocumentsPage() {
   };
 
 
+  // ── Email Modal Component ─────────────────────────────────────────────────
+  const EmailDocModal = emailModal ? (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md" onClick={() => setEmailModal(null)}>
+      <div
+        className="relative w-full max-w-md bg-zinc-950 border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Glow bg */}
+        <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -z-10 pointer-events-none" />
+
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center shadow-lg shadow-indigo-500/30 flex-shrink-0">
+            <Mail className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-lg font-black">{isRtl ? "ارسال سند با ایمیل" : "Send Document via Email"}</h2>
+            <p className="text-xs text-muted-foreground mt-0.5">{emailModal.refNo} &middot; PDF attachment included</p>
+          </div>
+          <button onClick={() => setEmailModal(null)} className="ml-auto text-muted-foreground hover:text-foreground transition-colors" aria-label="Close">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Doc summary pill */}
+        <div className="mb-5 p-3 bg-white/5 border border-white/10 rounded-xl flex items-center gap-3">
+          <FileText className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+          <div className="min-w-0">
+            <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">{emailModal.docType}</p>
+            <p className="text-sm font-bold truncate">{emailModal.subject}</p>
+          </div>
+        </div>
+
+        {/* Email input */}
+        <div className="mb-6">
+          <label className="text-xs text-muted-foreground mb-2 flex items-center gap-1.5 font-bold uppercase tracking-wider">
+            <Mail className="w-3.5 h-3.5" />
+            {isRtl ? "آدرس ایمیل گیرنده" : "Recipient Email Address"}
+          </label>
+          <input
+            id="email-recipient-input"
+            type="email"
+            value={emailAddress}
+            onChange={e => setEmailAddress(e.target.value)}
+            onKeyDown={e => { if (e.key === "Enter" && !emailSending) void handleGeneratePdfAndEmail(emailModal.printRef ?? { current: null }); }}
+            placeholder="recipient@example.com"
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/70 transition-colors placeholder:text-muted-foreground/40 font-mono"
+            autoFocus
+            dir="ltr"
+          />
+        </div>
+
+        {/* PDF notice */}
+        <div className="mb-6 p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-start gap-2.5 text-xs text-blue-300">
+          <span className="text-base mt-0.5">📄</span>
+          <p className="leading-relaxed">
+            {isRtl
+              ? "یک فایل PDF از سند به صورت خودکار تولید شده و پیوست ایمیل می‌شود."
+              : "A PDF file will be automatically generated and attached to the email."}
+          </p>
+        </div>
+
+        {/* Actions */}
+        <div className="flex gap-3">
+          <button
+            onClick={() => setEmailModal(null)}
+            className="flex-1 glass border border-white/10 rounded-xl py-3 text-sm font-bold hover:border-white/20 transition-all"
+          >
+            {isRtl ? "انصراف" : "Cancel"}
+          </button>
+          <button
+            onClick={() => void handleGeneratePdfAndEmail(emailModal.printRef ?? { current: null })}
+            disabled={emailSending || !emailAddress.trim()}
+            className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-xl py-3 text-sm font-black shadow-lg shadow-indigo-500/25 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none"
+          >
+            {emailSending
+              ? <><Loader2 className="w-4 h-4 animate-spin" />{isRtl ? "در حال ارسال..." : "Sending..."}</>
+              : <><Send className="w-4 h-4" />{isRtl ? "ارسال ایمیل + PDF" : "Send Email + PDF"}</>}
+          </button>
+        </div>
+      </div>
+    </div>
+  ) : null;
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col" dir={isRtl ? "rtl" : "ltr"}>
+      {EmailDocModal}
       <PublicHeader />
 
       <main className="flex-1 pt-28 pb-16 px-4 md:px-8 max-w-7xl mx-auto w-full">
@@ -2202,11 +2386,23 @@ export default function ChurchDocumentsPage() {
                   </div>
                 </div>
 
-                {/* Print */}
-                <div className="flex gap-3 pt-4 border-t border-white/10">
+                {/* Print + Email */}
+                <div className="flex gap-3 pt-4 border-t border-white/10 flex-wrap">
                   <button onClick={() => handlePrintLetter()}
                     className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-xl font-bold hover:opacity-90 transition-all text-sm">
                     <Printer className="w-4 h-4" />{isRtl ? "چاپ / ذخیره PDF" : "Print / Save PDF"}
+                  </button>
+                  <button
+                    onClick={() => openEmailModal({
+                      docType: "letter",
+                      subject: replacePlaceholders(letterSubject || docNumber, placeholderValues),
+                      refNo: toEnglishDigits(docNumber),
+                      htmlSummary: `<p><strong>Reference:</strong> ${toEnglishDigits(docNumber)}</p><p><strong>To:</strong> ${replacePlaceholders(recipientName || letterTo, placeholderValues)}</p><p><strong>Subject:</strong> ${replacePlaceholders(letterSubject, placeholderValues)}</p><hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0"/><p style="white-space:pre-wrap;font-family:monospace;font-size:13px;">${replacePlaceholders(bodyEn, placeholderValues).substring(0, 800)}${bodyEn.length > 800 ? '...' : ''}</p>`,
+                      printRef: letterRef as React.RefObject<HTMLDivElement>,
+                    })}
+                    className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
+                  >
+                    <Mail className="w-4 h-4" />{isRtl ? "ارسال ایمیل + PDF" : "Email + PDF"}
                   </button>
                   <button onClick={() => {
                     const id = editingDocId || crypto.randomUUID();
@@ -2224,7 +2420,7 @@ export default function ChurchDocumentsPage() {
                     void addHistoryItem(newItem);
                     alert(isRtl ? "در تاریخچه ذخیره شد" : "Saved to History");
                   }} className="glass border border-white/10 px-4 py-2.5 rounded-xl text-sm font-bold hover:border-white/20 transition-all">
-                    {isRtl ? "فقط ذخیره در تاریخچه" : "Just Save to History"}
+                    {isRtl ? "فقط ذخیره" : "Archive"}
                   </button>
                 </div>
               </div>
@@ -2478,9 +2674,21 @@ export default function ChurchDocumentsPage() {
                     <input dir="ltr" value={invoiceWallet} onChange={e => setInvoiceWallet(e.target.value)} placeholder="T..." className={`${inputCls} font-mono text-xs`} />
                   </div>
 
-                  <div className="flex gap-3 mt-4">
+                  <div className="flex gap-3 mt-4 flex-wrap">
                     <button onClick={handlePrintInvoice} className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-3 rounded-xl font-black text-sm shadow-xl shadow-purple-500/20 hover:scale-[1.02] transition-transform">
                       <Printer className="w-4 h-4" /> {isRtl ? "چاپ فاکتور" : "Print Invoice"}
+                    </button>
+                    <button
+                      onClick={() => openEmailModal({
+                        docType: "invoice",
+                        subject: `Invoice INV-${invoiceNo} for ${invoiceTo}`,
+                        refNo: `INV-${invoiceNo}`,
+                        htmlSummary: `<p><strong>Invoice No:</strong> INV-${toEnglishDigits(invoiceNo)}</p><p><strong>Billed To:</strong> ${invoiceTo}${invoiceName ? ` / ${invoiceName}` : ""}</p><p><strong>Date:</strong> ${toEnglishDigits(new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }))}</p><p><strong>Total Due:</strong> $${toEnglishDigits(invoiceTotalAmount.toLocaleString("en-US", { minimumFractionDigits: 2 }))}</p>${invoiceItems.map((it, i) => `<p style="padding-left:16px;color:#64748b">${String(i+1).padStart(2,"0")}. ${it.description} — $${Number(it.total).toFixed(2)}</p>`).join("")}`,
+                        printRef: invoiceRef as React.RefObject<HTMLDivElement>,
+                      })}
+                      className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-4 py-3 rounded-xl font-black text-sm transition-all"
+                    >
+                      <Mail className="w-4 h-4" />{isRtl ? "ایمیل + PDF" : "Email + PDF"}
                     </button>
                     <button onClick={() => {
                         const newItem: DocHistoryItem = {
@@ -2588,10 +2796,22 @@ export default function ChurchDocumentsPage() {
                             <div className="flex justify-center gap-2 text-right rtl:text-left">
                               <button
                                 onClick={() => handleCopyLink(item)}
-                                title={isRtl ? "کپی لینک عمومی (ارسال)" : "Copy Public Link (Send)"}
+                                title={isRtl ? "کپی لینک عمومی" : "Copy Public Link"}
                                 className="p-2.5 rounded-xl glass border border-white/10 text-blue-400 hover:bg-blue-500/20 transition-all shadow-lg"
                               >
                                 <Copy className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => openEmailModal({
+                                  docType: item.type as any,
+                                  subject: item.subject,
+                                  refNo: item.refNo,
+                                  htmlSummary: `<p><strong>Ref:</strong> ${item.refNo}</p><p><strong>Recipient:</strong> ${item.recipient}</p><p><strong>Date:</strong> ${item.date}</p><p><strong>Subject:</strong> ${item.subject}</p>${item.amount ? `<p><strong>Amount:</strong> $${item.amount.toLocaleString()}</p>` : ""}<p style="margin-top:12px;color:#64748b;font-size:12px;">See the attached PDF for the full document.</p>`,
+                                })}
+                                title={isRtl ? "ارسال ایمیل" : "Send via Email"}
+                                className="p-2.5 rounded-xl glass border border-white/10 text-indigo-400 hover:bg-indigo-500/20 transition-all shadow-lg"
+                              >
+                                <Mail className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => handleRePrint(item)}
