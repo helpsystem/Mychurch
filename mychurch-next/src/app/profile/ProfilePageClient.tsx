@@ -20,6 +20,7 @@ const emptyAddress: AddressData = {
     country: "", postal_code: "", lat: null, lng: null,
 };
 
+export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Props) {
     const { language } = useLanguage();
     const isFa = language === "fa";
 
