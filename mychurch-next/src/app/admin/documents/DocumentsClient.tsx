@@ -20,6 +20,7 @@ import {
   Link2, Share2, CheckSquare, Square, FolderOpen, Folder, Star, Inbox, ChevronRight, ClipboardList, ExternalLink, RefreshCw
 } from "lucide-react";
 import { QRCodeSVG, QRCodeCanvas } from "qrcode.react";
+import QRCode from "qrcode";
 
 
 export interface DocumentDesign {
@@ -182,6 +183,33 @@ const PRINT_CSS = `
   tr { page-break-inside: avoid !important; }
   /* Force English digits in all numeric content */
   * { font-variant-numeric: lining-nums !important; }
+
+  /* Repeating Fixed Footer for print */
+  .print-footer-spacer {
+    display: block !important;
+    height: 25mm !important; /* Perfect gap reservation */
+  }
+  .print-footer-fixed {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 15mm !important; /* Perfect standard side margins */
+    right: 15mm !important; /* Perfect standard side margins */
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    z-index: 9999 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+@media screen {
+  .print-footer-spacer {
+    display: none !important;
+  }
+  .print-footer-fixed {
+    margin-top: auto !important;
+    width: 100% !important;
+  }
 }
 `;
 
@@ -205,6 +233,34 @@ ${PRINT_CSS}
 }
 `;
   return <style dangerouslySetInnerHTML={{ __html: css }} />;
+}
+
+function QRImage({ value, size = 120 }: { value: string; size?: number }) {
+  const [qrUrl, setQrUrl] = useState<string>("");
+
+  useEffect(() => {
+    QRCode.toDataURL(value, {
+      margin: 0,
+      width: size * 2, // High resolution for print
+      errorCorrectionLevel: "M",
+    })
+      .then(url => setQrUrl(url))
+      .catch(err => console.error("QR Code generation error", err));
+  }, [value, size]);
+
+  if (!qrUrl) {
+    return <div style={{ width: `${size / 2}px`, height: `${size / 2}px`, background: "#f1f5f9" }} />;
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={qrUrl}
+      alt="QR Code"
+      style={{ width: `${size / 2}px`, height: `${size / 2}px`, display: "block" }}
+      crossOrigin="anonymous"
+    />
+  );
 }
 
 // ─── Inline Document Footer (replaces fixed-position footer) ─────────────────
@@ -252,16 +308,25 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
       {/* Right: QR code */}
       {showQR !== false && (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px", flexShrink: 0 }}>
-          <div style={{ padding: "3px", border: "1.5px solid #1e293b", borderRadius: "5px", background: "#fff" }}>
-            <QRCodeCanvas
-              value={qrData}
-              size={120}
-              style={{ width: "60px", height: "60px" }}
-              level="M"
-              bgColor="#ffffff"
-              fgColor="#000000"
-              marginSize={0}
-              imageSettings={{ src: "/logo-transparent.png", height: 28, width: 28, excavate: true }}
+          <div style={{ padding: "3px", border: "1.5px solid #1e293b", borderRadius: "5px", background: "#fff", position: "relative", width: "66px", height: "66px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <QRImage value={qrData} size={120} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="/logo-transparent.png" 
+              alt="Logo"
+              crossOrigin="anonymous"
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "14px",
+                height: "14px",
+                backgroundColor: "#ffffff",
+                padding: "1px",
+                borderRadius: "2px",
+                zIndex: 10
+              }}
             />
           </div>
           <div style={{ fontSize: "5.5pt", fontWeight: 900, color: "#475569", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
@@ -655,11 +720,16 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
        {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
       <table className="print-table w-full border-collapse h-full flex-1 flex flex-col">
+        <thead className="print-thead">
+          <tr>
+            <td className="print-td border-0 p-0">
+              <Letterhead church={church} lang={editLang} docRef={toEnglishDigits(refNo)} date={dateStr} />
+            </td>
+          </tr>
+        </thead>
         <tbody className="print-tbody flex-1 flex flex-col">
           <tr className="print-tr flex-1 flex flex-col">
             <td className="print-td border-0 p-0 flex-1 flex flex-col relative z-10">
-              <Letterhead church={church} lang={editLang} docRef={toEnglishDigits(refNo)} date={dateStr} />
-
               <div className="mb-8 space-y-2 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
                 {recipientName && <div className="flex items-start gap-4">
                   <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "گیرنده:" : "Attention:"}</span>
@@ -751,19 +821,24 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
         <tfoot className="print-tfoot mt-auto">
           <tr>
             <td className="print-td border-0 p-0">
-              <DocFooter
-                qrData={qrData}
-                refNo={toEnglishDigits(refNo)}
-                churchName={church.nameEn}
-                churchEmail={church.email}
-                churchWeb={church.web}
-                isRtl={isRtl}
-                showQR={church.showVerifyQR}
-              />
+              <div className="print-footer-spacer" />
             </td>
           </tr>
         </tfoot>
       </table>
+
+      {/* Repeating Fixed Footer for print / Normal footer for screen */}
+      <div className="print-footer-fixed">
+        <DocFooter
+          qrData={qrData}
+          refNo={toEnglishDigits(refNo)}
+          churchName={church.nameEn}
+          churchEmail={church.email}
+          churchWeb={church.web}
+          isRtl={isRtl}
+          showQR={church.showVerifyQR}
+        />
+      </div>
     </div>
     </DocumentSecurity>
   );
@@ -794,11 +869,16 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
       {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
       <table className="print-table w-full border-collapse h-full flex-1 flex flex-col">
+        <thead className="print-thead">
+          <tr>
+            <td className="print-td border-0 p-0">
+              <Letterhead church={church} lang="en" docRef={`RCP-${toEnglishDigits(receiptNo)}`} date={toEnglishDigits(dateStr)} />
+            </td>
+          </tr>
+        </thead>
         <tbody className="print-tbody flex-1 flex flex-col">
           <tr className="print-tr flex-1 flex flex-col">
             <td className="print-td border-0 p-0 flex-1 flex flex-col relative z-10">
-              <Letterhead church={church} lang="en" docRef={`RCP-${toEnglishDigits(receiptNo)}`} date={toEnglishDigits(dateStr)} />
-
               <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
                 <div>
                    <h2 className="uppercase tracking-[0.2em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize - 2}px`, fontFamily: design.fontFamily }}>
@@ -927,18 +1007,23 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
         <tfoot className="print-tfoot mt-auto">
           <tr>
             <td className="print-td border-0 p-0">
-              <DocFooter
-                qrData={qrData}
-                refNo={toEnglishDigits(receiptNo)}
-                churchName={church.nameEn}
-                churchEmail={church.email}
-                churchWeb={church.web}
-                showQR={church.showVerifyQR}
-              />
+              <div className="print-footer-spacer" />
             </td>
           </tr>
         </tfoot>
       </table>
+
+      {/* Repeating Fixed Footer for print / Normal footer for screen */}
+      <div className="print-footer-fixed">
+        <DocFooter
+          qrData={qrData}
+          refNo={toEnglishDigits(receiptNo)}
+          churchName={church.nameEn}
+          churchEmail={church.email}
+          churchWeb={church.web}
+          showQR={church.showVerifyQR}
+        />
+      </div>
     </div>
     </DocumentSecurity>
   );
@@ -988,11 +1073,16 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
       {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
       <table className="print-table w-full border-collapse h-full flex-1 flex flex-col">
+        <thead className="print-thead">
+          <tr>
+            <td className="print-td border-0 p-0">
+              <Letterhead church={church} lang="en" docRef={`INV-${toEnglishDigits(invoiceNo)}`} date={toEnglishDigits(dateStr)} />
+            </td>
+          </tr>
+        </thead>
         <tbody className="print-tbody flex-1 flex flex-col">
           <tr className="print-tr flex-1 flex flex-col">
             <td className="print-td border-0 p-0 flex-1 flex flex-col relative z-10">
-              <Letterhead church={church} lang="en" docRef={`INV-${toEnglishDigits(invoiceNo)}`} date={toEnglishDigits(dateStr)} />
-
               <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
                 <div>
                    <h2 className="uppercase tracking-[0.1em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize}px`, fontFamily: design.fontFamily }}>
@@ -1080,14 +1170,14 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                   </div>
                   <div>
                      {invoiceWallet && (
-                      <div className="space-y-2">
-                        <p className="text-[9px] font-black text-blue-400 uppercase tracking-[0.2em] flex items-center gap-2">
-                          <Package className="w-3 h-3" /> Payment Instructions (TRC-20)
-                        </p>
-                        <p className="font-mono text-[10px] break-all font-bold bg-slate-50 p-3 rounded-lg border border-slate-200 text-slate-600 shadow-inner">
-                          {invoiceWallet}
-                        </p>
-                      </div>
+                       <div className="space-y-2">
+                         <p className="text-[9px] font-black text-blue-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                           <Package className="w-3 h-3" /> Payment Instructions (TRC-20)
+                         </p>
+                         <p className="font-mono text-[10px] break-all font-bold bg-slate-50 p-3 rounded-lg border border-slate-200 text-slate-600 shadow-inner">
+                           {invoiceWallet}
+                         </p>
+                       </div>
                     )}
                   </div>
                 </div>
@@ -1115,18 +1205,23 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
         <tfoot className="print-tfoot mt-auto">
           <tr>
             <td className="print-td border-0 p-0">
-              <DocFooter
-                qrData={qrData}
-                refNo={toEnglishDigits(invoiceNo)}
-                churchName={church.nameEn}
-                churchEmail={church.email}
-                churchWeb={church.web}
-                showQR={church.showVerifyQR}
-              />
+              <div className="print-footer-spacer" />
             </td>
           </tr>
         </tfoot>
       </table>
+
+      {/* Repeating Fixed Footer for print / Normal footer for screen */}
+      <div className="print-footer-fixed">
+        <DocFooter
+          qrData={qrData}
+          refNo={toEnglishDigits(invoiceNo)}
+          churchName={church.nameEn}
+          churchEmail={church.email}
+          churchWeb={church.web}
+          showQR={church.showVerifyQR}
+        />
+      </div>
     </div>
     </DocumentSecurity>
   );
