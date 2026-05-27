@@ -194,13 +194,13 @@ const PRINT_CSS = `
   /* Repeating Fixed Footer for print */
   .print-footer-spacer {
     display: block !important;
-    height: 25mm !important; /* Perfect gap reservation */
+    height: 30mm !important; /* Raised spacer for 1in margins */
   }
   .print-footer-fixed {
     position: fixed !important;
     bottom: 0 !important;
-    left: 15mm !important; /* Perfect standard side margins */
-    right: 15mm !important; /* Perfect standard side margins */
+    left: 1in !important; /* Standard 1 inch side margins */
+    right: 1in !important; /* Standard 1 inch side margins */
     background: #ffffff !important;
     background-color: #ffffff !important;
     z-index: 9999 !important;
@@ -223,14 +223,14 @@ const PRINT_CSS = `
 function PrintStyles({ paperSize = "Letter" }: { paperSize?: string }) {
   const sizeVal = paperSize.toLowerCase() === "a4" ? "a4" : paperSize.toLowerCase() === "a5" ? "a5" : "letter";
   const printableHeight = 
-    sizeVal === "a4" ? "260mm" : 
-    sizeVal === "a5" ? "173mm" : 
-    "242.4mm";
+    sizeVal === "a4" ? "246.2mm" : 
+    sizeVal === "a5" ? "159.2mm" : 
+    "228.6mm";
 
   const css = `
 @page {
   size: ${sizeVal};
-  margin: 15mm 15mm 22mm 15mm;
+  margin: 1in !important;
 }
 ${PRINT_CSS}
 @media print {
@@ -281,7 +281,7 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
       className="mt-auto pt-4"
       data-html2canvas-ignore="false"
       style={{
-        borderTop: "2px solid #1e293b",
+        borderTop: "1px solid #cbd5e1",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -763,7 +763,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
                 {toEnglishDigits((editLang === "en" ? bodyEn : bodyFa) || "...")}
               </div>
 
-              <div className="mt-auto pt-6 border-t-2 border-slate-900 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"}>
+              <div className="mt-auto pt-6 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"}>
                 {/* Signatory block */}
                 <div className="space-y-3">
                   <div className="space-y-1">
@@ -881,7 +881,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
         <tbody className="print-tbody flex-1 flex flex-col">
           <tr className="print-tr flex-1 flex flex-col">
             <td className="print-td border-0 p-0 flex-1 flex flex-col relative z-10">
-              <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
+              <div className="flex justify-between items-end mb-8 relative z-10 border-b border-slate-200 pb-4">
                 <div>
                    <h2 className="uppercase tracking-[0.2em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize - 2}px`, fontFamily: design.fontFamily }}>
                      {isInKind ? "In-Kind Donation Receipt" : "Official Charitable Contribution"}
@@ -948,7 +948,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                       )}
                     </tbody>
                     <tfoot>
-                      <tr className="bg-slate-50 border-t-[3px] border-slate-900">
+                      <tr className="bg-slate-50 border-t-2 border-slate-200">
                         <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[11px] text-slate-500">Grand Total Contribution</td>
                         <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50" style={{ fontSize: `${design.bodySize + 6}px` }}>
                           ${toEnglishDigits((isInKind ? total : Number(receipt.amount || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
@@ -967,7 +967,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                 </div>
               </div>
 
-              <div className="mt-8 flex justify-between items-end relative z-10 border-t-2 border-slate-900 pt-6">
+              <div className="mt-8 flex justify-between items-end relative z-10 border-t border-slate-200 pt-6">
                 <div className="space-y-3">
                   <div className="space-y-1">
                      <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Authorized By</div>
@@ -1591,6 +1591,10 @@ export default function ChurchDocumentsPage() {
   const [editorMode, setEditorMode] = useState<"edit" | "preview">("edit");
   const [editingDocId, setEditingDocId] = useState<string | null>(null);
 
+  useEffect(() => {
+    setEditingDocId(null);
+  }, [activeTab]);
+
   const handleEditDocument = (item: DocHistoryItem) => {
     setEditingDocId(item.id);
     if (item.type === "letter") {
@@ -1916,7 +1920,7 @@ export default function ChurchDocumentsPage() {
 
   const handlePrintInvoice = () => {
     const newItem: DocHistoryItem = {
-      id: crypto.randomUUID(),
+      id: editingDocId || crypto.randomUUID(),
       type: "invoice",
       date: invoiceDate,
       timestamp: Date.now(),
@@ -1951,7 +1955,7 @@ export default function ChurchDocumentsPage() {
   const handlePrintReceipt = () => {
     const total = inKindItems.reduce((s, i) => s + i.value * i.qty, 0);
     const newItem: DocHistoryItem = {
-      id: crypto.randomUUID(),
+      id: editingDocId || crypto.randomUUID(),
       type: activeTab === "inkind" ? "inkind" : "receipt",
       date: receipt.date as string || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
       timestamp: Date.now(),
@@ -2038,7 +2042,7 @@ export default function ChurchDocumentsPage() {
       setLetterSubject(item.subject);
       setBodyEn(item.bodyEn || "");
       setBodyFa(item.bodyFa || "");
-      setTimeout(() => handlePrintLetter(), 500);
+      setTimeout(() => onPrintLetter(), 500);
     } else if (item.type === "invoice") {
       setActiveTab("invoice");
       setInvoiceNo(item.refNo.replace("INV-", ""));
@@ -2063,7 +2067,7 @@ export default function ChurchDocumentsPage() {
       if (item.type === "inkind") {
         setInKindItems(item.inKindItems || []);
       }
-      setTimeout(() => handlePrintReceipt(), 500);
+      setTimeout(() => onPrintReceipt(), 500);
     }
   };
 
@@ -2593,7 +2597,7 @@ export default function ChurchDocumentsPage() {
               )}
 
               <button
-                onClick={() => { setSelectedTpl(null); setBodyEn(""); setBodyFa(""); setLetterTo(""); setLetterSubject(""); }}
+                onClick={() => { setSelectedTpl(null); setBodyEn(""); setBodyFa(""); setLetterTo(""); setLetterSubject(""); setRecipientName(""); setLetterToAddress(""); setPlaceholderValues({}); setEditingDocId(null); }}
                 className="w-full p-4 rounded-xl border border-dashed border-white/20 text-muted-foreground hover:text-foreground hover:border-white/40 transition-all flex items-center gap-2 justify-center text-sm font-medium"
               >
                 <Plus className="w-4 h-4" />{isRtl ? "نامه خالی" : "Blank Letter"}
