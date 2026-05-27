@@ -43,7 +43,7 @@ $VPS_NEXT_PATH = "/root/mychurch-v2/mychurch-next"
 $LOCAL_ENV_PATH = ".\.env.local"
 
 Write-Host "`n[1/4] Setting up fresh codebase on VPS..." -ForegroundColor Yellow
-$gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df && (git checkout main || true) && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
+$gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df -e mychurch-next/.deps-lock.json && (git checkout main || true) && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
 ssh ${VPS_USER}@${VPS_HOST} $gitPullCmd
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Failed to sync repository on VPS." -ForegroundColor Red
@@ -137,9 +137,8 @@ if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .de
 else
     echo 'Installing dependencies...'
     if [ -d node_modules ]; then
-        echo 'Safely clearing old node_modules...'
-        mv node_modules node_modules_old_$(date +%s) || rm -rf node_modules
-        rm -rf node_modules_old_* > /dev/null 2>&1 &
+        echo 'Clearing old node_modules synchronously...'
+        rm -rf node_modules
     fi
     # Wipe the corrupted cache directory to completely eliminate TAR_ENTRY_ERROR
     echo 'Cleaning corrupted npm cache folder...'
