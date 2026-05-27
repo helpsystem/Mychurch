@@ -1564,13 +1564,27 @@ export default function ChurchDocumentsPage() {
 
   const handleGeneratePdfAndEmail = async (ref: React.RefObject<HTMLDivElement | null>) => {
     if (!ref.current) { await handleSendEmail(); return; }
+
+    // ── Temporarily make the element visible off-screen so html2canvas can render it ──
+    // (Elements with display:none or visibility:hidden cannot be captured by html2canvas)
+    const el = ref.current;
+    const wasHidden = el.closest(".hidden") as HTMLElement | null;
+    let hiddenParentOriginal = "";
+    if (wasHidden) {
+      hiddenParentOriginal = wasHidden.getAttribute("style") || "";
+      wasHidden.setAttribute("style", "position:fixed;left:-9999px;top:0;z-index:-1;visibility:visible;display:block;");
+    }
+
     try {
       const jspdfMod = await import("jspdf");
       const html2canvasMod = await import("html2canvas");
       const jsPDF = jspdfMod.default || (jspdfMod as any).jsPDF;
       const html2canvas = html2canvasMod.default;
 
-      const canvas = await html2canvas(ref.current, {
+      // Small delay to allow browser to repaint the newly visible element
+      await new Promise<void>(res => setTimeout(res, 80));
+
+      const canvas = await html2canvas(el, {
         scale: 2.5,         // higher resolution for sharper QR codes
         useCORS: true,
         allowTaint: false,
@@ -1628,8 +1642,17 @@ export default function ChurchDocumentsPage() {
       await handleSendEmail(pdfBase64, imageBase64);
     } catch (err) {
       console.error("PDF generation error:", err);
-      toast.error(isRtl ? "تولید PDF ناموفق بود، ارسال بدون فایل..." : "PDF generation failed, sending without file...");
+      toast.error(isRtl ? "تولید PDF ناموفق بود" : "PDF generation failed");
       await handleSendEmail();
+    } finally {
+      // ── Restore original visibility ──
+      if (wasHidden) {
+        if (hiddenParentOriginal) {
+          wasHidden.setAttribute("style", hiddenParentOriginal);
+        } else {
+          wasHidden.removeAttribute("style");
+        }
+      }
     }
   };
 
@@ -2601,7 +2624,7 @@ export default function ChurchDocumentsPage() {
                       docType: "letter",
                       subject: replacePlaceholders(letterSubject || docNumber, placeholderValues),
                       refNo: toEnglishDigits(docNumber),
-                      htmlSummary: `<p><strong>Reference / شماره سند:</strong> ${toEnglishDigits(docNumber)}</p><p><strong>To / گیرنده:</strong> ${replacePlaceholders(recipientName || letterTo, placeholderValues)}</p><p><strong>Subject / موضوع:</strong> ${replacePlaceholders(letterSubject, placeholderValues)}</p><hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0"/><p>Please find the official document attached as a PDF and an image.</p><p dir="rtl">لطفاً سند رسمی پیوست شده را به صورت فایل PDF و تصویر مشاهده نمایید.</p>`,
+                      htmlSummary: `<p>Please find the official letter attached as a PDF document.</p><p dir="rtl" style="font-family:'Vazirmatn',sans-serif">لطفاً نامه رسمی پیوست شده را به صورت فایل PDF مشاهده نمایید.</p>`,
                       printRef: letterRef as React.RefObject<HTMLDivElement>,
                     })}
                     className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
@@ -2644,7 +2667,7 @@ export default function ChurchDocumentsPage() {
                   refNo={toEnglishDigits(docNumber)} 
                   church={church} 
                 />
-                <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
+                <style>{`@media print { @page { size: ${(church.paperSize || "letter").toLowerCase()}; margin: 15mm 15mm 22mm 15mm; } body { margin: 0; } }`}</style>
               </div>
             </div>
           </div>
@@ -2778,7 +2801,7 @@ export default function ChurchDocumentsPage() {
             <div className="hidden print:block">
               <div ref={receiptRef} className="bg-white p-0 m-0 w-fit rounded-none">
                 <DonationReceiptDoc receipt={receipt} receiptNo={receiptNo} isInKind={activeTab === "inkind"} inKindItems={inKindItems} church={church} />
-                <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
+                <style>{`@media print { @page { size: ${(church.paperSize || "letter").toLowerCase()}; margin: 15mm 15mm 22mm 15mm; } body { margin: 0; } }`}</style>
               </div>
             </div>
           </div>
@@ -2887,7 +2910,7 @@ export default function ChurchDocumentsPage() {
                         docType: "invoice",
                         subject: `Invoice INV-${invoiceNo} for ${invoiceTo}`,
                         refNo: `INV-${invoiceNo}`,
-                        htmlSummary: `<p><strong>Invoice No / شماره فاکتور:</strong> INV-${toEnglishDigits(invoiceNo)}</p><p><strong>Billed To / پرداخت کننده:</strong> ${invoiceTo}${invoiceName ? ` / ${invoiceName}` : ""}</p><p><strong>Date / تاریخ:</strong> ${toEnglishDigits(new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }))}</p><p><strong>Total Due / مبلغ کل:</strong> $${toEnglishDigits(invoiceTotalAmount.toLocaleString("en-US", { minimumFractionDigits: 2 }))}</p><hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0"/><p>Please find the official invoice attached as a PDF and an image.</p><p dir="rtl">لطفاً فاکتور رسمی پیوست شده را به صورت فایل PDF و تصویر مشاهده نمایید.</p>`,
+                        htmlSummary: `<p>Please find the official invoice attached as a PDF document.</p><p dir="rtl" style="font-family:'Vazirmatn',sans-serif">لطفاً فاکتور رسمی پیوست شده را به صورت فایل PDF مشاهده نمایید.</p>`,
                         printRef: invoiceRef as React.RefObject<HTMLDivElement>,
                       })}
                       className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-4 py-3 rounded-xl font-black text-sm transition-all"
@@ -2914,7 +2937,7 @@ export default function ChurchDocumentsPage() {
               <div className="bg-white p-2 rounded-xl shadow-2xl scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100 origin-top border border-white/20 transition-transform">
                 <div ref={invoiceRef} className="bg-white p-0 m-0 w-fit rounded-none">
                   <InvoiceDoc invoiceTo={invoiceTo} invoiceAddress={invoiceAddress} invoiceName={invoiceName} invoiceDate={invoiceDate} invoiceItems={invoiceItems} invoiceTotalAmount={invoiceTotalAmount} invoiceWallet={invoiceWallet} invoiceNotes={invoiceNotes} invoiceNo={invoiceNo} church={church} lang={invoiceLang} />
-                  <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
+                  <style>{`@media print { @page { size: ${(church.paperSize || "letter").toLowerCase()}; margin: 15mm 15mm 22mm 15mm; } body { margin: 0; } }`}</style>
                 </div>
               </div>
             </div>
