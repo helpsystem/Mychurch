@@ -8,7 +8,9 @@ export async function emailDocument(
   subject: string,
   htmlContent: string,
   pdfBase64?: string,
-  pdfFilename?: string
+  pdfFilename?: string,
+  imageBase64?: string,
+  imageFilename?: string
 ) {
     try {
         await requireRole(['Admin', 'Leader']);
@@ -103,6 +105,14 @@ export async function emailDocument(
                 content: pdfBase64,
                 encoding: "base64",
                 contentType: "application/pdf",
+            });
+        }
+        if (imageBase64) {
+            attachments.push({
+                filename: imageFilename || "official-document.jpg",
+                content: imageBase64,
+                encoding: "base64",
+                contentType: "image/jpeg",
             });
         }
 

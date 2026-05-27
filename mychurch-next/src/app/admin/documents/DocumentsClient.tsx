@@ -189,6 +189,7 @@ function PrintQRFixed({ qrData, refNo, isRtl }: { qrData: string; refNo: string;
   return (
     <div
       className="hidden print:flex"
+      data-html2canvas-ignore="true"
       style={{
         position: "fixed",
         bottom: 0,
@@ -245,7 +246,7 @@ function PrintQRFixed({ qrData, refNo, isRtl }: { qrData: string; refNo: string;
 // ─── Print Page Number Counter ────────────────────────────────────────────────
 function PrintPageNumber({ churchName }: { churchName: string }) {
   return (
-    <div className="print-page-counter hidden print:block" style={{ fontFamily: 'monospace', fontSize: '8pt', color: '#94a3b8' }}>
+    <div className="print-page-counter hidden print:block" data-html2canvas-ignore="true" style={{ fontFamily: 'monospace', fontSize: '8pt', color: '#94a3b8' }}>
       {churchName} — Page <span className="pageNumber" /> of <span className="totalPages" />
     </div>
   );
@@ -1526,7 +1527,7 @@ export default function ChurchDocumentsPage() {
   };
 
   // ── Email Document Handler ────────────────────────────────────────────────
-  const handleSendEmail = async (pdfBase64?: string) => {
+  const handleSendEmail = async (pdfBase64?: string, imageBase64?: string) => {
     if (!emailModal || !emailAddress.trim()) {
       toast.error(isRtl ? "لطفاً ایمیل گیرنده را وارد کنید" : "Please enter recipient email");
       return;
@@ -1543,7 +1544,9 @@ export default function ChurchDocumentsPage() {
         emailModal.subject,
         emailModal.htmlSummary,
         pdfBase64,
-        `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.pdf`
+        `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.pdf`,
+        imageBase64,
+        `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.jpg`
       );
       if (result.success) {
         toast.success(isRtl ? `ایمیل با موفقیت به ${emailAddress} ارسال شد` : `Email sent successfully to ${emailAddress}`);
@@ -1621,7 +1624,8 @@ export default function ChurchDocumentsPage() {
       }
 
       const pdfBase64 = pdf.output("datauristring").split(",")[1];
-      await handleSendEmail(pdfBase64);
+      const imageBase64 = imgData.split(",")[1];
+      await handleSendEmail(pdfBase64, imageBase64);
     } catch (err) {
       console.error("PDF generation error:", err);
       toast.error(isRtl ? "تولید PDF ناموفق بود، ارسال بدون فایل..." : "PDF generation failed, sending without file...");
@@ -2597,7 +2601,7 @@ export default function ChurchDocumentsPage() {
                       docType: "letter",
                       subject: replacePlaceholders(letterSubject || docNumber, placeholderValues),
                       refNo: toEnglishDigits(docNumber),
-                      htmlSummary: `<p><strong>Reference:</strong> ${toEnglishDigits(docNumber)}</p><p><strong>To:</strong> ${replacePlaceholders(recipientName || letterTo, placeholderValues)}</p><p><strong>Subject:</strong> ${replacePlaceholders(letterSubject, placeholderValues)}</p><hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0"/><p style="white-space:pre-wrap;font-family:monospace;font-size:13px;">${replacePlaceholders(bodyEn, placeholderValues).substring(0, 800)}${bodyEn.length > 800 ? '...' : ''}</p>`,
+                      htmlSummary: `<p><strong>Reference / شماره سند:</strong> ${toEnglishDigits(docNumber)}</p><p><strong>To / گیرنده:</strong> ${replacePlaceholders(recipientName || letterTo, placeholderValues)}</p><p><strong>Subject / موضوع:</strong> ${replacePlaceholders(letterSubject, placeholderValues)}</p><hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0"/><p>Please find the official document attached as a PDF and an image.</p><p dir="rtl">لطفاً سند رسمی پیوست شده را به صورت فایل PDF و تصویر مشاهده نمایید.</p>`,
                       printRef: letterRef as React.RefObject<HTMLDivElement>,
                     })}
                     className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
@@ -2628,7 +2632,7 @@ export default function ChurchDocumentsPage() {
 
             {/* Hidden print */}
             <div className="hidden print:block">
-              <div ref={letterRef}>
+              <div ref={letterRef} className="bg-white p-0 m-0 w-fit rounded-none">
                 <LetterDoc 
                   bodyEn={replacePlaceholders(bodyEn, placeholderValues)} 
                   bodyFa={replacePlaceholders(bodyFa, placeholderValues)} 
@@ -2772,7 +2776,7 @@ export default function ChurchDocumentsPage() {
 
             {/* Hidden print */}
             <div className="hidden print:block">
-              <div ref={receiptRef}>
+              <div ref={receiptRef} className="bg-white p-0 m-0 w-fit rounded-none">
                 <DonationReceiptDoc receipt={receipt} receiptNo={receiptNo} isInKind={activeTab === "inkind"} inKindItems={inKindItems} church={church} />
                 <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
               </div>
@@ -2883,7 +2887,7 @@ export default function ChurchDocumentsPage() {
                         docType: "invoice",
                         subject: `Invoice INV-${invoiceNo} for ${invoiceTo}`,
                         refNo: `INV-${invoiceNo}`,
-                        htmlSummary: `<p><strong>Invoice No:</strong> INV-${toEnglishDigits(invoiceNo)}</p><p><strong>Billed To:</strong> ${invoiceTo}${invoiceName ? ` / ${invoiceName}` : ""}</p><p><strong>Date:</strong> ${toEnglishDigits(new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }))}</p><p><strong>Total Due:</strong> $${toEnglishDigits(invoiceTotalAmount.toLocaleString("en-US", { minimumFractionDigits: 2 }))}</p>${invoiceItems.map((it, i) => `<p style="padding-left:16px;color:#64748b">${String(i+1).padStart(2,"0")}. ${it.description} — $${Number(it.total).toFixed(2)}</p>`).join("")}`,
+                        htmlSummary: `<p><strong>Invoice No / شماره فاکتور:</strong> INV-${toEnglishDigits(invoiceNo)}</p><p><strong>Billed To / پرداخت کننده:</strong> ${invoiceTo}${invoiceName ? ` / ${invoiceName}` : ""}</p><p><strong>Date / تاریخ:</strong> ${toEnglishDigits(new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }))}</p><p><strong>Total Due / مبلغ کل:</strong> $${toEnglishDigits(invoiceTotalAmount.toLocaleString("en-US", { minimumFractionDigits: 2 }))}</p><hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0"/><p>Please find the official invoice attached as a PDF and an image.</p><p dir="rtl">لطفاً فاکتور رسمی پیوست شده را به صورت فایل PDF و تصویر مشاهده نمایید.</p>`,
                         printRef: invoiceRef as React.RefObject<HTMLDivElement>,
                       })}
                       className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-4 py-3 rounded-xl font-black text-sm transition-all"
@@ -2908,7 +2912,7 @@ export default function ChurchDocumentsPage() {
 
             <div className="lg:col-span-8 flex justify-center sticky top-28 print:static">
               <div className="bg-white p-2 rounded-xl shadow-2xl scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100 origin-top border border-white/20 transition-transform">
-                <div ref={invoiceRef}>
+                <div ref={invoiceRef} className="bg-white p-0 m-0 w-fit rounded-none">
                   <InvoiceDoc invoiceTo={invoiceTo} invoiceAddress={invoiceAddress} invoiceName={invoiceName} invoiceDate={invoiceDate} invoiceItems={invoiceItems} invoiceTotalAmount={invoiceTotalAmount} invoiceWallet={invoiceWallet} invoiceNotes={invoiceNotes} invoiceNo={invoiceNo} church={church} lang={invoiceLang} />
                   <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
                 </div>
@@ -3391,7 +3395,7 @@ export default function ChurchDocumentsPage() {
                                   docType: item.type as any,
                                   subject: item.subject,
                                   refNo: item.refNo,
-                                  htmlSummary: `<p><strong>Ref:</strong> ${item.refNo}</p><p><strong>Recipient:</strong> ${item.recipient}</p><p><strong>Date:</strong> ${item.date}</p><p><strong>Subject:</strong> ${item.subject}</p>${item.amount ? `<p><strong>Amount:</strong> $${item.amount.toLocaleString()}</p>` : ""}<p style="margin-top:12px;color:#64748b;font-size:12px;">See the attached PDF for the full document.</p>`,
+                                  htmlSummary: `<p><strong>Ref / شماره سند:</strong> ${item.refNo}</p><p><strong>Recipient / گیرنده:</strong> ${item.recipient}</p><p><strong>Date / تاریخ:</strong> ${item.date}</p><p><strong>Subject / موضوع:</strong> ${item.subject}</p>${item.amount ? `<p><strong>Amount / مبلغ:</strong> $${item.amount.toLocaleString()}</p>` : ""}<hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0"/><p>Please find the official document attached as a PDF and an image.</p><p dir="rtl">لطفاً سند رسمی پیوست شده را به صورت فایل PDF و تصویر مشاهده نمایید.</p>`,
                                 })}
                                 title={isRtl ? "ارسال ایمیل" : "Send via Email"}
                                 className="p-2.5 rounded-xl glass border border-white/10 text-indigo-400 hover:bg-indigo-500/20 transition-all shadow-lg"
