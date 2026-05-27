@@ -136,7 +136,11 @@ if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .de
     echo 'Dependencies unchanged, skipping npm install'
 else
     echo 'Installing dependencies...'
-    rm -rf node_modules
+    if [ -d node_modules ]; then
+        echo 'Safely clearing old node_modules...'
+        mv node_modules node_modules_old_$(date +%s) || rm -rf node_modules
+        rm -rf node_modules_old_* > /dev/null 2>&1 &
+    fi
     if ! npm ci --no-audit --no-fund --ignore-scripts; then
         echo 'npm ci failed, cleaning npm cache and falling back to npm install...'
         npm cache clean --force
