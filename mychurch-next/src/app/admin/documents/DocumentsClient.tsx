@@ -9,6 +9,7 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { emailDocument } from "@/actions/documentMailer";
 import { deleteDocument, getDocuments, saveDocument, updateDocument } from "@/actions/documents";
 import { createIntakeRequest, getMyIntakeRequests, markIntakeAsUsed, deleteIntakeRequest } from "@/actions/intakeRequests";
+import { getDocumentSettings, saveDocumentSettings } from "@/actions/documentSettings";
 import { INTAKE_FIELD_PRESETS, type IntakeField, type IntakeStatus } from "@/types/intake";
 import { toast } from "sonner";
 import {
@@ -1210,23 +1211,46 @@ export default function ChurchDocumentsPage() {
     toast.success(isRtl ? "تاریخچه پاک شد" : "History cleared");
   }, [docHistory, isRtl]);
 
-  // Persistence: Load
+  // Persistence: Load — from Supabase first, then localStorage as fallback
   useEffect(() => {
-    const savedSettings = localStorage.getItem("church_settings");
-    if (savedSettings) {
+    async function loadSettings() {
+      // 1. Try Supabase (authoritative, shared across all browsers/users)
       try {
-        const parsed = JSON.parse(savedSettings);
-        setChurch(prev => ({ ...prev, ...parsed }));
-        setSettingsDraft(prev => ({ ...prev, ...parsed }));
-      } catch (e) { console.error("Error loading church settings", e); }
-    }
+        const dbSettings = await getDocumentSettings();
+        if (dbSettings && Object.keys(dbSettings).length > 0) {
+          setChurch(prev => ({ ...prev, ...dbSettings }));
+          setSettingsDraft(prev => ({ ...prev, ...dbSettings }));
+          // Also sync to localStorage for offline fallback
+          localStorage.setItem("church_settings", JSON.stringify(dbSettings));
+          void loadDocumentHistory();
+          const savedTemplates = localStorage.getItem("mychurch_doc_templates");
+          if (savedTemplates) {
+            try { setDocTemplates(JSON.parse(savedTemplates)); } catch (e) { console.error(e); }
+          }
+          return;
+        }
+      } catch (e) {
+        console.warn("[DocumentSettings] Supabase load failed, using localStorage:", e);
+      }
 
-    void loadDocumentHistory();
+      // 2. Fallback: localStorage
+      const savedSettings = localStorage.getItem("church_settings");
+      if (savedSettings) {
+        try {
+          const parsed = JSON.parse(savedSettings);
+          setChurch(prev => ({ ...prev, ...parsed }));
+          setSettingsDraft(prev => ({ ...prev, ...parsed }));
+        } catch (e) { console.error("Error loading church settings", e); }
+      }
 
-    const savedTemplates = localStorage.getItem("mychurch_doc_templates");
-    if (savedTemplates) {
+      void loadDocumentHistory();
+
+      const savedTemplates = localStorage.getItem("mychurch_doc_templates");
+      if (savedTemplates) {
         try { setDocTemplates(JSON.parse(savedTemplates)); } catch (e) { console.error(e); }
+      }
     }
+    void loadSettings();
   }, []);
 
   // Automate signatory for admins
@@ -1237,9 +1261,14 @@ export default function ChurchDocumentsPage() {
     }
   }, [isAdmin, currentUser, church.signatoryName]);
 
-  // Persistence: Save
+  // Persistence: Save — to both Supabase and localStorage
   useEffect(() => {
+    // Always save to localStorage immediately for snappy UI
     localStorage.setItem("church_settings", JSON.stringify(church));
+    // Save to Supabase in background (don't await — fire and forget)
+    void saveDocumentSettings(church as any).catch(e =>
+      console.warn("[DocumentSettings] Background save failed:", e)
+    );
   }, [church]);
 
   useEffect(() => {
