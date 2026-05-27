@@ -112,6 +112,13 @@ function formatDigits(text: string) {
 // ─── Print CSS (injected once per document render) ───────────────────────────
 const PRINT_CSS = `
 @media print {
+  /* Disable transforms/scales on print to ensure fixed positioned elements use paged viewport dimensions */
+  *, html, body, main, .print-doc-wrap, div {
+    transform: none !important;
+    filter: none !important;
+    perspective: none !important;
+  }
+
   /* Enforce Light Theme CSS variables on print to eliminate dark mode leak */
   :root, html, body, .dark {
     --background: #ffffff !important;
@@ -308,24 +315,19 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
       {/* Right: QR code */}
       {showQR !== false && (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px", flexShrink: 0 }}>
-          <div style={{ padding: "3px", border: "1.5px solid #1e293b", borderRadius: "5px", background: "#fff", position: "relative", width: "66px", height: "66px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <QRImage value={qrData} size={120} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/logo-transparent.png" 
-              alt="Logo"
-              crossOrigin="anonymous"
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "14px",
-                height: "14px",
-                backgroundColor: "#ffffff",
-                padding: "1px",
-                borderRadius: "2px",
-                zIndex: 10
+          <div style={{ padding: "3px", border: "1.5px solid #1e293b", borderRadius: "5px", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <QRCodeSVG
+              value={qrData}
+              size={58}
+              level="M"
+              bgColor="#ffffff"
+              fgColor="#000000"
+              marginSize={0}
+              imageSettings={{
+                src: "/logo-transparent.png",
+                height: 12,
+                width: 12,
+                excavate: true,
               }}
             />
           </div>

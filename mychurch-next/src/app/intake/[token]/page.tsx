@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { getIntakeRequest, submitIntakeForm } from "@/actions/intakeRequests";
@@ -18,7 +18,10 @@ interface IntakeData {
   created_at: string;
 }
 
-export default function IntakePage({ params }: { params: { token: string } }) {
+export default function IntakePage({ params }: { params: Promise<{ token: string }> }) {
+  const resolvedParams = use(params);
+  const token = resolvedParams.token;
+
   const { language } = useLanguage();
   const isRtl = language === "fa";
 
@@ -35,7 +38,7 @@ export default function IntakePage({ params }: { params: { token: string } }) {
   useEffect(() => {
     async function load() {
       setLoading(true);
-      const result = await getIntakeRequest(params.token);
+      const result = await getIntakeRequest(token);
       if (result.error === "already_submitted") {
         setAlreadySubmitted(true);
         setIntake(result.data as IntakeData);
@@ -53,7 +56,7 @@ export default function IntakePage({ params }: { params: { token: string } }) {
       setLoading(false);
     }
     void load();
-  }, [params.token]);
+  }, [token]);
 
   const validate = (): boolean => {
     const errors: Record<string, string> = {};
@@ -74,7 +77,7 @@ export default function IntakePage({ params }: { params: { token: string } }) {
     if (!validate()) return;
     setSubmitting(true);
     try {
-      const result = await submitIntakeForm(params.token, formData);
+      const result = await submitIntakeForm(token, formData);
       if (result.error === "already_submitted") {
         setAlreadySubmitted(true);
       } else if (result.error) {

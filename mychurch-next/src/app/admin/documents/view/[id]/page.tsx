@@ -166,7 +166,7 @@ export default function DocumentViewerPage() {
                />
               </div>
           )}
-          <style>{`@media print { @page { size: letter; margin: 0; } body { margin: 0; } }`}</style>
+          <style>{`@media print { body { background: #ffffff !important; } }`}</style>
         </div>
       </main>
       

@@ -2,6 +2,7 @@
 
 import { createClient } from '@/utils/supabase/server';
 import type { DocumentType, DocumentHistoryData } from '@/types/documents';
+export type { DocumentType, DocumentHistoryData };
 
 
 /**
