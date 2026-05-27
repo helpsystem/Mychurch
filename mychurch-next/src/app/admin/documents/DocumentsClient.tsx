@@ -19,7 +19,7 @@ import {
   Globe, Phone, Mail, User, MapPin, Calendar, History as HistoryIcon, Search, Trash2, Copy, Pencil,
   Link2, Share2, CheckSquare, Square, FolderOpen, Folder, Star, Inbox, ChevronRight, ClipboardList, ExternalLink, RefreshCw
 } from "lucide-react";
-import { QRCodeSVG } from "qrcode.react";
+import { QRCodeSVG, QRCodeCanvas } from "qrcode.react";
 
 
 export interface DocumentDesign {
@@ -173,82 +173,85 @@ const PRINT_CSS = `
 
 function PrintStyles({ paperSize = "Letter" }: { paperSize?: string }) {
   const sizeVal = paperSize.toLowerCase() === "a4" ? "a4" : paperSize.toLowerCase() === "a5" ? "a5" : "letter";
+  const printableHeight = 
+    sizeVal === "a4" ? "260mm" : 
+    sizeVal === "a5" ? "173mm" : 
+    "242.4mm";
+
   const css = `
 @page {
   size: ${sizeVal};
   margin: 15mm 15mm 22mm 15mm;
 }
 ${PRINT_CSS}
+@media print {
+  .print-doc-wrap {
+    min-height: ${printableHeight} !important;
+  }
+}
 `;
   return <style dangerouslySetInnerHTML={{ __html: css }} />;
 }
 
-// ─── Print QR Fixed Footer (shown on every print page) ───────────────────────
-function PrintQRFixed({ qrData, refNo, isRtl }: { qrData: string; refNo: string; isRtl?: boolean }) {
-  // qrData is always a full verify URL — scanning opens the church verification page
-  const url = qrData;
+// ─── Inline Document Footer (replaces fixed-position footer) ─────────────────
+// Sits at the bottom of the document in normal flow — works for screen, print, and PDF capture
+function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, showQR }: {
+  qrData: string; refNo: string; churchName: string;
+  churchEmail?: string; churchWeb?: string; isRtl?: boolean; showQR?: boolean;
+}) {
   return (
     <div
-      className="hidden print:flex"
-      data-html2canvas-ignore="true"
+      className="mt-auto pt-4"
+      data-html2canvas-ignore="false"
       style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: "28mm",
-        background: "#fff",
         borderTop: "2px solid #1e293b",
-        zIndex: 9999,
-        display: "none", // overridden by print:flex via @media print in PrintStyles
+        display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "0 20mm",
-        pageBreakAfter: "avoid",
+        gap: "12px",
+        background: "#fff",
+        minHeight: "22mm",
+        padding: "8px 0 4px 0",
+        pageBreakInside: "avoid",
+        breakInside: "avoid",
       }}
     >
-      {/* Left: Church identity + doc ref + warning */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "2px", maxWidth: "55%" }}>
-        <div style={{ fontSize: "8pt", fontWeight: 900, color: "#0f172a", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "monospace" }}>
-          Iranian Christian Church of Washington DC
+      {/* Left/Right: Church info + ref */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "2px", flex: 1, direction: "ltr" }}>
+        <div style={{ fontSize: "7.5pt", fontWeight: 900, color: "#0f172a", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "monospace" }}>
+          {churchName}
         </div>
-        <div style={{ fontSize: "6.5pt", color: "#64748b", fontFamily: "monospace" }}>
-          iranianchurchdc.com &nbsp;·&nbsp; info@iranianchurchdc.com
+        <div style={{ fontSize: "6pt", color: "#64748b", fontFamily: "monospace" }}>
+          {churchWeb || "iranianchurchdc.com"}&nbsp;·&nbsp;{churchEmail || "info@iranianchurchdc.com"}
         </div>
-        <div style={{ fontSize: "6.5pt", color: "#94a3b8", fontFamily: "monospace", marginTop: "2px" }}>
-          {isRtl ? "شماره سند:" : "Document Ref:"} <span style={{ color: "#1e40af", fontWeight: 700 }}>{refNo}</span>
+        <div style={{ fontSize: "6pt", color: "#94a3b8", fontFamily: "monospace", marginTop: "1px" }}>
+          {isRtl ? "شماره سند:" : "Document Ref:"}&nbsp;<span style={{ color: "#1e40af", fontWeight: 700 }}>{refNo}</span>
         </div>
-        <div style={{ fontSize: "5.5pt", color: "#dc2626", fontWeight: 900, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace", marginTop: "1px" }}>
+        <div style={{ fontSize: "5.5pt", color: "#dc2626", fontWeight: 900, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "monospace", marginTop: "1px" }}>
           ⚠ PROTECTED · DO NOT ALTER · VERIFY AUTHENTICITY BY SCANNING QR
         </div>
       </div>
 
-      {/* Right: QR code + label */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-        <div style={{ padding: "4px", border: "2px solid #1e293b", borderRadius: "6px", background: "#fff" }}>
-          <QRCodeSVG
-            value={url}
-            size={68}
-            level="H"
-            bgColor="#ffffff"
-            fgColor="#000000"
-            marginSize={0}
-            imageSettings={{ src: "/logo-transparent.png", height: 16, width: 16, excavate: true }}
-          />
+      {/* Right: QR code */}
+      {showQR !== false && (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px", flexShrink: 0 }}>
+          <div style={{ padding: "3px", border: "1.5px solid #1e293b", borderRadius: "5px", background: "#fff" }}>
+            <QRCodeCanvas
+              value={qrData}
+              size={120}
+              style={{ width: "60px", height: "60px" }}
+              level="M"
+              bgColor="#ffffff"
+              fgColor="#000000"
+              marginSize={0}
+              imageSettings={{ src: "/logo-transparent.png", height: 28, width: 28, excavate: true }}
+            />
+          </div>
+          <div style={{ fontSize: "5.5pt", fontWeight: 900, color: "#475569", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
+            {isRtl ? "اسکن برای تأیید" : "SCAN TO VERIFY"}
+          </div>
         </div>
-        <div style={{ fontSize: "5.5pt", fontWeight: 900, color: "#475569", letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: "monospace" }}>
-          {isRtl ? "اسکن برای تأیید" : "SCAN TO VERIFY"}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Print Page Number Counter ────────────────────────────────────────────────
-function PrintPageNumber({ churchName }: { churchName: string }) {
-  return (
-    <div className="print-page-counter hidden print:block" data-html2canvas-ignore="true" style={{ fontFamily: 'monospace', fontSize: '8pt', color: '#94a3b8' }}>
-      {churchName} — Page <span className="pageNumber" /> of <span className="totalPages" />
+      )}
     </div>
   );
 }
@@ -260,17 +263,18 @@ function DocumentQR({ data, size = 80 }: { data: string; size?: number }) {
   const url = data.startsWith("http") ? data : `${SITE_URL}/verify/${encodeURIComponent(data)}`;
 
   return (
-    <QRCodeSVG 
+    <QRCodeCanvas 
       value={url} 
-      size={size}
+      size={size * 2}
+      style={{ width: `${size}px`, height: `${size}px` }}
       level="M" 
       bgColor="#ffffff"
       fgColor="#000000"
       marginSize={1}
       imageSettings={{
         src: "/logo-transparent.png",
-        height: 18,
-        width: 18,
+        height: Math.floor(size * 2 * 0.22),
+        width: Math.floor(size * 2 * 0.22),
         excavate: true,
       }}
     />
@@ -285,6 +289,7 @@ function Watermark({ logo, opacity }: { logo: string; opacity: number }) {
       <img
         src={logo}
         alt="Watermark"
+        crossOrigin="anonymous"
         className="w-[400px] h-[400px] object-contain select-none grayscale"
         style={{ opacity }}
       />
@@ -293,20 +298,15 @@ function Watermark({ logo, opacity }: { logo: string; opacity: number }) {
 }
 
 // ─── Component: Document Security Wrapper ─────────────────────────────────────
-function DocumentSecurity({ children, isLocked = true }: { children: React.ReactNode; isLocked?: boolean }) {
-  if (!isLocked) return <>{children}</>;
-
+function DocumentSecurity({ children }: { children: React.ReactNode }) {
   return (
     <div 
-      className="relative select-none print:select-auto group w-full h-full"
+      className="relative w-full h-full"
       onContextMenu={(e) => e.preventDefault()}
-      style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" }}
+      style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" } as React.CSSProperties}
     >
-      {/* Invisible Guard Layer to prevent mouse interactions with text */}
-      <div className="absolute inset-0 z-[100] cursor-default bg-transparent" />
-      
-      {/* Repeating Anti-Copy Watermark (Visible only on some captures/scans) */}
-      <div className="absolute inset-0 z-[50] pointer-events-none opacity-[0.03] overflow-hidden select-none flex flex-wrap gap-20 p-10 rotate-12">
+      {/* Repeating Anti-Copy Watermark (screen-only, very faint) */}
+      <div className="absolute inset-0 z-[5] pointer-events-none opacity-[0.025] overflow-hidden select-none flex flex-wrap gap-20 p-10 rotate-12 print:hidden">
         {Array.from({ length: 40 }).map((_, i) => (
           <span key={i} className="text-slate-900 font-bold text-2xl tracking-tighter whitespace-nowrap">
             OFFICIAL DOCUMENT - COPY PROHIBITED - MYCHURCH BROADCAST SYSTEM
@@ -533,7 +533,7 @@ function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHU
     return (
       <div className="mb-4 relative z-10" style={digitStyle}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={church.customHeaderImage} alt="Custom Header" className="w-full h-auto" />
+        <img src={church.customHeaderImage} alt="Custom Header" crossOrigin="anonymous" className="w-full h-auto" />
         <div className="flex justify-end text-[10px] text-gray-400 mt-1">Ref: {docRef} | {date}</div>
       </div>
     );
@@ -550,7 +550,7 @@ function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHU
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-blue-600/5 rounded-2xl blur-xl" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={church.logo} alt="Logo" className="object-contain relative z-10 drop-shadow-sm" style={{ height: `${design.logoSize}px`, width: "auto" }} />
+              <img src={church.logo} alt="Logo" crossOrigin="anonymous" className="object-contain relative z-10 drop-shadow-sm" style={{ height: `${design.logoSize}px`, width: "auto" }} />
             </div>
             
             <div className="flex flex-col border-l-2 border-slate-200 pl-5 py-1">
@@ -688,6 +688,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
               <img
                 src={church.signatureImage}
                 alt="Signature"
+                crossOrigin="anonymous"
                 className="h-full object-contain mix-blend-multiply opacity-95"
               />
             </div>
@@ -713,9 +714,16 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
         )}
       </div>
 
-      {/* Print-only: Fixed QR on every page + page number */}
-      {church.showVerifyQR && <PrintQRFixed qrData={qrData} refNo={toEnglishDigits(refNo)} isRtl={isRtl} />}
-      <PrintPageNumber churchName={church.nameEn} />
+      {/* Inline footer: QR + church info + ref — always visible, inside document flow */}
+      <DocFooter
+        qrData={qrData}
+        refNo={toEnglishDigits(refNo)}
+        churchName={church.nameEn}
+        churchEmail={church.email}
+        churchWeb={church.web}
+        isRtl={isRtl}
+        showQR={church.showVerifyQR}
+      />
     </div>
     </DocumentSecurity>
   );
@@ -847,6 +855,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
               <img
                 src={church.signatureImage}
                 alt="Signature"
+                crossOrigin="anonymous"
                 className="h-full object-contain mix-blend-multiply opacity-95 relative z-10"
               />
             </div>
@@ -869,9 +878,15 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
         )}
       </div>
 
-      {/* Print-only: Fixed QR on every page + page number */}
-      {church.showVerifyQR && <PrintQRFixed qrData={qrData} refNo={toEnglishDigits(receiptNo)} />}
-      <PrintPageNumber churchName={church.nameEn} />
+      {/* Inline footer: QR + church info + ref */}
+      <DocFooter
+        qrData={qrData}
+        refNo={toEnglishDigits(receiptNo)}
+        churchName={church.nameEn}
+        churchEmail={church.email}
+        churchWeb={church.web}
+        showQR={church.showVerifyQR}
+      />
     </div>
     </DocumentSecurity>
   );
@@ -1039,9 +1054,15 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
         )}
       </div>
 
-      {/* Print-only: Fixed QR on every page + page number */}
-      {church.showVerifyQR && <PrintQRFixed qrData={qrData} refNo={toEnglishDigits(invoiceNo)} />}
-      <PrintPageNumber churchName={church.nameEn} />
+      {/* Inline footer: QR + church info + ref */}
+      <DocFooter
+        qrData={qrData}
+        refNo={toEnglishDigits(invoiceNo)}
+        churchName={church.nameEn}
+        churchEmail={church.email}
+        churchWeb={church.web}
+        showQR={church.showVerifyQR}
+      />
     </div>
     </DocumentSecurity>
   );
