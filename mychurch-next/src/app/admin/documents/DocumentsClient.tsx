@@ -2077,7 +2077,11 @@ export default function ChurchDocumentsPage() {
     try {
       const result = await callAI("generate");
       if (editLang === "en") setBodyEn(result); else setBodyFa(result);
-    } catch { /* silently fail */ }
+      toast.success(isRtl ? "نامه با موفقیت تولید شد" : "Letter generated successfully");
+    } catch (err: any) {
+      console.error("AI Generation Error:", err);
+      toast.error(err.message || (isRtl ? "خطا در تولید نامه با هوش مصنوعی" : "Failed to generate letter with AI"));
+    }
     finally { setLoadingGenerate(false); }
   };
 
@@ -2086,7 +2090,11 @@ export default function ChurchDocumentsPage() {
     try {
       const result = await callAI("enhance");
       if (editLang === "en") setBodyEn(result); else setBodyFa(result);
-    } catch { /* silently fail */ }
+      toast.success(isRtl ? "متن با موفقیت ویرایش شد" : "Text enhanced successfully");
+    } catch (err: any) {
+      console.error("AI Enhance Error:", err);
+      toast.error(err.message || (isRtl ? "خطا در ویرایش حرفه‌ای متن" : "Failed to enhance text with AI"));
+    }
     finally { setLoadingEnhance(false); }
   };
 
@@ -2097,7 +2105,11 @@ export default function ChurchDocumentsPage() {
       const result = await callAI("translate", sourceBody);
       // Put result in the OTHER language pane
       if (editLang === "en") setBodyFa(result); else setBodyEn(result);
-    } catch { /* silently fail */ }
+      toast.success(isRtl ? "ترجمه با موفقیت انجام شد" : "Translated successfully");
+    } catch (err: any) {
+      console.error("AI Translation Error:", err);
+      toast.error(err.message || (isRtl ? "خطا در ترجمه متن" : "Failed to translate text with AI"));
+    }
     finally { setLoadingTranslate(false); }
   };
 

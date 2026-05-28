@@ -73,11 +73,26 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid mode." }, { status: 400 });
     }
 
-    const response = await genAI.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents: prompt
-    });
-    const text = response.text || "";
+    let text = "";
+    try {
+      const response = await genAI.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: prompt
+      });
+      text = response.text || "";
+    } catch (err2: any) {
+      console.warn("[Letters AI] gemini-2.0-flash failed, trying gemini-1.5-flash fallback...", err2);
+      try {
+        const response = await genAI.models.generateContent({
+          model: "gemini-1.5-flash",
+          contents: prompt
+        });
+        text = response.text || "";
+      } catch (err3: any) {
+        console.error("[Letters AI] Both gemini-2.0-flash and gemini-1.5-flash failed:", err3);
+        throw err3;
+      }
+    }
 
     return NextResponse.json({ result: text });
 
