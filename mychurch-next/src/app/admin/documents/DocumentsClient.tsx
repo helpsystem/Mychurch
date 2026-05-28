@@ -172,19 +172,6 @@ const PRINT_CSS = `
     display: table-footer-group !important;
   }
 
-  /* Page number counter via CSS */
-  .print-page-counter-val {
-    display: inline-block !important;
-    font-size: 0 !important;
-  }
-  .print-page-counter-val::after {
-    content: counter(page) " of " counter(pages) !important;
-    font-size: 5.5pt !important;
-  }
-  [dir="rtl"] .print-page-counter-val::after {
-    content: counter(page, persian) " از " counter(pages, persian) !important;
-  }
-
   thead { display: table-header-group !important; }
   tfoot { display: table-footer-group !important; }
   tr { page-break-inside: auto !important; }

@@ -74,23 +74,31 @@ export async function POST(req: Request) {
     }
 
     let text = "";
-    try {
-      const response = await genAI.models.generateContent({
-        model: "gemini-2.0-flash",
-        contents: prompt
-      });
-      text = response.text || "";
-    } catch (err2: any) {
-      console.warn("[Letters AI] gemini-2.0-flash failed, trying gemini-1.5-flash fallback...", err2);
+    let attempts = 0;
+    const maxAttempts = 3;
+    while (attempts < maxAttempts) {
       try {
+        attempts++;
         const response = await genAI.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-2.0-flash",
           contents: prompt
         });
         text = response.text || "";
-      } catch (err3: any) {
-        console.error("[Letters AI] Both gemini-2.0-flash and gemini-1.5-flash failed:", err3);
-        throw err3;
+        break; // Success!
+      } catch (err: any) {
+        console.warn(`[Letters AI] Attempt ${attempts} failed:`, err.message || err);
+        if (attempts >= maxAttempts) {
+          throw err;
+        }
+        const errStr = String(err.message || err).toLowerCase();
+        const isRateLimit = err.status === 429 || errStr.includes("429") || errStr.includes("quota") || errStr.includes("limit");
+        if (isRateLimit) {
+          const waitTime = attempts * 2000; // 2000ms, 4000ms
+          console.log(`[Letters AI] Rate limit hit. Waiting ${waitTime}ms before retry...`);
+          await new Promise(resolve => setTimeout(resolve, waitTime));
+        } else {
+          throw err; // Throw immediately for other errors (like 400 or 403)
+        }
       }
     }
 
