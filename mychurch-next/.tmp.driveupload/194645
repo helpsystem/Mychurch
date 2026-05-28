@@ -2936,7 +2936,7 @@ export default function ChurchDocumentsPage() {
             </div>
 
             {/* Hidden print - visually offscreen on screen to allow scrollHeight measurement, normal on print */}
-            <div className="print:block offscreen-print-container" style={{ position: "absolute", top: "-9999px", left: "-9999px", opacity: 0, pointerEvents: "none" }}>
+            <div className="print:block offscreen-print-container" style={{ position: "absolute", top: "-9999px", left: "-9999px", pointerEvents: "none" }}>
               <div ref={letterRef} className="bg-white p-0 m-0 w-fit rounded-none">
                 <LetterDoc 
                   bodyEn={replacePlaceholders(bodyEn, placeholderValues)} 
