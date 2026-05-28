@@ -160,8 +160,8 @@ const PRINT_CSS = `
   }
   .print-tr {
     display: table-row !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
   }
   .print-td {
     display: table-cell !important;
@@ -187,7 +187,7 @@ const PRINT_CSS = `
 
   thead { display: table-header-group !important; }
   tfoot { display: table-footer-group !important; }
-  tr { page-break-inside: avoid !important; }
+  tr { page-break-inside: auto !important; }
   /* Force English digits in all numeric content */
   * { font-variant-numeric: lining-nums !important; }
 
@@ -199,8 +199,8 @@ const PRINT_CSS = `
   .print-footer-fixed {
     position: fixed !important;
     bottom: 0 !important;
-    left: 1in !important; /* Standard 1 inch side margins */
-    right: 1in !important; /* Standard 1 inch side margins */
+    left: 0.5in !important; /* Standard 0.5 inch side margins */
+    right: 0.5in !important; /* Standard 0.5 inch side margins */
     background: #ffffff !important;
     background-color: #ffffff !important;
     z-index: 9999 !important;
@@ -223,14 +223,14 @@ const PRINT_CSS = `
 function PrintStyles({ paperSize = "Letter" }: { paperSize?: string }) {
   const sizeVal = paperSize.toLowerCase() === "a4" ? "a4" : paperSize.toLowerCase() === "a5" ? "a5" : "letter";
   const printableHeight = 
-    sizeVal === "a4" ? "246.2mm" : 
-    sizeVal === "a5" ? "159.2mm" : 
-    "228.6mm";
+    sizeVal === "a4" ? "271.6mm" : 
+    sizeVal === "a5" ? "184.6mm" : 
+    "254mm";
 
   const css = `
 @page {
   size: ${sizeVal};
-  margin: 1in !important;
+  margin: 0.5in !important;
 }
 ${PRINT_CSS}
 @media print {
@@ -637,7 +637,7 @@ function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHU
   return (
     <div className={`mb-10 relative z-10`} style={{ ...digitStyle, paddingBottom: `${design.headerPadding / 2}px` }} dir="ltr">
       {/* Decorative Top Bar */}
-      <div className="absolute -top-[20mm] -left-[20mm] -right-[20mm] h-4 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 shadow-sm" />
+      <div className="absolute -top-[12.7mm] -left-[12.7mm] -right-[12.7mm] h-4 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 shadow-sm" />
       
       <div className="flex justify-between items-start pt-6">
          {/* Left Side: Logo & Name */}
@@ -714,7 +714,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
   return (
     <DocumentSecurity>
     <PrintStyles paperSize={church.paperSize} />
-    <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative border-0 overflow-visible shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
+    <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[12.7mm] flex flex-col font-sans text-sm relative border-0 overflow-visible shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -763,7 +763,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
                 {toEnglishDigits((editLang === "en" ? bodyEn : bodyFa) || "...")}
               </div>
 
-              <div className="mt-auto pt-6 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"}>
+              <div className="mt-auto pt-6 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
                 {/* Signatory block */}
                 <div className="space-y-3">
                   <div className="space-y-1">
@@ -864,7 +864,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
   return (
     <DocumentSecurity>
     <PrintStyles paperSize={church.paperSize} />
-    <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[20mm] font-sans text-sm border-0 shadow-2xl relative overflow-visible flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
+    <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[12.7mm] font-sans text-sm border-0 shadow-2xl relative overflow-visible flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       
@@ -967,7 +967,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                 </div>
               </div>
 
-              <div className="mt-8 flex justify-between items-end relative z-10 border-t border-slate-200 pt-6">
+              <div className="mt-8 flex justify-between items-end relative z-10 border-t border-slate-200 pt-6" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
                 <div className="space-y-3">
                   <div className="space-y-1">
                      <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Authorized By</div>
@@ -1006,7 +1006,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
             </td>
           </tr>
         </tbody>
-        <tfoot className="print-tfoot mt-auto">
+        <tfoot className="print-tfoot">
           <tr>
             <td className="print-td border-0 p-0">
               <div className="print-footer-spacer" />
@@ -1161,7 +1161,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                   </table>
                 </div>
 
-                <div className="mt-4 grid grid-cols-2 gap-10">
+                <div className="mt-4 grid grid-cols-2 gap-10" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
                   <div>
                     {invoiceNotes && (
                       <div className="space-y-2">
@@ -1185,7 +1185,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                 </div>
               </div>
 
-              <div className="mt-10 pt-6 border-t font-mono text-[8px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10">
+              <div className="mt-10 pt-6 border-t font-mono text-[8px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
                 <div>
                   <span>Generated by Iranian Christian Church of Washington DC © 2026</span>
                   <div className="mt-1 text-slate-200">System Integrity Verified • No Unauthorized Reproduction</div>
