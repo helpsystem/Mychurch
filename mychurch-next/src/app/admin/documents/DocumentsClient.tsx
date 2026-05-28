@@ -1735,6 +1735,7 @@ export default function ChurchDocumentsPage() {
     docType: "letter" | "receipt" | "invoice" | "inkind";
     subject: string;
     refNo: string;
+    recipientName: string;
     htmlSummary: string;
     printRef?: React.RefObject<HTMLDivElement>;
   } | null>(null);
@@ -1770,11 +1771,13 @@ export default function ChurchDocumentsPage() {
       const result = await emailDocument(
         emailAddress.trim(),
         emailModal.subject,
-        emailModal.htmlSummary,
+        "",                               // htmlContent kept for compat – now unused inside mailer
         pdfBase64,
         `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.pdf`,
         imageBase64,
-        `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.jpg`
+        `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.jpg`,
+        emailModal.recipientName,         // ← personalised greeting (e.g. "John Smith")
+        emailModal.refNo,                 // ← builds /verify/[refNo] link
       );
       if (result.success) {
         toast.success(isRtl ? `ایمیل با موفقیت به ${emailAddress} ارسال شد` : `Email sent successfully to ${emailAddress}`);
@@ -1888,6 +1891,7 @@ export default function ChurchDocumentsPage() {
     docType: "letter" | "receipt" | "invoice" | "inkind";
     subject: string;
     refNo: string;
+    recipientName: string;
     htmlSummary: string;
     printRef?: React.RefObject<HTMLDivElement>;
   }) => {
@@ -2914,7 +2918,8 @@ export default function ChurchDocumentsPage() {
                       docType: "letter",
                       subject: replacePlaceholders(letterSubject || docNumber, placeholderValues),
                       refNo: toEnglishDigits(docNumber),
-                      htmlSummary: `<p>Please find the official letter attached as a PDF document.</p><p dir="rtl" style="font-family:'Vazirmatn',sans-serif">لطفاً نامه رسمی پیوست شده را به صورت فایل PDF مشاهده نمایید.</p>`,
+                      recipientName: replacePlaceholders(recipientName || letterTo || "", placeholderValues),
+                      htmlSummary: "",
                       printRef: letterRef as React.RefObject<HTMLDivElement>,
                     })}
                     className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
@@ -3201,7 +3206,8 @@ export default function ChurchDocumentsPage() {
                         docType: "invoice",
                         subject: `Invoice INV-${invoiceNo} for ${invoiceTo}`,
                         refNo: `INV-${invoiceNo}`,
-                        htmlSummary: `<p>Please find the official invoice attached as a PDF document.</p><p dir="rtl" style="font-family:'Vazirmatn',sans-serif">لطفاً فاکتور رسمی پیوست شده را به صورت فایل PDF مشاهده نمایید.</p>`,
+                        recipientName: invoiceName || invoiceTo || "",
+                        htmlSummary: "",
                         printRef: invoiceRef as React.RefObject<HTMLDivElement>,
                       })}
                       className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-4 py-3 rounded-xl font-black text-sm transition-all"
@@ -3398,6 +3404,7 @@ export default function ChurchDocumentsPage() {
                               docType: intakeTemplateType,
                               subject: isRtl ? "فرم اطلاعات کلیسا" : "Church Information Request Form",
                               refNo: createdIntakeToken?.slice(0, 8) || "INTAKE",
+                              recipientName: "",
                               htmlSummary: `<p>${isRtl ? "لطفاً اطلاعات خود را در فرم زیر وارد کنید:" : "Please fill in your information using the link below:"}</p><p style="margin:16px 0"><a href="${link}" style="background:#4f46e5;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:14px;display:inline-block">${isRtl ? "ورود به فرم" : "Open Form"}</a></p><p style="color:#64748b;font-size:12px;">Link: ${link}</p>`,
                             });
                             setShowIntakeCreate(false);
@@ -3709,7 +3716,8 @@ export default function ChurchDocumentsPage() {
                                   docType: item.type as any,
                                   subject: item.subject,
                                   refNo: item.refNo,
-                                  htmlSummary: `<p><strong>Ref / شماره سند:</strong> ${item.refNo}</p><p><strong>Recipient / گیرنده:</strong> ${item.recipient}</p><p><strong>Date / تاریخ:</strong> ${item.date}</p><p><strong>Subject / موضوع:</strong> ${item.subject}</p>${item.amount ? `<p><strong>Amount / مبلغ:</strong> $${item.amount.toLocaleString()}</p>` : ""}<hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0"/><p>Please find the official document attached as a PDF and an image.</p><p dir="rtl">لطفاً سند رسمی پیوست شده را به صورت فایل PDF و تصویر مشاهده نمایید.</p>`,
+                                  recipientName: item.recipient || "",
+                                  htmlSummary: "",
                                 })}
                                 title={isRtl ? "ارسال ایمیل" : "Send via Email"}
                                 className="p-2.5 rounded-xl glass border border-white/10 text-indigo-400 hover:bg-indigo-500/20 transition-all shadow-lg"
