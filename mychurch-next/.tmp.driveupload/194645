@@ -207,6 +207,11 @@ const PRINT_CSS = `
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
+  .offscreen-print-container {
+    position: static !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
 }
 
 @media screen {
@@ -272,9 +277,10 @@ function QRImage({ value, size = 120 }: { value: string; size?: number }) {
 
 // ─── Inline Document Footer (replaces fixed-position footer) ─────────────────
 // Sits at the bottom of the document in normal flow — works for screen, print, and PDF capture
-function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, showQR }: {
+function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, showQR, totalPages }: {
   qrData: string; refNo: string; churchName: string;
   churchEmail?: string; churchWeb?: string; isRtl?: boolean; showQR?: boolean;
+  totalPages?: number;
 }) {
   return (
     <div
@@ -337,11 +343,11 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
           <div style={{ fontSize: "5.5pt", fontWeight: 900, color: "#64748b", fontFamily: "monospace", letterSpacing: "0.08em", marginTop: "1px" }}>
             {isRtl ? (
               <>
-                صفحه <span className="print-page-counter-val">۱</span>
+                صفحه <span className="print-page-counter-val">۱</span>{totalPages ? ` از ${toEnglishDigits(String(totalPages))}` : ""}
               </>
             ) : (
               <>
-                PAGE <span className="print-page-counter-val">1</span>
+                PAGE <span className="print-page-counter-val">1</span>{totalPages ? ` OF ${totalPages}` : ""}
               </>
             )}
           </div>
@@ -839,6 +845,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
           churchWeb={church.web}
           isRtl={isRtl}
           showQR={church.showVerifyQR}
+          totalPages={totalPages}
         />
       </div>
     </div>
@@ -1597,6 +1604,7 @@ export default function ChurchDocumentsPage() {
   const [editLang, setEditLang] = useState<"en" | "fa">("en");
   const [bodyEn, setBodyEn] = useState("");
   const [bodyFa, setBodyFa] = useState("");
+  const [totalPages, setTotalPages] = useState(1);
   const [letterTo, setLetterTo] = useState("");
   const [letterToAddress, setLetterToAddress] = useState("");
   const [letterSubject, setLetterSubject] = useState("");
@@ -1929,6 +1937,21 @@ export default function ChurchDocumentsPage() {
   const onPrintLetter = useReactToPrint({ contentRef: letterRef });
   const onPrintReceipt = useReactToPrint({ contentRef: receiptRef });
   const onPrintInvoice = useReactToPrint({ contentRef: invoiceRef });
+
+  useEffect(() => {
+    const updatePageCount = () => {
+      if (letterRef.current) {
+        const height = letterRef.current.scrollHeight;
+        const paperSize = church.paperSize || "Letter";
+        const paperHeight = paperSize.toLowerCase() === "a4" ? 1123 : paperSize.toLowerCase() === "a5" ? 794 : 1056;
+        // Apply 24px buffer to avoid slight layout variations triggering a page spillover
+        const calculatedPages = Math.max(1, Math.ceil((height - 24) / paperHeight));
+        setTotalPages(calculatedPages);
+      }
+    };
+    const timer = setTimeout(updatePageCount, 150);
+    return () => clearTimeout(timer);
+  }, [bodyEn, bodyFa, editLang, recipientName, letterTo, letterSubject, church.paperSize, placeholderValues]);
 
   const handlePrintInvoice = () => {
     const newItem: DocHistoryItem = {
@@ -2927,8 +2950,8 @@ export default function ChurchDocumentsPage() {
               </div>
             </div>
 
-            {/* Hidden print */}
-            <div className="hidden print:block">
+            {/* Hidden print - visually offscreen on screen to allow scrollHeight measurement, normal on print */}
+            <div className="print:block offscreen-print-container" style={{ position: "absolute", top: "-9999px", left: "-9999px", opacity: 0, pointerEvents: "none" }}>
               <div ref={letterRef} className="bg-white p-0 m-0 w-fit rounded-none">
                 <LetterDoc 
                   bodyEn={replacePlaceholders(bodyEn, placeholderValues)} 
@@ -2940,6 +2963,7 @@ export default function ChurchDocumentsPage() {
                   recipientName={replacePlaceholders(recipientName, placeholderValues)} 
                   refNo={toEnglishDigits(docNumber)} 
                   church={church} 
+                  totalPages={totalPages}
                 />
                 <style>{`@media print { @page { size: ${(church.paperSize || "letter").toLowerCase()}; margin: 15mm 15mm 22mm 15mm; } body { margin: 0; } }`}</style>
               </div>
