@@ -829,25 +829,20 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
         <tfoot className="print-tfoot mt-auto">
           <tr>
             <td className="print-td border-0 p-0">
-              <div className="print-footer-spacer" />
+              <DocFooter
+                qrData={qrData}
+                refNo={toEnglishDigits(refNo)}
+                churchName={church.nameEn}
+                churchEmail={church.email}
+                churchWeb={church.web}
+                isRtl={isRtl}
+                showQR={church.showVerifyQR}
+                totalPages={totalPages}
+              />
             </td>
           </tr>
         </tfoot>
       </table>
-
-      {/* Repeating Fixed Footer for print / Normal footer for screen */}
-      <div className="print-footer-fixed">
-        <DocFooter
-          qrData={qrData}
-          refNo={toEnglishDigits(refNo)}
-          churchName={church.nameEn}
-          churchEmail={church.email}
-          churchWeb={church.web}
-          isRtl={isRtl}
-          showQR={church.showVerifyQR}
-          totalPages={totalPages}
-        />
-      </div>
     </div>
     </DocumentSecurity>
   );
@@ -1016,23 +1011,18 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
         <tfoot className="print-tfoot">
           <tr>
             <td className="print-td border-0 p-0">
-              <div className="print-footer-spacer" />
+              <DocFooter
+                qrData={qrData}
+                refNo={toEnglishDigits(receiptNo)}
+                churchName={church.nameEn}
+                churchEmail={church.email}
+                churchWeb={church.web}
+                showQR={church.showVerifyQR}
+              />
             </td>
           </tr>
         </tfoot>
       </table>
-
-      {/* Repeating Fixed Footer for print / Normal footer for screen */}
-      <div className="print-footer-fixed">
-        <DocFooter
-          qrData={qrData}
-          refNo={toEnglishDigits(receiptNo)}
-          churchName={church.nameEn}
-          churchEmail={church.email}
-          churchWeb={church.web}
-          showQR={church.showVerifyQR}
-        />
-      </div>
     </div>
     </DocumentSecurity>
   );
@@ -1214,23 +1204,18 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
         <tfoot className="print-tfoot mt-auto">
           <tr>
             <td className="print-td border-0 p-0">
-              <div className="print-footer-spacer" />
+              <DocFooter
+                qrData={qrData}
+                refNo={toEnglishDigits(invoiceNo)}
+                churchName={church.nameEn}
+                churchEmail={church.email}
+                churchWeb={church.web}
+                showQR={church.showVerifyQR}
+              />
             </td>
           </tr>
         </tfoot>
       </table>
-
-      {/* Repeating Fixed Footer for print / Normal footer for screen */}
-      <div className="print-footer-fixed">
-        <DocFooter
-          qrData={qrData}
-          refNo={toEnglishDigits(invoiceNo)}
-          churchName={church.nameEn}
-          churchEmail={church.email}
-          churchWeb={church.web}
-          showQR={church.showVerifyQR}
-        />
-      </div>
     </div>
     </DocumentSecurity>
   );
