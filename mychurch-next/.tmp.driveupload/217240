@@ -1,0 +1,38 @@
+const { Client } = require('pg');
+const client = new Client({
+  connectionString: "postgresql://postgres.xjliwbfdzmxncyebblxw:OExGvmxE8SsoIUGH@aws-1-us-east-1.pooler.supabase.com:6543/postgres",
+});
+
+async function main() {
+  await client.connect();
+  
+  // Search for the document
+  const res = await client.query(`
+    SELECT id, document_type, title, description, is_draft, created_at, deleted_at 
+    FROM document_history 
+    WHERE description ILIKE '%ICW-2026-4710%'
+  `);
+  
+  console.log("Unified document_history search results:");
+  console.log(JSON.stringify(res.rows, null, 2));
+
+  // Also check if there's any record in the church_letters table just in case
+  try {
+    const lettersRes = await client.query(`
+      SELECT id, ref_number, recipient_name, subject, is_valid, created_at
+      FROM church_letters
+      WHERE ref_number ILIKE '%ICW-2026-4710%'
+    `);
+    console.log("\nLegacy church_letters search results:");
+    console.log(JSON.stringify(lettersRes.rows, null, 2));
+  } catch (e) {
+    console.log("No church_letters table or error:", e.message);
+  }
+
+  await client.end();
+}
+
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
