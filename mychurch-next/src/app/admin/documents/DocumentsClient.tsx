@@ -172,19 +172,6 @@ const PRINT_CSS = `
     display: table-footer-group !important;
   }
 
-  /* Page number counter via CSS */
-  .print-page-counter-val {
-    display: inline-block !important;
-    font-size: 0 !important;
-  }
-  .print-page-counter-val::after {
-    content: counter(page) !important;
-    font-size: 5.5pt !important;
-  }
-  [dir="rtl"] .print-page-counter-val::after {
-    content: counter(page, persian) !important;
-  }
-
   thead { display: table-header-group !important; }
   tfoot { display: table-footer-group !important; }
   tr { page-break-inside: auto !important; }
@@ -225,7 +212,11 @@ const PRINT_CSS = `
 }
 `;
 
-function PrintStyles({ paperSize = "Letter" }: { paperSize?: string }) {
+function PrintStyles({ paperSize = "Letter", totalPages = 1, isRtl = false }: {
+  paperSize?: string;
+  totalPages?: number;
+  isRtl?: boolean;
+}) {
   const sizeVal = paperSize.toLowerCase() === "a4" ? "a4" : paperSize.toLowerCase() === "a5" ? "a5" : "letter";
   const printableHeight = 
     sizeVal === "a4" ? "271.6mm" : 
@@ -235,13 +226,27 @@ function PrintStyles({ paperSize = "Letter" }: { paperSize?: string }) {
   const css = `
 @page {
   size: ${sizeVal};
-  margin: 0.5in !important;
+  margin: 0.5in 0.5in 0.6in 0.5in !important;
+  ${totalPages > 1 ? `
+  @bottom-right {
+    content: "${isRtl ? "صفحه " : "Page "} " counter(page) " ${isRtl ? " از " : " of "} " counter(pages);
+    font-family: ${isRtl ? "'Vazirmatn', sans-serif" : "monospace"};
+    font-size: 7.5pt;
+    color: #64748b;
+    font-weight: 700;
+  }
+  ` : ""}
 }
 ${PRINT_CSS}
 @media print {
   .print-doc-wrap {
     min-height: ${printableHeight} !important;
   }
+  ${totalPages > 1 ? `
+  .print-page-num-in-body {
+    display: none !important;
+  }
+  ` : ""}
 }
 `;
   return <style dangerouslySetInnerHTML={{ __html: css }} />;
@@ -340,14 +345,17 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
           <div style={{ fontSize: "5.5pt", fontWeight: 900, color: "#475569", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
             {isRtl ? "اسکن برای تأیید" : "SCAN TO VERIFY"}
           </div>
-          <div style={{ fontSize: "5.5pt", fontWeight: 900, color: "#64748b", fontFamily: "monospace", letterSpacing: "0.08em", marginTop: "1px" }}>
+          <div 
+            className="print-page-num-in-body"
+            style={{ fontSize: "5.5pt", fontWeight: 900, color: "#64748b", fontFamily: "monospace", letterSpacing: "0.08em", marginTop: "1px" }}
+          >
             {isRtl ? (
               <>
-                صفحه <span className="print-page-counter-val">۱</span>{totalPages ? ` از ${toEnglishDigits(String(totalPages))}` : ""}
+                صفحه ۱{totalPages && totalPages > 1 ? ` از ${toEnglishDigits(String(totalPages))}` : ""}
               </>
             ) : (
               <>
-                PAGE <span className="print-page-counter-val">1</span>{totalPages ? ` OF ${totalPages}` : ""}
+                PAGE 1{totalPages && totalPages > 1 ? ` OF ${totalPages}` : ""}
               </>
             )}
           </div>
@@ -719,7 +727,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
 
   return (
     <DocumentSecurity>
-    <PrintStyles paperSize={church.paperSize} />
+    <PrintStyles paperSize={church.paperSize} totalPages={totalPages} isRtl={isRtl} />
     <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[12.7mm] flex flex-col font-sans text-sm relative border-0 overflow-visible shadow-2xl mx-auto print:shadow-none`} style={{ fontVariantNumeric: "tabular-nums" }}>
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -865,7 +873,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
 
   return (
     <DocumentSecurity>
-    <PrintStyles paperSize={church.paperSize} />
+    <PrintStyles paperSize={church.paperSize} totalPages={1} isRtl={false} />
     <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[12.7mm] font-sans text-sm border-0 shadow-2xl relative overflow-visible flex flex-col mx-auto print:shadow-none print:border-0`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -1063,7 +1071,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
 
   return (
     <DocumentSecurity>
-    <PrintStyles paperSize={church.paperSize} />
+    <PrintStyles paperSize={church.paperSize} totalPages={1} isRtl={false} />
     <div className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[20mm] flex flex-col font-sans text-sm relative overflow-visible mx-auto print:shadow-none ${isPdf ? "" : "shadow-2xl border-0"}`} style={{ fontVariantNumeric: "tabular-nums" }} dir="ltr">
       {/* Decorative Abstract Shapes */}
       <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
