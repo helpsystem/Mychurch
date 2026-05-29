@@ -1055,6 +1055,10 @@ export interface DocHistoryItem {
   inKindItems?: { name: string; qty: number; value: number }[];
   invoiceItems?: { id: string; description: string; total: number }[];
   invoiceWallet?: string;
+  toAddress?: string;
+  invoiceAddress?: string;
+  invoiceNotes?: string;
+  lang?: "en" | "fa";
 }
 
 
@@ -1299,6 +1303,10 @@ export default function ChurchDocumentsPage() {
       inKindItems: content.inKindItems,
       invoiceItems: content.invoiceItems,
       invoiceWallet: content.invoiceWallet,
+      toAddress: content.toAddress,
+      invoiceAddress: content.invoiceAddress,
+      invoiceNotes: content.invoiceNotes,
+      lang: content.lang,
     };
   };
 
@@ -1738,6 +1746,7 @@ export default function ChurchDocumentsPage() {
     recipientName: string;
     htmlSummary: string;
     printRef?: React.RefObject<HTMLDivElement>;
+    historyItem?: DocHistoryItem;
   } | null>(null);
   const [emailAddress, setEmailAddress] = useState("");
   const [emailSending, setEmailSending] = useState(false);
@@ -1794,11 +1803,12 @@ export default function ChurchDocumentsPage() {
   };
 
   const handleGeneratePdfAndEmail = async (ref: React.RefObject<HTMLDivElement | null>) => {
-    if (!ref.current) { await handleSendEmail(); return; }
+    const activeRef = emailModal?.historyItem ? emailPrintRef : ref;
+    if (!activeRef.current) { await handleSendEmail(); return; }
 
     // ── Temporarily make the element visible off-screen so html2canvas can render it ──
     // (Elements with display:none or visibility:hidden cannot be captured by html2canvas)
-    const el = ref.current;
+    const el = activeRef.current;
     const wasHidden = el.closest(".hidden") as HTMLElement | null;
     let hiddenParentOriginal = "";
     if (wasHidden) {
@@ -1894,6 +1904,7 @@ export default function ChurchDocumentsPage() {
     recipientName: string;
     htmlSummary: string;
     printRef?: React.RefObject<HTMLDivElement>;
+    historyItem?: DocHistoryItem;
   }) => {
     setEmailModal({ open: true, ...opts });
     setEmailAddress("");
@@ -1931,6 +1942,7 @@ export default function ChurchDocumentsPage() {
   const letterRef = useRef<HTMLDivElement>(null);
   const receiptRef = useRef<HTMLDivElement>(null);
   const invoiceRef = useRef<HTMLDivElement>(null);
+  const emailPrintRef = useRef<HTMLDivElement>(null);
   const onPrintLetter = useReactToPrint({ contentRef: letterRef });
   const onPrintReceipt = useReactToPrint({ contentRef: receiptRef });
   const onPrintInvoice = useReactToPrint({ contentRef: invoiceRef });
@@ -2241,6 +2253,59 @@ export default function ChurchDocumentsPage() {
               : <><Send className="w-4 h-4" />{isRtl ? "ارسال ایمیل + PDF" : "Send Email + PDF"}</>}
           </button>
         </div>
+
+        {/* Hidden print container for emailing */}
+        {emailModal.historyItem && (
+          <div className="print:block offscreen-print-container" style={{ position: "absolute", top: "-9999px", left: "-9999px", pointerEvents: "none" }}>
+            <div ref={emailPrintRef} className="bg-white p-0 m-0 w-fit rounded-none">
+              {emailModal.historyItem.type === "letter" && (
+                <LetterDoc 
+                  bodyEn={emailModal.historyItem.bodyEn || ""} 
+                  bodyFa={emailModal.historyItem.bodyFa || ""} 
+                  editLang={emailModal.historyItem.lang || "en"} 
+                  to={emailModal.historyItem.recipient} 
+                  toAddress={emailModal.historyItem.toAddress || ""} 
+                  subject={emailModal.historyItem.subject}
+                  recipientName={emailModal.historyItem.recipient} 
+                  refNo={emailModal.historyItem.refNo} 
+                  church={church} 
+                  totalPages={1} 
+                />
+              )}
+              {(emailModal.historyItem.type === "receipt" || emailModal.historyItem.type === "inkind") && (
+                <DonationReceiptDoc 
+                  receipt={{
+                    donorName: emailModal.historyItem.recipient || emailModal.historyItem.donorName || "",
+                    donorAddress: emailModal.historyItem.donorAddress || "",
+                    amount: emailModal.historyItem.amount || 0,
+                    date: emailModal.historyItem.date,
+                    method: "Check/Cash",
+                    description: emailModal.historyItem.subject,
+                  }} 
+                  receiptNo={emailModal.historyItem.refNo.replace("RCP-", "")} 
+                  isInKind={emailModal.historyItem.type === "inkind"} 
+                  inKindItems={emailModal.historyItem.inKindItems || []} 
+                  church={church} 
+                />
+              )}
+              {emailModal.historyItem.type === "invoice" && (
+                <InvoiceDoc 
+                  invoiceTo={emailModal.historyItem.recipient} 
+                  invoiceAddress={emailModal.historyItem.invoiceAddress || ""} 
+                  invoiceName={emailModal.historyItem.subject.replace("Invoice for ", "")} 
+                  invoiceDate={emailModal.historyItem.date} 
+                  invoiceItems={emailModal.historyItem.invoiceItems || []} 
+                  invoiceTotalAmount={emailModal.historyItem.amount || 0} 
+                  invoiceWallet={emailModal.historyItem.invoiceWallet || ""} 
+                  invoiceNotes={emailModal.historyItem.invoiceNotes || ""} 
+                  invoiceNo={emailModal.historyItem.refNo.replace("INV-", "")} 
+                  church={church} 
+                  lang={emailModal.historyItem.lang || "en"} 
+                />
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   ) : null;
@@ -2914,14 +2979,31 @@ export default function ChurchDocumentsPage() {
                     <Printer className="w-4 h-4" />{isRtl ? "چاپ / ذخیره PDF" : "Print / Save PDF"}
                   </button>
                   <button
-                    onClick={() => openEmailModal({
-                      docType: "letter",
-                      subject: replacePlaceholders(letterSubject || docNumber, placeholderValues),
-                      refNo: toEnglishDigits(docNumber),
-                      recipientName: replacePlaceholders(recipientName || letterTo || "", placeholderValues),
-                      htmlSummary: "",
-                      printRef: letterRef as React.RefObject<HTMLDivElement>,
-                    })}
+                    onClick={() => {
+                      const subjectVal = replacePlaceholders(letterSubject || docNumber, placeholderValues);
+                      const recipientVal = replacePlaceholders(recipientName || letterTo || "", placeholderValues);
+                      openEmailModal({
+                        docType: "letter",
+                        subject: subjectVal,
+                        refNo: toEnglishDigits(docNumber),
+                        recipientName: recipientVal,
+                        htmlSummary: "",
+                        printRef: letterRef as React.RefObject<HTMLDivElement>,
+                        historyItem: {
+                          id: editingDocId || crypto.randomUUID(),
+                          type: "letter",
+                          date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+                          timestamp: Date.now(),
+                          refNo: toEnglishDigits(docNumber),
+                          recipient: recipientVal || "Unspecified",
+                          toAddress: replacePlaceholders(letterToAddress, placeholderValues),
+                          subject: subjectVal || "No Subject",
+                          bodyEn: replacePlaceholders(bodyEn, placeholderValues),
+                          bodyFa: replacePlaceholders(bodyFa, placeholderValues),
+                          lang: editLang,
+                        }
+                      });
+                    }}
                     className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-5 py-2.5 rounded-xl font-bold text-sm transition-all"
                   >
                     <Mail className="w-4 h-4" />{isRtl ? "ارسال ایمیل + PDF" : "Email + PDF"}
@@ -3209,6 +3291,21 @@ export default function ChurchDocumentsPage() {
                         recipientName: invoiceName || invoiceTo || "",
                         htmlSummary: "",
                         printRef: invoiceRef as React.RefObject<HTMLDivElement>,
+                        historyItem: {
+                          id: editingDocId || crypto.randomUUID(),
+                          type: "invoice",
+                          date: invoiceDate,
+                          timestamp: Date.now(),
+                          refNo: `INV-${invoiceNo}`,
+                          recipient: invoiceTo,
+                          subject: `Invoice for ${invoiceName}`,
+                          amount: invoiceTotalAmount,
+                          invoiceItems: invoiceItems,
+                          invoiceWallet: invoiceWallet,
+                          invoiceAddress: invoiceAddress,
+                          invoiceNotes: invoiceNotes,
+                          lang: invoiceLang,
+                        }
                       })}
                       className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 px-4 py-3 rounded-xl font-black text-sm transition-all"
                     >
@@ -3718,6 +3815,7 @@ export default function ChurchDocumentsPage() {
                                   refNo: item.refNo,
                                   recipientName: item.recipient || "",
                                   htmlSummary: "",
+                                  historyItem: item,
                                 })}
                                 title={isRtl ? "ارسال ایمیل" : "Send via Email"}
                                 className="p-2.5 rounded-xl glass border border-white/10 text-indigo-400 hover:bg-indigo-500/20 transition-all shadow-lg"
