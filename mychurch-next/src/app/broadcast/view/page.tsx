@@ -729,6 +729,34 @@ function ViewerContent() {
             <div className="w-full h-full">{renderSlideContent()}</div>
             {state.config?.amenBadge && <AmenBadge config={state.config.amenBadge} isEditable={false} />}
 
+            {/* Live Conference Overlay Banner */}
+            {state.config?.showLiveMeetingOverlay && (
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[60] w-[90%] max-w-5xl rounded-2xl border border-white/20 bg-black/40 backdrop-blur-md shadow-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 text-white font-[Vazirmatn] animate-slideInUp">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 bg-red-600 rounded-xl animate-pulse flex items-center justify-center">
+                            <span className="w-2.5 h-2.5 bg-white rounded-full"></span>
+                        </div>
+                        <div className="text-right">
+                            <span className="text-xs text-white/50 block">ارتباط زنده صوتی و تصویری (Live Conference)</span>
+                            <span className="text-base font-bold text-emerald-400">جلسه آنلاین کلیسا برقرار است</span>
+                        </div>
+                    </div>
+                    
+                    <div className="flex flex-wrap items-center gap-4 text-xs md:text-sm">
+                        <div className="bg-white/10 px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2">
+                            <span className="text-white/60">📞 شماره تماس:</span>
+                            <span className="font-bold tracking-wide font-mono select-all">(605) 313-9689</span>
+                            <span className="bg-white/10 px-2 py-0.5 rounded text-xs">کد دسترسی: 1036379#</span>
+                        </div>
+                        
+                        <div className="bg-white/10 px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2">
+                            <span className="text-white/60">🌐 اتصال تصویری وب:</span>
+                            <span className="font-bold text-cyan-300 font-mono tracking-wide font-sans">join.freeconferencecall.com/iranianchurchdcus</span>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <style>{`
                 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
                 @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }

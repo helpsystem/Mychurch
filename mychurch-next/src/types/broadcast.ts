@@ -295,6 +295,10 @@ export interface BroadcastOverlayConfig {
     isDrawingMode?: boolean;
     drawingColor?: string;
     drawingBrushSize?: number;
+    showLiveMeetingOverlay?: boolean;
+    meetingDialIn?: string;
+    meetingAccessCode?: string;
+    meetingOnlineId?: string;
 }
 
 // ─── Template/Sample System ──────────────────────────────────────────────────

@@ -81,6 +81,10 @@ const DEFAULT_CONFIG: BroadcastOverlayConfig = {
     donations: [],
     activeDonationId: null,
     donationDisplayMode: 'OVERLAY',
+    showLiveMeetingOverlay: false,
+    meetingDialIn: '+1 (605) 313-9689',
+    meetingAccessCode: '1036379',
+    meetingOnlineId: 'iranianchurchdcus',
 };
 
 export const useBroadcastStore = create<BroadcastState>((set, get) => ({

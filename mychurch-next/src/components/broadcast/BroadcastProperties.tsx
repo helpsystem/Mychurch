@@ -186,6 +186,21 @@ export function BroadcastProperties() {
                                 <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
                             </label>
                         </div>
+
+                        {/* Live Meeting Banner Toggle */}
+                        <div className="flex items-center justify-between py-1">
+                            <span className="text-xs text-slate-300">نمایش بنر تماس صوتی/تصویری زنده</span>
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    className="sr-only peer"
+                                    checked={!!config.showLiveMeetingOverlay}
+                                    onChange={() => updateConfig({ showLiveMeetingOverlay: !config.showLiveMeetingOverlay })}
+                                    title="Show Live Meeting Overlay"
+                                />
+                                <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
