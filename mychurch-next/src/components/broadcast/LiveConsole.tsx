@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -209,6 +209,10 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const [isLoadingSessions, setIsLoadingSessions] = React.useState(false);
     const [isGeneratingViewerLink, setIsGeneratingViewerLink] = React.useState(false);
     const [isOpeningViewer, setIsOpeningViewer] = React.useState(false);
+    const [isCallersModalOpen, setIsCallersModalOpen] = React.useState(false);
+    const [fccCallers, setFccCallers] = React.useState<any[]>([]);
+    const [fccConference, setFccConference] = React.useState<any | null>(null);
+    const [isModeratingId, setIsModeratingId] = React.useState<string | null>(null);
     const lastKeyTimeRef = React.useRef<number>(0);
     const [isOnline, setIsOnline] = React.useState(true);
 
@@ -322,6 +326,69 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
         }
     };
 
+    // Poll FreeConferenceCall callers every 4 seconds
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        
+        const pollCallers = async () => {
+            try {
+                const res = await fetch("/api/broadcast/fcc-participants");
+                if (res.ok) {
+                    const data = await res.json();
+                    setFccCallers(data.participants || []);
+                    setFccConference(data.conference || null);
+                }
+            } catch (err) {
+                console.error("Error polling FCC participants:", err);
+            }
+        };
+
+        pollCallers();
+        timer = setInterval(pollCallers, 4000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    const handleModerateCaller = async (participantId: string, action: 'mute' | 'unmute' | 'kick') => {
+        if (!fccConference?.id) {
+            toast.error("کنفرانس فعالی در دیتابیس یافت نشد.");
+            return;
+        }
+        
+        setIsModeratingId(participantId);
+        try {
+            const res = await fetch("/api/broadcast/fcc-control", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    action,
+                    conferenceId: fccConference.id,
+                    participantId
+                })
+            });
+
+            if (res.ok) {
+                toast.success(
+                    action === 'mute' ? 'کاربر بی‌صدا شد' : 
+                    action === 'unmute' ? 'صدای کاربر فعال شد' : 'اتصال کاربر قطع شد'
+                );
+                // Update local state quickly for visual response
+                setFccCallers(prev => prev.map(c => 
+                    c.id === participantId 
+                        ? { ...c, muted: action === 'mute' ? true : action === 'unmute' ? false : c.muted }
+                        : c
+                ).filter(c => action !== 'kick' || c.id !== participantId));
+            } else {
+                const data = await res.json();
+                throw new Error(data.error || "Failed to moderate");
+            }
+        } catch (err: any) {
+            toast.error(err.message || "خطا در برقراری ارتباط با FreeConferenceCall");
+        } finally {
+            setIsModeratingId(null);
+        }
+    };
+
     const handleOpenViewer = async () => {
         if (!sessionId) {
             window.open('/broadcast/view', '_blank');
@@ -342,10 +409,47 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
             }
 
             const viewerUrl = `${window.location.origin}/broadcast/view?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(data.token)}`;
-            window.open(viewerUrl, '_blank');
+            
+            // Screen Details API for auto secondary monitor placement
+            try {
+                if ('getScreenDetails' in window) {
+                    const screenDetails = await (window as any).getScreenDetails();
+                    const secondary = screenDetails.screens.find((s: any) => !s.isPrimary);
+                    if (secondary) {
+                        window.open(
+                            viewerUrl,
+                            '_blank',
+                            `left=${secondary.left},top=${secondary.top},width=${secondary.width},height=${secondary.height},fullscreen=yes,noopener,noreferrer`
+                        );
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.warn("[LiveConsole] Access to Screen Details API denied or unsupported:", e);
+            }
+            
+            // Fallback to standard window open
+            window.open(viewerUrl, '_blank', 'noopener,noreferrer');
         } catch (error: any) {
             toast.error(error?.message || "خطا در ساخت لینک امن Viewer");
-            window.open(`/broadcast/view?session=${encodeURIComponent(sessionId)}`, '_blank');
+            
+            // Standard fallback
+            try {
+                if ('getScreenDetails' in window) {
+                    const screenDetails = await (window as any).getScreenDetails();
+                    const secondary = screenDetails.screens.find((s: any) => !s.isPrimary);
+                    if (secondary) {
+                        window.open(
+                            `/broadcast/view?session=${encodeURIComponent(sessionId)}`,
+                            '_blank',
+                            `left=${secondary.left},top=${secondary.top},width=${secondary.width},height=${secondary.height},fullscreen=yes,noopener,noreferrer`
+                        );
+                        return;
+                    }
+                }
+            } catch (e) {}
+            
+            window.open(`/broadcast/view?session=${encodeURIComponent(sessionId)}`, '_blank', 'noopener,noreferrer');
         } finally {
             setIsOpeningViewer(false);
         }
@@ -606,6 +710,19 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                             {isGeneratingViewerLink ? <Loader2 className="w-4 h-4 animate-spin" /> : <RadioReceiver className="w-4 h-4" />} {t.viewerLink || 'Viewer Link'}
                         </button>
                         <button
+                            onClick={() => setIsCallersModalOpen(true)}
+                            className="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]"
+                            title="تماس‌های فعال"
+                        >
+                            <Phone className="w-4 h-4" /> 
+                            <span>تماس زنده</span>
+                            {fccCallers.length > 0 && (
+                                <span className="bg-white text-emerald-600 text-[10px] px-1.5 py-0.5 rounded-full font-bold ml-1">
+                                    {fccCallers.length}
+                                </span>
+                            )}
+                        </button>
+                        <button
                             onClick={handleOpenViewer}
                             disabled={isOpeningViewer}
                             className="px-5 py-3 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]"
@@ -686,6 +803,77 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                 onBlurChange={setIsBlur}
                 isRTL={true}
             />
+
+            {/* Live Callers / FreeConferenceCall Moderation Modal */}
+            {isCallersModalOpen && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-neutral-900 border border-border/10 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[70vh] font-[Vazirmatn] text-white">
+                        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/20">
+                            <h2 className="text-lg font-bold flex items-center gap-2">
+                                <Phone className="text-emerald-500 w-5 h-5 animate-pulse" /> 
+                                شرکت‌کنندگان تماس صوتی/تصویری زنده
+                                <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-0.5 rounded-full font-sans font-bold">
+                                    {fccCallers.length} نفر
+                                </span>
+                            </h2>
+                            <button onClick={() => setIsCallersModalOpen(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X className="w-5 h-5" /></button>
+                        </div>
+                        <div className="p-6 overflow-y-auto flex-1 space-y-4">
+                            {fccCallers.length === 0 ? (
+                                <div className="flex flex-col items-center justify-center py-12 text-muted-foreground text-center">
+                                    <PhoneOff className="w-12 h-12 mb-4 opacity-20" />
+                                    <p>هیچ تماسی در حال حاضر فعال نیست.</p>
+                                    <p className="text-xs mt-1">منتظر اتصال اولین شرکت‌کننده روی خط...</p>
+                                </div>
+                            ) : (
+                                <div className="space-y-3">
+                                    {fccCallers.map((caller: any) => (
+                                        <div key={caller.id} className="flex items-center justify-between p-3.5 bg-neutral-950/40 rounded-xl border border-white/5 transition hover:border-white/10">
+                                            <div className="flex items-center gap-3">
+                                                <div className={cn(
+                                                    "p-2 rounded-lg flex items-center justify-center",
+                                                    caller.muted ? "bg-red-500/10 text-red-400" : "bg-emerald-500/10 text-emerald-400"
+                                                )}>
+                                                    {caller.muted ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+                                                </div>
+                                                <div className="text-right">
+                                                    <span className="font-bold text-sm block tracking-wide">{caller.display_name || caller.name || 'شرکت‌کننده ناشناس'}</span>
+                                                    <span className="text-[10px] text-muted-foreground font-mono font-bold" dir="ltr">{caller.caller_number || caller.phone_number || '-'}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex items-center gap-1.5">
+                                                <button
+                                                    onClick={() => handleModerateCaller(caller.id, caller.muted ? 'unmute' : 'mute')}
+                                                    disabled={isModeratingId === caller.id}
+                                                    className={cn(
+                                                        "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1",
+                                                        caller.muted 
+                                                            ? "bg-emerald-600/20 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-600/30" 
+                                                            : "bg-red-600/20 text-red-400 border border-red-500/20 hover:bg-red-600/30"
+                                                    )}
+                                                >
+                                                    {isModeratingId === caller.id ? <Loader2 className="w-3 h-3 animate-spin" /> : caller.muted ? <Mic className="w-3.5 h-3.5" /> : <MicOff className="w-3.5 h-3.5" />}
+                                                    <span>{caller.muted ? 'وصل صدا' : 'قطع صدا'}</span>
+                                                </button>
+                                                
+                                                <button
+                                                    onClick={() => handleModerateCaller(caller.id, 'kick')}
+                                                    disabled={isModeratingId === caller.id}
+                                                    className="p-1.5 bg-neutral-800 hover:bg-red-950/40 text-muted-foreground hover:text-red-400 rounded-lg transition border border-white/5"
+                                                    title="قطع تماس"
+                                                >
+                                                    <PhoneOff className="w-3.5 h-3.5" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

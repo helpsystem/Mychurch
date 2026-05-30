@@ -726,7 +726,16 @@ function ViewerContent() {
                     <div className="text-sm">کنسول پخش را باز نگه دارید و دوباره Open Presenter را بزنید.</div>
                 </div>
             )}
-            <div className="w-full h-full">{renderSlideContent()}</div>
+            <div 
+                className="w-full h-full"
+                style={{
+                    transform: `scale(${state.config?.contentScale ?? 1.0})`,
+                    transformOrigin: 'center center',
+                    transition: 'transform 0.2s ease-out'
+                }}
+            >
+                {renderSlideContent()}
+            </div>
             {state.config?.amenBadge && <AmenBadge config={state.config.amenBadge} isEditable={false} />}
 
             {/* Live Conference Overlay Banner */}

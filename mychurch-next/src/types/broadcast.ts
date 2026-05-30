@@ -299,6 +299,7 @@ export interface BroadcastOverlayConfig {
     meetingDialIn?: string;
     meetingAccessCode?: string;
     meetingOnlineId?: string;
+    contentScale?: number;
 }
 
 // ─── Template/Sample System ──────────────────────────────────────────────────

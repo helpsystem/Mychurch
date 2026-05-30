@@ -237,6 +237,34 @@ export function BroadcastProperties() {
                     </div>
                 </div>
 
+                {/* 6. Projector Zoom & Scale */}
+                <div className="space-y-2">
+                    <label className="text-xs font-bold text-muted-foreground uppercase flex items-center gap-1.5 border-b border-white/5 pb-1">
+                        <Settings className="w-3.5 h-3.5" /> بزرگ‌نمایی خروجی پروژکتور
+                    </label>
+                    <div className="space-y-1 p-2.5 bg-neutral-950/40 rounded-xl border border-white/5">
+                        <div className="flex justify-between items-center text-xs">
+                            <span className="text-muted-foreground">میزان مقیاس:</span>
+                            <span className="font-bold text-indigo-400 font-mono">{Math.round((config.contentScale || 1.0) * 100)}%</span>
+                        </div>
+                        <input 
+                            type="range"
+                            min="0.5"
+                            max="1.5"
+                            step="0.05"
+                            value={config.contentScale || 1.0}
+                            onChange={(e) => updateConfig({ contentScale: parseFloat(e.target.value) })}
+                            className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 mt-2"
+                            title="Scale Slider"
+                        />
+                        <div className="flex justify-between text-[9px] text-muted-foreground mt-1">
+                            <span>50%</span>
+                            <span>100% (پیش‌فرض)</span>
+                            <span>150%</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </aside>
     );

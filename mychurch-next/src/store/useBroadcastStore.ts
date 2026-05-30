@@ -85,6 +85,7 @@ const DEFAULT_CONFIG: BroadcastOverlayConfig = {
     meetingDialIn: '+1 (605) 313-9689',
     meetingAccessCode: '1036379',
     meetingOnlineId: 'iranianchurchdcus',
+    contentScale: 1.0,
 };
 
 export const useBroadcastStore = create<BroadcastState>((set, get) => ({
