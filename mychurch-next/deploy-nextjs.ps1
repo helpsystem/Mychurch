@@ -154,7 +154,7 @@ else
 fi
 
 # Build using a deterministic low-memory profile for slower VPS nodes.
-rm -rf .next/cache .next/lock
+rm -rf .next
 export NODE_OPTIONS="--max-old-space-size=2048"
 export NEXT_CPU_LIMIT=1
 export NEXT_PRIVATE_BUILD_WORKER=0
