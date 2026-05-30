@@ -2195,7 +2195,10 @@ export default function ChurchDocumentsPage() {
             <Mail className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 className="text-lg font-black">{isRtl ? "ارسال سند با ایمیل" : "Send Document via Email"}</h2>
+            <div className="flex items-center gap-1.5">
+              <h2 className="text-lg font-black">{isRtl ? "ارسال سند با ایمیل" : "Send Document via Email"}</h2>
+              <span className="text-[8px] bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 px-1.5 py-0.5 rounded-full font-black uppercase tracking-widest">v0.2.0</span>
+            </div>
             <p className="text-xs text-muted-foreground mt-0.5">{emailModal.refNo} &middot; PDF attachment included</p>
           </div>
           <button onClick={() => setEmailModal(null)} className="ml-auto text-muted-foreground hover:text-foreground transition-colors" aria-label="Close">
@@ -2330,7 +2333,10 @@ export default function ChurchDocumentsPage() {
               <FileText className="w-7 h-7 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-black">{isRtl ? "اسناد و مدارک رسمی کلیسا" : "Church Official Documents"}</h1>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h1 className="text-3xl font-black">{isRtl ? "اسناد و مدارک رسمی کلیسا" : "Church Official Documents"}</h1>
+                <span className="text-[10px] bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full font-black uppercase tracking-widest mt-1">v0.2.0 - Stable API</span>
+              </div>
               <p className="text-muted-foreground text-sm mt-0.5">
                 {isRtl ? "نامه‌های اداری، رسید کمک مالی – با هوش مصنوعی" : "Administrative letters & donation receipts – AI powered"}
               </p>
