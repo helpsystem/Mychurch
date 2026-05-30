@@ -643,6 +643,91 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     {/* Bottom Area: Deck / Quick Controls */}
                     <SlideGrid />
 
+                    {/* FreeConferenceCall Live Control Widget */}
+                    <div className="bg-neutral-900/60 border border-white/5 rounded-2xl p-4 flex flex-col md:flex-row gap-4 font-[Vazirmatn] text-white backdrop-blur-md mt-2">
+                        {/* Farsi content: Active Callers count & List */}
+                        <div className="flex-1 flex flex-col gap-3 text-right">
+                            <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                                <h3 className="text-sm font-bold flex items-center gap-2">
+                                    <Phone className="text-emerald-500 w-4 h-4 animate-pulse" />
+                                    <span>شرکت‌کنندگان تماس زنده (تلفنی و تصویری وب)</span>
+                                    {fccCallers.length > 0 && (
+                                        <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-0.5 rounded-full font-bold">
+                                            {fccCallers.length} نفر فعال
+                                        </span>
+                                    )}
+                                </h3>
+                            </div>
+                            
+                            {fccCallers.length === 0 ? (
+                                <div className="flex items-center justify-center py-6 text-muted-foreground text-xs gap-2">
+                                    <PhoneOff className="w-4 h-4 opacity-40 animate-pulse" />
+                                    <span>هیچ تماسی در حال حاضر فعال نیست. منتظر اتصال کاربران روی خط کلیسا...</span>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 overflow-y-auto max-h-[140px] p-1">
+                                    {fccCallers.map((caller: any) => (
+                                        <div key={caller.id} className="flex items-center justify-between p-2.5 bg-neutral-950/60 rounded-xl border border-white/5 hover:border-white/10 transition-all">
+                                            <div className="flex items-center gap-2.5">
+                                                <div className={cn(
+                                                    "p-1.5 rounded-lg flex items-center justify-center",
+                                                    caller.muted ? "bg-red-500/10 text-red-400" : "bg-emerald-500/10 text-emerald-400"
+                                                )}>
+                                                    {caller.muted ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+                                                </div>
+                                                <div className="text-right">
+                                                    <span className="font-bold text-xs block truncate max-w-[120px]">{caller.display_name || caller.name || 'شرکت‌کننده'}</span>
+                                                    <span className="text-[9px] text-muted-foreground font-mono font-bold" dir="ltr">{caller.caller_number || caller.phone_number || '-'}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="flex items-center gap-1">
+                                                <button
+                                                    onClick={() => handleModerateCaller(caller.id, caller.muted ? 'unmute' : 'mute')}
+                                                    disabled={isModeratingId === caller.id}
+                                                    className={cn(
+                                                        "p-1.5 rounded-md text-[10px] font-bold transition flex items-center justify-center",
+                                                        caller.muted 
+                                                            ? "bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30" 
+                                                            : "bg-red-600/20 text-red-400 hover:bg-red-600/30"
+                                                    )}
+                                                    title={caller.muted ? 'وصل صدا' : 'قطع صدا'}
+                                                >
+                                                    {isModeratingId === caller.id ? <Loader2 className="w-3 h-3 animate-spin" /> : caller.muted ? <Mic className="w-3 h-3" /> : <MicOff className="w-3 h-3" />}
+                                                </button>
+                                                <button
+                                                    onClick={() => handleModerateCaller(caller.id, 'kick')}
+                                                    disabled={isModeratingId === caller.id}
+                                                    className="p-1.5 bg-neutral-800 hover:bg-red-950/40 text-muted-foreground hover:text-red-400 rounded-md transition"
+                                                    title="قطع تماس"
+                                                >
+                                                    <PhoneOff className="w-3 h-3" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        
+                        {/* Static connection information */}
+                        <div className="w-full md:w-80 border-t md:border-t-0 md:border-r border-white/5 pt-3 md:pt-0 md:pr-4 flex flex-col justify-center gap-2.5 text-xs text-right shrink-0">
+                            <div className="text-white/60 font-bold border-b border-white/5 pb-1 mb-1">📞 اطلاعات اتصال خط کنفرانس تلفنی:</div>
+                            <div className="flex items-center justify-between gap-2">
+                                <span className="font-bold tracking-wide font-mono select-all text-emerald-400" dir="ltr">(605) 313-9689</span>
+                                <span className="text-white/50">:شماره تماس خط آمریکا</span>
+                            </div>
+                            <div className="flex items-center justify-between gap-2">
+                                <span className="font-bold text-amber-400 font-mono select-all">1036379#</span>
+                                <span className="text-white/50">:کد دسترسی (Access Code)</span>
+                            </div>
+                            <div className="flex items-center justify-between gap-2">
+                                <span className="font-bold text-cyan-400 font-mono select-all truncate max-w-[140px]" dir="ltr">iranianchurchdcus</span>
+                                <span className="text-white/50">:شناسه آنلاین (Meeting ID)</span>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Action Footer */}
                     <div className="h-16 shrink-0 flex items-center gap-4 border-t border-border/10 justify-center mt-2 p-2 font-[Vazirmatn]">
                         <button
