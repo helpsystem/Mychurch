@@ -1825,8 +1825,8 @@ export default function ChurchDocumentsPage() {
     try {
       const jspdfMod = await import("jspdf");
       const html2canvasMod = await import("html2canvas");
-      const jsPDF = jspdfMod.default || (jspdfMod as any).jsPDF;
-      const html2canvas = html2canvasMod.default;
+      const jsPDF = jspdfMod.default || (jspdfMod as any).jsPDF || jspdfMod;
+      const html2canvas = html2canvasMod.default || html2canvasMod;
 
       // Small delay to allow browser to repaint the newly visible element
       await new Promise<void>(res => setTimeout(res, 80));
@@ -2288,7 +2288,7 @@ export default function ChurchDocumentsPage() {
                     method: "Check/Cash",
                     description: emailModal.historyItem.subject,
                   }} 
-                  receiptNo={emailModal.historyItem.refNo.replace("RCP-", "")} 
+                  receiptNo={(emailModal.historyItem.refNo || "").replace("RCP-", "")} 
                   isInKind={emailModal.historyItem.type === "inkind"} 
                   inKindItems={emailModal.historyItem.inKindItems || []} 
                   church={church} 
@@ -2298,13 +2298,13 @@ export default function ChurchDocumentsPage() {
                 <InvoiceDoc 
                   invoiceTo={emailModal.historyItem.recipient} 
                   invoiceAddress={emailModal.historyItem.invoiceAddress || ""} 
-                  invoiceName={emailModal.historyItem.subject.replace("Invoice for ", "")} 
+                  invoiceName={(emailModal.historyItem.subject || "").replace("Invoice for ", "")} 
                   invoiceDate={emailModal.historyItem.date} 
                   invoiceItems={emailModal.historyItem.invoiceItems || []} 
                   invoiceTotalAmount={emailModal.historyItem.amount || 0} 
                   invoiceWallet={emailModal.historyItem.invoiceWallet || ""} 
                   invoiceNotes={emailModal.historyItem.invoiceNotes || ""} 
-                  invoiceNo={emailModal.historyItem.refNo.replace("INV-", "")} 
+                  invoiceNo={(emailModal.historyItem.refNo || "").replace("INV-", "")} 
                   church={church} 
                   lang={emailModal.historyItem.lang || "en"} 
                 />
