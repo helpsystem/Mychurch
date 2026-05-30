@@ -68,9 +68,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
         setVideoResolution,
         setIsMirrored,
         setIsBlur,
-        setShowDeviceSelector,
-        setIsCameraOn,
-        setIsMicOn
+        setShowDeviceSelector
     } = useBroadcastStore(useShallow(state => ({
         mediaStream: state.mediaStream,
         videoDevices: state.videoDevices,
@@ -91,9 +89,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
         setVideoResolution: state.setVideoResolution,
         setIsMirrored: state.setIsMirrored,
         setIsBlur: state.setIsBlur,
-        setShowDeviceSelector: state.setShowDeviceSelector,
-        setIsCameraOn: (state as any).setIsCameraOn || (() => {}),
-        setIsMicOn: (state as any).setIsMicOn || (() => {})
+        setShowDeviceSelector: state.setShowDeviceSelector
     })));
 
     const [isLoadModalOpen, setIsLoadModalOpen] = React.useState(false);
@@ -212,6 +208,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const [savedSessions, setSavedSessions] = React.useState<BroadcastSession[]>([]);
     const [isLoadingSessions, setIsLoadingSessions] = React.useState(false);
     const [isGeneratingViewerLink, setIsGeneratingViewerLink] = React.useState(false);
+    const [isOpeningViewer, setIsOpeningViewer] = React.useState(false);
     const lastKeyTimeRef = React.useRef<number>(0);
     const [isOnline, setIsOnline] = React.useState(true);
 
@@ -325,11 +322,45 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
         }
     };
 
+    const handleOpenViewer = async () => {
+        if (!sessionId) {
+            window.open('/broadcast/view', '_blank');
+            return;
+        }
+
+        setIsOpeningViewer(true);
+        try {
+            const res = await fetch('/api/broadcast/viewer-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionId }),
+            });
+
+            const data = await res.json();
+            if (!res.ok || !data?.token) {
+                throw new Error(data?.error || 'Failed to generate token');
+            }
+
+            const viewerUrl = `${window.location.origin}/broadcast/view?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(data.token)}`;
+            window.open(viewerUrl, '_blank');
+        } catch (error: any) {
+            toast.error(error?.message || "خطا در ساخت لینک امن Viewer");
+            window.open(`/broadcast/view?session=${encodeURIComponent(sessionId)}`, '_blank');
+        } finally {
+            setIsOpeningViewer(false);
+        }
+    };
+
     useEffect(() => {
         // Automatically start listening for Remote Control (iPad) commands via Supabase Realtime
         initRemoteSync();
         return () => disconnectSync();
     }, [initRemoteSync, disconnectSync]);
+
+    const stateRef = React.useRef({ slides, activeSlideIndex, internalPageIndex, config });
+    useEffect(() => {
+        stateRef.current = { slides, activeSlideIndex, internalPageIndex, config };
+    }, [slides, activeSlideIndex, internalPageIndex, config]);
 
     useEffect(() => {
         if (!sessionId) {
@@ -342,14 +373,15 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
         viewerChannelRef.current = channel;
 
         const pushFullState = () => {
-            const currentSlide = slides[activeSlideIndex] || null;
+            const current = stateRef.current;
+            const currentSlide = current.slides[current.activeSlideIndex] || null;
             channel.postMessage({
                 type: 'full_state',
                 payload: {
                     currentSlide,
-                    slideIndex: activeSlideIndex,
-                    internalPageIndex,
-                    config
+                    slideIndex: current.activeSlideIndex,
+                    internalPageIndex: current.internalPageIndex,
+                    config: current.config
                 }
             });
         };
@@ -366,7 +398,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
             channel.close();
             viewerChannelRef.current = null;
         };
-    }, [sessionId, slides, activeSlideIndex, internalPageIndex, config]);
+    }, [sessionId]); // Depends ONLY on sessionId
 
     useEffect(() => {
         if (!sessionId || !viewerChannelRef.current) return;
@@ -379,7 +411,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                 internalPageIndex
             }
         });
-    }, [sessionId, slides, activeSlideIndex, internalPageIndex]);
+    }, [activeSlideIndex, internalPageIndex]); // Triggers only on index changes
 
     useEffect(() => {
         const onKeyDown = (event: KeyboardEvent) => {
@@ -573,13 +605,13 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                         >
                             {isGeneratingViewerLink ? <Loader2 className="w-4 h-4 animate-spin" /> : <RadioReceiver className="w-4 h-4" />} {t.viewerLink || 'Viewer Link'}
                         </button>
-                        <Link
-                            href={sessionId ? `/broadcast/view?session=${encodeURIComponent(sessionId)}` : '/broadcast/view'}
-                            target="_blank"
-                            className="px-5 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]"
+                        <button
+                            onClick={handleOpenViewer}
+                            disabled={isOpeningViewer}
+                            className="px-5 py-3 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]"
                         >
-                            <ExternalLink className="w-4 h-4" /> {t.viewer || 'Viewer'}
-                        </Link>
+                            {isOpeningViewer ? <Loader2 className="w-4 h-4 animate-spin" /> : <ExternalLink className="w-4 h-4" />} {t.viewer || 'Viewer'}
+                        </button>
                     </div>
                 </main>
 

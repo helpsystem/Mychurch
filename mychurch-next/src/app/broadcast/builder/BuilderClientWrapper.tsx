@@ -31,11 +31,10 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     const { t, language } = useLanguage();
     const router = useRouter();
 
+    const stateRef = useRef({ slides: session.slides, activeSlideIndex });
     useEffect(() => {
-        return () => {
-            if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
-        };
-    }, []);
+        stateRef.current = { slides: session.slides, activeSlideIndex };
+    }, [session.slides, activeSlideIndex]);
 
     useEffect(() => {
         const sessionId = session.id;
@@ -49,12 +48,13 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
         viewerChannelRef.current = channel;
 
         const pushFullState = () => {
-            const currentSlide = session.slides[activeSlideIndex] || null;
+            const current = stateRef.current;
+            const currentSlide = current.slides[current.activeSlideIndex] || null;
             channel.postMessage({
                 type: "full_state",
                 payload: {
                     currentSlide,
-                    slideIndex: activeSlideIndex,
+                    slideIndex: current.activeSlideIndex,
                     internalPageIndex: 0,
                     config: null
                 }
@@ -71,14 +71,9 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
 
         return () => {
             channel.close();
+            viewerChannelRef.current = null;
         };
-    }, [session.id, session.slides, activeSlideIndex]);
-
-    useEffect(() => {
-        return () => {
-            if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
-        };
-    }, []);
+    }, [session.id]); // Depends ONLY on session.id
 
     useEffect(() => {
         if (!session.id || !viewerChannelRef.current) return;
@@ -91,7 +86,13 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                 internalPageIndex: 0
             }
         });
-    }, [session.id, session.slides, activeSlideIndex]);
+    }, [activeSlideIndex]); // Triggers only on index changes
+
+    useEffect(() => {
+        return () => {
+            if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+        };
+    }, []);
 
     const statusInfo: Record<BroadcastSession["status"], { label: string; description: string }> = {
         draft: {
@@ -162,28 +163,11 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                     if (res.serverSaved) {
                         const statusLabel = statusInfo[session.status]?.label || "وضعیت نامشخص";
                         toast.success(`ذخیره شد: ${statusLabel}`);
+                        return;
+                    }
 
-                        if (session.status === "ready" || session.status === "live") {
-                            try {
-                                const tokenRes = await fetch('/api/broadcast/viewer-token', {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({ sessionId: session.id }),
-                                });
-
-                                const tokenData = await tokenRes.json();
-                                if (!tokenRes.ok || !tokenData?.token) {
-                                    throw new Error(tokenData?.error || 'token_failed');
-                                }
-
-                                router.push(`/broadcast/view?session=${encodeURIComponent(session.id)}&token=${encodeURIComponent(tokenData.token)}`);
-                                return;
-                            } catch {
-                                toast.error("ذخیره انجام شد اما لینک Viewer امن ساخته نشد.");
-                                return;
-                            }
-                        }
-
+                    if (res.fallbackSaved) {
+                        toast.warning("ذخیره محلی: دیتابیس در دسترس نیست، اما تغییرات شما به صورت موقت ذخیره شد.");
                         return;
                     }
 

@@ -198,11 +198,20 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
 
         return { success: true, serverSaved: true };
     } catch (error) {
-        console.error('[Action] Failed to save presentation in DB, fallback to mock:', error);
-        return {
-            success: false,
-            serverSaved: false,
-            error: 'ذخیره روی سرور انجام نشد. لطفا چند ثانیه بعد دوباره تلاش کنید.'
+        console.error('[Action] Failed to save presentation in DB, falling back to mock memory storage:', error);
+        
+        // Save to mock array in-memory so it's not lost
+        const index = mockPresentations.findIndex(p => p.id === safeSession.id);
+        if (index > -1) {
+            mockPresentations[index] = safeSession;
+        } else {
+            mockPresentations.push(safeSession);
+        }
+        
+        return { 
+            success: true, 
+            serverSaved: false, 
+            fallbackSaved: true 
         };
     }
 }

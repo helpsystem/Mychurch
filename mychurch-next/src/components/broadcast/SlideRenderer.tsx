@@ -168,6 +168,8 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
             case 'video':
                 return (
                     <video 
+                        key={bgConfig.value}
+                        crossOrigin="anonymous"
                         className="absolute inset-0 w-full h-full object-cover -z-10" 
                         autoPlay loop muted playsInline 
                         style={{ opacity: (bgConfig.opacity || 100) / 100 }}
@@ -640,7 +642,7 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                         {content.imageUrl && (
                             <div className="flex-1 flex items-center justify-end z-10">
                                 <div className="w-[80%] aspect-square rounded-[3rem] overflow-hidden border-8 border-white/10 shadow-2xl relative">
-                                    <img src={content.imageUrl} alt={content.title} className="w-full h-full object-cover" />
+                                    <img src={content.imageUrl} key={content.imageUrl} crossOrigin="anonymous" alt={content.title} className="w-full h-full object-cover" />
                                 </div>
                             </div>
                         )}
@@ -653,10 +655,10 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                 return (
                     <div className="w-full h-full bg-black flex items-center justify-center relative overflow-hidden">
                         {content.mediaType === 'image' && (
-                            <img src={content.url} className="w-full h-full object-contain" alt="Media" />
+                            <img src={content.url} key={content.url} crossOrigin="anonymous" className="w-full h-full object-contain" alt="Media" />
                         )}
                         {content.mediaType === 'video' && (
-                            <video src={content.url} className="w-full h-full object-contain" autoPlay={content.isAutoPlay} loop={content.isLoop} muted={isRemotePreview} />
+                            <video key={content.url} src={content.url} crossOrigin="anonymous" className="w-full h-full object-contain" autoPlay={content.isAutoPlay} loop={content.isLoop} muted={isRemotePreview} />
                         )}
                     </div>
                 );
