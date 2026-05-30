@@ -6,7 +6,6 @@ import { useReactToPrint } from "react-to-print";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { emailDocument } from "@/actions/documentMailer";
 import { deleteDocument, getDocuments, saveDocument, updateDocument } from "@/actions/documents";
 import { createIntakeRequest, getMyIntakeRequests, markIntakeAsUsed, deleteIntakeRequest } from "@/actions/intakeRequests";
 import { getDocumentSettings, saveDocumentSettings } from "@/actions/documentSettings";
@@ -1777,23 +1776,30 @@ export default function ChurchDocumentsPage() {
     }
     setEmailSending(true);
     try {
-      const result = await emailDocument(
-        emailAddress.trim(),
-        emailModal.subject,
-        "",                               // htmlContent kept for compat – now unused inside mailer
-        pdfBase64,
-        `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.pdf`,
-        imageBase64,
-        `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.jpg`,
-        emailModal.recipientName,         // ← personalised greeting (e.g. "John Smith")
-        emailModal.refNo,                 // ← builds /verify/[refNo] link
-      );
-      if (result.success) {
+      const res = await fetch("/api/admin/email-document", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          recipientEmail: emailAddress.trim(),
+          subject: emailModal.subject,
+          pdfBase64,
+          pdfFilename: `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.pdf`,
+          imageBase64,
+          imageFilename: `${emailModal.refNo.replace(/[^a-zA-Z0-9-]/g, "-")}.jpg`,
+          recipientName: emailModal.recipientName,
+          refNo: emailModal.refNo,
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
         toast.success(isRtl ? `ایمیل با موفقیت به ${emailAddress} ارسال شد` : `Email sent successfully to ${emailAddress}`);
         setEmailModal(null);
         setEmailAddress("");
       } else {
-        toast.error(result.error || (isRtl ? "ارسال ناموفق بود" : "Failed to send"));
+        toast.error(data.error || (isRtl ? "ارسال ناموفق بود" : "Failed to send"));
       }
     } catch (e: any) {
       toast.error(e.message || "Error sending email");
