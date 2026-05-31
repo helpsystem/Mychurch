@@ -81,11 +81,24 @@ function ViewerContent() {
             }
         };
 
+        const handleDblClick = () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch((err) => {
+                    console.error("[Viewer] Error entering fullscreen:", err);
+                });
+            } else {
+                document.exitFullscreen().catch((err) => {
+                    console.error("[Viewer] Error exiting fullscreen:", err);
+                });
+            }
+        };
+
         document.addEventListener('keydown', handleKeyDown, { passive: false });
         document.addEventListener('wheel', handleWheel, { passive: false });
         document.addEventListener('touchmove', handleTouchMove, { passive: false });
         document.addEventListener('contextmenu', handleContextMenu);
         document.addEventListener('mousedown', handleMouseDown);
+        document.addEventListener('dblclick', handleDblClick);
 
         document.body.style.overflow = 'hidden';
         document.body.style.userSelect = 'none';
@@ -97,6 +110,7 @@ function ViewerContent() {
             document.removeEventListener('touchmove', handleTouchMove);
             document.removeEventListener('contextmenu', handleContextMenu);
             document.removeEventListener('mousedown', handleMouseDown);
+            document.removeEventListener('dblclick', handleDblClick);
             document.body.style.overflow = '';
             document.body.style.userSelect = '';
             document.body.style.touchAction = '';

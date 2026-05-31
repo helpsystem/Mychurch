@@ -420,7 +420,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                         window.open(
                             viewerUrl,
                             '_blank',
-                            `left=${secondary.left},top=${secondary.top},width=${secondary.width},height=${secondary.height},fullscreen=yes,noopener,noreferrer`
+                            `left=${secondary.left},top=${secondary.top},width=${secondary.width},height=${secondary.height},menubar=no,status=no,toolbar=no,titlebar=no,noopener,noreferrer`
                         );
                         return;
                     }
@@ -443,7 +443,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                         window.open(
                             `/broadcast/view?session=${encodeURIComponent(sessionId)}`,
                             '_blank',
-                            `left=${secondary.left},top=${secondary.top},width=${secondary.width},height=${secondary.height},fullscreen=yes,noopener,noreferrer`
+                            `left=${secondary.left},top=${secondary.top},width=${secondary.width},height=${secondary.height},menubar=no,status=no,toolbar=no,titlebar=no,noopener,noreferrer`
                         );
                         return;
                     }
