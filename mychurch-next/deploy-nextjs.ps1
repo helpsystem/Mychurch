@@ -142,11 +142,11 @@ else
     fi
     # Wipe the corrupted cache directory to completely eliminate TAR_ENTRY_ERROR
     echo 'Cleaning corrupted npm cache folder...'
-    rm -rf /root/.npm ~/.npm
+    rm -rf /root/.npm ~/.npm || true
     
     if ! npm ci --no-audit --no-fund; then
         echo 'npm ci failed, cleaning cache and falling back to npm install...'
-        rm -rf /root/.npm ~/.npm
+        rm -rf /root/.npm ~/.npm || true
         npm install --no-audit --no-fund || exit 1
     fi
     cp package-lock.json .deps-lock.json
