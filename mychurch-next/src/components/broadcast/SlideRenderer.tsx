@@ -433,7 +433,13 @@ export function SlideRenderer({
                                     {references.map((ref, idx) => (
                                         <button
                                             key={ref.id}
-                                            onClick={() => setActiveReference(ref)}
+                                            type="button"
+                                            onClick={(e) => {
+                                                console.log(`[SlideRenderer] Coordinate clicked:`, ref);
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                setActiveReference(ref);
+                                            }}
                                             title={`${ref.bookName.fa} ${ref.chapter}:${ref.verses}`}
                                             className={`w-full grid grid-cols-2 transition-all ${useWavyPaper ? 'border border-[#8a4d0f]/25 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/60 bg-slate-900/60 hover:bg-indigo-500/10 hover:border-indigo-500/50'}`}
                                             style={{ borderRadius: `${1.2 * slideZoom}rem`, overflow: 'hidden' }}
@@ -573,7 +579,12 @@ export function SlideRenderer({
                                                 {!isRemotePreview && (
                                                     <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-2xl p-1 shrink-0 font-[Vazirmatn]" dir="ltr">
                                                         <button 
-                                                            onClick={() => setPopupScale(Math.max(0.5, popupScale - 0.1))} 
+                                                            type="button"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                e.stopPropagation();
+                                                                setPopupScale(Math.max(0.5, popupScale - 0.1));
+                                                            }} 
                                                             className="text-slate-400 hover:text-white transition-all bg-white/5 hover:bg-white/10 font-black rounded-lg flex items-center justify-center cursor-pointer select-none"
                                                             style={{ width: `${3.2 * slideZoom}rem`, height: `${3.2 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
                                                             title="کوچک‌تر کردن متن"
@@ -587,7 +598,12 @@ export function SlideRenderer({
                                                             {Math.round(popupScale * 100)}%
                                                         </span>
                                                         <button 
-                                                            onClick={() => setPopupScale(Math.min(3.0, popupScale + 0.1))} 
+                                                            type="button"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                e.stopPropagation();
+                                                                setPopupScale(Math.min(3.0, popupScale + 0.1));
+                                                            }} 
                                                             className="text-slate-400 hover:text-white transition-all bg-white/5 hover:bg-white/10 font-black rounded-lg flex items-center justify-center cursor-pointer select-none"
                                                             style={{ width: `${3.2 * slideZoom}rem`, height: `${3.2 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
                                                             title="بزرگ‌تر کردن متن"
@@ -598,7 +614,13 @@ export function SlideRenderer({
                                                 )}
                                                 {!isRemotePreview && (
                                                     <button
-                                                        onClick={() => setActiveReference(null)}
+                                                        type="button"
+                                                        onClick={(e) => {
+                                                            console.log(`[SlideRenderer] Close clicked`);
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            setActiveReference(null);
+                                                        }}
                                                         title="بستن"
                                                         className="rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold transition-all cursor-pointer"
                                                         style={{ padding: `${0.8 * slideZoom}rem ${1.6 * slideZoom}rem`, fontSize: `${2 * slideZoom}rem` }}

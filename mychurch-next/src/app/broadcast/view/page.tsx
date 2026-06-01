@@ -266,7 +266,10 @@ function ViewerContent() {
 
         channel.onmessage = (event) => {
             const msg = event.data;
+            console.log('📺 [Viewer Channel] Received message type:', msg?.type, 'payload:', msg?.payload);
+
             if (msg.type === 'slide_change' && msg.payload) {
+                console.log('📺 [Viewer Channel] Slide changed to index:', msg.payload.index, 'slide:', msg.payload.slide);
                 setState(prev => ({
                     ...prev,
                     currentSlide: msg.payload.slide,
@@ -279,6 +282,7 @@ function ViewerContent() {
             }
 
             if (msg.type === 'overlay_toggle' && msg.payload) {
+                console.log('📺 [Viewer Channel] Overlay toggle:', msg.payload);
                 setState(prev => ({
                     ...prev,
                     config: msg.payload,
@@ -288,6 +292,7 @@ function ViewerContent() {
             }
 
             if (msg.type === 'full_state' && msg.payload) {
+                console.log('📺 [Viewer Channel] Full state update:', msg.payload);
                 setState(prev => ({
                     ...prev,
                     currentSlide: msg.payload.currentSlide,
@@ -302,6 +307,7 @@ function ViewerContent() {
             }
 
             if (msg.type === 'active_reference_change') {
+                console.log('📺 [Viewer Channel] Active reference changed:', msg.payload.reference);
                 setState(prev => ({
                     ...prev,
                     activeScriptureReference: msg.payload.reference
@@ -309,6 +315,7 @@ function ViewerContent() {
             }
 
             if (msg.type === 'popup_scale_change') {
+                console.log('📺 [Viewer Channel] Popup scale changed:', msg.payload.scale);
                 setState(prev => ({
                     ...prev,
                     scripturePopupScale: msg.payload.scale
@@ -316,6 +323,7 @@ function ViewerContent() {
             }
 
             if (msg.type === 'popup_scroll_sync') {
+                console.log('📺 [Viewer Channel] Popup scroll sync:', msg.payload);
                 const { column, pct } = msg.payload;
                 window.dispatchEvent(new CustomEvent('popup_scroll_sync', { detail: { column, pct } }));
             }
