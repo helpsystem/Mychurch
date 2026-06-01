@@ -14,6 +14,7 @@ import { useSearchParams } from 'next/navigation';
 import { useWebSocketSync } from '@/components/broadcast/hooks/useWebSocketSync';
 import { SmartWorshipPlayer } from '@/components/worship/SmartWorshipPlayer';
 import AmenBadge from '@/components/broadcast/AmenBadge';
+import { SlideRenderer } from '@/components/broadcast/SlideRenderer';
 import {
     Slide,
     BroadcastOverlayConfig,
@@ -32,6 +33,8 @@ interface ViewerState {
     connected: boolean;
     connectionType: 'none' | 'broadcast-channel' | 'websocket';
     audioCurrentTime: number; // زمان جاری صوت برای sync کاراوکه
+    activeScriptureReference?: import('@/types/broadcast').ScriptureReferenceItem | null;
+    scripturePopupScale?: number;
 }
 
 const stripChordMarkers = (text: string): string => {
@@ -124,7 +127,9 @@ function ViewerContent() {
         config: null,
         connected: false,
         connectionType: 'none',
-        audioCurrentTime: 0
+        audioCurrentTime: 0,
+        activeScriptureReference: null,
+        scripturePopupScale: 1.0
     });
     const [showGlassPopup, setShowGlassPopup] = useState(false);
     const [tokenState, setTokenState] = useState<"checking" | "valid" | "invalid">("checking");
@@ -267,6 +272,7 @@ function ViewerContent() {
                     currentSlide: msg.payload.slide,
                     slideIndex: msg.payload.index,
                     internalPageIndex: msg.payload.internalPageIndex || 0,
+                    activeScriptureReference: null,
                     connected: true,
                     connectionType: 'broadcast-channel'
                 }));
@@ -288,9 +294,30 @@ function ViewerContent() {
                     slideIndex: msg.payload.slideIndex,
                     internalPageIndex: msg.payload.internalPageIndex || 0,
                     config: msg.payload.config,
+                    activeScriptureReference: msg.payload.activeScriptureReference || null,
+                    scripturePopupScale: msg.payload.scripturePopupScale || 1.0,
                     connected: true,
                     connectionType: 'broadcast-channel'
                 }));
+            }
+
+            if (msg.type === 'active_reference_change') {
+                setState(prev => ({
+                    ...prev,
+                    activeScriptureReference: msg.payload.reference
+                }));
+            }
+
+            if (msg.type === 'popup_scale_change') {
+                setState(prev => ({
+                    ...prev,
+                    scripturePopupScale: msg.payload.scale
+                }));
+            }
+
+            if (msg.type === 'popup_scroll_sync') {
+                const { column, pct } = msg.payload;
+                window.dispatchEvent(new CustomEvent('popup_scroll_sync', { detail: { column, pct } }));
             }
 
             if (msg.type === 'scroll_sync' && msg.payload && scrollContainerRef.current) {
@@ -352,167 +379,14 @@ function ViewerContent() {
         const slide = state.currentSlide;
 
         if (slide.type === SlideType.SCRIPTURE) {
-            const scriptureContent = slide.content as SlideContentScripture;
-            const currentPage = scriptureContent.pages?.[state.internalPageIndex] || scriptureContent.pages?.[0];
-
-            if (!currentPage) return null;
-
-            const hasFarsiArray = Array.isArray(currentPage.textPrimary) && currentPage.textPrimary.length > 0;
-            const hasEnglishArray = Array.isArray(currentPage.textSecondary) && currentPage.textSecondary.length > 0;
-            const englishVerses = hasEnglishArray ? currentPage.textSecondary as string[] : [];
-            const farsiVerses = hasFarsiArray ? currentPage.textPrimary as string[] : [];
-            const maxVerses = Math.max(englishVerses.length, farsiVerses.length);
-
-            const faTranslationNames: Record<string, string> = {
-                mojdeh: 'مژده',
-                qadim: 'قدیم',
-                tafsiri: 'تفسیری'
-            };
-            const enTranslationNames: Record<string, string> = {
-                kjv: 'KJV',
-                asv: 'ASV',
-                net: 'NET'
-            };
-
-            const faTransName = faTranslationNames[currentPage.translation || 'mojdeh'] || 'مژده';
-            const enTransName = enTranslationNames[currentPage.enTranslation || 'asv'] || 'ASV';
-            const scripturePopupEnabled = currentPage.glassPopupEnabled !== false;
-            const scripturePopupTitleFa = currentPage.popupLabelFa || `${currentPage.bookName.fa} ${currentPage.chapter}:${currentPage.verses}`;
-            const scripturePopupTitleEn = currentPage.popupLabelEn || `${currentPage.bookName.en} ${currentPage.chapter}:${currentPage.verses}`;
-
             return (
-                <div className="fixed inset-0 flex flex-col bg-gradient-to-br from-blue-950 via-indigo-900 to-purple-950 overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700/20 via-transparent to-transparent pointer-events-none"></div>
-                    {scripturePopupEnabled && (
-                        <button
-                            data-allow-interaction="true"
-                            onClick={() => setShowGlassPopup(prev => !prev)}
-                            className="absolute top-5 right-5 z-[70] px-4 py-2 rounded-xl bg-white/15 border border-white/30 text-white text-sm backdrop-blur-md hover:bg-white/25 transition font-[Vazirmatn]"
-                        >
-                            {showGlassPopup ? '✕ بستن / Close' : '📖 آیات / Verses'}
-                        </button>
-                    )}
-
-                    <div className="flex-shrink-0 flex flex-row gap-4 px-6 pt-4" dir="ltr">
-                        {hasEnglishArray && (
-                            <div className="flex-1 bg-gradient-to-br from-slate-800/80 to-purple-900/30 rounded-t-xl px-6 py-4 border-b-2 border-purple-500/50">
-                                <div className="text-center">
-                                    <h3 className="text-3xl font-bold text-purple-300">
-                                        📖 {currentPage?.bookName?.en || 'Book'}
-                                    </h3>
-                                    <div className="flex items-center justify-center gap-4 mt-2 text-xl">
-                                        <span className="bg-purple-600/40 px-3 py-1 rounded text-purple-200">
-                                            {enTransName}
-                                        </span>
-                                        <span className="text-slate-400">•</span>
-                                        <span className="text-purple-200">Chapter {currentPage?.chapter}</span>
-                                        <span className="text-slate-400">•</span>
-                                        <span className="text-purple-200">Verses {currentPage?.verses}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                        {hasFarsiArray && (
-                            <div className="flex-1 bg-gradient-to-bl from-amber-900/50 to-slate-800/80 rounded-t-xl px-6 py-4 border-b-2 border-amber-500/50">
-                                <div className="text-center" dir="rtl">
-                                    <h3 className="text-3xl font-bold text-amber-300 font-[Vazirmatn]">
-                                        📖 {currentPage?.bookName?.fa || 'کتاب'}
-                                    </h3>
-                                    <div className="flex items-center justify-center gap-4 mt-2 text-xl font-[Vazirmatn]">
-                                        <span className="bg-amber-600/40 px-3 py-1 rounded text-amber-200">{faTransName}</span>
-                                        <span className="text-slate-400">•</span>
-                                        <span className="text-amber-200">فصل {currentPage?.chapter}</span>
-                                        <span className="text-slate-400">•</span>
-                                        <span className="text-amber-200">آیات {currentPage?.verses}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-
-                    <div ref={scrollContainerRef} className="flex-1 overflow-auto px-6 pb-4">
-                        <div className="space-y-4">
-                            {Array.from({ length: maxVerses }).map((_, idx) => {
-                                const englishVerse = englishVerses[idx] || '';
-                                const farsiVerse = farsiVerses[idx] || '';
-                                const verseNum = currentPage?.verseNumbers?.[idx] || (idx + 1);
-
-                                if ((!englishVerse || englishVerse.trim() === '') && (!farsiVerse || farsiVerse.trim() === '')) {
-                                    return null;
-                                }
-
-                                return (
-                                    <div key={idx} className="flex flex-row gap-4" dir="ltr">
-                                        {hasEnglishArray && (
-                                            <div className="flex-1 bg-slate-800/50 rounded-lg p-4" dir="ltr">
-                                                <div className="flex gap-3 items-start">
-                                                    <span className="text-2xl font-bold text-purple-400 min-w-[40px] text-right" style={{ textShadow: '0 0 15px rgba(216, 180, 254, 0.6)' }}>
-                                                        {verseNum}
-                                                    </span>
-                                                    <p className="text-2xl text-slate-200 leading-relaxed flex-1" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
-                                                        {englishVerse || ''}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        )}
-                                        {hasFarsiArray && (
-                                            <div className="flex-1 bg-amber-900/30 rounded-lg p-4" dir="rtl">
-                                                <div className="flex gap-3 items-start">
-                                                    <span className="text-2xl font-bold text-amber-400 min-w-[40px] text-right" style={{ textShadow: '0 0 15px rgba(251, 191, 36, 0.6)' }}>
-                                                        {verseNum}
-                                                    </span>
-                                                    <p className="text-2xl text-white leading-[1.8] flex-1 text-right font-[Vazirmatn]" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
-                                                        {farsiVerse || ''}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-
-                    {scripturePopupEnabled && showGlassPopup && (
-                        <div data-allow-interaction="true" className="absolute inset-0 z-[80] bg-black/35 backdrop-blur-sm flex items-center justify-center p-6">
-                            <div className="w-full max-w-6xl max-h-[86vh] overflow-auto rounded-3xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-2xl p-6">
-                                <div className="flex items-start justify-between gap-4 mb-5">
-                                    <div className="text-right" dir="rtl">
-                                        <h3 className="text-3xl font-bold text-white font-[Vazirmatn]">{scripturePopupTitleFa}</h3>
-                                        <p className="text-cyan-200 mt-1 text-lg" dir="ltr">{scripturePopupTitleEn}</p>
-                                    </div>
-                                    <button data-allow-interaction="true" onClick={() => setShowGlassPopup(false)} className="px-3 py-1 rounded-lg bg-white/15 border border-white/20 text-white hover:bg-white/25">✕</button>
-                                </div>
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                    {Array.from({ length: maxVerses }).map((_, idx) => {
-                                        const englishVerse = englishVerses[idx] || '';
-                                        const farsiVerse = farsiVerses[idx] || '';
-                                        const verseNum = currentPage?.verseNumbers?.[idx] || (idx + 1);
-                                        if (!englishVerse && !farsiVerse) return null;
-                                        return (
-                                            <React.Fragment key={`popup-${idx}`}>
-                                                <div className="rounded-2xl bg-purple-950/35 border border-purple-300/30 p-4" dir="ltr">
-                                                    <div className="text-sm text-purple-300 mb-2">{verseNum}</div>
-                                                    <p className="text-white/90 text-lg leading-relaxed">{englishVerse}</p>
-                                                </div>
-                                                <div className="rounded-2xl bg-amber-900/35 border border-amber-300/30 p-4" dir="rtl">
-                                                    <div className="text-sm text-amber-300 mb-2">{verseNum}</div>
-                                                    <p className="text-white text-xl leading-[1.9] font-[Vazirmatn]">{farsiVerse}</p>
-                                                </div>
-                                            </React.Fragment>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    <div className="flex-shrink-0 bg-gradient-to-r from-indigo-600/80 via-purple-600/80 to-indigo-600/80 p-4 text-center">
-                        <p className="text-white font-semibold text-2xl font-[Vazirmatn]">
-                            {currentPage?.bookName?.fa} {currentPage?.chapter}:{currentPage?.verses}
-                        </p>
-                    </div>
-                </div>
+                <SlideRenderer
+                    slide={slide}
+                    internalPageIndex={state.internalPageIndex}
+                    isRemotePreview={true}
+                    activeScriptureReference={state.activeScriptureReference}
+                    scripturePopupScale={state.scripturePopupScale}
+                />
             );
         }
 

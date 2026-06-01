@@ -8,6 +8,7 @@ import {
 } from "@/types/broadcast";
 import { cn } from "@/lib/utils";
 import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart, CheckCircle } from "lucide-react";
+import { useBroadcastStore } from "@/store/useBroadcastStore";
 
 const isNonEmptyText = (value: unknown) => typeof value === 'string' && value.trim().length > 0;
 
@@ -95,14 +96,101 @@ interface SlideRendererProps {
     previewMode?: 'fit' | 'fixed';
     internalPageIndex?: number;
     isTransparent?: boolean;
+    activeScriptureReference?: ScriptureReferenceItem | null;
+    scripturePopupScale?: number;
+    onCloseActiveReference?: () => void;
+    onUpdatePopupScale?: (scale: number) => void;
 }
 
-export function SlideRenderer({ slide, className, isRemotePreview = false, previewZoom = 1, internalPageIndex = 0, isTransparent = false }: SlideRendererProps) {
-    const [activeReference, setActiveReference] = useState<ScriptureReferenceItem | null>(null);
+export function SlideRenderer({
+    slide,
+    className,
+    isRemotePreview = false,
+    previewZoom = 1,
+    internalPageIndex = 0,
+    isTransparent = false,
+    activeScriptureReference: propActiveReference,
+    scripturePopupScale: propPopupScale,
+    onCloseActiveReference,
+    onUpdatePopupScale
+}: SlideRendererProps) {
+    const storeActiveReference = useBroadcastStore(state => state.activeScriptureReference);
+    const storePopupScale = useBroadcastStore(state => state.scripturePopupScale);
+    const setStoreActiveReference = useBroadcastStore(state => state.setActiveScriptureReference);
+    const setStorePopupScale = useBroadcastStore(state => state.setScripturePopupScale);
+
+    // Fallbacks
+    const activeReference = propActiveReference !== undefined ? propActiveReference : storeActiveReference;
+    const setActiveReference = (ref: ScriptureReferenceItem | null) => {
+        if (onCloseActiveReference) {
+            onCloseActiveReference();
+        } else {
+            setStoreActiveReference(ref);
+        }
+    };
+
+    const popupScale = propPopupScale !== undefined ? propPopupScale : storePopupScale;
+    const setPopupScale = (scale: number) => {
+        if (onUpdatePopupScale) {
+            onUpdatePopupScale(scale);
+        } else {
+            setStorePopupScale(scale);
+        }
+    };
+
     const slideZoom = Number.isFinite(slide?.zoom || 1) ? Math.max(0.5, Math.min(slide?.zoom || 1, 2.5)) : 1;
     const safeZoom = Number.isFinite(previewZoom) ? Math.max(0.25, Math.min(previewZoom, 3)) : 1;
 
     const containerRef = React.useRef<HTMLDivElement>(null);
+    const faScrollRef = React.useRef<HTMLDivElement>(null);
+    const enScrollRef = React.useRef<HTMLDivElement>(null);
+
+    // Scrolling logic
+    const handleScrollFa = (e: React.UIEvent<HTMLDivElement>) => {
+        if (isRemotePreview) return;
+        const target = e.target as HTMLDivElement;
+        const pct = target.scrollTop / (target.scrollHeight - target.clientHeight) || 0;
+
+        if (typeof window !== 'undefined') {
+            const bc = new BroadcastChannel(`broadcast-console-${useBroadcastStore.getState().sessionId}`);
+            bc.postMessage({
+                type: 'popup_scroll_sync',
+                payload: { column: 'fa', pct }
+            });
+            bc.close();
+        }
+    };
+
+    const handleScrollEn = (e: React.UIEvent<HTMLDivElement>) => {
+        if (isRemotePreview) return;
+        const target = e.target as HTMLDivElement;
+        const pct = target.scrollTop / (target.scrollHeight - target.clientHeight) || 0;
+
+        if (typeof window !== 'undefined') {
+            const bc = new BroadcastChannel(`broadcast-console-${useBroadcastStore.getState().sessionId}`);
+            bc.postMessage({
+                type: 'popup_scroll_sync',
+                payload: { column: 'en', pct }
+            });
+            bc.close();
+        }
+    };
+
+    useEffect(() => {
+        if (!isRemotePreview) return;
+
+        const handleSync = (e: Event) => {
+            const { column, pct } = (e as CustomEvent).detail;
+            const container = column === 'fa' ? faScrollRef.current : enScrollRef.current;
+            if (container) {
+                const targetScroll = pct * (container.scrollHeight - container.clientHeight);
+                container.scrollTo({ top: targetScroll, behavior: 'smooth' });
+            }
+        };
+
+        window.addEventListener('popup_scroll_sync', handleSync);
+        return () => window.removeEventListener('popup_scroll_sync', handleSync);
+    }, [isRemotePreview]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -481,27 +569,63 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                     {activeReference.bookName.en} {activeReference.chapter}:{activeReference.verses}
                                                 </p>
                                             </div>
-                                            <button
-                                                onClick={() => setActiveReference(null)}
-                                                title="بستن"
-                                                className="rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold transition-all"
-                                                style={{ padding: `${0.8 * slideZoom}rem ${1.6 * slideZoom}rem`, fontSize: `${2 * slideZoom}rem` }}
-                                            >
-                                                ✕
-                                            </button>
+                                            <div className="flex items-center gap-3">
+                                                {!isRemotePreview && (
+                                                    <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-2xl p-1 shrink-0 font-[Vazirmatn]" dir="ltr">
+                                                        <button 
+                                                            onClick={() => setPopupScale(Math.max(0.5, popupScale - 0.1))} 
+                                                            className="text-slate-400 hover:text-white transition-all bg-white/5 hover:bg-white/10 font-black rounded-lg flex items-center justify-center cursor-pointer select-none"
+                                                            style={{ width: `${3.2 * slideZoom}rem`, height: `${3.2 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
+                                                            title="کوچک‌تر کردن متن"
+                                                        >
+                                                            A-
+                                                        </button>
+                                                        <span 
+                                                            className="text-white font-bold text-center select-none"
+                                                            style={{ minWidth: `${4.5 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
+                                                        >
+                                                            {Math.round(popupScale * 100)}%
+                                                        </span>
+                                                        <button 
+                                                            onClick={() => setPopupScale(Math.min(3.0, popupScale + 0.1))} 
+                                                            className="text-slate-400 hover:text-white transition-all bg-white/5 hover:bg-white/10 font-black rounded-lg flex items-center justify-center cursor-pointer select-none"
+                                                            style={{ width: `${3.2 * slideZoom}rem`, height: `${3.2 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
+                                                            title="بزرگ‌تر کردن متن"
+                                                        >
+                                                            A+
+                                                        </button>
+                                                    </div>
+                                                )}
+                                                {!isRemotePreview && (
+                                                    <button
+                                                        onClick={() => setActiveReference(null)}
+                                                        title="بستن"
+                                                        className="rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold transition-all cursor-pointer"
+                                                        style={{ padding: `${0.8 * slideZoom}rem ${1.6 * slideZoom}rem`, fontSize: `${2 * slideZoom}rem` }}
+                                                    >
+                                                        ✕
+                                                    </button>
+                                                )}
+                                            </div>
                                         </div>
 
                                         {/* Body — two columns */}
                                         <div className="flex-1 min-h-0 grid grid-cols-2 overflow-hidden" style={{ gap: 0 }}>
                                             {(() => {
                                                 const faSide = (
-                                                    <div className="overflow-y-auto" dir="rtl" style={{ padding: `${2 * slideZoom}rem`, borderLeft: page.primaryLanguage !== 'en' ? `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)` : 'none', fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}>
+                                                    <div 
+                                                        ref={faScrollRef}
+                                                        onScroll={handleScrollFa}
+                                                        className="overflow-y-auto" 
+                                                        dir="rtl" 
+                                                        style={{ padding: `${2 * slideZoom}rem`, borderLeft: page.primaryLanguage !== 'en' ? `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)` : 'none', fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}
+                                                    >
                                                         <StickyScriptureHeader tone="emerald">
                                                             متن فارسی
                                                         </StickyScriptureHeader>
                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
                                                             {activeReference.textFa.map((line, i) => (
-                                                                <p key={`fa-${i}`} className="text-slate-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${2.8 * slideZoom}rem` }}>
+                                                                <p key={`fa-${i}`} className="text-slate-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${2.8 * slideZoom * popupScale}rem` }}>
                                                                     <VerseNumberBadge size="sm" isWavyPaper={useWavyPaper}>
                                                                         {activeReference.verseNumbers[i] || ''}
                                                                     </VerseNumberBadge>
@@ -513,13 +637,19 @@ export function SlideRenderer({ slide, className, isRemotePreview = false, previ
                                                 );
 
                                                 const enSide = (
-                                                    <div className="overflow-y-auto" dir="ltr" style={{ padding: `${2 * slideZoom}rem`, borderRight: page.primaryLanguage === 'en' ? `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)` : 'none', fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)' }}>
+                                                    <div 
+                                                        ref={enScrollRef}
+                                                        onScroll={handleScrollEn}
+                                                        className="overflow-y-auto" 
+                                                        dir="ltr" 
+                                                        style={{ padding: `${2 * slideZoom}rem`, borderRight: page.primaryLanguage === 'en' ? `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)` : 'none', fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)' }}
+                                                    >
                                                         <StickyScriptureHeader tone="blue">
                                                             English Text
                                                         </StickyScriptureHeader>
                                                         <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
                                                             {activeReference.textEn.map((line, i) => (
-                                                                <p key={`en-${i}`} className="text-slate-200 leading-relaxed" style={{ fontSize: `${2.2 * slideZoom}rem` }}>
+                                                                <p key={`en-${i}`} className="text-slate-200 leading-relaxed" style={{ fontSize: `${2.2 * slideZoom * popupScale}rem` }}>
                                                                     <VerseNumberBadge size="sm" isWavyPaper={useWavyPaper}>
                                                                         {activeReference.verseNumbers[i] || ''}
                                                                     </VerseNumberBadge>

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Slide, BroadcastOverlayConfig } from '@/types/broadcast';
+import { Slide, BroadcastOverlayConfig, ScriptureReferenceItem } from '@/types/broadcast';
 import { createClient } from '@/utils/supabase/client';
 import { RealtimeChannel } from '@supabase/supabase-js';
 
@@ -10,6 +10,8 @@ interface BroadcastState {
     slides: Slide[];
     activeSlideIndex: number;
     internalPageIndex: number; // for multi-page scriptures or long lyrics
+    activeScriptureReference: ScriptureReferenceItem | null;
+    scripturePopupScale: number;
 
     // Overlay & Display Config
     config: BroadcastOverlayConfig;
@@ -38,6 +40,8 @@ interface BroadcastState {
     setSlides: (slides: Slide[]) => void;
     setActiveSlideIndex: (index: number, skipSync?: boolean) => void;
     setInternalPageIndex: (index: number, skipSync?: boolean) => void;
+    setActiveScriptureReference: (ref: ScriptureReferenceItem | null, skipSync?: boolean) => void;
+    setScripturePopupScale: (scale: number, skipSync?: boolean) => void;
     nextSlide: () => void;
     prevSlide: () => void;
     updateConfig: (updates: Partial<BroadcastOverlayConfig>) => void;
@@ -95,6 +99,8 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     slides: [],
     activeSlideIndex: 0,
     internalPageIndex: 0,
+    activeScriptureReference: null,
+    scripturePopupScale: 1.0,
 
     config: DEFAULT_CONFIG,
 
@@ -120,16 +126,33 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     setSlides: (slides) => set({ slides }),
 
     setActiveSlideIndex: (index, skipSync = false) => {
-        set({ activeSlideIndex: index, internalPageIndex: 0 });
+        set({ activeSlideIndex: index, internalPageIndex: 0, activeScriptureReference: null });
         if (!skipSync) {
             get().pushRemoteSync({ type: 'SET_SLIDE', slideIndex: index, pageIndex: 0 });
+            get().pushRemoteSync({ type: 'SET_ACTIVE_REFERENCE', reference: null });
         }
     },
 
     setInternalPageIndex: (index, skipSync = false) => {
-        set({ internalPageIndex: index });
+        set({ internalPageIndex: index, activeScriptureReference: null });
         if (!skipSync) {
             get().pushRemoteSync({ type: 'SET_PAGE', slideIndex: get().activeSlideIndex, pageIndex: index });
+            get().pushRemoteSync({ type: 'SET_ACTIVE_REFERENCE', reference: null });
+        }
+    },
+
+    setActiveScriptureReference: (ref, skipSync = false) => {
+        set({ activeScriptureReference: ref });
+        if (!skipSync) {
+            get().pushRemoteSync({ type: 'SET_ACTIVE_REFERENCE', reference: ref });
+        }
+    },
+
+    setScripturePopupScale: (scale, skipSync = false) => {
+        const safeScale = Math.max(0.5, Math.min(scale, 3.0));
+        set({ scripturePopupScale: safeScale });
+        if (!skipSync) {
+            get().pushRemoteSync({ type: 'SET_POPUP_SCALE', scale: safeScale });
         }
     },
 
@@ -193,13 +216,17 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
 
                 if (data.type === 'SET_SLIDE') {
                     // Force update without pushing back (infinite loop prevent)
-                    set({ activeSlideIndex: data.slideIndex, internalPageIndex: data.pageIndex || 0 });
+                    set({ activeSlideIndex: data.slideIndex, internalPageIndex: data.pageIndex || 0, activeScriptureReference: null });
                 } else if (data.type === 'SET_PAGE') {
-                    set({ internalPageIndex: data.pageIndex });
+                    set({ internalPageIndex: data.pageIndex, activeScriptureReference: null });
                 } else if (data.type === 'TOGGLE_LIVE') {
                     set({ isLive: data.isLive });
                 } else if (data.type === 'SET_SCENE') {
                     set({ activeSceneId: data.sceneId });
+                } else if (data.type === 'SET_ACTIVE_REFERENCE') {
+                    set({ activeScriptureReference: data.reference });
+                } else if (data.type === 'SET_POPUP_SCALE') {
+                    set({ scripturePopupScale: data.scale });
                 }
             })
             .subscribe((status) => {

@@ -37,6 +37,8 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const slides = useBroadcastStore(state => state.slides);
     const activeSlideIndex = useBroadcastStore(state => state.activeSlideIndex);
     const internalPageIndex = useBroadcastStore(state => state.internalPageIndex);
+    const activeScriptureReference = useBroadcastStore(state => state.activeScriptureReference);
+    const scripturePopupScale = useBroadcastStore(state => state.scripturePopupScale);
     const setActiveSlideIndex = useBroadcastStore(state => state.setActiveSlideIndex);
     const setInternalPageIndex = useBroadcastStore(state => state.setInternalPageIndex);
     const nextSlide = useBroadcastStore(state => state.nextSlide);
@@ -486,7 +488,9 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     currentSlide,
                     slideIndex: current.activeSlideIndex,
                     internalPageIndex: current.internalPageIndex,
-                    config: current.config
+                    config: current.config,
+                    activeScriptureReference: useBroadcastStore.getState().activeScriptureReference,
+                    scripturePopupScale: useBroadcastStore.getState().scripturePopupScale
                 }
             });
         };
@@ -517,6 +521,22 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
             }
         });
     }, [activeSlideIndex, internalPageIndex]); // Triggers only on index changes
+
+    useEffect(() => {
+        if (!sessionId || !viewerChannelRef.current) return;
+        viewerChannelRef.current.postMessage({
+            type: 'active_reference_change',
+            payload: { reference: activeScriptureReference }
+        });
+    }, [activeScriptureReference, sessionId]);
+
+    useEffect(() => {
+        if (!sessionId || !viewerChannelRef.current) return;
+        viewerChannelRef.current.postMessage({
+            type: 'popup_scale_change',
+            payload: { scale: scripturePopupScale }
+        });
+    }, [scripturePopupScale, sessionId]);
 
     useEffect(() => {
         const onKeyDown = (event: KeyboardEvent) => {
