@@ -320,8 +320,43 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
             }
 
             const viewerUrl = `${window.location.origin}/broadcast/view?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(data.token)}`;
-            await navigator.clipboard.writeText(viewerUrl);
-            toast.success("لینک امن Viewer کپی شد");
+            
+            let copied = false;
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(viewerUrl);
+                    copied = true;
+                } catch (e) {
+                    console.warn("[LiveConsole] Clipboard API failed, trying fallback:", e);
+                }
+            }
+
+            if (!copied) {
+                try {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = viewerUrl;
+                    textArea.style.position = "fixed";
+                    textArea.style.top = "0";
+                    textArea.style.left = "0";
+                    textArea.style.opacity = "0";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    const successful = document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    if (successful) {
+                        copied = true;
+                    }
+                } catch (err) {
+                    console.error("[LiveConsole] Fallback clipboard copy failed:", err);
+                }
+            }
+
+            if (copied) {
+                toast.success("لینک امن Viewer کپی شد");
+            } else {
+                throw new Error("مرورگر اجازه دسترسی به کلیپ‌بورد را نداد. لطفاً لینک را دستی کپی کنید.");
+            }
         } catch (error: any) {
             toast.error(error?.message || "خطا در ساخت لینک امن Viewer");
         } finally {

@@ -93,7 +93,7 @@ const DEFAULT_CONFIG: BroadcastOverlayConfig = {
 };
 
 export const useBroadcastStore = create<BroadcastState>((set, get) => ({
-    sessionId: '',
+    sessionId: 'default',
     isLive: false,
     activeSceneId: 'scene_1',
     slides: [],
