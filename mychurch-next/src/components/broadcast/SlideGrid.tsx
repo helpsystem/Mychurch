@@ -3,8 +3,22 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
-import { SlideType } from "@/types/broadcast";
+import { 
+    SlideType, 
+    SlideContentScripture, 
+    SlideContentLyrics, 
+    SlideContentMedia, 
+    SlideContentAnnouncement, 
+    SlideContentGeneric, 
+    SlideContentLiveData, 
+    SlideContentMeeting, 
+    SlideContentPrayer 
+} from "@/types/broadcast";
 import { cn } from "@/lib/utils";
+import { 
+    BookOpen, Music, FileImage, Video, Mic, 
+    Megaphone, Edit3, PieChart, PhoneCall, Heart 
+} from "lucide-react";
 
 export function SlideGrid() {
     const { t } = useLanguage();
@@ -104,16 +118,103 @@ export function SlideGrid() {
                             )}
                             title={`Slide ${originalIndex + 1}`}
                         >
-                            <div className="absolute inset-0 bg-neutral-700/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            {/* Thumbnail Preview Content */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-1.5 text-center select-none bg-neutral-950/20 group-hover:bg-neutral-950/40 transition-all">
+                                {slide.type === SlideType.SCRIPTURE && (
+                                    <div className="w-full text-center px-1">
+                                        <BookOpen className="w-4 h-4 text-amber-400/90 mx-auto mb-1 animate-pulse" />
+                                        <p className="text-[9px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
+                                            {(slide.content as SlideContentScripture).pages?.[0]?.bookName?.fa || 'کتاب‌مقدس'}
+                                        </p>
+                                        <p className="text-[7.5px] text-slate-400 font-mono truncate" dir="ltr">
+                                            {(slide.content as SlideContentScripture).pages?.[0]?.chapter}:{(slide.content as SlideContentScripture).pages?.[0]?.verses}
+                                        </p>
+                                    </div>
+                                )}
+                                {slide.type === SlideType.LYRICS && (
+                                    <div className="w-full text-center px-1">
+                                        <Music className="w-4 h-4 text-pink-400/90 mx-auto mb-0.5 animate-bounce" style={{ animationDuration: '3s' }} />
+                                        <p className="text-[9px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
+                                            {(slide.content as SlideContentLyrics).titleFa || (slide.content as SlideContentLyrics).title}
+                                        </p>
+                                        {(slide.content as SlideContentLyrics).titleEn && (
+                                            <p className="text-[7.5px] text-slate-400 truncate" dir="ltr">
+                                                {(slide.content as SlideContentLyrics).titleEn}
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+                                {slide.type === SlideType.MEDIA && (
+                                    <div className="w-full h-full relative flex items-center justify-center">
+                                        {(slide.content as SlideContentMedia).url && (slide.content as SlideContentMedia).mediaType === 'image' ? (
+                                            <img 
+                                                src={(slide.content as SlideContentMedia).url} 
+                                                alt="Media Preview" 
+                                                className="w-full h-full object-cover rounded opacity-40 absolute inset-0"
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
+                                                }}
+                                            />
+                                        ) : null}
+                                        <div className="absolute inset-0 flex items-center justify-center bg-black/25 rounded z-10">
+                                            {(slide.content as SlideContentMedia).mediaType === 'image' && <FileImage className="w-4 h-4 text-blue-400" />}
+                                            {(slide.content as SlideContentMedia).mediaType === 'video' && <Video className="w-4 h-4 text-purple-400" />}
+                                            {(slide.content as SlideContentMedia).mediaType === 'audio' && <Mic className="w-4 h-4 text-green-400" />}
+                                        </div>
+                                    </div>
+                                )}
+                                {slide.type === SlideType.ANNOUNCEMENT && (
+                                    <div className="w-full text-center px-1">
+                                        <Megaphone className="w-4 h-4 text-emerald-400 mx-auto mb-1" />
+                                        <p className="text-[8px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
+                                            {(slide.content as SlideContentAnnouncement).title}
+                                        </p>
+                                    </div>
+                                )}
+                                {slide.type === SlideType.GENERIC && (
+                                    <div className="w-full text-center px-1">
+                                        <Edit3 className="w-4 h-4 text-purple-400 mx-auto mb-1" />
+                                        <p className="text-[8px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
+                                            {(slide.content as SlideContentGeneric).title || 'اسلاید طرح'}
+                                        </p>
+                                    </div>
+                                )}
+                                {slide.type === SlideType.LIVEDATA && (
+                                    <div className="w-full text-center px-1">
+                                        <PieChart className="w-4 h-4 text-rose-400 mx-auto mb-1" />
+                                        <p className="text-[8px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
+                                            {(slide.content as SlideContentLiveData).title || 'آمار زنده'}
+                                        </p>
+                                    </div>
+                                )}
+                                {slide.type === SlideType.MEETING && (
+                                    <div className="w-full text-center px-1">
+                                        <PhoneCall className="w-4 h-4 text-cyan-400 mx-auto mb-1" />
+                                        <p className="text-[8px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
+                                            {(slide.content as SlideContentMeeting).subject || 'کنفرانس'}
+                                        </p>
+                                    </div>
+                                )}
+                                {slide.type === SlideType.PRAYER && (
+                                    <div className="w-full text-center px-1">
+                                        <Heart className="w-4 h-4 text-rose-400 mx-auto mb-1" />
+                                        <p className="text-[8px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
+                                            {(slide.content as SlideContentPrayer).title || 'درخواست دعا'}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="absolute inset-0 bg-neutral-700/30 opacity-0 group-hover:opacity-100 transition-opacity" />
                             
                             {/* Slide type badge indicator */}
-                            <span className="absolute top-1.5 right-1.5 px-1 py-0.5 rounded text-[8px] font-black uppercase tracking-wider bg-black/40 text-white/60">
+                            <span className="absolute top-1 right-1 px-1 py-0.5 rounded text-[7px] font-black uppercase tracking-wider bg-black/60 text-white/70 z-20">
                                 {slide.type}
                             </span>
 
                             <span className={cn(
-                                "text-[10px] font-bold relative z-10 font-sans",
-                                activeSlideIndex === originalIndex ? "text-primary" : "text-white/80"
+                                "text-[9px] font-bold absolute bottom-1 left-1.5 z-20 font-sans px-1 bg-black/45 rounded-sm",
+                                activeSlideIndex === originalIndex ? "text-primary text-white" : "text-white/80"
                             )}>
                                 Slide {originalIndex + 1}
                             </span>

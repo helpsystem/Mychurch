@@ -890,7 +890,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
 
             {/* Floating Picture-in-Picture FreeConferenceCall Video Feed */}
             {isFccPipOpen && (
-                <div className="fixed bottom-24 right-6 z-[80] w-[360px] h-[260px] bg-neutral-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col font-[Vazirmatn] text-white animate-in slide-in-from-bottom duration-300">
+                <div className="fixed bottom-24 right-6 z-[80] w-[380px] h-[280px] bg-neutral-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col font-[Vazirmatn] text-white animate-in slide-in-from-bottom duration-300">
                     <div className="flex items-center justify-between px-3 py-2 border-b border-white/5 bg-black/40 shrink-0">
                         <div className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
@@ -900,12 +900,30 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                             <X className="w-4 h-4" />
                         </button>
                     </div>
-                    <div className="flex-1 bg-black relative">
-                        <iframe 
-                            src="https://join.freeconferencecall.com/iranianchurchdcus" 
-                            className="w-full h-full rounded-b-2xl border-0" 
-                            allow="microphone; camera; display-capture; autoplay"
-                        />
+                    <div className="flex-1 bg-neutral-950 p-6 flex flex-col items-center justify-center text-center gap-4">
+                        <div className="w-12 h-12 bg-indigo-500/10 rounded-full flex items-center justify-center border border-indigo-500/20 text-indigo-400">
+                            <Phone className="w-6 h-6 animate-pulse" />
+                        </div>
+                        <div className="space-y-1.5">
+                            <h4 className="font-bold text-sm text-slate-200">محدودیت امنیتی مرورگر (Framing)</h4>
+                            <p className="text-[10px] text-slate-400 leading-relaxed px-4">
+                                قوانین امنیتی مرورگر اجازه نمایش مستقیم تصویر دوربین را در این کادر کوچک نمی‌دهد. برای دیدن وبکم‌ها و اتصال کامل تصویری، دکمه زیر را فشار دهید.
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => {
+                                window.open(
+                                    'https://join.freeconferencecall.com/iranianchurchdcus',
+                                    'FCCWebcam',
+                                    'width=1100,height=800,scrollbars=yes,resizable=yes,menubar=no,status=no,toolbar=no'
+                                );
+                                setIsFccPipOpen(false);
+                            }}
+                            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-indigo-500/10 flex items-center gap-1.5"
+                        >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            باز کردن ویدیو کنفرانس در پنجره جدید
+                        </button>
                     </div>
                 </div>
             )}

@@ -9,7 +9,7 @@
  * 2. WebSocket - برای ارتباط بین دستگاه‌های مختلف
  */
 
-import React, { useEffect, useState, useRef, Suspense } from 'react';
+import React, { useEffect, useState, useRef, Suspense, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useWebSocketSync } from '@/components/broadcast/hooks/useWebSocketSync';
 import { SmartWorshipPlayer } from '@/components/worship/SmartWorshipPlayer';
@@ -216,21 +216,24 @@ function ViewerContent() {
         };
     }, [tokenState, sessionId, viewerToken]);
 
+    // Stable slide change handler to prevent WebSocket infinite connection loops
+    const handleSlideChange = useCallback((index: number) => {
+        const fromSession = slidesRef.current[index] || null;
+        setState(prev => ({
+            ...prev,
+            currentSlide: fromSession,
+            slideIndex: index,
+            internalPageIndex: 0,
+            connected: true,
+            connectionType: prev.connectionType === 'broadcast-channel' ? prev.connectionType : 'websocket'
+        }));
+    }, []);
+
     // WebSocket sync (for cross-device communication)
     const { state: syncState } = useWebSocketSync({
         sessionId: tokenState === "valid" ? sessionId : undefined,
         isLeader: false,
-        onSlideChange: (index) => {
-            const fromSession = slidesRef.current[index] || null;
-            setState(prev => ({
-                ...prev,
-                currentSlide: fromSession,
-                slideIndex: index,
-                internalPageIndex: 0,
-                connected: true,
-                connectionType: prev.connectionType === 'broadcast-channel' ? prev.connectionType : 'websocket'
-            }));
-        }
+        onSlideChange: handleSlideChange
     });
 
     useEffect(() => {

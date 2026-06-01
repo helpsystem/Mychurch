@@ -42,9 +42,9 @@
     },
     "artist": "نیلوفر",
     "composer": "",
-    "youtubeId": "SoetDZ6kOfc",
-    "audioUrl": "/worship/audio/kalameh/Tora asheghane dustat daram.mp3",
-    "videoUrl": "https://www.youtube.com/embed/SoetDZ6kOfc",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/TORAASHEGHANEDUSTATDARAM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -66,7 +66,10 @@
     "dateAdded": "2025-01-24",
     "slug": "نیلوفر",
     "pdfFileUrl": "/worship/pdf/kalameh/In mohabat haghighi ast9d9a.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=SoetDZ6kOfc"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 3,
@@ -112,7 +115,7 @@
     "artist": "رضا وطن‌پرست",
     "composer": "",
     "youtubeId": "XL7Q6YOzZ1M",
-    "audioUrl": "/worship/audio/kalameh/شبان جانم.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/XL7Q6YOzZ1M",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KHODAVANDSHABANEJANAMAST.pptx",
     "lyricsFiles": {
@@ -135,7 +138,10 @@
     "dateAdded": "2025-01-24",
     "slug": "رضا-وطنپرست",
     "pdfFileUrl": "/worship/pdf/kalameh/Khodāvand shabāne man ast.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=GpCcp1Bdqbg"
+    "youtubeUrl": "https://www.youtube.com/watch?v=GpCcp1Bdqbg",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 5,
@@ -147,7 +153,7 @@
     "artist": "سینا مسیحا",
     "composer": "",
     "youtubeId": "HjoBg1LdvXQ",
-    "audioUrl": "/worship/audio/kalameh/من از آن توام ابا.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/HjoBg1LdvXQ",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MANAZANETOAMABBA.pptx",
     "lyricsFiles": {
@@ -170,7 +176,10 @@
     "dateAdded": "2025-01-24",
     "slug": "سینا-مسیحا",
     "pdfFileUrl": "/worship/pdf/kalameh/Abā man az āne to hastam.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=HjoBg1LdvXQ"
+    "youtubeUrl": "https://www.youtube.com/watch?v=HjoBg1LdvXQ",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 6,
@@ -181,9 +190,9 @@
     },
     "artist": "آراد طفلان",
     "composer": "",
-    "youtubeId": "o2D_n7LvHmI",
-    "audioUrl": "/worship/audio/kalameh/Jahanam bi to degar mana nadarad.mp3",
-    "videoUrl": "https://www.youtube.com/embed/o2D_n7LvHmI",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/JAHANAMBITODEGARMANANADARAD.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -204,7 +213,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "آراد-طفلان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=o2D_n7LvHmI"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 7,
@@ -215,9 +227,9 @@
     },
     "artist": "روزبه نجارنژاد",
     "composer": "",
-    "youtubeId": "W_DeB7ZOAwo",
-    "audioUrl": "/worship/audio/kalameh/تماشایی‌ترین تصویر دنیا.mp3",
-    "videoUrl": "https://www.youtube.com/embed/W_DeB7ZOAwo",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/TAMASHAYITARINTASVIREDONYA.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -238,7 +250,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نجارنژاد",
-    "youtubeUrl": "https://www.youtube.com/watch?v=W_DeB7ZOAwo"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 8,
@@ -283,9 +298,9 @@
     },
     "artist": "دریا",
     "composer": "",
-    "youtubeId": "aLSI9gIDepg",
-    "audioUrl": "/worship/audio/kalameh/عیسی تورا میپرستم .mp3",
-    "videoUrl": "https://www.youtube.com/embed/aLSI9gIDepg",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ISATORAMIPARASTAM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -306,7 +321,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "دریا",
-    "youtubeUrl": "https://www.youtube.com/watch?v=aLSI9gIDepg"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 10,
@@ -317,9 +335,9 @@
     },
     "artist": "سینا مسیحا",
     "composer": "",
-    "youtubeId": "eV-1Or6qfOw",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/کلمه جسم گردید.mp3",
-    "videoUrl": "https://www.youtube.com/embed/eV-1Or6qfOw",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KALAMEHJESMGARDID.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -340,7 +358,7 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سینا-مسیحا",
-    "youtubeUrl": "https://www.youtube.com/watch?v=eV-1Or6qfOw"
+    "youtubeUrl": ""
   },
   {
     "id": 11,
@@ -453,9 +471,9 @@
     },
     "artist": "ژیلبرت هوسپیان",
     "composer": "",
-    "youtubeId": "O5r3AO7vGPY",
-    "audioUrl": "/worship/audio/kalameh/منجی من .mp3",
-    "videoUrl": "https://www.youtube.com/embed/O5r3AO7vGPY",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MONJIYEMANMABUDEMAAN.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -476,7 +494,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "ژیلبرت-هوسپیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=O5r3AO7vGPY"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 15,
@@ -624,7 +645,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "5Ra4vm3yFrI",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/5Ra4vm3yFrI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/TOAGAHIKHODAVAND.pptx",
     "lyricsFiles": {
@@ -647,7 +668,10 @@
     "dateAdded": "2025-01-24",
     "slug": "تو-آگاهی-خداوند",
     "pdfFileUrl": "/worship/pdf/kalameh/To marā mishenāsi.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=5Ra4vm3yFrI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=5Ra4vm3yFrI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 20,
@@ -727,7 +751,7 @@
     "artist": "شراره-دریا",
     "composer": "",
     "youtubeId": "wiTerZ3YPVI",
-    "audioUrl": "/worship/audio/kalameh/امیدت را از دست نده.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/wiTerZ3YPVI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/OMIDATRAAZDASTNADE.pptx",
     "lyricsFiles": {
@@ -750,7 +774,10 @@
     "dateAdded": "2025-01-24",
     "slug": "شراره-دریا",
     "pdfFileUrl": "/worship/pdf/kalameh/Omidat rā az dast nade.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=wiTerZ3YPVI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=wiTerZ3YPVI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 23,
@@ -761,9 +788,9 @@
     },
     "artist": "وحید نوروزی",
     "composer": "",
-    "youtubeId": "A8fZntzfh6w",
-    "audioUrl": "/worship/audio/kalameh/اکنون در تو آزادم.mp3",
-    "videoUrl": "https://www.youtube.com/embed/A8fZntzfh6w",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AKNUNDARTOAZADAM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -785,7 +812,10 @@
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
     "pdfFileUrl": "/worship/pdf/kalameh/Aknoon dar to āzādam (Che nikoost dar to dāram nejāt).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=esPtcnr8I30"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 24,
@@ -797,7 +827,7 @@
     "artist": "وحید نوروزی",
     "composer": "",
     "youtubeId": "Lil0N7fc6jA",
-    "audioUrl": "/worship/audio/kalameh/ای روح خدا.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/Lil0N7fc6jA",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/EYRUHEKHODA.pptx",
     "lyricsFiles": {
@@ -820,7 +850,10 @@
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
     "pdfFileUrl": "/worship/pdf/kalameh/Ey ruhe khodā (Mikhāhim harruze az to mā por shavim).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=j162qcPSWRw"
+    "youtubeUrl": "https://www.youtube.com/watch?v=j162qcPSWRw",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 25,
@@ -832,7 +865,7 @@
     "artist": "دریا",
     "composer": "",
     "youtubeId": "Opalb4d3_2E",
-    "audioUrl": "/worship/audio/kalameh/ایمان.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/Opalb4d3_2E",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/IMANINOGHOVATINO.pptx",
     "lyricsFiles": {
@@ -855,7 +888,10 @@
     "dateAdded": "2025-01-24",
     "slug": "دریا",
     "pdfFileUrl": "/worship/pdf/kalameh/Imāni no roohi no.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=Opalb4d3_2E"
+    "youtubeUrl": "https://www.youtube.com/watch?v=Opalb4d3_2E",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 26,
@@ -1005,7 +1041,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "BxKYJthweuM",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/BxKYJthweuM",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/EYBARADAROEYKHAHARAM.pptx",
     "lyricsFiles": {
@@ -1027,7 +1063,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "ای-برادر-و-خواهرم",
-    "youtubeUrl": "https://www.youtube.com/watch?v=jzI0vZ4q3do"
+    "youtubeUrl": "https://www.youtube.com/watch?v=jzI0vZ4q3do",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 31,
@@ -1061,7 +1100,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "علیرضا-سیدیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=S4iFgzKYqrY"
+    "youtubeUrl": "https://www.youtube.com/watch?v=S4iFgzKYqrY",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 32,
@@ -1072,9 +1114,9 @@
     },
     "artist": "جان مارک",
     "composer": "جان مارک",
-    "youtubeId": "lHJ-6N_6fMs",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/Az%20in%20donyaye.mp3",
-    "videoUrl": "https://www.youtube.com/embed/lHJ-6N_6fMs",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZINDONYAYEMAGHMUM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -1095,7 +1137,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-ارمنی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=sWaiMChXFa8"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 33,
@@ -1106,9 +1151,9 @@
     },
     "artist": "زنده یاد کشیش هایک هوسپیان",
     "composer": "زنده یاد کشیش هایک هوسپیان",
-    "youtubeId": "pbJUw4xekW0",
-    "audioUrl": "/worship/audio/kalameh/ای فرزندان نور.mp3",
-    "videoUrl": "https://www.youtube.com/embed/pbJUw4xekW0",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/EYFARZANDANENUR.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -1129,7 +1174,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-عربی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=IfScn4U8668"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 34,
@@ -1174,9 +1222,9 @@
     },
     "artist": "کاوه رفیعی",
     "composer": "",
-    "youtubeId": "LABIq10tZyk",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/Doa%20baraye%20Iran.mp3",
-    "videoUrl": "https://www.youtube.com/embed/LABIq10tZyk",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/EYTOMARAPEDAREYABA.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -1197,7 +1245,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "کاوه-رفیعی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=EGc3IZh4oqQ"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 36,
@@ -1208,9 +1259,9 @@
     },
     "artist": "زنده‌ یاد‌ کشیش‌ ورویر‌ آوانسیان",
     "composer": "زنده‌ یاد‌ کشیش‌ ورویر‌ آوانسیان",
-    "youtubeId": "E7irjNWCvJE",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/Ey%20pedare%20ma%20dar%20aseman.mp3",
-    "videoUrl": "https://www.youtube.com/embed/E7irjNWCvJE",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/EYPEDAREMADARASEMAN.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -1232,7 +1283,10 @@
     "dateAdded": "2025-01-24",
     "slug": "سرود-انگلیسی",
     "pdfFileUrl": "/worship/pdf/kalameh/مشارکت خانواده - دعای ربانی.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=RzcgnshX9qo"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 37,
@@ -1244,7 +1298,7 @@
     "artist": "پیمان مجتهدی",
     "composer": "",
     "youtubeId": "5VD_Xc8tsEU",
-    "audioUrl": "/worship/audio/kalameh/این صدای بارانیست.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/5VD_Xc8tsEU",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/INSEDAYEBARANIST.pptx",
     "lyricsFiles": {
@@ -1266,7 +1320,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "پیمان-مجتهدی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=5VD_Xc8tsEU"
+    "youtubeUrl": "https://www.youtube.com/watch?v=5VD_Xc8tsEU",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 38,
@@ -1726,7 +1783,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "zhyerWweKr8",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/zhyerWweKr8",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/DARGHASRHAYEOUDAKHELSHO.pptx",
     "lyricsFiles": {
@@ -1748,7 +1805,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "در-قصرهای-او-داخل-شو",
-    "youtubeUrl": "https://www.youtube.com/watch?v=Y9sXG3Z-77E"
+    "youtubeUrl": "https://www.youtube.com/watch?v=Y9sXG3Z-77E",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 52,
@@ -1795,7 +1855,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "xWEuAfaACLM",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/xWEuAfaACLM",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAHAMGERDAYIMHAMEIANDARAN.pptx",
     "lyricsFiles": {
@@ -1817,7 +1877,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "باهم-گردآییم-سراییم-او-خداوند-است",
-    "youtubeUrl": "https://www.youtube.com/watch?v=xWEuAfaACLM"
+    "youtubeUrl": "https://www.youtube.com/watch?v=xWEuAfaACLM",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 54,
@@ -1863,7 +1926,7 @@
     "artist": "سرود ارمنی",
     "composer": "",
     "youtubeId": "gU-oU-29N3c",
-    "audioUrl": "/worship/audio/kalameh/نام تو .mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/gU-oU-29N3c",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZIMASTNAMETOISA.pptx",
     "lyricsFiles": {
@@ -1886,7 +1949,10 @@
     "dateAdded": "2025-01-24",
     "slug": "سرود-ارمنی",
     "pdfFileUrl": "/worship/pdf/kalameh/Azim ast khodā (G).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=PuQol8iWd-k"
+    "youtubeUrl": "https://www.youtube.com/watch?v=PuQol8iWd-k",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 56,
@@ -2069,9 +2135,9 @@
     },
     "artist": "فراز دولتخواه",
     "composer": "",
-    "youtubeId": "G5oHVm_Dlqk",
-    "audioUrl": "/worship/audio/kalameh/182 Vaghti beyne sokuto kalam.mp3",
-    "videoUrl": "https://www.youtube.com/embed/G5oHVm_Dlqk",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/VAGHTIBEYNESOKUTOKALAM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -2092,7 +2158,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "فراز-دولتخواه",
-    "youtubeUrl": "https://www.youtube.com/watch?v=yN97E495ybU"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 62,
@@ -2104,7 +2173,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "UqUsJt1HzVk",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/UqUsJt1HzVk",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/TORAMIPARASTAMNAMATBARAFRAZAM.pptx",
     "lyricsFiles": {
@@ -2127,7 +2196,10 @@
     "dateAdded": "2025-01-24",
     "slug": "تو-را-می-پرستم-نامت-برافرازم",
     "pdfFileUrl": "/worship/pdf/kalameh/Torā miparastam bā tamāmiye ghalb.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=qfFx7uxTahs"
+    "youtubeUrl": "https://www.youtube.com/watch?v=qfFx7uxTahs",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 63,
@@ -2162,7 +2234,10 @@
     "dateAdded": "2025-01-24",
     "slug": "you-are-the-vine-and-we-are-the-branches",
     "pdfFileUrl": "/worship/pdf/kalameh/01 - تاج حکیمان - راهنما.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=y5XlaRybz_0"
+    "youtubeUrl": "https://www.youtube.com/watch?v=y5XlaRybz_0",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 64,
@@ -2174,7 +2249,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "1EOfW0_tJvM",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/1EOfW0_tJvM",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/TOGHODUSIBARMIAFRAZIM.pptx",
     "lyricsFiles": {
@@ -2196,7 +2271,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "تو-قدوسی-برمیافرازیم-نام-قدوست",
-    "youtubeUrl": "https://www.youtube.com/watch?v=1EOfW0_tJvM"
+    "youtubeUrl": "https://www.youtube.com/watch?v=1EOfW0_tJvM",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 65,
@@ -2230,7 +2308,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-انگلیسی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=P-hy0hQb7Co"
+    "youtubeUrl": "https://www.youtube.com/watch?v=P-hy0hQb7Co",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 66,
@@ -2378,9 +2459,9 @@
     },
     "artist": "زنده یاد کشیش ورویر آوانسیان",
     "composer": "",
-    "youtubeId": "0OI3FOTUCtM",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/Sokhan%20begoo.mp3",
-    "videoUrl": "https://www.youtube.com/embed/0OI3FOTUCtM",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/SOKHANBEGUAZOMGHHAYE.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -2402,7 +2483,10 @@
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-کشیش-ورویر-آوانسیان",
     "pdfFileUrl": "/worship/pdf/kalameh/Sokhan begoo az omghhāye vojoode khod (beriz beriz ātashe āsemāni).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=AgntTpvHsMM"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 71,
@@ -2517,7 +2601,7 @@
     "artist": "زنده یاد کشیش هایک هوسپیان",
     "composer": "زنده یاد کشیش هایک هوسپیان",
     "youtubeId": "Oqg5YqeOLOM",
-    "audioUrl": "/worship/audio/kalameh/خداوند ناله هایم را شنیدی.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/Oqg5YqeOLOM",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KHODAVANDISAEDALATEMA.pptx",
     "lyricsFiles": {
@@ -2540,7 +2624,10 @@
     "dateAdded": "2025-01-24",
     "slug": "سرود-انگلیسی",
     "pdfFileUrl": "/worship/pdf/kalameh/خدا پادشاه صلح و آشتی است.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=EOGYeF7VhsE"
+    "youtubeUrl": "https://www.youtube.com/watch?v=EOGYeF7VhsE",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 75,
@@ -2609,7 +2696,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "when-i-look-into-your-holiness",
-    "youtubeUrl": "https://www.youtube.com/watch?v=ExNxVRhsD5g"
+    "youtubeUrl": "https://www.youtube.com/watch?v=ExNxVRhsD5g",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 77,
@@ -2620,9 +2710,9 @@
     },
     "artist": "دریا",
     "composer": "دریا",
-    "youtubeId": "Bgby2WGxOwg",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/سردار لشکر آسمان.mp3",
-    "videoUrl": "https://www.youtube.com/embed/Bgby2WGxOwg",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/SARDARELASHGAREASEMAN.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -2644,7 +2734,7 @@
     "dateAdded": "2025-01-24",
     "slug": "شراره-دریا",
     "pdfFileUrl": "/worship/pdf/kalameh/Sardāre lashgare āsemān.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=0OI3FOTUCtM"
+    "youtubeUrl": ""
   },
   {
     "id": 78,
@@ -2725,7 +2815,7 @@
     "artist": "ا.نوذری",
     "composer": "ا.نوذری",
     "youtubeId": "kuw_eflycTI",
-    "audioUrl": "/worship/audio/kalameh/روح القدس آشکار ساز.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/kuw_eflycTI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/RUHOLGHODOSBEMAGHOVATATAFARMA.pptx",
     "lyricsFiles": {
@@ -2748,7 +2838,10 @@
     "dateAdded": "2025-01-24",
     "slug": "سرود-کرهای",
     "pdfFileUrl": "/worship/pdf/kalameh/01 - روح القدس آمد تا- شرکت کننده.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=HIZqczImB38"
+    "youtubeUrl": "https://www.youtube.com/watch?v=HIZqczImB38",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 81,
@@ -2760,7 +2853,7 @@
     "artist": "ژیلبرت هوسپیان",
     "composer": "ژیلبرت هوسپیان",
     "youtubeId": "QRHceWSkqMs",
-    "audioUrl": "/worship/audio/kalameh/روح القدس بهترین دوست من _1.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/QRHceWSkqMs",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/RUHOLGHODOSTOBARTARIN.pptx",
     "lyricsFiles": {
@@ -2783,7 +2876,10 @@
     "dateAdded": "2025-01-24",
     "slug": "سپیده",
     "pdfFileUrl": "/worship/pdf/kalameh/01 - روح القدس آمد تا- برگزار کننده.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=Ks8U4G1BbOI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=Ks8U4G1BbOI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 82,
@@ -2865,7 +2961,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "7txIkr4HdKg",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/7txIkr4HdKg",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/PESAREKHODATOSHAYESTEYI.pptx",
     "lyricsFiles": {
@@ -2887,7 +2983,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "پسر-خدا-تو-شایسته-ای",
-    "youtubeUrl": "https://www.youtube.com/watch?v=2RSCAfn-6MA"
+    "youtubeUrl": "https://www.youtube.com/watch?v=2RSCAfn-6MA",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 85,
@@ -3210,7 +3309,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "Pl03mDktyz4",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/Pl03mDktyz4",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MOHABATEKHODAVANDAMBASAZIMAST.pptx",
     "lyricsFiles": {
@@ -3232,7 +3331,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "محبت-خداوندم-بس-عظیم-است-و-شیرین",
-    "youtubeUrl": "https://www.youtube.com/watch?v=e9TICadf0rQ"
+    "youtubeUrl": "https://www.youtube.com/watch?v=e9TICadf0rQ",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 95,
@@ -3336,7 +3438,10 @@
     "dateAdded": "2025-01-24",
     "slug": "دانیال-کابلی",
     "pdfFileUrl": "/worship/pdf/kalameh/30شهریور تا 5 مهر ماه.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=4gxtBxJ4o4k"
+    "youtubeUrl": "https://www.youtube.com/watch?v=4gxtBxJ4o4k",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 98,
@@ -3370,7 +3475,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "فراز-دولتخواه",
-    "youtubeUrl": "https://www.youtube.com/watch?v=5p-VgIvqT_w"
+    "youtubeUrl": "https://www.youtube.com/watch?v=5p-VgIvqT_w",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 99,
@@ -3450,7 +3558,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "Qmeg4544uW8",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/Qmeg4544uW8",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/SEZAVAR.pptx",
     "lyricsFiles": {
@@ -3472,7 +3580,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "قدوس-قدوس-قدوس-سزاوار",
-    "youtubeUrl": "https://www.youtube.com/watch?v=yPq8UpXgld0"
+    "youtubeUrl": "https://www.youtube.com/watch?v=yPq8UpXgld0",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 102,
@@ -3484,7 +3595,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "sAyEnPmQsQE",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/sAyEnPmQsQE",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/GHOVATOJALAL.pptx",
     "lyricsFiles": {
@@ -3506,7 +3617,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "قوت-و-جلال-حمد-و-سپاس",
-    "youtubeUrl": "https://www.youtube.com/watch?v=7LdFjX5c91w"
+    "youtubeUrl": "https://www.youtube.com/watch?v=7LdFjX5c91w",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 103,
@@ -3688,7 +3802,7 @@
     "artist": "ژیلبرت هوسپیان",
     "composer": "",
     "youtubeId": "pWz4x1BUA1c",
-    "audioUrl": "/worship/audio/kalameh/تاج .mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/pWz4x1BUA1c",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MOHTAJAMMANMOHTAJETO.pptx",
     "lyricsFiles": {
@@ -3710,7 +3824,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "ژیلبرت-هوسپیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=3isISxzv4ZA"
+    "youtubeUrl": "https://www.youtube.com/watch?v=3isISxzv4ZA",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 109,
@@ -3891,9 +4008,9 @@
     },
     "artist": "پیمان-نیلوفر-دنی",
     "composer": "",
-    "youtubeId": "WBuYh1ZmnSc",
-    "audioUrl": "/worship/audio/kalameh/بازایستیم و دانیم .mp3",
-    "videoUrl": "https://www.youtube.com/embed/WBuYh1ZmnSc",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAZISTIMODANIM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -3915,7 +4032,10 @@
     "dateAdded": "2025-01-24",
     "slug": "پیمان-نیلوفر-دنی",
     "pdfFileUrl": "/worship/pdf/kalameh/Bāzistimo dānim.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=S4iFgzKYqrY"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 115,
@@ -4017,7 +4137,10 @@
     "dateAdded": "2025-01-24",
     "slug": "ژیلبرت-هوسپیان",
     "pdfFileUrl": "/worship/pdf/kalameh/03 - روح القدس آمد تا- شرکت کننده.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=98EN-tWbdW8"
+    "youtubeUrl": "https://www.youtube.com/watch?v=98EN-tWbdW8",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 118,
@@ -4029,7 +4152,7 @@
     "artist": "اوژنی سرکیسیان",
     "composer": "",
     "youtubeId": "p5C-EcO-HFI",
-    "audioUrl": "/worship/audio/kalameh/دیوانه ی عشق تو.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/p5C-EcO-HFI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/DIVANEYEESHGHETO.pptx",
     "lyricsFiles": {
@@ -4051,7 +4174,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "اوژنی-سرکیسیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=p5C-EcO-HFI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=p5C-EcO-HFI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 119,
@@ -4305,9 +4431,9 @@
     },
     "artist": "روزبه-نیلوفر-دریا",
     "composer": "",
-    "youtubeId": "fRRXn2IULzU",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/%d8%a8%d9%87%20%d8%ad%d8%b6%d9%88%d8%b1%d8%aa%20%d8%a7%d9%93%db%8c%db%8c%d9%85.mp3",
-    "videoUrl": "https://www.youtube.com/embed/fRRXn2IULzU",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BEHOZURATAIM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -4329,7 +4455,10 @@
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نیلوفر-دریا",
     "pdfFileUrl": "/worship/pdf/kalameh/Be hozoorat āyim nazdat zānoo zanim.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=fRRXn2IULzU"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 127,
@@ -4687,9 +4816,9 @@
     },
     "artist": "Open our eyes lord we want to see Jesus",
     "composer": "",
-    "youtubeId": "RzcgnshX9qo",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/244 Cheshmanam ra    .mp3",
-    "videoUrl": "https://www.youtube.com/embed/RzcgnshX9qo",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/CHESHMANAMBOGSHAISARABEBINAM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -4710,7 +4839,7 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "open-our-eyes-lord-we-want-to-see-jesus",
-    "youtubeUrl": "https://www.youtube.com/watch?v=RzcgnshX9qo"
+    "youtubeUrl": ""
   },
   {
     "id": 138,
@@ -4791,7 +4920,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "J92e3f2YeAo",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/J92e3f2YeAo",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/CHONDAEMSORUDEHAMDKHANIM.pptx",
     "lyricsFiles": {
@@ -4813,7 +4942,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "چون-دائم-سرود-حمد-خوانیم",
-    "youtubeUrl": "https://www.youtube.com/watch?v=rwRUCrqPzjg"
+    "youtubeUrl": "https://www.youtube.com/watch?v=rwRUCrqPzjg",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 141,
@@ -4824,9 +4956,9 @@
     },
     "artist": "سرود اسپانیایی",
     "composer": "",
-    "youtubeId": "arY4Zqeih38",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/87%20Chenanke%20ahoo.mp3",
-    "videoUrl": "https://www.youtube.com/embed/arY4Zqeih38",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/CHENANKEAHU.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -4847,7 +4979,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-اسپانیایی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=arY4Zqeih38"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 142,
@@ -5133,9 +5268,9 @@
     },
     "artist": "پیمان مجتهدی",
     "composer": "",
-    "youtubeId": "jgnc0Hx1d4A",
-    "audioUrl": "/worship/audio/kalameh/نام تو .mp3",
-    "videoUrl": "https://www.youtube.com/embed/jgnc0Hx1d4A",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/NAMETO.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -5156,7 +5291,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "پیمان-مجتهدی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=lV0Fsx7jIBY"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 151,
@@ -5304,7 +5442,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "PCHnJNwbFV4",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/PCHnJNwbFV4",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/NIKUYIATRALAMSKARDAM.pptx",
     "lyricsFiles": {
@@ -5327,7 +5465,10 @@
     "dateAdded": "2025-01-24",
     "slug": "نیکوییت-را-لمس-کردم-تو-نیکویی",
     "pdfFileUrl": "/worship/pdf/kalameh/Nikooiyat rā lams kardam (To nikooi).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=PCHnJNwbFV4"
+    "youtubeUrl": "https://www.youtube.com/watch?v=PCHnJNwbFV4",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 156,
@@ -5406,9 +5547,9 @@
     },
     "artist": "شهاب زاهدمهاجرانی",
     "composer": "",
-    "youtubeId": "Y3w4iNermNk",
-    "audioUrl": "/worship/audio/kalameh/Mara mabhoot saz .mp3",
-    "videoUrl": "https://www.youtube.com/embed/Y3w4iNermNk",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MARAMABHOUTSAZ.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -5430,7 +5571,10 @@
     "dateAdded": "2025-01-24",
     "slug": "شهاب-زاهدمهاجرانی",
     "pdfFileUrl": "/worship/pdf/kalameh/Marā mabhoot sāz.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=hSMbUBS9ENk"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 159,
@@ -5648,9 +5792,9 @@
     },
     "artist": "Chris Tomlin-Ed Cash-Jesse Reeves",
     "composer": "Chris Tomlin-Ed Cash-Jesse Reeves",
-    "youtubeId": "H0rimFeOjkQ",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/49 Azim ast khoda .mp3",
-    "videoUrl": "https://www.youtube.com/embed/H0rimFeOjkQ",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZIMASTKHODA.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -5672,7 +5816,7 @@
     "dateAdded": "2025-01-24",
     "slug": "how-great-is-our-god",
     "pdfFileUrl": "/worship/pdf/kalameh/01 - تاج حکیمان - شرکت کننده.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=vBO93SZwbBc"
+    "youtubeUrl": ""
   },
   {
     "id": 166,
@@ -5914,7 +6058,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نجارنژاد",
-    "youtubeUrl": "https://www.youtube.com/watch?v=ucNeu1EVU2A"
+    "youtubeUrl": "https://www.youtube.com/watch?v=ucNeu1EVU2A",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 173,
@@ -6100,7 +6247,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "3CTdpl7vJEU",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/3CTdpl7vJEU",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MIKHANAMSHOKRBAHRAT.pptx",
     "lyricsFiles": {
@@ -6123,7 +6270,10 @@
     "dateAdded": "2025-01-24",
     "slug": "با-مهرت-سویم-آمدی-می-خوانم-شکر-بهرت",
     "pdfFileUrl": "/worship/pdf/kalameh/Bā mehrat sooyam āmadi (Mikhānam shokr bahrat).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=fRRXn2IULzU"
+    "youtubeUrl": "https://www.youtube.com/watch?v=fRRXn2IULzU",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 179,
@@ -6135,7 +6285,7 @@
     "artist": "سرود افغان",
     "composer": "",
     "youtubeId": "nfilIDTfa8A",
-    "audioUrl": "/worship/audio/kalameh/Haranche ke to mikhahi.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/nfilIDTfa8A",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/HARANCHEKETOMIKHAHI.pptx",
     "lyricsFiles": {
@@ -6158,7 +6308,10 @@
     "dateAdded": "2025-01-24",
     "slug": "سرود-افغان",
     "pdfFileUrl": "/worship/pdf/kalameh/Har ānche ke to mikhāhi.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=nfilIDTfa8A"
+    "youtubeUrl": "https://www.youtube.com/watch?v=nfilIDTfa8A",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 180,
@@ -6169,9 +6322,9 @@
     },
     "artist": "فراز دولتخواه",
     "composer": "فراز دولتخواه",
-    "youtubeId": "Q380T2RPrEM",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/164%20Sayade%20delhaye%20parishan_1.mp3",
-    "videoUrl": "https://www.youtube.com/embed/Q380T2RPrEM",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/JALALBARNAMATEYSAYYADEDELHAYEPARISHAN.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -6193,7 +6346,10 @@
     "dateAdded": "2025-01-24",
     "slug": "صبا-احمدزادگان",
     "pdfFileUrl": "/worship/pdf/kalameh/Jalāl bar nāmat ey sayāde delhāye parishān.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=Q380T2RPrEM"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 181,
@@ -6379,7 +6535,7 @@
     "artist": "شمعون - ژیلبرت هوسپیان",
     "composer": "",
     "youtubeId": "y21nO3_z_WA",
-    "audioUrl": "/worship/audio/kalameh/ایمان.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/y21nO3_z_WA",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/IRANEMAN.pptx",
     "lyricsFiles": {
@@ -6402,7 +6558,10 @@
     "dateAdded": "2025-01-24",
     "slug": "شمعون-ژیلبرت-هوسپیان",
     "pdfFileUrl": "/worship/pdf/kalameh/Be ān roozi imān dārim ke irān āzād shavad.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=y21nO3_z_WA"
+    "youtubeUrl": "https://www.youtube.com/watch?v=y21nO3_z_WA",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 187,
@@ -6413,9 +6572,9 @@
     },
     "artist": "Oh how I love Jesus",
     "composer": "",
-    "youtubeId": "M3zVj62Urcs",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/عیسی را دوست دارم_1.mp3",
-    "videoUrl": "https://www.youtube.com/embed/M3zVj62Urcs",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ISARADUSTDARAMCHON.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -6437,7 +6596,7 @@
     "dateAdded": "2025-01-24",
     "slug": "oh-how-i-love-jesus",
     "pdfFileUrl": "/worship/pdf/kalameh/Isā rā doost dāram chon oo marā doost dāsht.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=FIeZ8nNwNkg"
+    "youtubeUrl": ""
   },
   {
     "id": 188,
@@ -6588,7 +6747,7 @@
     "artist": "زنده یاد بیتا آرمان",
     "composer": "",
     "youtubeId": "lV0Fsx7jIBY",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/219%20Bogzar%20ghalbam%20.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/lV0Fsx7jIBY",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BOGZARGHALBAMMABADERUHETOBASHAD.pptx",
     "lyricsFiles": {
@@ -6610,7 +6769,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-بیتا-آرمان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=oWd3jhUThgM"
+    "youtubeUrl": "https://www.youtube.com/watch?v=oWd3jhUThgM",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 193,
@@ -6680,19 +6842,22 @@
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نجارنژاد",
     "pdfFileUrl": "/worship/pdf/kalameh/Barafrāzim nāme to rā.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=5Jvh-uHd3qs"
+    "youtubeUrl": "https://www.youtube.com/watch?v=5Jvh-uHd3qs",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 195,
     "title": {
-      "fa": "با لمسش آزادم",
+      "fa": "با لمسش آزادم (آرامی دلهاست)",
       "en": "روزبه نجارنژاد",
       "es": "روزبه نجارنژاد"
     },
     "artist": "روزبه نجارنژاد",
     "composer": "",
     "youtubeId": "awwuz-Wg57g",
-    "audioUrl": "/worship/audio/kalameh/با لمسش آزادم .mp3",
+    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
     "videoUrl": "https://www.youtube.com/embed/awwuz-Wg57g",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BALAMSASHAZADAM.pptx",
     "lyricsFiles": {
@@ -6700,9 +6865,9 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nبا [Am]لمسش آزادم ، با ر[C]وح او شادم\nمر[D]ا پر می‌سازد با قـو[Em]تـش\nبا [Am]لمسش آرامم ، چون سر[C]ود می‌خوانم\nمر[D]ا پر می‌سازد با حضـ[Em]ـورش\nPre-Chorus\nبارهـ[C]ـایم را او [D]برمی‌دارد[Em]\nفریـ[C]ـاد آزاد[D]ی سرایـم[G]\nChorus\nمی‌خوانم سر[Am]ودی تاز[D]ه چون آ[G]زادم کرده[C]\nزنجـ[Am]ـیـرهایـم در نـا[D]مـش گـسستـ[B]ـه\nمی‌خوانم سر[Am]ودی تاز[D]ه چون آ[G]زادم کرده[C]\nزنجـ[Am]ـیـرهایـم در نـا[D]مـش گـسستـ[Em]ـه",
-      "en": "",
-      "es": ""
+      "fa": "با لمسش آزادم\nبا روح او شادم\nمرا پر میسازد با قوتش\nبا لمسش آرامم\nچون سرود میخوانم\nمرا پر میسازد با حضورش\nبارهایم را او برمیدارد\nفریاد آزادی سرایم\nمیخوانم سرودی تازه\nچون آزادم کرده\nزنجیرهایم در نامش گسسته\nمیخوانم سرودی تازه\nچون آزادم کرده\nزنجیرهایم در نامش گسسته\nبا لمسش آزادم\nبا روح او شادم\nمرا پر میسازد با قوتش\nبا لمسش آرامم\nچون سرود میخوانم\nمرا پر میسازد با حضورش\nبارهایم را او برمیدارد\nفریاد آزادی سرایم\nمیخوانم سرودی تازه\nچون آزادم کرده\nزنجیرهایم در نامش گسسته\nمیخوانم سرودی تازه\nچون آزادم کرده\nزنجیرهایم در نامش گسسته\nمیخوانم سرودی تازه\nچون آزادم کرده\nزنجیرهایم در نامش گسسته\nبا لمسش آزادم\nبا روح او شادم\nمرا پر میسازد با قوتش\nبا لمسش آرامم\nچون سرود میخوانم\nمرا پر میسازد با حضورش\nبا لمسش آزادم\nبا روح او شادم\nمرا پر میسازد با قوتش\nبا لمسش آرامم\nچون سرود میخوانم\nمرا پر میسازد با حضورش",
+      "en": "I am free by His touch\nI am joyful in His Spirit\nHe fills me with His power\nI am at peace with His touch\nAs I sing a song\nHe fills me with His presence\nHe lifts my burdens\nI shout a cry of freedom\nI sing a new song\nBecause He has set me free\nMy chains are broken in His name\nI sing a new song\nBecause He has set me free\nMy chains are broken in His name\nI am free by His touch\nI am joyful in His Spirit\nHe fills me with His power\nI am at peace with His touch\nAs I sing a song\nHe fills me with His presence\nHe lifts my burdens\nI shout a cry of freedom\nI sing a new song\nBecause He has set me free\nMy chains are broken in His name\nI sing a new song\nBecause He has set me free\nMy chains are broken in His name\nI sing a new song\nBecause He has set me free\nMy chains are broken in His name\nI am free by His touch\nI am joyful in His Spirit\nHe fills me with His power\nI am at peace with His touch\nAs I sing a song\nHe fills me with His presence\nI am free by His touch\nI am joyful in His Spirit\nHe fills me with His power\nI am at peace with His touch\nAs I sing a song\nHe fills me with His presence",
+      "finglish": "Ba lamsash azadam\nBa roohe oo shadam\nMara por misazad ba ghovatash\nBa lamsash aramam\nChon sorood mikhanam\nMara por misazad ba hozoorash\nBarhayam ra oo barmidarad\nFaryade azadi sarayam\nMikhanam soroodi taze\nChon azadam karde\nZanjirhayam dar namash gosaste\nMikhanam soroodi taze\nChon azadam karde\nZanjirhayam dar namash gosaste\nBa lamsash azadam\nBa roohe oo shadam\nMara por misazad ba ghovatash\nBa lamsash aramam\nChon sorood mikhanam\nMara por misazad ba hozoorash\nBarhayam ra oo barmidarad\nFaryade azadi sarayam\nMikhanam soroodi taze\nChon azadam karde\nZanjirhayam dar namash gosaste\nMikhanam soroodi taze\nChon azadam karde\nZanjirhayam dar namash gosaste\nMikhanam soroodi taze\nChon azadam karde\nZanjirhayam dar namash gosaste\nBa lamsash azadam\nBa roohe oo shadam\nMara por misazad ba ghovatash\nBa lamsash aramam\nChon sorood mikhanam\nMara por misazad ba hozoorash\nBa lamsash azadam\nBa roohe oo shadam\nMara por misazad ba ghovatash\nBa lamsash aramam\nChon sorood mikhanam\nMara por misazad ba hozoorash"
     },
     "chord": "E",
     "mode": "مینور",
@@ -6715,7 +6880,2093 @@
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نجارنژاد",
     "pdfFileUrl": "/worship/pdf/kalameh/Bā lamsash āzādam.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=awwuz-Wg57g"
+    "youtubeUrl": "https://www.youtube.com/watch?v=awwuz-Wg57g",
+    "hasTiming": true,
+    "timing_data": {
+      "songId": "b28250e0-52af-4eab-b24b-a6c6bd30da95",
+      "version": "2.0",
+      "totalDuration": 369.3,
+      "lines": [
+        {
+          "line": "با لمسش آزادم",
+          "start": 26.04,
+          "end": 28.48,
+          "translations": {
+            "persian": "با لمس او آزاد هستم",
+            "english": "I am free by His touch",
+            "finglish": "Ba lamsash azadam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 26.04,
+              "end": 26.26
+            },
+            {
+              "word": "لمسش",
+              "start": 26.26,
+              "end": 27.35
+            },
+            {
+              "word": "آزادم",
+              "start": 27.35,
+              "end": 28.48
+            }
+          ]
+        },
+        {
+          "line": "با روح او شادم",
+          "start": 28.58,
+          "end": 30.8,
+          "translations": {
+            "persian": "با روح او شادمان هستم",
+            "english": "I am joyful in His Spirit",
+            "finglish": "Ba roohe oo shadam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 28.58,
+              "end": 28.78
+            },
+            {
+              "word": "روح",
+              "start": 28.78,
+              "end": 29.35
+            },
+            {
+              "word": "او",
+              "start": 29.35,
+              "end": 29.82
+            },
+            {
+              "word": "شادم",
+              "start": 29.82,
+              "end": 30.8
+            }
+          ]
+        },
+        {
+          "line": "مرا پر میسازد با قوتش",
+          "start": 30.98,
+          "end": 38,
+          "translations": {
+            "persian": "او مرا با قدرت خویش لبریز میسازد",
+            "english": "He fills me with His power",
+            "finglish": "Mara por misazad ba ghovatash"
+          },
+          "words": [
+            {
+              "word": "مرا",
+              "start": 30.98,
+              "end": 31.42
+            },
+            {
+              "word": "پر",
+              "start": 31.42,
+              "end": 32.18
+            },
+            {
+              "word": "میسازد",
+              "start": 32.18,
+              "end": 33.56
+            },
+            {
+              "word": "با",
+              "start": 34.12,
+              "end": 34.42
+            },
+            {
+              "word": "قوتش",
+              "start": 34.42,
+              "end": 38
+            }
+          ]
+        },
+        {
+          "line": "با لمسش آرامم",
+          "start": 38.4,
+          "end": 40.9,
+          "translations": {
+            "persian": "با لمس او در آرامش هستم",
+            "english": "I am at peace with His touch",
+            "finglish": "Ba lamsash aramam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 38.4,
+              "end": 38.64
+            },
+            {
+              "word": "لمسش",
+              "start": 38.64,
+              "end": 39.75
+            },
+            {
+              "word": "آرامم",
+              "start": 39.75,
+              "end": 40.9
+            }
+          ]
+        },
+        {
+          "line": "چون سرود میخوانم",
+          "start": 41.05,
+          "end": 43.4,
+          "translations": {
+            "persian": "هنگامی که سرود میخوانم",
+            "english": "As I sing a song",
+            "finglish": "Chon sorood mikhanam"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 41.05,
+              "end": 41.4
+            },
+            {
+              "word": "سرود",
+              "start": 41.4,
+              "end": 42.25
+            },
+            {
+              "word": "میخوانم",
+              "start": 42.25,
+              "end": 43.4
+            }
+          ]
+        },
+        {
+          "line": "مرا پر میسازد با حضورش",
+          "start": 43.6,
+          "end": 50.6,
+          "translations": {
+            "persian": "او مرا با حضور خویش لبریز میسازد",
+            "english": "He fills me with His presence",
+            "finglish": "Mara por misazad ba hozoorash"
+          },
+          "words": [
+            {
+              "word": "مرا",
+              "start": 43.6,
+              "end": 44.05
+            },
+            {
+              "word": "پر",
+              "start": 44.05,
+              "end": 44.75
+            },
+            {
+              "word": "میسازد",
+              "start": 44.75,
+              "end": 46.22
+            },
+            {
+              "word": "با",
+              "start": 46.75,
+              "end": 47.1
+            },
+            {
+              "word": "حضورش",
+              "start": 47.1,
+              "end": 50.6
+            }
+          ]
+        },
+        {
+          "line": "بارهایم را او برمیدارد",
+          "start": 51.4,
+          "end": 56.5,
+          "translations": {
+            "persian": "او بارهای مرا برمیدارد",
+            "english": "He lifts my burdens",
+            "finglish": "Barhayam ra oo barmidarad"
+          },
+          "words": [
+            {
+              "word": "بارهایم",
+              "start": 51.4,
+              "end": 53.6
+            },
+            {
+              "word": "را",
+              "start": 53.6,
+              "end": 54.12
+            },
+            {
+              "word": "او",
+              "start": 54.12,
+              "end": 54.55
+            },
+            {
+              "word": "برمیدارد",
+              "start": 54.55,
+              "end": 56.5
+            }
+          ]
+        },
+        {
+          "line": "فریاد آزادی سرایم",
+          "start": 56.82,
+          "end": 60.8,
+          "translations": {
+            "persian": "فریاد آزادی سر میدهم",
+            "english": "I shout a cry of freedom",
+            "finglish": "Faryade azadi sarayam"
+          },
+          "words": [
+            {
+              "word": "فریاد",
+              "start": 56.82,
+              "end": 58.28
+            },
+            {
+              "word": "آزادی",
+              "start": 58.28,
+              "end": 59.62
+            },
+            {
+              "word": "سرایم",
+              "start": 59.62,
+              "end": 60.8
+            }
+          ]
+        },
+        {
+          "line": "میخوانم سرودی تازه",
+          "start": 60.92,
+          "end": 64.6,
+          "translations": {
+            "persian": "سرودی تازه میسرایم",
+            "english": "I sing a new song",
+            "finglish": "Mikhanam soroodi taze"
+          },
+          "words": [
+            {
+              "word": "میخوانم",
+              "start": 60.92,
+              "end": 62.62
+            },
+            {
+              "word": "سرودی",
+              "start": 62.62,
+              "end": 63.68
+            },
+            {
+              "word": "تازه",
+              "start": 63.68,
+              "end": 64.6
+            }
+          ]
+        },
+        {
+          "line": "چون آزادم کرده",
+          "start": 64.72,
+          "end": 68.04,
+          "translations": {
+            "persian": "زیرا او مرا آزاد کرده است",
+            "english": "Because He has set me free",
+            "finglish": "Chon azadam karde"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 64.72,
+              "end": 65.6
+            },
+            {
+              "word": "آزادم",
+              "start": 65.6,
+              "end": 66.92
+            },
+            {
+              "word": "کرده",
+              "start": 66.92,
+              "end": 68.04
+            }
+          ]
+        },
+        {
+          "line": "زنجیرهایم در نامش گسسته",
+          "start": 68.4,
+          "end": 75.5,
+          "translations": {
+            "persian": "زنجیرهایم در نام او گسستهاند",
+            "english": "My chains are broken in His name",
+            "finglish": "Zanjirhayam dar namash gosaste"
+          },
+          "words": [
+            {
+              "word": "زنجیرهایم",
+              "start": 68.4,
+              "end": 71.22
+            },
+            {
+              "word": "در",
+              "start": 71.22,
+              "end": 71.9
+            },
+            {
+              "word": "نامش",
+              "start": 71.9,
+              "end": 73.28
+            },
+            {
+              "word": "گسسته",
+              "start": 73.28,
+              "end": 75.5
+            }
+          ]
+        },
+        {
+          "line": "میخوانم سرودی تازه",
+          "start": 75.92,
+          "end": 79.52,
+          "translations": {
+            "persian": "سرودی تازه میسرایم",
+            "english": "I sing a new song",
+            "finglish": "Mikhanam soroodi taze"
+          },
+          "words": [
+            {
+              "word": "میخوانم",
+              "start": 75.92,
+              "end": 77.58
+            },
+            {
+              "word": "سرودی",
+              "start": 77.58,
+              "end": 78.6
+            },
+            {
+              "word": "تازه",
+              "start": 78.6,
+              "end": 79.52
+            }
+          ]
+        },
+        {
+          "line": "چون آزادم کرده",
+          "start": 79.62,
+          "end": 83,
+          "translations": {
+            "persian": "زیرا او مرا آزاد کرده است",
+            "english": "Because He has set me free",
+            "finglish": "Chon azadam karde"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 79.62,
+              "end": 80.48
+            },
+            {
+              "word": "آزادم",
+              "start": 80.48,
+              "end": 81.8
+            },
+            {
+              "word": "کرده",
+              "start": 81.8,
+              "end": 83
+            }
+          ]
+        },
+        {
+          "line": "زنجیرهایم در نامش گسسته",
+          "start": 83.25,
+          "end": 90.5,
+          "translations": {
+            "persian": "زنجیرهایم در نام او گسستهاند",
+            "english": "My chains are broken in His name",
+            "finglish": "Zanjirhayam dar namash gosaste"
+          },
+          "words": [
+            {
+              "word": "زنجیرهایم",
+              "start": 83.25,
+              "end": 86.2
+            },
+            {
+              "word": "در",
+              "start": 86.2,
+              "end": 86.85
+            },
+            {
+              "word": "نامش",
+              "start": 86.85,
+              "end": 88.1
+            },
+            {
+              "word": "گسسته",
+              "start": 88.1,
+              "end": 90.5
+            }
+          ]
+        },
+        {
+          "line": "با لمسش آزادم",
+          "start": 139.85,
+          "end": 142.3,
+          "translations": {
+            "persian": "با لمس او آزاد هستم",
+            "english": "I am free by His touch",
+            "finglish": "Ba lamsash azadam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 139.85,
+              "end": 140.08
+            },
+            {
+              "word": "لمسش",
+              "start": 140.08,
+              "end": 141.22
+            },
+            {
+              "word": "آزادم",
+              "start": 141.22,
+              "end": 142.3
+            }
+          ]
+        },
+        {
+          "line": "با روح او شادم",
+          "start": 142.4,
+          "end": 144.6,
+          "translations": {
+            "persian": "با روح او شادمان هستم",
+            "english": "I am joyful in His Spirit",
+            "finglish": "Ba roohe oo shadam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 142.4,
+              "end": 142.6
+            },
+            {
+              "word": "روح",
+              "start": 142.6,
+              "end": 143.15
+            },
+            {
+              "word": "او",
+              "start": 143.15,
+              "end": 143.65
+            },
+            {
+              "word": "شادم",
+              "start": 143.65,
+              "end": 144.6
+            }
+          ]
+        },
+        {
+          "line": "مرا پر میسازد با قوتش",
+          "start": 144.75,
+          "end": 151.6,
+          "translations": {
+            "persian": "او مرا با قدرت خویش لبریز میسازد",
+            "english": "He fills me with His power",
+            "finglish": "Mara por misazad ba ghovatash"
+          },
+          "words": [
+            {
+              "word": "مرا",
+              "start": 144.75,
+              "end": 145.2
+            },
+            {
+              "word": "پر",
+              "start": 144.75,
+              "end": 145.9
+            },
+            {
+              "word": "میسازد",
+              "start": 145.9,
+              "end": 147.25
+            },
+            {
+              "word": "با",
+              "start": 147.85,
+              "end": 148.15
+            },
+            {
+              "word": "قوتش",
+              "start": 148.15,
+              "end": 151.6
+            }
+          ]
+        },
+        {
+          "line": "با لمسش آرامم",
+          "start": 152.05,
+          "end": 154.55,
+          "translations": {
+            "persian": "با لمس او در آرامش هستم",
+            "english": "I am at peace with His touch",
+            "finglish": "Ba lamsash aramam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 152.05,
+              "end": 152.28
+            },
+            {
+              "word": "لمسش",
+              "start": 152.28,
+              "end": 153.42
+            },
+            {
+              "word": "آرامم",
+              "start": 153.42,
+              "end": 154.55
+            }
+          ]
+        },
+        {
+          "line": "چون سرود میخوانم",
+          "start": 154.65,
+          "end": 157.05,
+          "translations": {
+            "persian": "هنگامی که سرود میخوانم",
+            "english": "As I sing a song",
+            "finglish": "Chon sorood mikhanam"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 154.65,
+              "end": 155.05
+            },
+            {
+              "word": "سرود",
+              "start": 155.05,
+              "end": 155.9
+            },
+            {
+              "word": "میخوانم",
+              "start": 155.9,
+              "end": 157.05
+            }
+          ]
+        },
+        {
+          "line": "مرا پر میسازد با حضورش",
+          "start": 157.3,
+          "end": 164.2,
+          "translations": {
+            "persian": "او مرا با حضور خویش لبریز میسازد",
+            "english": "He fills me with His presence",
+            "finglish": "Mara por misazad ba hozoorash"
+          },
+          "words": [
+            {
+              "word": "مرا",
+              "start": 157.3,
+              "end": 157.75
+            },
+            {
+              "word": "پر",
+              "start": 157.75,
+              "end": 158.45
+            },
+            {
+              "word": "میسازد",
+              "start": 158.45,
+              "end": 159.95
+            },
+            {
+              "word": "با",
+              "start": 160.55,
+              "end": 160.85
+            },
+            {
+              "word": "حضورش",
+              "start": 160.85,
+              "end": 164.2
+            }
+          ]
+        },
+        {
+          "line": "بارهایم را او برمیدارد",
+          "start": 164.9,
+          "end": 170,
+          "translations": {
+            "persian": "او بارهای مرا برمیدارد",
+            "english": "He lifts my burdens",
+            "finglish": "Barhayam ra oo barmidarad"
+          },
+          "words": [
+            {
+              "word": "بارهایم",
+              "start": 164.9,
+              "end": 167.15
+            },
+            {
+              "word": "را",
+              "start": 167.15,
+              "end": 167.68
+            },
+            {
+              "word": "او",
+              "start": 167.68,
+              "end": 168.12
+            },
+            {
+              "word": "برمیدارد",
+              "start": 168.12,
+              "end": 170
+            }
+          ]
+        },
+        {
+          "line": "فریاد آزادی سرایم",
+          "start": 170.4,
+          "end": 174.4,
+          "translations": {
+            "persian": "فریاد آزادی سر میدهم",
+            "english": "I shout a cry of freedom",
+            "finglish": "Faryade azadi sarayam"
+          },
+          "words": [
+            {
+              "word": "فریاد",
+              "start": 170.4,
+              "end": 171.9
+            },
+            {
+              "word": "آزادی",
+              "start": 171.9,
+              "end": 173.2
+            },
+            {
+              "word": "سرایم",
+              "start": 173.2,
+              "end": 174.4
+            }
+          ]
+        },
+        {
+          "line": "میخوانم سرودی تازه",
+          "start": 174.55,
+          "end": 178.25,
+          "translations": {
+            "persian": "سرودی تازه میسرایم",
+            "english": "I sing a new song",
+            "finglish": "Mikhanam soroodi taze"
+          },
+          "words": [
+            {
+              "word": "میخوانم",
+              "start": 174.55,
+              "end": 176.25
+            },
+            {
+              "word": "سرودی",
+              "start": 176.25,
+              "end": 177.3
+            },
+            {
+              "word": "تازه",
+              "start": 177.3,
+              "end": 178.25
+            }
+          ]
+        },
+        {
+          "line": "چون آزادم کرده",
+          "start": 178.4,
+          "end": 181.75,
+          "translations": {
+            "persian": "زیرا او مرا آزاد کرده است",
+            "english": "Because He has set me free",
+            "finglish": "Chon azadam karde"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 178.4,
+              "end": 179.35
+            },
+            {
+              "word": "آزادم",
+              "start": 179.35,
+              "end": 180.65
+            },
+            {
+              "word": "کرده",
+              "start": 180.65,
+              "end": 181.75
+            }
+          ]
+        },
+        {
+          "line": "زنجیرهایم در نامش گسسته",
+          "start": 182.05,
+          "end": 189.1,
+          "translations": {
+            "persian": "زنجیرهایم در نام او گسستهاند",
+            "english": "My chains are broken in His name",
+            "finglish": "Zanjirhayam dar namash gosaste"
+          },
+          "words": [
+            {
+              "word": "زنجیرهایم",
+              "start": 182.05,
+              "end": 184.88
+            },
+            {
+              "word": "در",
+              "start": 184.88,
+              "end": 185.55
+            },
+            {
+              "word": "نامش",
+              "start": 185.55,
+              "end": 186.9
+            },
+            {
+              "word": "گسسته",
+              "start": 186.9,
+              "end": 189.1
+            }
+          ]
+        },
+        {
+          "line": "میخوانم سرودی تازه",
+          "start": 189.5,
+          "end": 193.18,
+          "translations": {
+            "persian": "سرودی تازه میسرایم",
+            "english": "I sing a new song",
+            "finglish": "Mikhanam soroodi taze"
+          },
+          "words": [
+            {
+              "word": "میخوانم",
+              "start": 189.5,
+              "end": 191.2
+            },
+            {
+              "word": "سرودی",
+              "start": 191.2,
+              "end": 192.25
+            },
+            {
+              "word": "تازه",
+              "start": 192.25,
+              "end": 193.18
+            }
+          ]
+        },
+        {
+          "line": "چون آزادم کرده",
+          "start": 193.28,
+          "end": 196.6,
+          "translations": {
+            "persian": "زیرا او مرا آزاد کرده است",
+            "english": "Because He has set me free",
+            "finglish": "Chon azadam karde"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 193.28,
+              "end": 194.2
+            },
+            {
+              "word": "آزادم",
+              "start": 194.2,
+              "end": 195.45
+            },
+            {
+              "word": "کرده",
+              "start": 195.45,
+              "end": 196.6
+            }
+          ]
+        },
+        {
+          "line": "زنجیرهایم در نامش گسسته",
+          "start": 196.95,
+          "end": 204,
+          "translations": {
+            "persian": "زنجیرهایم در نام او گسستهاند",
+            "english": "My chains are broken in His name",
+            "finglish": "Zanjirhayam dar namash gosaste"
+          },
+          "words": [
+            {
+              "word": "زنجیرهایم",
+              "start": 196.95,
+              "end": 199.88
+            },
+            {
+              "word": "در",
+              "start": 199.88,
+              "end": 200.52
+            },
+            {
+              "word": "نامش",
+              "start": 200.52,
+              "end": 201.8
+            },
+            {
+              "word": "گسسته",
+              "start": 201.8,
+              "end": 204
+            }
+          ]
+        },
+        {
+          "line": "میخوانم سرودی تازه",
+          "start": 204.45,
+          "end": 208.15,
+          "translations": {
+            "persian": "سرودی تازه میسرایم",
+            "english": "I sing a new song",
+            "finglish": "Mikhanam soroodi taze"
+          },
+          "words": [
+            {
+              "word": "میخوانم",
+              "start": 204.45,
+              "end": 206.15
+            },
+            {
+              "word": "سرودی",
+              "start": 206.15,
+              "end": 207.25
+            },
+            {
+              "word": "تازه",
+              "start": 207.25,
+              "end": 208.15
+            }
+          ]
+        },
+        {
+          "line": "چون آزادم کرده",
+          "start": 208.25,
+          "end": 211.5,
+          "translations": {
+            "persian": "زیرا او مرا آزاد کرده است",
+            "english": "Because He has set me free",
+            "finglish": "Chon azadam karde"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 208.25,
+              "end": 209.18
+            },
+            {
+              "word": "آزادم",
+              "start": 209.18,
+              "end": 210.4
+            },
+            {
+              "word": "کرده",
+              "start": 210.4,
+              "end": 211.5
+            }
+          ]
+        },
+        {
+          "line": "زنجیرهایم در نامش گسسته",
+          "start": 211.9,
+          "end": 219,
+          "translations": {
+            "persian": "زنجیرهایم در نام او گسستهاند",
+            "english": "My chains are broken in His name",
+            "finglish": "Zanjirhayam dar namash gosaste"
+          },
+          "words": [
+            {
+              "word": "زنجیرهایم",
+              "start": 211.9,
+              "end": 214.8
+            },
+            {
+              "word": "در",
+              "start": 214.8,
+              "end": 215.48
+            },
+            {
+              "word": "نامش",
+              "start": 215.48,
+              "end": 216.8
+            },
+            {
+              "word": "گسسته",
+              "start": 216.8,
+              "end": 219
+            }
+          ]
+        },
+        {
+          "line": "با لمسش آزادم",
+          "start": 320.15,
+          "end": 322.58,
+          "translations": {
+            "persian": "با لمس او آزاد هستم",
+            "english": "I am free by His touch",
+            "finglish": "Ba lamsash azadam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 320.15,
+              "end": 320.35
+            },
+            {
+              "word": "لمسش",
+              "start": 320.35,
+              "end": 321.45
+            },
+            {
+              "word": "آزادم",
+              "start": 321.45,
+              "end": 322.58
+            }
+          ]
+        },
+        {
+          "line": "با روح او شادم",
+          "start": 322.68,
+          "end": 324.9,
+          "translations": {
+            "persian": "با روح او شادمان هستم",
+            "english": "I am joyful in His Spirit",
+            "finglish": "Ba roohe oo shadam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 322.68,
+              "end": 322.88
+            },
+            {
+              "word": "روح",
+              "start": 322.88,
+              "end": 323.42
+            },
+            {
+              "word": "او",
+              "start": 323.42,
+              "end": 323.9
+            },
+            {
+              "word": "شادم",
+              "start": 323.9,
+              "end": 324.9
+            }
+          ]
+        },
+        {
+          "line": "مرا پر میسازد با قوتش",
+          "start": 325.02,
+          "end": 332,
+          "translations": {
+            "persian": "او مرا با قدرت خویش لبریز میسازد",
+            "english": "He fills me with His power",
+            "finglish": "Mara por misazad ba ghovatash"
+          },
+          "words": [
+            {
+              "word": "مرا",
+              "start": 325.02,
+              "end": 325.48
+            },
+            {
+              "word": "پر",
+              "start": 325.48,
+              "end": 326.2
+            },
+            {
+              "word": "میسازد",
+              "start": 326.2,
+              "end": 327.55
+            },
+            {
+              "word": "با",
+              "start": 328.18,
+              "end": 328.5
+            },
+            {
+              "word": "قوتش",
+              "start": 328.5,
+              "end": 332
+            }
+          ]
+        },
+        {
+          "line": "با لمسش آرامم",
+          "start": 332.3,
+          "end": 334.8,
+          "translations": {
+            "persian": "با لمس او در آرامش هستم",
+            "english": "I am at peace with His touch",
+            "finglish": "Ba lamsash aramam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 332.3,
+              "end": 332.54
+            },
+            {
+              "word": "لمسش",
+              "start": 332.54,
+              "end": 333.65
+            },
+            {
+              "word": "آرامم",
+              "start": 333.65,
+              "end": 334.8
+            }
+          ]
+        },
+        {
+          "line": "چون سرود میخوانم",
+          "start": 334.9,
+          "end": 337.3,
+          "translations": {
+            "persian": "هنگامی که سرود میخوانم",
+            "english": "As I sing a song",
+            "finglish": "Chon sorood mikhanam"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 334.9,
+              "end": 335.32
+            },
+            {
+              "word": "سرود",
+              "start": 335.32,
+              "end": 336.18
+            },
+            {
+              "word": "میخوانم",
+              "start": 336.18,
+              "end": 337.3
+            }
+          ]
+        },
+        {
+          "line": "مرا پر میسازد با حضورش",
+          "start": 337.55,
+          "end": 344.5,
+          "translations": {
+            "persian": "او مرا با حضور خویش لبریز میسازد",
+            "english": "He fills me with His presence",
+            "finglish": "Mara por misazad ba hozoorash"
+          },
+          "words": [
+            {
+              "word": "مرا",
+              "start": 337.55,
+              "end": 338.02
+            },
+            {
+              "word": "پر",
+              "start": 338.02,
+              "end": 338.7
+            },
+            {
+              "word": "میسازد",
+              "start": 338.7,
+              "end": 340.18
+            },
+            {
+              "word": "با",
+              "start": 340.85,
+              "end": 341.15
+            },
+            {
+              "word": "حضورش",
+              "start": 341.15,
+              "end": 344.5
+            }
+          ]
+        },
+        {
+          "line": "با لمسش آزادم",
+          "start": 344.82,
+          "end": 347.25,
+          "translations": {
+            "persian": "با لمس او آزاد هستم",
+            "english": "I am free by His touch",
+            "finglish": "Ba lamsash azadam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 344.82,
+              "end": 345.05
+            },
+            {
+              "word": "لمسش",
+              "start": 345.05,
+              "end": 346.12
+            },
+            {
+              "word": "آزادم",
+              "start": 346.12,
+              "end": 347.25
+            }
+          ]
+        },
+        {
+          "line": "با روح او شادم",
+          "start": 347.38,
+          "end": 349.6,
+          "translations": {
+            "persian": "با روح او شادمان هستم",
+            "english": "I am joyful in His Spirit",
+            "finglish": "Ba roohe oo shadam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 347.38,
+              "end": 347.58
+            },
+            {
+              "word": "روح",
+              "start": 347.58,
+              "end": 348.12
+            },
+            {
+              "word": "او",
+              "start": 348.12,
+              "end": 348.6
+            },
+            {
+              "word": "شادم",
+              "start": 348.6,
+              "end": 349.6
+            }
+          ]
+        },
+        {
+          "line": "مرا پر میسازد با قوتش",
+          "start": 349.75,
+          "end": 356.6,
+          "translations": {
+            "persian": "او مرا با قدرت خویش لبریز میسازد",
+            "english": "He fills me with His power",
+            "finglish": "Mara por misazad ba ghovatash"
+          },
+          "words": [
+            {
+              "word": "مرا",
+              "start": 349.75,
+              "end": 350.22
+            },
+            {
+              "word": "پر",
+              "start": 350.22,
+              "end": 350.92
+            },
+            {
+              "word": "میسازد",
+              "start": 350.92,
+              "end": 352.25
+            },
+            {
+              "word": "با",
+              "start": 352.92,
+              "end": 353.22
+            },
+            {
+              "word": "قوتش",
+              "start": 353.22,
+              "end": 356.6
+            }
+          ]
+        },
+        {
+          "line": "با لمسش آرامم",
+          "start": 357.02,
+          "end": 359.52,
+          "translations": {
+            "persian": "با لمس او در آرامش هستم",
+            "english": "I am at peace with His touch",
+            "finglish": "Ba lamsash aramam"
+          },
+          "words": [
+            {
+              "word": "با",
+              "start": 357.02,
+              "end": 357.25
+            },
+            {
+              "word": "لمسش",
+              "start": 357.25,
+              "end": 358.38
+            },
+            {
+              "word": "آرامم",
+              "start": 358.38,
+              "end": 359.52
+            }
+          ]
+        },
+        {
+          "line": "چون سرود میخوانم",
+          "start": 359.62,
+          "end": 362.05,
+          "translations": {
+            "persian": "هنگامی که سرود میخوانم",
+            "english": "As I sing a song",
+            "finglish": "Chon sorood mikhanam"
+          },
+          "words": [
+            {
+              "word": "چون",
+              "start": 359.62,
+              "end": 360.05
+            },
+            {
+              "word": "سرود",
+              "start": 360.05,
+              "end": 360.9
+            },
+            {
+              "word": "میخوانم",
+              "start": 360.9,
+              "end": 362.05
+            }
+          ]
+        },
+        {
+          "line": "مرا پر میسازد با حضورش",
+          "start": 362.3,
+          "end": 369.3,
+          "translations": {
+            "persian": "او مرا با حضور خویش لبریز میسازد",
+            "english": "He fills me with His presence",
+            "finglish": "Mara por misazad ba hozoorash"
+          },
+          "words": [
+            {
+              "word": "مرا",
+              "start": 362.3,
+              "end": 362.75
+            },
+            {
+              "word": "پر",
+              "start": 362.75,
+              "end": 363.45
+            },
+            {
+              "word": "میسازد",
+              "start": 363.45,
+              "end": 364.92
+            },
+            {
+              "word": "با",
+              "start": 365.65,
+              "end": 365.95
+            },
+            {
+              "word": "حضورش",
+              "start": 365.95,
+              "end": 369.3
+            }
+          ]
+        }
+      ]
+    },
+    "timepoints": [
+      {
+        "time": 26.04,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 26.26,
+        "word": "لمسش",
+        "lyricFA": "لمسش"
+      },
+      {
+        "time": 27.35,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 28.58,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 28.78,
+        "word": "روح",
+        "lyricFA": "روح"
+      },
+      {
+        "time": 29.35,
+        "word": "او",
+        "lyricFA": "او"
+      },
+      {
+        "time": 29.82,
+        "word": "شادم",
+        "lyricFA": "شادم"
+      },
+      {
+        "time": 30.98,
+        "word": "مرا",
+        "lyricFA": "مرا"
+      },
+      {
+        "time": 31.42,
+        "word": "پر",
+        "lyricFA": "پر"
+      },
+      {
+        "time": 32.18,
+        "word": "میسازد",
+        "lyricFA": "میسازد"
+      },
+      {
+        "time": 34.12,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 34.42,
+        "word": "قوتش",
+        "lyricFA": "قوتش"
+      },
+      {
+        "time": 38.4,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 38.64,
+        "word": "لمسش",
+        "lyricFA": "لمسش"
+      },
+      {
+        "time": 39.75,
+        "word": "آرامم",
+        "lyricFA": "آرامم"
+      },
+      {
+        "time": 41.05,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 41.4,
+        "word": "سرود",
+        "lyricFA": "سرود"
+      },
+      {
+        "time": 42.25,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 43.6,
+        "word": "مرا",
+        "lyricFA": "مرا"
+      },
+      {
+        "time": 44.05,
+        "word": "پر",
+        "lyricFA": "پر"
+      },
+      {
+        "time": 44.75,
+        "word": "میسازد",
+        "lyricFA": "میسازد"
+      },
+      {
+        "time": 46.75,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 47.1,
+        "word": "حضورش",
+        "lyricFA": "حضورش"
+      },
+      {
+        "time": 51.4,
+        "word": "بارهایم",
+        "lyricFA": "بارهایم"
+      },
+      {
+        "time": 53.6,
+        "word": "را",
+        "lyricFA": "را"
+      },
+      {
+        "time": 54.12,
+        "word": "او",
+        "lyricFA": "او"
+      },
+      {
+        "time": 54.55,
+        "word": "برمیدارد",
+        "lyricFA": "برمیدارد"
+      },
+      {
+        "time": 56.82,
+        "word": "فریاد",
+        "lyricFA": "فریاد"
+      },
+      {
+        "time": 58.28,
+        "word": "آزادی",
+        "lyricFA": "آزادی"
+      },
+      {
+        "time": 59.62,
+        "word": "سرایم",
+        "lyricFA": "سرایم"
+      },
+      {
+        "time": 60.92,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 62.62,
+        "word": "سرودی",
+        "lyricFA": "سرودی"
+      },
+      {
+        "time": 63.68,
+        "word": "تازه",
+        "lyricFA": "تازه"
+      },
+      {
+        "time": 64.72,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 65.6,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 66.92,
+        "word": "کرده",
+        "lyricFA": "کرده"
+      },
+      {
+        "time": 68.4,
+        "word": "زنجیرهایم",
+        "lyricFA": "زنجیرهایم"
+      },
+      {
+        "time": 71.22,
+        "word": "در",
+        "lyricFA": "در"
+      },
+      {
+        "time": 71.9,
+        "word": "نامش",
+        "lyricFA": "نامش"
+      },
+      {
+        "time": 73.28,
+        "word": "گسسته",
+        "lyricFA": "گسسته"
+      },
+      {
+        "time": 75.92,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 77.58,
+        "word": "سرودی",
+        "lyricFA": "سرودی"
+      },
+      {
+        "time": 78.6,
+        "word": "تازه",
+        "lyricFA": "تازه"
+      },
+      {
+        "time": 79.62,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 80.48,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 81.8,
+        "word": "کرده",
+        "lyricFA": "کرده"
+      },
+      {
+        "time": 83.25,
+        "word": "زنجیرهایم",
+        "lyricFA": "زنجیرهایم"
+      },
+      {
+        "time": 86.2,
+        "word": "در",
+        "lyricFA": "در"
+      },
+      {
+        "time": 86.85,
+        "word": "نامش",
+        "lyricFA": "نامش"
+      },
+      {
+        "time": 88.1,
+        "word": "گسسته",
+        "lyricFA": "گسسته"
+      },
+      {
+        "time": 139.85,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 140.08,
+        "word": "لمسش",
+        "lyricFA": "لمسش"
+      },
+      {
+        "time": 141.22,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 142.4,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 142.6,
+        "word": "روح",
+        "lyricFA": "روح"
+      },
+      {
+        "time": 143.15,
+        "word": "او",
+        "lyricFA": "او"
+      },
+      {
+        "time": 143.65,
+        "word": "شادم",
+        "lyricFA": "شادم"
+      },
+      {
+        "time": 144.75,
+        "word": "مرا",
+        "lyricFA": "مرا"
+      },
+      {
+        "time": 144.75,
+        "word": "پر",
+        "lyricFA": "پر"
+      },
+      {
+        "time": 145.9,
+        "word": "میسازد",
+        "lyricFA": "میسازد"
+      },
+      {
+        "time": 147.85,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 148.15,
+        "word": "قوتش",
+        "lyricFA": "قوتش"
+      },
+      {
+        "time": 152.05,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 152.28,
+        "word": "لمسش",
+        "lyricFA": "لمسش"
+      },
+      {
+        "time": 153.42,
+        "word": "آرامم",
+        "lyricFA": "آرامم"
+      },
+      {
+        "time": 154.65,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 155.05,
+        "word": "سرود",
+        "lyricFA": "سرود"
+      },
+      {
+        "time": 155.9,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 157.3,
+        "word": "مرا",
+        "lyricFA": "مرا"
+      },
+      {
+        "time": 157.75,
+        "word": "پر",
+        "lyricFA": "پر"
+      },
+      {
+        "time": 158.45,
+        "word": "میسازد",
+        "lyricFA": "میسازد"
+      },
+      {
+        "time": 160.55,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 160.85,
+        "word": "حضورش",
+        "lyricFA": "حضورش"
+      },
+      {
+        "time": 164.9,
+        "word": "بارهایم",
+        "lyricFA": "بارهایم"
+      },
+      {
+        "time": 167.15,
+        "word": "را",
+        "lyricFA": "را"
+      },
+      {
+        "time": 167.68,
+        "word": "او",
+        "lyricFA": "او"
+      },
+      {
+        "time": 168.12,
+        "word": "برمیدارد",
+        "lyricFA": "برمیدارد"
+      },
+      {
+        "time": 170.4,
+        "word": "فریاد",
+        "lyricFA": "فریاد"
+      },
+      {
+        "time": 171.9,
+        "word": "آزادی",
+        "lyricFA": "آزادی"
+      },
+      {
+        "time": 173.2,
+        "word": "سرایم",
+        "lyricFA": "سرایم"
+      },
+      {
+        "time": 174.55,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 176.25,
+        "word": "سرودی",
+        "lyricFA": "سرودی"
+      },
+      {
+        "time": 177.3,
+        "word": "تازه",
+        "lyricFA": "تازه"
+      },
+      {
+        "time": 178.4,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 179.35,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 180.65,
+        "word": "کرده",
+        "lyricFA": "کرده"
+      },
+      {
+        "time": 182.05,
+        "word": "زنجیرهایم",
+        "lyricFA": "زنجیرهایم"
+      },
+      {
+        "time": 184.88,
+        "word": "در",
+        "lyricFA": "در"
+      },
+      {
+        "time": 185.55,
+        "word": "نامش",
+        "lyricFA": "نامش"
+      },
+      {
+        "time": 186.9,
+        "word": "گسسته",
+        "lyricFA": "گسسته"
+      },
+      {
+        "time": 189.5,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 191.2,
+        "word": "سرودی",
+        "lyricFA": "سرودی"
+      },
+      {
+        "time": 192.25,
+        "word": "تازه",
+        "lyricFA": "تازه"
+      },
+      {
+        "time": 193.28,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 194.2,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 195.45,
+        "word": "کرده",
+        "lyricFA": "کرده"
+      },
+      {
+        "time": 196.95,
+        "word": "زنجیرهایم",
+        "lyricFA": "زنجیرهایم"
+      },
+      {
+        "time": 199.88,
+        "word": "در",
+        "lyricFA": "در"
+      },
+      {
+        "time": 200.52,
+        "word": "نامش",
+        "lyricFA": "نامش"
+      },
+      {
+        "time": 201.8,
+        "word": "گسسته",
+        "lyricFA": "گسسته"
+      },
+      {
+        "time": 204.45,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 206.15,
+        "word": "سرودی",
+        "lyricFA": "سرودی"
+      },
+      {
+        "time": 207.25,
+        "word": "تازه",
+        "lyricFA": "تازه"
+      },
+      {
+        "time": 208.25,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 209.18,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 210.4,
+        "word": "کرده",
+        "lyricFA": "کرده"
+      },
+      {
+        "time": 211.9,
+        "word": "زنجیرهایم",
+        "lyricFA": "زنجیرهایم"
+      },
+      {
+        "time": 214.8,
+        "word": "در",
+        "lyricFA": "در"
+      },
+      {
+        "time": 215.48,
+        "word": "نامش",
+        "lyricFA": "نامش"
+      },
+      {
+        "time": 216.8,
+        "word": "گسسته",
+        "lyricFA": "گسسته"
+      },
+      {
+        "time": 320.15,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 320.35,
+        "word": "لمسش",
+        "lyricFA": "لمسش"
+      },
+      {
+        "time": 321.45,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 322.68,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 322.88,
+        "word": "روح",
+        "lyricFA": "روح"
+      },
+      {
+        "time": 323.42,
+        "word": "او",
+        "lyricFA": "او"
+      },
+      {
+        "time": 323.9,
+        "word": "شادم",
+        "lyricFA": "شادم"
+      },
+      {
+        "time": 325.02,
+        "word": "مرا",
+        "lyricFA": "مرا"
+      },
+      {
+        "time": 325.48,
+        "word": "پر",
+        "lyricFA": "پر"
+      },
+      {
+        "time": 326.2,
+        "word": "میسازد",
+        "lyricFA": "میسازد"
+      },
+      {
+        "time": 328.18,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 328.5,
+        "word": "قوتش",
+        "lyricFA": "قوتش"
+      },
+      {
+        "time": 332.3,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 332.54,
+        "word": "لمسش",
+        "lyricFA": "لمسش"
+      },
+      {
+        "time": 333.65,
+        "word": "آرامم",
+        "lyricFA": "آرامم"
+      },
+      {
+        "time": 334.9,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 335.32,
+        "word": "سرود",
+        "lyricFA": "سرود"
+      },
+      {
+        "time": 336.18,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 337.55,
+        "word": "مرا",
+        "lyricFA": "مرا"
+      },
+      {
+        "time": 338.02,
+        "word": "پر",
+        "lyricFA": "پر"
+      },
+      {
+        "time": 338.7,
+        "word": "میسازد",
+        "lyricFA": "میسازد"
+      },
+      {
+        "time": 340.85,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 341.15,
+        "word": "حضورش",
+        "lyricFA": "حضورش"
+      },
+      {
+        "time": 344.82,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 345.05,
+        "word": "لمسش",
+        "lyricFA": "لمسش"
+      },
+      {
+        "time": 346.12,
+        "word": "آزادم",
+        "lyricFA": "آزادم"
+      },
+      {
+        "time": 347.38,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 347.58,
+        "word": "روح",
+        "lyricFA": "روح"
+      },
+      {
+        "time": 348.12,
+        "word": "او",
+        "lyricFA": "او"
+      },
+      {
+        "time": 348.6,
+        "word": "شادم",
+        "lyricFA": "شادم"
+      },
+      {
+        "time": 349.75,
+        "word": "مرا",
+        "lyricFA": "مرا"
+      },
+      {
+        "time": 350.22,
+        "word": "پر",
+        "lyricFA": "پر"
+      },
+      {
+        "time": 350.92,
+        "word": "میسازد",
+        "lyricFA": "میسازد"
+      },
+      {
+        "time": 352.92,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 353.22,
+        "word": "قوتش",
+        "lyricFA": "قوتش"
+      },
+      {
+        "time": 357.02,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 357.25,
+        "word": "لمسش",
+        "lyricFA": "لمسش"
+      },
+      {
+        "time": 358.38,
+        "word": "آرامم",
+        "lyricFA": "آرامم"
+      },
+      {
+        "time": 359.62,
+        "word": "چون",
+        "lyricFA": "چون"
+      },
+      {
+        "time": 360.05,
+        "word": "سرود",
+        "lyricFA": "سرود"
+      },
+      {
+        "time": 360.9,
+        "word": "میخوانم",
+        "lyricFA": "میخوانم"
+      },
+      {
+        "time": 362.3,
+        "word": "مرا",
+        "lyricFA": "مرا"
+      },
+      {
+        "time": 362.75,
+        "word": "پر",
+        "lyricFA": "پر"
+      },
+      {
+        "time": 363.45,
+        "word": "میسازد",
+        "lyricFA": "میسازد"
+      },
+      {
+        "time": 365.65,
+        "word": "با",
+        "lyricFA": "با"
+      },
+      {
+        "time": 365.95,
+        "word": "حضورش",
+        "lyricFA": "حضورش"
+      }
+    ]
   },
   {
     "id": 196,
@@ -6726,9 +8977,9 @@
     },
     "artist": "زنده یاد کشیش رافی شاهوردیان",
     "composer": "",
-    "youtubeId": "lSxRzi-7J0Q",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/Biyaid%20khodavand%20ra%20besarayim.mp3",
-    "videoUrl": "https://www.youtube.com/embed/lSxRzi-7J0Q",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BIYAYIDKHODAVANDRABESARAYID.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -6749,7 +9000,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-کشیش-رافی-شاهوردیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=lSxRzi-7J0Q"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 197,
@@ -6852,7 +9106,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "im-trading-my-sorrows",
-    "youtubeUrl": "https://www.youtube.com/watch?v=gcIO8XB1qSs"
+    "youtubeUrl": "https://www.youtube.com/watch?v=gcIO8XB1qSs",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 200,
@@ -7036,7 +9293,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "8B7pPVsEd0g",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": "/worship/audio/kalameh/Ba shadi namash ra sarayim .mp3",
     "videoUrl": "https://www.youtube.com/embed/8B7pPVsEd0g",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BASHADINAMASHRASARAYIM.pptx",
     "lyricsFiles": {
@@ -7046,7 +9303,7 @@
     "lyrics": {
       "fa": "Verse\nبا[Em] شادى نامش[Am] را سراييم[Em]\nاو[C] شايسته[D]‌ى حمد ا[Em]ست\nدسـ[Em]ـتك زنان او[Am] را ستاييم[Em]\nاو[C] شايسته[D]‌ى حمد ا[Em]ست\nChorus\nشا[Em]يــــستــ[Am]ـه اســـ[Em]ـت\nاو[C] شايسته[D]‌ى حمد ا[Em]ست\nهــ[Em]ـلــــلـــــو[Am]يـــــاه [Em]\nاو[C] شايسته[D]‌ى حمد ا[Em]ست",
       "en": "",
-      "es": ""
+      "finglish": ""
     },
     "chord": "E",
     "mode": "مینور",
@@ -7059,7 +9316,10 @@
     "dateAdded": "2025-01-24",
     "slug": "با-شادی-نامش-را-سراییم",
     "pdfFileUrl": "/worship/pdf/kalameh/Bā shādi nāmash rā sarāyim (Em).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=DENKwPlDbZw"
+    "youtubeUrl": "https://www.youtube.com/watch?v=8B7pPVsEd0g",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 206,
@@ -7104,9 +9364,9 @@
     },
     "artist": "ورا",
     "composer": "ورا",
-    "youtubeId": "DcGNgAXqp20",
-    "audioUrl": "/worship/audio/kalameh/74 Az jano del khaham tora.mp3",
-    "videoUrl": "https://www.youtube.com/embed/DcGNgAXqp20",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZJANODELKHAHAMTORA.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -7128,7 +9388,10 @@
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-اسقف-حبدهقانی-تفتی",
     "pdfFileUrl": "/worship/pdf/kalameh/Az jāno del khāham torā (C).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=yn3ayqHuxcc"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 208,
@@ -7369,7 +9632,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "god-is-good",
-    "youtubeUrl": "https://www.youtube.com/watch?v=jxTnG-tIxVE"
+    "youtubeUrl": "https://www.youtube.com/watch?v=jxTnG-tIxVE",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 215,
@@ -7508,7 +9774,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "پیمان-مجتهدی-سعید-میریعقوبی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=r0v5vJ8JFHc"
+    "youtubeUrl": "https://www.youtube.com/watch?v=r0v5vJ8JFHc",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 219,
@@ -7520,7 +9789,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "8HiIypszpI8",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/8HiIypszpI8",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/TANHAOMIDBARAYEMAMASIHAST.pptx",
     "lyricsFiles": {
@@ -7543,7 +9812,10 @@
     "dateAdded": "2025-01-24",
     "slug": "تنها-امید-برای-ما-مسیحاست",
     "pdfFileUrl": "/worship/pdf/kalameh/Tanhā omide jānam isā.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=cKIprXfDMuo"
+    "youtubeUrl": "https://www.youtube.com/watch?v=cKIprXfDMuo",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 220,
@@ -7555,7 +9827,7 @@
     "artist": "Don Moen",
     "composer": "Don Moen",
     "youtubeId": "Yy2ZVq1MxGI",
-    "audioUrl": "/worship/audio/kalameh/تقدیم نمایم.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/Yy2ZVq1MxGI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/TAGHDIMNAMAYAMKHODRA.pptx",
     "lyricsFiles": {
@@ -7577,7 +9849,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "give-thanks",
-    "youtubeUrl": "https://www.youtube.com/watch?v=SQuWV0mTsmw"
+    "youtubeUrl": "https://www.youtube.com/watch?v=SQuWV0mTsmw",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 221,
@@ -7864,9 +10139,9 @@
     },
     "artist": "اوژنی سرکیسیان",
     "composer": "",
-    "youtubeId": "7F6vUjCk7Nw",
+    "youtubeId": null,
     "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/31%20Pedare%20asemani%20.mp3",
-    "videoUrl": "https://www.youtube.com/embed/7F6vUjCk7Nw",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/31%20Pedare%20asemani_1.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -7888,7 +10163,7 @@
     "dateAdded": "2025-01-24",
     "slug": "اوژنی-سرکیسیان",
     "pdfFileUrl": "/worship/pdf/kalameh/Pedare āsemāni jalāl bād bar nāme to.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=7F6vUjCk7Nw"
+    "youtubeUrl": ""
   },
   {
     "id": 230,
@@ -7934,7 +10209,7 @@
     "artist": "فراز دولتخواه",
     "composer": "",
     "youtubeId": "XSsm7eCcKYY",
-    "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/29%20Ou%20kist.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/XSsm7eCcKYY",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/OUKIST.pptx",
     "lyricsFiles": {
@@ -7956,7 +10231,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "فراز-دولتخواه",
-    "youtubeUrl": "https://www.youtube.com/watch?v=kuNFsnxZ_g4"
+    "youtubeUrl": "https://www.youtube.com/watch?v=kuNFsnxZ_g4",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 232,
@@ -8071,9 +10349,9 @@
     },
     "artist": "رویا-نیلوفر",
     "composer": "رویا-نیلوفر",
-    "youtubeId": "wwOT1luqGps",
-    "audioUrl": "/worship/audio/kalameh/خواندی مرا به روی آبها.mp3",
-    "videoUrl": "https://www.youtube.com/embed/wwOT1luqGps",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MESLEBARANEBAHARI.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -8095,7 +10373,10 @@
     "dateAdded": "2025-01-24",
     "slug": "رویا",
     "pdfFileUrl": "/worship/pdf/kalameh/Mesle bārāne bahāri.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=Yvrf3YKWKMU"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 236,
@@ -8590,7 +10871,7 @@
     "artist": "زنده یاد کشیش هایک هوسپیان",
     "composer": "",
     "youtubeId": "nqmwBGj461A",
-    "audioUrl": "/worship/audio/kalameh/khodaye azim bahre ma63de.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/nqmwBGj461A",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KHODAYEAZIMBAHREMA.pptx",
     "lyricsFiles": {
@@ -8612,7 +10893,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-کشیش-هایک-هوسپیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=eKxTh6RmzSk"
+    "youtubeUrl": "https://www.youtube.com/watch?v=eKxTh6RmzSk",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 251,
@@ -8624,7 +10908,7 @@
     "artist": "وحید نوروزی",
     "composer": "وحید نوروزی",
     "youtubeId": "3EAkZEBtHv4",
-    "audioUrl": "/worship/audio/kalameh/خدای عشق و بی همتا و پاک .mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/3EAkZEBtHv4",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KHODAYEESHGHOBIHAMTAOPAK.pptx",
     "lyricsFiles": {
@@ -8647,7 +10931,10 @@
     "dateAdded": "2025-01-24",
     "slug": "کوروش-روحانی",
     "pdfFileUrl": "/worship/pdf/kalameh/03 - خدا از طریق ما برکت می آورد..pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=AQHUs9gWkmI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=AQHUs9gWkmI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 252,
@@ -8694,7 +10981,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "d6UqPVAC24o",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/d6UqPVAC24o",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KHODAYEPEDARAMADEYIM.pptx",
     "lyricsFiles": {
@@ -8716,7 +11003,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "خدای-پدر-آمدهایم",
-    "youtubeUrl": "https://www.youtube.com/watch?v=8VPveKHzqQA"
+    "youtubeUrl": "https://www.youtube.com/watch?v=8VPveKHzqQA",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 254,
@@ -8796,9 +11086,9 @@
     },
     "artist": "زنده یاد بیتا آرمان",
     "composer": "",
-    "youtubeId": "lFKFt5z-weo",
-    "audioUrl": "/worship/audio/kalameh/46 Dar entezare rooye to .mp3",
-    "videoUrl": "https://www.youtube.com/embed/lFKFt5z-weo",
+    "youtubeId": null,
+    "audioUrl": null,
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/DARENTEZARERUYETO.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -8820,7 +11110,10 @@
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-بیتا-آرمان",
     "pdfFileUrl": "/worship/pdf/kalameh/Dar entezāre rooye to.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=OnCc-QQjjkA"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 257,
@@ -8968,7 +11261,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "2ChaqAMdFgE",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/2ChaqAMdFgE",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/DARTOPAYKUBIKONAM.pptx",
     "lyricsFiles": {
@@ -8990,7 +11283,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "در-تو-پایکوبی-کنم-چون-تو-ای-مسیح-پرجلال-هستی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=j8Ly7BB1h8Y"
+    "youtubeUrl": "https://www.youtube.com/watch?v=j8Ly7BB1h8Y",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 262,
@@ -9210,7 +11506,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "7xMPo_vn34I",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/7xMPo_vn34I",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KASINISTBEJOZTO.pptx",
     "lyricsFiles": {
@@ -9232,7 +11528,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "کسی-نیست-بجز-تو-خداوند-در-آسمان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=F5jp02vM9ds"
+    "youtubeUrl": "https://www.youtube.com/watch?v=F5jp02vM9ds",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 269,
@@ -9371,7 +11670,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "he-is-exalted",
-    "youtubeUrl": "https://www.youtube.com/watch?v=c_xKm7LzFts"
+    "youtubeUrl": "https://www.youtube.com/watch?v=c_xKm7LzFts",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 273,
@@ -9417,7 +11719,7 @@
     "artist": "David Hadden",
     "composer": "David Hadden",
     "youtubeId": "K3KUXYRYW6M",
-    "audioUrl": "/worship/audio/kalameh/تاج .mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/K3KUXYRYW6M",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/INTAJAZANETOST.pptx",
     "lyricsFiles": {
@@ -9439,7 +11741,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "this-crown-belongs-to-you",
-    "youtubeUrl": "https://www.youtube.com/watch?v=PGZi6zgL4Kg"
+    "youtubeUrl": "https://www.youtube.com/watch?v=PGZi6zgL4Kg",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 275,
@@ -9896,9 +12201,9 @@
     },
     "artist": "روزبه نجارنژاد-نیلوفر",
     "composer": "روزبه نجارنژاد-نیلوفر",
-    "youtubeId": "97BBZpQtSiA",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/در پی خدا بودم اجابتم کرد .mp3",
-    "videoUrl": "https://www.youtube.com/embed/97BBZpQtSiA",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAREKAT.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -9920,7 +12225,7 @@
     "dateAdded": "2025-01-24",
     "slug": "kari-jobe-cody-carnes-elevation-worship",
     "pdfFileUrl": "/worship/pdf/kalameh/برنامه ی این هفته 19تا 24مرداد.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=97BBZpQtSiA"
+    "youtubeUrl": ""
   },
   {
     "id": 289,
@@ -9932,7 +12237,7 @@
     "artist": "پیمان-نیلوفر-دنی",
     "composer": "",
     "youtubeId": "enB96btEJtw",
-    "audioUrl": "/worship/audio/kalameh/Bar vadehayat.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/enB96btEJtw",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARVADEHAYAT.pptx",
     "lyricsFiles": {
@@ -9955,7 +12260,10 @@
     "dateAdded": "2025-01-24",
     "slug": "پیمان-نیلوفر-دنی",
     "pdfFileUrl": "/worship/pdf/kalameh/Bar vadehāyat.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=2WH9epO-rHw"
+    "youtubeUrl": "https://www.youtube.com/watch?v=2WH9epO-rHw",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 290,
@@ -10160,7 +12468,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-کشیش-ورویر-آوانسیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=YmtwvRvxO1U"
+    "youtubeUrl": "https://www.youtube.com/watch?v=YmtwvRvxO1U",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 296,
@@ -10273,9 +12584,9 @@
     },
     "artist": "Glorify thy name",
     "composer": "",
-    "youtubeId": "EWxzK8TA7og",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/بر نامت جلال پدر دوستت دارم.mp3",
-    "videoUrl": "https://www.youtube.com/embed/EWxzK8TA7og",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARNAMATJALAL.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -10296,7 +12607,7 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "glorify-thy-name",
-    "youtubeUrl": "https://www.youtube.com/watch?v=kYWiPc6OHvs"
+    "youtubeUrl": ""
   },
   {
     "id": 300,
@@ -10307,9 +12618,9 @@
     },
     "artist": "سرود افغان",
     "composer": "",
-    "youtubeId": "bywCi_1in8U",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/یار من خدای من .mp3",
-    "videoUrl": "https://www.youtube.com/embed/bywCi_1in8U",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/YAREMANKHODAYEMAN.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -10331,7 +12642,7 @@
     "dateAdded": "2025-01-24",
     "slug": "سرود-افغان",
     "pdfFileUrl": "/worship/pdf/kalameh/Daliran Khoda - Guide.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=lseFP_Wm-NE"
+    "youtubeUrl": ""
   },
   {
     "id": 301,
@@ -10513,9 +12824,9 @@
     },
     "artist": "کوروش روحانی",
     "composer": "",
-    "youtubeId": "l7TvDJXXaIo",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/فصل نو.mp3",
-    "videoUrl": "https://www.youtube.com/embed/l7TvDJXXaIo",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/FASLENO.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -10536,7 +12847,7 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "کوروش-روحانی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=l7TvDJXXaIo"
+    "youtubeUrl": ""
   },
   {
     "id": 307,
@@ -10650,7 +12961,7 @@
     "artist": "سرود ارمنی",
     "composer": "",
     "youtubeId": "CKpaO-5ki9U",
-    "audioUrl": "/worship/audio/kalameh/103 Ghadere mota'al Barkhiz besara .mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/CKpaO-5ki9U",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARKHIZBESARA.pptx",
     "lyricsFiles": {
@@ -10672,7 +12983,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-ارمنی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=O-p0INztFTQ"
+    "youtubeUrl": "https://www.youtube.com/watch?v=O-p0INztFTQ",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 311,
@@ -10684,7 +12998,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "eDNGOphrM1M",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/eDNGOphrM1M",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/EYMAHBUBAMCHEZIBAHASTI.pptx",
     "lyricsFiles": {
@@ -10706,7 +13020,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "ای-محبوبم-چه-زیبا-هستی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=FnllSOvFmx8"
+    "youtubeUrl": "https://www.youtube.com/watch?v=FnllSOvFmx8",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 312,
@@ -10718,7 +13035,7 @@
     "artist": "زنده یاد کشیش هایک هوسپیان",
     "composer": "زنده یاد کشیش هایک هوسپیان",
     "youtubeId": "f_jtXzTVA6Q",
-    "audioUrl": "/worship/audio/kalameh/100 Ey forughe javedan.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/f_jtXzTVA6Q",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/EYFORUGHEJAVEDAN.pptx",
     "lyricsFiles": {
@@ -10740,7 +13057,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-عربی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=72JCcZCAO1Q"
+    "youtubeUrl": "https://www.youtube.com/watch?v=72JCcZCAO1Q",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 313,
@@ -10819,9 +13139,9 @@
     },
     "artist": "Darlene Zchech",
     "composer": "Darlene Zchech",
-    "youtubeId": "ksw3xRKGJT4",
+    "youtubeId": null,
     "audioUrl": "https://www.kalameh.com/sites/default/files/songs/mp3/216%20Ey%20Isa%20monjiyam.mp3",
-    "videoUrl": "https://www.youtube.com/embed/ksw3xRKGJT4",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/EYISAMONJIYAM.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -10842,7 +13162,7 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "shout-to-the-lord",
-    "youtubeUrl": "https://www.youtube.com/watch?v=F0jKjkvAyFg"
+    "youtubeUrl": ""
   },
   {
     "id": 316,
@@ -11334,7 +13654,7 @@
     "artist": "Mark Lowry-Buddy Greene",
     "composer": "Mark Lowry-Buddy Greene",
     "youtubeId": "_1VaGpjm15c",
-    "audioUrl": "/worship/audio/kalameh/مرا احیا می کنی.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/_1VaGpjm15c",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MARYAMTOAYA.pptx",
     "lyricsFiles": {
@@ -11356,7 +13676,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "marry-did-you-know",
-    "youtubeUrl": "https://www.youtube.com/watch?v=o9Ptt-iksF4"
+    "youtubeUrl": "https://www.youtube.com/watch?v=o9Ptt-iksF4",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 331,
@@ -11368,7 +13691,7 @@
     "artist": "John Francis Wade-Franz Gruber",
     "composer": "John Francis Wade-Franz Gruber",
     "youtubeId": "a6LT6GruGS8",
-    "audioUrl": "/worship/audio/kalameh/ایمان.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/a6LT6GruGS8",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/GERDAYIDIMANDARAN.pptx",
     "lyricsFiles": {
@@ -11390,7 +13713,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "o-come-all-ye-faithful",
-    "youtubeUrl": "https://www.youtube.com/watch?v=a6LT6GruGS8"
+    "youtubeUrl": "https://www.youtube.com/watch?v=a6LT6GruGS8",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 332,
@@ -11504,7 +13830,7 @@
     "artist": "روزبه نجارنژاد",
     "composer": "روزبه نجارنژاد",
     "youtubeId": "a9WVtyBMI1w",
-    "audioUrl": "/worship/audio/kalameh/آرامی دلهایی .mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/a9WVtyBMI1w",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ARAMIYEDELHAYI.pptx",
     "lyricsFiles": {
@@ -11527,7 +13853,10 @@
     "dateAdded": "2025-01-24",
     "slug": "میلاد-رسایی",
     "pdfFileUrl": "/worship/pdf/kalameh/Ārāmiye delhāyi.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=awwuz-Wg57g"
+    "youtubeUrl": "https://www.youtube.com/watch?v=awwuz-Wg57g",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 336,
@@ -11643,7 +13972,7 @@
     "artist": "روزبه نجارنژاد",
     "composer": "",
     "youtubeId": "0FaIjEiU7Sk",
-    "audioUrl": "/worship/audio/kalameh/139 Mara molaghat kon.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/0FaIjEiU7Sk",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MARAMOLAGHATKON_0.pptx",
     "lyricsFiles": {
@@ -11666,7 +13995,10 @@
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نجارنژاد",
     "pdfFileUrl": "/worship/pdf/kalameh/Marā molāghāt kon (Dar peye ghadamhāye to).pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=Jz-FgoW5CtU"
+    "youtubeUrl": "https://www.youtube.com/watch?v=Jz-FgoW5CtU",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 340,
@@ -11678,7 +14010,7 @@
     "artist": "نیلوفر",
     "composer": "",
     "youtubeId": "8Wdf9rLXcdA",
-    "audioUrl": "/worship/audio/kalameh/136 Mara mipaziri to.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/8Wdf9rLXcdA",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MARAMIPAZIRITO.pptx",
     "lyricsFiles": {
@@ -11701,7 +14033,10 @@
     "dateAdded": "2025-01-24",
     "slug": "نیلوفر",
     "pdfFileUrl": "/worship/pdf/kalameh/Marā mipaziri to.pdf",
-    "youtubeUrl": "https://www.youtube.com/watch?v=Wptf275pKyI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=Wptf275pKyI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 341,
@@ -11748,7 +14083,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "EasnLrjA_vM",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/EasnLrjA_vM",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KISTKEMARAAZMOHABATEMASIHJODASAZAD.pptx",
     "lyricsFiles": {
@@ -11770,7 +14105,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "کیست-که-ما-را-از-محبت-مسیح-جدا-سازد",
-    "youtubeUrl": "https://www.youtube.com/watch?v=eQe0wSOClsA"
+    "youtubeUrl": "https://www.youtube.com/watch?v=eQe0wSOClsA",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 343,
@@ -11850,9 +14188,9 @@
     },
     "artist": "زنده یاد کشیش هایک هوسپیان",
     "composer": "",
-    "youtubeId": "r2snFpyuhqE",
+    "youtubeId": null,
     "audioUrl": "/worship/audio/kalameh/130 Khodavand ey maboode man  .mp3",
-    "videoUrl": "https://www.youtube.com/embed/r2snFpyuhqE",
+    "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KHODAVANDEYMABUDEMAN.pptx",
     "lyricsFiles": {
       "fa": "",
@@ -11873,7 +14211,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-کشیش-هایک-هوسپیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=8Wdf9rLXcdA"
+    "youtubeUrl": "",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 346,
@@ -11885,7 +14226,7 @@
     "artist": "ن.مقدس نیا",
     "composer": "ن.مقدس نیا",
     "youtubeId": "IFs9S5TAqko",
-    "audioUrl": "/worship/audio/kalameh/129 Khodavanda to agahi .mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/IFs9S5TAqko",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/KHODAVANDATOAGAHI.pptx",
     "lyricsFiles": {
@@ -11907,7 +14248,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-اسقف-حبدهقانی-تفتی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=PfdecEPERNE"
+    "youtubeUrl": "https://www.youtube.com/watch?v=PfdecEPERNE",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 347,
@@ -12044,7 +14388,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-انگلیسی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=QjbY5UbyDYI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=QjbY5UbyDYI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 351,
@@ -12056,7 +14403,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "RQ8NsQ6kOhQ",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/RQ8NsQ6kOhQ",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MONJISHAYESTEYI.pptx",
     "lyricsFiles": {
@@ -12078,7 +14425,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "منجی-شایسته-ای",
-    "youtubeUrl": "https://www.youtube.com/watch?v=eVUzhh6t2qw"
+    "youtubeUrl": "https://www.youtube.com/watch?v=eVUzhh6t2qw",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 352,
@@ -12124,7 +14474,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "lQ3fS_ecGJI",
-    "audioUrl": "/worship/audio/kalameh/1 Aramiye delhaayee.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/lQ3fS_ecGJI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MONJIAMSHAFIAM.pptx",
     "lyricsFiles": {
@@ -12146,7 +14496,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "منجیم-شفیعم-مرا-برخیزانیدی",
-    "youtubeUrl": "https://www.youtube.com/watch?v=aYsw_wYRHls"
+    "youtubeUrl": "https://www.youtube.com/watch?v=aYsw_wYRHls",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 354,
@@ -12192,7 +14545,7 @@
     "artist": "ژیلبرت هوسپیان",
     "composer": "",
     "youtubeId": "eVUzhh6t2qw",
-    "audioUrl": "/worship/audio/kalameh/Shahed hastam.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/eVUzhh6t2qw",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/SHAHEDHASTAM.pptx",
     "lyricsFiles": {
@@ -12214,7 +14567,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "ژیلبرت-هوسپیان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=2x74sP76O6c"
+    "youtubeUrl": "https://www.youtube.com/watch?v=2x74sP76O6c",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 356,
@@ -12260,7 +14616,7 @@
     "artist": "آراد طفلان",
     "composer": "",
     "youtubeId": "AQNzkfZoQmc",
-    "audioUrl": "/worship/audio/kalameh/آغوشت محبتی‌ست.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/AQNzkfZoQmc",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AGHUSHATMOHABATIST.pptx",
     "lyricsFiles": {
@@ -12282,7 +14638,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "آراد-طفلان",
-    "youtubeUrl": "https://www.youtube.com/watch?v=-RaR6gqxc6w"
+    "youtubeUrl": "https://www.youtube.com/watch?v=-RaR6gqxc6w",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 358,
@@ -12465,7 +14824,7 @@
     "artist": "رویا",
     "composer": "",
     "youtubeId": "w5GL6b6TbmA",
-    "audioUrl": "/worship/audio/kalameh/خواندی مرا به روی آبها.mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/w5GL6b6TbmA",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/SHADIKONANSORUDKHANAN.pptx",
     "lyricsFiles": {
@@ -12487,7 +14846,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "رویا",
-    "youtubeUrl": "https://www.youtube.com/watch?v=Ks8U4G1BbOI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=Ks8U4G1BbOI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   },
   {
     "id": 364,
@@ -12499,7 +14861,7 @@
     "artist": "Isn&#039;t the name of Jesus",
     "composer": "",
     "youtubeId": "fQjPntYLD7s",
-    "audioUrl": "/worship/audio/kalameh/نام تو .mp3",
+    "audioUrl": null,
     "videoUrl": "https://www.youtube.com/embed/fQjPntYLD7s",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZADIDARNAMETOST.pptx",
     "lyricsFiles": {
@@ -12521,6 +14883,9 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "isnt-the-name-of-jesus",
-    "youtubeUrl": "https://www.youtube.com/watch?v=lQ3fS_ecGJI"
+    "youtubeUrl": "https://www.youtube.com/watch?v=lQ3fS_ecGJI",
+    "hasTiming": false,
+    "timing_data": null,
+    "timepoints": null
   }
 ]

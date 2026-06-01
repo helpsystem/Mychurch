@@ -89,9 +89,22 @@ export async function createWorshipSong(data: Partial<WorshipSong>): Promise<{ s
 
     try {
         const { rows } = await query(
-            `INSERT INTO church_worship_songs (title_fa, title_en, artist, youtube_id, audio_url, lyrics_fa, lyrics_en, lyrics_finglish, chords, category)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
-            [data.title_fa, data.title_en, data.artist, data.youtube_id, data.audio_url, data.lyrics_fa, data.lyrics_en, data.lyrics_finglish, data.chords, data.category]
+            `INSERT INTO church_worship_songs (title_fa, title_en, artist, youtube_id, audio_url, lyrics_fa, lyrics_en, lyrics_finglish, chords, category, timing_data, timepoints)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id`,
+            [
+                data.title_fa,
+                data.title_en,
+                data.artist,
+                data.youtube_id,
+                data.audio_url,
+                data.lyrics_fa,
+                data.lyrics_en,
+                data.lyrics_finglish,
+                data.chords,
+                data.category,
+                data.timing_data ? JSON.stringify(data.timing_data) : null,
+                data.timepoints ? JSON.stringify(data.timepoints) : null
+            ]
         );
         revalidatePath('/worship');
         revalidatePath('/admin/worship');
@@ -108,9 +121,23 @@ export async function updateWorshipSong(id: string, data: Partial<WorshipSong>):
     try {
         await query(
             `UPDATE church_worship_songs 
-             SET title_fa = $1, title_en = $2, artist = $3, youtube_id = $4, audio_url = $5, lyrics_fa = $6, lyrics_en = $7, lyrics_finglish = $8, chords = $9, category = $10, timepoints = $11
-             WHERE id = $12`,
-            [data.title_fa, data.title_en, data.artist, data.youtube_id, data.audio_url, data.lyrics_fa, data.lyrics_en, data.lyrics_finglish, data.chords, data.category, data.timepoints ? JSON.stringify(data.timepoints) : null, id]
+             SET title_fa = $1, title_en = $2, artist = $3, youtube_id = $4, audio_url = $5, lyrics_fa = $6, lyrics_en = $7, lyrics_finglish = $8, chords = $9, category = $10, timepoints = $11, timing_data = $12
+             WHERE id = $13`,
+            [
+                data.title_fa,
+                data.title_en,
+                data.artist,
+                data.youtube_id,
+                data.audio_url,
+                data.lyrics_fa,
+                data.lyrics_en,
+                data.lyrics_finglish,
+                data.chords,
+                data.category,
+                data.timepoints ? JSON.stringify(data.timepoints) : null,
+                data.timing_data ? JSON.stringify(data.timing_data) : null,
+                id
+            ]
         );
         revalidatePath('/worship');
         revalidatePath('/admin/worship');

@@ -282,6 +282,85 @@ export default function WorshipAdminClient() {
             setIsUploading(false);
         }
     };
+
+    const handleSingleSongJsonUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file || !editingSong) return;
+
+        try {
+            const text = await file.text();
+            const songJson = JSON.parse(text);
+
+            if (!songJson.structure || !Array.isArray(songJson.structure)) {
+                throw new Error("فرمت فایل نامعتبر است. فایل باید شامل فیلد structure باشد.");
+            }
+
+            // 1. Convert to SystemTimingV2 format
+            const convertedLines = songJson.structure.map((item: any) => ({
+                line: item.content || "",
+                start: item.words?.[0]?.start_time !== undefined ? item.words[0].start_time : 0,
+                end: item.words?.[item.words.length - 1]?.end_time !== undefined ? item.words[item.words.length - 1].end_time : 0,
+                translations: {
+                    persian: item.translations?.persian || "",
+                    english: item.translations?.english || "",
+                    finglish: item.translations?.finglish || ""
+                },
+                words: (item.words || []).map((w: any) => ({
+                    word: w.word || "",
+                    start: w.start_time !== undefined ? w.start_time : w.start,
+                    end: w.end_time !== undefined ? w.end_time : w.end
+                }))
+            }));
+
+            const convertedTimingData = {
+                songId: parseInt(editingSong.id) || 0,
+                version: "2.0",
+                totalDuration: 0,
+                lines: convertedLines
+            };
+
+            // 2. Synthesize flat timepoints
+            const flatTimepoints: Array<{ time: number; lyricFA: string; lyricEN?: string }> = [];
+            convertedLines.forEach((line: any) => {
+                if (Array.isArray(line.words)) {
+                    line.words.forEach((w: any) => {
+                        flatTimepoints.push({
+                            time: Number(w.start) || 0,
+                            lyricFA: String(w.word),
+                            lyricEN: w.finglish || undefined
+                        });
+                    });
+                }
+            });
+
+            // 3. Reconstruct full lyrics
+            const lyricsFa = songJson.structure.map((item: any) => item.content || '').join('\n');
+            const lyricsFinglish = songJson.structure.map((item: any) => item.translations?.finglish || '').join('\n');
+            const lyricsEn = songJson.structure.map((item: any) => item.translations?.english || '').join('\n');
+
+            // 4. Default audio URL if present
+            const audioUrl = songJson.metadata?.filename 
+                ? `/worship/audio/kalameh/${songJson.metadata.filename}`
+                : editingSong.audio_url;
+
+            // 5. Update editingSong state!
+            setEditingSong(prev => prev ? {
+                ...prev,
+                lyrics_fa: lyricsFa,
+                lyrics_finglish: lyricsFinglish,
+                lyrics_en: lyricsEn,
+                audio_url: audioUrl,
+                timing_data: convertedTimingData,
+                timepoints: flatTimepoints
+            } : prev);
+
+            alert("✨ اطلاعات کارائوکه، متون سه‌زبانه و فایل صوتی با موفقیت بارگذاری شد!");
+        } catch (err: any) {
+            alert("خطا در تحلیل فایل JSON: " + err.message);
+        } finally {
+            e.target.value = '';
+        }
+    };
     const handleExtractRowAI = async (id: string) => {
         // Removed native window.confirm to prevent browser blocking issues
         setProcessingAiId(id);
@@ -439,6 +518,19 @@ export default function WorshipAdminClient() {
                         </div>
 
                         <form onSubmit={handleSave} className="p-6 overflow-y-auto flex-1 space-y-6">
+                            {/* Single Song Karaoke JSON Import Box */}
+                            <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                                <div className="text-right">
+                                    <h4 className="font-bold text-sm text-foreground flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-primary" /> بارگذاری فایل کارائوکه و اطلاعات سرود</h4>
+                                    <p className="text-xs text-muted-foreground mt-1 font-[Vazirmatn]">با بارگذاری فایل JSON خروجی کارائوکه، تمام متون سه‌زبانه، فینگلیش و داده‌های زمان‌بندی صوتی به صورت خودکار و دقیق پر می‌شوند.</p>
+                                </div>
+                                <label className="px-4 py-2 bg-primary hover:bg-primary/95 text-primary-foreground text-xs font-bold rounded-lg cursor-pointer transition flex items-center gap-1.5 whitespace-nowrap shadow-sm">
+                                    <Upload className="w-4 h-4" />
+                                    بارگذاری فایل JSON کارائوکه
+                                    <input type="file" accept=".json" className="hidden" onChange={handleSingleSongJsonUpload} />
+                                </label>
+                            </div>
+
                             {/* Title row */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">

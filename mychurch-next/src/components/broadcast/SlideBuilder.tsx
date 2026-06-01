@@ -581,10 +581,18 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     if (!lyricsTitle || !lyricsText) return;
 
     const lines = parseLyrics(lyricsText);
-    const timingData = (selectedSong as any)?._timingData;
+    
+    // Retrieve existing slide content if editing to preserve metadata
+    const existingContent = editingSlideIndex !== null ? (session.slides[editingSlideIndex]?.content as SlideContentLyrics) : null;
+
+    const timingData = (selectedSong as any)?._timingData || existingContent?.timingData;
+    const songId = selectedSong?.id || existingContent?.songId;
+    const audioUrl = selectedSong?.audioUrl || existingContent?.audioUrl;
+    const youtubeId = selectedSong?.youtubeId || existingContent?.youtubeId;
+    const hasTiming = selectedSong?.hasTiming !== undefined ? selectedSong.hasTiming : existingContent?.hasTiming;
 
     // Extract finglish lines from timing data if available
-    let finglishLines: string[] | undefined;
+    let finglishLines = existingContent?.finglishLines;
     if (timingData?.lines) {
       finglishLines = timingData.lines.map((line: any) => {
         // Get finglish from word array
@@ -596,15 +604,15 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     }
 
     const content: SlideContentLyrics = {
-      songId: selectedSong?.id,
+      songId,
       title: lyricsTitle,
       lines,
       chords: lyricsChords,
-      audioUrl: selectedSong?.audioUrl,
-      youtubeId: selectedSong?.youtubeId,
-      hasTiming: selectedSong?.hasTiming,
-      timingData: timingData,
-      finglishLines: finglishLines
+      audioUrl,
+      youtubeId,
+      hasTiming,
+      timingData,
+      finglishLines
     };
 
     // If editing, update existing slide
