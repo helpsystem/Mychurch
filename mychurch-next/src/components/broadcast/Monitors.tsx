@@ -179,7 +179,7 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                     <div className="absolute inset-0 z-0 bg-black">
                         <VideoFeed stream={mediaStream} isMirrored={isMirrored} isBlur={isBlur} />
                     </div>
-                    <div className="absolute inset-0 z-10 pointer-events-none">
+                    <div className="absolute inset-0 z-10">
                         {renderSlideOrKaraoke(true, false)}
                     </div>
                 </>
