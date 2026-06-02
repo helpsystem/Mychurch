@@ -91,6 +91,8 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     const activeSlideIndex = useBroadcastStore((state) => state.activeSlideIndex);
     const internalPageIndex = useBroadcastStore((state) => state.internalPageIndex);
     const sessionId = useBroadcastStore((state) => state.sessionId);
+    const activeScriptureReference = useBroadcastStore((state) => state.activeScriptureReference);
+    const scripturePopupScale = useBroadcastStore((state) => state.scripturePopupScale);
 
     // Hardware and Config bindings
     const mediaStream = useBroadcastStore((state) => state.mediaStream);
@@ -146,6 +148,8 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                 isRemotePreview={isPreview}
                 internalPageIndex={internalPageIndex}
                 isTransparent={isTrans}
+                activeScriptureReference={activeScriptureReference}
+                scripturePopupScale={scripturePopupScale}
             />
         );
     };
