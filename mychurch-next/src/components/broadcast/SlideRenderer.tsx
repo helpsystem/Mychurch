@@ -79,9 +79,13 @@ const VerseNumberBadge = ({
     );
 };
 
-const StickyScriptureHeader = ({ children, tone }: { children: React.ReactNode; tone: 'emerald' | 'blue' }) => (
+const StickyScriptureHeader = ({ children, tone, isWavyPaper = false }: { children: React.ReactNode; tone: 'emerald' | 'blue'; isWavyPaper?: boolean }) => (
     <h4
-        className={`sticky top-0 z-20 inline-flex items-center rounded-full bg-slate-950/70 px-3 py-1.5 backdrop-blur-sm font-black shadow-sm ${tone === 'emerald' ? 'text-emerald-400 font-[Vazirmatn]' : 'text-blue-400'}`}
+        className={`sticky top-0 z-20 inline-flex items-center rounded-full px-3 py-1.5 backdrop-blur-sm font-black shadow-sm ${
+            isWavyPaper 
+                ? (tone === 'emerald' ? 'text-[#8a4d0f] bg-[#fffef0]/80 font-[Vazirmatn]' : 'text-[#8a4d0f] bg-[#fffef0]/80') 
+                : (tone === 'emerald' ? 'text-emerald-400 bg-slate-950/70 font-[Vazirmatn]' : 'text-blue-400 bg-slate-950/70')
+        }`}
         style={{ fontSize: '1.9rem', marginBottom: '0.7rem' }}
     >
         {children}
@@ -405,178 +409,178 @@ export function SlideRenderer({
                             <div
                                 className={`h-full min-h-0 rounded-3xl flex flex-col gap-0 overflow-hidden ${useWavyPaper ? 'border border-[#8a4d0f]/40 bg-[#fffef0]/90 shadow-[2px_3px_10px_rgba(0,0,0,0.25),inset_0_0_30px_#8a4d0f]' : 'border border-indigo-500/20 bg-black/30 backdrop-blur-sm'}`}
                             >
-                                {/* Header */}
-                                <div className="shrink-0 flex items-center justify-between" style={{ padding: `${headerPaddingY}rem ${headerPaddingX}rem`, borderBottom: `${headerBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.25)' : 'rgba(99,102,241,0.25)'}` }}>
-                                    <h2 className={`font-black leading-tight font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
-                                    <span style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold font-[Vazirmatn] ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
-                                        {references.length} آیه
-                                    </span>
-                                </div>
-
-                                {/* Column Labels */}
-                                <div className="shrink-0 grid grid-cols-2" style={{ padding: `${columnPaddingY}rem ${columnPaddingX}rem`, borderBottom: `${columnBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.15)' : 'rgba(99,102,241,0.15)'}` }}>
-                                    {columnOrder.map((column) => (
-                                        <div
-                                            key={column.dir}
-                                            dir={column.dir}
-                                            className={`text-${column.dir === 'rtl' ? 'right' : 'left'} font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'} ${column.dir === 'rtl' ? 'font-[Vazirmatn]' : ''}`}
-                                            style={{ fontFamily: column.dir === 'rtl' ? 'var(--font-vazirmatn)' : 'var(--font-inter)', fontSize: `${1.6 * slideZoom}rem` }}
-                                        >
-                                            {column.label}
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Reference Rows */}
-                                <div className="flex-1 min-h-0 overflow-y-auto" style={{ padding: `${rowGap}rem`, display: 'flex', flexDirection: 'column', gap: `${rowGap}rem` }}>
-                                    {references.map((ref, idx) => (
-                                        <button
-                                            key={ref.id}
-                                            type="button"
-                                            onClick={(e) => {
-                                                console.log(`[SlideRenderer] Coordinate clicked:`, ref);
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                                setActiveReference(ref);
-                                            }}
-                                            title={`${ref.bookName.fa} ${ref.chapter}:${ref.verses}`}
-                                            className={`w-full grid grid-cols-2 transition-all ${useWavyPaper ? 'border border-[#8a4d0f]/25 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/60 bg-slate-900/60 hover:bg-indigo-500/10 hover:border-indigo-500/50'}`}
-                                            style={{ borderRadius: `${1.2 * slideZoom}rem`, overflow: 'hidden' }}
-                                        >
-                                            {/* Farsi half element render function */}
-                                            {(() => {
-                                                const faHalf = (
-                                                    <div
-                                                        dir="rtl"
-                                                        className={`flex items-center gap-0 ${useWavyPaper ? (page.primaryLanguage === 'en' ? 'border-l border-[#8a4d0f]/15' : 'border-l border-[#8a4d0f]/15') : (page.primaryLanguage === 'en' ? 'border-l border-slate-700/40' : 'border-l border-slate-700/40')}`}
-                                                        style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: 'var(--font-vazirmatn)' }}
-                                                    >
-                                                        {/* Row badge */}
-                                                        <span
-                                                            className="shrink-0 font-black text-center"
-                                                            style={{
-                                                                fontSize: `${1.8 * slideZoom}rem`,
-                                                                minWidth: `${3 * slideZoom}rem`,
-                                                                height: `${3 * slideZoom}rem`,
-                                                                lineHeight: `${3 * slideZoom}rem`,
-                                                                borderRadius: `${0.6 * slideZoom}rem`,
-                                                                marginLeft: `${1 * slideZoom}rem`,
-                                                                background: 'rgba(251,191,36,0.2)',
-                                                                color: '#fbbf24',
-                                                                border: '1px solid rgba(251,191,36,0.35)',
-                                                            }}
-                                                        >{idx + 1}</span>
-                                                        {/* Book name */}
-                                                        <span
-                                                            className={`font-bold leading-snug font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
-                                                            style={{ fontSize: `${2.4 * slideZoom}rem`, marginLeft: `${0.5 * slideZoom}rem` }}
-                                                        >{ref.bookName.fa}</span>
-                                                        {/* Chapter:verse badge */}
-                                                        <span
-                                                            className="shrink-0 font-black tabular-nums"
-                                                            style={{
-                                                                fontSize: `${2 * slideZoom}rem`,
-                                                                padding: `${0.2 * slideZoom}rem ${0.7 * slideZoom}rem`,
-                                                                borderRadius: `${0.5 * slideZoom}rem`,
-                                                                marginRight: 'auto',
-                                                                background: useWavyPaper ? 'rgba(138,77,15,0.12)' : 'rgba(34,211,238,0.15)',
-                                                                color: useWavyPaper ? '#8a4d0f' : '#22d3ee',
-                                                                border: useWavyPaper ? '1px solid rgba(138,77,15,0.25)' : '1px solid rgba(34,211,238,0.3)',
-                                                            }}
-                                                        >{ref.chapter}:{ref.verses}</span>
-                                                    </div>
-                                                );
-
-                                                const enHalf = (
-                                                    <div
-                                                        dir="ltr"
-                                                        className="flex items-center"
-                                                        style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: 'var(--font-inter)' }}
-                                                    >
-                                                        {/* Row badge */}
-                                                        <span
-                                                            className="shrink-0 font-black text-center"
-                                                            style={{
-                                                                fontSize: `${1.8 * slideZoom}rem`,
-                                                                minWidth: `${3 * slideZoom}rem`,
-                                                                height: `${3 * slideZoom}rem`,
-                                                                lineHeight: `${3 * slideZoom}rem`,
-                                                                borderRadius: `${0.6 * slideZoom}rem`,
-                                                                marginRight: `${1 * slideZoom}rem`,
-                                                                background: 'rgba(251,191,36,0.2)',
-                                                                color: '#fbbf24',
-                                                                border: '1px solid rgba(251,191,36,0.35)',
-                                                            }}
-                                                        >{idx + 1}</span>
-                                                        {/* Book name */}
-                                                        <span
-                                                            className={`font-semibold leading-snug ${useWavyPaper ? 'text-[#5e4021]' : 'text-slate-200'}`}
-                                                            style={{ fontSize: `${2 * slideZoom}rem`, marginRight: `${0.5 * slideZoom}rem` }}
-                                                        >{ref.bookName.en}</span>
-                                                        {/* Chapter:verse badge */}
-                                                        <span
-                                                            className="shrink-0 font-black tabular-nums ml-auto"
-                                                            style={{
-                                                                fontSize: `${1.8 * slideZoom}rem`,
-                                                                padding: `${0.2 * slideZoom}rem ${0.7 * slideZoom}rem`,
-                                                                borderRadius: `${0.5 * slideZoom}rem`,
-                                                                marginLeft: 'auto',
-                                                                background: useWavyPaper ? 'rgba(138,77,15,0.12)' : 'rgba(34,211,238,0.15)',
-                                                                color: useWavyPaper ? '#8a4d0f' : '#22d3ee',
-                                                                border: useWavyPaper ? '1px solid rgba(138,77,15,0.25)' : '1px solid rgba(34,211,238,0.3)',
-                                                            }}
-                                                        >{ref.chapter}:{ref.verses}</span>
-                                                    </div>
-                                                );
-
-                                                return page.primaryLanguage === 'en' ? (
-                                                    <>
-                                                        {enHalf}
-                                                        {faHalf}
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        {faHalf}
-                                                        {enHalf}
-                                                    </>
-                                                );
-                                            })()}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-
-                            {activeReference && (
-                                <div className="absolute inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center z-50" style={{ padding: `${2.5 * slideZoom}rem` }}>
-                                    <div className="w-full h-full flex flex-col rounded-3xl overflow-hidden" style={{ border: `${0.15 * slideZoom}rem solid rgba(99,102,241,0.4)`, background: 'rgba(15,23,42,0.97)' }}>
+                                {!activeReference ? (
+                                    <>
                                         {/* Header */}
-                                        <div className="flex items-center justify-between shrink-0" style={{ padding: `${1.5 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${0.1 * slideZoom}rem solid rgba(99,102,241,0.2)` }}>
-                                            <div>
+                                        <div className="shrink-0 flex items-center justify-between" style={{ padding: `${headerPaddingY}rem ${headerPaddingX}rem`, borderBottom: `${headerBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.25)' : 'rgba(99,102,241,0.25)'}` }}>
+                                            <h2 className={`font-black leading-tight font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
+                                            <span style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold font-[Vazirmatn] ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
+                                                {references.length} آیه
+                                            </span>
+                                        </div>
+
+                                        {/* Column Labels */}
+                                        <div className="shrink-0 grid grid-cols-2" style={{ padding: `${columnPaddingY}rem ${columnPaddingX}rem`, borderBottom: `${columnBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.15)' : 'rgba(99,102,241,0.15)'}` }}>
+                                            {columnOrder.map((column) => (
+                                                <div
+                                                    key={column.dir}
+                                                    dir={column.dir}
+                                                    className={`text-${column.dir === 'rtl' ? 'right' : 'left'} font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'} ${column.dir === 'rtl' ? 'font-[Vazirmatn]' : ''}`}
+                                                    style={{ fontFamily: column.dir === 'rtl' ? 'var(--font-vazirmatn)' : 'var(--font-inter)', fontSize: `${1.6 * slideZoom}rem` }}
+                                                >
+                                                    {column.label}
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Reference Rows */}
+                                        <div className="flex-1 min-h-0 overflow-y-auto" style={{ padding: `${rowGap}rem`, display: 'flex', flexDirection: 'column', gap: `${rowGap}rem` }}>
+                                            {references.map((ref, idx) => (
+                                                <button
+                                                    key={ref.id}
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        console.log(`[SlideRenderer] Coordinate clicked:`, ref);
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        setActiveReference(ref);
+                                                    }}
+                                                    title={`${ref.bookName.fa} ${ref.chapter}:${ref.verses}`}
+                                                    className={`w-full grid grid-cols-2 transition-all ${useWavyPaper ? 'border border-[#8a4d0f]/25 bg-[#fffef0] hover:bg-[#f6eed9]' : 'border border-slate-700/60 bg-slate-900/60 hover:bg-indigo-500/10 hover:border-indigo-500/50'}`}
+                                                    style={{ borderRadius: `${1.2 * slideZoom}rem`, overflow: 'hidden' }}
+                                                >
+                                                    {/* Farsi half element render function */}
+                                                    {(() => {
+                                                        const faHalf = (
+                                                            <div
+                                                                dir="rtl"
+                                                                className={`flex items-center gap-0 ${useWavyPaper ? (page.primaryLanguage === 'en' ? 'border-l border-[#8a4d0f]/15' : 'border-l border-[#8a4d0f]/15') : (page.primaryLanguage === 'en' ? 'border-l border-slate-700/40' : 'border-l border-slate-700/40')}`}
+                                                                style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: 'var(--font-vazirmatn)' }}
+                                                            >
+                                                                {/* Row badge */}
+                                                                <span
+                                                                    className="shrink-0 font-black text-center"
+                                                                    style={{
+                                                                        fontSize: `${1.8 * slideZoom}rem`,
+                                                                        minWidth: `${3 * slideZoom}rem`,
+                                                                        height: `${3 * slideZoom}rem`,
+                                                                        lineHeight: `${3 * slideZoom}rem`,
+                                                                        borderRadius: `${0.6 * slideZoom}rem`,
+                                                                        marginLeft: `${1 * slideZoom}rem`,
+                                                                        background: 'rgba(251,191,36,0.2)',
+                                                                        color: '#fbbf24',
+                                                                        border: '1px solid rgba(251,191,36,0.35)',
+                                                                    }}
+                                                                >{idx + 1}</span>
+                                                                {/* Book name */}
+                                                                <span
+                                                                    className={`font-bold leading-snug font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
+                                                                    style={{ fontSize: `${2.4 * slideZoom}rem`, marginLeft: `${0.5 * slideZoom}rem` }}
+                                                                >{ref.bookName.fa}</span>
+                                                                {/* Chapter:verse badge */}
+                                                                <span
+                                                                    className="shrink-0 font-black tabular-nums"
+                                                                    style={{
+                                                                        fontSize: `${2 * slideZoom}rem`,
+                                                                        padding: `${0.2 * slideZoom}rem ${0.7 * slideZoom}rem`,
+                                                                        borderRadius: `${0.5 * slideZoom}rem`,
+                                                                        marginRight: 'auto',
+                                                                        background: useWavyPaper ? 'rgba(138,77,15,0.12)' : 'rgba(34,211,238,0.15)',
+                                                                        color: useWavyPaper ? '#8a4d0f' : '#22d3ee',
+                                                                        border: useWavyPaper ? '1px solid rgba(138,77,15,0.25)' : '1px solid rgba(34,211,238,0.3)',
+                                                                    }}
+                                                                >{ref.chapter}:{ref.verses}</span>
+                                                            </div>
+                                                        );
+
+                                                        const enHalf = (
+                                                            <div
+                                                                dir="ltr"
+                                                                className="flex items-center"
+                                                                style={{ padding: `${cellPaddingY}rem ${cellPaddingX}rem`, fontFamily: 'var(--font-inter)' }}
+                                                            >
+                                                                {/* Row badge */}
+                                                                <span
+                                                                    className="shrink-0 font-black text-center"
+                                                                    style={{
+                                                                        fontSize: `${1.8 * slideZoom}rem`,
+                                                                        minWidth: `${3 * slideZoom}rem`,
+                                                                        height: `${3 * slideZoom}rem`,
+                                                                        lineHeight: `${3 * slideZoom}rem`,
+                                                                        borderRadius: `${0.6 * slideZoom}rem`,
+                                                                        marginRight: `${1 * slideZoom}rem`,
+                                                                        background: 'rgba(251,191,36,0.2)',
+                                                                        color: '#fbbf24',
+                                                                        border: '1px solid rgba(251,191,36,0.35)',
+                                                                    }}
+                                                                >{idx + 1}</span>
+                                                                {/* Book name */}
+                                                                <span
+                                                                    className={`font-semibold leading-snug ${useWavyPaper ? 'text-[#5e4021]' : 'text-slate-200'}`}
+                                                                    style={{ fontSize: `${2 * slideZoom}rem`, marginRight: `${0.5 * slideZoom}rem` }}
+                                                                >{ref.bookName.en}</span>
+                                                                {/* Chapter:verse badge */}
+                                                                <span
+                                                                    className="shrink-0 font-black tabular-nums"
+                                                                    style={{
+                                                                        fontSize: `${1.8 * slideZoom}rem`,
+                                                                        padding: `${0.2 * slideZoom}rem ${0.7 * slideZoom}rem`,
+                                                                        borderRadius: `${0.5 * slideZoom}rem`,
+                                                                        marginLeft: 'auto',
+                                                                        background: useWavyPaper ? 'rgba(138,77,15,0.12)' : 'rgba(34,211,238,0.15)',
+                                                                        color: useWavyPaper ? '#8a4d0f' : '#22d3ee',
+                                                                        border: useWavyPaper ? '1px solid rgba(138,77,15,0.25)' : '1px solid rgba(34,211,238,0.3)',
+                                                                    }}
+                                                                >{ref.chapter}:{ref.verses}</span>
+                                                            </div>
+                                                        );
+
+                                                        return page.primaryLanguage === 'en' ? (
+                                                            <>
+                                                                {enHalf}
+                                                                {faHalf}
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                {faHalf}
+                                                                {enHalf}
+                                                            </>
+                                                        );
+                                                    })()}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        {/* Integrated Elegant Active Verse Header */}
+                                        <div className="shrink-0 flex items-center justify-between" style={{ padding: `${1.2 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${headerBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.2)' : 'rgba(99,102,241,0.2)'}` }}>
+                                            <div className="flex flex-col gap-0.5">
                                                 <h3
-                                                    className="font-black text-white"
+                                                    className={`font-black ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
                                                     style={{
-                                                        fontSize: `${4 * slideZoom}rem`,
-                                                        lineHeight: 1.2,
+                                                        fontSize: `${3 * slideZoom}rem`,
+                                                        lineHeight: 1.1,
                                                         fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)',
                                                     }}
                                                 >
                                                     {activeReference.bookName.fa} {activeReference.chapter}:{activeReference.verses}
                                                 </h3>
                                                 <p
-                                                    className="text-indigo-300 font-semibold"
+                                                    className={`font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-indigo-300'}`}
                                                     style={{
-                                                        fontSize: `${2.2 * slideZoom}rem`,
-                                                        marginTop: `${0.3 * slideZoom}rem`,
+                                                        fontSize: `${1.6 * slideZoom}rem`,
                                                         fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)',
                                                     }}
                                                 >
                                                     {activeReference.bookName.en} {activeReference.chapter}:{activeReference.verses}
                                                 </p>
                                             </div>
+
+                                            {/* Presenter Controls: Scale & Close */}
                                             <div className="flex items-center gap-3">
                                                 {!isRemotePreview && (
-                                                    <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-2xl p-1 shrink-0 font-[Vazirmatn]" dir="ltr">
+                                                    <div className={`flex items-center gap-1 border rounded-2xl p-1 shrink-0 font-[Vazirmatn] ${useWavyPaper ? 'border-[#8a4d0f]/20 bg-[#8a4d0f]/5' : 'border-white/10 bg-white/5'}`} dir="ltr">
                                                         <button 
                                                             type="button"
                                                             onClick={(e) => {
@@ -584,15 +588,15 @@ export function SlideRenderer({
                                                                 e.stopPropagation();
                                                                 setPopupScale(Math.max(0.5, popupScale - 0.1));
                                                             }} 
-                                                            className="text-slate-400 hover:text-white transition-all bg-white/5 hover:bg-white/10 font-black rounded-lg flex items-center justify-center cursor-pointer select-none"
-                                                            style={{ width: `${3.2 * slideZoom}rem`, height: `${3.2 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
+                                                            className={`hover:text-white transition-all font-black rounded-lg flex items-center justify-center cursor-pointer select-none ${useWavyPaper ? 'text-[#8a4d0f] hover:bg-[#8a4d0f]/15' : 'text-slate-400 bg-white/5 hover:bg-white/10'}`}
+                                                            style={{ width: `${2.8 * slideZoom}rem`, height: `${2.8 * slideZoom}rem`, fontSize: `${1.4 * slideZoom}rem` }}
                                                             title="کوچک‌تر کردن متن"
                                                         >
                                                             A-
                                                         </button>
                                                         <span 
-                                                            className="text-white font-bold text-center select-none"
-                                                            style={{ minWidth: `${4.5 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
+                                                            className={`font-bold text-center select-none ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
+                                                            style={{ minWidth: `${4 * slideZoom}rem`, fontSize: `${1.4 * slideZoom}rem` }}
                                                         >
                                                             {Math.round(popupScale * 100)}%
                                                         </span>
@@ -603,8 +607,8 @@ export function SlideRenderer({
                                                                 e.stopPropagation();
                                                                 setPopupScale(Math.min(3.0, popupScale + 0.1));
                                                             }} 
-                                                            className="text-slate-400 hover:text-white transition-all bg-white/5 hover:bg-white/10 font-black rounded-lg flex items-center justify-center cursor-pointer select-none"
-                                                            style={{ width: `${3.2 * slideZoom}rem`, height: `${3.2 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
+                                                            className={`hover:text-white transition-all font-black rounded-lg flex items-center justify-center cursor-pointer select-none ${useWavyPaper ? 'text-[#8a4d0f] hover:bg-[#8a4d0f]/15' : 'text-slate-400 bg-white/5 hover:bg-white/10'}`}
+                                                            style={{ width: `${2.8 * slideZoom}rem`, height: `${2.8 * slideZoom}rem`, fontSize: `${1.4 * slideZoom}rem` }}
                                                             title="بزرگ‌تر کردن متن"
                                                         >
                                                             A+
@@ -620,9 +624,9 @@ export function SlideRenderer({
                                                             e.stopPropagation();
                                                             setActiveReference(null);
                                                         }}
-                                                        title="بستن"
-                                                        className="rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold transition-all cursor-pointer"
-                                                        style={{ padding: `${0.8 * slideZoom}rem ${1.6 * slideZoom}rem`, fontSize: `${2 * slideZoom}rem` }}
+                                                        title="بازگشت به فهرست"
+                                                        className={`rounded-2xl font-bold transition-all cursor-pointer ${useWavyPaper ? 'bg-[#8a4d0f]/10 hover:bg-[#8a4d0f]/20 text-[#41290e]' : 'bg-white/10 hover:bg-white/20 text-white'}`}
+                                                        style={{ padding: `${0.6 * slideZoom}rem ${1.2 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
                                                     >
                                                         ✕
                                                     </button>
@@ -630,73 +634,147 @@ export function SlideRenderer({
                                             </div>
                                         </div>
 
-                                        {/* Body — two columns */}
-                                        <div className="flex-1 min-h-0 grid grid-cols-2 overflow-hidden" style={{ gap: 0 }}>
-                                            {(() => {
-                                                const faSide = (
-                                                    <div 
-                                                        ref={faScrollRef}
-                                                        onScroll={handleScrollFa}
-                                                        className="overflow-y-auto" 
-                                                        dir="rtl" 
-                                                        style={{ padding: `${2 * slideZoom}rem`, borderLeft: page.primaryLanguage !== 'en' ? `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)` : 'none', fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)' }}
-                                                    >
-                                                        <StickyScriptureHeader tone="emerald">
-                                                            متن فارسی
-                                                        </StickyScriptureHeader>
-                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
-                                                            {activeReference.textFa.map((line, i) => (
-                                                                <p key={`fa-${i}`} className="text-slate-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${2.8 * slideZoom * popupScale}rem` }}>
-                                                                    <VerseNumberBadge size="sm" isWavyPaper={useWavyPaper}>
-                                                                        {activeReference.verseNumbers[i] || ''}
-                                                                    </VerseNumberBadge>
-                                                                    {isNonEmptyText(line) ? line : renderMissingVerseMarker(true)}
-                                                                </p>
-                                                            ))}
+                                        {/* Body with columns: 78% Active Verse columns + 22% mini sidebar */}
+                                        <div className="flex-1 min-h-0 flex overflow-hidden" style={{ gap: 0 }}>
+                                            {/* Left Side: Active Verse Columns (78% width) */}
+                                            <div className="flex-1 min-h-0 grid grid-cols-2 overflow-hidden" style={{ width: '78%' }}>
+                                                {(() => {
+                                                    const faSide = (
+                                                        <div 
+                                                            ref={faScrollRef}
+                                                            onScroll={handleScrollFa}
+                                                            className="overflow-y-auto" 
+                                                            dir="rtl" 
+                                                            style={{ 
+                                                                padding: `${2 * slideZoom}rem`, 
+                                                                borderLeft: page.primaryLanguage !== 'en' ? `${0.1 * slideZoom}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.15)' : 'rgba(99,102,241,0.15)'}` : 'none', 
+                                                                fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)' 
+                                                            }}
+                                                        >
+                                                            <StickyScriptureHeader tone="emerald" isWavyPaper={useWavyPaper}>
+                                                                متن فارسی
+                                                            </StickyScriptureHeader>
+                                                            <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
+                                                                {activeReference.textFa.map((line, i) => (
+                                                                    <p 
+                                                                        key={`fa-${i}`} 
+                                                                        className={`leading-relaxed font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-slate-100'}`} 
+                                                                        style={{ fontSize: `${2.8 * slideZoom * popupScale}rem` }}
+                                                                    >
+                                                                        <VerseNumberBadge size="sm" isWavyPaper={useWavyPaper}>
+                                                                            {activeReference.verseNumbers[i] || ''}
+                                                                        </VerseNumberBadge>
+                                                                        {isNonEmptyText(line) ? line : renderMissingVerseMarker(true)}
+                                                                    </p>
+                                                                ))}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                );
+                                                    );
 
-                                                const enSide = (
-                                                    <div 
-                                                        ref={enScrollRef}
-                                                        onScroll={handleScrollEn}
-                                                        className="overflow-y-auto" 
-                                                        dir="ltr" 
-                                                        style={{ padding: `${2 * slideZoom}rem`, borderRight: page.primaryLanguage === 'en' ? `${0.1 * slideZoom}rem solid rgba(99,102,241,0.15)` : 'none', fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)' }}
-                                                    >
-                                                        <StickyScriptureHeader tone="blue">
-                                                            English Text
-                                                        </StickyScriptureHeader>
-                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
-                                                            {activeReference.textEn.map((line, i) => (
-                                                                <p key={`en-${i}`} className="text-slate-200 leading-relaxed" style={{ fontSize: `${2.2 * slideZoom * popupScale}rem` }}>
-                                                                    <VerseNumberBadge size="sm" isWavyPaper={useWavyPaper}>
-                                                                        {activeReference.verseNumbers[i] || ''}
-                                                                    </VerseNumberBadge>
-                                                                    {isNonEmptyText(line) ? line : renderMissingVerseMarker(false)}
-                                                                </p>
-                                                            ))}
+                                                    const enSide = (
+                                                        <div 
+                                                            ref={enScrollRef}
+                                                            onScroll={handleScrollEn}
+                                                            className="overflow-y-auto" 
+                                                            dir="ltr" 
+                                                            style={{ 
+                                                                padding: `${2 * slideZoom}rem`, 
+                                                                borderRight: page.primaryLanguage === 'en' ? `${0.1 * slideZoom}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.15)' : 'rgba(99,102,241,0.15)'}` : 'none', 
+                                                                fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)' 
+                                                            }}
+                                                        >
+                                                            <StickyScriptureHeader tone="blue" isWavyPaper={useWavyPaper}>
+                                                                English Text
+                                                            </StickyScriptureHeader>
+                                                            <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
+                                                                {activeReference.textEn.map((line, i) => (
+                                                                    <p 
+                                                                        key={`en-${i}`} 
+                                                                        className={`leading-relaxed ${useWavyPaper ? 'text-[#5e4021]' : 'text-slate-200'}`} 
+                                                                        style={{ fontSize: `${2.2 * slideZoom * popupScale}rem` }}
+                                                                    >
+                                                                        <VerseNumberBadge size="sm" isWavyPaper={useWavyPaper}>
+                                                                            {activeReference.verseNumbers[i] || ''}
+                                                                        </VerseNumberBadge>
+                                                                        {isNonEmptyText(line) ? line : renderMissingVerseMarker(false)}
+                                                                    </p>
+                                                                ))}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                );
+                                                    );
 
-                                                return page.primaryLanguage === 'en' ? (
-                                                    <>
-                                                        {enSide}
-                                                        {faSide}
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        {faSide}
-                                                        {enSide}
-                                                    </>
-                                                );
-                                            })()}
+                                                    return page.primaryLanguage === 'en' ? (
+                                                        <>
+                                                            {enSide}
+                                                            {faSide}
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            {faSide}
+                                                            {enSide}
+                                                        </>
+                                                    );
+                                                })()}
+                                            </div>
+
+                                            {/* Right Side: Floating Mini-List Column (22% width) */}
+                                            <div 
+                                                className={`shrink-0 flex flex-col overflow-hidden relative ${useWavyPaper ? 'bg-[#8a4d0f]/5' : 'bg-slate-950/30'}`} 
+                                                style={{ 
+                                                    width: '22%', 
+                                                    borderLeft: `${0.1 * slideZoom}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.15)' : 'rgba(99,102,241,0.2)'}` 
+                                                }}
+                                            >
+                                                {/* Mini List Header */}
+                                                <div className={`p-4 text-right shrink-0 border-b ${useWavyPaper ? 'border-[#8a4d0f]/15' : 'border-indigo-500/15'}`} dir="rtl">
+                                                    <h4 className={`font-bold text-[1.4rem] font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>لیست آیات انتخابی</h4>
+                                                    <p className={`text-[0.95rem] mt-1 font-[Vazirmatn] ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`}>
+                                                        {isRemotePreview ? 'آیه فعال با رنگ طلایی مشخص است' : 'جهت پخش روی آیه کلیک کنید'}
+                                                    </p>
+                                                </div>
+
+                                                {/* Mini List Scrollable Area */}
+                                                <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
+                                                    {references.map((ref, idx) => {
+                                                        const isActive = activeReference.id === ref.id;
+                                                        return (
+                                                            <button
+                                                                key={ref.id}
+                                                                type="button"
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    e.stopPropagation();
+                                                                    setActiveReference(ref);
+                                                                }}
+                                                                className={`w-full text-right p-3 transition-all rounded-xl border flex flex-col gap-1 ${
+                                                                    isActive 
+                                                                        ? 'bg-amber-500/15 border-amber-500/60 shadow-[0_0_12px_rgba(245,158,11,0.15)]' 
+                                                                        : useWavyPaper 
+                                                                            ? 'bg-white/50 border-[#8a4d0f]/15 hover:bg-[#8a4d0f]/10 hover:border-[#8a4d0f]/30' 
+                                                                            : 'bg-slate-950/40 border-slate-800/60 hover:bg-indigo-500/5 hover:border-indigo-500/25'
+                                                                }`}
+                                                            >
+                                                                <div className="flex items-center justify-between w-full" dir="rtl">
+                                                                    <span className={`font-bold text-[1.2rem] font-[Vazirmatn] flex items-center gap-1.5 ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}>
+                                                                        {isActive && <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />}
+                                                                        {ref.bookName.fa}
+                                                                    </span>
+                                                                    <span className="text-[0.95rem] font-black text-amber-400 tabular-nums">
+                                                                        {ref.chapter}:{ref.verses}
+                                                                    </span>
+                                                                </div>
+                                                                <div className={`text-[0.9rem] font-mono tracking-wider truncate text-left w-full ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`} dir="ltr">
+                                                                    {ref.bookName.en}
+                                                                </div>
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            )}
+                                    </>
+                                )}
+                            </div>
                         </div>
                     );
                 }
