@@ -23,6 +23,7 @@ interface SmartWorshipPlayerProps {
     textShadow?: boolean;
     objectFit?: 'cover' | 'contain' | 'fill';
     isTransparent?: boolean;
+    theme?: 'parchment' | 'darkSlate';
 }
 
 export const getSafeAudioUrl = (url: string | undefined): string => {
@@ -59,7 +60,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     backgroundBlur = 0,
     textShadow = true,
     objectFit = 'cover',
-    isTransparent = false
+    isTransparent = false,
+    theme = 'darkSlate'
 }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -71,6 +73,14 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     const [showEnglish, setShowEnglish] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [audioError, setAudioError] = useState(false);
+
+    const activeItemRef = useRef<HTMLButtonElement>(null);
+    const sidebarRef = useRef<HTMLDivElement>(null);
+
+    const isParchment = theme === 'parchment' || 
+                        backgroundImage?.includes('wavy') || 
+                        backgroundImage?.includes('paper') || 
+                        backgroundImage?.includes('fffef0');
     
     // For live timing correction - persistent per audio file
     const [syncDelay, setSyncDelay] = useState<number>(() => {
@@ -86,6 +96,36 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             window.localStorage.setItem(`worship_sync_${encodeURIComponent(audioSrc.slice(-50))}`, syncDelay.toString());
         }
     }, [syncDelay, audioSrc]);
+
+    // Scroll to active item on line change
+    useEffect(() => {
+        if (activeItemRef.current) {
+            activeItemRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+        }
+    }, [currentTime]); // Trigger scroll when time changes (which dynamically shifts the active line index)
+
+    // Handle sidebar line click to seek
+    const handleLineClick = (index: number) => {
+        if (viewOnly) return; 
+        const line = lines[index];
+        if (!line) return;
+        const startTime = line.words[0]?.start_time || 0;
+        
+        if (audioRef.current) {
+            audioRef.current.currentTime = startTime;
+            setCurrentTime(startTime);
+            if (onTimeUpdate) {
+                onTimeUpdate(startTime);
+            }
+            if (!isPlaying) {
+                audioRef.current.play();
+                setIsPlaying(true);
+            }
+        }
+    };
 
     // Normalized data handling
     const [lines, setLines] = useState<LineSegment[]>([]);
@@ -260,108 +300,203 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             ref={containerRef}
             dir="rtl"
             onContextMenu={(e) => e.preventDefault()}
-            className={`relative overflow-hidden text-white font-sans select-none ${isFullscreen ? 'h-screen w-screen' : 'w-full aspect-video rounded-2xl shadow-2xl'} ${isTransparent ? 'bg-transparent' : 'bg-black'}`}
+            className={`relative overflow-hidden text-white font-sans select-none ${isFullscreen ? 'h-screen w-screen' : 'w-full aspect-video rounded-2xl shadow-2xl'} ${isTransparent ? 'bg-transparent' : isParchment ? 'bg-[#fffef0]' : 'bg-black'}`}
             style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" }}
         >
             {/* Background - with fallback gradient */}
             {!isTransparent && (
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
-                    {backgroundImage && (
-                        <img
-                            src={backgroundImage}
-                            alt="Background"
-                            className="w-full h-full transition-all duration-300 transform scale-105"
-                            style={{
-                                objectFit: objectFit,
-                                opacity: backgroundOpacity / 100,
-                                filter: `blur(${backgroundBlur}px)`
-                            }}
-                            onError={(e) => e.currentTarget.style.display = 'none'}
-                        />
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    {isParchment ? (
+                        <div className="absolute inset-0 overflow-hidden bg-[#fffef0]">
+                            {renderWavyPaperFilter('wavyWorshipBg', 12, 2)}
+                            <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(0,0,0,0.03)_1px,transparent_1px)] [background-size:4px_4px]" />
+                        </div>
+                    ) : (
+                        <>
+                            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
+                            {backgroundImage && (
+                                <img
+                                    src={backgroundImage}
+                                    alt="Background"
+                                    className="w-full h-full transition-all duration-300 transform scale-105"
+                                    style={{
+                                        objectFit: objectFit,
+                                        opacity: backgroundOpacity / 100,
+                                        filter: `blur(${backgroundBlur}px)`
+                                    }}
+                                    onError={(e) => e.currentTarget.style.display = 'none'}
+                                />
+                            )}
+                            {/* Standard overlay for readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60" />
+                        </>
                     )}
-                    {/* Gradient Overlay removed or made optional? Keeping standard overlay for readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60" />
                 </div>
             )}
 
-            {/* Content Layer */}
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-8 lg:p-16">
-                <AnimatePresence mode='wait'>
-                    {lines.length > 0 && displayLineIndex < lines.length && (
-                        <motion.div
-                            key={displayLineIndex}
-                            initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                            animate={{
-                                opacity: 1,
-                                y: 0,
-                                scale: 1,
-                            }}
-                            exit={{ opacity: 0, y: -30, scale: 0.9 }}
-                            transition={{ duration: 0.4, ease: 'easeOut' }}
-                            className={`text-center w-full px-4 ${textShadow ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]' : ''}`}
-                            dir="rtl"
-                        >
-                            {/* Primary Language Block (Synchronized Words) */}
-                            {((showPersian && !getTranslationForLine(displayLineIndex, 'persian')) || 
-                              (showFinglish && !getTranslationForLine(displayLineIndex, 'finglish')) ||
-                              (!showPersian && !showFinglish && !showEnglish)) && (
-                                <div className="font-[Vazirmatn] font-black text-4xl lg:text-6xl text-white drop-shadow-[0_0_20px_rgba(0,0,0,0.8)] leading-relaxed">
-                                    {lines[displayLineIndex].words.map((word, wIdx) => {
-                                        const isActive = effectiveTime >= word.start_time && effectiveTime <= word.end_time;
-                                        const isPast = effectiveTime > word.end_time;
-                                        return (
-                                            <span
-                                                key={wIdx}
-                                                className={`inline-block mx-1 lg:mx-2 transition-all duration-200 ${isActive
-                                                    ? 'text-teal-300 scale-110 drop-shadow-[0_0_15px_rgba(94,234,212,0.8)]'
-                                                    : isPast
-                                                        ? 'text-white/70'
-                                                        : 'text-white/50'
-                                                    }`}
-                                            >
-                                                {word.word}
-                                            </span>
-                                        );
-                                    })}
-                                </div>
-                            )}
+            {/* Content Layer (Split Layout) */}
+            <div 
+                className="absolute inset-0 z-10 flex flex-row overflow-hidden"
+                style={{ 
+                    direction: 'ltr',
+                    bottom: viewOnly ? 0 : '140px' 
+                }}
+            >
+                {/* Left Side: Main Active Lyric View (78% width) */}
+                <div className="w-[78%] h-full flex flex-col items-center justify-center p-6 lg:p-12 relative overflow-hidden" style={{ direction: 'rtl' }}>
+                    <AnimatePresence mode='wait'>
+                        {lines.length > 0 && displayLineIndex < lines.length && (
+                            <motion.div
+                                key={displayLineIndex}
+                                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                    scale: 1,
+                                }}
+                                exit={{ opacity: 0, y: -30, scale: 0.9 }}
+                                transition={{ duration: 0.4, ease: 'easeOut' }}
+                                className={`text-center w-full px-4 ${textShadow ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]' : ''}`}
+                                dir="rtl"
+                            >
+                                {/* Primary Language Block (Synchronized Words) */}
+                                {((showPersian && !getTranslationForLine(displayLineIndex, 'persian')) || 
+                                  (showFinglish && !getTranslationForLine(displayLineIndex, 'finglish')) ||
+                                  (!showPersian && !showFinglish && !showEnglish)) && (
+                                    <div className={`font-[Vazirmatn] font-black text-4xl lg:text-6xl drop-shadow-[0_0_20px_rgba(0,0,0,0.8)] leading-relaxed ${isParchment ? 'text-[#41290e]' : 'text-white'}`}>
+                                        {lines[displayLineIndex].words.map((word, wIdx) => {
+                                            const isActive = effectiveTime >= word.start_time && effectiveTime <= word.end_time;
+                                            const isPast = effectiveTime > word.end_time;
+                                            return (
+                                                <span
+                                                    key={wIdx}
+                                                    className={`inline-block mx-1 lg:mx-2 transition-all duration-200 ${isActive
+                                                        ? isParchment
+                                                            ? 'text-[#c27c13] scale-110 drop-shadow-[0_0_10px_rgba(194,124,19,0.4)]'
+                                                            : 'text-teal-300 scale-110 drop-shadow-[0_0_15px_rgba(94,234,212,0.8)]'
+                                                        : isPast
+                                                            ? isParchment ? 'text-[#41290e]/70' : 'text-white/70'
+                                                            : isParchment ? 'text-[#41290e]/40' : 'text-white/50'
+                                                        }`}
+                                                >
+                                                    {word.word}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+                                )}
 
-                            {/* Persian Translation Block (If primary is not Persian or forced) */}
-                            {showPersian && getTranslationForLine(displayLineIndex, 'persian') && (
-                                <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                                    <p className="font-[Vazirmatn] font-bold text-3xl lg:text-5xl text-white drop-shadow-lg leading-relaxed">
-                                        {getTranslationForLine(displayLineIndex, 'persian')}
-                                    </p>
-                                </div>
-                            )}
+                                {/* Persian Translation Block */}
+                                {showPersian && getTranslationForLine(displayLineIndex, 'persian') && (
+                                    <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                        <p className={`font-[Vazirmatn] font-bold text-3xl lg:text-5xl drop-shadow-lg leading-relaxed ${isParchment ? 'text-[#41290e]' : 'text-white'}`}>
+                                            {getTranslationForLine(displayLineIndex, 'persian')}
+                                        </p>
+                                    </div>
+                                )}
 
-                            {showFinglish && getTranslationForLine(displayLineIndex, 'finglish') && (
-                                <div className="mt-4 lg:mt-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                                    <p className="font-mono text-xl lg:text-3xl text-teal-400 font-bold drop-shadow-md tracking-wider uppercase opacity-90" dir="ltr">
-                                        {getTranslationForLine(displayLineIndex, 'finglish')}
-                                    </p>
-                                </div>
-                            )}
+                                {/* Finglish Translation Block */}
+                                {showFinglish && getTranslationForLine(displayLineIndex, 'finglish') && (
+                                    <div className="mt-4 lg:mt-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                        <p className={`font-mono text-xl lg:text-3xl font-bold drop-shadow-md tracking-wider uppercase opacity-90 ${isParchment ? 'text-[#c27c13]' : 'text-teal-400'}`} dir="ltr">
+                                            {getTranslationForLine(displayLineIndex, 'finglish')}
+                                        </p>
+                                    </div>
+                                )}
 
-                            {showEnglish && getTranslationForLine(displayLineIndex, 'english') && (
-                                <div className="mt-2 lg:mt-4 animate-in fade-in slide-in-from-bottom-1 duration-700">
-                                    <p className="font-sans text-lg lg:text-2xl text-indigo-300 font-medium drop-shadow-sm tracking-wide italic opacity-80" dir="ltr">
-                                        {getTranslationForLine(displayLineIndex, 'english')}
-                                    </p>
-                                </div>
-                            )}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                                {/* English Translation Block */}
+                                {showEnglish && getTranslationForLine(displayLineIndex, 'english') && (
+                                    <div className="mt-2 lg:mt-4 animate-in fade-in slide-in-from-bottom-1 duration-700">
+                                        <p className={`font-sans text-lg lg:text-2xl font-medium drop-shadow-sm tracking-wide italic opacity-80 ${isParchment ? 'text-[#5e4021]' : 'text-indigo-300'}`} dir="ltr">
+                                            {getTranslationForLine(displayLineIndex, 'english')}
+                                        </p>
+                                    </div>
+                                )}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
 
+                {/* Right Side: Scrollable Sidebar Lyrics List (22% width) */}
+                <div 
+                    ref={sidebarRef}
+                    className={`w-[22%] h-full shrink-0 flex flex-col overflow-hidden border-l relative ${
+                        isParchment 
+                            ? 'bg-[#8a4d0f]/5 border-[#8a4d0f]/20 bg-[#fffef0]/95 shadow-[inset_0_0_20px_rgba(138,77,15,0.08)]' 
+                            : isTransparent
+                                ? 'bg-black/40 border-white/10 backdrop-blur-md'
+                                : 'bg-slate-950/40 border-white/10 backdrop-blur-md'
+                    }`} 
+                    style={{ 
+                        direction: 'rtl',
+                        filter: isParchment ? 'url(#wavyWorshipBg)' : 'none'
+                    }}
+                >
+                    {/* Sidebar Header */}
+                    <div className={`p-4 text-right shrink-0 border-b ${isParchment ? 'border-[#8a4d0f]/15' : 'border-white/10'}`} dir="rtl">
+                        <h4 className={`font-bold text-[1.2rem] font-[Vazirmatn] ${isParchment ? 'text-[#41290e]' : 'text-indigo-300'}`}>لیست خطوط سرود</h4>
+                        <p className={`text-[0.85rem] mt-0.5 font-[Vazirmatn] ${isParchment ? 'text-[#8a4d0f]' : 'text-slate-400'}`}>
+                            {viewOnly ? 'خط فعال با رنگ طلایی مشخص است' : 'جهت پخش روی خط کلیک کنید'}
+                        </p>
+                    </div>
 
+                    {/* Scrollable Lines List */}
+                    <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
+                        {lines.map((line, idx) => {
+                            const isActive = displayLineIndex === idx;
+                            const pText = getTranslationForLine(idx, 'persian') || line.content || line.words.map(w => w.word).join(' ');
+                            const fText = getTranslationForLine(idx, 'finglish');
+                            const eText = getTranslationForLine(idx, 'english');
+                            
+                            return (
+                                <button
+                                    key={idx}
+                                    ref={isActive ? activeItemRef : null}
+                                    type="button"
+                                    onClick={() => handleLineClick(idx)}
+                                    title={viewOnly ? 'خط فعال' : 'کلیک برای پرش به این زمان'}
+                                    className={`w-full text-right p-3 transition-all rounded-xl border flex flex-col gap-1 text-right items-stretch ${
+                                        isActive 
+                                            ? isParchment
+                                                ? 'bg-[#8a4d0f]/15 border-amber-600 shadow-[0_0_12px_rgba(217,119,6,0.3)]'
+                                                : 'bg-amber-500/20 border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.35)]' 
+                                            : isParchment 
+                                                ? 'bg-white/60 border-[#8a4d0f]/15 hover:bg-[#8a4d0f]/10 text-[#41290e]' 
+                                                : 'bg-slate-900/40 border-slate-800/60 hover:bg-white/5 text-slate-300'
+                                    }`}
+                                >
+                                    <div className="flex items-center justify-between w-full gap-2" dir="rtl">
+                                        <span className={`font-bold text-sm lg:text-base font-[Vazirmatn] flex items-center gap-1.5 ${
+                                            isActive 
+                                                ? isParchment ? 'text-amber-700' : 'text-amber-400' 
+                                                : isParchment 
+                                                    ? 'text-[#41290e]' 
+                                                    : 'text-white'
+                                        }`}>
+                                            {isActive && <span className="w-2 h-2 bg-amber-400 rounded-full shrink-0" />}
+                                            <span className="leading-snug text-right w-full">{pText}</span>
+                                        </span>
+                                    </div>
+                                    {fText && (
+                                        <div className={`text-[0.75rem] font-mono tracking-wider truncate text-left w-full ${isActive ? (isParchment ? 'text-amber-800' : 'text-teal-300') : isParchment ? 'text-[#8a4d0f]' : 'text-teal-400'}`} dir="ltr">
+                                            {fText}
+                                        </div>
+                                    )}
+                                    {eText && (
+                                        <div className={`text-[0.72rem] font-sans italic truncate text-left w-full ${isActive ? (isParchment ? 'text-amber-900/80' : 'text-indigo-300') : isParchment ? 'text-[#5e4021]' : 'text-slate-400'}`} dir="ltr">
+                                            {eText}
+                                        </div>
+                                    )}
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
 
             {/* Controls Layer - Hidden in viewOnly mode */}
             {!viewOnly && (
                 <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-4 lg:p-6" dir="ltr">
-
                     {/* Progress Bar */}
                     <div
                         className="w-full h-2 bg-slate-700/60 rounded-full mb-4 cursor-pointer overflow-hidden group shadow-inner"
@@ -552,6 +687,16 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
         </div>
     );
 };
+
+const renderWavyPaperFilter = (id: string, scale: number, seed: number) => (
+    <svg className="absolute w-0 h-0" aria-hidden="true" focusable="false">
+        <filter id={id}>
+            <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed={seed} />
+            <feDisplacementMap in="SourceGraphic" scale={scale} />
+        </filter>
+    </svg>
+);
+
 export default SmartWorshipPlayer;
 
 function formatTime(seconds: number) {
