@@ -52,7 +52,7 @@ export async function initializeWorshipDB() {
                 created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
             );
 
-            CREATE TABLE IF NOT EXISTS user_likes (
+            CREATE TABLE IF NOT EXISTS church_worship_song_likes (
                 user_id UUID,
                 song_id UUID REFERENCES church_worship_songs(id) ON DELETE CASCADE,
                 created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
@@ -180,12 +180,12 @@ export async function toggleSongVerification(id: string, isVerified: boolean): P
 export async function toggleLikeWorshipSong(songId: string, userId: string): Promise<{ success: boolean; liked: boolean; count: number }> {
     try {
         const { rows: existingLike } = await query(
-            "SELECT 1 FROM user_likes WHERE user_id = $1 AND song_id = $2",
+            "SELECT 1 FROM church_worship_song_likes WHERE user_id = $1 AND song_id = $2",
             [userId, songId]
         );
 
         if (existingLike.length > 0) {
-            await query("DELETE FROM user_likes WHERE user_id = $1 AND song_id = $2", [userId, songId]);
+            await query("DELETE FROM church_worship_song_likes WHERE user_id = $1 AND song_id = $2", [userId, songId]);
             const { rows } = await query(
                 "UPDATE church_worship_songs SET likes_count = GREATEST(0, likes_count - 1) WHERE id = $1 RETURNING likes_count",
                 [songId]
@@ -193,7 +193,7 @@ export async function toggleLikeWorshipSong(songId: string, userId: string): Pro
             revalidatePath('/worship');
             return { success: true, liked: false, count: rows[0].likes_count || 0 };
         } else {
-            await query("INSERT INTO user_likes (user_id, song_id) VALUES ($1, $2)", [userId, songId]);
+            await query("INSERT INTO church_worship_song_likes (user_id, song_id) VALUES ($1, $2)", [userId, songId]);
             const { rows } = await query(
                 "UPDATE church_worship_songs SET likes_count = likes_count + 1 WHERE id = $1 RETURNING likes_count",
                 [songId]
@@ -204,6 +204,19 @@ export async function toggleLikeWorshipSong(songId: string, userId: string): Pro
     } catch (e) {
         console.error('Error toggling like', e);
         return { success: false, liked: false, count: 0 };
+    }
+}
+
+export async function getUserLikedSongs(userId: string): Promise<string[]> {
+    try {
+        const { rows } = await query(
+            "SELECT song_id FROM church_worship_song_likes WHERE user_id = $1",
+            [userId]
+        );
+        return rows.map(r => r.song_id);
+    } catch (e) {
+        console.error("Error fetching user liked songs", e);
+        return [];
     }
 }
 

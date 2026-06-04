@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { type WorshipSong, toggleLikeWorshipSong } from "@/actions/worship";
+import { type WorshipSong, toggleLikeWorshipSong, getUserLikedSongs } from "@/actions/worship";
 import dynamic from 'next/dynamic';
 import { cn } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/client";
@@ -74,14 +74,8 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
       setUser(user);
 
       if (user) {
-        const { data: likes } = await supabase
-          .from('user_likes')
-          .select('song_id')
-          .eq('user_id', user.id);
-        
-        if (likes) {
-          setLikedSongs(new Set(likes.map(l => l.song_id)));
-        }
+        const likes = await getUserLikedSongs(user.id);
+        setLikedSongs(new Set(likes));
       }
     };
     init();
