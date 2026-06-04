@@ -470,7 +470,12 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
             </div>
           )}
           {activeTab === "chords" && (
-            <div className="space-y-4">
+            <div className="space-y-4 select-text font-sans">
+              {hasSeparateChords && song.chords && (
+                <pre className="whitespace-pre-wrap font-mono text-sm sm:text-base leading-relaxed p-4 bg-secondary/40 rounded-2xl border border-border/80 text-foreground" dir="ltr">
+                  {song.chords}
+                </pre>
+              )}
               {lyricsHaveChords && song.lyrics_fa && (
                 <SongSectionsAccordion lyrics={song.lyrics_fa} showChords={true} />
               )}
