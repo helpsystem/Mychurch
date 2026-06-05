@@ -94,7 +94,10 @@ export default function LoginPage() {
 
                         <div className="space-y-1.5">
                             <label className="text-sm font-bold text-white/90 flex justify-between font-[Vazirmatn]" htmlFor="password">
-                                <span className="font-sans text-white/90">Password</span>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="font-sans text-white/90">Password</span>
+                                    <span className="text-xs text-white/50 font-normal font-[Vazirmatn]">(در صورت فراموشی با مدیر تماس بگیرید)</span>
+                                </div>
                                 <span className="text-white/90">رمز عبور</span>
                             </label>
                             <div className="relative">
