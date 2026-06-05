@@ -36,6 +36,66 @@ const BACKGROUND_PRESETS = [
   { id: 'gradient6', name: 'کلیسا', type: 'gradient' as const, value: 'from-slate-900 via-indigo-900 to-purple-950' },
 ];
 
+// Normalize any format (flat array, legacy System V2, TranscriptData) into a standard nested lines object
+export function normalizeTimingData(data: any): any {
+  if (!data) return null;
+
+  // Case 1: Standard SystemTimingV2 format
+  if (data.version && Array.isArray(data.lines)) {
+    return data;
+  }
+
+  // Case 2: TranscriptData format
+  if (Array.isArray(data.lines) && !data.version) {
+    return {
+      songId: data.songId || 0,
+      version: "2.0",
+      totalDuration: data.totalDuration || 0,
+      lines: data.lines.map((l: any) => ({
+        line: l.content || l.line || '',
+        start: l.start !== undefined ? l.start : (l.words?.[0]?.start_time || 0),
+        end: l.end !== undefined ? l.end : (l.words?.[l.words.length - 1]?.end_time || 0),
+        translations: l.translations || {},
+        words: (l.words || []).map((w: any) => ({
+          word: w.word || '',
+          start: w.start !== undefined ? w.start : (w.start_time || 0),
+          end: w.end !== undefined ? w.end : (w.end_time || 0),
+          finglish: w.finglish || null,
+          english: w.english || null
+        }))
+      }))
+    };
+  }
+
+  // Case 3: Flat array format (e.g. raw timing.json array)
+  if (Array.isArray(data)) {
+    return {
+      songId: 0,
+      version: "2.0",
+      totalDuration: 0,
+      lines: data.map((l: any) => ({
+        line: l.content || l.line || '',
+        start: l.start !== undefined ? l.start : (l.words?.[0]?.start_time || 0),
+        end: l.end !== undefined ? l.end : (l.words?.[l.words.length - 1]?.end_time || 0),
+        translations: l.translations || {
+          persian: l.translations?.persian || '',
+          english: l.translations?.english || '',
+          finglish: l.translations?.finglish || ''
+        },
+        words: (l.words || []).map((w: any) => ({
+          word: w.word || '',
+          start: w.start !== undefined ? w.start : (w.start_time || w.start || 0),
+          end: w.end !== undefined ? w.end : (w.end_time || w.end || 0),
+          finglish: w.finglish || null,
+          english: w.english || null
+        }))
+      }))
+    };
+  }
+
+  return null;
+}
+
 export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
   lang,
   onSelectSong,
@@ -97,7 +157,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
     setSelectedSong(song);
     setStep('configure');
 
-    // Always try to load timing data from multiple paths
+    // Always try to load timing data from multiple paths first
     const timingPaths = [
       `/worship/data/timings/song_${song.id}_timing.json`,
       `/worship/timing/${song.id}_timing.json`,
@@ -118,11 +178,29 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
       }
     }
 
-    if (loadedTiming) {
-      setTimingData(loadedTiming);
+    let finalTiming = normalizeTimingData(loadedTiming);
+    
+    // Fall back to database timing_data if no static files found
+    if (!finalTiming && song.timing_data) {
+      let dbTiming: any = song.timing_data;
+      if (typeof dbTiming === 'string') {
+        try {
+          dbTiming = JSON.parse(dbTiming);
+        } catch (e) {
+          dbTiming = null;
+        }
+      }
+      finalTiming = normalizeTimingData(dbTiming);
+      if (finalTiming) {
+        console.log('✅ [WorshipSongSelector] Timing loaded from database.');
+      }
+    }
+
+    if (finalTiming) {
+      setTimingData(finalTiming);
       console.log('📊 [WorshipSongSelector] Timing data:', {
-        linesCount: loadedTiming.lines?.length,
-        hasWords: loadedTiming.lines?.[0]?.words?.length > 0
+        linesCount: finalTiming.lines?.length,
+        hasWords: finalTiming.lines?.[0]?.words?.length > 0
       });
     } else {
       console.log('⚠️ [WorshipSongSelector] No timing data for song', song.id);
@@ -195,7 +273,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
       timingData,
       glassPopupEnabled: true,
       finglishLines: timingData?.lines?.map((l: any) =>
-        l.words?.map((w: any) => w.finglish || w.word).join(' ')
+        l.translations?.finglish || l.words?.map((w: any) => w.finglish || w.word).join(' ')
       )
     };
   };

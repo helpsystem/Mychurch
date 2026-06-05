@@ -407,8 +407,10 @@ function ViewerContent() {
             const englishPopupLines = (lyricsContent.lyricsEnLines || []).map(line => line.trim()).filter(Boolean);
 
             if (lyricsContent.timingData && lyricsContent.audioUrl) {
+                const displayOpts = lyricsContent.displayOptions;
+
                 return (
-                    <div className="fixed inset-0 bg-gradient-to-br from-purple-950 via-fuchsia-900 to-pink-950">
+                    <div className="fixed inset-0 bg-black">
                         {lyricsPopupEnabled && (
                             <button
                                 data-allow-interaction="true"
@@ -424,6 +426,14 @@ function ViewerContent() {
                             title={lyricsContent.title}
                             viewOnly={true}
                             externalCurrentTime={state.audioCurrentTime}
+                            backgroundImage={displayOpts?.backgroundUrl}
+                            backgroundOpacity={displayOpts?.backgroundOpacity}
+                            backgroundBlur={displayOpts?.backgroundBlur}
+                            textShadow={displayOpts?.textShadow}
+                            objectFit={displayOpts?.objectFit}
+                            showPersian={displayOpts?.showFarsiLyrics}
+                            showFinglish={displayOpts?.showFinglish}
+                            showEnglish={displayOpts?.showEnglishLyrics}
                             translations={{
                                 finglish: lyricsContent.finglishLines
                             }}

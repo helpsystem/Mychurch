@@ -24,6 +24,9 @@ interface SmartWorshipPlayerProps {
     objectFit?: 'cover' | 'contain' | 'fill';
     isTransparent?: boolean;
     theme?: 'parchment' | 'darkSlate';
+    showPersian?: boolean;
+    showFinglish?: boolean;
+    showEnglish?: boolean;
 }
 
 export const getSafeAudioUrl = (url: string | undefined): string => {
@@ -46,6 +49,66 @@ export const getSafeAudioUrl = (url: string | undefined): string => {
     return encodeURI(decodeURI(normalized));
 };
 
+// Normalize any format (flat array, legacy System V2, TranscriptData) into standard SystemTimingV2 format
+export function normalizeTimingData(data: any): any {
+    if (!data) return null;
+
+    // Case 1: Standard SystemTimingV2 format
+    if (data.version && Array.isArray(data.lines)) {
+        return data;
+    }
+
+    // Case 2: TranscriptData format
+    if (Array.isArray(data.lines) && !data.version) {
+        return {
+            songId: data.songId || 0,
+            version: "2.0",
+            totalDuration: data.totalDuration || 0,
+            lines: data.lines.map((l: any) => ({
+                line: l.content || l.line || '',
+                start: l.start !== undefined ? l.start : (l.words?.[0]?.start_time || 0),
+                end: l.end !== undefined ? l.end : (l.words?.[l.words.length - 1]?.end_time || 0),
+                translations: l.translations || {},
+                words: (l.words || []).map((w: any) => ({
+                    word: w.word || '',
+                    start: w.start !== undefined ? w.start : (w.start_time || 0),
+                    end: w.end !== undefined ? w.end : (w.end_time || 0),
+                    finglish: w.finglish || null,
+                    english: w.english || null
+                }))
+            }))
+        };
+    }
+
+    // Case 3: Flat array format (e.g. raw timing.json array)
+    if (Array.isArray(data)) {
+        return {
+            songId: 0,
+            version: "2.0",
+            totalDuration: 0,
+            lines: data.map((l: any) => ({
+                line: l.content || l.line || '',
+                start: l.start !== undefined ? l.start : (l.words?.[0]?.start_time || 0),
+                end: l.end !== undefined ? l.end : (l.words?.[l.words.length - 1]?.end_time || 0),
+                translations: l.translations || {
+                    persian: l.translations?.persian || '',
+                    english: l.translations?.english || '',
+                    finglish: l.translations?.finglish || ''
+                },
+                words: (l.words || []).map((w: any) => ({
+                    word: w.word || '',
+                    start: w.start !== undefined ? w.start : (w.start_time || w.start || 0),
+                    end: w.end !== undefined ? w.end : (w.end_time || w.end || 0),
+                    finglish: w.finglish || null,
+                    english: w.english || null
+                }))
+            }))
+        };
+    }
+
+    return null;
+}
+
 export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     timingData,
     audioSrc,
@@ -61,18 +124,34 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     textShadow = true,
     objectFit = 'cover',
     isTransparent = false,
-    theme = 'darkSlate'
+    theme = 'darkSlate',
+    showPersian: initialShowPersian = true,
+    showFinglish: initialShowFinglish = true,
+    showEnglish: initialShowEnglish = false
 }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(1);
     const [isMuted, setIsMuted] = useState(false);
-    const [showPersian, setShowPersian] = useState(true);
-    const [showFinglish, setShowFinglish] = useState(true);
-    const [showEnglish, setShowEnglish] = useState(false);
+    const [showPersian, setShowPersian] = useState(initialShowPersian);
+    const [showFinglish, setShowFinglish] = useState(initialShowFinglish);
+    const [showEnglish, setShowEnglish] = useState(initialShowEnglish);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [audioError, setAudioError] = useState(false);
+
+    // Sync visibility settings if props change
+    useEffect(() => {
+        if (initialShowPersian !== undefined) setShowPersian(initialShowPersian);
+    }, [initialShowPersian]);
+
+    useEffect(() => {
+        if (initialShowFinglish !== undefined) setShowFinglish(initialShowFinglish);
+    }, [initialShowFinglish]);
+
+    useEffect(() => {
+        if (initialShowEnglish !== undefined) setShowEnglish(initialShowEnglish);
+    }, [initialShowEnglish]);
 
     const activeItemRef = useRef<HTMLButtonElement>(null);
     const sidebarRef = useRef<HTMLDivElement>(null);
@@ -142,25 +221,26 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
         console.log('📊 Timing data received:', timingData);
 
-        if ('version' in timingData) {
-            // SystemTimingV2
-            console.log('✅ Converting SystemV2 format, lines count:', timingData.lines.length);
-            const converted: LineSegment[] = timingData.lines.map(l => ({
+        const normalized = normalizeTimingData(timingData);
+        if (normalized && Array.isArray(normalized.lines)) {
+            console.log('✅ Normalized timing format, lines count:', normalized.lines.length);
+            const converted: LineSegment[] = normalized.lines.map((l: any) => ({
                 type: 'lyric',
                 content: l.line,
                 translations: l.translations,
-                words: l.words.map(w => ({
+                words: l.words.map((w: any) => ({
                     word: w.word,
                     start_time: w.start,
                     end_time: w.end,
+                    finglish: w.finglish,
+                    english: w.english
                 }))
             }));
             setLines(converted);
-            console.log('✅ Converted lines:', converted.length);
+            console.log('✅ Loaded lines:', converted.length);
         } else {
-            // TranscriptData
-            console.log('✅ Using TranscriptData format, lines count:', timingData.lines.length);
-            setLines(timingData.lines);
+            console.log('⚠️ Failed to normalize timing data');
+            setLines([]);
         }
     }, [timingData]);
 
@@ -295,6 +375,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
         }
     };
 
+    const isGradientBg = backgroundImage && (backgroundImage.startsWith('from-') || backgroundImage.includes('gradient') || backgroundImage.includes('via-') || backgroundImage.includes('to-'));
+
     return (
         <div
             ref={containerRef}
@@ -313,19 +395,31 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                         </div>
                     ) : (
                         <>
-                            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
-                            {backgroundImage && (
-                                <img
-                                    src={backgroundImage}
-                                    alt="Background"
-                                    className="w-full h-full transition-all duration-300 transform scale-105"
+                            {isGradientBg ? (
+                                <div 
+                                    className={`absolute inset-0 bg-gradient-to-br ${backgroundImage}`}
                                     style={{
-                                        objectFit: objectFit,
                                         opacity: backgroundOpacity / 100,
                                         filter: `blur(${backgroundBlur}px)`
                                     }}
-                                    onError={(e) => e.currentTarget.style.display = 'none'}
                                 />
+                            ) : (
+                                <>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
+                                    {backgroundImage && (
+                                        <img
+                                            src={backgroundImage}
+                                            alt="Background"
+                                            className="w-full h-full transition-all duration-300 transform scale-105"
+                                            style={{
+                                                objectFit: objectFit,
+                                                opacity: backgroundOpacity / 100,
+                                                filter: `blur(${backgroundBlur}px)`
+                                            }}
+                                            onError={(e) => e.currentTarget.style.display = 'none'}
+                                        />
+                                    )}
+                                </>
                             )}
                             {/* Standard overlay for readability */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60" />
@@ -342,8 +436,11 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                     bottom: viewOnly ? 0 : '140px' 
                 }}
             >
-                {/* Left Side: Main Active Lyric View (78% width) */}
-                <div className="w-[78%] h-full flex flex-col items-center justify-center p-6 lg:p-12 relative overflow-hidden" style={{ direction: 'rtl' }}>
+                {/* Left Side: Main Active Lyric View (100% width if viewOnly, otherwise 78% width) */}
+                <div 
+                    className={`${viewOnly ? 'w-full px-8 lg:px-20' : 'w-[78%] p-6 lg:p-12'} h-full flex flex-col items-center justify-center relative overflow-hidden`} 
+                    style={{ direction: 'rtl' }}
+                >
                     <AnimatePresence mode='wait'>
                         {lines.length > 0 && displayLineIndex < lines.length && (
                             <motion.div
@@ -356,9 +453,9 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 }}
                                 exit={{ opacity: 0, y: -30, scale: 0.9 }}
                                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                                className={`text-center w-full px-4 ${textShadow ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]' : ''}`}
+                                className={`text-center w-full px-4 ${textShadow ? 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.95)] drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)]' : ''}`}
                                 dir="rtl"
-                            >
+                             >
                                 {/* Primary Language Block (Synchronized Words) */}
                                 {((showPersian && !getTranslationForLine(displayLineIndex, 'persian')) || 
                                   (showFinglish && !getTranslationForLine(displayLineIndex, 'finglish')) ||
@@ -372,8 +469,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                                     key={wIdx}
                                                     className={`inline-block mx-1 lg:mx-2 transition-all duration-200 ${isActive
                                                         ? isParchment
-                                                            ? 'text-[#c27c13] scale-110 drop-shadow-[0_0_10px_rgba(194,124,19,0.4)]'
-                                                            : 'text-teal-300 scale-110 drop-shadow-[0_0_15px_rgba(94,234,212,0.8)]'
+                                                            ? 'text-[#c27c13] scale-110 drop-shadow-[0_0_10px_rgba(194,124,19,0.4)] font-black'
+                                                            : 'text-teal-300 scale-110 drop-shadow-[0_0_15px_rgba(94,234,212,0.8)] font-black'
                                                         : isPast
                                                             ? isParchment ? 'text-[#41290e]/70' : 'text-white/70'
                                                             : isParchment ? 'text-[#41290e]/40' : 'text-white/50'
@@ -384,12 +481,15 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                             );
                                         })}
                                     </div>
-                                )}
+                                  )}
 
                                 {/* Persian Translation Block */}
                                 {showPersian && getTranslationForLine(displayLineIndex, 'persian') && (
                                     <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                                        <p className={`font-[Vazirmatn] font-bold text-3xl lg:text-5xl drop-shadow-lg leading-relaxed ${isParchment ? 'text-[#41290e]' : 'text-white'}`}>
+                                        <p 
+                                            className={`font-[Vazirmatn] font-black text-3xl lg:text-5xl leading-relaxed ${isParchment ? 'text-[#41290e]' : 'text-white'}`}
+                                            style={{ textShadow: textShadow && !isParchment ? '0 4px 12px rgba(0,0,0,0.95), 0 0 25px rgba(0,0,0,0.8)' : undefined }}
+                                        >
                                             {getTranslationForLine(displayLineIndex, 'persian')}
                                         </p>
                                     </div>
@@ -398,7 +498,11 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 {/* Finglish Translation Block */}
                                 {showFinglish && getTranslationForLine(displayLineIndex, 'finglish') && (
                                     <div className="mt-4 lg:mt-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                                        <p className={`font-mono text-xl lg:text-3xl font-bold drop-shadow-md tracking-wider uppercase opacity-90 ${isParchment ? 'text-[#c27c13]' : 'text-teal-400'}`} dir="ltr">
+                                        <p 
+                                            className={`font-mono text-xl lg:text-3xl font-black tracking-wider uppercase opacity-90 ${isParchment ? 'text-[#c27c13]' : 'text-teal-400'}`} 
+                                            dir="ltr"
+                                            style={{ textShadow: textShadow && !isParchment ? '0 2px 8px rgba(0,0,0,0.95), 0 0 15px rgba(20,184,166,0.4)' : undefined }}
+                                        >
                                             {getTranslationForLine(displayLineIndex, 'finglish')}
                                         </p>
                                     </div>
@@ -407,7 +511,11 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 {/* English Translation Block */}
                                 {showEnglish && getTranslationForLine(displayLineIndex, 'english') && (
                                     <div className="mt-2 lg:mt-4 animate-in fade-in slide-in-from-bottom-1 duration-700">
-                                        <p className={`font-sans text-lg lg:text-2xl font-medium drop-shadow-sm tracking-wide italic opacity-80 ${isParchment ? 'text-[#5e4021]' : 'text-indigo-300'}`} dir="ltr">
+                                        <p 
+                                            className={`font-sans text-lg lg:text-2xl font-bold tracking-wide italic opacity-85 ${isParchment ? 'text-[#5e4021]' : 'text-indigo-300'}`} 
+                                            dir="ltr"
+                                            style={{ textShadow: textShadow && !isParchment ? '0 2px 8px rgba(0,0,0,0.95), 0 0 15px rgba(99,102,241,0.3)' : undefined }}
+                                        >
                                             {getTranslationForLine(displayLineIndex, 'english')}
                                         </p>
                                     </div>
@@ -417,28 +525,29 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                     </AnimatePresence>
                 </div>
 
-                {/* Right Side: Scrollable Sidebar Lyrics List (22% width) */}
-                <div 
-                    ref={sidebarRef}
-                    className={`w-[22%] h-full shrink-0 flex flex-col overflow-hidden border-l relative ${
-                        isParchment 
-                            ? 'bg-[#8a4d0f]/5 border-[#8a4d0f]/20 bg-[#fffef0]/95 shadow-[inset_0_0_20px_rgba(138,77,15,0.08)]' 
-                            : isTransparent
-                                ? 'bg-black/40 border-white/10 backdrop-blur-md'
-                                : 'bg-slate-950/40 border-white/10 backdrop-blur-md'
-                    }`} 
-                    style={{ 
-                        direction: 'rtl',
-                        filter: isParchment ? 'url(#wavyWorshipBg)' : 'none'
-                    }}
-                >
-                    {/* Sidebar Header */}
-                    <div className={`p-4 text-right shrink-0 border-b ${isParchment ? 'border-[#8a4d0f]/15' : 'border-white/10'}`} dir="rtl">
-                        <h4 className={`font-bold text-[1.2rem] font-[Vazirmatn] ${isParchment ? 'text-[#41290e]' : 'text-indigo-300'}`}>لیست خطوط سرود</h4>
-                        <p className={`text-[0.85rem] mt-0.5 font-[Vazirmatn] ${isParchment ? 'text-[#8a4d0f]' : 'text-slate-400'}`}>
-                            {viewOnly ? 'خط فعال با رنگ طلایی مشخص است' : 'جهت پخش روی خط کلیک کنید'}
-                        </p>
-                    </div>
+                {/* Right Side: Scrollable Sidebar Lyrics List (22% width) - ONLY if not viewOnly */}
+                {!viewOnly && (
+                    <div 
+                        ref={sidebarRef}
+                        className={`w-[22%] h-full shrink-0 flex flex-col overflow-hidden border-l relative ${
+                            isParchment 
+                                ? 'bg-[#8a4d0f]/5 border-[#8a4d0f]/20 bg-[#fffef0]/95 shadow-[inset_0_0_20px_rgba(138,77,15,0.08)]' 
+                                : isTransparent
+                                    ? 'bg-black/40 border-white/10 backdrop-blur-md'
+                                    : 'bg-slate-950/40 border-white/10 backdrop-blur-md'
+                        }`} 
+                        style={{ 
+                            direction: 'rtl',
+                            filter: isParchment ? 'url(#wavyWorshipBg)' : 'none'
+                        }}
+                    >
+                        {/* Sidebar Header */}
+                        <div className={`p-4 text-right shrink-0 border-b ${isParchment ? 'border-[#8a4d0f]/15' : 'border-white/10'}`} dir="rtl">
+                            <h4 className={`font-bold text-[1.2rem] font-[Vazirmatn] ${isParchment ? 'text-[#41290e]' : 'text-indigo-300'}`}>لیست خطوط سرود</h4>
+                            <p className={`text-[0.85rem] mt-0.5 font-[Vazirmatn] ${isParchment ? 'text-[#8a4d0f]' : 'text-slate-400'}`}>
+                                جهت پخش روی خط کلیک کنید
+                            </p>
+                        </div>
 
                     {/* Scrollable Lines List */}
                     <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
@@ -492,6 +601,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                         })}
                     </div>
                 </div>
+                )}
             </div>
 
             {/* Controls Layer - Hidden in viewOnly mode */}

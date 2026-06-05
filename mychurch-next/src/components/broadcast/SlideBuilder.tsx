@@ -48,6 +48,66 @@ type LibraryAsset = {
   modifiedAt: number;
 };
 
+// Normalize any format (flat array, legacy System V2, TranscriptData) into a standard nested lines object
+function normalizeTimingData(data: any): any {
+  if (!data) return null;
+
+  // Case 1: Standard SystemTimingV2 format
+  if (data.version && Array.isArray(data.lines)) {
+    return data;
+  }
+
+  // Case 2: TranscriptData format
+  if (Array.isArray(data.lines) && !data.version) {
+    return {
+      songId: data.songId || 0,
+      version: "2.0",
+      totalDuration: data.totalDuration || 0,
+      lines: data.lines.map((l: any) => ({
+        line: l.content || l.line || '',
+        start: l.start !== undefined ? l.start : (l.words?.[0]?.start_time || 0),
+        end: l.end !== undefined ? l.end : (l.words?.[l.words.length - 1]?.end_time || 0),
+        translations: l.translations || {},
+        words: (l.words || []).map((w: any) => ({
+          word: w.word || '',
+          start: w.start !== undefined ? w.start : (w.start_time || 0),
+          end: w.end !== undefined ? w.end : (w.end_time || 0),
+          finglish: w.finglish || null,
+          english: w.english || null
+        }))
+      }))
+    };
+  }
+
+  // Case 3: Flat array format (e.g. raw timing.json array)
+  if (Array.isArray(data)) {
+    return {
+      songId: 0,
+      version: "2.0",
+      totalDuration: 0,
+      lines: data.map((l: any) => ({
+        line: l.content || l.line || '',
+        start: l.start !== undefined ? l.start : (l.words?.[0]?.start_time || 0),
+        end: l.end !== undefined ? l.end : (l.words?.[l.words.length - 1]?.end_time || 0),
+        translations: l.translations || {
+          persian: l.translations?.persian || '',
+          english: l.translations?.english || '',
+          finglish: l.translations?.finglish || ''
+        },
+        words: (l.words || []).map((w: any) => ({
+          word: w.word || '',
+          start: w.start !== undefined ? w.start : (w.start_time || w.start || 0),
+          end: w.end !== undefined ? w.end : (w.end_time || w.end || 0),
+          finglish: w.finglish || null,
+          english: w.english || null
+        }))
+      }))
+    };
+  }
+
+  return null;
+}
+
 export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   session,
   setSession,
@@ -547,6 +607,9 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         console.log('✅ Loaded timing directly from database');
     }
 
+    // Normalize timing data
+    timingData = normalizeTimingData(timingData);
+
     if (timingData) {
       // Store timing in song object temporarily
       (song as any)._timingData = timingData;
@@ -585,7 +648,11 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     // Retrieve existing slide content if editing to preserve metadata
     const existingContent = editingSlideIndex !== null ? (session.slides[editingSlideIndex]?.content as SlideContentLyrics) : null;
 
-    const timingData = (selectedSong as any)?._timingData || existingContent?.timingData;
+    let timingData = (selectedSong as any)?._timingData || existingContent?.timingData;
+    
+    // Normalize existing timing data just in case
+    timingData = normalizeTimingData(timingData);
+
     const songId = selectedSong?.id || existingContent?.songId;
     const audioUrl = selectedSong?.audioUrl || existingContent?.audioUrl;
     const youtubeId = selectedSong?.youtubeId || existingContent?.youtubeId;
@@ -595,6 +662,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     let finglishLines = existingContent?.finglishLines;
     if (timingData?.lines) {
       finglishLines = timingData.lines.map((line: any) => {
+        if (line.translations?.finglish) return line.translations.finglish;
         // Get finglish from word array
         if (line.words && Array.isArray(line.words)) {
           return line.words.map((w: any) => w.finglish || '').join(' ').trim();
