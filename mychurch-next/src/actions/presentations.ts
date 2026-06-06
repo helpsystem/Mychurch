@@ -4,6 +4,7 @@ import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { BroadcastSession } from "@/types/broadcast";
 import { requireRole } from "@/utils/rbac";
+import { mergeSlidesWithLatestSongData } from "@/lib/presentation-helper";
 
 async function ensureBroadcastAccess() {
     await requireRole(["Admin", "Leader", "Operator"]);
@@ -120,7 +121,11 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
             ORDER BY COALESCE(date, created_at, NOW()) DESC, created_at DESC
         `);
         
-        return rows.map(rowToSession);
+        const sessions = rows.map(rowToSession);
+        for (const session of sessions) {
+            session.slides = await mergeSlidesWithLatestSongData(session.slides);
+        }
+        return sessions;
     } catch (error) {
         console.error('[Action] Database unreachable, falling back to mock presentations.');
         return [...mockPresentations].sort((a, b) => b.date.getTime() - a.date.getTime());
@@ -134,7 +139,9 @@ export async function getPresentationById(id: string): Promise<BroadcastSession 
         const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
         if (rows.length === 0) return null;
         
-        return rowToSession(rows[0]);
+        const session = rowToSession(rows[0]);
+        session.slides = await mergeSlidesWithLatestSongData(session.slides);
+        return session;
     } catch (error) {
         console.error('[Action] Database unreachable, fallback to mock fetch.');
         return mockPresentations.find(p => p.id === id) || null;

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { query } from "@/lib/db";
 import crypto from "crypto";
+import { mergeSlidesWithLatestSongData } from "@/lib/presentation-helper";
 
 const MAX_SESSION_ID_LENGTH = 128;
 
@@ -111,7 +112,9 @@ export async function GET(req: NextRequest) {
       rawSlides = [];
     }
 
-    return NextResponse.json({ ok: true, sessionId: row.id, slides: rawSlides });
+    const mergedSlides = await mergeSlidesWithLatestSongData(rawSlides);
+
+    return NextResponse.json({ ok: true, sessionId: row.id, slides: mergedSlides });
   } catch {
     return NextResponse.json({ ok: false, error: "db-error" }, { status: 500 });
   }
