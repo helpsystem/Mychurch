@@ -43,9 +43,12 @@ export const getSafeAudioUrl = (url: string | undefined): string => {
         return `/api/worship-audio?url=${encodeURIComponent(url)}`;
     }
     
-    // Normalize: trim whitespace and strip any spaces/encoded-spaces right before .mp3
-    // This acts as a safety net even if the DB still has a trailing space
-    let normalized = url.trim().replace(/(?:\s|%20)+\.mp3$/i, '.mp3');
+    // Normalize: trim whitespace and strip any spaces (including multiple) right before the file extension
+    // Handles: "سرود برکت .mp3" -> "سرود برکت.mp3"
+    // Also handles encoded spaces: "name%20.mp3" -> "name.mp3"
+    let normalized = url.trim()
+        .replace(/\s+(\.[a-zA-Z0-9]+)$/i, '$1')  // strip trailing spaces before extension
+        .replace(/(%20)+(\.[a-zA-Z0-9]+)$/i, '$2'); // strip encoded trailing spaces before extension
     
     // For local files, simply encode the URI properly
     return encodeURI(decodeURI(normalized));
