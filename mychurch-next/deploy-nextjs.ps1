@@ -81,32 +81,44 @@ mkdir -p /var/www/storage/media
 mkdir -p /var/www/storage/worship/audio
 
 # If public/uploads is a directory, migrate its contents and replace it with a symlink
-if [ -d public/uploads ] && [ ! -L public/uploads ]; then
-    echo 'Migrating public/uploads to persistent storage...'
-    cp -rn public/uploads/. /var/www/storage/uploads/ || true
-    rm -rf public/uploads
+if mountpoint -q public/uploads; then
+    echo "public/uploads is a mountpoint, skipping symlink setup."
+else
+    if [ -d public/uploads ] && [ ! -L public/uploads ]; then
+        echo 'Migrating public/uploads to persistent storage...'
+        cp -rn public/uploads/. /var/www/storage/uploads/ || true
+        rm -rf public/uploads
+    fi
+    rm -f public/uploads
+    ln -sfn /var/www/storage/uploads public/uploads
 fi
-rm -f public/uploads
-ln -sfn /var/www/storage/uploads public/uploads
 
 # If public/media is a directory, migrate its contents and replace it with a symlink
-if [ -d public/media ] && [ ! -L public/media ]; then
-    echo 'Migrating public/media to persistent storage...'
-    cp -rn public/media/. /var/www/storage/media/ || true
-    rm -rf public/media
+if mountpoint -q public/media; then
+    echo "public/media is a mountpoint, skipping symlink setup."
+else
+    if [ -d public/media ] && [ ! -L public/media ]; then
+        echo 'Migrating public/media to persistent storage...'
+        cp -rn public/media/. /var/www/storage/media/ || true
+        rm -rf public/media
+    fi
+    rm -f public/media
+    ln -sfn /var/www/storage/media public/media
 fi
-rm -f public/media
-ln -sfn /var/www/storage/media public/media
 
 # If public/worship/audio is a directory, migrate its contents and replace it with a symlink
-if [ -d public/worship/audio ] && [ ! -L public/worship/audio ]; then
-    echo 'Migrating public/worship/audio to persistent storage...'
-    cp -rn public/worship/audio/. /var/www/storage/worship/audio/ || true
-    rm -rf public/worship/audio
+if mountpoint -q public/worship/audio; then
+    echo "public/worship/audio is a mountpoint, skipping symlink setup."
+else
+    if [ -d public/worship/audio ] && [ ! -L public/worship/audio ]; then
+        echo 'Migrating public/worship/audio to persistent storage...'
+        cp -rn public/worship/audio/. /var/www/storage/worship/audio/ || true
+        rm -rf public/worship/audio
+    fi
+    rm -f public/worship/audio
+    mkdir -p public/worship
+    ln -sfn /var/www/storage/worship/audio public/worship/audio
 fi
-rm -f public/worship/audio
-mkdir -p public/worship
-ln -sfn /var/www/storage/worship/audio public/worship/audio
 
 # Ensure correct permissions
 chown -R www-data:www-data /var/www/storage/uploads /var/www/storage/media /var/www/storage/worship || true
