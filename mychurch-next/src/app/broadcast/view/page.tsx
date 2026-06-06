@@ -12,17 +12,14 @@
 import React, { useEffect, useState, useRef, Suspense, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useWebSocketSync } from '@/components/broadcast/hooks/useWebSocketSync';
-import { SmartWorshipPlayer } from '@/components/worship/SmartWorshipPlayer';
+import { SmartWorshipPlayer, getSafeAudioUrl } from '@/components/worship/SmartWorshipPlayer';
 import AmenBadge from '@/components/broadcast/AmenBadge';
 import { SlideRenderer } from '@/components/broadcast/SlideRenderer';
 import {
     Slide,
     BroadcastOverlayConfig,
     SlideType,
-    SlideContentScripture,
     SlideContentLyrics,
-    SlideContentMedia,
-    SlideContentAnnouncement
 } from '@/types/broadcast';
 
 interface ViewerState {
@@ -418,6 +415,7 @@ function ViewerContent() {
             const lyricsPopupTitleEn = lyricsContent.titleEn || lyricsContent.title;
             const farsiPopupLines = (lyricsContent.lines || []).map(line => stripChordMarkers(line.text)).filter(Boolean);
             const englishPopupLines = (lyricsContent.lyricsEnLines || []).map(line => line.trim()).filter(Boolean);
+            const safeAudioUrl = getSafeAudioUrl(lyricsContent.audioUrl);
 
             if (lyricsContent.timingData) {
                 const displayOpts = lyricsContent.displayOptions;
@@ -435,7 +433,7 @@ function ViewerContent() {
                         )}
                         <SmartWorshipPlayer
                             timingData={lyricsContent.timingData}
-                            audioSrc={lyricsContent.audioUrl || ''}
+                            audioSrc={safeAudioUrl}
                             title={lyricsContent.title}
                             viewOnly={true}
                             externalCurrentTime={state.audioCurrentTime}
@@ -484,34 +482,15 @@ function ViewerContent() {
                 );
             }
 
-            let displayLines: Array<{ text: string; isChorus?: boolean }> = [];
-            if (lyricsContent.lines?.length > 0) {
-                displayLines = lyricsContent.lines.map(line => ({
-                    ...line,
-                    text: stripChordMarkers(line.text)
-                }));
-            } else if (lyricsContent.timingData?.lines && Array.isArray(lyricsContent.timingData.lines)) {
-                displayLines = lyricsContent.timingData.lines.map((l: any) => ({
-                    text: stripChordMarkers(l.line || ''),
-                    isChorus: l.label?.toLowerCase().includes('chorus') || false
-                }));
-            }
-
-            let finglishLines = lyricsContent.finglishLines;
-            if (!finglishLines && lyricsContent.timingData?.lines) {
-                finglishLines = (lyricsContent.timingData.lines as any[]).map((line: any) => {
-                    if (line.words && Array.isArray(line.words)) {
-                        return line.words.map((w: any) => w.finglish || '').join(' ').trim();
-                    }
-                    return '';
-                });
-            }
-
+            // ✅ Use SlideRenderer for non-timing lyrics — same component as console preview
+            // This ensures 100% visual consistency between the presenter and projector views
             return (
                 <div className="fixed inset-0 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-950 via-fuchsia-900 to-pink-950">
-                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pink-600/20 via-transparent to-transparent animate-pulse"></div>
-                    </div>
+                    <SlideRenderer
+                        slide={slide}
+                        isRemotePreview={true}
+                        internalPageIndex={state.internalPageIndex}
+                    />
                     {lyricsPopupEnabled && (
                         <button
                             data-allow-interaction="true"
@@ -521,136 +500,27 @@ function ViewerContent() {
                             {showGlassPopup ? '✕ بستن / Close' : '🎵 متن دوزبانه / Bilingual'}
                         </button>
                     )}
-
-                    <div className="absolute top-20 left-20 text-white/5 text-8xl animate-bounce pointer-events-none" style={{ animationDuration: '3s' }}>🎵</div>
-                    <div className="absolute bottom-20 right-20 text-white/5 text-8xl animate-bounce pointer-events-none" style={{ animationDuration: '4s', animationDelay: '0.5s' }}>🎶</div>
-
-                    <div className="relative flex flex-col h-full">
-                        <div className="flex-shrink-0 p-6 bg-gradient-to-r from-pink-600/80 via-purple-600/80 to-pink-600/80">
-                            <h2 className="text-5xl font-bold text-white text-center drop-shadow-2xl font-[Vazirmatn]" style={{ textShadow: '0 0 40px rgba(236, 72, 153, 0.6)' }}>
-                                🎵 {lyricsContent.title}
-                            </h2>
-                        </div>
-                        <div className="flex-1 overflow-y-auto p-8">
-                            <div className="text-center max-w-5xl mx-auto space-y-8 pb-32">
-                                {displayLines.map((line: any, idx: number) => {
-                                    const isActive = idx === state.internalPageIndex;
-                                    return (
-                                        <div 
-                                            key={idx} 
-                                            ref={isActive ? activeLineRef : null}
-                                            className={`text-center transition-all duration-500 px-6 py-4 rounded-3xl ${
-                                                isActive 
-                                                    ? 'scale-110 opacity-100 bg-white/5 border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.4)]' 
-                                                    : 'opacity-20 scale-95'
-                                            }`}
-                                        >
-                                            <p 
-                                                className={`text-4xl lg:text-5xl leading-[1.8] font-bold transition-all duration-300 font-[Vazirmatn] ${
-                                                    line.isChorus 
-                                                        ? 'text-yellow-200 scale-105 border-l-4 border-r-4 border-yellow-400/50 px-6 py-2' 
-                                                        : isActive 
-                                                            ? 'text-cyan-300 font-black' 
-                                                            : 'text-white'
-                                                }`} 
-                                                style={{ 
-                                                    textShadow: line.isChorus 
-                                                        ? '0 0 30px rgba(253, 224, 71, 0.6), 0 0 60px rgba(253, 224, 71, 0.4)' 
-                                                        : isActive 
-                                                            ? '0 0 15px rgba(34, 211, 238, 0.8)' 
-                                                            : '0 4px 12px rgba(0, 0, 0, 0.6)' 
-                                                }}
-                                            >
-                                                {line.text}
-                                            </p>
-                                            {finglishLines?.[idx] && (
-                                                <p 
-                                                    className={`text-2xl lg:text-3xl mt-3 font-mono tracking-wide transition-all duration-300 ${
-                                                        isActive ? 'text-yellow-300 font-bold' : 'text-cyan-300/70'
-                                                    }`} 
-                                                    dir="ltr" 
-                                                    style={{ 
-                                                        textShadow: isActive 
-                                                            ? '0 0 12px rgba(253, 224, 71, 0.7)' 
-                                                            : '0 2px 8px rgba(0, 0, 0, 0.6)' 
-                                                    }}
-                                                >
-                                                    {finglishLines[idx]}
-                                                </p>
-                                            )}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
                 </div>
             );
         }
 
         if (slide.type === SlideType.MEDIA) {
-            const mediaContent = slide.content as SlideContentMedia;
-            const displayConfig = mediaContent.displayConfig || {
-                width: 100,
-                height: 100,
-                position: 'center',
-                objectFit: 'contain',
-                borderRadius: 0,
-                opacity: 100
-            };
-
-            const getPositionStyles = () => {
-                const base: React.CSSProperties = {
-                    width: `${displayConfig.width}%`,
-                    height: `${displayConfig.height}%`,
-                    opacity: (displayConfig.opacity || 100) / 100,
-                    borderRadius: `${displayConfig.borderRadius || 0}px`,
-                    objectFit: (displayConfig.objectFit as any) || 'contain',
-                };
-                switch (displayConfig.position) {
-                    case 'top-left': return { ...base, position: 'absolute' as const, top: '2%', left: '2%' };
-                    case 'top-right': return { ...base, position: 'absolute' as const, top: '2%', right: '2%' };
-                    case 'bottom-left': return { ...base, position: 'absolute' as const, bottom: '2%', left: '2%' };
-                    case 'bottom-right': return { ...base, position: 'absolute' as const, bottom: '2%', right: '2%' };
-                    case 'custom': return { ...base, position: 'absolute' as const, left: `${displayConfig.customX || 50}%`, top: `${displayConfig.customY || 50}%`, transform: 'translate(-50%, -50%)' };
-                    case 'center':
-                    default: return { ...base, position: 'absolute' as const, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
-                }
-            };
-
             return (
-                <div className="relative h-full bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-                    <div className="relative h-full">
-                        {mediaContent.mediaType === 'image' && <img src={mediaContent.url} alt={mediaContent.title || 'Media'} style={getPositionStyles()} className="shadow-2xl border-2 border-white/10 animate-fadeIn" />}
-                        {mediaContent.mediaType === 'video' && <video src={mediaContent.url} controls autoPlay={mediaContent.isAutoPlay} loop={mediaContent.isLoop} style={getPositionStyles()} className="shadow-2xl border-2 border-white/20" />}
-                    </div>
-                    {mediaContent.title && (
-                        <div className="absolute bottom-8 left-0 right-0 text-center">
-                            <p className="text-3xl font-bold text-white drop-shadow-lg bg-black/30 backdrop-blur-md py-4 mx-auto max-w-4xl rounded-xl font-[Vazirmatn]">{mediaContent.title}</p>
-                        </div>
-                    )}
-                </div>
+                <SlideRenderer
+                    slide={slide}
+                    isRemotePreview={true}
+                    internalPageIndex={state.internalPageIndex}
+                />
             );
         }
 
         if (slide.type === SlideType.ANNOUNCEMENT) {
-            const announcementContent = slide.content as SlideContentAnnouncement;
             return (
-                <div className="relative h-full overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-teal-900 to-cyan-950">
-                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-600/20 via-transparent to-transparent"></div>
-                    </div>
-                    <div className="relative flex items-center justify-center h-full p-16">
-                        <div className="text-center max-w-5xl animate-fadeIn">
-                            <div className="mb-8 inline-block px-6 py-3 bg-emerald-500/20 rounded-full border border-emerald-400/30 backdrop-blur-sm">
-                                <span className="text-2xl text-emerald-300 font-semibold font-[Vazirmatn]">📢 اعلان مهم</span>
-                            </div>
-                            <h2 className="text-7xl font-bold text-white mb-12 drop-shadow-2xl leading-tight font-[Vazirmatn]" style={{ textShadow: '0 0 40px rgba(16, 185, 129, 0.5)' }}>{announcementContent.title}</h2>
-                            {announcementContent.content && <p className="text-5xl leading-relaxed text-gray-100 mb-12 font-[Vazirmatn]">{announcementContent.content}</p>}
-                            {announcementContent.imageUrl && <img src={announcementContent.imageUrl} alt={announcementContent.title} className="relative max-w-2xl rounded-2xl shadow-2xl border-4 border-white/20 mx-auto" />}
-                        </div>
-                    </div>
-                </div>
+                <SlideRenderer
+                    slide={slide}
+                    isRemotePreview={true}
+                    internalPageIndex={state.internalPageIndex}
+                />
             );
         }
 
