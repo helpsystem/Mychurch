@@ -43,6 +43,7 @@ export default function WorshipAdminClient() {
     const [isTranslating, setIsTranslating] = useState(false);
     const [isGeneratingChords, setIsGeneratingChords] = useState(false);
     const [isCleaning, setIsCleaning] = useState(false);
+    const [isFinglishing, setIsFinglishing] = useState(false);
     const [previewSong, setPreviewSong] = useState<WorshipSong | null>(null);
     const [isMigrating, setIsMigrating] = useState(false);
     const [showEnrichmentHub, setShowEnrichmentHub] = useState(false);
@@ -236,7 +237,37 @@ export default function WorshipAdminClient() {
             setIsCleaning(false);
         }
     };
+
+    const handleAiFinglish = async () => {
+        if (!editingSong?.lyrics_fa) {
+            alert("ابتدا متن سرود فارسی را وارد کنید.");
+            return;
+        }
+        setIsFinglishing(true);
+        try {
+            const res = await fetch("/api/ai/worship-assist", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    mode: "finglish",
+                    lyricsFA: editingSong.lyrics_fa,
+                    titleFA: editingSong.title_fa,
+                }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            setEditingSong((prev: WorshipSong | null) => prev ? {
+                ...prev,
+                lyrics_finglish: data.result
+            } : prev);
+        } catch (err: any) {
+            alert("خطا در تولید فینگلیش: " + err.message);
+        } finally {
+            setIsFinglishing(false);
+        }
+    };
     
+
     const handleConvertToInternal = async () => {
         if (!editingSong?.audio_url || !editingSong.audio_url.startsWith('http')) {
             alert("لینک خارجی معتیر یافت نشد.");
@@ -375,6 +406,40 @@ export default function WorshipAdminClient() {
             const timingFileEntry = Object.values(loadedZip.files).find(f => f.name.endsWith('timing.json'));
             const chordsFileEntry = Object.values(loadedZip.files).find(f => f.name.endsWith('chords.txt'));
 
+            // 1. Extract Artist and Title from folder name or ZIP filename
+            const folderEntry = masterFileEntry || timingFileEntry || chordsFileEntry || Object.values(loadedZip.files).find(f => f.name.includes('/'));
+            let extractedArtist = "";
+            let extractedTitle = "";
+
+            if (folderEntry && folderEntry.name.includes('/')) {
+                const folderName = folderEntry.name.split('/')[0];
+                if (folderName.includes(' - ')) {
+                    const [art, tit] = folderName.split(' - ');
+                    extractedArtist = art.replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+                    extractedTitle = tit.replace(/_2$/, '').replace(/_all_files$/, '').replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+                } else {
+                    extractedTitle = folderName.replace(/_2$/, '').replace(/_all_files$/, '').replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+                }
+            }
+
+            if (!extractedTitle && file.name) {
+                const zipBaseName = file.name.replace(/\.zip$/i, '');
+                if (zipBaseName.includes(' - ')) {
+                    const [art, tit] = zipBaseName.split(' - ');
+                    extractedArtist = art.replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+                    extractedTitle = tit.replace(/_2$/, '').replace(/_all_files$/, '').replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+                } else {
+                    extractedTitle = zipBaseName.replace(/_2$/, '').replace(/_all_files$/, '').replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+                }
+            }
+
+            if (extractedTitle) {
+                extractedTitle = extractedTitle.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            }
+            if (extractedArtist) {
+                extractedArtist = extractedArtist.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            }
+
             let lyricsFa = "";
             let lyricsFinglish = "";
             let lyricsEn = "";
@@ -399,6 +464,12 @@ export default function WorshipAdminClient() {
 
                 if (masterJson.metadata?.fileName) {
                     audioUrl = `/worship/audio/kalameh/${masterJson.metadata.fileName}`;
+                    const cleanFileName = masterJson.metadata.fileName.replace(/\.mp3$/i, '').replace(/\.m4a$/i, '');
+                    if (cleanFileName.includes(' - ') && !extractedTitle) {
+                        const [art, tit] = cleanFileName.split(' - ');
+                        extractedArtist = art.replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+                        extractedTitle = tit.replace(/_2$/, '').replace(/_all_files$/, '').replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+                    }
                 } else if (masterJson.metadata?.filename) {
                     audioUrl = `/worship/audio/kalameh/${masterJson.metadata.filename}`;
                 }
@@ -453,15 +524,6 @@ export default function WorshipAdminClient() {
                     chords = await chordsFileEntry.async('text');
                 }
 
-                const ppsxEntry = Object.values(loadedZip.files).find(f => f.name.endsWith('.ppsx'));
-                const mp3Entry = Object.values(loadedZip.files).find(f => f.name.endsWith('.mp3'));
-                if (mp3Entry) {
-                    audioUrl = `/worship/audio/kalameh/${mp3Entry.name.split('/').pop()}`;
-                } else if (ppsxEntry) {
-                    const baseName = ppsxEntry.name.split('/').pop()?.replace('.ppsx', '') || "";
-                    audioUrl = `/worship/audio/kalameh/${baseName}.mp3`;
-                }
-
                 const convertedLines = linesArray.map((item: any) => ({
                     line: item.content || item.line || "",
                     start: item.words?.[0]?.start_time !== undefined ? item.words[0].start_time : (item.start || 0),
@@ -504,18 +566,66 @@ export default function WorshipAdminClient() {
                 chords = await chordsFileEntry.async('text');
             }
 
-            setEditingSong(prev => prev ? {
-                ...prev,
-                lyrics_fa: lyricsFa.trim(),
-                lyrics_finglish: lyricsFinglish.trim(),
-                lyrics_en: lyricsEn.trim(),
-                chords: chords.trim(),
-                audio_url: audioUrl,
-                timing_data: convertedTimingData,
-                timepoints: flatTimepoints
-            } : prev);
+            // 2. Extract and Upload audio if present
+            const mp3Entry = Object.values(loadedZip.files).find(f => f.name.endsWith('.mp3'));
+            const pptxEntry = Object.values(loadedZip.files).find(f => f.name.endsWith('.ppsx') || f.name.endsWith('.pptx'));
+            let uploadWarning = "";
 
-            alert("✨ اطلاعات کارائوکه، متون سه‌زبانه، آکوردها و فایل صوتی با موفقیت از فایل ZIP استخراج و بارگذاری شد!");
+            if (mp3Entry) {
+                try {
+                    const mp3Data = await mp3Entry.async('arraybuffer');
+                    const buffer = Buffer.from(mp3Data);
+                    const uploadRes = await uploadToLocal(buffer, mp3Entry.name.split('/').pop() || "audio.mp3");
+                    if (uploadRes.success && uploadRes.url) {
+                        audioUrl = uploadRes.url;
+                    } else {
+                        uploadWarning = `\n⚠️ خطا در ذخیره خودکار فایل صوتی: ${uploadRes.error}`;
+                    }
+                } catch (uploadErr: any) {
+                    uploadWarning = `\n⚠️ خطا در استخراج فایل صوتی: ${uploadErr.message}`;
+                }
+            } else {
+                if (pptxEntry) {
+                    const baseName = pptxEntry.name.split('/').pop()?.replace(/\.ppsx$|\.pptx$/i, '') || "";
+                    audioUrl = `/worship/audio/kalameh/${baseName}.mp3`;
+                }
+                uploadWarning = "\n⚠️ توجه: فایل صوتی (.mp3) در فایل ZIP یافت نشد. لطفا فایل صوتی را جداگانه آپلود کنید.";
+            }
+
+            // Build summary of what was imported
+            const importSummary: string[] = [];
+            if (extractedTitle) importSummary.push(`عنوان: ${extractedTitle}`);
+            if (extractedArtist) importSummary.push(`خواننده: ${extractedArtist}`);
+            if (lyricsFa) importSummary.push(`متن فارسی: ${lyricsFa.split('\n').length} خط`);
+            if (lyricsFinglish) importSummary.push(`فینگلیش: ✓`);
+            if (lyricsEn) importSummary.push(`ترجمه انگلیسی: ✓`);
+            if (chords) importSummary.push(`آکوردها: ✓`);
+            if (convertedTimingData?.lines?.length) importSummary.push(`تایمینگ کارائوکه: ${convertedTimingData.lines.length} خط`);
+            if (flatTimepoints.length) importSummary.push(`نقاط زمانی: ${flatTimepoints.length} کلمه`);
+            if (audioUrl) importSummary.push(`فایل صوتی: ${audioUrl.split('/').pop()}`);
+
+            setEditingSong(prev => {
+                if (!prev) return null;
+                return {
+                    ...prev,
+                    // Only update title if not already set (preserve manual entries)
+                    title_fa: prev.title_fa || extractedTitle || "",
+                    // For English title, use extractedTitle only as fallback (it may be in Farsi/transliteration)
+                    title_en: prev.title_en || "",
+                    artist: prev.artist || extractedArtist || "",
+                    // Always update content from ZIP (these are the core ZIP data)
+                    lyrics_fa: lyricsFa.trim() || prev.lyrics_fa || "",
+                    lyrics_finglish: lyricsFinglish.trim() || prev.lyrics_finglish || "",
+                    lyrics_en: lyricsEn.trim() || prev.lyrics_en || "",
+                    chords: chords.trim() || (prev as any).chords || "",
+                    audio_url: audioUrl || prev.audio_url || "",
+                    // Always overwrite timing data from ZIP (this is the key karaoke data)
+                    timing_data: convertedTimingData || prev.timing_data,
+                    timepoints: flatTimepoints.length > 0 ? flatTimepoints : (prev.timepoints || [])
+                };
+            });
+
+            alert(`✨ بارگذاری ZIP موفق بود!\n\n${importSummary.join('\n')}${uploadWarning}`);
         } catch (err: any) {
             alert("خطا در بارگذاری و تحلیل فایل ZIP: " + err.message);
         } finally {
@@ -811,10 +921,21 @@ export default function WorshipAdminClient() {
 
                             {/* Finglish Lyrics */}
                             <div className="space-y-2 mt-4">
-                                <label className="text-sm font-bold text-muted-foreground flex items-center gap-2">
-                                    <Type className="w-4 h-4 text-orange-400" />
-                                    فینگلیش (Finglish)
-                                </label>
+                                <div className="flex items-center justify-between">
+                                    <label className="text-sm font-bold text-muted-foreground flex items-center gap-2">
+                                        <Type className="w-4 h-4 text-orange-400" />
+                                        فینگلیش (Finglish)
+                                    </label>
+                                    <button
+                                        type="button"
+                                        onClick={handleAiFinglish}
+                                        disabled={isFinglishing || !editingSong.lyrics_fa}
+                                        className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-lg bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/20 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {isFinglishing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
+                                        {isFinglishing ? 'در حال تولید...' : 'تولید فینگلیش با AI'}
+                                    </button>
+                                </div>
                                 <textarea
                                     rows={7}
                                     value={editingSong.lyrics_finglish || ''}
@@ -1094,6 +1215,13 @@ export default function WorshipAdminClient() {
                             title={previewSong.title_fa}
                             viewOnly={true}
                             onClose={() => setPreviewSong(null)}
+                            showPersian={true}
+                            showFinglish={true}
+                            showEnglish={true}
+                            translations={{
+                                finglish: previewSong.lyrics_finglish ? previewSong.lyrics_finglish.split('\n').map((l: string) => l.trim()).filter(Boolean) : undefined,
+                                english: previewSong.lyrics_en ? previewSong.lyrics_en.split('\n').map((l: string) => l.trim()).filter(Boolean) : undefined,
+                            }}
                         />
                         
                         {/* Audio fallback message if no URL */}

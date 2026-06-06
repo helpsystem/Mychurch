@@ -119,6 +119,10 @@ export async function updateWorshipSong(id: string, data: Partial<WorshipSong>):
     await ensureWorshipManagementAccess();
 
     try {
+        // Fetch the old audio URL to check if a file needs to be cleaned up
+        const { rows } = await query("SELECT audio_url FROM church_worship_songs WHERE id = $1", [id]);
+        const oldAudioUrl = rows[0]?.audio_url;
+
         await query(
             `UPDATE church_worship_songs 
              SET title_fa = $1, title_en = $2, artist = $3, youtube_id = $4, audio_url = $5, lyrics_fa = $6, lyrics_en = $7, lyrics_finglish = $8, chords = $9, category = $10, timepoints = $11, timing_data = $12
@@ -139,6 +143,22 @@ export async function updateWorshipSong(id: string, data: Partial<WorshipSong>):
                 id
             ]
         );
+
+        // Delete the old audio file from disk if it was local and is replaced
+        if (oldAudioUrl && data.audio_url !== oldAudioUrl && oldAudioUrl.startsWith('/uploads/audio/')) {
+            const fs = require('fs');
+            const path = require('path');
+            const filePath = path.join(process.cwd(), 'public', oldAudioUrl);
+            if (fs.existsSync(filePath)) {
+                console.log(`[Storage] Deleting old audio file on song update: ${filePath}`);
+                try {
+                    fs.unlinkSync(filePath);
+                } catch (err) {
+                    console.error('[Storage] Failed to delete old audio file:', err);
+                }
+            }
+        }
+
         revalidatePath('/worship');
         revalidatePath('/admin/worship');
         return { success: true };
@@ -152,7 +172,27 @@ export async function deleteWorshipSong(id: string): Promise<{ success: boolean 
     await ensureWorshipManagementAccess();
 
     try {
+        // Fetch audio url before deleting record to clean up file if local
+        const { rows } = await query("SELECT audio_url FROM church_worship_songs WHERE id = $1", [id]);
+        const audioUrl = rows[0]?.audio_url;
+
         await query(`DELETE FROM church_worship_songs WHERE id = $1`, [id]);
+
+        // Delete the file from disk if it was local
+        if (audioUrl && audioUrl.startsWith('/uploads/audio/')) {
+            const fs = require('fs');
+            const path = require('path');
+            const filePath = path.join(process.cwd(), 'public', audioUrl);
+            if (fs.existsSync(filePath)) {
+                console.log(`[Storage] Deleting audio file on song delete: ${filePath}`);
+                try {
+                    fs.unlinkSync(filePath);
+                } catch (err) {
+                    console.error('[Storage] Failed to delete old audio file:', err);
+                }
+            }
+        }
+
         revalidatePath('/worship');
         revalidatePath('/admin/worship');
         return { success: true };

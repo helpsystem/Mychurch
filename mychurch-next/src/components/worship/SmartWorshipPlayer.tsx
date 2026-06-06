@@ -10,7 +10,9 @@ interface SmartWorshipPlayerProps {
     title?: string;
     viewOnly?: boolean; // حالت فقط نمایش - بدون کنترل
     externalCurrentTime?: number; // زمان جاری از بیرون (برای سینک)
-    onTimeUpdate?: (time: number) => void; // callback برای گزارش زمان به parent
+    externalIsPlaying?: boolean; // وضعیت پخش صوتی از بیرون (برای سینک کارائوکه)
+    externalActiveLineIndex?: number; // خط فعال جاری از بیرون (برای ناوبری کیبوردی یا سینک بدون آدیو)
+    onTimeUpdate?: (time: number, isPlaying: boolean) => void; // callback برای گزارش زمان به parent
     onClose?: () => void; // اختیاری - برای بستن پلیر از parent
     translations?: {
         finglish?: string[];
@@ -115,6 +117,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     backgroundImage = '/images/worship/worship-bg-default.jpg',
     viewOnly = false,
     externalCurrentTime,
+    externalIsPlaying,
+    externalActiveLineIndex,
     onTimeUpdate,
     onClose,
     translations,
@@ -197,7 +201,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             audioRef.current.currentTime = startTime;
             setCurrentTime(startTime);
             if (onTimeUpdate) {
-                onTimeUpdate(startTime);
+                onTimeUpdate(startTime, true);
             }
             if (!isPlaying) {
                 audioRef.current.play();
@@ -283,7 +287,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
             setCurrentTime(time);
             // گزارش زمان به parent برای سینک با Display
             if (onTimeUpdate) {
-                onTimeUpdate(time);
+                onTimeUpdate(time, isPlaying);
             }
             if (!audio.paused && !audio.ended) {
                 animationFrameId = requestAnimationFrame(loop);
@@ -292,6 +296,10 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
         if (isPlaying) {
             loop();
+        } else {
+            if (onTimeUpdate) {
+                onTimeUpdate(audio.currentTime, false);
+            }
         }
 
         return () => {
@@ -324,6 +332,12 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
 
     // Find active line index - more precise matching
     const activeLineIndex = useMemo(() => {
+        // If we have an external active line index and we are NOT actively playing audio, use it!
+        const isTimeBased = isPlaying || (viewOnly && (externalIsPlaying !== undefined ? externalIsPlaying : (externalCurrentTime !== undefined && externalCurrentTime > 0)));
+        if (!isTimeBased && externalActiveLineIndex !== undefined) {
+            return Math.min(externalActiveLineIndex, lines.length - 1);
+        }
+
         // First, find the exact line being sung
         const exactMatch = lines.findIndex(line => {
             const start = line.words[0]?.start_time || 0;
@@ -348,7 +362,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
         }
 
         return 0;
-    }, [lines, currentTime]);
+    }, [lines, currentTime, isPlaying, viewOnly, externalCurrentTime, externalActiveLineIndex]);
 
     // Display line index  
     const displayLineIndex = activeLineIndex;
@@ -373,6 +387,152 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
         if (audioRef.current) {
             audioRef.current.currentTime = Math.max(0, Math.min(duration, audioRef.current.currentTime + seconds));
         }
+    };
+
+    const getFinglishWordsWithTimings = (idx: number, line: LineSegment) => {
+        const finglishText = getTranslationForLine(idx, 'finglish');
+        if (!finglishText) return [];
+
+        const fingWords = finglishText.trim().split(/\s+/);
+        const farsiWords = line.words || [];
+
+        // Case 1: Word-level finglish is already embedded in the words
+        const hasEmbeddedFinglish = farsiWords.some(w => w.finglish);
+        if (hasEmbeddedFinglish) {
+            return farsiWords.map(w => ({
+                word: w.finglish || '',
+                start_time: w.start_time,
+                end_time: w.end_time
+            }));
+        }
+
+        // Case 2: Word counts match exactly - pair them
+        if (fingWords.length === farsiWords.length) {
+            return fingWords.map((word, widx) => ({
+                word,
+                start_time: farsiWords[widx].start_time,
+                end_time: farsiWords[widx].end_time
+            }));
+        }
+
+        // Case 3: Fallback - distribute timing proportionally across the line
+        const lineStart = farsiWords[0]?.start_time || 0;
+        const lineEnd = farsiWords[farsiWords.length - 1]?.end_time || 0;
+        const duration = lineEnd - lineStart;
+        const wordDuration = duration / Math.max(1, fingWords.length);
+
+        return fingWords.map((word, widx) => ({
+            word,
+            start_time: lineStart + widx * wordDuration,
+            end_time: lineStart + (widx + 1) * wordDuration
+        }));
+    };
+
+    const renderStaticLine = (idx: number) => {
+        const line = lines[idx];
+        if (!line) return null;
+
+        const pText = line.content || line.words.map(w => w.word).join(' ');
+
+        return (
+            <div className="font-[Vazirmatn] text-center w-full">
+                <p className={`font-bold text-xl lg:text-3xl leading-relaxed ${isParchment ? 'text-[#41290e]/80' : 'text-white/80'}`} dir="rtl">
+                    {pText}
+                </p>
+            </div>
+        );
+    };
+
+    const renderActiveLine = (idx: number) => {
+        const line = lines[idx];
+        if (!line) return null;
+
+        const faText = getTranslationForLine(idx, 'persian');
+        const fText = getTranslationForLine(idx, 'finglish');
+        const eText = getTranslationForLine(idx, 'english');
+        const fingWordsWithTimings = getFinglishWordsWithTimings(idx, line);
+
+        return (
+            <div className="space-y-3 lg:space-y-5 text-center w-full px-4">
+                {/* Original Lyric Line (Head) - word by word */}
+                <div className={`font-[Vazirmatn] font-black text-3xl lg:text-5xl drop-shadow-[0_0_20px_rgba(0,0,0,0.8)] leading-relaxed ${isParchment ? 'text-[#41290e]' : 'text-white'}`} dir="rtl">
+                    {line.words.map((word, wIdx) => {
+                        const isActive = effectiveTime >= word.start_time && effectiveTime <= word.end_time;
+                        const isPast = effectiveTime > word.end_time;
+                        return (
+                            <span
+                                key={wIdx}
+                                className={`inline-block mx-1 lg:mx-2 transition-all duration-200 ${isActive
+                                    ? isParchment
+                                        ? 'text-[#c27c13] scale-110 drop-shadow-[0_0_10px_rgba(194,124,19,0.4)] font-black'
+                                        : 'text-cyan-300 scale-110 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)] font-black'
+                                    : isPast
+                                        ? isParchment ? 'text-[#41290e]/75' : 'text-white/70'
+                                        : isParchment ? 'text-[#41290e]/45' : 'text-white/50'
+                                    }`}
+                            >
+                                {word.word}
+                            </span>
+                        );
+                    })}
+                </div>
+
+                {/* Farsi Translation/Prose Meaning Line */}
+                {showPersian && faText && faText !== line.content && (
+                    <div className="animate-in fade-in slide-in-from-bottom-1 duration-700">
+                        <p 
+                            className={`font-[Vazirmatn] text-lg lg:text-2xl font-bold leading-relaxed opacity-95 ${isParchment ? 'text-[#5e4021]' : 'text-emerald-300'}`} 
+                            dir="rtl"
+                            style={{ textShadow: textShadow && !isParchment ? '0 2px 8px rgba(0,0,0,0.95), 0 0 15px rgba(16,185,129,0.3)' : undefined }}
+                        >
+                            {faText}
+                        </p>
+                    </div>
+                )}
+
+                {/* Finglish Line - word by word */}
+                {showFinglish && fText && (
+                    <div 
+                        className={`font-mono text-xl lg:text-3xl font-black tracking-wider uppercase ${isParchment ? 'text-[#c27c13]' : 'text-teal-400'}`} 
+                        dir="ltr"
+                        style={{ textShadow: textShadow && !isParchment ? '0 2px 8px rgba(0,0,0,0.95), 0 0 15px rgba(20,184,166,0.4)' : undefined }}
+                    >
+                        {fingWordsWithTimings.map((wordObj, wIdx) => {
+                            const isActive = effectiveTime >= wordObj.start_time && effectiveTime <= wordObj.end_time;
+                            const isPast = effectiveTime > wordObj.end_time;
+                            return (
+                                <span
+                                    key={wIdx}
+                                    className={`inline-block mx-1 lg:mx-2 transition-all duration-200 ${isActive
+                                        ? isParchment
+                                            ? 'text-[#8a4d0f] scale-110 font-black'
+                                            : 'text-yellow-300 scale-110 drop-shadow-[0_0_12px_rgba(253,224,71,0.7)] font-black'
+                                        : isPast
+                                            ? isParchment ? 'text-[#c27c13]/70' : 'text-teal-400/60'
+                                            : isParchment ? 'text-[#c27c13]/40' : 'text-teal-400/40'
+                                        }`}
+                                >
+                                    {wordObj.word}
+                                </span>
+                            );
+                        })}
+                    </div>
+                )}
+
+                {/* English Line - line level highlight */}
+                {showEnglish && eText && (
+                    <div className="animate-in fade-in slide-in-from-bottom-1 duration-700">
+                        <p 
+                            className={`font-sans text-lg lg:text-2xl font-bold tracking-wide italic opacity-95 ${isParchment ? 'text-[#5e4021]' : 'text-indigo-300'}`} 
+                            dir="ltr"
+                            style={{ textShadow: textShadow && !isParchment ? '0 2px 8px rgba(0,0,0,0.95), 0 0 15px rgba(99,102,241,0.3)' : undefined }}
+                        >
+                            {eText}
+                        </p>
+                    </div>
+                )}
+            </div>
+        );
     };
 
     const isGradientBg = backgroundImage && (backgroundImage.startsWith('from-') || backgroundImage.includes('gradient') || backgroundImage.includes('via-') || backgroundImage.includes('to-'));
@@ -443,84 +603,37 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                 >
                     <AnimatePresence mode='wait'>
                         {lines.length > 0 && displayLineIndex < lines.length && (
-                            <motion.div
-                                key={displayLineIndex}
-                                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                                animate={{
-                                    opacity: 1,
-                                    y: 0,
-                                    scale: 1,
-                                }}
-                                exit={{ opacity: 0, y: -30, scale: 0.9 }}
-                                transition={{ duration: 0.4, ease: 'easeOut' }}
-                                className={`text-center w-full px-4 ${textShadow ? 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.95)] drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)]' : ''}`}
-                                dir="rtl"
-                             >
-                                {/* Primary Language Block (Synchronized Words) */}
-                                {((showPersian && !getTranslationForLine(displayLineIndex, 'persian')) || 
-                                  (showFinglish && !getTranslationForLine(displayLineIndex, 'finglish')) ||
-                                  (!showPersian && !showFinglish && !showEnglish)) && (
-                                    <div className={`font-[Vazirmatn] font-black text-4xl lg:text-6xl drop-shadow-[0_0_20px_rgba(0,0,0,0.8)] leading-relaxed ${isParchment ? 'text-[#41290e]' : 'text-white'}`}>
-                                        {lines[displayLineIndex].words.map((word, wIdx) => {
-                                            const isActive = effectiveTime >= word.start_time && effectiveTime <= word.end_time;
-                                            const isPast = effectiveTime > word.end_time;
-                                            return (
-                                                <span
-                                                    key={wIdx}
-                                                    className={`inline-block mx-1 lg:mx-2 transition-all duration-200 ${isActive
-                                                        ? isParchment
-                                                            ? 'text-[#c27c13] scale-110 drop-shadow-[0_0_10px_rgba(194,124,19,0.4)] font-black'
-                                                            : 'text-teal-300 scale-110 drop-shadow-[0_0_15px_rgba(94,234,212,0.8)] font-black'
-                                                        : isPast
-                                                            ? isParchment ? 'text-[#41290e]/70' : 'text-white/70'
-                                                            : isParchment ? 'text-[#41290e]/40' : 'text-white/50'
-                                                        }`}
-                                                >
-                                                    {word.word}
-                                                </span>
-                                            );
-                                        })}
+                            <div className="flex flex-col items-center justify-center gap-6 lg:gap-10 w-full">
+                                {/* Previous Line */}
+                                {displayLineIndex > 0 ? (
+                                    <div className="opacity-25 scale-90 blur-[0.5px] transition-all duration-300 text-center select-none pointer-events-none w-full">
+                                        {renderStaticLine(displayLineIndex - 1)}
                                     </div>
-                                  )}
-
-                                {/* Persian Translation Block */}
-                                {showPersian && getTranslationForLine(displayLineIndex, 'persian') && (
-                                    <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                                        <p 
-                                            className={`font-[Vazirmatn] font-black text-3xl lg:text-5xl leading-relaxed ${isParchment ? 'text-[#41290e]' : 'text-white'}`}
-                                            style={{ textShadow: textShadow && !isParchment ? '0 4px 12px rgba(0,0,0,0.95), 0 0 25px rgba(0,0,0,0.8)' : undefined }}
-                                        >
-                                            {getTranslationForLine(displayLineIndex, 'persian')}
-                                        </p>
-                                    </div>
+                                ) : (
+                                    <div className="h-10 opacity-0" />
                                 )}
 
-                                {/* Finglish Translation Block */}
-                                {showFinglish && getTranslationForLine(displayLineIndex, 'finglish') && (
-                                    <div className="mt-4 lg:mt-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                                        <p 
-                                            className={`font-mono text-xl lg:text-3xl font-black tracking-wider uppercase opacity-90 ${isParchment ? 'text-[#c27c13]' : 'text-teal-400'}`} 
-                                            dir="ltr"
-                                            style={{ textShadow: textShadow && !isParchment ? '0 2px 8px rgba(0,0,0,0.95), 0 0 15px rgba(20,184,166,0.4)' : undefined }}
-                                        >
-                                            {getTranslationForLine(displayLineIndex, 'finglish')}
-                                        </p>
-                                    </div>
-                                )}
+                                {/* Current Line */}
+                                <motion.div
+                                    key={displayLineIndex}
+                                    initial={{ opacity: 0, y: 15 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -15 }}
+                                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                                    className={`w-full text-center ${textShadow ? 'drop-shadow-[0_4px_8px_rgba(0,0,0,0.95)] drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)]' : ''}`}
+                                >
+                                    {renderActiveLine(displayLineIndex)}
+                                </motion.div>
 
-                                {/* English Translation Block */}
-                                {showEnglish && getTranslationForLine(displayLineIndex, 'english') && (
-                                    <div className="mt-2 lg:mt-4 animate-in fade-in slide-in-from-bottom-1 duration-700">
-                                        <p 
-                                            className={`font-sans text-lg lg:text-2xl font-bold tracking-wide italic opacity-85 ${isParchment ? 'text-[#5e4021]' : 'text-indigo-300'}`} 
-                                            dir="ltr"
-                                            style={{ textShadow: textShadow && !isParchment ? '0 2px 8px rgba(0,0,0,0.95), 0 0 15px rgba(99,102,241,0.3)' : undefined }}
-                                        >
-                                            {getTranslationForLine(displayLineIndex, 'english')}
-                                        </p>
+                                {/* Next Line */}
+                                {displayLineIndex < lines.length - 1 ? (
+                                    <div className="opacity-50 scale-95 transition-all duration-300 text-center select-none pointer-events-none w-full">
+                                        {renderStaticLine(displayLineIndex + 1)}
                                     </div>
+                                ) : (
+                                    <div className="h-10 opacity-0" />
                                 )}
-                            </motion.div>
+                            </div>
                         )}
                     </AnimatePresence>
                 </div>

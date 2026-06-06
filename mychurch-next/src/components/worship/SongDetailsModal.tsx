@@ -96,6 +96,15 @@ function KaraokeLyrics({
                 );
               })}
               
+              {line.translations?.persian && line.translations.persian !== (line.line || line.words?.map((w: any) => w.word).join(' ')) && (
+                 <span className={cn(
+                    "block font-[Vazirmatn] text-sm sm:text-lg mt-2 tracking-wide transition-opacity duration-300",
+                    isActive ? "text-emerald-500/90" : "text-muted-foreground/40"
+                 )} dir="rtl">
+                    {line.translations.persian}
+                 </span>
+              )}
+
               {line.translations?.finglish && (
                  <span className={cn(
                     "block font-mono text-sm sm:text-lg mt-2 tracking-wide transition-opacity duration-300",
@@ -179,6 +188,17 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
   const hasSeparateChords = !!(song as any).chords;
   const lyricsHaveChords = hasLyricsFA && /\[[A-G]/.test(song.lyrics_fa || "");
 
+  // Parse timing_data (may be stored as string in DB)
+  const parsedTimingData = (() => {
+    if (!song.timing_data) return null;
+    if (typeof song.timing_data === 'string') {
+      try { return JSON.parse(song.timing_data); } catch { return null; }
+    }
+    return song.timing_data;
+  })();
+
+  const hasTimingData = !!(parsedTimingData?.lines?.length > 0);
+
   const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
     ...(hasLyricsFA ? [{ id: "lyrics-fa" as Tab, label: "متن فارسی", icon: Mic2 }] : []),
     ...(hasLyricsEN ? [{ id: "lyrics-en" as Tab, label: "English", icon: AlignLeft }] : []),
@@ -246,7 +266,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
       <div className="relative bg-card border border-border rounded-t-3xl sm:rounded-3xl w-full max-w-4xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-250" 
         style={{ maxHeight: "calc(100vh - 76px)", marginBottom: "env(safe-area-inset-bottom, 0px)" }} dir="rtl">
 
-        {showLiveLyrics && hasLyricsFA && song.timing_data && (
+        {showLiveLyrics && hasLyricsFA && hasTimingData && (
           <div className="absolute inset-0 z-20 flex flex-col bg-background/98 backdrop-blur-xl animate-in slide-in-from-bottom duration-300">
             <button 
                 onClick={() => setShowLiveLyrics(false)}
@@ -256,11 +276,18 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
             </button>
             <div className="flex-1 w-full relative">
               <SmartWorshipPlayer 
-                timingData={song.timing_data} 
+                timingData={parsedTimingData} 
                 audioSrc={song.audio_url ? getSafeAudioUrl(song.audio_url) : ""} 
                 viewOnly={true}
                 externalCurrentTime={currentTime}
                 onClose={() => setShowLiveLyrics(false)}
+                showPersian={true}
+                showFinglish={true}
+                showEnglish={true}
+                translations={{
+                  finglish: song.lyrics_finglish ? song.lyrics_finglish.split('\n').map(l => l.trim()).filter(Boolean) : undefined,
+                  english: song.lyrics_en ? song.lyrics_en.split('\n').map(l => l.trim()).filter(Boolean) : undefined,
+                }}
               />
             </div>
           </div>
@@ -342,7 +369,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
           )}
 
           {/* Audio Player (Compact - hidden in karaoke mode, SmartWorshipPlayer handles audio) */}
-          {song.audio_url && !(focusMode === "lyrics" && song.timing_data) && (
+          {song.audio_url && !(focusMode === "lyrics" && hasTimingData) && (
             <div className={cn(
               "px-5 border-b border-border shrink-0 bg-gradient-to-r from-primary/5 to-purple-500/5 transition-all duration-500",
               focusMode === "media" ? "py-2 opacity-80 hover:opacity-100" : "py-3"
@@ -353,7 +380,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
                     onPlay={() => { startTimeSync(); setIsPlaying(true); }} onPause={() => { stopTimeSync(); setIsPlaying(false); }} onEnded={() => { stopTimeSync(); setIsPlaying(false); }}
                     controls preload="metadata" controlsList="nodownload" />
                 </div>
-                {hasLyricsFA && focusMode === null && (
+                {hasLyricsFA && hasTimingData && focusMode === null && (
                   <button onClick={() => setShowLiveLyrics(v => !v)}
                     className="flex items-center gap-2 px-4 py-2.5 rounded-xl border font-bold text-xs shrink-0 transition-all bg-purple-500/10 text-purple-500 border-purple-500/20 hover:bg-purple-500/15">
                     <Zap className="w-3.5 h-3.5" /> Live Lyrics
@@ -425,15 +452,15 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
             </div>
           )}
           
-          {activeTab === "lyrics-fa" && hasLyricsFA && (
+          {(activeTab === "lyrics-fa" || activeTab === "lyrics-en") && (
             <div className={cn(
               "bg-card border border-border rounded-2xl shadow-sm transition-all duration-500 overflow-hidden",
               focusMode === "lyrics" && "shadow-[0_25px_70px_-15px_rgba(0,0,0,0.4)] border-primary/40 ring-2 ring-primary/5"
             )}>
               {/* ✨ SmartWorshipPlayer (Karaoke): controls its own audio when timing_data exists in focus mode */}
-              {focusMode === "lyrics" && song.timing_data ? (
+              {focusMode === "lyrics" && hasTimingData ? (
                 <SmartWorshipPlayer
-                  timingData={song.timing_data}
+                  timingData={parsedTimingData}
                   audioSrc={song.audio_url ? getSafeAudioUrl(song.audio_url) : ""}
                   onTimeUpdate={(t) => {
                     // If karaoke is playing, stop YouTube (mutual exclusion)
@@ -450,23 +477,33 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
                   backgroundOpacity={45}
                   backgroundBlur={4}
                   textShadow={true}
+                  showPersian={true}
+                  showFinglish={true}
+                  showEnglish={true}
+                  translations={{
+                    finglish: song.lyrics_finglish ? song.lyrics_finglish.split('\n').map(l => l.trim()).filter(Boolean) : undefined,
+                    english: song.lyrics_en ? song.lyrics_en.split('\n').map(l => l.trim()).filter(Boolean) : undefined,
+                  }}
                 />
               ) : (
                 <div className="px-5 pb-6">
-                  <KaraokeLyrics 
-                     text={song.lyrics_fa || ""} 
-                     timingData={song.timing_data}
-                     currentTime={currentTime}
-                     isExpanded={focusMode === "lyrics"} 
-                     dir="rtl"
-                  />
+                  {activeTab === "lyrics-fa" ? (
+                    <KaraokeLyrics 
+                       text={song.lyrics_fa || ""} 
+                       timingData={parsedTimingData}
+                       currentTime={currentTime}
+                       isExpanded={focusMode === "lyrics"} 
+                       dir="rtl"
+                    />
+                  ) : (
+                    <KaraokeLyrics 
+                       text={song.lyrics_en || ""} 
+                       isExpanded={focusMode === "lyrics"} 
+                       dir="ltr"
+                    />
+                  )}
                 </div>
               )}
-            </div>
-          )}
-          {activeTab === "lyrics-en" && hasLyricsEN && (
-            <div className="bg-card border border-border rounded-2xl p-6 shadow-sm" dir="ltr">
-              <KaraokeLyrics text={song.lyrics_en || ""} dir="ltr" />
             </div>
           )}
           {activeTab === "chords" && (

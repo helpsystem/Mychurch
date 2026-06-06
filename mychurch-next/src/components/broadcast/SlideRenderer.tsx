@@ -148,6 +148,16 @@ export function SlideRenderer({
     const containerRef = React.useRef<HTMLDivElement>(null);
     const faScrollRef = React.useRef<HTMLDivElement>(null);
     const enScrollRef = React.useRef<HTMLDivElement>(null);
+    const activeLineRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        if (activeLineRef.current) {
+            activeLineRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    }, [internalPageIndex, slide?.id]);
 
     // Scrolling logic
     const handleScrollFa = (e: React.UIEvent<HTMLDivElement>) => {
@@ -316,7 +326,7 @@ export function SlideRenderer({
                 const englishRem = (fontRem * 0.75);
 
                 return (
-                    <div className="w-full h-full flex flex-col items-center justify-center p-12 text-center relative overflow-hidden">
+                    <div className="w-full h-full flex flex-col items-center justify-start p-12 text-center relative overflow-y-auto">
                         {/* Dynamic Background */}
                         {opts?.showBackground !== false && !isTransparent && (
                             <div className="absolute inset-0 -z-10">
@@ -328,36 +338,62 @@ export function SlideRenderer({
                             </div>
                         )}
                         
-                        <div className={`space-y-4 z-10 w-full max-w-[90%] ${opts?.textShadow ? 'drop-shadow-2xl' : ''}`}>
-                            {content.lines.map((line, idx) => (
-                                <div key={idx} className="flex flex-col items-center justify-center gap-1">
-                                    {showFa && line.text && (
-                                        <p
-                                            className="font-bold font-[Vazirmatn] text-white leading-snug w-full"
-                                            dir="rtl"
-                                            style={{ fontSize: `${fontRem}rem`, wordBreak: 'break-word' }}
-                                        >
-                                            {line.text}
-                                        </p>
-                                    )}
-                                    {showFinglish && content.finglishLines && content.finglishLines[idx] && (
-                                        <p
-                                            className="text-yellow-300 font-medium tracking-wide w-full"
-                                            style={{ fontSize: `${finglishRem}rem` }}
-                                        >
-                                            {content.finglishLines[idx]}
-                                        </p>
-                                    )}
-                                    {showEn && content.lyricsEnLines && content.lyricsEnLines[idx] && (
-                                        <p
-                                            className="text-blue-200 font-serif opacity-90 w-full"
-                                            style={{ fontSize: `${englishRem}rem` }}
-                                        >
-                                            {content.lyricsEnLines[idx]}
-                                        </p>
-                                    )}
-                                </div>
-                            ))}
+                        <div className={`space-y-6 z-10 w-full max-w-[90%] py-24 pb-48 ${opts?.textShadow ? 'drop-shadow-2xl' : ''}`}>
+                            {content.lines.map((line, idx) => {
+                                const isActive = idx === internalPageIndex;
+                                return (
+                                    <div 
+                                        key={idx} 
+                                        ref={isActive ? activeLineRef : null}
+                                        className={`flex flex-col items-center justify-center gap-1 transition-all duration-300 ${
+                                            isActive ? 'scale-105 opacity-100 bg-white/5 border border-white/10 rounded-2xl p-4' : 'opacity-25 scale-95'
+                                        }`}
+                                    >
+                                        {line.text && (
+                                            <p
+                                                className={`font-bold font-[Vazirmatn] leading-snug w-full transition-colors ${
+                                                    isActive ? 'text-cyan-300' : 'text-white'
+                                                }`}
+                                                dir="rtl"
+                                                style={{ fontSize: `${fontRem}rem`, wordBreak: 'break-word' }}
+                                            >
+                                                {line.text}
+                                            </p>
+                                        )}
+                                        {showFa && content.persianTranslationLines && content.persianTranslationLines[idx] && content.persianTranslationLines[idx] !== line.text && (
+                                            <p
+                                                className={`font-medium font-[Vazirmatn] leading-snug w-full transition-colors opacity-90 ${
+                                                    isActive ? 'text-emerald-300' : 'text-emerald-300/60'
+                                                }`}
+                                                dir="rtl"
+                                                style={{ fontSize: `${fontRem * 0.7}rem`, wordBreak: 'break-word' }}
+                                            >
+                                                {content.persianTranslationLines[idx]}
+                                            </p>
+                                        )}
+                                        {showFinglish && content.finglishLines && content.finglishLines[idx] && (
+                                            <p
+                                                className={`font-medium tracking-wide w-full transition-colors ${
+                                                    isActive ? 'text-yellow-300' : 'text-yellow-300/60'
+                                                }`}
+                                                style={{ fontSize: `${finglishRem}rem` }}
+                                            >
+                                                {content.finglishLines[idx]}
+                                            </p>
+                                        )}
+                                        {showEn && content.lyricsEnLines && content.lyricsEnLines[idx] && (
+                                            <p
+                                                className={`font-serif opacity-90 w-full transition-colors ${
+                                                    isActive ? 'text-white' : 'text-blue-200'
+                                                }`}
+                                                style={{ fontSize: `${englishRem}rem` }}
+                                            >
+                                                {content.lyricsEnLines[idx]}
+                                            </p>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                         
                         {opts?.showTitle !== false && (

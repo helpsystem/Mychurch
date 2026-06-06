@@ -513,8 +513,8 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
         {/* Combined Play + Live Lyrics button */}
         {song.audio_url && (
           <button
-            onClick={onViewDetails}
-            title="پخش + Live Lyrics"
+            onClick={onKaraoke}
+            title="پخش + Live Lyrics کارائوکه"
             className="flex items-center justify-center gap-1.5 bg-purple-500/10 hover:bg-purple-500/20 text-purple-500 border border-purple-500/20 py-2.5 px-3 rounded-xl font-bold text-xs transition-all"
           >
             <Play className="w-3.5 h-3.5" />
@@ -578,7 +578,7 @@ function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, 
 
         {/* Unified Live button for List view */}
         {song.audio_url && (
-          <button title="پخش + Live Lyrics" onClick={onViewDetails}
+          <button title="پخش + Live Lyrics کارائوکه" onClick={onKaraoke}
             className="w-9 h-9 rounded-full flex items-center justify-center bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 text-purple-500 transition-all font-bold text-[10px]">
             Live
           </button>

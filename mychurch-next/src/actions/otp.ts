@@ -3,10 +3,11 @@
 import { createClient } from "@/utils/supabase/server";
 import { generateOTP, verifyOTP } from "@/lib/otp-store";
 import { sendMail } from "@/lib/mailer";
+import { sendSMS, sendWhatsApp } from "@/lib/twilio";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function sendAdminOTP() {
+export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" = "email"): Promise<{ success?: boolean; error?: string; channelUsed?: string }> {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
@@ -14,20 +15,64 @@ export async function sendAdminOTP() {
         return { error: "کاربر یافت نشد" };
     }
 
-    // Verify role
-    const { data: roleData } = await supabase
+    // Verify role and retrieve contact info
+    const { data: userData } = await supabase
         .from('users')
-        .select('role')
+        .select('role, phone, whatsapp_number')
         .eq('email', user.email)
         .single();
 
-    if (!roleData || !['Admin', 'Leader', 'Operator'].includes(roleData.role)) {
+    if (!userData || !['Admin', 'Leader', 'Operator'].includes(userData.role)) {
         return { error: "دسترسی غیرمجاز" };
     }
 
-    const code = generateOTP(user.email);
+    const phone = userData.phone?.trim();
+    const whatsapp = userData.whatsapp_number?.trim();
 
+    if (channel === "whatsapp" && !whatsapp) {
+        return { error: "شماره واتساپ برای حساب کاربری شما ثبت نشده است." };
+    }
+
+    if (channel === "sms" && !phone) {
+        return { error: "شماره موبایل برای حساب کاربری شما ثبت نشده است." };
+    }
+
+    const code = generateOTP(user.email);
+    const messageText = `کد ورود شما به پنل مدیریت MyChurch: ${code}\nاین کد تا ۱۰ دقیقه معتبر است.\n\nYour MyChurch admin login code: ${code}\nThis code is valid for 10 minutes.`;
+
+    let finalChannel: string = channel;
+
+    // Send code based on requested channel
+    if (channel === "whatsapp" && whatsapp) {
+        console.log(`[Auth OTP] 🚀 Attempting to send OTP via WhatsApp to ${whatsapp}...`);
+        const res = await sendWhatsApp(whatsapp, messageText);
+        if (res.success) {
+            return { success: true, channelUsed: "whatsapp" };
+        }
+
+        console.warn(`[Auth OTP] ⚠️ WhatsApp sending failed: ${res.error}. Switching to SMS fallback...`);
+        // Fallback: If SMS phone is available, try SMS. Otherwise, fallback to Email.
+        if (phone) {
+            finalChannel = "sms";
+        } else {
+            finalChannel = "email";
+        }
+    }
+
+    if (finalChannel === "sms" && phone) {
+        console.log(`[Auth OTP] 🚀 Attempting to send OTP via SMS to ${phone}...`);
+        const res = await sendSMS(phone, messageText);
+        if (res.success) {
+            return { success: true, channelUsed: "sms" };
+        }
+
+        console.warn(`[Auth OTP] ⚠️ SMS sending failed: ${res.error}. Switching to Email fallback...`);
+        finalChannel = "email";
+    }
+
+    // Email fallback or primary
     try {
+        console.log(`[Auth OTP] 🚀 Sending OTP via Email to ${user.email}...`);
         const supportEmail = process.env.SMTP_USER || "iranianchurchdc.us@gmail.com";
         await sendMail({
             to: user.email,
@@ -88,12 +133,13 @@ export async function sendAdminOTP() {
             </html>
             `
         });
-        return { success: true };
+        return { success: true, channelUsed: "email" };
     } catch (err: any) {
-        console.error("Failed to send OTP", err);
+        console.error("Failed to send OTP email:", err);
         return { error: "خطا در ارسال ایمیل. لطفا دوباره تلاش کنید." };
     }
 }
+
 
 export async function verifyAdminOTP(code: string) {
     const supabase = await createClient();

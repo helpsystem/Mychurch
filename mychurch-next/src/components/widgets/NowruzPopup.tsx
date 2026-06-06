@@ -177,14 +177,35 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
 
     const routeAllowed = React.useMemo(() => {
         if (isPreview) return true;
-        const currentPath = pathname || "/";
-        const includes = parsePathList(config.enabledPaths);
-        const excludes = parsePathList(config.excludedPaths);
+        
+        const normalize = (p: string) => {
+            let clean = p.trim();
+            if (!clean) return "";
+            if (!clean.startsWith("/")) {
+                clean = "/" + clean;
+            }
+            if (clean.length > 1 && clean.endsWith("/")) {
+                clean = clean.slice(0, -1);
+            }
+            return clean;
+        };
 
-        const inEnabled = includes.length === 0 || includes.some((p) => currentPath === p || currentPath.startsWith(`${p}/`));
-        const inExcluded = excludes.some((p) => currentPath === p || currentPath.startsWith(`${p}/`));
+        const currentPath = normalize(pathname || "/");
+        const includes = parsePathList(config.enabledPaths).map(normalize).filter(Boolean);
+        const excludes = parsePathList(config.excludedPaths).map(normalize).filter(Boolean);
+
+        const matchesPath = (p: string) => {
+            if (p === "/") {
+                return currentPath === "/";
+            }
+            return currentPath === p || currentPath.startsWith(`${p}/`);
+        };
+
+        const inEnabled = includes.length === 0 || includes.some(matchesPath);
+        const inExcluded = excludes.some(matchesPath);
         return inEnabled && !inExcluded;
     }, [config.enabledPaths, config.excludedPaths, pathname, isPreview]);
+
 
     const makeSeenKey = () => {
         const userKey = (config.storageKey || "").trim();

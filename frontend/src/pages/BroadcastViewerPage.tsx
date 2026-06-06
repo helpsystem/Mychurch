@@ -482,7 +482,9 @@ const BroadcastViewerPage: React.FC = () => {
               title={lyricsContent.title}
               viewOnly={false}
               translations={{
-                finglish: lyricsContent.finglishLines
+                finglish: lyricsContent.finglishLines,
+                english: lyricsContent.lyricsEnLines,
+                persian: lyricsContent.persianTranslationLines
               }}
             />
             {lyricsPopupEnabled && showGlassPopup && (

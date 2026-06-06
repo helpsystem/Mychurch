@@ -202,6 +202,11 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
         linesCount: finalTiming.lines?.length,
         hasWords: finalTiming.lines?.[0]?.words?.length > 0
       });
+    } else if ((song as any).timepoints?.length > 0) {
+      // Fallback: try to reconstruct timing from flat timepoints (legacy Apple Music format)
+      console.log('📊 [WorshipSongSelector] No structured timing, using flat timepoints as fallback');
+      // Still set timingData as null - timepoints are handled separately in buildSlideContent
+      setTimingData(null);
     } else {
       console.log('⚠️ [WorshipSongSelector] No timing data for song', song.id);
       setTimingData(null);
@@ -272,9 +277,27 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
       hasTiming: selectedSong.hasTiming || !!timingData,
       timingData,
       glassPopupEnabled: true,
-      finglishLines: timingData?.lines?.map((l: any) =>
-        l.translations?.finglish || l.words?.map((w: any) => w.finglish || w.word).join(' ')
-      )
+      // Use DB lyrics_finglish directly if available, otherwise extract from timing_data words
+      finglishLines: (() => {
+        // Priority 1: Direct lyrics_finglish from DB (line-level)
+        const directFinglish = (selectedSong as any).lyrics_finglish || selectedSong.lyrics?.finglish;
+        if (directFinglish && typeof directFinglish === 'string' && directFinglish.trim()) {
+          return directFinglish.split('\n').filter(Boolean);
+        }
+        // Priority 2: Extract from timing_data line translations
+        if (timingData?.lines) {
+          return timingData.lines.map((l: any) =>
+            l.translations?.finglish || l.words?.map((w: any) => w.finglish || w.word).join(' ')
+          );
+        }
+        return undefined;
+      })(),
+      persianTranslationLines: (() => {
+        if (timingData?.lines) {
+          return timingData.lines.map((l: any) => l.translations?.persian);
+        }
+        return undefined;
+      })()
     };
   };
 

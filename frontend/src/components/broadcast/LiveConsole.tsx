@@ -1093,7 +1093,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
             }}
             translations={{
               finglish: content.finglishLines,
-              persian: content.lines?.map(l => l.text) // Optional: pass raw persian lines if needed
+              english: content.lyricsEnLines,
+              persian: content.persianTranslationLines || content.lines?.map(l => l.text)
             }}
             // New Styling Props
             backgroundOpacity={content.displayOptions?.backgroundOpacity}
@@ -1234,7 +1235,8 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({
             }}
             translations={{
               finglish: content.finglishLines,
-              persian: content.lines?.map(l => l.text)
+              english: content.lyricsEnLines,
+              persian: content.persianTranslationLines || content.lines?.map(l => l.text)
             }}
             backgroundOpacity={content.displayOptions?.backgroundOpacity}
             backgroundBlur={content.displayOptions?.backgroundBlur}

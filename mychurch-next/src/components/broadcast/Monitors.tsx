@@ -115,27 +115,37 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
         };
     }, [sessionId]);
 
-    const handleTimeUpdate = React.useCallback((time: number) => {
+    const handleTimeUpdate = React.useCallback((time: number, isPlaying?: boolean) => {
         // Broadcast the exact audio time to the viewer window
         if (channelRef.current && isLive) {
             channelRef.current.postMessage({
                 type: 'audio_sync',
-                payload: { currentTime: time }
+                payload: { 
+                    currentTime: time, 
+                    isPlaying: isPlaying !== undefined ? isPlaying : false 
+                }
             });
         }
     }, [isLive]);
 
     const renderSlideOrKaraoke = (isTrans: boolean, isPreview: boolean = false) => {
-        if (activeSlide?.type === SlideType.LYRICS && (activeSlide.content as SlideContentLyrics).hasTiming) {
+        const lyricsContent = activeSlide?.content as SlideContentLyrics;
+        if (activeSlide?.type === SlideType.LYRICS && (lyricsContent?.timingData || lyricsContent?.hasTiming)) {
             return (
                 <SmartWorshipPlayer
-                    timingData={(activeSlide.content as SlideContentLyrics).timingData}
-                    audioSrc={(activeSlide.content as SlideContentLyrics).audioUrl || ''}
-                    title={(activeSlide.content as SlideContentLyrics).title}
+                    timingData={lyricsContent.timingData}
+                    audioSrc={lyricsContent.audioUrl || ''}
+                    title={lyricsContent.title}
                     viewOnly={isPreview}
                     onTimeUpdate={handleTimeUpdate}
+                    externalActiveLineIndex={internalPageIndex}
+                    showPersian={true}
+                    showFinglish={true}
+                    showEnglish={true}
                     translations={{
-                        finglish: (activeSlide.content as SlideContentLyrics).finglishLines
+                        finglish: lyricsContent.finglishLines,
+                        english: lyricsContent.lyricsEnLines,
+                        persian: lyricsContent.persianTranslationLines
                     }}
                     isTransparent={isTrans}
                 />

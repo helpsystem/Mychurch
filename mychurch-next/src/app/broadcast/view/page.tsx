@@ -33,6 +33,7 @@ interface ViewerState {
     connected: boolean;
     connectionType: 'none' | 'broadcast-channel' | 'websocket';
     audioCurrentTime: number; // زمان جاری صوت برای sync کاراوکه
+    audioIsPlaying?: boolean; // آیا صوت در حال پخش است؟
     activeScriptureReference?: import('@/types/broadcast').ScriptureReferenceItem | null;
     scripturePopupScale?: number;
 }
@@ -128,10 +129,21 @@ function ViewerContent() {
         connected: false,
         connectionType: 'none',
         audioCurrentTime: 0,
+        audioIsPlaying: false,
         activeScriptureReference: null,
         scripturePopupScale: 1.0
     });
     const [showGlassPopup, setShowGlassPopup] = useState(false);
+    const activeLineRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (activeLineRef.current) {
+            activeLineRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    }, [state.internalPageIndex, state.currentSlide?.id]);
     const [tokenState, setTokenState] = useState<"checking" | "valid" | "invalid">("checking");
     const [tokenCheckTimeout, setTokenCheckTimeout] = useState(false);
     const [initialStateTimeout, setInitialStateTimeout] = useState(false);
@@ -338,7 +350,8 @@ function ViewerContent() {
             if (msg.type === 'audio_sync' && msg.payload) {
                 setState(prev => ({
                     ...prev,
-                    audioCurrentTime: msg.payload.currentTime
+                    audioCurrentTime: msg.payload.currentTime,
+                    audioIsPlaying: msg.payload.isPlaying
                 }));
             }
         };
@@ -406,7 +419,7 @@ function ViewerContent() {
             const farsiPopupLines = (lyricsContent.lines || []).map(line => stripChordMarkers(line.text)).filter(Boolean);
             const englishPopupLines = (lyricsContent.lyricsEnLines || []).map(line => line.trim()).filter(Boolean);
 
-            if (lyricsContent.timingData && lyricsContent.audioUrl) {
+            if (lyricsContent.timingData) {
                 const displayOpts = lyricsContent.displayOptions;
 
                 return (
@@ -422,10 +435,12 @@ function ViewerContent() {
                         )}
                         <SmartWorshipPlayer
                             timingData={lyricsContent.timingData}
-                            audioSrc={lyricsContent.audioUrl}
+                            audioSrc={lyricsContent.audioUrl || ''}
                             title={lyricsContent.title}
                             viewOnly={true}
                             externalCurrentTime={state.audioCurrentTime}
+                            externalIsPlaying={state.audioIsPlaying}
+                            externalActiveLineIndex={state.internalPageIndex}
                             backgroundImage={displayOpts?.backgroundUrl}
                             backgroundOpacity={displayOpts?.backgroundOpacity}
                             backgroundBlur={displayOpts?.backgroundBlur}
@@ -435,7 +450,9 @@ function ViewerContent() {
                             showFinglish={displayOpts?.showFinglish}
                             showEnglish={displayOpts?.showEnglishLyrics}
                             translations={{
-                                finglish: lyricsContent.finglishLines
+                                finglish: lyricsContent.finglishLines,
+                                english: lyricsContent.lyricsEnLines,
+                                persian: lyricsContent.persianTranslationLines
                             }}
                         />
                         {lyricsPopupEnabled && showGlassPopup && (
@@ -515,19 +532,55 @@ function ViewerContent() {
                             </h2>
                         </div>
                         <div className="flex-1 overflow-y-auto p-8">
-                            <div className="text-center max-w-5xl mx-auto space-y-6">
-                                {displayLines.map((line: any, idx: number) => (
-                                    <div key={idx} className="text-center">
-                                        <p className={`text-4xl leading-[1.8] font-bold transition-all duration-300 font-[Vazirmatn] ${line.isChorus ? 'text-yellow-200 scale-105 border-l-4 border-r-4 border-yellow-400/50 px-6 py-2' : 'text-white'}`} style={{ textShadow: line.isChorus ? '0 0 30px rgba(253, 224, 71, 0.6), 0 0 60px rgba(253, 224, 71, 0.4)' : '0 4px 12px rgba(0, 0, 0, 0.6)' }}>
-                                            {line.text}
-                                        </p>
-                                        {finglishLines?.[idx] && (
-                                            <p className="text-2xl text-cyan-300 mt-2 font-mono tracking-wide" dir="ltr" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)' }}>
-                                                {finglishLines[idx]}
+                            <div className="text-center max-w-5xl mx-auto space-y-8 pb-32">
+                                {displayLines.map((line: any, idx: number) => {
+                                    const isActive = idx === state.internalPageIndex;
+                                    return (
+                                        <div 
+                                            key={idx} 
+                                            ref={isActive ? activeLineRef : null}
+                                            className={`text-center transition-all duration-500 px-6 py-4 rounded-3xl ${
+                                                isActive 
+                                                    ? 'scale-110 opacity-100 bg-white/5 border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.4)]' 
+                                                    : 'opacity-20 scale-95'
+                                            }`}
+                                        >
+                                            <p 
+                                                className={`text-4xl lg:text-5xl leading-[1.8] font-bold transition-all duration-300 font-[Vazirmatn] ${
+                                                    line.isChorus 
+                                                        ? 'text-yellow-200 scale-105 border-l-4 border-r-4 border-yellow-400/50 px-6 py-2' 
+                                                        : isActive 
+                                                            ? 'text-cyan-300 font-black' 
+                                                            : 'text-white'
+                                                }`} 
+                                                style={{ 
+                                                    textShadow: line.isChorus 
+                                                        ? '0 0 30px rgba(253, 224, 71, 0.6), 0 0 60px rgba(253, 224, 71, 0.4)' 
+                                                        : isActive 
+                                                            ? '0 0 15px rgba(34, 211, 238, 0.8)' 
+                                                            : '0 4px 12px rgba(0, 0, 0, 0.6)' 
+                                                }}
+                                            >
+                                                {line.text}
                                             </p>
-                                        )}
-                                    </div>
-                                ))}
+                                            {finglishLines?.[idx] && (
+                                                <p 
+                                                    className={`text-2xl lg:text-3xl mt-3 font-mono tracking-wide transition-all duration-300 ${
+                                                        isActive ? 'text-yellow-300 font-bold' : 'text-cyan-300/70'
+                                                    }`} 
+                                                    dir="ltr" 
+                                                    style={{ 
+                                                        textShadow: isActive 
+                                                            ? '0 0 12px rgba(253, 224, 71, 0.7)' 
+                                                            : '0 2px 8px rgba(0, 0, 0, 0.6)' 
+                                                    }}
+                                                >
+                                                    {finglishLines[idx]}
+                                                </p>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>

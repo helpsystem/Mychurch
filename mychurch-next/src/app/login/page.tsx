@@ -3,14 +3,23 @@
 import React, { useState, useTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { LogIn, Lock, Mail, Loader2 } from "lucide-react";
-import { login } from "@/actions/auth";
+import { LogIn, Lock, Mail, Loader2, KeyRound, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { login, requestPasswordReset } from "@/actions/auth";
 import { PageVisuals } from "@/components/ui/PageVisuals";
 import { resolvePublicSiteUrl } from "@/lib/site-url";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function LoginPage() {
+type Step = "login" | "forgot" | "sent";
+
+function LoginContent() {
+    const searchParams = useSearchParams();
+    const resetSuccess = searchParams?.get("reset") === "success";
+
     const [isPending, startTransition] = useTransition();
     const [headerError, setHeaderError] = useState<string | null>(null);
+    const [step, setStep] = useState<Step>("login");
+    const [forgotEmail, setForgotEmail] = useState("");
 
     const handleGoogleLogin = async () => {
         const { createClient } = await import("@/utils/supabase/client");
@@ -18,12 +27,12 @@ export default function LoginPage() {
         const siteUrl = resolvePublicSiteUrl();
 
         const { error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
+            provider: "google",
             options: {
                 redirectTo: `${siteUrl}/api/auth/callback`,
                 queryParams: {
-                    access_type: 'offline',
-                    prompt: 'consent',
+                    access_type: "offline",
+                    prompt: "consent",
                 },
             },
         });
@@ -33,16 +42,28 @@ export default function LoginPage() {
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setHeaderError(null);
-
         const formData = new FormData(e.currentTarget);
-
         startTransition(async () => {
             const result = await login(formData);
             if (result && !result.success) {
                 setHeaderError(result.error || "خطا در ورود به سیستم / Login failed");
+            }
+        });
+    };
+
+    const handleForgotSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setHeaderError(null);
+        const formData = new FormData(e.currentTarget);
+        startTransition(async () => {
+            const result = await requestPasswordReset(formData);
+            if (result?.error) {
+                setHeaderError(result.error);
+            } else {
+                setStep("sent");
             }
         });
     };
@@ -59,11 +80,33 @@ export default function LoginPage() {
                         <div className="w-20 h-20 bg-black/40 rounded-2xl flex items-center justify-center border border-white/5 mb-6 ring-1 ring-white/10 shadow-inner">
                             <Image src="/logo-transparent.png" alt="MyChurch Logo" width={50} height={50} className="object-contain" />
                         </div>
-                        <h1 className="text-2xl font-black text-white tracking-tight text-center font-[Vazirmatn]">
-                            ورود به پنل مدیریت
-                            <span className="block text-sm font-medium text-white/80 mt-1 font-sans">Admin Portal Login</span>
-                        </h1>
+                        {step === "login" && (
+                            <h1 className="text-2xl font-black text-white tracking-tight text-center font-[Vazirmatn]">
+                                ورود به پنل مدیریت
+                                <span className="block text-sm font-medium text-white/80 mt-1 font-sans">Admin Portal Login</span>
+                            </h1>
+                        )}
+                        {step === "forgot" && (
+                            <h1 className="text-2xl font-black text-white tracking-tight text-center font-[Vazirmatn]">
+                                فراموشی رمز عبور
+                                <span className="block text-sm font-medium text-white/80 mt-1 font-sans">Password Recovery</span>
+                            </h1>
+                        )}
+                        {step === "sent" && (
+                            <h1 className="text-2xl font-black text-white tracking-tight text-center font-[Vazirmatn]">
+                                ایمیل ارسال شد
+                                <span className="block text-sm font-medium text-white/80 mt-1 font-sans">Recovery Email Sent</span>
+                            </h1>
+                        )}
                     </div>
+
+                    {/* Password Reset Success Banner (from /reset-password redirect) */}
+                    {resetSuccess && step === "login" && (
+                        <div className="mb-6 bg-emerald-950/70 border border-emerald-400/40 text-emerald-200 px-4 py-3 rounded-xl text-sm font-bold text-center font-[Vazirmatn] animate-in slide-in-from-top-2 flex items-center justify-center gap-2">
+                            <CheckCircle2 className="w-4 h-4 shrink-0" />
+                            رمز عبور با موفقیت تغییر کرد. / Password updated successfully.
+                        </div>
+                    )}
 
                     {/* Error Banner */}
                     {headerError && (
@@ -72,95 +115,195 @@ export default function LoginPage() {
                         </div>
                     )}
 
-                    {/* Login Form */}
-                    <form onSubmit={handleSubmit} className="space-y-5" dir="ltr">
-                        <div className="space-y-1.5">
-                            <label className="text-sm font-bold text-white/90 flex justify-between font-[Vazirmatn]" htmlFor="email">
-                                <span className="font-sans text-white/90">Email Address</span>
-                                <span className="text-white/90">ایمیل</span>
-                            </label>
-                            <div className="relative">
-                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    placeholder="admin@iranianchristianchurch.com"
-                                    required
-                                    className="w-full bg-neutral-900/90 border border-white/25 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all shadow-inner"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="space-y-1.5">
-                            <label className="text-sm font-bold text-white/90 flex justify-between font-[Vazirmatn]" htmlFor="password">
-                                <div className="flex items-center gap-1.5">
-                                    <span className="font-sans text-white/90">Password</span>
-                                    <span className="text-xs text-white/50 font-normal font-[Vazirmatn]">(در صورت فراموشی با مدیر تماس بگیرید)</span>
+                    {/* ───── STEP: LOGIN ───── */}
+                    {step === "login" && (
+                        <form onSubmit={handleLoginSubmit} className="space-y-5" dir="ltr">
+                            <div className="space-y-1.5">
+                                <label className="text-sm font-bold text-white/90 flex justify-between font-[Vazirmatn]" htmlFor="email">
+                                    <span className="font-sans text-white/90">Email Address</span>
+                                    <span className="text-white/90">ایمیل</span>
+                                </label>
+                                <div className="relative">
+                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        placeholder="admin@iranianchristianchurch.com"
+                                        required
+                                        className="w-full bg-neutral-900/90 border border-white/25 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all shadow-inner"
+                                    />
                                 </div>
-                                <span className="text-white/90">رمز عبور</span>
-                            </label>
-                            <div className="relative">
-                                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    placeholder="••••••••"
-                                    required
-                                    className="w-full bg-neutral-900/90 border border-white/25 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all shadow-inner font-mono tracking-widest"
-                                />
                             </div>
-                        </div>
 
-                        <button
-                            type="submit"
-                            disabled={isPending}
-                            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-black text-lg py-4 rounded-xl shadow-lg shadow-primary/25 transition-all active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none mt-4 flex items-center justify-center gap-3 font-[Vazirmatn]"
-                        >
-                            {isPending ? (
-                                <>
-                                    <Loader2 className="w-5 h-5 animate-spin" />
-                                    در حال ورود... / Authenticating
-                                </>
-                            ) : (
-                                <>
-                                    <LogIn className="w-5 h-5" />
-                                    ورود به سیستم / Sign In
-                                </>
-                            )}
-                        </button>
-
-                        <div className="relative my-6 text-center">
-                            <div className="absolute inset-0 flex items-center">
-                                <span className="w-full border-t border-white/10"></span>
+                            <div className="space-y-1.5">
+                                <label className="text-sm font-bold text-white/90 flex justify-between font-[Vazirmatn]" htmlFor="password">
+                                    <span className="font-sans text-white/90">Password</span>
+                                    <span className="text-white/90">رمز عبور</span>
+                                </label>
+                                <div className="relative">
+                                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        placeholder="••••••••"
+                                        required
+                                        className="w-full bg-neutral-900/90 border border-white/25 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all shadow-inner font-mono tracking-widest"
+                                    />
+                                </div>
+                                {/* Forgot Password Link */}
+                                <div className="flex justify-end pt-1" dir="rtl">
+                                    <button
+                                        type="button"
+                                        onClick={() => { setHeaderError(null); setStep("forgot"); }}
+                                        className="text-xs text-primary/80 hover:text-primary font-bold font-[Vazirmatn] transition-colors underline-offset-2 hover:underline"
+                                    >
+                                        رمز عبور را فراموش کردید؟
+                                    </button>
+                                </div>
                             </div>
-                            <span className="relative px-4 text-xs font-bold text-white/80 bg-neutral-900 uppercase tracking-widest font-[Vazirmatn]">یا / OR</span>
+
+                            <button
+                                type="submit"
+                                disabled={isPending}
+                                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-black text-lg py-4 rounded-xl shadow-lg shadow-primary/25 transition-all active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none mt-4 flex items-center justify-center gap-3 font-[Vazirmatn]"
+                            >
+                                {isPending ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        در حال ورود... / Authenticating
+                                    </>
+                                ) : (
+                                    <>
+                                        <LogIn className="w-5 h-5" />
+                                        ورود به سیستم / Sign In
+                                    </>
+                                )}
+                            </button>
+
+                            <div className="relative my-6 text-center">
+                                <div className="absolute inset-0 flex items-center">
+                                    <span className="w-full border-t border-white/10"></span>
+                                </div>
+                                <span className="relative px-4 text-xs font-bold text-white/80 bg-neutral-900 uppercase tracking-widest font-[Vazirmatn]">یا / OR</span>
+                            </div>
+
+                            <button
+                                type="button"
+                                onClick={handleGoogleLogin}
+                                className="w-full bg-white hover:bg-neutral-200 text-black font-black text-lg py-4 rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-3 font-[Vazirmatn] shadow-lg shadow-white/5"
+                            >
+                                <svg className="w-5 h-5" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                                    <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                                    <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.23.81-.61z" />
+                                    <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                                </svg>
+                                ادامه با گوگل / Continue with Google
+                            </button>
+                        </form>
+                    )}
+
+                    {/* ───── STEP: FORGOT PASSWORD ───── */}
+                    {step === "forgot" && (
+                        <form onSubmit={handleForgotSubmit} className="space-y-5" dir="ltr">
+                            <p className="text-sm text-white/70 font-[Vazirmatn] text-center leading-relaxed mb-2" dir="rtl">
+                                ایمیل حساب خود را وارد کنید.<br />
+                                <span className="text-white/50 text-xs font-sans" dir="ltr">Enter your account email to receive a reset link.</span>
+                            </p>
+
+                            <div className="space-y-1.5">
+                                <label className="text-sm font-bold text-white/90 flex justify-between font-[Vazirmatn]" htmlFor="forgot-email">
+                                    <span className="font-sans text-white/90">Email Address</span>
+                                    <span className="text-white/90">ایمیل</span>
+                                </label>
+                                <div className="relative">
+                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
+                                    <input
+                                        id="forgot-email"
+                                        name="email"
+                                        type="email"
+                                        value={forgotEmail}
+                                        onChange={e => setForgotEmail(e.target.value)}
+                                        placeholder="your@email.com"
+                                        required
+                                        autoFocus
+                                        className="w-full bg-neutral-900/90 border border-white/25 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all shadow-inner"
+                                    />
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={isPending}
+                                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-black text-lg py-4 rounded-xl shadow-lg shadow-primary/25 transition-all active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-3 font-[Vazirmatn]"
+                            >
+                                {isPending ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        در حال ارسال...
+                                    </>
+                                ) : (
+                                    <>
+                                        <KeyRound className="w-5 h-5" />
+                                        ارسال لینک بازیابی / Send Reset Link
+                                    </>
+                                )}
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => { setHeaderError(null); setStep("login"); }}
+                                className="w-full flex items-center justify-center gap-2 text-sm text-white/60 hover:text-white/90 font-[Vazirmatn] transition-colors mt-1"
+                            >
+                                <ArrowLeft className="w-4 h-4" />
+                                بازگشت به صفحه ورود / Back to Login
+                            </button>
+                        </form>
+                    )}
+
+                    {/* ───── STEP: EMAIL SENT ───── */}
+                    {step === "sent" && (
+                        <div className="text-center space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div className="flex justify-center">
+                                <div className="w-20 h-20 rounded-full bg-emerald-950/60 border-2 border-emerald-500/40 flex items-center justify-center">
+                                    <CheckCircle2 className="w-10 h-10 text-emerald-400" />
+                                </div>
+                            </div>
+                            <div dir="rtl" className="space-y-2">
+                                <p className="text-white font-black text-lg font-[Vazirmatn]">ایمیل ارسال شد!</p>
+                                <p className="text-white/70 text-sm font-[Vazirmatn] leading-relaxed">
+                                    لینک بازیابی رمز عبور به آدرس زیر ارسال شد:
+                                </p>
+                                <p className="text-primary font-bold text-sm font-mono break-all">{forgotEmail}</p>
+                            </div>
+                            <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-white/60 font-[Vazirmatn] leading-relaxed text-right" dir="rtl">
+                                <strong className="text-white/80">توجه:</strong> اگر ایمیل را دریافت نکردید، پوشه Spam یا Junk را بررسی کنید. لینک بازیابی برای ۱ ساعت معتبر است.
+                            </div>
+                            <p className="text-xs text-white/40 font-sans" dir="ltr">Check your spam folder if you don't see the email. Link expires in 1 hour.</p>
+                            <button
+                                type="button"
+                                onClick={() => { setHeaderError(null); setStep("login"); setForgotEmail(""); }}
+                                className="w-full flex items-center justify-center gap-2 text-sm text-white/60 hover:text-white/90 font-[Vazirmatn] transition-colors border border-white/10 hover:border-white/20 rounded-xl py-3"
+                            >
+                                <ArrowLeft className="w-4 h-4" />
+                                بازگشت به صفحه ورود / Back to Login
+                            </button>
                         </div>
+                    )}
 
-                        <button
-                            type="button"
-                            onClick={handleGoogleLogin}
-                            className="w-full bg-white hover:bg-neutral-200 text-black font-black text-lg py-4 rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-3 font-[Vazirmatn] shadow-lg shadow-white/5"
-                        >
-                            <svg className="w-5 h-5" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                                <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                                <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.23.81-.61z" />
-                                <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                            </svg>
-                            ادامه با گوگل / Continue with Google
-                        </button>
-                    </form>
-
-                    <div className="mt-8 text-center">
-                        <p className="text-sm text-white/85 font-[Vazirmatn]">
-                            حساب کاربری ندارید؟ / Don't have an account?{" "}
-                            <Link href="/signup" className="text-primary hover:text-primary/80 font-bold transition-colors">
-                                ثبت‌نام / Sign Up
-                            </Link>
-                        </p>
-                    </div>
+                    {/* Bottom Links */}
+                    {step === "login" && (
+                        <div className="mt-8 text-center">
+                            <p className="text-sm text-white/85 font-[Vazirmatn]">
+                                حساب کاربری ندارید؟ / Don&apos;t have an account?{" "}
+                                <Link href="/signup" className="text-primary hover:text-primary/80 font-bold transition-colors">
+                                    ثبت‌نام / Sign Up
+                                </Link>
+                            </p>
+                        </div>
+                    )}
 
                     <div className="mt-8 text-center text-xs text-white/70 font-medium border-t border-white/10 pt-6">
                         <p>© {new Date().getFullYear()} Iranian Christian Church of D.C.</p>
@@ -169,5 +312,13 @@ export default function LoginPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={<div className="min-h-[100dvh] w-full bg-neutral-950" />}>
+            <LoginContent />
+        </Suspense>
     );
 }

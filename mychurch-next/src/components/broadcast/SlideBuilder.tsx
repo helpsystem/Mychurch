@@ -656,10 +656,11 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     const songId = selectedSong?.id || existingContent?.songId;
     const audioUrl = selectedSong?.audioUrl || existingContent?.audioUrl;
     const youtubeId = selectedSong?.youtubeId || existingContent?.youtubeId;
-    const hasTiming = selectedSong?.hasTiming !== undefined ? selectedSong.hasTiming : existingContent?.hasTiming;
+    const hasTiming = selectedSong?.hasTiming || !!timingData || existingContent?.hasTiming;
 
-    // Extract finglish lines from timing data if available
+    // Extract finglish and persian translation lines from timing data if available
     let finglishLines = existingContent?.finglishLines;
+    let persianTranslationLines = existingContent?.persianTranslationLines;
     if (timingData?.lines) {
       finglishLines = timingData.lines.map((line: any) => {
         if (line.translations?.finglish) return line.translations.finglish;
@@ -668,6 +669,9 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           return line.words.map((w: any) => w.finglish || '').join(' ').trim();
         }
         return '';
+      });
+      persianTranslationLines = timingData.lines.map((line: any) => {
+        return line.translations?.persian || '';
       });
     }
 
@@ -680,7 +684,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       youtubeId,
       hasTiming,
       timingData,
-      finglishLines
+      finglishLines,
+      persianTranslationLines
     };
 
     // If editing, update existing slide

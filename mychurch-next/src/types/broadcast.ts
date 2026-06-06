@@ -13,13 +13,15 @@ export interface WorshipSong {
     id: number | string;
     title: { fa: string; en: string; [key: string]: string };
     artist?: { fa: string; en: string; [key: string]: string };
-    lyrics?: { fa?: string; en?: string; };
+    lyrics?: { fa?: string; en?: string; finglish?: string; };
     chord?: string;
     youtubeId?: string;
     audioUrl?: string;
     hasTiming?: boolean;
     mode?: string;
     timing_data?: import('./worship-sync').SystemTimingV2 | null;
+    timepoints?: Array<{ time: number; lyricFA: string; lyricEN?: string }> | null;
+    lyrics_finglish?: string;
 }
 
 export enum SlideType {
@@ -115,6 +117,7 @@ export interface SlideContentLyrics {
     hasTiming?: boolean;
     glassPopupEnabled?: boolean;
     displayOptions?: LyricsDisplayOptions;
+    persianTranslationLines?: string[];
 }
 
 export interface MediaDisplayConfig {

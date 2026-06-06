@@ -25,12 +25,14 @@ export async function fetchWorshipSongs(): Promise<WorshipSong[]> {
         id: s.id,
         title: { fa: s.title_fa || '', en: s.title_en || '' },
         artist: { fa: s.artist || '', en: s.artist || '' },
-        lyrics: { fa: s.lyrics_fa || '', en: s.lyrics_en, finglish: s.lyrics_finglish },
+        lyrics: { fa: s.lyrics_fa || '', en: s.lyrics_en || '', finglish: s.lyrics_finglish || '' },
         chord: s.chords,
         youtubeId: s.youtube_id,
         audioUrl: s.audio_url,
-        hasTiming: !!s.timing_data,
+        hasTiming: !!(s.timing_data || (s.timepoints && Array.isArray(s.timepoints) && s.timepoints.length > 0)),
         timing_data: s.timing_data,
+        timepoints: s.timepoints,
+        lyrics_finglish: s.lyrics_finglish || '',
         category: s.category
       }));
     }

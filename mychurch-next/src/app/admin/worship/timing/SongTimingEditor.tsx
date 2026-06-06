@@ -646,6 +646,13 @@ export default function SongTimingEditor({
                             audioSrc={audioUrl || ""}
                             timingData={currentTiming}
                             onClose={() => setShowPreview(false)}
+                            showPersian={true}
+                            showFinglish={true}
+                            showEnglish={true}
+                            translations={{
+                                finglish: lyricsFinglish ? lyricsFinglish.split('\n').map(l => l.trim()).filter(Boolean) : undefined,
+                                english: lyricsEn ? lyricsEn.split('\n').map(l => l.trim()).filter(Boolean) : undefined,
+                            }}
                         />
                     </div>
                 </div>

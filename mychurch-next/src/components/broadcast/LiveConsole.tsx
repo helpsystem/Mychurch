@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { getPresentations, getPresentationById } from "@/actions/presentations";
-import { BroadcastSession } from "@/types/broadcast";
+import { BroadcastSession, SlideType, SlideContentLyrics } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { useShallow } from "zustand/react/shallow";
 import { cn } from "@/lib/utils";
@@ -278,9 +278,21 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
 
     const getCurrentPageCount = React.useCallback(() => {
         const current = slides[activeSlideIndex];
-        if (!current || current.type !== 'SCRIPTURE') return 1;
-        const scripture = current.content as any;
-        return Array.isArray(scripture?.pages) && scripture.pages.length > 0 ? scripture.pages.length : 1;
+        if (!current) return 1;
+        if (current.type === SlideType.SCRIPTURE) {
+            const scripture = current.content as any;
+            return Array.isArray(scripture?.pages) && scripture.pages.length > 0 ? scripture.pages.length : 1;
+        }
+        if (current.type === SlideType.LYRICS) {
+            const lyrics = current.content as SlideContentLyrics;
+            if (lyrics?.timingData?.lines) {
+                return lyrics.timingData.lines.length;
+            }
+            if (Array.isArray(lyrics?.lines)) {
+                return lyrics.lines.length;
+            }
+        }
+        return 1;
     }, [slides, activeSlideIndex]);
 
     const goNextStep = React.useCallback(() => {

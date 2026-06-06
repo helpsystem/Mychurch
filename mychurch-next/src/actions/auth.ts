@@ -229,3 +229,79 @@ export async function logout() {
     revalidatePath("/", "layout");
     redirect("/login");
 }
+
+export async function requestPasswordReset(formData: FormData): Promise<{ success?: boolean; error?: string }> {
+    const email = (formData.get("email") as string)?.trim().toLowerCase();
+    if (!email) return { error: "لطفاً ایمیل را وارد کنید / Please enter your email." };
+
+    const supabase = await createClient();
+    const siteUrl = resolvePublicSiteUrl();
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${siteUrl}/api/auth/callback?next=/reset-password`,
+    });
+
+    if (error) {
+        console.error("[Auth] ❌ resetPasswordForEmail error:", error.message);
+        return { error: error.message };
+    }
+
+    // Send a branded notification email alongside Supabase's built-in recovery email
+    try {
+        const logoPath = path.join(process.cwd(), "public/logo-transparent.png");
+        const attachments: any[] = [];
+        if (fs.existsSync(logoPath)) {
+            attachments.push({ filename: "logo-transparent.png", path: logoPath, cid: "logo-premium" });
+        }
+
+        await sendMail({
+            to: email,
+            subject: "بازیابی رمز عبور | Password Reset — Iranian Christian Church DC",
+            attachments: attachments.length > 0 ? attachments : undefined,
+            text: `سلام،\n\nیک درخواست بازیابی رمز عبور برای ایمیل شما ثبت شد.\nلینک بازیابی جداگانه از طریق Supabase ارسال می‌شود.\nاگر این درخواست از شما نیست، آن را نادیده بگیرید.\n\n${siteUrl}`,
+            html: `
+                <!DOCTYPE html>
+                <html lang="fa" dir="rtl">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>بازیابی رمز عبور | Password Reset</title>
+                </head>
+                <body style="margin:0;padding:0;background-color:#0c0a09;color:#ffffff;font-family:Tahoma,Geneva,sans-serif;direction:rtl;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#0c0a09;padding:40px 10px;">
+                        <tr><td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;background-color:#1c1917;border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;">
+                                <tr><td style="padding:40px;text-align:right;">
+                                    ${fs.existsSync(logoPath) ? `<img src="cid:logo-premium" alt="Iranian Christian Church DC" width="56" height="56" style="margin-bottom:24px;border:0;" />` : ""}
+                                    <h1 style="font-size:22px;font-weight:bold;margin:0 0 8px 0;color:#ba955c;">بازیابی رمز عبور</h1>
+                                    <h2 dir="ltr" style="font-size:14px;font-weight:600;margin:0 0 24px 0;color:#a8a29e;text-align:left;">Password Reset Request</h2>
+                                    <p style="font-size:15px;line-height:1.8;margin:0 0 16px 0;color:#e7e5e4;">
+                                        سلام،<br/>
+                                        یک درخواست بازیابی رمز عبور برای حساب کاربری شما (<strong>${email}</strong>) ثبت شد.<br/>
+                                        لطفاً روی لینکی که از طریق Supabase برای شما ارسال شده کلیک کنید تا رمز جدیدی تعیین کنید.
+                                    </p>
+                                    <p dir="ltr" style="font-size:13px;line-height:1.7;margin:0 0 24px 0;color:#a8a29e;text-align:left;font-style:italic;">
+                                        A password reset link has been sent via Supabase. Click it to set a new password.<br/>
+                                        If you did not request this, please ignore this email.
+                                    </p>
+                                    <div style="border:1px solid rgba(186,149,92,0.3);background-color:rgba(186,149,92,0.08);border-radius:12px;padding:16px;margin:0 0 28px 0;color:#d6d3d1;font-size:13px;line-height:1.6;">
+                                        <strong>توجه:</strong> این لینک برای ۱ ساعت معتبر است. اگر این درخواست از شما نیست، حساب شما امن است.
+                                    </div>
+                                </td></tr>
+                                <tr><td style="border-top:1px solid rgba(255,255,255,0.05);background-color:rgba(0,0,0,0.2);padding:20px;font-size:12px;color:#78716c;text-align:center;font-family:Arial,sans-serif;">
+                                    © ${new Date().getFullYear()} Iranian Christian Church D.C. — ${siteUrl}
+                                </td></tr>
+                            </table>
+                        </td></tr>
+                    </table>
+                </body>
+                </html>
+            `,
+        });
+        console.log(`[Auth] 📧 Password reset notification sent to ${email}`);
+    } catch (mailErr: any) {
+        console.warn("[Auth] ⚠️ Could not send branded reset email:", mailErr.message);
+    }
+
+    return { success: true };
+}
+

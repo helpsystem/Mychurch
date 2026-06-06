@@ -1,0 +1,36 @@
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    connectionString: 'postgresql://postgres.xjliwbfdzmxncyebblxw:OExGvmxE8SsoIUGH@aws-1-us-east-1.pooler.supabase.com:6543/postgres',
+    ssl: { rejectUnauthorized: false }
+});
+
+async function main() {
+    try {
+        const res = await pool.query(`
+            SELECT id, title_fa, title_en, timing_data
+            FROM church_worship_songs
+            WHERE timing_data IS NOT NULL AND (timing_data::text != '{}' AND timing_data::text != 'null')
+            LIMIT 10;
+        `);
+        res.rows.forEach(row => {
+            console.log("Song:", row.title_fa, " | EN Title:", row.title_en);
+            if (row.timing_data?.lines?.[0]) {
+                const l = row.timing_data.lines[0];
+                console.log("  - Line:", l.line);
+                console.log("  - Words sample:", l.words?.slice(0, 3).map(w => w.word));
+                console.log("  - Translations keys:", l.translations ? Object.keys(l.translations) : 'none');
+                if (l.translations) {
+                    console.log("  - Translations values:", l.translations);
+                }
+            }
+            console.log("---------------------------------------");
+        });
+    } catch (err) {
+        console.error("Query failed:", err);
+    } finally {
+        await pool.end();
+    }
+}
+
+main();

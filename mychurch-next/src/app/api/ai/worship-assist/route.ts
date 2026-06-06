@@ -58,8 +58,18 @@ Only output the clean text, nothing else.
 Song Title: ${titleFA || "Unknown"}
 Raw Text:
 ${lyricsFA}`;
+        } else if (mode === "finglish") {
+            prompt = `You are a linguist specializing in Persian transliteration.
+Convert the following Persian worship song lyrics into natural, readable, standard Finglish (Persian written in Latin characters / Pinglish).
+Pay close attention to Persian vowels (e.g. 'a', 'e', 'o', 'aa', 'i', 'u') so it sounds natural when read.
+Keep the exact same line structure and stanza breaks.
+Only output the Finglish transliteration, nothing else. Do not add any introductory or concluding text.
+
+Song Title: ${titleFA || "Unknown"}
+Persian Lyrics:
+${lyricsFA}`;
         } else {
-            return NextResponse.json({ error: "Invalid mode. Use 'translate' or 'chords'." }, { status: 400 });
+            return NextResponse.json({ error: "Invalid mode. Use 'translate', 'chords', 'clean', or 'finglish'." }, { status: 400 });
         }
 
         const response = await genAI.models.generateContent({
