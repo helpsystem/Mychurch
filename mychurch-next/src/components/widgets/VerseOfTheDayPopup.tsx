@@ -214,14 +214,22 @@ export function VerseOfTheDayPopup({ config }: VerseOfTheDayPopupProps) {
                                 ? "Your message will be sent to the church along with your support gift." 
                                 : "پیغام شما به همراه هدیه حمایتی شما برای کلیسا ارسال و ثبت خواهد شد."}
                         </p>
-                        <button
-                            onClick={handleDonateRedirect}
-                            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-black font-black px-8 py-4 rounded-2xl hover:bg-neutral-200 transition-all shadow-xl hover:scale-[1.02] active:scale-[0.98] shrink-0 font-sans"
-                        >
-                            <Heart className="w-5 h-5 text-red-500 fill-red-500" />
-                            {isEn ? "Donate & Send Blessing" : "پرداخت هدیه و ارسال پیام"}
-                            {!isEn && <ArrowLeft className="w-4 h-4 mr-1" />}
-                        </button>
+                        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                            <button
+                                onClick={handleClose}
+                                className="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 font-bold px-6 py-4 rounded-2xl transition-all shadow-md hover:scale-[1.02] active:scale-[0.98] shrink-0 font-sans"
+                            >
+                                {isEn ? "Later" : "بعداً انجام می‌دهم"}
+                            </button>
+                            <button
+                                onClick={handleDonateRedirect}
+                                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-black font-black px-8 py-4 rounded-2xl hover:bg-neutral-200 transition-all shadow-xl hover:scale-[1.02] active:scale-[0.98] shrink-0 font-sans"
+                            >
+                                <Heart className="w-5 h-5 text-red-500 fill-red-500" />
+                                {isEn ? "Donate & Send Blessing" : "پرداخت هدیه و ارسال پیام"}
+                                {!isEn && <ArrowLeft className="w-4 h-4 mr-1" />}
+                            </button>
+                        </div>
                     </div>
                 </motion.div>
             </div>
