@@ -16,6 +16,14 @@ interface BroadcastState {
     // Overlay & Display Config
     config: BroadcastOverlayConfig;
 
+    // Lyrics Visibility Overrides (FA, FN, EN)
+    lyricsVisibility: {
+        showPersian: boolean;
+        showFinglish: boolean;
+        showEnglish: boolean;
+    };
+    setLyricsVisibility: (visibility: { showPersian: boolean; showFinglish: boolean; showEnglish: boolean }, skipSync?: boolean) => void;
+
     // Hardware State
     isCameraOn: boolean;
     isMicOn: boolean;
@@ -104,6 +112,12 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
 
     config: DEFAULT_CONFIG,
 
+    lyricsVisibility: {
+        showPersian: true,
+        showFinglish: true,
+        showEnglish: false
+    },
+
     isCameraOn: false,
     isMicOn: false,
     selectedVideoDevice: '',
@@ -124,12 +138,35 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     setIsLive: (isLive) => set({ isLive }),
     setActiveSceneId: (id) => set({ activeSceneId: id }),
     setSlides: (slides) => set({ slides }),
+    setLyricsVisibility: (visibility, skipSync = false) => {
+        set({ lyricsVisibility: visibility });
+        if (!skipSync) {
+            get().pushRemoteSync({ type: 'SET_LYRICS_VISIBILITY', visibility });
+        }
+    },
 
     setActiveSlideIndex: (index, skipSync = false) => {
-        set({ activeSlideIndex: index, internalPageIndex: 0, activeScriptureReference: null });
+        const nextSlide = get().slides[index];
+        let nextVisibility = get().lyricsVisibility;
+        if (nextSlide?.type === 'LYRICS') {
+            const lyrics = nextSlide.content as any;
+            const displayOpts = lyrics?.displayOptions;
+            nextVisibility = {
+                showPersian: displayOpts?.showFarsiLyrics !== false,
+                showFinglish: displayOpts?.showFinglish !== false,
+                showEnglish: displayOpts?.showEnglishLyrics === true
+            };
+        }
+        set({ 
+            activeSlideIndex: index, 
+            internalPageIndex: 0, 
+            activeScriptureReference: null,
+            lyricsVisibility: nextVisibility
+        });
         if (!skipSync) {
             get().pushRemoteSync({ type: 'SET_SLIDE', slideIndex: index, pageIndex: 0 });
             get().pushRemoteSync({ type: 'SET_ACTIVE_REFERENCE', reference: null });
+            get().pushRemoteSync({ type: 'SET_LYRICS_VISIBILITY', visibility: nextVisibility });
         }
     },
 

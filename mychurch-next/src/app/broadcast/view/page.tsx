@@ -33,6 +33,11 @@ interface ViewerState {
     audioIsPlaying?: boolean; // آیا صوت در حال پخش است؟
     activeScriptureReference?: import('@/types/broadcast').ScriptureReferenceItem | null;
     scripturePopupScale?: number;
+    lyricsVisibility?: {
+        showPersian: boolean;
+        showFinglish: boolean;
+        showEnglish: boolean;
+    } | null;
 }
 
 const stripChordMarkers = (text: string): string => {
@@ -128,7 +133,8 @@ function ViewerContent() {
         audioCurrentTime: 0,
         audioIsPlaying: false,
         activeScriptureReference: null,
-        scripturePopupScale: 1.0
+        scripturePopupScale: 1.0,
+        lyricsVisibility: null
     });
     const [showGlassPopup, setShowGlassPopup] = useState(false);
     const activeLineRef = useRef<HTMLDivElement>(null);
@@ -284,6 +290,7 @@ function ViewerContent() {
                     currentSlide: msg.payload.slide,
                     slideIndex: msg.payload.index,
                     internalPageIndex: msg.payload.internalPageIndex || 0,
+                    lyricsVisibility: null, // Reset overrides upon active slide change
                     activeScriptureReference: null,
                     connected: true,
                     connectionType: 'broadcast-channel'
@@ -300,6 +307,16 @@ function ViewerContent() {
                 }));
             }
 
+            if (msg.type === 'lyrics_visibility_sync' && msg.payload) {
+                console.log('📺 [Viewer Channel] Lyrics visibility sync:', msg.payload);
+                setState(prev => ({
+                    ...prev,
+                    lyricsVisibility: msg.payload,
+                    connected: true,
+                    connectionType: 'broadcast-channel'
+                }));
+            }
+
             if (msg.type === 'full_state' && msg.payload) {
                 console.log('📺 [Viewer Channel] Full state update:', msg.payload);
                 setState(prev => ({
@@ -310,6 +327,7 @@ function ViewerContent() {
                     config: msg.payload.config,
                     activeScriptureReference: msg.payload.activeScriptureReference || null,
                     scripturePopupScale: msg.payload.scripturePopupScale || 1.0,
+                    lyricsVisibility: msg.payload.lyricsVisibility || null,
                     connected: true,
                     connectionType: 'broadcast-channel'
                 }));
@@ -444,9 +462,9 @@ function ViewerContent() {
                             backgroundBlur={displayOpts?.backgroundBlur}
                             textShadow={displayOpts?.textShadow}
                             objectFit={displayOpts?.objectFit}
-                            showPersian={displayOpts?.showFarsiLyrics}
-                            showFinglish={displayOpts?.showFinglish}
-                            showEnglish={displayOpts?.showEnglishLyrics}
+                            showPersian={state.lyricsVisibility ? state.lyricsVisibility.showPersian : (displayOpts?.showFarsiLyrics !== false)}
+                            showFinglish={state.lyricsVisibility ? state.lyricsVisibility.showFinglish : (displayOpts?.showFinglish !== false)}
+                            showEnglish={state.lyricsVisibility ? state.lyricsVisibility.showEnglish : (displayOpts?.showEnglishLyrics !== false)}
                             translations={{
                                 finglish: lyricsContent.finglishLines,
                                 english: lyricsContent.lyricsEnLines,
@@ -490,6 +508,7 @@ function ViewerContent() {
                         slide={slide}
                         isRemotePreview={true}
                         internalPageIndex={state.internalPageIndex}
+                        lyricsVisibility={state.lyricsVisibility || undefined}
                     />
                     {lyricsPopupEnabled && (
                         <button

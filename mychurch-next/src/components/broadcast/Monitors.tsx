@@ -99,6 +99,8 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     const isMirrored = useBroadcastStore((state) => state.isMirrored);
     const isBlur = useBroadcastStore((state) => state.isBlur);
     const config = useBroadcastStore((state) => state.config);
+    const lyricsVisibility = useBroadcastStore((state) => state.lyricsVisibility);
+    const setLyricsVisibility = useBroadcastStore((state) => state.setLyricsVisibility);
     
     const activeSlide = slides[activeSlideIndex];
     const channelRef = useRef<BroadcastChannel | null>(null);
@@ -139,9 +141,10 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                     viewOnly={isPreview}
                     onTimeUpdate={handleTimeUpdate}
                     externalActiveLineIndex={internalPageIndex}
-                    showPersian={true}
-                    showFinglish={true}
-                    showEnglish={true}
+                    showPersian={lyricsVisibility.showPersian}
+                    showFinglish={lyricsVisibility.showFinglish}
+                    showEnglish={lyricsVisibility.showEnglish}
+                    onVisibilityChange={setLyricsVisibility}
                     translations={{
                         finglish: lyricsContent.finglishLines,
                         english: lyricsContent.lyricsEnLines,
@@ -160,6 +163,7 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                 isTransparent={isTrans}
                 activeScriptureReference={activeScriptureReference}
                 scripturePopupScale={scripturePopupScale}
+                lyricsVisibility={lyricsVisibility}
             />
         );
     };

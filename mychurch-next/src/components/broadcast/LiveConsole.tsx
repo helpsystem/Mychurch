@@ -44,6 +44,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const nextSlide = useBroadcastStore(state => state.nextSlide);
     const prevSlide = useBroadcastStore(state => state.prevSlide);
     const config = useBroadcastStore(state => state.config);
+    const lyricsVisibility = useBroadcastStore(state => state.lyricsVisibility);
     const initRemoteSync = useBroadcastStore(state => state.initRemoteSync);
     const disconnectSync = useBroadcastStore(state => state.disconnectSync);
     const isConnected = useBroadcastStore(state => state.isConnected);
@@ -537,7 +538,8 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     internalPageIndex: current.internalPageIndex,
                     config: current.config,
                     activeScriptureReference: useBroadcastStore.getState().activeScriptureReference,
-                    scripturePopupScale: useBroadcastStore.getState().scripturePopupScale
+                    scripturePopupScale: useBroadcastStore.getState().scripturePopupScale,
+                    lyricsVisibility: useBroadcastStore.getState().lyricsVisibility
                 }
             });
         };
@@ -584,6 +586,22 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
             payload: { scale: scripturePopupScale }
         });
     }, [scripturePopupScale, sessionId]);
+
+    useEffect(() => {
+        if (!sessionId || !viewerChannelRef.current) return;
+        viewerChannelRef.current.postMessage({
+            type: 'overlay_toggle',
+            payload: config
+        });
+    }, [config, sessionId]);
+
+    useEffect(() => {
+        if (!sessionId || !viewerChannelRef.current) return;
+        viewerChannelRef.current.postMessage({
+            type: 'lyrics_visibility_sync',
+            payload: lyricsVisibility
+        });
+    }, [lyricsVisibility, sessionId]);
 
     useEffect(() => {
         const onKeyDown = (event: KeyboardEvent) => {

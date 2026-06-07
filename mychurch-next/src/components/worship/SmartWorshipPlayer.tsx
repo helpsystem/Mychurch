@@ -29,6 +29,7 @@ interface SmartWorshipPlayerProps {
     showPersian?: boolean;
     showFinglish?: boolean;
     showEnglish?: boolean;
+    onVisibilityChange?: (visibility: { showPersian: boolean; showFinglish: boolean; showEnglish: boolean }) => void;
 }
 
 export const getSafeAudioUrl = (url: string | undefined): string => {
@@ -134,7 +135,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     theme = 'darkSlate',
     showPersian: initialShowPersian = true,
     showFinglish: initialShowFinglish = true,
-    showEnglish: initialShowEnglish = false
+    showEnglish: initialShowEnglish = false,
+    onVisibilityChange
 }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -146,6 +148,13 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     const [showEnglish, setShowEnglish] = useState(initialShowEnglish);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [audioError, setAudioError] = useState(false);
+
+    // Propagate visibility changes up to parent
+    useEffect(() => {
+        if (!viewOnly && onVisibilityChange) {
+            onVisibilityChange({ showPersian, showFinglish, showEnglish });
+        }
+    }, [showPersian, showFinglish, showEnglish, onVisibilityChange, viewOnly]);
 
     // Sync visibility settings if props change
     useEffect(() => {

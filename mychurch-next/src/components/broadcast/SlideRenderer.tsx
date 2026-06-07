@@ -104,6 +104,11 @@ interface SlideRendererProps {
     scripturePopupScale?: number;
     onCloseActiveReference?: () => void;
     onUpdatePopupScale?: (scale: number) => void;
+    lyricsVisibility?: {
+        showPersian: boolean;
+        showFinglish: boolean;
+        showEnglish: boolean;
+    };
 }
 
 export function SlideRenderer({
@@ -116,7 +121,8 @@ export function SlideRenderer({
     activeScriptureReference: propActiveReference,
     scripturePopupScale: propPopupScale,
     onCloseActiveReference,
-    onUpdatePopupScale
+    onUpdatePopupScale,
+    lyricsVisibility: propLyricsVisibility
 }: SlideRendererProps) {
     const storeActiveReference = useBroadcastStore(state => state.activeScriptureReference);
     const storePopupScale = useBroadcastStore(state => state.scripturePopupScale);
@@ -310,9 +316,9 @@ export function SlideRenderer({
             case SlideType.LYRICS: {
                 const content = slide.content as SlideContentLyrics;
                 const opts = content.displayOptions;
-                const showFa = opts?.showFarsiLyrics !== false;
-                const showEn = opts?.showEnglishLyrics !== false;
-                const showFinglish = opts?.showFinglish !== false;
+                const showFa = propLyricsVisibility ? propLyricsVisibility.showPersian : (opts?.showFarsiLyrics !== false);
+                const showEn = propLyricsVisibility ? propLyricsVisibility.showEnglish : (opts?.showEnglishLyrics !== false);
+                const showFinglish = propLyricsVisibility ? propLyricsVisibility.showFinglish : (opts?.showFinglish !== false);
                 const lineCount = content.lines.length;
                 // Auto-fit: base font size decreases as line count grows so all lines fit 1080px
                 // slideZoom (0.5–2.5) lets user override the auto-fit on a per-slide basis
