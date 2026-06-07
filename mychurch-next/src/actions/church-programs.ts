@@ -358,3 +358,25 @@ export async function getPublicCategories(): Promise<ChurchProgramCategory[]> {
         return [];
     }
 }
+
+export async function getPublicPastPrograms(): Promise<ChurchProgram[]> {
+    // No auth required — public endpoint
+    try {
+        await ensureSchemaOnce();
+        const { rows } = await query(`
+            SELECT
+                p.*,
+                c.id AS cat_id, c.name_fa AS cat_name_fa, c.name_en AS cat_name_en,
+                c.icon AS cat_icon, c.color AS cat_color, c.sort_order AS cat_sort_order
+            FROM church_programs p
+            LEFT JOIN program_categories c ON c.id = p.category_id
+            WHERE p.is_public = TRUE AND p.event_date < CURRENT_DATE
+            ORDER BY p.event_date DESC, p.start_time DESC
+            LIMIT 50
+        `);
+        return rows.map(rowToProgram);
+    } catch (err) {
+        console.error("[church-programs] getPublicPastPrograms error:", err);
+        return [];
+    }
+}

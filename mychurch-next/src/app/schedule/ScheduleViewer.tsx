@@ -3,11 +3,20 @@
 import React, { useState, useMemo } from "react";
 import {
     Calendar, Clock, MapPin, User, ChevronLeft, ChevronRight,
-    Search, Filter, Monitor, ExternalLink, Church
+    Search, Filter, Monitor, ExternalLink, Church, BookOpen, AlertCircle, Loader2
 } from "lucide-react";
 import type { ChurchProgram, ChurchProgramCategory } from "@/types/church-programs";
+import type { BroadcastSession } from "@/types/broadcast";
+import { getPublicPresentationById } from "@/actions/presentations";
+import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+
+// Dynamic import for booklet flipbook component (ssr: false since it reads window/document)
+const SessionFlipbook = dynamic(
+    () => import("@/components/worship/SessionFlipbook").then((m) => m.SessionFlipbook),
+    { ssr: false }
+);
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -86,9 +95,10 @@ interface ProgramCardProps {
     program: ChurchProgram;
     category?: ChurchProgramCategory;
     index: number;
+    onOpenBooklet?: (presentationId: string) => void;
 }
 
-function ProgramCard({ program, category, index }: ProgramCardProps) {
+function ProgramCard({ program, category, index, onOpenBooklet }: ProgramCardProps) {
     const accentColor = category?.color ?? "#6366f1";
 
     return (
@@ -167,13 +177,25 @@ function ProgramCard({ program, category, index }: ProgramCardProps) {
                     </p>
                 )}
 
-                {/* Linked presentation badge */}
+                {/* Linked presentation badge & booklet button */}
                 {program.presentation_id && (
-                    <div className="mt-4 pt-3 border-t border-white/6">
-                        <span className="inline-flex items-center gap-1.5 text-[11px] bg-indigo-500/15 text-indigo-400 px-2.5 py-1.5 rounded-lg font-bold font-[Vazirmatn]">
+                    <div className="mt-4 pt-3 border-t border-white/6 flex flex-wrap gap-2 items-center justify-between">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] bg-indigo-500/15 text-indigo-400 px-2.5 py-1.5 rounded-lg font-bold font-[Vazirmatn]">
                             <Monitor className="w-3 h-3" />
                             ارائه آنلاین موجود
                         </span>
+
+                        {onOpenBooklet && (
+                            <button
+                                onClick={() => onOpenBooklet(program.presentation_id!)}
+                                className="inline-flex items-center gap-1.5 text-[11px] bg-[#d4af37]/20 hover:bg-[#d4af37]/35 border border-[#d4af37]/40 text-[#ebdcb9] hover:text-white px-2.5 py-1.5 rounded-xl font-bold font-[Vazirmatn] transition-all hover:scale-105 active:scale-95 shadow-sm"
+                                title="مشاهده کتابچه دیجیتال جلسه"
+                                aria-label="مشاهده کتابچه دیجیتال جلسه"
+                            >
+                                <BookOpen className="w-3.5 h-3.5 text-[#ebdcb9]" />
+                                کتابچه دیجیتال
+                            </button>
+                        )}
                     </div>
                 )}
             </div>
@@ -265,16 +287,46 @@ function EmptyState({ hasFilter }: { hasFilter: boolean }) {
 
 interface ScheduleViewerProps {
     programs: ChurchProgram[];
+    pastPrograms?: ChurchProgram[];
     categories: ChurchProgramCategory[];
 }
 
-export default function ScheduleViewer({ programs, categories }: ScheduleViewerProps) {
+export default function ScheduleViewer({ programs, pastPrograms = [], categories }: ScheduleViewerProps) {
+    const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
+    // Presentation booklet states
+    const [selectedPresentationId, setSelectedPresentationId] = useState<string | null>(null);
+    const [presentationData, setPresentationData] = useState<BroadcastSession | null>(null);
+    const [loadingPresentation, setLoadingPresentation] = useState(false);
+    const [presentationError, setPresentationError] = useState<string | null>(null);
+
+    // Fetch booklet presentation slides
+    const handleOpenBooklet = async (presentationId: string) => {
+        setSelectedPresentationId(presentationId);
+        setLoadingPresentation(true);
+        setPresentationError(null);
+        setPresentationData(null);
+        try {
+            const data = await getPublicPresentationById(presentationId);
+            if (data) {
+                setPresentationData(data);
+            } else {
+                setPresentationError("متاسفانه کتابچه دیجیتال این جلسه یافت نشد.");
+            }
+        } catch (err) {
+            console.error("Error fetching presentation:", err);
+            setPresentationError("خطا در بارگذاری اطلاعات کتابچه. لطفا دوباره تلاش کنید.");
+        } finally {
+            setLoadingPresentation(false);
+        }
+    };
+
     // ── Filter logic ──────────────────────────────────────────────────────
     const filteredPrograms = useMemo(() => {
-        return programs.filter((p) => {
+        const targetPrograms = activeTab === "upcoming" ? programs : pastPrograms;
+        return targetPrograms.filter((p) => {
             if (selectedCategoryId && p.category_id !== selectedCategoryId) return false;
             if (searchQuery.trim()) {
                 const q = searchQuery.toLowerCase();
@@ -288,7 +340,7 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
             }
             return true;
         });
-    }, [programs, selectedCategoryId, searchQuery]);
+    }, [programs, pastPrograms, activeTab, selectedCategoryId, searchQuery]);
 
     // ── Group by date ─────────────────────────────────────────────────────
     const grouped = useMemo(() => {
@@ -300,19 +352,27 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
         }, {});
     }, [filteredPrograms]);
 
-    const sortedDates = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
+    const sortedDates = useMemo(() => {
+        const dates = Object.keys(grouped);
+        // Show past events with most recent first, upcoming with nearest first
+        return activeTab === "past" 
+            ? dates.sort((a, b) => b.localeCompare(a)) 
+            : dates.sort((a, b) => a.localeCompare(b));
+    }, [grouped, activeTab]);
 
-    // Category counts (based on ALL programs, not filtered)
+    // Category counts (based on active tab programs)
     const categoryCounts = useMemo(() => {
         const counts: Record<string, number> = {};
-        programs.forEach((p) => {
+        const targetPrograms = activeTab === "upcoming" ? programs : pastPrograms;
+        targetPrograms.forEach((p) => {
             counts[p.category_id] = (counts[p.category_id] ?? 0) + 1;
         });
         return counts;
-    }, [programs]);
+    }, [programs, pastPrograms, activeTab]);
 
     const hasFilter = !!selectedCategoryId || !!searchQuery.trim();
     const totalShown = filteredPrograms.length;
+    const totalProgramsCount = activeTab === "upcoming" ? programs.length : pastPrograms.length;
 
     return (
         <div className="min-h-screen bg-background" dir="rtl">
@@ -327,7 +387,7 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
                 <div className="absolute top-8 left-8 w-64 h-64 rounded-full bg-indigo-600/10 blur-3xl pointer-events-none" />
                 <div className="absolute top-16 right-16 w-48 h-48 rounded-full bg-purple-600/8 blur-3xl pointer-events-none" />
 
-                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-10">
+                <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-8">
                     {/* Brand */}
                     <div className="flex items-center gap-3 mb-8 animate-fade-in-down">
                         <div className="w-10 h-10 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
@@ -341,11 +401,10 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
                     {/* Title */}
                     <div className="animate-fade-in-up" style={{ animationDelay: "80ms" }}>
                         <h1 className="text-4xl sm:text-5xl font-black text-white font-[Vazirmatn] leading-tight mb-3">
-                            برنامه‌های{" "}
-                            <span className="text-gradient">کلیسا</span>
+                            برنامه‌ها و <span className="text-gradient">جلسات کلیسا</span>
                         </h1>
                         <p className="text-white/50 font-[Vazirmatn] text-base leading-relaxed max-w-md">
-                            جلسات هفتگی، عبادت‌ها و رویدادهای آینده کلیسا
+                            جلسات هفتگی، تقویم عبادت‌ها، و کتابچه‌های دیجیتال جلسات گذشته کلیسا
                         </p>
                     </div>
 
@@ -357,9 +416,39 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
                         </div>
                         <div className="w-px h-4 bg-white/10" />
                         <div className="flex items-center gap-2 text-sm text-white/40 font-[Vazirmatn]">
-                            <Filter className="w-4 h-4" />
-                            <span>{categories.length} دسته‌بندی</span>
+                            <Clock className="w-4 h-4" />
+                            <span>{pastPrograms.length} جلسه برگزار شده</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* ── Tab Selector ── */}
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 mb-4">
+                <div className="flex justify-center sm:justify-start">
+                    <div className="flex p-1 rounded-2xl bg-white/5 border border-white/10 max-w-sm w-full sm:w-auto sm:min-w-[280px]">
+                        <button
+                            onClick={() => { setActiveTab("upcoming"); setSelectedCategoryId(null); setSearchQuery(""); }}
+                            className={cn(
+                                "flex-1 sm:px-6 py-2 text-sm font-bold font-[Vazirmatn] rounded-xl transition-all duration-200",
+                                activeTab === "upcoming"
+                                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
+                                    : "text-white/50 hover:text-white/80"
+                            )}
+                        >
+                            برنامه‌های آینده
+                        </button>
+                        <button
+                            onClick={() => { setActiveTab("past"); setSelectedCategoryId(null); setSearchQuery(""); }}
+                            className={cn(
+                                "flex-1 sm:px-6 py-2 text-sm font-bold font-[Vazirmatn] rounded-xl transition-all duration-200",
+                                activeTab === "past"
+                                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
+                                    : "text-white/50 hover:text-white/80"
+                            )}
+                        >
+                            جلسات گذشته
+                        </button>
                     </div>
                 </div>
             </div>
@@ -378,7 +467,7 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
                                 type="search"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder="جستجو در برنامه‌ها..."
+                                placeholder={activeTab === "upcoming" ? "جستجو در برنامه‌های آینده..." : "جستجو در جلسات گذشته..."}
                                 aria-label="جستجو در برنامه‌ها"
                                 className="w-full bg-white/5 border border-white/10 rounded-2xl pr-10 pl-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/40 transition-all font-[Vazirmatn]"
                             />
@@ -389,7 +478,7 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
                             <div className="flex gap-2 overflow-x-auto pb-1 custom-scrollbar">
                                 <CategoryChip
                                     label="همه"
-                                    count={programs.length}
+                                    count={totalProgramsCount}
                                     active={!selectedCategoryId}
                                     onClick={() => setSelectedCategoryId(null)}
                                 />
@@ -446,6 +535,7 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
                                                     program={prog}
                                                     category={cat}
                                                     index={i}
+                                                    onOpenBooklet={handleOpenBooklet}
                                                 />
                                             );
                                         })}
@@ -470,6 +560,61 @@ export default function ScheduleViewer({ programs, categories }: ScheduleViewerP
                     </Link>
                 </div>
             </div>
+
+            {/* ── Booklet Modal Overlay ── */}
+            {selectedPresentationId && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/80 backdrop-blur-md p-4 overflow-y-auto animate-fade-in">
+                    <div 
+                        className="relative bg-neutral-900 border border-white/10 rounded-3xl p-6 max-w-3xl w-full shadow-2xl animate-zoom-in"
+                        dir="rtl"
+                    >
+                        {/* Close button */}
+                        <button
+                            onClick={() => {
+                                setSelectedPresentationId(null);
+                                setPresentationData(null);
+                                setPresentationError(null);
+                            }}
+                            className="absolute top-4 left-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors border border-white/10"
+                            title="بستن"
+                            aria-label="بستن"
+                        >
+                            ✕
+                        </button>
+
+                        {loadingPresentation && (
+                            <div className="flex flex-col items-center justify-center py-20 gap-4 text-center">
+                                <Loader2 className="w-10 h-10 text-indigo-500 animate-spin" />
+                                <p className="text-sm text-white/50 font-[Vazirmatn]">در حال بارگذاری کتابچه دیجیتال جلسه...</p>
+                            </div>
+                        )}
+
+                        {presentationError && (
+                            <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
+                                <AlertCircle className="w-12 h-12 text-rose-500" />
+                                <p className="text-sm font-bold text-white font-[Vazirmatn]">{presentationError}</p>
+                                <button
+                                    onClick={() => handleOpenBooklet(selectedPresentationId)}
+                                    className="mt-4 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-[Vazirmatn] text-xs font-bold transition-colors"
+                                >
+                                    تلاش مجدد
+                                </button>
+                            </div>
+                        )}
+
+                        {presentationData && (
+                            <SessionFlipbook 
+                                session={presentationData} 
+                                onClose={() => {
+                                    setSelectedPresentationId(null);
+                                    setPresentationData(null);
+                                    setPresentationError(null);
+                                }}
+                            />
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

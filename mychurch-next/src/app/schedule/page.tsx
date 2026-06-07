@@ -1,7 +1,7 @@
 // src/app/schedule/page.tsx
 // Public Church Schedule — No auth required
 import type { Metadata } from "next";
-import { getPublicSchedule, getPublicCategories } from "@/actions/church-programs";
+import { getPublicSchedule, getPublicPastPrograms, getPublicCategories } from "@/actions/church-programs";
 import ScheduleViewer from "./ScheduleViewer";
 
 export const metadata: Metadata = {
@@ -18,10 +18,17 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function SchedulePage() {
-    const [programs, categories] = await Promise.all([
+    const [programs, pastPrograms, categories] = await Promise.all([
         getPublicSchedule(),
+        getPublicPastPrograms(),
         getPublicCategories(),
     ]);
 
-    return <ScheduleViewer programs={programs} categories={categories} />;
+    return (
+        <ScheduleViewer 
+            programs={programs} 
+            pastPrograms={pastPrograms} 
+            categories={categories} 
+        />
+    );
 }

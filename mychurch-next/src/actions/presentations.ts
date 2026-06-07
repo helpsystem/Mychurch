@@ -240,3 +240,22 @@ export async function deletePresentation(id: string): Promise<{ success: boolean
         return { success: false, error: 'Failed to delete presentation.' };
     }
 }
+
+export async function getPublicPresentationById(id: string): Promise<BroadcastSession | null> {
+    // PUBLIC endpoint — no role check
+    try {
+        await ensurePresentationsSchemaOnce();
+        const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
+        if (rows.length === 0) {
+            // Also check mockPresentations for public offline testing
+            return mockPresentations.find(p => p.id === id) || null;
+        }
+        
+        const session = rowToSession(rows[0]);
+        session.slides = await mergeSlidesWithLatestSongData(session.slides);
+        return session;
+    } catch (error) {
+        console.error('[Action] getPublicPresentationById error:', error);
+        return mockPresentations.find(p => p.id === id) || null;
+    }
+}
