@@ -119,7 +119,7 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
 
     const handleTimeUpdate = React.useCallback((time: number, isPlaying?: boolean) => {
         // Broadcast the exact audio time to the viewer window
-        if (channelRef.current && isLive) {
+        if (channelRef.current) {
             channelRef.current.postMessage({
                 type: 'audio_sync',
                 payload: { 
@@ -128,7 +128,7 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                 }
             });
         }
-    }, [isLive]);
+    }, []);
 
     const renderSlideOrKaraoke = (isTrans: boolean, isPreview: boolean = false) => {
         const lyricsContent = activeSlide?.content as SlideContentLyrics;
