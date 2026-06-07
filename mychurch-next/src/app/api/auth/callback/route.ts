@@ -28,14 +28,33 @@ export async function GET(request: Request) {
             try {
                 const { createAdminClient } = await import("@/utils/supabase/server");
                 const adminSupabase = await createAdminClient();
-                await adminSupabase
+                
+                // Check if user already exists
+                const { data: existingUser } = await adminSupabase
                     .from('users')
-                    .upsert({
-                        email: user.email,
-                        name: user.user_metadata?.full_name || user.email?.split('@')[0],
-                        role: 'User', // Default role for new signups
-                        updated_at: new Date().toISOString()
-                    }, { onConflict: 'email' });
+                    .select('role')
+                    .eq('email', user.email)
+                    .maybeSingle();
+
+                if (!existingUser) {
+                    await adminSupabase
+                        .from('users')
+                        .insert({
+                            email: user.email,
+                            name: user.user_metadata?.full_name || user.email?.split('@')[0],
+                            role: 'User', // Default role for new signups
+                            updated_at: new Date().toISOString()
+                        });
+                } else {
+                    // Update only metadata/timestamp, preserve the existing role!
+                    await adminSupabase
+                        .from('users')
+                        .update({
+                            name: user.user_metadata?.full_name || user.email?.split('@')[0],
+                            updated_at: new Date().toISOString()
+                        })
+                        .eq('email', user.email);
+                }
             } catch (syncError) {
                 console.error("[AuthCallback] DB Sync Error:", syncError);
             }
