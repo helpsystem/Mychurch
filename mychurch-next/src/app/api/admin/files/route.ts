@@ -39,7 +39,7 @@ export async function GET(request: Request) {
 
         const files = await Promise.all(
             entries.map(async (entry) => {
-                const entryPath = path.join(targetPath, entry.name);
+                const entryPath = targetPath + "/" + entry.name;
                 const entryRelativePath = path.relative(PROJECT_ROOT, entryPath).replace(/\\/g, "/");
                 
                 try {
