@@ -1,7 +1,17 @@
 import Link from "next/link";
-import { ShieldAlert, ArrowRight } from "lucide-react";
+import { ShieldAlert, ArrowRight, RotateCcw } from "lucide-react";
+import { clearImpersonationRole, getImpersonationRole } from "@/actions/impersonation";
+import { getRealUserRole } from "@/utils/rbac";
 
-export default function UnauthorizedPage() {
+export default async function UnauthorizedPage() {
+    const impersonatedRole = await getImpersonationRole();
+    const realRole = await getRealUserRole();
+
+    async function handleReset() {
+        "use server";
+        await clearImpersonationRole();
+    }
+
     return (
         <div className="min-h-[100dvh] flex items-center justify-center bg-neutral-950 font-sans p-6">
             <div className="text-center max-w-md w-full bg-neutral-900 border border-border/10 rounded-3xl p-8 shadow-2xl animate-in fade-in slide-in-from-bottom-8">
@@ -16,6 +26,18 @@ export default function UnauthorizedPage() {
                     شما سطح دسترسی لازم برای مشاهده‌ی این صفحه را ندارید. (Access Denied: Insufficient Permissions)
                 </p>
 
+                {impersonatedRole && (
+                    <form action={handleReset} className="mb-4">
+                        <button
+                            type="submit"
+                            className="flex items-center justify-center gap-2 w-full bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 font-bold py-3.5 rounded-xl transition border border-yellow-500/20 text-sm font-[Vazirmatn] cursor-pointer"
+                        >
+                            <RotateCcw className="w-4 h-4" />
+                            بازگشت به نقش واقعی ({realRole || "Admin"})
+                        </button>
+                    </form>
+                )}
+
                 <Link href="/" className="flex items-center justify-center gap-2 w-full bg-white/5 hover:bg-white/10 text-white font-bold py-3.5 rounded-xl transition border border-white/5 text-sm font-[Vazirmatn]">
                     بازگشت به صفحه اصلی / Return Home <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
@@ -23,3 +45,4 @@ export default function UnauthorizedPage() {
         </div>
     );
 }
+
