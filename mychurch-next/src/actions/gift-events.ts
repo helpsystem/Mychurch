@@ -377,6 +377,13 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
         }
     }
 
+    // Find initial checkout_started event to copy its message metadata
+    const { rows: startedRows } = await query(
+        "SELECT metadata FROM church_gift_events WHERE gift_ref = $1 AND status = 'checkout_started'",
+        [giftRef]
+    );
+    const initialMessage = startedRows[0]?.metadata?.message || "";
+
     const metadata = {
         checkout_mode: config.checkout_mode,
         payer_name: payerName,
@@ -387,7 +394,8 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
         stripe_charge_id: stripeChargeId,
         square_order_id: orderId || null,
         square_payment_id: squarePaymentId,
-        email_sent: false
+        email_sent: false,
+        message: initialMessage || undefined
     };
 
     // Check if we already registered a success status for this giftRef

@@ -94,18 +94,28 @@ export default function GiftsDashboardTabs({ events }: GiftsDashboardTabsProps) 
                                             <td className="px-4 py-3">{formatAmount(Number(event.amount), event.currency)}</td>
                                             <td className="px-4 py-3 uppercase text-xs">{event.provider}</td>
                                             <td className="px-4 py-3">
-                                                {receiptUrl ? (
-                                                    <a 
-                                                        href={receiptUrl} 
-                                                        target="_blank" 
-                                                        rel="noopener noreferrer" 
-                                                        className="text-emerald-400 hover:underline inline-flex items-center gap-1"
-                                                    >
-                                                        Receipt / رسید ↗
-                                                    </a>
-                                                ) : (
-                                                    event.source
-                                                )}
+                                                <div className="flex flex-col gap-1 max-w-[220px]">
+                                                    {receiptUrl ? (
+                                                        <a 
+                                                            href={receiptUrl} 
+                                                            target="_blank" 
+                                                            rel="noopener noreferrer" 
+                                                            className="text-emerald-400 hover:underline inline-flex items-center gap-1 w-fit"
+                                                        >
+                                                            Receipt / رسید ↗
+                                                        </a>
+                                                    ) : (
+                                                        <span className="truncate">{event.source}</span>
+                                                    )}
+                                                    {metadata.message && (
+                                                        <span 
+                                                            className="text-xs text-indigo-400 font-bold bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded-lg w-fit max-w-full truncate" 
+                                                            title={String(metadata.message)}
+                                                        >
+                                                            💬 {String(metadata.message)}
+                                                        </span>
+                                                    )}
+                                                </div>
                                             </td>
                                             <td className="px-4 py-3 text-right">
                                                 {event.status === "success" && (

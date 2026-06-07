@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 import { generateOTP, verifyOTP } from "@/lib/otp-store";
 import { sendMail } from "@/lib/mailer";
 import { sendSMS, sendWhatsApp } from "@/lib/twilio";
@@ -15,8 +15,9 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" = "emai
         return { error: "کاربر یافت نشد" };
     }
 
-    // Verify role and retrieve contact info
-    const { data: userData } = await supabase
+    // Verify role and retrieve contact info using admin client to bypass RLS policies
+    const adminSupabase = await createAdminClient();
+    const { data: userData } = await adminSupabase
         .from('users')
         .select('role, phone, whatsapp_number')
         .eq('email', user.email)

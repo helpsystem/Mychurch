@@ -5,6 +5,7 @@ import { PaymentConfigClient } from "@/actions/payment-config";
 import { AlertCircle, CheckCircle2, CreditCard, Loader2, ShieldCheck, Heart, Lock, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 interface PaymentPageClientProps {
     config: PaymentConfigClient;
@@ -12,8 +13,12 @@ interface PaymentPageClientProps {
 }
 
 export default function PaymentPageClient({ config, status }: PaymentPageClientProps) {
+    const searchParams = useSearchParams();
+    const initialMessage = searchParams?.get("message") || "";
+    
     const [isRedirecting, setIsRedirecting] = useState(false);
     const [amountInput, setAmountInput] = useState(String(config.monthly_amount || "25"));
+    const [message, setMessage] = useState(initialMessage);
 
     const handleCheckout = async () => {
         const amt = Number(amountInput);
@@ -27,7 +32,7 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
             const response = await fetch("/api/payments/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ amount: amt })
+                body: JSON.stringify({ amount: amt, message: message })
             });
 
             const data = await response.json();
@@ -120,6 +125,20 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
                             <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-white/80">
                                 {config.checkout_mode === "subscription" ? "پرداخت ماهانه (تکرار شونده)" : "پرداخت یک‌باره"}
                             </div>
+                        </div>
+
+                        {/* Inspiring Message Input */}
+                        <div className="space-y-2 mb-6 relative z-10 text-right">
+                            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-widest mr-1 mb-1">
+                                پیام الهام‌بخش یا دعای برکت شما / Your Inspiring Message
+                            </label>
+                            <textarea
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                placeholder="پیام محبت‌آمیز یا دعای برکت خود را بنویسید... / Write your message of blessing..."
+                                rows={3}
+                                className="w-full bg-neutral-950/60 border border-white/10 rounded-2xl p-4 text-white outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all text-sm font-medium leading-relaxed font-sans"
+                            />
                         </div>
 
                         {/* Gateway Disclaimer Notice */}

@@ -25,6 +25,7 @@ export const viewport: Viewport = {
 
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
 import { GlobalPopupWrapper } from "@/components/widgets/GlobalPopupWrapper";
+import { VersePopupWrapper } from "@/components/widgets/VersePopupWrapper";
 import GlobalErrorReporter from "@/components/error/GlobalErrorReporter";
 import { AutoLogout } from "@/components/layout/AutoLogout";
 import { ImpersonationBanner } from "@/components/admin/ImpersonationBanner";
@@ -83,6 +84,9 @@ export default async function RootLayout({
           </Suspense>
           <Suspense fallback={null}>
             <GlobalPopupWrapper />
+          </Suspense>
+          <Suspense fallback={null}>
+            <VersePopupWrapper />
           </Suspense>
         </LanguageProvider>
       </body>

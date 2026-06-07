@@ -113,7 +113,7 @@ export async function mergeSlidesWithLatestSongData(slides: any[]): Promise<any[
 
   try {
     const { rows } = await query(
-      `SELECT id, title_fa, title_en, lyrics_fa, lyrics_en, lyrics_finglish, chords, timing_data, timepoints 
+      `SELECT id, title_fa, title_en, lyrics_fa, lyrics_en, lyrics_finglish, chords, timing_data, timepoints, audio_url 
        FROM church_worship_songs 
        WHERE id = ANY($1)`,
       [songIds]

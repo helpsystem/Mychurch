@@ -14,10 +14,16 @@ export async function POST(request: Request) {
     }
 
     let amount = Number(config.monthly_amount);
+    let message = "";
     try {
         const body = await request.json();
-        if (body && Number.isFinite(Number(body.amount)) && Number(body.amount) > 0) {
-            amount = Number(body.amount);
+        if (body) {
+            if (Number.isFinite(Number(body.amount)) && Number(body.amount) > 0) {
+                amount = Number(body.amount);
+            }
+            if (body.message) {
+                message = String(body.message);
+            }
         }
     } catch (e) {}
 
@@ -29,7 +35,7 @@ export async function POST(request: Request) {
             currency: config.currency || "usd",
             giftRef,
             source: "checkout-api",
-            metadata: { payment_link_mode: true },
+            metadata: { payment_link_mode: true, message: message || undefined },
         });
 
         const paymentLinkUrlObj = new URL(config.payment_link_url);
@@ -71,6 +77,7 @@ export async function POST(request: Request) {
         metadata: {
             checkout_mode: config.checkout_mode,
             payment_link_mode: false,
+            message: message || undefined,
         },
     });
 
@@ -85,6 +92,10 @@ export async function POST(request: Request) {
 
     if (mode === "subscription") {
         params.set("line_items[0][price_data][recurring][interval]", "month");
+    }
+
+    if (message) {
+        params.set("metadata[message]", message.slice(0, 500));
     }
 
     // Handle Square provider
@@ -121,6 +132,9 @@ export async function POST(request: Request) {
                 order: {
                     location_id: locationId,
                     reference_id: giftRef,
+                    metadata: {
+                        message: message ? message.slice(0, 500) : "No message"
+                    },
                     line_items: [
                         {
                             name: productName,

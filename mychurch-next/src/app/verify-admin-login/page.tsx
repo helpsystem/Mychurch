@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import VerifyAdminClient from "./VerifyAdminClient";
 
@@ -10,8 +10,9 @@ export default async function VerifyAdminLoginPage() {
         redirect("/login");
     }
 
-    // Double check role and get contact info
-    const { data: userData } = await supabase
+    // Double check role and get contact info using admin client to bypass RLS policies
+    const adminSupabase = await createAdminClient();
+    const { data: userData } = await adminSupabase
         .from('users')
         .select('role, phone, whatsapp_number')
         .eq('email', user.email)

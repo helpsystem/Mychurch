@@ -4,7 +4,7 @@ import { LayoutDashboard, Users, LayoutTemplate, Settings, Power, FileVideo, Mus
 import Image from "next/image";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
 import { logout } from "@/actions/auth";
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 import { Toaster } from "sonner";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import { redirect } from "next/navigation";
@@ -19,13 +19,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     const userEmail = user?.email || '';
     const initials = userEmail ? userEmail.substring(0, 2).toUpperCase() : '??';
 
+    const adminSupabase = await createAdminClient();
     const [roleResult, permissionsResult] = await Promise.all([
-        supabase
+        adminSupabase
             .from('users')
             .select('role')
             .eq('email', userEmail)
             .single(),
-        supabase
+        adminSupabase
             .from('users')
             .select('permissions')
             .eq('email', userEmail)

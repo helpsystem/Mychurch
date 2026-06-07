@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 
 type Role = "Admin" | "Leader" | "Operator" | "User" | string;
 
@@ -26,7 +26,9 @@ export async function getAccessContext(): Promise<AccessContext> {
     };
   }
 
-  const { data } = await supabase
+  // Use createAdminClient to bypass database RLS policy queries for user data
+  const adminSupabase = await createAdminClient();
+  const { data } = await adminSupabase
     .from("users")
     .select("role, permissions")
     .eq("email", user.email)

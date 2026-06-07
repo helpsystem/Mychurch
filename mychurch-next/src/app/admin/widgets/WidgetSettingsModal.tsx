@@ -208,6 +208,13 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const [newPresetName, setNewPresetName] = useState("");
     const [translatingKey, setTranslatingKey] = useState<string | null>(null);
     const [announcementRecords, setAnnouncementRecords] = useState<any[]>(config.announcementRecords || []);
+    
+    // w_verse_donation widget states
+    const [verseFa, setVerseFa] = useState(config.verseFa || "آیا تو را امر نکردم؟ قوی و دلیر باش! نترس و هراسان مباش، زیرا هر جا که بروی، یَهُوَه خدایت با تو خواهد بود.");
+    const [verseEn, setVerseEn] = useState(config.verseEn || "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.");
+    const [refFa, setRefFa] = useState(config.refFa || "یوشع ۱:۹");
+    const [refEn, setRefEn] = useState(config.refEn || "Joshua 1:9");
+    const [showDelaySeconds, setShowDelaySeconds] = useState<number | ''>(config.showDelaySeconds ?? 2);
 
     const [isPending, startTransition] = useTransition();
     const [isUploading, setIsUploading] = useState(false);
@@ -460,6 +467,17 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     buttonTextFa, buttonTextEn, buttonLink,
                     customPresets
                 };
+            } else if (widget.id === 'w_verse_donation') {
+                newConfig = {
+                    verseFa,
+                    verseEn,
+                    refFa,
+                    refEn,
+                    showDelaySeconds: showDelaySeconds === '' ? 2 : Number(showDelaySeconds),
+                    displayFrequency,
+                    enabledPaths,
+                    excludedPaths
+                };
             } else {
                 try {
                     newConfig = JSON.parse(jsonStr);
@@ -471,16 +489,18 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
 
             const success = await updateWidgetConfig(widget.id, newConfig);
             if (success) {
-                if (widget.id === 'w_global_popup') {
+                if (widget.id === 'w_global_popup' || widget.id === 'w_verse_donation') {
                     // Bust seen caches so latest popup config is testable immediately.
                     localStorage.removeItem("hasSeenPopupSession");
                     sessionStorage.removeItem("hasSeenPopupSession");
-
+                    localStorage.removeItem("hasSeenVersePopup");
+                    sessionStorage.removeItem("hasSeenVersePopup");
+ 
                     const clearSeenKeys = (storage: Storage) => {
                         const keysToRemove: string[] = [];
                         for (let i = 0; i < storage.length; i += 1) {
                             const key = storage.key(i);
-                            if (key && (key.startsWith("popup_seen_") || key.startsWith("popup_seen_auto_"))) {
+                            if (key && (key.startsWith("popup_seen_") || key.startsWith("popup_seen_auto_") || key.startsWith("verse_seen_"))) {
                                 keysToRemove.push(key);
                             }
                         }
@@ -1299,6 +1319,88 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                             </div> 
                         {/* End of Grid */}
                         </div> 
+                    ) : widget.id === 'w_verse_donation' ? (
+                        <div className="space-y-6">
+                            <div className="bg-rose-500/10 border border-rose-500/20 p-4 rounded-xl text-rose-400 text-sm leading-relaxed">
+                                تنظیمات نمایش آیه روز و دریافت هدیه در این بخش پیکربندی می‌شود. آیه زیر به صورت پاپ‌آپ زیبا در صفحات فعال نمایش داده می‌شود.
+                            </div>
+                            
+                            <DualField 
+                                label="متن آیه روز / Daily Verse Text"
+                                faValue={verseFa}
+                                enValue={verseEn}
+                                setFaValue={setVerseFa}
+                                setEnValue={setVerseEn}
+                                onTranslateFaToEn={() => handleTranslateFaToEn('verse', verseFa, setVerseEn)}
+                                onTranslateEnToFa={() => handleTranslateEnToFa('verse', verseEn, setVerseFa)}
+                                isTranslatingFaToEn={translatingKey === 'fa-en:verse'}
+                                isTranslatingEnToFa={translatingKey === 'en-fa:verse'}
+                                isTextarea
+                                placeholderFa="آیه را به فارسی وارد کنید..."
+                                placeholderEn="Enter the verse in English..."
+                            />
+
+                            <DualField 
+                                label="آدرس آیه (رفرنس) / Verse Reference"
+                                faValue={refFa}
+                                enValue={refEn}
+                                setFaValue={setRefFa}
+                                setEnValue={setRefEn}
+                                onTranslateFaToEn={() => handleTranslateFaToEn('ref', refFa, setRefEn)}
+                                onTranslateEnToFa={() => handleTranslateEnToFa('ref', refEn, setRefFa)}
+                                isTranslatingFaToEn={translatingKey === 'fa-en:ref'}
+                                isTranslatingEnToFa={translatingKey === 'en-fa:ref'}
+                                placeholderFa="مثال: یوشع ۱:۹"
+                                placeholderEn="Example: Joshua 1:9"
+                            />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/5 border border-white/10 rounded-2xl p-4">
+                                <div className="space-y-1">
+                                    <label className="text-xs text-muted-foreground block mb-1">میزان تاخیر نمایش (ثانیه)</label>
+                                    <input 
+                                        type="number" 
+                                        value={showDelaySeconds} 
+                                        onChange={(e) => setShowDelaySeconds(e.target.value === '' ? '' : Number(e.target.value))}
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-right"
+                                    />
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="text-xs text-muted-foreground block mb-1">فرکانس نمایش</label>
+                                    <select 
+                                        value={displayFrequency}
+                                        onChange={(e) => setDisplayFrequency(e.target.value)}
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-right"
+                                    >
+                                        <option value="always">همیشه (در هر لود صفحه)</option>
+                                        <option value="session">یک‌بار در هر نشست (Session)</option>
+                                        <option value="24h">یک‌بار در ۲۴ ساعت</option>
+                                        <option value="7d">یک‌بار در ۷ روز</option>
+                                    </select>
+                                </div>
+                                <div className="space-y-1 col-span-2">
+                                    <label className="text-xs text-muted-foreground block mb-1">صفحات فعال (جدا شده با کاما)</label>
+                                    <input 
+                                        type="text" 
+                                        value={enabledPaths} 
+                                        onChange={(e) => setEnabledPaths(e.target.value)}
+                                        placeholder="مثال: /"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-left font-mono text-sm"
+                                        dir="ltr"
+                                    />
+                                </div>
+                                <div className="space-y-1 col-span-2">
+                                    <label className="text-xs text-muted-foreground block mb-1">صفحات غیرفعال/مستثنی (جدا شده با کاما)</label>
+                                    <input 
+                                        type="text" 
+                                        value={excludedPaths} 
+                                        onChange={(e) => setExcludedPaths(e.target.value)}
+                                        placeholder="مثال: /broadcast,/admin"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-left font-mono text-sm"
+                                        dir="ltr"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     ) : (
                         <div className="space-y-4 h-full flex flex-col relative">
                             <div className="bg-amber-500/10 border border-amber-500/20 p-4 rounded-xl text-amber-500 text-sm leading-relaxed">

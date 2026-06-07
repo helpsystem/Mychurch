@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
 export type Role = 'Admin' | 'Leader' | 'Operator' | 'User';
@@ -16,7 +16,7 @@ export async function getRealUserRole(): Promise<Role | null> {
     if (!email) return null;
 
     try {
-        const supabase = await createClient();
+        const supabase = await createAdminClient();
         const { data, error } = await supabase
             .from('users')
             .select('role')
@@ -60,7 +60,7 @@ export async function getUserPermissions(): Promise<Record<string, boolean>> {
     if (!email) return {};
 
     try {
-        const supabase = await createClient();
+        const supabase = await createAdminClient();
         const { data, error } = await supabase
             .from('users')
             .select('permissions')

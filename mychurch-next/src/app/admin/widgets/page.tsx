@@ -2,7 +2,7 @@
 import React from 'react';
 import { getWidgets, toggleWidget } from '@/actions/widgets';
 import { requireRole } from '@/utils/rbac';
-import { ShieldAlert, BookOpen, Music, Calendar, QrCode, LayoutTemplate, Settings2 } from 'lucide-react';
+import { ShieldAlert, BookOpen, Music, Calendar, QrCode, LayoutTemplate, Settings2, Heart } from 'lucide-react';
 import { WidgetToggleCard } from './WidgetToggleCard'; // Client Component wrapper for the toggle
 
 // Map string icon names from DB to Lucide React components
@@ -12,6 +12,7 @@ const iconMap: Record<string, any> = {
     Calendar: Calendar,
     QrCode: QrCode,
     LayoutTemplate: LayoutTemplate,
+    Heart: Heart,
 };
 
 export default async function WidgetsAdminPage() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { listMediaFiles } from '@/actions/media';
 import MediaClient from './MediaClient';
-import { createClient } from '@/utils/supabase/server';
+import { createClient, createAdminClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 
 export const metadata = {
@@ -14,7 +14,8 @@ export default async function MediaAdminPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) redirect('/login');
 
-    const { data: userData } = await supabase
+    const adminSupabase = await createAdminClient();
+    const { data: userData } = await adminSupabase
         .from('users')
         .select('role, permissions')
         .eq('email', user.email)
