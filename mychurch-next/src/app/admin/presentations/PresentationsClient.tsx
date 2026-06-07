@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useTransition, useEffect } from "react";
-import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2, Play, Video, Clock, MoreVertical, ChevronDown, Check, BookOpen, Eye, Copy } from "lucide-react";
+import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2, Play, Video, Clock, MoreVertical, ChevronDown, Check, BookOpen, Eye, Copy, CalendarDays, LayoutGrid } from "lucide-react";
 import { toast } from "sonner";
 import { BroadcastSession } from "@/types/broadcast";
 import { deletePresentation, savePresentation } from "@/actions/presentations";
@@ -10,12 +10,24 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
+import ProgramSchedulePanel from "./ProgramSchedulePanel";
+import type { ChurchProgramCategory, ChurchProgram } from "@/types/church-programs";
 
 type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
     date: string;
 };
 
-export default function PresentationsClient({ initialPresentations }: { initialPresentations: SerializedBroadcastSession[] }) {
+type ActiveTab = 'presentations' | 'schedule';
+
+export default function PresentationsClient({
+    initialPresentations,
+    initialCategories,
+    initialPrograms,
+}: {
+    initialPresentations: SerializedBroadcastSession[];
+    initialCategories: ChurchProgramCategory[];
+    initialPrograms: ChurchProgram[];
+}) {
     const [searchTerm, setSearchTerm] = useState("");
     const [presentations, setPresentations] = useState<BroadcastSession[]>(() =>
         initialPresentations.map((presentation) => ({
@@ -38,6 +50,7 @@ export default function PresentationsClient({ initialPresentations }: { initialP
     const [isScheduling, setIsScheduling] = useState(false);
 
     const [isPending, startTransition] = useTransition();
+    const [activeTab, setActiveTab] = useState<ActiveTab>('presentations');
     const router = useRouter();
     const { t, language } = useLanguage();
 
@@ -204,6 +217,46 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                     <Plus className="w-5 h-5" /> {t.newPresentation || 'ارائه جدید'}
                 </button>
             </div>
+
+            {/* ─── Tab Switcher ─────────────────────────────────────────── */}
+            <div className="flex items-center gap-1 p-1.5 bg-black/40 border border-white/10 rounded-2xl w-fit" dir="rtl">
+                <button
+                    onClick={() => setActiveTab('presentations')}
+                    className={cn(
+                        "flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-sm font-bold font-[Vazirmatn] transition-all duration-200",
+                        activeTab === 'presentations'
+                            ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
+                            : "text-white/50 hover:text-white hover:bg-white/5"
+                    )}
+                >
+                    <LayoutGrid className="w-4 h-4" />
+                    ارائه‌ها
+                </button>
+                <button
+                    onClick={() => setActiveTab('schedule')}
+                    className={cn(
+                        "flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-sm font-bold font-[Vazirmatn] transition-all duration-200",
+                        activeTab === 'schedule'
+                            ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
+                            : "text-white/50 hover:text-white hover:bg-white/5"
+                    )}
+                >
+                    <CalendarDays className="w-4 h-4" />
+                    برنامه‌ریزی کلیسا
+                </button>
+            </div>
+
+            {/* ─── Tab: Schedule ────────────────────────────────────────── */}
+            {activeTab === 'schedule' && (
+                <ProgramSchedulePanel
+                    initialCategories={initialCategories}
+                    initialPrograms={initialPrograms}
+                    presentations={presentations}
+                />
+            )}
+
+            {/* ─── Tab: Presentations ───────────────────────────────────── */}
+            {activeTab === 'presentations' && (<>
 
             {/* Step-by-Step 0-to-100 Interactive Guide */}
             <div className="glass-strong rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative">
@@ -505,6 +558,8 @@ export default function PresentationsClient({ initialPresentations }: { initialP
                     </div>
                 )}
             </div>
+
+            </>)}{/* end activeTab === 'presentations' */}
 
             {/* Schedule Modal */}
             {schedulingPresId && (
