@@ -6,8 +6,7 @@ import {
   Columns2, Search, Loader2, List, X, ExternalLink, Highlighter, Copy, GitCompareArrows, Share2, Link2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+import type jsPDF from "jspdf";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -296,13 +295,15 @@ export default function BibleReaderPage() {
     ]),
   ).sort((a, b) => a - b);
 
-  const downloadComparePdf = () => {
+  const downloadComparePdf = async () => {
     if (!compareReferenceRow || compareComparableRows.length === 0 || compareVerseNums.length === 0) {
       alert(language === "fa" ? "برای خروجی PDF ابتدا آیات و ترجمه‌ها را انتخاب کنید." : "Select verses and translations before exporting PDF.");
       return;
     }
     try {
-      const doc = new jsPDF({ unit: "pt", format: "a4" });
+      const { default: jsPDFClass } = await import("jspdf");
+      const { default: autoTable } = await import("jspdf-autotable");
+      const doc = new jsPDFClass({ unit: "pt", format: "a4" });
       const marginX = 40;
       const pageHeight = doc.internal.pageSize.getHeight();
       let cursorY = 44;
