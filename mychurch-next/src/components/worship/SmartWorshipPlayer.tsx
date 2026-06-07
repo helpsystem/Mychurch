@@ -32,6 +32,12 @@ interface SmartWorshipPlayerProps {
     onVisibilityChange?: (visibility: { showPersian: boolean; showFinglish: boolean; showEnglish: boolean }) => void;
 }
 
+export const isVideoUrl = (url: string | undefined): boolean => {
+    if (!url) return false;
+    const cleanUrl = url.split('?')[0].toLowerCase();
+    return cleanUrl.endsWith('.mp4') || cleanUrl.endsWith('.webm') || cleanUrl.endsWith('.ogg') || cleanUrl.endsWith('.mov') || cleanUrl.includes('video');
+};
+
 export const getSafeAudioUrl = (url: string | undefined): string => {
     if (!url) return '';
     
@@ -578,23 +584,40 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                             ) : (
                                 <>
                                     <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
-                                    {backgroundImage && (
-                                        <img
+                                    {backgroundImage && isVideoUrl(backgroundImage) ? (
+                                        <video
+                                            key={backgroundImage}
                                             src={backgroundImage}
-                                            alt="Background"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
                                             className="w-full h-full transition-all duration-300 transform scale-105"
                                             style={{
                                                 objectFit: objectFit,
                                                 opacity: backgroundOpacity / 100,
                                                 filter: `blur(${backgroundBlur}px)`
                                             }}
-                                            onError={(e) => e.currentTarget.style.display = 'none'}
                                         />
+                                    ) : (
+                                        backgroundImage && (
+                                            <img
+                                                src={backgroundImage}
+                                                alt="Background"
+                                                className="w-full h-full transition-all duration-300 transform scale-105"
+                                                style={{
+                                                    objectFit: objectFit,
+                                                    opacity: backgroundOpacity / 100,
+                                                    filter: `blur(${backgroundBlur}px)`
+                                                }}
+                                                onError={(e) => e.currentTarget.style.display = 'none'}
+                                            />
+                                        )
                                     )}
                                 </>
                             )}
-                            {/* Standard overlay for readability */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/60" />
+                            {/* Standard overlay and vignette for readability */}
+                            <div className="absolute inset-0 bg-black/40 bg-gradient-to-t from-black/80 via-black/20 to-black/80" />
                         </>
                     )}
                 </div>

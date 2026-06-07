@@ -10,6 +10,12 @@ import { cn } from "@/lib/utils";
 import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart, CheckCircle } from "lucide-react";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 
+const isVideoUrl = (url: string | undefined): boolean => {
+    if (!url) return false;
+    const cleanUrl = url.split('?')[0].toLowerCase();
+    return cleanUrl.endsWith('.mp4') || cleanUrl.endsWith('.webm') || cleanUrl.endsWith('.ogg') || cleanUrl.endsWith('.mov') || cleanUrl.includes('video');
+};
+
 const isNonEmptyText = (value: unknown) => typeof value === 'string' && value.trim().length > 0;
 
 const SCRIPTURE_LAYOUT = {
@@ -335,12 +341,25 @@ export function SlideRenderer({
                     <div className="w-full h-full flex flex-col items-center justify-start p-12 text-center relative overflow-y-auto">
                         {/* Dynamic Background */}
                         {opts?.showBackground !== false && !isTransparent && (
-                            <div className="absolute inset-0 -z-10">
-                                {opts?.backgroundType === 'image' && opts.backgroundUrl ? (
-                                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${opts.backgroundUrl})`, opacity: opts.backgroundOpacity ? opts.backgroundOpacity / 100 : 0.6 }} />
+                            <div className="absolute inset-0 -z-10 overflow-hidden">
+                                {opts?.backgroundUrl && isVideoUrl(opts.backgroundUrl) ? (
+                                    <video
+                                        key={opts.backgroundUrl}
+                                        src={opts.backgroundUrl}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="w-full h-full object-cover scale-105"
+                                        style={{ opacity: opts.backgroundOpacity ? opts.backgroundOpacity / 100 : 0.6 }}
+                                    />
+                                ) : opts?.backgroundType === 'image' && opts.backgroundUrl ? (
+                                    <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: `url(${opts.backgroundUrl})`, opacity: opts.backgroundOpacity ? opts.backgroundOpacity / 100 : 0.6 }} />
                                 ) : (
                                     <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 to-black" />
                                 )}
+                                {/* Standard overlay and vignette for readability */}
+                                <div className="absolute inset-0 bg-black/40 bg-gradient-to-t from-black/80 via-black/20 to-black/80" />
                             </div>
                         )}
                         

@@ -7,20 +7,17 @@ const pool = new Pool({
 
 async function main() {
     try {
-        console.log("=== DB QUERY START ===");
+        console.log("=== AUTH USERS ===");
+        const authRes = await pool.query("SELECT id, email, phone, created_at FROM auth.users;");
+        console.log(JSON.stringify(authRes.rows, null, 2));
 
-        const res = await pool.query("SELECT id, title_fa, audio_url FROM church_worship_songs WHERE audio_url LIKE '%آمد مسیح اندر جهان%'");
-        console.log("Matched records:", res.rows);
-
+        console.log("=== PUBLIC USERS ===");
+        const publicRes = await pool.query("SELECT id, email, role, phone, whatsapp_number FROM public.users;");
+        console.log(JSON.stringify(publicRes.rows, null, 2));
     } catch (err) {
-        console.error("Database query failed:", err);
+        console.error(err);
     } finally {
         await pool.end();
     }
 }
-
 main();
-
-
-
-
