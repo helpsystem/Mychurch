@@ -107,18 +107,42 @@ export default function PaymentPageClient({ config, status }: PaymentPageClientP
                         )}
 
                         <div className="text-center mb-8 relative z-10">
-                            <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-3">مبلغ پرداختی (دلار) / Amount (USD)</p>
+                            <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">مبلغ پرداختی (دلار) / Amount (USD)</p>
                             
-                            <div className="flex items-center justify-center gap-2 mb-4">
-                                <span className="text-4xl md:text-5xl font-black text-muted-foreground font-sans">$</span>
+                            {/* Preset Buttons Grid */}
+                            <div className="grid grid-cols-3 gap-3 mb-6 max-w-md mx-auto">
+                                {[10, 25, 50, 100, 250, 500].map((preset) => {
+                                    const isSelected = Number(amountInput) === preset;
+                                    return (
+                                        <button
+                                            key={preset}
+                                            type="button"
+                                            onClick={() => setAmountInput(String(preset))}
+                                            className={`py-3.5 px-4 rounded-2xl text-lg font-black font-sans transition-all duration-300 border ${
+                                                isSelected
+                                                    ? "bg-gradient-to-br from-indigo-600 to-purple-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/30 scale-[1.03]"
+                                                    : "bg-neutral-950/40 border-white/5 hover:border-white/20 text-white/70 hover:text-white"
+                                            }`}
+                                        >
+                                            ${preset}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Custom Amount Input container */}
+                            <div className="relative max-w-xs mx-auto mb-6">
+                                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                                    <span className="text-xl font-bold text-muted-foreground font-sans">$</span>
+                                </div>
                                 <input
                                     type="number"
                                     min="1"
-                                    step="0.01"
+                                    step="any"
                                     value={amountInput}
                                     onChange={(e) => setAmountInput(e.target.value)}
-                                    className="w-40 bg-neutral-950/60 border border-white/10 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all text-3xl font-black text-white text-center font-sans"
-                                    placeholder="25"
+                                    className="w-full bg-neutral-950/60 border border-white/10 rounded-2xl pl-10 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all text-2xl font-black text-white text-center font-sans tracking-wide"
+                                    placeholder="Custom"
                                 />
                             </div>
 
