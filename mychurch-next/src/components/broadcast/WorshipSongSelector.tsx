@@ -11,7 +11,7 @@
 
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Music, Search, X, Check, ChevronDown, ChevronUp,
   Play, Pause, Volume2, Youtube, FileText, Clock,
@@ -22,8 +22,126 @@ import { fetchWorshipSongs, searchSongs, parseLyrics, BROADCAST_TRANSLATIONS } f
 
 interface WorshipSongSelectorProps {
   lang: AppLanguage;
+  existingSlides?: any[]; // The active presentation slides
   onSelectSong: (content: SlideContentLyrics, options: LyricsDisplayOptions) => void;
   onClose: () => void;
+}
+
+interface SuggestedSong extends WorshipSong {
+  matchReason?: string;
+  score: number;
+}
+
+export function getSuggestionsFromSlides(songs: WorshipSong[], slides: any[]): SuggestedSong[] {
+  if (!slides || slides.length === 0) return [];
+
+  const bookKeys = new Set<string>();
+  const bookNamesFa = new Set<string>();
+  const keywords = new Set<string>();
+
+  // A list of meaningful religious/theological keywords to match in Farsi
+  const faithKeywords = [
+    'محبت', 'عشق', 'ایمان', 'امید', 'نجات', 'صلیب', 'عیسی', 'مسیح', 'خداوند', 'پدر', 
+    'روح', 'قدوس', 'جلال', 'شکر', 'حمد', 'ستایش', 'نور', 'قوت', 'رحمت', 'فیض', 
+    'پادشاه', 'داود', 'ملکوتی', 'آسمان', 'شادی', 'صلح', 'آرامش', 'شفا', 'قربانی',
+    'آزادی', 'عدالت', 'بخشایش', 'وفادار', 'طهارت', 'تقدیس', 'شبان'
+  ];
+
+  slides.forEach(slide => {
+    if (slide.type === 'SCRIPTURE' && slide.content?.pages) {
+      slide.content.pages.forEach((page: any) => {
+        if (page.book) bookKeys.add(page.book.toLowerCase());
+        if (page.bookName?.fa) bookNamesFa.add(page.bookName.fa);
+        if (page.bookName?.en) bookKeys.add(page.bookName.en.toLowerCase());
+
+        // Extract words from scripture texts
+        const text = [...(page.textPrimary || []), ...(page.textSecondary || [])].join(' ');
+        faithKeywords.forEach(kw => {
+          if (text.includes(kw)) {
+            keywords.add(kw);
+          }
+        });
+      });
+    } else if (slide.content) {
+      const text = [
+        slide.content.title,
+        slide.content.titleFa,
+        slide.content.titleEn,
+        slide.content.content,
+        slide.content.htmlContent,
+        ...(slide.content.lines?.map((l: any) => l.text) || [])
+      ].filter(Boolean).join(' ');
+
+      faithKeywords.forEach(kw => {
+        if (text.includes(kw)) {
+          keywords.add(kw);
+        }
+      });
+    }
+  });
+
+  if (bookKeys.size === 0 && bookNamesFa.size === 0 && keywords.size === 0) {
+    return [];
+  }
+
+  const suggestions: SuggestedSong[] = songs.map(song => {
+    let score = 0;
+    const matchReasons: string[] = [];
+
+    const titleFa = (song.title?.fa || '').toLowerCase();
+    const titleEn = (song.title?.en || '').toLowerCase();
+    const lyricsFa = (song.lyrics?.fa || '').toLowerCase();
+    const lyricsEn = (song.lyrics?.en || '').toLowerCase();
+
+    // Check book name matches in title or lyrics (high weight)
+    bookNamesFa.forEach(bookFa => {
+      if (titleFa.includes(bookFa.toLowerCase())) {
+        score += 30;
+        matchReasons.push(`عنوان مرتبط با ${bookFa}`);
+      } else if (lyricsFa.includes(bookFa.toLowerCase())) {
+        score += 15;
+        matchReasons.push(`متن مرتبط با کتاب ${bookFa}`);
+      }
+    });
+
+    bookKeys.forEach(bookKey => {
+      if (titleEn.includes(bookKey) || titleFa.includes(bookKey)) {
+        score += 30;
+        matchReasons.push(`مرتبط با ${bookKey}`);
+      } else if (lyricsEn.includes(bookKey) || lyricsFa.includes(bookKey)) {
+        score += 15;
+        matchReasons.push(`متن مرتبط با ${bookKey}`);
+      }
+    });
+
+    // Check keyword matches in lyrics/title
+    let kwMatchCount = 0;
+    keywords.forEach(kw => {
+      if (titleFa.includes(kw)) {
+        score += 10;
+        matchReasons.push(`موضوع: ${kw}`);
+        kwMatchCount++;
+      } else if (lyricsFa.includes(kw)) {
+        score += 4;
+        kwMatchCount++;
+      }
+    });
+    
+    if (kwMatchCount > 0 && matchReasons.length === 0) {
+      matchReasons.push(`دارای ${kwMatchCount} کلمه کلیدی مشترک`);
+      score += kwMatchCount * 2;
+    }
+
+    return {
+      ...song,
+      score,
+      matchReason: matchReasons.length > 0 ? matchReasons.slice(0, 2).join('، ') : undefined
+    };
+  });
+
+  return suggestions
+    .filter(s => s.score > 0)
+    .sort((a, b) => b.score - a.score);
 }
 
 // Predefined beautiful backgrounds
@@ -98,6 +216,7 @@ export function normalizeTimingData(data: any): any {
 
 export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
   lang,
+  existingSlides = [],
   onSelectSong,
   onClose
 }) => {
@@ -110,6 +229,12 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
   const [filteredSongs, setFilteredSongs] = useState<WorshipSong[]>([]);
   const [showAllSongs, setShowAllSongs] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [filterMode, setFilterMode] = useState<'all' | 'suggested'>('all');
+
+  // Compute suggestions based on current slides
+  const suggestedSongs = useMemo(() => {
+    return getSuggestionsFromSlides(songs, existingSlides);
+  }, [songs, existingSlides]);
 
   // Selected song state
   const [selectedSong, setSelectedSong] = useState<WorshipSong | null>(null);
@@ -141,16 +266,22 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
     setIsLoading(true);
     fetchWorshipSongs().then(loadedSongs => {
       setSongs(loadedSongs);
-      setFilteredSongs(loadedSongs.slice(0, 10));
       setIsLoading(false);
-    });
-  }, []);
 
-  // Filter songs on search
+      // If we have matching songs based on slides/verses, default to suggested tab
+      const suggestions = getSuggestionsFromSlides(loadedSongs, existingSlides);
+      if (suggestions.length > 0) {
+        setFilterMode('suggested');
+      }
+    });
+  }, [existingSlides]);
+
+  // Filter songs on search & filter mode change
   useEffect(() => {
-    const results = searchSongs(songs, songSearch);
-    setFilteredSongs(showAllSongs ? results : results.slice(0, 10));
-  }, [songSearch, songs, showAllSongs]);
+    const baseSongs = filterMode === 'suggested' ? suggestedSongs : songs;
+    const results = searchSongs(baseSongs, songSearch);
+    setFilteredSongs(showAllSongs || filterMode === 'suggested' ? results : results.slice(0, 10));
+  }, [songSearch, songs, suggestedSongs, filterMode, showAllSongs]);
 
   // Handle song selection
   const handleSongSelect = async (song: WorshipSong) => {
@@ -358,6 +489,36 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                 />
               </div>
 
+              {/* Suggestions Filter Switcher */}
+              {suggestedSongs.length > 0 && (
+                <div className="flex bg-slate-950/40 p-1 rounded-xl border border-slate-800 gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setFilterMode('suggested')}
+                    className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition flex items-center justify-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''} ${
+                      filterMode === 'suggested'
+                        ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/20'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    <span>💡</span>
+                    <span>{isRTL ? `پیشنهاد بر اساس اسلایدها و آیات (${suggestedSongs.length})` : `Suggestions (${suggestedSongs.length})`}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFilterMode('all')}
+                    className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition flex items-center justify-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''} ${
+                      filterMode === 'all'
+                        ? 'bg-slate-800 text-white border border-slate-700'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    <span>🎵</span>
+                    <span>{isRTL ? 'همه سرودها' : 'All Songs'}</span>
+                  </button>
+                </div>
+              )}
+
               {/* Song List */}
               {isLoading ? (
                 <div className="text-center py-12">
@@ -387,6 +548,12 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                           <p className="text-slate-400 text-sm">
                             {song.artist ? (song.artist[lang] || song.artist.fa) : ''}
                           </p>
+                          {(song as any).matchReason && (
+                            <span className="inline-flex items-center gap-1.5 mt-2 text-[10px] bg-pink-500/10 border border-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-[Vazirmatn]">
+                              <span>💡</span>
+                              <span>{(song as any).matchReason}</span>
+                            </span>
+                          )}
                         </div>
                       </div>
                       {song.lyrics?.fa && (

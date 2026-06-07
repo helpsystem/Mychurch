@@ -1570,6 +1570,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       {activeModal === 'LYRICS' && (
         <WorshipSongSelector
           lang={lang}
+          existingSlides={session.slides}
           onSelectSong={(content, options) => {
             // Add the slide with the configured content
             addSlide(SlideType.LYRICS, {
