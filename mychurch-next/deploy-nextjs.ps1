@@ -159,7 +159,7 @@ else
     if ! npm ci --no-audit --no-fund; then
         echo 'npm ci failed, cleaning cache and falling back to npm install...'
         rm -rf /root/.npm ~/.npm || true
-        npm install --no-audit --no-fund || exit 1
+        npm install --no-audit --no-fund --legacy-peer-deps || exit 1
     fi
     cp package-lock.json .deps-lock.json
     echo 'Dependencies installed successfully'
