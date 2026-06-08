@@ -5,6 +5,8 @@ import { sendAdminOTP, verifyAdminOTP } from "@/actions/otp";
 import { Shield, Mail, ArrowRight, Loader2, KeyRound, MessageSquare, Smartphone } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { OtpInput } from "@/components/ui/OtpInput";
+import { motion } from "framer-motion";
 
 interface VerifyAdminClientProps {
     email: string;
@@ -100,7 +102,13 @@ export default function VerifyAdminClient({ email, initialPhone = "", initialWha
     };
 
     return (
-        <div className="max-w-md w-full bg-[#1c1917] border border-white/10 rounded-3xl p-6 sm:p-8 relative z-10 shadow-2xl font-[Vazirmatn] text-right" dir="rtl">
+        <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="max-w-md w-full bg-[#1c1917] border border-white/10 rounded-3xl p-6 sm:p-8 relative z-10 shadow-2xl font-[Vazirmatn] text-right"
+            dir="rtl"
+        >
             <div className="flex flex-col items-center text-center mb-6">
                 <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4 text-amber-500">
                     <Shield className="w-8 h-8 animate-pulse" />
@@ -177,16 +185,13 @@ export default function VerifyAdminClient({ email, initialPhone = "", initialWha
                 {cooldown > 0 ? `ارسال مجدد کد (${cooldown} ثانیه)` : "ارسال کد تایید"}
             </button>
 
-            <form onSubmit={handleVerify} className="space-y-4">
-                <div className="relative">
-                    <KeyRound className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                    <input 
-                        type="text"
+            <form onSubmit={handleVerify} className="space-y-6">
+                <div className="py-2">
+                    <OtpInput
+                        length={6}
                         value={code}
-                        onChange={(e) => setCode(e.target.value.replace(/[^0-9]/g, '').slice(0, 6))}
-                        placeholder="کد ۶ رقمی"
-                        className="w-full bg-black/40 border border-white/10 focus:border-amber-500 rounded-2xl pr-12 pl-4 py-4 text-center text-2xl font-mono tracking-widest outline-none transition-all placeholder:text-muted-foreground/30 text-white"
-                        dir="ltr"
+                        onChange={setCode}
+                        disabled={isVerifying}
                     />
                 </div>
 
@@ -200,6 +205,6 @@ export default function VerifyAdminClient({ email, initialPhone = "", initialWha
                     <ArrowRight className="w-5 h-5 rotate-180" />
                 </button>
             </form>
-        </div>
+        </motion.div>
     );
 }

@@ -15,7 +15,7 @@ export default async function VerifyAdminLoginPage() {
     const { data: userData } = await adminSupabase
         .from('users')
         .select('role, phone, whatsapp_number')
-        .eq('email', user.email)
+        .eq('email', user.email?.toLowerCase())
         .single();
 
     if (!userData || !['Admin', 'Leader', 'Operator'].includes(userData.role)) {

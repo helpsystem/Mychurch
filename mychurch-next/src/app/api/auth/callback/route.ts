@@ -24,23 +24,23 @@ export async function GET(request: Request) {
         const user = data?.user;
 
         if (user) {
-            // Synchronize with the 'users' table for RBAC using Admin Client
             try {
                 const { createAdminClient } = await import("@/utils/supabase/server");
                 const adminSupabase = await createAdminClient();
+                const emailLower = user.email?.toLowerCase();
                 
                 // Check if user already exists
                 const { data: existingUser } = await adminSupabase
                     .from('users')
                     .select('role')
-                    .eq('email', user.email)
+                    .eq('email', emailLower)
                     .maybeSingle();
 
                 if (!existingUser) {
                     await adminSupabase
                         .from('users')
                         .insert({
-                            email: user.email,
+                            email: emailLower,
                             name: user.user_metadata?.full_name || user.email?.split('@')[0],
                             role: 'User', // Default role for new signups
                             updated_at: new Date().toISOString()
@@ -53,7 +53,7 @@ export async function GET(request: Request) {
                             name: user.user_metadata?.full_name || user.email?.split('@')[0],
                             updated_at: new Date().toISOString()
                         })
-                        .eq('email', user.email);
+                        .eq('email', emailLower);
                 }
             } catch (syncError) {
                 console.error("[AuthCallback] DB Sync Error:", syncError);

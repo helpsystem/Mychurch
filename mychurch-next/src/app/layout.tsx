@@ -30,6 +30,7 @@ import GlobalErrorReporter from "@/components/error/GlobalErrorReporter";
 import { AutoLogout } from "@/components/layout/AutoLogout";
 import { ImpersonationBanner } from "@/components/admin/ImpersonationBanner";
 import { getRealUserRole, getUserRole } from "@/utils/rbac";
+import { CartProvider } from "@/providers/CartProvider";
 
 export default async function RootLayout({
   children,
@@ -73,21 +74,23 @@ export default async function RootLayout({
       </head>
       <body className="antialiased bg-background text-foreground">
         <LanguageProvider>
-          <GlobalErrorReporter />
-          {realRole && currentRole && currentRole !== realRole && (
-            <ImpersonationBanner currentRole={currentRole} realRole={realRole} />
-          )}
-          <AutoLogout timeoutMinutes={1440} />
-          {children}
-          <Suspense fallback={null}>
-            <MobileNavigation />
-          </Suspense>
-          <Suspense fallback={null}>
-            <GlobalPopupWrapper />
-          </Suspense>
-          <Suspense fallback={null}>
-            <VersePopupWrapper />
-          </Suspense>
+          <CartProvider>
+            <GlobalErrorReporter />
+            {realRole && currentRole && currentRole !== realRole && (
+              <ImpersonationBanner currentRole={currentRole} realRole={realRole} />
+            )}
+            <AutoLogout timeoutMinutes={1440} />
+            {children}
+            <Suspense fallback={null}>
+              <MobileNavigation />
+            </Suspense>
+            <Suspense fallback={null}>
+              <GlobalPopupWrapper />
+            </Suspense>
+            <Suspense fallback={null}>
+              <VersePopupWrapper />
+            </Suspense>
+          </CartProvider>
         </LanguageProvider>
       </body>
     </html>

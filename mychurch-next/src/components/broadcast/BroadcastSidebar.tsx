@@ -6,7 +6,11 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { cn } from "@/lib/utils";
 
-export function BroadcastSidebar() {
+interface BroadcastSidebarProps {
+    className?: string;
+}
+
+export function BroadcastSidebar({ className }: BroadcastSidebarProps) {
     const { t } = useLanguage();
     const activeSceneId = useBroadcastStore(state => state.activeSceneId);
     const setActiveSceneId = useBroadcastStore(state => state.setActiveSceneId);
@@ -20,7 +24,7 @@ export function BroadcastSidebar() {
     ];
 
     return (
-        <aside className="w-72 bg-neutral-900 border-r border-border/10 flex flex-col">
+        <aside className={cn("w-72 bg-neutral-900 border-r border-border/10 flex flex-col shrink-0", className)}>
             <div className="h-14 p-4 border-b border-border/10 flex items-center justify-between">
                 <span className="text-sm font-bold tracking-wide">{t.scenes || 'Scenes'}</span>
                 <button className="p-1.5 hover:bg-neutral-800 rounded text-muted-foreground transition" title="Scenes Options">

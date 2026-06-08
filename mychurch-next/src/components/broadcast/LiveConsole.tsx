@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff } from "lucide-react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -26,7 +26,7 @@ interface LiveConsoleProps {
 }
 
 export default function LiveConsole({ initialPresentationId = null }: LiveConsoleProps) {
-    const { t } = useLanguage();
+    const { t, isRTL } = useLanguage();
     const presentationId = initialPresentationId;
 
     const isLive = useBroadcastStore(state => state.isLive);
@@ -96,6 +96,8 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     })));
 
     const [isLoadModalOpen, setIsLoadModalOpen] = React.useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+    const [isPropertiesOpen, setIsPropertiesOpen] = React.useState(false);
 
     // Enumerate available devices
     const enumerateDevices = React.useCallback(async () => {
@@ -643,33 +645,42 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
         <div className="flex flex-col h-[100dvh] w-full bg-neutral-950 text-foreground overflow-hidden font-sans selection:bg-primary/30">
             <PageVisuals soft />
             {/* Top Navigation / Status Bar */}
-            <header className="h-16 px-6 border-b border-border/10 flex items-center justify-between bg-neutral-900 shrink-0 z-10 w-full shadow-md">
-                <div className="flex items-center gap-4">
+            <header className="h-16 px-4 sm:px-6 border-b border-border/10 flex items-center justify-between bg-neutral-900 shrink-0 z-10 w-full shadow-md">
+                <div className="flex items-center gap-2 sm:gap-4">
+                    {/* Left Sidebar Toggle Button (only on mobile/tablet) */}
+                    <button
+                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                        className="p-2 hover:bg-neutral-800 rounded-lg text-muted-foreground lg:hidden transition-colors cursor-pointer"
+                        title="Toggle Scenes"
+                    >
+                        <Menu className="w-5 h-5" />
+                    </button>
+
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 flex items-center justify-center text-primary overflow-hidden shrink-0">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-primary overflow-hidden shrink-0">
                             <Image src="/logo-transparent.png" alt="MyChurch" width={32} height={32} className="object-contain drop-shadow" />
                         </div>
-                        <span className="font-bold tracking-wide">{t.broadcastConsole || 'Broadcast Console'}</span>
-                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 ml-2">
+                        <span className="font-bold tracking-wide text-sm sm:text-base hidden xs:inline">{t.broadcastConsole || 'Broadcast Console'}</span>
+                        <span className="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 hidden md:inline">
                             {t.pro || 'PRO'}
                         </span>
                         {isConnected && (
-                            <span className="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 ml-2 animate-pulse flex items-center gap-1 uppercase" title="Listening for Remote Control">
-                                <RadioReceiver className="w-3 h-3" /> Remote Sync
+                            <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 animate-pulse flex items-center gap-1 uppercase" title="Listening for Remote Control">
+                                <RadioReceiver className="w-2.5 h-2.5" /> <span className="hidden sm:inline">Remote Sync</span>
                             </span>
                         )}
                         {!isOnline && (
-                            <span className="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 ml-2 flex items-center gap-1 uppercase" title="Network Disconnected">
-                                <RadioReceiver className="w-3 h-3" /> Offline (DB Sync Paused)
+                            <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center gap-1 uppercase" title="Network Disconnected">
+                                <RadioReceiver className="w-2.5 h-2.5" /> <span className="hidden sm:inline">Offline</span>
                             </span>
                         )}
                     </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-800 border border-border/10">
-                        <div className={cn("w-2 h-2 rounded-full", isLive ? "bg-red-500 animate-pulse" : "bg-neutral-500")} />
-                        <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                <div className="flex items-center gap-2 sm:gap-4">
+                    <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-lg bg-neutral-800 border border-border/10">
+                        <div className={cn("w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full", isLive ? "bg-red-500 animate-pulse" : "bg-neutral-500")} />
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground">
                             {isLive ? t.onAir : t.offline}
                         </span>
                     </div>
@@ -677,14 +688,24 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     <button
                         onClick={() => setIsLive(!isLive)}
                         className={cn(
-                            "flex items-center gap-2 px-6 py-1.5 rounded-lg font-bold text-sm transition-all shadow-md",
+                            "flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer",
                             isLive
                                 ? "bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20"
                                 : "bg-primary text-primary-foreground hover:bg-primary/90"
                         )}
                     >
-                        {isLive ? <StopCircle className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                        {isLive ? (t.endStream || 'End Stream') : (t.goLive || 'Go Live')}
+                        {isLive ? <StopCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+                        <span className="hidden xs:inline">{isLive ? (t.endStream || 'End Stream') : (t.goLive || 'Go Live')}</span>
+                        <span className="xs:hidden">{isLive ? 'Stop' : 'Live'}</span>
+                    </button>
+
+                    {/* Right Sidebar Toggle Button (only on mobile/tablet) */}
+                    <button
+                        onClick={() => setIsPropertiesOpen(!isPropertiesOpen)}
+                        className="p-2 hover:bg-neutral-800 rounded-lg text-muted-foreground lg:hidden transition-colors cursor-pointer"
+                        title="Toggle Properties"
+                    >
+                        <Settings className="w-5 h-5" />
                     </button>
                 </div>
             </header>
@@ -715,13 +736,28 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     })}
                 </div>
 
+                {/* Left Sidebar Backdrop */}
+                {isSidebarOpen && (
+                    <div 
+                        className="fixed inset-0 z-35 bg-black/60 backdrop-blur-xs lg:hidden cursor-pointer"
+                        onClick={() => setIsSidebarOpen(false)}
+                    />
+                )}
+
                 {/* Left Panel */}
-                <BroadcastSidebar />
+                <BroadcastSidebar 
+                    className={cn(
+                        "fixed lg:static top-16 bottom-0 z-40 bg-neutral-900 border-r border-border/10 transition-transform duration-300 w-72 lg:translate-x-0 shadow-2xl lg:shadow-none",
+                        isRTL 
+                            ? (isSidebarOpen ? "right-0 translate-x-0" : "right-0 translate-x-full")
+                            : (isSidebarOpen ? "left-0 translate-x-0" : "left-0 -translate-x-full")
+                    )}
+                />
 
                 {/* Center Panel: Preview & Program */}
-                <main dir="ltr" className="flex-1 flex flex-col bg-black relative p-4 gap-4">
+                <main dir="ltr" className="flex-1 flex flex-col bg-black relative p-4 gap-4 overflow-y-auto">
                     {/* Monitors Area */}
-                    <div className="flex-1 flex gap-4 h-1/2">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 min-h-[300px] xl:h-1/2 shrink-0">
                         <PreviewMonitor />
                         <ProgramMonitor isLive={isLive} />
                     </div>
@@ -815,36 +851,36 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     </div>
 
                     {/* Action Footer */}
-                    <div className="h-16 shrink-0 flex items-center gap-4 border-t border-border/10 justify-center mt-2 p-2 font-[Vazirmatn]">
+                    <div className="shrink-0 flex flex-wrap items-center gap-2 border-t border-border/10 justify-center mt-2 p-3 font-[Vazirmatn] bg-neutral-900/40 rounded-xl">
                         <button
                             onClick={() => {
                                 setActiveSlideIndex(0);
                                 setInternalPageIndex(0);
                             }}
                             disabled={slides.length === 0}
-                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]"
+                            className="px-3 py-2 bg-neutral-850 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-1.5 text-xs border border-border/10 font-[Vazirmatn] cursor-pointer"
                             title="First Slide"
                         >
-                            <SkipBack className="w-4 h-4" /> {t.first || 'First'}
+                            <SkipBack className="w-3.5 h-3.5" /> <span className="hidden md:inline">{t.first || 'First'}</span>
                         </button>
                         <button
                             onClick={goPrevStep}
                             disabled={slides.length === 0}
-                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]"
+                            className="px-3 py-2 bg-neutral-850 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-1.5 text-xs border border-border/10 font-[Vazirmatn] cursor-pointer"
                             title="Previous"
                         >
-                            <ChevronLeft className="w-4 h-4" /> {t.prev || 'Prev'}
+                            <ChevronLeft className="w-3.5 h-3.5" /> <span className="hidden md:inline">{t.prev || 'Prev'}</span>
                         </button>
-                        <div className="px-4 py-2 rounded-lg border border-border/20 bg-neutral-900 text-xs text-muted-foreground min-w-[140px] text-center font-mono">
+                        <div className="px-3 py-1.5 rounded-lg border border-border/10 bg-neutral-950 text-[10px] text-muted-foreground min-w-[110px] text-center font-mono select-none">
                             Slide {slides.length === 0 ? 0 : activeSlideIndex + 1}/{slides.length} | Page {internalPageIndex + 1}/{getCurrentPageCount()}
                         </div>
                         <button
                             onClick={goNextStep}
                             disabled={slides.length === 0}
-                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]"
+                            className="px-3 py-2 bg-neutral-850 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-1.5 text-xs border border-border/10 font-[Vazirmatn] cursor-pointer"
                             title="Next"
                         >
-                            {t.next || 'Next'} <ChevronRight className="w-4 h-4" />
+                            <span className="hidden md:inline">{t.next || 'Next'}</span> <ChevronRight className="w-3.5 h-3.5" />
                         </button>
                         <button
                             onClick={() => {
@@ -853,56 +889,75 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                                 setInternalPageIndex(0);
                             }}
                             disabled={slides.length === 0}
-                            className="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]"
+                            className="px-3 py-2 bg-neutral-850 hover:bg-neutral-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all flex items-center gap-1.5 text-xs border border-border/10 font-[Vazirmatn] cursor-pointer"
                             title="Last Slide"
                         >
-                            {t.last || 'Last'} <SkipForward className="w-4 h-4" />
+                            <span className="hidden md:inline">{t.last || 'Last'}</span> <SkipForward className="w-3.5 h-3.5" />
                         </button>
 
                         <button
                             onClick={() => setIsLive(!isLive)}
                             className={cn(
-                                "px-8 py-3 font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm tracking-wide font-[Vazirmatn]",
-                                isLive ? "bg-neutral-800 text-white border border-border/20 hover:bg-neutral-700" : "bg-red-600 hover:bg-red-700 text-white shadow-red-500/20"
+                                "px-5 py-2 font-bold rounded-xl transition-all shadow-lg flex items-center gap-1.5 text-xs tracking-wide font-[Vazirmatn] cursor-pointer",
+                                isLive ? "bg-neutral-800 text-white border border-border/10 hover:bg-neutral-700" : "bg-red-600 hover:bg-red-700 text-white shadow-red-500/10"
                             )}>
-                            <Power className="w-4 h-4" /> {isLive ? (t.endStream || 'Stop') : (t.goLive || 'Go Live')}
+                            <Power className="w-3.5 h-3.5" /> <span>{isLive ? (t.endStream || 'Stop') : (t.goLive || 'Go Live')}</span>
                         </button>
-                        <Link href="/broadcast/builder" className="px-6 py-3 bg-neutral-800 hover:bg-neutral-700 text-white font-bold rounded-xl transition-all flex items-center gap-2 text-sm border border-border/20 font-[Vazirmatn]" title="Builder">
-                            <Edit3 className="w-4 h-4" /> {t.slideBuilder || 'Slide Builder'}
+                        
+                        <Link href="/broadcast/builder" className="px-4 py-2 bg-neutral-850 hover:bg-neutral-700 text-white font-bold rounded-xl transition-all flex items-center gap-1.5 text-xs border border-border/10 font-[Vazirmatn]" title="Builder">
+                            <Edit3 className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t.slideBuilder || 'Slide Builder'}</span>
                         </Link>
-                        <button onClick={handleOpenLoadModal} className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]">
-                            <CloudDownload className="w-4 h-4" /> {t.cloudLoad || 'Cloud Load'}
+                        
+                        <button onClick={handleOpenLoadModal} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-1.5 text-xs cursor-pointer">
+                            <CloudDownload className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t.cloudLoad || 'Cloud Load'}</span>
                         </button>
+                        
                         <button
                             onClick={handleCopyViewerLink}
                             disabled={!sessionId || isGeneratingViewerLink}
-                            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]"
+                            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-1.5 text-xs cursor-pointer"
                         >
-                            {isGeneratingViewerLink ? <Loader2 className="w-4 h-4 animate-spin" /> : <RadioReceiver className="w-4 h-4" />} {t.viewerLink || 'Viewer Link'}
+                            {isGeneratingViewerLink ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RadioReceiver className="w-3.5 h-3.5" />} <span className="hidden md:inline">{t.viewerLink || 'Viewer Link'}</span>
                         </button>
+                        
                         <button
                             onClick={() => setIsFccPipOpen(!isFccPipOpen)}
                             className={cn(
-                                "px-5 py-3 font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]",
+                                "px-4 py-2 font-bold rounded-xl transition-all shadow-lg flex items-center gap-1.5 text-xs font-[Vazirmatn] cursor-pointer",
                                 isFccPipOpen ? "bg-rose-600 hover:bg-rose-700 text-white shadow-rose-500/10" : "bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-500/10"
                             )}
                             title="نمایش تصویر زنده کنفرانس"
                         >
-                            <Phone className="w-4 h-4" /> 
-                            <span>{isFccPipOpen ? 'بستن وب‌کم' : 'تصویر زنده'}</span>
+                            <Phone className="w-3.5 h-3.5" /> 
+                            <span className="hidden md:inline">{isFccPipOpen ? 'بستن وب‌کم' : 'تصویر زنده'}</span>
                         </button>
                         <button
                             onClick={handleOpenViewer}
                             disabled={isOpeningViewer}
-                            className="px-5 py-3 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-2 text-sm font-[Vazirmatn]"
+                            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg flex items-center gap-1.5 text-xs cursor-pointer"
                         >
-                            {isOpeningViewer ? <Loader2 className="w-4 h-4 animate-spin" /> : <ExternalLink className="w-4 h-4" />} {t.viewer || 'Viewer'}
+                            {isOpeningViewer ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ExternalLink className="w-3.5 h-3.5" />} <span className="hidden sm:inline">{t.viewer || 'Viewer'}</span>
                         </button>
                     </div>
                 </main>
 
+                {/* Right Sidebar Backdrop */}
+                {isPropertiesOpen && (
+                    <div 
+                        className="fixed inset-0 z-35 bg-black/60 backdrop-blur-xs lg:hidden cursor-pointer"
+                        onClick={() => setIsPropertiesOpen(false)}
+                    />
+                )}
+
                 {/* Right Panel */}
-                <BroadcastProperties />
+                <BroadcastProperties 
+                    className={cn(
+                        "fixed lg:static top-16 bottom-0 z-40 bg-neutral-900 border-l border-border/10 transition-transform duration-300 w-72 lg:translate-x-0 shadow-2xl lg:shadow-none",
+                        isRTL 
+                            ? (isPropertiesOpen ? "left-0 translate-x-0" : "left-0 -translate-x-full")
+                            : (isPropertiesOpen ? "right-0 translate-x-0" : "right-0 translate-x-full")
+                    )}
+                />
             </div>
 
             {/* Cloud Load Modal */}

@@ -15,6 +15,7 @@ import { PageVisuals } from "@/components/ui/PageVisuals";
 import { Vortex } from "@/components/ui/aceternity/vortex";
 import { getUpcomingEvents } from "@/actions/events";
 import EventCountdownWidget from "@/components/events/EventCountdownWidget";
+import { MediaCarousel } from "@/components/gallery/MediaCarousel";
 
 
 export default function HomePage() {
@@ -122,6 +123,11 @@ export default function HomePage() {
         <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed font-medium">
           {t.welcomeDesc}
         </p>
+      </section>
+
+      {/* Gallery Media Carousel */}
+      <section className="px-6 lg:px-12 max-w-5xl mx-auto pb-24 relative z-10 animate-fade-in-up">
+        <MediaCarousel />
       </section>
 
       {/* Quick Access Grid */}

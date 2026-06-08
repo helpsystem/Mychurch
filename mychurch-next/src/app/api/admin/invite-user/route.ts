@@ -15,7 +15,7 @@ export async function POST(req: Request) {
         const { data: userRecord } = await supabase
             .from('users')
             .select('role')
-            .eq('email', user.email)
+            .eq('email', user.email?.toLowerCase())
             .single();
 
         if (!userRecord || userRecord.role !== 'Admin') {
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
         const siteUrl = resolvePublicSiteUrl();
 
         // Send invitation email via Supabase Auth
-        const { data: inviteData, error: inviteError } = await adminClient.auth.admin.inviteUserByEmail(email, {
+        const { data: inviteData, error: inviteError } = await adminClient.auth.admin.inviteUserByEmail(email.toLowerCase(), {
             data: { name, role },
             redirectTo: `${siteUrl}/api/auth/callback`
         });
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
         // Also insert into users table so RBAC works
         const displayName = name || email.split('@')[0];
         await supabase.from('users').upsert([{
-            email,
+            email: email.toLowerCase(),
             name: displayName,
             role,
             permissions: {},

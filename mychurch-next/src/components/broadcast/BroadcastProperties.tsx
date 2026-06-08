@@ -6,7 +6,11 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { cn } from "@/lib/utils";
 
-export function BroadcastProperties() {
+interface BroadcastPropertiesProps {
+    className?: string;
+}
+
+export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
     const { t } = useLanguage();
     const config = useBroadcastStore(state => state.config);
     const updateConfig = useBroadcastStore(state => state.updateConfig);
@@ -17,7 +21,7 @@ export function BroadcastProperties() {
     const setShowDeviceSelector = useBroadcastStore(state => state.setShowDeviceSelector);
 
     return (
-        <aside className="w-72 bg-neutral-900 border-l border-border/10 flex flex-col font-[Vazirmatn]">
+        <aside className={cn("w-72 bg-neutral-900 border-l border-border/10 flex flex-col font-[Vazirmatn] shrink-0", className)}>
             <div className="h-14 p-4 border-b border-border/10 flex items-center justify-between">
                 <span className="text-sm font-bold tracking-wide">{t.properties || 'تنظیمات پخش'}</span>
                 <Settings className="w-4 h-4 text-muted-foreground" />

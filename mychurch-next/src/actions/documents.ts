@@ -2,7 +2,6 @@
 
 import { createClient } from '@/utils/supabase/server';
 import type { DocumentType, DocumentHistoryData } from '@/types/documents';
-export type { DocumentType, DocumentHistoryData };
 
 
 /**
@@ -349,6 +348,37 @@ export async function deleteDocument(documentId: string) {
     return { data: deleted?.[0], error: null };
   } catch (err) {
     console.error('Unexpected error in deleteDocument:', err);
+    return { error: 'Unexpected error', status: 500 };
+  }
+}
+
+/**
+ * Get all documents issued to the current logged-in user
+ */
+export async function getUserDocuments() {
+  const supabase = await createClient();
+
+  try {
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
+      return { error: 'Unauthorized', status: 401 };
+    }
+
+    const { data: documents, error } = await supabase
+      .from('document_history')
+      .select('*')
+      .eq('recipient_email', user.email)
+      .filter('deleted_at', 'is', null)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching user documents:', error);
+      return { error: 'Failed to fetch documents', status: 500 };
+    }
+
+    return { data: documents, error: null };
+  } catch (err) {
+    console.error('Unexpected error in getUserDocuments:', err);
     return { error: 'Unexpected error', status: 500 };
   }
 }

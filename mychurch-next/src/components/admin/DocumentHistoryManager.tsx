@@ -7,9 +7,8 @@ import {
   updateDocument,
   deleteDocument,
   finalizeDocument,
-  type DocumentHistoryData,
-  type DocumentType,
 } from '@/actions/documents';
+import type { DocumentHistoryData, DocumentType } from '@/types/documents';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 

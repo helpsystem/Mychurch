@@ -19,17 +19,18 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     const userEmail = user?.email || '';
     const initials = userEmail ? userEmail.substring(0, 2).toUpperCase() : '??';
 
+    const userEmailLower = userEmail.toLowerCase();
     const adminSupabase = await createAdminClient();
     const [roleResult, permissionsResult] = await Promise.all([
         adminSupabase
             .from('users')
             .select('role')
-            .eq('email', userEmail)
+            .eq('email', userEmailLower)
             .single(),
         adminSupabase
             .from('users')
             .select('permissions')
-            .eq('email', userEmail)
+            .eq('email', userEmailLower)
             .single(),
     ]);
 
