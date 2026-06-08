@@ -45,3 +45,8 @@ next-env.d.ts
 /public/media
 /public/worship/audio
 
+# drive sync temp
+.tmp.drivedownload
+.tmp.driveupload
+
+
