@@ -171,10 +171,10 @@ export NODE_OPTIONS="--max-old-space-size=2048"
 export NEXT_CPU_LIMIT=1
 export NEXT_PRIVATE_BUILD_WORKER=0
 echo 'Building Next.js (timeout: 120 minutes)...'
-if ! timeout 120m npm run build; then
+if ! timeout 120m npm run build -- --webpack; then
     echo 'Build failed, retrying after 30s...'
     sleep 30
-    timeout 120m npm run build
+    timeout 120m npm run build -- --webpack
 fi
 
 if pm2 show mychurch-next > /dev/null 2>&1; then
