@@ -44,7 +44,10 @@ $LOCAL_ENV_PATH = ".\.env.local"
 
 Write-Host "`n[1/4] Setting up fresh codebase on VPS..." -ForegroundColor Yellow
 $gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df -e mychurch-next/.deps-lock.json && (git checkout main || true) && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
+$oldPref = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 ssh ${VPS_USER}@${VPS_HOST} $gitPullCmd
+$ErrorActionPreference = $oldPref
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Failed to sync repository on VPS." -ForegroundColor Red
     exit 1
@@ -53,7 +56,10 @@ if ($LASTEXITCODE -ne 0) {
 # Step 2: Upload .env.local
 Write-Host "`n[2/4] Uploading .env.local via SCP..." -ForegroundColor Yellow
 if (Test-Path $LOCAL_ENV_PATH) {
+    $oldPref = $ErrorActionPreference
+    $ErrorActionPreference = "Continue"
     scp $LOCAL_ENV_PATH ${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/.env.local
+    $ErrorActionPreference = $oldPref
     if ($?) {
         Write-Host ".env.local uploaded successfully!" -ForegroundColor Green
     }
@@ -144,6 +150,11 @@ if pm2 show mychurch-next > /dev/null 2>&1; then
     sleep 3
 fi
 
+# Temporarily release HugePages to free up 3GB of RAM for the Next.js compile step
+echo '⚠️ Releasing HugePages to maximize free RAM for compilation...'
+sysctl -w vm.nr_hugepages=0 || true
+free -h
+
 if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then
     echo 'Dependencies unchanged, skipping npm install'
 else
@@ -177,6 +188,10 @@ if ! timeout 120m npm run build -- --webpack; then
     timeout 120m npm run build -- --webpack
 fi
 
+# Restore HugePages for database/VPN performance
+echo '🚀 Restoring HugePages configuration...'
+sysctl -w vm.nr_hugepages=1491 || true
+
 if pm2 show mychurch-next > /dev/null 2>&1; then
     pm2 start mychurch-next --update-env || pm2 restart mychurch-next --update-env
 else
@@ -185,7 +200,10 @@ fi
 pm2 save
 '@ -f $VPS_NEXT_PATH
 $deployCmd = $deployCmd -replace "`r`n", "`n"
+$oldPref = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 ssh $VPS_USER@$VPS_HOST $deployCmd
+$oldPref = $ErrorActionPreference
 if ($LASTEXITCODE -ne 0) {
         Write-Host "VPS build/deploy failed. Stop and fix before applying NGINX." -ForegroundColor Red
         exit 1
