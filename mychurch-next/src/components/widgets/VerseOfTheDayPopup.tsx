@@ -145,7 +145,7 @@ export function VerseOfTheDayPopup({ config }: VerseOfTheDayPopupProps) {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9, y: 30 }}
                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                    className="relative z-10 w-full max-w-2xl bg-neutral-950/80 border border-white/10 rounded-[2.5rem] p-6 md:p-10 shadow-2xl overflow-hidden flex flex-col gap-6"
+                    className="relative z-10 w-[95%] sm:w-full max-w-2xl bg-neutral-950/80 border border-white/10 rounded-[2.5rem] p-5 sm:p-8 md:p-10 shadow-2xl overflow-hidden flex flex-col gap-4 sm:gap-6"
                     dir={isEn ? "ltr" : "rtl"}
                 >
                     {/* Background glows */}
@@ -156,7 +156,7 @@ export function VerseOfTheDayPopup({ config }: VerseOfTheDayPopupProps) {
                     <button
                         onClick={handleClose}
                         title={isEn ? "Close" : "بستن"}
-                        className={`absolute top-6 ${isEn ? "right-6" : "left-6"} p-2 bg-white/5 hover:bg-white/10 text-white rounded-full transition-all border border-white/5`}
+                        className={`absolute top-4 sm:top-6 ${isEn ? "right-4 sm:right-6" : "left-4 sm:left-6"} p-2 bg-white/5 hover:bg-white/10 text-white rounded-full transition-all border border-white/5`}
                     >
                         <X className="w-5 h-5" />
                     </button>
@@ -177,10 +177,10 @@ export function VerseOfTheDayPopup({ config }: VerseOfTheDayPopupProps) {
 
                     {/* Verse Translation Block */}
                     <div className="space-y-4">
-                        <h3 className="text-2xl md:text-3xl font-black leading-relaxed text-foreground/90 text-right font-[Vazirmatn]" dir="rtl">
+                        <h3 className="text-[clamp(1.25rem,4vw,1.875rem)] font-black leading-relaxed text-foreground/90 text-right font-[Vazirmatn]" dir="rtl">
                             "{verseFa}"
                         </h3>
-                        <h3 className="text-xl md:text-2xl font-bold leading-relaxed text-foreground/70 text-left font-serif italic" dir="ltr">
+                        <h3 className="text-[clamp(1.1rem,3.5vw,1.5rem)] font-bold leading-relaxed text-foreground/70 text-left font-serif italic" dir="ltr">
                             "{verseEn}"
                         </h3>
                     </div>
@@ -208,13 +208,13 @@ export function VerseOfTheDayPopup({ config }: VerseOfTheDayPopupProps) {
                     </div>
 
                     {/* Footer Actions */}
-                    <div className="mt-2 flex flex-col sm:flex-row items-center gap-4 justify-between">
-                        <p className="text-xs text-muted-foreground text-center sm:text-right font-medium max-w-xs leading-relaxed">
+                    <div className="mt-2 flex flex-col gap-4 border-t border-white/5 pt-4">
+                        <p className={`text-xs text-muted-foreground text-center ${isEn ? "sm:text-left" : "sm:text-right"} font-medium leading-relaxed`}>
                             {isEn 
                                 ? "Your message will be sent to the church along with your support gift." 
                                 : "پیغام شما به همراه هدیه حمایتی شما برای کلیسا ارسال و ثبت خواهد شد."}
                         </p>
-                        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:justify-end">
                             <button
                                 onClick={handleClose}
                                 className="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 font-bold px-6 py-4 rounded-2xl transition-all shadow-md hover:scale-[1.02] active:scale-[0.98] shrink-0 font-sans"

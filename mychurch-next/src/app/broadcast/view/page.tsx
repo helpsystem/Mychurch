@@ -435,6 +435,42 @@ function ViewerContent() {
             const englishPopupLines = (lyricsContent.lyricsEnLines || []).map(line => line.trim()).filter(Boolean);
             const safeAudioUrl = getSafeAudioUrl(lyricsContent.audioUrl);
 
+            const renderGlassPopup = () => {
+                if (!lyricsPopupEnabled || !showGlassPopup) return null;
+                return (
+                    <div data-allow-interaction="true" className="absolute inset-0 z-[80] bg-black/35 backdrop-blur-sm flex items-center justify-center p-4 md:p-6 animate-in fade-in duration-200">
+                        <div className="w-full max-w-6xl max-h-[86vh] overflow-y-auto rounded-3xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-2xl p-5 md:p-8 custom-scrollbar">
+                            <div className="flex items-start justify-between gap-4 mb-6 border-b border-white/10 pb-4">
+                                <div className="text-right" dir="rtl">
+                                    <h3 className="text-2xl md:text-3xl font-black text-white font-[Vazirmatn]">{lyricsPopupTitleFa}</h3>
+                                    <p className="text-cyan-200 mt-1 text-sm md:text-lg" dir="ltr">{lyricsPopupTitleEn}</p>
+                                </div>
+                                <button 
+                                    data-allow-interaction="true" 
+                                    onClick={() => setShowGlassPopup(false)} 
+                                    className="p-2 rounded-xl bg-white/10 hover:bg-white/25 text-white transition-colors"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                {farsiPopupLines.map((line, idx) => (
+                                    <div key={`lyr-popup-t-${idx}`} className="flex flex-col md:flex-row gap-3 md:gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                                        <div className="flex-1 text-left" dir="ltr">
+                                            <p className="text-white/95 text-[15px] md:text-lg leading-relaxed font-serif">{englishPopupLines[idx] || ''}</p>
+                                        </div>
+                                        <div className="hidden md:block w-px bg-white/10 self-stretch" />
+                                        <div className="flex-1 text-right" dir="rtl">
+                                            <p className="text-white text-lg md:text-xl leading-[1.8] font-[Vazirmatn]">{line}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
             if (lyricsContent.timingData) {
                 const displayOpts = lyricsContent.displayOptions;
 
@@ -471,31 +507,7 @@ function ViewerContent() {
                                 persian: lyricsContent.persianTranslationLines
                             }}
                         />
-                        {lyricsPopupEnabled && showGlassPopup && (
-                            <div data-allow-interaction="true" className="absolute inset-0 z-[80] bg-black/35 backdrop-blur-sm flex items-center justify-center p-6">
-                                <div className="w-full max-w-6xl max-h-[86vh] overflow-auto rounded-3xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-2xl p-6">
-                                    <div className="flex items-start justify-between gap-4 mb-5">
-                                        <div className="text-right" dir="rtl">
-                                            <h3 className="text-3xl font-bold text-white font-[Vazirmatn]">{lyricsPopupTitleFa}</h3>
-                                            <p className="text-cyan-200 mt-1 text-lg" dir="ltr">{lyricsPopupTitleEn}</p>
-                                        </div>
-                                        <button data-allow-interaction="true" onClick={() => setShowGlassPopup(false)} className="px-3 py-1 rounded-lg bg-white/15 border border-white/20 text-white hover:bg-white/25">✕</button>
-                                    </div>
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                        {farsiPopupLines.map((line, idx) => (
-                                            <React.Fragment key={`lyr-popup-t-${idx}`}>
-                                                <div className="rounded-2xl bg-purple-950/35 border border-purple-300/30 p-4" dir="ltr">
-                                                    <p className="text-white/90 text-lg leading-relaxed">{englishPopupLines[idx] || ''}</p>
-                                                </div>
-                                                <div className="rounded-2xl bg-amber-900/35 border border-amber-300/30 p-4" dir="rtl">
-                                                    <p className="text-white text-xl leading-[1.9] font-[Vazirmatn]">{line}</p>
-                                                </div>
-                                            </React.Fragment>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                        {renderGlassPopup()}
                     </div>
                 );
             }
@@ -519,6 +531,7 @@ function ViewerContent() {
                             {showGlassPopup ? '✕ بستن / Close' : '🎵 متن دوزبانه / Bilingual'}
                         </button>
                     )}
+                    {renderGlassPopup()}
                 </div>
             );
         }
