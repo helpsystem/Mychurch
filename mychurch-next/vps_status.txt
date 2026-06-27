@@ -1,0 +1,17 @@
+Error executing SSH command: Command failed: ssh root@samanabyar.online "echo '=== PM2 PROCESS LIST ===' && pm2 list && echo '=== LAST 50 ERROR LOG LINES ===' && tail -n 50 ~/.pm2/logs/mychurch-next-err.log && echo '=== LAST 50 OUT LOG LINES ===' && tail -n 50 ~/.pm2/logs/mychurch-next-out.log"
+tail: cannot open '/root/.pm2/logs/mychurch-next-err.log' for reading: No such file or directory
+
+Standard Error:
+tail: cannot open '/root/.pm2/logs/mychurch-next-err.log' for reading: No such file or directory
+
+Standard Output:
+=== PM2 PROCESS LIST ===
+┌────┬─────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name                │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼─────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 1  │ backend             │ default     │ N/A     │ fork    │ N/A      │ 37m    │ 0    │ online    │ 0%       │ 0b       │ root     │ disabled │
+│ 0  │ mychurch-backend    │ default     │ N/A     │ fork    │ N/A      │ 37m    │ 0    │ online    │ 0%       │ 0b       │ root     │ disabled │
+│ 2  │ mychurch-next       │ default     │ N/A     │ fork    │ 0        │ 0      │ 1184 │ stopped   │ 0%       │ 0b       │ root     │ disabled │
+└────┴─────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+=== LAST 50 ERROR LOG LINES ===
+
