@@ -46,7 +46,7 @@ Write-Host "`n[1/4] Setting up fresh codebase on VPS..." -ForegroundColor Yellow
 $gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df -e mychurch-next/.deps-lock.json && (git checkout main || true) && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
 $oldPref = $ErrorActionPreference
 $ErrorActionPreference = "Continue"
-ssh ${VPS_USER}@${VPS_HOST} $gitPullCmd
+ssh -o StrictHostKeyChecking=no ${VPS_USER}@${VPS_HOST} $gitPullCmd
 $ErrorActionPreference = $oldPref
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Failed to sync repository on VPS." -ForegroundColor Red
@@ -58,7 +58,7 @@ Write-Host "`n[2/4] Uploading .env.local via SCP..." -ForegroundColor Yellow
 if (Test-Path $LOCAL_ENV_PATH) {
     $oldPref = $ErrorActionPreference
     $ErrorActionPreference = "Continue"
-    scp $LOCAL_ENV_PATH ${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/.env.local
+    scp -o StrictHostKeyChecking=no $LOCAL_ENV_PATH ${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/.env.local
     $ErrorActionPreference = $oldPref
     if ($?) {
         Write-Host ".env.local uploaded successfully!" -ForegroundColor Green
@@ -80,6 +80,22 @@ set -e
 cd {0}
 export NEXT_TELEMETRY_DISABLED=1
 export NEXT_DISABLE_ESLINT=1
+
+cleanup() {{
+    echo '🚀 Restoring HugePages configuration and restarting backends...'
+    sysctl -w vm.nr_hugepages=1491 || true
+
+    if pm2 show mychurch-backend > /dev/null 2>&1; then
+        echo 'Starting PM2 process mychurch-backend...'
+        pm2 start mychurch-backend || true
+    fi
+    if pm2 show backend > /dev/null 2>&1; then
+        echo 'Starting PM2 process backend...'
+        pm2 start backend || true
+    fi
+    pm2 save
+}}
+trap cleanup EXIT
 
 echo '🔗 Restoring and verifying persistent upload directories...'
 mkdir -p /var/www/storage/uploads
@@ -147,8 +163,16 @@ fi
 if pm2 show mychurch-next > /dev/null 2>&1; then
     echo 'Stopping PM2 process mychurch-next to release file locks...'
     pm2 stop mychurch-next || true
-    sleep 3
 fi
+if pm2 show mychurch-backend > /dev/null 2>&1; then
+    echo 'Stopping PM2 process mychurch-backend to free memory...'
+    pm2 stop mychurch-backend || true
+fi
+if pm2 show backend > /dev/null 2>&1; then
+    echo 'Stopping PM2 process backend to free memory...'
+    pm2 stop backend || true
+fi
+sleep 3
 
 # Temporarily release HugePages to free up 3GB of RAM for the Next.js compile step
 echo '⚠️ Releasing HugePages to maximize free RAM for compilation...'
@@ -188,21 +212,16 @@ if ! timeout 120m npm run build -- --webpack; then
     timeout 120m npm run build -- --webpack
 fi
 
-# Restore HugePages for database/VPN performance
-echo '🚀 Restoring HugePages configuration...'
-sysctl -w vm.nr_hugepages=1491 || true
-
 if pm2 show mychurch-next > /dev/null 2>&1; then
     pm2 start mychurch-next --update-env || pm2 restart mychurch-next --update-env
 else
     pm2 start npm --name 'mychurch-next' -- start
 fi
-pm2 save
 '@ -f $VPS_NEXT_PATH
 $deployCmd = $deployCmd -replace "`r`n", "`n"
 $oldPref = $ErrorActionPreference
 $ErrorActionPreference = "Continue"
-ssh $VPS_USER@$VPS_HOST $deployCmd
+ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST $deployCmd
 $oldPref = $ErrorActionPreference
 if ($LASTEXITCODE -ne 0) {
         Write-Host "VPS build/deploy failed. Stop and fix before applying NGINX." -ForegroundColor Red

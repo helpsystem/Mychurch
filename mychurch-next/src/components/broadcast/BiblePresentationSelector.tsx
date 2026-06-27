@@ -40,6 +40,16 @@ interface AudioTrack {
   mp3_url: string;
 }
 
+const normalizeFarsi = (str: string): string => {
+  if (!str) return '';
+  return str
+    .replace(/ي/g, 'ی')
+    .replace(/ك/g, 'ک')
+    .replace(/‌/g, ' ')
+    .toLowerCase()
+    .trim();
+};
+
 interface SelectedVerseEntry {
   id: string;
   book_id: string;
@@ -131,7 +141,10 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
   const currentBook = books.find((book) => book.book_id === selectedBookId) || null;
   const filteredBooks = bookSearch
-    ? books.filter((book) => book.book_name_en.toLowerCase().includes(bookSearch.toLowerCase()) || book.book_name_fa.includes(bookSearch))
+    ? books.filter((book) => 
+        book.book_name_en.toLowerCase().includes(bookSearch.toLowerCase()) || 
+        normalizeFarsi(book.book_name_fa).includes(normalizeFarsi(bookSearch))
+      )
     : books;
   const englishVersions = versions.filter((version) => version.language !== "fa");
   const persianVersions = versions.filter((version) => version.language === "fa");
@@ -140,8 +153,8 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   // Filter verses based on search query
   const filterVersesBySearch = (verseList: VerseRow[]): VerseRow[] => {
     if (!verseSearch.trim()) return verseList;
-    const query = verseSearch.toLowerCase();
-    return verseList.filter((verse) => verse.text.toLowerCase().includes(query));
+    const query = normalizeFarsi(verseSearch);
+    return verseList.filter((verse) => normalizeFarsi(verse.text).includes(query));
   };
 
   const filteredVerses = filterVersesBySearch(verses);

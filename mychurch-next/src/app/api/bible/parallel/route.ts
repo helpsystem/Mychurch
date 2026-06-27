@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { dbAll, dbGet } from "@/lib/bibleDb";
+import { fetchApiBibleContent } from "@/lib/apiBible";
 
 interface VerseRow {
   verse_num: number;
@@ -28,6 +29,42 @@ export async function GET(req: Request) {
           "X-Cache": "HIT",
         },
       });
+    }
+
+    // Try API.Bible first
+    try {
+      const apiResult = await fetchApiBibleContent(bookId, chapterNum, versionFa, versionEn);
+      if (apiResult) {
+        const maxVerse = Math.max(apiResult.verses.en.length, apiResult.verses.fa.length);
+        const parallel = [];
+        for (let i = 0; i < maxVerse; i++) {
+          parallel.push({
+            verse_num: i + 1,
+            en: apiResult.verses.en[i] || null,
+            fa: apiResult.verses.fa[i] || null,
+          });
+        }
+
+        const payload = {
+          versionEn,
+          versionFa,
+          book: bookId.toUpperCase(),
+          chapter: chapterNum,
+          parallel,
+          audioEn: [],
+          audioFa: [],
+        };
+
+        parallelCache.set(cacheKey, { ts: Date.now(), payload });
+        return NextResponse.json(payload, {
+          headers: {
+            "Cache-Control": "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400",
+            "X-Cache": "MISS_API_BIBLE",
+          },
+        });
+      }
+    } catch (apiErr) {
+      console.error("API.Bible parallel fetch failed, falling back to DB:", apiErr);
     }
 
     // Resolve both version_ids

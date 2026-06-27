@@ -211,8 +211,8 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     return (
         <div className="flex flex-col h-screen w-screen overflow-hidden bg-slate-950 font-[Vazirmatn]">
             {/* Top Toolbar for Cloud Sync */}
-            <div className="h-14 bg-black border-b border-indigo-500/30 flex items-center justify-between px-6 px-4 z-50 shadow-md">
-                <div className="flex items-center gap-4">
+            <div className="min-h-14 bg-black border-b border-indigo-500/30 flex flex-col md:flex-row items-center justify-between px-4 py-2 md:py-0 gap-3 md:gap-0 z-50 shadow-md">
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 md:gap-4">
                     <Link href="/admin/presentations" className="text-muted-foreground hover:text-white transition-colors flex items-center gap-2 text-sm">
                         <ArrowRight className="w-4 h-4" /> {t.backToFiles || 'Back'}
                     </Link>
@@ -293,7 +293,7 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                 <span>{statusInfo[session.status].description}</span>
             </div>
 
-            <div className="flex flex-1 overflow-hidden" dir={language === 'fa' ? 'rtl' : 'ltr'}>
+            <div className="flex flex-col md:flex-row flex-1 overflow-hidden" dir={language === 'fa' ? 'rtl' : 'ltr'}>
                 <SlideBuilder 
                     session={session}
                     setSession={setSession}

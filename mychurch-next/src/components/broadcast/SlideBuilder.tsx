@@ -15,7 +15,7 @@ import { getPrayers, PrayerRequest } from '@/actions/prayers';
 import {
   fetchWorshipSongs, searchSongs, parseLyrics,
   getBibleBooks, searchScripture, fetchBibleVerse,
-  BROADCAST_TRANSLATIONS
+  BROADCAST_TRANSLATIONS, normalizeFarsi
 } from './dataService';
 import {
   BookOpen, Music, FileImage, Video, Plus, GripVertical, Upload,
@@ -1144,7 +1144,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
   return (
     <div
-      className="w-72 bg-slate-900 border-r border-slate-800 flex flex-col h-full overflow-hidden select-none"
+      className="w-full md:w-72 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800 flex flex-col h-[40vh] md:h-full overflow-hidden select-none shrink-0"
       dir={isRTL ? 'rtl' : 'ltr'}
       onContextMenu={(e) => e.preventDefault()}
       style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" }}
@@ -1246,69 +1246,69 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         )}
 
         {/* Quick Add Buttons */}
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-1.5">
           <button
             onClick={() => setActiveModal('SCRIPTURE')}
-            className="flex items-center gap-2 px-3 py-2 bg-amber-600/20 border border-amber-600/40 rounded-lg text-amber-400 hover:bg-amber-600/30 transition text-sm"
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-amber-600/20 border border-amber-600/40 rounded-lg text-amber-400 hover:bg-amber-600/30 transition text-xs justify-center md:justify-start"
           >
-            <BookOpen className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.addScripture}</span>
+            <BookOpen className="w-3.5 h-3.5 shrink-0" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{t.addScripture}</span>
           </button>
           <button
             onClick={() => setActiveModal('LYRICS')}
-            className="flex items-center gap-2 px-3 py-2 bg-pink-600/20 border border-pink-600/40 rounded-lg text-pink-400 hover:bg-pink-600/30 transition text-sm"
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-pink-600/20 border border-pink-600/40 rounded-lg text-pink-400 hover:bg-pink-600/30 transition text-xs justify-center md:justify-start"
           >
-            <Music className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.addLyrics}</span>
+            <Music className="w-3.5 h-3.5 shrink-0" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{t.addLyrics}</span>
           </button>
 
           <button
             onClick={() => setActiveModal('MEDIA')}
-            className="flex items-center gap-2 px-3 py-2 bg-blue-600/20 border border-blue-600/40 rounded-lg text-blue-400 hover:bg-blue-600/30 transition text-sm"
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-blue-600/20 border border-blue-600/40 rounded-lg text-blue-400 hover:bg-blue-600/30 transition text-xs justify-center md:justify-start"
           >
-            <FileImage className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.addMedia}</span>
+            <FileImage className="w-3.5 h-3.5 shrink-0" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{t.addMedia}</span>
           </button>
           <button
             onClick={() => setActiveModal('PRAYER')}
-            className="flex items-center gap-2 px-3 py-2 bg-rose-600/20 border border-rose-600/40 rounded-lg text-rose-400 hover:bg-rose-600/30 transition text-sm"
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-rose-600/20 border border-rose-600/40 rounded-lg text-rose-400 hover:bg-rose-600/30 transition text-xs justify-center md:justify-start"
           >
-            <Heart className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'درخواست دعا' : 'Prayer Request'}</span>
+            <Heart className="w-3.5 h-3.5 shrink-0" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'درخواست دعا' : 'Prayer Request'}</span>
           </button>
           <button
             onClick={() => setActiveModal('ANNOUNCEMENT')}
-            className="flex items-center gap-2 px-3 py-2 bg-green-600/20 border border-green-600/40 rounded-lg text-green-400 hover:bg-green-600/30 transition text-sm"
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-green-600/20 border border-green-600/40 rounded-lg text-green-400 hover:bg-green-600/30 transition text-xs justify-center md:justify-start"
           >
-            <Megaphone className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{t.addAnnouncement}</span>
+            <Megaphone className="w-3.5 h-3.5 shrink-0" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{t.addAnnouncement}</span>
           </button>
 
           {/* Generic/Rich Text Slide Button */}
           <button
             onClick={() => setActiveModal('GENERIC')}
-            className="flex items-center gap-2 px-3 py-2 bg-purple-600/20 border border-purple-600/40 rounded-lg text-purple-400 hover:bg-purple-600/30 transition text-sm justify-center"
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-purple-600/20 border border-purple-600/40 rounded-lg text-purple-400 hover:bg-purple-600/30 transition text-xs justify-center"
           >
-            <Plus className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'اسلاید آزاد' : 'Design'}</span>
+            <Plus className="w-3.5 h-3.5 shrink-0" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'اسلاید آزاد' : 'Design'}</span>
           </button>
 
           {/* Meeting Slide Button */}
           <button
             onClick={() => setActiveModal('MEETING')}
-            className="flex items-center gap-2 px-3 py-2 bg-emerald-600/20 border border-emerald-600/40 rounded-lg text-emerald-400 hover:bg-emerald-600/30 transition text-sm justify-center"
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-emerald-600/20 border border-emerald-600/40 rounded-lg text-emerald-400 hover:bg-emerald-600/30 transition text-xs justify-center"
           >
-            <PhoneCall className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'ارتباط ویدیویی' : 'Video Call'}</span>
+            <PhoneCall className="w-3.5 h-3.5 shrink-0" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'ارتباط ویدیویی' : 'Video Call'}</span>
           </button>
 
           {/* Live Data Slide Button */}
           <button
             onClick={() => setActiveModal('LIVEDATA')}
-            className="flex items-center gap-2 px-3 py-2 bg-rose-600/20 border border-rose-600/40 rounded-lg text-rose-400 hover:bg-rose-600/30 transition text-sm col-span-2 justify-center"
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-rose-600/20 border border-rose-600/40 rounded-lg text-rose-400 hover:bg-rose-600/30 transition text-xs col-span-2 justify-center"
           >
-            <PieChart className="w-4 h-4" />
-            <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'نمودار زنده / آمار' : 'Live Charts / Stats'}</span>
+            <PieChart className="w-3.5 h-3.5 shrink-0" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'نمودار زنده / آمار' : 'Live Charts / Stats'}</span>
           </button>
         </div>
       </div>
@@ -1363,7 +1363,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   {getBibleBooks()
                     .filter(b =>
                       bookSearch === '' ||
-                      b.name.fa.includes(bookSearch) ||
+                      normalizeFarsi(b.name.fa).includes(normalizeFarsi(bookSearch)) ||
                       b.name.en.toLowerCase().includes(bookSearch.toLowerCase()) ||
                       b.key.toLowerCase().includes(bookSearch.toLowerCase())
                     )

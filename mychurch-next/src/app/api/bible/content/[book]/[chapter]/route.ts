@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { dbAll, dbGet } from '@/lib/bibleDb';
+import { fetchApiBibleContent } from '@/lib/apiBible';
 
 export const revalidate = 3600;
 
@@ -120,6 +121,23 @@ export async function GET(
 
         if (isNaN(chapterNum)) {
             return NextResponse.json({ success: false, error: 'Invalid chapter number' }, { status: 400 });
+        }
+
+        // Try API.Bible first
+        try {
+            const apiResult = await fetchApiBibleContent(bookId, chapterNum, faTranslation, enTranslation);
+            if (apiResult) {
+                // Store in memory cache
+                contentCache.set(cacheKey, { ts: Date.now(), payload: apiResult });
+                return NextResponse.json(apiResult, {
+                    headers: {
+                        'Cache-Control': 'public, max-age=600, s-maxage=3600, stale-while-revalidate=86400',
+                        'X-Cache': 'MISS_API_BIBLE',
+                    }
+                });
+            }
+        } catch (apiErr) {
+            console.error("API.Bible fetch failed, falling back to local DB:", apiErr);
         }
 
         const [faVersion, enVersion] = await Promise.all([

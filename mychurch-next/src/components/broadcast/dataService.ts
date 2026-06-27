@@ -8,6 +8,19 @@
 import { WorshipSong, BibleBook, ScripturePage } from '@/types/broadcast';
 import { INITIAL_BIBLE_BOOKS, INITIAL_BIBLE_CONTENT } from '@/lib/bibleData';
 
+/**
+ * نرمال‌سازی حروف فارسی برای مقایسه دقیق‌تر
+ */
+export function normalizeFarsi(str: string): string {
+  if (!str) return '';
+  return str
+    .replace(/ي/g, 'ی')
+    .replace(/ك/g, 'ک')
+    .replace(/‌/g, ' ') // replace ZWNJ with space
+    .toLowerCase()
+    .trim();
+}
+
 // =============== WORSHIP SONGS SERVICE ===============
 
 /**
@@ -59,11 +72,13 @@ export async function fetchWorshipSongs(): Promise<WorshipSong[]> {
 export function searchSongs(songs: WorshipSong[], query: string): WorshipSong[] {
   if (!query.trim()) return songs.slice(0, 20); // نمایش 20 تای اول
 
-  const q = query.toLowerCase();
+  const q = normalizeFarsi(query);
   return songs.filter(song =>
-    song.title?.fa?.toLowerCase().includes(q) ||
+    normalizeFarsi(song.title?.fa || '').includes(q) ||
     song.title?.en?.toLowerCase().includes(q) ||
-    (typeof song.artist === 'string' ? (song.artist as string).toLowerCase().includes(q) : song.artist?.fa?.toLowerCase().includes(q))
+    (typeof song.artist === 'string' 
+      ? (song.artist as string).toLowerCase().includes(q) 
+      : normalizeFarsi(song.artist?.fa || '').includes(q))
   ).slice(0, 20);
 }
 
@@ -205,11 +220,11 @@ export function searchBibleBooks(query: string): BibleBook[] {
   const books: BibleBook[] = _bibleBookCache['BSB']?.data || INITIAL_BIBLE_BOOKS;
   if (!query.trim()) return books;
 
-  const q = query.toLowerCase();
+  const q = normalizeFarsi(query);
   return books.filter((book: BibleBook) =>
     book.key.toLowerCase().includes(q) ||
     book.name.en.toLowerCase().includes(q) ||
-    book.name.fa.includes(q)
+    normalizeFarsi(book.name.fa || '').includes(q)
   );
 }
 
@@ -335,43 +350,43 @@ export async function searchScripture(query: string): Promise<ScripturePage | nu
  * پیدا کردن کتاب با نام فارسی یا انگلیسی
  */
 function findBibleBook(search: string): BibleBook | undefined {
-  const s = search.toLowerCase();
+  const s = normalizeFarsi(search);
 
   // نقشه نام‌های فارسی به کلید انگلیسی
   const persianNames: Record<string, string> = {
-    'یوحنا': 'John',
-    'متی': 'Matthew',
-    'مرقس': 'Mark',
-    'لوقا': 'Luke',
-    'اعمال': 'Acts',
-    'رومیان': 'Romans',
-    'مزامیر': 'Psalms',
-    'مزمور': 'Psalms',
-    'تکوین': 'Genesis',
-    'خروج': 'Exodus',
-    'پیدایش': 'Genesis',
-    'اشعیا': 'Isaiah',
-    'ارمیا': 'Jeremiah',
-    'امثال': 'Proverbs',
-    'جامعه': 'Ecclesiastes',
-    'مکاشفه': 'Revelation',
-    'افسسیان': 'Ephesians',
-    'فیلیپیان': 'Philippians',
-    'کولسیان': 'Colossians',
-    'عبرانیان': 'Hebrews',
-    'یعقوب': 'James'
+    'یوحنا': 'john',
+    'متی': 'matthew',
+    'مرقس': 'mark',
+    'لوقا': 'luke',
+    'اعمال': 'acts',
+    'رومیان': 'romans',
+    'مزامیر': 'psalms',
+    'مزمور': 'psalms',
+    'تکوین': 'genesis',
+    'خروج': 'exodus',
+    'پیدایش': 'genesis',
+    'اشعیا': 'isaiah',
+    'ارمیا': 'jeremiah',
+    'امثال': 'proverbs',
+    'جامعه': 'ecclesiastes',
+    'مکاشفه': 'revelation',
+    'افسسیان': 'ephesians',
+    'فیلیپیان': 'philippians',
+    'کولسیان': 'colossians',
+    'عبرانیان': 'hebrews',
+    'یعقوب': 'james'
   };
 
   // اول چک کن نام فارسی هست
-  if (persianNames[search]) {
-    return INITIAL_BIBLE_BOOKS.find(b => b.key === persianNames[search]);
+  if (persianNames[s]) {
+    return INITIAL_BIBLE_BOOKS.find(b => b.key.toLowerCase() === persianNames[s]);
   }
 
   // بعد جستجو در لیست کتاب‌ها
   return INITIAL_BIBLE_BOOKS.find(book =>
     book.key.toLowerCase() === s ||
     book.name.en.toLowerCase() === s ||
-    book.name.fa === search
+    normalizeFarsi(book.name.fa || '') === s
   );
 }
 
