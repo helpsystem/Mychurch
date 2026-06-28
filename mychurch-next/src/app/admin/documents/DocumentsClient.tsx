@@ -296,6 +296,10 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
         padding: "8px 0 4px 0",
         pageBreakInside: "avoid",
         breakInside: "avoid",
+        WebkitUserSelect: "none",
+        MozUserSelect: "none",
+        msUserSelect: "none",
+        userSelect: "none",
       }}
     >
       {/* Left/Right: Church info + ref */}
@@ -1819,13 +1823,19 @@ export default function ChurchDocumentsPage() {
     if (!activeRef.current) { await handleSendEmail(); return; }
 
     // ── Temporarily make the element visible off-screen so html2canvas can render it ──
-    // (Elements with display:none or visibility:hidden cannot be captured by html2canvas)
     const el = activeRef.current;
     const wasHidden = el.closest(".hidden") as HTMLElement | null;
     let hiddenParentOriginal = "";
     if (wasHidden) {
       hiddenParentOriginal = wasHidden.getAttribute("style") || "";
       wasHidden.setAttribute("style", "position:fixed;left:-9999px;top:0;z-index:-1;visibility:visible;display:block;");
+    }
+
+    const isOffscreen = el.closest(".offscreen-print-container") as HTMLElement | null;
+    let offscreenOriginal = "";
+    if (isOffscreen) {
+      offscreenOriginal = isOffscreen.getAttribute("style") || "";
+      isOffscreen.setAttribute("style", "position:fixed;left:0;top:0;z-index:-1000;pointer-events:none;visibility:visible;display:block;");
     }
 
     try {
@@ -1835,7 +1845,7 @@ export default function ChurchDocumentsPage() {
       const html2canvas = html2canvasMod.default || html2canvasMod;
 
       // Small delay to allow browser to repaint the newly visible element
-      await new Promise<void>(res => setTimeout(res, 80));
+      await new Promise<void>(res => setTimeout(res, 120));
 
       const canvas = await html2canvas(el, {
         scale: 2.5,         // higher resolution for sharper QR codes
@@ -1843,7 +1853,7 @@ export default function ChurchDocumentsPage() {
         allowTaint: false,
         backgroundColor: "#ffffff",
         logging: false,
-        imageTimeout: 10000,
+        imageTimeout: 15000,
       });
 
       const imgData = canvas.toDataURL("image/jpeg", 0.95);
@@ -1896,6 +1906,13 @@ export default function ChurchDocumentsPage() {
           wasHidden.setAttribute("style", hiddenParentOriginal);
         } else {
           wasHidden.removeAttribute("style");
+        }
+      }
+      if (isOffscreen) {
+        if (offscreenOriginal) {
+          isOffscreen.setAttribute("style", offscreenOriginal);
+        } else {
+          isOffscreen.removeAttribute("style");
         }
       }
     }
