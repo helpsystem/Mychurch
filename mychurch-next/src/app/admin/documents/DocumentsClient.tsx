@@ -734,7 +734,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
 
        {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
-      <table className="print-table w-full border-collapse h-full flex-1 flex flex-col">
+      <table className="print-table w-full border-collapse h-full">
         <thead className="print-thead">
           <tr>
             <td className="print-td border-0 p-0">
@@ -742,93 +742,96 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
             </td>
           </tr>
         </thead>
-        <tbody className="print-tbody flex-1 flex flex-col">
-          <tr className="print-tr flex-1 flex flex-col">
-            <td className="print-td border-0 p-0 flex-1 flex flex-col relative z-10">
-              <div className="mb-8 space-y-2 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
-                {recipientName && <div className="flex items-start gap-4">
-                  <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "گیرنده:" : "Attention:"}</span>
-                  <span className="font-bold text-slate-900 border-b border-slate-200 pb-1 flex-1">{toEnglishDigits(recipientName)}</span>
-                </div>}
-                {to && <div className="flex items-start gap-4">
-                  <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "به:" : "To:"}</span>
-                  <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1">{to}</span>
-                </div>}
-                {toAddress && <div className="flex items-start gap-4">
-                  <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "آدرس:" : "Address:"}</span>
-                  <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1">{toAddress}</span>
-                </div>}
-                {subject && <div className="flex items-start gap-4 mt-6">
-                  <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "موضوع:" : "Re  Subject:"}</span>
-                  <span className="font-black text-slate-900 text-lg uppercase tracking-tight leading-tight">{toEnglishDigits(subject)}</span>
-                </div>}
-              </div>
-
-              <div 
-                className={`flex-1 leading-relaxed text-justify whitespace-pre-wrap mb-10 relative z-10 text-slate-800`} 
-                dir={isRtl ? "rtl" : "ltr"}
-                style={{ 
-                  fontSize: `${design.bodySize}px`, 
-                  fontFamily: design.fontFamily,
-                  fontStyle: design.isItalicBody ? "italic" : "normal"
-                }}
-              >
-                {toEnglishDigits((editLang === "en" ? bodyEn : bodyFa) || "...")}
-              </div>
-
-              <div className="mt-auto pt-6 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
-                {/* Signatory block */}
-                <div className="space-y-3">
-                  <div className="space-y-1">
-                    <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{isRtl ? "تایید شده توسط" : "Authorized By"}</div>
-                    <div 
-                      className="font-black text-slate-900 tracking-tight" 
-                      style={{ 
-                        fontSize: `${design.bodySize + 2}px`, 
-                        fontFamily: isRtl ? 'Vazirmatn, sans-serif' : design.fontFamily,
-                        direction: isRtl ? 'rtl' : 'ltr'
-                      }}
-                    >{church.signatoryName}</div>
-                    <div 
-                      className="text-blue-600 font-bold tracking-widest" 
-                      style={{ 
-                        fontSize: `${design.bodySize - 2}px`, 
-                        fontFamily: isRtl ? 'Vazirmatn, sans-serif' : design.fontFamily,
-                        direction: isRtl ? 'rtl' : 'ltr'
-                      }}
-                    >{church.signatoryTitle}</div>
+        <tbody className="print-tbody">
+          <tr className="print-tr">
+            <td className="print-td border-0 p-0 relative z-10">
+              <div className="flex flex-col justify-between min-h-[190mm]" style={{ fontFamily: design.fontFamily }}>
+                <div>
+                  <div className="mb-8 space-y-2 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize}px` }}>
+                    {recipientName && <div className="flex items-start gap-4">
+                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "گیرنده:" : "Attention:"}</span>
+                      <span className="font-bold text-slate-900 border-b border-slate-200 pb-1 flex-1">{toEnglishDigits(recipientName)}</span>
+                    </div>}
+                    {to && <div className="flex items-start gap-4">
+                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "به:" : "To:"}</span>
+                      <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1">{to}</span>
+                    </div>}
+                    {toAddress && <div className="flex items-start gap-4">
+                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "آدرس:" : "Address:"}</span>
+                      <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1">{toAddress}</span>
+                    </div>}
+                    {subject && <div className="flex items-start gap-4 mt-6">
+                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "موضوع:" : "Re  Subject:"}</span>
+                      <span className="font-black text-slate-900 text-lg uppercase tracking-tight leading-tight">{toEnglishDigits(subject)}</span>
+                    </div>}
                   </div>
 
-                  {church.signatureImage && (
-                    <div className="h-16 w-48 relative border-b border-slate-300 pb-2">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={church.signatureImage}
-                        alt="Signature"
-                        crossOrigin="anonymous"
-                        className="h-full object-contain mix-blend-multiply opacity-95"
-                      />
-                    </div>
-                  )}
-
-                  <div className="text-[8px] text-slate-400 mt-2 max-w-sm uppercase leading-tight font-sans tracking-widest" dir="ltr">
-                    {isRtl
-                      ? "این سند به طور رسمی توسط کلیسای ایرانیان مسیحی واشنگتن دی‌سی صادر و تأیید شده است."
-                      : "This document is officially generated and verified by the Iranian Christian Church of Washington DC."
-                    }
+                  <div 
+                    className={`leading-relaxed text-justify whitespace-pre-wrap mb-10 relative z-10 text-slate-800`} 
+                    dir={isRtl ? "rtl" : "ltr"}
+                    style={{ 
+                      fontSize: `${design.bodySize}px`, 
+                      fontStyle: design.isItalicBody ? "italic" : "normal"
+                    }}
+                  >
+                    {toEnglishDigits((editLang === "en" ? bodyEn : bodyFa) || "...")}
                   </div>
                 </div>
 
-                {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
-                {church.showVerifyQR && (
-                  <div className={`print:hidden flex flex-col gap-1 ${isRtl ? 'items-start text-left' : 'items-end text-right'}`}>
-                    <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-                      <DocumentQR data={qrData} />
+                <div className="pt-6 flex justify-between items-end relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
+                  {/* Signatory block */}
+                  <div className="space-y-3">
+                    <div className="space-y-1">
+                      <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{isRtl ? "تایید شده توسط" : "Authorized By"}</div>
+                      <div 
+                        className="font-black text-slate-900 tracking-tight" 
+                        style={{ 
+                          fontSize: `${design.bodySize + 2}px`, 
+                          fontFamily: isRtl ? 'Vazirmatn, sans-serif' : design.fontFamily,
+                          direction: isRtl ? 'rtl' : 'ltr'
+                        }}
+                      >{church.signatoryName}</div>
+                      <div 
+                        className="text-blue-600 font-bold tracking-widest" 
+                        style={{ 
+                          fontSize: `${design.bodySize - 2}px`, 
+                          fontFamily: isRtl ? 'Vazirmatn, sans-serif' : design.fontFamily,
+                          direction: isRtl ? 'rtl' : 'ltr'
+                        }}
+                      >{church.signatoryTitle}</div>
                     </div>
-                    <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest">{isRtl ? 'اسکن برای تایید' : 'Scan to Verify'}</div>
-                    <div className="text-[7px] font-mono uppercase text-slate-400">{toEnglishDigits(refNo)}</div>
+
+                    {church.signatureImage && (
+                      <div className="h-16 w-48 relative border-b border-slate-300 pb-2">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={church.signatureImage}
+                          alt="Signature"
+                          crossOrigin="anonymous"
+                          className="h-full object-contain mix-blend-multiply opacity-95"
+                        />
+                      </div>
+                    )}
+
+                    <div className="text-[8px] text-slate-400 mt-2 max-w-sm uppercase leading-tight font-sans tracking-widest" dir="ltr">
+                      {isRtl
+                        ? "این سند به طور رسمی توسط کلیسای ایرانیان مسیحی واشنگتن دی‌سی صادر و تأیید شده است."
+                        : "This document is officially generated and verified by the Iranian Christian Church of Washington DC."
+                      }
+                    </div>
                   </div>
-                )}
+
+                  {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
+                  {church.showVerifyQR && (
+                    <div className={`print:hidden flex flex-col gap-1 ${isRtl ? 'items-start text-left' : 'items-end text-right'}`}>
+                      <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
+                        <DocumentQR data={qrData} />
+                      </div>
+                      <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest">{isRtl ? 'اسکن برای تایید' : 'Scan to Verify'}</div>
+                      <div className="text-[7px] font-mono uppercase text-slate-400">{toEnglishDigits(refNo)}</div>
+                    </div>
+                  )}
+                </div>
               </div>
             </td>
           </tr>
@@ -879,7 +882,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
       
       {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
-      <table className="print-table w-full border-collapse h-full flex-1 flex flex-col">
+      <table className="print-table w-full border-collapse h-full">
         <thead className="print-thead">
           <tr>
             <td className="print-td border-0 p-0">
@@ -887,130 +890,134 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
             </td>
           </tr>
         </thead>
-        <tbody className="print-tbody flex-1 flex flex-col">
-          <tr className="print-tr flex-1 flex flex-col">
-            <td className="print-td border-0 p-0 flex-1 flex flex-col relative z-10">
-              <div className="flex justify-between items-end mb-8 relative z-10 border-b border-slate-200 pb-4">
+        <tbody className="print-tbody">
+          <tr className="print-tr">
+            <td className="print-td border-0 p-0 relative z-10">
+              <div className="flex flex-col justify-between min-h-[190mm]" style={{ fontFamily: design.fontFamily }}>
                 <div>
-                   <h2 className="uppercase tracking-[0.2em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize - 2}px`, fontFamily: design.fontFamily }}>
-                     {isInKind ? "In-Kind Donation Receipt" : "Official Charitable Contribution"}
-                   </h2>
-                   <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">US IRS Section 501(c)(3) Compliant</p>
-                </div>
-                <div className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-md border border-emerald-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
-                  <Check className="w-3 h-3 stroke-[3]" /> Authenticated
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-8 mb-10 relative z-10" style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
-                <div className="space-y-3">
-                  <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Donor Information</div>
-                  <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-                    <div className="font-black text-lg text-slate-900 uppercase tracking-tight">{toEnglishDigits(receipt.donorName as string || "—")}</div>
-                    <div className="text-slate-600 font-medium">{receipt.donorAddress as string || "—"}</div>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Transaction Details</div>
-                  <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
-                    <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-                      <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Receipt No</span>
-                      <span className="font-mono font-black text-slate-900">{toEnglishDigits(receiptNo)}</span>
+                  <div className="flex justify-between items-end mb-8 relative z-10 border-b border-slate-200 pb-4">
+                    <div>
+                       <h2 className="uppercase tracking-[0.2em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize - 2}px` }}>
+                         {isInKind ? "In-Kind Donation Receipt" : "Official Charitable Contribution"}
+                       </h2>
+                       <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">US IRS Section 501(c)(3) Compliant</p>
                     </div>
-                    <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-                      <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Date Issued</span>
-                      <span className="font-bold text-slate-900">{toEnglishDigits(dateStr)}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Organization EIN</span>
-                      <span className="font-mono font-bold text-slate-900">{church.ein}</span>
+                    <div className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-md border border-emerald-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
+                      <Check className="w-3 h-3 stroke-[3]" /> Authenticated
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div className="flex-1 relative z-10" style={{ fontSize: `${design.bodySize}px`, fontFamily: design.fontFamily }}>
-                <div className="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-                  <table className="w-full text-left border-collapse bg-white">
-                    <thead>
-                      <tr className="bg-slate-900 text-white text-[10px] uppercase tracking-[0.2em]">
-                        <th className="px-6 py-4 font-black">{isInKind ? "Item / Description" : "Purpose of Gift"}</th>
-                        <th className="px-6 py-4 text-right font-black w-24">{isInKind ? "Qty" : ""}</th>
-                        <th className="px-6 py-4 text-right font-black w-40">Value (USD)</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {isInKind ? (
-                        inKindItems.filter(i => i.name).map((item, idx) => (
-                          <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                            <td className="px-6 py-4 font-bold text-slate-800">{item.name}</td>
-                            <td className="px-6 py-4 text-right font-mono text-slate-500">{toEnglishDigits(String(item.qty))}</td>
-                            <td className="px-6 py-4 text-right font-mono font-black text-slate-900">${toEnglishDigits((item.value * item.qty).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                  <div className="grid grid-cols-2 gap-8 mb-10 relative z-10" style={{ fontSize: `${design.bodySize}px` }}>
+                    <div className="space-y-3">
+                      <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Donor Information</div>
+                      <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+                        <div className="font-black text-lg text-slate-900 uppercase tracking-tight">{toEnglishDigits(receipt.donorName as string || "—")}</div>
+                        <div className="text-slate-600 font-medium">{receipt.donorAddress as string || "—"}</div>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Transaction Details</div>
+                      <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
+                        <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                          <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Receipt No</span>
+                          <span className="font-mono font-black text-slate-900">{toEnglishDigits(receiptNo)}</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                          <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Date Issued</span>
+                          <span className="font-bold text-slate-900">{toEnglishDigits(dateStr)}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Organization EIN</span>
+                          <span className="font-mono font-bold text-slate-900">{church.ein}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10" style={{ fontSize: `${design.bodySize}px` }}>
+                    <div className="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
+                      <table className="w-full text-left border-collapse bg-white">
+                        <thead>
+                          <tr className="bg-slate-900 text-white text-[10px] uppercase tracking-[0.2em]">
+                            <th className="px-6 py-4 font-black">{isInKind ? "Item / Description" : "Purpose of Gift"}</th>
+                            <th className="px-6 py-4 text-right font-black w-24">{isInKind ? "Qty" : ""}</th>
+                            <th className="px-6 py-4 text-right font-black w-40">Value (USD)</th>
                           </tr>
-                        ))
-                      ) : (
-                        <tr>
-                          <td className="px-6 py-5 font-bold text-slate-800">General Church Offering / Tithe</td>
-                          <td className="px-6 py-5 text-right font-mono text-slate-500">1</td>
-                          <td className="px-6 py-5 text-right font-mono font-black text-slate-900">${toEnglishDigits(Number(receipt.amount || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                        </tr>
-                      )}
-                    </tbody>
-                    <tfoot>
-                      <tr className="bg-slate-50 border-t-2 border-slate-200">
-                        <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[11px] text-slate-500">Grand Total Contribution</td>
-                        <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50" style={{ fontSize: `${design.bodySize + 6}px` }}>
-                          ${toEnglishDigits((isInKind ? total : Number(receipt.amount || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
-                        </td>
-                      </tr>
-                    </tfoot>
-                  </table>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                          {isInKind ? (
+                            inKindItems.filter(i => i.name).map((item, idx) => (
+                              <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                                <td className="px-6 py-4 font-bold text-slate-800">{item.name}</td>
+                                <td className="px-6 py-4 text-right font-mono text-slate-500">{toEnglishDigits(String(item.qty))}</td>
+                                <td className="px-6 py-4 text-right font-mono font-black text-slate-900">${toEnglishDigits((item.value * item.qty).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td className="px-6 py-5 font-bold text-slate-800">General Church Offering / Tithe</td>
+                              <td className="px-6 py-5 text-right font-mono text-slate-500">1</td>
+                              <td className="px-6 py-5 text-right font-mono font-black text-slate-900">${toEnglishDigits(Number(receipt.amount || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                            </tr>
+                          )}
+                        </tbody>
+                        <tfoot>
+                          <tr className="bg-slate-50 border-t-2 border-slate-200">
+                            <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[11px] text-slate-500">Grand Total Contribution</td>
+                            <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50" style={{ fontSize: `${design.bodySize + 6}px` }}>
+                              ${toEnglishDigits((isInKind ? total : Number(receipt.amount || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+
+                    <div className="mt-8 p-5 bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl text-blue-900 text-[11px] font-medium leading-relaxed relative flex gap-4 items-start">
+                      <Building2 className="w-6 h-6 shrink-0 text-blue-600/50 mt-1" />
+                      <p>
+                        The Iranian Christian Church of Washington DC is a qualified 501(c)(3) tax-exempt organization. 
+                        <span className="font-bold"> No goods or services were provided in exchange for this contribution.</span> Contributions are tax-deductible to the extent allowed by United States federal law. Please retain this letter for your tax records.
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mt-8 p-5 bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl text-blue-900 text-[11px] font-medium leading-relaxed relative flex gap-4 items-start">
-                  <Building2 className="w-6 h-6 shrink-0 text-blue-600/50 mt-1" />
-                  <p>
-                    The Iranian Christian Church of Washington DC is a qualified 501(c)(3) tax-exempt organization. 
-                    <span className="font-bold"> No goods or services were provided in exchange for this contribution.</span> Contributions are tax-deductible to the extent allowed by United States federal law. Please retain this letter for your tax records.
-                  </p>
-                </div>
-              </div>
+                <div className="pt-6 flex justify-between items-end relative z-10 border-t border-slate-200 mt-8" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
+                  <div className="space-y-3">
+                    <div className="space-y-1">
+                       <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Authorized By</div>
+                       <div className="font-black text-slate-900 uppercase tracking-tight" style={{ fontSize: `${design.bodySize + 2}px` }}>{church.signatoryName}</div>
+                       <div className="text-blue-600 font-bold tracking-widest uppercase" style={{ fontSize: `${design.bodySize - 2}px` }}>{church.signatoryTitle}</div>
+                    </div>
 
-              <div className="mt-8 flex justify-between items-end relative z-10 border-t border-slate-200 pt-6" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
-                <div className="space-y-3">
-                  <div className="space-y-1">
-                     <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Authorized By</div>
-                     <div className="font-black text-slate-900 uppercase tracking-tight" style={{ fontSize: `${design.bodySize + 2}px`, fontFamily: design.fontFamily }}>{church.signatoryName}</div>
-                     <div className="text-blue-600 font-bold tracking-widest uppercase" style={{ fontSize: `${design.bodySize - 2}px`, fontFamily: design.fontFamily }}>{church.signatoryTitle}</div>
+                    {church.signatureImage && (
+                      <div className="h-16 w-48 relative border-b border-slate-300 pb-2">
+                         {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={church.signatureImage}
+                          alt="Signature"
+                          crossOrigin="anonymous"
+                          className="h-full object-contain mix-blend-multiply opacity-95 relative z-10"
+                        />
+                      </div>
+                    )}
+
+                    <div className="text-[8px] text-slate-400 font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                      VALIDATED ELECTRONIC SIGNATURE
+                    </div>
                   </div>
 
-                  {church.signatureImage && (
-                    <div className="h-16 w-48 relative border-b border-slate-300 pb-2">
-                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={church.signatureImage}
-                        alt="Signature"
-                        crossOrigin="anonymous"
-                        className="h-full object-contain mix-blend-multiply opacity-95 relative z-10"
-                      />
+                  {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
+                  {church.showVerifyQR && (
+                    <div className="print:hidden flex flex-col items-end gap-1 text-right">
+                       <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
+                          <DocumentQR data={qrData} />
+                       </div>
+                       <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan for Auth</div>
+                       <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(receiptNo)}</div>
                     </div>
                   )}
-
-                  <div className="text-[8px] text-slate-400 font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                    VALIDATED ELECTRONIC SIGNATURE
-                  </div>
                 </div>
-
-                {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
-                {church.showVerifyQR && (
-                  <div className="print:hidden flex flex-col items-end gap-1 text-right">
-                     <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-                        <DocumentQR data={qrData} />
-                     </div>
-                     <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan for Auth</div>
-                     <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(receiptNo)}</div>
-                  </div>
-                )}
               </div>
             </td>
           </tr>
@@ -1082,7 +1089,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
       
       {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
-      <table className="print-table w-full border-collapse h-full flex-1 flex flex-col">
+      <table className="print-table w-full border-collapse h-full">
         <thead className="print-thead">
           <tr>
             <td className="print-td border-0 p-0">
@@ -1090,124 +1097,128 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
             </td>
           </tr>
         </thead>
-        <tbody className="print-tbody flex-1 flex flex-col">
-          <tr className="print-tr flex-1 flex flex-col">
-            <td className="print-td border-0 p-0 flex-1 flex flex-col relative z-10">
-              <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
+        <tbody className="print-tbody">
+          <tr className="print-tr">
+            <td className="print-td border-0 p-0 relative z-10">
+              <div className="flex flex-col justify-between min-h-[190mm]" style={{ fontFamily: design.fontFamily }}>
                 <div>
-                   <h2 className="uppercase tracking-[0.1em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize}px`, fontFamily: design.fontFamily }}>
-                     Official Invoice
-                   </h2>
-                   <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">For Services Rendered / Ministry Support</p>
-                </div>
-                <div className="px-3 py-1 bg-amber-50 text-amber-700 rounded-md border border-amber-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
-                  <DollarSign className="w-3 h-3 stroke-[3]" /> Payment Due
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-10 mb-10 relative z-10">
-                <div className="space-y-3">
-                  <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Client / Billed To</div>
-                  <div className="p-0 space-y-1">
-                    <div className="font-black text-xl text-slate-900 leading-tight">{invoiceTo}</div>
-                    {invoiceName && <div className="text-slate-700 font-bold text-sm">{invoiceName}</div>}
-                    {invoiceAddress && <div className="text-slate-500 font-medium text-xs leading-relaxed max-w-[200px]">{invoiceAddress}</div>}
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Organization / Info</div>
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-400 font-bold text-[10px] uppercase">Invoice No</span>
-                      <span className="font-mono font-black text-slate-900 text-xs">{toEnglishDigits(invoiceNo)}</span>
+                  <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
+                    <div>
+                       <h2 className="uppercase tracking-[0.1em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize}px` }}>
+                         Official Invoice
+                       </h2>
+                       <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">For Services Rendered / Ministry Support</p>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-400 font-bold text-[10px] uppercase">Date Issued</span>
-                      <span className="font-bold text-slate-900 text-xs">{toEnglishDigits(dateStr)}</span>
-                    </div>
-                    <div className="flex justify-between items-center pt-2 border-t border-slate-100">
-                      <span className="text-slate-900 font-black text-[10px] uppercase">Total Due</span>
-                      <span className="font-mono font-black text-blue-700 text-lg">${toEnglishDigits(invoiceTotalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</span>
+                    <div className="px-3 py-1 bg-amber-50 text-amber-700 rounded-md border border-amber-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
+                      <DollarSign className="w-3 h-3 stroke-[3]" /> Payment Due
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div className="flex-1 relative z-10">
-                <div className="overflow-hidden">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="border-b-2 border-slate-200">
-                        <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 w-12">Qty</th>
-                        <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Description</th>
-                        <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right w-32">Price</th>
-                        <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right w-32">Subtotal</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {invoiceItems.map((item, index) => (
-                        <tr key={item.id} className="group">
-                          <td className="py-5 font-mono text-slate-400 text-xs">{String(index + 1).padStart(2, '0')}</td>
-                          <td className="py-5">
-                            <div className="font-bold text-slate-800">{item.description}</div>
-                            <div className="text-[10px] text-slate-400 mt-0.5">Professional Services / Church Ministry</div>
-                          </td>
-                          <td className="py-5 text-right font-mono text-slate-500 text-xs">${toEnglishDigits(Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                          <td className="py-5 text-right font-mono font-black text-slate-900">${toEnglishDigits(Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td colSpan={2} className="py-8"></td>
-                        <td className="py-8 border-t-2 border-slate-100 text-right font-bold text-slate-400 text-[10px] uppercase tracking-widest">Grand Total</td>
-                        <td className="py-8 border-t-2 border-slate-100 text-right font-black font-mono text-blue-700 text-2xl">
-                          ${toEnglishDigits(invoiceTotalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
-                        </td>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-
-                <div className="mt-4 grid grid-cols-2 gap-10" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
-                  <div>
-                    {invoiceNotes && (
-                      <div className="space-y-2">
-                        <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em]">Notes & Policy</p>
-                        <p className="text-[11px] font-medium text-slate-500 leading-relaxed italic">{invoiceNotes}</p>
+                  <div className="grid grid-cols-2 gap-10 mb-10 relative z-10">
+                    <div className="space-y-3">
+                      <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Client / Billed To</div>
+                      <div className="p-0 space-y-1">
+                        <div className="font-black text-xl text-slate-900 leading-tight">{invoiceTo}</div>
+                        {invoiceName && <div className="text-slate-700 font-bold text-sm">{invoiceName}</div>}
+                        {invoiceAddress && <div className="text-slate-500 font-medium text-xs leading-relaxed max-w-[200px]">{invoiceAddress}</div>}
                       </div>
-                    )}
-                  </div>
-                  <div>
-                     {invoiceWallet && (
-                       <div className="space-y-2">
-                         <p className="text-[9px] font-black text-blue-400 uppercase tracking-[0.2em] flex items-center gap-2">
-                           <Package className="w-3 h-3" /> Payment Instructions (TRC-20)
-                         </p>
-                         <p className="font-mono text-[10px] break-all font-bold bg-slate-50 p-3 rounded-lg border border-slate-200 text-slate-600 shadow-inner">
-                           {invoiceWallet}
-                         </p>
-                       </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-10 pt-6 border-t font-mono text-[8px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
-                <div>
-                  <span>Generated by Iranian Christian Church of Washington DC © 2026</span>
-                  <div className="mt-1 text-slate-200">System Integrity Verified • No Unauthorized Reproduction</div>
-                </div>
-                {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
-                {church.showVerifyQR && (
-                  <div className="print:hidden flex flex-col items-end gap-1 text-right">
-                    <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
-                      <DocumentQR data={qrData} />
                     </div>
-                    <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
-                    <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(invoiceNo)}</div>
+                    <div className="space-y-3">
+                      <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Organization / Info</div>
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-400 font-bold text-[10px] uppercase">Invoice No</span>
+                          <span className="font-mono font-black text-slate-900 text-xs">{toEnglishDigits(invoiceNo)}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-slate-400 font-bold text-[10px] uppercase">Date Issued</span>
+                          <span className="font-bold text-slate-900 text-xs">{toEnglishDigits(dateStr)}</span>
+                        </div>
+                        <div className="flex justify-between items-center pt-2 border-t border-slate-100">
+                          <span className="text-slate-900 font-black text-[10px] uppercase">Total Due</span>
+                          <span className="font-mono font-black text-blue-700 text-lg">${toEnglishDigits(invoiceTotalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                )}
+
+                  <div className="relative z-10">
+                    <div className="overflow-hidden">
+                      <table className="w-full text-left border-collapse">
+                        <thead>
+                          <tr className="border-b-2 border-slate-200">
+                            <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 w-12">Qty</th>
+                            <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Description</th>
+                            <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right w-32">Price</th>
+                            <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right w-32">Subtotal</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                          {invoiceItems.map((item, index) => (
+                            <tr key={item.id} className="group">
+                              <td className="py-5 font-mono text-slate-400 text-xs">{String(index + 1).padStart(2, '0')}</td>
+                              <td className="py-5">
+                                <div className="font-bold text-slate-800">{item.description}</div>
+                                <div className="text-[10px] text-slate-400 mt-0.5">Professional Services / Church Ministry</div>
+                              </td>
+                              <td className="py-5 text-right font-mono text-slate-500 text-xs">${toEnglishDigits(Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                              <td className="py-5 text-right font-mono font-black text-slate-900">${toEnglishDigits(Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <td colSpan={2} className="py-8"></td>
+                            <td className="py-8 border-t-2 border-slate-100 text-right font-bold text-slate-400 text-[10px] uppercase tracking-widest">Grand Total</td>
+                            <td className="py-8 border-t-2 border-slate-100 text-right font-black font-mono text-blue-700 text-2xl">
+                              ${toEnglishDigits(invoiceTotalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+
+                    <div className="mt-4 grid grid-cols-2 gap-10" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
+                      <div>
+                        {invoiceNotes && (
+                          <div className="space-y-2">
+                            <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em]">Notes & Policy</p>
+                            <p className="text-[11px] font-medium text-slate-500 leading-relaxed italic">{invoiceNotes}</p>
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                         {invoiceWallet && (
+                           <div className="space-y-2">
+                             <p className="text-[9px] font-black text-blue-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                               <Package className="w-3 h-3" /> Payment Instructions (TRC-20)
+                             </p>
+                             <p className="font-mono text-[10px] break-all font-bold bg-slate-50 p-3 rounded-lg border border-slate-200 text-slate-600 shadow-inner">
+                               {invoiceWallet}
+                             </p>
+                           </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t font-mono text-[8px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10 mt-8" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
+                  <div>
+                    <span>Generated by Iranian Christian Church of Washington DC © 2026</span>
+                    <div className="mt-1 text-slate-200">System Integrity Verified • No Unauthorized Reproduction</div>
+                  </div>
+                  {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
+                  {church.showVerifyQR && (
+                    <div className="print:hidden flex flex-col items-end gap-1 text-right">
+                      <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
+                        <DocumentQR data={qrData} />
+                      </div>
+                      <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
+                      <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(invoiceNo)}</div>
+                    </div>
+                  )}
+                </div>
               </div>
             </td>
           </tr>
@@ -1849,14 +1860,6 @@ export default function ChurchDocumentsPage() {
         orientation: "portrait",
         unit: "mm",
         format: paperFormat === "a4" ? "a4" : paperFormat === "a5" ? "a5" : "letter",
-        // Encrypt: no user password (anyone can open), owner-only editing
-        ...({
-          encryption: {
-            userPassword: "",
-            ownerPassword: `IranChurch-${refNo}-${new Date().getFullYear()}`,
-            userPermissions: ["print", "print-high", "copy"],  // allow print + copy text, NO edit
-          }
-        } as any)
       });
 
       // ── PDF Metadata (shown in "Document Properties") ──
