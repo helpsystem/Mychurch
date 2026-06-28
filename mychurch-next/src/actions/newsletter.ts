@@ -1,10 +1,8 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
-import { Resend } from "resend";
 import { query } from "@/lib/db";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { sendMail } from "@/lib/mailer";
 
 export async function subscribeToNewsletter(formData: FormData) {
     const email = formData.get("email") as string;
@@ -157,22 +155,18 @@ export async function sendNewsletterCampaign(subject: string, htmlContent: strin
             .replace(/\s+/g, ' ')
             .trim();
 
-        const { data, error } = await resend.emails.send({
-            from: "MyChurch <newsletter@iranianchurchdc.com>", // Make sure to verify this domain in Resend
-            to: ["newsletter@iranianchurchdc.com"], // Dummy TO
-            bcc: emails, // Send to everyone else hidden
-            subject: subject,
-            html: wrappedHtmlContent,
-            text: plainText,
-            headers: {
-                "Precedence": "bulk",
-                "List-Unsubscribe": "<mailto:unsubscribe@iranianchurchdc.com>, <https://www.iranianchurchdc.com/unsubscribe>"
-            }
-        });
-
-        if (error) {
-            console.error("Resend Send Error:", error);
-            return { success: false, error: error.message };
+        try {
+            await sendMail({
+                from: "MyChurch <newsletter@iranianchurchdc.com>",
+                to: "newsletter@iranianchurchdc.com", // Dummy TO
+                bcc: emails, // Send to everyone else hidden
+                subject: subject,
+                html: wrappedHtmlContent,
+                text: plainText,
+            });
+        } catch (mailError: any) {
+            console.error("Newsletter Campaign Sending Failed:", mailError);
+            return { success: false, error: mailError.message || "خطا در ارسال ایمیل‌ها / Mail delivery failed" };
         }
 
         // Log the successful campaign

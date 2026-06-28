@@ -20,7 +20,7 @@ export async function getRealUserRole(): Promise<Role | null> {
         const { data, error } = await supabase
             .from('users')
             .select('role')
-            .eq('email', email)
+            .ilike('email', email)
             .single();
 
         if (error || !data || !data.role) return null;
@@ -64,7 +64,7 @@ export async function getUserPermissions(): Promise<Record<string, boolean>> {
         const { data, error } = await supabase
             .from('users')
             .select('permissions')
-            .eq('email', email)
+            .ilike('email', email)
             .single();
 
         if (error || !data) return {};

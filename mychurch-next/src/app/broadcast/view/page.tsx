@@ -11,6 +11,7 @@
 
 import React, { useEffect, useState, useRef, Suspense, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { createClient } from '@/utils/supabase/client';
 import { useWebSocketSync } from '@/components/broadcast/hooks/useWebSocketSync';
 import { SmartWorshipPlayer, getSafeAudioUrl } from '@/components/worship/SmartWorshipPlayer';
 import AmenBadge from '@/components/broadcast/AmenBadge';
@@ -268,6 +269,79 @@ function ViewerContent() {
             currentSlide: fromSession
         }));
     }, [sessionSlides, state.slideIndex, state.currentSlide]);
+
+    // Supabase Realtime for cross-device communication (extremely robust and works everywhere)
+    useEffect(() => {
+        if (tokenState !== "valid" || !sessionId) return;
+
+        const supabase = createClient();
+        const channelName = `broadcast-remote-${sessionId}`;
+        console.log('📺 Viewer: Supabase Realtime connecting to:', channelName);
+
+        const channel = supabase.channel(channelName, {
+            config: {
+                broadcast: { self: false }
+            }
+        });
+
+        channel
+            .on('broadcast', { event: 'sync-event' }, (payload) => {
+                const msg = payload.payload;
+                if (!msg) return;
+                console.log('📺 [Viewer Realtime] Received message:', msg);
+
+                if (msg.type === 'SET_SLIDE') {
+                    const fromSession = slidesRef.current[msg.slideIndex] || null;
+                    setState(prev => ({
+                        ...prev,
+                        currentSlide: fromSession,
+                        slideIndex: msg.slideIndex,
+                        internalPageIndex: msg.pageIndex || 0,
+                        lyricsVisibility: null,
+                        activeScriptureReference: null,
+                        connected: true,
+                        connectionType: 'websocket' // Treat realtime as cloud-sync
+                    }));
+                }
+
+                if (msg.type === 'SET_PAGE') {
+                    setState(prev => ({
+                        ...prev,
+                        internalPageIndex: msg.pageIndex,
+                        activeScriptureReference: null
+                    }));
+                }
+
+                if (msg.type === 'SET_ACTIVE_REFERENCE') {
+                    setState(prev => ({
+                        ...prev,
+                        activeScriptureReference: msg.reference
+                    }));
+                }
+
+                if (msg.type === 'SET_POPUP_SCALE') {
+                    setState(prev => ({
+                        ...prev,
+                        scripturePopupScale: msg.scale
+                    }));
+                }
+
+                if (msg.type === 'SET_LYRICS_VISIBILITY') {
+                    setState(prev => ({
+                        ...prev,
+                        lyricsVisibility: msg.visibility
+                    }));
+                }
+            })
+            .subscribe((status) => {
+                console.log(`📺 [Viewer Realtime] Status for ${channelName}:`, status);
+            });
+
+        return () => {
+            console.log('📺 Viewer: Unsubscribing from Realtime:', channelName);
+            channel.unsubscribe();
+        };
+    }, [tokenState, sessionId]);
 
     // BroadcastChannel for same-browser communication (more reliable for local use)
     useEffect(() => {

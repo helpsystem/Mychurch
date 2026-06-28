@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef, useTransition } from "react";
 import { updateWidgetConfig, DashboardWidget } from "@/actions/widgets";
 import { translateFaToEn, translateEnToFa } from "@/actions/ai";
-import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film, ImagePlus } from "lucide-react";
+import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film, ImagePlus, Music, Calendar, QrCode, Heart } from "lucide-react";
 import { NowruzPopup } from "@/components/widgets/NowruzPopup";
 import { toast } from "sonner";
 import { MediaPicker } from "@/components/admin/media/MediaPicker";
@@ -215,6 +215,24 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const [refFa, setRefFa] = useState(config.refFa || "یوشع ۱:۹");
     const [refEn, setRefEn] = useState(config.refEn || "Joshua 1:9");
     const [showDelaySeconds, setShowDelaySeconds] = useState<number | ''>(config.showDelaySeconds ?? 2);
+
+    // w_ai_avatar widget states
+    const [aiModel, setAiModel] = useState(config.model || "stability-ai/sdxl");
+    const [maxGenerations, setMaxGenerations] = useState<number>(config.maxGenerationsPerUser || 5);
+
+    // w_worship_audio widget states
+    const [audioAutoplay, setAudioAutoplay] = useState<boolean>(config.autoplay === true);
+    const [audioVolume, setAudioVolume] = useState<number>(config.volume ?? 0.8);
+    const [audioLoop, setAudioLoop] = useState<boolean>(config.loop === true);
+
+    // w_calendar widget states
+    const [showPastEvents, setShowPastEvents] = useState<boolean>(config.showPastEvents === true);
+    const [maxEventsShown, setMaxEventsShown] = useState<number>(config.maxEventsShown || 5);
+
+    // w_qr_code widget states
+    const [telegramLink, setTelegramLink] = useState(config.telegramLink || "");
+    const [instagramLink, setInstagramLink] = useState(config.instagramLink || "");
+    const [zoomLink, setZoomLink] = useState(config.zoomLink || "");
 
     const [isPending, startTransition] = useTransition();
     const [isUploading, setIsUploading] = useState(false);
@@ -477,6 +495,28 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     displayFrequency,
                     enabledPaths,
                     excludedPaths
+                };
+            } else if (widget.id === 'w_ai_avatar') {
+                newConfig = {
+                    model: aiModel,
+                    maxGenerationsPerUser: Number(maxGenerations)
+                };
+            } else if (widget.id === 'w_worship_audio') {
+                newConfig = {
+                    autoplay: audioAutoplay,
+                    volume: Number(audioVolume),
+                    loop: audioLoop
+                };
+            } else if (widget.id === 'w_calendar') {
+                newConfig = {
+                    showPastEvents: showPastEvents,
+                    maxEventsShown: Number(maxEventsShown)
+                };
+            } else if (widget.id === 'w_qr_code') {
+                newConfig = {
+                    telegramLink,
+                    instagramLink,
+                    zoomLink
                 };
             } else {
                 try {
@@ -1396,6 +1436,160 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                         onChange={(e) => setExcludedPaths(e.target.value)}
                                         placeholder="مثال: /broadcast,/admin"
                                         className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-left font-mono text-sm"
+                                        dir="ltr"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    ) : widget.id === 'w_ai_avatar' ? (
+                        <div className="space-y-6">
+                            <div className="bg-indigo-500/10 border border-indigo-500/20 p-4 rounded-xl text-indigo-400 text-sm leading-relaxed">
+                                تنظیمات مولد آواتار هوش مصنوعی (AI Avatar). کاربران در صفحه پروفایل خود می‌توانند تصاویر پرستشی یا کارتونی تولید کنند.
+                            </div>
+
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-foreground block">مدل هوش مصنوعی (AI Model Path)</label>
+                                    <input 
+                                        type="text" 
+                                        value={aiModel} 
+                                        onChange={(e) => setAiModel(e.target.value)}
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left font-mono"
+                                        dir="ltr"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-foreground block">حداکثر دفعات مجاز تولید تصویر برای هر کاربر</label>
+                                    <input 
+                                        type="number" 
+                                        value={maxGenerations} 
+                                        onChange={(e) => setMaxGenerations(Number(e.target.value))}
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-right"
+                                    />
+                                    <p className="text-xs text-muted-foreground">برای محدود کردن مصرف منابع سرور و هزینه‌های API.</p>
+                                </div>
+                            </div>
+                        </div>
+                    ) : widget.id === 'w_worship_audio' ? (
+                        <div className="space-y-6">
+                            <div className="bg-cyan-500/10 border border-cyan-500/20 p-4 rounded-xl text-cyan-400 text-sm leading-relaxed">
+                                تنظیمات پخش‌کننده صوتی سرودهای پرستشی در صفحات عمومی سایت.
+                            </div>
+
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+                                <div className="flex items-center justify-between py-2 border-b border-white/5">
+                                    <div>
+                                        <h4 className="text-sm font-bold text-foreground">پخش خودکار (Autoplay)</h4>
+                                        <p className="text-xs text-muted-foreground">پخش خودکار سرود صوتی به محض ورود کاربر به سایت (توسط برخی مرورگرها ممکن است بلاک شود)</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setAudioAutoplay(!audioAutoplay)}
+                                        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${audioAutoplay ? 'bg-cyan-500' : 'bg-white/10'}`}
+                                    >
+                                        <span className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${audioAutoplay ? 'translate-x-5' : 'translate-x-0'}`} />
+                                    </button>
+                                </div>
+
+                                <div className="flex items-center justify-between py-2 border-b border-white/5">
+                                    <div>
+                                        <h4 className="text-sm font-bold text-foreground">تکرار پخش لیست سرودها (Loop)</h4>
+                                        <p className="text-xs text-muted-foreground">پخش بی‌پایان پس از اتمام تمامی فایل‌های صوتی</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setAudioLoop(!audioLoop)}
+                                        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${audioLoop ? 'bg-cyan-500' : 'bg-white/10'}`}
+                                    >
+                                        <span className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${audioLoop ? 'translate-x-5' : 'translate-x-0'}`} />
+                                    </button>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <div className="flex justify-between">
+                                        <label className="text-sm font-bold text-foreground">ولوم صدای پیش‌فرض ({Math.round(audioVolume * 100)}%)</label>
+                                    </div>
+                                    <input 
+                                        type="range" 
+                                        min="0" 
+                                        max="1" 
+                                        step="0.05"
+                                        value={audioVolume} 
+                                        onChange={(e) => setAudioVolume(Number(e.target.value))}
+                                        className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    ) : widget.id === 'w_calendar' ? (
+                        <div className="space-y-6">
+                            <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl text-blue-400 text-sm leading-relaxed">
+                                تنظیمات نمایش تقویم و رویدادهای کلیسا در صفحه اصلی و ابزارها.
+                            </div>
+
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+                                <div className="flex items-center justify-between py-2 border-b border-white/5">
+                                    <div>
+                                        <h4 className="text-sm font-bold text-foreground">نمایش رویدادهای گذشته</h4>
+                                        <p className="text-xs text-muted-foreground">آیا رویدادهایی که زمان آن‌ها گذشته است نیز نمایش داده شوند؟</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setShowPastEvents(!showPastEvents)}
+                                        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${showPastEvents ? 'bg-blue-500' : 'bg-white/10'}`}
+                                    >
+                                        <span className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${showPastEvents ? 'translate-x-5' : 'translate-x-0'}`} />
+                                    </button>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-foreground block">حداکثر تعداد رویدادهای نمایشی در لیست</label>
+                                    <input 
+                                        type="number" 
+                                        value={maxEventsShown} 
+                                        onChange={(e) => setMaxEventsShown(Number(e.target.value))}
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-right"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    ) : widget.id === 'w_qr_code' ? (
+                        <div className="space-y-6">
+                            <div className="bg-teal-500/10 border border-teal-500/20 p-4 rounded-xl text-teal-400 text-sm leading-relaxed">
+                                تنظیم آدرس‌های لینک‌ها برای تولید کدهای QR جهت اشتراک‌گذاری سریع کلیسا با کاربران.
+                            </div>
+
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-foreground block">لینک کانال تلگرام</label>
+                                    <input 
+                                        type="text" 
+                                        value={telegramLink} 
+                                        onChange={(e) => setTelegramLink(e.target.value)}
+                                        placeholder="https://t.me/yourchurch"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left"
+                                        dir="ltr"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-foreground block">لینک پیج اینستاگرام</label>
+                                    <input 
+                                        type="text" 
+                                        value={instagramLink} 
+                                        onChange={(e) => setInstagramLink(e.target.value)}
+                                        placeholder="https://instagram.com/yourchurch"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left"
+                                        dir="ltr"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-foreground block">لینک جلسه زوم (Zoom Meeting Link)</label>
+                                    <input 
+                                        type="text" 
+                                        value={zoomLink} 
+                                        onChange={(e) => setZoomLink(e.target.value)}
+                                        placeholder="https://zoom.us/j/..."
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left"
                                         dir="ltr"
                                     />
                                 </div>

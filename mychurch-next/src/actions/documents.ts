@@ -382,3 +382,30 @@ export async function getUserDocuments() {
     return { error: 'Unexpected error', status: 500 };
   }
 }
+
+/**
+ * Fetch a single document by ID (UUID v4)
+ * Public lookup (e.g. for sharing/viewing links)
+ */
+export async function getDocumentById(id: string) {
+  const supabase = await createClient();
+
+  try {
+    const { data: document, error } = await supabase
+      .from('document_history')
+      .select('*')
+      .eq('id', id)
+      .filter('deleted_at', 'is', null)
+      .single();
+
+    if (error || !document) {
+      console.error('Error fetching document by id:', error);
+      return { error: 'Document not found', status: 404 };
+    }
+
+    return { data: document, error: null };
+  } catch (err) {
+    console.error('Unexpected error in getDocumentById:', err);
+    return { error: 'Unexpected error', status: 500 };
+  }
+}

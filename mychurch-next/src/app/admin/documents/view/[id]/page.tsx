@@ -8,9 +8,10 @@ import { Printer, Loader2, ArrowLeft, ShieldCheck, Download } from "lucide-react
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { LetterDoc, DonationReceiptDoc, InvoiceDoc, DocHistoryItem } from "../../DocumentsClient";
+import { getDocumentById } from "@/actions/documents";
+import { getDocumentSettings, type ChurchDocSettings } from "@/actions/documentSettings";
 
-// We use the same configurable default church model for the public viewer.
-// In a real database scenario, this might come from the server or local context.
+// Configurable default church model as fallback.
 const DEFAULT_CHURCH = {
   nameEn: "Iranian Christian Church of Washington DC",
   nameFa: "کلیسای ایرانیان واشنگتن دی.سی",
@@ -47,24 +48,84 @@ export default function DocumentViewerPage() {
   const id = (params?.id || "") as string;
   
   const [doc, setDoc] = useState<DocHistoryItem | null>(null);
+  const [church, setChurch] = useState<any>(DEFAULT_CHURCH);
   const [loading, setLoading] = useState(true);
   
   const printRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({ contentRef: printRef });
 
   useEffect(() => {
-    // In the future this will be a Supabase fetch
-    const stored = localStorage.getItem("church_doc_history");
-    if (stored) {
+    if (!id) return;
+
+    async function loadData() {
       try {
-        const history: DocHistoryItem[] = JSON.parse(stored);
-        const target = history.find(item => item.id === id);
-        if (target) setDoc(target);
-      } catch (e) {
-        console.error("Failed to parse history");
+        // 1. Fetch Church settings from the database
+        const settings = await getDocumentSettings();
+        if (settings) {
+          setChurch(settings);
+        }
+
+        // 2. Fetch Document by ID from Supabase
+        const result = await getDocumentById(id);
+        
+        if (result && result.data) {
+          const dbDoc = result.data;
+          const content = dbDoc.document_content && typeof dbDoc.document_content === "object" ? dbDoc.document_content : {};
+          
+          const docType: DocHistoryItem["type"] =
+            content.type === "inkind"
+              ? "inkind"
+              : dbDoc.document_type === "letter"
+                ? "letter"
+                : dbDoc.document_type === "invoice"
+                  ? "invoice"
+                  : "receipt";
+
+          const mappedItem: DocHistoryItem = {
+            id: dbDoc.id,
+            type: docType,
+            date: content.date || new Date(dbDoc.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+            timestamp: new Date(dbDoc.created_at).getTime(),
+            refNo: content.refNo || `DOC-${String(dbDoc.id).slice(0, 8).toUpperCase()}`,
+            recipient: dbDoc.recipient_name || content.recipient || "Unspecified",
+            subject: dbDoc.title || content.subject || "No Subject",
+            bodyEn: content.bodyEn,
+            bodyFa: content.bodyFa,
+            amount: content.amount,
+            donorName: content.donorName,
+            donorAddress: content.donorAddress,
+            inKindItems: content.inKindItems,
+            invoiceItems: content.invoiceItems,
+            invoiceWallet: content.invoiceWallet,
+            toAddress: content.toAddress,
+            invoiceAddress: content.invoiceAddress,
+            invoiceNotes: content.invoiceNotes,
+            lang: content.lang,
+          };
+
+          setDoc(mappedItem);
+          setLoading(false);
+          return;
+        }
+      } catch (err) {
+        console.error("Failed to load document from Supabase backend, trying localStorage fallback:", err);
       }
+
+      // 3. Fallback to LocalStorage for offline/legacy client drafts
+      const stored = localStorage.getItem("church_doc_history");
+      if (stored) {
+        try {
+          const history: DocHistoryItem[] = JSON.parse(stored);
+          const target = history.find(item => item.id === id);
+          if (target) setDoc(target);
+        } catch (e) {
+          console.error("Failed to parse local history");
+        }
+      }
+      setLoading(false);
     }
-    setLoading(false);
+
+    loadData();
   }, [id]);
 
   if (loading) {
@@ -83,7 +144,7 @@ export default function DocumentViewerPage() {
            <h1 className="text-2xl font-black text-slate-900 mb-2">Document Not Found</h1>
            <p className="text-slate-500 mb-6">This document link is invalid or has expired.</p>
            <button onClick={() => router.push("/")} className="glass text-primary px-6 py-3 rounded-xl font-bold border border-primary/20 hover:bg-primary/5 transition-all">
-             Provide Return Home
+             Return Home
            </button>
         </div>
       </div>
@@ -126,7 +187,7 @@ export default function DocumentViewerPage() {
                   refNo={doc.refNo.replace("ICW-", "")}
                   pageNum={1}
                   totalPages={1}
-                  church={DEFAULT_CHURCH}
+                  church={church}
                />
              </div>
           )}
@@ -145,7 +206,7 @@ export default function DocumentViewerPage() {
                   receiptNo={doc.refNo.replace("RCP-", "")}
                   isInKind={doc.type === "inkind"}
                   inKindItems={doc.inKindItems || []}
-                  church={DEFAULT_CHURCH}
+                  church={church}
                />
              </div>
           )}
@@ -160,7 +221,7 @@ export default function DocumentViewerPage() {
                   invoiceItems={doc.invoiceItems || []}
                   invoiceTotalAmount={doc.amount || 0}
                   invoiceWallet={doc.invoiceWallet || ""}
-                  church={DEFAULT_CHURCH}
+                  church={church}
                   lang="en" // Default to English LTR for invoices unless explicitly saved otherwise
                   isPdf={false}
                />

@@ -12,6 +12,15 @@ const FARSI_ABBRS = new Set([
   "BBK", "RCPV", "PES", "POV-FAS", "مژده",
 ]);
 
+// Static fallback versions - shown when DB has fewer than the expected set
+const STATIC_VERSIONS = [
+  { version_id: 1, abbr: "BSB", name: "Berean Standard Bible", language: "en", hasAudio: false },
+  { version_id: 2, abbr: "KJV", name: "King James Version", language: "en", hasAudio: false },
+  { version_id: 3, abbr: "NIV", name: "New International Version", language: "en", hasAudio: false },
+  { version_id: 118, abbr: "NMV", name: "هزارۀ نو (فارسی)", language: "fa", hasAudio: false },
+  { version_id: 119, abbr: "TPV", name: "کتاب مقدس ترجمه تفسیری (فارسی)", language: "fa", hasAudio: false },
+];
+
 function normalizeAbbr(abbr: string): string {
   const asciiOnly = /^[\x00-\x7F]+$/.test(abbr);
   return asciiOnly ? abbr.toUpperCase() : abbr;
@@ -33,36 +42,60 @@ export async function GET() {
       });
     }
 
-    const rows = await dbAll<{
-      version_id: number;
-      abbr: string;
-      name: string;
-      language: string;
-      publisher: string;
-    }>("SELECT version_id, abbr, name, language, publisher FROM versions ORDER BY name ASC");
-
+    let rows: { version_id: number; abbr: string; name: string; language: string; publisher?: string }[] = [];
     let audioSet = new Set<number>();
+
     try {
-      // Some deployments may not have the optional audio table yet.
-      const audioVersions = await dbAll<{ version_id: number }>(
-        "SELECT DISTINCT version_id FROM audio"
-      );
-      audioSet = new Set(audioVersions.map((a) => a.version_id));
-    } catch {
-      audioSet = new Set<number>();
+      rows = await dbAll<{
+        version_id: number;
+        abbr: string;
+        name: string;
+        language: string;
+        publisher: string;
+      }>("SELECT version_id, abbr, name, language, publisher FROM versions ORDER BY name ASC");
+
+      try {
+        const audioVersions = await dbAll<{ version_id: number }>(
+          "SELECT DISTINCT version_id FROM audio"
+        );
+        audioSet = new Set(audioVersions.map((a) => a.version_id));
+      } catch {
+        audioSet = new Set<number>();
+      }
+    } catch (dbErr) {
+      console.warn("[versions] DB lookup failed, using static fallback:", dbErr);
     }
 
-    const versions = rows.map(v => {
-      const normalizedAbbr = normalizeAbbr(v.abbr);
-      const isFa = FARSI_ABBRS.has(normalizedAbbr) || isFarsiLanguage(v.language);
+    let versions;
 
-      return {
-        ...v,
-        abbr: normalizedAbbr,
-        language: isFa ? "fa" : "en",
-        hasAudio: audioSet.has(v.version_id),
-      };
-    });
+    // If DB has a meaningful set of versions, use it; otherwise use static fallback
+    if (rows.length >= 4) {
+      versions = rows.map(v => {
+        const normalizedAbbr = normalizeAbbr(v.abbr);
+        const isFa = FARSI_ABBRS.has(normalizedAbbr) || isFarsiLanguage(v.language);
+        return {
+          ...v,
+          abbr: normalizedAbbr,
+          language: isFa ? "fa" : "en",
+          hasAudio: audioSet.has(v.version_id),
+        };
+      });
+    } else {
+      // Merge DB rows into static list (DB rows override statics for same abbr)
+      const dbByAbbr = new Map(rows.map(r => [normalizeAbbr(r.abbr), r]));
+      versions = STATIC_VERSIONS.map(sv => {
+        const dbRow = dbByAbbr.get(sv.abbr);
+        if (dbRow) {
+          return {
+            ...sv,
+            version_id: dbRow.version_id,
+            name: dbRow.name,
+            hasAudio: audioSet.has(dbRow.version_id),
+          };
+        }
+        return sv;
+      });
+    }
 
     const payload = { versions };
     versionsCache = { ts: Date.now(), payload };

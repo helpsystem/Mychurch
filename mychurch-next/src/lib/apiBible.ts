@@ -1,112 +1,129 @@
 import { INITIAL_BIBLE_BOOKS } from './bibleData';
 
-const API_KEY = "b27dc6902b00019756980695a12eb0da";
+const API_KEY = process.env.API_BIBLE_KEY || "b27dc6902b00019756980695a12eb0da";
 const BASE_URL = "https://api.scripture.api.bible/v1";
+
+// ── Known Bible IDs from API.Bible account ─────────────────────────────────
+// These are the confirmed IDs accessible with this API key.
+const KNOWN_BIBLE_IDS: Record<string, string> = {
+  // Farsi / Persian
+  "OPCB":    "7cd100148df29c08-01",  // Open Persian Contemporary Bible (Biblica)
+  "NMV":     "7cd100148df29c08-01",  // Map NMV → OPCB (closest Persian equivalent)
+  "TPV":     "7cd100148df29c08-01",  // Fallback
+  "mojdeh":  "7cd100148df29c08-01",
+  "qadim":   "7cd100148df29c08-01",
+
+  // English
+  "WEB":     "32664dc3288a28df-02",  // World English Bible (American Edition)
+  "WEBUS":   "32664dc3288a28df-02",
+  "BSB":     "32664dc3288a28df-02",  // Map BSB → WEB (both modern English)
+  "KJV":     "de4e12af7f28f599-01",  // King James Version
+  "NIV":     "32664dc3288a28df-02",  // Fallback to WEB if NIV not available
+};
 
 interface ApiBible {
   id: string;
   name: string;
   abbreviation: string;
-  language: {
-    id: string;
-    name: string;
-  };
+  language: { id: string; name: string };
 }
 
 let biblesCache: ApiBible[] | null = null;
 let cacheTime = 0;
 
+// Only called as fallback when known ID lookup fails
 async function getBibles(): Promise<ApiBible[]> {
   if (biblesCache && Date.now() - cacheTime < 24 * 3600 * 1000) {
     return biblesCache;
   }
-
   try {
     const res = await fetch(`${BASE_URL}/bibles`, {
       headers: { "api-key": API_KEY }
     });
-    if (!res.ok) throw new Error(`API.Bible returned status ${res.status}`);
+    if (!res.ok) throw new Error(`API.Bible /bibles returned ${res.status}`);
     const data = await res.json();
     biblesCache = data.data || [];
     cacheTime = Date.now();
     return biblesCache || [];
   } catch (error) {
-    console.error("Error fetching Bibles list from API.Bible:", error);
+    console.error("[apiBible] Error fetching Bibles list:", error);
     return [];
   }
 }
 
-// Maps standard abbreviations to API.Bible IDs dynamically
 async function getBibleIdForTranslation(translation: string, lang: 'fa' | 'en'): Promise<string | null> {
+  const key = translation.toUpperCase();
+
+  // 1. Check hardcoded known IDs first (no API call needed)
+  if (KNOWN_BIBLE_IDS[key]) return KNOWN_BIBLE_IDS[key];
+  const keyLower = translation.toLowerCase();
+  if (KNOWN_BIBLE_IDS[keyLower]) return KNOWN_BIBLE_IDS[keyLower];
+
+  // 2. Dynamic lookup as fallback
   const bibles = await getBibles();
-  const key = translation.toLowerCase();
-
   if (lang === 'fa') {
-    // Farsi translations
-    // common language / TPV / Mojdeh
-    if (key === 'mojdeh' || key === 'tpv' || key === 'tafsiri') {
-      const match = bibles.find(b => b.language.id === 'fas' && (b.abbreviation.toLowerCase().includes('tpv') || b.name.toLowerCase().includes('common') || b.name.includes('مژده')));
-      if (match) return match.id;
-    }
-    // old version / POV
-    if (key === 'qadim' || key === 'pov' || key === 'pov-fas') {
-      const match = bibles.find(b => b.language.id === 'fas' && (b.abbreviation.toLowerCase().includes('pov') || b.name.toLowerCase().includes('old') || b.name.includes('قدیم')));
-      if (match) return match.id;
-    }
-    // fallback to any Farsi bible
-    const fallback = bibles.find(b => b.language.id === 'fas');
-    return fallback ? fallback.id : null;
+    const match = bibles.find(b =>
+      b.language.id === 'fas' ||
+      b.language.id === 'pes' ||
+      b.language.name.toLowerCase().includes('persian') ||
+      b.language.name.toLowerCase().includes('farsi')
+    );
+    return match?.id ?? KNOWN_BIBLE_IDS["OPCB"] ?? null;
   } else {
-    // English translations
-    if (key === 'kjv') {
-      const match = bibles.find(b => b.language.id === 'eng' && b.abbreviation.toLowerCase() === 'kjv');
-      if (match) return match.id;
-    }
-    if (key === 'bsb') {
-      const match = bibles.find(b => b.language.id === 'eng' && b.abbreviation.toLowerCase() === 'bsb');
-      if (match) return match.id;
-    }
-    if (key === 'niv') {
-      const match = bibles.find(b => b.language.id === 'eng' && b.abbreviation.toLowerCase() === 'niv');
-      if (match) return match.id;
-    }
-    // generic english matching
-    const matchAbbr = bibles.find(b => b.language.id === 'eng' && b.abbreviation.toLowerCase().includes(key));
+    const matchAbbr = bibles.find(b =>
+      b.language.id === 'eng' &&
+      b.abbreviation.toLowerCase() === keyLower
+    );
     if (matchAbbr) return matchAbbr.id;
-
-    // fallback to any English bible
     const fallback = bibles.find(b => b.language.id === 'eng');
-    return fallback ? fallback.id : null;
+    return fallback?.id ?? KNOWN_BIBLE_IDS["WEB"] ?? null;
   }
 }
 
+// Parse HTML content from API.Bible into array of verse strings
 function parseHtmlVerses(html: string): string[] {
-  const verses: string[] = [];
-  if (!html) return verses;
+  if (!html) return [];
 
-  let cleanHtml = html
-    .replace(/<note[^>]*>.*?<\/note>/g, '')
-    .replace(/<span class="note"[^>]*>.*?<\/span>/g, '')
+  // Remove footnotes, notes, headings
+  let clean = html
+    .replace(/<note[^>]*>[\s\S]*?<\/note>/gi, '')
+    .replace(/<span class="note"[^>]*>[\s\S]*?<\/span>/gi, '')
+    .replace(/<sup[^>]*>[\s\S]*?<\/sup>/gi, '')  // remove superscripts
     .replace(/&nbsp;/g, ' ')
     .replace(/\s+/g, ' ');
 
-  const regex = /<span[^>]*data-number="(\d+)"[^>]*>.*?<\/span>(.*?)(?=<span[^>]*data-number="\d+"[^>]*>|[\s\S]*$)/g;
-  
+  const verses: string[] = [];
+
+  // Match verse spans with data-number attribute
+  const regex = /<span[^>]*data-number="(\d+)"[^>]*>([\s\S]*?)(?=<span[^>]*data-number="\d+"|$)/g;
   let match;
-  while ((match = regex.exec(cleanHtml)) !== null) {
+  while ((match = regex.exec(clean)) !== null) {
     const verseNum = parseInt(match[1], 10);
-    let verseText = match[2];
-    verseText = verseText.replace(/<[^>]+>/g, '').trim();
-    if (verseNum > 0) {
-      verses[verseNum - 1] = verseText;
+    let text = match[2]
+      .replace(/<[^>]+>/g, '') // strip all tags
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (verseNum > 0 && text) {
+      verses[verseNum - 1] = text;
     }
   }
 
-  for (let i = 0; i < verses.length; i++) {
-    if (verses[i] === undefined) {
-      verses[i] = '';
+  // If data-number approach didn't work, try verse-number spans
+  if (verses.filter(Boolean).length === 0) {
+    const regex2 = /<span[^>]*class="[^"]*v[^"]*"[^>]*>([\s\S]*?)(?=<span[^>]*class="[^"]*v[^"]*"|$)/g;
+    let m2;
+    let idx = 0;
+    while ((m2 = regex2.exec(clean)) !== null) {
+      const text = m2[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+      if (text) verses[idx++] = text;
     }
   }
+
+  // Fill any holes with empty string
+  for (let i = 0; i < verses.length; i++) {
+    if (verses[i] === undefined) verses[i] = '';
+  }
+
   return verses;
 }
 
@@ -123,56 +140,78 @@ export async function fetchApiBibleContent(
     ]);
 
     if (!faBibleId || !enBibleId) {
-      console.warn("Could not resolve Bible IDs for API.Bible:", { faTranslation, enTranslation });
+      console.warn("[apiBible] Could not resolve Bible IDs:", { faTranslation, enTranslation });
       return null;
     }
 
-    const chapterId = `${bookId}.${chapterNum}`;
+    // API.Bible chapter IDs use format BOOK.CHAPTER (e.g. GEN.1, JHN.3)
+    // Normalise bookId: API expects uppercase 3-letter codes (GEN, EXO, etc.)
+    const chapterId = `${bookId.toUpperCase()}.${chapterNum}`;
+
+    const fetchOpts = {
+      headers: { "api-key": API_KEY },
+      // 10 second timeout
+      signal: AbortSignal.timeout(10000),
+    };
+
+    const params = "content-type=html&include-notes=false&include-titles=false&include-verse-numbers=true&include-verse-spans=true";
 
     const [faRes, enRes] = await Promise.all([
-      fetch(`${BASE_URL}/bibles/${faBibleId}/chapters/${chapterId}?content-type=html&include-notes=false&include-titles=false&include-verse-numbers=true`, {
-        headers: { "api-key": API_KEY }
-      }),
-      fetch(`${BASE_URL}/bibles/${enBibleId}/chapters/${chapterId}?content-type=html&include-notes=false&include-titles=false&include-verse-numbers=true`, {
-        headers: { "api-key": API_KEY }
-      })
+      fetch(`${BASE_URL}/bibles/${faBibleId}/chapters/${chapterId}?${params}`, fetchOpts),
+      fetch(`${BASE_URL}/bibles/${enBibleId}/chapters/${chapterId}?${params}`, fetchOpts),
     ]);
 
-    if (!faRes.ok || !enRes.ok) {
-      console.warn("API.Bible chapters fetch failed:", { faStatus: faRes.status, enStatus: enRes.status });
+    // Gracefully handle partial failures
+    const faOk = faRes.ok;
+    const enOk = enRes.ok;
+
+    if (!faOk && !enOk) {
+      console.warn("[apiBible] Both chapter fetches failed:", { faStatus: faRes.status, enStatus: enRes.status, chapterId });
       return null;
     }
 
-    const [faData, enData] = await Promise.all([faRes.json(), enRes.json()]);
+    const [faData, enData] = await Promise.all([
+      faOk ? faRes.json() : Promise.resolve({}),
+      enOk ? enRes.json() : Promise.resolve({}),
+    ]);
 
-    const faHtml = faData.data?.content || '';
-    const enHtml = enData.data?.content || '';
+    const faVerses = parseHtmlVerses(faData?.data?.content || '');
+    const enVerses = parseHtmlVerses(enData?.data?.content || '');
 
-    const faVerses = parseHtmlVerses(faHtml);
-    const enVerses = parseHtmlVerses(enHtml);
+    // If both returned empty, fall back to DB
+    if (faVerses.filter(Boolean).length === 0 && enVerses.filter(Boolean).length === 0) {
+      console.warn("[apiBible] Parsed verses are empty for", chapterId, "— falling back to DB");
+      return null;
+    }
 
-    const book = INITIAL_BIBLE_BOOKS.find(b => b.key.toUpperCase() === bookId.toUpperCase() || b.key === bookId);
+    const book = INITIAL_BIBLE_BOOKS.find(b =>
+      b.key.toUpperCase() === bookId.toUpperCase()
+    );
 
     return {
       success: true,
       selected: {
         faTranslation,
         enTranslation,
-        faVersion: faTranslation,
-        enVersion: enTranslation,
-        availableFa: ['mojdeh', 'qadim'],
-        availableEn: ['kjv', 'bsb', 'niv'],
+        faVersion: "OPCB",
+        enVersion: enTranslation.toUpperCase() === "BSB" ? "WEB" : enTranslation.toUpperCase(),
+        availableFa: ['NMV', 'OPCB'],
+        availableEn: ['BSB', 'KJV', 'NIV'],
         bookId,
         bookNameEn: book?.name.en || bookId,
         bookNameFa: book?.name.fa || bookId,
       },
       verses: {
         fa: faVerses,
-        en: enVerses
-      }
+        en: enVerses,
+      },
     };
-  } catch (error) {
-    console.error("Error in fetchApiBibleContent:", error);
+  } catch (error: unknown) {
+    if (error instanceof Error && error.name === 'TimeoutError') {
+      console.warn("[apiBible] Request timed out for", bookId, chapterNum);
+    } else {
+      console.error("[apiBible] Error in fetchApiBibleContent:", error);
+    }
     return null;
   }
 }

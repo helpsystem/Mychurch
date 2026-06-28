@@ -70,7 +70,7 @@ interface BroadcastState {
 
     // Sync Actions
     setIsConnected: (connected: boolean) => void;
-    initRemoteSync: () => void;
+    initRemoteSync: (customSessionId?: string) => void;
     pushRemoteSync: (payload: { type: string, [key: string]: any }) => void;
     disconnectSync: () => void;
 }
@@ -231,18 +231,28 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     setIsConnected: (connected) => set({ isConnected: connected }),
 
     // ----- SUPABASE REALTIME REMOTE CONTROL -----
-    initRemoteSync: () => {
-        const state = get();
-        // Prevent double connections
-        if (state.syncChannel) return;
+    initRemoteSync: (customSessionId?: string) => {
+        const targetSessionId = customSessionId || get().sessionId || 'default';
+
+        // If already connected to the same session channel, skip
+        const activeChannel = get().syncChannel;
+        const targetTopic = `realtime:broadcast-remote-${targetSessionId}`;
+        if (activeChannel && activeChannel.topic === targetTopic) {
+            return;
+        }
+
+        // Disconnect old sync first
+        get().disconnectSync();
 
         const supabase = createClient();
-        // The broadcast channel is public so any connected iPad/Browser can sync.
-        const channel = supabase.channel('broadcast-remote', {
+        const channelName = `broadcast-remote-${targetSessionId}`;
+        const channel = supabase.channel(channelName, {
             config: {
                 broadcast: { self: false } // don't receive our own messages
             }
         });
+
+        console.log(`[Remote Control] 📡 Connecting to Supabase Realtime channel: ${channelName}`);
 
         channel
             .on('broadcast', { event: 'sync-event' }, (payload) => {
@@ -264,10 +274,12 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
                     set({ activeScriptureReference: data.reference });
                 } else if (data.type === 'SET_POPUP_SCALE') {
                     set({ scripturePopupScale: data.scale });
+                } else if (data.type === 'SET_LYRICS_VISIBILITY') {
+                    set({ lyricsVisibility: data.visibility });
                 }
             })
             .subscribe((status) => {
-                console.log("[Remote Control] Status:", status);
+                console.log(`[Remote Control] Status for ${channelName}:`, status);
                 if (status === 'SUBSCRIBED') {
                     set({ isConnected: true, syncChannel: channel });
                 } else if (status === 'CLOSED' || status === 'CHANNEL_ERROR') {
@@ -290,6 +302,7 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     disconnectSync: () => {
         const { syncChannel } = get();
         if (syncChannel) {
+            console.log(`[Remote Control] 🔌 Unsubscribing from realtime channel`);
             syncChannel.unsubscribe();
             set({ isConnected: false, syncChannel: null });
         }

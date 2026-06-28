@@ -31,7 +31,7 @@ export async function getAccessContext(): Promise<AccessContext> {
   const { data } = await adminSupabase
     .from("users")
     .select("role, permissions")
-    .eq("email", user.email)
+    .ilike("email", user.email)
     .maybeSingle();
 
   return {

@@ -510,9 +510,11 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
 
     useEffect(() => {
         // Automatically start listening for Remote Control (iPad) commands via Supabase Realtime
-        initRemoteSync();
+        if (sessionId) {
+            initRemoteSync(sessionId);
+        }
         return () => disconnectSync();
-    }, [initRemoteSync, disconnectSync]);
+    }, [initRemoteSync, disconnectSync, sessionId]);
 
     const stateRef = React.useRef({ slides, activeSlideIndex, internalPageIndex, config });
     useEffect(() => {
