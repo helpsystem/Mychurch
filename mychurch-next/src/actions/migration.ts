@@ -1,7 +1,8 @@
 "use server";
 
 import { query } from "@/lib/db";
-import fs from 'fs';
+import fs from "fs";
+import path from "path";
 import { revalidatePath } from "next/cache";
 
 export async function migrateLegacyWorshipData() {
@@ -9,9 +10,9 @@ export async function migrateLegacyWorshipData() {
     const results: any[] = [];
 
     try {
-        console.log("[Migration] 🚀 Starting migration from:", LEGACY_JSON_PATH);
+        console.log("[Migration] 🚀 Starting complete migration from:", LEGACY_JSON_PATH);
 
-        // 1. Fix the Signup Trigger
+        // 1. Ensure the trigger for auth signup is created and correct
         await query(`
             CREATE OR REPLACE FUNCTION public.handle_new_user() 
             RETURNS trigger AS $$
@@ -37,38 +38,110 @@ export async function migrateLegacyWorshipData() {
         `);
         results.push({ step: "Trigger Fix", status: "Success" });
 
-        // 2. Mass Enrich Worship Data
+        // 2. Import and Enrich Worship Songs with Timing Data
         if (fs.existsSync(LEGACY_JSON_PATH)) {
-            const legacyData = JSON.parse(fs.readFileSync(LEGACY_JSON_PATH, 'utf8'));
+            const legacyData = JSON.parse(fs.readFileSync(LEGACY_JSON_PATH, "utf8"));
+            let insertedCount = 0;
             let updatedCount = 0;
 
             for (const song of legacyData) {
-                const titleFa = song.title.fa;
-                const artist = song.artist || "";
-                const youtubeId = song.youtubeId || "";
-                const lyricsFa = song.lyrics?.fa || "";
-                
+                const titleFa = (song.title?.fa || "").trim();
+                const titleEn = (song.title?.en || "").trim() || null;
+                const artist = (song.artist || "").trim() || null;
+                const youtubeId = (song.youtubeId || "").trim() || null;
+                const audioUrl = (song.audioUrl || "").trim() || null;
+                const lyricsFa = (song.lyrics?.fa || "").trim() || null;
+                const lyricsEn = (song.lyrics?.en || "").trim() || null;
+                const timepoints = song.timepoints || null;
+
                 if (!titleFa) continue;
 
-                // Attempt to update by Title (Persian or English)
-                const res = await query(
-                    `UPDATE church_worship_songs 
-                     SET artist = $1, youtube_id = $2, lyrics_fa = $3 
-                     WHERE title_fa = $4 OR title_en = $5`,
-                    [artist, youtubeId, lyricsFa, titleFa, song.title.en || ""]
+                // 2.1 Find and load timing JSON data if it exists
+                let timingData = null;
+                const timingFile = path.join(
+                    process.cwd(),
+                    "public",
+                    "worship",
+                    "data",
+                    "timings",
+                    `song_${song.id}_timing.json`
                 );
-                
-                if (res.rowCount && res.rowCount > 0) {
+
+                if (fs.existsSync(timingFile)) {
+                    try {
+                        const timingRaw = fs.readFileSync(timingFile, "utf8");
+                        timingData = JSON.parse(timingRaw);
+                    } catch (e) {
+                        console.error(`[Migration] Failed to parse timing for song ${song.id}:`, e);
+                    }
+                }
+
+                // 2.2 Check if song already exists in PostgreSQL
+                const checkRes = await query(
+                    "SELECT id FROM church_worship_songs WHERE title_fa = $1 OR (title_en = $2 AND title_en IS NOT NULL)",
+                    [titleFa, titleEn]
+                );
+
+                if (checkRes.rows && checkRes.rows.length > 0) {
+                    // Update existing song
+                    const songId = checkRes.rows[0].id;
+                    await query(
+                        `UPDATE church_worship_songs 
+                         SET artist = COALESCE($1, artist), 
+                             youtube_id = COALESCE($2, youtube_id), 
+                             audio_url = COALESCE($3, audio_url), 
+                             lyrics_fa = COALESCE($4, lyrics_fa), 
+                             lyrics_en = COALESCE($5, lyrics_en),
+                             timepoints = COALESCE($6, timepoints),
+                             timing_data = COALESCE($7, timing_data)
+                         WHERE id = $8`,
+                        [
+                            artist,
+                            youtubeId,
+                            audioUrl,
+                            lyricsFa,
+                            lyricsEn,
+                            timepoints ? JSON.stringify(timepoints) : null,
+                            timingData ? JSON.stringify(timingData) : null,
+                            songId,
+                        ]
+                    );
                     updatedCount++;
+                } else {
+                    // Insert new song
+                    await query(
+                        `INSERT INTO church_worship_songs 
+                         (title_fa, title_en, artist, youtube_id, audio_url, lyrics_fa, lyrics_en, timepoints, timing_data) 
+                         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+                        [
+                            titleFa,
+                            titleEn,
+                            artist,
+                            youtubeId,
+                            audioUrl,
+                            lyricsFa,
+                            lyricsEn,
+                            timepoints ? JSON.stringify(timepoints) : null,
+                            timingData ? JSON.stringify(timingData) : null,
+                        ]
+                    );
+                    insertedCount++;
                 }
             }
-            results.push({ step: "Worship Enrichment", count: updatedCount, total: legacyData.length });
+
+            results.push({
+                step: "Worship Enrichment",
+                inserted: insertedCount,
+                updated: updatedCount,
+                total: legacyData.length,
+            });
         } else {
             console.error("[Migration] ❌ Legacy file not found at:", LEGACY_JSON_PATH);
             results.push({ step: "Worship Enrichment", status: "Legacy file not found" });
         }
 
         revalidatePath("/admin/worship");
+        revalidatePath("/worship");
         return { success: true, results };
     } catch (error: any) {
         console.error("[Migration] ❌ Error:", error);
