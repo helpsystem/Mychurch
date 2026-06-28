@@ -1840,7 +1840,7 @@ export default function ChurchDocumentsPage() {
 
     try {
       const jspdfMod = await import("jspdf");
-      const html2canvasMod = await import("html2canvas");
+      const html2canvasMod = await import("html2canvas-pro");
       const jsPDF = jspdfMod.default || (jspdfMod as any).jsPDF || jspdfMod;
       const html2canvas = html2canvasMod.default || html2canvasMod;
 

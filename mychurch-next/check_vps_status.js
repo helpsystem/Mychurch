@@ -2,9 +2,9 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-console.log("Connecting to VPS via SSH to check PM2 logs (using non-streaming tail)...");
+console.log("Connecting to VPS via SSH to check PM2 logs...");
 
-const sshCmd = 'ssh root@samanabyar.online "echo \'=== PM2 PROCESS LIST ===\' && pm2 list && echo \'=== LAST 50 ERROR LOG LINES ===\' && tail -n 50 ~/.pm2/logs/mychurch-next-err.log && echo \'=== LAST 50 OUT LOG LINES ===\' && tail -n 50 ~/.pm2/logs/mychurch-next-out.log"';
+const sshCmd = 'ssh root@samanabyar.online "echo \'=== PM2 PROCESS LIST ===\' && pm2 list && echo \'=== PM2 LOGS ===\' && pm2 logs mychurch-next --lines 100 --raw --no-colors --err && echo \'=== PM2 OUT LOGS ===\' && pm2 logs mychurch-next --lines 100 --raw --no-colors --out"';
 
 exec(sshCmd, (error, stdout, stderr) => {
     let output = '';

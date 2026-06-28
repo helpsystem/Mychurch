@@ -9,9 +9,9 @@ Standard Output:
 ┌────┬─────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
 │ id │ name                │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
 ├────┼─────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
-│ 1  │ backend             │ default     │ N/A     │ fork    │ N/A      │ 37m    │ 0    │ online    │ 0%       │ 0b       │ root     │ disabled │
-│ 0  │ mychurch-backend    │ default     │ N/A     │ fork    │ N/A      │ 37m    │ 0    │ online    │ 0%       │ 0b       │ root     │ disabled │
-│ 2  │ mychurch-next       │ default     │ N/A     │ fork    │ 0        │ 0      │ 1184 │ stopped   │ 0%       │ 0b       │ root     │ disabled │
+│ 1  │ backend             │ default     │ N/A     │ fork    │ N/A      │ 0      │ 0    │ stopped   │ 0%       │ 0b       │ root     │ disabled │
+│ 0  │ mychurch-backend    │ default     │ N/A     │ fork    │ N/A      │ 0      │ 0    │ stopped   │ 0%       │ 0b       │ root     │ disabled │
+│ 2  │ mychurch-next       │ default     │ N/A     │ fork    │ 3937586  │ 43m    │ 1220 │ online    │ 0%       │ 7.4mb    │ root     │ disabled │
 └────┴─────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 === LAST 50 ERROR LOG LINES ===
 
