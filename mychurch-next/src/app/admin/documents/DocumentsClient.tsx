@@ -990,7 +990,59 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                     </div>
 
                     {church.signatureImage && (
-                      <div cl// ─── Invoice Document ─────────────────────────────────────────────────────────
+                      <div className="h-16 w-48 relative border-b border-slate-300 pb-2">
+                         {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={church.signatureImage}
+                          alt="Signature"
+                          crossOrigin="anonymous"
+                          className="h-full object-contain mix-blend-multiply opacity-95 relative z-10"
+                        />
+                      </div>
+                    )}
+
+                    <div className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                      VALIDATED ELECTRONIC SIGNATURE
+                    </div>
+                  </div>
+
+                  {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
+                  {church.showVerifyQR && (
+                    <div className="print:hidden flex flex-col items-end gap-1 text-right">
+                       <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
+                          <DocumentQR data={qrData} />
+                       </div>
+                       <div className="text-[10px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan for Auth</div>
+                       <div className="text-[8px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(receiptNo)}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot className="print-tfoot">
+          <tr>
+            <td className="print-td border-0 pt-6" style={{ paddingTop: "20px" }}>
+              <DocFooter
+                qrData={qrData}
+                refNo={toEnglishDigits(receiptNo)}
+                churchName={church.nameEn}
+                churchEmail={church.email}
+                churchWeb={church.web}
+                showQR={church.showVerifyQR}
+              />
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    </DocumentSecurity>
+  );
+}
+
+
+// ─── Invoice Document ─────────────────────────────────────────────────────────
 export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate, invoiceItems, invoiceTotalAmount, invoiceWallet, invoiceNotes, invoiceNo, church, lang, isPdf }: {
   invoiceTo: string; invoiceAddress?: string; invoiceName: string; invoiceDate: string; invoiceItems: any[]; invoiceTotalAmount: number; invoiceWallet: string; invoiceNotes?: string; invoiceNo: string; church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; isPdf?: boolean;
 }) {
