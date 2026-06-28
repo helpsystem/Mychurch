@@ -64,28 +64,36 @@ function getFileType(filename: string): MediaAsset["type"] {
     return "other";
 }
 
-async function walkDir(dir: string, baseDir: string = dir): Promise<{name: string, url: string, type: any, size: number, createdAt: number, folder: string, visibility: any, _relativePath: string}[]> {
+async function walkDir(
+    dir: string, 
+    baseDir: string = dir, 
+    urlBuilder: (relPath: string) => string
+): Promise<{name: string, url: string, type: any, size: number, createdAt: number, folder: string, visibility: any, _relativePath: string}[]> {
     let results: any[] = [];
-    const list = await fs.readdir(dir, { withFileTypes: true });
-    for (const item of list) {
-        if (item.name.startsWith('.')) continue;
-        const res = path.resolve(dir, item.name);
-        if (item.isDirectory()) {
-            results = results.concat(await walkDir(res, baseDir));
-        } else {
-            const relativePath = path.relative(baseDir, res).replace(/\\/g, '/');
-            const stats = await fs.stat(res);
-            results.push({
-                name: item.name,
-                url: buildMediaUrl(relativePath),
-                type: getFileType(item.name),
-                size: stats.size,
-                createdAt: stats.birthtimeMs || stats.mtimeMs,
-                folder: path.dirname(relativePath) === '.' ? '' : path.dirname(relativePath),
-                visibility: 'admin',
-                _relativePath: relativePath // temporary for matching variants
-            });
+    try {
+        const list = await fs.readdir(dir, { withFileTypes: true });
+        for (const item of list) {
+            if (item.name.startsWith('.')) continue;
+            const res = path.resolve(dir, item.name);
+            if (item.isDirectory()) {
+                results = results.concat(await walkDir(res, baseDir, urlBuilder));
+            } else {
+                const relativePath = path.relative(baseDir, res).replace(/\\/g, '/');
+                const stats = await fs.stat(res);
+                results.push({
+                    name: item.name,
+                    url: urlBuilder(relativePath),
+                    type: getFileType(item.name),
+                    size: stats.size,
+                    createdAt: stats.birthtimeMs || stats.mtimeMs,
+                    folder: path.dirname(relativePath) === '.' ? '' : path.dirname(relativePath),
+                    visibility: 'admin',
+                    _relativePath: relativePath // temporary for matching variants
+                });
+            }
         }
+    } catch (e) {
+        // Directory might not exist or be empty
     }
     return results;
 }
@@ -96,9 +104,24 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
     }
 
     await ensureMediaDir();
+    const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
+    try {
+        await fs.mkdir(UPLOADS_DIR, { recursive: true });
+    } catch {}
 
     try {
-        const rawAssets = await walkDir(MEDIA_DIR);
+        // 1. Walk media dir
+        const rawMediaAssets = await walkDir(MEDIA_DIR, MEDIA_DIR, (relativePath) => buildMediaUrl(relativePath));
+
+        // 2. Walk uploads dir
+        const rawUploadsAssets = await walkDir(UPLOADS_DIR, UPLOADS_DIR, (relativePath) => {
+            const parts = relativePath.split('/');
+            const encoded = parts.map(p => encodeURIComponent(p)).join('/');
+            return `/api/serve/${encoded}`;
+        });
+
+        // 3. Combine assets
+        const rawAssets = [...rawMediaAssets, ...rawUploadsAssets];
 
         // Sort newest first
         const sortedRaw = rawAssets.sort((a, b) => b.createdAt - a.createdAt);
@@ -113,7 +136,15 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
 
         if (galleryImages) {
             assets = sortedRaw.map(asset => {
-                const variants = buildGalleryUrlVariants(asset._relativePath);
+                const isMedia = asset.url.startsWith('/api/serve/media/');
+                const variants = isMedia
+                    ? buildGalleryUrlVariants(asset._relativePath)
+                    : [
+                        asset.url,
+                        `/uploads/${asset._relativePath}`,
+                        `/uploads/gallery/${asset.name}`,
+                        `/uploads/sermons/${asset.name}`
+                      ];
                 const galleryEntry = galleryImages.find(g => variants.includes(normalizeAssetUrl(g.src)));
                 const { _relativePath, ...cleanAsset } = asset;
                 return {
@@ -161,12 +192,35 @@ export async function deleteMediaFile(filename: string): Promise<{ success: bool
 
     try {
         const relativePath = filename.replace(/\\/g, '/');
-        const filePath = path.join(MEDIA_DIR, relativePath);
-        
-        // Ensure path stays within MEDIA_DIR
-        if (!filePath.startsWith(MEDIA_DIR)) return { success: false, error: "Invalid path" };
+        let filePath = path.join(MEDIA_DIR, relativePath);
+        let baseDir = MEDIA_DIR;
+        let isUploads = false;
 
-        const urlVariants = buildGalleryUrlVariants(relativePath);
+        try {
+            await fs.access(filePath);
+        } catch {
+            const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
+            const uploadsPath = path.join(UPLOADS_DIR, relativePath);
+            try {
+                await fs.access(uploadsPath);
+                filePath = uploadsPath;
+                baseDir = UPLOADS_DIR;
+                isUploads = true;
+            } catch {
+                return { success: false, error: "File not found" };
+            }
+        }
+
+        // Ensure path stays within baseDir
+        if (!filePath.startsWith(baseDir)) return { success: false, error: "Invalid path" };
+
+        const urlVariants = isUploads
+            ? [
+                `/api/serve/${relativePath}`, 
+                `/uploads/${relativePath}`, 
+                `/uploads/gallery/${path.basename(relativePath)}`
+              ]
+            : buildGalleryUrlVariants(relativePath);
         
         // Remove from local file system
         await fs.unlink(filePath);
@@ -191,8 +245,26 @@ export async function renameMediaFile(oldFilename: string, requestedName: string
 
     try {
         const relativePath = oldFilename.replace(/\\/g, '/');
-        const oldPath = path.join(MEDIA_DIR, relativePath);
-        if (!oldPath.startsWith(MEDIA_DIR)) return { success: false, error: "Invalid path" };
+        let oldPath = path.join(MEDIA_DIR, relativePath);
+        let baseDir = MEDIA_DIR;
+        let isUploads = false;
+
+        try {
+            await fs.access(oldPath);
+        } catch {
+            const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
+            const uploadsPath = path.join(UPLOADS_DIR, relativePath);
+            try {
+                await fs.access(uploadsPath);
+                oldPath = uploadsPath;
+                baseDir = UPLOADS_DIR;
+                isUploads = true;
+            } catch {
+                return { success: false, error: "File not found" };
+            }
+        }
+
+        if (!oldPath.startsWith(baseDir)) return { success: false, error: "Invalid path" };
 
         const ext = path.extname(relativePath);
         const oldBase = path.basename(relativePath, ext);
@@ -207,7 +279,7 @@ export async function renameMediaFile(oldFilename: string, requestedName: string
         let candidate = dirName === '.' ? `${targetBase}${ext}` : `${dirName}/${targetBase}${ext}`;
         let counter = 1;
         while (candidate !== relativePath) {
-            const candidatePath = path.join(MEDIA_DIR, candidate);
+            const candidatePath = path.join(baseDir, candidate);
             try {
                 await fs.access(candidatePath);
                 candidate = dirName === '.' ? `${targetBase}-${counter}${ext}` : `${dirName}/${targetBase}-${counter}${ext}`;
@@ -221,18 +293,29 @@ export async function renameMediaFile(oldFilename: string, requestedName: string
             return { success: true, newName: relativePath };
         }
 
-        const newPath = path.join(MEDIA_DIR, candidate);
+        const newPath = path.join(baseDir, candidate);
         await fs.rename(oldPath, newPath);
 
         // Keep gallery references in sync when filename changes.
         const supabase = await createClient();
+        const newUrl = isUploads
+            ? `/api/serve/${candidate}`
+            : buildMediaUrl(candidate);
+        const urlVariants = isUploads
+            ? [
+                `/api/serve/${relativePath}`, 
+                `/uploads/${relativePath}`, 
+                `/uploads/gallery/${path.basename(relativePath)}`
+              ]
+            : buildGalleryUrlVariants(relativePath);
+
         await supabase
             .from("gallery_images")
             .update({
-                src: buildMediaUrl(candidate),
+                src: newUrl,
                 title: path.basename(candidate, ext),
             })
-            .in("src", buildGalleryUrlVariants(relativePath));
+            .in("src", urlVariants);
 
         revalidatePath("/admin/media");
         revalidatePath("/gallery");

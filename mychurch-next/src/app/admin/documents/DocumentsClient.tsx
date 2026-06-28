@@ -241,11 +241,6 @@ ${PRINT_CSS}
   .print-doc-wrap {
     min-height: ${printableHeight} !important;
   }
-  ${totalPages > 1 ? `
-  .print-page-num-in-body {
-    display: none !important;
-  }
-  ` : ""}
 }
 `;
   return <style dangerouslySetInnerHTML={{ __html: css }} />;
@@ -737,7 +732,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
       <table className="print-table w-full border-collapse h-full">
         <thead className="print-thead">
           <tr>
-            <td className="print-td border-0 p-0">
+            <td className="print-td border-0 pb-6" style={{ paddingBottom: "20px" }}>
               <Letterhead church={church} lang={editLang} docRef={toEnglishDigits(refNo)} date={dateStr} />
             </td>
           </tr>
@@ -838,7 +833,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
         </tbody>
         <tfoot className="print-tfoot mt-auto">
           <tr>
-            <td className="print-td border-0 p-0">
+            <td className="print-td border-0 pt-6" style={{ paddingTop: "20px" }}>
               <DocFooter
                 qrData={qrData}
                 refNo={toEnglishDigits(refNo)}
@@ -885,7 +880,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
       <table className="print-table w-full border-collapse h-full">
         <thead className="print-thead">
           <tr>
-            <td className="print-td border-0 p-0">
+            <td className="print-td border-0 pb-6" style={{ paddingBottom: "20px" }}>
               <Letterhead church={church} lang="en" docRef={`RCP-${toEnglishDigits(receiptNo)}`} date={toEnglishDigits(dateStr)} />
             </td>
           </tr>
@@ -1024,7 +1019,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
         </tbody>
         <tfoot className="print-tfoot">
           <tr>
-            <td className="print-td border-0 p-0">
+            <td className="print-td border-0 pt-6" style={{ paddingTop: "20px" }}>
               <DocFooter
                 qrData={qrData}
                 refNo={toEnglishDigits(receiptNo)}
@@ -1092,7 +1087,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
       <table className="print-table w-full border-collapse h-full">
         <thead className="print-thead">
           <tr>
-            <td className="print-td border-0 p-0">
+            <td className="print-td border-0 pb-6" style={{ paddingBottom: "20px" }}>
               <Letterhead church={church} lang="en" docRef={`INV-${toEnglishDigits(invoiceNo)}`} date={toEnglishDigits(dateStr)} />
             </td>
           </tr>
@@ -1225,7 +1220,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
         </tbody>
         <tfoot className="print-tfoot mt-auto">
           <tr>
-            <td className="print-td border-0 p-0">
+            <td className="print-td border-0 pt-6" style={{ paddingTop: "20px" }}>
               <DocFooter
                 qrData={qrData}
                 refNo={toEnglishDigits(invoiceNo)}
