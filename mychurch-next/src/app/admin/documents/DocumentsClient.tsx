@@ -662,33 +662,33 @@ function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHU
             
             <div className="flex flex-col border-l-2 border-slate-200 pl-5 py-1">
               <h1 className="text-slate-900 tracking-tighter leading-none" style={{ fontSize: `${design.titleSize}px`, fontWeight: 900, fontFamily: design.fontFamily }}>{name}</h1>
-              <p className="text-[11px] uppercase font-black text-blue-700 tracking-[0.25em] mt-1.5">{church.denomination}</p>
+              <p className="text-[12px] uppercase font-black text-blue-700 tracking-[0.25em] mt-1.5">{church.denomination}</p>
             </div>
          </div>
 
          {/* Right Side: Contact Info & Meta */}
          <div className="text-right flex flex-col justify-between items-end h-full py-1">
-            <div className="space-y-1 text-[10px] text-slate-500 font-medium">
-              <div className="flex items-center justify-end gap-2 text-slate-700 font-bold">
+            <div className="space-y-1.5 text-[11px] text-slate-500 font-medium">
+              <div className="flex items-center justify-end gap-2 text-slate-700 font-bold text-xs">
                 {church.address} <MapPin className="w-3.5 h-3.5 text-blue-600"/>
               </div>
               <div className="flex items-center justify-end gap-4">
-                <span className="flex items-center gap-1.5">{church.web} <Globe className="w-3 h-3 text-slate-400"/></span>
-                <span className="flex items-center gap-1.5">{church.email} <Mail className="w-3 h-3 text-slate-400"/></span>
-                <span className="flex items-center gap-1.5">{church.phone} <Phone className="w-3 h-3 text-slate-400"/></span>
+                <span className="flex items-center gap-1.5 text-[11px]">{church.web} <Globe className="w-3 h-3 text-slate-400"/></span>
+                <span className="flex items-center gap-1.5 text-[11px]">{church.email} <Mail className="w-3 h-3 text-slate-400"/></span>
+                <span className="flex items-center gap-1.5 text-[11px]">{church.phone} <Phone className="w-3 h-3 text-slate-400"/></span>
               </div>
             </div>
 
             <div className="mt-4 flex items-center gap-4 text-xs">
               <div className="text-right uppercase tracking-widest font-bold text-slate-400">
-                <span className="text-[9px] block text-slate-400">Date</span>
+                <span className="text-[10px] block text-slate-400">Date</span>
                 <span className="text-slate-900">{date || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
               </div>
               
               <div className="w-px h-8 bg-slate-200" />
               
               <div className="text-right uppercase tracking-widest font-bold text-slate-400">
-                <span className="text-[9px] block text-slate-400">Reference No.</span>
+                <span className="text-[10px] block text-slate-400">Reference No.</span>
                 <span className="text-blue-700">{docRef || "N/A"}</span>
               </div>
             </div>
@@ -698,7 +698,7 @@ function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHU
       {/* Bottom Separator */}
       <div className="mt-8 flex items-center gap-4">
         <div className="h-px bg-slate-200 flex-1" />
-        <div className="text-[8px] font-mono text-slate-300 uppercase tracking-widest px-2">Official Document // EIN: {church.ein}</div>
+        <div className="text-[10px] font-mono text-slate-300 uppercase tracking-widest px-2">Official Document // EIN: {church.ein}</div>
         <div className="h-px bg-slate-200 flex-1" />
       </div>
     </div>
@@ -746,21 +746,21 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
             <td className="print-td border-0 p-0 relative z-10">
               <div className="flex flex-col justify-between min-h-[190mm]" style={{ fontFamily: design.fontFamily }}>
                 <div>
-                  <div className="mb-8 space-y-2 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize}px` }}>
+                  <div className="mb-8 space-y-2.5 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize + 2}px` }}>
                     {recipientName && <div className="flex items-start gap-4">
-                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "گیرنده:" : "Attention:"}</span>
-                      <span className="font-bold text-slate-900 border-b border-slate-200 pb-1 flex-1">{toEnglishDigits(recipientName)}</span>
+                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[12px] w-28 shrink-0 py-1">{isRtl ? "گیرنده:" : "Attention:"}</span>
+                      <span className="font-bold text-slate-900 border-b border-slate-200 pb-1 flex-1 text-sm">{toEnglishDigits(recipientName)}</span>
                     </div>}
                     {to && <div className="flex items-start gap-4">
-                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "به:" : "To:"}</span>
-                      <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1">{to}</span>
+                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[12px] w-28 shrink-0 py-1">{isRtl ? "به:" : "To:"}</span>
+                      <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1 text-sm">{to}</span>
                     </div>}
                     {toAddress && <div className="flex items-start gap-4">
-                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "آدرس:" : "Address:"}</span>
-                      <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1">{toAddress}</span>
+                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[12px] w-28 shrink-0 py-1">{isRtl ? "آدرس:" : "Address:"}</span>
+                      <span className="font-medium text-slate-800 border-b border-slate-200 pb-1 flex-1 text-sm">{toAddress}</span>
                     </div>}
                     {subject && <div className="flex items-start gap-4 mt-6">
-                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] w-28 shrink-0 py-1">{isRtl ? "موضوع:" : "Re  Subject:"}</span>
+                      <span className="font-bold text-slate-400 uppercase tracking-wider text-[12px] w-28 shrink-0 py-1">{isRtl ? "موضوع:" : "Re  Subject:"}</span>
                       <span className="font-black text-slate-900 text-lg uppercase tracking-tight leading-tight">{toEnglishDigits(subject)}</span>
                     </div>}
                   </div>
@@ -901,43 +901,43 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                        </h2>
                        <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">US IRS Section 501(c)(3) Compliant</p>
                     </div>
-                    <div className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-md border border-emerald-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
+                    <div className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-md border border-emerald-200 text-xs font-black uppercase tracking-widest flex items-center gap-1.5">
                       <Check className="w-3 h-3 stroke-[3]" /> Authenticated
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-8 mb-10 relative z-10" style={{ fontSize: `${design.bodySize}px` }}>
+                  <div className="grid grid-cols-2 gap-8 mb-10 relative z-10" style={{ fontSize: `${design.bodySize + 2}px` }}>
                     <div className="space-y-3">
-                      <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Donor Information</div>
+                      <div className="text-xs text-slate-400 uppercase font-black tracking-widest">Donor Information</div>
                       <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
                         <div className="font-black text-lg text-slate-900 uppercase tracking-tight">{toEnglishDigits(receipt.donorName as string || "—")}</div>
                         <div className="text-slate-600 font-medium">{receipt.donorAddress as string || "—"}</div>
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest">Transaction Details</div>
+                      <div className="text-xs text-slate-400 uppercase font-black tracking-widest">Transaction Details</div>
                       <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
                         <div className="flex justify-between items-center border-b border-slate-100 pb-2">
                           <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Receipt No</span>
-                          <span className="font-mono font-black text-slate-900">{toEnglishDigits(receiptNo)}</span>
+                          <span className="font-mono font-black text-slate-900 text-sm">{toEnglishDigits(receiptNo)}</span>
                         </div>
                         <div className="flex justify-between items-center border-b border-slate-100 pb-2">
                           <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Date Issued</span>
-                          <span className="font-bold text-slate-900">{toEnglishDigits(dateStr)}</span>
+                          <span className="font-bold text-slate-900 text-sm">{toEnglishDigits(dateStr)}</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-slate-500 font-bold text-xs uppercase tracking-wider">Organization EIN</span>
-                          <span className="font-mono font-bold text-slate-900">{church.ein}</span>
+                          <span className="font-mono font-bold text-slate-900 text-sm">{church.ein}</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="relative z-10" style={{ fontSize: `${design.bodySize}px` }}>
+                  <div className="relative z-10" style={{ fontSize: `${design.bodySize + 2}px` }}>
                     <div className="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
                       <table className="w-full text-left border-collapse bg-white">
                         <thead>
-                          <tr className="bg-slate-900 text-white text-[10px] uppercase tracking-[0.2em]">
+                          <tr className="bg-slate-900 text-white text-xs uppercase tracking-[0.2em]">
                             <th className="px-6 py-4 font-black">{isInKind ? "Item / Description" : "Purpose of Gift"}</th>
                             <th className="px-6 py-4 text-right font-black w-24">{isInKind ? "Qty" : ""}</th>
                             <th className="px-6 py-4 text-right font-black w-40">Value (USD)</th>
@@ -962,8 +962,8 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                         </tbody>
                         <tfoot>
                           <tr className="bg-slate-50 border-t-2 border-slate-200">
-                            <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[11px] text-slate-500">Grand Total Contribution</td>
-                            <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50" style={{ fontSize: `${design.bodySize + 6}px` }}>
+                            <td colSpan={2} className="px-6 py-5 font-black uppercase tracking-widest text-[12px] text-slate-500">Grand Total Contribution</td>
+                            <td className="px-6 py-5 text-right font-black font-mono text-blue-700 bg-blue-50/50" style={{ fontSize: `${design.bodySize + 8}px` }}>
                               ${toEnglishDigits((isInKind ? total : Number(receipt.amount || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
                             </td>
                           </tr>
@@ -971,7 +971,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                       </table>
                     </div>
 
-                    <div className="mt-8 p-5 bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl text-blue-900 text-[11px] font-medium leading-relaxed relative flex gap-4 items-start">
+                    <div className="mt-8 p-5 bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl text-blue-900 text-xs font-medium leading-relaxed relative flex gap-4 items-start">
                       <Building2 className="w-6 h-6 shrink-0 text-blue-600/50 mt-1" />
                       <p>
                         The Iranian Christian Church of Washington DC is a qualified 501(c)(3) tax-exempt organization. 
@@ -984,90 +984,13 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                 <div className="pt-6 flex justify-between items-end relative z-10 border-t border-slate-200 mt-8" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
                   <div className="space-y-3">
                     <div className="space-y-1">
-                       <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Authorized By</div>
-                       <div className="font-black text-slate-900 uppercase tracking-tight" style={{ fontSize: `${design.bodySize + 2}px` }}>{church.signatoryName}</div>
-                       <div className="text-blue-600 font-bold tracking-widest uppercase" style={{ fontSize: `${design.bodySize - 2}px` }}>{church.signatoryTitle}</div>
+                       <div className="text-[12px] text-slate-400 font-bold uppercase tracking-widest">Authorized By</div>
+                       <div className="font-black text-slate-900 uppercase tracking-tight" style={{ fontSize: `${design.bodySize + 4}px` }}>{church.signatoryName}</div>
+                       <div className="text-blue-600 font-bold tracking-widest uppercase" style={{ fontSize: `${design.bodySize}px` }}>{church.signatoryTitle}</div>
                     </div>
 
                     {church.signatureImage && (
-                      <div className="h-16 w-48 relative border-b border-slate-300 pb-2">
-                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={church.signatureImage}
-                          alt="Signature"
-                          crossOrigin="anonymous"
-                          className="h-full object-contain mix-blend-multiply opacity-95 relative z-10"
-                        />
-                      </div>
-                    )}
-
-                    <div className="text-[8px] text-slate-400 font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                      VALIDATED ELECTRONIC SIGNATURE
-                    </div>
-                  </div>
-
-                  {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
-                  {church.showVerifyQR && (
-                    <div className="print:hidden flex flex-col items-end gap-1 text-right">
-                       <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-                          <DocumentQR data={qrData} />
-                       </div>
-                       <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan for Auth</div>
-                       <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(receiptNo)}</div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot className="print-tfoot">
-          <tr>
-            <td className="print-td border-0 pt-6" style={{ paddingTop: "20px" }}>
-              <DocFooter
-                qrData={qrData}
-                refNo={toEnglishDigits(receiptNo)}
-                churchName={church.nameEn}
-                churchEmail={church.email}
-                churchWeb={church.web}
-                showQR={church.showVerifyQR}
-              />
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    </DocumentSecurity>
-  );
-}
-
-
-
-
-export interface DocHistoryItem {
-  id: string;
-  type: "letter" | "receipt" | "inkind" | "invoice";
-  date: string;
-  timestamp: number;
-  refNo: string;
-  recipient: string;
-  subject: string;
-  bodyEn?: string;
-  bodyFa?: string;
-  amount?: number;
-  donorName?: string;
-  donorAddress?: string;
-  inKindItems?: { name: string; qty: number; value: number }[];
-  invoiceItems?: { id: string; description: string; total: number }[];
-  invoiceWallet?: string;
-  toAddress?: string;
-  invoiceAddress?: string;
-  invoiceNotes?: string;
-  lang?: "en" | "fa";
-}
-
-
-// ─── Invoice Document ─────────────────────────────────────────────────────────
+                      <div cl// ─── Invoice Document ─────────────────────────────────────────────────────────
 export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate, invoiceItems, invoiceTotalAmount, invoiceWallet, invoiceNotes, invoiceNo, church, lang, isPdf }: {
   invoiceTo: string; invoiceAddress?: string; invoiceName: string; invoiceDate: string; invoiceItems: any[]; invoiceTotalAmount: number; invoiceWallet: string; invoiceNotes?: string; invoiceNo: string; church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; isPdf?: boolean;
 }) {
@@ -1106,16 +1029,16 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                        <h2 className="uppercase tracking-[0.1em] font-black text-slate-900 leading-tight" style={{ fontSize: `${design.titleSize}px` }}>
                          Official Invoice
                        </h2>
-                       <p className="text-blue-600 font-bold tracking-widest text-[10px] mt-1 uppercase">For Services Rendered / Ministry Support</p>
+                       <p className="text-blue-600 font-bold tracking-widest text-xs mt-1.5 uppercase">For Services Rendered / Church Ministry Support</p>
                     </div>
-                    <div className="px-3 py-1 bg-amber-50 text-amber-700 rounded-md border border-amber-200 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
+                    <div className="px-3 py-1 bg-amber-50 text-amber-700 rounded-md border border-amber-200 text-xs font-black uppercase tracking-widest flex items-center gap-1.5">
                       <DollarSign className="w-3 h-3 stroke-[3]" /> Payment Due
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-10 mb-10 relative z-10">
                     <div className="space-y-3">
-                      <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Client / Billed To</div>
+                      <div className="text-xs text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Client / Billed To</div>
                       <div className="p-0 space-y-1">
                         <div className="font-black text-xl text-slate-900 leading-tight">{invoiceTo}</div>
                         {invoiceName && <div className="text-slate-700 font-bold text-sm">{invoiceName}</div>}
@@ -1123,18 +1046,18 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Organization / Info</div>
+                      <div className="text-xs text-slate-400 uppercase font-black tracking-widest border-b border-slate-100 pb-1">Organization / Info</div>
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-400 font-bold text-[10px] uppercase">Invoice No</span>
-                          <span className="font-mono font-black text-slate-900 text-xs">{toEnglishDigits(invoiceNo)}</span>
+                          <span className="text-slate-400 font-bold text-xs uppercase">Invoice No</span>
+                          <span className="font-mono font-black text-slate-900 text-sm">{toEnglishDigits(invoiceNo)}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-400 font-bold text-[10px] uppercase">Date Issued</span>
-                          <span className="font-bold text-slate-900 text-xs">{toEnglishDigits(dateStr)}</span>
+                          <span className="text-slate-400 font-bold text-xs uppercase">Date Issued</span>
+                          <span className="font-bold text-slate-900 text-sm">{toEnglishDigits(dateStr)}</span>
                         </div>
                         <div className="flex justify-between items-center pt-2 border-t border-slate-100">
-                          <span className="text-slate-900 font-black text-[10px] uppercase">Total Due</span>
+                          <span className="text-slate-900 font-black text-xs uppercase">Total Due</span>
                           <span className="font-mono font-black text-blue-700 text-lg">${toEnglishDigits(invoiceTotalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</span>
                         </div>
                       </div>
@@ -1146,10 +1069,10 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                       <table className="w-full text-left border-collapse">
                         <thead>
                           <tr className="border-b-2 border-slate-200">
-                            <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 w-12">Qty</th>
-                            <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Description</th>
-                            <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right w-32">Price</th>
-                            <th className="py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right w-32">Subtotal</th>
+                            <th className="py-4 text-xs font-black uppercase tracking-widest text-slate-400 w-12">Qty</th>
+                            <th className="py-4 text-xs font-black uppercase tracking-widest text-slate-400">Description</th>
+                            <th className="py-4 text-xs font-black uppercase tracking-widest text-slate-400 text-right w-32">Price</th>
+                            <th className="py-4 text-xs font-black uppercase tracking-widest text-slate-400 text-right w-32">Subtotal</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
@@ -1157,8 +1080,8 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                             <tr key={item.id} className="group">
                               <td className="py-5 font-mono text-slate-400 text-xs">{String(index + 1).padStart(2, '0')}</td>
                               <td className="py-5">
-                                <div className="font-bold text-slate-800">{item.description}</div>
-                                <div className="text-[10px] text-slate-400 mt-0.5">Professional Services / Church Ministry</div>
+                                <div className="font-bold text-slate-800 text-sm">{item.description}</div>
+                                <div className="text-xs text-slate-500 mt-0.5">Professional Services / Church Ministry</div>
                               </td>
                               <td className="py-5 text-right font-mono text-slate-500 text-xs">${toEnglishDigits(Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
                               <td className="py-5 text-right font-mono font-black text-slate-900">${toEnglishDigits(Number(item.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}</td>
@@ -1168,7 +1091,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                         <tfoot>
                           <tr>
                             <td colSpan={2} className="py-8"></td>
-                            <td className="py-8 border-t-2 border-slate-100 text-right font-bold text-slate-400 text-[10px] uppercase tracking-widest">Grand Total</td>
+                            <td className="py-8 border-t-2 border-slate-100 text-right font-bold text-slate-400 text-xs uppercase tracking-widest">Grand Total</td>
                             <td className="py-8 border-t-2 border-slate-100 text-right font-black font-mono text-blue-700 text-2xl">
                               ${toEnglishDigits(invoiceTotalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}
                             </td>
@@ -1181,28 +1104,28 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                       <div>
                         {invoiceNotes && (
                           <div className="space-y-2">
-                            <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em]">Notes & Policy</p>
-                            <p className="text-[11px] font-medium text-slate-500 leading-relaxed italic">{invoiceNotes}</p>
+                            <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em]">Notes & Policy</p>
+                            <p className="text-xs font-medium text-slate-500 leading-relaxed italic">{invoiceNotes}</p>
                           </div>
                         )}
                       </div>
                       <div>
                          {invoiceWallet && (
                            <div className="space-y-2">
-                             <p className="text-[9px] font-black text-blue-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                             <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] flex items-center gap-2">
                                <Package className="w-3 h-3" /> Payment Instructions (TRC-20)
                              </p>
-                             <p className="font-mono text-[10px] break-all font-bold bg-slate-50 p-3 rounded-lg border border-slate-200 text-slate-600 shadow-inner">
+                             <p className="font-mono text-xs break-all font-bold bg-slate-50 p-3 rounded-lg border border-slate-200 text-slate-600 shadow-inner">
                                {invoiceWallet}
                              </p>
                            </div>
-                        )}
+                         )}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t font-mono text-[8px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10 mt-8" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
+                <div className="pt-6 border-t font-mono text-[10px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10 mt-8" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
                   <div>
                     <span>Generated by Iranian Christian Church of Washington DC © 2026</span>
                     <div className="mt-1 text-slate-200">System Integrity Verified • No Unauthorized Reproduction</div>
@@ -1213,8 +1136,8 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                       <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
                         <DocumentQR data={qrData} />
                       </div>
-                      <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
-                      <div className="text-[7px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(invoiceNo)}</div>
+                      <div className="text-[10px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
+                      <div className="text-[8px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(invoiceNo)}</div>
                     </div>
                   )}
                 </div>
@@ -1240,7 +1163,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
     </div>
     </DocumentSecurity>
   );
-}
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // MAIN PAGE
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1840,7 +1763,13 @@ export default function ChurchDocumentsPage() {
 
     try {
       const jspdfMod = await import("jspdf");
-      const html2canvasMod = await import("html2canvas-pro");
+      let html2canvasMod;
+      try {
+        html2canvasMod = await import("html2canvas-pro");
+      } catch (e) {
+        console.warn("Failed to load html2canvas-pro, falling back to html2canvas:", e);
+        html2canvasMod = await import("html2canvas");
+      }
       const jsPDF = jspdfMod.default || (jspdfMod as any).jsPDF || jspdfMod;
       const html2canvas = html2canvasMod.default || html2canvasMod;
 
