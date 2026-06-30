@@ -1,6 +1,78 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { GoogleGenAI, Type, Modality } from '@google/genai';
+import { Type, Modality } from '@google/genai';
 import { Icon } from './Icon.tsx';
+
+const getApiHost = () => {
+    if (typeof window === 'undefined') return '';
+    const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    if (isDev) {
+        return window.location.port === '3000' ? '' : 'http://localhost:3000';
+    }
+    return '';
+};
+
+class SecureGoogleGenAI {
+    models = {
+        generateContent: async (config: any) => {
+            const apiHost = getApiHost();
+            const res = await fetch(`${apiHost}/api/admin/gemini-proxy`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    path: `models/${config.model || 'gemini-2.5-flash'}:generateContent`,
+                    payload: {
+                        contents: config.contents,
+                        generationConfig: config.config ? {
+                            responseMimeType: config.config.responseMimeType,
+                            responseSchema: config.config.responseSchema,
+                            responseModalities: config.config.responseModalities,
+                        } : undefined,
+                        systemInstruction: config.config?.systemInstruction 
+                            ? { parts: [{ text: config.config.systemInstruction }] }
+                            : undefined,
+                        speechConfig: config.config?.speechConfig
+                    }
+                })
+            });
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(errText || `Server returned ${res.status}`);
+            }
+            const data = await res.json();
+            const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+            return {
+                text,
+                response: { text: () => text },
+                candidates: data.candidates
+            };
+        },
+        generateImages: async (config: any) => {
+            const apiHost = getApiHost();
+            const res = await fetch(`${apiHost}/api/admin/gemini-proxy`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    path: `models/${config.model || 'imagen-3.0-generate-002'}:generateImages`,
+                    payload: {
+                        prompt: config.prompt,
+                        numberOfImages: config.config?.numberOfImages || 1,
+                        outputMimeType: config.config?.outputMimeType || 'image/jpeg',
+                        aspectRatio: '16:9'
+                    }
+                })
+            });
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(errText || `Server returned ${res.status}`);
+            }
+            const data = await res.json();
+            return {
+                generatedImages: data.generatedImages || []
+            };
+        }
+    };
+}
+
 
 type WordSegment = {
   word: string;
@@ -130,9 +202,8 @@ export const Conversation: React.FC = () => {
 
     const transcribeAudio = async (audioFile: File, selectedMode: Mode) => {
         try {
-            if (!process.env.API_KEY) throw new Error("API_KEY not found.");
             setStatus('transcribing');
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const ai = new SecureGoogleGenAI();
             const audioPart = await fileToGenerativePart(audioFile);
 
             let promptText = "";
@@ -230,9 +301,8 @@ CRITICAL: Provide highly accurate timestamps for every single word, down to the 
     
     const detectChords = async (audioFile: File, transcript: string) => {
         try {
-            if (!process.env.API_KEY) throw new Error("API_KEY not found.");
             setStatus('detecting_chords');
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const ai = new SecureGoogleGenAI();
             const audioPart = await fileToGenerativePart(audioFile);
 
             const response = await ai.models.generateContent({
@@ -508,8 +578,7 @@ CRITICAL: Provide highly accurate timestamps for every single word, down to the 
         setError(null);
         try {
             const PptxGenJS = (await import('pptxgenjs')).default;
-            if (!process.env.API_KEY) throw new Error("API_KEY not found.");
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const ai = new SecureGoogleGenAI();
             const pres = new PptxGenJS();
             
             pres.layout = 'LAYOUT_16x9';
@@ -634,8 +703,7 @@ CRITICAL: Provide highly accurate timestamps for every single word, down to the 
         setActiveTab(target); 
 
         try {
-            if (!process.env.API_KEY) throw new Error("API_KEY not found.");
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const ai = new SecureGoogleGenAI();
             
             let systemInstruction = "";
             let userPrompt = "";
@@ -710,8 +778,7 @@ CRITICAL: Provide highly accurate timestamps for every single word, down to the 
         setError(null);
 
         try {
-            if (!process.env.API_KEY) throw new Error("API_KEY not found.");
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+            const ai = new SecureGoogleGenAI();
             
             let prompt = "";
             const isPersian = sourceKey === 'persian' || (sourceKey === 'original' && /[\u0600-\u06FF]/.test(textToSpeak));
