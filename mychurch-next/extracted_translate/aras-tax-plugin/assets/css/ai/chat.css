@@ -1,0 +1,534 @@
+/**
+ * Aras Tax AI Chat v2 - Enhanced Stylesheet
+ * RTL support, language selector, smart suggestions
+ */
+
+/* ─────────────────────────────────────────────
+   Chat Toggle Button
+   ───────────────────────────────────────────── */
+.aras-ai-chat-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(26, 54, 93, 0.4);
+    transition: all 0.3s ease;
+    z-index: 999998;
+    color: #ffffff;
+    animation: arasChatPulse 3s ease-in-out infinite;
+}
+
+@keyframes arasChatPulse {
+    0%, 100% { box-shadow: 0 8px 25px rgba(26, 54, 93, 0.4); }
+    50% { box-shadow: 0 8px 35px rgba(201, 168, 76, 0.5); }
+}
+
+.aras-ai-chat-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(26, 54, 93, 0.5);
+}
+
+.aras-ai-chat-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: #c9a84c;
+    color: #1a365d;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 3px 6px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* ─────────────────────────────────────────────
+   Chat Window
+   ───────────────────────────────────────────── */
+.aras-ai-chat-window {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 400px;
+    height: 580px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    z-index: 999999;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    animation: chatSlideIn 0.3s ease;
+}
+
+@keyframes chatSlideIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ─────────────────────────────────────────────
+   Header
+   ───────────────────────────────────────────── */
+.aras-ai-chat-header {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ffffff;
+}
+
+.aras-ai-chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.aras-ai-chat-avatar {
+    width: 44px;
+    height: 44px;
+    background: rgba(201, 168, 76, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #c9a84c;
+    flex-shrink: 0;
+}
+
+.aras-ai-chat-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.aras-ai-chat-status {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.aras-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+.aras-status-dot.offline {
+    background: #ef4444;
+    animation: none;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.aras-ai-lang-detect {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 2px;
+}
+
+.aras-ai-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.aras-ai-lang-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.aras-ai-lang-btn:hover {
+    background: rgba(201, 168, 76, 0.4);
+}
+
+.aras-ai-chat-close {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.aras-ai-chat-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ─────────────────────────────────────────────
+   Language Dropdown
+   ───────────────────────────────────────────── */
+.aras-ai-lang-dropdown {
+    position: absolute;
+    top: 72px;
+    right: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 1000000;
+    min-width: 200px;
+    border: 1px solid #e2e8f0;
+}
+
+.aras-lang-option {
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #1a365d;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.aras-lang-option:first-child {
+    border-radius: 12px 12px 0 0;
+    background: #f8fafc;
+    font-weight: 600;
+}
+
+.aras-lang-option:hover {
+    background: rgba(201, 168, 76, 0.1);
+}
+
+.aras-lang-option.active {
+    background: rgba(26, 54, 93, 0.08);
+    font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────
+   Messages Area
+   ───────────────────────────────────────────── */
+.aras-ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #f8fafc;
+    scroll-behavior: smooth;
+}
+
+.aras-ai-chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.aras-ai-chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.aras-ai-chat-messages::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+/* Individual Messages */
+.aras-ai-message {
+    display: flex;
+    gap: 8px;
+    max-width: 88%;
+    animation: messageFade 0.3s ease;
+}
+
+.aras-ai-message[dir="rtl"] {
+    direction: rtl;
+}
+
+@keyframes messageFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.aras-ai-bot-message {
+    align-self: flex-start;
+}
+
+.aras-ai-user-message {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.aras-ai-message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.aras-ai-bot-message .aras-ai-message-avatar {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    border: 2px solid #c9a84c;
+}
+
+.aras-ai-user-message .aras-ai-message-avatar {
+    background: #c9a84c;
+}
+
+.aras-ai-message-content {
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.aras-ai-bot-message .aras-ai-message-content {
+    background: #ffffff;
+    color: #1a365d;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.aras-ai-user-message .aras-ai-message-content {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.aras-ai-welcome-text {
+    margin: 0 0 12px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────
+   Smart Suggestions
+   ───────────────────────────────────────────── */
+.aras-ai-suggestions-container {
+    margin-top: 12px;
+}
+
+.aras-suggestions-title {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0 0 8px;
+    font-weight: 600;
+}
+
+.aras-ai-suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.aras-ai-suggestion-item {
+    padding: 10px 14px;
+    background: rgba(201, 168, 76, 0.06);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.83rem;
+    color: #1a365d;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.4;
+}
+
+.aras-ai-suggestion-item:hover {
+    background: rgba(201, 168, 76, 0.14);
+    border-color: #c9a84c;
+    transform: translateX(4px);
+}
+
+.aras-suggestion-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.aras-suggestion-text {
+    flex: 1;
+}
+
+/* RTL support for suggestions */
+.aras-ai-suggestion-item[dir="rtl"] {
+    flex-direction: row;
+}
+
+.aras-ai-suggestion-item[dir="rtl"]:hover {
+    transform: translateX(-4px);
+}
+
+/* ─────────────────────────────────────────────
+   Typing Indicator
+   ───────────────────────────────────────────── */
+.aras-ai-typing {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    align-self: flex-start;
+    background: #ffffff;
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.aras-ai-typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #c9a84c;
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite;
+}
+
+.aras-ai-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.aras-ai-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+}
+
+/* ─────────────────────────────────────────────
+   Input Area
+   ───────────────────────────────────────────── */
+.aras-ai-chat-input-area {
+    padding: 12px 16px;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.aras-ai-chat-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.aras-ai-chat-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s ease;
+    background: #f8fafc;
+}
+
+.aras-ai-chat-input:focus {
+    border-color: #c9a84c;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+.aras-ai-chat-input::placeholder {
+    color: #94a3b8;
+}
+
+.aras-ai-chat-send {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.aras-ai-chat-send:hover {
+    background: linear-gradient(135deg, #c9a84c 0%, #d4b96a 100%);
+    color: #1a365d;
+    transform: scale(1.05);
+}
+
+.aras-ai-chat-send:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.aras-ai-disclaimer {
+    text-align: center;
+    font-size: 0.68rem;
+    color: #94a3b8;
+    margin-top: 8px;
+    padding-top: 4px;
+}
+
+/* Response Language Badge */
+.aras-ai-response-lang {
+    text-align: center;
+    margin-top: 4px;
+}
+
+.aras-lang-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(26, 54, 93, 0.08);
+    color: #1a365d;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .aras-ai-chat-window {
+        width: calc(100vw - 16px);
+        height: calc(100vh - 80px);
+        right: 8px;
+        bottom: 80px;
+        border-radius: 12px;
+    }
+
+    .aras-ai-chat-toggle {
+        width: 56px;
+        height: 56px;
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .aras-ai-lang-dropdown {
+        right: 8px;
+        left: 8px;
+        min-width: auto;
+    }
+}

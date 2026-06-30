@@ -56,8 +56,8 @@ const DEFAULT_CHURCH = {
   showVerifyQR: true,
   designEn: {
     titleSize: 32,
-    bodySize: 14,
-    footerSize: 10,
+    bodySize: 16,
+    footerSize: 12,
     fontFamily: "Inter, sans-serif",
     logoSize: 100,
     headerPadding: 24,
@@ -66,8 +66,8 @@ const DEFAULT_CHURCH = {
   },
   designFa: {
     titleSize: 28,
-    bodySize: 15,
-    footerSize: 11,
+    bodySize: 17,
+    footerSize: 13,
     fontFamily: "'Vazirmatn', sans-serif",
     logoSize: 90,
     headerPadding: 20,
@@ -218,9 +218,9 @@ function PrintStyles({ paperSize = "Letter", totalPages = 1, isRtl = false }: {
 }) {
   const sizeVal = paperSize.toLowerCase() === "a4" ? "a4" : paperSize.toLowerCase() === "a5" ? "a5" : "letter";
   const printableHeight = 
-    sizeVal === "a4" ? "271.6mm" : 
-    sizeVal === "a5" ? "184.6mm" : 
-    "254mm";
+    sizeVal === "a4" ? "262mm" : 
+    sizeVal === "a5" ? "178mm" : 
+    "244mm";
 
   const css = `
 @page {
@@ -276,11 +276,14 @@ function QRImage({ value, size = 120 }: { value: string; size?: number }) {
 
 // ─── Inline Document Footer (replaces fixed-position footer) ─────────────────
 // Sits at the bottom of the document in normal flow — works for screen, print, and PDF capture
-function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, showQR, totalPages }: {
+function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, showQR, totalPages, design }: {
   qrData: string; refNo: string; churchName: string;
   churchEmail?: string; churchWeb?: string; isRtl?: boolean; showQR?: boolean;
   totalPages?: number;
+  design?: typeof DEFAULT_CHURCH.designEn;
 }) {
+  const fs = design?.footerSize || 10;
+
   return (
     <div
       className="mt-auto pt-4"
@@ -296,27 +299,23 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
         padding: "8px 0 4px 0",
         pageBreakInside: "avoid",
         breakInside: "avoid",
-        WebkitUserSelect: "none",
-        MozUserSelect: "none",
-        msUserSelect: "none",
-        userSelect: "none",
       }}
     >
       {/* Left/Right: Church info + ref */}
       <div style={{ display: "flex", flexDirection: "column", gap: "2px", flex: 1, direction: "ltr" }}>
-        <div style={{ fontSize: "5pt", color: "#64748b", fontWeight: 700, letterSpacing: "0.02em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: "1px" }}>
+        <div style={{ fontSize: `${(fs * 0.65).toFixed(1)}pt`, color: "#64748b", fontWeight: 700, letterSpacing: "0.02em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: "1px" }}>
           THIS DOCUMENT IS OFFICIALLY GENERATED AND VERIFIED BY THE IRANIAN CHRISTIAN CHURCH OF WASHINGTON DC.
         </div>
-        <div style={{ fontSize: "7.5pt", fontWeight: 900, color: "#0f172a", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "monospace" }}>
+        <div style={{ fontSize: `${(fs * 0.9).toFixed(1)}pt`, fontWeight: 900, color: "#0f172a", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "monospace" }}>
           {churchName}
         </div>
-        <div style={{ fontSize: "6pt", color: "#64748b", fontFamily: "monospace" }}>
+        <div style={{ fontSize: `${(fs * 0.75).toFixed(1)}pt`, color: "#64748b", fontFamily: "monospace" }}>
           {churchWeb || "iranianchurchdc.com"}&nbsp;·&nbsp;{churchEmail || "info@iranianchurchdc.com"}
         </div>
-        <div style={{ fontSize: "6pt", color: "#94a3b8", fontFamily: "monospace", marginTop: "1px" }}>
+        <div style={{ fontSize: `${(fs * 0.75).toFixed(1)}pt`, color: "#94a3b8", fontFamily: "monospace", marginTop: "1px" }}>
           {isRtl ? "شماره سند:" : "Document Ref:"}&nbsp;<span style={{ color: "#1e40af", fontWeight: 700 }}>{refNo}</span>
         </div>
-        <div style={{ fontSize: "5.5pt", color: "#dc2626", fontWeight: 900, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "monospace", marginTop: "1px" }}>
+        <div style={{ fontSize: `${(fs * 0.7).toFixed(1)}pt`, color: "#dc2626", fontWeight: 900, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "monospace", marginTop: "1px" }}>
           ⚠ PROTECTED · DO NOT ALTER · VERIFY AUTHENTICITY BY SCANNING QR
         </div>
       </div>
@@ -340,12 +339,12 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
               }}
             />
           </div>
-          <div style={{ fontSize: "5.5pt", fontWeight: 900, color: "#475569", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
+          <div style={{ fontSize: `${(fs * 0.7).toFixed(1)}pt`, fontWeight: 900, color: "#475569", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
             {isRtl ? "اسکن برای تأیید" : "SCAN TO VERIFY"}
           </div>
           <div 
             className="print-page-num-in-body"
-            style={{ fontSize: "5.5pt", fontWeight: 900, color: "#64748b", fontFamily: "monospace", letterSpacing: "0.08em", marginTop: "1px" }}
+            style={{ fontSize: `${(fs * 0.7).toFixed(1)}pt`, fontWeight: 900, color: "#64748b", fontFamily: "monospace", letterSpacing: "0.08em", marginTop: "1px" }}
           >
             {isRtl ? (
               <>
@@ -410,7 +409,6 @@ function DocumentSecurity({ children }: { children: React.ReactNode }) {
     <div 
       className="relative w-full h-full"
       onContextMenu={(e) => e.preventDefault()}
-      style={{ WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none", userSelect: "none" } as React.CSSProperties}
     >
       {/* Repeating Anti-Copy Watermark (screen-only, very faint) */}
       <div className="absolute inset-0 z-[5] pointer-events-none opacity-[0.025] overflow-hidden select-none flex flex-wrap gap-20 p-10 rotate-12 print:hidden">
@@ -668,27 +666,27 @@ function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHU
 
          {/* Right Side: Contact Info & Meta */}
          <div className="text-right flex flex-col justify-between items-end h-full py-1">
-            <div className="space-y-1.5 text-[11px] text-slate-500 font-medium">
-              <div className="flex items-center justify-end gap-2 text-slate-700 font-bold text-xs">
+            <div className="space-y-1.5 text-[13px] text-slate-500 font-medium">
+              <div className="flex items-center justify-end gap-2 text-slate-700 font-bold text-[13.5px]">
                 {church.address} <MapPin className="w-3.5 h-3.5 text-blue-600"/>
               </div>
               <div className="flex items-center justify-end gap-4">
-                <span className="flex items-center gap-1.5 text-[11px]">{church.web} <Globe className="w-3 h-3 text-slate-400"/></span>
-                <span className="flex items-center gap-1.5 text-[11px]">{church.email} <Mail className="w-3 h-3 text-slate-400"/></span>
-                <span className="flex items-center gap-1.5 text-[11px]">{church.phone} <Phone className="w-3 h-3 text-slate-400"/></span>
+                <span className="flex items-center gap-1.5 text-[12.5px]">{church.web} <Globe className="w-3 h-3 text-slate-400"/></span>
+                <span className="flex items-center gap-1.5 text-[12.5px]">{church.email} <Mail className="w-3 h-3 text-slate-400"/></span>
+                <span className="flex items-center gap-1.5 text-[12.5px]">{church.phone} <Phone className="w-3 h-3 text-slate-400"/></span>
               </div>
             </div>
 
-            <div className="mt-4 flex items-center gap-4 text-xs">
+            <div className="mt-4 flex items-center gap-4 text-sm">
               <div className="text-right uppercase tracking-widest font-bold text-slate-400">
-                <span className="text-[10px] block text-slate-400">Date</span>
+                <span className="text-[11px] block text-slate-400">Date</span>
                 <span className="text-slate-900">{date || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
               </div>
               
               <div className="w-px h-8 bg-slate-200" />
               
               <div className="text-right uppercase tracking-widest font-bold text-slate-400">
-                <span className="text-[10px] block text-slate-400">Reference No.</span>
+                <span className="text-[11px] block text-slate-400">Reference No.</span>
                 <span className="text-blue-700">{docRef || "N/A"}</span>
               </div>
             </div>
@@ -698,7 +696,7 @@ function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHU
       {/* Bottom Separator */}
       <div className="mt-8 flex items-center gap-4">
         <div className="h-px bg-slate-200 flex-1" />
-        <div className="text-[10px] font-mono text-slate-300 uppercase tracking-widest px-2">Official Document // EIN: {church.ein}</div>
+        <div className="text-[11.5px] font-mono text-slate-400 uppercase tracking-widest px-2">Official Document // EIN: {church.ein}</div>
         <div className="h-px bg-slate-200 flex-1" />
       </div>
     </div>
@@ -744,7 +742,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
         <tbody className="print-tbody">
           <tr className="print-tr">
             <td className="print-td border-0 p-0 relative z-10">
-              <div className="flex flex-col justify-between min-h-[190mm]" style={{ fontFamily: design.fontFamily }}>
+              <div className="flex flex-col justify-between min-h-[130mm]" style={{ fontFamily: design.fontFamily }}>
                 <div>
                   <div className="mb-8 space-y-2.5 relative z-10" dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: `${design.bodySize + 2}px` }}>
                     {recipientName && <div className="flex items-start gap-4">
@@ -847,6 +845,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
                 isRtl={isRtl}
                 showQR={church.showVerifyQR}
                 totalPages={totalPages}
+                design={design}
               />
             </td>
           </tr>
@@ -892,7 +891,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
         <tbody className="print-tbody">
           <tr className="print-tr">
             <td className="print-td border-0 p-0 relative z-10">
-              <div className="flex flex-col justify-between min-h-[190mm]" style={{ fontFamily: design.fontFamily }}>
+              <div className="flex flex-col justify-between min-h-[130mm]" style={{ fontFamily: design.fontFamily }}>
                 <div>
                   <div className="flex justify-between items-end mb-8 relative z-10 border-b border-slate-200 pb-4">
                     <div>
@@ -1031,6 +1030,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                 churchEmail={church.email}
                 churchWeb={church.web}
                 showQR={church.showVerifyQR}
+                design={design}
               />
             </td>
           </tr>
@@ -1074,7 +1074,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
         <tbody className="print-tbody">
           <tr className="print-tr">
             <td className="print-td border-0 p-0 relative z-10">
-              <div className="flex flex-col justify-between min-h-[190mm]" style={{ fontFamily: design.fontFamily }}>
+              <div className="flex flex-col justify-between min-h-[130mm]" style={{ fontFamily: design.fontFamily }}>
                 <div>
                   <div className="flex justify-between items-end mb-8 relative z-10 border-b-2 border-slate-900 pb-4">
                     <div>
@@ -1207,6 +1207,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                 churchEmail={church.email}
                 churchWeb={church.web}
                 showQR={church.showVerifyQR}
+                design={design}
               />
             </td>
           </tr>
@@ -1215,6 +1216,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
     </div>
     </DocumentSecurity>
   );
+}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // MAIN PAGE

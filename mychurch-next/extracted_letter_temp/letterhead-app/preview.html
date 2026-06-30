@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>پیش‌نمایش — نامه و فاکتور روی سربرگ</title>
+<style>
+  :root{--brand:#1d4ed8;--brand-soft:#eff6ff;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--pad:18mm}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Tahoma,'Segoe UI',sans-serif;background:#e5e7eb;color:var(--ink)}
+  .bar{position:sticky;top:0;z-index:5;display:flex;gap:8px;align-items:center;padding:12px 18px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .bar h1{font-size:15px;color:var(--brand);margin:0 8px 0 0}
+  .bar .sp{flex:1}
+  .btn{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;font-family:inherit;font-size:14px}
+  .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .tab{padding:7px 14px;border-radius:8px;border:1px solid transparent;background:transparent;cursor:pointer;font-family:inherit;font-size:14px}
+  .tab.active{background:var(--brand-soft);color:var(--brand);border-color:#dbeafe;font-weight:700}
+  .wrap{padding:24px;display:flex;justify-content:center}
+  .page{width:210mm;min-height:297mm;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.12);padding:0 var(--pad);display:flex;flex-direction:column;direction:rtl;text-align:right}
+  .lh-header{display:flex;align-items:center;gap:16px;padding:16mm 0 6mm;border-bottom:3px solid var(--brand)}
+  .lh-header .logo img{width:76px;height:76px;display:block}
+  .info{flex:1}.info .name{font-size:22px;font-weight:700;color:var(--brand)}
+  .info .name-en{font-size:13px;color:var(--muted);margin-top:2px}.info .slogan{font-size:12px;color:var(--muted);margin-top:4px}
+  .contact{font-size:11px;color:var(--muted);line-height:1.9}
+  .lh-body{flex:1;padding:8mm 0;font-size:14px;line-height:2}
+  .lh-footer{border-top:2px solid var(--brand);padding:5mm 0 14mm;font-size:10.5px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .letter-meta{display:flex;justify-content:space-between;font-size:13px;margin-bottom:10mm;gap:20px}.letter-meta .lbl{color:var(--muted)}
+  .letter-subject{text-align:center;font-weight:700;font-size:16px;margin:6mm 0}
+  .letter-recipient{font-weight:600;margin-bottom:6mm;white-space:pre-line}
+  .letter-text{text-align:justify;white-space:pre-wrap}
+  .letter-sign{margin-top:16mm;text-align:left}.letter-sign .name{font-weight:700}.letter-sign .title{color:var(--muted);font-size:13px}
+  .inv-title{text-align:center;font-size:18px;font-weight:700;color:var(--brand);margin:4mm 0}
+  .inv-top{display:flex;justify-content:space-between;gap:20px;margin:6mm 0;flex-wrap:wrap}
+  .inv-box{flex:1;min-width:200px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;line-height:2}
+  .inv-box h3{margin:0 0 6px;font-size:13px;color:var(--brand)}
+  table.inv{width:100%;border-collapse:collapse;font-size:13px;margin-top:4mm}
+  table.inv th{background:var(--brand);color:#fff;padding:9px 8px}
+  table.inv td{padding:8px;border:1px solid var(--line)}table.inv tbody tr:nth-child(even){background:#f9fafb}
+  .num{text-align:center}
+  .inv-totals{margin-top:6mm;margin-inline-start:auto;width:300px;font-size:14px}
+  .inv-totals .row{display:flex;justify-content:space-between;padding:6px 4px;border-bottom:1px dashed var(--line)}
+  .inv-totals .grand{font-weight:700;font-size:16px;color:var(--brand);border-bottom:none;padding-top:10px}
+  .inv-notes{margin-top:8mm;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:6px}
+  .hide{display:none}
+  @media print{@page{size:A4;margin:0}body{background:#fff}.bar{display:none}.wrap{padding:0}.page{box-shadow:none}}
+</style>
+</head>
+<body>
+  <div class="bar">
+    <h1>پیش‌نمایش اسناد</h1>
+    <button class="tab active" id="t-letter" onclick="show('letter')">نامه اداری</button>
+    <button class="tab" id="t-invoice" onclick="show('invoice')">فاکتور</button>
+    <span class="sp"></span>
+    <button class="btn" onclick="window.print()">🖨️ چاپ</button>
+    <button class="btn" onclick="window.print()">📄 ذخیره PDF</button>
+    <button class="btn primary" onclick="alert('در نسخه‌ی Next.js ارسال ایمیل از طریق API و SMTP انجام می‌شود.')">✉️ ارسال ایمیل</button>
+  </div>
+
+  <div class="wrap">
+    <!-- نامه -->
+    <div class="page" id="doc-letter">
+      <header class="lh-header">
+        <div class="logo"><svg width="76" height="76" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><rect x="6" y="6" width="108" height="108" rx="22" fill="url(#g1)"/><path d="M38 78 L38 42 L60 64 L82 42 L82 78" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="92" r="5" fill="#fff"/></svg></div>
+        <div class="info">
+          <div class="name">شرکت نمونه پارس</div>
+          <div class="name-en">Pars Sample Co.</div>
+          <div class="slogan">کیفیت، تعهد، نوآوری</div>
+        </div>
+        <div class="contact">
+          <div>تهران، خیابان نمونه، پلاک ۱۲۳، طبقه ۴</div>
+          <div>تلفن: +98 21 1234 5678</div>
+          <div>info@example.com · www.example.com</div>
+        </div>
+      </header>
+      <main class="lh-body">
+        <div class="letter-meta">
+          <div><div><span class="lbl">شماره:</span> ۱۴۰۳/۱۰۲</div><div><span class="lbl">تاریخ:</span> ۱۴۰۳/۰۴/۰۸</div></div>
+          <div><div><span class="lbl">پیوست:</span> ندارد</div><div><span class="lbl">عطف:</span> —</div></div>
+        </div>
+        <div class="letter-recipient">جناب آقای دکتر احمدی
+مدیرعامل محترم شرکت آلفا</div>
+        <div class="letter-subject">موضوع: درخواست همکاری در پروژه‌ی فناوری اطلاعات</div>
+        <div class="letter-text">احتراماً، با عنایت به سوابق ارزشمند آن مجموعه و در راستای توسعه‌ی همکاری‌های دوجانبه، بدین‌وسیله آمادگی این شرکت جهت مشارکت در پروژه‌ی یادشده اعلام می‌گردد.
+
+خواهشمند است دستور فرمایید نسبت به تعیین جلسه‌ای جهت بررسی جزئیات اقدام لازم صورت پذیرد.
+
+پیشاپیش از همکاری شما سپاسگزاریم.</div>
+        <div class="letter-sign"><div class="name">مهندس رضا کریمی</div><div class="title">مدیرعامل</div></div>
+      </main>
+      <footer class="lh-footer">
+        <div>تهران، خیابان نمونه، پلاک ۱۲۳، طبقه ۴</div>
+        <div>صفحه ۱ از ۱</div>
+      </footer>
+    </div>
+
+    <!-- فاکتور -->
+    <div class="page hide" id="doc-invoice">
+      <header class="lh-header">
+        <div class="logo"><svg width="76" height="76" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><rect x="6" y="6" width="108" height="108" rx="22" fill="url(#g2)"/><path d="M38 78 L38 42 L60 64 L82 42 L82 78" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="92" r="5" fill="#fff"/></svg></div>
+        <div class="info">
+          <div class="name">شرکت نمونه پارس</div>
+          <div class="name-en">Pars Sample Co.</div>
+          <div class="slogan">کیفیت، تعهد، نوآوری</div>
+        </div>
+        <div class="contact">
+          <div>تهران، خیابان نمونه، پلاک ۱۲۳، طبقه ۴</div>
+          <div>تلفن: +98 21 1234 5678</div>
+          <div>info@example.com · www.example.com</div>
+        </div>
+      </header>
+      <main class="lh-body">
+        <div class="inv-title">فاکتور فروش</div>
+        <div class="inv-top">
+          <div class="inv-box"><h3>مشخصات فاکتور</h3><div>شماره فاکتور: ۱۴۰۳-۰۰۵۷</div><div>تاریخ: ۱۴۰۳/۰۴/۰۸</div></div>
+          <div class="inv-box"><h3>خریدار</h3><div>شرکت آلفا تجارت</div><div>تهران، خیابان آزادی، پلاک ۴۵</div><div>تلفن: ۰۲۱-۸۸۸۸۷۷۷۷</div><div>کد اقتصادی: ۹۹۹۹-۸۸۸۸-۷۷۷۷</div></div>
+        </div>
+        <table class="inv">
+          <thead><tr><th>ردیف</th><th>شرح کالا / خدمات</th><th>تعداد</th><th>قیمت واحد</th><th>تخفیف</th><th>مبلغ کل</th></tr></thead>
+          <tbody>
+            <tr><td class="num">۱</td><td>خدمات طراحی وب‌سایت</td><td class="num">۱</td><td class="num">۴۵٬۰۰۰٬۰۰۰</td><td class="num">۰</td><td class="num">۴۵٬۰۰۰٬۰۰۰</td></tr>
+            <tr><td class="num">۲</td><td>پشتیبانی ماهانه (۶ ماه)</td><td class="num">۶</td><td class="num">۳٬۰۰۰٬۰۰۰</td><td class="num">۱٬۰۰۰٬۰۰۰</td><td class="num">۱۷٬۰۰۰٬۰۰۰</td></tr>
+            <tr><td class="num">۳</td><td>آموزش پرسنل</td><td class="num">۲</td><td class="num">۲٬۵۰۰٬۰۰۰</td><td class="num">۰</td><td class="num">۵٬۰۰۰٬۰۰۰</td></tr>
+          </tbody>
+        </table>
+        <div class="inv-totals">
+          <div class="row"><span>جمع کل</span><span>۶۸٬۰۰۰٬۰۰۰ ریال</span></div>
+          <div class="row"><span>مجموع تخفیف</span><span>۱٬۰۰۰٬۰۰۰ ریال</span></div>
+          <div class="row"><span>مالیات (۱۰٪)</span><span>۶٬۷۰۰٬۰۰۰ ریال</span></div>
+          <div class="row grand"><span>مبلغ قابل پرداخت</span><span>۷۳٬۷۰۰٬۰۰۰ ریال</span></div>
+        </div>
+        <div class="inv-notes">مهلت پرداخت: ۱۰ روز پس از صدور فاکتور.</div>
+        <div class="inv-notes">شرکت نمونه پارس — شناسه ملی ۱۴۰۰۱۲۳۴۵۶ — شماره ثبت ۵۴۳۲۱</div>
+      </main>
+      <footer class="lh-footer">
+        <div>کد اقتصادی: ۱۱۱۱-۲۲۲۲-۳۳۳۳ · شناسه ملی: ۱۴۰۰۱۲۳۴۵۶</div>
+        <div>صفحه ۱ از ۱</div>
+      </footer>
+    </div>
+  </div>
+
+<script>
+  function show(t){
+    document.getElementById('doc-letter').classList.toggle('hide', t!=='letter');
+    document.getElementById('doc-invoice').classList.toggle('hide', t!=='invoice');
+    document.getElementById('t-letter').classList.toggle('active', t==='letter');
+    document.getElementById('t-invoice').classList.toggle('active', t==='invoice');
+  }
+</script>
+</body>
+</html>

@@ -41,6 +41,18 @@ interface BroadcastState {
     isConnected: boolean;
     syncChannel: RealtimeChannel | null; // Keep track of active connection
 
+    // Live Translation Sync
+    liveTranslationText: string;
+    showLiveTranslation: boolean;
+    setLiveTranslation: (text: string, show: boolean, skipSync?: boolean) => void;
+
+    // Translation controls on LiveConsole
+    isTranslationActive: boolean;
+    fromTranslationLang: string;
+    toTranslationLang: string;
+    setTranslationActive: (active: boolean) => void;
+    setTranslationLanguages: (from: string, to: string) => void;
+
     // Actions
     setSessionId: (id: string) => void;
     setIsLive: (isLive: boolean) => void;
@@ -132,6 +144,23 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
 
     isConnected: false,
     syncChannel: null,
+
+    liveTranslationText: '',
+    showLiveTranslation: false,
+
+    isTranslationActive: false,
+    fromTranslationLang: 'en',
+    toTranslationLang: 'fa',
+
+    setLiveTranslation: (text, show, skipSync = false) => {
+        set({ liveTranslationText: text, showLiveTranslation: show });
+        if (!skipSync) {
+            get().pushRemoteSync({ type: 'SET_LIVE_TRANSLATION', text, show });
+        }
+    },
+
+    setTranslationActive: (active) => set({ isTranslationActive: active }),
+    setTranslationLanguages: (from, to) => set({ fromTranslationLang: from, toTranslationLang: to }),
 
     // Implementations
     setSessionId: (id) => set({ sessionId: id }),
@@ -276,6 +305,8 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
                     set({ scripturePopupScale: data.scale });
                 } else if (data.type === 'SET_LYRICS_VISIBILITY') {
                     set({ lyricsVisibility: data.visibility });
+                } else if (data.type === 'SET_LIVE_TRANSLATION') {
+                    set({ liveTranslationText: data.text, showLiveTranslation: data.show });
                 }
             })
             .subscribe((status) => {

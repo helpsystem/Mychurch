@@ -56,3 +56,54 @@ export async function enhanceText(text: string, language: 'en' | 'fa') {
         return { success: false, error: "خطا در برقراری ارتباط با هوش مصنوعی برای اصلاح متن." };
     }
 }
+
+export async function nvidiaTranslateText(text: string, fromLang: string, toLang: string) {
+    const apiKey = process.env.NVIDIA_API_KEY;
+    if (!apiKey) {
+        return { success: false, error: "NVIDIA API Key is not configured." };
+    }
+    
+    if (!text || text.trim() === '') {
+        return { success: false, error: "Text is empty." };
+    }
+
+    try {
+        const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "z-ai/glm-5.1",
+                messages: [
+                    {
+                        role: "system",
+                        content: "You are a professional real-time translator. Translate the user's speech text accurately, naturally, and contextually. Output ONLY the raw translation content, with no introductory text, no quotes, no explanations, and no markdown formatting."
+                    },
+                    {
+                        role: "user",
+                        content: `Translate this text from language code "${fromLang}" to language code "${toLang}". Text to translate:\n\n${text}`
+                    }
+                ],
+                temperature: 0.3,
+                top_p: 0.9,
+                max_tokens: 4096
+            })
+        });
+
+        if (!response.ok) {
+            const errBody = await response.text();
+            console.error("Nvidia API Error Body:", errBody);
+            return { success: false, error: `Nvidia API returned status ${response.status}` };
+        }
+
+        const data = await response.json();
+        const translatedText = data.choices?.[0]?.message?.content || "";
+        return { success: true, text: translatedText.trim() };
+    } catch (error: any) {
+        console.error("Nvidia Translation Action Error:", error);
+        return { success: false, error: "Failed to translate text via Nvidia AI." };
+    }
+}
+

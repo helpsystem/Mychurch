@@ -1,0 +1,102 @@
+/**
+ * Aras Tax Services - Admin Stylesheet
+ */
+
+.aras-tax-admin {
+    max-width: 1200px;
+}
+
+.aras-tax-header {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 25px rgba(26, 54, 93, 0.3);
+}
+
+.aras-tax-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.aras-tax-logo-section h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.aras-tax-tagline {
+    color: #c9a84c;
+    font-size: 1rem;
+    margin: 5px 0 0;
+    font-weight: 500;
+}
+
+.aras-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.aras-service-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.aras-service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px -3px rgba(0,0,0,0.15);
+}
+
+.aras-service-number {
+    color: #c9a84c;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.aras-service-card .dashicons {
+    font-size: 2.5rem;
+    width: auto;
+    height: auto;
+    color: #1a365d;
+    margin-bottom: 15px;
+}
+
+.aras-service-card h3 {
+    color: #1a365d;
+    font-size: 1.2rem;
+    margin: 0 0 10px;
+}
+
+.aras-service-card p {
+    color: #6c757d;
+    margin: 0 0 15px;
+    line-height: 1.6;
+}
+
+.form-table code {
+    background: #f1f5f9;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #1a365d;
+}
+
+.aras-color-picker {
+    max-width: 100px;
+}

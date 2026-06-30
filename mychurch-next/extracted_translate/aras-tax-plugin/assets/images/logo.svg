@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+    <defs>
+        <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1a365d;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#2c5282;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#c9a84c;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#d4b96a;stop-opacity:1"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Shield Icon -->
+    <g transform="translate(10, 10)">
+        <path d="M25 5 L45 15 L45 35 C45 48 35 55 25 60 C15 55 5 48 5 35 L5 15 Z"
+              fill="url(#primaryGrad)" stroke="url(#accentGrad)" stroke-width="2"/>
+        <!-- Dollar Sign -->
+        <text x="25" y="38" text-anchor="middle" fill="#c9a84c" font-family="Georgia, serif"
+              font-size="22" font-weight="bold">$</text>
+    </g>
+
+    <!-- Company Name -->
+    <text x="70" y="35" fill="#1a365d" font-family="Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="1">
+        ARAS TAX
+    </text>
+    <text x="70" y="58" fill="#c9a84c" font-family="Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="2">
+        SERVICES
+    </text>
+
+    <!-- Decorative Line -->
+    <line x1="70" y1="43" x2="185" y2="43" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+</svg>

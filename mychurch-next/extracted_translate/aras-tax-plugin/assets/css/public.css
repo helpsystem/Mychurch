@@ -1,0 +1,701 @@
+/**
+ * Aras Tax Services - Public Stylesheet
+ * Professional financial & tax consulting theme
+ */
+
+:root {
+    --aras-primary: #1a365d;
+    --aras-primary-dark: #152d4f;
+    --aras-accent: #c9a84c;
+    --aras-accent-light: #d4b96a;
+    --aras-white: #ffffff;
+    --aras-gray-light: #f8f9fa;
+    --aras-gray: #6c757d;
+    --aras-gray-dark: #343a40;
+    --aras-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --aras-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --aras-shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --aras-radius: 12px;
+}
+
+/* ─────────────────────────────────────────────
+   Base Reset & Typography
+   ───────────────────────────────────────────── */
+.aras-tax-banner *,
+.aras-tax-calculator *,
+.aras-tax-contact *,
+.aras-tax-services *,
+.aras-tax-team *,
+.aras-tax-w4-download *,
+.aras-tax-widget * {
+    box-sizing: border-box;
+    font-family: var(--aras-font);
+}
+
+/* ─────────────────────────────────────────────
+   Banner Styles
+   ───────────────────────────────────────────── */
+.aras-tax-banner {
+    position: relative;
+    padding: 80px 40px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+}
+
+.aras-tax-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: rgba(201, 168, 76, 0.08);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.aras-tax-banner-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.aras-tax-banner-logo {
+    margin-bottom: 20px;
+}
+
+.aras-tax-banner-title {
+    color: var(--aras-white);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 15px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.aras-tax-banner-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.2rem;
+    margin: 0 0 30px;
+    line-height: 1.6;
+}
+
+.aras-tax-banner-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ─────────────────────────────────────────────
+   Buttons
+   ───────────────────────────────────────────── */
+.aras-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.aras-btn-primary {
+    background: var(--aras-accent);
+    color: var(--aras-primary);
+    border-color: var(--aras-accent);
+}
+
+.aras-btn-primary:hover {
+    background: var(--aras-accent-light);
+    border-color: var(--aras-accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(201, 168, 76, 0.3);
+}
+
+.aras-btn-outline {
+    background: transparent;
+    color: var(--aras-white);
+    border-color: var(--aras-white);
+}
+
+.aras-btn-outline:hover {
+    background: var(--aras-white);
+    color: var(--aras-primary);
+    transform: translateY(-2px);
+}
+
+/* ─────────────────────────────────────────────
+   Tax Calculator
+   ───────────────────────────────────────────── */
+.aras-tax-calculator {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    background: var(--aras-white);
+    border-radius: var(--aras-radius);
+    box-shadow: var(--aras-shadow-lg);
+    border: 1px solid rgba(26, 54, 93, 0.08);
+}
+
+.aras-calc-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.aras-calc-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.aras-calc-header h3 {
+    color: var(--aras-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.aras-calc-header p {
+    color: var(--aras-gray);
+    margin: 0;
+}
+
+.aras-calc-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.aras-calc-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.aras-calc-group label {
+    font-weight: 600;
+    color: var(--aras-primary);
+    font-size: 0.9rem;
+}
+
+.aras-calc-group input,
+.aras-calc-group select {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: var(--aras-white);
+}
+
+.aras-calc-group input:focus,
+.aras-calc-group select:focus {
+    outline: none;
+    border-color: var(--aras-accent);
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
+}
+
+.aras-calc-submit {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    padding: 16px 32px;
+}
+
+.aras-calc-result {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px dashed #e2e8f0;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.aras-calc-result h4 {
+    color: var(--aras-primary);
+    margin: 0 0 20px;
+    text-align: center;
+}
+
+.aras-calc-result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.aras-result-item {
+    padding: 15px;
+    background: var(--aras-gray-light);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.aras-result-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--aras-gray);
+    margin-bottom: 5px;
+}
+
+.aras-result-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--aras-primary);
+}
+
+.aras-result-highlight {
+    color: var(--aras-accent);
+}
+
+.aras-calc-disclaimer {
+    margin-top: 20px;
+    padding: 12px;
+    background: rgba(201, 168, 76, 0.08);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--aras-gray);
+    text-align: center;
+    border-left: 3px solid var(--aras-accent);
+}
+
+/* ─────────────────────────────────────────────
+   Contact Section
+   ───────────────────────────────────────────── */
+.aras-tax-contact {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: var(--aras-white);
+    border-radius: var(--aras-radius);
+    box-shadow: var(--aras-shadow);
+}
+
+.aras-contact-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.aras-contact-header h3 {
+    color: var(--aras-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.aras-contact-header p {
+    color: var(--aras-gray);
+    margin: 0;
+}
+
+.aras-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.aras-contact-item {
+    padding: 25px;
+    text-align: center;
+    background: var(--aras-gray-light);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.aras-contact-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--aras-shadow);
+}
+
+.aras-contact-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.aras-contact-info h4 {
+    color: var(--aras-primary);
+    margin: 0 0 8px;
+    font-size: 1rem;
+}
+
+.aras-contact-info a,
+.aras-contact-info p {
+    color: var(--aras-gray);
+    text-decoration: none;
+    margin: 0;
+    word-break: break-all;
+}
+
+.aras-contact-info a:hover {
+    color: var(--aras-accent);
+}
+
+/* ─────────────────────────────────────────────
+   Services Section
+   ───────────────────────────────────────────── */
+.aras-tax-services {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.aras-services-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.aras-shape-label {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(201, 168, 76, 0.1);
+    color: var(--aras-accent);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.aras-services-header h3 {
+    color: var(--aras-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+
+.aras-services-header p {
+    color: var(--aras-gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.aras-services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.aras-service-card {
+    padding: 30px;
+    background: var(--aras-white);
+    border-radius: var(--aras-radius);
+    box-shadow: var(--aras-shadow);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(26, 54, 93, 0.05);
+}
+
+.aras-service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--aras-shadow-lg);
+}
+
+.aras-service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.aras-service-card h4 {
+    color: var(--aras-primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+.aras-service-card p {
+    color: var(--aras-gray);
+    margin: 0 0 15px;
+    line-height: 1.6;
+}
+
+.aras-service-link {
+    color: var(--aras-accent);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+
+.aras-service-link:hover {
+    color: var(--aras-primary);
+}
+
+/* ─────────────────────────────────────────────
+   Team Section
+   ───────────────────────────────────────────── */
+.aras-tax-team {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.aras-team-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.aras-team-header h3 {
+    color: var(--aras-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+
+.aras-team-header p {
+    color: var(--aras-gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.aras-team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.aras-team-card {
+    padding: 30px;
+    background: var(--aras-white);
+    border-radius: var(--aras-radius);
+    box-shadow: var(--aras-shadow);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.aras-team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--aras-shadow-lg);
+}
+
+.aras-team-avatar {
+    width: 80px;
+    height: 80px;
+    background: var(--aras-primary);
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.aras-team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.aras-team-initials {
+    color: var(--aras-accent);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.aras-team-card h4 {
+    color: var(--aras-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 5px;
+}
+
+.aras-team-role {
+    color: var(--aras-gray);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* ─────────────────────────────────────────────
+   W-4 Download Card
+   ───────────────────────────────────────────── */
+.aras-tax-w4-download {
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.aras-w4-card {
+    padding: 40px;
+    background: linear-gradient(135deg, var(--aras-primary) 0%, var(--aras-primary-dark) 100%);
+    border-radius: var(--aras-radius);
+    text-align: center;
+    box-shadow: var(--aras-shadow-lg);
+}
+
+.aras-w4-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.aras-w4-card h4 {
+    color: var(--aras-white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+.aras-w4-card p {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 25px;
+    line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────
+   Footer Branding
+   ───────────────────────────────────────────── */
+.aras-tax-footer-branding {
+    text-align: center;
+    padding: 20px;
+    background: var(--aras-primary);
+    color: var(--aras-white);
+}
+
+.aras-tax-footer-branding a {
+    color: var(--aras-accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.aras-tax-footer-branding a:hover {
+    text-decoration: underline;
+}
+
+/* ─────────────────────────────────────────────
+   Widget Styles
+   ───────────────────────────────────────────── */
+.aras-tax-widget .aras-widget-content {
+    padding: 25px;
+    background: var(--aras-white);
+    border-radius: var(--aras-radius);
+    box-shadow: var(--aras-shadow);
+}
+
+.aras-tax-widget .aras-widget-content h3 {
+    color: var(--aras-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--aras-accent);
+}
+
+.aras-tax-widget .aras-widget-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.aras-tax-widget .aras-widget-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.aras-tax-widget .aras-widget-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.aras-tax-widget .aras-widget-item a {
+    color: var(--aras-primary);
+    text-decoration: none;
+}
+
+.aras-tax-widget .aras-widget-item a:hover {
+    color: var(--aras-accent);
+}
+
+.aras-tax-widget .aras-widget-w4 {
+    margin: 20px 0;
+    padding-top: 15px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.aras-tax-widget .aras-w4-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--aras-accent);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 0;
+}
+
+.aras-tax-widget .aras-w4-link:hover {
+    color: var(--aras-primary);
+}
+
+.aras-tax-widget .aras-widget-btn {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* ─────────────────────────────────────────────
+   Responsive Design
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .aras-tax-banner {
+        padding: 50px 20px;
+    }
+
+    .aras-tax-banner-title {
+        font-size: 1.8rem;
+    }
+
+    .aras-tax-banner-subtitle {
+        font-size: 1rem;
+    }
+
+    .aras-tax-banner-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aras-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .aras-services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .aras-team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .aras-calc-result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .aras-tax-calculator {
+        padding: 25px;
+        margin: 20px auto;
+    }
+
+    .aras-tax-contact {
+        padding: 25px;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .aras-team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .aras-tax-banner-title {
+        font-size: 1.5rem;
+    }
+}

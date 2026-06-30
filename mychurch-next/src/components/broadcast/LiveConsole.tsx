@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { getPresentations, getPresentationById } from "@/actions/presentations";
+import { nvidiaTranslateText } from "@/actions/translate";
 import { BroadcastSession, SlideType, SlideContentLyrics } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { useShallow } from "zustand/react/shallow";
@@ -48,6 +49,14 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const initRemoteSync = useBroadcastStore(state => state.initRemoteSync);
     const disconnectSync = useBroadcastStore(state => state.disconnectSync);
     const isConnected = useBroadcastStore(state => state.isConnected);
+    
+    // Live Translation store fields
+    const isTranslationActive = useBroadcastStore(state => state.isTranslationActive);
+    const fromTranslationLang = useBroadcastStore(state => state.fromTranslationLang);
+    const toTranslationLang = useBroadcastStore(state => state.toTranslationLang);
+    const setLiveTranslation = useBroadcastStore(state => state.setLiveTranslation);
+    const liveTranslationText = useBroadcastStore(state => state.liveTranslationText);
+
     const viewerChannelRef = React.useRef<BroadcastChannel | null>(null);
 
     // Hardware bindings
@@ -210,6 +219,122 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
         const timer = setTimeout(autoStart, 1000);
         return () => clearTimeout(timer);
     }, []);
+
+    // ─── Live Speech Translation Overlay logic ───
+    const speechRecRef = React.useRef<any>(null);
+    const speechAccumulatorRef = React.useRef<string>("");
+
+    useEffect(() => {
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (!SpeechRecognition) return;
+
+        if (isTranslationActive) {
+            console.log("[LiveConsole] Starting Live Translation Overlay Speech Recognition...");
+            const rec = new SpeechRecognition();
+            
+            // Map simple lang codes to full STT codes
+            const STT_CODES: Record<string, string> = {
+                'en': 'en-US',
+                'fa': 'fa-IR',
+                'ar': 'ar-SA',
+                'es': 'es-ES'
+            };
+            
+            rec.lang = STT_CODES[fromTranslationLang] || 'en-US';
+            rec.continuous = true;
+            rec.interimResults = true;
+            rec.maxAlternatives = 1;
+            
+            speechAccumulatorRef.current = "";
+            
+            rec.onstart = () => {
+                console.log("[LiveConsole] Speech Recognition active for presentation overlay.");
+                toast.info("مترجم همزمان پرزنتیشن فعال شد. در حال شنود صدا...");
+            };
+            
+            rec.onresult = async (event: any) => {
+                let interim = "";
+                let final = "";
+                
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        final += transcript;
+                    } else {
+                        interim += transcript;
+                    }
+                }
+                
+                if (final) {
+                    speechAccumulatorRef.current += (speechAccumulatorRef.current ? " " : "") + final;
+                    const textToTranslate = speechAccumulatorRef.current;
+                    
+                    // Call translation API
+                    try {
+                        const res = await nvidiaTranslateText(textToTranslate, fromTranslationLang, toTranslationLang);
+                        if (res.success && res.text) {
+                            setLiveTranslation(res.text, true);
+                            
+                            // Send via BroadcastChannel for local/same-browser viewers
+                            if (viewerChannelRef.current) {
+                                viewerChannelRef.current.postMessage({
+                                    type: 'live_translation_sync',
+                                    payload: { text: res.text, show: true }
+                                });
+                            }
+                        }
+                    } catch (e) {
+                        console.error("[LiveConsole] Translation error:", e);
+                    }
+                }
+            };
+            
+            rec.onerror = (event: any) => {
+                if (event.error !== "no-speech" && event.error !== "aborted") {
+                    console.error("[LiveConsole] Speech recognition error:", event.error);
+                }
+            };
+            
+            rec.onend = () => {
+                // If it was still supposed to be active, restart it
+                if (useBroadcastStore.getState().isTranslationActive) {
+                    try {
+                        rec.start();
+                    } catch (e) {
+                        console.error("[LiveConsole] Failed to restart speech recognition:", e);
+                    }
+                }
+            };
+            
+            speechRecRef.current = rec;
+            rec.start();
+        } else {
+            console.log("[LiveConsole] Stopping Live Translation Overlay Speech Recognition...");
+            if (speechRecRef.current) {
+                try {
+                    speechRecRef.current.stop();
+                } catch (e) {}
+                speechRecRef.current = null;
+            }
+            setLiveTranslation("", false);
+            
+            // Sync clear with local/same-browser viewers
+            if (viewerChannelRef.current) {
+                viewerChannelRef.current.postMessage({
+                    type: 'live_translation_sync',
+                    payload: { text: "", show: false }
+                });
+            }
+        }
+        
+        return () => {
+            if (speechRecRef.current) {
+                try { speechRecRef.current.stop(); } catch (e) {}
+                speechRecRef.current = null;
+            }
+        };
+    }, [isTranslationActive, fromTranslationLang, toTranslationLang]);
+
     const [savedSessions, setSavedSessions] = React.useState<BroadcastSession[]>([]);
     const [isLoadingSessions, setIsLoadingSessions] = React.useState(false);
     const [isGeneratingViewerLink, setIsGeneratingViewerLink] = React.useState(false);

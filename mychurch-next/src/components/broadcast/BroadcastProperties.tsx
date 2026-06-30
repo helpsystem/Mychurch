@@ -20,6 +20,14 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
     const toggleMic = useBroadcastStore(state => state.toggleMic);
     const setShowDeviceSelector = useBroadcastStore(state => state.setShowDeviceSelector);
 
+    // Live Speech Translation variables
+    const isTranslationActive = useBroadcastStore(state => state.isTranslationActive);
+    const fromTranslationLang = useBroadcastStore(state => state.fromTranslationLang);
+    const toTranslationLang = useBroadcastStore(state => state.toTranslationLang);
+    const setTranslationActive = useBroadcastStore(state => state.setTranslationActive);
+    const setTranslationLanguages = useBroadcastStore(state => state.setTranslationLanguages);
+    const liveTranslationText = useBroadcastStore(state => state.liveTranslationText);
+
     return (
         <aside className={cn("w-72 bg-neutral-900 border-l border-border/10 flex flex-col font-[Vazirmatn] shrink-0", className)}>
             <div className="h-14 p-4 border-b border-border/10 flex items-center justify-between">
@@ -267,6 +275,73 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
                             <span>150%</span>
                         </div>
                     </div>
+                </div>
+
+                {/* 7. Live Speech Translation Overlay Section */}
+                <div className="space-y-3 p-3 bg-indigo-950/20 border border-indigo-500/20 rounded-2xl">
+                    <label className="text-xs font-bold text-indigo-400 uppercase flex items-center gap-1.5 border-b border-indigo-500/10 pb-1">
+                        <Mic className="w-3.5 h-3.5 text-indigo-400" /> ترجمه همزمان گفتار
+                    </label>
+
+                    <div className="flex items-center justify-between py-1">
+                        <span className="text-xs text-indigo-200">فعال‌سازی زیرنویس ترجمه</span>
+                        <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                                type="checkbox"
+                                className="sr-only peer"
+                                checked={isTranslationActive}
+                                onChange={(e) => setTranslationActive(e.target.checked)}
+                                title="Toggle Live Translation"
+                            />
+                            <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                        </label>
+                    </div>
+
+                    {isTranslationActive && (
+                        <div className="space-y-3 pt-2 animate-in slide-in-from-top-2 duration-200">
+                            <div className="grid grid-cols-2 gap-2 text-xs">
+                                <div>
+                                    <span className="text-[10px] text-muted-foreground block mb-1">زبان گوینده:</span>
+                                    <select
+                                        value={fromTranslationLang}
+                                        onChange={(e) => setTranslationLanguages(e.target.value, toTranslationLang)}
+                                        className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-white text-xs"
+                                        title="From Lang"
+                                    >
+                                        <option value="en">🇺🇸 English</option>
+                                        <option value="fa">🇮🇷 فارسی</option>
+                                        <option value="ar">🇸🇦 العربية</option>
+                                        <option value="es">🇪🇸 Español</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <span className="text-[10px] text-muted-foreground block mb-1">زبان ترجمه:</span>
+                                    <select
+                                        value={toTranslationLang}
+                                        onChange={(e) => setTranslationLanguages(fromTranslationLang, e.target.value)}
+                                        className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-white text-xs"
+                                        title="To Lang"
+                                    >
+                                        <option value="fa">🇮🇷 فارسی</option>
+                                        <option value="en">🇺🇸 English</option>
+                                        <option value="ar">🇸🇦 العربية</option>
+                                        <option value="es">🇪🇸 Español</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {/* Small Status & Live Text View */}
+                            <div className="p-2 bg-black/40 rounded-lg border border-white/5 space-y-1">
+                                <div className="flex items-center gap-1.5 text-[9px] text-emerald-400 font-bold">
+                                    <span className="h-1.5 w-1.5 bg-emerald-500 rounded-full animate-ping" />
+                                    <span>میکروفون فعال (درحال شنود)</span>
+                                </div>
+                                <p className="text-[10px] text-neutral-300 italic line-clamp-2">
+                                    {liveTranslationText || "صدا ضبط و ترجمه می‌شود..."}
+                                </p>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
             </div>

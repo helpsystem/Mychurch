@@ -1,0 +1,362 @@
+/**
+ * Aras Tax AI Translator v2 - Enhanced Styles
+ * RTL support, language detection display, quick language pairs
+ */
+
+.aras-ai-translator-widget {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ─────────────────────────────────────────────
+   Header
+   ───────────────────────────────────────────── */
+.aras-translator-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.aras-translator-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.aras-translator-header-text h3 {
+    color: #1a365d;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.aras-translator-subtitle {
+    color: #64748b;
+    margin: 4px 0 0;
+    font-size: 0.88rem;
+}
+
+/* ─────────────────────────────────────────────
+   Controls
+   ───────────────────────────────────────────── */
+.aras-translator-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.aras-translator-select-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.aras-translator-select-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a365d;
+    margin-bottom: 6px;
+}
+
+.aras-translate-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: #f8fafc;
+    color: #1a365d;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.aras-translate-select:focus {
+    outline: none;
+    border-color: #c9a84c;
+    background: #ffffff;
+}
+
+.aras-translate-switch {
+    background: #1a365d;
+    color: #c9a84c;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 2px;
+}
+
+.aras-translate-switch:hover {
+    background: #c9a84c;
+    color: #1a365d;
+    transform: rotate(180deg);
+}
+
+/* ─────────────────────────────────────────────
+   Detected Language
+   ───────────────────────────────────────────── */
+.aras-detected-lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(201, 168, 76, 0.08);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+    color: #1a365d;
+    font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────
+   Text Areas
+   ───────────────────────────────────────────── */
+.aras-translator-textarea-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.aras-textarea-wrapper {
+    position: relative;
+}
+
+.aras-textarea-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: #f1f5f9;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #e2e8f0;
+    border-bottom: none;
+}
+
+.aras-textarea-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1a365d;
+}
+
+.aras-copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.aras-copy-btn:hover {
+    opacity: 1;
+}
+
+.aras-char-count {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.aras-translate-input,
+.aras-translate-output {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 0 0 10px 10px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: all 0.2s ease;
+    background: #f8fafc;
+    color: #1a365d;
+    min-height: 120px;
+}
+
+.aras-translate-input:focus {
+    outline: none;
+    border-color: #c9a84c;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+.aras-translate-output {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    cursor: default;
+}
+
+/* RTL support */
+.aras-translate-input.rtl,
+.aras-translate-output.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+/* ─────────────────────────────────────────────
+   Back Translation (Quality Check)
+   ───────────────────────────────────────────── */
+.aras-back-trans-container {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: rgba(26, 54, 93, 0.04);
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+}
+
+.aras-back-trans-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.aras-back-trans-text {
+    font-size: 0.9rem;
+    color: #1a365d;
+    line-height: 1.6;
+    padding: 8px 12px;
+    background: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.aras-close-back {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.aras-close-back:hover {
+    color: #ef4444;
+}
+
+/* ─────────────────────────────────────────────
+   Translate Button
+   ───────────────────────────────────────────── */
+.aras-translate-button {
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.aras-translate-button:hover {
+    background: linear-gradient(135deg, #c9a84c 0%, #d4b96a 100%);
+    color: #1a365d;
+}
+
+.aras-translate-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.aras-translate-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #1a365d;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────
+   Quick Language Pairs
+   ───────────────────────────────────────────── */
+.aras-quick-pairs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+}
+
+.aras-quick-label {
+    font-size: 0.82rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.aras-quick-pair {
+    padding: 6px 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.aras-quick-pair:hover {
+    background: rgba(201, 168, 76, 0.12);
+    border-color: #c9a84c;
+    transform: translateY(-2px);
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .aras-translator-textarea-group {
+        grid-template-columns: 1fr;
+    }
+
+    .aras-translator-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .aras-translate-switch {
+        align-self: center;
+        transform: rotate(90deg);
+    }
+
+    .aras-translate-switch:hover {
+        transform: rotate(270deg);
+    }
+
+    .aras-ai-translator-widget {
+        padding: 20px;
+        margin: 20px auto;
+    }
+}

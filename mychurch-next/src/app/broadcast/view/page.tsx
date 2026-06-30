@@ -39,6 +39,8 @@ interface ViewerState {
         showFinglish: boolean;
         showEnglish: boolean;
     } | null;
+    liveTranslationText?: string;
+    showLiveTranslation?: boolean;
 }
 
 const stripChordMarkers = (text: string): string => {
@@ -135,7 +137,9 @@ function ViewerContent() {
         audioIsPlaying: false,
         activeScriptureReference: null,
         scripturePopupScale: 1.0,
-        lyricsVisibility: null
+        lyricsVisibility: null,
+        liveTranslationText: "",
+        showLiveTranslation: false
     });
     const [showGlassPopup, setShowGlassPopup] = useState(false);
     const activeLineRef = useRef<HTMLDivElement>(null);
@@ -332,6 +336,14 @@ function ViewerContent() {
                         lyricsVisibility: msg.visibility
                     }));
                 }
+
+                if (msg.type === 'SET_LIVE_TRANSLATION') {
+                    setState(prev => ({
+                        ...prev,
+                        liveTranslationText: msg.text,
+                        showLiveTranslation: msg.show
+                    }));
+                }
             })
             .subscribe((status) => {
                 console.log(`📺 [Viewer Realtime] Status for ${channelName}:`, status);
@@ -441,6 +453,14 @@ function ViewerContent() {
                     ...prev,
                     audioCurrentTime: msg.payload.currentTime,
                     audioIsPlaying: msg.payload.isPlaying
+                }));
+            }
+
+            if (msg.type === 'live_translation_sync' && msg.payload) {
+                setState(prev => ({
+                    ...prev,
+                    liveTranslationText: msg.payload.text,
+                    showLiveTranslation: msg.payload.show
                 }));
             }
         };
@@ -701,6 +721,21 @@ function ViewerContent() {
                             <span className="font-bold text-cyan-300 font-mono tracking-wide font-sans">join.freeconferencecall.com/iranianchurchdcus</span>
                         </div>
                     </div>
+                </div>
+            )}
+
+            {/* Live Translation Subtitles Overlay */}
+            {state.showLiveTranslation && state.liveTranslationText && (
+                <div 
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[65] w-[80%] max-w-4xl rounded-2xl border border-indigo-500/30 bg-black/85 backdrop-blur-md shadow-2xl p-6 text-center text-white animate-slideInUp font-[Vazirmatn]"
+                    style={{ 
+                        boxShadow: "0 0 25px rgba(99, 102, 241, 0.25)",
+                        border: "1px solid rgba(99, 102, 241, 0.3)"
+                    }}
+                >
+                    <p className="text-xl md:text-2xl font-black text-indigo-200 tracking-wide leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        {state.liveTranslationText}
+                    </p>
                 </div>
             )}
 
