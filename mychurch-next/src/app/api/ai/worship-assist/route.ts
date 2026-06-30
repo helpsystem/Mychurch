@@ -17,13 +17,6 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Missing required fields: mode and lyricsFA" }, { status: 400 });
         }
 
-        const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
-        if (!apiKey) {
-            return NextResponse.json({ error: "Gemini API key not configured." }, { status: 500 });
-        }
-
-        const genAI = new GoogleGenAI({ apiKey });
-
         let prompt = "";
 
         if (mode === "translate") {
@@ -72,13 +65,58 @@ ${lyricsFA}`;
             return NextResponse.json({ error: "Invalid mode. Use 'translate', 'chords', 'clean', or 'finglish'." }, { status: 400 });
         }
 
-        const response = await genAI.models.generateContent({
-            model: "gemini-2.0-flash",
-            contents: prompt
-        });
-        const text = response.text || "";
+        const nvidiaKey = process.env.NVIDIA_API_KEY;
+        let text = "";
 
-        return NextResponse.json({ result: text });
+        if (nvidiaKey) {
+            console.log(`[WorshipAssistAPI] Processing mode '${mode}' via Nvidia GLM-5.1`);
+            const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${nvidiaKey}`
+                },
+                body: JSON.stringify({
+                    model: "z-ai/glm-5.1",
+                    messages: [
+                        {
+                            role: "system",
+                            content: "You are a professional Christian worship leader, translator, and arranger. Return ONLY the final requested translation, chord chart, cleaned lyrics, or Finglish transliteration. Do NOT include markdown blocks, backticks, quotes, introductory text, or explanations."
+                        },
+                        {
+                            role: "user",
+                            content: prompt
+                        }
+                    ],
+                    temperature: 0.2,
+                    top_p: 0.9,
+                    max_tokens: 4096
+                })
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                console.error(`[WorshipAssistAPI] Nvidia API returned status ${response.status}:`, errText);
+                throw new Error(`Nvidia API error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            text = data.choices?.[0]?.message?.content || "";
+        } else {
+            console.log(`[WorshipAssistAPI] NVIDIA_API_KEY not configured. Falling back to Gemini 2.0 Flash.`);
+            const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+            if (!geminiKey) {
+                return NextResponse.json({ error: "No AI API key is configured on the server." }, { status: 500 });
+            }
+            const genAI = new GoogleGenAI({ apiKey: geminiKey });
+            const response = await genAI.models.generateContent({
+                model: "gemini-2.0-flash",
+                contents: prompt
+            });
+            text = response.text || "";
+        }
+
+        return NextResponse.json({ result: text.trim() });
 
     } catch (error: any) {
         console.error("[Worship AI] Error:", error);
