@@ -81,7 +81,9 @@ set -e
 cd $VPS_NEXT_PATH
 rm -rf .next.old
 [ -d .next ] && mv .next .next.old || true
-tar -xzf $TAR_FILE || [ $? -eq 2 ]
+set +e
+tar -xzf $TAR_FILE
+set -e
 rm -f $TAR_FILE
 rm -rf .next.old
 
