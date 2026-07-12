@@ -97,7 +97,17 @@ export async function sendMail(options: MailOptions) {
     // Fallback to generic SMTP
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
         console.log(`[Mailer] 🔄 Using fallback SMTP with user: ${process.env.SMTP_USER}`);
-        const info = await fallbackTransporter.sendMail(mailPayload);
+        
+        // Override the 'from' address to match the authenticated SMTP user/domain
+        // while preserving the professional display name to ensure SPF/DKIM validation.
+        const displayName = "Iranian Christian Church DC";
+        const smtpEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
+        const fallbackPayload = {
+            ...mailPayload,
+            from: `${displayName} <${smtpEmail}>`
+        };
+
+        const info = await fallbackTransporter.sendMail(fallbackPayload);
         console.log("[Mailer] ✅ Sent via Fallback SMTP:", info.messageId);
         return info;
     }

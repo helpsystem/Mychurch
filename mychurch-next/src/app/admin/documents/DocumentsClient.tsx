@@ -14,12 +14,34 @@ import { toast } from "sonner";
 import {
   FileText, Printer, Plus, Building2, CreditCard, Package,
   FileSignature, Check, DollarSign, X, Settings, Wand2,
-  Languages, Loader2, Sparkles, Hash, ChevronDown, Save, Send,
+  Languages, Loader2, Sparkles, Hash, Save, Send,
   Globe, Phone, Mail, User, MapPin, Calendar, History as HistoryIcon, Search, Trash2, Copy, Pencil,
-  Link2, Share2, CheckSquare, Square, FolderOpen, Folder, Star, Inbox, ChevronRight, ClipboardList, ExternalLink, RefreshCw
+  Link2, Share2, CheckSquare, Square, Folder, Star, Inbox, ChevronRight, ClipboardList, ExternalLink, RefreshCw
 } from "lucide-react";
-import { QRCodeSVG, QRCodeCanvas } from "qrcode.react";
+import { QRCodeSVG } from "qrcode.react";
 import QRCode from "qrcode";
+
+export interface DocHistoryItem {
+  id: string;
+  type: "letter" | "receipt" | "inkind" | "invoice";
+  date: string;
+  timestamp: number;
+  refNo: string;
+  recipient: string;
+  subject: string;
+  bodyEn?: string;
+  bodyFa?: string;
+  amount?: number;
+  donorName?: string;
+  donorAddress?: string;
+  toAddress?: string;
+  invoiceAddress?: string;
+  invoiceNotes?: string;
+  inKindItems?: { name: string; qty: number; value: number }[];
+  invoiceItems?: { id: string; description: string; total: number }[];
+  invoiceWallet?: string;
+  lang?: "en" | "fa";
+}
 
 
 export interface DocumentDesign {
@@ -102,10 +124,6 @@ export function toEnglishDigits(str: string): string {
     result = result.replace(persianDigits[i], String(i)).replace(arabicDigits[i], String(i));
   }
   return result;
-}
-
-function formatDigits(text: string) {
-  return toEnglishDigits(text);
 }
 
 // ─── Print CSS (injected once per document render) ───────────────────────────
@@ -275,11 +293,9 @@ function QRImage({ value, size = 120 }: { value: string; size?: number }) {
 }
 
 // ─── Inline Document Footer (replaces fixed-position footer) ─────────────────
-// Sits at the bottom of the document in normal flow — works for screen, print, and PDF capture
-function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, showQR, totalPages, design }: {
-  qrData: string; refNo: string; churchName: string;
+function DocFooter({ qrData, refNo, church, churchEmail, churchWeb, isRtl, showQR, design }: {
+  qrData: string; refNo: string; church: typeof DEFAULT_CHURCH;
   churchEmail?: string; churchWeb?: string; isRtl?: boolean; showQR?: boolean;
-  totalPages?: number;
   design?: typeof DEFAULT_CHURCH.designEn;
 }) {
   const fs = design?.footerSize || 10;
@@ -304,13 +320,15 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
       {/* Left/Right: Church info + ref */}
       <div style={{ display: "flex", flexDirection: "column", gap: "2px", flex: 1, direction: "ltr" }}>
         <div style={{ fontSize: `${(fs * 0.65).toFixed(1)}pt`, color: "#64748b", fontWeight: 700, letterSpacing: "0.02em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: "1px" }}>
-          THIS DOCUMENT IS OFFICIALLY GENERATED AND VERIFIED BY THE IRANIAN CHRISTIAN CHURCH OF WASHINGTON DC.
+          {isRtl
+            ? "این سند بهصورت رسمی توسط کلیسای ایرانیان مسیحی واشنگتن دیسی صادر و تأیید شده است."
+            : "THIS DOCUMENT IS OFFICIALLY GENERATED AND VERIFIED BY THE IRANIAN CHRISTIAN CHURCH OF WASHINGTON DC."}
         </div>
         <div style={{ fontSize: `${(fs * 0.9).toFixed(1)}pt`, fontWeight: 900, color: "#0f172a", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "monospace" }}>
-          {churchName}
+          {church.nameEn}
         </div>
         <div style={{ fontSize: `${(fs * 0.75).toFixed(1)}pt`, color: "#64748b", fontFamily: "monospace" }}>
-          {churchWeb || "iranianchurchdc.com"}&nbsp;·&nbsp;{churchEmail || "info@iranianchurchdc.com"}
+          {churchWeb || church.web}&nbsp;·&nbsp;{churchEmail || church.email}
         </div>
         <div style={{ fontSize: `${(fs * 0.75).toFixed(1)}pt`, color: "#94a3b8", fontFamily: "monospace", marginTop: "1px" }}>
           {isRtl ? "شماره سند:" : "Document Ref:"}&nbsp;<span style={{ color: "#1e40af", fontWeight: 700 }}>{refNo}</span>
@@ -320,8 +338,8 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
         </div>
       </div>
 
-      {/* Right: QR code */}
-      {showQR !== false && (
+      {/* Right: QR code — page numbering removed here; the real per-page counter lives in @page CSS (see PrintStyles) */}
+      {showQR !== false && qrData && (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3px", flexShrink: 0 }}>
           <div style={{ padding: "3px", border: "1.5px solid #1e293b", borderRadius: "5px", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <QRCodeSVG
@@ -332,7 +350,7 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
               fgColor="#000000"
               marginSize={0}
               imageSettings={{
-                src: "/logo-transparent.png",
+                src: church.logo,
                 height: 12,
                 width: 12,
                 excavate: true,
@@ -341,20 +359,6 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
           </div>
           <div style={{ fontSize: `${(fs * 0.7).toFixed(1)}pt`, fontWeight: 900, color: "#475569", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace" }}>
             {isRtl ? "اسکن برای تأیید" : "SCAN TO VERIFY"}
-          </div>
-          <div 
-            className="print-page-num-in-body"
-            style={{ fontSize: `${(fs * 0.7).toFixed(1)}pt`, fontWeight: 900, color: "#64748b", fontFamily: "monospace", letterSpacing: "0.08em", marginTop: "1px" }}
-          >
-            {isRtl ? (
-              <>
-                صفحه ۱{totalPages && totalPages > 1 ? ` از ${toEnglishDigits(String(totalPages))}` : ""}
-              </>
-            ) : (
-              <>
-                PAGE 1{totalPages && totalPages > 1 ? ` OF ${totalPages}` : ""}
-              </>
-            )}
           </div>
         </div>
       )}
@@ -365,20 +369,27 @@ function DocFooter({ qrData, refNo, churchName, churchEmail, churchWeb, isRtl, s
 // ─── Component: QR Code ──────────────────────────────────────────────────────
 const SITE_URL = typeof window !== "undefined" ? window.location.origin : "https://www.iranianchurchdc.com";
 
-function DocumentQR({ data, size = 80 }: { data: string; size?: number }) {
+export function buildVerifyUrl(church: typeof DEFAULT_CHURCH, path: string, params: Record<string, string>) {
+  const baseWeb = church.web || "www.iranianchurchdc.com";
+  const base = baseWeb.startsWith("http") ? baseWeb : `https://${baseWeb}`;
+  const qs = new URLSearchParams(params).toString();
+  return `${base.replace(/\/$/, "")}/verify/${encodeURIComponent(path)}${qs ? `?${qs}` : ""}`;
+}
+
+function DocumentQR({ data, size = 80, logo }: { data: string; size?: number; logo?: string }) {
   const url = data.startsWith("http") ? data : `${SITE_URL}/verify/${encodeURIComponent(data)}`;
 
   return (
-    <QRCodeCanvas 
-      value={url} 
+    <QRCodeSVG
+      value={url}
       size={size * 2}
       style={{ width: `${size}px`, height: `${size}px` }}
-      level="M" 
+      level="M"
       bgColor="#ffffff"
       fgColor="#000000"
       marginSize={1}
       imageSettings={{
-        src: "/logo-transparent.png",
+        src: logo || "/logo-transparent.png",
         height: Math.floor(size * 2 * 0.22),
         width: Math.floor(size * 2 * 0.22),
         excavate: true,
@@ -625,78 +636,108 @@ function AIButton({ label, onClick, loading, disabled, icon }: {
 }
 
 // ─── Letterhead (Print) ──────────────────────────────────────────────────────
-function Letterhead({ church, lang, docRef, date }: { church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; docRef?: string; date?: string }) {
+function Letterhead({ church, lang, docRef, date, containerPadding = "12.7mm" }: {
+  church: typeof DEFAULT_CHURCH; lang: "en" | "fa"; docRef?: string; date?: string; containerPadding?: string;
+}) {
   const name = lang === "fa" ? church.nameFa : church.nameEn;
   const theme = church.letterheadTheme;
+  const isRtl = lang === "fa";
 
   const digitStyle = { fontVariantNumeric: "tabular-nums" } as const;
-
   const design = lang === "fa" ? church.designFa : church.designEn;
-  const isRtl = lang === "fa";
 
   if (theme === "custom" && church.customHeaderImage) {
     return (
       <div className="mb-4 relative z-10" style={digitStyle}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={church.customHeaderImage} alt="Custom Header" crossOrigin="anonymous" className="w-full h-auto" />
-        <div className="flex justify-end text-[10px] text-gray-400 mt-1">Ref: {docRef} | {date}</div>
+        <div className="flex justify-end text-[10px] text-gray-400 mt-1">
+          {isRtl ? "شماره:" : "Ref:"} {docRef} | {date}
+        </div>
       </div>
     );
   }
 
   return (
-    <div className={`mb-10 relative z-10`} style={{ ...digitStyle, paddingBottom: `${design.headerPadding / 2}px` }} dir="ltr">
-      {/* Decorative Top Bar */}
-      <div className="absolute -top-[12.7mm] -left-[12.7mm] -right-[12.7mm] h-4 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 shadow-sm" />
-      
+    <div className="mb-10 relative z-10" style={{ ...digitStyle, paddingBottom: `${design.headerPadding / 2}px` }} dir="ltr">
+      {/* Decorative Top Bar — offset matches the actual container padding, fixes misalignment on 20mm-padded docs like invoices */}
+      <div
+        className="absolute h-4 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 shadow-sm"
+        style={{ top: `-${containerPadding}`, left: `-${containerPadding}`, right: `-${containerPadding}` }}
+      />
+
       <div className="flex justify-between items-start pt-6">
-         {/* Left Side: Logo & Name */}
-         <div className="flex items-center gap-6">
-            <div className="relative shrink-0">
-              <div className="absolute inset-0 bg-blue-600/5 rounded-2xl blur-xl" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={church.logo} alt="Logo" crossOrigin="anonymous" className="object-contain relative z-10 drop-shadow-sm" style={{ height: `${design.logoSize}px`, width: "auto" }} />
-            </div>
-            
-            <div className="flex flex-col border-l-2 border-slate-200 pl-5 py-1">
-              <h1 className="text-slate-900 tracking-tighter leading-none" style={{ fontSize: `${design.titleSize}px`, fontWeight: 900, fontFamily: design.fontFamily }}>{name}</h1>
-              <p className="text-[12px] uppercase font-black text-blue-700 tracking-[0.25em] mt-1.5">{church.denomination}</p>
-            </div>
-         </div>
+        {/* Left Side: Logo & Name */}
+        <div className="flex items-center gap-6">
+          <div className="relative shrink-0">
+            <div className="absolute inset-0 bg-blue-600/5 rounded-2xl blur-xl" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={church.logo}
+              alt="Logo"
+              crossOrigin="anonymous"
+              className="object-contain relative z-10 drop-shadow-sm"
+              style={{ height: `${design.logoSize}px`, width: "auto" }}
+            />
+          </div>
 
-         {/* Right Side: Contact Info & Meta */}
-         <div className="text-right flex flex-col justify-between items-end h-full py-1">
-            <div className="space-y-1.5 text-[13px] text-slate-500 font-medium">
-              <div className="flex items-center justify-end gap-2 text-slate-700 font-bold text-[13.5px]">
-                {church.address} <MapPin className="w-3.5 h-3.5 text-blue-600"/>
-              </div>
-              <div className="flex items-center justify-end gap-4">
-                <span className="flex items-center gap-1.5 text-[12.5px]">{church.web} <Globe className="w-3 h-3 text-slate-400"/></span>
-                <span className="flex items-center gap-1.5 text-[12.5px]">{church.email} <Mail className="w-3 h-3 text-slate-400"/></span>
-                <span className="flex items-center gap-1.5 text-[12.5px]">{church.phone} <Phone className="w-3 h-3 text-slate-400"/></span>
-              </div>
+          <div className="flex flex-col border-l-2 border-slate-200 pl-5 py-1">
+            <h1
+              className="text-slate-900 tracking-tighter leading-none"
+              style={{ fontSize: `${design.titleSize}px`, fontWeight: 900, fontFamily: design.fontFamily }}
+            >
+              {name}
+            </h1>
+            <p className="text-[12px] uppercase font-black text-blue-700 tracking-[0.25em] mt-1.5">
+              {church.denomination}
+            </p>
+          </div>
+        </div>
+
+        {/* Right Side: Contact Info & Meta */}
+        <div className="text-right flex flex-col justify-between items-end h-full py-1 max-w-[340px]">
+          <div className="space-y-1.5 text-[13px] text-slate-500 font-medium">
+            <div className="flex items-center justify-end gap-2 text-slate-700 font-bold text-[13.5px]">
+              {church.address} <MapPin className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            </div>
+            {/* flex-wrap prevents overflow when web/email/phone strings are long */}
+            <div className="flex items-center justify-end gap-4 flex-wrap">
+              <span className="flex items-center gap-1.5 text-[12.5px] whitespace-nowrap">
+                {church.web} <Globe className="w-3 h-3 text-slate-400 shrink-0" />
+              </span>
+              <span className="flex items-center gap-1.5 text-[12.5px] whitespace-nowrap">
+                {church.email} <Mail className="w-3 h-3 text-slate-400 shrink-0" />
+              </span>
+              <span className="flex items-center gap-1.5 text-[12.5px] whitespace-nowrap">
+                {church.phone} <Phone className="w-3 h-3 text-slate-400 shrink-0" />
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-4 flex items-center gap-4 text-sm">
+            <div className="text-right uppercase tracking-widest font-bold text-slate-400">
+              <span className="text-[11px] block text-slate-400">{isRtl ? "تاریخ" : "Date"}</span>
+              <span className="text-slate-900">
+                {date || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+              </span>
             </div>
 
-            <div className="mt-4 flex items-center gap-4 text-sm">
-              <div className="text-right uppercase tracking-widest font-bold text-slate-400">
-                <span className="text-[11px] block text-slate-400">Date</span>
-                <span className="text-slate-900">{date || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
-              </div>
-              
-              <div className="w-px h-8 bg-slate-200" />
-              
-              <div className="text-right uppercase tracking-widest font-bold text-slate-400">
-                <span className="text-[11px] block text-slate-400">Reference No.</span>
-                <span className="text-blue-700">{docRef || "N/A"}</span>
-              </div>
+            <div className="w-px h-8 bg-slate-200" />
+
+            <div className="text-right uppercase tracking-widest font-bold text-slate-400">
+              <span className="text-[11px] block text-slate-400">{isRtl ? "شماره پیگیری" : "Reference No."}</span>
+              <span className="text-blue-700">{docRef || "N/A"}</span>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
-      
+
       {/* Bottom Separator */}
       <div className="mt-8 flex items-center gap-4">
         <div className="h-px bg-slate-200 flex-1" />
-        <div className="text-[11.5px] font-mono text-slate-400 uppercase tracking-widest px-2">Official Document // EIN: {church.ein}</div>
+        <div className="text-[11.5px] font-mono text-slate-400 uppercase tracking-widest px-2 whitespace-nowrap">
+          {isRtl ? `سند رسمی // شناسه: ${church.ein}` : `Official Document // EIN: ${church.ein}`}
+        </div>
         <div className="h-px bg-slate-200 flex-1" />
       </div>
     </div>
@@ -716,7 +757,11 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
   const design = isRtl ? church.designFa : church.designEn;
   const dateStr = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   // Each letter gets its own unique verify URL — scanned QR opens the verification page
-  const verifyUrl = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(refNo)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=letter`;
+  const verifyUrl = buildVerifyUrl(church, refNo, {
+    ein: church.ein,
+    date: dateStr,
+    type: "letter"
+  });
   const qrData = verifyUrl;
 
   const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.Letter;
@@ -822,7 +867,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
                   {church.showVerifyQR && (
                     <div className={`print:hidden flex flex-col gap-1 ${isRtl ? 'items-start text-left' : 'items-end text-right'}`}>
                       <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-                        <DocumentQR data={qrData} />
+                        <DocumentQR data={qrData} logo={church.logo} />
                       </div>
                       <div className="text-[9px] font-black uppercase text-slate-500 tracking-widest">{isRtl ? 'اسکن برای تایید' : 'Scan to Verify'}</div>
                       <div className="text-[7px] font-mono uppercase text-slate-400">{toEnglishDigits(refNo)}</div>
@@ -839,12 +884,11 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
               <DocFooter
                 qrData={qrData}
                 refNo={toEnglishDigits(refNo)}
-                churchName={church.nameEn}
+                church={church}
                 churchEmail={church.email}
                 churchWeb={church.web}
                 isRtl={isRtl}
                 showQR={church.showVerifyQR}
-                totalPages={totalPages}
                 design={design}
               />
             </td>
@@ -866,7 +910,12 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
   const total = inKindItems.reduce((s, i) => s + i.value * i.qty, 0);
   const dateStr = receipt.date as string || new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   // Each receipt has its own unique QR verify URL
-  const verifyUrl = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(`RCP-${receiptNo}`)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=receipt&amount=${total || receipt.amount}`;
+  const verifyUrl = buildVerifyUrl(church, `RCP-${receiptNo}`, {
+    ein: church.ein,
+    date: dateStr,
+    type: "receipt",
+    amount: String(total || receipt.amount)
+  });
   const qrData = verifyUrl;
 
   const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.Letter;
@@ -1009,7 +1058,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                   {church.showVerifyQR && (
                     <div className="print:hidden flex flex-col items-end gap-1 text-right">
                        <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm">
-                          <DocumentQR data={qrData} />
+                          <DocumentQR data={qrData} logo={church.logo} />
                        </div>
                        <div className="text-[10px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan for Auth</div>
                        <div className="text-[8px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(receiptNo)}</div>
@@ -1026,7 +1075,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
               <DocFooter
                 qrData={qrData}
                 refNo={toEnglishDigits(receiptNo)}
-                churchName={church.nameEn}
+                church={church}
                 churchEmail={church.email}
                 churchWeb={church.web}
                 showQR={church.showVerifyQR}
@@ -1049,7 +1098,12 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
   const design = church.designEn;
   const dateStr = new Date(invoiceDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   // Each invoice gets its own unique QR verify URL
-  const qrData = `https://www.iranianchurchdc.com/verify/${encodeURIComponent(`INV-${invoiceNo}`)}?ein=${church.ein}&date=${encodeURIComponent(dateStr)}&type=invoice&amount=${invoiceTotalAmount}`;
+  const qrData = buildVerifyUrl(church, `INV-${invoiceNo}`, {
+    ein: church.ein,
+    date: dateStr,
+    type: "invoice",
+    amount: String(invoiceTotalAmount)
+  });
 
   const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.Letter;
 
@@ -1067,7 +1121,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
         <thead className="print-thead">
           <tr>
             <td className="print-td border-0 pb-6" style={{ paddingBottom: "20px" }}>
-              <Letterhead church={church} lang="en" docRef={`INV-${toEnglishDigits(invoiceNo)}`} date={toEnglishDigits(dateStr)} />
+              <Letterhead church={church} lang="en" docRef={`INV-${toEnglishDigits(invoiceNo)}`} date={toEnglishDigits(dateStr)} containerPadding="20mm" />
             </td>
           </tr>
         </thead>
@@ -1186,7 +1240,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
                   {church.showVerifyQR && (
                     <div className="print:hidden flex flex-col items-end gap-1 text-right">
                       <div className="p-2 border-2 border-slate-200 rounded-xl bg-white shadow-sm overflow-hidden">
-                        <DocumentQR data={qrData} />
+                        <DocumentQR data={qrData} logo={church.logo} />
                       </div>
                       <div className="text-[10px] font-black uppercase text-slate-500 tracking-widest pr-1">Scan to Verify</div>
                       <div className="text-[8px] font-mono uppercase text-slate-400 pr-1">{toEnglishDigits(invoiceNo)}</div>
@@ -1203,7 +1257,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
               <DocFooter
                 qrData={qrData}
                 refNo={toEnglishDigits(invoiceNo)}
-                churchName={church.nameEn}
+                church={church}
                 churchEmail={church.email}
                 churchWeb={church.web}
                 showQR={church.showVerifyQR}
@@ -1214,6 +1268,85 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
         </tfoot>
       </table>
     </div>
+    </DocumentSecurity>
+  );
+}
+
+// ─── Blank Letterhead (Print-Only Header/Footer, No Body) ────────────────────
+export function BlankLetterheadDoc({
+  church,
+  lang,
+  showGuideLines = false,
+}: {
+  church: typeof DEFAULT_CHURCH;
+  lang: "en" | "fa";
+  showGuideLines?: boolean;
+}) {
+  const isRtl = lang === "fa";
+  const paperClass = PAPER_SIZES[church.paperSize as keyof typeof PAPER_SIZES] || PAPER_SIZES.Letter;
+  const dateStr = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const design = isRtl ? church.designFa : church.designEn;
+
+  return (
+    <DocumentSecurity>
+      <PrintStyles paperSize={church.paperSize} totalPages={1} isRtl={isRtl} />
+      <div
+        className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[12.7mm] flex flex-col font-sans text-sm relative border-0 overflow-visible shadow-2xl mx-auto print:shadow-none`}
+        style={{ fontVariantNumeric: "tabular-nums" }}
+      >
+        <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
+        <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
+
+        {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
+
+        <table className="print-table w-full border-collapse h-full">
+          <thead className="print-thead">
+            <tr>
+              <td className="print-td border-0 pb-6" style={{ paddingBottom: "20px" }}>
+                {/* Reference/date fields left empty — this is raw stationery, not a real document */}
+                <Letterhead church={church} lang={lang} docRef="__________" date={dateStr} />
+              </td>
+            </tr>
+          </thead>
+
+          <tbody className="print-tbody">
+            <tr className="print-tr">
+              <td className="print-td border-0 p-0 relative z-10">
+                {/* Empty writing area. Optional faint guide lines for handwriting alignment. */}
+                <div className="min-h-[190mm] pt-2" dir={isRtl ? "rtl" : "ltr"}>
+                  {showGuideLines &&
+                    Array.from({ length: 18 }).map((_, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          borderBottom: "1px dashed #e2e8f0",
+                          height: "10mm",
+                        }}
+                      />
+                    ))}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot className="print-tfoot mt-auto">
+            <tr>
+              <td className="print-td border-0 pt-6" style={{ paddingTop: "20px" }}>
+                <DocFooter
+                  qrData=""
+                  refNo=""
+                  church={church}
+                  churchEmail={church.email}
+                  churchWeb={church.web}
+                  isRtl={isRtl}
+                  showQR={false}
+                  design={design}
+                />
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </DocumentSecurity>
   );
 }
@@ -1251,7 +1384,7 @@ export default function ChurchDocumentsPage() {
   // Template management
   const [docTemplates, setDocTemplates] = useState<{id: string, name: string, subject: string, bodyEn: string, bodyFa: string}[]>([]);
   const [isAdmin, setIsAdmin] = useState(true); // Mocking admin status
-  const [currentUser, setCurrentUser] = useState({ name: "Rev. Sam Yarebeyگی", title: "Senior Pastor" });
+  const [currentUser, setCurrentUser] = useState({ name: "Rev. Sam Yarebeygi", title: "Senior Pastor" });
 
   // Document History
   const [docHistory, setDocHistory] = useState<DocHistoryItem[]>([]);
@@ -1951,6 +2084,11 @@ export default function ChurchDocumentsPage() {
   const onPrintReceipt = useReactToPrint({ contentRef: receiptRef });
   const onPrintInvoice = useReactToPrint({ contentRef: invoiceRef });
 
+  const blankLetterheadRef = useRef<HTMLDivElement>(null);
+  const onPrintBlankLetterhead = useReactToPrint({ contentRef: blankLetterheadRef });
+  const [blankLetterheadLang, setBlankLetterheadLang] = useState<"en" | "fa">("fa");
+  const [blankLetterheadGuideLines, setBlankLetterheadGuideLines] = useState(false);
+
   useEffect(() => {
     const updatePageCount = () => {
       if (letterRef.current) {
@@ -2016,10 +2154,8 @@ export default function ChurchDocumentsPage() {
       inKindItems: activeTab === "inkind" ? inKindItems : undefined,
     };
     void addHistoryItem(newItem);
-    handlePrintReceiptNative();
+    onPrintReceipt();
   };
-
-  const handlePrintReceiptNative = onPrintReceipt;
 
   const loadTpl = (tpl: typeof LETTER_TEMPLATES[number]) => {
     setSelectedTpl(tpl);
@@ -2340,11 +2476,51 @@ export default function ChurchDocumentsPage() {
               </p>
             </div>
           </div>
-          <button onClick={() => { setSettingsDraft(church); setShowSettings(true); }}
-            className="flex items-center gap-2 glass border border-white/10 px-4 py-2.5 rounded-xl hover:border-primary/50 transition-all text-sm font-bold">
-            <Settings className="w-4 h-4" />
-            {isRtl ? "تنظیمات کلیسا" : "Church Settings"}
-          </button>
+          <div className="flex items-center gap-3 flex-wrap">
+            <button onClick={() => { setSettingsDraft(church); setShowSettings(true); }}
+              className="flex items-center gap-2 glass border border-white/10 px-4 py-2.5 rounded-xl hover:border-primary/50 transition-all text-sm font-bold">
+              <Settings className="w-4 h-4" />
+              {isRtl ? "تنظیمات کلیسا" : "Church Settings"}
+            </button>
+
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex glass rounded-xl p-1 border border-white/10">
+                {(["en", "fa"] as const).map(l => (
+                  <button
+                    key={l}
+                    type="button"
+                    onClick={() => setBlankLetterheadLang(l)}
+                    title={l === "en" ? "English Header" : "سربرگ فارسی"}
+                    className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all ${
+                      blankLetterheadLang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-white"
+                    }`}
+                  >
+                    {l === "en" ? "EN" : "فا"}
+                  </button>
+                ))}
+              </div>
+
+              <label className="flex items-center gap-1.5 px-2 text-xs text-muted-foreground font-bold cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={blankLetterheadGuideLines}
+                  onChange={e => setBlankLetterheadGuideLines(e.target.checked)}
+                  className="accent-primary rounded border-white/10 bg-white/5"
+                />
+                {isRtl ? "خطوط راهنما" : "Guide Lines"}
+              </label>
+
+              <button
+                type="button"
+                onClick={() => onPrintBlankLetterhead()}
+                title={isRtl ? "چاپ سربرگ خام (فقط هدر و فوتر)" : "Print Blank Letterhead (Header & Footer Only)"}
+                className="flex items-center gap-2 glass border border-white/10 px-4 py-2.5 rounded-xl hover:border-primary/50 transition-all text-sm font-bold"
+              >
+                <FileSignature className="w-4 h-4 text-amber-400" />
+                {isRtl ? "چاپ سربرگ خالی" : "Print Blank Letterhead"}
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* ── Settings Modal ── */}
@@ -3055,7 +3231,6 @@ export default function ChurchDocumentsPage() {
                   church={church} 
                   totalPages={totalPages}
                 />
-                <style>{`@media print { @page { size: ${(church.paperSize || "letter").toLowerCase()}; margin: 15mm 15mm 22mm 15mm; } body { margin: 0; } }`}</style>
               </div>
             </div>
           </div>
@@ -3189,7 +3364,6 @@ export default function ChurchDocumentsPage() {
             <div className="hidden print:block">
               <div ref={receiptRef} className="bg-white p-0 m-0 w-fit rounded-none">
                 <DonationReceiptDoc receipt={receipt} receiptNo={receiptNo} isInKind={activeTab === "inkind"} inKindItems={inKindItems} church={church} />
-                <style>{`@media print { @page { size: ${(church.paperSize || "letter").toLowerCase()}; margin: 15mm 15mm 22mm 15mm; } body { margin: 0; } }`}</style>
               </div>
             </div>
           </div>
@@ -3341,7 +3515,6 @@ export default function ChurchDocumentsPage() {
               <div className="bg-white p-2 rounded-xl shadow-2xl scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100 origin-top border border-white/20 transition-transform">
                 <div ref={invoiceRef} className="bg-white p-0 m-0 w-fit rounded-none">
                   <InvoiceDoc invoiceTo={invoiceTo} invoiceAddress={invoiceAddress} invoiceName={invoiceName} invoiceDate={invoiceDate} invoiceItems={invoiceItems} invoiceTotalAmount={invoiceTotalAmount} invoiceWallet={invoiceWallet} invoiceNotes={invoiceNotes} invoiceNo={invoiceNo} church={church} lang={invoiceLang} />
-                  <style>{`@media print { @page { size: ${(church.paperSize || "letter").toLowerCase()}; margin: 15mm 15mm 22mm 15mm; } body { margin: 0; } }`}</style>
                 </div>
               </div>
             </div>
@@ -3875,6 +4048,13 @@ export default function ChurchDocumentsPage() {
             </div>
           </div>
         )}
+
+        {/* Hidden print container for Blank Letterhead — works regardless of active tab */}
+        <div className="print:block offscreen-print-container" style={{ position: "absolute", top: "-9999px", left: "-9999px", pointerEvents: "none" }}>
+          <div ref={blankLetterheadRef} className="bg-white p-0 m-0 w-fit rounded-none">
+            <BlankLetterheadDoc church={church} lang={blankLetterheadLang} showGuideLines={blankLetterheadGuideLines} />
+          </div>
+        </div>
 
       </main>
       <PublicFooter />

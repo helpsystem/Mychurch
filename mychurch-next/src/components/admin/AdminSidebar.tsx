@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { 
     LayoutDashboard, Users, LayoutTemplate, Settings, 
     Power, FileVideo, Music, UserCircle, Megaphone, 
-    Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio
+    Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio, Sparkles
 } from "lucide-react";
 import Image from "next/image";
 import ViewAsRoleSwitcher from "@/components/admin/ViewAsRoleSwitcher";
@@ -110,6 +110,10 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
 
                     {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (
                         <NavItem href="/admin/audio-sync" icon={FileAudio} colorClass="text-teal-400/80">Audio Sync</NavItem>
+                    )}
+
+                    {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (
+                        <NavItem href="/admin/bible-chat" icon={Sparkles} colorClass="text-amber-400/80">Bible AI Chat</NavItem>
                     )}
 
                     {(isAdmin || permissions?.canManageMedia) && (
