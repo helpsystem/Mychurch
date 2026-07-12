@@ -87,6 +87,12 @@ set -e
 rm -f $TAR_FILE
 rm -rf .next.old
 
+# Install dependencies if node_modules is missing or next binary is not found
+if [ ! -f node_modules/.bin/next ]; then
+    echo 'node_modules missing or incomplete — running npm install...'
+    npm install --omit=dev --legacy-peer-deps
+fi
+
 # Restart Next.js
 if pm2 show mychurch-next > /dev/null 2>&1; then
     pm2 restart mychurch-next --update-env
