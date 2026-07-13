@@ -748,10 +748,11 @@ function Letterhead({ church, lang, docRef, date, containerPadding = "12.7mm" }:
 
 
 
-export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, recipientName, refNo, pageNum, totalPages, church }: {
+export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, recipientName, refNo, pageNum, totalPages, church, fontSizeOffset = 0 }: {
   bodyEn: string; bodyFa: string; editLang: "en" | "fa"; to: string; toAddress?: string;
   subject: string; recipientName: string; refNo: string; pageNum?: number; totalPages?: number;
   church: typeof DEFAULT_CHURCH;
+  fontSizeOffset?: number;
 }) {
   const isRtl = editLang === "fa";
   const design = isRtl ? church.designFa : church.designEn;
@@ -812,7 +813,7 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
                     className={`leading-relaxed text-justify whitespace-pre-wrap mb-10 relative z-10 text-slate-800`} 
                     dir={isRtl ? "rtl" : "ltr"}
                     style={{ 
-                      fontSize: `${design.bodySize}px`, 
+                      fontSize: `${Math.max(8, design.bodySize + fontSizeOffset)}px`, 
                       fontStyle: design.isItalicBody ? "italic" : "normal"
                     }}
                   >
@@ -1287,12 +1288,6 @@ export function BlankLetterheadDoc({
   const dateStr = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   const design = isRtl ? church.designFa : church.designEn;
 
-  // Dynamic writing area height based on paper size
-  const writingAreaHeight =
-    church.paperSize === "A4" ? "200mm" :
-    church.paperSize === "A5" ? "120mm" :
-    "190mm"; // Letter default
-
   // Dynamic guide line count based on paper size
   const guideLineCount =
     church.paperSize === "A4" ? 20 :
@@ -1311,53 +1306,40 @@ export function BlankLetterheadDoc({
 
         {church.showWatermark && <Watermark logo={church.logo} opacity={church.watermarkOpacity} />}
 
-        <table className="print-table w-full border-collapse h-full">
-          <thead className="print-thead">
-            <tr>
-              <td className="print-td border-0 pb-6" style={{ paddingBottom: "20px" }}>
-                {/* Reference/date fields left empty — this is raw stationery, not a real document */}
-                <Letterhead church={church} lang={lang} docRef="__________" date={dateStr} />
-              </td>
-            </tr>
-          </thead>
+        <div className="flex-1 flex flex-col w-full h-full relative z-10">
+          {/* Header */}
+          <div className="pb-6">
+            <Letterhead church={church} lang={lang} docRef="__________" date={dateStr} />
+          </div>
 
-          <tbody className="print-tbody">
-            <tr className="print-tr">
-              <td className="print-td border-0 p-0 relative z-10">
-                {/* Empty writing area. Optional faint guide lines for handwriting alignment. */}
-                <div style={{ minHeight: writingAreaHeight }} className="pt-2" dir={isRtl ? "rtl" : "ltr"}>
-                  {showGuideLines &&
-                    Array.from({ length: guideLineCount }).map((_, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          borderBottom: "1px dashed #e2e8f0",
-                          height: "10mm",
-                        }}
-                      />
-                    ))}
-                </div>
-              </td>
-            </tr>
-          </tbody>
-
-          <tfoot className="print-tfoot mt-auto">
-            <tr>
-              <td className="print-td border-0 pt-6" style={{ paddingTop: "20px" }}>
-                <DocFooter
-                  qrData=""
-                  refNo=""
-                  church={church}
-                  churchEmail={church.email}
-                  churchWeb={church.web}
-                  isRtl={isRtl}
-                  showQR={false}
-                  design={design}
+          {/* Empty writing area */}
+          <div className="flex-1 w-full pt-2" dir={isRtl ? "rtl" : "ltr"}>
+            {showGuideLines &&
+              Array.from({ length: guideLineCount }).map((_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    borderBottom: "1px dashed #e2e8f0",
+                    height: "10mm",
+                  }}
                 />
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+              ))}
+          </div>
+
+          {/* Footer */}
+          <div className="pt-6 mt-auto">
+            <DocFooter
+              qrData=""
+              refNo=""
+              church={church}
+              churchEmail={church.email}
+              churchWeb={church.web}
+              isRtl={isRtl}
+              showQR={false}
+              design={design}
+            />
+          </div>
+        </div>
       </div>
     </DocumentSecurity>
   );
@@ -1395,6 +1377,7 @@ export default function ChurchDocumentsPage() {
 
   // Template management
   const [docTemplates, setDocTemplates] = useState<{id: string, name: string, subject: string, bodyEn: string, bodyFa: string}[]>([]);
+  const [fontSizeOffset, setFontSizeOffset] = useState<number>(0);
   const [isAdmin, setIsAdmin] = useState(true); // Mocking admin status
   const [currentUser, setCurrentUser] = useState({ name: "Rev. Sam Yarebeygi", title: "Senior Pastor" });
 
@@ -2021,8 +2004,9 @@ export default function ChurchDocumentsPage() {
       }
 
       const pdfBase64 = pdf.output("datauristring").split(",")[1];
-      const imageBase64 = imgData.split(",")[1];
-      await handleSendEmail(pdfBase64, imageBase64);
+      // Omit image base64 to prevent 'Payload Too Large' errors and 
+      // stay well under SMTP size limits (the PDF is enough).
+      await handleSendEmail(pdfBase64, undefined);
     } catch (err) {
       console.error("PDF generation error:", err);
       toast.error(isRtl ? "تولید PDF ناموفق بود" : "PDF generation failed");
@@ -2425,6 +2409,7 @@ export default function ChurchDocumentsPage() {
                   refNo={emailModal.historyItem.refNo} 
                   church={church} 
                   totalPages={1} 
+                  fontSizeOffset={fontSizeOffset}
                 />
               )}
               {(emailModal.historyItem.type === "receipt" || emailModal.historyItem.type === "inkind") && (
@@ -3132,6 +3117,23 @@ export default function ChurchDocumentsPage() {
                         disabled={!(editLang === "en" ? bodyEn : bodyFa).trim()}
                         icon={<Languages className="w-3.5 h-3.5" />}
                       />
+                      <div className="flex bg-white/5 border border-white/10 rounded-lg p-0.5 items-center">
+                        <button
+                          onClick={() => setFontSizeOffset(prev => prev - 1)}
+                          className="px-2 py-0.5 rounded text-xs font-bold text-muted-foreground hover:bg-white/10 hover:text-white transition-all"
+                          title={isRtl ? "کوچک‌نمایی فونت" : "Decrease Font Size"}
+                        >
+                          A-
+                        </button>
+                        <span className="text-[10px] text-muted-foreground font-mono px-1 w-6 text-center">{fontSizeOffset > 0 ? `+${fontSizeOffset}` : fontSizeOffset}</span>
+                        <button
+                          onClick={() => setFontSizeOffset(prev => prev + 1)}
+                          className="px-2 py-0.5 rounded text-xs font-bold text-muted-foreground hover:bg-white/10 hover:text-white transition-all"
+                          title={isRtl ? "بزرگ‌نمایی فونت" : "Increase Font Size"}
+                        >
+                          A+
+                        </button>
+                      </div>
                     </div>
                   </div>
                   {editorMode === "preview" ? (
@@ -3242,6 +3244,7 @@ export default function ChurchDocumentsPage() {
                   refNo={toEnglishDigits(docNumber)} 
                   church={church} 
                   totalPages={totalPages}
+                  fontSizeOffset={fontSizeOffset}
                 />
               </div>
             </div>
