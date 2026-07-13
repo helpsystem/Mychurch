@@ -142,8 +142,17 @@ export default function FileManagerClient() {
         if (!previewFile) return null;
 
         const ext = previewFile.name.split(".").pop()?.toLowerCase();
-        // Resolve URL relative to the public server route
-        const fileUrl = `/${previewFile.relativePath}`;
+
+        // Resolve URL. Next.js doesn't serve files added to `public` at runtime.
+        // We route them through our secure `/api/serve/` endpoint.
+        let fileUrl = `/${previewFile.relativePath}`;
+        if (fileUrl.startsWith('/public/uploads/')) {
+            fileUrl = `/api/serve/${previewFile.relativePath.replace('public/uploads/', '')}`;
+        } else if (fileUrl.startsWith('/public/media/')) {
+            fileUrl = `/api/serve/media/${previewFile.relativePath.replace('public/media/', '')}`;
+        } else if (fileUrl.startsWith('/public/')) {
+            fileUrl = fileUrl.replace('/public/', '/');
+        }
 
         return (
             <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
