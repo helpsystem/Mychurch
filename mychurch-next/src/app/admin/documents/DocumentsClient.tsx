@@ -305,7 +305,7 @@ function DocFooter({ qrData, refNo, church, churchEmail, churchWeb, isRtl, showQ
       className="mt-auto pt-4"
       data-html2canvas-ignore="false"
       style={{
-        borderTop: "1px solid #cbd5e1",
+        borderTop: "2px solid #d1d5db",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -1287,6 +1287,18 @@ export function BlankLetterheadDoc({
   const dateStr = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   const design = isRtl ? church.designFa : church.designEn;
 
+  // Dynamic writing area height based on paper size
+  const writingAreaHeight =
+    church.paperSize === "A4" ? "200mm" :
+    church.paperSize === "A5" ? "120mm" :
+    "190mm"; // Letter default
+
+  // Dynamic guide line count based on paper size
+  const guideLineCount =
+    church.paperSize === "A4" ? 20 :
+    church.paperSize === "A5" ? 12 :
+    18; // Letter default
+
   return (
     <DocumentSecurity>
       <PrintStyles paperSize={church.paperSize} totalPages={1} isRtl={isRtl} />
@@ -1313,9 +1325,9 @@ export function BlankLetterheadDoc({
             <tr className="print-tr">
               <td className="print-td border-0 p-0 relative z-10">
                 {/* Empty writing area. Optional faint guide lines for handwriting alignment. */}
-                <div className="min-h-[190mm] pt-2" dir={isRtl ? "rtl" : "ltr"}>
+                <div style={{ minHeight: writingAreaHeight }} className="pt-2" dir={isRtl ? "rtl" : "ltr"}>
                   {showGuideLines &&
-                    Array.from({ length: 18 }).map((_, i) => (
+                    Array.from({ length: guideLineCount }).map((_, i) => (
                       <div
                         key={i}
                         style={{
