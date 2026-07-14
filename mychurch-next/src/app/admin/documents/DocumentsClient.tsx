@@ -401,7 +401,7 @@ function DocumentQR({ data, size = 80, logo }: { data: string; size?: number; lo
 // ─── Component: Watermark ─────────────────────────────────────────────────────
 function Watermark({ logo, opacity }: { logo: string; opacity: number }) {
   return (
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+    <div className="absolute print:fixed inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={logo}
@@ -1298,8 +1298,8 @@ export function BlankLetterheadDoc({
     <DocumentSecurity>
       <PrintStyles paperSize={church.paperSize} totalPages={1} isRtl={isRtl} />
       <div
-        className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[12.7mm] flex flex-col font-sans text-sm relative border-0 overflow-visible shadow-2xl mx-auto print:shadow-none`}
-        style={{ fontVariantNumeric: "tabular-nums" }}
+        className={`print-doc-wrap ${paperClass} bg-white text-slate-800 p-[12.7mm] print:p-0 flex flex-col font-sans text-sm relative border-0 overflow-hidden shadow-2xl mx-auto print:shadow-none`}
+        style={{ fontVariantNumeric: "tabular-nums", minHeight: "100vh" }}
       >
         <div className="absolute top-40 right-10 w-96 h-96 bg-blue-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
         <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-50/50 rounded-full blur-[80px] -z-10 pointer-events-none" />
@@ -1958,23 +1958,11 @@ export default function ChurchDocumentsPage() {
       // Small delay to allow browser to repaint the newly visible element
       await new Promise<void>(res => setTimeout(res, 120));
 
-      const canvas = await html2canvas(el, {
-        scale: 2.5,         // higher resolution for sharper QR codes
-        useCORS: true,
-        allowTaint: false,
-        backgroundColor: "#ffffff",
-        logging: false,
-        imageTimeout: 15000,
-      });
-
-      const imgData = canvas.toDataURL("image/jpeg", 0.95);
-
-      // ── PDF with Owner Password (prevents editing, allows printing) ──
       const refNo = emailModal?.refNo || "DOC";
       const paperFormat = church.paperSize ? church.paperSize.toLowerCase() : "letter";
       const pdf = new jsPDF({
         orientation: "portrait",
-        unit: "mm",
+        unit: "pt",
         format: paperFormat === "a4" ? "a4" : paperFormat === "a5" ? "a5" : "letter",
       });
 
@@ -1987,21 +1975,23 @@ export default function ChurchDocumentsPage() {
         creator: `MyChurch Document System`,
       });
 
+      // Make html2canvas available globally for jsPDF to use internally
+      (window as any).html2canvas = html2canvas;
+      
       const pageW = pdf.internal.pageSize.getWidth();
-      const pageH = pdf.internal.pageSize.getHeight();
-      const imgH = (canvas.height * pageW) / canvas.width;
 
-      // ── Render pages ──
-      let yPos = 0;
-      let heightLeft = imgH;
-      pdf.addImage(imgData, "JPEG", 0, yPos, pageW, imgH);
-      heightLeft -= pageH;
-      while (heightLeft > 0) {
-        yPos = heightLeft - imgH;
-        pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 0, yPos, pageW, imgH);
-        heightLeft -= pageH;
-      }
+      await pdf.html(el, {
+        autoPaging: 'text',
+        margin: [0, 0, 0, 0],
+        html2canvas: {
+          scale: pageW / el.offsetWidth, // scale to fit the page width exactly
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: "#ffffff",
+          logging: false,
+          imageTimeout: 15000,
+        }
+      });
 
       const pdfBase64 = pdf.output("datauristring").split(",")[1];
       // Omit image base64 to prevent 'Payload Too Large' errors and 
@@ -2651,8 +2641,9 @@ export default function ChurchDocumentsPage() {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-4 gap-4">
                           {[
+                            { key: "headerPadding", label: isRtl ? "سایز هدر" : "Header Size" },
                             { key: "titleSize", label: isRtl ? "سایز تیتر" : "Title Size" },
                             { key: "bodySize", label: isRtl ? "سایز متن" : "Body Size" },
                             { key: "footerSize", label: isRtl ? "سایز فوتر" : "Footer Size" },

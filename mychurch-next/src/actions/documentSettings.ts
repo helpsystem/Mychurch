@@ -46,16 +46,27 @@ export interface ChurchDocSettings {
   };
 }
 
+import { query } from "@/lib/db";
+
 // ─── Ensure table exists ──────────────────────────────────────────────────────
-async function ensureTable(supabase: Awaited<ReturnType<typeof createClient>>) {
-  // Use Supabase JS — if table doesn't exist the upsert will fail gracefully
-  // We rely on the migration SQL being run separately (or auto-create via RPC)
-  // For simplicity we just catch errors on first load
+async function ensureTable() {
+  try {
+    await query(`
+      CREATE TABLE IF NOT EXISTS church_document_settings (
+        id text PRIMARY KEY,
+        settings jsonb NOT NULL,
+        updated_at timestamp with time zone DEFAULT now()
+      );
+    `);
+  } catch (e) {
+    console.error("[DocumentSettings] Failed to ensure table exists:", e);
+  }
 }
 
 // ─── Get settings (uses service role to bypass RLS — settings are not sensitive) ──
 export async function getDocumentSettings(): Promise<ChurchDocSettings | null> {
   try {
+    await ensureTable();
     const { createClient: createServiceClient } = await import("@/utils/supabase/server");
     const supabase = await createServiceClient();
     const { data, error } = await supabase
@@ -78,6 +89,7 @@ export async function getDocumentSettings(): Promise<ChurchDocSettings | null> {
 export async function saveDocumentSettings(settings: ChurchDocSettings): Promise<{ success: boolean; error?: string }> {
   try {
     await requireRole(["Admin", "Leader"]);
+    await ensureTable();
     const supabase = await createClient();
 
     const { error } = await supabase
