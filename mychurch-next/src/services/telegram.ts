@@ -8,17 +8,28 @@ const telegramConfigSchema = z.object({
   PUBLIC_GROUP_ID: z.string().optional(),
 });
 
-// We load lazily inside functions in Next.js to avoid issues at build time, or just read process.env
-const processEnv = {
-  BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
-  STORAGE_CHANNEL_ID: process.env.TELEGRAM_STORAGE_CHANNEL_ID,
-  PUBLIC_CHANNEL_ID: process.env.TELEGRAM_PUBLIC_CHANNEL_ID,
-  PUBLIC_GROUP_ID: process.env.TELEGRAM_PUBLIC_GROUP_ID,
-};
+let _bot: Bot | null = null;
+let _telegramConfig: any = null;
 
-export const telegramConfig = telegramConfigSchema.parse(processEnv);
+function getBot() {
+  if (_bot) return { bot: _bot, telegramConfig: _telegramConfig };
 
-export const bot = new Bot(telegramConfig.BOT_TOKEN);
+  const processEnv = {
+    BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
+    STORAGE_CHANNEL_ID: process.env.TELEGRAM_STORAGE_CHANNEL_ID,
+    PUBLIC_CHANNEL_ID: process.env.TELEGRAM_PUBLIC_CHANNEL_ID,
+    PUBLIC_GROUP_ID: process.env.TELEGRAM_PUBLIC_GROUP_ID,
+  };
+
+  const parsed = telegramConfigSchema.safeParse(processEnv);
+  if (!parsed.success) {
+    throw new Error(`Telegram config missing or invalid: ${parsed.error.message}`);
+  }
+  
+  _telegramConfig = parsed.data;
+  _bot = new Bot(_telegramConfig.BOT_TOKEN);
+  return { bot: _bot, telegramConfig: _telegramConfig };
+}
 
 export interface TelegramUploadResult {
   fileId: string;
@@ -32,6 +43,7 @@ export async function uploadToTelegramStorage(
   fileName: string,
   caption?: string
 ): Promise<TelegramUploadResult> {
+  const { bot, telegramConfig } = getBot();
   const inputFile = new InputFile(fileBuffer, fileName);
   const channelId = telegramConfig.STORAGE_CHANNEL_ID;
 
@@ -59,6 +71,7 @@ export async function uploadToTelegramStorage(
 
 export async function getTelegramFileStreamUrl(fileId: string): Promise<string> {
   try {
+    const { bot, telegramConfig } = getBot();
     const file = await bot.api.getFile(fileId);
     return `https://api.telegram.org/file/bot${telegramConfig.BOT_TOKEN}/${file.file_path}`;
   } catch (error) {
@@ -69,6 +82,7 @@ export async function getTelegramFileStreamUrl(fileId: string): Promise<string> 
 
 export async function deleteFromTelegramStorage(messageId: number): Promise<boolean> {
   try {
+    const { bot, telegramConfig } = getBot();
     await bot.api.deleteMessage(telegramConfig.STORAGE_CHANNEL_ID, messageId);
     return true;
   } catch (error) {
