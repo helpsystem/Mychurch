@@ -461,7 +461,17 @@ export default function PresentationsClient({
                                       title="ویرایش اسلایدها"
                                   >
                                       <Edit2 className="w-4 h-4 opacity-75" />
-                                      <span>ویرایش</span>
+                                      <span className="hidden md:inline">ویرایش</span>
+                                  </Link>
+
+                                  {/* 📂 اطلاعات و فایل‌ها (Assets) */}
+                                  <Link 
+                                      href={`/admin/presentations/${pres.id}`}
+                                      className="flex items-center justify-center gap-2 px-3 py-2.5 bg-neutral-800 hover:bg-neutral-700 text-indigo-400 border border-indigo-500/30 rounded-xl transition-all text-xs font-bold active:scale-95"
+                                      title="فایل‌های جلسه و استوریج"
+                                  >
+                                      <BookOpen className="w-4 h-4" />
+                                      <span className="hidden md:inline">جزئیات جلسه</span>
                                   </Link>
                               </div>
 

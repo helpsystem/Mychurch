@@ -32,7 +32,8 @@ export enum SlideType {
     GENERIC = 'GENERIC',
     LIVEDATA = 'LIVEDATA',
     MEETING = 'MEETING',
-    PRAYER = 'PRAYER'
+    PRAYER = 'PRAYER',
+    LORDS_PRAYER = 'LORDS_PRAYER'
 }
 
 export interface ScripturePage {
@@ -189,6 +190,14 @@ export interface SlideContentPrayer {
     answerText?: string;
 }
 
+export interface SlideContentLordsPrayer {
+    audioUrl?: string;
+    backgroundType?: 'particles' | 'video';
+    backgroundUrl?: string;
+    fontFa?: string;
+    fontEn?: string;
+}
+
 export type SlideContent =
     | SlideContentScripture
     | SlideContentLyrics
@@ -197,7 +206,8 @@ export type SlideContent =
     | SlideContentGeneric
     | SlideContentLiveData
     | SlideContentMeeting
-    | SlideContentPrayer;
+    | SlideContentPrayer
+    | SlideContentLordsPrayer;
 
 export interface Slide {
     id: string;
@@ -213,9 +223,15 @@ export interface BroadcastSession {
     id: string;
     title: string;
     date: Date;
+    jalaliDate?: string;
     hostName?: string;
     slides: Slide[];
     status: 'draft' | 'ready' | 'live' | 'ended';
+    audioFileId?: string;
+    metadata?: {
+        verses?: string[];
+        songs?: string[];
+    };
 }
 
 export type BroadcastLayout = 'FULL_CAM' | 'PIP' | 'SPLIT' | 'SLIDES_ONLY';

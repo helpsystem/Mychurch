@@ -22,16 +22,22 @@ async function ensurePresentationsSchema(): Promise<void> {
             id VARCHAR(255) PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
             date TIMESTAMP WITH TIME ZONE,
+            jalali_date VARCHAR(50),
             host_name VARCHAR(255),
             slides_json JSONB NOT NULL DEFAULT '[]',
+            audio_file_id VARCHAR(255),
+            metadata JSONB DEFAULT '{}'::jsonb,
             status VARCHAR(50) NOT NULL DEFAULT 'draft',
             created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
         );
     `);
 
     await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS date TIMESTAMP WITH TIME ZONE;`);
+    await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS jalali_date VARCHAR(50);`);
     await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS host_name VARCHAR(255);`);
     await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS slides_json JSONB DEFAULT '[]'::jsonb;`);
+    await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS audio_file_id VARCHAR(255);`);
+    await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS metadata JSONB DEFAULT '{}'::jsonb;`);
     await query(`ALTER TABLE presentations ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'draft';`);
 
     // Backfill from legacy columns if they exist.
@@ -84,14 +90,21 @@ function ensurePresentationsSchemaOnce(): Promise<void> {
 function rowToSession(row: any): BroadcastSession {
     const rawDate = row.date ?? row.session_date ?? row.created_at ?? new Date().toISOString();
     const rawSlides = row.slides_json ?? row.slides ?? [];
+    const rawMetadata = row.metadata ?? {};
 
     return {
         id: row.id,
         title: row.title,
         date: new Date(rawDate),
+        jalaliDate: row.jalali_date,
         hostName: row.host_name,
         slides: Array.isArray(rawSlides) ? rawSlides : [],
         status: (row.status || 'draft') as BroadcastSession['status'],
+        audioFileId: row.audio_file_id,
+        metadata: {
+            verses: Array.isArray(rawMetadata.verses) ? rawMetadata.verses : [],
+            songs: Array.isArray(rawMetadata.songs) ? rawMetadata.songs : [],
+        }
     };
 }
 
@@ -106,8 +119,11 @@ function normalizeSession(input: BroadcastSession): BroadcastSession {
         title: (input.title || '').trim().slice(0, 255),
         hostName: input.hostName?.trim().slice(0, 255),
         date: normalizedDate,
+        jalaliDate: input.jalaliDate,
         slides: Array.isArray(input.slides) ? input.slides : [],
         status: safeStatus,
+        audioFileId: input.audioFileId,
+        metadata: input.metadata || { verses: [], songs: [] },
     };
 }
 
@@ -159,21 +175,53 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
     try {
         await ensurePresentationsSchemaOnce();
 
+        // Auto-extract metadata from slides
+        const extractedVerses: string[] = [];
+        const extractedSongs: string[] = [];
+        
+        safeSession.slides.forEach(slide => {
+            if (slide.type === 'SCRIPTURE' && slide.content) {
+                const scripture = slide.content as any;
+                if (Array.isArray(scripture.pages)) {
+                    scripture.pages.forEach((page: any) => {
+                        extractedVerses.push(`${page.bookName?.fa || page.book} ${page.chapter}:${page.verses}`);
+                    });
+                }
+            }
+            if (slide.type === 'LYRICS' && slide.content) {
+                const lyrics = slide.content as any;
+                if (lyrics.title) {
+                    extractedSongs.push(lyrics.titleFa || lyrics.title);
+                }
+            }
+        });
+
+        const newMetadata = {
+            verses: Array.from(new Set(extractedVerses)),
+            songs: Array.from(new Set(extractedSongs))
+        };
+
         await query(`
-            INSERT INTO presentations (id, title, date, host_name, slides_json, status, created_at)
-            VALUES ($1, $2, $3, $4, $5, $6, NOW())
+            INSERT INTO presentations (id, title, date, jalali_date, host_name, slides_json, audio_file_id, metadata, status, created_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, NOW())
             ON CONFLICT (id) DO UPDATE 
             SET title = EXCLUDED.title,
                 date = EXCLUDED.date,
+                jalali_date = EXCLUDED.jalali_date,
                 host_name = EXCLUDED.host_name,
                 slides_json = EXCLUDED.slides_json,
+                audio_file_id = EXCLUDED.audio_file_id,
+                metadata = EXCLUDED.metadata,
                 status = EXCLUDED.status;
         `, [
             safeSession.id,
             safeSession.title,
             safeSession.date.toISOString(),
+            safeSession.jalaliDate || null,
             safeSession.hostName || null,
             JSON.stringify(safeSession.slides),
+            safeSession.audioFileId || null,
+            JSON.stringify(newMetadata),
             safeSession.status
         ]);
 

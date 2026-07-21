@@ -36,7 +36,7 @@ interface SlideBuilderProps {
   onSlideSelect: (index: number) => void;
 }
 
-type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT' | 'GENERIC' | 'LIVEDATA' | 'MEETING' | 'PRAYER';
+type ModalType = 'NONE' | 'SCRIPTURE' | 'LYRICS' | 'MEDIA' | 'ANNOUNCEMENT' | 'GENERIC' | 'LIVEDATA' | 'MEETING' | 'PRAYER' | 'LORDS_PRAYER';
 
 type LibraryAsset = {
   name: string;
@@ -251,6 +251,18 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     } else if (mediaPickerContext === 'LIVEDATA') {
         setLiveDataBackgroundValue(url);
     }
+  };
+
+  const handleAddLordsPrayer = () => {
+    const newSlide: Slide = {
+      id: crypto.randomUUID(),
+      type: SlideType.LORDS_PRAYER,
+      content: {
+        backgroundType: 'particles'
+      }
+    };
+    const newSlides = [...session.slides, newSlide];
+    setSession({ ...session, slides: newSlides });
   };
 
   // Load songs on mount
@@ -1077,6 +1089,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </p>
             </div>
           )}
+          {slide.type === SlideType.LORDS_PRAYER && (
+            <div className="text-center">
+              <span className="text-2xl mb-1 block">✨</span>
+              <p className="text-[10px] text-[var(--gold)] truncate font-bold">
+                Lord's Prayer
+              </p>
+            </div>
+          )}
           {slide.type === SlideType.MEDIA && (slide.content as SlideContentMedia).mediaType === 'image' && (
             <div className="text-center">
               <FileImage className="w-6 h-6 text-blue-400 mx-auto mb-1" />
@@ -1309,6 +1329,15 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           >
             <PieChart className="w-3.5 h-3.5 shrink-0" />
             <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'نمودار زنده / آمار' : 'Live Charts / Stats'}</span>
+          </button>
+
+          {/* Luxury Lord's Prayer Button */}
+          <button
+            onClick={() => handleAddLordsPrayer()}
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-[var(--gold)]/20 border border-[var(--gold)]/50 rounded-lg text-[var(--gold)] hover:bg-[var(--gold)]/30 transition text-xs col-span-2 justify-center shadow-[0_0_10px_rgba(214,178,94,0.3)]"
+          >
+            <span className="text-sm">✨</span>
+            <span className={isRTL ? 'font-[Vazirmatn] truncate font-bold' : 'truncate font-bold'}>{isRTL ? 'افزودن دعای ربانی (لوکس)' : "Lord's Prayer (Luxury)"}</span>
           </button>
         </div>
       </div>

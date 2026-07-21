@@ -9,6 +9,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart, CheckCircle } from "lucide-react";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
+import { LordsPrayerSlide } from "./luxury/LordsPrayerSlide";
 
 const isVideoUrl = (url: string | undefined): boolean => {
     if (!url) return false;
@@ -1030,6 +1031,10 @@ export function SlideRenderer({
                         </div>
                     </div>
                 );
+            }
+
+            case SlideType.LORDS_PRAYER: {
+                return <LordsPrayerSlide content={slide.content as any} isActive={isActive} />;
             }
 
             default:

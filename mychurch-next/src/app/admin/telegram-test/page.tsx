@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Upload, FileAudio, PlayCircle, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export default function TelegramTestPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -77,10 +76,14 @@ export default function TelegramTestPage() {
             />
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full gap-2">
+          <button 
+            type="submit" 
+            disabled={loading} 
+            className="w-full flex justify-center items-center gap-2 h-10 px-4 py-2 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             <Upload className="h-4 w-4" />
             {loading ? "Uploading to Telegram Server..." : "Upload to Cloud"}
-          </Button>
+          </button>
         </form>
       </div>
 
@@ -101,14 +104,13 @@ export default function TelegramTestPage() {
           </div>
 
           <div className="flex gap-3 pt-2">
-            <Button 
-              variant="default" 
-              className="gap-2"
+            <button 
+              className="flex justify-center items-center gap-2 h-10 px-4 py-2 bg-slate-900 text-white rounded-md font-medium hover:bg-slate-800"
               onClick={() => window.open(`/api/telegram/media/${result.fileId}`, '_blank')}
             >
               <PlayCircle className="h-4 w-4" />
               Test Stream (Proxy)
-            </Button>
+            </button>
           </div>
         </div>
       )}
