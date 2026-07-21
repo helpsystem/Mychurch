@@ -1348,10 +1348,11 @@ export function BlankLetterheadDoc({
 // ═══════════════════════════════════════════════════════════════════════════════
 // MAIN PAGE
 // ═══════════════════════════════════════════════════════════════════════════════
+const inputCls = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50 transition-colors placeholder:text-muted-foreground/50";
+
 export default function ChurchDocumentsPage() {
   const { language } = useLanguage();
   const isRtl = language === "fa";
-  const inputCls = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50 transition-colors placeholder:text-muted-foreground/50";
   // Church settings state
   const [church, setChurch] = useState(DEFAULT_CHURCH);
   const [showSettings, setShowSettings] = useState(false);

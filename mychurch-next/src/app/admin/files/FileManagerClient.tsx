@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { 
     Folder, File, Image as ImageIcon, Music, Film, FileText, 
     Trash2, ChevronLeft, ChevronRight, Search, Loader2, 
-    CornerRightUp, AlertCircle, FileCode, Play, Eye, X 
+    CornerRightUp, AlertCircle, FileCode, Play, Eye, X, CloudUpload 
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -30,6 +30,7 @@ export default function FileManagerClient() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [previewFile, setPreviewFile] = useState<FileEntry | null>(null);
+    const [syncingFiles, setSyncingFiles] = useState<Set<string>>(new Set());
 
     const loadDirectory = async (path: string) => {
         setIsLoading(true);
@@ -86,6 +87,34 @@ export default function FileManagerClient() {
             void loadDirectory(currentPath);
         } catch (err: any) {
             toast.error(err.message || "خطا در حذف فایل");
+        }
+    };
+
+    const handleTelegramSync = async (file: FileEntry) => {
+        if (syncingFiles.has(file.relativePath)) return;
+        
+        setSyncingFiles(prev => new Set(prev).add(file.relativePath));
+        toast.loading(`در حال انتقال ${file.name} به تلگرام...`, { id: file.relativePath });
+
+        try {
+            const res = await fetch("/api/admin/files/telegram-sync", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ filePath: file.relativePath })
+            });
+            const data = await res.json();
+            if (!res.ok || !data.success) {
+                throw new Error(data.error || "خطا در آپلود تلگرام");
+            }
+            toast.success(`انتقال موفق! شناسه فایل: ${data.telegramFile.fileId}`, { id: file.relativePath, duration: 8000 });
+        } catch (err: any) {
+            toast.error(err.message || "انتقال ناموفق بود", { id: file.relativePath });
+        } finally {
+            setSyncingFiles(prev => {
+                const newSet = new Set(prev);
+                newSet.delete(file.relativePath);
+                return newSet;
+            });
         }
     };
 
@@ -341,6 +370,20 @@ export default function FileManagerClient() {
                                         {/* Actions */}
                                         <td className="py-3.5 pl-2 text-left" onClick={(e) => e.stopPropagation()}>
                                             <div className="flex items-center justify-end gap-2">
+                                                {!file.isDirectory && (
+                                                    <button
+                                                        onClick={() => handleTelegramSync(file)}
+                                                        disabled={syncingFiles.has(file.relativePath)}
+                                                        title="ارسال و همگام‌سازی با استوریج تلگرام"
+                                                        className="p-1.5 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                                    >
+                                                        {syncingFiles.has(file.relativePath) ? (
+                                                            <Loader2 className="w-4 h-4 animate-spin" />
+                                                        ) : (
+                                                            <CloudUpload className="w-4 h-4" />
+                                                        )}
+                                                    </button>
+                                                )}
                                                 {!file.isDirectory && isPreviewable(file) && (
                                                     <button
                                                         onClick={() => setPreviewFile(file)}
