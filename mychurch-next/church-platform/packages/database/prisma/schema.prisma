@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── CORE MULTI-TENANT MODELS ────────────────────────────────────────────────
+
+model Tenant {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users    User[]
+  meetings Meeting[]
+  songs    Song[]
+  media    Media[]
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(MEMBER)
+  
+  tenantId      String?
+  tenant        Tenant?   @relation(fields: [tenantId], references: [id])
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+enum Role {
+  SUPERADMIN
+  PASTOR
+  LEADER
+  EDITOR
+  MEMBER
+  GUEST
+}
+
+// ─── MODULES (TO BE EXPANDED IN LATER PHASES) ────────────────────────────────
+
+model Meeting {
+  id          String   @id @default(cuid())
+  title       String
+  date        DateTime
+  description String?
+  
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  media       Media[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Song {
+  id          String   @id @default(cuid())
+  title       String
+  lyrics      String?
+  author      String?
+  
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ─── MEDIA & STORAGE (TELEGRAM CDN) ──────────────────────────────────────────
+
+model Media {
+  id              String   @id @default(cuid())
+  title           String
+  
+  // Storage fields for Telegram
+  storageProvider String   @default("TELEGRAM")
+  fileId          String?  // Telegram file_id
+  messageId       Int?     // Telegram message_id in storage channel
+  fileSize        Int?
+  mimeType        String?
+  
+  // Relations
+  meetingId       String?
+  meeting         Meeting? @relation(fields: [meetingId], references: [id])
+  
+  tenantId        String
+  tenant          Tenant   @relation(fields: [tenantId], references: [id])
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

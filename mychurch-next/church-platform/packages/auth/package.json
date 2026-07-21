@@ -1,0 +1,14 @@
+{
+  "name": "@repo/auth",
+  "version": "0.1.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "next-auth": "latest",
+    "@auth/prisma-adapter": "latest",
+    "@repo/database": "*"
+  },
+  "devDependencies": {
+    "typescript": "5.9.2"
+  }
+}

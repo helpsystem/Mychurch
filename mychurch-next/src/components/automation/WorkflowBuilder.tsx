@@ -390,7 +390,7 @@ export default function WorkflowBuilder({
     if (!isMock) {
       // Must follow Workspace Integration confirmation guidelines for destructive/mutating executions
       const confirmed = window.confirm(
-        `Execute REAL automation workflow? This will write to your Google Sheets, send emails via Gmail, create Calendar events, or Tasks with your Google Account permissions.`
+        `Execute REAL automation workflow? This will send real emails (Resend), SMS/WhatsApp messages (Twilio), and execute AI operations on your server.`
       );
       if (!confirmed) return;
     }
@@ -530,7 +530,7 @@ export default function WorkflowBuilder({
                 onClick={() => handleTriggerRun(false)}
                 disabled={isExecuting}
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-800 text-white text-xs font-semibold rounded-lg transition-all shadow-lg shadow-blue-500/10 cursor-pointer"
-                title="Execute real actions with your active Google OAuth session"
+                title="Execute real actions with your active API keys"
                 id="run-real-btn"
               >
                 {isExecuting ? (
