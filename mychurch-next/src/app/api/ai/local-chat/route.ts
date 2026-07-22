@@ -95,34 +95,38 @@ Always construct a helpful theological answer with clear bible citations.`;
     } catch (ollamaErr: any) {
       console.warn("[LocalBibleChat] Ollama local model is offline or failed:", ollamaErr.message || ollamaErr);
       
-      // FALLBACK: Use Nvidia GLM-5.1 if local model is offline! This ensures 100% operational uptime!
-      const nvidiaKey = process.env.NVIDIA_API_KEY;
-      if (nvidiaKey) {
-        console.log("[LocalBibleChat] Falling back to Nvidia GLM-5.1 online API...");
+      // FALLBACK: Use Gemini 1.5 Flash if local model is offline! This ensures 100% operational uptime!
+      const geminiKey = process.env.GEMINI_API_KEY;
+      if (geminiKey) {
+        console.log("[LocalBibleChat] Falling back to Gemini 1.5 Flash online API...");
         usingFallback = true;
-        const nvRes = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`;
+        const geminiRes = await fetch(geminiUrl, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${nvidiaKey}`
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            model: "z-ai/glm-5.1",
-            messages: [
-              { role: "system", content: systemPrompt },
-              { role: "user", content: userPrompt }
+            contents: [
+              {
+                parts: [
+                  { text: `${systemPrompt}\n\n${userPrompt}` }
+                ]
+              }
             ],
-            temperature: 0.3,
-            top_p: 0.9,
-            max_tokens: 4096
+            generationConfig: {
+              temperature: 0.3,
+              maxOutputTokens: 4096,
+            }
           })
         });
 
-        if (nvRes.ok) {
-          const nvData = await nvRes.json();
-          answer = nvData.choices?.[0]?.message?.content || "";
+        if (geminiRes.ok) {
+          const geminiData = await geminiRes.json();
+          answer = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "";
         } else {
-          console.error("[LocalBibleChat] Nvidia fallback also failed.");
+          const errText = await geminiRes.text();
+          console.error("[LocalBibleChat] Gemini fallback also failed:", errText);
         }
       }
     }
