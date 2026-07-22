@@ -9,6 +9,9 @@ import { Toaster } from "sonner";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -19,33 +22,15 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     const userEmail = user?.email || '';
     const initials = userEmail ? userEmail.substring(0, 2).toUpperCase() : '??';
 
-    const adminSupabase = await createAdminClient();
-    const [roleResult, permissionsResult] = await Promise.all([
-        adminSupabase
-            .from('users')
-            .select('role')
-            .ilike('email', userEmail)
-            .single(),
-        adminSupabase
-            .from('users')
-            .select('permissions')
-            .ilike('email', userEmail)
-            .single(),
-    ]);
-
-    const rawRole = roleResult.data?.role;
-    const roleStr = rawRole ? String(rawRole) : null;
-    const role = roleStr ? (roleStr.charAt(0).toUpperCase() + roleStr.slice(1).toLowerCase()) : null;
+    const { getRealUserRole, getUserRole, getUserPermissions } = await import("@/utils/rbac");
+    const role = await getRealUserRole();
 
     if (!role || !['Admin', 'Leader', 'Operator'].includes(role)) {
         redirect('/unauthorized');
     }
 
-    const permissions = permissionsResult.data?.permissions || {};
-    
-    // Get the impersonated role if any
-    const { getUserRole } = await import("@/utils/rbac");
     const currentRole = await getUserRole() || role;
+    const permissions = await getUserPermissions();
     
     // Evaluate permissions and isAdmin based on the effective role
     const effectiveIsAdmin = currentRole === 'Admin';

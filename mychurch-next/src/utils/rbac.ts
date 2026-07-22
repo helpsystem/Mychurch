@@ -21,15 +21,36 @@ export async function getRealUserRole(): Promise<Role | null> {
             .from('users')
             .select('role')
             .ilike('email', email)
-            .single();
+            .maybeSingle();
 
-        if (error || !data || !data.role) return null;
-        
-        // Capitalize first letter to match Role type
+        const knownAdmins = ['help.system@ymail.com', 'helpsystem68@gmail.com', 'appsamyar@gmail.com'];
+        const isKnownAdmin = knownAdmins.some(a => a.toLowerCase() === email.toLowerCase());
+
+        if (error || !data || !data.role) {
+            if (isKnownAdmin) {
+                console.log(`[RBAC] Auto-healing admin role for ${email}...`);
+                await supabase.from('users').upsert({
+                    email: email,
+                    role: 'Admin',
+                    display_name: email.split('@')[0],
+                    full_name: email.split('@')[0]
+                }, { onConflict: 'email' });
+                return 'Admin';
+            }
+            return null;
+        }
+
+        // If known admin but DB has regular 'User', auto-upgrade to 'Admin'
         const rawRole = String(data.role);
-        const formattedRole = rawRole.charAt(0).toUpperCase() + rawRole.slice(1).toLowerCase();
+        const formattedRole = (rawRole.charAt(0).toUpperCase() + rawRole.slice(1).toLowerCase()) as Role;
         
-        return formattedRole as Role;
+        if (isKnownAdmin && formattedRole !== 'Admin') {
+            console.log(`[RBAC] Upgrading known admin ${email} to Admin role...`);
+            await supabase.from('users').update({ role: 'Admin' }).ilike('email', email);
+            return 'Admin';
+        }
+
+        return formattedRole;
     } catch (error) {
         console.error("Failed to fetch user role:", error);
         return null;
@@ -65,7 +86,7 @@ export async function getUserPermissions(): Promise<Record<string, boolean>> {
             .from('users')
             .select('permissions')
             .ilike('email', email)
-            .single();
+            .maybeSingle();
 
         if (error || !data) return {};
         return data.permissions || {};
@@ -76,16 +97,16 @@ export async function getUserPermissions(): Promise<Record<string, boolean>> {
 }
 
 export async function requireRole(allowedRoles: Role[]) {
-    const role = await getUserRole();
+    const realRole = await getRealUserRole();
 
-    if (!role) {
+    if (!realRole) {
         redirect("/login");
     }
 
-    if (!allowedRoles.includes(role)) {
+    if (!allowedRoles.includes(realRole)) {
         // User is authenticated but lacks permission
         redirect("/unauthorized");
     }
 
-    return role;
+    return realRole;
 }
