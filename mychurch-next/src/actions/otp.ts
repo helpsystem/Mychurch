@@ -19,16 +19,23 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
         return { error: "کاربر یافت نشد" };
     }
 
-    // Verify role and retrieve contact info using admin client to bypass RLS policies
+    const { getRealUserRole } = await import("@/utils/rbac");
+    const role = await getRealUserRole();
+
+    if (!role || !['Admin', 'Leader', 'Operator'].includes(role)) {
+        return { error: "دسترسی غیرمجاز" };
+    }
+
+    // Retrieve contact info using admin client to bypass RLS policies
     const adminSupabase = await createAdminClient();
     const { data: userData } = await adminSupabase
         .from('users')
-        .select('role, phone, whatsapp_number, telegram_id')
-        .eq('email', user.email.toLowerCase())
-        .single();
+        .select('phone, whatsapp_number, telegram_id')
+        .ilike('email', user.email)
+        .maybeSingle();
 
-    if (!userData || !['Admin', 'Leader', 'Operator'].includes(userData.role)) {
-        return { error: "دسترسی غیرمجاز" };
+    if (!userData) {
+        return { error: "اطلاعات کاربر یافت نشد" };
     }
 
     const phone = userData.phone?.trim();

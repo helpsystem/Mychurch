@@ -10,17 +10,20 @@ export default async function VerifyAdminLoginPage() {
         redirect("/login");
     }
 
-    // Double check role and get contact info using admin client to bypass RLS policies
+    const { getRealUserRole } = await import("@/utils/rbac");
+    const role = await getRealUserRole();
+
+    if (!role || !['Admin', 'Leader', 'Operator'].includes(role)) {
+        redirect("/unauthorized");
+    }
+
+    // Get contact info using admin client to bypass RLS policies
     const adminSupabase = await createAdminClient();
     const { data: userData } = await adminSupabase
         .from('users')
         .select('role, phone, whatsapp_number, telegram_id')
-        .eq('email', user.email?.toLowerCase())
-        .single();
-
-    if (!userData || !['Admin', 'Leader', 'Operator'].includes(userData.role)) {
-        redirect("/unauthorized");
-    }
+        .ilike('email', user.email || '')
+        .maybeSingle();
 
     return (
         <div className="min-h-[100dvh] flex items-center justify-center bg-[#09090b] text-neutral-50 px-4 relative">
