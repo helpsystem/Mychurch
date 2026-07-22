@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { sendAdminOTP, verifyAdminOTP } from "@/actions/otp";
-import { Shield, Mail, ArrowRight, Loader2, KeyRound, MessageSquare, Smartphone } from "lucide-react";
+import { Shield, Mail, ArrowRight, Loader2, KeyRound, MessageSquare, Smartphone, Send } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { OtpInput } from "@/components/ui/OtpInput";
@@ -12,13 +12,14 @@ interface VerifyAdminClientProps {
     email: string;
     initialPhone?: string;
     initialWhatsApp?: string;
+    initialTelegram?: string;
 }
 
-export default function VerifyAdminClient({ email, initialPhone = "", initialWhatsApp = "" }: VerifyAdminClientProps) {
-    // Determine the default channel: WhatsApp if exists, else SMS if exists, else Email
-    const defaultChannel = initialWhatsApp.trim() ? "whatsapp" : initialPhone.trim() ? "sms" : "email";
+export default function VerifyAdminClient({ email, initialPhone = "", initialWhatsApp = "", initialTelegram = "" }: VerifyAdminClientProps) {
+    // Determine the default channel: Telegram if exists, else WhatsApp if exists, else SMS if exists, else Email
+    const defaultChannel = initialTelegram.trim() ? "telegram" : initialWhatsApp.trim() ? "whatsapp" : initialPhone.trim() ? "sms" : "email";
     
-    const [channel, setChannel] = useState<"whatsapp" | "sms" | "email">(defaultChannel);
+    const [channel, setChannel] = useState<"telegram" | "whatsapp" | "sms" | "email">(defaultChannel);
     const [code, setCode] = useState("");
     const [isSending, setIsSending] = useState(false);
     const [isVerifying, setIsVerifying] = useState(false);
@@ -43,14 +44,16 @@ export default function VerifyAdminClient({ email, initialPhone = "", initialWha
                 if (res.channelUsed && res.channelUsed !== channel) {
                     // Failover happened
                     const channelNames = {
+                        telegram: "تلگرام",
                         whatsapp: "واتساپ",
                         sms: "پیامک (SMS)",
                         email: "ایمیل"
                     };
-                    toast.warning(`ارسال به ${channelNames[channel]} ناموفق بود. کد به ${channelNames[res.channelUsed as "whatsapp" | "sms" | "email"]} ارسال گردید.`);
-                    setChannel(res.channelUsed as "whatsapp" | "sms" | "email");
+                    toast.warning(`ارسال به ${channelNames[channel]} ناموفق بود. کد به ${channelNames[res.channelUsed as keyof typeof channelNames]} ارسال گردید.`);
+                    setChannel(res.channelUsed as "telegram" | "whatsapp" | "sms" | "email");
                 } else {
                     const successMessages = {
+                        telegram: "کد تایید به تلگرام شما ارسال شد.",
                         whatsapp: "کد تایید به واتساپ شما ارسال شد.",
                         sms: "کد تایید به شماره موبایل شما پیامک شد.",
                         email: "کد تایید به ایمیل شما ارسال شد."
@@ -120,7 +123,22 @@ export default function VerifyAdminClient({ email, initialPhone = "", initialWha
             </div>
 
             {/* Channel Selection Tabs */}
-            <div className="grid grid-cols-3 gap-2 bg-black/40 border border-white/5 p-1.5 rounded-2xl mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-black/40 border border-white/5 p-1.5 rounded-2xl mb-6">
+                <button
+                    type="button"
+                    disabled={!initialTelegram.trim()}
+                    onClick={() => setChannel("telegram")}
+                    className={`flex flex-col items-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                        channel === "telegram"
+                            ? "bg-sky-600 text-white shadow-md shadow-sky-900/30 scale-100"
+                            : "text-muted-foreground hover:text-white disabled:opacity-40 disabled:hover:text-muted-foreground"
+                    }`}
+                    title={!initialTelegram.trim() ? "شناسه تلگرام در پروفایل شما ثبت نشده است" : "دریافت از طریق تلگرام"}
+                >
+                    <Send className="w-4 h-4" />
+                    <span>تلگرام</span>
+                </button>
+
                 <button
                     type="button"
                     disabled={!initialWhatsApp.trim()}
@@ -170,6 +188,7 @@ export default function VerifyAdminClient({ email, initialPhone = "", initialWha
             <div className="mb-6 px-4 py-3 bg-black/20 border border-white/5 rounded-2xl text-center">
                 <p className="text-xs text-muted-foreground mb-1">کد تایید به مقصد زیر ارسال خواهد شد:</p>
                 <div className="font-mono text-sm text-emerald-400 font-bold select-all tracking-wide" dir="ltr">
+                    {channel === "telegram" && (initialTelegram ? `Chat ID: ${initialTelegram}` : "ثبت نشده")}
                     {channel === "whatsapp" && (initialWhatsApp ? maskPhone(initialWhatsApp) : "ثبت نشده")}
                     {channel === "sms" && (initialPhone ? maskPhone(initialPhone) : "ثبت نشده")}
                     {channel === "email" && maskEmail(email)}

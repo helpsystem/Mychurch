@@ -14,7 +14,7 @@ export default async function VerifyAdminLoginPage() {
     const adminSupabase = await createAdminClient();
     const { data: userData } = await adminSupabase
         .from('users')
-        .select('role, phone, whatsapp_number')
+        .select('role, phone, whatsapp_number, telegram_id')
         .eq('email', user.email?.toLowerCase())
         .single();
 
@@ -29,6 +29,7 @@ export default async function VerifyAdminLoginPage() {
                 email={user.email || ""} 
                 initialPhone={userData.phone || ""}
                 initialWhatsApp={userData.whatsapp_number || ""}
+                initialTelegram={userData.telegram_id || ""}
             />
         </div>
     );

@@ -11,6 +11,7 @@ export type UserRow = {
     role: string;
     last_active: string;
     permissions: Record<string, boolean>;
+    telegram_id?: string;
 };
 
 async function canManageUsers(): Promise<boolean> {
@@ -43,7 +44,8 @@ export async function getUsers(): Promise<UserRow[]> {
                 last_active: lastActiveDate && !Number.isNaN(lastActiveDate.getTime())
                     ? lastActiveDate.toLocaleString()
                     : 'Never',
-                permissions: row.permissions || {}
+                permissions: row.permissions || {},
+                telegram_id: row.telegram_id || ''
             } satisfies UserRow;
         });
     } catch (error) {
@@ -70,6 +72,28 @@ export async function updateUserRole(id: string, newRole: string) {
         return true;
     } catch (error) {
         console.error("Failed to update user role:", error);
+        return false;
+    }
+}
+
+export async function updateUserTelegramId(id: string, telegram_id: string) {
+    if (!(await canManageUsers())) {
+        return false;
+    }
+
+    try {
+        const supabase = await createClient();
+        const { error } = await supabase
+            .from('users')
+            .update({ telegram_id })
+            .eq('id', id);
+
+        if (error) throw error;
+
+        revalidatePath('/admin/users');
+        return true;
+    } catch (error) {
+        console.error("Failed to update user telegram id:", error);
         return false;
     }
 }

@@ -90,3 +90,14 @@ export async function deleteFromTelegramStorage(messageId: number): Promise<bool
     return false;
   }
 }
+
+export async function sendTelegramMessage(chatId: string, text: string): Promise<boolean> {
+  try {
+    const { bot } = getBot();
+    await bot.api.sendMessage(chatId, text);
+    return true;
+  } catch (error) {
+    console.error("❌ [Telegram Bot] Failed to send message:", error);
+    return false;
+  }
+}

@@ -9,8 +9,9 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { render } from "@react-email/components";
 import Admin2faOtpEmail from "@/emails/2fa-otp";
+import { sendTelegramMessage } from "@/services/telegram";
 
-export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" = "email"): Promise<{ success?: boolean; error?: string; channelUsed?: string }> {
+export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "telegram" = "email"): Promise<{ success?: boolean; error?: string; channelUsed?: string }> {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
@@ -22,7 +23,7 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" = "emai
     const adminSupabase = await createAdminClient();
     const { data: userData } = await adminSupabase
         .from('users')
-        .select('role, phone, whatsapp_number')
+        .select('role, phone, whatsapp_number, telegram_id')
         .eq('email', user.email.toLowerCase())
         .single();
 
@@ -32,6 +33,11 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" = "emai
 
     const phone = userData.phone?.trim();
     const whatsapp = userData.whatsapp_number?.trim();
+    const telegramId = userData.telegram_id?.trim();
+
+    if (channel === "telegram" && !telegramId) {
+        return { error: "شناسه تلگرام برای حساب کاربری شما ثبت نشده است." };
+    }
 
     if (channel === "whatsapp" && !whatsapp) {
         return { error: "شماره واتساپ برای حساب کاربری شما ثبت نشده است." };
@@ -47,7 +53,22 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" = "emai
     let finalChannel: string = channel;
 
     // Send code based on requested channel
-    if (channel === "whatsapp" && whatsapp) {
+    if (channel === "telegram" && telegramId) {
+        console.log(`[Auth OTP] 🚀 Attempting to send OTP via Telegram to ${telegramId}...`);
+        const res = await sendTelegramMessage(telegramId, messageText);
+        if (res) {
+            return { success: true, channelUsed: "telegram" };
+        }
+
+        console.warn(`[Auth OTP] ⚠️ Telegram sending failed. Switching to SMS fallback...`);
+        if (phone) {
+            finalChannel = "sms";
+        } else {
+            finalChannel = "email";
+        }
+    }
+
+    if (finalChannel === "whatsapp" && whatsapp) {
         console.log(`[Auth OTP] 🚀 Attempting to send OTP via WhatsApp to ${whatsapp}...`);
         const res = await sendWhatsApp(whatsapp, messageText);
         if (res.success) {

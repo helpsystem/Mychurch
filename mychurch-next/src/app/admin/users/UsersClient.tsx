@@ -4,9 +4,9 @@ import React, { useState, useTransition, useMemo } from "react";
 import { 
     Users, Search, Shield, Settings, Trash2, Edit, 
     X, Check, FileText, LayoutTemplate, Music, 
-    Calendar, Video, UserPlus, Loader2, Mail 
+    Calendar, Video, UserPlus, Loader2, Mail, Send
 } from "lucide-react";
-import { type UserRow, updateUserRole, deleteUser, updateUserPermissions } from "@/actions/users";
+import { type UserRow, updateUserRole, deleteUser, updateUserPermissions, updateUserTelegramId } from "@/actions/users";
 import { toast } from "sonner";
 
 const AVAILABLE_PERMISSIONS = [
@@ -33,6 +33,10 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
     // Permissions Modal State
     const [permissionsModalUserId, setPermissionsModalUserId] = useState<string | null>(null);
     const [editingPermissions, setEditingPermissions] = useState<Record<string, boolean>>({});
+
+    // Contact Modal State
+    const [contactModalUserId, setContactModalUserId] = useState<string | null>(null);
+    const [editingTelegramId, setEditingTelegramId] = useState("");
 
     const handleRoleChange = (id: string, newRole: string) => {
         startTransition(async () => {
@@ -105,6 +109,24 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                 toast.error("خطا در به‌روزرسانی دسترسی‌ها.");
             }
             setPermissionsModalUserId(null);
+        });
+    };
+
+    const openContactModal = (user: UserRow) => {
+        setContactModalUserId(user.id);
+        setEditingTelegramId(user.telegram_id || "");
+    };
+
+    const saveContactInfo = () => {
+        if (!contactModalUserId) return;
+        startTransition(async () => {
+            const success = await updateUserTelegramId(contactModalUserId, editingTelegramId);
+            if (success) {
+                toast.success("شناسه تلگرام با موفقیت ویرایش شد.");
+            } else {
+                toast.error("خطا در به‌روزرسانی اطلاعات تماس.");
+            }
+            setContactModalUserId(null);
         });
     };
 
@@ -274,6 +296,16 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                                             >
                                                 <Settings className="w-4 h-4" />
                                             </button>
+
+                                            {/* Contact Info Button */}
+                                            <button
+                                                onClick={() => openContactModal(user)}
+                                                disabled={isPending}
+                                                className="p-2 text-sky-500/80 hover:text-sky-400 bg-sky-500/5 hover:bg-sky-500/10 border border-sky-500/10 rounded-xl transition-all disabled:opacity-50" 
+                                                title="اطلاعات تماس (تلگرام و...)"
+                                            >
+                                                <Send className="w-4 h-4" />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -369,6 +401,64 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                                 )}
                                 اعمال و بروزرسانی سطوح دسترسی
                             </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Contact Info Modal */}
+            {contactModalUserId && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+                    <div className="glass-strong border border-white/10 rounded-[2.5rem] w-full max-w-md overflow-hidden shadow-2xl relative">
+                        <div className="absolute inset-0 bg-noise opacity-[0.14] pointer-events-none" />
+                        
+                        {/* Header */}
+                        <div className="p-6 border-b border-white/10 flex justify-between items-center bg-black/25 relative z-10">
+                            <div className="flex items-center gap-3">
+                                <div className="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center">
+                                    <Send className="w-5 h-5 text-sky-400" />
+                                </div>
+                                <div>
+                                    <h3 className="font-black text-lg text-white">اطلاعات تماس کاربر</h3>
+                                    <p className="text-xs text-muted-foreground mt-0.5">تنظیمات دریافت پیام و 2FA</p>
+                                </div>
+                            </div>
+                            <button onClick={() => setContactModalUserId(null)} className="p-2 hover:bg-white/5 rounded-full transition text-muted-foreground" title="بستن">
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+
+                        {/* Body */}
+                        <div className="p-6 space-y-4 relative z-10">
+                            <div className="space-y-1.5">
+                                <label className="text-xs font-bold text-muted-foreground mr-1">شناسه عددی تلگرام (Chat ID)</label>
+                                <div className="relative">
+                                    <Send className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                                    <input
+                                        type="text"
+                                        value={editingTelegramId}
+                                        onChange={e => setEditingTelegramId(e.target.value)}
+                                        placeholder="مثال: 123456789"
+                                        dir="ltr"
+                                        className="w-full bg-neutral-900 border border-white/5 rounded-xl px-4 py-2.5 pl-10 text-sm focus:outline-none focus:border-sky-500 transition text-left"
+                                    />
+                                </div>
+                                <p className="text-[10px] text-muted-foreground pt-1 pr-1">برای دریافت کد ورود دو مرحله‌ای به تلگرام، شناسه عددی (Chat ID) اکانت کاربر را وارد کنید.</p>
+                            </div>
+                            
+                            <div className="flex gap-3 pt-2">
+                                <button type="button" onClick={() => setContactModalUserId(null)} className="flex-1 py-2.5 rounded-xl font-bold bg-neutral-800 hover:bg-neutral-700 text-white transition">
+                                    انصراف
+                                </button>
+                                <button 
+                                    onClick={saveContactInfo} 
+                                    disabled={isPending} 
+                                    className="flex-1 py-2.5 rounded-xl font-bold bg-sky-600 hover:bg-sky-500 text-white transition flex items-center justify-center gap-2 disabled:opacity-60"
+                                >
+                                    {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
+                                    ذخیره تغییرات
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

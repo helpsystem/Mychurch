@@ -21,6 +21,8 @@ import { BroadcastProperties } from "./BroadcastProperties";
 import { PreviewMonitor, ProgramMonitor } from "./Monitors";
 import { SlideGrid } from "./SlideGrid";
 import { DeviceSettingsModal } from "./DeviceSettingsModal";
+import LiveTranslator from "./LiveTranslator";
+import { HelpTooltip } from "@/components/ui/HelpTooltip";
 
 interface LiveConsoleProps {
     initialPresentationId?: string | null;
@@ -825,6 +827,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                         <span className="hidden xs:inline">{isLive ? (t.endStream || 'End Stream') : (t.goLive || 'Go Live')}</span>
                         <span className="xs:hidden">{isLive ? 'Stop' : 'Live'}</span>
                     </button>
+                    <HelpTooltip text="شروع ارسال خروجی نهایی به مانیتورهای سالن و پلتفرم‌های آنلاین." />
 
                     {/* Right Sidebar Toggle Button (only on mobile/tablet) */}
                     <button
@@ -900,6 +903,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                                 <h3 className="text-sm font-bold flex items-center gap-2">
                                     <Phone className="text-emerald-500 w-4 h-4 animate-pulse" />
                                     <span>شرکت‌کنندگان تماس زنده (تلفنی و تصویری وب)</span>
+                                    <HelpTooltip text="از اینجا می‌توانید صدای کسانی که تلفنی به جلسه وصل شده‌اند را وصل یا قطع کنید." />
                                     {fccCallers.length > 0 && (
                                         <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-0.5 rounded-full font-bold">
                                             {fccCallers.length} نفر فعال
@@ -1066,6 +1070,14 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                             {isOpeningViewer ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ExternalLink className="w-3.5 h-3.5" />} <span className="hidden sm:inline">{t.viewer || 'Viewer'}</span>
                         </button>
                     </div>
+
+                    {/* Live Translator Widget (Free Google API) */}
+                    {sessionId && (
+                        <div className="mt-4">
+                            <LiveTranslator meetingId={sessionId} />
+                        </div>
+                    )}
+
                 </main>
 
                 {/* Right Sidebar Backdrop */}
