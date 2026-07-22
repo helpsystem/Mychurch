@@ -13,6 +13,7 @@ export function MobileNavigation() {
   const { t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
+  const [userRole, setUserRole] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -27,10 +28,29 @@ export function MobileNavigation() {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getSession().then(({ data }) => setSession(data.session));
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => setSession(session));
+    
+    const fetchRole = async (email: string | undefined) => {
+        if (!email) {
+            setUserRole(null);
+            return;
+        }
+        const { data } = await supabase.from('users').select('role').ilike('email', email).maybeSingle();
+        setUserRole(data?.role || null);
+    };
+
+    supabase.auth.getSession().then(({ data }) => {
+        setSession(data.session);
+        fetchRole(data.session?.user?.email);
+    });
+    
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+        setSession(session);
+        fetchRole(session?.user?.email);
+    });
     return () => subscription.unsubscribe();
   }, []);
+
+  const hasAdminAccess = userRole && ['Admin', 'Leader', 'Operator'].includes(userRole);
 
   // Close menu when route changes
   useEffect(() => {
@@ -130,9 +150,11 @@ export function MobileNavigation() {
                   <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-200 font-bold border border-cyan-400/30 active:scale-95 transition-all text-base">
                     <User className="w-5 h-5" /> پروفایل من
                  </Link>
-                  <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-neutral-900 border border-white/15 text-white font-bold active:scale-95 transition-all text-base">
-                    <Shield className="w-5 h-5" /> پنل مدیریت
-                 </Link>
+                  {hasAdminAccess && (
+                    <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-neutral-900 border border-white/15 text-white font-bold active:scale-95 transition-all text-base">
+                      <Shield className="w-5 h-5" /> پنل مدیریت
+                    </Link>
+                  )}
                </>
              ) : (
                 <Link href="/login" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-blue-600 text-white font-bold hover:bg-blue-500 shadow-xl shadow-blue-500/30 active:scale-95 transition-all text-base">

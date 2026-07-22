@@ -12,17 +12,34 @@ import { Session } from "@supabase/supabase-js";
 export function PublicHeader() {
     const { t, language } = useLanguage();
     const [session, setSession] = useState<Session | null>(null);
+    const [userRole, setUserRole] = useState<string | null>(null);
 
     useEffect(() => {
         const supabase = createClient();
-        supabase.auth.getSession().then(({ data }) => setSession(data.session));
+        
+        const fetchRole = async (email: string | undefined) => {
+            if (!email) {
+                setUserRole(null);
+                return;
+            }
+            const { data } = await supabase.from('users').select('role').ilike('email', email).maybeSingle();
+            setUserRole(data?.role || null);
+        };
+
+        supabase.auth.getSession().then(({ data }) => {
+            setSession(data.session);
+            fetchRole(data.session?.user?.email);
+        });
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
+            fetchRole(session?.user?.email);
         });
 
         return () => subscription.unsubscribe();
     }, []);
+
+    const hasAdminAccess = userRole && ['Admin', 'Leader', 'Operator'].includes(userRole);
 
     return (
         <nav className="fixed top-0 inset-x-0 h-20 glass-strong border-b border-white/5 z-50 flex items-center justify-between px-6 lg:px-12 shadow-lg shadow-black/10">
@@ -81,9 +98,11 @@ export function PublicHeader() {
                         <Link href="/profile" className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 font-bold transition-colors shadow-sm cursor-pointer border border-indigo-500/20" title={language === 'fa' ? 'پروفایل من' : 'My Profile'}>
                             <User className="w-4 h-4" /> {language === 'fa' ? 'پروفایل من' : 'My Profile'}
                         </Link>
-                        <Link href="/admin" className="hidden md:flex items-center gap-2 p-2 rounded-xl bg-secondary/50 text-foreground hover:bg-secondary font-medium transition-colors shadow-sm cursor-pointer border border-border/10" title={language === 'fa' ? 'داشبورد مدیریت' : 'Admin Dashboard'}>
-                            <Shield className="w-5 h-5" />
-                        </Link>
+                        {hasAdminAccess && (
+                            <Link href="/admin" className="hidden md:flex items-center gap-2 p-2 rounded-xl bg-secondary/50 text-foreground hover:bg-secondary font-medium transition-colors shadow-sm cursor-pointer border border-border/10" title={language === 'fa' ? 'داشبورد مدیریت' : 'Admin Dashboard'}>
+                                <Shield className="w-5 h-5" />
+                            </Link>
+                        )}
                     </div>
                 ) : (
                     <Link href="/login" className="hidden md:flex items-center gap-2 p-2 rounded-xl bg-secondary/50 text-foreground hover:bg-secondary font-medium transition-colors shadow-sm cursor-pointer border border-border/10" title={language === 'fa' ? 'ورود اعضا' : 'Member Login'}>
