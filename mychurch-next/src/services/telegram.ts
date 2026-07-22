@@ -11,7 +11,7 @@ const telegramConfigSchema = z.object({
 let _bot: Bot | null = null;
 let _telegramConfig: any = null;
 
-function getBot() {
+export function getBot() {
   if (_bot) return { bot: _bot, telegramConfig: _telegramConfig };
 
   const processEnv = {

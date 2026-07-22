@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { executeWorkflow } from "@/lib/automation-engine";
 import { Workflow } from "@/actions/automation";
-import { requireAdmin } from "@/utils/rbac"; // mychurch role based access control
+import { requireRole } from "@/utils/rbac"; // mychurch role based access control
 
 export async function POST(request: NextRequest) {
   try {
     // Only admins should trigger manual workflow runs from the studio
-    await requireAdmin();
+    await requireRole(['Admin']);
 
     const body = await request.json();
     const { workflow, isMock, triggerPayload } = body as { workflow: Workflow, isMock: boolean, triggerPayload: any };
