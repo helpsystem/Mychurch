@@ -53,6 +53,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
         bio: initialUser?.bio || "",
         phone: initialUser?.phone || "",
         whatsapp_number: initialUser?.whatsapp_number || "",
+        telegram_id: initialUser?.telegram_id || "",
     });
 
     // Address state
@@ -291,6 +292,27 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                         <input id="whatsapp" type="tel" value={formData.whatsapp_number} placeholder="+1..."
                                             onChange={e => setFormData({ ...formData, whatsapp_number: e.target.value })}
                                             className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" dir="ltr" />
+                                    </div>
+                                    <div className="space-y-2 md:col-span-2">
+                                        <label htmlFor="telegram_id" className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                                            <Send className="w-4 h-4 text-sky-400" />
+                                            {isFa ? "شناسه تلگرام (Chat ID) — برای دریافت کد تایید ۲FA" : "Telegram Chat ID — for 2FA verification codes"}
+                                        </label>
+                                        <input
+                                            id="telegram_id"
+                                            type="text"
+                                            value={formData.telegram_id}
+                                            placeholder={isFa ? "مثال: 123456789" : "e.g. 123456789"}
+                                            onChange={e => setFormData({ ...formData, telegram_id: e.target.value })}
+                                            className="w-full bg-secondary border border-sky-500/30 rounded-xl px-4 py-3 focus:outline-none focus:border-sky-400 transition-colors text-foreground placeholder:text-muted-foreground" 
+                                            dir="ltr"
+                                        />
+                                        <p className="text-xs text-muted-foreground">
+                                            {isFa 
+                                                ? "برای دریافت Chat ID خود، ربات @userinfobot را در تلگرام پیدا کنید و /start بزنید. عدد نشان داده شده را اینجا وارد کنید."
+                                                : "Find your Chat ID: Message @userinfobot on Telegram and type /start. Enter the number shown here."
+                                            }
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="space-y-2 mt-6">

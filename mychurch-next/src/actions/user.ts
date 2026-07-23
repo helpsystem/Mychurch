@@ -1,7 +1,9 @@
 "use server";
 
-import { query } from "@/lib/db";
+import { createAdminClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { query } from "@/lib/db";
 
 export async function initializeUserDB() {
     try {
@@ -62,6 +64,7 @@ export async function updateUserProfile(email: string, data: {
     name?: string;
     phone?: string;
     whatsapp_number?: string;
+    telegram_id?: string;
     bio?: string;
     address_line1?: string;
     address_line2?: string;
@@ -73,34 +76,40 @@ export async function updateUserProfile(email: string, data: {
     lng?: number | null;
 }) {
     try {
-        await query(
-            `UPDATE users 
-             SET name = COALESCE($1, name), 
-                 phone = COALESCE($2, phone), 
-                 whatsapp_number = COALESCE($3, whatsapp_number), 
-                 bio = COALESCE($4, bio),
-                 address_line1 = $5,
-                 address_line2 = $6,
-                 city = $7,
-                 state = $8,
-                 country = $9,
-                 postal_code = $10,
-                 lat = $11,
-                 lng = $12,
-                 updated_at = NOW()
-             WHERE email = $13`,
-            [
-                data.name || null, data.phone || null, data.whatsapp_number || null,
-                data.bio || null, data.address_line1 || null, data.address_line2 || null,
-                data.city || null, data.state || null, data.country || null,
-                data.postal_code || null, data.lat ?? null, data.lng ?? null,
-                email
-            ]
-        );
+        const supabase = await createAdminClient();
+
+        // Build update payload (only include fields that are provided)
+        const updatePayload: Record<string, any> = {
+            updated_at: new Date().toISOString(),
+        };
+        if (data.name !== undefined) updatePayload.name = data.name || null;
+        if (data.phone !== undefined) updatePayload.phone = data.phone || null;
+        if (data.whatsapp_number !== undefined) updatePayload.whatsapp_number = data.whatsapp_number || null;
+        if (data.telegram_id !== undefined) updatePayload.telegram_id = data.telegram_id || null;
+        if (data.bio !== undefined) updatePayload.bio = data.bio || null;
+        if (data.address_line1 !== undefined) updatePayload.address_line1 = data.address_line1 || null;
+        if (data.address_line2 !== undefined) updatePayload.address_line2 = data.address_line2 || null;
+        if (data.city !== undefined) updatePayload.city = data.city || null;
+        if (data.state !== undefined) updatePayload.state = data.state || null;
+        if (data.country !== undefined) updatePayload.country = data.country || null;
+        if (data.postal_code !== undefined) updatePayload.postal_code = data.postal_code || null;
+        if (data.lat !== undefined) updatePayload.lat = data.lat ?? null;
+        if (data.lng !== undefined) updatePayload.lng = data.lng ?? null;
+
+        const { error } = await supabase
+            .from('users')
+            .update(updatePayload)
+            .ilike('email', email);
+
+        if (error) {
+            console.error('[updateUserProfile] Supabase error:', error);
+            return { success: false, error: error.message };
+        }
+
         revalidatePath('/profile');
         return { success: true };
-    } catch (e) {
+    } catch (e: any) {
         console.error('Error updating user profile', e);
-        return { success: false };
+        return { success: false, error: e.message };
     }
 }
