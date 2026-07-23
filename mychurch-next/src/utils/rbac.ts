@@ -29,12 +29,16 @@ export async function getRealUserRole(): Promise<Role | null> {
         if (error || !data || !data.role) {
             if (isKnownAdmin) {
                 console.log(`[RBAC] Auto-healing admin role for ${email}...`);
-                await supabase.from('users').upsert({
-                    email: email,
-                    role: 'Admin',
-                    display_name: email.split('@')[0],
-                    full_name: email.split('@')[0]
-                }, { onConflict: 'email' });
+                try {
+                    await supabase.from('users').upsert({
+                        email: email.toLowerCase(),
+                        name: email.split('@')[0],
+                        role: 'Admin',
+                    }, { onConflict: 'email' });
+                } catch (upsertErr) {
+                    // upsert might fail if column constraints differ — still return Admin
+                    console.warn('[RBAC] Upsert auto-heal failed (non-critical):', upsertErr);
+                }
                 return 'Admin';
             }
             return null;

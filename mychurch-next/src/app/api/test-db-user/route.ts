@@ -26,7 +26,7 @@ export async function GET() {
             // or just insert a new user with a generated UUID
             const result = await adminSupabase
                 .from("users")
-                .insert({ email: "help.system@ymail.com", role: "Admin", display_name: "Admin User", full_name: "Admin User" });
+                .insert({ email: "help.system@ymail.com", name: "Help System", role: "Admin" });
             updateError = result.error;
         }
 
