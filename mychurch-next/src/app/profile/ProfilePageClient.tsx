@@ -84,14 +84,16 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
     };
 
     const handleTelegramChange = (val: string) => {
-        setTelegramError(null);
-        // Reject if it looks like an email address
+        // Use functional update to avoid stale closure bug
+        setFormData(prev => ({ ...prev, telegram_id: val }));
+        // Validate
         if (val.includes("@") && val.includes(".")) {
             setTelegramError(isFa ? "آی‌دی تلگرام یک عدد است، نه ایمیل!" : "Telegram Chat ID is a number, not an email!");
         } else if (val && !/^\d+$/.test(val)) {
             setTelegramError(isFa ? "آی‌دی تلگرام فقط شامل اعداد است." : "Telegram Chat ID must be numbers only.");
+        } else {
+            setTelegramError(null);
         }
-        setFormData({ ...formData, telegram_id: val });
     };
 
     // Address state
@@ -335,15 +337,15 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                 </div>
                             </div>
 
-                            {/* ── 2FA Channels Section ── */}
+                            {/* ── Notification Channels Section ── */}
                             <div className="bg-card border border-amber-500/20 rounded-3xl p-8">
                                 <div className="flex items-center gap-3 mb-2">
                                     <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
                                         <Shield className="w-5 h-5 text-amber-400" />
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-bold text-foreground">{isFa ? "کانال‌های دریافت کد تأیید ۲ مرحله‌ای" : "2FA Verification Channels"}</h3>
-                                        <p className="text-xs text-muted-foreground mt-0.5">{isFa ? "سیستم با اولویت تلگرام → واتساپ → پیامک → ایمیل کد را ارسال می‌کند." : "System sends code via: Telegram → WhatsApp → SMS → Email (in order of priority)."}</p>
+                                        <h3 className="text-lg font-bold text-foreground">{isFa ? "کانال‌های ارتباطی و اعلان" : "Communication & Notification Channels"}</h3>
+                                        <p className="text-xs text-muted-foreground mt-0.5">{isFa ? "برای اعلان‌ها، اخبار کلیسا، پیام‌ها و کد تأیید ۲ مرحله‌ای استفاده می‌شود." : "Used for notifications, church news, messages, and 2FA verification codes."}</p>
                                     </div>
                                 </div>
 
@@ -384,7 +386,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                                 id="phone" type="tel"
                                                 value={formData.phone.replace(/^\+\d+/, "")}
                                                 placeholder={isFa ? "شماره بدون کد کشور" : "Number without country code"}
-                                                onChange={e => setFormData({ ...formData, phone: formatPhoneWithCode(phoneCountry, e.target.value) })}
+                                                onChange={e => setFormData(prev => ({ ...prev, phone: formatPhoneWithCode(phoneCountry, e.target.value) }))}
                                                 className="flex-1 bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground"
                                                 dir="ltr"
                                             />
@@ -412,7 +414,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                                 id="whatsapp" type="tel"
                                                 value={formData.whatsapp_number.replace(/^\+\d+/, "")}
                                                 placeholder={isFa ? "شماره بدون کد کشور" : "Number without country code"}
-                                                onChange={e => setFormData({ ...formData, whatsapp_number: formatPhoneWithCode(waCountry, e.target.value) })}
+                                                onChange={e => setFormData(prev => ({ ...prev, whatsapp_number: formatPhoneWithCode(waCountry, e.target.value) }))}
                                                 className="flex-1 bg-secondary border border-emerald-500/30 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-400 transition-colors text-foreground placeholder:text-muted-foreground"
                                                 dir="ltr"
                                             />
@@ -424,18 +426,18 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                     <div className="space-y-2 md:col-span-2">
                                         <label htmlFor="telegram_id" className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                                             <Send className="w-4 h-4 text-sky-400" />
-                                            {isFa ? "آی‌دی عددی تلگرام (Chat ID) — بالاترین اولویت" : "Telegram Numeric Chat ID — Highest Priority"}
+                                            {isFa ? "آی‌دی عددی تلگرام (Chat ID) — برای اعلان‌ها، اخبار، پیام‌ها و ۲FA" : "Telegram Chat ID — for notifications, news, messages & 2FA"}
                                         </label>
                                         <div className="relative">
                                             <input
                                                 id="telegram_id"
                                                 type="text"
-                                                inputMode="numeric"
                                                 value={formData.telegram_id}
                                                 placeholder="e.g. 123456789"
                                                 onChange={e => handleTelegramChange(e.target.value)}
                                                 className={`w-full bg-secondary border rounded-xl px-4 py-3 focus:outline-none transition-colors text-foreground placeholder:text-muted-foreground ${ telegramError ? "border-red-500 focus:border-red-400" : "border-sky-500/30 focus:border-sky-400" }`}
                                                 dir="ltr"
+                                                autoComplete="off"
                                             />
                                             {formData.telegram_id && !telegramError && /^\d+$/.test(formData.telegram_id) && (
                                                 <CheckCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-400" />
