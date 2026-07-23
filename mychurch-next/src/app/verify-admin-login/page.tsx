@@ -30,9 +30,9 @@ export default async function VerifyAdminLoginPage() {
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20 pointer-events-none" />
             <VerifyAdminClient 
                 email={user.email || ""} 
-                initialPhone={userData.phone || ""}
-                initialWhatsApp={userData.whatsapp_number || ""}
-                initialTelegram={userData.telegram_id || ""}
+                initialPhone={userData?.phone || ""}
+                initialWhatsApp={userData?.whatsapp_number || ""}
+                initialTelegram={userData?.telegram_id || ""}
             />
         </div>
     );

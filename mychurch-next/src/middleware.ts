@@ -34,7 +34,9 @@ export async function middleware(request: NextRequest) {
 
     // Protect routes
     const pathname = request.nextUrl.pathname;
-    const isProtected = pathname.startsWith('/admin') || (pathname.startsWith('/broadcast') && pathname !== '/broadcast/view');
+    const isAdminRoute = pathname.startsWith('/admin');
+    const isBroadcastRoute = pathname.startsWith('/broadcast') && pathname !== '/broadcast/view';
+    const isProtected = isAdminRoute || isBroadcastRoute;
 
     if (isProtected && !user) {
         // Redirect completely out if they have no session
@@ -50,8 +52,8 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(url);
     }
 
-    // 2FA Protection for Admin Panel
-    if (pathname.startsWith('/admin')) {
+    // 2FA Protection for Admin Panel ONLY (not broadcast)
+    if (isAdminRoute && user) {
         const isVerified = request.cookies.get('admin_2fa_verified')?.value === 'true';
         if (!isVerified) {
             const url = request.nextUrl.clone();
@@ -60,6 +62,16 @@ export async function middleware(request: NextRequest) {
             url.pathname = '/verify-admin-login';
             return NextResponse.redirect(url);
         }
+
+        // Auto-renew the 2FA cookie to prevent sudden lockouts during long sessions
+        // If the cookie is present and valid, refresh its TTL to 24h on each request
+        supabaseResponse.cookies.set('admin_2fa_verified', 'true', {
+            maxAge: 24 * 60 * 60, // Renew to 24 hours on every admin page load
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            path: '/',
+        });
     }
 
     // Detailed Role checking is done strictly within Server Components (e.g. layout.tsx)
@@ -73,3 +85,4 @@ export const config = {
         '/((?!_next/static|_next/image|favicon.ico|api|images|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|mp3|wav|ogg)$).*)',
     ],
 };
+
