@@ -55,6 +55,44 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
         whatsapp_number: initialUser?.whatsapp_number || "",
         telegram_id: initialUser?.telegram_id || "",
     });
+    const [phoneCountry, setPhoneCountry] = useState("+1");
+    const [waCountry, setWaCountry] = useState("+1");
+    const [telegramError, setTelegramError] = useState<string | null>(null);
+
+    const COUNTRY_CODES = [
+        { code: "+1",  flag: "🇺🇸", label: "US/CA" },
+        { code: "+44", flag: "🇬🇧", label: "UK" },
+        { code: "+49", flag: "🇩🇪", label: "DE" },
+        { code: "+33", flag: "🇫🇷", label: "FR" },
+        { code: "+31", flag: "🇳🇱", label: "NL" },
+        { code: "+46", flag: "🇸🇪", label: "SE" },
+        { code: "+45", flag: "🇩🇰", label: "DK" },
+        { code: "+47", flag: "🇳🇴", label: "NO" },
+        { code: "+41", flag: "🇨🇭", label: "CH" },
+        { code: "+43", flag: "🇦🇹", label: "AT" },
+        { code: "+98", flag: "🇮🇷", label: "IR" },
+        { code: "+90", flag: "🇹🇷", label: "TR" },
+        { code: "+971",flag: "🇦🇪", label: "AE" },
+        { code: "+966",flag: "🇸🇦", label: "SA" },
+        { code: "+61", flag: "🇦🇺", label: "AU" },
+        { code: "+64", flag: "🇳🇿", label: "NZ" },
+    ];
+
+    const formatPhoneWithCode = (code: string, num: string) => {
+        const clean = num.replace(/^\+\d+\s*/, "").trim();
+        return clean ? `${code}${clean}` : "";
+    };
+
+    const handleTelegramChange = (val: string) => {
+        setTelegramError(null);
+        // Reject if it looks like an email address
+        if (val.includes("@") && val.includes(".")) {
+            setTelegramError(isFa ? "آی‌دی تلگرام یک عدد است، نه ایمیل!" : "Telegram Chat ID is a number, not an email!");
+        } else if (val && !/^\d+$/.test(val)) {
+            setTelegramError(isFa ? "آی‌دی تلگرام فقط شامل اعداد است." : "Telegram Chat ID must be numbers only.");
+        }
+        setFormData({ ...formData, telegram_id: val });
+    };
 
     // Address state
     const [address, setAddress] = useState<AddressData>({
@@ -270,57 +308,154 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                     <User className="w-5 h-5 text-primary" /> {isFa ? "اطلاعات شخصی" : "Personal Information"}
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {/* Full Name */}
                                     <div className="space-y-2">
                                         <label htmlFor="fullname" className="text-sm font-medium text-muted-foreground">{isFa ? "نام و نام خانوادگی" : "Full Name"}</label>
                                         <input id="fullname" type="text" value={formData.name}
                                             onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                            className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" />
+                                            className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground" />
                                     </div>
+                                    {/* Email (read-only) */}
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-medium text-muted-foreground">{isFa ? "آدرس ایمیل" : "Email Address"}</label>
+                                        <label htmlFor="email" className="text-sm font-medium text-muted-foreground flex items-center gap-1.5">
+                                            {isFa ? "آدرس ایمیل" : "Email Address"}
+                                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">✓ {isFa ? "تایید شده" : "verified"}</span>
+                                        </label>
                                         <input id="email" type="email" disabled value={initialUser?.email || ""}
                                             className="w-full bg-secondary/50 border border-border rounded-xl px-4 py-3 text-muted-foreground cursor-not-allowed" dir="ltr" />
                                     </div>
-                                    <div className="space-y-2">
-                                        <label htmlFor="phone" className="text-sm font-medium text-muted-foreground">{isFa ? "شماره تماس" : "Phone Number"}</label>
-                                        <input id="phone" type="tel" value={formData.phone} placeholder="+1..."
-                                            onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                                            className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" dir="ltr" />
+                                    {/* Bio */}
+                                    <div className="space-y-2 md:col-span-2">
+                                        <label htmlFor="bio" className="text-sm font-medium text-muted-foreground">{isFa ? "درباره من (Bio)" : "About Me (Bio)"}</label>
+                                        <textarea id="bio" rows={3} value={formData.bio}
+                                            onChange={e => setFormData({ ...formData, bio: e.target.value })}
+                                            className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground resize-none"
+                                            placeholder={isFa ? "معرفی کوتاهی از خود بنویسید..." : "Write a short bio..."} />
                                     </div>
-                                    <div className="space-y-2">
-                                        <label htmlFor="whatsapp" className="text-sm font-medium text-muted-foreground">{isFa ? "شماره واتس‌اپ" : "WhatsApp Number"}</label>
-                                        <input id="whatsapp" type="tel" value={formData.whatsapp_number} placeholder="+1..."
-                                            onChange={e => setFormData({ ...formData, whatsapp_number: e.target.value })}
-                                            className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" dir="ltr" />
+                                </div>
+                            </div>
+
+                            {/* ── 2FA Channels Section ── */}
+                            <div className="bg-card border border-amber-500/20 rounded-3xl p-8">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
+                                        <Shield className="w-5 h-5 text-amber-400" />
                                     </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-foreground">{isFa ? "کانال‌های دریافت کد تأیید ۲ مرحله‌ای" : "2FA Verification Channels"}</h3>
+                                        <p className="text-xs text-muted-foreground mt-0.5">{isFa ? "سیستم با اولویت تلگرام → واتساپ → پیامک → ایمیل کد را ارسال می‌کند." : "System sends code via: Telegram → WhatsApp → SMS → Email (in order of priority)."}</p>
+                                    </div>
+                                </div>
+
+                                {/* Channel status badges */}
+                                <div className="flex flex-wrap gap-2 mb-6 mt-4">
+                                    <span className={`px-3 py-1 rounded-full text-xs font-bold border flex items-center gap-1.5 ${ formData.telegram_id && /^\d+$/.test(formData.telegram_id) ? "bg-sky-500/10 text-sky-400 border-sky-500/20" : "bg-secondary text-muted-foreground border-border" }`}>
+                                        <Send className="w-3 h-3" /> تلگرام {formData.telegram_id && /^\d+$/.test(formData.telegram_id) ? "✓" : "—"}
+                                    </span>
+                                    <span className={`px-3 py-1 rounded-full text-xs font-bold border flex items-center gap-1.5 ${ formData.whatsapp_number ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-secondary text-muted-foreground border-border" }`}>
+                                        💬 واتساپ {formData.whatsapp_number ? "✓" : "—"}
+                                    </span>
+                                    <span className={`px-3 py-1 rounded-full text-xs font-bold border flex items-center gap-1.5 ${ formData.phone ? "bg-indigo-500/10 text-indigo-400 border-indigo-500/20" : "bg-secondary text-muted-foreground border-border" }`}>
+                                        📱 پیامک {formData.phone ? "✓" : "—"}
+                                    </span>
+                                    <span className="px-3 py-1 rounded-full text-xs font-bold border bg-amber-500/10 text-amber-400 border-amber-500/20 flex items-center gap-1.5">
+                                        ✉️ ایمیل ✓
+                                    </span>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {/* Phone with country code */}
+                                    <div className="space-y-2">
+                                        <label htmlFor="phone" className="text-sm font-medium text-muted-foreground">
+                                            📱 {isFa ? "شماره تماس (پیامک SMS)" : "Phone Number (SMS)"}
+                                        </label>
+                                        <div className="flex gap-2">
+                                            <select
+                                                value={phoneCountry}
+                                                onChange={e => setPhoneCountry(e.target.value)}
+                                                className="bg-secondary border border-border rounded-xl px-2 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors shrink-0 w-[90px]"
+                                                aria-label="Phone country code"
+                                            >
+                                                {COUNTRY_CODES.map(c => (
+                                                    <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
+                                                ))}
+                                            </select>
+                                            <input
+                                                id="phone" type="tel"
+                                                value={formData.phone.replace(/^\+\d+/, "")}
+                                                placeholder={isFa ? "شماره بدون کد کشور" : "Number without country code"}
+                                                onChange={e => setFormData({ ...formData, phone: formatPhoneWithCode(phoneCountry, e.target.value) })}
+                                                className="flex-1 bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground"
+                                                dir="ltr"
+                                            />
+                                        </div>
+                                        <p className="text-xs text-muted-foreground">{isFa ? `شماره ذخیره شده: ${formData.phone || "—"}` : `Saved: ${formData.phone || "—"}`}</p>
+                                    </div>
+
+                                    {/* WhatsApp with country code */}
+                                    <div className="space-y-2">
+                                        <label htmlFor="whatsapp" className="text-sm font-medium text-muted-foreground">
+                                            💬 {isFa ? "شماره واتس‌اپ" : "WhatsApp Number"}
+                                        </label>
+                                        <div className="flex gap-2">
+                                            <select
+                                                value={waCountry}
+                                                onChange={e => setWaCountry(e.target.value)}
+                                                className="bg-secondary border border-border rounded-xl px-2 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors shrink-0 w-[90px]"
+                                                aria-label="WhatsApp country code"
+                                            >
+                                                {COUNTRY_CODES.map(c => (
+                                                    <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
+                                                ))}
+                                            </select>
+                                            <input
+                                                id="whatsapp" type="tel"
+                                                value={formData.whatsapp_number.replace(/^\+\d+/, "")}
+                                                placeholder={isFa ? "شماره بدون کد کشور" : "Number without country code"}
+                                                onChange={e => setFormData({ ...formData, whatsapp_number: formatPhoneWithCode(waCountry, e.target.value) })}
+                                                className="flex-1 bg-secondary border border-emerald-500/30 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-400 transition-colors text-foreground placeholder:text-muted-foreground"
+                                                dir="ltr"
+                                            />
+                                        </div>
+                                        <p className="text-xs text-muted-foreground">{isFa ? `شماره ذخیره شده: ${formData.whatsapp_number || "—"}` : `Saved: ${formData.whatsapp_number || "—"}`}</p>
+                                    </div>
+
+                                    {/* Telegram Chat ID */}
                                     <div className="space-y-2 md:col-span-2">
                                         <label htmlFor="telegram_id" className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                                             <Send className="w-4 h-4 text-sky-400" />
-                                            {isFa ? "شناسه تلگرام (Chat ID) — برای دریافت کد تایید ۲FA" : "Telegram Chat ID — for 2FA verification codes"}
+                                            {isFa ? "آی‌دی عددی تلگرام (Chat ID) — بالاترین اولویت" : "Telegram Numeric Chat ID — Highest Priority"}
                                         </label>
-                                        <input
-                                            id="telegram_id"
-                                            type="text"
-                                            value={formData.telegram_id}
-                                            placeholder={isFa ? "مثال: 123456789" : "e.g. 123456789"}
-                                            onChange={e => setFormData({ ...formData, telegram_id: e.target.value })}
-                                            className="w-full bg-secondary border border-sky-500/30 rounded-xl px-4 py-3 focus:outline-none focus:border-sky-400 transition-colors text-foreground placeholder:text-muted-foreground" 
-                                            dir="ltr"
-                                        />
-                                        <p className="text-xs text-muted-foreground">
-                                            {isFa 
-                                                ? "برای دریافت Chat ID خود، ربات @userinfobot را در تلگرام پیدا کنید و /start بزنید. عدد نشان داده شده را اینجا وارد کنید."
-                                                : "Find your Chat ID: Message @userinfobot on Telegram and type /start. Enter the number shown here."
-                                            }
-                                        </p>
+                                        <div className="relative">
+                                            <input
+                                                id="telegram_id"
+                                                type="text"
+                                                inputMode="numeric"
+                                                value={formData.telegram_id}
+                                                placeholder="e.g. 123456789"
+                                                onChange={e => handleTelegramChange(e.target.value)}
+                                                className={`w-full bg-secondary border rounded-xl px-4 py-3 focus:outline-none transition-colors text-foreground placeholder:text-muted-foreground ${ telegramError ? "border-red-500 focus:border-red-400" : "border-sky-500/30 focus:border-sky-400" }`}
+                                                dir="ltr"
+                                            />
+                                            {formData.telegram_id && !telegramError && /^\d+$/.test(formData.telegram_id) && (
+                                                <CheckCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-400" />
+                                            )}
+                                        </div>
+                                        {telegramError ? (
+                                            <p className="text-xs text-red-400 flex items-center gap-1">
+                                                <AlertTriangle className="w-3.5 h-3.5" /> {telegramError}
+                                            </p>
+                                        ) : (
+                                            <div className="text-xs text-muted-foreground space-y-1">
+                                                <p>{isFa ? "⚡ چگونه Chat ID خود را پیدا کنید:" : "⚡ How to find your Chat ID:"}</p>
+                                                <ol className="list-decimal list-inside space-y-0.5 pr-2" dir="rtl">
+                                                    <li>{isFa ? "در تلگرام، ربات" : "In Telegram, message"} <code className="bg-secondary px-1 rounded text-sky-400">@userinfobot</code> {isFa ? "را پیدا کنید" : ""}</li>
+                                                    <li>{isFa ? "پیام" : "Send"} <code className="bg-secondary px-1 rounded">/start</code> {isFa ? "بفرستید" : ""}</li>
+                                                    <li>{isFa ? "عدد روبروی 'Id:' را اینجا وارد کنید" : "Enter the number next to 'Id:' here"}</li>
+                                                </ol>
+                                            </div>
+                                        )}
                                     </div>
-                                </div>
-                                <div className="space-y-2 mt-6">
-                                    <label htmlFor="bio" className="text-sm font-medium text-muted-foreground">{isFa ? "درباره من (Bio)" : "About Me (Bio)"}</label>
-                                    <textarea id="bio" rows={3} value={formData.bio}
-                                        onChange={e => setFormData({ ...formData, bio: e.target.value })}
-                                        className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground resize-none"
-                                        placeholder={isFa ? "معرفی کوتاهی از خود بنویسید..." : "Write a short bio..."} />
                                 </div>
                             </div>
 
