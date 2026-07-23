@@ -216,14 +216,29 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
         if (!initialUser?.email) return alert(isFa ? "خطا: اطلاعات کاربر یافت نشد" : "Error: User details not found");
         setIsSaving(true);
         try {
-            const res = await updateUserProfile(initialUser.email, { ...formData, ...address });
-            if (res.success) {
+            const payload = { email: initialUser.email, ...formData, ...address };
+            const res = await fetch('/api/profile/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const result = await res.json();
+            if (result.success) {
                 setSaveSuccess(true);
                 setTimeout(() => setSaveSuccess(false), 3000);
-            } else { throw new Error(isFa ? "ذخیره‌سازی ناموفق بود" : "Failed to save profile"); }
-        } catch (err: any) { alert((isFa ? "خطا: " : "Error: ") + err.message); }
-        finally { setIsSaving(false); }
+            } else {
+                // Show the actual server-side error message
+                const errMsg = result.error || (isFa ? "ذخیره‌سازی ناموفق بود" : "Failed to save profile");
+                const hint = result.hint ? `\nHint: ${result.hint}` : '';
+                alert((isFa ? "خطا: " : "Error: ") + errMsg + hint);
+            }
+        } catch (err: any) {
+            alert((isFa ? "خطا در اتصال به سرور: " : "Connection error: ") + err.message);
+        } finally {
+            setIsSaving(false);
+        }
     };
+
 
     const displayImageUrl = generatedImageUrl || uploadPreviewUrl || initialUser?.avatar_url;
 
