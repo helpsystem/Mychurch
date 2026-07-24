@@ -66,7 +66,7 @@ Do NOT include any markdown code blocks, backticks (\`\`\`json), quotes, or expl
         "Authorization": `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: "z-ai/glm-5.1",
+        model: "meta/llama-3.1-70b-instruct",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt }

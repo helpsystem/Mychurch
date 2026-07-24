@@ -30,7 +30,25 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // اعمال هدرهای ضد دانلود برای تمام فایل‌های صوتی محلی
+        // 🚨 PREVENT ALL STALE BROWSER/NGINX CACHING ON ADMIN & DYNAMIC ROUTES
+        source: '/(admin|profile|verify-admin-login|api)/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          }
+        ],
+      },
+      {
+        // Static Audio & worship files (immutable caching for speed)
         source: '/worship/audio/:path*',
         headers: [
           {
@@ -48,7 +66,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // در صورت استفاده از فولدر فایل‌های عمومی دیگر
+        // General files
         source: '/files/:path*',
         headers: [
           {

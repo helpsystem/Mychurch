@@ -190,6 +190,14 @@ export default function LiveTranslatorPage() {
             recognitionRef.current = null;
         }
         stopAudioVisualization();
+
+        // Ensure accumulated text gets translated immediately when microphone stops
+        const fullText = (speechAccumulatorRef.current || sourceText).trim();
+        if (fullText) {
+            const sourceLang = convMode ? (activeSpeaker === "A" ? fromLang : toLang) : fromLang;
+            const targetLang = convMode ? (activeSpeaker === "A" ? toLang : fromLang) : toLang;
+            handleTranslate(fullText, sourceLang, targetLang);
+        }
         setInterimText("");
     };
 
@@ -413,7 +421,7 @@ export default function LiveTranslatorPage() {
                     <div className="flex flex-wrap items-center gap-3">
                         <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs">
                             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                            <span className="text-neutral-300 font-mono">z-ai/glm-5.1</span>
+                            <span className="text-neutral-300 font-mono">Nvidia Llama 3.1 70B / Gemini AI</span>
                         </div>
                         
                         <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-neutral-300">
@@ -535,6 +543,22 @@ export default function LiveTranslatorPage() {
                                 disabled={!sourceText}
                             >
                                 <Volume2 className="w-4 h-4" />
+                            </button>
+                            <button
+                                onClick={() => {
+                                    const textToTranslate = (speechAccumulatorRef.current || sourceText).trim();
+                                    if (textToTranslate) {
+                                        const sourceLang = convMode ? (activeSpeaker === "A" ? fromLang : toLang) : fromLang;
+                                        const targetLang = convMode ? (activeSpeaker === "A" ? toLang : fromLang) : toLang;
+                                        handleTranslate(textToTranslate, sourceLang, targetLang);
+                                    }
+                                }}
+                                className="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md disabled:opacity-40"
+                                title="ترجمه فوری"
+                                disabled={!sourceText && !speechAccumulatorRef.current}
+                            >
+                                <Sparkles className="w-3.5 h-3.5" />
+                                <span>ترجمه فوری</span>
                             </button>
                         </div>
                         

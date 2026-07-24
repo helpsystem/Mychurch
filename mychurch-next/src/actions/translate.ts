@@ -57,53 +57,94 @@ export async function enhanceText(text: string, language: 'en' | 'fa') {
     }
 }
 
+/**
+ * Robust Multi-Engine AI Translator:
+ * Tier 1: Nvidia NIM API (Llama 3.1 70B)
+ * Tier 2: Google Gemini 1.5 Flash API
+ * Tier 3: Google Translate Public API Endpoint (Failproof Emergency Fallback)
+ */
 export async function nvidiaTranslateText(text: string, fromLang: string, toLang: string) {
-    const apiKey = process.env.NVIDIA_API_KEY;
-    if (!apiKey) {
-        return { success: false, error: "NVIDIA API Key is not configured." };
-    }
-    
     if (!text || text.trim() === '') {
-        return { success: false, error: "Text is empty." };
+        return { success: false, error: "متن جهت ترجمه خالی است." };
     }
 
-    try {
-        const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: "z-ai/glm-5.1",
-                messages: [
-                    {
-                        role: "system",
-                        content: "You are a professional real-time translator. Translate the user's speech text accurately, naturally, and contextually. Output ONLY the raw translation content, with no introductory text, no quotes, no explanations, and no markdown formatting."
-                    },
-                    {
-                        role: "user",
-                        content: `Translate this text from language code "${fromLang}" to language code "${toLang}". Text to translate:\n\n${text}`
-                    }
-                ],
-                temperature: 0.3,
-                top_p: 0.9,
-                max_tokens: 4096
-            })
-        });
+    const cleanText = text.trim();
 
-        if (!response.ok) {
-            const errBody = await response.text();
-            console.error("Nvidia API Error Body:", errBody);
-            return { success: false, error: `Nvidia API returned status ${response.status}` };
+    // ── Tier 1: Nvidia NIM API (Llama 3.1 70B Instruct) ──
+    const nvidiaApiKey = process.env.NVIDIA_API_KEY;
+    if (nvidiaApiKey) {
+        try {
+            const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${nvidiaApiKey}`
+                },
+                body: JSON.stringify({
+                    model: "meta/llama-3.1-70b-instruct",
+                    messages: [
+                        {
+                            role: "system",
+                            content: "You are a professional real-time translator. Translate the user's speech text accurately, naturally, and contextually. Output ONLY the raw translation content, with no introductory text, no quotes, no explanations, and no markdown formatting."
+                        },
+                        {
+                            role: "user",
+                            content: `Translate this text from language code "${fromLang}" to language code "${toLang}". Text to translate:\n\n${cleanText}`
+                        }
+                    ],
+                    temperature: 0.2,
+                    top_p: 0.9,
+                    max_tokens: 4096
+                })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const translatedText = data.choices?.[0]?.message?.content?.trim();
+                if (translatedText) {
+                    console.log("[nvidiaTranslateText] Successfully translated via Nvidia Llama 3.1");
+                    return { success: true, text: translatedText, engine: "Nvidia Llama 3.1" };
+                }
+            } else {
+                const errText = await response.text().catch(() => "");
+                console.warn(`[nvidiaTranslateText] Nvidia status ${response.status}: ${errText.substring(0, 100)}`);
+            }
+        } catch (e) {
+            console.warn("[nvidiaTranslateText] Nvidia API exception:", e);
         }
-
-        const data = await response.json();
-        const translatedText = data.choices?.[0]?.message?.content || "";
-        return { success: true, text: translatedText.trim() };
-    } catch (error: any) {
-        console.error("Nvidia Translation Action Error:", error);
-        return { success: false, error: "Failed to translate text via Nvidia AI." };
     }
-}
 
+    // ── Tier 2: Google Gemini AI Fallback ──
+    if (genAI) {
+        try {
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const prompt = `Translate the following text from language code "${fromLang}" to language code "${toLang}". Output ONLY the translated text without any quotes, intro, or Markdown:\n\n${cleanText}`;
+            const result = await model.generateContent(prompt);
+            const translatedText = result.response.text().trim();
+            if (translatedText) {
+                console.log("[nvidiaTranslateText] Successfully translated via Gemini 1.5 Flash");
+                return { success: true, text: translatedText, engine: "Gemini 1.5 Flash" };
+            }
+        } catch (e) {
+            console.warn("[nvidiaTranslateText] Gemini API exception:", e);
+        }
+    }
+
+    // ── Tier 3: Emergency Google Translate Public API Fallback ──
+    try {
+        const gtUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${encodeURIComponent(fromLang)}&tl=${encodeURIComponent(toLang)}&dt=t&q=${encodeURIComponent(cleanText)}`;
+        const gtRes = await fetch(gtUrl);
+        if (gtRes.ok) {
+            const gtData = await gtRes.json();
+            const translatedText = gtData?.[0]?.map((item: any) => item[0]).join("") || "";
+            if (translatedText.trim()) {
+                console.log("[nvidiaTranslateText] Successfully translated via Emergency GT API");
+                return { success: true, text: translatedText.trim(), engine: "Google Translate" };
+            }
+        }
+    } catch (e) {
+        console.error("[nvidiaTranslateText] All translation engines failed:", e);
+    }
+
+    return { success: false, error: "امکان برقراری ارتباط با موتورهای ترجمه هوش مصنوعی وجود ندارد." };
+}

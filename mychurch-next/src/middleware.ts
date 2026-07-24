@@ -2,9 +2,25 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
+    const pathname = request.nextUrl.pathname;
+    const isAdminRoute = pathname.startsWith('/admin');
+    const isBroadcastRoute = pathname.startsWith('/broadcast') && pathname !== '/broadcast/view';
+    const isProfileRoute = pathname.startsWith('/profile');
+    const isVerifyRoute = pathname.startsWith('/verify-admin-login');
+
+    const isProtected = isAdminRoute || isBroadcastRoute;
+    const needsAuthCheck = isProtected || isProfileRoute || isVerifyRoute;
+
     let supabaseResponse = NextResponse.next({
         request,
     });
+
+    // 🚀 PERFORMANCE OPTIMIZATION:
+    // Only query Supabase Auth if accessing a protected or auth-sensitive route.
+    // Public page loads (homepage, worship, bible, etc.) pass INSTANTLY without waiting for Supabase API latency!
+    if (!needsAuthCheck) {
+        return supabaseResponse;
+    }
 
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -15,7 +31,7 @@ export async function middleware(request: NextRequest) {
                     return request.cookies.getAll();
                 },
                 setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value));
+                    cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
                     supabaseResponse = NextResponse.next({
                         request,
                     });
@@ -27,27 +43,18 @@ export async function middleware(request: NextRequest) {
         }
     );
 
-    // Refresh session if expired
+    // Fetch user session for protected routes
     const {
         data: { user },
     } = await supabase.auth.getUser();
 
-    // Protect routes
-    const pathname = request.nextUrl.pathname;
-    const isAdminRoute = pathname.startsWith('/admin');
-    const isBroadcastRoute = pathname.startsWith('/broadcast') && pathname !== '/broadcast/view';
-    const isProtected = isAdminRoute || isBroadcastRoute;
-
     if (isProtected && !user) {
-        // Redirect completely out if they have no session
+        // Redirect out if no active session
         const url = request.nextUrl.clone();
-        
-        // Ensure redirect uses correct protocol behind proxy
         const proto = request.headers.get('x-forwarded-proto') || 'http';
         if (proto === 'https') {
             url.protocol = 'https:';
         }
-        
         url.pathname = '/login';
         return NextResponse.redirect(url);
     }
@@ -63,10 +70,9 @@ export async function middleware(request: NextRequest) {
             return NextResponse.redirect(url);
         }
 
-        // Auto-renew the 2FA cookie to prevent sudden lockouts during long sessions
-        // If the cookie is present and valid, refresh its TTL to 24h on each request
+        // Auto-renew 2FA cookie on every valid admin page access
         supabaseResponse.cookies.set('admin_2fa_verified', 'true', {
-            maxAge: 24 * 60 * 60, // Renew to 24 hours on every admin page load
+            maxAge: 24 * 60 * 60,
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
@@ -74,8 +80,10 @@ export async function middleware(request: NextRequest) {
         });
     }
 
-    // Detailed Role checking is done strictly within Server Components (e.g. layout.tsx)
-    // using the `requireRole()` pattern, because `pg` cannot be run on Edge.
+    // 🚨 Strict No-Cache Headers for Admin/Protected Responses to eliminate stale browser rendering
+    supabaseResponse.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+    supabaseResponse.headers.set('Pragma', 'no-cache');
+    supabaseResponse.headers.set('Expires', '0');
 
     return supabaseResponse;
 }
@@ -85,4 +93,3 @@ export const config = {
         '/((?!_next/static|_next/image|favicon.ico|api|images|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|mp3|wav|ogg)$).*)',
     ],
 };
-
