@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { createClient } from "@/utils/supabase/client";
 
 export default function PublicPresentation({ params }: { params: Promise<{ meetingId: string }> }) {
   const [meetingId, setMeetingId] = useState<string>("");
@@ -17,25 +17,32 @@ export default function PublicPresentation({ params }: { params: Promise<{ meeti
   useEffect(() => {
     if (!meetingId) return;
     
-    // In production this should point to your live domain or relative path if proxied via nginx
-    const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:8080");
-
-    socket.on("connect", () => {
-        socket.emit("join_meeting", meetingId);
+    const supabase = createClient();
+    const channelName = `broadcast-remote-${meetingId}`;
+    
+    const channel = supabase.channel(channelName, {
+        config: { broadcast: { self: false } }
     });
 
-    socket.on("live_caption", (data) => {
-      if (data.isFinal) {
-        setCaptions((prev) => [...prev, { original: data.original, translated: data.translated }]);
-        setLiveText("");
-      } else {
-        setLiveText(data.original);
-      }
-    });
+    channel
+        .on('broadcast', { event: 'sync-event' }, (payload) => {
+            const data = payload.payload;
+            if (!data) return;
+
+            if (data.type === 'SET_LIVE_TRANSLATION') {
+                if (data.show && data.text) {
+                    setLiveText(data.text);
+                    // Add to history if there is a pause (heuristic: we can just add to history when text changes drastically, but for now we just show live text)
+                    setCaptions((prev) => [...prev, { original: data.text, translated: "" }]);
+                } else {
+                    setLiveText("");
+                }
+            }
+        })
+        .subscribe();
 
     return () => {
-      socket.off("live_caption");
-      socket.disconnect();
+      channel.unsubscribe();
     };
   }, [meetingId]);
 

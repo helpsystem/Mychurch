@@ -3,6 +3,13 @@ import { Slide, BroadcastOverlayConfig, ScriptureReferenceItem } from '@/types/b
 import { createClient } from '@/utils/supabase/client';
 import { RealtimeChannel } from '@supabase/supabase-js';
 
+export interface SessionMetadataEvent {
+    type: 'song' | 'scripture';
+    title: string;
+    details?: string;
+    timestamp: number;
+}
+
 interface BroadcastState {
     sessionId: string;
     isLive: boolean;
@@ -52,6 +59,13 @@ interface BroadcastState {
     toTranslationLang: string;
     setTranslationActive: (active: boolean) => void;
     setTranslationLanguages: (from: string, to: string) => void;
+
+    // Recording and Session Metadata
+    isRecording: boolean;
+    sessionMetadata: SessionMetadataEvent[];
+    setIsRecording: (recording: boolean) => void;
+    addSessionMetadataEvent: (event: Omit<SessionMetadataEvent, 'timestamp'>) => void;
+    clearSessionMetadata: () => void;
 
     // Actions
     setSessionId: (id: string) => void;
@@ -315,6 +329,11 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
                     set({ isConnected: true, syncChannel: channel });
                 } else if (status === 'CLOSED' || status === 'CHANNEL_ERROR') {
                     set({ isConnected: false, syncChannel: null });
+                    // Auto-reconnect after 3 seconds
+                    console.log(`[Remote Control] ⚠️ Disconnected. Attempting to reconnect in 3 seconds...`);
+                    setTimeout(() => {
+                        get().initRemoteSync(targetSessionId);
+                    }, 3000);
                 }
             });
     },

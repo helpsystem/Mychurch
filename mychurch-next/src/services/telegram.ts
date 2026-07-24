@@ -10,6 +10,7 @@ const telegramConfigSchema = z.object({
 
 let _bot: Bot | null = null;
 let _telegramConfig: any = null;
+let _mtprotoClient: any = null;
 
 export function getBot() {
   if (_bot) return { bot: _bot, telegramConfig: _telegramConfig };
@@ -31,6 +32,34 @@ export function getBot() {
   return { bot: _bot, telegramConfig: _telegramConfig };
 }
 
+export async function getMTProtoClient() {
+  if (_mtprotoClient && _mtprotoClient.connected) return _mtprotoClient;
+
+  const apiId = parseInt(process.env.TELEGRAM_API_ID || '');
+  const apiHash = process.env.TELEGRAM_API_HASH || '';
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+
+  if (!apiId || !apiHash || !botToken) {
+      throw new Error('TELEGRAM_API_ID, TELEGRAM_API_HASH or TELEGRAM_BOT_TOKEN missing');
+  }
+
+  const { TelegramClient } = await import('telegram');
+  const { StringSession } = await import('telegram/sessions');
+
+  // Empty string session for bot auth
+  const client = new TelegramClient(new StringSession(''), apiId, apiHash, {
+      connectionRetries: 3,
+      retryDelay: 1000,
+  });
+
+  await client.start({
+      botAuthToken: botToken,
+  });
+
+  _mtprotoClient = client;
+  return client;
+}
+
 export interface TelegramUploadResult {
   fileId: string;
   fileUniqueId: string;
@@ -43,25 +72,39 @@ export async function uploadToTelegramStorage(
   fileName: string,
   caption?: string
 ): Promise<TelegramUploadResult> {
-  const { bot, telegramConfig } = getBot();
-  const inputFile = new InputFile(fileBuffer, fileName);
-  const channelId = telegramConfig.STORAGE_CHANNEL_ID;
+  const { telegramConfig } = getBot();
+  const client = await getMTProtoClient();
+  const channelId = BigInt(telegramConfig.STORAGE_CHANNEL_ID);
 
   try {
-    const message = await bot.api.sendDocument(channelId, inputFile, {
+    let fileToSend: any = fileBuffer;
+    
+    // gramjs needs CustomFile for buffers to know the name
+    if (Buffer.isBuffer(fileBuffer) || fileBuffer instanceof Uint8Array) {
+        const { CustomFile } = await import('telegram/client/uploads');
+        fileToSend = new CustomFile(fileName, fileBuffer.byteLength, "", Buffer.from(fileBuffer));
+    } else if (typeof fileBuffer === 'string') {
+        fileToSend = fileBuffer; // File path
+    }
+
+    const message = await client.sendFile(channelId, {
+      file: fileToSend,
       caption: caption || `📁 Archive File: ${fileName}`,
+      workers: 2, // Parallel upload
+      forceDocument: true, // IMPORTANT: Prevents images from being converted to photos
     });
 
-    const doc = message.document;
-    if (!doc) {
+    if (!message || !message.media || !message.media.document) {
       throw new Error("Telegram did not return document information.");
     }
 
+    const doc = message.media.document;
+    
     return {
-      fileId: doc.file_id,
-      fileUniqueId: doc.file_unique_id,
-      messageId: message.message_id,
-      fileSize: doc.file_size,
+      fileId: doc.id.toString(), // Store MTProto doc ID 
+      fileUniqueId: doc.id.toString(),
+      messageId: message.id,
+      fileSize: Number(doc.size),
     };
   } catch (error) {
     console.error("❌ [Telegram Storage] Upload failed:", error);
@@ -78,6 +121,34 @@ export async function getTelegramFileStreamUrl(fileId: string): Promise<string> 
     console.error("❌ [Telegram Storage] Failed to generate stream URL:", error);
     throw error;
   }
+}
+
+/**
+ * Returns an AsyncIterable of buffers for streaming directly to HTTP response.
+ * Bypasses 20MB bot download limit by using MTProto.
+ */
+export async function getTelegramFileStream(messageId: number): Promise<AsyncIterable<Buffer>> {
+    const client = await getMTProtoClient();
+    const { telegramConfig } = getBot();
+    
+    // Convert -100 string to BigInt
+    const channelId = BigInt(telegramConfig.STORAGE_CHANNEL_ID);
+    
+    // Fetch the message containing the document
+    const messages = await client.getMessages(channelId, { ids: [messageId] });
+    if (!messages || messages.length === 0 || !messages[0].media) {
+        throw new Error("Message or media not found in Telegram");
+    }
+    
+    const media = messages[0].media;
+    
+    // iterDownload returns an AsyncIterable
+    const iterable = client.iterDownload({
+        file: media,
+        requestSize: 1024 * 1024, // 1MB chunks
+    });
+    
+    return iterable as AsyncIterable<Buffer>;
 }
 
 export async function deleteFromTelegramStorage(messageId: number): Promise<boolean> {

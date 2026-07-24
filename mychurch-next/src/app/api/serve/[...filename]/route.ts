@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { createReadStream } from 'fs';
 import { readFile, stat } from 'fs/promises';
 import { join } from 'path';
+import { createClient } from '@/utils/supabase/server';
+import { getTelegramFileStream } from '@/services/telegram';
 
 export async function GET(request: Request, context: any) {
     try {
@@ -17,6 +19,50 @@ export async function GET(request: Request, context: any) {
         }
 
         const [rootCandidate, ...rest] = safeParts;
+
+        // Handle Telegram Cloud Storage Serve
+        if (rootCandidate === 'cloud') {
+            const id = rest[0];
+            if (!id) return new NextResponse('File not found', { status: 404 });
+
+            const supabase = await createClient();
+            const { data: asset } = await supabase.from('media_library').select('*').eq('id', id).single();
+            if (!asset || !asset.telegram_message_id) {
+                return new NextResponse('File not found in cloud storage', { status: 404 });
+            }
+
+            try {
+                const iterable = await getTelegramFileStream(asset.telegram_message_id);
+                
+                // Convert AsyncIterable to ReadableStream
+                const stream = new ReadableStream({
+                    async start(controller) {
+                        try {
+                            for await (const chunk of iterable) {
+                                controller.enqueue(new Uint8Array(chunk));
+                            }
+                            controller.close();
+                        } catch (err) {
+                            console.error("Stream error:", err);
+                            controller.error(err);
+                        }
+                    }
+                });
+
+                return new NextResponse(stream, {
+                    headers: {
+                        'Content-Type': asset.mime_type || 'application/octet-stream',
+                        'Content-Length': String(asset.size || 0),
+                        'Cache-Control': 'public, max-age=31536000, immutable',
+                        'Accept-Ranges': 'none' // MTProto simple stream doesn't easily support range requests without more logic
+                    }
+                });
+            } catch (err) {
+                console.error("Cloud serve error:", err);
+                return new NextResponse('Error serving cloud file', { status: 500 });
+            }
+        }
+
         const useMediaRoot = rootCandidate === 'media';
         const relativeParts = useMediaRoot ? rest : safeParts;
 

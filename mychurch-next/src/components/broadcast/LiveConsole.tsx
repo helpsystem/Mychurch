@@ -21,7 +21,6 @@ import { BroadcastProperties } from "./BroadcastProperties";
 import { PreviewMonitor, ProgramMonitor } from "./Monitors";
 import { SlideGrid } from "./SlideGrid";
 import { DeviceSettingsModal } from "./DeviceSettingsModal";
-import LiveTranslator from "./LiveTranslator";
 import { HelpTooltip } from "@/components/ui/HelpTooltip";
 
 interface LiveConsoleProps {
@@ -53,11 +52,18 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const isConnected = useBroadcastStore(state => state.isConnected);
     
     // Live Translation store fields
-    const isTranslationActive = useBroadcastStore(state => state.isTranslationActive);
     const fromTranslationLang = useBroadcastStore(state => state.fromTranslationLang);
     const toTranslationLang = useBroadcastStore(state => state.toTranslationLang);
     const setLiveTranslation = useBroadcastStore(state => state.setLiveTranslation);
+    const isTranslationActive = useBroadcastStore(state => state.isTranslationActive);
+    const setTranslationActive = useBroadcastStore(state => state.setTranslationActive);
     const liveTranslationText = useBroadcastStore(state => state.liveTranslationText);
+
+    // Recording store fields
+    const isRecording = useBroadcastStore(state => state.isRecording);
+    const setIsRecording = useBroadcastStore(state => state.setIsRecording);
+    const addSessionMetadataEvent = useBroadcastStore(state => state.addSessionMetadataEvent);
+    const clearSessionMetadata = useBroadcastStore(state => state.clearSessionMetadata);
 
     const viewerChannelRef = React.useRef<BroadcastChannel | null>(null);
 
@@ -109,6 +115,11 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const [isLoadModalOpen, setIsLoadModalOpen] = React.useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
     const [isPropertiesOpen, setIsPropertiesOpen] = React.useState(false);
+
+    // Recording State Refs
+    const mediaRecorderRef = React.useRef<MediaRecorder | null>(null);
+    const audioChunksRef = React.useRef<Blob[]>([]);
+    const [isUploadingRecording, setIsUploadingRecording] = React.useState(false);
 
     // Enumerate available devices
     const enumerateDevices = React.useCallback(async () => {
@@ -689,6 +700,79 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
         };
     }, [sessionId]); // Depends ONLY on sessionId
 
+    // Metadata Tracking on slide change
+    useEffect(() => {
+        if (!isLive || !isRecording) return;
+        const currentSlide = slides[activeSlideIndex];
+        if (!currentSlide) return;
+
+        if (currentSlide.type === SlideType.SCRIPTURE) {
+            const scripture = currentSlide.content as any;
+            if (scripture.reference) {
+                addSessionMetadataEvent({
+                    type: 'scripture',
+                    title: scripture.reference,
+                    details: scripture.verses?.map((v: any) => `${v.chapter}:${v.verse}`).join(', ')
+                });
+            }
+        } else if (currentSlide.type === SlideType.LYRICS) {
+            const lyrics = currentSlide.content as any;
+            if (lyrics.title) {
+                addSessionMetadataEvent({
+                    type: 'song',
+                    title: lyrics.title,
+                    details: lyrics.artist
+                });
+            }
+        }
+    }, [activeSlideIndex, isLive, isRecording]);
+
+    // Handle recording upload logic
+    const handleUploadRecording = async (audioBlob: Blob) => {
+        setIsUploadingRecording(true);
+        toast.loading('در حال آپلود فایل صوتی جلسه...', { id: 'upload-recording' });
+        try {
+            const formData = new FormData();
+            const dateStr = new Date().toISOString().split('T')[0];
+            const fileName = `session_${dateStr}_${Date.now()}.webm`;
+            formData.append('file', audioBlob, fileName);
+            formData.append('folder', 'sessions');
+
+            const uploadRes = await fetch('/api/media/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!uploadRes.ok) throw new Error('Upload failed');
+            const uploadData = await uploadRes.json();
+            const mediaLibraryId = uploadData.assets[0].id;
+
+            // Save session to database
+            const sessionTitle = `جلسه ${new Date().toLocaleDateString('fa-IR')}`;
+            const metadata = useBroadcastStore.getState().sessionMetadata;
+
+            const dbRes = await fetch('/api/admin/sessions/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    title: sessionTitle,
+                    mediaLibraryId,
+                    metadata
+                }),
+            });
+
+            if (!dbRes.ok) throw new Error('Database save failed');
+
+            toast.success('فایل صوتی جلسه با موفقیت ذخیره شد!', { id: 'upload-recording' });
+        } catch (error) {
+            console.error('Failed to upload recording:', error);
+            toast.error('خطا در ذخیره فایل صوتی جلسه', { id: 'upload-recording' });
+        } finally {
+            setIsUploadingRecording(false);
+            clearSessionMetadata();
+        }
+    };
+
     useEffect(() => {
         if (!sessionId || !viewerChannelRef.current) return;
         const currentSlide = slides[activeSlideIndex] || null;
@@ -1027,7 +1111,49 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                         </button>
 
                         <button
-                            onClick={() => setIsLive(!isLive)}
+                            onClick={() => setIsRecording(!isRecording)}
+                            disabled={isLive}
+                            className={cn(
+                                "px-5 py-2 font-bold rounded-xl transition-all shadow-lg flex items-center gap-1.5 text-xs tracking-wide font-[Vazirmatn] cursor-pointer",
+                                isRecording ? "bg-red-600 hover:bg-red-700 text-white shadow-red-500/10" : "bg-neutral-800 text-white border border-border/10 hover:bg-neutral-700"
+                            )}
+                            title="فعال/غیرفعال‌سازی ضبط جلسه"
+                        >
+                            <Mic className="w-3.5 h-3.5" /> <span>{isRecording ? 'ضبط فعال است' : 'فعال‌سازی ضبط'}</span>
+                        </button>
+                        <button
+                            onClick={() => {
+                                const newIsLive = !isLive;
+                                setIsLive(newIsLive);
+                                
+                                if (newIsLive && isRecording && mediaStream) {
+                                    const audioTracks = mediaStream.getAudioTracks();
+                                    if (audioTracks.length > 0) {
+                                        try {
+                                            const streamToRecord = new MediaStream(audioTracks);
+                                            const recorder = new MediaRecorder(streamToRecord, { mimeType: 'audio/webm' });
+                                            mediaRecorderRef.current = recorder;
+                                            audioChunksRef.current = [];
+                                            recorder.ondataavailable = (e) => {
+                                                if (e.data.size > 0) audioChunksRef.current.push(e.data);
+                                            };
+                                            recorder.onstop = () => {
+                                                const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+                                                handleUploadRecording(blob);
+                                            };
+                                            recorder.start(1000);
+                                            toast.success('ضبط صدا شروع شد');
+                                        } catch (e) {
+                                            console.error(e);
+                                            toast.error('مرورگر از فرمت صوتی پشتیبانی نمی‌کند.');
+                                        }
+                                    } else {
+                                        toast.error('هیچ میکروفونی متصل نیست. ضبط انجام نمی‌شود.');
+                                    }
+                                } else if (!newIsLive && mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+                                    mediaRecorderRef.current.stop();
+                                }
+                            }}
                             className={cn(
                                 "px-5 py-2 font-bold rounded-xl transition-all shadow-lg flex items-center gap-1.5 text-xs tracking-wide font-[Vazirmatn] cursor-pointer",
                                 isLive ? "bg-neutral-800 text-white border border-border/10 hover:bg-neutral-700" : "bg-red-600 hover:bg-red-700 text-white shadow-red-500/10"
@@ -1069,14 +1195,19 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                         >
                             {isOpeningViewer ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ExternalLink className="w-3.5 h-3.5" />} <span className="hidden sm:inline">{t.viewer || 'Viewer'}</span>
                         </button>
+                        <button 
+                            onClick={() => setTranslationActive(!isTranslationActive)} 
+                            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-lg cursor-pointer ${
+                                isTranslationActive 
+                                    ? "bg-red-500/20 text-red-500 hover:bg-red-500/30 border border-red-500/30 shadow-red-500/10" 
+                                    : "bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/10"
+                            }`}
+                            title="ترجمه همزمان گفتار"
+                        >
+                            {isTranslationActive ? <Square className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+                            <span className="hidden sm:inline">{isTranslationActive ? "توقف ترجمه" : "شروع ترجمه"}</span>
+                        </button>
                     </div>
-
-                    {/* Live Translator Widget (Free Google API) */}
-                    {sessionId && (
-                        <div className="mt-4">
-                            <LiveTranslator meetingId={sessionId} />
-                        </div>
-                    )}
 
                 </main>
 

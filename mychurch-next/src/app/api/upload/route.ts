@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
 import { hasRoleOrPermission } from '@/lib/access-control';
+import { uploadToTelegramStorage } from '@/services/telegram';
+import { createClient } from '@/utils/supabase/server';
 
 const ALLOWED_MIME = new Set([
     'image/jpeg',
@@ -56,33 +56,41 @@ export async function POST(request: Request) {
 
         const safeFolder = sanitizeFolder(folderRaw);
 
-        // Ensure uploads directory exists
-        const uploadsBaseDir = join(process.cwd(), 'public', 'uploads');
-        const uploadsDir = safeFolder ? join(uploadsBaseDir, safeFolder) : uploadsBaseDir;
-        try {
-            await mkdir(uploadsDir, { recursive: true });
-        } catch (e) {
-            console.log("Uploads directory exists or could not be created:", e);
-        }
-
-        // Generate unique filename while preserving extension for media-type detection.
         const safeName = file.name.replace(/[^a-zA-Z0-9\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF._-]/g, '');
         const filename = `media-${Date.now()}-${safeName}`;
-        const path = join(uploadsDir, filename);
 
-        await writeFile(path, buffer);
+        // Upload to Telegram Cloud Storage
+        const uploadResult = await uploadToTelegramStorage(buffer, filename, `Uploaded via Church Platform: ${filename}`);
+
+        // Save to Supabase media_library
+        const supabase = await createClient();
+        const { data: inserted, error: dbError } = await supabase.from('media_library').insert({
+            file_name: filename,
+            telegram_file_id: uploadResult.fileId,
+            telegram_message_id: uploadResult.messageId,
+            mime_type: mimeType,
+            size: file.size,
+            folder: safeFolder,
+            visibility: 'admin'
+        }).select('id').single();
+
+        if (dbError || !inserted) {
+            console.error("Database insert error:", dbError);
+            return NextResponse.json({ success: false, error: 'Database error' }, { status: 500 });
+        }
 
         // Return the API Serving URL
         const relativePath = safeFolder ? `${safeFolder}/${filename}` : filename;
 
         return NextResponse.json({
             success: true,
-            url: `/api/serve/${relativePath}`,
+            url: `/api/serve/cloud/${inserted.id}`,
             path: relativePath,
             folder: safeFolder,
             mimeType,
             mediaType: isVideo ? 'video' : 'image',
             size: file.size,
+            id: inserted.id
         });
     } catch (error) {
         console.error('Error uploading file:', error);

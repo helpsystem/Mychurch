@@ -17,9 +17,9 @@ async function run() {
 
     try {
         await client.connect();
-        const sql = fs.readFileSync('./supabase/media_library_migration.sql', 'utf8');
+        const sql = fs.readFileSync('./supabase/church_sessions_migration.sql', 'utf8');
         await client.query(sql);
-        console.log("Migration executed successfully!");
+        console.log("Church sessions migration executed successfully!");
     } catch (e) {
         console.error("Migration failed:", e);
     } finally {

@@ -97,7 +97,10 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                     <NavItem href="/admin" icon={LayoutDashboard}>Dashboard</NavItem>
 
                     {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (
-                        <NavItem href="/admin/presentations" icon={MonitorPlay}>Presentations</NavItem>
+                        <>
+                            <NavItem href="/admin/presentations" icon={MonitorPlay}>Presentations</NavItem>
+                            <NavItem href="/admin/sessions" icon={Mic}>Recorded Sessions</NavItem>
+                        </>
                     )}
 
                     {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (
@@ -139,6 +142,7 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                         <>
                             <NavItem href="/admin/users" icon={Users}>Users & Roles</NavItem>
                             <NavItem href="/admin/leaders" icon={Crown} colorClass="text-amber-500/80 group-hover:text-amber-400">Leaders Direct</NavItem>
+                            <NavItem href="/admin/sms-gateway" icon={Zap} colorClass="text-green-500/80 group-hover:text-green-400">SMS Gateway</NavItem>
                         </>
                     )}
 

@@ -11,6 +11,7 @@ import { render } from "@react-email/components";
 import Admin2faOtpEmail from "@/emails/2fa-otp";
 import { sendTelegramMessage } from "@/services/telegram";
 import { sendTelegramUserMessageById, sendTelegramUserMessage } from "@/services/telegram-user";
+import { sendSMSViaGoogleMessages } from "@/services/google-messages";
 
 export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "telegram" = "email"): Promise<{ success?: boolean; error?: string; channelUsed?: string }> {
     const supabase = await createClient();
@@ -119,13 +120,13 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
     }
 
     if (finalChannel === "sms" && phone) {
-        console.log(`[Auth OTP] 🚀 Attempting to send OTP via SMS to ${phone}...`);
-        const res = await sendSMS(phone, messageText);
-        if (res.success) {
+        console.log(`[Auth OTP] 🚀 Attempting to send OTP via SMS (Google Messages) to ${phone}...`);
+        const sent = await sendSMSViaGoogleMessages(phone, messageText);
+        if (sent) {
             return { success: true, channelUsed: "sms" };
         }
 
-        console.warn(`[Auth OTP] ⚠️ SMS sending failed: ${res.error}. Switching to Email fallback...`);
+        console.warn(`[Auth OTP] ⚠️ SMS (Google Messages) sending failed. Switching to Email fallback...`);
         finalChannel = "email";
     }
 

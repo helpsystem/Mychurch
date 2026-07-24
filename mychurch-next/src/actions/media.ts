@@ -97,70 +97,49 @@ async function walkDir(
     }
     return results;
 }
-
 export async function listMediaFiles(): Promise<MediaAsset[]> {
     if (!(await canAccessMediaLibrary())) {
         return [];
     }
 
-    await ensureMediaDir();
-    const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
     try {
-        await fs.mkdir(UPLOADS_DIR, { recursive: true });
-    } catch {}
-
-    try {
-        // 1. Walk media dir
-        const rawMediaAssets = await walkDir(MEDIA_DIR, MEDIA_DIR, (relativePath) => buildMediaUrl(relativePath));
-
-        // 2. Walk uploads dir
-        const rawUploadsAssets = await walkDir(UPLOADS_DIR, UPLOADS_DIR, (relativePath) => {
-            const parts = relativePath.split('/');
-            const encoded = parts.map(p => encodeURIComponent(p)).join('/');
-            return `/api/serve/${encoded}`;
-        });
-
-        // 3. Combine assets
-        const rawAssets = [...rawMediaAssets, ...rawUploadsAssets];
-
-        // Sort newest first
-        const sortedRaw = rawAssets.sort((a, b) => b.createdAt - a.createdAt);
-
-        // Check which images are in the Public Gallery and get their visibility
         const supabase = await createClient();
+        
+        // 1. Fetch all media from media_library
+        const { data: mediaLibraryAssets, error } = await supabase
+            .from('media_library')
+            .select('*')
+            .order('created_at', { ascending: false });
+            
+        if (error) {
+            console.error("Error fetching media from library:", error);
+            return [];
+        }
+
+        // 2. Fetch gallery mapping to know which ones are in the public gallery
         const { data: galleryImages } = await supabase
             .from('gallery_images')
-            .select('id, src, visibility, folder');
+            .select('id, src, visibility');
 
-        let assets: MediaAsset[] = [];
-
-        if (galleryImages) {
-            assets = sortedRaw.map(asset => {
-                const isMedia = asset.url.startsWith('/api/serve/media/');
-                const variants = isMedia
-                    ? buildGalleryUrlVariants(asset._relativePath)
-                    : [
-                        asset.url,
-                        `/uploads/${asset._relativePath}`,
-                        `/uploads/gallery/${asset.name}`,
-                        `/uploads/sermons/${asset.name}`
-                      ];
-                const galleryEntry = galleryImages.find(g => variants.includes(normalizeAssetUrl(g.src)));
-                const { _relativePath, ...cleanAsset } = asset;
-                return {
-                    ...cleanAsset,
-                    inGallery: !!galleryEntry,
-                    galleryId: galleryEntry?.id,
-                    visibility: (galleryEntry?.visibility as 'public' | 'admin' | 'user' | null) || 'admin',
-                    folder: asset.folder // keep actual filesystem folder
-                };
-            });
-        } else {
-            assets = sortedRaw.map(a => {
-                const { _relativePath, ...cleanAsset } = a;
-                return cleanAsset;
-            });
-        }
+        const assets: MediaAsset[] = mediaLibraryAssets.map((asset) => {
+            const url = `/api/serve/cloud/${asset.id}`;
+            const galleryEntry = galleryImages?.find(g => normalizeAssetUrl(g.src) === normalizeAssetUrl(url));
+            
+            return {
+                name: asset.file_name,
+                url: url,
+                type: asset.mime_type?.startsWith('video/') ? 'video' : (asset.mime_type?.startsWith('audio/') ? 'audio' : 'image'),
+                size: asset.size,
+                createdAt: new Date(asset.created_at).getTime(),
+                folder: asset.folder || '',
+                visibility: asset.visibility || 'admin',
+                inGallery: !!galleryEntry,
+                galleryId: galleryEntry?.id,
+                telegram_file_id: asset.telegram_file_id,
+                telegram_message_id: asset.telegram_message_id,
+                id: asset.id
+            };
+        });
 
         return assets;
     } catch (error) {
@@ -185,49 +164,37 @@ export async function createMediaFolder(folderPath: string): Promise<{ success: 
     }
 }
 
-export async function deleteMediaFile(filename: string): Promise<{ success: boolean; error?: string }> {
+export async function deleteMediaFile(idOrFilename: string): Promise<{ success: boolean; error?: string }> {
     if (!(await canAccessMediaLibrary())) {
         return { success: false, error: "Unauthorized" };
     }
 
     try {
-        const relativePath = filename.replace(/\\/g, '/');
-        let filePath = path.join(MEDIA_DIR, relativePath);
-        let baseDir = MEDIA_DIR;
-        let isUploads = false;
-
-        try {
-            await fs.access(filePath);
-        } catch {
-            const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
-            const uploadsPath = path.join(UPLOADS_DIR, relativePath);
-            try {
-                await fs.access(uploadsPath);
-                filePath = uploadsPath;
-                baseDir = UPLOADS_DIR;
-                isUploads = true;
-            } catch {
-                return { success: false, error: "File not found" };
-            }
+        const supabase = await createClient();
+        
+        // Find the record
+        const { data: asset, error: fetchError } = await supabase
+            .from('media_library')
+            .select('*')
+            .or(`id.eq.${idOrFilename},file_name.eq."${idOrFilename}"`)
+            .single();
+            
+        if (fetchError || !asset) {
+            return { success: false, error: "File not found in database" };
         }
 
-        // Ensure path stays within baseDir
-        if (!filePath.startsWith(baseDir)) return { success: false, error: "Invalid path" };
+        // Delete from Telegram Storage
+        if (asset.telegram_message_id) {
+            const { deleteFromTelegramStorage } = await import('@/services/telegram');
+            await deleteFromTelegramStorage(asset.telegram_message_id);
+        }
 
-        const urlVariants = isUploads
-            ? [
-                `/api/serve/${relativePath}`, 
-                `/uploads/${relativePath}`, 
-                `/uploads/gallery/${path.basename(relativePath)}`
-              ]
-            : buildGalleryUrlVariants(relativePath);
-        
-        // Remove from local file system
-        await fs.unlink(filePath);
+        // Remove from local database
+        await supabase.from('media_library').delete().eq('id', asset.id);
 
         // Remove from gallery DB if it exists
-        const supabase = await createClient();
-        await supabase.from('gallery_images').delete().in('src', urlVariants);
+        const url = `/api/serve/cloud/${asset.id}`;
+        await supabase.from('gallery_images').delete().eq('src', url);
 
         revalidatePath("/admin/media");
         revalidatePath("/gallery");
@@ -238,88 +205,46 @@ export async function deleteMediaFile(filename: string): Promise<{ success: bool
     }
 }
 
-export async function renameMediaFile(oldFilename: string, requestedName: string): Promise<{ success: boolean; newName?: string; error?: string }> {
+export async function renameMediaFile(idOrOldFilename: string, requestedName: string): Promise<{ success: boolean; newName?: string; error?: string }> {
     if (!(await canAccessMediaLibrary())) {
         return { success: false, error: "Unauthorized" };
     }
 
     try {
-        const relativePath = oldFilename.replace(/\\/g, '/');
-        let oldPath = path.join(MEDIA_DIR, relativePath);
-        let baseDir = MEDIA_DIR;
-        let isUploads = false;
-
-        try {
-            await fs.access(oldPath);
-        } catch {
-            const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
-            const uploadsPath = path.join(UPLOADS_DIR, relativePath);
-            try {
-                await fs.access(uploadsPath);
-                oldPath = uploadsPath;
-                baseDir = UPLOADS_DIR;
-                isUploads = true;
-            } catch {
-                return { success: false, error: "File not found" };
-            }
-        }
-
-        if (!oldPath.startsWith(baseDir)) return { success: false, error: "Invalid path" };
-
-        const ext = path.extname(relativePath);
-        const oldBase = path.basename(relativePath, ext);
-        const cleanRequested = safeBaseName(requestedName) || oldBase;
-        const targetBase = path.basename(cleanRequested, ext);
-
-        if (!targetBase) {
+        const cleanRequested = safeBaseName(requestedName);
+        if (!cleanRequested) {
             return { success: false, error: "Invalid file name" };
         }
 
-        const dirName = path.dirname(relativePath);
-        let candidate = dirName === '.' ? `${targetBase}${ext}` : `${dirName}/${targetBase}${ext}`;
-        let counter = 1;
-        while (candidate !== relativePath) {
-            const candidatePath = path.join(baseDir, candidate);
-            try {
-                await fs.access(candidatePath);
-                candidate = dirName === '.' ? `${targetBase}-${counter}${ext}` : `${dirName}/${targetBase}-${counter}${ext}`;
-                counter += 1;
-            } catch {
-                break;
-            }
+        const supabase = await createClient();
+        
+        // Find the record
+        const { data: asset, error: fetchError } = await supabase
+            .from('media_library')
+            .select('*')
+            .or(`id.eq.${idOrOldFilename},file_name.eq."${idOrOldFilename}"`)
+            .single();
+            
+        if (fetchError || !asset) {
+            return { success: false, error: "File not found in database" };
         }
 
-        if (candidate === relativePath) {
-            return { success: true, newName: relativePath };
-        }
-
-        const newPath = path.join(baseDir, candidate);
-        await fs.rename(oldPath, newPath);
+        // Update database record
+        await supabase
+            .from('media_library')
+            .update({ file_name: cleanRequested })
+            .eq('id', asset.id);
 
         // Keep gallery references in sync when filename changes.
-        const supabase = await createClient();
-        const newUrl = isUploads
-            ? `/api/serve/${candidate}`
-            : buildMediaUrl(candidate);
-        const urlVariants = isUploads
-            ? [
-                `/api/serve/${relativePath}`, 
-                `/uploads/${relativePath}`, 
-                `/uploads/gallery/${path.basename(relativePath)}`
-              ]
-            : buildGalleryUrlVariants(relativePath);
-
+        const url = `/api/serve/cloud/${asset.id}`;
         await supabase
             .from("gallery_images")
-            .update({
-                src: newUrl,
-                title: path.basename(candidate, ext),
-            })
-            .in("src", urlVariants);
+            .update({ title: cleanRequested })
+            .eq("src", url);
 
         revalidatePath("/admin/media");
         revalidatePath("/gallery");
-        return { success: true, newName: candidate };
+        return { success: true, newName: cleanRequested };
     } catch (error: any) {
         console.error("Error renaming media file:", error);
         return { success: false, error: error.message };

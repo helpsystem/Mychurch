@@ -15,9 +15,17 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export function generateOTP(email: string): string {
+    const existing = store.get(email);
+    // If an OTP already exists and is valid for at least 5 more minutes, reuse it
+    if (existing && existing.expiresAt > Date.now() + 5 * 60 * 1000) {
+        console.log(`[Auth OTP] Reusing existing OTP for ${email}`);
+        return existing.code;
+    }
+
     const code = Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
     store.set(email, { code, expiresAt });
+    console.log(`[Auth OTP] Generated NEW OTP for ${email}`);
     return code;
 }
 
