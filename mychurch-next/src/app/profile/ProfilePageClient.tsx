@@ -47,46 +47,21 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isChangingPassword, setIsChangingPassword] = useState(false);
 
-    // Personal info state
+    // Personal info state - sanitize initial telegram_id if it was wrongly saved as email
+    const rawTelegram = initialUser?.telegram_id ? String(initialUser.telegram_id).trim() : "";
+    const cleanInitialTelegram = (rawTelegram.includes("@") || (rawTelegram && !/^\d+$/.test(rawTelegram))) ? "" : rawTelegram;
+
     const [formData, setFormData] = useState({
         name: initialUser?.name || "",
         bio: initialUser?.bio || "",
         phone: initialUser?.phone || "",
         whatsapp_number: initialUser?.whatsapp_number || "",
-        telegram_id: initialUser?.telegram_id || "",
+        telegram_id: cleanInitialTelegram,
     });
-    const [phoneCountry, setPhoneCountry] = useState("+1");
-    const [waCountry, setWaCountry] = useState("+1");
     const [telegramError, setTelegramError] = useState<string | null>(null);
 
-    const COUNTRY_CODES = [
-        { code: "+1",  flag: "🇺🇸", label: "US/CA" },
-        { code: "+44", flag: "🇬🇧", label: "UK" },
-        { code: "+49", flag: "🇩🇪", label: "DE" },
-        { code: "+33", flag: "🇫🇷", label: "FR" },
-        { code: "+31", flag: "🇳🇱", label: "NL" },
-        { code: "+46", flag: "🇸🇪", label: "SE" },
-        { code: "+45", flag: "🇩🇰", label: "DK" },
-        { code: "+47", flag: "🇳🇴", label: "NO" },
-        { code: "+41", flag: "🇨🇭", label: "CH" },
-        { code: "+43", flag: "🇦🇹", label: "AT" },
-        { code: "+98", flag: "🇮🇷", label: "IR" },
-        { code: "+90", flag: "🇹🇷", label: "TR" },
-        { code: "+971",flag: "🇦🇪", label: "AE" },
-        { code: "+966",flag: "🇸🇦", label: "SA" },
-        { code: "+61", flag: "🇦🇺", label: "AU" },
-        { code: "+64", flag: "🇳🇿", label: "NZ" },
-    ];
-
-    const formatPhoneWithCode = (code: string, num: string) => {
-        const clean = num.replace(/^\+\d+\s*/, "").trim();
-        return clean ? `${code}${clean}` : "";
-    };
-
     const handleTelegramChange = (val: string) => {
-        // Use functional update to avoid stale closure bug
         setFormData(prev => ({ ...prev, telegram_id: val }));
-        // Validate
         if (val.includes("@") && val.includes(".")) {
             setTelegramError(isFa ? "آی‌دی تلگرام یک عدد است، نه ایمیل!" : "Telegram Chat ID is a number, not an email!");
         } else if (val && !/^\d+$/.test(val)) {
@@ -264,12 +239,25 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
             )}
 
             <main className="relative z-10 flex-1 pt-32 pb-24 px-6 lg:px-12 max-w-5xl mx-auto w-full" dir={isFa ? "rtl" : "ltr"}>
-                <div className="mb-12">
-                    <h1 className="text-4xl font-black text-foreground mb-2">{isFa ? "حساب کاربری من" : "My Profile"}</h1>
-                    <p className="text-muted-foreground">{isFa ? "تنظیمات پروفایل و ارتباط با کلیسا." : "Profile settings and communication with the church."}</p>
-                </div>
-
                 <form onSubmit={handleSave} className="space-y-8">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-border pb-6">
+                        <div>
+                            <h1 className="text-4xl font-black text-foreground mb-2">{isFa ? "حساب کاربری من" : "My Profile"}</h1>
+                            <p className="text-muted-foreground">{isFa ? "تنظیمات پروفایل و ارتباط با کلیسا." : "Profile settings and communication with the church."}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            {saveSuccess && (
+                                <span className="text-emerald-400 text-sm font-bold flex items-center gap-1">
+                                    <CheckCircle className="w-4 h-4" /> {isFa ? "ذخیره شد" : "Saved"}
+                                </span>
+                            )}
+                            <button type="submit" disabled={isSaving}
+                                className="px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold transition-colors disabled:opacity-50 flex items-center gap-2 shadow-lg shadow-primary/20">
+                                {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
+                                {isFa ? "ذخیره تغییرات" : "Save Changes"}
+                            </button>
+                        </div>
+                    </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {/* ── Sidebar */}
                         <div className="lg:col-span-1 space-y-6">
@@ -381,60 +369,36 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {/* Phone with country code */}
+                                    {/* Phone input */}
                                     <div className="space-y-2">
                                         <label htmlFor="phone" className="text-sm font-medium text-muted-foreground">
                                             📱 {isFa ? "شماره تماس (پیامک SMS)" : "Phone Number (SMS)"}
                                         </label>
-                                        <div className="flex gap-2">
-                                            <select
-                                                value={phoneCountry}
-                                                onChange={e => setPhoneCountry(e.target.value)}
-                                                className="bg-secondary border border-border rounded-xl px-2 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors shrink-0 w-[90px]"
-                                                aria-label="Phone country code"
-                                            >
-                                                {COUNTRY_CODES.map(c => (
-                                                    <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
-                                                ))}
-                                            </select>
-                                            <input
-                                                id="phone" type="tel"
-                                                value={formData.phone.replace(/^\+\d+/, "")}
-                                                placeholder={isFa ? "شماره بدون کد کشور" : "Number without country code"}
-                                                onChange={e => setFormData(prev => ({ ...prev, phone: formatPhoneWithCode(phoneCountry, e.target.value) }))}
-                                                className="flex-1 bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground"
-                                                dir="ltr"
-                                            />
-                                        </div>
-                                        <p className="text-xs text-muted-foreground">{isFa ? `شماره ذخیره شده: ${formData.phone || "—"}` : `Saved: ${formData.phone || "—"}`}</p>
+                                        <input
+                                            id="phone"
+                                            type="tel"
+                                            value={formData.phone}
+                                            placeholder={isFa ? "مثال: 12029677030+" : "e.g. +12029677030"}
+                                            onChange={e => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                                            className="w-full bg-secondary border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground"
+                                            dir="ltr"
+                                        />
                                     </div>
 
-                                    {/* WhatsApp with country code */}
+                                    {/* WhatsApp input */}
                                     <div className="space-y-2">
                                         <label htmlFor="whatsapp" className="text-sm font-medium text-muted-foreground">
                                             💬 {isFa ? "شماره واتس‌اپ" : "WhatsApp Number"}
                                         </label>
-                                        <div className="flex gap-2">
-                                            <select
-                                                value={waCountry}
-                                                onChange={e => setWaCountry(e.target.value)}
-                                                className="bg-secondary border border-border rounded-xl px-2 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors shrink-0 w-[90px]"
-                                                aria-label="WhatsApp country code"
-                                            >
-                                                {COUNTRY_CODES.map(c => (
-                                                    <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
-                                                ))}
-                                            </select>
-                                            <input
-                                                id="whatsapp" type="tel"
-                                                value={formData.whatsapp_number.replace(/^\+\d+/, "")}
-                                                placeholder={isFa ? "شماره بدون کد کشور" : "Number without country code"}
-                                                onChange={e => setFormData(prev => ({ ...prev, whatsapp_number: formatPhoneWithCode(waCountry, e.target.value) }))}
-                                                className="flex-1 bg-secondary border border-emerald-500/30 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-400 transition-colors text-foreground placeholder:text-muted-foreground"
-                                                dir="ltr"
-                                            />
-                                        </div>
-                                        <p className="text-xs text-muted-foreground">{isFa ? `شماره ذخیره شده: ${formData.whatsapp_number || "—"}` : `Saved: ${formData.whatsapp_number || "—"}`}</p>
+                                        <input
+                                            id="whatsapp"
+                                            type="tel"
+                                            value={formData.whatsapp_number}
+                                            placeholder={isFa ? "مثال: 12029677030+" : "e.g. +12029677030"}
+                                            onChange={e => setFormData(prev => ({ ...prev, whatsapp_number: e.target.value }))}
+                                            className="w-full bg-secondary border border-emerald-500/30 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-400 transition-colors text-foreground placeholder:text-muted-foreground"
+                                            dir="ltr"
+                                        />
                                     </div>
 
                                     {/* Telegram Chat ID */}

@@ -1,54 +1,59 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@supabase/ssr";
+import { query } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
     const results: Record<string, any> = {};
 
-    // 1. Check env vars
-    results.hasServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
-    results.hasSupabaseUrl = !!process.env.NEXT_PUBLIC_SUPABASE_URL;
-    results.serviceKeyPrefix = process.env.SUPABASE_SERVICE_ROLE_KEY?.substring(0, 30) + "...";
+    // 1. Run auto-migration to add any missing columns
+    const columnsToEnsure = [
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS telegram_id VARCHAR(255);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS phone VARCHAR(100);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS whatsapp_number VARCHAR(100);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT;",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar_url TEXT;",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS address_line1 VARCHAR(500);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS address_line2 VARCHAR(500);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS city VARCHAR(255);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS state VARCHAR(255);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS country VARCHAR(255);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS postal_code VARCHAR(50);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS lat NUMERIC(10, 7);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS lng NUMERIC(10, 7);",
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW();"
+    ];
 
-    if (!process.env.SUPABASE_SERVICE_ROLE_KEY || !process.env.NEXT_PUBLIC_SUPABASE_URL) {
-        return NextResponse.json({ ...results, error: "Missing env vars" }, { status: 500 });
-    }
-
-    // 2. Test Supabase connection
-    try {
-        const supabase = createServerClient(
-            process.env.NEXT_PUBLIC_SUPABASE_URL!,
-            process.env.SUPABASE_SERVICE_ROLE_KEY!,
-            { cookies: { getAll: () => [], setAll: () => {} } }
-        );
-
-        // Try to fetch one row from users
-        const { data, error } = await supabase
-            .from('users')
-            .select('id, email, name, role, phone, whatsapp_number, telegram_id')
-            .limit(3);
-
-        results.querySuccess = !error;
-        results.queryError = error?.message;
-        results.rowCount = data?.length ?? 0;
-        results.columns = data?.[0] ? Object.keys(data[0]) : [];
-
-        // Check if telegram_id column exists
-        if (data && data.length > 0) {
-            results.hasTelegramIdColumn = 'telegram_id' in data[0];
-        } else {
-            // Try to check if column exists by doing a select
-            const { error: colError } = await supabase
-                .from('users')
-                .select('telegram_id')
-                .limit(1);
-            results.hasTelegramIdColumn = !colError;
-            results.telegramIdColError = colError?.message;
+    const migrationLogs: string[] = [];
+    for (const sql of columnsToEnsure) {
+        try {
+            await query(sql);
+            migrationLogs.push(`Executed: ${sql}`);
+        } catch (err: any) {
+            migrationLogs.push(`Err: ${err.message}`);
         }
+    }
+    results.migrationLogs = migrationLogs;
 
+    // Reload PostgREST cache if possible
+    try {
+        await query("NOTIFY pgrst, 'reload schema';");
+    } catch {}
+
+    // 2. Query users table structure
+    try {
+        const { rows } = await query(`
+            SELECT column_name, data_type 
+            from information_schema.columns 
+            WHERE table_name = 'users';
+        `);
+        results.columns = rows;
+        results.hasTelegramId = rows.some((r: any) => r.column_name === 'telegram_id');
+        results.hasBio = rows.some((r: any) => r.column_name === 'bio');
+        results.dbCheckSuccess = true;
     } catch (e: any) {
-        results.connectionError = e.message;
+        results.dbCheckSuccess = false;
+        results.dbCheckError = e.message;
     }
 
     return NextResponse.json(results);

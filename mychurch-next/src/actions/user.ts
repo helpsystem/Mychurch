@@ -1,9 +1,7 @@
 "use server";
 
-import { createAdminClient } from "@/utils/supabase/server";
-import { createClient } from "@/utils/supabase/server";
-import { revalidatePath } from "next/cache";
 import { query } from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 export async function initializeUserDB() {
     try {
@@ -15,6 +13,7 @@ export async function initializeUserDB() {
                 role VARCHAR(50) DEFAULT 'User',
                 phone VARCHAR(50),
                 whatsapp_number VARCHAR(50),
+                telegram_id VARCHAR(255),
                 bio TEXT,
                 avatar_url TEXT,
                 address_line1 VARCHAR(500),
@@ -29,8 +28,14 @@ export async function initializeUserDB() {
                 updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
             );
         `);
-        // Add address columns to existing tables that may not have them
+
         const newCols = [
+            'name VARCHAR(255)',
+            'phone VARCHAR(50)',
+            'whatsapp_number VARCHAR(50)',
+            'telegram_id VARCHAR(255)',
+            'bio TEXT',
+            'avatar_url TEXT',
             'address_line1 VARCHAR(500)',
             'address_line2 VARCHAR(500)',
             'city VARCHAR(255)',
@@ -40,19 +45,20 @@ export async function initializeUserDB() {
             'lat DECIMAL(10,7)',
             'lng DECIMAL(10,7)'
         ];
+
         for (const col of newCols) {
             await query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS ${col}`).catch(() => {});
         }
-        console.log('[Action] User DB initialized');
+        console.log('[Action] User DB schema initialized and verified');
     } catch (e) {
-        console.error('[Action] Error initializing User DB', e);
+        console.error('[Action] Error initializing User DB schema', e);
     }
 }
 
 export async function getUserProfile(email: string) {
     try {
         await initializeUserDB();
-        const { rows } = await query("SELECT * FROM users WHERE email = $1", [email]);
+        const { rows } = await query("SELECT * FROM users WHERE LOWER(email) = LOWER($1)", [email]);
         return rows[0] || null;
     } catch (e) {
         console.error('Error fetching user profile', e);
@@ -76,40 +82,93 @@ export async function updateUserProfile(email: string, data: {
     lng?: number | null;
 }) {
     try {
-        const supabase = await createAdminClient();
+        await initializeUserDB();
 
-        // Build update payload (only include fields that are provided)
-        const updatePayload: Record<string, any> = {
-            updated_at: new Date().toISOString(),
-        };
-        if (data.name !== undefined) updatePayload.name = data.name || null;
-        if (data.phone !== undefined) updatePayload.phone = data.phone || null;
-        if (data.whatsapp_number !== undefined) updatePayload.whatsapp_number = data.whatsapp_number || null;
-        if (data.telegram_id !== undefined) updatePayload.telegram_id = data.telegram_id || null;
-        if (data.bio !== undefined) updatePayload.bio = data.bio || null;
-        if (data.address_line1 !== undefined) updatePayload.address_line1 = data.address_line1 || null;
-        if (data.address_line2 !== undefined) updatePayload.address_line2 = data.address_line2 || null;
-        if (data.city !== undefined) updatePayload.city = data.city || null;
-        if (data.state !== undefined) updatePayload.state = data.state || null;
-        if (data.country !== undefined) updatePayload.country = data.country || null;
-        if (data.postal_code !== undefined) updatePayload.postal_code = data.postal_code || null;
-        if (data.lat !== undefined) updatePayload.lat = data.lat ?? null;
-        if (data.lng !== undefined) updatePayload.lng = data.lng ?? null;
+        const updateSql = `
+            UPDATE users 
+            SET name = COALESCE($1, name), 
+                phone = $2, 
+                whatsapp_number = $3, 
+                telegram_id = $4,
+                bio = $5,
+                address_line1 = $6,
+                address_line2 = $7,
+                city = $8,
+                state = $9,
+                country = $10,
+                postal_code = $11,
+                lat = $12,
+                lng = $13,
+                updated_at = NOW()
+            WHERE LOWER(email) = LOWER($14)
+            RETURNING id;
+        `;
 
-        const { error } = await supabase
-            .from('users')
-            .update(updatePayload)
-            .ilike('email', email);
+        const params = [
+            data.name || null,
+            data.phone || null,
+            data.whatsapp_number || null,
+            data.telegram_id || null,
+            data.bio || null,
+            data.address_line1 || null,
+            data.address_line2 || null,
+            data.city || null,
+            data.state || null,
+            data.country || null,
+            data.postal_code || null,
+            data.lat ?? null,
+            data.lng ?? null,
+            email.trim()
+        ];
 
-        if (error) {
-            console.error('[updateUserProfile] Supabase error:', error);
-            return { success: false, error: error.message };
+        const { rows } = await query(updateSql, params);
+
+        if (!rows || rows.length === 0) {
+            // Upsert fallback
+            await query(`
+                INSERT INTO users (
+                    email, name, role, phone, whatsapp_number, telegram_id, bio,
+                    address_line1, address_line2, city, state, country, postal_code, lat, lng, updated_at
+                ) VALUES (
+                    $1, $2, 'User', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, NOW()
+                )
+                ON CONFLICT (email) DO UPDATE SET
+                    name = EXCLUDED.name,
+                    phone = EXCLUDED.phone,
+                    whatsapp_number = EXCLUDED.whatsapp_number,
+                    telegram_id = EXCLUDED.telegram_id,
+                    bio = EXCLUDED.bio,
+                    address_line1 = EXCLUDED.address_line1,
+                    address_line2 = EXCLUDED.address_line2,
+                    city = EXCLUDED.city,
+                    state = EXCLUDED.state,
+                    country = EXCLUDED.country,
+                    postal_code = EXCLUDED.postal_code,
+                    lat = EXCLUDED.lat,
+                    lng = EXCLUDED.lng,
+                    updated_at = NOW();
+            `, [
+                email.trim().toLowerCase(),
+                data.name || email.split('@')[0],
+                data.phone || null,
+                data.whatsapp_number || null,
+                data.telegram_id || null,
+                data.bio || null,
+                data.address_line1 || null,
+                data.address_line2 || null,
+                data.city || null,
+                data.state || null,
+                data.country || null,
+                data.postal_code || null,
+                data.lat ?? null,
+                data.lng ?? null
+            ]);
         }
 
         revalidatePath('/profile');
         return { success: true };
     } catch (e: any) {
         console.error('Error updating user profile', e);
-        return { success: false, error: e.message };
+        return { success: false, error: e.message || 'Failed to update profile' };
     }
 }
