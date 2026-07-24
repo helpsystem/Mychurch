@@ -16,8 +16,11 @@ interface VerifyAdminClientProps {
 }
 
 export default function VerifyAdminClient({ email, initialPhone = "", initialWhatsApp = "", initialTelegram = "" }: VerifyAdminClientProps) {
-    // Determine the default channel: Telegram if exists, else WhatsApp if exists, else SMS if exists, else Email
-    const defaultChannel = initialTelegram.trim() ? "telegram" : initialWhatsApp.trim() ? "whatsapp" : initialPhone.trim() ? "sms" : "email";
+    // telegram_id must be a pure number — reject emails or other invalid values saved in DB
+    const validTelegram = initialTelegram.trim() && /^\d+$/.test(initialTelegram.trim()) ? initialTelegram.trim() : "";
+
+    // Determine the default channel: Telegram if valid numeric ID, else WhatsApp, else SMS, else Email
+    const defaultChannel = validTelegram ? "telegram" : initialWhatsApp.trim() ? "whatsapp" : initialPhone.trim() ? "sms" : "email";
     
     const [channel, setChannel] = useState<"telegram" | "whatsapp" | "sms" | "email">(defaultChannel);
     const [code, setCode] = useState("");
@@ -126,14 +129,14 @@ export default function VerifyAdminClient({ email, initialPhone = "", initialWha
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-black/40 border border-white/5 p-1.5 rounded-2xl mb-6">
                 <button
                     type="button"
-                    disabled={!initialTelegram.trim()}
+                    disabled={!validTelegram}
                     onClick={() => setChannel("telegram")}
                     className={`flex flex-col items-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                         channel === "telegram"
                             ? "bg-sky-600 text-white shadow-md shadow-sky-900/30 scale-100"
                             : "text-muted-foreground hover:text-white disabled:opacity-40 disabled:hover:text-muted-foreground"
                     }`}
-                    title={!initialTelegram.trim() ? "شناسه تلگرام در پروفایل شما ثبت نشده است" : "دریافت از طریق تلگرام"}
+                    title={!validTelegram ? (initialTelegram ? `مقدار ذخیره‌شده (${initialTelegram}) معتبر نیست — باید عدد باشد` : "شناسه تلگرام در پروفایل شما ثبت نشده است") : "دریافت از طریق تلگرام"}
                 >
                     <Send className="w-4 h-4" />
                     <span>تلگرام</span>
@@ -188,7 +191,7 @@ export default function VerifyAdminClient({ email, initialPhone = "", initialWha
             <div className="mb-6 px-4 py-3 bg-black/20 border border-white/5 rounded-2xl text-center">
                 <p className="text-xs text-muted-foreground mb-1">کد تایید به مقصد زیر ارسال خواهد شد:</p>
                 <div className="font-mono text-sm text-emerald-400 font-bold select-all tracking-wide" dir="ltr">
-                    {channel === "telegram" && (initialTelegram ? `Chat ID: ${initialTelegram}` : "ثبت نشده")}
+                    {channel === "telegram" && (validTelegram ? `Chat ID: ${validTelegram}` : initialTelegram ? `⚠️ نامعتبر: ${initialTelegram}` : "ثبت نشده")}
                     {channel === "whatsapp" && (initialWhatsApp ? maskPhone(initialWhatsApp) : "ثبت نشده")}
                     {channel === "sms" && (initialPhone ? maskPhone(initialPhone) : "ثبت نشده")}
                     {channel === "email" && maskEmail(email)}

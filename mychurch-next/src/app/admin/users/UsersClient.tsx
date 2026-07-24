@@ -35,8 +35,13 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
     const [editingPermissions, setEditingPermissions] = useState<Record<string, boolean>>({});
 
     // Contact Modal State
-    const [contactModalUserId, setContactModalUserId] = useState<string | null>(null);
+    const [contactModalUser, setContactModalUser] = useState<UserRow | null>(null);
     const [editingTelegramId, setEditingTelegramId] = useState("");
+    const [telegramVerifyStep, setTelegramVerifyStep] = useState<"edit" | "verify">("edit");
+    const [telegramVerifyCode, setTelegramVerifyCode] = useState("");
+    const [telegramSending, setTelegramSending] = useState(false);
+    const [telegramVerifying, setTelegramVerifying] = useState(false);
+    const [telegramMsg, setTelegramMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
     const handleRoleChange = (id: string, newRole: string) => {
         startTransition(async () => {
@@ -113,20 +118,82 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
     };
 
     const openContactModal = (user: UserRow) => {
-        setContactModalUserId(user.id);
-        setEditingTelegramId(user.telegram_id || "");
+        setContactModalUser(user);
+        // Clean: only keep numeric telegram_id
+        const raw = user.telegram_id || "";
+        setEditingTelegramId(/^\d+$/.test(raw.trim()) ? raw.trim() : "");
+        setTelegramVerifyStep("edit");
+        setTelegramVerifyCode("");
+        setTelegramMsg(null);
     };
 
-    const saveContactInfo = () => {
-        if (!contactModalUserId) return;
+    const handleSendTelegramCode = async () => {
+        if (!contactModalUser) return;
+        const id = editingTelegramId.trim();
+        if (!id || !/^\d+$/.test(id)) {
+            setTelegramMsg({ type: "error", text: "شناسه باید عدد باشد" });
+            return;
+        }
+        setTelegramSending(true);
+        setTelegramMsg(null);
+        try {
+            const res = await fetch('/api/admin/verify-telegram', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ telegramId: id, userId: contactModalUser.id, action: 'send_code' }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            setTelegramVerifyStep("verify");
+            setTelegramMsg({ type: "success", text: data.message });
+        } catch (err: any) {
+            setTelegramMsg({ type: "error", text: err.message });
+        } finally {
+            setTelegramSending(false);
+        }
+    };
+
+    const handleVerifyTelegramCode = async () => {
+        if (!contactModalUser) return;
+        setTelegramVerifying(true);
+        setTelegramMsg(null);
+        try {
+            const res = await fetch('/api/admin/verify-telegram', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    telegramId: editingTelegramId.trim(),
+                    userId: contactModalUser.id,
+                    action: 'verify_code',
+                    code: telegramVerifyCode.trim(),
+                }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            toast.success("شناسه تلگرام تأیید و ذخیره شد! ✅");
+            setContactModalUser(null);
+        } catch (err: any) {
+            setTelegramMsg({ type: "error", text: err.message });
+        } finally {
+            setTelegramVerifying(false);
+        }
+    };
+
+    const handleSaveTelegramDirect = async () => {
+        if (!contactModalUser) return;
+        const id = editingTelegramId.trim();
+        if (id && !/^\d+$/.test(id)) {
+            setTelegramMsg({ type: "error", text: "شناسه باید عدد باشد" });
+            return;
+        }
         startTransition(async () => {
-            const success = await updateUserTelegramId(contactModalUserId, editingTelegramId);
+            const success = await updateUserTelegramId(contactModalUser.id, id);
             if (success) {
-                toast.success("شناسه تلگرام با موفقیت ویرایش شد.");
+                toast.success(id ? "شناسه تلگرام ذخیره شد." : "شناسه تلگرام پاک شد.");
+                setContactModalUser(null);
             } else {
-                toast.error("خطا در به‌روزرسانی اطلاعات تماس.");
+                toast.error("خطا در ذخیره");
             }
-            setContactModalUserId(null);
         });
     };
 
@@ -406,8 +473,8 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                 </div>
             )}
 
-            {/* Contact Info Modal */}
-            {contactModalUserId && (
+            {/* Contact Info / Telegram Verify Modal */}
+            {contactModalUser && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
                     <div className="glass-strong border border-white/10 rounded-[2.5rem] w-full max-w-md overflow-hidden shadow-2xl relative">
                         <div className="absolute inset-0 bg-noise opacity-[0.14] pointer-events-none" />
@@ -419,46 +486,132 @@ export default function UsersClient({ initialUsers }: { initialUsers: UserRow[] 
                                     <Send className="w-5 h-5 text-sky-400" />
                                 </div>
                                 <div>
-                                    <h3 className="font-black text-lg text-white">اطلاعات تماس کاربر</h3>
-                                    <p className="text-xs text-muted-foreground mt-0.5">تنظیمات دریافت پیام و 2FA</p>
+                                    <h3 className="font-black text-lg text-white">شناسه تلگرام</h3>
+                                    <p className="text-xs text-muted-foreground mt-0.5">{contactModalUser.name || contactModalUser.email}</p>
                                 </div>
                             </div>
-                            <button onClick={() => setContactModalUserId(null)} className="p-2 hover:bg-white/5 rounded-full transition text-muted-foreground" title="بستن">
+                            <button onClick={() => setContactModalUser(null)} className="p-2 hover:bg-white/5 rounded-full transition text-muted-foreground" title="بستن">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
 
                         {/* Body */}
                         <div className="p-6 space-y-4 relative z-10">
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-bold text-muted-foreground mr-1">شناسه عددی تلگرام (Chat ID)</label>
-                                <div className="relative">
-                                    <Send className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+
+                            {/* Step 1: Enter Telegram ID */}
+                            {telegramVerifyStep === "edit" && (
+                                <>
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-bold text-muted-foreground">آی‌دی عددی تلگرام (Chat ID)</label>
+                                        <div className="relative">
+                                            <Send className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                                            <input
+                                                type="text"
+                                                inputMode="numeric"
+                                                value={editingTelegramId}
+                                                onChange={e => {
+                                                    const v = e.target.value.replace(/[^\d]/g, '');
+                                                    setEditingTelegramId(v);
+                                                    setTelegramMsg(null);
+                                                }}
+                                                placeholder="مثال: 6884751491"
+                                                dir="ltr"
+                                                className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 pl-10 text-sm font-mono focus:outline-none focus:border-sky-500 transition"
+                                            />
+                                        </div>
+                                        <p className="text-[10px] text-muted-foreground">برای دریافت Chat ID خود، ربات @userinfobot را در تلگرام Start کنید.</p>
+                                    </div>
+
+                                    {telegramMsg && (
+                                        <div className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold ${
+                                            telegramMsg.type === 'success' ? 'bg-green-500/10 border border-green-500/20 text-green-400' : 'bg-red-500/10 border border-red-500/20 text-red-400'
+                                        }`}>
+                                            {telegramMsg.type === 'success' ? <Check className="w-4 h-4 flex-shrink-0" /> : <X className="w-4 h-4 flex-shrink-0" />}
+                                            {telegramMsg.text}
+                                        </div>
+                                    )}
+
+                                    <div className="flex gap-2 pt-1">
+                                        {/* Send code for verification */}
+                                        <button
+                                            onClick={handleSendTelegramCode}
+                                            disabled={telegramSending || !editingTelegramId}
+                                            className="flex-1 py-2.5 rounded-xl font-bold bg-sky-600 hover:bg-sky-500 text-white transition flex items-center justify-center gap-2 disabled:opacity-50"
+                                        >
+                                            {telegramSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                                            ارسال کد تأیید
+                                        </button>
+                                        {/* Direct save (admin bypass) */}
+                                        <button
+                                            onClick={handleSaveTelegramDirect}
+                                            disabled={isPending}
+                                            className="py-2.5 px-4 rounded-xl font-bold bg-neutral-700 hover:bg-neutral-600 text-white transition flex items-center gap-1.5 text-sm disabled:opacity-50"
+                                            title="ذخیره مستقیم بدون تأیید (فقط ادمین)"
+                                        >
+                                            {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
+                                            ذخیره
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+
+                            {/* Step 2: Enter verification code */}
+                            {telegramVerifyStep === "verify" && (
+                                <>
+                                    <div className="text-center py-2">
+                                        <div className="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mx-auto mb-3">
+                                            <Send className="w-7 h-7 text-sky-400" />
+                                        </div>
+                                        <p className="text-sm text-white font-bold">کد به تلگرام ارسال شد</p>
+                                        <p className="text-xs text-muted-foreground mt-1">Chat ID: <span dir="ltr" className="font-mono text-sky-400">{editingTelegramId}</span></p>
+                                    </div>
+
+                                    {telegramMsg && (
+                                        <div className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold ${
+                                            telegramMsg.type === 'success' ? 'bg-green-500/10 border border-green-500/20 text-green-400' : 'bg-red-500/10 border border-red-500/20 text-red-400'
+                                        }`}>
+                                            {telegramMsg.type === 'success' ? <Check className="w-4 h-4 flex-shrink-0" /> : <X className="w-4 h-4 flex-shrink-0" />}
+                                            {telegramMsg.text}
+                                        </div>
+                                    )}
+
                                     <input
                                         type="text"
-                                        value={editingTelegramId}
-                                        onChange={e => setEditingTelegramId(e.target.value)}
-                                        placeholder="مثال: 123456789"
+                                        inputMode="numeric"
+                                        maxLength={6}
+                                        value={telegramVerifyCode}
+                                        onChange={e => setTelegramVerifyCode(e.target.value.replace(/[^\d]/g, ''))}
+                                        placeholder="کد ۶ رقمی تلگرام"
                                         dir="ltr"
-                                        className="w-full bg-neutral-900 border border-white/5 rounded-xl px-4 py-2.5 pl-10 text-sm focus:outline-none focus:border-sky-500 transition text-left"
+                                        className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-center text-2xl font-mono tracking-[0.5em] focus:outline-none focus:border-sky-500 transition"
                                     />
-                                </div>
-                                <p className="text-[10px] text-muted-foreground pt-1 pr-1">برای دریافت کد ورود دو مرحله‌ای به تلگرام، شناسه عددی (Chat ID) اکانت کاربر را وارد کنید.</p>
-                            </div>
-                            
-                            <div className="flex gap-3 pt-2">
-                                <button type="button" onClick={() => setContactModalUserId(null)} className="flex-1 py-2.5 rounded-xl font-bold bg-neutral-800 hover:bg-neutral-700 text-white transition">
-                                    انصراف
-                                </button>
-                                <button 
-                                    onClick={saveContactInfo} 
-                                    disabled={isPending} 
-                                    className="flex-1 py-2.5 rounded-xl font-bold bg-sky-600 hover:bg-sky-500 text-white transition flex items-center justify-center gap-2 disabled:opacity-60"
-                                >
-                                    {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
-                                    ذخیره تغییرات
-                                </button>
-                            </div>
+
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => { setTelegramVerifyStep("edit"); setTelegramMsg(null); }}
+                                            className="flex-1 py-2.5 rounded-xl font-bold bg-neutral-800 hover:bg-neutral-700 text-white transition"
+                                        >
+                                            بازگشت
+                                        </button>
+                                        <button
+                                            onClick={handleVerifyTelegramCode}
+                                            disabled={telegramVerifyCode.length < 6 || telegramVerifying}
+                                            className="flex-1 py-2.5 rounded-xl font-bold bg-sky-600 hover:bg-sky-500 text-white transition flex items-center justify-center gap-2 disabled:opacity-50"
+                                        >
+                                            {telegramVerifying ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
+                                            تأیید و ذخیره
+                                        </button>
+                                    </div>
+
+                                    <button
+                                        onClick={handleSendTelegramCode}
+                                        disabled={telegramSending}
+                                        className="w-full text-xs text-muted-foreground hover:text-white transition py-1"
+                                    >
+                                        {telegramSending ? 'در حال ارسال...' : 'ارسال مجدد کد'}
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ import React from "react";
 import { render } from "@react-email/components";
 import Admin2faOtpEmail from "@/emails/2fa-otp";
 import { sendTelegramMessage } from "@/services/telegram";
+import { sendTelegramUserMessageById, sendTelegramUserMessage } from "@/services/telegram-user";
 
 export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "telegram" = "email"): Promise<{ success?: boolean; error?: string; channelUsed?: string }> {
     const supabase = await createClient();
@@ -40,11 +41,17 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
 
     const phone = userData.phone?.trim();
     const whatsapp = userData.whatsapp_number?.trim();
-    const telegramId = userData.telegram_id?.trim();
+    // telegram_id MUST be numeric (e.g. "123456789") — reject emails or other invalid values
+    const rawTelegram = userData.telegram_id?.trim();
+    const telegramId = rawTelegram && /^\d+$/.test(rawTelegram) ? rawTelegram : undefined;
 
     if (channel === "telegram" && !telegramId) {
-        return { error: "شناسه تلگرام برای حساب کاربری شما ثبت نشده است." };
+        const hint = rawTelegram 
+            ? `مقدار ذخیره‌شده («${rawTelegram}») معتبر نیست. شناسه تلگرام باید عدد باشد.`
+            : "شناسه تلگرام برای حساب کاربری شما ثبت نشده است.";
+        return { error: hint };
     }
+
 
     if (channel === "whatsapp" && !whatsapp) {
         return { error: "شماره واتساپ برای حساب کاربری شما ثبت نشده است." };
@@ -62,8 +69,28 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
     // Send code based on requested channel
     if (channel === "telegram" && telegramId) {
         console.log(`[Auth OTP] 🚀 Attempting to send OTP via Telegram to ${telegramId}...`);
-        const res = await sendTelegramMessage(telegramId, messageText);
-        if (res) {
+
+        let telegramSent = false;
+
+        // Try MTProto user account first (bypasses /start requirement)
+        if (process.env.TELEGRAM_USER_SESSION) {
+            console.log(`[Auth OTP] 📱 Using church user account (MTProto) to send...`);
+            telegramSent = await sendTelegramUserMessageById(telegramId, messageText);
+            // Fallback: if by ID fails, try by phone number
+            if (!telegramSent && phone) {
+                console.log(`[Auth OTP] 📱 Trying by phone number ${phone}...`);
+                const normalizedPhone = phone.startsWith('+') ? phone : `+${phone}`;
+                telegramSent = await sendTelegramUserMessage(normalizedPhone, messageText);
+            }
+        }
+
+        // Fallback to bot if MTProto not available or failed
+        if (!telegramSent) {
+            console.log(`[Auth OTP] 🤖 Using bot API as fallback...`);
+            telegramSent = await sendTelegramMessage(telegramId, messageText);
+        }
+
+        if (telegramSent) {
             return { success: true, channelUsed: "telegram" };
         }
 
