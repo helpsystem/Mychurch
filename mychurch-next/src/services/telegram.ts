@@ -32,32 +32,46 @@ export function getBot() {
   return { bot: _bot, telegramConfig: _telegramConfig };
 }
 
+let _mtprotoPromise: Promise<any> | null = null;
+
 export async function getMTProtoClient() {
   if (_mtprotoClient && _mtprotoClient.connected) return _mtprotoClient;
+  if (_mtprotoPromise) return _mtprotoPromise;
 
-  const apiId = parseInt(process.env.TELEGRAM_API_ID || '');
-  const apiHash = process.env.TELEGRAM_API_HASH || '';
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  _mtprotoPromise = (async () => {
+      const apiId = parseInt(process.env.TELEGRAM_API_ID || '');
+      const apiHash = process.env.TELEGRAM_API_HASH || '';
+      const botToken = process.env.TELEGRAM_BOT_TOKEN;
 
-  if (!apiId || !apiHash || !botToken) {
-      throw new Error('TELEGRAM_API_ID, TELEGRAM_API_HASH or TELEGRAM_BOT_TOKEN missing');
+      if (!apiId || !apiHash || !botToken) {
+          throw new Error('TELEGRAM_API_ID, TELEGRAM_API_HASH or TELEGRAM_BOT_TOKEN missing');
+      }
+
+      const { TelegramClient } = await import('telegram');
+      const { StringSession } = await import('telegram/sessions');
+
+      // Empty string session for bot auth
+      const client = new TelegramClient(new StringSession(''), apiId, apiHash, {
+          connectionRetries: 3,
+          retryDelay: 1000,
+      });
+
+      await client.start({
+          botAuthToken: botToken,
+      });
+
+      _mtprotoClient = client;
+      return client;
+  })();
+
+  try {
+      await _mtprotoPromise;
+  } catch (error) {
+      _mtprotoPromise = null;
+      throw error;
   }
-
-  const { TelegramClient } = await import('telegram');
-  const { StringSession } = await import('telegram/sessions');
-
-  // Empty string session for bot auth
-  const client = new TelegramClient(new StringSession(''), apiId, apiHash, {
-      connectionRetries: 3,
-      retryDelay: 1000,
-  });
-
-  await client.start({
-      botAuthToken: botToken,
-  });
-
-  _mtprotoClient = client;
-  return client;
+  
+  return _mtprotoClient;
 }
 
 export interface TelegramUploadResult {

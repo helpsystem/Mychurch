@@ -733,7 +733,7 @@ function ViewerContent() {
                         border: "1px solid rgba(99, 102, 241, 0.3)"
                     }}
                 >
-                    <p className="text-xl md:text-2xl font-black text-indigo-200 tracking-wide leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    <p className="text-xl md:text-2xl font-black text-indigo-200 tracking-wide leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] whitespace-pre-wrap">
                         {state.liveTranslationText}
                     </p>
                 </div>

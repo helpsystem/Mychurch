@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings } from "lucide-react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -278,26 +278,94 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     }
                 }
                 
+                const displayMode = useBroadcastStore.getState().translationDisplayMode || 'both';
+
+                // Show real-time interim transcription (original language) to reduce perceived delay
+                if (interim && !final) {
+                    let tempText = "";
+                    if (displayMode === 'original' || displayMode === 'both') {
+                        tempText = interim.trim() + " ...";
+                    } else {
+                        tempText = "Translating ..."; // For 'translated' only mode
+                    }
+
+                    if (tempText) {
+                        setLiveTranslation(tempText, true);
+                        
+                        if (viewerChannelRef.current) {
+                            viewerChannelRef.current.postMessage({
+                                type: 'live_translation_sync',
+                                payload: { text: tempText, show: true }
+                            });
+                        }
+                    }
+                }
+                
                 if (final) {
-                    speechAccumulatorRef.current += (speechAccumulatorRef.current ? " " : "") + final;
-                    const textToTranslate = speechAccumulatorRef.current;
+                    const textToTranslate = final.trim();
+                    if (!textToTranslate) return;
                     
-                    // Call translation API
-                    try {
-                        const res = await nvidiaTranslateText(textToTranslate, fromTranslationLang, toTranslationLang);
-                        if (res.success && res.text) {
-                            setLiveTranslation(res.text, true);
-                            
-                            // Send via BroadcastChannel for local/same-browser viewers
+                    // Show final original text immediately before API call if mode allows
+                    if (displayMode === 'original' || displayMode === 'both') {
+                        setLiveTranslation(textToTranslate + (displayMode === 'both' ? "\n..." : ""), true);
+                        if (viewerChannelRef.current) {
+                            viewerChannelRef.current.postMessage({
+                                type: 'live_translation_sync',
+                                payload: { text: textToTranslate + (displayMode === 'both' ? "\n..." : ""), show: true }
+                            });
+                        }
+                    }
+                    
+                    // Call translation API for the latest sentence ONLY (prevents massive slowdowns)
+                    if (displayMode === 'translated' || displayMode === 'both') {
+                        try {
+                            const res = await nvidiaTranslateText(textToTranslate, fromTranslationLang, toTranslationLang);
+                            if (res.success && res.text) {
+                                const finalText = displayMode === 'both' 
+                                    ? textToTranslate + "\n" + res.text 
+                                    : res.text;
+                                    
+                                setLiveTranslation(finalText, true);
+                                
+                                // Send via BroadcastChannel for local/same-browser viewers
+                                if (viewerChannelRef.current) {
+                                    viewerChannelRef.current.postMessage({
+                                        type: 'live_translation_sync',
+                                        payload: { text: finalText, show: true }
+                                    });
+                                }
+                                
+                                // Auto-clear subtitle after 10 seconds of silence
+                                if ((window as any)._subtitleTimeout) {
+                                    clearTimeout((window as any)._subtitleTimeout);
+                                }
+                                (window as any)._subtitleTimeout = setTimeout(() => {
+                                    setLiveTranslation("", false);
+                                    if (viewerChannelRef.current) {
+                                        viewerChannelRef.current.postMessage({
+                                            type: 'live_translation_sync',
+                                            payload: { text: "", show: false }
+                                        });
+                                    }
+                                }, 10000);
+                            }
+                        } catch (e) {
+                            console.error("[LiveConsole] Translation error:", e);
+                        }
+                    } else {
+                        // Original only mode: we still need the auto-clear timeout!
+                        if ((window as any)._subtitleTimeout) {
+                            clearTimeout((window as any)._subtitleTimeout);
+                        }
+                        (window as any)._subtitleTimeout = setTimeout(() => {
+                            setLiveTranslation("", false);
                             if (viewerChannelRef.current) {
                                 viewerChannelRef.current.postMessage({
                                     type: 'live_translation_sync',
-                                    payload: { text: res.text, show: true }
+                                    payload: { text: "", show: false }
                                 });
                             }
-                        }
-                    } catch (e) {
-                        console.error("[LiveConsole] Translation error:", e);
+                        }, 10000);
                     }
                 }
             };

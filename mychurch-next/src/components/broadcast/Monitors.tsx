@@ -90,7 +90,6 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     const slides = useBroadcastStore((state) => state.slides);
     const activeSlideIndex = useBroadcastStore((state) => state.activeSlideIndex);
     const internalPageIndex = useBroadcastStore((state) => state.internalPageIndex);
-    const sessionId = useBroadcastStore((state) => state.sessionId);
     const activeScriptureReference = useBroadcastStore((state) => state.activeScriptureReference);
     const scripturePopupScale = useBroadcastStore((state) => state.scripturePopupScale);
 
@@ -99,6 +98,12 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     const isMirrored = useBroadcastStore((state) => state.isMirrored);
     const isBlur = useBroadcastStore((state) => state.isBlur);
     const config = useBroadcastStore((state) => state.config);
+    const sessionId = useBroadcastStore((state) => state.sessionId);
+    
+    // Translation Overlay States
+    const liveTranslationText = useBroadcastStore((state) => state.liveTranslationText);
+    const showLiveTranslation = useBroadcastStore((state) => state.showLiveTranslation);
+    
     const lyricsVisibility = useBroadcastStore((state) => state.lyricsVisibility);
     const setLyricsVisibility = useBroadcastStore((state) => state.setLyricsVisibility);
     
@@ -259,6 +264,16 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                 <div className="absolute inset-0">
                     {renderLayoutContent()}
                 </div>
+                
+                {/* Live Translation Overlay */}
+                {showLiveTranslation && liveTranslationText && (
+                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[70] max-w-[90%] text-center pointer-events-none">
+                        <span className="bg-black/70 text-yellow-400 font-bold text-xl md:text-3xl px-4 py-2 rounded-lg leading-relaxed shadow-lg backdrop-blur-sm border border-yellow-400/20 whitespace-pre-wrap" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                            {liveTranslationText}
+                        </span>
+                    </div>
+                )}
+
                 <p className="absolute bottom-3 right-3 text-[11px] text-white/70 bg-black/50 rounded px-2 py-1 z-[65] font-mono">
                     Slide {activeSlideIndex + 1} - {activeSlide?.type || 'No slide'}
                 </p>

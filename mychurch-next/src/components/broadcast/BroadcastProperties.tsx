@@ -26,6 +26,8 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
     const toTranslationLang = useBroadcastStore(state => state.toTranslationLang);
     const setTranslationActive = useBroadcastStore(state => state.setTranslationActive);
     const setTranslationLanguages = useBroadcastStore(state => state.setTranslationLanguages);
+    const translationDisplayMode = useBroadcastStore(state => state.translationDisplayMode);
+    const setTranslationDisplayMode = useBroadcastStore(state => state.setTranslationDisplayMode);
     const liveTranslationText = useBroadcastStore(state => state.liveTranslationText);
 
     return (
@@ -328,6 +330,20 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
                                         <option value="es">🇪🇸 Español</option>
                                     </select>
                                 </div>
+                            </div>
+                            
+                            <div>
+                                <span className="text-[10px] text-muted-foreground block mb-1">حالت نمایش:</span>
+                                <select
+                                    value={translationDisplayMode}
+                                    onChange={(e) => setTranslationDisplayMode(e.target.value as any)}
+                                    className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-white text-xs"
+                                    title="Display Mode"
+                                >
+                                    <option value="translated">فقط ترجمه شده (انگلیسی)</option>
+                                    <option value="original">فقط متن اصلی (فارسی)</option>
+                                    <option value="both">هر دو همزمان</option>
+                                </select>
                             </div>
 
                             {/* Small Status & Live Text View */}

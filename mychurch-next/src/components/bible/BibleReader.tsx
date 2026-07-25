@@ -360,7 +360,7 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                                     <Languages className="w-4 h-4" /> ترجمه فارسی
                                 </label>
                                 <div className="grid grid-cols-2 gap-2">
-                                    {["MOJDEH", "TPV", "QADIM", "WP"].map((t) => (
+                                    {["NMV", "MOJDEH", "TPV", "QADIM"].map((t) => (
                                         <button
                                             key={t}
                                             onClick={() => setTranslation(t as any)}
@@ -371,10 +371,10 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                                                     : "bg-secondary/50 text-foreground border-border/50 hover:bg-secondary hover:border-border"
                                             )}
                                         >
+                                            {t === "NMV" && "ترجمه تفسیری (NMV)"}
                                             {t === "MOJDEH" && "مژده برای عصر جدید"}
                                             {t === "TPV" && "پارسایان (TPV)"}
                                             {t === "QADIM" && "ترجمه قدیم"}
-                                            {t === "WP" && "ورد پروجکت"}
                                         </button>
                                     ))}
                                 </div>
@@ -453,8 +453,8 @@ export default function BibleReader({ initialBooks }: BibleReaderProps) {
                                             )}
                                         >
                                             <div className={cn(
-                                                "absolute top-4 -right-12 text-sm font-bold transition-colors select-none text-right w-8",
-                                                isActive ? (highContrast ? "text-yellow-400" : "text-primary") : "text-muted-foreground/40 group-hover:text-muted-foreground"
+                                                "absolute top-4 -right-12 text-lg font-black transition-colors select-none text-right w-8",
+                                                isActive ? (highContrast ? "text-yellow-400" : "text-primary") : "text-amber-500/80 group-hover:text-amber-500"
                                             )} dir="ltr">
                                                 {verse.number}
                                             </div>

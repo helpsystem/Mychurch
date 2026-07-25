@@ -57,8 +57,10 @@ interface BroadcastState {
     isTranslationActive: boolean;
     fromTranslationLang: string;
     toTranslationLang: string;
+    translationDisplayMode: 'original' | 'translated' | 'both';
     setTranslationActive: (active: boolean) => void;
     setTranslationLanguages: (from: string, to: string) => void;
+    setTranslationDisplayMode: (mode: 'original' | 'translated' | 'both') => void;
 
     // Recording and Session Metadata
     isRecording: boolean;
@@ -163,8 +165,9 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     showLiveTranslation: false,
 
     isTranslationActive: false,
-    fromTranslationLang: 'en',
-    toTranslationLang: 'fa',
+    fromTranslationLang: 'fa',
+    toTranslationLang: 'en',
+    translationDisplayMode: 'both', // 'original' | 'translated' | 'both'
 
     setLiveTranslation: (text, show, skipSync = false) => {
         set({ liveTranslationText: text, showLiveTranslation: show });
@@ -175,6 +178,7 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
 
     setTranslationActive: (active) => set({ isTranslationActive: active }),
     setTranslationLanguages: (from, to) => set({ fromTranslationLang: from, toTranslationLang: to }),
+    setTranslationDisplayMode: (mode) => set({ translationDisplayMode: mode }),
 
     // Implementations
     setSessionId: (id) => set({ sessionId: id }),
