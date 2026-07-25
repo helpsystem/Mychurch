@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { SquareClient, SquareEnvironment } from "square";
+import { SquareClient } from "square";
 import { createAdminClient } from "@/utils/supabase/server";
 import { sendMail } from "@/lib/mailer";
 import React from "react";
@@ -12,7 +12,7 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const squareClient = new SquareClient({
     token: squareAccessToken,
-    environment: isProduction ? SquareEnvironment.Production : SquareEnvironment.Sandbox,
+    environment: (isProduction ? "production" : "sandbox") as any,
 });
 
 const shippoApiKey = process.env.SHIPPO_API_KEY || "";
