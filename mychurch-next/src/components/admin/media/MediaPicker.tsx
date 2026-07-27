@@ -59,7 +59,7 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
 
                 setUploadProgress(Math.round(((i) / acceptedFiles.length) * 100));
 
-                const response = await fetch('/api/media/upload', {
+                const response = await fetch('/api/upload', {
                     method: 'POST',
                     body: formData,
                 });

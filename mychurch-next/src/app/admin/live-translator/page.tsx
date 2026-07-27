@@ -37,8 +37,8 @@ interface TranslationHistoryItem {
 
 export default function LiveTranslatorPage() {
     // UI State
-    const [fromLang, setFromLang] = useState("en");
-    const [toLang, setToLang] = useState("fa");
+    const [fromLang, setFromLang] = useState("fa");
+    const [toLang, setToLang] = useState("en");
     const [isListening, setIsListening] = useState(false);
     const [isTranslating, setIsTranslating] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);

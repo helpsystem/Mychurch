@@ -173,11 +173,16 @@ export async function deleteMediaFile(idOrFilename: string): Promise<{ success: 
         const supabase = await createClient();
         
         // Find the record
-        const { data: asset, error: fetchError } = await supabase
-            .from('media_library')
-            .select('*')
-            .or(`id.eq.${idOrFilename},file_name.eq."${idOrFilename}"`)
-            .single();
+        const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(idOrFilename);
+        let query = supabase.from('media_library').select('*');
+        
+        if (isUuid) {
+            query = query.or(`id.eq.${idOrFilename},file_name.eq."${idOrFilename}"`);
+        } else {
+            query = query.eq('file_name', idOrFilename);
+        }
+
+        const { data: asset, error: fetchError } = await query.single();
             
         if (fetchError || !asset) {
             return { success: false, error: "File not found in database" };
@@ -219,11 +224,16 @@ export async function renameMediaFile(idOrOldFilename: string, requestedName: st
         const supabase = await createClient();
         
         // Find the record
-        const { data: asset, error: fetchError } = await supabase
-            .from('media_library')
-            .select('*')
-            .or(`id.eq.${idOrOldFilename},file_name.eq."${idOrOldFilename}"`)
-            .single();
+        const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(idOrOldFilename);
+        let query = supabase.from('media_library').select('*');
+        
+        if (isUuid) {
+            query = query.or(`id.eq.${idOrOldFilename},file_name.eq."${idOrOldFilename}"`);
+        } else {
+            query = query.eq('file_name', idOrOldFilename);
+        }
+
+        const { data: asset, error: fetchError } = await query.single();
             
         if (fetchError || !asset) {
             return { success: false, error: "File not found in database" };

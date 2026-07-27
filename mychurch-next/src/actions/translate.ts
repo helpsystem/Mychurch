@@ -74,6 +74,9 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
     const nvidiaApiKey = process.env.NVIDIA_API_KEY;
     if (nvidiaApiKey) {
         try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 6000); // 6s timeout
+
             const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
                 method: "POST",
                 headers: {
@@ -95,8 +98,10 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
                     temperature: 0.2,
                     top_p: 0.9,
                     max_tokens: 4096
-                })
+                }),
+                signal: controller.signal
             });
+            clearTimeout(timeoutId);
 
             if (response.ok) {
                 const data = await response.json();
@@ -119,7 +124,13 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
         try {
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
             const prompt = `Translate the following text from language code "${fromLang}" to language code "${toLang}". Output ONLY the translated text without any quotes, intro, or Markdown:\n\n${cleanText}`;
-            const result = await model.generateContent(prompt);
+            
+            // Gemini doesn't directly take signal in generateContent, but we can wrap it in Promise.race
+            const geminiPromise = model.generateContent(prompt);
+            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 6000));
+            
+            const result = await Promise.race([geminiPromise, timeoutPromise]) as any;
+            
             const translatedText = result.response.text().trim();
             if (translatedText) {
                 console.log("[nvidiaTranslateText] Successfully translated via Gemini 1.5 Flash");
@@ -132,8 +143,13 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
 
     // ── Tier 3: Emergency Google Translate Public API Fallback ──
     try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000); // 4s timeout
+        
         const gtUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${encodeURIComponent(fromLang)}&tl=${encodeURIComponent(toLang)}&dt=t&q=${encodeURIComponent(cleanText)}`;
-        const gtRes = await fetch(gtUrl);
+        const gtRes = await fetch(gtUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        
         if (gtRes.ok) {
             const gtData = await gtRes.json();
             const translatedText = gtData?.[0]?.map((item: any) => item[0]).join("") || "";
