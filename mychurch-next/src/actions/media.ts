@@ -148,21 +148,6 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
     }
 }
 
-export async function createMediaFolder(folderPath: string): Promise<{ success: boolean; error?: string }> {
-    if (!(await canAccessMediaLibrary())) return { success: false, error: "Unauthorized" };
-    try {
-        const cleanPath = safeBaseName(folderPath.replace(/\\/g, '/')).replace(/[^a-zA-Z0-9/ _.-]/g, '');
-        if (!cleanPath) return { success: false, error: "Invalid folder name" };
-        const fullPath = path.join(MEDIA_DIR, cleanPath);
-        // Ensure path stays within MEDIA_DIR
-        if (!fullPath.startsWith(MEDIA_DIR)) return { success: false, error: "Invalid path" };
-        await fs.mkdir(fullPath, { recursive: true });
-        revalidatePath("/admin/media");
-        return { success: true };
-    } catch (error: any) {
-        return { success: false, error: error.message };
-    }
-}
 
 export async function deleteMediaFile(idOrFilename: string): Promise<{ success: boolean; error?: string }> {
     if (!(await canAccessMediaLibrary())) {
