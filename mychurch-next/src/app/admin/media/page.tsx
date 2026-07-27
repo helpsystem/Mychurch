@@ -21,10 +21,10 @@ export default async function MediaAdminPage() {
         .eq('email', user.email)
         .single();
 
-    const isAdmin = userData?.role === 'Admin';
+    const isAdminOrLeader = userData?.role === 'Admin' || userData?.role === 'Leader';
     const canManageMedia = userData?.permissions?.canManageMedia;
 
-    if (!isAdmin && !canManageMedia) {
+    if (!isAdminOrLeader && !canManageMedia) {
         redirect('/unauthorized');
     }
 

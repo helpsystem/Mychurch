@@ -2,7 +2,7 @@
 
 import React, { useState, useTransition, useCallback, useEffect } from "react";
 import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus, Globe, GlobeLock, Pencil, Link as LinkIcon, Lock, Users, Folder, FolderPlus, ArrowRight, CornerLeftUp } from "lucide-react";
-import { type MediaAsset, deleteMediaFile, listMediaFiles, renameMediaFile, toggleGalleryVisibility, updateMediaVisibility, createMediaFolder } from "@/actions/media";
+import { type MediaAsset, deleteMediaFile, listMediaFiles, renameMediaFile, toggleGalleryVisibility, updateMediaVisibility, createMediaFolder, moveMediaFile } from "@/actions/media";
 import { useRouter } from "next/navigation";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -430,6 +430,23 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
                                 <div className="flex gap-2 flex-wrap justify-end">
                                     <button onClick={() => handleCopyUrl(previewFile)} className="px-3 py-1.5 bg-neutral-800 rounded-lg text-xs">کپی لینک</button>
                                     <button onClick={() => handleRename(previewFile)} className="px-3 py-1.5 bg-neutral-800 rounded-lg text-xs">تغییر نام</button>
+                                    <button onClick={() => {
+                                        const newFolder = prompt("نام پوشه جدید را وارد کنید (خالی برای انتقال به روت):", previewFile.folder || "");
+                                        if (newFolder !== null) {
+                                            startTransition(async () => {
+                                                const res = await moveMediaFile(previewFile.id, newFolder.trim());
+                                                if (res.success) {
+                                                    toast.success("فایل با موفقیت جابجا شد");
+                                                    await refreshFiles();
+                                                    setPreviewFile({ ...previewFile, folder: newFolder.trim() });
+                                                } else {
+                                                    toast.error("خطا در جابجایی", { description: res.error });
+                                                }
+                                            });
+                                        }
+                                    }} className="px-3 py-1.5 bg-blue-500/10 text-blue-500 rounded-lg text-xs border border-blue-500/20">
+                                        انتقال
+                                    </button>
                                     {previewFile.type === 'image' && (
                                         <button onClick={() => handleToggleGallery(previewFile)} className="px-3 py-1.5 bg-emerald-500/10 text-emerald-500 rounded-lg text-xs border border-emerald-500/20">
                                             {previewFile.inGallery ? "حذف از گالری" : "افزودن به گالری"}

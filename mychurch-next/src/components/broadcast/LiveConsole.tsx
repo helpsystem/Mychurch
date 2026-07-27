@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { getPresentations, getPresentationById } from "@/actions/presentations";
-import { nvidiaTranslateText } from "@/actions/translate";
+import { nvidiaTranslateText, interimTranslateText } from "@/actions/translate";
 import { BroadcastSession, SlideType, SlideContentLyrics } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { useShallow } from "zustand/react/shallow";
@@ -282,23 +282,38 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
 
                 // Show real-time interim transcription (original language) to reduce perceived delay
                 if (interim && !final) {
-                    let tempText = "";
-                    if (displayMode === 'original' || displayMode === 'both') {
-                        tempText = interim.trim() + " ...";
-                    } else {
-                        tempText = "Translating ..."; // For 'translated' only mode
+                    const cleanInterim = interim.trim();
+                    
+                    if ((window as any)._interimDebounce) {
+                        clearTimeout((window as any)._interimDebounce);
                     }
-
-                    if (tempText) {
-                        setLiveTranslation(tempText, true);
-                        
-                        if (viewerChannelRef.current) {
-                            viewerChannelRef.current.postMessage({
-                                type: 'live_translation_sync',
-                                payload: { text: tempText, show: true }
-                            });
+                    
+                    (window as any)._interimDebounce = setTimeout(async () => {
+                        if (cleanInterim.split(" ").length > 1 || cleanInterim.length > 5) {
+                            const res = await interimTranslateText(cleanInterim, fromTranslationLang, toTranslationLang);
+                            let tempText = "";
+                            if (res.success && res.text) {
+                                if (displayMode === 'both') {
+                                    tempText = cleanInterim + "\n⚡ " + res.text;
+                                } else if (displayMode === 'translated') {
+                                    tempText = "⚡ " + res.text;
+                                } else {
+                                    tempText = cleanInterim + " ...";
+                                }
+                            } else {
+                                tempText = displayMode === 'translated' ? "Translating ..." : cleanInterim + " ...";
+                            }
+                            
+                            setLiveTranslation(tempText, true);
+                            
+                            if (viewerChannelRef.current) {
+                                viewerChannelRef.current.postMessage({
+                                    type: 'live_translation_sync',
+                                    payload: { text: tempText, show: true }
+                                });
+                            }
                         }
-                    }
+                    }, 400); // 400ms debounce for near-instant feel
                 }
                 
                 if (final) {

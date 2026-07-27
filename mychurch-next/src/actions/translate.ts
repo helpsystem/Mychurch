@@ -164,3 +164,28 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
 
     return { success: false, error: "امکان برقراری ارتباط با موتورهای ترجمه هوش مصنوعی وجود ندارد." };
 }
+
+// ── Ultra-Fast Interim Translation for Real-Time Subtitles ──
+export async function interimTranslateText(text: string, fromLang: string, toLang: string) {
+    const cleanText = text.trim();
+    if (!cleanText) return { success: true, text: "" };
+
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s max timeout for instant feel
+        
+        const gtUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${encodeURIComponent(fromLang)}&tl=${encodeURIComponent(toLang)}&dt=t&q=${encodeURIComponent(cleanText)}`;
+        const gtRes = await fetch(gtUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        
+        if (gtRes.ok) {
+            const gtData = await gtRes.json();
+            const translatedText = gtData?.[0]?.map((item: any) => item[0]).join("") || "";
+            return { success: true, text: translatedText.trim() };
+        }
+    } catch (e) {
+        // Ignore errors for interim, it's just a temporary subtitle
+    }
+
+    return { success: false, text: "" };
+}

@@ -354,3 +354,99 @@ export async function canViewMediaByVisibility(visibility?: 'public' | 'admin' |
 
     return false;
 }
+
+export async function createMediaFolder(folderName: string, parentFolder: string = ""): Promise<{ success: boolean; error?: string }> {
+    if (!(await canAccessMediaLibrary())) {
+        return { success: false, error: "Unauthorized" };
+    }
+    
+    try {
+        const supabase = await createClient();
+        const cleanName = safeBaseName(folderName);
+        if (!cleanName) return { success: false, error: "Invalid folder name" };
+        
+        const fullPath = parentFolder ? `${parentFolder}/${cleanName}` : cleanName;
+        
+        // Insert a dummy .keep file to instantiate the folder
+        const { error } = await supabase.from('media_library').insert({
+            file_name: '.keep',
+            folder: fullPath,
+            mime_type: 'application/x-empty',
+            size: 0,
+            visibility: 'admin'
+        });
+        
+        if (error) throw error;
+        
+        revalidatePath("/admin/media");
+        return { success: true };
+    } catch (error: any) {
+        console.error("Error creating folder:", error);
+        return { success: false, error: error.message };
+    }
+}
+
+export async function moveMediaFile(id: string, newFolder: string): Promise<{ success: boolean; error?: string }> {
+    if (!(await canAccessMediaLibrary())) {
+        return { success: false, error: "Unauthorized" };
+    }
+    
+    try {
+        const supabase = await createClient();
+        const { error } = await supabase.from('media_library')
+            .update({ folder: newFolder })
+            .eq('id', id);
+            
+        if (error) throw error;
+        
+        revalidatePath("/admin/media");
+        revalidatePath("/gallery");
+        return { success: true };
+    } catch (error: any) {
+        console.error("Error moving media:", error);
+        return { success: false, error: error.message };
+    }
+}
+
+export async function deleteMediaFolder(folderPath: string): Promise<{ success: boolean; error?: string }> {
+    if (!(await canAccessMediaLibrary())) {
+        return { success: false, error: "Unauthorized" };
+    }
+    
+    try {
+        const supabase = await createClient();
+        
+        // Delete all files in this folder
+        const { data: files } = await supabase.from('media_library')
+            .select('*')
+            .or(`folder.eq."${folderPath}",folder.like."${folderPath}/%"`);
+            
+        if (files && files.length > 0) {
+            // Also delete from Telegram if applicable
+            const { deleteFromTelegramStorage } = await import('@/services/telegram');
+            for (const f of files) {
+                if (f.telegram_message_id) {
+                    await deleteFromTelegramStorage(f.telegram_message_id).catch(() => {});
+                }
+            }
+            
+            // Delete from media library
+            await supabase.from('media_library')
+                .delete()
+                .or(`folder.eq."${folderPath}",folder.like."${folderPath}/%"`);
+                
+            // Clean up gallery
+            for (const f of files) {
+                const url = `/api/serve/cloud/${f.id}`;
+                await supabase.from('gallery_images').delete().eq('src', url);
+            }
+        }
+        
+        revalidatePath("/admin/media");
+        revalidatePath("/gallery");
+        return { success: true };
+    } catch (error: any) {
+        console.error("Error deleting folder:", error);
+        return { success: false, error: error.message };
+    }
+}

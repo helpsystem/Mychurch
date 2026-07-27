@@ -5,6 +5,20 @@ import { join } from 'path';
 import { createClient } from '@/utils/supabase/server';
 import { getTelegramFileStream } from '@/services/telegram';
 
+import { getTelegramFileStreamUrl } from '@/services/telegram';
+
+const urlCache = new Map<string, { url: string, expires: number }>();
+
+async function getCachedTelegramUrl(fileId: string) {
+    const cached = urlCache.get(fileId);
+    if (cached && cached.expires > Date.now()) return cached.url;
+    
+    const url = await getTelegramFileStreamUrl(fileId);
+    // Cache for 30 minutes (Telegram file URLs expire after ~1 hour)
+    urlCache.set(fileId, { url, expires: Date.now() + 1000 * 60 * 30 });
+    return url;
+}
+
 export async function GET(request: Request, context: any) {
     try {
         const params = await context.params;
@@ -27,11 +41,36 @@ export async function GET(request: Request, context: any) {
 
             const supabase = await createClient();
             const { data: asset } = await supabase.from('media_library').select('*').eq('id', id).single();
-            if (!asset || !asset.telegram_message_id) {
+            if (!asset || (!asset.telegram_message_id && !asset.telegram_file_id)) {
                 return new NextResponse('File not found in cloud storage', { status: 404 });
             }
 
             try {
+                // High-Speed Telegram Bot API CDN for files < 20MB
+                if (asset.telegram_file_id && asset.size < 20 * 1024 * 1024) {
+                    try {
+                        const botUrl = await getCachedTelegramUrl(asset.telegram_file_id);
+                        const botResponse = await fetch(botUrl);
+                        if (botResponse.ok && botResponse.body) {
+                            return new NextResponse(botResponse.body, {
+                                headers: {
+                                    'Content-Type': asset.mime_type || botResponse.headers.get('content-type') || 'application/octet-stream',
+                                    'Content-Length': String(asset.size || botResponse.headers.get('content-length') || 0),
+                                    'Cache-Control': 'public, max-age=31536000, immutable',
+                                    'Accept-Ranges': 'bytes'
+                                }
+                            });
+                        }
+                    } catch (botErr) {
+                        console.warn("Bot API fetch failed, falling back to MTProto:", botErr);
+                    }
+                }
+
+                if (!asset.telegram_message_id) {
+                     return new NextResponse('File not found in cloud storage (no MTProto fallback)', { status: 404 });
+                }
+
+                // Fallback / Large File Streaming via MTProto
                 const iterable = await getTelegramFileStream(asset.telegram_message_id);
                 
                 // Convert AsyncIterable to ReadableStream
@@ -54,7 +93,7 @@ export async function GET(request: Request, context: any) {
                         'Content-Type': asset.mime_type || 'application/octet-stream',
                         'Content-Length': String(asset.size || 0),
                         'Cache-Control': 'public, max-age=31536000, immutable',
-                        'Accept-Ranges': 'none' // MTProto simple stream doesn't easily support range requests without more logic
+                        'Accept-Ranges': 'none'
                     }
                 });
             } catch (err) {

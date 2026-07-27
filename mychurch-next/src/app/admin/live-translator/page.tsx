@@ -8,7 +8,7 @@ import {
     MessageSquare, History, VolumeX, ShieldAlert
 } from "lucide-react";
 import { toast } from "sonner";
-import { nvidiaTranslateText } from "@/actions/translate";
+import { nvidiaTranslateText, interimTranslateText } from "@/actions/translate";
 
 // Supported languages and their configuration
 const LANGUAGES = [
@@ -47,6 +47,7 @@ export default function LiveTranslatorPage() {
     const [sourceText, setSourceText] = useState("");
     const [translatedText, setTranslatedText] = useState("");
     const [interimText, setInterimText] = useState("");
+    const [interimTranslatedText, setInterimTranslatedText] = useState("");
     
     // Configurations
     const [autoSpeak, setAutoSpeak] = useState(true);
@@ -96,6 +97,27 @@ export default function LiveTranslatorPage() {
             }
         };
     }, []);
+
+    useEffect(() => {
+        if (!interimText) {
+            setInterimTranslatedText("");
+            return;
+        }
+
+        const activeLangCode = convMode ? (activeSpeaker === "A" ? fromLang : toLang) : fromLang;
+        const targetLangCode = convMode ? (activeSpeaker === "A" ? toLang : fromLang) : toLang;
+
+        const timer = setTimeout(async () => {
+            if (interimText.trim().split(" ").length > 1 || interimText.length > 5) {
+                const res = await interimTranslateText(interimText, activeLangCode, targetLangCode);
+                if (res.success && res.text) {
+                    setInterimTranslatedText(res.text);
+                }
+            }
+        }, 600); // 600ms debounce
+
+        return () => clearTimeout(timer);
+    }, [interimText, fromLang, toLang, convMode, activeSpeaker]);
 
     // ─── Speech Recognition Handler ───
     const startListening = () => {
@@ -663,14 +685,22 @@ export default function LiveTranslatorPage() {
                         {isTranslating ? (
                             <div className="flex flex-col gap-2 w-full h-full justify-center items-center py-6 text-neutral-400">
                                 <div className="h-6 w-6 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
-                                <span className="text-xs text-indigo-300">در حال ترجمه با هوش مصنوعی...</span>
+                                <span className="text-xs text-indigo-300">در حال تصحیح با هوش مصنوعی...</span>
                             </div>
                         ) : translatedText ? (
                             <span className="text-indigo-200">{translatedText}</span>
-                        ) : (
+                        ) : !interimTranslatedText && (
                             <span className="text-neutral-600 italic text-sm">
                                 ترجمه نهایی بعد از ثبت صحبت‌های شما در اینجا ظاهر خواهد شد...
                             </span>
+                        )}
+
+                        {/* Live interim translated transcript overlay */}
+                        {interimTranslatedText && !isTranslating && (
+                            <p className="mt-3 text-emerald-400/80 italic text-base flex items-center gap-1.5 animate-pulse transition-all">
+                                <span>⚡</span>
+                                <span>{interimTranslatedText}</span>
+                            </p>
                         )}
                     </div>
 
