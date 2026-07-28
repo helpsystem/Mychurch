@@ -45,7 +45,7 @@ export default async function RootLayout({
         {/* Runtime Google Fonts to prevent Next.js build crash on VPN drop */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Vazirmatn:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Lalezar&family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Vazirmatn:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Lalezar&family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
         
         <script
           dangerouslySetInnerHTML={{
@@ -63,6 +63,7 @@ export default async function RootLayout({
             --font-inter: 'Roboto', 'Inter', sans-serif;
             --font-roboto: 'Roboto', sans-serif;
             --font-vazirmatn: 'Vazirmatn', sans-serif;
+            --font-naskh: 'Noto Naskh Arabic', serif;
             --font-homa: 'B Homa', 'BHoma', 'Homa', 'Vazirmatn', sans-serif;
             --font-sans: 'Vazirmatn', sans-serif;
             --font-nastaliq: 'Noto Nastaliq Urdu', serif;

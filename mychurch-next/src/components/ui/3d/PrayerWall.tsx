@@ -118,14 +118,12 @@ export default function PrayerWall({
       transparent: true,
       opacity: 0.5,
     });
+    const crossVertical = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.12), crossMaterial);
+    const crossHorizontal = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.12, 0.12), crossMaterial);
+    crossHorizontal.position.set(0, 0.35, 0);
+    
     const crossGroup = new THREE.Group();
-    crossGroup.add(
-      new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.12), crossMaterial),
-      Object.assign(
-        new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.12, 0.12), crossMaterial),
-        { position: new THREE.Vector3(0, 0.35, 0) }
-      )
-    );
+    crossGroup.add(crossVertical, crossHorizontal);
     crossGroup.position.set(0, 0, -2.5);
     scene.add(crossGroup);
 
