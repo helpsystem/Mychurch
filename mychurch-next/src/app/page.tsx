@@ -8,25 +8,17 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 
-// 3D Components
-import HeroSection from "@/components/ui/3d/HeroSection";
-import EventsGlobe from "@/components/ui/3d/EventsGlobe";
-import ScrollCrossReveal from "@/components/ui/3d/ScrollCrossReveal";
-import PrayerWall from "@/components/ui/3d/PrayerWall";
-import MinistryCards from "@/components/ui/3d/MinistryCards";
+import dynamic from "next/dynamic";
+
+// 3D Components — must be dynamically imported (no SSR) because @react-three/fiber requires browser APIs
+const Hero = dynamic(() => import("@/components/ui/3d/Hero"), { ssr: false });
+const GlobalGlobe = dynamic(() => import("@/components/ui/3d/GlobalGlobe"), { ssr: false });
+const ScrollCrossReveal = dynamic(() => import("@/components/ui/3d/ScrollCrossReveal"), { ssr: false });
+const PrayerWall = dynamic(() => import("@/components/ui/3d/PrayerWall"), { ssr: false });
+const MinistryCards = dynamic(() => import("@/components/ui/3d/MinistryCards"), { ssr: false });
 
 export default function HomePage() {
   const { t } = useLanguage();
-  const [prayers, setPrayers] = useState([
-    { id: "1", text: "خداوندا، برای سلامتی خانواده‌ام دعا می‌کنم.", author: "ناشناس" },
-    { id: "2", text: "شکرگزارم برای فیض و محبت بی‌پایان عیسی مسیح در زندگی‌ام.", author: "مریم" },
-    { id: "3", text: "لطفاً برای یافتن کار جدید برای همسرم دعا کنید.", author: "برادر در مسیح" },
-  ]);
-
-  const handleAddPrayer = (text: string) => {
-    setPrayers([...prayers, { id: Date.now().toString(), text, author: "بازدیدکننده" }]);
-    // Here you can add an API call to save to backend
-  };
 
   return (
     <div className="min-h-screen bg-[#080D1A] relative font-sans flex flex-col text-white">
@@ -35,7 +27,7 @@ export default function HomePage() {
       <main dir="rtl" className="flex-1">
         
         {/* 1. Hero Particle Field */}
-        <HeroSection />
+        <Hero />
 
         {/* 2. Our story, told through scripture */}
         <ScrollCrossReveal
@@ -64,31 +56,10 @@ export default function HomePage() {
         </section>
 
         {/* 4. Where we gather */}
-        <section className="relative h-[80vh] bg-[#080D1A] flex flex-col justify-center border-b border-white/5">
-          <div className="absolute top-12 left-0 right-0 z-10 text-center pointer-events-none">
-            <h2 className="text-3xl font-black text-amber-100 drop-shadow-sm">جلسات و موقعیت‌ها</h2>
-            <p className="mt-2 text-amber-200/60 font-medium">پراکنده در سراسر زمین، متحد در یک بدن</p>
-          </div>
-          <EventsGlobe
-            locations={[
-              { name: "یکشنبه‌ها — عبادتگاه اصلی", lat: 38.99, lng: -77.03, time: "۱۱:۰۰ صبح" },
-              { name: "جلسات دعای بانوان", lat: 38.88, lng: -77.17, time: "چهارشنبه‌ها" },
-              { name: "کلیسای آنلاین", lat: 35.68, lng: 51.38, time: "پخش زنده" }
-            ]}
-          />
-        </section>
+        <GlobalGlobe />
 
         {/* 5. Prayer wall */}
-        <section className="relative h-[90vh] bg-[#05070E]">
-          <div className="absolute top-12 left-0 right-0 z-10 text-center pointer-events-none">
-            <h2 className="text-3xl font-black text-amber-100 drop-shadow-sm">دیوار نوری دعا</h2>
-            <p className="mt-2 text-amber-200/60 font-medium">نور دعای خود را اضافه کنید تا در حضور خداوند بدرخشد</p>
-          </div>
-          <PrayerWall
-            prayers={prayers}
-            onAddPrayer={handleAddPrayer}
-          />
-        </section>
+        <PrayerWall />
 
         {/* 6. Quick Access / Latest Sermons (Legacy preservation for functionality) */}
         <section className="px-6 lg:px-12 max-w-7xl mx-auto py-24 relative z-10 bg-[#080D1A]">

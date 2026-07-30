@@ -1,45 +1,88 @@
 "use client";
 
-/**
- * HeroParticleField
- * -------------------
- * A slow, contemplative field of light — thousands of warm particles that
- * gather loosely into a cross of light and drift like embers or candle
- * smoke. Built with plain three.js (no @react-three/fiber dependency) so
- * it drops into any Next.js app after `npm install three`.
- *
- * Usage (in app/page.tsx or a Hero.tsx section):
- *
- *   import HeroParticleField from "@/components/HeroParticleField";
- *
- *   <section className="relative h-[100svh] overflow-hidden">
- *     <HeroParticleField />
- *     <div className="relative z-10 flex h-full items-center justify-center">
- *       ...your headline / CTA...
- *     </div>
- *   </section>
- *
- * The canvas is absolutely positioned and fills its parent — the parent
- * needs `position: relative` and a defined height.
- */
-
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 type HeroParticleFieldProps = {
-  /** Base particle color (warm amber/gold by default). */
   color?: string;
-  /** Background color behind the particles. */
   background?: string;
-  /** Roughly how many particles to draw on desktop. Halved on small screens. */
   density?: number;
   className?: string;
 };
 
+const vertexShader = `
+  uniform float uTime;
+  
+  attribute float aSize;
+  attribute vec3 aColor;
+  attribute float aPhase;
+  attribute vec3 aBasePos;
+  
+  varying vec3 vColor;
+  varying float vAlpha;
+  
+  float hash(float n) { return fract(sin(n) * 1e4); }
+  float noise(vec3 x) {
+    const vec3 step = vec3(110, 241, 171);
+    vec3 i = floor(x);
+    vec3 f = fract(x);
+    float n = dot(i, step);
+    vec3 u = f * f * (3.0 - 2.0 * f);
+    return mix(mix(mix( hash(n + dot(step, vec3(0, 0, 0))), hash(n + dot(step, vec3(1, 0, 0))), u.x),
+                   mix( hash(n + dot(step, vec3(0, 1, 0))), hash(n + dot(step, vec3(1, 1, 0))), u.x), u.y),
+               mix(mix( hash(n + dot(step, vec3(0, 0, 1))), hash(n + dot(step, vec3(1, 0, 1))), u.x),
+                   mix( hash(n + dot(step, vec3(0, 1, 1))), hash(n + dot(step, vec3(1, 1, 1))), u.x), u.y), u.z);
+  }
+
+  void main() {
+    vColor = aColor;
+    vec3 pos = aBasePos;
+    
+    // Smooth fluid flow noise
+    float n1 = noise(vec3(pos.x * 0.15, pos.y * 0.15, uTime * 0.05 + aPhase));
+    float n2 = noise(vec3(pos.x * 0.2 + 10.0, pos.y * 0.2 + 10.0, uTime * 0.07 + aPhase));
+    
+    // Add swirl
+    pos.x += sin(n1 * 10.0) * 1.5;
+    pos.y += cos(n2 * 10.0) * 1.5;
+    pos.z += (n1 - 0.5) * 4.0;
+    
+    // Gentle upward drift
+    pos.y += uTime * 0.3 * (0.5 + n1);
+    // Wrap around for continuous flow
+    float modY = mod(pos.y + 8.0, 16.0) - 8.0;
+    pos.y = modY;
+    
+    // Fade in and out at top and bottom edges
+    vAlpha = smoothstep(-8.0, -4.0, pos.y) * smoothstep(8.0, 4.0, pos.y);
+    
+    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+    gl_PointSize = aSize * (300.0 / -mvPosition.z) * (0.5 + n1 * 0.5);
+    gl_Position = projectionMatrix * mvPosition;
+  }
+`;
+
+const fragmentShader = `
+  varying vec3 vColor;
+  varying float vAlpha;
+  
+  void main() {
+    vec2 xy = gl_PointCoord.xy - vec2(0.5);
+    float ll = length(xy);
+    if (ll > 0.5) discard;
+    
+    // Core glow and soft falloff
+    float alpha = smoothstep(0.5, 0.0, ll);
+    float core = smoothstep(0.15, 0.0, ll) * 0.6;
+    
+    gl_FragColor = vec4(vColor * (1.0 + core), alpha * vAlpha * 0.85);
+  }
+`;
+
 export default function HeroParticleField({
   color = "#F3C989",
-  background = "#080D1A",
-  density = 3600,
+  background = "#05070E",
+  density = 5000, // Increased for a denser galaxy feel
   className = "",
 }: HeroParticleFieldProps) {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -48,58 +91,40 @@ export default function HeroParticleField({
     const mount = mountRef.current;
     if (!mount) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isSmallScreen = window.innerWidth < 768;
-    const particleCount = isSmallScreen ? Math.round(density * 0.45) : density;
+    const particleCount = isSmallScreen ? Math.round(density * 0.4) : density;
 
-    // ---------- scene ----------
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(background);
-    scene.fog = new THREE.FogExp2(new THREE.Color(background).getHex(), 0.05);
+    scene.fog = new THREE.FogExp2(0x05070E, 0.04);
 
-    const camera = new THREE.PerspectiveCamera(
-      50,
-      mount.clientWidth / mount.clientHeight,
-      0.1,
-      100
-    );
+    const camera = new THREE.PerspectiveCamera(50, mount.clientWidth / mount.clientHeight, 0.1, 100);
     camera.position.set(0, 0, 9);
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: false,
-    });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
+    renderer.setClearColor(0x000000, 0); // Transparent base so CSS backgrounds can show
     mount.appendChild(renderer.domElement);
 
-    // ---------- soft circular sprite for glow ----------
-    const spriteCanvas = document.createElement("canvas");
-    spriteCanvas.width = 64;
-    spriteCanvas.height = 64;
-    const ctx = spriteCanvas.getContext("2d")!;
-    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    gradient.addColorStop(0, "rgba(255,255,255,1)");
-    gradient.addColorStop(0.35, "rgba(255,255,255,0.55)");
-    gradient.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 64, 64);
-    const spriteTexture = new THREE.CanvasTexture(spriteCanvas);
-
-    // ---------- particle positions: a cross silhouette + soft haze ----------
-    // 60% of particles sample points near a cross shape, 40% drift freely
-    // through the volume so the cross feels emergent, not stamped.
+    // Create custom particle field
     const positions = new Float32Array(particleCount * 3);
-    const basePositions = new Float32Array(particleCount * 3); // for gentle drift math
-    const speeds = new Float32Array(particleCount);
     const sizes = new Float32Array(particleCount);
+    const colors = new Float32Array(particleCount * 3);
+    const phases = new Float32Array(particleCount);
 
-    const crossHalfHeight = 3.4;
+    const crossHalfHeight = 3.5;
     const crossHalfWidth = 1.9;
-    const armY = 0.9; // vertical position of the horizontal beam center
+    const armY = 0.9;
     const armHalfHeight = 0.5;
+    
+    const palette = [
+      new THREE.Color("#fcd34d"), // Amber
+      new THREE.Color("#fde68a"), // Light Amber
+      new THREE.Color("#fff7ed"), // Warm White
+      new THREE.Color("#6366f1"), // Indigo / Deep space
+      new THREE.Color("#818cf8"), // Light Indigo
+    ];
 
     function sampleCrossPoint(): [number, number, number] {
       const onArm = Math.random() < 0.35;
@@ -111,59 +136,57 @@ export default function HeroParticleField({
         x = (Math.random() * 2 - 1) * 0.55;
         y = (Math.random() * 2 - 1) * crossHalfHeight;
       }
-      // jitter so it reads as particles gathering toward a form, not a solid shape
-      x += (Math.random() - 0.5) * 1.1;
-      y += (Math.random() - 0.5) * 1.1;
-      const z = (Math.random() - 0.5) * 4;
+      x += (Math.random() - 0.5) * 1.5;
+      y += (Math.random() - 0.5) * 1.5;
+      const z = (Math.random() - 0.5) * 5;
       return [x, y, z];
     }
 
-    function sampleHazePoint(): [number, number, number] {
-      const radius = 6 + Math.random() * 4;
+    function sampleGalaxyPoint(): [number, number, number] {
+      const radius = 5 + Math.random() * 8;
       const theta = Math.random() * Math.PI * 2;
-      const y = (Math.random() - 0.5) * 8;
-      return [Math.cos(theta) * radius, y, Math.sin(theta) * radius - 2];
+      const y = (Math.random() - 0.5) * 16;
+      return [Math.cos(theta) * radius, y, Math.sin(theta) * radius];
     }
 
     for (let i = 0; i < particleCount; i++) {
-      const [x, y, z] =
-        Math.random() < 0.6 ? sampleCrossPoint() : sampleHazePoint();
+      // 50% form the cross core, 50% form the ambient galaxy
+      const [x, y, z] = Math.random() < 0.5 ? sampleCrossPoint() : sampleGalaxyPoint();
+      
       positions[i * 3] = x;
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
-      basePositions[i * 3] = x;
-      basePositions[i * 3 + 1] = y;
-      basePositions[i * 3 + 2] = z;
-      speeds[i] = 0.15 + Math.random() * 0.35;
-      sizes[i] = 0.04 + Math.random() * 0.09;
+      
+      sizes[i] = Math.random() * 0.15 + 0.05;
+      phases[i] = Math.random() * Math.PI * 2;
+      
+      const c = palette[Math.floor(Math.random() * palette.length)];
+      colors[i * 3] = c.r;
+      colors[i * 3 + 1] = c.g;
+      colors[i * 3 + 2] = c.b;
     }
 
     const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("aBasePos", new THREE.BufferAttribute(positions, 3));
+    // Dummy position attribute for Three.js bounding box requirements
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+    geometry.setAttribute("aSize", new THREE.BufferAttribute(sizes, 1));
+    geometry.setAttribute("aColor", new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute("aPhase", new THREE.BufferAttribute(phases, 1));
 
-    const material = new THREE.PointsMaterial({
-      map: spriteTexture,
-      color: new THREE.Color(color),
-      size: 0.14,
-      sizeAttenuation: true,
+    const material = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: {
+        uTime: { value: 0 }
+      },
       transparent: true,
-      opacity: 0.85,
-      depthWrite: false,
       blending: THREE.AdditiveBlending,
+      depthWrite: false,
     });
 
     const points = new THREE.Points(geometry, material);
     scene.add(points);
-
-    // a few brighter "ember" particles for depth
-    const emberGeometry = geometry.clone();
-    const emberMaterial = material.clone();
-    emberMaterial.size = 0.05;
-    emberMaterial.opacity = 0.5;
-    emberMaterial.color = new THREE.Color("#FFE9C7");
-    const embers = new THREE.Points(emberGeometry, emberMaterial);
-    scene.add(embers);
 
     // ---------- mouse parallax ----------
     const pointer = { x: 0, y: 0 };
@@ -176,7 +199,6 @@ export default function HeroParticleField({
     }
     mount.addEventListener("pointermove", handlePointerMove);
 
-    // ---------- resize ----------
     function handleResize() {
       if (!mount) return;
       camera.aspect = mount.clientWidth / mount.clientHeight;
@@ -194,58 +216,38 @@ export default function HeroParticleField({
       const t = clock.getElapsedTime();
 
       if (!prefersReducedMotion) {
-        const posAttr = geometry.getAttribute(
-          "position"
-        ) as THREE.BufferAttribute;
-        for (let i = 0; i < particleCount; i++) {
-          const idx = i * 3;
-          const speed = speeds[i];
-          // gentle upward drift + sideways sway, like rising light/smoke
-          posAttr.array[idx + 1] =
-            basePositions[idx + 1] +
-            Math.sin(t * speed + i) * 0.18 +
-            (t * speed * 0.06) % 3.6;
-          posAttr.array[idx] =
-            basePositions[idx] + Math.sin(t * speed * 0.5 + i * 2) * 0.12;
-        }
-        posAttr.needsUpdate = true;
-
-        // slow ambient rotation
-        points.rotation.y = t * 0.02;
-        embers.rotation.y = t * 0.02;
+        material.uniforms.uTime.value = t;
+        // Super slow organic overall rotation
+        points.rotation.y = t * 0.03;
       }
 
-      // mouse parallax — smoothed toward pointer target
-      targetRotation.x += (pointer.y * 0.12 - targetRotation.x) * 0.03;
-      targetRotation.y += (pointer.x * 0.15 - targetRotation.y) * 0.03;
-      camera.position.x = targetRotation.y * 1.2;
-      camera.position.y = -targetRotation.x * 0.8;
+      // Smooth parallax
+      targetRotation.x += (pointer.y * 0.15 - targetRotation.x) * 0.05;
+      targetRotation.y += (pointer.x * 0.20 - targetRotation.y) * 0.05;
+      camera.position.x = targetRotation.y * 1.5;
+      camera.position.y = -targetRotation.x * 1.0;
       camera.lookAt(0, 0.6, 0);
 
       renderer.render(scene, camera);
     }
     animate();
 
-    // ---------- cleanup ----------
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", handleResize);
       mount?.removeEventListener("pointermove", handlePointerMove);
       geometry.dispose();
       material.dispose();
-      emberGeometry.dispose();
-      emberMaterial.dispose();
-      spriteTexture.dispose();
       renderer.dispose();
       mount?.removeChild(renderer.domElement);
     };
   }, [color, background, density]);
 
   return (
-    <div
-      ref={mountRef}
-      className={`absolute inset-0 h-full w-full ${className}`}
-      aria-hidden="true"
-    />
+    <div className={`relative h-full w-full ${className}`} aria-hidden="true">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#02040a] via-[#05070E] to-[#0a0815] z-[-1]" />
+      <div ref={mountRef} className="absolute inset-0 w-full h-full" />
+    </div>
   );
 }
+

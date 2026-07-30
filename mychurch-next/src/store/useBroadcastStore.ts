@@ -311,14 +311,6 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
 
                 console.log("[Remote Control] Received:", data);
 
-                if (data.type === 'SET_SLIDE') {
-                    // Force update without pushing back (infinite loop prevent)
-                    set({ activeSlideIndex: data.slideIndex, internalPageIndex: data.pageIndex || 0, activeScriptureReference: null });
-                } else if (data.type === 'SET_PAGE') {
-                    set({ internalPageIndex: data.pageIndex, activeScriptureReference: null });
-                } else if (data.type === 'TOGGLE_LIVE') {
-                    set({ isLive: data.isLive });
-                } else if (data.type === 'SET_SCENE') {
                 switch (data.type) {
                     case 'SET_SLIDE':
                         set({ activeSlideIndex: data.slideIndex, internalPageIndex: data.pageIndex || 0, activeScriptureReference: null });

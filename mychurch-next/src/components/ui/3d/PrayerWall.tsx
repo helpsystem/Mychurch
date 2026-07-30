@@ -1,322 +1,222 @@
 "use client";
 
-/**
- * PrayerWall
- * ----------
- * "دیوار نوری دعای تعاملی" — a dark, reverent space where each point of
- * light is a prayer or a word of thanksgiving from the congregation.
- * Clicking a light shows its text; a small form lets a visitor add their
- * own. Data handling (fetching/saving prayers) is left to the parent via
- * props — this component only renders and handles interaction.
- *
- * Usage:
- *   <PrayerWall
- *     prayers={[
- *       { id: "1", text: "برای شفای مادرم دعا کنید.", author: "ناشناس" },
- *       { id: "2", text: "شکرگزارم برای تولد فرزندم.", author: "مریم" },
- *     ]}
- *     onAddPrayer={(text) => saveToBackend(text)}
- *   />
- */
-
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Sparkles, Html } from "@react-three/drei";
 import * as THREE from "three";
+import { Heart, Sparkle, X, BookOpen, Send } from "lucide-react";
 
-export type Prayer = {
-  id: string;
+// نمونه داده‌های درخواست دعا
+interface Prayer {
+  id: number;
+  name: string;
+  location: string;
   text: string;
-  author?: string;
-};
+  verse: string;
+  count: number;
+  position: [number, number, number];
+}
 
-type PrayerWallProps = {
-  prayers: Prayer[];
-  onAddPrayer?: (text: string) => void;
-  className?: string;
-};
+const INITIAL_PRAYERS: Prayer[] = [
+  { id: 1, name: "سارا", location: "واشنگتن دی‌سی", text: "دعا برای سلامتی بیماران و هدایت روح‌القدس در خانواده‌ها.", verse: "یوشع ۱:۹", count: 14, position: [-2.5, 1.2, 1] },
+  { id: 2, name: "مهراد", location: "سیلور اسپرینگ", text: "شکرگزاری برای فیض عیسی مسیح و برکت جلسات خانگی.", verse: "یوحنا ۸:۱۲", count: 28, position: [2, -1, 0.5] },
+  { id: 3, name: "مریم", location: "مریلند", text: "دعا برای آرامش، ایمنی و حکمت خادمین کلیسا.", verse: "فیلیپیان ۴:۷", count: 19, position: [0.5, 2.2, -1.5] },
+  { id: 4, name: "دانیال", location: "ویرجینیا", text: "دعا برای هدایت جوانان و اشتیاق بیشتر برای کلام خدا.", verse: "مزامیر ۱۱۹:۱۰۵", count: 11, position: [-1.8, -2, -0.8] },
+  { id: 5, name: "هلن", location: "کالیفرنیا", text: "شکرگزاری برای رهایی و آرامشی که تنها در نام عیسی مسیح یافت می‌شود.", verse: "متّی ۱۱:۲۸", count: 35, position: [2.8, 1.8, -2] },
+];
 
-export default function PrayerWall({
-  prayers,
-  onAddPrayer,
-  className = "",
-}: PrayerWallProps) {
-  const mountRef = useRef<HTMLDivElement>(null);
-  const [selected, setSelected] = useState<Prayer | null>(null);
-  const [selectedScreenPos, setSelectedScreenPos] = useState<{
-    x: number;
-    y: number;
-  } | null>(null);
-  const [draftText, setDraftText] = useState("");
-  const [showForm, setShowForm] = useState(false);
+// کامپوننت ذرات ۳D
+function PrayerNodes({ prayers, onSelect }: { prayers: Prayer[]; onSelect: (p: Prayer) => void }) {
+  const groupRef = useRef<THREE.Group>(null);
 
-  // stable per-prayer 3D positions, recomputed only when the prayer list changes length
-  const positions = useMemo(() => {
-    return prayers.map(() => ({
-      x: (Math.random() - 0.5) * 7,
-      y: (Math.random() - 0.5) * 4.2,
-      z: (Math.random() - 0.5) * 3,
-    }));
-  }, [prayers.length]);
-
-  useEffect(() => {
-    const mount = mountRef.current;
-    if (!mount) return;
-
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color("#05070E");
-    scene.fog = new THREE.FogExp2(0x05070e, 0.045);
-
-    const camera = new THREE.PerspectiveCamera(
-      45,
-      mount.clientWidth / mount.clientHeight,
-      0.1,
-      100
-    );
-    camera.position.set(0, 0, 8);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(mount.clientWidth, mount.clientHeight);
-    mount.appendChild(renderer.domElement);
-
-    // soft sprite for candle-like glow
-    const spriteCanvas = document.createElement("canvas");
-    spriteCanvas.width = 64;
-    spriteCanvas.height = 64;
-    const ctx = spriteCanvas.getContext("2d")!;
-    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    gradient.addColorStop(0, "rgba(255,235,200,1)");
-    gradient.addColorStop(0.4, "rgba(255,200,140,0.5)");
-    gradient.addColorStop(1, "rgba(255,200,140,0)");
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 64, 64);
-    const spriteTexture = new THREE.CanvasTexture(spriteCanvas);
-
-    // custom shader material for instanced glowing particles
-    const vertexShader = `
-      attribute float phase;
-      attribute float baseY;
-      varying float vPhase;
-      varying vec2 vUv;
-      uniform float time;
-      void main() {
-        vUv = uv;
-        vPhase = phase;
-        // Animation
-        vec3 pos = position;
-        
-        // Transform the instance position (from instanceMatrix)
-        mat4 instanceMat = instanceMatrix;
-        
-        // Add waving motion on Y axis based on phase and time
-        float yOffset = sin(time * 0.4 + phase) * 0.08;
-        instanceMat[3][1] += yOffset; // modify the Y translation
-
-        vec4 mvPosition = modelViewMatrix * instanceMat * vec4(pos, 1.0);
-        gl_Position = projectionMatrix * mvPosition;
-      }
-    `;
-
-    const fragmentShader = `
-      uniform sampler2D map;
-      uniform float time;
-      varying vec2 vUv;
-      varying float vPhase;
-      void main() {
-        vec4 texColor = texture2D(map, vUv);
-        float pulse = 0.75 + sin(time * 1.2 + vPhase) * 0.2;
-        gl_FragColor = vec4(texColor.rgb, texColor.a * pulse);
-      }
-    `;
-
-    const uniforms = {
-      map: { value: spriteTexture },
-      time: { value: 0.0 }
-    };
-
-    const material = new THREE.ShaderMaterial({
-      uniforms: uniforms,
-      vertexShader: vertexShader,
-      fragmentShader: fragmentShader,
-      transparent: true,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    });
-
-    const geometry = new THREE.PlaneGeometry(1, 1);
-    const instanceCount = prayers.length;
-    
-    // Attributes
-    const phases = new Float32Array(instanceCount);
-    const baseYs = new Float32Array(instanceCount);
-    
-    const instancedMesh = new THREE.InstancedMesh(geometry, material, instanceCount);
-    
-    const dummy = new THREE.Object3D();
-    prayers.forEach((prayer, i) => {
-      const pos = positions[i];
-      const scale = 0.5 + Math.random() * 0.25;
-      dummy.position.set(pos.x, pos.y, pos.z);
-      dummy.scale.set(scale, scale, scale);
-      dummy.updateMatrix();
-      
-      instancedMesh.setMatrixAt(i, dummy.matrix);
-      phases[i] = Math.random() * Math.PI * 2;
-      baseYs[i] = pos.y;
-    });
-
-    geometry.setAttribute('phase', new THREE.InstancedBufferAttribute(phases, 1));
-    geometry.setAttribute('baseY', new THREE.InstancedBufferAttribute(baseYs, 1));
-    
-    scene.add(instancedMesh);
-
-    // small cross silhouette at the center, faint, as the wall's quiet anchor
-    const crossMaterial = new THREE.MeshBasicMaterial({
-      color: "#3A4A66",
-      transparent: true,
-      opacity: 0.5,
-    });
-    const crossVertical = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.12), crossMaterial);
-    const crossHorizontal = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.12, 0.12), crossMaterial);
-    crossHorizontal.position.set(0, 0.35, 0);
-    
-    const crossGroup = new THREE.Group();
-    crossGroup.add(crossVertical, crossHorizontal);
-    crossGroup.position.set(0, 0, -2.5);
-    scene.add(crossGroup);
-
-    const raycaster = new THREE.Raycaster();
-    const pointerNdc = new THREE.Vector2();
-
-    function handleClick(event: PointerEvent) {
-      const rect = mount!.getBoundingClientRect();
-      pointerNdc.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      pointerNdc.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-      raycaster.setFromCamera(pointerNdc, camera);
-      const hits = raycaster.intersectObject(instancedMesh);
-      if (hits.length > 0 && hits[0].instanceId !== undefined) {
-        const prayer = prayers[hits[0].instanceId];
-        setSelected(prayer);
-        setSelectedScreenPos({
-          x: event.clientX - rect.left,
-          y: event.clientY - rect.top,
-        });
-      } else {
-        setSelected(null);
-      }
+  // چرخش بسیار خرامان و معنوی کل منظومه ذرات
+  useFrame((_, delta) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * 0.04;
     }
-    renderer.domElement.addEventListener("click", handleClick);
-
-    function handleResize() {
-      if (!mount) return;
-      camera.aspect = mount.clientWidth / mount.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(mount.clientWidth, mount.clientHeight);
-    }
-    window.addEventListener("resize", handleResize);
-
-    let rafId = 0;
-    const clock = new THREE.Clock();
-    function animate() {
-      rafId = requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
-      
-      uniforms.time.value = t;
-      crossGroup.rotation.y = Math.sin(t * 0.05) * 0.1;
-      
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", handleResize);
-      renderer.domElement.removeEventListener("click", handleClick);
-      spriteTexture.dispose();
-      material.dispose();
-      geometry.dispose();
-      crossMaterial.dispose();
-      crossVertical.geometry.dispose();
-      crossHorizontal.geometry.dispose();
-      renderer.dispose();
-      mount?.removeChild(renderer.domElement);
-    };
-  }, [prayers, positions]);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const trimmed = draftText.trim();
-    if (!trimmed) return;
-    onAddPrayer?.(trimmed);
-    setDraftText("");
-    setShowForm(false);
-  }
+  });
 
   return (
-    <div className={`relative h-full w-full ${className}`}>
-      <div ref={mountRef} className="absolute inset-0 h-full w-full" />
+    <group ref={groupRef}>
+      {prayers.map((prayer) => (
+        <group key={prayer.id} position={prayer.position}>
+          {/* ذره نوری قابل کلیک */}
+          <mesh onClick={() => onSelect(prayer)} className="cursor-pointer">
+            <sphereGeometry args={[0.22, 16, 16]} />
+            <meshBasicMaterial color="#FBBF24" />
+          </mesh>
+          {/* درخشش هاله دور ذره */}
+          <Sparkles count={10} scale={1.5} size={2.5} speed={0.3} color="#FDE047" />
+        </group>
+      ))}
+    </group>
+  );
+}
 
-      {selected && selectedScreenPos && (
-        <div
-          dir="rtl"
-          className="absolute z-20 max-w-xs -translate-x-1/2 rounded-lg border border-amber-200/20 bg-[#0B1120]/90 p-4 text-sm text-white shadow-lg backdrop-blur"
-          style={{
-            left: selectedScreenPos.x,
-            top: Math.max(16, selectedScreenPos.y - 90),
-          }}
+export default function PrayerWall() {
+  const [prayers, setPrayers] = useState<Prayer[]>(INITIAL_PRAYERS);
+  const [selectedPrayer, setSelectedPrayer] = useState<Prayer | null>(null);
+  const [newPrayerText, setNewPrayerText] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
+
+  // افزایش تعداد آمین‌ها
+  const handleAmen = (id: number) => {
+    setPrayers((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, count: p.count + 1 } : p))
+    );
+    if (selectedPrayer && selectedPrayer.id === id) {
+      setSelectedPrayer((prev) => (prev ? { ...prev, count: prev.count + 1 } : null));
+    }
+  };
+
+  // ثبت دعای جدید در بوم ۳D
+  const handleAddPrayer = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPrayerText.trim()) return;
+
+    const newEntry: Prayer = {
+      id: Date.now(),
+      name: "ایماندار",
+      location: "عضو آنلاین",
+      text: newPrayerText,
+      verse: "متّی ۵:۱۴",
+      count: 1,
+      position: [
+        (Math.random() - 0.5) * 5,
+        (Math.random() - 0.5) * 4,
+        (Math.random() - 0.5) * 3,
+      ],
+    };
+
+    setPrayers((prev) => [...prev, newEntry]);
+    setNewPrayerText("");
+    setShowAddForm(false);
+  };
+
+  return (
+    <section id="prayer-wall" className="relative w-full h-screen bg-bgDark py-20 px-6 overflow-hidden flex flex-col justify-between" dir="rtl">
+      
+      {/* عنوان فوقانی */}
+      <div className="relative z-10 text-center max-w-2xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-accentGold text-sm mb-3">
+          <Sparkle size={16} />
+          <span>ارتباط معنوی آنلاین</span>
+        </div>
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">
+          دیوار نوری دعا
+        </h2>
+        <p className="text-slate-400 text-sm md:text-base">
+          «شما نور جهان هستید» — روی هر نقطه نوری کلیک کنید تا با دعای ایمانداران همراه شوید.
+        </p>
+      </div>
+
+      {/* بوم سه‌بعدی Three.js */}
+      <div className="absolute inset-0 z-0">
+        {/* پس‌زمینه کهکشان ذرات طلایی */}
+        <img
+          src="/prayer-bg.jpeg"
+          alt="Galaxy Background"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none"
+        />
+        <div className="absolute inset-0 bg-bgDark/40 pointer-events-none" />
+        
+        <Canvas camera={{ position: [0, 0, 7], fov: 60 }}>
+          <ambientLight intensity={0.4} />
+          <pointLight position={[0, 0, 0]} intensity={2.5} color="#FBBF24" />
+
+          {/* منبع نور مرکزی (رمز نور مسیح) */}
+          <mesh position={[0, 0, 0]}>
+            <sphereGeometry args={[0.5, 32, 32]} />
+            <meshBasicMaterial color="#FFFBEB" />
+          </mesh>
+          <Sparkles count={80} scale={4} size={3} speed={0.2} color="#FBBF24" />
+
+          {/* ذرات دعا */}
+          <PrayerNodes prayers={prayers} onSelect={setSelectedPrayer} />
+
+          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+        </Canvas>
+      </div>
+
+      {/* دکمه افزودن درخواست دعا */}
+      <div className="relative z-10 text-center mb-6">
+        <button
+          onClick={() => setShowAddForm(true)}
+          className="px-6 py-3 rounded-full bg-gradient-to-r from-accentGold to-amber-600 text-bgDark font-bold text-sm shadow-[0_0_20px_rgba(251,191,36,0.4)] hover:scale-105 transition-transform inline-flex items-center gap-2"
         >
-          <p className="leading-relaxed">{selected.text}</p>
-          {selected.author && (
-            <p className="mt-2 text-xs text-amber-200/60">
-              — {selected.author}
-            </p>
-          )}
+          <Send size={16} />
+          ثبت درخواست دعای جدید
+        </button>
+      </div>
+
+      {/* مودال نمایش جزئیات دعا */}
+      {selectedPrayer && (
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-lg bg-slate-900/90 backdrop-blur-xl border border-accentGold/30 rounded-2xl p-6 text-white z-50 shadow-2xl shadow-black">
           <button
-            onClick={() => setSelected(null)}
-            className="mt-3 text-xs text-white/50 hover:text-white/80"
+            onClick={() => setSelectedPrayer(null)}
+            className="absolute top-4 left-4 text-slate-400 hover:text-white"
           >
-            بستن
+            <X size={20} />
           </button>
+
+          <div className="flex items-center gap-2 text-accentGold mb-2 font-bold text-sm">
+            <Sparkle size={16} />
+            <span>درخواست دعا از طرف {selectedPrayer.name}</span>
+            <span className="text-slate-500 text-xs">({selectedPrayer.location})</span>
+          </div>
+
+          <p className="text-slate-200 text-sm md:text-base leading-relaxed mb-4">
+            {selectedPrayer.text}
+          </p>
+
+          <div className="flex items-center gap-2 text-cyan-400 text-xs mb-6">
+            <BookOpen size={14} />
+            <span>آیه مرتبط: {selectedPrayer.verse}</span>
+          </div>
+
+          <div className="flex justify-between items-center border-t border-slate-800 pt-4">
+            <span className="text-xs text-slate-400">
+              {selectedPrayer.count} نفر همراه با این دعا آمین گفتند
+            </span>
+            <button
+              onClick={() => handleAmen(selectedPrayer.id)}
+              className="px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors"
+            >
+              <Heart size={14} fill="#fff" />
+              آمین / همدعا هستم
+            </button>
+          </div>
         </div>
       )}
 
-      <div dir="rtl" className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
-        {showForm ? (
-          <form
-            onSubmit={handleSubmit}
-            className="flex w-[min(90vw,420px)] flex-col gap-2 rounded-lg border border-amber-200/20 bg-[#0B1120]/90 p-4 backdrop-blur"
-          >
-            <textarea
-              value={draftText}
-              onChange={(e) => setDraftText(e.target.value)}
-              placeholder="درخواست دعای خود را بنویسید..."
-              rows={3}
-              className="resize-none rounded-md border border-white/10 bg-white/5 p-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-amber-200/50"
-            />
-            <div className="flex justify-end gap-2">
-              <button
-                type="button"
-                onClick={() => setShowForm(false)}
-                className="rounded-md px-3 py-1.5 text-sm text-white/60 hover:text-white"
-              >
-                انصراف
-              </button>
+      {/* فرم ثبت دعای جدید */}
+      {showAddForm && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md relative text-right">
+            <button
+              onClick={() => setShowAddForm(false)}
+              className="absolute top-4 left-4 text-slate-400 hover:text-white"
+            >
+              <X size={20} />
+            </button>
+            <h3 className="text-lg font-bold text-white mb-4">ثبت درخواست دعا</h3>
+            <form onSubmit={handleAddPrayer} className="flex flex-col gap-4">
+              <textarea
+                value={newPrayerText}
+                onChange={(e) => setNewPrayerText(e.target.value)}
+                placeholder="متن درخواست دعای خود را بنویسید..."
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-accentGold h-28 resize-none"
+              />
               <button
                 type="submit"
-                className="rounded-md bg-amber-200/90 px-4 py-1.5 text-sm font-medium text-[#080D1A] hover:bg-amber-200"
+                className="w-full py-3 bg-gradient-to-r from-accentGold to-amber-600 text-bgDark font-bold rounded-xl text-sm"
               >
-                افزودن نور
+                تاباندن نور دعا در بوم
               </button>
-            </div>
-          </form>
-        ) : (
-          <button
-            onClick={() => setShowForm(true)}
-            className="rounded-full border border-amber-200/30 bg-[#0B1120]/80 px-5 py-2.5 text-sm text-amber-100 backdrop-blur hover:bg-[#0B1120]"
-          >
-            + یک نور دعا اضافه کنید
-          </button>
-        )}
-      </div>
-    </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }

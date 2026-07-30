@@ -81,6 +81,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --color-bgDark: #020617;
+  --color-accentGold: #FBBF24;
+  --color-accentCyan: #06B6D4;
+  --color-cardGlass: rgba(15, 23, 42, 0.75);
 }
 
 :root {
