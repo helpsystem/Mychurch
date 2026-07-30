@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square } from "lucide-react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square, Activity } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -48,6 +48,8 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const config = useBroadcastStore(state => state.config);
     const lyricsVisibility = useBroadcastStore(state => state.lyricsVisibility);
     const initRemoteSync = useBroadcastStore(state => state.initRemoteSync);
+    const isAudioStageEnabled = useBroadcastStore(state => state.isAudioStageEnabled);
+    const setIsAudioStageEnabled = useBroadcastStore(state => state.setIsAudioStageEnabled);
     const disconnectSync = useBroadcastStore(state => state.disconnectSync);
     const isConnected = useBroadcastStore(state => state.isConnected);
     
@@ -980,6 +982,20 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                             {isLive ? t.onAir : t.offline}
                         </span>
                     </div>
+
+                    <button
+                        onClick={() => setIsAudioStageEnabled(!isAudioStageEnabled)}
+                        className={cn(
+                            "flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer border",
+                            isAudioStageEnabled
+                                ? "bg-indigo-500/20 text-indigo-400 border-indigo-500/30 hover:bg-indigo-500/30"
+                                : "bg-neutral-800 text-neutral-400 border-neutral-700 hover:bg-neutral-700 hover:text-white"
+                        )}
+                        title="3D Audio Stage"
+                    >
+                        <Activity className={cn("w-3.5 h-3.5 sm:w-4 sm:h-4", isAudioStageEnabled && "animate-pulse")} />
+                        <span className="hidden xs:inline">Audio Stage 3D</span>
+                    </button>
 
                     <button
                         onClick={() => setIsLive(!isLive)}

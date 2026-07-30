@@ -207,8 +207,7 @@ export default function ScrollCrossReveal({
                 ref={(el) => {
                   verseRefs.current[i] = el;
                 }}
-                className="absolute inset-0 flex flex-col items-center justify-center
-                           transition-opacity duration-300 pointer-events-none"
+                className="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 pointer-events-none"
                 style={{ opacity: i === 0 ? 1 : 0 }}
               >
                 <p className="text-xl leading-relaxed text-white sm:text-2xl drop-shadow-md">

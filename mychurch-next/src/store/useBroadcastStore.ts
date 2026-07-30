@@ -22,6 +22,8 @@ interface BroadcastState {
 
     // Overlay & Display Config
     config: BroadcastOverlayConfig;
+    isAudioStageEnabled: boolean;
+    setIsAudioStageEnabled: (enabled: boolean, skipSync?: boolean) => void;
 
     // Lyrics Visibility Overrides (FA, FN, EN)
     lyricsVisibility: {
@@ -139,6 +141,7 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     scripturePopupScale: 1.0,
 
     config: DEFAULT_CONFIG,
+    isAudioStageEnabled: false,
 
     lyricsVisibility: {
         showPersian: true,
@@ -316,15 +319,34 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
                 } else if (data.type === 'TOGGLE_LIVE') {
                     set({ isLive: data.isLive });
                 } else if (data.type === 'SET_SCENE') {
-                    set({ activeSceneId: data.sceneId });
-                } else if (data.type === 'SET_ACTIVE_REFERENCE') {
-                    set({ activeScriptureReference: data.reference });
-                } else if (data.type === 'SET_POPUP_SCALE') {
-                    set({ scripturePopupScale: data.scale });
-                } else if (data.type === 'SET_LYRICS_VISIBILITY') {
-                    set({ lyricsVisibility: data.visibility });
-                } else if (data.type === 'SET_LIVE_TRANSLATION') {
-                    set({ liveTranslationText: data.text, showLiveTranslation: data.show });
+                switch (data.type) {
+                    case 'SET_SLIDE':
+                        set({ activeSlideIndex: data.slideIndex, internalPageIndex: data.pageIndex || 0, activeScriptureReference: null });
+                        break;
+                    case 'SET_PAGE':
+                        set({ internalPageIndex: data.pageIndex, activeScriptureReference: null });
+                        break;
+                    case 'TOGGLE_LIVE':
+                        set({ isLive: data.isLive });
+                        break;
+                    case 'SET_SCENE':
+                        set({ activeSceneId: data.sceneId });
+                        break;
+                    case 'SET_ACTIVE_REFERENCE':
+                        set({ activeScriptureReference: data.reference });
+                        break;
+                    case 'SET_POPUP_SCALE':
+                        set({ scripturePopupScale: data.scale });
+                        break;
+                    case 'SET_LYRICS_VISIBILITY':
+                        set({ lyricsVisibility: data.visibility });
+                        break;
+                    case 'SET_LIVE_TRANSLATION':
+                        set({ liveTranslationText: data.text, showLiveTranslation: data.show });
+                        break;
+                    case 'SET_AUDIO_STAGE':
+                        set({ isAudioStageEnabled: data.enabled });
+                        break;
                 }
             })
             .subscribe((status) => {

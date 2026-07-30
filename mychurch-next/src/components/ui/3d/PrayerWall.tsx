@@ -91,26 +91,83 @@ export default function PrayerWall({
     ctx.fillRect(0, 0, 64, 64);
     const spriteTexture = new THREE.CanvasTexture(spriteCanvas);
 
-    // one small mesh per prayer light, so we can raycast individually
-    const lightMeshes: THREE.Sprite[] = [];
-    const material = new THREE.SpriteMaterial({
-      map: spriteTexture,
+    // custom shader material for instanced glowing particles
+    const vertexShader = `
+      attribute float phase;
+      attribute float baseY;
+      varying float vPhase;
+      varying vec2 vUv;
+      uniform float time;
+      void main() {
+        vUv = uv;
+        vPhase = phase;
+        // Animation
+        vec3 pos = position;
+        
+        // Transform the instance position (from instanceMatrix)
+        mat4 instanceMat = instanceMatrix;
+        
+        // Add waving motion on Y axis based on phase and time
+        float yOffset = sin(time * 0.4 + phase) * 0.08;
+        instanceMat[3][1] += yOffset; // modify the Y translation
+
+        vec4 mvPosition = modelViewMatrix * instanceMat * vec4(pos, 1.0);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `;
+
+    const fragmentShader = `
+      uniform sampler2D map;
+      uniform float time;
+      varying vec2 vUv;
+      varying float vPhase;
+      void main() {
+        vec4 texColor = texture2D(map, vUv);
+        float pulse = 0.75 + sin(time * 1.2 + vPhase) * 0.2;
+        gl_FragColor = vec4(texColor.rgb, texColor.a * pulse);
+      }
+    `;
+
+    const uniforms = {
+      map: { value: spriteTexture },
+      time: { value: 0.0 }
+    };
+
+    const material = new THREE.ShaderMaterial({
+      uniforms: uniforms,
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     });
 
+    const geometry = new THREE.PlaneGeometry(1, 1);
+    const instanceCount = prayers.length;
+    
+    // Attributes
+    const phases = new Float32Array(instanceCount);
+    const baseYs = new Float32Array(instanceCount);
+    
+    const instancedMesh = new THREE.InstancedMesh(geometry, material, instanceCount);
+    
+    const dummy = new THREE.Object3D();
     prayers.forEach((prayer, i) => {
-      const sprite = new THREE.Sprite(material.clone());
       const pos = positions[i];
-      sprite.position.set(pos.x, pos.y, pos.z);
-      sprite.scale.setScalar(0.5 + Math.random() * 0.25);
-      sprite.userData.prayer = prayer;
-      sprite.userData.baseY = pos.y;
-      sprite.userData.phase = Math.random() * Math.PI * 2;
-      scene.add(sprite);
-      lightMeshes.push(sprite);
+      const scale = 0.5 + Math.random() * 0.25;
+      dummy.position.set(pos.x, pos.y, pos.z);
+      dummy.scale.set(scale, scale, scale);
+      dummy.updateMatrix();
+      
+      instancedMesh.setMatrixAt(i, dummy.matrix);
+      phases[i] = Math.random() * Math.PI * 2;
+      baseYs[i] = pos.y;
     });
+
+    geometry.setAttribute('phase', new THREE.InstancedBufferAttribute(phases, 1));
+    geometry.setAttribute('baseY', new THREE.InstancedBufferAttribute(baseYs, 1));
+    
+    scene.add(instancedMesh);
 
     // small cross silhouette at the center, faint, as the wall's quiet anchor
     const crossMaterial = new THREE.MeshBasicMaterial({
@@ -128,7 +185,6 @@ export default function PrayerWall({
     scene.add(crossGroup);
 
     const raycaster = new THREE.Raycaster();
-    raycaster.params.Sprite = { threshold: 0.3 };
     const pointerNdc = new THREE.Vector2();
 
     function handleClick(event: PointerEvent) {
@@ -136,9 +192,9 @@ export default function PrayerWall({
       pointerNdc.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       pointerNdc.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(pointerNdc, camera);
-      const hits = raycaster.intersectObjects(lightMeshes);
-      if (hits.length > 0) {
-        const prayer = hits[0].object.userData.prayer as Prayer;
+      const hits = raycaster.intersectObject(instancedMesh);
+      if (hits.length > 0 && hits[0].instanceId !== undefined) {
+        const prayer = prayers[hits[0].instanceId];
         setSelected(prayer);
         setSelectedScreenPos({
           x: event.clientX - rect.left,
@@ -163,14 +219,10 @@ export default function PrayerWall({
     function animate() {
       rafId = requestAnimationFrame(animate);
       const t = clock.getElapsedTime();
-      lightMeshes.forEach((sprite) => {
-        const phase = sprite.userData.phase as number;
-        sprite.position.y =
-          sprite.userData.baseY + Math.sin(t * 0.4 + phase) * 0.08;
-        const mat = sprite.material as THREE.SpriteMaterial;
-        mat.opacity = 0.75 + Math.sin(t * 1.2 + phase) * 0.2;
-      });
+      
+      uniforms.time.value = t;
       crossGroup.rotation.y = Math.sin(t * 0.05) * 0.1;
+      
       renderer.render(scene, camera);
     }
     animate();
@@ -181,8 +233,10 @@ export default function PrayerWall({
       renderer.domElement.removeEventListener("click", handleClick);
       spriteTexture.dispose();
       material.dispose();
-      lightMeshes.forEach((s) => (s.material as THREE.Material).dispose());
+      geometry.dispose();
       crossMaterial.dispose();
+      crossVertical.geometry.dispose();
+      crossHorizontal.geometry.dispose();
       renderer.dispose();
       mount?.removeChild(renderer.domElement);
     };
@@ -204,9 +258,7 @@ export default function PrayerWall({
       {selected && selectedScreenPos && (
         <div
           dir="rtl"
-          className="absolute z-20 max-w-xs -translate-x-1/2 rounded-lg
-                     border border-amber-200/20 bg-[#0B1120]/90 p-4
-                     text-sm text-white shadow-lg backdrop-blur"
+          className="absolute z-20 max-w-xs -translate-x-1/2 rounded-lg border border-amber-200/20 bg-[#0B1120]/90 p-4 text-sm text-white shadow-lg backdrop-blur"
           style={{
             left: selectedScreenPos.x,
             top: Math.max(16, selectedScreenPos.y - 90),
@@ -231,18 +283,14 @@ export default function PrayerWall({
         {showForm ? (
           <form
             onSubmit={handleSubmit}
-            className="flex w-[min(90vw,420px)] flex-col gap-2 rounded-lg
-                       border border-amber-200/20 bg-[#0B1120]/90 p-4
-                       backdrop-blur"
+            className="flex w-[min(90vw,420px)] flex-col gap-2 rounded-lg border border-amber-200/20 bg-[#0B1120]/90 p-4 backdrop-blur"
           >
             <textarea
               value={draftText}
               onChange={(e) => setDraftText(e.target.value)}
               placeholder="درخواست دعای خود را بنویسید..."
               rows={3}
-              className="resize-none rounded-md border border-white/10
-                         bg-white/5 p-2 text-sm text-white placeholder:text-white/40
-                         focus:outline-none focus:ring-1 focus:ring-amber-200/50"
+              className="resize-none rounded-md border border-white/10 bg-white/5 p-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-amber-200/50"
             />
             <div className="flex justify-end gap-2">
               <button
@@ -254,8 +302,7 @@ export default function PrayerWall({
               </button>
               <button
                 type="submit"
-                className="rounded-md bg-amber-200/90 px-4 py-1.5 text-sm
-                           font-medium text-[#080D1A] hover:bg-amber-200"
+                className="rounded-md bg-amber-200/90 px-4 py-1.5 text-sm font-medium text-[#080D1A] hover:bg-amber-200"
               >
                 افزودن نور
               </button>
@@ -264,9 +311,7 @@ export default function PrayerWall({
         ) : (
           <button
             onClick={() => setShowForm(true)}
-            className="rounded-full border border-amber-200/30 bg-[#0B1120]/80
-                       px-5 py-2.5 text-sm text-amber-100 backdrop-blur
-                       hover:bg-[#0B1120]"
+            className="rounded-full border border-amber-200/30 bg-[#0B1120]/80 px-5 py-2.5 text-sm text-amber-100 backdrop-blur hover:bg-[#0B1120]"
           >
             + یک نور دعا اضافه کنید
           </button>

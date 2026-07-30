@@ -78,8 +78,7 @@ export default function HeroSection() {
   return (
     <section
       dir="rtl"
-      className="relative flex h-[100svh] min-h-[720px] w-full flex-col
-                 overflow-hidden bg-[#070A14]"
+      className="relative flex h-[100svh] min-h-[720px] w-full flex-col overflow-hidden bg-[#070A14]"
     >
       <HeroParticleField color="#E8B368" background="#070A14" density={3600} />
 
@@ -103,8 +102,7 @@ export default function HeroSection() {
       {/* headline + CTAs */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center">
         <h1
-          className="max-w-3xl text-[2.75rem] font-extrabold leading-[1.15]
-                     text-[#F5EFE6] sm:text-6xl"
+          className="max-w-3xl text-[2.75rem] font-extrabold leading-[1.15] text-[#F5EFE6] sm:text-6xl"
         >
           پلتفرم آنلاین جهانی
         </h1>
@@ -115,16 +113,13 @@ export default function HeroSection() {
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <a
             href="/worship"
-            className="rounded-full bg-[#E8B368] px-7 py-3 text-sm font-semibold
-                       text-[#070A14] transition-colors hover:bg-[#f0c383]"
+            className="rounded-full bg-[#E8B368] px-7 py-3 text-sm font-semibold text-[#070A14] transition-colors hover:bg-[#f0c383]"
           >
             سرودهای پرستشی
           </a>
           <a
             href="/bible"
-            className="rounded-full border border-[#E8B368]/40 px-7 py-3 text-sm
-                       font-semibold text-[#F5EFE6] transition-colors
-                       hover:border-[#E8B368] hover:bg-[#E8B368]/10"
+            className="rounded-full border border-[#E8B368]/40 px-7 py-3 text-sm font-semibold text-[#F5EFE6] transition-colors hover:border-[#E8B368] hover:bg-[#E8B368]/10"
           >
             کتاب مقدس
           </a>
@@ -134,15 +129,12 @@ export default function HeroSection() {
       {/* verse "lectern" — glass card, naskh face, meaningful dot nav */}
       <div className="relative z-10 flex justify-center px-6 pb-10 sm:pb-14">
         <div
-          className="w-full max-w-2xl rounded-2xl border border-[#E8B368]/15
-                     bg-[#101832]/60 px-6 py-6 text-center backdrop-blur-md
-                     sm:px-10 sm:py-8"
+          className="w-full max-w-2xl rounded-2xl border border-[#E8B368]/15 bg-[#101832]/60 px-6 py-6 text-center backdrop-blur-md sm:px-10 sm:py-8"
         >
           <p
             key={activeVerse}
             aria-live="polite"
-            className="animate-[verseFade_0.6s_ease] text-lg leading-loose
-                       text-[#F5EFE6] sm:text-xl"
+            className="animate-[verseFade_0.6s_ease] text-lg leading-loose text-[#F5EFE6] sm:text-xl"
             style={{ fontFamily: "var(--font-naskh)" }}
           >
             {VERSES[activeVerse].text}

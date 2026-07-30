@@ -180,10 +180,7 @@ function MinistryCardItem({ card }: { card: MinistryCard }) {
     <div
       onMouseEnter={() => (hoveredRef.current = true)}
       onMouseLeave={() => (hoveredRef.current = false)}
-      className="group relative flex flex-col items-center overflow-hidden
-                 rounded-2xl border border-white/10 bg-white/5 p-6
-                 text-center backdrop-blur-md transition-colors
-                 hover:border-amber-200/30 hover:bg-white/[0.08]"
+      className="group relative flex flex-col items-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-md transition-colors hover:border-amber-200/30 hover:bg-white/[0.08]"
     >
       <div ref={mountRef} className="h-32 w-32" />
       <h3 className="mt-2 text-lg font-semibold text-white">{card.title}</h3>

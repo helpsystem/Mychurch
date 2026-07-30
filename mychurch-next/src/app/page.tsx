@@ -9,7 +9,7 @@ import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 
 // 3D Components
-import HeroParticleField from "@/components/ui/3d/HeroParticleField";
+import HeroSection from "@/components/ui/3d/HeroSection";
 import EventsGlobe from "@/components/ui/3d/EventsGlobe";
 import ScrollCrossReveal from "@/components/ui/3d/ScrollCrossReveal";
 import PrayerWall from "@/components/ui/3d/PrayerWall";
@@ -35,27 +35,7 @@ export default function HomePage() {
       <main dir="rtl" className="flex-1">
         
         {/* 1. Hero Particle Field */}
-        <section className="relative h-[100svh] overflow-hidden bg-[#080D1A]">
-          <HeroParticleField />
-          <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-6 pointer-events-none">
-            <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500 drop-shadow-[0_0_15px_rgba(251,191,36,0.3)] leading-tight">
-              {t.heroTitle}
-            </h1>
-            <p className="mt-6 text-xl md:text-2xl font-medium text-amber-100/80 max-w-2xl drop-shadow-md">
-              {t.heroSubtitle}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-10 pointer-events-auto">
-              <Link href="/worship" className="flex items-center gap-3 bg-amber-500/10 text-amber-300 border border-amber-500/30 hover:bg-amber-500/20 font-bold px-8 py-4 rounded-2xl transition-all shadow-xl backdrop-blur-sm">
-                <Music className="w-5 h-5" />
-                {t.worship}
-              </Link>
-              <Link href="/bible" className="flex items-center gap-3 bg-white/5 text-white/90 border border-white/10 hover:bg-white/10 font-bold px-8 py-4 rounded-2xl transition-all shadow-xl backdrop-blur-sm">
-                <BookOpen className="w-5 h-5" />
-                {t.bible}
-              </Link>
-            </div>
-          </div>
-        </section>
+        <HeroSection />
 
         {/* 2. Our story, told through scripture */}
         <ScrollCrossReveal

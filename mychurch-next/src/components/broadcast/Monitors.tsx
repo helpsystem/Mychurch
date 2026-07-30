@@ -7,6 +7,7 @@ import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { SmartWorshipPlayer } from "@/components/worship/SmartWorshipPlayer";
 import { SlideType, SlideContentLyrics } from "@/types/broadcast";
 import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
+import { AudioStage3D } from "@/components/broadcast/AudioStage3D";
 import { cn } from "@/lib/utils";
 
 // Camera Stream Video Renderer
@@ -99,6 +100,7 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     const isBlur = useBroadcastStore((state) => state.isBlur);
     const config = useBroadcastStore((state) => state.config);
     const sessionId = useBroadcastStore((state) => state.sessionId);
+    const isAudioStageEnabled = useBroadcastStore((state) => state.isAudioStageEnabled);
     
     // Translation Overlay States
     const liveTranslationText = useBroadcastStore((state) => state.liveTranslationText);
@@ -176,9 +178,12 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     const renderLayoutContent = () => {
         if (!activeSlide) {
             return (
-                <div className="absolute inset-0 flex items-center justify-center bg-neutral-950">
-                    <span className="text-neutral-700 font-bold tracking-widest font-[Vazirmatn]">{t.offline}</span>
-                </div>
+                <>
+                    {isAudioStageEnabled && <AudioStage3D stream={mediaStream} className="absolute inset-0 z-0" />}
+                    <div className={`absolute inset-0 flex items-center justify-center ${isAudioStageEnabled ? 'bg-transparent z-10' : 'bg-neutral-950'}`}>
+                        <span className="text-neutral-700 font-bold tracking-widest font-[Vazirmatn]">{t.offline}</span>
+                    </div>
+                </>
             );
         }
 
@@ -186,7 +191,10 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
         if (config.layout === 'SLIDES_ONLY') {
             return (
                 <div className="absolute inset-0">
-                    {renderSlideOrKaraoke(false, false)}
+                    {isAudioStageEnabled && <AudioStage3D stream={mediaStream} className="absolute inset-0 z-0" />}
+                    <div className="absolute inset-0 z-10">
+                        {renderSlideOrKaraoke(isAudioStageEnabled, false)}
+                    </div>
                 </div>
             );
         }
@@ -196,9 +204,10 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
             return (
                 <>
                     <div className="absolute inset-0 z-0 bg-black">
-                        <VideoFeed stream={mediaStream} isMirrored={isMirrored} isBlur={isBlur} />
+                        {isAudioStageEnabled && <AudioStage3D stream={mediaStream} className="absolute inset-0 z-10" />}
+                        <VideoFeed stream={mediaStream} isMirrored={isMirrored} isBlur={isBlur} className={isAudioStageEnabled ? "opacity-40" : ""} />
                     </div>
-                    <div className="absolute inset-0 z-10">
+                    <div className="absolute inset-0 z-20">
                         {renderSlideOrKaraoke(true, false)}
                     </div>
                 </>
@@ -210,7 +219,8 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
             return (
                 <div className="absolute inset-0 flex flex-row items-stretch">
                     <div className="w-1/2 relative bg-black border-r border-white/5">
-                        <VideoFeed stream={mediaStream} isMirrored={isMirrored} isBlur={isBlur} />
+                        {isAudioStageEnabled && <AudioStage3D stream={mediaStream} className="absolute inset-0 z-10" />}
+                        <VideoFeed stream={mediaStream} isMirrored={isMirrored} isBlur={isBlur} className={isAudioStageEnabled ? "opacity-50" : ""} />
                     </div>
                     <div className="w-1/2 relative bg-neutral-950">
                         {renderSlideOrKaraoke(false, false)}
