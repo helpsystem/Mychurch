@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
+  serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js', 'three', '@react-three/fiber', '@react-three/drei'],
   env: {
     API_BIBLE_KEY: process.env.API_BIBLE_KEY || 'b27dc6902b00019756980695a12eb0da',
   },
@@ -24,6 +24,15 @@ const nextConfig: NextConfig = {
         path: false,
         crypto: false,
       };
+
+      // Prevent @react-three/fiber and three.js from being bundled server-side
+      // These packages access browser-only APIs (WebGL, window, etc.)
+      config.externals = [
+        ...(Array.isArray(config.externals) ? config.externals : [config.externals].filter(Boolean)),
+        'three',
+        '@react-three/fiber',
+        '@react-three/drei',
+      ];
     }
     return config;
   },
