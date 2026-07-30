@@ -1,121 +1,112 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { BookOpen, Music, Video, Mic, ArrowLeft, Globe, Heart, Play } from "lucide-react";
+import { BookOpen, Music, Video, Mic, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
+import dynamic from "next/dynamic";
+
+// Raw Three.js components — safe with ssr:false (no React Three Fiber)
+const HeroSection = dynamic(() => import("@/components/HeroSection"), { ssr: false });
+const EventsGlobe = dynamic(() => import("@/components/EventsGlobe"), { ssr: false });
+const PrayerWall = dynamic(() => import("@/components/PrayerWall"), { ssr: false });
+
+const GLOBE_LOCATIONS = [
+  { name: "یکشنبه‌ها — عبادتگاه اصلی", lat: 38.99, lng: -77.03, time: "۱۱:۰۰ صبح" },
+  { name: "جلسات دعای بانوان", lat: 38.88, lng: -77.17, time: "چهارشنبه‌ها" },
+  { name: "کلیسای آنلاین (ایران)", lat: 35.68, lng: 51.38, time: "پخش زنده" },
+  { name: "لندن — انگلستان", lat: 51.5, lng: -0.12, time: "شنبه‌ها" },
+  { name: "فرانکفورت — آلمان", lat: 50.11, lng: 8.68, time: "پنجشنبه‌ها" },
+  { name: "تورنتو — کانادا", lat: 43.65, lng: -79.38, time: "جمعه‌ها" },
+];
+
+const INITIAL_PRAYERS = [
+  { id: "1", text: "خداوندا، برای سلامتی خانواده‌ام دعا می‌کنم.", author: "ناشناس" },
+  { id: "2", text: "شکرگزارم برای فیض و محبت بی‌پایان عیسی مسیح در زندگی‌ام.", author: "مریم" },
+  { id: "3", text: "لطفاً برای یافتن کار جدید برای همسرم دعا کنید.", author: "برادر در مسیح" },
+  { id: "4", text: "دعا برای آرامش و حکمت در تصمیمات مهم زندگی.", author: "سارا" },
+  { id: "5", text: "سپاسگزارم برای رهایی‌ای که تنها در نام عیسی مسیح یافت می‌شود.", author: "دانیال" },
+];
 
 export default function HomePage() {
   const { t } = useLanguage();
+  const [prayers, setPrayers] = useState(INITIAL_PRAYERS);
+  const [selectedLocation, setSelectedLocation] = useState<typeof GLOBE_LOCATIONS[0] | null>(null);
+
+  const handleAddPrayer = (text: string) => {
+    setPrayers((prev) => [...prev, { id: Date.now().toString(), text, author: "بازدیدکننده" }]);
+  };
 
   return (
     <div className="min-h-screen bg-[#080D1A] relative font-sans flex flex-col text-white">
       <PublicHeader />
 
-      <main dir="rtl" className="flex-1">
+      <main className="flex-1">
 
-        {/* ═══ HERO SECTION ═══ */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Video background */}
-          <div className="absolute inset-0 z-0">
-            <video autoPlay loop muted playsInline poster="/hero-fallback.jpeg"
-              className="w-full h-full object-cover opacity-60">
-              <source src="/hero.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#080D1A]/60 via-transparent to-[#080D1A]" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(251,191,36,0.08)_0%,_transparent_70%)]" />
+        {/* 1. Hero — particle field + verse rotator */}
+        <HeroSection />
+
+        {/* 2. Globe — church locations worldwide */}
+        <section dir="rtl" className="relative h-[80vh] bg-[#080D1A] flex flex-col border-b border-white/5">
+          <div className="absolute top-8 left-0 right-0 z-10 text-center pointer-events-none">
+            <p className="text-xs tracking-[0.22em] text-[#8B93AA] mb-2">کلیسای ایرانیان</p>
+            <h2 className="text-2xl font-black text-amber-100">جلسات و موقعیت‌ها</h2>
+            <p className="mt-1 text-sm text-amber-200/50">پراکنده در سراسر زمین، متحد در یک بدن</p>
           </div>
 
-          {/* Hero Content */}
-          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm mb-8 animate-pulse">
-              <span className="w-2 h-2 rounded-full bg-red-500 inline-block"></span>
-              پخش زنده یکشنبه‌ها — ۱۱ صبح
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-6">
-              کلیسای مسیحی
-              <span className="block bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-                ایرانیان واشنگتن
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              «من نور جهان هستم» — یوحنا ۸:۱۲
-              <br />
-              <span className="text-slate-400 text-base">پیوند بیش از ۱۲,۴۰۰ عضو در ۳۴ کشور جهان</span>
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/broadcast/view"
-                className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(251,191,36,0.4)] inline-flex items-center gap-2 justify-center">
-                <Play size={18} fill="black" />
-                پخش زنده
-              </Link>
-              <Link href="/bible"
-                className="px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:border-amber-500/50 hover:bg-white/5 transition-all inline-flex items-center gap-2 justify-center">
-                <BookOpen size={18} />
-                کتاب مقدس
-              </Link>
-            </div>
-          </div>
+          <EventsGlobe
+            locations={GLOBE_LOCATIONS}
+            onSelectLocation={(loc) => setSelectedLocation(loc)}
+          />
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
-            <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
-              <div className="w-1 h-3 rounded-full bg-amber-400"></div>
+          {/* Location info card */}
+          {selectedLocation && (
+            <div dir="rtl" className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20
+                         rounded-xl border border-amber-200/20 bg-[#0B1120]/90
+                         px-5 py-3 text-sm text-white backdrop-blur shadow-xl">
+              <p className="font-bold text-amber-200">{selectedLocation.name}</p>
+              {selectedLocation.time && (
+                <p className="mt-1 text-white/60">{selectedLocation.time}</p>
+              )}
+              <button onClick={() => setSelectedLocation(null)}
+                className="mt-2 text-xs text-white/40 hover:text-white/70">بستن</button>
+            </div>
+          )}
+
+          {/* Stats bar */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 flex justify-center gap-8 pb-3 pointer-events-none">
+            <div className="text-center">
+              <p className="text-amber-400 text-xl font-black">۱۲,۴۰۰+</p>
+              <p className="text-slate-500 text-xs">عضو فعال</p>
+            </div>
+            <div className="text-center">
+              <p className="text-cyan-400 text-xl font-black">۳۴</p>
+              <p className="text-slate-500 text-xs">کشور</p>
+            </div>
+            <div className="text-center">
+              <p className="text-amber-300 text-xl font-black">۱۵۰+</p>
+              <p className="text-slate-500 text-xs">گروه خانگی</p>
             </div>
           </div>
         </section>
 
-        {/* ═══ SCRIPTURE SECTION ═══ */}
-        <section className="py-24 px-6 bg-gradient-to-b from-[#080D1A] to-[#0B1120]">
-          <div className="max-w-4xl mx-auto text-center space-y-16">
-            {[
-              { ref: "یوحنا ۸:۱۲", text: "«من نور جهان هستم. کسی که پیرو من باشد، در تاریکی نخواهد گشت، بلکه نور حیات را خواهد داشت.»" },
-              { ref: "متی ۵:۱۴", text: "«شما نور جهانید. شهری که بر فراز کوهی بنا شده، پنهان نمی‌ماند.»" },
-              { ref: "غلاطیان ۲:۲۰", text: "«با مسیح مصلوب شده‌ام؛ دیگر من زندگی نمی‌کنم، بلکه مسیح در من زندگی می‌کند.»" },
-            ].map((v, i) => (
-              <div key={i} className="group">
-                <p className="text-xl md:text-2xl text-slate-200 leading-relaxed font-serif mb-3">{v.text}</p>
-                <span className="text-amber-400 text-sm font-bold tracking-widest">{v.ref}</span>
-                <div className="w-12 h-0.5 bg-amber-500/30 mx-auto mt-6 group-hover:w-24 transition-all duration-500"></div>
-              </div>
-            ))}
+        {/* 3. Prayer Wall */}
+        <section dir="rtl" className="relative h-[90vh] bg-[#05070E]">
+          <div className="absolute top-8 left-0 right-0 z-10 text-center pointer-events-none">
+            <p className="text-xs tracking-[0.22em] text-[#8B93AA] mb-2">دیوار نوری</p>
+            <h2 className="text-2xl font-black text-amber-100">درخواست‌های دعا</h2>
+            <p className="mt-1 text-sm text-amber-200/50">روی هر نور کلیک کنید تا دعا را بخوانید</p>
           </div>
+          <PrayerWall
+            prayers={prayers}
+            onAddPrayer={handleAddPrayer}
+          />
         </section>
 
-        {/* ═══ STATS — GLOBE SECTION ═══ */}
-        <section className="py-24 px-6 bg-[#0B1120] border-y border-white/5">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-sm mb-4">
-                <Globe size={14} />
-                شبکه بین‌المللی کلیسا
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                پراکنده در سراسر زمین، متحد در یک بدن
-              </h2>
-              <p className="text-slate-400">بخش «دیوار نوری ۳D» در نسخه بعدی فعال می‌شود</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-2xl p-8 text-center hover:border-amber-500/30 transition-colors">
-                <p className="text-amber-400 text-5xl font-black mb-2">۱۲,۴۰۰+</p>
-                <p className="text-slate-400">عضو فعال بین‌المللی</p>
-              </div>
-              <div className="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-2xl p-8 text-center hover:border-cyan-500/30 transition-colors">
-                <p className="text-cyan-400 text-5xl font-black mb-2">۳۴</p>
-                <p className="text-slate-400">کشور تحت پوشش</p>
-              </div>
-              <div className="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-2xl p-8 text-center hover:border-amber-500/30 transition-colors">
-                <p className="text-amber-300 text-5xl font-black mb-2">۱۵۰+</p>
-                <p className="text-slate-400">گروه کوچک خانگی</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ MINISTRIES ═══ */}
-        <section className="bg-[#080D1A] px-6 py-24">
+        {/* 4. Ministries */}
+        <section dir="rtl" className="bg-[#0B1120] px-6 py-24 border-y border-white/5">
           <div className="max-w-7xl mx-auto">
             <h2 className="mb-12 text-center text-3xl font-black text-amber-100">
               {t.ministriesTitle}
@@ -137,30 +128,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══ PRAYER SECTION ═══ */}
-        <section className="relative py-24 px-6 overflow-hidden border-y border-white/5">
-          <img src="/prayer-bg.jpeg" alt="Prayer Background"
-            className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080D1A]/80 via-[#080D1A]/60 to-[#080D1A]/80" />
-          <div className="relative z-10 max-w-2xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm mb-6">
-              <Heart size={14} />
-              دیوار نوری دعا
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              درخواست دعا
-            </h2>
-            <p className="text-slate-400 mb-8">درخواست دعای خود را به جامعه کلیسا ارسال کنید</p>
-            <Link href="/prayers"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold hover:scale-105 transition-transform">
-              <Heart size={16} fill="black" />
-              ارسال درخواست دعا
-            </Link>
-          </div>
-        </section>
-
-        {/* ═══ QUICK ACCESS ═══ */}
-        <section className="px-6 lg:px-12 max-w-7xl mx-auto py-24">
+        {/* 5. Quick Access */}
+        <section dir="rtl" className="px-6 lg:px-12 max-w-7xl mx-auto py-24">
           <div className="flex items-center justify-between mb-12">
             <div className="flex items-center gap-4">
               <div className="w-3 h-10 bg-amber-500/50 rounded-full shadow-[0_0_15px_rgba(251,191,36,0.5)]" />
@@ -181,7 +150,7 @@ export default function HomePage() {
               { title: t.sermons, icon: Video, desc: t.descSermons, link: "/sermons" },
               { title: t.broadcast, icon: Mic, desc: t.descBroadcast, link: "/broadcast" },
             ].map((item, i) => (
-              <Link key={i} href={item.link} className="group relative overflow-hidden rounded-3xl bg-white/5 border border-white/10 p-6 flex flex-col gap-4 hover:border-amber-500/30 transition-all hover:bg-white/10">
+              <Link key={i} href={item.link} className="group rounded-3xl bg-white/5 border border-white/10 p-6 flex flex-col gap-4 hover:border-amber-500/30 transition-all hover:bg-white/10">
                 <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center border border-white/5">
                   <item.icon className="w-6 h-6 text-amber-100/80 group-hover:text-amber-300 transition-colors" />
                 </div>
