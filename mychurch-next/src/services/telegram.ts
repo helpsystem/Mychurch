@@ -92,24 +92,57 @@ export async function uploadToTelegramStorage(
 
   try {
     let fileToSend: any = fileBuffer;
+    let bufferLength = 0;
+    
+    // Determine size and convert to buffer if needed
+    if (Buffer.isBuffer(fileBuffer)) {
+        bufferLength = fileBuffer.length;
+    } else if (fileBuffer instanceof Uint8Array) {
+        bufferLength = fileBuffer.byteLength;
+        fileToSend = Buffer.from(fileBuffer);
+    } else if (typeof fileBuffer === 'string') {
+        bufferLength = 50 * 1024 * 1024; // Treat path strings as large to force MTProto just in case
+        fileToSend = fileBuffer;
+    }
+
+    // --- Fast Path: Bot API for files < 50MB ---
+    if (bufferLength > 0 && bufferLength < 49 * 1024 * 1024) {
+      const { bot } = getBot();
+      const inputFile = new InputFile(fileToSend, fileName);
+      const msg = await bot.api.sendDocument(telegramConfig.STORAGE_CHANNEL_ID, inputFile, {
+          caption: caption || `📁 Archive File: ${fileName}`,
+      });
+
+      if (!msg || !msg.document) {
+          throw new Error("Telegram Bot API did not return document information.");
+      }
+
+      return {
+          fileId: msg.document.file_id, // REAL Bot API file_id!
+          fileUniqueId: msg.document.file_unique_id,
+          messageId: msg.message_id,
+          fileSize: msg.document.file_size,
+      };
+    }
+
+    // --- Fallback: MTProto for large files (>= 50MB) ---
+    const channelId = BigInt(telegramConfig.STORAGE_CHANNEL_ID);
     
     // gramjs needs CustomFile for buffers to know the name
-    if (Buffer.isBuffer(fileBuffer) || fileBuffer instanceof Uint8Array) {
+    if (Buffer.isBuffer(fileToSend) || fileToSend instanceof Uint8Array) {
         const { CustomFile } = await import('telegram/client/uploads');
-        fileToSend = new CustomFile(fileName, fileBuffer.byteLength, "", Buffer.from(fileBuffer));
-    } else if (typeof fileBuffer === 'string') {
-        fileToSend = fileBuffer; // File path
+        fileToSend = new CustomFile(fileName, bufferLength, "", Buffer.from(fileToSend));
     }
 
     const message = await client.sendFile(channelId, {
       file: fileToSend,
-      caption: caption || `📁 Archive File: ${fileName}`,
-      workers: 2, // Parallel upload
+      caption: caption || `📁 Large Archive File: ${fileName}`,
+      workers: 4, // Parallel upload
       forceDocument: true, // IMPORTANT: Prevents images from being converted to photos
     });
 
     if (!message || !message.media || !message.media.document) {
-      throw new Error("Telegram did not return document information.");
+      throw new Error("Telegram MTProto did not return document information.");
     }
 
     const doc = message.media.document;

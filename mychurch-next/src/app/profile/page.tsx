@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import ProfilePageClient from "./ProfilePageClient";
 import { getUserProfile } from "@/actions/user";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 export default async function ProfilePage() {
     const supabase = await createClient();
@@ -24,5 +25,9 @@ export default async function ProfilePage() {
     // Fetch user profile from the DB (synced during login/signup)
     const profile = await getUserProfile(user.email!);
 
-    return <ProfilePageClient isAiAvatarEnabled={isAiAvatarEnabled} initialUser={profile} />;
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center">Loading Profile...</div>}>
+            <ProfilePageClient isAiAvatarEnabled={isAiAvatarEnabled} initialUser={profile} />
+        </Suspense>
+    );
 }

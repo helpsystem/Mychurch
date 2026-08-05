@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js', 'three', '@react-three/fiber', '@react-three/drei'],
+  serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
   env: {
     API_BIBLE_KEY: process.env.API_BIBLE_KEY || 'b27dc6902b00019756980695a12eb0da',
   },
@@ -17,22 +17,12 @@ const nextConfig: NextConfig = {
   turbopack: {},
   webpack: (config: any, { isServer }: { isServer: boolean }) => {
     if (isServer) {
-      // Fixes npm packages that depend on `fs` module
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
         path: false,
         crypto: false,
       };
-
-      // Prevent @react-three/fiber and three.js from being bundled server-side
-      // These packages access browser-only APIs (WebGL, window, etc.)
-      config.externals = [
-        ...(Array.isArray(config.externals) ? config.externals : [config.externals].filter(Boolean)),
-        'three',
-        '@react-three/fiber',
-        '@react-three/drei',
-      ];
     }
     return config;
   },

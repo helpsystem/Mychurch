@@ -9,6 +9,7 @@ import { updateUserProfile } from "@/actions/user";
 import { AddressAutocomplete, type AddressData } from "@/components/profile/AddressAutocomplete";
 import { createClient } from "@/utils/supabase/client";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
     isAiAvatarEnabled: boolean;
@@ -23,6 +24,8 @@ const emptyAddress: AddressData = {
 export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Props) {
     const { language } = useLanguage();
     const isFa = language === "fa";
+    const searchParams = useSearchParams();
+    const completeRequired = searchParams?.get("complete_required") === "true";
 
     // Documents and Requests state
     const [documents, setDocuments] = useState<any[]>([]);
@@ -251,13 +254,28 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                     <CheckCircle className="w-4 h-4" /> {isFa ? "ذخیره شد" : "Saved"}
                                 </span>
                             )}
-                            <button type="submit" disabled={isSaving}
+                            <button type="submit" disabled={isSaving || (completeRequired && !formData.phone)}
                                 className="px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold transition-colors disabled:opacity-50 flex items-center gap-2 shadow-lg shadow-primary/20">
                                 {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
                                 {isFa ? "ذخیره تغییرات" : "Save Changes"}
                             </button>
                         </div>
                     </div>
+
+                    {completeRequired && (
+                        <div className="bg-red-500/10 border border-red-500/50 rounded-2xl p-4 flex items-start gap-3 animate-in slide-in-from-top-4">
+                            <AlertTriangle className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
+                            <div>
+                                <h3 className="text-red-500 font-bold text-lg">{isFa ? "تکمیل پروفایل الزامی است" : "Profile Completion Required"}</h3>
+                                <p className="text-red-400/90 text-sm mt-1">
+                                    {isFa 
+                                        ? "به عنوان مدیر یا رهبر سایت، برای دسترسی به پنل مدیریت باید حتماً شماره تماس (و ترجیحاً آی‌دی تلگرام) خود را وارد کنید." 
+                                        : "As a site administrator or leader, you must provide your phone number (and preferably Telegram ID) to access the admin panel."}
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {/* ── Sidebar */}
                         <div className="lg:col-span-1 space-y-6">

@@ -103,15 +103,17 @@ export default function PrayerWall({
       opacity: 0.5,
     });
     const crossGroup = new THREE.Group();
-    crossGroup.add(
-      new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.12), crossMaterial),
-      Object.assign(
-        new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.12, 0.12), crossMaterial),
-        { position: new THREE.Vector3(0, 0.35, 0) }
-      )
-    );
+
+    const verticalBar = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.12), crossMaterial);
+    crossGroup.add(verticalBar);
+
+    const horizontalBar = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.12, 0.12), crossMaterial);
+    horizontalBar.position.set(0, 0.35, 0); // ✅ correct Three.js API
+    crossGroup.add(horizontalBar);
+
     crossGroup.position.set(0, 0, -2.5);
     scene.add(crossGroup);
+
 
     const raycaster = new THREE.Raycaster();
     raycaster.params.Sprite = { threshold: 0.3 };

@@ -59,6 +59,30 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(url);
     }
 
+    // Profile Completion Check for Admins/Leaders
+    if (isProtected && user) {
+        const { data: profile } = await supabase
+            .from('users')
+            .select('role, phone, telegram_id')
+            .eq('email', user.email)
+            .single();
+
+        if (profile) {
+            const isAdminOrLeader = profile.role === 'Admin' || profile.role === 'Leader';
+            // Enforce that phone is required for leaders/admins
+            const isProfileComplete = Boolean(profile.phone && profile.phone.trim().length > 0);
+
+            if (isAdminOrLeader && !isProfileComplete) {
+                const url = request.nextUrl.clone();
+                const proto = request.headers.get('x-forwarded-proto') || 'http';
+                if (proto === 'https') url.protocol = 'https:';
+                url.pathname = '/profile';
+                url.searchParams.set('complete_required', 'true');
+                return NextResponse.redirect(url);
+            }
+        }
+    }
+
     // 2FA Protection for Admin Panel ONLY (not broadcast)
     if (isAdminRoute && user) {
         const isVerified = request.cookies.get('admin_2fa_verified')?.value === 'true';

@@ -220,21 +220,27 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
 
     if (searchQuery) {
         // Flat display on search
-        displayedFiles = tabFiltered;
+        displayedFiles = tabFiltered.filter(f => f.name !== '.keep');
     } else {
-        // Folder structure display
-        tabFiltered.forEach(f => {
+        // ALWAYS use the unfiltered `files` list to build the folder tree, so empty folders (.keep) are visible!
+        files.forEach(f => {
             const fileFolder = f.folder || "";
-            if (fileFolder === currentFolder) {
-                displayedFiles.push(f);
-            } else if (fileFolder.startsWith(currentFolder)) {
+            if (fileFolder.startsWith(currentFolder)) {
                 // Determine next folder level
                 const remaining = currentFolder ? fileFolder.substring(currentFolder.length + 1) : fileFolder;
                 const nextSlash = remaining.indexOf('/');
                 const nextLevel = nextSlash === -1 ? remaining : remaining.substring(0, nextSlash);
-                if (nextLevel) {
+                if (nextLevel && nextLevel !== currentFolder) {
                     displayedFolders.add(nextLevel);
                 }
+            }
+        });
+        
+        // Populate displayedFiles with the FILTERED files in the current folder, ignoring .keep
+        tabFiltered.forEach(f => {
+            const fileFolder = f.folder || "";
+            if (fileFolder === currentFolder && f.name !== '.keep') {
+                displayedFiles.push(f);
             }
         });
     }
