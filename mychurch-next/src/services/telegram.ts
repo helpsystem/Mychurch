@@ -39,26 +39,35 @@ export async function getMTProtoClient() {
   if (_mtprotoPromise) return _mtprotoPromise;
 
   _mtprotoPromise = (async () => {
-      const apiId = parseInt(process.env.TELEGRAM_API_ID || '');
+      const apiId = parseInt(process.env.TELEGRAM_API_ID || '', 10);
       const apiHash = process.env.TELEGRAM_API_HASH || '';
       const botToken = process.env.TELEGRAM_BOT_TOKEN;
+      const userSession = process.env.TELEGRAM_USER_SESSION || '';
 
-      if (!apiId || !apiHash || !botToken) {
-          throw new Error('TELEGRAM_API_ID, TELEGRAM_API_HASH or TELEGRAM_BOT_TOKEN missing');
+      if (!apiId || !apiHash) {
+          throw new Error('TELEGRAM_API_ID or TELEGRAM_API_HASH missing');
       }
 
       const { TelegramClient } = await import('telegram');
       const { StringSession } = await import('telegram/sessions');
 
-      // Empty string session for bot auth
-      const client = new TelegramClient(new StringSession(''), apiId, apiHash, {
+      // Use user session if available, otherwise empty string for bot auth
+      const session = new StringSession(userSession);
+      const client = new TelegramClient(session, apiId, apiHash, {
           connectionRetries: 3,
           retryDelay: 1000,
       });
 
-      await client.start({
-          botAuthToken: botToken,
-      });
+      if (userSession) {
+          await client.connect();
+      } else {
+          if (!botToken) throw new Error('TELEGRAM_BOT_TOKEN missing for fallback auth');
+          await client.start({
+              botAuthToken: botToken,
+          });
+          // Note: In production, we should ideally save the generated session string here
+          // to prevent future re-logins, but we prioritize the env var session for now.
+      }
 
       _mtprotoClient = client;
       return client;

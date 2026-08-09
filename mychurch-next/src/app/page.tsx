@@ -6,6 +6,7 @@ import { BookOpen, Music, Video, Mic, ArrowLeft, Globe, Heart, Play, Loader2 } f
 import { useLanguage } from "@/providers/LanguageProvider";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
+import { PingPongVideo } from "@/components/ui/PingPongVideo";
 
 type MediaAssets = {
   hero_video?: string;
@@ -44,11 +45,11 @@ export default function HomePage() {
           {/* Video/Image background — loaded from Telegram cloud storage */}
           <div className="absolute inset-0 z-0">
             {media.hero_video ? (
-              <video autoPlay loop muted playsInline
-                poster={media.hero_fallback || undefined}
-                className="w-full h-full object-cover opacity-60">
-                <source src={media.hero_video} type="video/mp4" />
-              </video>
+              <PingPongVideo 
+                src={media.hero_video} 
+                poster={media.hero_fallback || undefined} 
+                className="w-full h-full object-cover opacity-60" 
+              />
             ) : media.hero_fallback ? (
               <img src={media.hero_fallback} alt="" className="w-full h-full object-cover opacity-60" />
             ) : (

@@ -31,7 +31,7 @@ export default function Hero() {
     <div ref={containerRef} className="relative w-full h-[400vh] bg-bgDark" id="hero" dir="rtl">
       {/* بخش چسبان (Sticky) که در طول ۴۰۰vh ثابت می‌ماند */}
       <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
-        
+
         {/* پس‌زمینه ویدیویی لوگوی کلیسا */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video

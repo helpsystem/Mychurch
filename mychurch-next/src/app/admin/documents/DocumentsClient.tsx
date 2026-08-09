@@ -1348,7 +1348,7 @@ export function BlankLetterheadDoc({
 // ═══════════════════════════════════════════════════════════════════════════════
 // MAIN PAGE
 // ═══════════════════════════════════════════════════════════════════════════════
-const inputCls = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50 transition-colors placeholder:text-muted-foreground/50";
+const docInputCls = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary/50 transition-colors placeholder:text-muted-foreground/50";
 
 export default function ChurchDocumentsPage() {
   const { language } = useLanguage();
@@ -2553,7 +2553,7 @@ export default function ChurchDocumentsPage() {
                           value={settingsDraft[f.key] as string}
                           onChange={e => setSettingsDraft(s => ({ ...s, [f.key]: e.target.value }))}
                           title={f.label}
-                          className={inputCls}
+                          className={docInputCls}
                         />
                       </div>
                     ))}
@@ -2630,7 +2630,7 @@ export default function ChurchDocumentsPage() {
                                   [langTab === "fa" ? "designFa" : "designEn"]: { ...s[langTab === "fa" ? "designFa" : "designEn"], fontFamily: val }
                                 }));
                               }}
-                              className={inputCls}
+                              className={docInputCls}
                             >
                               <option value="'Vazirmatn', sans-serif">Vazirmatn (Default Persian)</option>
                               <option value="Inter, sans-serif">Inter (Default English)</option>
@@ -2661,7 +2661,7 @@ export default function ChurchDocumentsPage() {
                                     [langTab === "fa" ? "designFa" : "designEn"]: { ...s[langTab === "fa" ? "designFa" : "designEn"], [f.key]: val }
                                   }));
                                 }}
-                                className={inputCls}
+                                className={docInputCls}
                               />
                             </div>
                           ))}
@@ -2744,7 +2744,7 @@ export default function ChurchDocumentsPage() {
                             <input
                               value={settingsDraft.signatoryName}
                               onChange={e => setSettingsDraft(s => ({ ...s, signatoryName: e.target.value }))}
-                              className={inputCls}
+                              className={docInputCls}
                             />
                           </div>
                           <div>
@@ -2752,7 +2752,7 @@ export default function ChurchDocumentsPage() {
                             <input
                               value={settingsDraft.signatoryTitle}
                               onChange={e => setSettingsDraft(s => ({ ...s, signatoryTitle: e.target.value }))}
-                              className={inputCls}
+                              className={docInputCls}
                             />
                           </div>
                           <div className="col-span-2">
@@ -2762,7 +2762,7 @@ export default function ChurchDocumentsPage() {
                                 value={settingsDraft.signatureImage}
                                 onChange={e => setSettingsDraft(s => ({ ...s, signatureImage: e.target.value }))}
                                 placeholder="https://..."
-                                className={inputCls}
+                                className={docInputCls}
                               />
                                <div className="flex items-center gap-2 px-3 border border-white/10 rounded-xl glass">
                                   <input
@@ -2984,12 +2984,12 @@ export default function ChurchDocumentsPage() {
                   <div>
                     <label className="text-xs text-muted-foreground mb-1 flex items-center gap-1"><User className="w-3 h-3" />{isRtl ? "نام گیرنده" : "Recipient Name"}</label>
                     <input value={recipientName} onChange={e => setRecipientName(e.target.value)}
-                      placeholder={isRtl ? "نام و نام خانوادگی" : "Full Name"} title="Recipient Name" className={inputCls} />
+                      placeholder={isRtl ? "نام و نام خانوادگی" : "Full Name"} title="Recipient Name" className={docInputCls} />
                   </div>
                   <div>
                     <label className="text-xs text-muted-foreground mb-1 flex items-center gap-1"><Building2 className="w-3 h-3" />{isRtl ? "سازمان" : "Agency / Organization"}</label>
                     <input value={letterTo} onChange={e => setLetterTo(e.target.value)}
-                      placeholder="USCIS, IRS, DHS..." title="Organization" className={inputCls} />
+                      placeholder="USCIS, IRS, DHS..." title="Organization" className={docInputCls} />
                   </div>
                   <div className="col-span-2">
                     <label className="text-xs text-muted-foreground mb-1 flex items-center gap-1"><MapPin className="w-3 h-3" />{isRtl ? "آدرس گیرنده" : "Recipient Address"}</label>
@@ -2997,13 +2997,13 @@ export default function ChurchDocumentsPage() {
                       value={letterToAddress}
                       onChange={setLetterToAddress}
                       placeholder={isRtl ? "آدرس (شروع به تایپ کنید...)" : "Start typing address..."}
-                      className={inputCls}
+                      className={docInputCls}
                     />
                   </div>
                   <div className="col-span-2">
                     <label className="text-xs text-muted-foreground mb-1 flex items-center gap-1"><FileText className="w-3 h-3" />{isRtl ? "موضوع نامه" : "Subject / RE:"}</label>
                     <input value={letterSubject} onChange={e => setLetterSubject(e.target.value)}
-                      placeholder="RE: ..." title="Subject" className={inputCls} />
+                      placeholder="RE: ..." title="Subject" className={docInputCls} />
                   </div>
                 </div>
 
@@ -3255,30 +3255,30 @@ export default function ChurchDocumentsPage() {
                 <div className="col-span-2">
                   <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "نام اهداکننده" : "Donor Full Name"}</label>
                   <input value={receipt.donorName as string} onChange={e => setReceipt(r => ({ ...r, donorName: e.target.value }))}
-                    placeholder="John Smith" title="Donor name" className={inputCls} />
+                    placeholder="John Smith" title="Donor name" className={docInputCls} />
                 </div>
                 <div className="col-span-2">
                   <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "آدرس اهداکننده" : "Donor Address"}</label>
                   <AddressInput value={receipt.donorAddress as string} onChange={v => setReceipt(r => ({ ...r, donorAddress: v }))}
-                    placeholder="123 Main St, City, State ZIP" className={inputCls} />
+                    placeholder="123 Main St, City, State ZIP" className={docInputCls} />
                 </div>
                 <div>
                   <label className="text-xs text-muted-foreground mb-1 flex items-center gap-1"><Calendar className="w-3 h-3" />{isRtl ? "تاریخ" : "Date"}</label>
                   <input type="date" value={receipt.date as string} onChange={e => setReceipt(r => ({ ...r, date: e.target.value }))}
-                    title="Date" className={inputCls} />
+                    title="Date" className={docInputCls} />
                 </div>
                 {activeTab === "receipts" && (
                   <div>
                     <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "مبلغ ($)" : "Amount ($)"}</label>
                     <input type="number" value={receipt.amount as number} onChange={e => setReceipt(r => ({ ...r, amount: parseFloat(e.target.value) || 0 }))}
-                      title="Amount" className={inputCls} />
+                      title="Amount" className={docInputCls} />
                   </div>
                 )}
                 {activeTab === "receipts" && (<>
                   <div>
                     <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "روش پرداخت" : "Payment Method"}</label>
                     <select value={receipt.method as string} onChange={e => setReceipt(r => ({ ...r, method: e.target.value }))}
-                      title="Payment method" className={`${inputCls} bg-zinc-950`}>
+                      title="Payment method" className={`${docInputCls} bg-zinc-950`}>
                       <option value="cash">💵 Cash / نقد</option>
                       <option value="check">📝 Check / چک</option>
                       <option value="card">💳 Card / کارت</option>
@@ -3288,14 +3288,14 @@ export default function ChurchDocumentsPage() {
                     <div>
                       <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "شماره چک" : "Check #"}</label>
                       <input value={receipt.checkNumber as string} onChange={e => setReceipt(r => ({ ...r, checkNumber: e.target.value }))}
-                        placeholder="#1234" title="Check number" className={inputCls} />
+                        placeholder="#1234" title="Check number" className={docInputCls} />
                     </div>
                   )}
                 </>)}
                 <div className="col-span-2">
                   <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "هدف / توضیحات" : "Purpose / Description"}</label>
                   <textarea value={receipt.description as string} onChange={e => setReceipt(r => ({ ...r, description: e.target.value }))}
-                    rows={2} title="Description" className={`${inputCls} resize-none`} />
+                    rows={2} title="Description" className={`${docInputCls} resize-none`} />
                 </div>
               </div>
               {/* In-Kind Items */}
@@ -3400,11 +3400,11 @@ export default function ChurchDocumentsPage() {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "صورتحساب به (نام سازمان)" : "Bill To (Organization)"}</label>
-                      <input value={invoiceTo} onChange={e => setInvoiceTo(e.target.value)} placeholder="Wait, you said DEJ TV?" className={inputCls} />
+                      <input value={invoiceTo} onChange={e => setInvoiceTo(e.target.value)} placeholder="Wait, you said DEJ TV?" className={docInputCls} />
                     </div>
                     <div>
                       <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "تاریخ فاکتور" : "Invoice Date"}</label>
-                      <input type="date" value={invoiceDate} onChange={e => setInvoiceDate(e.target.value)} className={inputCls} />
+                      <input type="date" value={invoiceDate} onChange={e => setInvoiceDate(e.target.value)} className={docInputCls} />
                     </div>
                   </div>
                   <div>
@@ -3413,12 +3413,12 @@ export default function ChurchDocumentsPage() {
                       value={invoiceAddress}
                       onChange={setInvoiceAddress}
                       placeholder={isRtl ? "آدرس صورتحساب (شروع به تایپ کنید...)" : "Start typing address..."}
-                      className={inputCls}
+                      className={docInputCls}
                     />
                   </div>
                   <div>
                     <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "نام شخص / سازمان (پیمانکار)" : "Name of Freelancer / Organization"}</label>
-                    <input value={invoiceName} onChange={e => setInvoiceName(e.target.value)} placeholder="John Doe" className={inputCls} />
+                    <input value={invoiceName} onChange={e => setInvoiceName(e.target.value)} placeholder="John Doe" className={docInputCls} />
                   </div>
 
                   <div className="pt-4 border-t border-white/10">
@@ -3428,7 +3428,7 @@ export default function ChurchDocumentsPage() {
                     <div className="relative">
                        <textarea 
                            value={aiInvoiceInput} onChange={e => setAiInvoiceInput(e.target.value)}
-                           className={`${inputCls} pr-12`} rows={3}
+                           className={`${docInputCls} pr-12`} rows={3}
                            placeholder={isRtl ? "لیست کارها را اینجا پیست کنید (مثال: ۲ تا ویدیو جمعا ۱۰۰ دلار)" : "Paste list of works here..."}
                        ></textarea>
                        <div className="absolute top-6 right-2">
@@ -3462,12 +3462,12 @@ export default function ChurchDocumentsPage() {
 
                   <div className="pt-4 border-t border-white/10">
                     <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "توضیحات فاکتور (اختیاری)" : "Invoice Notes (Optional)"}</label>
-                    <textarea value={invoiceNotes} onChange={e => setInvoiceNotes(e.target.value)} rows={2} className={`${inputCls} resize-none`} placeholder={isRtl ? "توضیحات اضافه برای مشتری..." : "Additional notes for the client..."} />
+                    <textarea value={invoiceNotes} onChange={e => setInvoiceNotes(e.target.value)} rows={2} className={`${docInputCls} resize-none`} placeholder={isRtl ? "توضیحات اضافه برای مشتری..." : "Additional notes for the client..."} />
                   </div>
 
                   <div className="pt-4 border-t border-white/10">
                     <label className="text-xs text-muted-foreground mb-1 block">{isRtl ? "کیف پول تتر (اختیاری)" : "Tether Wallet (TRC20 - Optional)"}</label>
-                    <input dir="ltr" value={invoiceWallet} onChange={e => setInvoiceWallet(e.target.value)} placeholder="T..." className={`${inputCls} font-mono text-xs`} />
+                    <input dir="ltr" value={invoiceWallet} onChange={e => setInvoiceWallet(e.target.value)} placeholder="T..." className={`${docInputCls} font-mono text-xs`} />
                   </div>
 
                   <div className="flex gap-3 mt-4 flex-wrap">
