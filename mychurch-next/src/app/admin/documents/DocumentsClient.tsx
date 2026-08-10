@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import QRCode from "qrcode";
+import BaptismCertificatesTab from "./BaptismCertificatesTab";
 
 export interface DocHistoryItem {
   id: string;
@@ -1603,7 +1604,7 @@ export default function ChurchDocumentsPage() {
 
 
   // Tab
-  const [activeTab, setActiveTab] = useState<"letters" | "receipts" | "inkind" | "invoice" | "history" | "intake">("letters");
+  const [activeTab, setActiveTab] = useState<"letters" | "receipts" | "inkind" | "invoice" | "history" | "intake" | "baptism">("letters");
 
   // ── Folder & Multi-select state ──────────────────────────────────────────────
   const DEFAULT_FOLDERS = ["Inbox", "Immigration", "Tax", "Membership", "Donation", "Legal", "General", "Starred"];
@@ -2852,6 +2853,7 @@ export default function ChurchDocumentsPage() {
             { id: "invoice", icon: <DollarSign className="w-4 h-4" />, en: "Invoice", fa: "فاکتور / هزینه" },
             { id: "intake", icon: <Inbox className="w-4 h-4" />, en: "Requests", fa: "درخواست‌ها",
               badge: intakeRequests.filter(r => r.status === "submitted").length || undefined },
+            { id: "baptism", icon: <CheckSquare className="w-4 h-4" />, en: "Baptism Certificates", fa: "گواهی تعمید" },
             { id: "history", icon: <HistoryIcon className="w-4 h-4" />, en: "Archive", fa: "آرشیو و پوشه‌ها" },
           ].map(tab => (
             <button key={tab.id} onClick={() => { setEditingDocId(null); setActiveTab(tab.id as any); }}
@@ -4054,6 +4056,11 @@ export default function ChurchDocumentsPage() {
               </div>
             </div>
           </div>
+        )}
+
+        {/* ══ BAPTISM CERTIFICATES TAB ══ */}
+        {activeTab === "baptism" && (
+          <BaptismCertificatesTab />
         )}
 
         {/* Hidden print container for Blank Letterhead — works regardless of active tab */}

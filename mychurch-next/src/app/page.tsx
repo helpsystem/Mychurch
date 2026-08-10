@@ -19,7 +19,13 @@ type MediaAssets = {
 
 export default function HomePage() {
   const { t } = useLanguage();
-  const [media, setMedia] = useState<MediaAssets>({});
+  const [media, setMedia] = useState<MediaAssets>({
+    hero_fallback: "/hero-fallback.jpeg",
+    globe_bg: "/globe-bg.jpeg",
+    prayer_bg: "/prayer-bg.jpeg",
+    live_stage: "/live-stage.jpeg",
+    bible_cover: "/bible-cover.jpeg"
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

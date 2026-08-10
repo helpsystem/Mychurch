@@ -2,10 +2,19 @@ import type { Metadata, Viewport } from "next";
 import React, { Suspense } from "react";
 import "./globals.css";
 import { LanguageProvider } from "@/providers/LanguageProvider";
+import { Inter, Vazirmatn, Lalezar } from "next/font/google";
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const vazirmatn = Vazirmatn({ subsets: ['arabic', 'latin'], variable: '--font-vazirmatn', display: 'swap' });
+const lalezar = Lalezar({ weight: ['400'], subsets: ['arabic'], variable: '--font-lalezar', display: 'swap' });
 
 export const metadata: Metadata = {
   title: "MyChurch | Broadcast Console & Platform",
   description: "The Iranian Christian Church of Washington D.C. - Advanced presentation and media management platform",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -40,12 +49,12 @@ export default async function RootLayout({
   const realRole = await getRealUserRole();
   const currentRole = await getUserRole();
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning className="dark">
+    <html lang="fa" dir="rtl" suppressHydrationWarning className={`dark ${inter.variable} ${vazirmatn.variable} ${lalezar.variable}`}>
       <head>
-        {/* Runtime Google Fonts to prevent Next.js build crash on VPN drop */}
+        {/* We use next/font/google for primary fonts, but keep runtime for secondary fonts just in case */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Vazirmatn:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Lalezar&family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
         
         <script
           dangerouslySetInnerHTML={{
@@ -60,14 +69,11 @@ export default async function RootLayout({
         />
         <style dangerouslySetInnerHTML={{ __html: `
           :root {
-            --font-inter: 'Roboto', 'Inter', sans-serif;
             --font-roboto: 'Roboto', sans-serif;
-            --font-vazirmatn: 'Vazirmatn', sans-serif;
             --font-naskh: 'Noto Naskh Arabic', serif;
-            --font-homa: 'B Homa', 'BHoma', 'Homa', 'Vazirmatn', sans-serif;
-            --font-sans: 'Vazirmatn', sans-serif;
+            --font-homa: 'B Homa', 'BHoma', 'Homa', var(--font-vazirmatn), sans-serif;
+            --font-sans: var(--font-vazirmatn), sans-serif;
             --font-nastaliq: 'Noto Nastaliq Urdu', serif;
-            --font-lalezar: 'Lalezar', cursive;
             --font-playfair: 'Playfair Display', serif;
             --font-merriweather: 'Merriweather', serif;
           }
