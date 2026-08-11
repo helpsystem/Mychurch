@@ -60,6 +60,29 @@ if (Test-Path $LOCAL_ENV_PATH) {
     scp -o StrictHostKeyChecking=no $LOCAL_ENV_PATH "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/.env.local"
 }
 
+# Create public directory on VPS if not exists
+ssh -o StrictHostKeyChecking=no "${VPS_USER}@${VPS_HOST}" "mkdir -p ${VPS_NEXT_PATH}/public/images ${VPS_NEXT_PATH}/public/fonts"
+
+# Upload essential public files (excluding heavy media like mp3/ppsx)
+$essentialFiles = @(
+    "certificate-bg.jpg",
+    "certificate-bg.webp",
+    "hero.mp4",
+    "logo.png",
+    "logo-transparent.png",
+    "hero-fallback.jpeg",
+    "globe-bg.jpeg",
+    "prayer-bg.jpeg",
+    "live-stage.jpeg",
+    "bible-cover.jpeg"
+)
+
+foreach ($file in $essentialFiles) {
+    if (Test-Path "public\$file") {
+        scp -o StrictHostKeyChecking=no "public\$file" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/public/"
+    }
+}
+
 # Upload package files for clean npm ci
 scp -o StrictHostKeyChecking=no "package.json" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/package.json"
 scp -o StrictHostKeyChecking=no "package-lock.json" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/package-lock.json"
