@@ -2,11 +2,13 @@ import type { Metadata, Viewport } from "next";
 import React, { Suspense } from "react";
 import "./globals.css";
 import { LanguageProvider } from "@/providers/LanguageProvider";
-import { Inter, Vazirmatn, Lalezar } from "next/font/google";
+import { Inter, Vazirmatn, Lalezar, Cinzel, Cormorant_Garamond } from "next/font/google";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const vazirmatn = Vazirmatn({ subsets: ['arabic', 'latin'], variable: '--font-vazirmatn', display: 'swap' });
 const lalezar = Lalezar({ weight: ['400'], subsets: ['arabic'], variable: '--font-lalezar', display: 'swap' });
+const cinzel = Cinzel({ subsets: ['latin'], weight: ['700'], variable: '--font-cinzel', display: 'swap' });
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '600', '700'], variable: '--font-cormorant', display: 'swap' });
 
 export const metadata: Metadata = {
   title: "MyChurch | Broadcast Console & Platform",
@@ -49,7 +51,7 @@ export default async function RootLayout({
   const realRole = await getRealUserRole();
   const currentRole = await getUserRole();
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning className={`dark ${inter.variable} ${vazirmatn.variable} ${lalezar.variable}`}>
+    <html lang="fa" dir="rtl" suppressHydrationWarning className={`dark ${inter.variable} ${vazirmatn.variable} ${lalezar.variable} ${cinzel.variable} ${cormorant.variable}`}>
       <head>
         {/* We use next/font/google for primary fonts, but keep runtime for secondary fonts just in case */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
