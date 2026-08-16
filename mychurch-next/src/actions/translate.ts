@@ -57,11 +57,14 @@ export async function enhanceText(text: string, language: 'en' | 'fa') {
     }
 }
 
+import { logTranslationUsage } from "@/lib/translationTracker";
+
 /**
  * Robust Multi-Engine AI Translator:
- * Tier 1: Nvidia NIM API (Llama 3.1 70B)
- * Tier 2: Google Gemini 1.5 Flash API
- * Tier 3: Google Translate Public API Endpoint (Failproof Emergency Fallback)
+ * Tier 1: Microsoft Azure Translator (Lightning fast - Free 2M chars/month)
+ * Tier 2: Nvidia NIM API (Llama 3.1 70B)
+ * Tier 3: Google Gemini 1.5 Flash API
+ * Tier 4: Google Translate Public API Endpoint (Failproof Emergency Fallback)
  */
 export async function nvidiaTranslateText(text: string, fromLang: string, toLang: string) {
     if (!text || text.trim() === '') {
@@ -69,8 +72,43 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
     }
 
     const cleanText = text.trim();
+    const charCount = cleanText.length;
 
-    // ── Tier 1: Nvidia NIM API (Llama 3.1 70B Instruct) ──
+    // ── Tier 1: Microsoft Azure Cognitive Translator ──
+    const azureKey = process.env.AZURE_TRANSLATOR_KEY;
+    const azureRegion = process.env.AZURE_TRANSLATOR_REGION;
+    if (azureKey && azureRegion) {
+        try {
+            const endpoint = 'https://api.cognitive.microsofttranslator.com/translate';
+            let url = `${endpoint}?api-version=3.0&to=${encodeURIComponent(toLang)}`;
+            if (fromLang) {
+                url += `&from=${encodeURIComponent(fromLang)}`;
+            }
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Ocp-Apim-Subscription-Key': azureKey,
+                    'Ocp-Apim-Subscription-Region': azureRegion,
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify([{ text: cleanText }]),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const translatedText = data?.[0]?.translations?.[0]?.text?.trim();
+                if (translatedText) {
+                    logTranslationUsage(charCount, 'azure', fromLang, toLang).catch(console.error);
+                    return { success: true, text: translatedText, engine: "Microsoft Azure" };
+                }
+            }
+        } catch (azureErr) {
+            console.warn("[translateAction] Azure Translator error:", azureErr);
+        }
+    }
+
+    // ── Tier 2: Nvidia NIM API (Llama 3.1 70B Instruct) ──
     const nvidiaApiKey = process.env.NVIDIA_API_KEY;
     if (nvidiaApiKey) {
         try {
@@ -107,7 +145,7 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
                 const data = await response.json();
                 const translatedText = data.choices?.[0]?.message?.content?.trim();
                 if (translatedText) {
-                    console.log("[nvidiaTranslateText] Successfully translated via Nvidia Llama 3.1");
+                    logTranslationUsage(charCount, 'nvidia_llama', fromLang, toLang).catch(console.error);
                     return { success: true, text: translatedText, engine: "Nvidia Llama 3.1" };
                 }
             } else {

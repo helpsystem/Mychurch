@@ -61,6 +61,11 @@ export async function initializeWorshipDB() {
             
             ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS is_verified BOOLEAN DEFAULT FALSE;
             ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS timing_data JSONB;
+            ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS telegram_file_id VARCHAR(255);
+            ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS telegram_message_id BIGINT;
+            ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS audio_health_status VARCHAR(20) DEFAULT 'unknown';
+            ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS audio_health_checked_at TIMESTAMP WITH TIME ZONE;
+            ALTER TABLE church_worship_songs ADD COLUMN IF NOT EXISTS audio_health_error TEXT;
         `);
         console.log('[Action] Worship DB initialized');
     } catch (e) {

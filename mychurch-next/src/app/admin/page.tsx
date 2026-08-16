@@ -2,10 +2,12 @@ import React from "react";
 import {
     Users, LayoutTemplate, Activity, Server,
     ArrowRight, CheckCircle2, ShieldAlert, Tags, Info,
-    Cpu, Database, ShieldCheck, Mail, Zap, RefreshCw, Layers
+    Cpu, Database, ShieldCheck, Mail, Zap, RefreshCw, Layers,
+    Languages, Sparkles, BarChart3, ArrowUpRight
 } from "lucide-react";
 import { getDashboardStats } from "@/actions/dashboard";
 import Link from "next/link";
+import LiveTranslator from "@/components/ui/LiveTranslator";
 
 export default async function AdminDashboard() {
     const stats = await getDashboardStats();
@@ -71,6 +73,105 @@ export default async function AdminDashboard() {
                         </div>
                     </div>
                 ))}
+            </div>
+
+            {/* Microsoft Azure & AI Translation Quota & Token Monitor */}
+            <div className="bg-gradient-to-br from-neutral-900 via-neutral-900/95 to-neutral-950 border border-amber-500/20 rounded-[2rem] p-6 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-5">
+                    <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 shadow-lg shadow-amber-500/10">
+                            <Languages className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <div className="flex items-center gap-2">
+                                <h3 className="text-xl font-bold text-white">مانیتورینگ مصرف توکن‌ها و سهمیه مایکروسافت آژور (Azure Translator)</h3>
+                                <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">پلن رایگان F0 فعال</span>
+                            </div>
+                            <p className="text-xs text-slate-400 mt-1">مدیریت مصرف سهمیه ۲,۰۰۰,۰۰۰ کاراکتر ماهانه رایگان مایکروسافت همراه با ذخیره و رهگیری دقیق در دیتابیس.</p>
+                        </div>
+                    </div>
+
+                    <Link
+                        href="/admin/live-translator"
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 text-black font-bold text-xs hover:bg-amber-400 transition-all shadow-md shadow-amber-500/20"
+                    >
+                        <span>مترجم زنده</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+                </div>
+
+                {/* Quota Progress Bar & Stats Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-6 items-center">
+                    {/* Left: Live Gauge & Progress */}
+                    <div className="lg:col-span-2 space-y-4 bg-black/40 border border-white/5 rounded-2xl p-5">
+                        <div className="flex justify-between items-end">
+                            <div>
+                                <span className="text-xs text-slate-400 block font-medium">مصرف کاراکتر در این ماه:</span>
+                                <span className="text-3xl font-black text-white font-mono mt-1 block">
+                                    {(stats.translationStats?.monthlyChars || 0).toLocaleString()} <span className="text-sm font-normal text-slate-400">/ ۲,۰۰۰,۰۰۰ کاراکتر</span>
+                                </span>
+                            </div>
+                            <div className="text-left">
+                                <span className={`text-2xl font-black font-mono ${(stats.translationStats?.monthlyPercent || 0) > 85 ? 'text-red-400' : 'text-amber-400'}`}>
+                                    {stats.translationStats?.monthlyPercent || 0}%
+                                </span>
+                                <span className="text-[11px] text-slate-400 block">درصد مصرف ماهانه</span>
+                            </div>
+                        </div>
+
+                        {/* Visual Progress Bar */}
+                        <div className="w-full h-3.5 rounded-full bg-white/5 border border-white/10 p-0.5 overflow-hidden">
+                            <div
+                                className={`h-full rounded-full transition-all duration-1000 ${
+                                    (stats.translationStats?.monthlyPercent || 0) > 85
+                                        ? 'bg-gradient-to-r from-amber-500 to-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)]'
+                                        : 'bg-gradient-to-r from-emerald-500 via-amber-400 to-amber-500 shadow-[0_0_12px_rgba(245,166,35,0.4)]'
+                                }`}
+                                style={{ width: `${Math.max(2, stats.translationStats?.monthlyPercent || 0)}%` }}
+                            />
+                        </div>
+
+                        <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
+                            <span className="text-emerald-400 font-semibold">
+                                {(stats.translationStats?.remainingChars || 2000000).toLocaleString()} کاراکتر رایگان باقیمانده تا تمدید ماهانه
+                            </span>
+                            <span>تمدید خودکار اول هر ماه میلادی</span>
+                        </div>
+                    </div>
+
+                    {/* Right: Quick Insights */}
+                    <div className="grid grid-cols-2 gap-3">
+                        <div className="p-4 rounded-2xl bg-black/40 border border-white/5 text-center space-y-1">
+                            <span className="text-[11px] text-slate-400 block font-medium">مصرف امروز</span>
+                            <span className="text-2xl font-black text-amber-400 font-mono block">
+                                {(stats.translationStats?.todayChars || 0).toLocaleString()}
+                            </span>
+                            <span className="text-[10px] text-slate-500">کاراکتر ترجمه شده</span>
+                        </div>
+
+                        <div className="p-4 rounded-2xl bg-black/40 border border-white/5 text-center space-y-1">
+                            <span className="text-[11px] text-slate-400 block font-medium">کل درخواست‌ها</span>
+                            <span className="text-2xl font-black text-blue-400 font-mono block">
+                                {(stats.translationStats?.totalRequests || 0).toLocaleString()}
+                            </span>
+                            <span className="text-[10px] text-slate-500">ریکوئست ثبت شده</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Embedded Live Translator Tool in Dashboard */}
+                <div className="mt-6 pt-5 border-t border-white/5">
+                    <div className="mb-3 flex items-center justify-between">
+                        <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                            مترجم سریع لحظه‌ای (تست مستقیم آژور و ثبت کاراکترها)
+                        </span>
+                        <span className="text-[11px] text-slate-500 font-mono">Debounce: 450ms Active</span>
+                    </div>
+                    <LiveTranslator />
+                </div>
             </div>
 
             {/* Middle Section: System Service Health & Live Monitor */}

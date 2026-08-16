@@ -49,19 +49,22 @@ export const CertificateTemplate = forwardRef<HTMLDivElement, Props>(({ data }, 
   }
 
   return (
-    <div
-      ref={ref}
-      // A4 Landscape dimension 1123x794 at 96 DPI
-      className="bg-white text-slate-900 relative shadow-2xl mx-auto overflow-hidden print:shadow-none select-none"
-      style={{ 
-        width: "1123px", 
-        height: "794px", 
-        // Assumes the user copies the blank template to public/certificate-bg.jpg or .webp
-        backgroundImage: "url('/certificate-bg.jpg')",
-        backgroundSize: "100% 100%",
-        backgroundRepeat: "no-repeat"
-      }}
-    >
+    <>
+      <style>{`
+        @media print {
+          @page { size: A4 landscape; margin: 0; }
+          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+      `}</style>
+      <div
+        ref={ref}
+        // A4 Landscape dimension 1123x794 at 96 DPI
+        className="text-slate-900 relative shadow-2xl mx-auto overflow-hidden print:shadow-none select-none bg-[url('/certificate-bg.jpg')] bg-[length:100%_100%] bg-no-repeat print:bg-none print:bg-transparent"
+        style={{ 
+          width: "1123px", 
+          height: "794px", 
+        }}
+      >
       {/* 
         The design has specific coordinates as requested by the user.
         We map the data exactly over the blank lines. 
@@ -168,6 +171,7 @@ export const CertificateTemplate = forwardRef<HTMLDivElement, Props>(({ data }, 
       </div>
 
     </div>
+    </>
   );
 });
 

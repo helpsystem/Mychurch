@@ -63,30 +63,53 @@ if (Test-Path $LOCAL_ENV_PATH) {
 # Create public directory on VPS if not exists
 ssh -o StrictHostKeyChecking=no "${VPS_USER}@${VPS_HOST}" "mkdir -p ${VPS_NEXT_PATH}/public/images ${VPS_NEXT_PATH}/public/fonts"
 
-# Upload essential public files (excluding heavy media like mp3/ppsx)
+# Ensure latest Hero video is synced from Gallery
+$sourceHeroVideo = "D:\Windows.old\Users\Sami\Desktop\Iran Church DC\GALLERY\3D web church\Hero(2).mp4"
+if (Test-Path $sourceHeroVideo) {
+    Write-Host "  Syncing new Hero video: Hero(2).mp4 -> public\hero.mp4" -ForegroundColor Cyan
+    Copy-Item -Path $sourceHeroVideo -Destination "public\hero.mp4" -Force
+}
+
+# Ensure favicon and apple-touch-icon are generated from logo.png
+if (Test-Path "public\logo.png") {
+    Copy-Item "public\logo.png" "public\favicon.ico" -Force
+    Copy-Item "public\logo.png" "public\apple-touch-icon.png" -Force
+}
+
+# Upload essential PUBLIC files
 $essentialFiles = @(
     "certificate-bg.jpg",
     "certificate-bg.webp",
     "hero.mp4",
     "logo.png",
     "logo-transparent.png",
+    "favicon.ico",
+    "apple-touch-icon.png",
     "hero-fallback.jpeg",
     "globe-bg.jpeg",
     "prayer-bg.jpeg",
     "live-stage.jpeg",
-    "bible-cover.jpeg"
+    "bible-cover.jpeg",
+    "grid.svg"
 )
 
 foreach ($file in $essentialFiles) {
     if (Test-Path "public\$file") {
+        Write-Host "  Uploading: $file" -ForegroundColor Gray
         scp -o StrictHostKeyChecking=no "public\$file" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/public/"
     }
 }
 
-# Upload package files for clean npm ci
-scp -o StrictHostKeyChecking=no "package.json" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/package.json"
-scp -o StrictHostKeyChecking=no "package-lock.json" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/package-lock.json"
-scp -o StrictHostKeyChecking=no "socket-server.js" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/socket-server.js"
+# Upload images subfolder (logos, leader photos - light assets)
+if (Test-Path "public\images") {
+    scp -o StrictHostKeyChecking=no -r "public\images" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/public/"
+}
+
+# Upload config and server files
+scp -o StrictHostKeyChecking=no "package.json"       "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/package.json"
+scp -o StrictHostKeyChecking=no "package-lock.json"  "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/package-lock.json"
+scp -o StrictHostKeyChecking=no "next.config.ts"     "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/next.config.ts"
+scp -o StrictHostKeyChecking=no "socket-server.js"   "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/socket-server.js"
 
 Write-Host "Upload complete." -ForegroundColor Green
 

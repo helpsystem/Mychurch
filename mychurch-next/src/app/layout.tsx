@@ -1,3 +1,4 @@
+import "@/lib/react-polyfill";
 import type { Metadata, Viewport } from "next";
 import React, { Suspense } from "react";
 import "./globals.css";
@@ -11,16 +12,42 @@ const cinzel = Cinzel({ subsets: ['latin'], weight: ['700'], variable: '--font-c
 const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '600', '700'], variable: '--font-cormorant', display: 'swap' });
 
 export const metadata: Metadata = {
-  title: "MyChurch | Broadcast Console & Platform",
-  description: "The Iranian Christian Church of Washington D.C. - Advanced presentation and media management platform",
+  metadataBase: new URL("https://www.iranianchurchdc.com"),
+  title: {
+    default: "کلیسای مسیحی ایرانیان واشنگتن دی‌سی | Iranian Christian Church of D.C.",
+    template: "%s | کلیسای مسیحی ایرانیان واشنگتن",
+  },
+  description: "وب‌سایت رسمی کلیسای مسیحی ایرانیان واشنگتن دی‌سی — پخش زنده جلسات عبادتی یکشنبه‌ها، سرودهای پرستشی، کتاب مقدس به زبان فارسی و انگلیسی، مواعظ و دعا.",
+  keywords: ["کلیسای ایرانیان واشنگتن", "کلیسای مسیحی ایرانیان", "کتاب مقدس فارسی", "سرود پرستشی", "پخش زنده کلیسا", "Iranian Christian Church DC", "Persian Church Washington"],
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/logo-transparent.png", sizes: "32x32", type: "image/png" },
+      { url: "/logo.png", sizes: "192x192", type: "image/png" },
+      { url: "/logo.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/logo.png",
     apple: "/logo.png",
+  },
+  openGraph: {
+    title: "کلیسای مسیحی ایرانیان واشنگتن دی‌سی | Iranian Christian Church of D.C.",
+    description: "مرجع رسمی خدمات روحانی، پخش زنده یکشنبه‌ها، کتاب مقدس فارسی و سرودهای پرستشی.",
+    url: "https://www.iranianchurchdc.com",
+    siteName: "Iranian Christian Church of Washington D.C.",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 800,
+        alt: "لوگوی کلیسای مسیحی ایرانیان واشنگتن",
+      },
+    ],
+    locale: "fa_IR",
+    type: "website",
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "MyChurch",
+    title: "کلیسای ایرانیان واشنگتن",
   },
   formatDetection: {
     telephone: false,

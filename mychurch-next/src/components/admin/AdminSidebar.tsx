@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { 
     LayoutDashboard, Users, LayoutTemplate, Settings, 
     Power, FileVideo, Music, UserCircle, Megaphone, 
-    Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio, Sparkles, Zap
+    Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio, Sparkles, Zap, Send
 } from "lucide-react";
 import Image from "next/image";
 import ViewAsRoleSwitcher from "@/components/admin/ViewAsRoleSwitcher";
@@ -104,7 +104,10 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                     )}
 
                     {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (
-                        <NavItem href="/admin/worship" icon={Music}>Worship Media</NavItem>
+                        <>
+                            <NavItem href="/admin/worship" icon={Music}>Worship Media</NavItem>
+                            <NavItem href="/admin/telegram-media" icon={Send} colorClass="text-sky-400/80">Telegram CDN</NavItem>
+                        </>
                     )}
 
                     {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (

@@ -3,12 +3,14 @@
 import { query } from "@/lib/db";
 import { hasRoleOrPermission } from "@/lib/access-control";
 import pool from "@/lib/db";
+import { getTranslationStats, type TranslationUsageStats } from "@/lib/translationTracker";
 
 export interface DashboardStats {
     activeUsers: number;
     activeWidgets: number;
     dbConnections: number;
     totalCategories: number;
+    translationStats: TranslationUsageStats;
     recentActivities: Array<{
         id: number;
         action: string;
@@ -118,11 +120,14 @@ export async function getDashboardStats(): Promise<DashboardStats> {
             console.error("Error fetching recent activities", e);
         }
 
+        let translationStats = await getTranslationStats();
+
         return {
             activeUsers,
             activeWidgets,
             dbConnections,
             totalCategories,
+            translationStats,
             recentActivities
         };
     } catch (error) {
@@ -132,6 +137,17 @@ export async function getDashboardStats(): Promise<DashboardStats> {
             activeWidgets: 0,
             dbConnections: 0,
             totalCategories: 0,
+            translationStats: {
+                monthlyChars: 0,
+                monthlyQuota: 2000000,
+                remainingChars: 2000000,
+                monthlyPercent: 0,
+                todayChars: 0,
+                totalRequests: 0,
+                azureChars: 0,
+                geminiChars: 0,
+                fallbackChars: 0,
+            },
             recentActivities: []
         };
     }

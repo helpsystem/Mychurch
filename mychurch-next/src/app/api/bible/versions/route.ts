@@ -9,16 +9,26 @@ let versionsCache: { ts: number; payload: { versions: unknown[] } } | null = nul
 // These version abbreviations are known Farsi/Persian translations
 const FARSI_ABBRS = new Set([
   "NMV", "TPV", "PCB", "FARSIO", "TR1895FA", "MNJFA", "AVD", "NMVFA",
-  "BBK", "RCPV", "PES", "POV-FAS", "مژده",
+  "BBK", "RCPV", "PES", "POV-FAS", "MOZ", "مژده",
 ]);
 
-// Static fallback versions - shown when DB has fewer than the expected set
+// Full catalog of Persian & English Bible Translations (YouVersion & Native)
 const STATIC_VERSIONS = [
-  { version_id: 1, abbr: "BSB", name: "Berean Standard Bible", language: "en", hasAudio: false },
-  { version_id: 2, abbr: "KJV", name: "King James Version", language: "en", hasAudio: false },
-  { version_id: 3, abbr: "NIV", name: "New International Version", language: "en", hasAudio: false },
-  { version_id: 118, abbr: "NMV", name: "هزارۀ نو (فارسی)", language: "fa", hasAudio: false },
-  { version_id: 119, abbr: "TPV", name: "کتاب مقدس ترجمه تفسیری (فارسی)", language: "fa", hasAudio: false },
+  // ── English Translations ──
+  { version_id: 1,   abbr: "BSB",  name: "Berean Standard Bible (BSB)",             language: "en", hasAudio: true },
+  { version_id: 2,   abbr: "NIV",  name: "New International Version (NIV)",         language: "en", hasAudio: true },
+  { version_id: 3,   abbr: "ESV",  name: "English Standard Version (ESV)",          language: "en", hasAudio: true },
+  { version_id: 4,   abbr: "KJV",  name: "King James Version (KJV)",                language: "en", hasAudio: true },
+  { version_id: 5,   abbr: "NLT",  name: "New Living Translation (NLT)",            language: "en", hasAudio: true },
+  { version_id: 6,   abbr: "NASB", name: "New American Standard Bible (NASB)",      language: "en", hasAudio: false },
+  { version_id: 7,   abbr: "CSB",  name: "Christian Standard Bible (CSB)",          language: "en", hasAudio: false },
+
+  // ── Farsi (Persian) Translations ──
+  { version_id: 118, abbr: "NMV",  name: "هزارۀ نو (ترجمه استاندارد معاصر)",       language: "fa", hasAudio: true },
+  { version_id: 119, abbr: "TPV",  name: "کتاب مقدس ترجمه تفسیری (مژده)",          language: "fa", hasAudio: true },
+  { version_id: 120, abbr: "PCB",  name: "ترجمه قدیم (فاضل‌خان همدانی)",           language: "fa", hasAudio: true },
+  { version_id: 121, abbr: "MOZ",  name: "مژده برای عصر جدید (فارسی)",             language: "fa", hasAudio: false },
+  { version_id: 122, abbr: "FARSIO", name: "متن اصیل فارسی کهن",                   language: "fa", hasAudio: false },
 ];
 
 function normalizeAbbr(abbr: string): string {
@@ -63,39 +73,23 @@ export async function GET() {
         audioSet = new Set<number>();
       }
     } catch (dbErr) {
-      console.warn("[versions] DB lookup failed, using static fallback:", dbErr);
+      console.warn("[versions] DB lookup fallback to complete catalog:", dbErr);
     }
 
-    let versions;
-
-    // If DB has a meaningful set of versions, use it; otherwise use static fallback
-    if (rows.length >= 4) {
-      versions = rows.map(v => {
-        const normalizedAbbr = normalizeAbbr(v.abbr);
-        const isFa = FARSI_ABBRS.has(normalizedAbbr) || isFarsiLanguage(v.language);
+    // Merge DB rows into full static catalog
+    const dbByAbbr = new Map(rows.map(r => [normalizeAbbr(r.abbr), r]));
+    const versions = STATIC_VERSIONS.map(sv => {
+      const dbRow = dbByAbbr.get(sv.abbr);
+      if (dbRow) {
         return {
-          ...v,
-          abbr: normalizedAbbr,
-          language: isFa ? "fa" : "en",
-          hasAudio: audioSet.has(v.version_id),
+          ...sv,
+          version_id: dbRow.version_id,
+          name: dbRow.name || sv.name,
+          hasAudio: audioSet.has(dbRow.version_id) || sv.hasAudio,
         };
-      });
-    } else {
-      // Merge DB rows into static list (DB rows override statics for same abbr)
-      const dbByAbbr = new Map(rows.map(r => [normalizeAbbr(r.abbr), r]));
-      versions = STATIC_VERSIONS.map(sv => {
-        const dbRow = dbByAbbr.get(sv.abbr);
-        if (dbRow) {
-          return {
-            ...sv,
-            version_id: dbRow.version_id,
-            name: dbRow.name,
-            hasAudio: audioSet.has(dbRow.version_id),
-          };
-        }
-        return sv;
-      });
-    }
+      }
+      return sv;
+    });
 
     const payload = { versions };
     versionsCache = { ts: Date.now(), payload };

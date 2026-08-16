@@ -6,8 +6,15 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei', 'framer-motion', 'lucide-react'],
   env: {
     API_BIBLE_KEY: process.env.API_BIBLE_KEY || 'b27dc6902b00019756980695a12eb0da',
+  },
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: '**' },
+    ],
+    formats: ['image/avif', 'image/webp'],
   },
   experimental: {
     workerThreads: false,
