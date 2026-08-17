@@ -62,7 +62,7 @@ export default function LiveTranslator({
       } finally {
         setIsTranslating(false);
       }
-    }, 450);
+    }, 150);
 
     return () => clearTimeout(delayDebounceFn);
   }, [inputText, targetLang, sourceLang, preferredEngine]);

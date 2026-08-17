@@ -36,7 +36,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          poster="/hero-fallback.jpeg"
+          preload="metadata"
           className="w-full h-full object-cover opacity-35 mix-blend-screen"
         >
           <source src="/hero.mp4" type="video/mp4" />

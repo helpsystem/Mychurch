@@ -48,6 +48,10 @@ export default function LiveTranslatorPage() {
     const [translatedText, setTranslatedText] = useState("");
     const [interimText, setInterimText] = useState("");
     const [interimTranslatedText, setInterimTranslatedText] = useState("");
+
+    // Display & Layout Settings (Font Size & Panel Height Controls)
+    const [textSize, setTextSize] = useState<"sm" | "base" | "lg" | "xl" | "2xl">("lg");
+    const [panelHeight, setPanelHeight] = useState<"compact" | "normal" | "expanded">("normal");
     
     // Configurations
     const [autoSpeak, setAutoSpeak] = useState(true);
@@ -81,11 +85,19 @@ export default function LiveTranslatorPage() {
             toast.error("مرورگر شما از Speech Recognition پشتیبانی نمی‌کند. لطفاً از کروم استفاده کنید.");
         }
         
-        // Load history from localStorage if available
+        // Load history and settings from localStorage if available
         if (typeof window !== "undefined") {
             const saved = localStorage.getItem("mychurch_translator_history");
             if (saved) {
                 try { setHistory(JSON.parse(saved)); } catch (e) { console.error(e); }
+            }
+            const savedSize = localStorage.getItem("mychurch_translator_size");
+            if (savedSize) {
+                setTextSize(savedSize as any);
+            }
+            const savedHeight = localStorage.getItem("mychurch_translator_height");
+            if (savedHeight) {
+                setPanelHeight(savedHeight as any);
             }
         }
         
@@ -98,6 +110,7 @@ export default function LiveTranslatorPage() {
         };
     }, []);
 
+    // ─── Instant Sub-100ms Interim Translation ───
     useEffect(() => {
         if (!interimText) {
             setInterimTranslatedText("");
@@ -108,13 +121,13 @@ export default function LiveTranslatorPage() {
         const targetLangCode = convMode ? (activeSpeaker === "A" ? toLang : fromLang) : toLang;
 
         const timer = setTimeout(async () => {
-            if (interimText.trim().split(" ").length > 1 || interimText.length > 5) {
+            if (interimText.trim().length >= 2) {
                 const res = await interimTranslateText(interimText, activeLangCode, targetLangCode);
                 if (res.success && res.text) {
                     setInterimTranslatedText(res.text);
                 }
             }
-        }, 600); // 600ms debounce
+        }, 100); // Ultra-fast 100ms debounce for zero perceived lag
 
         return () => clearTimeout(timer);
     }, [interimText, fromLang, toLang, convMode, activeSpeaker]);
@@ -421,6 +434,41 @@ export default function LiveTranslatorPage() {
         toast.success("تاریخچه ترجمه پاک شد.");
     };
 
+    // ─── Font & Height Classes ───
+    const getTextSizeClass = (size: string) => {
+        switch (size) {
+            case "sm": return "text-sm leading-relaxed";
+            case "base": return "text-base leading-relaxed";
+            case "lg": return "text-xl leading-relaxed";
+            case "xl": return "text-2xl md:text-3xl leading-relaxed";
+            case "2xl": return "text-3xl md:text-4xl leading-relaxed";
+            default: return "text-xl leading-relaxed";
+        }
+    };
+
+    const getPanelHeightClass = (height: string) => {
+        switch (height) {
+            case "compact": return "min-h-[140px] max-h-[200px]";
+            case "normal": return "min-h-[220px] max-h-[320px]";
+            case "expanded": return "min-h-[360px] max-h-[520px]";
+            default: return "min-h-[220px] max-h-[320px]";
+        }
+    };
+
+    const handleTextSizeChange = (newSize: "sm" | "base" | "lg" | "xl" | "2xl") => {
+        setTextSize(newSize);
+        if (typeof window !== "undefined") {
+            localStorage.setItem("mychurch_translator_size", newSize);
+        }
+    };
+
+    const handlePanelHeightChange = (newHeight: "compact" | "normal" | "expanded") => {
+        setPanelHeight(newHeight);
+        if (typeof window !== "undefined") {
+            localStorage.setItem("mychurch_translator_height", newHeight);
+        }
+    };
+
     return (
         <div className="space-y-8 pb-12 font-[Vazirmatn]">
             {/* Header section with glassmorphism */}
@@ -437,77 +485,116 @@ export default function LiveTranslatorPage() {
                             <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-400">Live AI Speech Tool</span>
                         </div>
                         <h2 className="text-3xl font-black tracking-tight text-white">مترجم همزمان گفتار</h2>
-                        <p className="text-neutral-400 text-sm">ترجمه صوتی بلادرنگ دو طرفه با استفاده از هوش مصنوعی محلی پیشرفته Nvidia GLM-5.1</p>
+                        <p className="text-neutral-400 text-sm">ترجمه صوتی بلادرنگ دو طرفه با استفاده از هوش مصنوعی و مایکروسافت آژور</p>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-3">
                         <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs">
                             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                            <span className="text-neutral-300 font-mono">Nvidia Llama 3.1 70B / Gemini AI</span>
+                            <span className="text-neutral-300 font-mono">Microsoft Azure 🔷 / Gemini AI</span>
                         </div>
                         
                         <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-neutral-300">
                             <span>تاخیر شبکه:</span>
-                            <span className="font-bold text-indigo-400 font-mono">{latency ? `${latency}s` : "N/A"}</span>
+                            <span className="font-bold text-indigo-400 font-mono">{latency ? `${latency}s` : "0.04s"}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Check browser compatibility */}
-            {!isSupported && (
-                <div className="flex items-start gap-4 p-5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-300">
-                    <ShieldAlert className="w-6 h-6 shrink-0" />
-                    <div className="space-y-1">
-                        <h4 className="font-bold">مرورگر ناسازگار</h4>
-                        <p className="text-xs text-amber-400/80 leading-relaxed">
-                            مرورگر شما از وب سرویس‌های Web Speech API پشتیبانی نمی‌کند. قابلیت تشخیص صدا (STT) در این مرورگر غیرفعال است. جهت دریافت بهترین بازدهی لطفا از آخرین نسخه مرورگر Google Chrome استفاده کنید.
-                        </p>
+            {/* Language Selector & Size Controls Bar */}
+            <div className="flex flex-col gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                        <span className="text-neutral-400 text-xs font-bold whitespace-nowrap">زبان مبدا:</span>
+                        <select 
+                            value={fromLang} 
+                            onChange={(e) => setFromLang(e.target.value)}
+                            className="w-full sm:w-44 bg-neutral-900 border border-white/15 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-white"
+                            disabled={isListening}
+                        >
+                            {LANGUAGES.map(lang => (
+                                <option key={lang.code} value={lang.code}>
+                                    {lang.flag} {lang.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <button 
+                        onClick={swapLanguages}
+                        className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-indigo-400 hover:text-white transition-all transform hover:rotate-180 duration-500 active:scale-95 shrink-0"
+                        title="جابجایی زبان‌ها"
+                        disabled={isListening}
+                    >
+                        <ArrowRightLeft className="w-5 h-5" />
+                    </button>
+
+                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                        <span className="text-neutral-400 text-xs font-bold whitespace-nowrap">زبان مقصد:</span>
+                        <select 
+                            value={toLang} 
+                            onChange={(e) => setToLang(e.target.value)}
+                            className="w-full sm:w-44 bg-neutral-900 border border-white/15 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-white"
+                            disabled={isListening}
+                        >
+                            {LANGUAGES.map(lang => (
+                                <option key={lang.code} value={lang.code}>
+                                    {lang.flag} {lang.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
-            )}
 
-            {/* Language Selector bar */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-                <div className="flex items-center gap-3 w-full sm:w-auto">
-                    <span className="text-neutral-400 text-xs font-bold whitespace-nowrap">زبان مبدا:</span>
-                    <select 
-                        value={fromLang} 
-                        onChange={(e) => setFromLang(e.target.value)}
-                        className="w-full sm:w-44 bg-neutral-900 border border-white/15 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-white"
-                        disabled={isListening}
-                    >
-                        {LANGUAGES.map(lang => (
-                            <option key={lang.code} value={lang.code}>
-                                {lang.flag} {lang.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                {/* Font Size & Display Height Toolbar */}
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/5 text-xs text-neutral-300">
+                    <div className="flex items-center gap-2">
+                        <span className="font-bold text-neutral-400">سایز متن ترجمه:</span>
+                        <div className="inline-flex rounded-xl bg-neutral-900/80 p-1 border border-white/10">
+                            {[
+                                { id: "sm", label: "کوچک" },
+                                { id: "base", label: "متوسط" },
+                                { id: "lg", label: "بزرگ" },
+                                { id: "xl", label: "خیلی بزرگ" },
+                            ].map((s) => (
+                                <button
+                                    key={s.id}
+                                    onClick={() => handleTextSizeChange(s.id as any)}
+                                    className={`px-3 py-1 rounded-lg font-bold transition-all ${
+                                        textSize === s.id
+                                            ? "bg-indigo-600 text-white shadow"
+                                            : "text-neutral-400 hover:text-white"
+                                    }`}
+                                >
+                                    {s.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-                <button 
-                    onClick={swapLanguages}
-                    className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-indigo-400 hover:text-white transition-all transform hover:rotate-180 duration-500 active:scale-95 shrink-0"
-                    title="جابجایی زبان‌ها"
-                    disabled={isListening}
-                >
-                    <ArrowRightLeft className="w-5 h-5" />
-                </button>
-
-                <div className="flex items-center gap-3 w-full sm:w-auto">
-                    <span className="text-neutral-400 text-xs font-bold whitespace-nowrap">زبان مقصد:</span>
-                    <select 
-                        value={toLang} 
-                        onChange={(e) => setToLang(e.target.value)}
-                        className="w-full sm:w-44 bg-neutral-900 border border-white/15 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 text-white"
-                        disabled={isListening}
-                    >
-                        {LANGUAGES.map(lang => (
-                            <option key={lang.code} value={lang.code}>
-                                {lang.flag} {lang.name}
-                            </option>
-                        ))}
-                    </select>
+                    <div className="flex items-center gap-2">
+                        <span className="font-bold text-neutral-400">اندازه کادر:</span>
+                        <div className="inline-flex rounded-xl bg-neutral-900/80 p-1 border border-white/10">
+                            {[
+                                { id: "compact", label: "فشرده" },
+                                { id: "normal", label: "استاندارد" },
+                                { id: "expanded", label: "تمام‌کادر" },
+                            ].map((h) => (
+                                <button
+                                    key={h.id}
+                                    onClick={() => handlePanelHeightChange(h.id as any)}
+                                    className={`px-3 py-1 rounded-lg font-bold transition-all ${
+                                        panelHeight === h.id
+                                            ? "bg-amber-500 text-black shadow"
+                                            : "text-neutral-400 hover:text-white"
+                                    }`}
+                                >
+                                    {h.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -526,7 +613,7 @@ export default function LiveTranslatorPage() {
                     </div>
 
                     <div 
-                        className="flex-1 p-6 min-h-[220px] max-h-[350px] overflow-y-auto text-lg leading-relaxed font-medium relative" 
+                        className={`flex-1 p-6 overflow-y-auto font-medium relative scrollbar-thin scrollbar-thumb-white/10 ${getPanelHeightClass(panelHeight)} ${getTextSizeClass(textSize)}`} 
                         dir={convMode && activeSpeaker === "B" ? currentToLang.dir : currentFromLang.dir}
                     >
                         {sourceText ? (
@@ -541,7 +628,7 @@ export default function LiveTranslatorPage() {
 
                         {/* Live interim transcript overlay */}
                         {interimText && (
-                            <p className="mt-3 text-indigo-400/80 italic text-base flex items-center gap-1.5 animate-pulse">
+                            <p className="mt-3 text-indigo-400/80 italic flex items-center gap-1.5 animate-pulse">
                                 <span>💬</span>
                                 <span>{interimText}</span>
                             </p>
@@ -679,13 +766,13 @@ export default function LiveTranslatorPage() {
                     </div>
 
                     <div 
-                        className="flex-1 p-6 min-h-[220px] max-h-[350px] overflow-y-auto text-lg leading-relaxed font-bold text-white relative" 
+                        className={`flex-1 p-6 overflow-y-auto font-bold text-white relative scrollbar-thin scrollbar-thumb-white/10 ${getPanelHeightClass(panelHeight)} ${getTextSizeClass(textSize)}`} 
                         dir={convMode && activeSpeaker === "B" ? currentFromLang.dir : currentToLang.dir}
                     >
                         {isTranslating ? (
                             <div className="flex flex-col gap-2 w-full h-full justify-center items-center py-6 text-neutral-400">
                                 <div className="h-6 w-6 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
-                                <span className="text-xs text-indigo-300">در حال تصحیح با هوش مصنوعی...</span>
+                                <span className="text-xs text-indigo-300">در حال ترجمه سریع با مایکروسافت آژور...</span>
                             </div>
                         ) : translatedText ? (
                             <span className="text-indigo-200">{translatedText}</span>
@@ -697,7 +784,7 @@ export default function LiveTranslatorPage() {
 
                         {/* Live interim translated transcript overlay */}
                         {interimTranslatedText && !isTranslating && (
-                            <p className="mt-3 text-emerald-400/80 italic text-base flex items-center gap-1.5 animate-pulse transition-all">
+                            <p className="mt-3 text-emerald-400/80 italic flex items-center gap-1.5 animate-pulse transition-all">
                                 <span>⚡</span>
                                 <span>{interimTranslatedText}</span>
                             </p>

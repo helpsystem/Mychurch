@@ -206,6 +206,8 @@ function SermonsSection() {
                     src={item.bgImage}
                     alt={item.title}
                     fill
+                    loading="lazy"
+                    quality={60}
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover opacity-25 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700 pointer-events-none"
                   />
