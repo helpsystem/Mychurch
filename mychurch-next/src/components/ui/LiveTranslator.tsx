@@ -20,7 +20,7 @@ export default function LiveTranslator({
   const [targetLang, setTargetLang] = useState(initialTargetLang);
   const [isTranslating, setIsTranslating] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [preferredEngine, setPreferredEngine] = useState<'auto' | 'azure' | 'google'>('auto');
+  const [preferredEngine, setPreferredEngine] = useState<'azure' | 'google' | 'auto'>('azure');
   const [engineUsed, setEngineUsed] = useState<string | null>(null);
 
   // Debounce logic (450ms delay to protect quota & avoid spam requests)

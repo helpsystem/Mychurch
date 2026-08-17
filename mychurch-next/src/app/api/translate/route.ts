@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { logTranslationUsage } from "@/lib/translationTracker";
+import { translateWithAzurePool } from "@/lib/azureTranslatorPool";
 
 export const dynamic = 'force-dynamic';
 
@@ -14,7 +15,7 @@ export async function POST(request: Request) {
       text, 
       targetLanguage = 'fa', 
       sourceLanguage,
-      preferredEngine = 'auto' // 'auto' | 'azure' | 'google' | 'gemini'
+      preferredEngine = 'azure' // Default is Microsoft Azure
     } = await request.json();
 
     if (!text || typeof text !== 'string' || text.trim() === '') {
@@ -38,48 +39,19 @@ export async function POST(request: Request) {
       });
     }
 
-    const apiKey = process.env.AZURE_TRANSLATOR_KEY;
-    const region = process.env.AZURE_TRANSLATOR_REGION || 'eastus';
     const geminiKey = process.env.GEMINI_API_KEY;
     const googleScriptUrl = process.env.NEXT_PUBLIC_GOOGLE_TRANSLATE_URL;
 
-    // Helper: Call Microsoft Azure with fast 2.5s AbortController
+    // Helper: Call Microsoft Azure Multi-Account Pool
     async function translateViaAzure(): Promise<{ translatedText: string; engine: string } | null> {
-      if (!apiKey || !region) return null;
       try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-        const endpoint = 'https://api.cognitive.microsofttranslator.com/translate';
-        let url = `${endpoint}?api-version=3.0&to=${encodeURIComponent(targetLanguage)}`;
-        if (sourceLanguage) {
-          url += `&from=${encodeURIComponent(sourceLanguage)}`;
-        }
-
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Ocp-Apim-Subscription-Key': apiKey,
-            'Ocp-Apim-Subscription-Region': region,
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify([{ text: trimmedText }]),
-          signal: controller.signal,
-        });
-
-        clearTimeout(timeoutId);
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data && data[0]?.translations?.[0]?.text) {
-            const translatedText = data[0].translations[0].text;
-            // Log usage in background without blocking response
-            void logTranslationUsage(charCount, 'azure', sourceLanguage, targetLanguage).catch(() => {});
-            return { translatedText, engine: 'azure' };
-          }
+        const res = await translateWithAzurePool(trimmedText, targetLanguage, sourceLanguage);
+        if (res && res.translatedText) {
+          void logTranslationUsage(charCount, 'azure', sourceLanguage, targetLanguage).catch(() => {});
+          return { translatedText: res.translatedText, engine: `Microsoft Azure (${res.accountName})` };
         }
       } catch (err) {
-        console.warn('[Translate API] Azure fast-fallback:', err);
+        console.warn('[Translate API] Azure Pool error:', err);
       }
       return null;
     }
@@ -130,24 +102,20 @@ export async function POST(request: Request) {
       return null;
     }
 
-    // ── Dispatch based on engine preference with priority race ──
+    // ── Dispatch: Microsoft Azure is DEFAULT ──
     let result: { translatedText: string; engine: string } | null = null;
 
-    if (preferredEngine === 'azure') {
-      result = await translateViaAzure();
-      if (!result) result = await translateViaGemini() || await translateViaGoogleScript();
-    } else if (preferredEngine === 'google' || preferredEngine === 'gemini') {
+    if (preferredEngine === 'google' || preferredEngine === 'gemini') {
       result = await translateViaGemini() || await translateViaGoogleScript();
       if (!result) result = await translateViaAzure();
     } else {
-      // 'auto' mode: Azure first (sub-100ms) -> Gemini (AI) -> Google Script
+      // Default / 'azure': Microsoft Azure Pool (Multi-Account) first -> Gemini AI -> Google Script
       result = await translateViaAzure();
       if (!result) result = await translateViaGemini();
       if (!result) result = await translateViaGoogleScript();
     }
 
     if (result) {
-      // Save to LRU memory cache
       if (translationCache.size >= MAX_CACHE_SIZE) {
         const firstKey = translationCache.keys().next().value;
         if (firstKey) translationCache.delete(firstKey);

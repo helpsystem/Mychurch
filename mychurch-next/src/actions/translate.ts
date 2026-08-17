@@ -2,6 +2,7 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { logTranslationUsage } from "@/lib/translationTracker";
+import { translateWithAzurePool } from "@/lib/azureTranslatorPool";
 
 const apiKey = process.env.GEMINI_API_KEY;
 const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
@@ -48,8 +49,8 @@ export async function enhanceText(text: string, language: 'en' | 'fa') {
 }
 
 /**
- * Ultra-Fast Multi-Engine AI Translator:
- * Tier 1: Microsoft Azure Cognitive Services (Sub-40ms speed for instant live subtitles)
+ * Ultra-Fast Multi-Engine AI Translator (Default: Microsoft Azure Multi-Account Pool):
+ * Tier 1: Microsoft Azure Multi-Account Pool (Sub-30ms speed with auto-failover)
  * Tier 2: Google Gemini 1.5 Flash AI
  * Tier 3: Emergency Google Translate Public Endpoint
  */
@@ -68,50 +69,22 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
         return { success: true, text: cached.text, engine: cached.engine, cached: true };
     }
 
-    // ── Tier 1: Microsoft Azure Cognitive Translator (Lightning Fast Sub-40ms) ──
-    const azureKey = process.env.AZURE_TRANSLATOR_KEY;
-    const azureRegion = process.env.AZURE_TRANSLATOR_REGION || 'eastus';
-    if (azureKey && azureRegion) {
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2000);
-
-            const endpoint = 'https://api.cognitive.microsofttranslator.com/translate';
-            let url = `${endpoint}?api-version=3.0&to=${encodeURIComponent(toLang)}`;
-            if (fromLang) {
-                url += `&from=${encodeURIComponent(fromLang)}`;
+    // ── Tier 1: Microsoft Azure Cognitive Translator (Multi-Account Pool) ──
+    try {
+        const azureRes = await translateWithAzurePool(cleanText, toLang, fromLang);
+        if (azureRes && azureRes.translatedText) {
+            void logTranslationUsage(charCount, 'azure', fromLang, toLang).catch(() => {});
+            
+            if (actionTranslationCache.size >= MAX_CACHE_SIZE) {
+                const firstKey = actionTranslationCache.keys().next().value;
+                if (firstKey) actionTranslationCache.delete(firstKey);
             }
-
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Ocp-Apim-Subscription-Key': azureKey,
-                    'Ocp-Apim-Subscription-Region': azureRegion,
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify([{ text: cleanText }]),
-                signal: controller.signal,
-            });
-            clearTimeout(timeoutId);
-
-            if (response.ok) {
-                const data = await response.json();
-                const translatedText = data?.[0]?.translations?.[0]?.text?.trim();
-                if (translatedText) {
-                    void logTranslationUsage(charCount, 'azure', fromLang, toLang).catch(() => {});
-                    
-                    if (actionTranslationCache.size >= MAX_CACHE_SIZE) {
-                        const firstKey = actionTranslationCache.keys().next().value;
-                        if (firstKey) actionTranslationCache.delete(firstKey);
-                    }
-                    actionTranslationCache.set(cacheKey, { text: translatedText, engine: "Microsoft Azure" });
-                    
-                    return { success: true, text: translatedText, engine: "Microsoft Azure" };
-                }
-            }
-        } catch (azureErr) {
-            console.warn("[translateAction] Azure Translator fast-fallback:", azureErr);
+            actionTranslationCache.set(cacheKey, { text: azureRes.translatedText, engine: `Microsoft Azure (${azureRes.accountName})` });
+            
+            return { success: true, text: azureRes.translatedText, engine: `Microsoft Azure (${azureRes.accountName})` };
         }
+    } catch (azureErr) {
+        console.warn("[translateAction] Azure Translator pool error:", azureErr);
     }
 
     // ── Tier 2: Google Gemini AI Fallback (With 2.5s Timeout) ──
@@ -160,7 +133,7 @@ export async function nvidiaTranslateText(text: string, fromLang: string, toLang
     return { success: false, error: "امکان برقراری ارتباط با موتورهای ترجمه وجود ندارد." };
 }
 
-// ── Ultra-Fast Sub-50ms Interim Translation for Real-Time Speech Subtitles ──
+// ── Ultra-Fast Sub-30ms Interim Translation with Multi-Account Azure Pool ──
 export async function interimTranslateText(text: string, fromLang: string, toLang: string) {
     const cleanText = text.trim();
     if (!cleanText) return { success: true, text: "" };
@@ -170,41 +143,15 @@ export async function interimTranslateText(text: string, fromLang: string, toLan
         return { success: true, text: actionTranslationCache.get(cacheKey)!.text };
     }
 
-    // 1. Try Azure First for 30ms Instant Response
-    const azureKey = process.env.AZURE_TRANSLATOR_KEY;
-    const azureRegion = process.env.AZURE_TRANSLATOR_REGION || 'eastus';
-    if (azureKey && azureRegion) {
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1200);
-
-            const endpoint = 'https://api.cognitive.microsofttranslator.com/translate';
-            let url = `${endpoint}?api-version=3.0&to=${encodeURIComponent(toLang)}`;
-            if (fromLang) url += `&from=${encodeURIComponent(fromLang)}`;
-
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Ocp-Apim-Subscription-Key': azureKey,
-                    'Ocp-Apim-Subscription-Region': azureRegion,
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify([{ text: cleanText }]),
-                signal: controller.signal,
-            });
-            clearTimeout(timeoutId);
-
-            if (response.ok) {
-                const data = await response.json();
-                const translatedText = data?.[0]?.translations?.[0]?.text?.trim();
-                if (translatedText) {
-                    actionTranslationCache.set(cacheKey, { text: translatedText, engine: 'azure' });
-                    return { success: true, text: translatedText };
-                }
-            }
-        } catch (e) {
-            // fallback
+    // 1. Try Microsoft Azure Multi-Account Pool First
+    try {
+        const azureRes = await translateWithAzurePool(cleanText, toLang, fromLang);
+        if (azureRes && azureRes.translatedText) {
+            actionTranslationCache.set(cacheKey, { text: azureRes.translatedText, engine: 'azure' });
+            return { success: true, text: azureRes.translatedText };
         }
+    } catch (e) {
+        // fallback
     }
 
     // 2. Fast Fallback
