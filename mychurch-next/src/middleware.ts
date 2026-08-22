@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
-    const isAdminRoute = pathname.startsWith('/admin');
+    const isAdminRoute = pathname.startsWith('/admin') || pathname.startsWith('/api/admin');
     const isBroadcastRoute = pathname.startsWith('/broadcast') && pathname !== '/broadcast/view';
     const isProfileRoute = pathname.startsWith('/profile');
     const isVerifyRoute = pathname.startsWith('/verify-admin-login');
@@ -49,6 +49,9 @@ export async function middleware(request: NextRequest) {
     } = await supabase.auth.getUser();
 
     if (isProtected && !user) {
+        if (pathname.startsWith('/api/')) {
+            return NextResponse.json({ error: 'Unauthorized: Admin authentication required' }, { status: 401 });
+        }
         // Redirect out if no active session
         const url = request.nextUrl.clone();
         const proto = request.headers.get('x-forwarded-proto') || 'http';
