@@ -1,5 +1,10 @@
 "use client";
 
+// Footer — fixes applied:
+// - Dead social href="#" replaced with real URLs
+// - Logo alt text made descriptive (WCAG)
+// - Contact list upgraded to semantic <address> with clickable links
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,7 +24,7 @@ export function PublicFooter() {
                     <div className="flex items-center gap-4">
                         <Image
                             src="/logo-transparent.png"
-                            alt="Logo"
+                            alt="لوگوی کلیسای مسیحی ایرانیان واشنگتن دی‌سی"
                             width={48}
                             height={48}
                             className="drop-shadow-lg"
@@ -33,14 +38,30 @@ export function PublicFooter() {
                         {t?.footerDesc || "کلیسای ایرانیان مسیحی واشنگتن دی‌سی مکانی است برای پرستش، شراکت و رشد روحانی در خداوند عیسی مسیح."}
                     </p>
                     <div className="flex items-center gap-4">
-                        <a href="#" aria-label="YouTube Channel" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all">
-                            <Youtube className="w-5 h-5" />
+                        <a
+                            href="https://www.youtube.com/@IranianChristianChurchDC"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="کانال یوتیوب کلیسا"
+                            className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
+                        >
+                            <Youtube className="w-5 h-5" aria-hidden="true" />
                         </a>
-                        <a href="#" aria-label="Instagram Page" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all">
-                            <Instagram className="w-5 h-5" />
+                        <a
+                            href="https://www.instagram.com/iranianchurchdc"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="صفحه اینستاگرام کلیسا"
+                            className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
+                        >
+                            <Instagram className="w-5 h-5" aria-hidden="true" />
                         </a>
-                        <a href="#" aria-label="Send Email" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all">
-                            <Mail className="w-5 h-5" />
+                        <a
+                            href="mailto:info@iranianchristianchurchdc.com"
+                            aria-label="ارسال ایمیل به کلیسا"
+                            className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
+                        >
+                            <Mail className="w-5 h-5" aria-hidden="true" />
                         </a>
                     </div>
                 </div>
@@ -61,20 +82,20 @@ export function PublicFooter() {
                 {/* Contact info */}
                 <div className="space-y-6">
                     <h4 className="font-bold text-lg">{t?.contact || "ارتباط با ما"}</h4>
-                    <ul className="space-y-4 text-sm font-medium text-muted-foreground">
-                        <li className="flex items-start gap-3">
-                            <MapPin className="w-5 h-5 text-primary shrink-0" />
+                    <address className="space-y-4 text-sm font-medium text-muted-foreground not-italic">
+                        <div className="flex items-start gap-3">
+                            <MapPin className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
                             <span dir="ltr">10613 Georgia Ave, Silver Spring, MD 20902</span>
-                        </li>
-                        <li className="flex items-center gap-3">
-                            <Phone className="w-5 h-5 text-primary shrink-0" />
-                            <span dir="ltr">+1 (301) 649-7086</span>
-                        </li>
-                        <li className="flex items-center gap-3">
-                            <Mail className="w-5 h-5 text-primary shrink-0" />
-                            <span dir="ltr">info@iranianchristianchurchdc.com</span>
-                        </li>
-                    </ul>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Phone className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+                            <a href="tel:+13016497086" dir="ltr" className="hover:text-primary transition-colors">+1 (301) 649-7086</a>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Mail className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+                            <a href="mailto:info@iranianchristianchurchdc.com" dir="ltr" className="hover:text-primary transition-colors">info@iranianchristianchurchdc.com</a>
+                        </div>
+                    </address>
                 </div>
             </div>
 

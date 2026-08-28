@@ -20,7 +20,7 @@ const stats = [
   { end: 12400, suffix: "+", label: "عضو فعال", color: "#F5A623", description: "در سراسر جهان" },
   { end: 34, suffix: "", label: "کشور", color: "#60A5FA", description: "تحت پوشش" },
   { end: 150, suffix: "+", label: "گروه خانگی", color: "#A78BFA", description: "در قاره‌های مختلف" },
-  { end: 2024, suffix: "", label: "آغاز خدمت", color: "#34D399", description: "سال تأسیس" },
+  { end: 1990, suffix: "", label: "سال تأسیس", color: "#34D399", description: "بنیانگذاری کلیسا" },
 ];
 
 const verses = [

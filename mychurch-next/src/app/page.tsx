@@ -313,7 +313,7 @@ function LeadershipSection() {
                   fill
                   sizes="(max-width: 768px) 100vw, 320px"
                   className="object-cover object-[center_top] group-hover:scale-105 transition-transform duration-700"
-                  priority
+                  loading="lazy"
                 />
                 {/* Smooth Dark Gradient Overlays for crystal clarity */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050A0F] via-transparent to-black/20" />
@@ -345,7 +345,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#050A0F] flex flex-col text-white overflow-x-hidden">
       <PublicHeader />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <HeroSection />
         <FeaturesSection />
         <StatsSection />

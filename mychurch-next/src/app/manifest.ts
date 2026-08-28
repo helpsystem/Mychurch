@@ -13,12 +13,14 @@ export default function manifest(): MetadataRoute.Manifest {
         lang: 'fa',
         icons: [
             {
-                src: '/logo-transparent.png',
+                // 'any' purpose — required by all browsers for home screen icon
+                src: '/logo.png',
                 sizes: '192x192',
                 type: 'image/png',
-                purpose: 'maskable'
+                purpose: 'any'
             },
             {
+                // 'maskable' purpose — for adaptive icon support (Android)
                 src: '/logo-transparent.png',
                 sizes: '512x512',
                 type: 'image/png',

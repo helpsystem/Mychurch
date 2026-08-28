@@ -42,12 +42,20 @@ export function PublicHeader() {
     const hasAdminAccess = userRole && ['Admin', 'Leader', 'Operator'].includes(userRole);
 
     return (
-        <nav className="fixed top-0 inset-x-0 h-20 glass-strong border-b border-white/5 z-50 flex items-center justify-between px-6 lg:px-12 shadow-lg shadow-black/10">
+        <>
+            {/* Skip-to-content link for keyboard and screen reader users (WCAG 2.4.1) */}
+            <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:right-4 z-[200] px-5 py-2.5 bg-amber-500 text-black rounded-lg font-bold text-sm shadow-lg focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-black"
+            >
+                رد شدن از منو به محتوی اصلی
+            </a>
+            <nav className="fixed top-0 inset-x-0 h-20 glass-strong border-b border-white/5 z-50 flex items-center justify-between px-6 lg:px-12 shadow-lg shadow-black/10">
             <Link href="/" className="flex items-center gap-4 group">
                 <div className="w-14 items-center justify-center flex">
                     <Image
                         src="/logo-transparent.png"
-                        alt="Church Logo"
+                        alt="لوگوی کلیسای مسیحی ایرانیان واشنگتن دی‌سی"
                         width={56}
                         height={56}
                         className="object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] group-hover:scale-105 transition-transform"
@@ -111,5 +119,6 @@ export function PublicHeader() {
                 )}
             </div>
         </nav>
+        </>
     );
 }

@@ -37,8 +37,11 @@ export default function HeroSection() {
           muted
           playsInline
           preload="metadata"
+          poster="/hero-fallback.jpeg"
           className="w-full h-full object-cover opacity-35 mix-blend-screen"
         >
+          {/* WebM served first — ~40-60% smaller than MP4 */}
+          <source src="/Hero.webm" type="video/webm" />
           <source src="/hero.mp4" type="video/mp4" />
         </video>
       </div>

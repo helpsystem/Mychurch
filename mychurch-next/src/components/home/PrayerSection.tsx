@@ -18,13 +18,29 @@ const floatingPrayers = [
 export default function PrayerSection() {
   const [prayer, setPrayer] = useState("");
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!prayer.trim()) return;
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
-    setPrayer("");
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/prayers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: prayer.trim(), source: "homepage" }),
+      });
+      if (!res.ok) throw new Error("server_error");
+      setSent(true);
+      setPrayer("");
+      setTimeout(() => setSent(false), 4000);
+    } catch {
+      setError("خطا در ارسال. لطفاً دوباره تلاش کنید.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -131,19 +147,31 @@ export default function PrayerSection() {
                       size={18}
                       className="absolute right-4 top-4 text-amber-400/60 pointer-events-none"
                     />
+                    <label htmlFor="prayer-input" className="sr-only">
+                      درخواست دعای خود را بنویسید
+                    </label>
                     <textarea
+                      id="prayer-input"
+                      aria-label="درخواست دعا"
+                      aria-required="true"
                       value={prayer}
                       onChange={(e) => setPrayer(e.target.value)}
                       placeholder="درخواست دعای خود را اینجا بنویسید..."
                       rows={4}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-4 pr-12 text-white placeholder-slate-500 resize-none focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 transition-all text-sm leading-relaxed"
+                      disabled={loading}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-4 pr-12 text-white placeholder-slate-500 resize-none focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 transition-all text-sm leading-relaxed disabled:opacity-60"
                     />
                   </div>
+
+                  {error && (
+                    <p role="alert" className="text-red-400 text-xs text-center py-1">{error}</p>
+                  )}
 
                   <div className="flex gap-3">
                     <button
                       type="submit"
-                      className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-black transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                      disabled={loading || !prayer.trim()}
+                      className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-black transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
                       style={{
                         background: "linear-gradient(135deg, #F5A623, #FFCD70)",
                         boxShadow: "0 0 30px rgba(245,166,35,0.4)",

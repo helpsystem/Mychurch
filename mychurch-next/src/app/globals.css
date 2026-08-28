@@ -1,61 +1,30 @@
 @import "tailwindcss";
 
+/* B Homa — consolidated from 6 identical declarations into one variable-weight block.
+   Convert BHoma.ttf to BHoma.woff2 for 30-50% smaller payload:
+   python -c "from fontTools.ttLib import TTFont; f=TTFont('public/fonts/BHoma.ttf'); f.flavor='woff2'; f.save('public/fonts/BHoma.woff2')"
+*/
 @font-face {
   font-family: 'B Homa';
-  src: url('/fonts/BHoma.ttf') format('truetype');
-  font-weight: normal;
+  src: url('/fonts/BHoma.woff2') format('woff2'),
+       url('/fonts/BHoma.ttf') format('truetype');
+  font-weight: 100 900; /* covers all weight variants */
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'B Homa';
-  src: url('/fonts/BHoma.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'B Homa';
-  src: url('/fonts/BHoma.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'B Homa';
-  src: url('/fonts/BHoma.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'B Homa';
-  src: url('/fonts/BHoma.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'B Homa';
-  src: url('/fonts/BHoma.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 
 
 @theme {
-  --font-sans: var(--font-sans);
+  /* NOTE: --font-sans is set in :root via layout.tsx style injection — do NOT self-reference here */
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-vazirmatn: var(--font-vazirmatn);
   --font-homa: var(--font-homa);
   --font-roboto: var(--font-roboto);
+  --font-playfair: var(--font-playfair);
+  --font-merriweather: var(--font-merriweather);
+  --font-inter: var(--font-inter);
+  --font-cinzel: var(--font-cinzel);
+  --font-cormorant: var(--font-cormorant);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);

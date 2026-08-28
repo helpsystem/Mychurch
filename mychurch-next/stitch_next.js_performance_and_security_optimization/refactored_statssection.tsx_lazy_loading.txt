@@ -1,0 +1,52 @@
+'use client';
+
+import React from 'react';
+import dynamic from 'next/dynamic';
+
+// PERFORMANCE: Use next/dynamic to lazy-load the heavy Three.js Globe component.
+// This prevents Three.js from blocking the initial page load and reduces the main bundle size.
+const ThreeGlobe = dynamic(() => import('./ThreeGlobe'), {
+  ssr: false, // Three.js requires window/DOM access
+  loading: () => (
+    <div className="flex h-[400px] w-full items-center justify-center bg-muted/20 animate-pulse rounded-xl">
+      <p className="text-sm text-muted-foreground">Loading interactive globe...</p>
+    </div>
+  ),
+});
+
+const StatsSection = () => {
+  return (
+    <section className="py-20 bg-background overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Our Global Impact
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Serving the Iranian community in DC and connecting with believers worldwide through our digital ministry.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-8 pt-4">
+              <div className="space-y-2">
+                <p className="text-4xl font-bold text-primary">500+</p>
+                <p className="text-sm text-muted-foreground uppercase tracking-wider font-semibold">Active Members</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-4xl font-bold text-primary">50+</p>
+                <p className="text-sm text-muted-foreground uppercase tracking-wider font-semibold">Weekly Services</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative aspect-square w-full max-w-[500px] mx-auto">
+            {/* The Globe is now lazy-loaded and only initialized on the client */}
+            <ThreeGlobe />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default StatsSection;

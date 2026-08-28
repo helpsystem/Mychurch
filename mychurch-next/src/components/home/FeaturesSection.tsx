@@ -65,7 +65,7 @@ const features = [
     icon: Users,
     titleFa: "جوانان و کودکان",
     descFa: "برنامه‌های ویژه رشد ایمانی نسل جوان",
-    href: "/youth",
+    href: "/about",
     color: "#34D399",
     glow: "rgba(52,211,153,0.4)",
     gradient: "from-emerald-600/20 to-emerald-400/5",
