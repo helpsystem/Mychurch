@@ -26,11 +26,11 @@ const merriweather = Merriweather({ subsets: ['latin'], weight: ['400', '700'], 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.iranianchurchdc.com"),
   title: {
-    default: "Iranian Christian Church of D.C. | کلیسای مسیحی ایرانیان واشنگتن",
-    template: "%s | Iranian Christian Church DC",
+    default: "Iranian Presbyterian Church of D.C. | کلیسای انجیلی ایرانیان واشنگتن",
+    template: "%s | Iranian Presbyterian Church DC",
   },
-  description: "وب‌سایت رسمی کلیسای مسیحی ایرانیان واشنگتن دی‌سی — پخش زنده جلسات عبادتی یکشنبه‌ها، سرودهای پرستشی، کتاب مقدس به زبان فارسی و انگلیسی، مواعظ و دعا.",
-  keywords: ["کلیسای ایرانیان واشنگتن", "کلیسای مسیحی ایرانیان", "کتاب مقدس فارسی", "سرود پرستشی", "پخش زنده کلیسا", "Iranian Christian Church DC", "Persian Church Washington"],
+  description: "وب‌سایت رسمی کلیسای انجیلی ایرانیان واشنگتن دی‌سی — پخش زنده جلسات عبادتی یکشنبه‌ها، سرودهای پرستشی، کتاب مقدس به زبان فارسی و انگلیسی، مواعظ و دعا.",
+  keywords: ["کلیسای انجیلی ایرانیان واشنگتن", "کلیسای ایرانیان واشنگتن", "کتاب مقدس فارسی", "سرود پرستشی", "پخش زنده کلیسا", "Iranian Presbyterian Church DC", "Persian Presbyterian Church Washington"],
   icons: {
     icon: [
       { url: "/logo-transparent.png", sizes: "32x32", type: "image/png" },
@@ -41,17 +41,17 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    title: "Iranian Christian Church of D.C. | کلیسای مسیحی ایرانیان واشنگتن دی‌سی",
+    title: "Iranian Presbyterian Church of D.C. | کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
     description: "مرجع رسمی خدمات روحانی، پخش زنده یکشنبه‌ها، کتاب مقدس فارسی و سرودهای پرستشی.",
     url: "https://www.iranianchurchdc.com",
-    siteName: "Iranian Christian Church of Washington D.C.",
+    siteName: "Iranian Presbyterian Church of Washington D.C.",
     images: [
       {
         // Create public/og-image.jpg at 1200×630 for proper social sharing
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "کلیسای مسیحی ایرانیان واشنگتن دی‌سی",
+        alt: "کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
       },
     ],
     locale: "fa_IR",
@@ -80,7 +80,6 @@ import { VersePopupWrapper } from "@/components/widgets/VersePopupWrapper";
 import GlobalErrorReporter from "@/components/error/GlobalErrorReporter";
 import { AutoLogout } from "@/components/layout/AutoLogout";
 import { ImpersonationBanner } from "@/components/admin/ImpersonationBanner";
-import { HtmlLangUpdater } from "@/components/layout/HtmlLangUpdater";
 import { getRealUserRole, getUserRole } from "@/utils/rbac";
 import { CartProvider } from "@/providers/CartProvider";
 
@@ -140,12 +139,12 @@ export default async function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Church",
-              "name": "Iranian Christian Church of Washington D.C.",
-              "alternateName": "کلیسای مسیحی ایرانیان واشنگتن",
+              "name": "Iranian Presbyterian Church of Washington D.C.",
+              "alternateName": "کلیسای انجیلی ایرانیان واشنگتن",
               "url": "https://www.iranianchurchdc.com",
               "logo": "https://www.iranianchurchdc.com/logo.png",
               "image": "https://www.iranianchurchdc.com/logo.png",
-              "description": "وب‌سایت رسمی کلیسای مسیحی ایرانیان واشنگتن دی‌سی",
+              "description": "وب‌سایت رسمی کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
               "foundingDate": "1990",
               "address": {
                 "@type": "PostalAddress",
@@ -183,14 +182,14 @@ export default async function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Event",
-              "name": "Iranian Church DC Sunday Service — جلسه عبادتی یکشنبه",
-              "description": "پخش زنده جلسه عبادتی کلیسای مسیحی ایرانیان واشنگتن دی‌سی — یکشنبه‌ها ساعت ۱:۰۰ بعد از ظهر",
+              "name": "Iranian Presbyterian Church DC Sunday Service — جلسه عبادتی یکشنبه",
+              "description": "پخش زنده جلسه عبادتی کلیسای انجیلی ایرانیان واشنگتن دی‌سی — یکشنبه‌ها ساعت ۱:۰۰ بعد از ظهر",
               "eventStatus": "https://schema.org/EventScheduled",
               "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
               "location": [
                 {
                   "@type": "Place",
-                  "name": "Iranian Christian Church of Washington D.C.",
+                  "name": "Iranian Presbyterian Church of Washington D.C.",
                   "address": {
                     "@type": "PostalAddress",
                     "streetAddress": "10613 Georgia Ave",
@@ -207,7 +206,7 @@ export default async function RootLayout({
               ],
               "organizer": {
                 "@type": "Organization",
-                "name": "Iranian Christian Church of Washington D.C.",
+                "name": "Iranian Presbyterian Church of Washington D.C.",
                 "url": "https://www.iranianchurchdc.com"
               }
             }),
@@ -216,7 +215,6 @@ export default async function RootLayout({
       </head>
       <body className="antialiased bg-background text-foreground">
         <LanguageProvider>
-          <HtmlLangUpdater />
           <CartProvider>
             <GlobalErrorReporter />
             {realRole && currentRole && currentRole !== realRole && (

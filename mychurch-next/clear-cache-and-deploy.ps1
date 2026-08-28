@@ -78,18 +78,24 @@ if (Test-Path "public\logo.png") {
 
 # Upload essential PUBLIC files
 $essentialFiles = @(
+    "Hero.webm",
+    "hero.mp4",
+    "hero-fallback.webp",
+    "hero-fallback.jpeg",
+    "globe-bg.webp",
+    "globe-bg.jpeg",
+    "prayer-bg.webp",
+    "prayer-bg.jpeg",
+    "live-stage.webp",
+    "live-stage.jpeg",
+    "bible-cover.webp",
+    "bible-cover.jpeg",
     "certificate-bg.jpg",
     "certificate-bg.webp",
-    "hero.mp4",
     "logo.png",
     "logo-transparent.png",
     "favicon.ico",
     "apple-touch-icon.png",
-    "hero-fallback.jpeg",
-    "globe-bg.jpeg",
-    "prayer-bg.jpeg",
-    "live-stage.jpeg",
-    "bible-cover.jpeg",
     "grid.svg"
 )
 
@@ -100,9 +106,12 @@ foreach ($file in $essentialFiles) {
     }
 }
 
-# Upload images subfolder (logos, leader photos - light assets)
+# Upload images and fonts subfolder (logos, leader photos, custom fonts)
 if (Test-Path "public\images") {
     scp -o StrictHostKeyChecking=no -r "public\images" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/public/"
+}
+if (Test-Path "public\fonts") {
+    scp -o StrictHostKeyChecking=no -r "public\fonts" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/public/"
 }
 
 # Upload config and server files

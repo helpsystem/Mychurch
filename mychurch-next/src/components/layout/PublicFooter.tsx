@@ -24,18 +24,18 @@ export function PublicFooter() {
                     <div className="flex items-center gap-4">
                         <Image
                             src="/logo-transparent.png"
-                            alt="لوگوی کلیسای مسیحی ایرانیان واشنگتن دی‌سی"
+                            alt="لوگوی کلیسای انجیلی ایرانیان واشنگتن دی‌سی"
                             width={48}
                             height={48}
                             className="drop-shadow-lg"
                         />
                         <div className="flex flex-col">
-                            <span className="font-black text-lg tracking-tight uppercase">ICC of D.C.</span>
+                            <span className="font-black text-lg tracking-tight uppercase">IPC of D.C.</span>
                             <span className="text-xs text-primary font-bold">EST. 1990</span>
                         </div>
                     </div>
                     <p className="text-muted-foreground leading-relaxed max-w-sm">
-                        {t?.footerDesc || "کلیسای ایرانیان مسیحی واشنگتن دی‌سی مکانی است برای پرستش، شراکت و رشد روحانی در خداوند عیسی مسیح."}
+                        {t?.footerDesc || "کلیسای انجیلی ایرانیان واشنگتن دی‌سی مکانی است برای پرستش، شراکت و رشد روحانی در خداوند عیسی مسیح."}
                     </p>
                     <div className="flex items-center gap-4">
                         <a

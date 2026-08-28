@@ -1,6 +1,5 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
 export const alt = 'کلیسای مسیحی ایرانیان واشنگتن دی‌سی | Iranian Christian Church DC';
 export const size = {
   width: 1200,
@@ -71,7 +70,7 @@ export default async function Image() {
             letterSpacing: '-0.02em',
           }}
         >
-          کلیسای مسیحی ایرانیان واشنگتن دی‌سی
+          کلیسای انجیلی ایرانیان واشنگتن دی‌سی
         </div>
 
         {/* English Subtitle */}
@@ -86,7 +85,7 @@ export default async function Image() {
             marginBottom: '32px',
           }}
         >
-          Iranian Christian Church of Washington D.C.
+          Iranian Presbyterian Church of Washington D.C.
         </div>
 
         {/* Features bar */}

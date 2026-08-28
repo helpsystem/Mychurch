@@ -55,14 +55,14 @@ export function PublicHeader() {
                 <div className="w-14 items-center justify-center flex">
                     <Image
                         src="/logo-transparent.png"
-                        alt="لوگوی کلیسای مسیحی ایرانیان واشنگتن دی‌سی"
+                        alt="لوگوی کلیسای انجیلی ایرانیان واشنگتن دی‌سی"
                         width={56}
                         height={56}
                         className="object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] group-hover:scale-105 transition-transform"
                     />
                 </div>
                 <div className="flex flex-col">
-                    <span className="font-black text-xl tracking-tight leading-none text-gradient uppercase drop-shadow-sm group-hover:opacity-90 transition-all">Iranian Christian Church</span>
+                    <span className="font-black text-xl tracking-tight leading-none text-gradient uppercase drop-shadow-sm group-hover:opacity-90 transition-all">Iranian Presbyterian Church</span>
                     <span className="text-xs font-bold text-primary tracking-widest uppercase">{t.heroTitle || "Of Washington D.C."}</span>
                 </div>
             </Link>

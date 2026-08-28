@@ -40,7 +40,8 @@ export default function HeroSection() {
           poster="/hero-fallback.webp"
           className="w-full h-full object-cover opacity-35 mix-blend-screen"
         >
-          {/* WebM served first — ~40-60% smaller than MP4 */}
+          {/* Cinematic Church Hero Video */}
+          <source src="https://cdn.pixabay.com/video/2024/02/13/200388-912684113_large.mp4" type="video/mp4" />
           <source src="/Hero.webm" type="video/webm" />
           <source src="/hero.mp4" type="video/mp4" />
         </video>

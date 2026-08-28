@@ -117,9 +117,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-        // NOTE: 'api' removed from exclusion so /api/admin/* gets auth-checked.
-        // Public API routes (prayers, telegram, etc.) are correctly handled by
-        // the isProtected logic above which only gates /admin and /api/admin paths.
-        '/((?!_next/static|_next/image|favicon.ico|images|.*\.(?:svg|png|jpg|jpeg|gif|webp|mp4|mp3|wav|ogg)$).*)',
+        '/((?!_next/static|_next/image|favicon.ico|images|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|mp3|wav|ogg)$).*)',
     ],
 };

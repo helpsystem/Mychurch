@@ -45,8 +45,23 @@ export default function PrayerSection() {
 
   return (
     <section className="relative py-32 px-6 overflow-hidden bg-[#050A0F]" dir="rtl">
+      {/* Ambient Cinematic Background Video */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover opacity-20 mix-blend-screen"
+        >
+          <source src="https://cdn.pixabay.com/video/2022/11/14/138964-770800145_large.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050A0F] via-transparent to-[#050A0F]" />
+      </div>
+
       {/* Floating prayer pills */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
         {floatingPrayers.map((p, i) => (
           <motion.div
             key={i}

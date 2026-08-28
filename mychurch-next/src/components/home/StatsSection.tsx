@@ -96,22 +96,34 @@ export default function StatsSection() {
         {/* ── Globe + Stats ────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* Globe (Lazy Loaded with IntersectionObserver) */}
+          {/* Globe Video with Glassmorphic Circular Frame */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[420px] lg:h-[520px]"
+            className="relative h-[380px] md:h-[460px] lg:h-[520px] flex items-center justify-center"
           >
-            <div className="absolute inset-0 rounded-full bg-blue-600/5 blur-3xl" />
-            {inView ? (
-              <WorldGlobe />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="w-64 h-64 rounded-full border border-amber-500/20 animate-pulse bg-amber-500/5" />
-              </div>
-            )}
+            {/* Ambient Radial Background Glow */}
+            <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-blue-600/30 via-amber-500/20 to-cyan-500/30 blur-3xl animate-pulse pointer-events-none" />
+            
+            {/* Circular Glassmorphic Frame */}
+            <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[440px] lg:h-[440px] rounded-full overflow-hidden border-2 border-amber-500/30 shadow-[0_0_90px_rgba(30,64,175,0.45)] backdrop-blur-xl group">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-1000"
+              >
+                <source src="https://cdn.pixabay.com/video/2025/07/04/289540_large.mp4" type="video/mp4" />
+              </video>
+              
+              {/* Subtle luxury dark overlay & rim ring */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050A0F]/70 via-transparent to-[#050A0F]/30 pointer-events-none" />
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/20 rounded-full pointer-events-none" />
+            </div>
           </motion.div>
 
           {/* Stats */}
