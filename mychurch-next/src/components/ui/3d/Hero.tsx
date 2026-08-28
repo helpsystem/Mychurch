@@ -39,9 +39,10 @@ export default function Hero() {
             loop
             muted
             playsInline
-            poster="/hero-fallback.jpeg"
+            poster="/hero-fallback.webp"
             className="w-full h-full object-cover opacity-70"
           >
+            <source src="/Hero.webm" type="video/webm" />
             <source src="/hero.mp4" type="video/mp4" />
           </video>
           {/* گرادیان برای ادغام ویدیوی مشکی با پس‌زمینه سایت */}

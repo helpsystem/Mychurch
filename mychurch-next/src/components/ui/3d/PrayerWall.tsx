@@ -114,7 +114,7 @@ export default function PrayerWall() {
       <div className="absolute inset-0 z-0">
         {/* پس‌زمینه کهکشان ذرات طلایی */}
         <img
-          src="/prayer-bg.jpeg"
+          src="/prayer-bg.webp"
           alt="Galaxy Background"
           className="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none"
         />

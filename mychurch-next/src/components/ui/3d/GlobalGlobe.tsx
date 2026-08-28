@@ -93,7 +93,7 @@ export default function GlobalGlobe() {
       <div className="absolute inset-0 z-0">
         {/* پس‌زمینه تصویر کره زمین */}
         <img
-          src="/globe-bg.jpeg"
+          src="/globe-bg.webp"
           alt="Globe Background"
           className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none"
         />

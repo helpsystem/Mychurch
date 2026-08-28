@@ -37,7 +37,7 @@ export default function HeroSection() {
           muted
           playsInline
           preload="metadata"
-          poster="/hero-fallback.jpeg"
+          poster="/hero-fallback.webp"
           className="w-full h-full object-cover opacity-35 mix-blend-screen"
         >
           {/* WebM served first — ~40-60% smaller than MP4 */}

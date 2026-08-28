@@ -1,7 +1,7 @@
 "use client";
 
 import "@/lib/react-polyfill";
-import React, { Suspense } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Globe, Zap } from "lucide-react";
@@ -30,8 +30,33 @@ const verses = [
 ];
 
 export default function StatsSection() {
+  const [inView, setInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "250px" }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative py-32 px-6 bg-gradient-to-b from-[#050A0F] via-[#07101F] to-[#050A0F] overflow-hidden" dir="rtl">
+    <section 
+      ref={sectionRef} 
+      className="relative py-32 px-6 bg-gradient-to-b from-[#050A0F] via-[#07101F] to-[#050A0F] overflow-hidden" 
+      dir="rtl"
+    >
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-5 pointer-events-none"
@@ -71,7 +96,7 @@ export default function StatsSection() {
         {/* ── Globe + Stats ────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* Globe */}
+          {/* Globe (Lazy Loaded with IntersectionObserver) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -80,7 +105,13 @@ export default function StatsSection() {
             className="relative h-[420px] lg:h-[520px]"
           >
             <div className="absolute inset-0 rounded-full bg-blue-600/5 blur-3xl" />
-            <WorldGlobe />
+            {inView ? (
+              <WorldGlobe />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="w-64 h-64 rounded-full border border-amber-500/20 animate-pulse bg-amber-500/5" />
+              </div>
+            )}
           </motion.div>
 
           {/* Stats */}
