@@ -107,7 +107,16 @@ export function PublicFooter() {
                     <FooterClock />
                 </div>
 
-                <p className="order-2 lg:order-3 mt-2 md:mt-0 opacity-50 shrink-0">Designed by Saman Abyar</p>
+                <a
+                    href="https://www.abyarsaman.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="order-2 lg:order-3 mt-2 md:mt-0 text-muted-foreground hover:text-amber-400 opacity-70 hover:opacity-100 transition-all flex items-center gap-1.5 shrink-0 group"
+                    title="وب‌سایت و رزومه سامان آبیار"
+                >
+                    <span>طراحی و توسعه توسط</span>
+                    <span className="font-bold underline decoration-amber-500/40 group-hover:decoration-amber-400">سامان آبیار (Saman Abyar)</span>
+                </a>
             </div>
         </footer>
     );

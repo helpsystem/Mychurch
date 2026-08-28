@@ -24,6 +24,11 @@ Write-Host "============================================================" -Foreg
 if (Test-Path ".next") { Remove-Item -Recurse -Force ".next" }
 if (Test-Path $TAR_FILE) { Remove-Item -Force $TAR_FILE }
 
+# Clean dynamic OG files to prevent Satori build crash and apply static assets
+if (Test-Path "src\app\opengraph-image.tsx") { Remove-Item -Force "src\app\opengraph-image.tsx" }
+if (Test-Path "src\app\twitter-image.tsx") { Remove-Item -Force "src\app\twitter-image.tsx" }
+if (Test-Path "scripts\apply-new-logo.js") { node scripts\apply-new-logo.js }
+
 $env:NODE_OPTIONS = "--max-old-space-size=4096"
 npm run build
 
@@ -96,6 +101,7 @@ $essentialFiles = @(
     "logo-transparent.png",
     "favicon.ico",
     "apple-touch-icon.png",
+    "og-image.jpg",
     "grid.svg"
 )
 

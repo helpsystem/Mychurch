@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { dbAll, dbGet } from "@/lib/bibleDb";
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
 
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour

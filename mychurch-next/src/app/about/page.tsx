@@ -92,17 +92,35 @@ export default function AboutPage() {
 
                     {/* Tech Lead / Admin Card */}
                     <div className="bg-secondary/30 border border-white/5 rounded-3xl overflow-hidden flex flex-col hover:bg-secondary/50 transition-colors card-hover">
-                        <div className="h-64 bg-gradient-to-br from-emerald-900/40 to-background flex items-center justify-center relative overflow-hidden">
-                            <Users className="w-20 h-20 text-emerald-500 opacity-20" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                        <div className="h-64 bg-gradient-to-br from-emerald-950/60 via-black to-neutral-900 flex items-center justify-center relative overflow-hidden group">
+                            {/* Motion Video Avatar */}
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-contain scale-110 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] group-hover:scale-115 transition-transform duration-700 pointer-events-none"
+                            >
+                                <source src="https://o3lj3xhtw9tgbtip.public.blob.vercel-storage.com/SAMAN-MOTION-no%20background.webm" type="video/webm" />
+                            </video>
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
                         </div>
                         <div className="p-6">
                             <h3 className="text-xl md:text-2xl font-black mb-1 text-foreground" dir="rtl">سامان آبیار</h3>
                             <span className="text-xs font-bold text-muted-foreground font-serif uppercase tracking-widest block mb-1" dir="ltr">Saman Abyar</span>
-                            <p className="text-emerald-500 text-sm font-bold mb-4 uppercase tracking-wider">معاون و مدیریت فنی (Admin)</p>
-                            <p className="text-muted-foreground text-sm leading-relaxed">
+                            <p className="text-emerald-400 text-sm font-bold mb-3 uppercase tracking-wider">معاون و مدیریت فنی (Admin)</p>
+                            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                                 طراح و توسعه‌دهنده پلتفرم هوشمند کلیسا، مسئول تیم پخش زنده (Broadcast) و هماهنگی امور تکنیکال و رسانه‌ای ایمانداران.
                             </p>
+                            <a
+                                href="https://www.abyarsaman.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-xl border border-emerald-500/20 transition-all"
+                            >
+                                <span>مشاهده رزومه و وب‌سایت</span>
+                                <span dir="ltr">abyarsaman.com ↗</span>
+                            </a>
                         </div>
                     </div>
 

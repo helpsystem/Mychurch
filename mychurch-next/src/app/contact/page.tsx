@@ -111,12 +111,14 @@ export default function ContactPage() {
 
                                         <label className={`cursor-pointer flex items-center gap-3 p-3 rounded-xl border transition-all ${selectedLeader === "saman" ? "border-primary bg-primary/10" : "border-white/10 bg-secondary/30 hover:bg-white/5"}`}>
                                             <input type="radio" name="leader" value="saman" className="hidden" checked={selectedLeader === "saman"} onChange={(e) => setSelectedLeader(e.target.value)} />
-                                            <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0 border border-white/10">
-                                                <span className="text-emerald-500 font-bold text-sm">s.a</span>
+                                            <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-emerald-500/30 bg-black/60 flex items-center justify-center">
+                                                <video autoPlay loop muted playsInline className="w-full h-full object-contain scale-125 pointer-events-none">
+                                                    <source src="https://o3lj3xhtw9tgbtip.public.blob.vercel-storage.com/SAMAN-MOTION-no%20background.webm" type="video/webm" />
+                                                </video>
                                             </div>
                                             <div className="flex flex-col">
                                                 <span className="text-sm font-bold text-foreground">سامان آبیار</span>
-                                                <span className="text-xs text-emerald-500">مدیریت فنی</span>
+                                                <span className="text-xs text-emerald-400">مدیریت فنی (Admin)</span>
                                             </div>
                                         </label>
                                     </div>
