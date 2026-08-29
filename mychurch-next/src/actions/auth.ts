@@ -142,7 +142,7 @@ export async function signUp(formData: FormData) {
 
         const mailInfo = await sendMail({
             to: email,
-            subject: "تایید حساب کاربری | Account Verification - Iranian Christian Church DC",
+            subject: "تایید حساب کاربری | Account Verification - Iranian Presbyterian Church DC",
             replyTo: supportEmail,
             attachments: attachments.length > 0 ? attachments : undefined,
             text,
@@ -203,7 +203,7 @@ export async function requestPasswordReset(formData: FormData): Promise<{ succes
 
             await sendMail({
                 to: email,
-                subject: "بازیابی رمز عبور | Password Reset — Iranian Christian Church DC",
+                subject: "بازیابی رمز عبور | Password Reset — Iranian Presbyterian Church DC",
                 attachments: attachments.length > 0 ? attachments : undefined,
                 text: `سلام،\n\nیک درخواست بازیابی رمز عبور برای حساب کاربری شما (${email}) ثبت شد.\nبرای تعیین رمز عبور جدید روی لینک زیر کلیک کنید:\n\n${resetLink}\n\nاگر این درخواست از شما نیست، آن را نادیده بگیرید.\n\n${siteUrl}`,
                 html: `
@@ -218,12 +218,12 @@ export async function requestPasswordReset(formData: FormData): Promise<{ succes
                             <tr><td align="center">
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;background-color:#1c1917;border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;">
                                     <tr><td style="padding:40px;text-align:right;">
-                                        ${fs.existsSync(logoPath) ? `<img src="cid:logo-premium" alt="Iranian Christian Church DC" width="56" height="56" style="margin-bottom:24px;border:0;" />` : ""}
+                                        ${fs.existsSync(logoPath) ? `<img src="cid:logo-premium" alt="Iranian Presbyterian Church DC" width="56" height="56" style="margin-bottom:24px;border:0;" />` : ""}
                                         <h1 style="font-size:22px;font-weight:bold;margin:0 0 8px 0;color:#ba955c;">بازیابی رمز عبور</h1>
                                         <h2 dir="ltr" style="font-size:14px;font-weight:600;margin:0 0 24px 0;color:#a8a29e;text-align:left;">Password Reset Request</h2>
                                         <p style="font-size:15px;line-height:1.8;margin:0 0 24px 0;color:#e7e5e4;">
                                             سلام،<br/>
-                                            یک درخواست بازیابی رمز عبور برای حساب کاربری شما (<strong>${email}</strong>) ثبت شد.<br/>
+                                             یک درخواست بازیابی رمز عبور برای حساب کاربری شما (<strong>${email}</strong>) ثبت شد.<br/>
                                             برای تعیین رمز عبور جدید روی دکمه زیر کلیک کنید:
                                         </p>
                                         <div style="text-align: center; margin: 32px 0;">
@@ -243,7 +243,7 @@ export async function requestPasswordReset(formData: FormData): Promise<{ succes
                                         </div>
                                     </td></tr>
                                     <tr><td style="border-top:1px solid rgba(255,255,255,0.05);background-color:rgba(0,0,0,0.2);padding:20px;font-size:12px;color:#78716c;text-align:center;font-family:Arial,sans-serif;">
-                                        © ${new Date().getFullYear()} Iranian Christian Church D.C. — ${siteUrl}
+                                        © ${new Date().getFullYear()} Iranian Presbyterian Church D.C. — ${siteUrl}
                                     </td></tr>
                                 </table>
                             </td></tr>

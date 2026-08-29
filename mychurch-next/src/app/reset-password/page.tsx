@@ -322,7 +322,7 @@ export default function ResetPasswordPage() {
                     )}
 
                     <div className="mt-8 text-center text-xs text-white/70 font-medium border-t border-white/10 pt-6">
-                        <p>© {new Date().getFullYear()} Iranian Christian Church of D.C.</p>
+                        <p>© {new Date().getFullYear()} Iranian Presbyterian Church of D.C.</p>
                         <p className="mt-1 text-white/60">Secured by Supabase Auth</p>
                     </div>
                 </div>

@@ -46,7 +46,7 @@ async function createShippoLabel(shippingAddress: any, totalWeightGrams: number)
             },
             body: JSON.stringify({
                 address_from: {
-                    name: "Iranian Christian Church DC",
+                    name: "Iranian Presbyterian Church DC",
                     street1: "8100 Glenbrook Rd",
                     city: "Bethesda",
                     state: "MD",

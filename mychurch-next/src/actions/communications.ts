@@ -95,8 +95,8 @@ export async function sendMassEmail(subject: string, body: string): Promise<{ su
                             <!-- Footer -->
                             <tr style="background-color: #f8fafc; border-top: 1px solid #f1f5f9; text-align: center;">
                                 <td style="padding: 25px 30px; font-size: 12px; color: #64748b; line-height: 1.6; font-family: Arial, sans-serif;">
-                                    <p style="margin: 0 0 10px 0; font-family: Tahoma, Geneva, sans-serif;">این ایمیل از طرف کلیسای ایرانی واشنگتن دی‌سی برای شما ارسال شده است.</p>
-                                    <p style="margin: 0 0 15px 0;">Iranian Christian Church of Washington D.C.<br/>Address: Iranian Christian Church, Washington D.C., USA</p>
+                                    <p style="margin: 0 0 10px 0; font-family: Tahoma, Geneva, sans-serif;">این ایمیل از طرف کلیسای انجیلی ایرانیان واشنگتن دی‌سی برای شما ارسال شده است.</p>
+                                    <p style="margin: 0 0 15px 0;">Iranian Presbyterian Church of Washington D.C.<br/>Address: Iranian Presbyterian Church, Washington D.C., USA</p>
                                     <p style="margin: 0;">
                                         <a href="https://www.iranianchurchdc.com/unsubscribe" style="color: #4f46e5; text-decoration: underline;">لغو عضویت (Unsubscribe)</a>
                                     </p>
@@ -181,7 +181,7 @@ export async function sendTestMassEmail(subject: string, body: string): Promise<
                             <tr style="background-color: #f8fafc; border-top: 1px solid #f1f5f9; text-align: center;">
                                 <td style="padding: 25px 30px; font-size: 12px; color: #64748b; line-height: 1.6; font-family: Arial, sans-serif;">
                                     <p style="margin: 0 0 10px 0; font-family: Tahoma, Geneva, sans-serif;">این یک ایمیل تستی از بخش مدیریت سامانه است.</p>
-                                    <p style="margin: 0 0 15px 0;">Iranian Christian Church of Washington D.C.<br/>Address: Iranian Christian Church, Washington D.C., USA</p>
+                                    <p style="margin: 0 0 15px 0;">Iranian Presbyterian Church of Washington D.C.<br/>Address: Iranian Presbyterian Church, Washington D.C., USA</p>
                                 </td>
                             </tr>
                         </table>

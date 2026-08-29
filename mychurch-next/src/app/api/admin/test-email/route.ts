@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
     const data = await sendMail({
       to,
-      subject: "✅ تست سیستم ایمیل | Email System Test — Iranian Christian Church DC",
+      subject: "✅ تست سیستم ایمیل | Email System Test — Iranian Presbyterian Church DC",
       html: `
         <!DOCTYPE html>
         <html lang="fa" dir="rtl">
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
                                         Sent at: ${new Date().toISOString()}<br/>
                                         Server: www.iranianchurchdc.com<br/>
                                         Provider: Resend (iranianchurchdc.com)<br/>
-                                        Address: Iranian Christian Church, Washington D.C., USA
+                                        Address: Iranian Presbyterian Church, Washington D.C., USA
                                     </p>
                                 </td>
                             </tr>

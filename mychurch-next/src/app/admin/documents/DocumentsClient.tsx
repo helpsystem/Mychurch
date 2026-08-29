@@ -58,16 +58,16 @@ export interface DocumentDesign {
 
 // ─── Church Settings (Configurable) ──────────────────────────────────────────
 const DEFAULT_CHURCH = {
-  nameEn: "Iranian Christian Church of Washington DC",
-  nameFa: "کلیسای ایرانیان واشنگتن دی.سی",
+  nameEn: "Iranian Presbyterian Church of Washington DC",
+  nameFa: "کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
   address: "Washington, DC Metropolitan Area",
   ein: "XX-XXXXXXX",
   phone: "+1 (XXX) XXX-XXXX",
   email: "info@iranianchurchdc.com",
   web: "www.iranianchurchdc.com",
   logo: "/logo-transparent.png",
-  pastor: "Rev. Sam Yarebeygi",
-  denomination: "Persian Evangelical Church – 501(c)(3)",
+  pastor: "Pastor Javad Pishghadamian",
+  denomination: "Persian Presbyterian Church – 501(c)(3)",
   letterheadTheme: "modern", // modern, classic, elegant, minimal, custom
   customHeaderImage: "",
   paperSize: "Letter", // Default to US Letter as requested by user
@@ -322,8 +322,8 @@ function DocFooter({ qrData, refNo, church, churchEmail, churchWeb, isRtl, showQ
       <div style={{ display: "flex", flexDirection: "column", gap: "2px", flex: 1, direction: "ltr" }}>
         <div style={{ fontSize: `${(fs * 0.65).toFixed(1)}pt`, color: "#64748b", fontWeight: 700, letterSpacing: "0.02em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: "1px" }}>
           {isRtl
-            ? "این سند بهصورت رسمی توسط کلیسای ایرانیان مسیحی واشنگتن دیسی صادر و تأیید شده است."
-            : "THIS DOCUMENT IS OFFICIALLY GENERATED AND VERIFIED BY THE IRANIAN CHRISTIAN CHURCH OF WASHINGTON DC."}
+            ? "این سند به‌صورت رسمی توسط کلیسای انجیلی ایرانیان واشنگتن دی‌سی صادر و تأیید شده است."
+            : "THIS DOCUMENT IS OFFICIALLY GENERATED AND VERIFIED BY THE IRANIAN PRESBYTERIAN CHURCH OF WASHINGTON DC."}
         </div>
         <div style={{ fontSize: `${(fs * 0.9).toFixed(1)}pt`, fontWeight: 900, color: "#0f172a", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "monospace" }}>
           {church.nameEn}
@@ -458,7 +458,7 @@ const LETTER_TEMPLATES = [
     subjectEn: "RE: Letter of Church Membership and Active Participation",
     bodyEn: `To Whom It May Concern,
 
-This letter is to confirm that [MEMBER NAME] is a registered and active member of the Iranian Christian Church of Washington DC, a federally recognized 501(c)(3) non-profit religious organization (EIN: [EIN]).
+This letter is to confirm that [MEMBER NAME] is a registered and active member of the Iranian Presbyterian Church of Washington DC, a federally recognized 501(c)(3) non-profit religious organization (EIN: [EIN]).
 
 [He/She] has been an active and faithful member of our congregation since [DATE]. [He/She] regularly attends our weekly worship services, participates in Bible study groups, and actively contributes to our church community ministry.
 
@@ -469,7 +469,7 @@ We respectfully request your favorable consideration of [MEMBER NAME]'s applicat
 Respectfully yours,`,
     bodyFa: `با احترام،
 
-این نامه تأیید می‌کند که [نام عضو] عضو رسمی و فعال کلیسای ایرانیان واشنگتن دی.سی می‌باشد، که یک سازمان غیرانتفاعی مذهبی شناخته‌شده فدرال 501(c)(3) است.
+این نامه تأیید می‌کند که [نام عضو] عضو رسمی و فعال کلیسای انجیلی ایرانیان واشنگتن دی‌سی می‌باشد، که یک سازمان غیرانتفاعی مذهبی شناخته‌شده فدرال 501(c)(3) است.
 
 ایشان از تاریخ [تاریخ] عضو فعال و متعهد جماعت ما بوده‌اند و به طور منظم در جلسات پرستشی هفتگی، گروه‌های مطالعه کتاب مقدس شرکت می‌کنند.
 
@@ -483,7 +483,7 @@ Respectfully yours,`,
     toEn: "Donor / Internal Revenue Service", subjectEn: "RE: Acknowledgment of Charitable Contribution – 501(c)(3)",
     bodyEn: `Dear [DONOR NAME],
 
-This letter serves as the official written acknowledgment of your generous charitable contribution to the Iranian Christian Church of Washington DC (EIN: [EIN]).
+This letter serves as the official written acknowledgment of your generous charitable contribution to the Iranian Presbyterian Church of Washington DC (EIN: [EIN]).
 
 Contribution Details:
 • Amount: $[AMOUNT]
@@ -499,7 +499,7 @@ Thank you sincerely for your generous support of our ministry and community.
 Gratefully in Christ,`,
     bodyFa: `[نام] عزیز،
 
-این نامه تأیید رسمی کمک مالی سخاوتمندانه شما به کلیسای ایرانیان واشنگتن دی.سی می‌باشد.
+این نامه تأیید رسمی کمک مالی سخاوتمندانه شما به کلیسای انجیلی ایرانیان واشنگتن دی‌سی می‌باشد.
 
 جزئیات کمک مالی:
 • مبلغ: $[مبلغ]
@@ -543,7 +543,7 @@ Sincerely,`,
     toEn: "Property Manager / Landlord", subjectEn: "RE: Character Reference for Housing Application",
     bodyEn: `To Whom It May Concern,
 
-I am writing this letter of character reference on behalf of [APPLICANT NAME], who has been a valued member of our congregation at the Iranian Christian Church of Washington DC.
+I am writing this letter of character reference on behalf of [APPLICANT NAME], who has been a valued member of our congregation at the Iranian Presbyterian Church of Washington DC.
 
 I have known [APPLICANT NAME] personally for [DURATION] and can attest without reservation to [his/her] character, financial responsibility, and trustworthiness. [He/She] demonstrates consistent reliability in fulfilling all personal and community obligations.
 
@@ -554,7 +554,7 @@ Please feel free to contact our church office for any additional information.
 Sincerely,`,
     bodyFa: `با احترام،
 
-این نامه در حمایت از [نام متقاضی]، عضو ارزشمند کلیسای ایرانیان واشنگتن دی.سی، نوشته می‌شود.
+این نامه در حمایت از [نام متقاضی]، عضو ارزشمند کلیسای انجیلی ایرانیان واشنگتن دی‌سی، نوشته می‌شود.
 
 ایشان را به مدت [مدت] می‌شناسم و می‌توانم گواهی دهم که فردی مسئول، قابل اعتماد و صادق هستند.
 
@@ -859,8 +859,8 @@ export function LetterDoc({ bodyEn, bodyFa, editLang, to, toAddress, subject, re
 
                     <div className="text-[8px] text-slate-400 mt-2 max-w-sm uppercase leading-tight font-sans tracking-widest" dir="ltr">
                       {isRtl
-                        ? "این سند به طور رسمی توسط کلیسای ایرانیان مسیحی واشنگتن دی‌سی صادر و تأیید شده است."
-                        : "This document is officially generated and verified by the Iranian Christian Church of Washington DC."
+                        ? "این سند به طور رسمی توسط کلیسای انجیلی ایرانیان واشنگتن دی‌سی صادر و تأیید شده است."
+                        : "This document is officially generated and verified by the Iranian Presbyterian Church of Washington DC."
                       }
                     </div>
                   </div>
@@ -1024,7 +1024,7 @@ export function DonationReceiptDoc({ receipt, receiptNo, isInKind, inKindItems, 
                     <div className="mt-8 p-5 bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl text-blue-900 text-xs font-medium leading-relaxed relative flex gap-4 items-start">
                       <Building2 className="w-6 h-6 shrink-0 text-blue-600/50 mt-1" />
                       <p>
-                        The Iranian Christian Church of Washington DC is a qualified 501(c)(3) tax-exempt organization. 
+                        The Iranian Presbyterian Church of Washington DC is a qualified 501(c)(3) tax-exempt organization. 
                         <span className="font-bold"> No goods or services were provided in exchange for this contribution.</span> Contributions are tax-deductible to the extent allowed by United States federal law. Please retain this letter for your tax records.
                       </p>
                     </div>
@@ -1235,7 +1235,7 @@ export function InvoiceDoc({ invoiceTo, invoiceAddress, invoiceName, invoiceDate
 
                 <div className="pt-6 border-t font-mono text-[10px] text-slate-300 uppercase tracking-[0.3em] flex justify-between items-center relative z-10 mt-8" style={{ pageBreakInside: "avoid", breakInside: "avoid" }}>
                   <div>
-                    <span>Generated by Iranian Christian Church of Washington DC © 2026</span>
+                    <span>Generated by Iranian Presbyterian Church of Washington DC © 2026</span>
                     <div className="mt-1 text-slate-200">System Integrity Verified • No Unauthorized Reproduction</div>
                   </div>
                   {/* Screen QR (hidden on print — replaced by DocFooter QR) */}
@@ -1971,8 +1971,8 @@ export default function ChurchDocumentsPage() {
       // ── PDF Metadata (shown in "Document Properties") ──
       pdf.setProperties({
         title: `${emailModal?.subject || "Official Document"} — Ref: ${refNo}`,
-        subject: `Issued by Iranian Christian Church of Washington DC`,
-        author: `Iranian Christian Church of Washington DC (iranianchurchdc.com)`,
+        subject: `Issued by Iranian Presbyterian Church of Washington DC`,
+        author: `Iranian Presbyterian Church of Washington DC (iranianchurchdc.com)`,
         keywords: `official, church, verified, ${refNo}`,
         creator: `MyChurch Document System`,
       });

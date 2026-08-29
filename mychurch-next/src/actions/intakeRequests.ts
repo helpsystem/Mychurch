@@ -110,7 +110,7 @@ export async function submitIntakeForm(token: string, submittedData: Record<stri
                     <td style="background:linear-gradient(135deg,#1e1b4b,#312e81); padding:32px; text-align:center;">
                       <img src="https://www.iranianchurchdc.com/logo-transparent.png" alt="Church Logo" style="height:50px;margin-bottom:16px;display:block;margin-left:auto;margin-right:auto;" />
                       <h1 style="color:#fff;margin:0;font-size:20px;font-weight:900;">Request Received ✓</h1>
-                      <p style="color:#a5b4fc;margin:8px 0 0;font-size:13px;">Iranian Christian Church of Washington D.C.</p>
+                      <p style="color:#a5b4fc;margin:8px 0 0;font-size:13px;">Iranian Presbyterian Church of Washington D.C.</p>
                     </td>
                   </tr>
                   <tr>
@@ -129,7 +129,7 @@ export async function submitIntakeForm(token: string, submittedData: Record<stri
                   </tr>
                   <tr>
                     <td style="background:#f8fafc;border-top:1px solid #e4e4e7;padding:20px 40px;text-align:center;">
-                      <p style="margin:0;font-size:12px;color:#71717a;">Iranian Christian Church of Washington DC &nbsp;|&nbsp; iranianchurchdc.com</p>
+                      <p style="margin:0;font-size:12px;color:#71717a;">Iranian Presbyterian Church of Washington DC &nbsp;|&nbsp; iranianchurchdc.com</p>
                     </td>
                   </tr>
                 </table>

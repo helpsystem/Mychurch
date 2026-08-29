@@ -200,7 +200,7 @@ export async function sendGiftThankYouEmail(email: string, name: string | null, 
                                     <h2 style="color: #ba955c; margin: 0 0 15px 0; font-size: 24px; font-weight: bold; font-family: 'Vazirmatn', Tahoma, sans-serif;">سپاسگزاری از هدیه سخاوتمندانه شما</h2>
                                     <p style="font-size: 16px; color: #f5f5f4; margin: 0 0 12px 0; line-height: 1.7; font-family: 'Vazirmatn', Tahoma, sans-serif;">${greetingFa}،</p>
                                     <p style="font-size: 15px; color: #e7e5e4; margin: 0 0 15px 0; line-height: 1.7; font-family: 'Vazirmatn', Tahoma, sans-serif;">
-                                        با تشکر و سپاس فراوان از هدیه محبت‌آمیز شما به مبلغ <strong>${formattedAmount}</strong> برای کلیسای ایرانیان واشنگتن دی‌سی.
+                                        با تشکر و سپاس فراوان از هدیه محبت‌آمیز شما به مبلغ <strong>${formattedAmount}</strong> برای کلیسای انجیلی ایرانیان واشنگتن دی‌سی.
                                     </p>
                                     <p style="font-size: 15px; color: #d6d3d1; margin: 0 0 20px 0; line-height: 1.7; font-family: 'Vazirmatn', Tahoma, sans-serif;">
                                         پشتیبانی بی‌دریغ شما ما را در ادامه خدمت‌رسانی و رساندن پیام امید و محبت الهی یاری می‌دهد. دعا می‌کنیم که برکت و فیض بی‌پایان خداوند همواره در زندگی شما جاری باشد.
@@ -213,7 +213,7 @@ export async function sendGiftThankYouEmail(email: string, name: string | null, 
                                     <h2 style="color: #ba955c; margin: 0 0 15px 0; font-size: 20px; font-weight: bold; font-family: Arial, sans-serif;">Thank You for Your Generous Gift</h2>
                                     <p style="font-size: 15px; color: #f5f5f4; margin: 0 0 12px 0; line-height: 1.6; font-family: Arial, sans-serif;">${greetingEn},</p>
                                     <p style="font-size: 14px; color: #e7e5e4; margin: 0 0 15px 0; line-height: 1.6; font-family: Arial, sans-serif;">
-                                        We are deeply grateful for your loving gift of <strong>${formattedAmount}</strong> to the Iranian Christian Church of Washington DC.
+                                        We are deeply grateful for your loving gift of <strong>${formattedAmount}</strong> to the Iranian Presbyterian Church of Washington DC.
                                     </p>
                                     <p style="font-size: 14px; color: #d6d3d1; margin: 0 0 20px 0; line-height: 1.6; font-family: Arial, sans-serif;">
                                         Your faithful support helps us sustain our ministries and share God's message of love and hope. May God richly bless you.
@@ -232,8 +232,8 @@ export async function sendGiftThankYouEmail(email: string, name: string | null, 
                                 </table>
 
                                 <div style="text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; font-size: 12px; color: #78716c; font-family: 'Vazirmatn', Tahoma, sans-serif;">
-                                    <p style="margin: 0 0 5px 0;">این یک مکاتبه رسمی خودکار از کلیسای مسیحی ایرانی واشنگتن دی‌سی است.</p>
-                                    <p dir="ltr" style="margin: 0;">This is an automated official communication from the Iranian Christian Church of Washington DC.</p>
+                                    <p style="margin: 0 0 5px 0;">این یک مکاتبه رسمی خودکار از کلیسای انجیلی ایرانیان واشنگتن دی‌سی است.</p>
+                                    <p dir="ltr" style="margin: 0;">This is an automated official communication from the Iranian Presbyterian Church of Washington DC.</p>
                                 </div>
                             </td>
                         </tr>

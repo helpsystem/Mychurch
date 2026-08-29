@@ -66,7 +66,7 @@ export default function Admin2faOtpEmail({ code }: Admin2faOtpEmailProps) {
                     {/* Footer */}
                     <Section style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "20px", marginTop: "40px", textAlign: "center" as const }}>
                         <Text style={footerText}>
-                            © {new Date().getFullYear()} Iranian Christian Church of D.C.<br />
+                            © {new Date().getFullYear()} Iranian Presbyterian Church of D.C.<br />
                             USA
                         </Text>
                     </Section>

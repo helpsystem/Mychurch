@@ -55,7 +55,7 @@ export async function sendMail(options: MailOptions) {
   const { from, to, bcc, subject, text, html, replyTo, attachments } = options;
   const { resendTransporter, fallbackTransporter } = getTransporters();
   
-  const DEFAULT_FROM = process.env.MAIL_FROM || process.env.SMTP_FROM || "Iranian Christian Church DC <noreply@iranianchurchdc.com>";
+  const DEFAULT_FROM = process.env.MAIL_FROM || process.env.SMTP_FROM || "Iranian Presbyterian Church DC <noreply@iranianchurchdc.com>";
 
   const plainText = text || html
       ?.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
@@ -100,7 +100,7 @@ export async function sendMail(options: MailOptions) {
         
         // Override the 'from' address to match the authenticated SMTP user/domain
         // while preserving the professional display name to ensure SPF/DKIM validation.
-        const displayName = "Iranian Christian Church DC";
+        const displayName = "Iranian Presbyterian Church DC";
         const smtpEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
         const fallbackPayload = {
             ...mailPayload,

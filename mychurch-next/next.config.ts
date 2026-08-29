@@ -3,7 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
   typescript: {
-    ignoreBuildErrors: true,
+    // Strict TypeScript build validation
+    ignoreBuildErrors: false,
   },
   serverExternalPackages: ['better-sqlite3', 'sqlite3', 'sql.js'],
   transpilePackages: ['three', '@react-three/fiber', '@react-three/drei', 'framer-motion', 'lucide-react'],
@@ -27,6 +28,10 @@ const nextConfig: NextConfig = {
       // Replicate AI image generation
       { protocol: 'https', hostname: 'replicate.delivery' },
       { protocol: 'https', hostname: 'pbxt.replicate.delivery' },
+      // Vercel Blob Storage
+      { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
+      // Pixabay Media CDN
+      { protocol: 'https', hostname: 'cdn.pixabay.com' },
     ],
     formats: ['image/avif', 'image/webp'],
   },
@@ -34,7 +39,7 @@ const nextConfig: NextConfig = {
     workerThreads: false,
     cpus: 1,
   },
-  // Keep turbopack config empty - we force --webpack flag in build script
+  // Turbopack empty config for standard Next.js 15+ compatibility
   turbopack: {},
   webpack: (config: any, { isServer }: { isServer: boolean }) => {
     if (isServer) {
@@ -50,7 +55,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // 🚨 PREVENT ALL STALE BROWSER/NGINX CACHING ON ADMIN & DYNAMIC ROUTES
+        // Prevent stale browser/proxy caching on admin, auth, and dynamic API routes
         source: '/(admin|profile|verify-admin-login|api)/:path*',
         headers: [
           {
@@ -68,7 +73,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Static Audio & worship files (immutable caching for speed)
+        // Static Audio & worship files (immutable caching for maximum speed)
         source: '/worship/audio/:path*',
         headers: [
           { key: 'Content-Type', value: 'audio/mpeg' },
@@ -77,14 +82,14 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // General files
+        // General static files
         source: '/files/:path*',
         headers: [
           { key: 'Content-Disposition', value: 'inline' },
         ],
       },
       {
-        // Static images, video, and font files — long-lived immutable cache
+        // Static images, video, and font files — 1 year immutable browser caching
         source: '/:path*.(png|jpg|jpeg|webp|avif|svg|gif|ico|woff|woff2|ttf|otf|webm|mp4)',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
@@ -92,20 +97,10 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Next.js hashed static chunks — always immutable
+        // Next.js hashed static assets — permanent caching
         source: '/_next/static/:path*',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-        ],
-      },
-      {
-        // Security headers on all HTML responses
-        source: '/((?!_next/static|_next/image|favicon.ico).*)',
-        headers: [
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'camera=self, microphone=self, geolocation=()' },
         ],
       },
     ];

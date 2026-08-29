@@ -58,7 +58,7 @@ export default function VerifyDocPage() {
             <Image src="/logo-transparent.png" alt="Logo" width={40} height={40} className="object-contain invert" />
           </div>
           <div>
-            <h2 className="font-black text-slate-900 text-lg uppercase tracking-tight leading-none">Iranian Christian Church</h2>
+            <h2 className="font-black text-slate-900 text-lg uppercase tracking-tight leading-none">Iranian Presbyterian Church</h2>
             <p className="text-blue-700 font-bold tracking-widest text-xs mt-0.5">of Washington, D.C.</p>
             <p className="text-slate-500 text-xs font-mono mt-0.5">OFFICIAL DOCUMENT VERIFICATION PORTAL</p>
           </div>
@@ -93,7 +93,7 @@ export default function VerifyDocPage() {
                   </div>
                   <div>
                     <p className="font-black text-emerald-700 text-xl uppercase tracking-tight">Authentic & Valid</p>
-                    <p className="text-slate-500 text-sm font-medium">This document is officially issued by the Iranian Christian Church of Washington, D.C.</p>
+                    <p className="text-slate-500 text-sm font-medium">This document is officially issued by the Iranian Presbyterian Church of Washington, D.C.</p>
                   </div>
                 </div>
 

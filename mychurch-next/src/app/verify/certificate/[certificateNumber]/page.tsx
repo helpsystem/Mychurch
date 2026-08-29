@@ -5,9 +5,10 @@ import { PublicHeader } from '@/components/layout/PublicHeader';
 import { PublicFooter } from '@/components/layout/PublicFooter';
 import VerificationClient from './VerificationClient';
 
-export default async function VerifyCertificatePage({ params }: { params: { certificateNumber: string } }) {
+export default async function VerifyCertificatePage({ params }: { params: Promise<{ certificateNumber: string }> }) {
+  const { certificateNumber } = await params;
   const supabase = await createClient();
-  const certNum = params.certificateNumber;
+  const certNum = certificateNumber;
 
   const { data: cert, error } = await supabase
     .from('baptism_certificates')

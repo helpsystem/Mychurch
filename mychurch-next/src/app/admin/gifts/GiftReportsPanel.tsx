@@ -320,8 +320,8 @@ export default function GiftReportsPanel({ events }: GiftReportsPanelProps) {
                 {/* Header Statement */}
                 <div className="text-center mb-10 border-b border-gray-300 pb-6 flex flex-col items-center">
                     <span className="text-4xl mb-2">💝</span>
-                    <h1 className="text-2xl font-bold text-gray-900">کلیسای ایرانیان واشنگتن دی‌سی</h1>
-                    <h2 className="text-lg text-gray-700 font-sans tracking-wide mt-1" dir="ltr">Iranian Christian Church of Washington DC</h2>
+                    <h1 className="text-2xl font-bold text-gray-900">کلیسای انجیلی ایرانیان واشنگتن دی‌سی</h1>
+                    <h2 className="text-lg text-gray-700 font-sans tracking-wide mt-1" dir="ltr">Iranian Presbyterian Church of Washington DC</h2>
                     <p className="text-xs text-gray-500 mt-2">رسید معافیت مالیاتی هدایا / Official Tax Donation Statement</p>
                     <p className="text-xs text-gray-400 font-sans" dir="ltr">501(c)(3) Non-Profit Charitable Organization</p>
                 </div>
@@ -386,8 +386,8 @@ export default function GiftReportsPanel({ events }: GiftReportsPanelProps) {
 
                 {/* Formal statement of 501(c)(3) */}
                 <div className="text-xs text-gray-500 leading-relaxed space-y-2 border-t border-gray-200 pt-6">
-                    <p>کلیسای ایرانیان واشنگتن دی‌سی یک سازمان غیرانتفاعی ثبت شده تحت بند ۵۰۱(c)(۳) قانون درآمدهای داخلی ایالات متحده آمریکا می‌باشد. هیچ کالا یا خدماتی در قبال دریافت این هدایا به اهداکننده ارائه نشده است، بنابراین کل مبلغ اهدایی فوق الذکر به عنوان کمک خیریه جهت کسر مالیاتی معاف می‌باشد.</p>
-                    <p dir="ltr" className="text-left font-sans">The Iranian Christian Church of Washington DC is a registered 501(c)(3) non-profit organization. No goods or services were provided in exchange for these contributions, rendering the full amount tax-deductible as charitable contributions under IRS regulations.</p>
+                    <p>کلیسای انجیلی ایرانیان واشنگتن دی‌سی یک سازمان غیرانتفاعی ثبت شده تحت بند ۵۰۱(c)(۳) قانون درآمدهای داخلی ایالات متحده آمریکا می‌باشد. هیچ کالا یا خدماتی در قبال دریافت این هدایا به اهداکننده ارائه نشده است، بنابراین کل مبلغ اهدایی فوق الذکر به عنوان کمک خیریه جهت کسر مالیاتی معاف می‌باشد.</p>
+                    <p dir="ltr" className="text-left font-sans">The Iranian Presbyterian Church of Washington DC is a registered 501(c)(3) non-profit organization. No goods or services were provided in exchange for these contributions, rendering the full amount tax-deductible as charitable contributions under IRS regulations.</p>
                 </div>
 
                 {/* Sign-off section */}

@@ -57,7 +57,7 @@ export function PublicFooter() {
                             <Instagram className="w-5 h-5" aria-hidden="true" />
                         </a>
                         <a
-                            href="mailto:info@iranianchristianchurchdc.com"
+                            href="mailto:info@iranianchurchdc.com"
                             aria-label="ارسال ایمیل به کلیسا"
                             className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
                         >
@@ -93,14 +93,14 @@ export function PublicFooter() {
                         </div>
                         <div className="flex items-center gap-3">
                             <Mail className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
-                            <a href="mailto:info@iranianchristianchurchdc.com" dir="ltr" className="hover:text-primary transition-colors">info@iranianchristianchurchdc.com</a>
+                            <a href="mailto:info@iranianchurchdc.com" dir="ltr" className="hover:text-primary transition-colors">info@iranianchurchdc.com</a>
                         </div>
                     </address>
                 </div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between text-xs text-muted-foreground font-medium gap-6 pb-6 relative z-10">
-                <p className="order-3 lg:order-1 text-center lg:text-right">© {new Date().getFullYear()} Iranian Christian Church of D.C. All rights reserved.</p>
+                <p className="order-3 lg:order-1 text-center lg:text-right">© {new Date().getFullYear()} Iranian Presbyterian Church of D.C. All rights reserved.</p>
 
                 {/* Embedded Clock Widget */}
                 <div className="order-1 lg:order-2 shrink-0">

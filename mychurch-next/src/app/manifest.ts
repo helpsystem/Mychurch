@@ -2,9 +2,9 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: 'MyChurch Platform',
-        short_name: 'MyChurch',
-        description: 'Iranian Christian Church of Washington D.C.',
+        name: 'کلیسای انجیلی ایرانیان واشنگتن | Iranian Presbyterian Church DC',
+        short_name: 'IPC DC',
+        description: 'Iranian Presbyterian Church of Washington D.C.',
         start_url: '/',
         display: 'standalone',
         background_color: '#000000',

@@ -9,8 +9,9 @@ type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
     date: string;
 };
 
-export default async function PresentationDetailsPage({ params }: { params: { id: string } }) {
-    const presentation = await getPresentationById(params.id);
+export default async function PresentationDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const presentation = await getPresentationById(id);
 
     if (!presentation) {
         notFound();

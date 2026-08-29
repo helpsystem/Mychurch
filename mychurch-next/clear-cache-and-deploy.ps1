@@ -83,6 +83,11 @@ foreach ($bf in $brandFiles) {
     }
 }
 
+# Upload leader photos and public images folder
+if (Test-Path "public\images") {
+    scp -o StrictHostKeyChecking=no -r "public\images" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/public/"
+}
+
 Write-Host "Upload completed successfully." -ForegroundColor Green
 
 Write-Host ""

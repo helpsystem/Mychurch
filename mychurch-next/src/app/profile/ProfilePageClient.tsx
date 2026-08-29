@@ -713,7 +713,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                                                 <p className="font-bold text-slate-900">{isFa ? "شماره مرجع:" : "Ref No:"} <span className="font-normal font-mono">{content.refNo || "N/A"}</span></p>
                                                             </div>
                                                             <div className="text-right">
-                                                                <h4 className="font-black text-slate-900 text-base">Iranian Christian Church</h4>
+                                                                <h4 className="font-black text-slate-900 text-base">Iranian Presbyterian Church</h4>
                                                                 <p className="text-xs text-slate-500">Washington D.C. Metro Area</p>
                                                             </div>
                                                         </div>
@@ -730,7 +730,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                                         {content.signatureTitle && (
                                                             <div className="mt-8 pt-4 flex flex-col items-end">
                                                                 <p className="font-bold text-slate-900">{content.signatureTitle}</p>
-                                                                <p className="text-xs text-slate-500">{isFa ? "کلیسا ایرانیان واشینگتن" : "Iranian Christian Church"}</p>
+                                                                <p className="text-xs text-slate-500">{isFa ? "کلیسای انجیلی ایرانیان واشنگتن" : "Iranian Presbyterian Church"}</p>
                                                                 {selectedDoc.church_seal_image_url && (
                                                                     <img src={selectedDoc.church_seal_image_url} alt="Seal" className="h-16 w-auto mt-2 object-contain opacity-80" />
                                                                 )}
@@ -802,7 +802,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                                         )}
 
                                                         <div className="text-xs text-slate-500 border-t pt-4 mt-4 space-y-1">
-                                                            <p>Iranian Christian Church of Washington D.C. is a 501(c)(3) organization.</p>
+                                                            <p>Iranian Presbyterian Church of Washington D.C. is a 501(c)(3) organization.</p>
                                                             <p>No goods or services were provided in exchange for this contribution other than intangible religious benefits.</p>
                                                         </div>
                                                     </div>
@@ -825,7 +825,7 @@ export default function ProfilePageClient({ isAiAvatarEnabled, initialUser }: Pr
                                                         <div className="grid grid-cols-2 gap-4">
                                                             <div>
                                                                 <p className="text-xs text-slate-500">{isFa ? "صادر کننده:" : "From:"}</p>
-                                                                <p className="font-bold text-slate-800">Iranian Christian Church</p>
+                                                                <p className="font-bold text-slate-800">Iranian Presbyterian Church</p>
                                                                 <p className="text-xs text-slate-500">info@iranianchurchdc.com</p>
                                                             </div>
                                                             <div>

@@ -13,16 +13,16 @@ import { getDocumentSettings, type ChurchDocSettings } from "@/actions/documentS
 
 // Configurable default church model as fallback.
 const DEFAULT_CHURCH = {
-  nameEn: "Iranian Christian Church of Washington DC",
-  nameFa: "کلیسای ایرانیان واشنگتن دی.سی",
+  nameEn: "Iranian Presbyterian Church of Washington DC",
+  nameFa: "کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
   address: "Washington, DC Metropolitan Area",
   ein: "XX-XXXXXXX",
   phone: "+1 (XXX) XXX-XXXX",
   email: "info@iranianchurchdc.com",
   web: "www.iranianchurchdc.com",
   logo: "/logo-transparent.png",
-  pastor: "Rev. Sam Yarebeygi",
-  denomination: "Persian Evangelical Church – 501(c)(3)",
+  pastor: "Pastor Javad Pishghadamian",
+  denomination: "Persian Presbyterian Church – 501(c)(3)",
   letterheadTheme: "modern",
   customHeaderImage: "",
   paperSize: "Letter",

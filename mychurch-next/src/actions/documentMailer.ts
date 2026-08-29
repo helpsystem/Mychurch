@@ -53,7 +53,7 @@ export async function emailDocument(
            You may open or print the attachment using any standard PDF viewer (e.g. Adobe Acrobat, Preview).
          </p>`
       : `<p style="margin:0 0 12px;font-size:15px;line-height:1.7;color:#374151;font-family:Arial,sans-serif;">
-           This is an official communication regarding <strong>"${subject}"</strong> from the Iranian Christian Church of Washington D.C.
+           This is an official communication regarding <strong>"${subject}"</strong> from the Iranian Presbyterian Church of Washington D.C.
          </p>`;
 
     const bodyFa = pdfBase64
@@ -64,7 +64,7 @@ export async function emailDocument(
            برای مشاهده یا چاپ، فایل پیوست را با هر نرم‌افزار PDF مانند Adobe Acrobat باز کنید.
          </p>`
       : `<p dir="rtl" style="margin:0 0 10px;font-size:15px;line-height:2;color:#374151;font-family:'Vazirmatn',Arial,sans-serif;">
-           این پیام رسمی درباره «<strong>${subject}</strong>» از طرف کلیسای ایرانی مسیحی واشنگتن است.
+           این پیام رسمی درباره «<strong>${subject}</strong>» از طرف کلیسای انجیلی ایرانیان واشنگتن دی‌سی است.
          </p>`;
 
     const fullHtml = `
@@ -92,7 +92,7 @@ export async function emailDocument(
                 Official Document
               </h1>
               <p style="color:#a5b4fc;margin:0;font-size:13px;font-family:Arial,sans-serif;">
-                Iranian Christian Church of Washington D.C.
+                Iranian Presbyterian Church of Washington D.C.
               </p>
               <div style="width:48px;height:2px;background-color:#6366f1;margin:16px auto 0;border-radius:2px;"></div>
             </td>
@@ -162,7 +162,7 @@ export async function emailDocument(
           <tr>
             <td style="background-color:#f8fafc;border-top:1px solid #e4e4e7;padding:24px 40px;text-align:center;">
               <p style="margin:0 0 6px;font-size:12px;color:#71717a;font-family:Arial,sans-serif;">
-                This is an automated official communication from the Iranian Christian Church of Washington DC.
+                This is an automated official communication from the Iranian Presbyterian Church of Washington DC.
               </p>
               <p style="margin:0 0 6px;font-size:12px;color:#71717a;font-family:Arial,sans-serif;">
                 Washington D.C., USA &nbsp;|&nbsp;

@@ -113,11 +113,11 @@ export async function GET(request: Request) {
                                             <tr>
                                                 <td style="padding: 40px; text-align: right;">
                                                     ${fs.existsSync(logoPath) ? `
-                                                    <img src="cid:logo-premium" alt="Iranian Christian Church DC" width="56" height="56" style="margin-bottom: 24px; border: 0;" />
+                                                    <img src="cid:logo-premium" alt="Iranian Presbyterian Church DC" width="56" height="56" style="margin-bottom: 24px; border: 0;" />
                                                     ` : ''}
                                                     
                                                     <h1 style="font-size: 24px; font-weight: bold; margin: 0 0 8px 0; color: #ba955c; font-family: Tahoma, Geneva, sans-serif;">خوش آمدید ${fullName}</h1>
-                                                    <h2 dir="ltr" style="font-size: 15px; font-weight: 600; margin: 0 0 24px 0; color: #a8a29e; font-family: Arial, sans-serif; text-align: left;">Welcome to Iranian Christian Church D.C.</h2>
+                                                    <h2 dir="ltr" style="font-size: 15px; font-weight: 600; margin: 0 0 24px 0; color: #a8a29e; font-family: Arial, sans-serif; text-align: left;">Welcome to Iranian Presbyterian Church D.C.</h2>
                                                     
                                                     <p style="font-size: 16px; line-height: 1.8; margin: 0 0 16px 0; color: #e7e5e4; font-family: Tahoma, Geneva, sans-serif;">
                                                         ثبت‌نام شما با حساب گوگل موفقیت‌آمیز بود.
@@ -138,13 +138,13 @@ export async function GET(request: Request) {
                                                     <p dir="ltr" style="margin-top: 30px; font-size: 12px; color: #78716c; line-height: 1.8; text-align: center; font-family: Arial, sans-serif;">
                                                         Website: ${origin}<br/>
                                                         Support: ${supportEmail}<br/>
-                                                        Address: Iranian Christian Church, Washington D.C., USA
+                                                        Address: Iranian Presbyterian Church, Washington D.C., USA
                                                     </p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.2); padding: 20px; font-size: 12px; color: #78716c; text-align: center; font-family: Arial, sans-serif;">
-                                                    © ${new Date().getFullYear()} Iranian Christian Church D.C. — ${origin}
+                                                    © ${new Date().getFullYear()} Iranian Presbyterian Church D.C. — ${origin}
                                                 </td>
                                             </tr>
                                         </table>

@@ -101,7 +101,7 @@ export default function ContactPage() {
                                         <label className={`cursor-pointer flex items-center gap-3 p-3 rounded-xl border transition-all ${selectedLeader === "nazi" ? "border-primary bg-primary/10" : "border-white/10 bg-secondary/30 hover:bg-white/5"}`}>
                                             <input type="radio" name="leader" value="nazi" className="hidden" checked={selectedLeader === "nazi"} onChange={(e) => setSelectedLeader(e.target.value)} />
                                             <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-white/10">
-                                                <Image src="/images/leader-nazi-real.png" alt="Nazi Rasti" fill className="object-cover" />
+                                                <Image src="/images/leader-nazi-real.jpg" alt="Nazi Rasti" fill className="object-cover" />
                                             </div>
                                             <div className="flex flex-col">
                                                 <span className="text-sm font-bold text-foreground">نازی رستی</span>

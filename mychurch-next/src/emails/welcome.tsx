@@ -64,7 +64,7 @@ export default function WelcomeEmail({ fullName, loginUrl }: WelcomeEmailProps) 
                         <Heading style={{ ...h1, textAlign: "left" as const }}>Welcome to the Family</Heading>
                         <Text style={{ ...paragraph, textAlign: "left" as const }}>
                             Dear <strong>{fullName}</strong>,<br />
-                            Thank you for joining the Iranian Christian Church of D.C. We are thrilled to welcome you as a member of our church family and look forward to growing in faith together.
+                            Thank you for joining the Iranian Presbyterian Church of D.C. We are thrilled to welcome you as a member of our church family and look forward to growing in faith together.
                         </Text>
 
                         <Text style={{ ...paragraph, textAlign: "left" as const }}>
@@ -82,7 +82,7 @@ export default function WelcomeEmail({ fullName, loginUrl }: WelcomeEmailProps) 
                     <Section style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "20px", marginTop: "40px", textAlign: "center" as const }}>
                         <Text style={footerText}>
                             kellisa.org • iranianchurchdc.com<br />
-                            Iranian Christian Church D.C.
+                            Iranian Presbyterian Church D.C.
                         </Text>
                     </Section>
                 </Container>

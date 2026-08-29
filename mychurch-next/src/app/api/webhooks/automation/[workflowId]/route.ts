@@ -4,10 +4,10 @@ import { executeWorkflow } from "@/lib/automation-engine";
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { workflowId: string } }
+  { params }: { params: Promise<{ workflowId: string }> }
 ) {
   try {
-    const { workflowId } = params;
+    const { workflowId } = await params;
     
     // Parse the incoming JSON payload (if any)
     let payload = {};

@@ -51,12 +51,12 @@ export default function BaptismCertificatesTab() {
     // Generate a temporary auto-number based on year
     const year = new Date().getFullYear();
     const count = certificates.length + 1;
-    const tempNum = `ICC-${year}-${count.toString().padStart(4, "0")}`;
+    const tempNum = `IPC-${year}-${count.toString().padStart(4, "0")}`;
 
     setFormData({
       certificate_number: tempNum,
-      church_name_en: "Iranian Christian Church",
-      church_name_fa: "کلیسای مسیحی ایرانیان",
+      church_name_en: "Iranian Presbyterian Church",
+      church_name_fa: "کلیسای انجیلی ایرانیان",
       logo_url: settings.logo_url || "",
       seal_url: settings.seal_url || "",
       pastor_signature_url: settings.pastor_signature_url || "",

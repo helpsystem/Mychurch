@@ -160,7 +160,7 @@ export default async function RootLayout({
                 "longitude": -77.0233
               },
               "telephone": "+13016497086",
-              "email": "info@iranianchristianchurchdc.com",
+              "email": "info@iranianchurchdc.com",
               "sameAs": [
                 "https://www.youtube.com/@IranianChristianChurchDC",
                 "https://www.instagram.com/iranianchurchdc"

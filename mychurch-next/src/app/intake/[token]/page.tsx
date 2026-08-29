@@ -163,7 +163,7 @@ export default function IntakePage({ params }: { params: Promise<{ token: string
           {/* Content */}
           <div className="p-8 text-center">
             <p className="text-slate-600 leading-relaxed mb-4">
-              Your information has been securely received by the Iranian Christian Church of Washington DC. Our team will review your request and prepare the necessary documents.
+              Your information has been securely received by the Iranian Presbyterian Church of Washington DC. Our team will review your request and prepare the necessary documents.
             </p>
             {formData["email"] && (
               <div className="bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-3 text-sm text-indigo-700 font-medium mb-4">
@@ -173,7 +173,7 @@ export default function IntakePage({ params }: { params: Promise<{ token: string
             <hr className="border-slate-100 my-5" />
             <div dir="rtl" className="text-right">
               <p className="text-slate-600 text-sm leading-relaxed font-[Vazirmatn]">
-                اطلاعات شما با موفقیت دریافت شد. تیم کلیسا به زودی درخواست شما را بررسی کرده و اسناد لازم را آماده خواهد کرد.
+                اطلاعات شما با موفقیت دریافت شد. تیم کلیسای انجیلی ایرانیان واشنگتن به زودی درخواست شما را بررسی کرده و اسناد لازم را آماده خواهد کرد.
               </p>
               {formData["email"] && (
                 <p className="text-indigo-600 text-sm mt-2 font-medium font-[Vazirmatn]">
@@ -184,7 +184,7 @@ export default function IntakePage({ params }: { params: Promise<{ token: string
           </div>
           {/* Footer */}
           <div className="bg-slate-50 border-t border-slate-100 px-8 py-4 text-center">
-            <p className="text-xs text-slate-400">Iranian Christian Church of Washington DC &nbsp;|&nbsp; iranianchurchdc.com</p>
+            <p className="text-xs text-slate-400">Iranian Presbyterian Church of Washington DC &nbsp;|&nbsp; iranianchurchdc.com</p>
           </div>
         </div>
       </div>
@@ -240,7 +240,7 @@ export default function IntakePage({ params }: { params: Promise<{ token: string
             )}
             <div className="flex items-center gap-2 text-white/60 text-xs">
               <Building2 className="w-3.5 h-3.5" />
-              <span>Iranian Christian Church of Washington D.C.</span>
+              <span>Iranian Presbyterian Church of Washington D.C.</span>
             </div>
           </div>
         </div>
@@ -358,7 +358,7 @@ export default function IntakePage({ params }: { params: Promise<{ token: string
 
         {/* Footer */}
         <div className="text-center mt-8 text-xs text-slate-400 space-y-1">
-          <p>Iranian Christian Church of Washington DC</p>
+          <p>Iranian Presbyterian Church of Washington DC</p>
           <p>Washington D.C., USA &nbsp;·&nbsp; iranianchurchdc.com</p>
         </div>
       </div>
