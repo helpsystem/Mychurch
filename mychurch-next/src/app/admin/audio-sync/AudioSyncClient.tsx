@@ -491,7 +491,7 @@ export default function AudioSyncClient() {
       
       pres.layout = "LAYOUT_16x9";
       const isRtl = /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/.test(transcriptData.fullTranscript);
-      pres.rtl = isRtl;
+      (pres as any).rtl = isRtl;
 
       let chunks: { text: string; start: number; end: number; label?: string }[] = [];
       const lines = transcriptData.lines;

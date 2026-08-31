@@ -88,9 +88,9 @@ export default function LogTerminal({ logs, onClearLogs }: LogTerminalProps) {
           <div className="w-full md:w-2/5 overflow-y-auto divide-y divide-black/40 h-1/2 md:h-full">
             {logs.map((log) => {
               const isActive = activeLog && activeLog.id === log.id;
-              const formattedTime = log.timestamp?.toDate 
-                ? log.timestamp.toDate().toLocaleTimeString() 
-                : new Date(log.timestamp).toLocaleTimeString();
+              const formattedTime = (log.timestamp as any)?.toDate 
+                ? (log.timestamp as any).toDate().toLocaleTimeString() 
+                : new Date(log.timestamp || Date.now()).toLocaleTimeString();
               
               return (
                 <button
@@ -147,9 +147,9 @@ export default function LogTerminal({ logs, onClearLogs }: LogTerminalProps) {
                     <span>Triggered: {getTriggerLabel(activeLog.triggeredBy)}</span>
                     <span>•</span>
                     <span>
-                      Time: {activeLog.timestamp?.toDate 
-                        ? activeLog.timestamp.toDate().toLocaleString() 
-                        : new Date(activeLog.timestamp).toLocaleString()}
+                      Time: {(activeLog.timestamp as any)?.toDate 
+                        ? (activeLog.timestamp as any).toDate().toLocaleString() 
+                        : new Date(activeLog.timestamp || Date.now()).toLocaleString()}
                     </span>
                   </div>
                 </div>

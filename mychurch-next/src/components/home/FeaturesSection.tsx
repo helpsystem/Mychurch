@@ -131,7 +131,7 @@ export default function FeaturesSection() {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <motion.div key={feature.href} variants={cardVariants}>
+              <motion.div key={feature.href} variants={cardVariants as any}>
                 <TiltCard glowColor={feature.glow} className="h-full">
                   <Link href={feature.href} className="block p-8 h-full">
                     {/* Icon area */}

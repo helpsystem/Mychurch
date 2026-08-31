@@ -24,11 +24,17 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "next.config.ts",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "tmp", "slide-delivery-2026-03-15"]
+  "exclude": [
+    "node_modules",
+    "AutoFlow-Studio",
+    "church-platform",
+    "tmp",
+    "slide-delivery-2026-03-15"
+  ]
 }

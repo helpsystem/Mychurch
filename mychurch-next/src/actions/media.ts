@@ -16,6 +16,9 @@ export interface MediaAsset {
     visibility?: 'public' | 'admin' | 'user';
     inGallery?: boolean;
     galleryId?: string;
+    id: string;
+    telegram_file_id?: string;
+    telegram_message_id?: number;
 }
 
 const MEDIA_DIR = path.join(process.cwd(), "public", "media");

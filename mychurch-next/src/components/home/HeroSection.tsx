@@ -56,7 +56,7 @@ export default function HeroSection() {
 
         {/* Live badge */}
         <motion.div
-          custom={0} variants={textVariants} initial="hidden" animate="visible"
+          custom={0} variants={textVariants as any} initial="hidden" animate="visible"
           className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-amber-500/30 bg-amber-500/8 backdrop-blur-sm text-amber-300 text-sm mb-10"
         >
           <span className="relative flex h-2.5 w-2.5">
@@ -68,7 +68,7 @@ export default function HeroSection() {
 
         {/* Main headline */}
         <motion.h1
-          custom={1} variants={textVariants} initial="hidden" animate="visible"
+          custom={1} variants={textVariants as any} initial="hidden" animate="visible"
           className="text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9] mb-6 tracking-tight"
           style={{ fontFamily: "var(--font-homa, 'B Homa', serif)" }}
         >
@@ -84,14 +84,14 @@ export default function HeroSection() {
 
         {/* Verse */}
         <motion.p
-          custom={2} variants={textVariants} initial="hidden" animate="visible"
+          custom={2} variants={textVariants as any} initial="hidden" animate="visible"
           className="text-xl md:text-2xl text-slate-300 mb-3 font-light max-w-2xl mx-auto"
           style={{ fontFamily: "var(--font-homa, serif)" }}
         >
           «من نور جهان هستم»
         </motion.p>
         <motion.p
-          custom={3} variants={textVariants} initial="hidden" animate="visible"
+          custom={3} variants={textVariants as any} initial="hidden" animate="visible"
           className="text-base text-amber-400/70 tracking-[0.2em] mb-12 uppercase font-mono"
         >
           یوحنا ۸:۱۲
@@ -99,7 +99,7 @@ export default function HeroSection() {
 
         {/* Member count pill */}
         <motion.div
-          custom={4} variants={textVariants} initial="hidden" animate="visible"
+          custom={4} variants={textVariants as any} initial="hidden" animate="visible"
           className="flex items-center justify-center gap-3 mb-12"
         >
           <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-500/50" />
@@ -111,7 +111,7 @@ export default function HeroSection() {
 
         {/* CTA Buttons */}
         <motion.div
-          custom={5} variants={textVariants} initial="hidden" animate="visible"
+          custom={5} variants={textVariants as any} initial="hidden" animate="visible"
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <Link

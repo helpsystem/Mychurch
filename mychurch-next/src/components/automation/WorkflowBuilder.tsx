@@ -246,7 +246,7 @@ export default function WorkflowBuilder({
       ...act,
       id: `step_${Math.floor(1000 + Math.random() * 9000)}`,
     }));
-    setActions(clonedActions);
+    setActions(clonedActions as any);
     if (clonedActions.length > 0) {
       setExpandedActionId(clonedActions[0].id);
     }
@@ -341,8 +341,8 @@ export default function WorkflowBuilder({
         trigger,
         actions,
         userId,
-        createdAt: selectedWorkflow?.createdAt || null,
-        updatedAt: null,
+        createdAt: selectedWorkflow?.createdAt || undefined,
+        updatedAt: undefined,
       };
 
       const savedId = await saveWorkflow(workflowToSave);
@@ -407,8 +407,8 @@ export default function WorkflowBuilder({
       },
       actions,
       userId,
-      createdAt: null,
-      updatedAt: null,
+      createdAt: undefined,
+      updatedAt: undefined,
     };
 
     onExecuteWorkflow(currentWorkflow, isMock);

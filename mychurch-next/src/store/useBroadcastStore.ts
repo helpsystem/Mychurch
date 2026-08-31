@@ -171,6 +171,20 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     fromTranslationLang: 'fa',
     toTranslationLang: 'en',
     translationDisplayMode: 'both', // 'original' | 'translated' | 'both'
+    
+    isRecording: false,
+    sessionMetadata: [],
+    
+    setIsAudioStageEnabled: (enabled, skipSync = false) => {
+        set({ isAudioStageEnabled: enabled });
+        if (!skipSync) {
+            get().pushRemoteSync({ type: 'SET_AUDIO_STAGE', enabled });
+        }
+    },
+    
+    setIsRecording: (recording) => set({ isRecording: recording }),
+    addSessionMetadataEvent: (event) => set((state) => ({ sessionMetadata: [...state.sessionMetadata, { ...event, timestamp: Date.now() }] })),
+    clearSessionMetadata: () => set({ sessionMetadata: [] }),
 
     setLiveTranslation: (text, show, skipSync = false) => {
         set({ liveTranslationText: text, showLiveTranslation: show });

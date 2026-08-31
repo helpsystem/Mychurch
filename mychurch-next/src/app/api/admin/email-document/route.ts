@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     const { data: userRecord } = await supabase
       .from('users')
       .select('role')
-      .ilike('email', user.email)
+      .ilike('email', user.email || '')
       .maybeSingle();
 
     if (!userRecord || (userRecord.role !== 'Admin' && userRecord.role !== 'Leader')) {

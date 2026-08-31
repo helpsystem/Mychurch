@@ -40,15 +40,22 @@ Write-Host "============================================================" -Foreg
 Write-Host "  [2/4] Packaging Build Artifacts..." -ForegroundColor Yellow
 Write-Host "============================================================" -ForegroundColor Cyan
 
-# Strip cache & dev chunks before packaging to minimize size
-$dirsToRemove = @(".next\cache", ".next\dev")
-foreach ($d in $dirsToRemove) {
-    if (Test-Path $d) { Remove-Item -Recurse -Force $d }
+# Prepare standalone bundle
+Write-Host "Copying static files to standalone folder..." -ForegroundColor Cyan
+if (!(Test-Path ".next\standalone\.next\static")) {
+    New-Item -ItemType Directory -Force -Path ".next\standalone\.next\static" | Out-Null
 }
+if (!(Test-Path ".next\standalone\public")) {
+    New-Item -ItemType Directory -Force -Path ".next\standalone\public" | Out-Null
+}
+Copy-Item -Path ".next\static\*" -Destination ".next\standalone\.next\static\" -Recurse -Force
+Copy-Item -Path "public\*" -Destination ".next\standalone\public\" -Recurse -Force
 
-tar -czf $TAR_FILE ".next"
+Push-Location ".next\standalone"
+tar -czf "..\..\$TAR_FILE" *
+Pop-Location
 $sizeMB = [Math]::Round((Get-Item $TAR_FILE).Length / 1MB, 2)
-Write-Host "Compressed Build Package: $TAR_FILE ($sizeMB MB)" -ForegroundColor Green
+Write-Host "Compressed Standalone Build Package: $TAR_FILE ($sizeMB MB)" -ForegroundColor Green
 
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor Cyan
@@ -66,27 +73,9 @@ if (Test-Path $LOCAL_ENV_PATH) {
 
 # Upload only lightweight root config/server files
 scp -o StrictHostKeyChecking=no "next.config.ts"     "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/next.config.ts"
-scp -o StrictHostKeyChecking=no "package.json"       "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/package.json"
 scp -o StrictHostKeyChecking=no "socket-server.js"   "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/socket-server.js"
 
-# Upload updated lightweight branding assets
-$brandFiles = @(
-    "logo.png",
-    "logo-transparent.png",
-    "favicon.ico",
-    "apple-touch-icon.png",
-    "og-image.jpg"
-)
-foreach ($bf in $brandFiles) {
-    if (Test-Path "public\$bf") {
-        scp -o StrictHostKeyChecking=no "public\$bf" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/public/$bf"
-    }
-}
-
-# Upload leader photos and public images folder
-if (Test-Path "public\images") {
-    scp -o StrictHostKeyChecking=no -r "public\images" "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/public/"
-}
+# We don't upload package.json because standalone mode has its own package.json!
 
 Write-Host "Upload completed successfully." -ForegroundColor Green
 
@@ -100,39 +89,36 @@ set -e
 cd ${VPS_NEXT_PATH}
 
 # 1. Swap in new build
-rm -rf .next.old
-if [ -d .next ]; then
-    mv .next .next.old
+rm -rf standalone.old
+if [ -d standalone ]; then
+    mv standalone standalone.old
 fi
-tar -xzf ${TAR_FILE}
+mkdir -p standalone
+tar -xzf ${TAR_FILE} -C standalone
 rm -f ${TAR_FILE}
-rm -rf .next.old
+rm -rf standalone.old
 
-# 2. Ensure dependencies exist (only run install if node_modules missing)
-if [ ! -d node_modules ]; then
-    echo 'Installing node_modules on VPS...'
-    npm install --legacy-peer-deps --production
-fi
+# Copy env file to standalone directory so server.js can pick it up
+cp .env.local standalone/.env.local 2>/dev/null || true
 
-# 3. Clear Nginx cache
+# 2. Clear Nginx cache
 if [ -d /var/cache/nginx ]; then
     rm -rf /var/cache/nginx/*
 fi
 systemctl reload nginx 2>/dev/null || nginx -s reload
 
-# 4. Instant PM2 restart
-if pm2 show mychurch-next > /dev/null 2>&1; then
-    pm2 restart mychurch-next --update-env
-else
-    pm2 start node_modules/.bin/next --name mychurch-next -- start
-fi
+# 3. Instant PM2 restart using standalone server.js
+pm2 delete mychurch-next 2>/dev/null || true
+cd standalone
+PORT=3000 HOSTNAME="127.0.0.1" pm2 start server.js --name mychurch-next
 
+cd ..
 if ! pm2 show socket-server > /dev/null 2>&1; then
     pm2 start socket-server.js --name socket-server
 fi
 
 pm2 save
-echo '✅ Next.js and Nginx updated successfully!'
+echo '✅ Next.js and Nginx updated successfully using Standalone Mode!'
 "@
 
 # Normalize line endings for Linux bash

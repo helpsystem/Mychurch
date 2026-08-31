@@ -55,7 +55,7 @@ export async function sendTelegramUserMessage(phone: string, text: string): Prom
             new Api.contacts.ImportContacts({
                 contacts: [
                     new Api.InputPhoneContact({
-                        clientId: BigInt(Date.now()),
+                        clientId: BigInt(Date.now()) as any,
                         phone: normalizedPhone,
                         firstName: 'Church Member',
                         lastName: '',

@@ -257,6 +257,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     const newSlide: Slide = {
       id: crypto.randomUUID(),
       type: SlideType.LORDS_PRAYER,
+      order: session.slides.length,
       content: {
         backgroundType: 'particles'
       }

@@ -39,8 +39,8 @@ export default function NewsletterAdminClient({ initialSubscribers, initialLogs 
         setIsTranslating(true);
         try {
             const res = await translateText(sourceText, targetLanguage);
-            if (res.success && res.text) {
-                setTargetState(res.text);
+            if (res.success && 'text' in res && res.text) {
+                setTargetState(res.text as string);
             } else {
                 alert(res.error || "Translation failed");
             }

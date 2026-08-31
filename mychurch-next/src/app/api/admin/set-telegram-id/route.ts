@@ -28,7 +28,7 @@ export async function POST(req: Request) {
         const { error: updateError } = await adminSupabase
             .from('users')
             .update({ telegram_id: cleanId })
-            .ilike('email', user.email);
+            .ilike('email', user.email || '');
 
         if (updateError) {
             return NextResponse.json({ error: updateError.message }, { status: 500 });

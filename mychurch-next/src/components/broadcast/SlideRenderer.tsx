@@ -1034,7 +1034,7 @@ export function SlideRenderer({
             }
 
             case SlideType.LORDS_PRAYER: {
-                return <LordsPrayerSlide content={slide.content as any} isActive={isActive} />;
+                return <LordsPrayerSlide content={slide.content as any} isActive={true} />;
             }
 
             default:

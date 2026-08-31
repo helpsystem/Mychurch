@@ -11,7 +11,7 @@ export default function SuccessClient() {
     const { clearCart } = useCart();
     const { isRTL, language } = useLanguage();
     const searchParams = useSearchParams();
-    const sessionId = searchParams.get("session_id");
+    const sessionId = searchParams?.get("session_id");
 
     // Clear cart on mount
     useEffect(() => {

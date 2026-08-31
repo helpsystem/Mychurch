@@ -185,7 +185,7 @@ export default function AutomationClient({ initialWorkflows, initialLogs, userId
         {/* Global Floating Terminal - always visible for transparency */}
         {logs.length > 0 && (
           <div className="h-64 border-t border-slate-200 dark:border-[#30363d] bg-[#0d1117] relative z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
-            <LogTerminal logs={logs} onRefresh={loadLogs} />
+            <LogTerminal logs={logs} />
           </div>
         )}
       </div>

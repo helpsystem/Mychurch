@@ -26,15 +26,15 @@ export async function POST(req: Request) {
       .toLowerCase()
       .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "")
       .split(/\s+/)
-      .map(w => w.trim())
-      .filter(w => w.length > 2 && !stopWords.has(w));
+      .map((w: string) => w.trim())
+      .filter((w: string) => w.length > 2 && !stopWords.has(w));
 
     let relatedVerses: any[] = [];
 
     if (words.length > 0) {
       // Build fuzzy LIKE statements
       const likeClauses = words.map(() => "v.text LIKE ?").join(" OR ");
-      const likeParams = words.map(w => `%${w}%`);
+      const likeParams = words.map((w: string) => `%${w}%`);
 
       const query = `
         SELECT v.book_id, v.chapter_num, v.verse_num, v.text, ver.abbr, ver.name as version_name

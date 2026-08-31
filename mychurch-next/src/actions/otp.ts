@@ -33,7 +33,7 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
     const { data: userData } = await adminSupabase
         .from('users')
         .select('phone, whatsapp_number, telegram_id')
-        .ilike('email', user.email)
+        .ilike('email', user.email || '')
         .maybeSingle();
 
     if (!userData) {

@@ -64,7 +64,7 @@ export default function RestoreAccessPage() {
                         <br /><br />
                         <small style={{color: '#71717a'}}>ابتدا باید در سایت لاگین کرده باشید.</small>
                     </p>
-                    <button id="restoreBtn" onClick="restoreAccess()">
+                    <button id="restoreBtn">
                         🔓 بازیابی دسترسی و ورود به پنل
                     </button>
                     <div className="status" id="status"></div>
@@ -98,6 +98,7 @@ export default function RestoreAccessPage() {
                             btn.textContent = '🔓 تلاش مجدد';
                         }
                     }
+                    document.getElementById('restoreBtn').addEventListener('click', restoreAccess);
                 `}} />
             </body>
         </html>

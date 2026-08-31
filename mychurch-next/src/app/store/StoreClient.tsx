@@ -552,7 +552,7 @@ export default function StoreClient({ initialProducts }: StoreClientProps) {
                                                     if (token.status === "OK" && token.token) {
                                                         await handlePaymentSubmit(token.token);
                                                     } else {
-                                                        setError(token.errors?.[0]?.message || "Card verification failed.");
+                                                        setError((token as any).errors?.[0]?.message || "Card verification failed.");
                                                     }
                                                 }}
                                             >

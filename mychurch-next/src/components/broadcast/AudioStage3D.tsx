@@ -203,7 +203,7 @@ export function AudioStage3D({ stream, className = "" }: AudioStage3DProps) {
 
       // Audio Data Processing
       if (analyserRef.current && dataArrayRef.current) {
-        analyserRef.current.getByteFrequencyData(dataArrayRef.current);
+        analyserRef.current.getByteFrequencyData(dataArrayRef.current as any);
         // Get average of lower frequencies (bass)
         let sum = 0;
         const limit = 20;
