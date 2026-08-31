@@ -55,6 +55,76 @@
   --color-accentGold: #FBBF24;
   --color-accentCyan: #06B6D4;
   --color-cardGlass: rgba(15, 23, 42, 0.75);
+
+  /* Stitch MyChurch Unified Design System (Material 3) */
+  --color-surface-container: #201f22;
+  --color-outline-variant: #424754;
+  --color-tertiary-fixed-dim: #00dce4;
+  --color-surface: #131315;
+  --color-surface-container-highest: #353437;
+  --color-surface-variant: #353437;
+  --color-on-tertiary-container: #002f31;
+  --color-primary-fixed-dim: #adc6ff;
+  --color-inverse-surface: #e5e1e4;
+  --color-inverse-primary: #005ac2;
+  --color-error: #ffb4ab;
+  --color-on-secondary-fixed-variant: #5a4300;
+  --color-on-tertiary-fixed: #002021;
+  --color-on-tertiary: #003739;
+  --color-primary-fixed: #d8e2ff;
+  --color-on-primary: #002e6a;
+  --color-on-secondary: #3f2e00;
+  --color-on-surface-variant: #c2c6d6;
+  --color-outline: #8c909f;
+  --color-surface-container-lowest: #0e0e10;
+  --color-surface-dim: #131315;
+  --color-on-tertiary-fixed-variant: #004f52;
+  --color-tertiary-fixed: #5cf7ff;
+  --color-secondary-fixed-dim: #e7c26c;
+  --color-error-container: #93000a;
+  --color-secondary-fixed: #ffdf9a;
+  --color-surface-bright: #39393b;
+  --color-on-primary-container: #00285d;
+  --color-surface-tint: #adc6ff;
+  --color-on-secondary-container: #ebc56f;
+  --color-on-secondary-fixed: #251a00;
+  --color-tertiary-container: #00a1a7;
+  --color-on-surface: #e5e1e4;
+  --color-on-primary-fixed-variant: #004395;
+  --color-surface-container-low: #1c1b1d;
+  --color-surface-container-high: #2a2a2c;
+  --color-on-background: #e5e1e4;
+  --color-secondary-container: #6c5100;
+  --color-on-error: #690005;
+  --color-on-primary-fixed: #001a42;
+  --color-inverse-on-surface: #313032;
+  --color-on-error-container: #ffdad6;
+
+  /* Custom Fonts from Design System */
+  --font-headline-md: "Work Sans", sans-serif;
+  --font-display-xl: "Playfair Display", serif;
+  --font-label-caps: "Work Sans", sans-serif;
+  --font-body-bold: "Work Sans", sans-serif;
+  --font-scripture-calligraphy: "Noto Serif", serif;
+  --font-display-2xl: "Playfair Display", serif;
+  --font-body-base: "Work Sans", sans-serif;
+  --font-headline-lg: "Work Sans", sans-serif;
+}
+
+/* Design System Utilities */
+@layer utilities {
+  .glass-panel {
+      background: rgba(17, 18, 23, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .text-glow-primary {
+      text-shadow: 0 0 10px rgba(0, 220, 228, 0.5);
+  }
+  .bg-sacred-gradient {
+      background: linear-gradient(135deg, var(--color-secondary) 0%, #b8860b 100%);
+  }
 }
 
 :root {

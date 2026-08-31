@@ -1,16 +1,16 @@
-import { getAnnouncements, getEmailLogs, getWhatsAppLogs } from "@/actions/communications";
-import CommunicationsClient from "./CommunicationsClient";
+import React from "react";
+import { getAnnouncements } from "@/actions/communications";
+import CommunicationsHubClient from "./CommunicationsHubClient";
+
+export const dynamic = "force-dynamic";
 
 export default async function CommunicationsPage() {
+    // Only fetch announcements for the Hub
     const announcements = await getAnnouncements();
-    const emailLogs = await getEmailLogs();
-    const whatsappLogs = await getWhatsAppLogs();
 
     return (
-        <CommunicationsClient 
+        <CommunicationsHubClient 
             initialAnnouncements={announcements} 
-            initialEmailLogs={emailLogs} 
-            initialWhatsAppLogs={whatsappLogs} 
         />
     );
 }

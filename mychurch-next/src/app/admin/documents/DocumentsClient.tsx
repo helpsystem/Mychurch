@@ -57,7 +57,7 @@ export interface DocumentDesign {
 }
 
 // ─── Church Settings (Configurable) ──────────────────────────────────────────
-const DEFAULT_CHURCH = {
+export const DEFAULT_CHURCH = {
   nameEn: "Iranian Presbyterian Church of Washington DC",
   nameFa: "کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
   address: "Washington, DC Metropolitan Area",
@@ -437,7 +437,7 @@ function DocumentSecurity({ children }: { children: React.ReactNode }) {
 }
 
 // ─── US Address Suggestions (Mock – replace with Google Places API) ───────────
-const US_ADDRESS_SUGGESTIONS = [
+export const US_ADDRESS_SUGGESTIONS = [
   "USCIS – Washington Field Office, 2675 Prosprity Ave, Fairfax, VA 22031",
 
   "IRS Service Center, 2970 Market St, Philadelphia, PA 19104",
@@ -450,7 +450,7 @@ const US_ADDRESS_SUGGESTIONS = [
 ];
 
 // ─── Letter Templates ─────────────────────────────────────────────────────────
-const LETTER_TEMPLATES = [
+export const LETTER_TEMPLATES = [
   {
     id: "uscis-membership", category: "immigration",
     nameEn: "USCIS – Church Membership", nameFa: "نامه عضویت (USCIS)",

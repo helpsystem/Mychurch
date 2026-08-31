@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mychurch - Events</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#00dce4",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "inverse-surface": "#e5e1e4",
+                        "primary-container": "#4d8eff",
+                        "on-primary-fixed": "#001a42",
+                        "background": "#131315",
+                        "on-background": "#e5e1e4",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "outline-variant": "#424754",
+                        "secondary-fixed": "#ffdf9a",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#d8e2ff",
+                        "on-primary": "#002e6a",
+                        "surface": "#131315",
+                        "surface-tint": "#adc6ff",
+                        "on-tertiary": "#003739",
+                        "secondary": "#e7c26c",
+                        "on-primary-fixed-variant": "#004395",
+                        "surface-container-high": "#2a2a2c",
+                        "tertiary-container": "#00a1a7",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "on-surface": "#e5e1e4",
+                        "inverse-primary": "#005ac2",
+                        "secondary-container": "#6c5100",
+                        "surface-container-lowest": "#0e0e10",
+                        "surface-container-low": "#1c1b1d",
+                        "surface-dim": "#131315",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#251a00",
+                        "on-secondary": "#3f2e00",
+                        "surface-bright": "#39393b",
+                        "surface-variant": "#353437",
+                        "surface-container-highest": "#353437",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-container": "#201f22",
+                        "tertiary-fixed": "#5cf7ff",
+                        "inverse-on-surface": "#313032",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#adc6ff",
+                        "outline": "#8c909f",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "on-secondary-container": "#ebc56f",
+                        "on-tertiary-container": "#002f31",
+                        "on-primary-container": "#00285d",
+                        "on-tertiary-fixed": "#002021"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "headline-md": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "scripture-calligraphy": ["Noto Serif"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "display-xl": ["Playfair Display"],
+                        "body-bold": ["Work Sans"],
+                        "body-base": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #00040F; color: #e5e1e4; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sacred-gradient { background: linear-gradient(135deg, #e7c26c, #ffdf9a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .sacred-btn-gradient { background: linear-gradient(135deg, #e7c26c, #5a4300); }
+        .spotlight-card:hover { background: radial-gradient(circle at center, rgba(0,220,228,0.1) 0%, transparent 70%), #111217; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col lg:flex-row relative">
+<!-- NavigationDrawer (lg) -->
+<aside class="hidden lg:flex flex-col h-screen sticky top-0 bg-surface dark:bg-surface h-full w-72 border-r border-outline-variant z-40">
+<div class="p-6">
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary mb-8">Mychurch</h1>
+<div class="flex items-center gap-4 mb-8 p-4 rounded-xl bg-surface-container-high border border-outline-variant">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-variant flex-shrink-0">
+<img alt="Church Admin Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a church administrator, warmly lit, wearing modern business casual attire. The background is a blurred modern church sanctuary interior. The mood is welcoming and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjE_Hqh_Mn9v0XjLB2fdffvTNAb8ChVXAMZHm3dOaI7IjjY1RIvlZF3SSB4LXx6u1isiA8wBfSvtMAefTdokTXJDyhptCsNFlJ0NiEm460oY81uItYqhvAHztNpB875Q2PEwk7Q56TRS361QH_FdfUD27EZTxs6YYUk_wprdpOgMkHAp6cs3W8bjwYkuZw90PYrpTsE_0KbvYz-N5yFOarLfVRLuqhk_AytaoPsJUXLNBKbhz3zsmE"/>
+</div>
+<div>
+<p class="font-body-bold text-body-bold text-on-surface">MyChurch Admin</p>
+<p class="font-body-base text-body-base text-on-surface-variant text-sm">Global Administrator</p>
+</div>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg font-body-base text-body-base group" href="#">
+<span class="material-symbols-outlined text-[24px]">corporate_fare</span>
+                    Organization
+                </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg font-body-base text-body-base group" href="#">
+<span class="material-symbols-outlined text-[24px]">payments</span>
+                    Financials
+                </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg font-body-base text-body-base group" href="#">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+                    Ministry Groups
+                </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg font-body-base text-body-base group" href="#">
+<span class="material-symbols-outlined text-[24px]">person_search</span>
+                    Member Directory
+                </a>
+<!-- Active State -->
+<a class="flex items-center gap-4 p-3 bg-primary-container text-on-primary-container font-body-bold rounded-lg scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[24px]">calendar_month</span>
+                    Events
+                </a>
+<a class="flex items-center gap-4 p-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg font-body-base text-body-base group" href="#">
+<span class="material-symbols-outlined text-[24px]">folder_open</span>
+                    Resources
+                </a>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<p class="font-body-base text-body-base text-on-surface-variant text-xs">V1.2.4</p>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col relative min-w-0">
+<!-- TopAppBar (Mobile & Web Context) -->
+<header class="fixed top-0 w-full lg:w-[calc(100%-18rem)] z-50 flex justify-between items-center px-margin-mobile lg:px-margin-desktop h-16 bg-surface/75 dark:bg-surface/75 backdrop-blur-xl border-b border-white/10 lg:border-none lg:bg-transparent lg:backdrop-blur-none">
+<div class="flex items-center gap-4 lg:hidden">
+<button class="text-primary dark:text-primary hover:opacity-80 transition-opacity active:translate-y-px">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary">Mychurch</h1>
+</div>
+<div class="hidden lg:block">
+<h2 class="font-display-xl text-display-xl text-on-surface sacred-gradient">Special Events</h2>
+</div>
+<button class="text-primary dark:text-primary hover:opacity-80 transition-opacity active:translate-y-px ml-auto">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- Canvas -->
+<div class="flex-1 p-margin-mobile lg:p-margin-desktop pt-24 lg:pt-24 overflow-y-auto">
+<!-- Hero Event Feature -->
+<section class="mb-12 relative rounded-2xl overflow-hidden glass-panel spotlight-card group">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-overlay" data-alt="A grand, luminous church sanctuary during a special Easter service. The lighting is dramatic, with beams of sunlight streaming through stained glass, creating a sense of reverence and awe. Soft, celestial glow, highly detailed, photorealistic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA051uEP0T3BgBEfk4UedhdwYfjaFWOUlIcmOP7CClIT6Ny1xfefcKloiJlL3krX4QGC6qay9j0d8ZXnemJZdaVlXVlIUh7-U-Uv-xmEePPQA9HGtUvbYqnPMdxO8NWMqUL2RREQdFqbb5CKXKsUDZlZZkxsUsRspHTLxouPjuASqQS_LdO3_fIFm1Ti5Ik9A0hzlmSwlUZ0f7nD99-8bN8RDG1g7Pn-lIOarNnPOC3gpadVyiiA7Mm')"></div>
+</div>
+<div class="relative z-10 p-8 lg:p-12 flex flex-col md:flex-row gap-8 items-center justify-between">
+<div class="max-w-2xl">
+<span class="inline-block px-3 py-1 bg-tertiary-container/30 text-tertiary border border-tertiary/20 rounded-full font-label-caps text-label-caps mb-4 uppercase tracking-wider backdrop-blur-sm">Featured • ویژه</span>
+<h2 class="font-display-2xl-mobile md:font-display-2xl text-display-2xl-mobile md:text-display-2xl text-on-surface mb-4 leading-tight">Resurrection Sunday Gathering</h2>
+<h3 class="font-scripture-calligraphy text-scripture-calligraphy text-on-surface-variant mb-6 text-xl">گردهمایی یکشنبه قیام</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mb-8 max-w-xl">Join us for a transcendent morning of worship and community as we celebrate the resurrection. Limited seating available in the main sanctuary.</p>
+<div class="flex flex-wrap gap-4">
+<button class="sacred-btn-gradient text-on-secondary px-6 py-3 rounded-lg font-body-bold text-body-bold hover:-translate-y-0.5 transition-transform shadow-lg shadow-secondary/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">local_activity</span>
+                                Reserve Seat (Get Ticket)
+                            </button>
+<button class="px-6 py-3 rounded-lg font-body-bold text-body-bold border border-white/10 hover:bg-white/5 transition-colors text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">info</span>
+                                Details
+                            </button>
+</div>
+</div>
+<!-- Quick Ticket Status Widget -->
+<div class="w-full md:w-auto bg-[#111217] p-6 rounded-xl border border-white/5 shadow-2xl flex-shrink-0">
+<div class="text-center mb-6">
+<p class="font-label-caps text-label-caps text-tertiary mb-1 uppercase tracking-widest">Main Hall Status</p>
+<p class="font-display-xl text-display-xl text-on-surface">65%</p>
+<p class="font-body-base text-body-base text-on-surface-variant text-sm">Capacity Reached</p>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2 mb-4 overflow-hidden">
+<div class="bg-tertiary h-2 rounded-full" style="width: 65%"></div>
+</div>
+<p class="text-xs text-on-surface-variant text-center"><span class="text-on-surface font-semibold">124</span> seats remaining</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-t border-white/5 shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">church</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">diversity_3</span>
+<span class="font-label-caps text-label-caps">Groups</span>
+</a>
+<!-- Active State -->
+<a class="flex flex-col items-center justify-center bg-tertiary-container text-on-tertiary-container rounded-full px-4 py-1 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-label-caps text-label-caps">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">account_circle</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</body></html>

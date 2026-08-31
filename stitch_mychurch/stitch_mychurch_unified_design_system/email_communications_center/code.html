@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Email Campaigns - Sanctuary Mail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500&amp;family=Playfair+Display:wght@700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#131315",
+                        "primary-container": "#4d8eff",
+                        "surface-variant": "#353437",
+                        "on-primary-container": "#00285d",
+                        "tertiary-fixed": "#5cf7ff",
+                        "surface-tint": "#adc6ff",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#002f31",
+                        "surface-container-lowest": "#0e0e10",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "on-secondary-container": "#ebc56f",
+                        "on-tertiary-fixed": "#002021",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e5e1e4",
+                        "inverse-on-surface": "#313032",
+                        "surface-container-low": "#1c1b1d",
+                        "on-primary": "#002e6a",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-secondary": "#3f2e00",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary": "#003739",
+                        "tertiary-container": "#00a1a7",
+                        "surface-container-high": "#2a2a2c",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface-container": "#201f22",
+                        "primary-fixed": "#d8e2ff",
+                        "tertiary": "#00dce4",
+                        "primary": "#adc6ff",
+                        "on-background": "#e5e1e4",
+                        "inverse-primary": "#005ac2",
+                        "surface-bright": "#39393b",
+                        "on-primary-fixed-variant": "#004395",
+                        "surface": "#131315",
+                        "on-surface-variant": "#c2c6d6",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "surface-container-highest": "#353437",
+                        "outline-variant": "#424754",
+                        "background": "#131315",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#251a00",
+                        "secondary": "#e7c26c",
+                        "on-surface": "#e5e1e4",
+                        "secondary-container": "#6c5100",
+                        "secondary-fixed": "#ffdf9a",
+                        "outline": "#8c909f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "margin-desktop": "32px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "scripture-calligraphy": ["Noto Serif"],
+                        "headline-lg": ["Work Sans"],
+                        "display-xl": ["Playfair Display"],
+                        "body-bold": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "headline-md": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "body-base": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #00040F; color: #e5e1e4; }
+        .glass-panel { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .editor-input:focus { border-color: #00dce4; outline: none; box-shadow: 0 0 0 1px #00dce4; }
+        .sacred-btn { background: linear-gradient(135deg, #e7c26c, #d4af37); color: #111217; transition: transform 0.2s ease; }
+        .sacred-btn:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="font-body-base text-body-base min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-20 pb-md w-64 bg-surface-container-low border-r border-white/5 z-40">
+<div class="px-lg mb-8">
+<div class="flex items-center gap-4 mb-6">
+<img alt="Church Logo" class="w-10 h-10 rounded-full object-cover" data-alt="A minimalist logo for a church administration suite, featuring geometric shapes in gold and cyan on a deep midnight background. The design is sleek, modern, and corporate yet reverent, utilizing subtle gradients and clean lines. Professional dark mode aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ-PH2D4xVKR3lqKtJLS9Xfmc5j4dV_5RaR7giyk_HObz2jHyFvaQdDGehcXon5RMJC5fPJkWueJGMEQDZZeI6Rx7g-_puZN5uOGaBOeVASIxIA_NIC0KmaBf5uaMIFqHqh_TqqW-l9E5r3F7K74vPwMQDS5negFyGHdXT0l5580U0hkW_5JLGt93-Jsau4YZwe21WllUQHvHZWBRgm0rbQC54dJYnj_R6gA0IsMadD7pmJnBEc8FB"/>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Admin Suite</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Bilingual Logistics</p>
+</div>
+</div>
+<button class="w-full sacred-btn font-body-bold text-body-bold py-2 rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                New Campaign
+            </button>
+</div>
+<ul class="flex-1 px-sm space-y-1">
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 transition-transform translate-x-1" href="#">
+<span class="material-symbols-outlined">forward_to_inbox</span>
+<span>Email Campaigns</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined">local_post_office</span>
+<span>Physical Mail</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Templates</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Audience</span>
+</a>
+</li>
+</ul>
+<div class="px-sm mt-auto space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface-dim/75 backdrop-blur-xl border-b border-white/10 lg:pl-72">
+<div class="flex items-center gap-4">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">Sanctuary Mail</span>
+<div class="hidden md:flex bg-white/5 rounded-full px-4 py-1.5 items-center border border-white/10 ml-8">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none text-on-surface-variant focus:ring-0 placeholder-on-surface-variant/50 text-sm w-64" placeholder="Search campaigns..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 text-primary">
+<button class="hover:text-tertiary transition-colors duration-200"><span class="material-symbols-outlined">translate</span></button>
+<button class="hover:text-tertiary transition-colors duration-200"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-tertiary transition-colors duration-200"><span class="material-symbols-outlined">settings</span></button>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full ml-4 object-cover border border-white/20" data-alt="A professional headshot of an administrator for a sanctuary or church platform, set against a deep midnight backdrop. The lighting is soft and corporate, creating a trustworthy and competent appearance. The subject is well-lit, contrasting beautifully with the dark modern environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZkGnpdAH52W-KVarwx43_t4cgnzHxs0KpGAgZhPngnTio7-ytCFT3iX-GbBmnwiVAI6PRJJmoMa4gMoO4F_lCV-rSumA_zKKwnZRWmMzKKsjIh3sTCOnFXYTLLZVTMNAZguJZRuQX9ibpckPIGDhAdHpONvrAFPa5Fagc7CQ6GV6yAm9lzHniT_Pl1TUVxp0Dy79zbz1t3ibFc4VuTmuT46dHlEvS90bd9x3aaWKZ3bYT8n5l0Gr0"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 ml-0 lg:ml-64 pt-20 px-gutter md:px-margin-desktop pb-margin-desktop grid grid-cols-1 xl:grid-cols-12 gap-gutter h-screen overflow-hidden">
+<!-- Left Column: Compose & Active Campaigns (8 cols) -->
+<div class="xl:col-span-8 flex flex-col gap-gutter overflow-y-auto pr-2 pb-24 lg:pb-0">
+<!-- Composer Header -->
+<div class="flex justify-between items-end mb-2">
+<div>
+<h1 class="font-display-xl text-display-xl text-on-surface mb-2">Dispatch Protocol</h1>
+<p class="text-on-surface-variant">Configure and broadcast your bilingual message.</p>
+</div>
+<div class="flex items-center bg-surface-container rounded-lg p-1 border border-white/5">
+<button class="px-4 py-1.5 rounded bg-primary-container text-on-primary-container font-body-bold text-body-bold text-sm">EN</button>
+<button class="px-4 py-1.5 rounded text-on-surface-variant hover:bg-surface-variant/50 font-body-bold text-body-bold text-sm transition-colors">FA</button>
+</div>
+</div>
+<!-- Composer Bento Box -->
+<div class="glass-panel rounded-xl p-md md:p-lg flex flex-col gap-6">
+<!-- Metadata -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase">Campaign Name</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-on-surface editor-input transition-colors" placeholder="e.g., Sunday Service Update" type="text"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase">Recipients</label>
+<select class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-on-surface editor-input appearance-none transition-colors">
+<option value="all">All Congregants</option>
+<option value="volunteers">Volunteers Only</option>
+<option value="leadership">Leadership Team</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase">Subject Line (EN)</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-on-surface editor-input transition-colors" placeholder="Enter subject here..." type="text"/>
+</div>
+<!-- Rich Text Editor Mockup -->
+<div class="flex-1 flex flex-col min-h-[300px]">
+<div class="bg-surface-container-high border border-white/10 border-b-0 rounded-t-lg p-2 flex gap-2 overflow-x-auto">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">format_bold</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">format_italic</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">format_underlined</span></button>
+<div class="w-px h-6 bg-white/10 my-auto mx-2"></div>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">format_align_left</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">format_align_center</span></button>
+<div class="w-px h-6 bg-white/10 my-auto mx-2"></div>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">link</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">image</span></button>
+</div>
+<textarea class="flex-1 w-full bg-surface-container-low border border-white/10 rounded-b-lg p-4 text-on-surface editor-input resize-none focus:ring-0" placeholder="Compose your message here. The layout is optimized for high-density reading and bilingual flow..."></textarea>
+</div>
+<div class="flex justify-end gap-4 mt-2">
+<button class="px-6 py-2 rounded-lg bg-white/5 border border-white/10 text-on-surface hover:bg-white/10 transition-colors">Save Draft</button>
+<button class="px-6 py-2 rounded-lg sacred-btn font-body-bold text-body-bold flex items-center gap-2">
+<span class="material-symbols-outlined">send</span>
+                        Dispatch Now
+                    </button>
+</div>
+</div>
+<!-- Active Campaigns List -->
+<div class="mt-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">Active Operations</h2>
+<div class="space-y-4">
+<!-- Campaign Item -->
+<div class="glass-panel rounded-lg p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<h3 class="font-body-bold text-body-bold text-on-surface">Weekly Devotional</h3>
+<p class="text-sm text-on-surface-variant">Scheduled for Tomorrow, 09:00 AM</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right hidden sm:block">
+<p class="text-sm text-on-surface-variant">Recipients</p>
+<p class="font-body-bold text-body-bold text-on-surface">All (1,245)</p>
+</div>
+<button class="text-primary hover:text-tertiary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+</div>
+</div>
+<!-- Campaign Item -->
+<div class="glass-panel rounded-lg p-4 flex items-center justify-between opacity-75">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<h3 class="font-body-bold text-body-bold text-on-surface">Volunteer Briefing</h3>
+<p class="text-sm text-on-surface-variant">Delivered Today, 08:00 AM</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right hidden sm:block">
+<p class="text-sm text-on-surface-variant">Open Rate</p>
+<p class="font-body-bold text-body-bold text-tertiary">68%</p>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">analytics</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Preview Pane (4 cols) -->
+<div class="xl:col-span-4 hidden xl:flex flex-col h-full pl-gutter border-l border-white/5">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Live Preview</h2>
+<div class="flex-1 glass-panel rounded-2xl flex flex-col items-center p-6 relative overflow-hidden">
+<!-- Toggle Device -->
+<div class="absolute top-4 right-4 flex bg-surface-container rounded-lg p-1 border border-white/5 z-10">
+<button class="p-1.5 rounded bg-primary-container/20 text-primary"><span class="material-symbols-outlined text-sm">smartphone</span></button>
+<button class="p-1.5 rounded text-on-surface-variant hover:bg-surface-variant/50 transition-colors"><span class="material-symbols-outlined text-sm">desktop_windows</span></button>
+</div>
+<!-- Mobile Device Mockup -->
+<div class="w-[320px] h-[600px] bg-[#00040F] rounded-[2rem] border-[6px] border-surface-variant mt-12 p-4 shadow-2xl relative overflow-hidden flex flex-col">
+<!-- Notch -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-surface-variant rounded-b-xl z-20"></div>
+<!-- Email Content Preview -->
+<div class="flex-1 mt-6 bg-white text-black rounded-lg p-4 overflow-y-auto">
+<div class="border-b border-gray-200 pb-2 mb-4">
+<div class="text-xs text-gray-500 mb-1">From: Sanctuary Mail</div>
+<div class="font-bold text-sm">Subject: Enter subject here...</div>
+</div>
+<div class="space-y-4 font-sans text-sm text-gray-800">
+<div class="h-24 bg-gray-100 rounded flex items-center justify-center text-gray-400">Header Image Area</div>
+<p>Dear Congregant,</p>
+<p>This is a live preview of how your email will appear on a mobile device. Ensure your text is concise and links are easily tappable.</p>
+<div class="mt-6 flex justify-center">
+<div class="bg-blue-600 text-white px-4 py-2 rounded text-xs font-bold inline-block">Action Button</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-dim/80 backdrop-blur-2xl border-t border-white/10 shadow-2xl rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary rounded-xl p-2 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">email</span>
+<span class="font-label-caps text-label-caps mt-1">Email</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">print</span>
+<span class="font-label-caps text-label-caps mt-1">Mail</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">style</span>
+<span class="font-label-caps text-label-caps mt-1">Templates</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">people</span>
+<span class="font-label-caps text-label-caps mt-1">Audience</span>
+</a>
+</nav>
+</body></html>

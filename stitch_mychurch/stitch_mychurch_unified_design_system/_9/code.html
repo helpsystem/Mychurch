@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mychurch - Program Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500&amp;family=Playfair+Display:wght@700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Minimal custom waveform animation for visual interest */
+        @keyframes pulse-bar {
+            0%, 100% { transform: scaleY(0.3); opacity: 0.5; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+        .waveform-bar {
+            animation: pulse-bar 1.5s infinite ease-in-out;
+            transform-origin: bottom;
+        }
+        .waveform-bar:nth-child(even) { animation-delay: 0.2s; }
+        .waveform-bar:nth-child(3n) { animation-delay: 0.4s; }
+        .waveform-bar:nth-child(5n) { animation-delay: 0.6s; }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed": "#5cf7ff",
+                        "outline-variant": "#424754",
+                        "on-secondary-container": "#ebc56f",
+                        "inverse-surface": "#e5e1e4",
+                        "on-primary-fixed": "#001a42",
+                        "on-background": "#e5e1e4",
+                        "surface-container-low": "#1c1b1d",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-secondary-fixed": "#251a00",
+                        "on-tertiary-container": "#002f31",
+                        "background": "#131315",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary": "#e7c26c",
+                        "surface-container-highest": "#353437",
+                        "surface-container": "#201f22",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "on-tertiary-fixed": "#002021",
+                        "secondary-container": "#6c5100",
+                        "surface-tint": "#adc6ff",
+                        "on-tertiary": "#003739",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "tertiary-container": "#00a1a7",
+                        "primary-container": "#4d8eff",
+                        "surface-dim": "#131315",
+                        "secondary-fixed": "#ffdf9a",
+                        "primary": "#adc6ff",
+                        "surface-variant": "#353437",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-secondary": "#3f2e00",
+                        "outline": "#8c909f",
+                        "inverse-on-surface": "#313032",
+                        "on-surface": "#e5e1e4",
+                        "surface-container-high": "#2a2a2c",
+                        "on-error": "#690005",
+                        "surface-bright": "#39393b",
+                        "on-primary-container": "#00285d",
+                        "tertiary": "#00dce4",
+                        "error": "#ffb4ab",
+                        "surface": "#131315",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#adc6ff",
+                        "inverse-primary": "#005ac2",
+                        "on-primary": "#002e6a",
+                        "secondary-fixed-dim": "#e7c26c"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "md": "16px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "gutter": "16px",
+                        "lg": "24px"
+                    },
+                    fontFamily: {
+                        "display-xl": ["Playfair Display"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "label-caps": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "scripture-calligraphy": ["Noto Serif"],
+                        "body-base": ["Work Sans"],
+                        "body-bold": ["Work Sans"],
+                        "headline-lg": ["Work Sans"],
+                        "headline-md": ["Work Sans"]
+                    },
+                    fontSize: {
+                        "display-xl": ["36px", { lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "display-2xl-mobile": ["32px", { lineHeight: "40px", fontWeight: "700" }],
+                        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "display-2xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "scripture-calligraphy": ["22px", { lineHeight: "40px", fontWeight: "500" }],
+                        "body-base": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "body-bold": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+                        "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased font-body-base text-body-base min-h-screen selection:bg-tertiary-container selection:text-on-tertiary-container">
+<!-- Ambient Background Element -->
+<div class="fixed top-0 left-0 w-full h-96 bg-gradient-to-b from-primary-fixed/5 to-transparent pointer-events-none z-0"></div>
+<!-- Contextual Top App Bar (Task-focused Details Screen) -->
+<!-- Nav Shell Suppressed per Semantic Shell Mandate -> Linear/Transactional/Sub-page -->
+<header class="fixed top-0 w-full z-50 bg-surface/75 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-margin-mobile lg:px-margin-desktop h-16 transition-colors duration-300">
+<a class="p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface flex items-center justify-center" href="#">
+<span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<h1 class="font-headline-md text-headline-md text-primary truncate max-w-[200px] md:max-w-none">آرشیو برنامه</h1>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined">share</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-24 px-margin-mobile lg:px-margin-desktop pb-32 max-w-7xl mx-auto">
+<!-- Hero Section -->
+<div class="mb-xl text-center md:text-right">
+<div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-secondary font-label-caps text-label-caps border border-white/5">
+<span class="material-symbols-outlined text-[16px]">calendar_month</span>
+                    ۱۴ آبان ۱۴۰۲
+                </span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-on-surface-variant font-label-caps text-label-caps">جلسه یکشنبه</span>
+</div>
+<h2 class="font-display-2xl-mobile text-display-2xl-mobile md:font-display-2xl md:text-display-2xl text-on-surface mb-8 leading-tight">
+                قدرت امید در دوران تاریکی و چالش‌ها
+            </h2>
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-6">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-surface-container-high" data-alt="A professional headshot of a mature Middle Eastern male speaker in modern attire, soft cinematic lighting, deep background, high resolution, trustworthy expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWlHETDIun3kB7rrxlCFlizP-HwLU6UTnlbm953zN6jb9yPUVwCawNVpuWRNd7ZaaDUdrAYQAS89vT_XN-f1V1iDOCKX7GPC_UEe1-qtgL5uQnbJ81ozWEY4LSlV3akO2jfGEeNRNDheMgy_R7kMUqdXCDwMvlU9YCYlmODHAOr0HXh8nc1uE7QevB7nU8AC_f41ZZD3L4UXSJnk5IsVBhxNtCr9uEUZJEI1-4ug1BX2418bP7SIRx"/>
+<div class="flex flex-col">
+<span class="font-body-bold text-body-bold text-on-surface">کشیش دیوید رستم</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">سخنران اصلی</span>
+</div>
+</div>
+<div class="hidden md:block w-px h-8 bg-white/10"></div>
+<div class="flex items-center gap-2 text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-body-bold text-body-bold">۴۵ دقیقه</span>
+</div>
+</div>
+</div>
+<!-- Media Player (Glassmorphism & Accents) -->
+<div class="bg-surface-container/80 backdrop-blur-md p-6 lg:p-8 rounded-xl border border-white/5 flex flex-col md:flex-row items-center gap-6 shadow-[0_8px_32px_rgba(0,0,0,0.5)] mb-12 relative overflow-hidden group hover:border-tertiary/20 transition-colors">
+<!-- Glow Effect -->
+<div class="absolute -inset-1 bg-gradient-to-r from-tertiary-container/0 via-tertiary-container/10 to-tertiary-container/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<button class="w-16 h-16 shrink-0 rounded-full bg-gradient-to-br from-secondary to-secondary-container text-on-secondary-fixed flex items-center justify-center hover:scale-105 transition-transform shadow-lg z-10 relative">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="flex-1 w-full flex flex-col gap-2 z-10">
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant mb-1">
+<span>۰۰:۰۰</span>
+<span>۴۵:۳۰</span>
+</div>
+<!-- Pseudo Waveform -->
+<div class="h-10 w-full flex items-end gap-[2px] opacity-70">
+<!-- Generating a fake waveform -->
+<script>
+                        for(let i=0; i<60; i++) {
+                            let height = Math.random() * 100;
+                            document.write(`<div class="flex-1 bg-tertiary-fixed rounded-t-sm waveform-bar" style="height: ${height}%;"></div>`);
+                        }
+                    </script>
+</div>
+<!-- Progress Line -->
+<div class="w-full h-1 bg-surface-container-highest rounded-full mt-2 relative overflow-hidden">
+<div class="absolute top-0 right-0 h-full w-1/4 bg-tertiary rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0 z-10">
+<button class="p-2 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-tertiary transition-colors border border-white/10 rounded-lg hover:border-tertiary/50">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Content Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Main Content Area (2/3) -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Summary & Notes -->
+<section>
+<div class="flex items-center gap-3 mb-6 border-b border-white/5 pb-4">
+<span class="material-symbols-outlined text-secondary">subject</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">خلاصه و یادداشت‌ها</h3>
+</div>
+<div class="prose prose-invert prose-lg max-w-none text-on-surface-variant font-body-base text-body-base leading-relaxed space-y-4">
+<p>در این جلسه، به بررسی عمیق مفهوم امید در کتاب مقدس پرداختیم. زمانی که تاریکی و ناامیدی بر زندگی سایه می‌افکند، کلام خدا همچون نوری درخشان مسیر را روشن می‌سازد. ما یاد گرفتیم که امید مسیحی یک آرزوی مبهم نیست، بلکه یک اطمینان راسخ به وعده‌های الهی است.</p>
+<p>نکات کلیدی این موعظه شامل بررسی زندگی شخصیت‌های کتاب مقدس است که در سخت‌ترین شرایط، ایمان خود را حفظ کردند. همچنین راهکارهای عملی برای تقویت امید در زندگی روزمره و اشتراک آن با دیگران ارائه شد.</p>
+</div>
+</section>
+<!-- Read Verses (Scripture Component) -->
+<section>
+<div class="flex items-center gap-3 mb-6 border-b border-white/5 pb-4">
+<span class="material-symbols-outlined text-secondary">menu_book</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">آیات قرائت شده</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-6 rounded-lg border-r-4 border-secondary shadow-sm relative overflow-hidden">
+<div class="absolute top-4 left-4 opacity-10">
+<span class="material-symbols-outlined text-6xl">format_quote</span>
+</div>
+<h4 class="font-body-bold text-body-bold text-on-surface mb-3">مزامیر ۲۳: ۴</h4>
+<p class="font-scripture-calligraphy text-scripture-calligraphy text-inverse-surface leading-loose">
+                                «حتی اگر از تاریک‌ترین دره نیز بگذرم، از هیچ بدی نخواهم ترسید، زیرا تو با من هستی؛ عصا و چوبدستی تو به من قوت قلب می‌بخشد.»
+                            </p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border-r-4 border-secondary shadow-sm relative overflow-hidden">
+<h4 class="font-body-bold text-body-bold text-on-surface mb-3">رومیان ۱۵: ۱۳</h4>
+<p class="font-scripture-calligraphy text-scripture-calligraphy text-inverse-surface leading-loose">
+                                «خدای امید، شما را از کمال شادی و آرامش در ایمان پر سازد تا به نیروی روح‌القدس، در امید فراوان باشید.»
+                            </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar (1/3) -->
+<div class="lg:col-span-4 space-y-10">
+<!-- Worship Songs -->
+<section class="bg-surface p-6 rounded-xl border border-white/5">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-tertiary">music_note</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">سرودهای پرستشی</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-high transition-colors group cursor-pointer border border-transparent hover:border-white/5">
+<div>
+<h4 class="font-body-bold text-body-bold text-on-surface group-hover:text-tertiary transition-colors">عظیم است خدای ما</h4>
+<span class="font-label-caps text-label-caps text-on-surface-variant">پرستش آغازین</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">open_in_new</span>
+</li>
+<li class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-high transition-colors group cursor-pointer border border-transparent hover:border-white/5">
+<div>
+<h4 class="font-body-bold text-body-bold text-on-surface group-hover:text-tertiary transition-colors">نور جهان</h4>
+<span class="font-label-caps text-label-caps text-on-surface-variant">قبل از موعظه</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">open_in_new</span>
+</li>
+</ul>
+</section>
+<!-- Attachments -->
+<section class="bg-surface p-6 rounded-xl border border-white/5">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-tertiary">attach_file</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">فایل‌های ضمیمه</h3>
+</div>
+<a class="flex items-center gap-4 p-4 bg-surface-container-low rounded-lg border border-white/5 hover:border-tertiary/30 hover:bg-surface-container transition-all group" href="#">
+<div class="w-10 h-10 rounded bg-error/10 text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<h4 class="font-body-bold text-body-bold text-on-surface group-hover:text-tertiary transition-colors">خلاصه موعظه</h4>
+<span class="font-label-caps text-label-caps text-on-surface-variant">PDF • 1.2 MB</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-tertiary">download</span>
+</a>
+</section>
+<!-- Tags -->
+<section>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">دسته‌بندی‌ها</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps border border-white/5 hover:bg-surface-container-high hover:text-on-surface cursor-pointer transition-colors">#امید</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps border border-white/5 hover:bg-surface-container-high hover:text-on-surface cursor-pointer transition-colors">#موعظه_یکشنبه</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps border border-white/5 hover:bg-surface-container-high hover:text-on-surface cursor-pointer transition-colors">#کتاب_مقدس</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps border border-white/5 hover:bg-surface-container-high hover:text-on-surface cursor-pointer transition-colors">#رشد_روحانی</span>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

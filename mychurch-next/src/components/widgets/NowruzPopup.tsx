@@ -253,7 +253,23 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
 
         if (!hasSeen) {
             const delaySeconds = Number(config.displayDelaySeconds || 1.5);
-            const timer = setTimeout(() => setIsVisible(true), Math.max(0, delaySeconds) * 1000);
+            const timer = setTimeout(() => {
+                setIsVisible(true);
+                // Save immediately so it doesn't reappear on route change
+                if (!isPreview) {
+                    const seenKeyLocal = makeSeenKey();
+                    const freqLocal = config.displayFrequency || "session";
+                    try {
+                        if (freqLocal === "always") {
+                            sessionStorage.setItem(seenKeyLocal, "true"); // 'always' should still be at most once per session to avoid SPA spam
+                        } else if (freqLocal === "session") {
+                            sessionStorage.setItem(seenKeyLocal, "true");
+                        } else if (freqLocal === "24h" || freqLocal === "7d") {
+                            localStorage.setItem(seenKeyLocal, String(Date.now()));
+                        }
+                    } catch {}
+                }
+            }, Math.max(0, delaySeconds) * 1000);
             
             if (effect !== 'none') {
                 const baseCount = effect === 'snow' ? 30 : effect === 'sparkles' ? 25 : 18;

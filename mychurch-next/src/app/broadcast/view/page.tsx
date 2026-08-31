@@ -660,7 +660,7 @@ function ViewerContent() {
             onContextMenu={(e) => e.preventDefault()}
         >
             {tokenState === "checking" && (
-                <div className="absolute inset-0 z-[80] bg-black/90 text-white flex items-center justify-center text-3xl font-[Vazirmatn]">
+                <div className="absolute inset-0 z-[80] bg-black text-white flex items-center justify-center text-3xl font-[Vazirmatn]">
                     در حال بررسی دسترسی Viewer...
                 </div>
             )}

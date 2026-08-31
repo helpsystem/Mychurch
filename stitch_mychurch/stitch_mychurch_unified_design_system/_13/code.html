@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>مرکز ارتباطات - Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Work+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+        body {
+            font-family: 'Vazirmatn', sans-serif; /* Override for Persian */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#201f22",
+                        "on-secondary": "#3f2e00",
+                        "on-error": "#690005",
+                        "background": "#131315",
+                        "primary-container": "#4d8eff",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#002f31",
+                        "inverse-surface": "#e5e1e4",
+                        "surface": "#131315",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-high": "#2a2a2c",
+                        "surface-container-highest": "#353437",
+                        "error-container": "#93000a",
+                        "on-primary": "#002e6a",
+                        "inverse-primary": "#005ac2",
+                        "secondary": "#e7c26c",
+                        "on-secondary-fixed": "#251a00",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#00a1a7",
+                        "surface-container-lowest": "#0e0e10",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "on-tertiary-fixed": "#002021",
+                        "on-primary-fixed": "#001a42",
+                        "outline-variant": "#424754",
+                        "surface-dim": "#131315",
+                        "secondary-fixed": "#ffdf9a",
+                        "secondary-container": "#6c5100",
+                        "primary": "#adc6ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-container": "#00285d",
+                        "on-secondary-container": "#ebc56f",
+                        "on-tertiary": "#003739",
+                        "tertiary": "#00dce4",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-bright": "#39393b",
+                        "on-primary-fixed-variant": "#004395",
+                        "inverse-on-surface": "#313032",
+                        "surface-variant": "#353437",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-container-low": "#1c1b1d",
+                        "on-background": "#e5e1e4",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "tertiary-fixed": "#5cf7ff",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "outline": "#8c909f",
+                        "on-surface": "#e5e1e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "scripture-calligraphy": ["Noto Serif"],
+                        "headline-md": ["Work Sans"],
+                        "body-base": ["Work Sans"],
+                        "display-xl": ["Playfair Display"],
+                        "body-bold": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "label-caps": ["Work Sans"],
+                        "headline-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- NavigationDrawer (Hidden on mobile, visible on desktop) -->
+<aside class="hidden md:flex flex-col p-lg gap-md h-full w-80 rounded-r-xl border-r border-outline-variant/10 shadow-2xl bg-surface-dim fixed right-0 top-0 z-40 slide-in-effect">
+<div class="flex flex-col mb-xl gap-sm">
+<h2 class="font-headline-lg text-headline-lg text-secondary">Sanctuary</h2>
+<div class="flex items-center gap-md mt-md p-md bg-surface-container rounded-lg border border-outline-variant/20">
+<img alt="Pastor Marcus" class="w-12 h-12 rounded-full object-cover border-2 border-secondary" data-alt="A formal portrait of Pastor Marcus in a modern, dimly lit church office, wearing a dark suit with a subtle glowing lapel pin. The lighting is cinematic, highlighting his face with a warm golden hue against a midnight blue background, embodying the Nocturnal Sanctuary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC296NV5Qf2ePMWzGDiYEGFB7IKu_0M4weB5GKFE5B09nUCNhBGDXzHfIbJzyeo637f7tJkAWxjpsuXzELtFc2ZAzRzkHQ3ha3xJLPqagTWtQ4BhUne23jbrB2w6OM_XkmPlT4UD6qo9XNgMRIojN00vz4tand-EFRPjWq9d4R_c_7hlfBSOZ-cMgpVteqvNM-k26mKJHyndup7rK3BrQi6YO09Fz8WRH2pLRZ8psSE3unfr4Nlo7vS"/>
+<div>
+<p class="font-body-bold text-body-bold text-primary">Pastor Marcus</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Lead Administrator</p>
+<p class="font-label-caps text-label-caps text-tertiary mt-xs flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                        Live Session Active
+                    </p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-sm">
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-base text-body-base" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+                Daily Devotionals
+            </a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-base text-body-base" href="#">
+<span class="material-symbols-outlined">groups</span>
+                Small Groups
+            </a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-base text-body-base" href="#">
+<span class="material-symbols-outlined">favorite</span>
+                Prayer Wall
+            </a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-base text-body-base" href="#">
+<span class="material-symbols-outlined">present_to_all</span>
+                Presentation Mode
+            </a>
+<!-- Added Messages explicitly since we are on the Messages page -->
+<a class="flex items-center gap-md p-md text-tertiary bg-tertiary-container/20 font-bold rounded-lg hover:bg-surface-container-high transition-colors font-body-base text-body-base mt-md" href="#">
+<span class="material-symbols-outlined">forum</span>
+                پیام‌ها (Messages)
+            </a>
+</nav>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface/75 backdrop-blur-xl border-b border-outline-variant/10 md:pr-[340px]">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-primary">مرکز ارتباطات</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-body-bold text-body-bold cursor-pointer hover:bg-white/5 transition-colors">
+                م
+            </div>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 p-2 rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 pt-24 pb-32 px-margin-mobile md:px-margin-desktop md:pr-[340px] max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-lg">
+<!-- Left Column: Conversations List -->
+<section class="w-full lg:w-1/3 flex flex-col gap-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-white/5 border border-outline-variant/20 rounded-lg py-2 pr-10 pl-4 text-on-surface focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary transition-colors font-body-base text-body-base placeholder:text-on-surface-variant" placeholder="جستجو در پیام‌ها..." type="text"/>
+</div>
+<!-- Chat List -->
+<div class="flex flex-col gap-sm overflow-y-auto h-[calc(100vh-250px)] pr-2 custom-scrollbar">
+<!-- Chat Item: Active -->
+<button class="flex items-center gap-md p-md bg-surface-container-high rounded-xl border border-tertiary/30 relative text-right hover:bg-surface-container-highest transition-colors w-full text-right">
+<div class="relative">
+<img alt="گروه کوچک جوانان" class="w-12 h-12 rounded-full object-cover border border-outline-variant/20" data-alt="A small group of diverse individuals sitting in a dimly lit, cozy room illuminated by soft ambient blue and gold light, engaged in deep spiritual conversation, reflecting the Nocturnal Sanctuary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaEU7DqDTBMmyjj4lV_w6lHOMDwsEe-qUrCjkk8PnHvmDaUH2LQuzLFwUY3RKlywK_ojVrq6dvF3FvqED1-hNiwfFpVKrqMvuIde_a9-i4fCByag9JKjN-jBsc1W3I5GnWtx5zvTnx4nFVIKbpEp-ra44FUKrIAw6DF1KkElMXa6I_O4NZ252Ghm-l2rR2l82S1e5QEwTl3b5wXgdZSijLtbDoHW6G41HhwVdZTsHBRwZaxAMkpPME"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-tertiary rounded-full border-2 border-surface-container-high"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-body-bold text-body-bold text-primary truncate">گروه کوچک جوانان</h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">۱۰:۴۲ ق.ظ</span>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant truncate text-sm">سارا: جلسه امشب ساعت ۸ برگزار میشه...</p>
+</div>
+</button>
+<!-- Chat Item -->
+<button class="flex items-center gap-md p-md bg-surface-container rounded-xl border border-transparent hover:bg-surface-container-high transition-colors w-full text-right">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-display-xl text-display-xl">
+                        پ
+                    </div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-body-bold text-body-bold text-on-surface truncate">پاستور دیوید</h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">دیروز</span>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant truncate text-sm">پیام مستقیم: لطفاً برای رویداد فردا...</p>
+</div>
+</button>
+</div>
+</section>
+<!-- Right Column: Active Chat Area -->
+<section class="w-full lg:w-2/3 flex flex-col bg-surface-container/50 rounded-2xl border border-outline-variant/10 overflow-hidden relative">
+<!-- Chat Header -->
+<div class="flex justify-between items-center p-md bg-surface-container border-b border-outline-variant/10">
+<div class="flex items-center gap-md">
+<img alt="گروه کوچک جوانان" class="w-10 h-10 rounded-full object-cover" data-alt="A small group of diverse individuals sitting in a dimly lit, cozy room illuminated by soft ambient blue and gold light, engaged in deep spiritual conversation, reflecting the Nocturnal Sanctuary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHt1_qbdZkti85W4O-2kB27CupRG9lBsjg9Fi18J0DJIJzQ2-hgfEIpwJxgBmpoG1FF20H5_R7uVKe4AsGNVEw4EBE52PzHOV4v4cA0sHeBu4Pnm4yNLhRfDSTzPKWrIHUFoxiZHHJ-JPmbNloVU8WqhW8cxLLg8Hu5CsHvxQX3YFVtQ23t1mQAPczQXgb0CzKlc_96pXYM9uFbL3TMwmLAJk_-IJ5fqboi_4zf439dc9EsmiHPlyq"/>
+<div>
+<h2 class="font-body-bold text-body-bold text-primary">گروه کوچک جوانان</h2>
+<p class="font-label-caps text-label-caps text-tertiary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                            ۳ نفر آنلاین
+                        </p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-tertiary transition-colors rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-tertiary transition-colors rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Chat Messages Area -->
+<div class="flex-1 p-md overflow-y-auto flex flex-col gap-md custom-scrollbar bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjMTMxMzE1Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlPSIjMjAyMDIyIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')] bg-repeat opacity-90">
+<!-- System Alert -->
+<div class="flex justify-center my-2">
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-caps text-label-caps text-xs border border-outline-variant/20 shadow-sm">امروز</span>
+</div>
+<!-- Received Message -->
+<div class="flex gap-3 max-w-[80%] self-start">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex-shrink-0 flex items-center justify-center text-on-secondary-container text-sm">س</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant px-1">سارا • ۱۰:۴۰ ق.ظ</span>
+<div class="bg-surface-container-high p-3 rounded-2xl rounded-tr-sm border border-outline-variant/10 text-on-surface font-body-base text-body-base shadow-sm">
+                            سلام به همگی! خواستم یادآوری کنم جلسه امشب ساعت ۸ برگزار میشه. لطفاً فصل ۴ رو مطالعه کنید.
+                        </div>
+</div>
+</div>
+<!-- Sent Message -->
+<div class="flex gap-3 max-w-[80%] self-end flex-row-reverse">
+<div class="flex flex-col gap-1 items-end">
+<span class="font-label-caps text-label-caps text-on-surface-variant px-1">شما • ۱۰:۴۵ ق.ظ</span>
+<div class="bg-primary-container/20 p-3 rounded-2xl rounded-tl-sm border border-primary/30 text-primary-fixed font-body-base text-body-base shadow-sm relative group">
+                            سلام سارا، ممنون از یادآوری. من مطالعه رو تموم کردم، آماده بحث هستم. 🙏
+                        </div>
+</div>
+</div>
+<!-- Live Alert Message (Admin) -->
+<div class="flex gap-3 max-w-[90%] self-center my-4">
+<div class="bg-gradient-to-r from-surface-container to-surface-container-high p-4 rounded-xl border border-secondary/30 flex items-center gap-4 w-full shadow-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+<span class="material-symbols-outlined text-secondary text-3xl">campaign</span>
+<div class="flex-1">
+<h4 class="font-body-bold text-body-bold text-secondary mb-1">اطلاعیه مهم رهبری</h4>
+<p class="font-body-base text-body-base text-on-surface text-sm">لطفاً توجه داشته باشید که جلسه دعای فردا شب به دلیل تعمیرات سالن اصلی به صورت آنلاین برگزار خواهد شد. لینک ورود به زودی ارسال می‌شود.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-md bg-surface-container border-t border-outline-variant/10 mt-auto">
+<div class="flex items-end gap-2 bg-white/5 border border-outline-variant/20 rounded-xl p-2 focus-within:border-tertiary focus-within:ring-1 focus-within:ring-tertiary transition-all">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full shrink-0">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<textarea class="w-full bg-transparent border-none text-on-surface focus:ring-0 resize-none font-body-base text-body-base py-2 max-h-32 min-h-[44px] custom-scrollbar placeholder:text-on-surface-variant/50" placeholder="پیام خود را بنویسید..." rows="1"></textarea>
+<button class="p-2 bg-gradient-to-br from-secondary to-secondary-container text-on-secondary rounded-full shrink-0 hover:translate-y-[-2px] transition-transform shadow-md">
+<span class="material-symbols-outlined transform rotate-180">send</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Visible on mobile, hidden on desktop) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container/80 backdrop-blur-2xl border-t border-outline-variant/10 shadow-xl flex justify-around items-center h-20 px-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all font-label-caps text-label-caps gap-1" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Growth</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 -translate-y-1 duration-300 font-label-caps text-label-caps gap-1" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span>Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all font-label-caps text-label-caps gap-1" href="#">
+<span class="material-symbols-outlined">live_tv</span>
+<span>Broadcast</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all font-label-caps text-label-caps gap-1" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Giving</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all font-label-caps text-label-caps gap-1" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span>Admin</span>
+</a>
+</nav>
+<style>
+        /* Custom scrollbar for webkit */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</body></html>

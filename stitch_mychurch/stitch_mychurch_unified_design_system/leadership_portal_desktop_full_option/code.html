@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leadership Portal - Broadcast Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Work+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#313032",
+                      "surface-container-highest": "#353437",
+                      "secondary-fixed": "#ffdf9a",
+                      "inverse-surface": "#e5e1e4",
+                      "on-surface-variant": "#c2c6d6",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#002021",
+                      "secondary-fixed-dim": "#e7c26c",
+                      "primary-fixed": "#d8e2ff",
+                      "on-surface": "#e5e1e4",
+                      "surface-container-low": "#1c1b1d",
+                      "on-tertiary": "#003739",
+                      "surface-dim": "#131315",
+                      "primary-container": "#4d8eff",
+                      "outline": "#8c909f",
+                      "on-secondary": "#3f2e00",
+                      "surface-tint": "#adc6ff",
+                      "tertiary-fixed-dim": "#00dce4",
+                      "tertiary-fixed": "#5cf7ff",
+                      "surface-bright": "#39393b",
+                      "on-primary": "#002e6a",
+                      "inverse-primary": "#005ac2",
+                      "error": "#ffb4ab",
+                      "on-tertiary-container": "#002f31",
+                      "surface-container": "#201f22",
+                      "error-container": "#93000a",
+                      "on-secondary-container": "#ebc56f",
+                      "surface-variant": "#353437",
+                      "primary": "#adc6ff",
+                      "on-background": "#e5e1e4",
+                      "outline-variant": "#424754",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "tertiary": "#00dce4",
+                      "secondary": "#e7c26c",
+                      "surface": "#131315",
+                      "on-error": "#690005",
+                      "secondary-container": "#6c5100",
+                      "background": "#131315",
+                      "on-primary-fixed": "#001a42",
+                      "surface-container-lowest": "#0e0e10",
+                      "on-tertiary-fixed-variant": "#004f52",
+                      "on-primary-container": "#00285d",
+                      "on-secondary-fixed": "#251a00",
+                      "primary-fixed-dim": "#adc6ff",
+                      "surface-container-high": "#2a2a2c",
+                      "on-primary-fixed-variant": "#004395",
+                      "tertiary-container": "#00a1a7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "margin-mobile": "16px",
+                      "sm": "8px",
+                      "margin-desktop": "32px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Work Sans"],
+                      "display-2xl": ["Playfair Display"],
+                      "headline-md": ["Work Sans"],
+                      "body-bold": ["Work Sans"],
+                      "display-2xl-mobile": ["Playfair Display"],
+                      "body-base": ["Work Sans"],
+                      "headline-lg": ["Work Sans"],
+                      "display-xl": ["Playfair Display"],
+                      "scripture-calligraphy": ["Noto Serif"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-2xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-bold": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "display-2xl-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "body-base": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "display-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "scripture-calligraphy": ["22px", {"lineHeight": "40px", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(17, 18, 23, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sacred-action {
+            background: linear-gradient(135deg, #e7c26c 0%, #d4af37 100%);
+            color: #251a00;
+        }
+        .sacred-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 194, 108, 0.3);
+        }
+        .live-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 220, 228, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 220, 228, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 220, 228, 0); }
+        }
+        
+        /* Sidebar active state */
+        .sidebar-item-active {
+            background-color: #4d8eff;
+            color: #00285d;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col lg:flex-row overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- NavigationDrawer (Desktop Only) -->
+<nav class="bg-surface dark:bg-surface text-primary dark:text-primary font-body-base text-body-base h-full w-72 border-r border-outline-variant flat no shadows hidden lg:flex flex-col h-screen sticky top-0 z-40">
+<div class="p-6 border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<img alt="Church Admin Avatar" class="w-12 h-12 rounded-full object-cover border-2 border-secondary" data-alt="A small, stylized profile avatar of a Church Administrator. Dark moody lighting with gold accents, sleek professional look, nocturnal sanctuary aesthetic, glowing edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNq0pU4PkX-8cC7KVvS8RG4X4OYlB-HS5WHp8BniqmYVYjZwrbVpSjgw1NpicIc55bemm7nvlj1bTsEAfmfQa0CnVRbD7gHQXcmoqyRssVPOxlemTzXPZRgiZe0TWE5yR5pMmQxQTHpSx39ouxekh4MXo5FqkGcMbKtfrygiMcUyYVE9_NxkTeyTxgbzd6QHEyZ87YOY1UE-GuT1wyAg_IaDyarncGDK77HinzPpLMUfz7cY9ahQ4T"/>
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-secondary">MyChurch Admin</h2>
+<p class="text-on-surface-variant font-label-caps text-label-caps mt-1">Global Administrator</p>
+</div>
+</div>
+<div class="mt-4 flex justify-between items-center text-xs text-on-surface-variant">
+<span>V1.2.4</span>
+<span class="bg-primary/20 text-primary px-2 py-1 rounded font-label-caps text-label-caps">EN / FA</span>
+</div>
+</div>
+<ul class="flex-1 py-4 flex flex-col gap-2 px-4 overflow-y-auto">
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-95 transition-transform" style="font-variation-settings: 'FILL' 0;">corporate_fare</span>
+<span>Organization</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-95 transition-transform" style="font-variation-settings: 'FILL' 0;">payments</span>
+<span>Financials</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-95 transition-transform" style="font-variation-settings: 'FILL' 0;">groups</span>
+<span>Ministry Groups</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-95 transition-transform" style="font-variation-settings: 'FILL' 0;">person_search</span>
+<span>Member Directory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 bg-primary-container text-on-primary-container font-body-bold rounded-lg scale-95 transition-transform shadow-inner" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span>Events</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-95 transition-transform" style="font-variation-settings: 'FILL' 0;">folder_open</span>
+<span>Resources</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- TopAppBar (Mobile/Desktop Header) -->
+<div class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile lg:px-margin-desktop h-16 bg-surface/75 dark:bg-surface/75 backdrop-blur-xl border-b border-white/10 flat no shadows lg:w-[calc(100%-18rem)] lg:left-72">
+<button class="lg:hidden text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary text-primary dark:text-primary">Mychurch</h1>
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 pt-24 pb-24 lg:pb-8 px-margin-mobile lg:px-margin-desktop max-w-[1600px] mx-auto w-full">
+<header class="mb-xl flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h2 class="font-display-2xl-mobile lg:font-display-2xl text-on-surface">Broadcast Command</h2>
+<p class="font-body-base text-on-surface-variant mt-2 max-w-2xl">Manage live feeds, monitor engagement, and distribute content seamlessly to your congregation.</p>
+</div>
+<button class="sacred-action px-6 py-3 rounded-lg font-body-bold flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined">sensors</span>
+                Go Live
+            </button>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Live Program Schedule (Span 8) -->
+<section class="glass-panel rounded-xl p-6 md:col-span-8 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-primary">Live Schedule</h3>
+<span class="flex items-center gap-2 text-tertiary text-sm">
+<div class="w-2 h-2 rounded-full bg-tertiary live-pulse"></div>
+                        Live Now
+                    </span>
+</div>
+<div class="space-y-4 flex-1">
+<div class="bg-surface-container p-4 rounded-lg border-l-4 border-tertiary flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<span class="text-tertiary font-label-caps text-label-caps block mb-1">10:00 AM - 11:30 AM</span>
+<h4 class="font-body-bold text-on-surface">Sunday Main Service</h4>
+<p class="text-sm text-on-surface-variant mt-1 line-clamp-1">Lead Pastor James - "The Foundations of Faith"</p>
+</div>
+<div class="flex gap-2">
+<span class="bg-surface-dim px-2 py-1 rounded text-xs border border-outline-variant">EN</span>
+<span class="bg-surface-dim px-2 py-1 rounded text-xs border border-outline-variant">FA</span>
+</div>
+</div>
+<div class="bg-surface-container/50 p-4 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 opacity-75">
+<div>
+<span class="text-on-surface-variant font-label-caps text-label-caps block mb-1">12:00 PM - 1:00 PM</span>
+<h4 class="font-body-bold text-on-surface">Youth Ministry Broadcast</h4>
+<p class="text-sm text-on-surface-variant mt-1 line-clamp-1">Youth Leadership Team</p>
+</div>
+<span class="text-xs text-outline">Upcoming</span>
+</div>
+</div>
+</section>
+<!-- Viewer Demographics (Span 4) -->
+<section class="glass-panel rounded-xl p-6 md:col-span-4 flex flex-col">
+<h3 class="font-headline-md text-primary mb-6">Engagement metrics</h3>
+<div class="flex-1 flex flex-col justify-center">
+<div class="text-center mb-8">
+<span class="font-display-xl text-on-surface block">1,248</span>
+<span class="font-body-base text-on-surface-variant">Active Viewers</span>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span>Maryland Local</span>
+<span class="text-secondary">65%</span>
+</div>
+<div class="w-full bg-surface-dim rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span>Global (Persian Diaspora)</span>
+<span class="text-primary-container">25%</span>
+</div>
+<div class="w-full bg-surface-dim rounded-full h-2">
+<div class="bg-primary-container h-2 rounded-full" style="width: 25%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Scripture & Notes Widget (Span 6) -->
+<section class="glass-panel rounded-xl p-6 md:col-span-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-primary">Scripture &amp; Notes</h3>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+</div>
+<div class="bg-surface-container p-5 rounded-lg border border-outline-variant/50 relative overflow-hidden">
+<!-- Subtle gradient accent -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+<div class="flex justify-between items-end mb-4 relative z-10">
+<span class="font-label-caps text-secondary">Current Reference</span>
+<div class="flex gap-1">
+<button class="bg-surface-dim px-2 py-1 rounded text-xs border border-secondary text-secondary">EN</button>
+<button class="bg-surface-dim px-2 py-1 rounded text-xs border border-outline-variant text-on-surface-variant">FA</button>
+</div>
+</div>
+<h4 class="font-scripture-calligraphy text-lg mb-2 relative z-10">Romans 12:2</h4>
+<p class="font-body-base text-on-surface-variant italic relative z-10">"Do not conform to the pattern of this world, but be transformed by the renewing of your mind."</p>
+<button class="w-full mt-6 py-2 rounded bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors font-body-bold text-sm">
+                        Push to Screens
+                    </button>
+</div>
+</section>
+<!-- Content Storage (Span 6) -->
+<section class="glass-panel rounded-xl p-6 md:col-span-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-primary">Telegram Archive Storage</h3>
+<span class="material-symbols-outlined text-tertiary-container">cloud_sync</span>
+</div>
+<div class="mb-6">
+<div class="flex justify-between font-body-base mb-2">
+<span>Used Capacity</span>
+<span class="font-bold">45.2 GB <span class="text-on-surface-variant font-normal">/ 100 GB</span></span>
+</div>
+<div class="w-full bg-surface-dim rounded-full h-3 border border-outline-variant/30 overflow-hidden">
+<div class="bg-gradient-to-r from-primary-container to-tertiary-container h-full rounded-full w-[45%]"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-surface-container rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">movie</span>
+<span class="font-body-bold text-sm">Sunday_Service_Oct_12.mp4</span>
+</div>
+<span class="text-xs text-on-surface-variant">Synced 2h ago</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container rounded-lg opacity-70">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">audio_file</span>
+<span class="font-body-bold text-sm">Farsi_Translation_Oct_12.mp3</span>
+</div>
+<span class="text-xs text-on-surface-variant">Syncing...</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-t border-white/5 shadow-lg docked full-width bottom-0 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">church</span>
+<span class="font-label-caps text-label-caps">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">diversity_3</span>
+<span class="font-label-caps text-label-caps">Groups</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-tertiary-container text-on-tertiary-container rounded-full px-4 py-1 scale-90 duration-150 shadow-inner" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-label-caps text-label-caps">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+</body></html>

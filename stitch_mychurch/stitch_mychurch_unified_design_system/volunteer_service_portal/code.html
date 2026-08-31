@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Volunteer Management - Mychurch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#00dce4",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "inverse-surface": "#e5e1e4",
+                    "primary-container": "#4d8eff",
+                    "on-primary-fixed": "#001a42",
+                    "background": "#131315",
+                    "on-background": "#e5e1e4",
+                    "on-tertiary-fixed-variant": "#004f52",
+                    "outline-variant": "#424754",
+                    "secondary-fixed": "#ffdf9a",
+                    "error-container": "#93000a",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#002e6a",
+                    "surface": "#131315",
+                    "surface-tint": "#adc6ff",
+                    "on-tertiary": "#003739",
+                    "secondary": "#e7c26c",
+                    "on-primary-fixed-variant": "#004395",
+                    "surface-container-high": "#2a2a2c",
+                    "tertiary-container": "#00a1a7",
+                    "secondary-fixed-dim": "#e7c26c",
+                    "on-surface": "#e5e1e4",
+                    "inverse-primary": "#005ac2",
+                    "secondary-container": "#6c5100",
+                    "surface-container-lowest": "#0e0e10",
+                    "surface-container-low": "#1c1b1d",
+                    "surface-dim": "#131315",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#251a00",
+                    "on-secondary": "#3f2e00",
+                    "surface-bright": "#39393b",
+                    "surface-variant": "#353437",
+                    "surface-container-highest": "#353437",
+                    "on-surface-variant": "#c2c6d6",
+                    "surface-container": "#201f22",
+                    "tertiary-fixed": "#5cf7ff",
+                    "inverse-on-surface": "#313032",
+                    "on-error-container": "#ffdad6",
+                    "primary": "#adc6ff",
+                    "outline": "#8c909f",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#00dce4",
+                    "on-secondary-container": "#ebc56f",
+                    "on-tertiary-container": "#002f31",
+                    "on-primary-container": "#00285d",
+                    "on-tertiary-fixed": "#002021"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "32px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "Work Sans"
+                    ],
+                    "label-caps": [
+                            "Work Sans"
+                    ],
+                    "headline-md": [
+                            "Work Sans"
+                    ],
+                    "display-2xl": [
+                            "Playfair Display"
+                    ],
+                    "scripture-calligraphy": [
+                            "Noto Serif"
+                    ],
+                    "display-2xl-mobile": [
+                            "Playfair Display"
+                    ],
+                    "display-xl": [
+                            "Playfair Display"
+                    ],
+                    "body-bold": [
+                            "Work Sans"
+                    ],
+                    "body-base": [
+                            "Work Sans"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-2xl": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "scripture-calligraphy": [
+                            "22px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-2xl-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-xl": [
+                            "36px",
+                            {
+                                    "lineHeight": "44px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-bold": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-base": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #00040F; /* Pure void canvas */
+            color: #e5e1e4;
+        }
+        
+        .glass-panel {
+            background-color: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-surface {
+            background-color: #111217;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #e7c26c, #ffdf9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .glow-interactive:hover {
+            box-shadow: 0 0 15px rgba(0, 220, 228, 0.3);
+            border-color: rgba(0, 220, 228, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .pulse-btn {
+            animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(0, 220, 228, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 220, 228, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 220, 228, 0); }
+        }
+
+        /* Directional utilities for RTL support */
+        html[dir="rtl"] .ltr-only { display: none; }
+        html[dir="ltr"] .rtl-only { display: none; }
+        
+        .dir-switch-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            z-index: 100;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-base text-body-base antialiased min-h-screen flex flex-col lg:flex-row relative overflow-x-hidden pb-24 lg:pb-0">
+<!-- Direction Switcher (Dev Tool) -->
+<button class="dir-switch-btn glass-panel px-4 py-2 rounded-full font-label-caps text-label-caps text-tertiary border-tertiary/30 hover:border-tertiary transition-colors z-50" id="dirToggle">
+        EN / FA
+    </button>
+<!-- SideNav (Desktop) -->
+<nav class="NavigationDrawer hidden lg:flex flex-col h-screen sticky top-0 w-72 bg-surface dark:bg-surface border-r border-outline-variant z-40">
+<div class="p-lg border-b border-white/5">
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary tracking-tight">Mychurch</h1>
+<div class="mt-xl flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-outline-variant">
+<img alt="Church Admin Avatar" class="w-full h-full object-cover" data-alt="A portrait photograph of an administrative church leader in a dimly lit, contemporary church office. The lighting is soft and moody, reflecting a nocturnal, serene atmosphere. The style is highly professional and warm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_GuyThQVv3eTDaNCDlGgTfp1iHItjyipy-RuqIBWdD1-mLjj6JtzvpBhoh2jA6wCUrTWkyo9_etWTzhWSjOVgt8kYsNxOh6zRU9mJmJh3GynPWPmYqaNKuU89itlh-3bCIZmzviuXu_kNLljzTePNziZ1ZMgPvNmW78RbhgajKJYJVAEh9CntDou6Io9OI9A_C2K5O9G58Yyk2lKlGVg1nlY8ZXBfkC3BmMoMk2KlMEzlzqu39n-v"/>
+</div>
+<div>
+<h2 class="font-body-bold text-primary dark:text-primary">MyChurch Admin</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Global Administrator</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-lg px-md space-y-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span class="font-body-bold">Organization</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-bold">Financials</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-bold">Ministry Groups</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-body-bold">Member Directory</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-primary-container text-on-primary-container font-body-bold scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span>Events</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-bold">Resources</span>
+</a>
+</div>
+<div class="p-md border-t border-white/5">
+<p class="font-label-caps text-label-caps text-on-surface-variant text-center">V1.2.4</p>
+</div>
+</nav>
+<!-- TopAppBar (Mobile) -->
+<header class="TopAppBar lg:hidden fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface/75 dark:bg-surface/75 backdrop-blur-xl border-b border-white/10">
+<button class="text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary tracking-tight">Mychurch</h1>
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop pt-24 lg:pt-12 pb-32">
+<!-- Header Section -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-display-2xl-mobile lg:font-display-2xl text-on-surface mb-2">
+<span class="ltr-only">Serve With Us</span>
+<span class="rtl-only font-scripture-calligraphy" dir="rtl">با ما خدمت کنید</span>
+</h1>
+<p class="text-on-surface-variant max-w-2xl text-lg ltr-only">Join a ministry team, manage your shifts, and check in for today's service.</p>
+<p class="text-on-surface-variant max-w-2xl text-lg rtl-only font-scripture-calligraphy" dir="rtl">به یک تیم خدمت بپیوندید، شیفت های خود را مدیریت کنید و برای خدمات امروز اعلام حضور کنید.</p>
+</div>
+<button class="px-6 py-3 rounded-full bg-gradient-to-r from-secondary to-secondary-fixed text-on-secondary-fixed font-body-bold hover:-translate-y-0.5 transition-transform shadow-[0_4px_14px_0_rgba(231,194,108,0.39)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add_task</span>
+<span class="ltr-only">Sign Up for Shift</span>
+<span class="rtl-only" dir="rtl">ثبت نام برای شیفت</span>
+</button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Digital Check-in (Hero Widget) -->
+<div class="md:col-span-12 lg:col-span-8 glass-panel rounded-2xl p-8 relative overflow-hidden group">
+<!-- Decorative background elements -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-tertiary/10 rounded-full blur-3xl pointer-events-none group-hover:bg-tertiary/20 transition-all duration-700"></div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+<div class="flex-1 text-center md:text-start md:text-left rtl:md:text-right">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-caps text-label-caps mb-4">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="ltr-only">Active Service Today</span>
+<span class="rtl-only" dir="rtl">خدمت فعال امروز</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">
+<span class="ltr-only">Sunday Morning Service</span>
+<span class="rtl-only" dir="rtl">مراسم صبح یکشنبه</span>
+</h2>
+<p class="text-on-surface-variant mb-6 ltr-only">Your shift for <strong>Welcoming Team</strong> begins in 45 minutes.</p>
+<p class="text-on-surface-variant mb-6 rtl-only" dir="rtl">شیفت شما برای <strong>تیم استقبال</strong> تا ۴۵ دقیقه دیگر آغاز می شود.</p>
+<button class="pulse-btn px-8 py-4 rounded-xl bg-tertiary text-on-tertiary font-body-bold hover:bg-tertiary-fixed transition-colors flex items-center gap-3 w-full md:w-auto justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="ltr-only text-lg">Check-in Now</span>
+<span class="rtl-only text-lg" dir="rtl">اعلام حضور اکنون</span>
+</button>
+</div>
+<div class="w-48 h-48 rounded-full border-4 border-surface/50 p-2 relative">
+<div class="absolute inset-0 rounded-full border border-tertiary/30 animate-[spin_10s_linear_infinite]"></div>
+<img alt="Check in graphic" class="w-full h-full object-cover rounded-full mix-blend-screen opacity-80" data-alt="A close up, high quality abstract graphic depicting a glowing digital fingerprint or QR code integration in deep oceanic blues and cyan accents. The style is modern glassmorphism, evoking themes of digital identity and sacred technology in a dark mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBjFAcqXt1Dp7ZdLiH-WWKeCrXafDTYb6WlrdtN1XevdWAuusdzchO1hfG1YSN1sUnuODEWipR4TC6m0oEekyxu4M3Z-M01toLP5kTfjiFY8E0qwMuCK5BQSFfrQcVFzqc6zhGW4i2_fMQA04JSK8pDH4XgW0QoxS_-zwTsxCIbC7UsrqNLfXoEnItajfa1nfEdu6qRRBZhVc7DiPmOiwto5JH65LArcbjnBt8tTcuaa6uNifO5UHe"/>
+</div>
+</div>
+</div>
+<!-- Stats/Overview Widget -->
+<div class="md:col-span-12 lg:col-span-4 card-surface rounded-2xl p-6 flex flex-col justify-between">
+<h3 class="font-headline-md text-headline-md text-secondary mb-4 ltr-only">My Impact</h3>
+<h3 class="font-headline-md text-headline-md text-secondary mb-4 rtl-only" dir="rtl">تأثیر من</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">history</span>
+<span class="font-body-bold ltr-only">Hours Served</span>
+<span class="font-body-bold rtl-only" dir="rtl">ساعات خدمت</span>
+</div>
+<span class="font-headline-lg text-headline-lg text-on-surface">42</span>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">volunteer_activism</span>
+<span class="font-body-bold ltr-only">Teams</span>
+<span class="font-body-bold rtl-only" dir="rtl">تیم ها</span>
+</div>
+<span class="font-headline-lg text-headline-lg text-on-surface">2</span>
+</div>
+</div>
+</div>
+<!-- Service Areas List -->
+<div class="md:col-span-6 card-surface rounded-2xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface ltr-only">Service Areas</h3>
+<h3 class="font-headline-md text-headline-md text-on-surface rtl-only" dir="rtl">بخش های خدمت</h3>
+<button class="text-primary text-sm font-body-bold hover:underline ltr-only">View All</button>
+<button class="text-primary text-sm font-body-bold hover:underline rtl-only" dir="rtl">مشاهده همه</button>
+</div>
+<div class="space-y-3">
+<!-- Area 1 -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">headset_mic</span>
+</div>
+<div>
+<h4 class="font-body-bold text-on-surface ltr-only">Technical Team</h4>
+<h4 class="font-body-bold text-on-surface rtl-only" dir="rtl">تیم فنی</h4>
+<p class="text-xs text-on-surface-variant ltr-only">A/V, Streaming, Lighting</p>
+<p class="text-xs text-on-surface-variant rtl-only" dir="rtl">صدا و تصویر، پخش زنده</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary rtl:-scale-x-100">chevron_right</span>
+</div>
+<!-- Area 2 -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-tertiary/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-tertiary/20 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">waving_hand</span>
+</div>
+<div>
+<h4 class="font-body-bold text-on-surface ltr-only">Welcoming</h4>
+<h4 class="font-body-bold text-on-surface rtl-only" dir="rtl">استقبال</h4>
+<p class="text-xs text-on-surface-variant ltr-only">Ushers, Greeters, Parking</p>
+<p class="text-xs text-on-surface-variant rtl-only" dir="rtl">راهنمایان، خوش‌آمدگویی</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] bg-tertiary/20 text-tertiary ltr-only">Joined</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-tertiary/20 text-tertiary rtl-only" dir="rtl">عضو شده</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-tertiary rtl:-scale-x-100">chevron_right</span>
+</div>
+</div>
+<!-- Area 3 -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-secondary/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<div>
+<h4 class="font-body-bold text-on-surface ltr-only">Worship Ministry</h4>
+<h4 class="font-body-bold text-on-surface rtl-only" dir="rtl">تیم پرستش</h4>
+<p class="text-xs text-on-surface-variant ltr-only">Band, Choir, Vocals</p>
+<p class="text-xs text-on-surface-variant rtl-only" dir="rtl">گروه موسیقی، گروه کر</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-secondary rtl:-scale-x-100">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Shift Calendar -->
+<div class="md:col-span-6 card-surface rounded-2xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface ltr-only">Upcoming Shifts</h3>
+<h3 class="font-headline-md text-headline-md text-on-surface rtl-only" dir="rtl">شیفت های پیش رو</h3>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-sm rtl:-scale-x-100">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-sm rtl:-scale-x-100">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="relative">
+<!-- Calendar Line -->
+<div class="absolute left-[23px] rtl:left-auto rtl:right-[23px] top-4 bottom-4 w-px bg-white/10"></div>
+<div class="space-y-6 relative z-10">
+<!-- Shift Item 1 -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center ring-4 ring-surface relative z-10">
+<span class="text-on-tertiary-container font-body-bold">12</span>
+</div>
+<span class="text-[10px] text-tertiary mt-1 uppercase font-bold ltr-only">Nov</span>
+<span class="text-[10px] text-tertiary mt-1 uppercase font-bold rtl-only" dir="rtl">نوامبر</span>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-xl p-4 border border-outline-variant/30 glow-interactive">
+<h4 class="font-body-bold text-on-surface mb-1 ltr-only">Sunday Morning Service</h4>
+<h4 class="font-body-bold text-on-surface mb-1 rtl-only" dir="rtl">مراسم صبح یکشنبه</h4>
+<div class="flex flex-wrap gap-y-2 gap-x-4 text-sm text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>08:30 - 11:30</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">waving_hand</span>
+<span class="ltr-only">Welcoming Team</span>
+<span class="rtl-only" dir="rtl">تیم استقبال</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Shift Item 2 -->
+<div class="flex gap-4 opacity-75 hover:opacity-100 transition-opacity">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center ring-4 ring-surface relative z-10 border border-outline-variant">
+<span class="text-on-surface-variant font-body-bold">19</span>
+</div>
+<span class="text-[10px] text-on-surface-variant mt-1 uppercase font-bold ltr-only">Nov</span>
+<span class="text-[10px] text-on-surface-variant mt-1 uppercase font-bold rtl-only" dir="rtl">نوامبر</span>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-xl p-4 border border-white/5">
+<h4 class="font-body-bold text-on-surface mb-1 ltr-only">Sunday Morning Service</h4>
+<h4 class="font-body-bold text-on-surface mb-1 rtl-only" dir="rtl">مراسم صبح یکشنبه</h4>
+<div class="flex flex-wrap gap-y-2 gap-x-4 text-sm text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>08:30 - 11:30</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">waving_hand</span>
+<span class="ltr-only">Welcoming Team</span>
+<span class="rtl-only" dir="rtl">تیم استقبال</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="BottomNavBar lg:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-t border-white/5 rounded-t-xl shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined">church</span>
+<span class="font-label-caps text-label-caps mt-1">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined">diversity_3</span>
+<span class="font-label-caps text-label-caps mt-1">Groups</span>
+</a>
+<!-- Active State -->
+<a class="flex flex-col items-center justify-center bg-tertiary-container text-on-tertiary-container rounded-full px-4 py-1 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-label-caps text-label-caps mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple RTL/LTR toggle for demonstration
+        document.getElementById('dirToggle').addEventListener('click', function() {
+            const htmlTag = document.documentElement;
+            if (htmlTag.getAttribute('dir') === 'ltr') {
+                htmlTag.setAttribute('dir', 'rtl');
+                this.classList.add('bg-tertiary/20');
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                this.classList.remove('bg-tertiary/20');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="fa"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>مدیریت پرزنتیشن - Mychurch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#131315",
+                        "on-primary": "#002e6a",
+                        "outline-variant": "#424754",
+                        "inverse-on-surface": "#313032",
+                        "on-primary-fixed": "#001a42",
+                        "surface-bright": "#39393b",
+                        "primary-fixed": "#d8e2ff",
+                        "primary": "#adc6ff",
+                        "secondary-fixed": "#ffdf9a",
+                        "on-background": "#e5e1e4",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "on-tertiary": "#003739",
+                        "surface-container": "#201f22",
+                        "on-secondary-container": "#ebc56f",
+                        "on-error": "#690005",
+                        "tertiary-container": "#00a1a7",
+                        "outline": "#8c909f",
+                        "secondary-container": "#6c5100",
+                        "surface-dim": "#131315",
+                        "on-primary-fixed-variant": "#004395",
+                        "inverse-primary": "#005ac2",
+                        "on-tertiary-container": "#002f31",
+                        "surface-container-high": "#2a2a2c",
+                        "surface-container-low": "#1c1b1d",
+                        "secondary": "#e7c26c",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-tint": "#adc6ff",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "surface-container-highest": "#353437",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "on-tertiary-fixed": "#002021",
+                        "tertiary-fixed": "#5cf7ff",
+                        "primary-container": "#4d8eff",
+                        "tertiary": "#00dce4",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#353437",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-surface": "#e5e1e4",
+                        "on-secondary-fixed": "#251a00",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e5e1e4",
+                        "background": "#131315",
+                        "on-secondary": "#3f2e00",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "on-primary-container": "#00285d"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "sm": "8px"
+                    },
+                    fontFamily: {
+                        "label-caps": ["Vazirmatn", "Work Sans"],
+                        "headline-md": ["Vazirmatn", "Work Sans"],
+                        "body-bold": ["Vazirmatn", "Work Sans"],
+                        "body-base": ["Vazirmatn", "Work Sans"],
+                        "display-2xl-mobile": ["Vazirmatn", "Playfair Display"],
+                        "scripture-calligraphy": ["Vazirmatn", "Noto Serif"],
+                        "display-2xl": ["Vazirmatn", "Playfair Display"],
+                        "display-xl": ["Vazirmatn", "Playfair Display"],
+                        "headline-lg": ["Vazirmatn", "Work Sans"]
+                    },
+                    fontSize: {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Vazirmatn', sans-serif; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sacred-glow {
+            box-shadow: 0 0 20px rgba(0, 220, 228, 0.3); /* Tertiary color glow */
+        }
+        .spotlight-card:hover {
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col md:flex-row">
+<!-- NavigationDrawer (Desktop) -->
+<aside class="hidden lg:flex flex-col h-screen sticky top-0 w-72 bg-surface border-l border-outline-variant z-40">
+<div class="p-lg flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant shrink-0">
+<img alt="Church Admin Avatar" class="w-full h-full object-cover" data-alt="A portrait of a church administrator, professionally lit, looking approachable and organized, against a dark, moody background fitting a nocturnal theme. High quality, realistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi8ILYY0N7T2vfhi77x5fJu4u7Coqs2ElFkLX2qiK24NqiKFEJ8eEN99Rn_NqTOMmM8PryIFtqLpQotxrwrofZK-paQ6PVZhvh6p2tH2JW47hQB-cz0P6WOlJ9-kgO2LpgVWvcl60PwYGAr5NECf1yPSwSF32Qfuuok8df115wJXeTZTI6l8Fpv4xbw-U7qZ2d-85uwTZ3OyCAkPZT434MN7KkPu5Ko_Fv0lpqCCeUBv1vZrjnO5uB"/>
+</div>
+<div>
+<h2 class="font-body-bold text-body-bold text-on-surface">MyChurch Admin</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Global Administrator</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">V1.2.4</p>
+</div>
+</div>
+<nav class="flex-1 px-md py-sm space-y-sm overflow-y-auto">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span class="font-body-base text-body-base">Organization</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-base text-body-base">Financials</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-base text-body-base">Ministry Groups</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-body-base text-body-base">Member Directory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-primary-container text-on-primary-container font-body-bold rounded-lg scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-body-base text-body-base">Events</span> <!-- Mapping Presentation to Events loosely for this demo -->
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-base text-body-base">Resources</span>
+</a>
+</nav>
+</aside>
+<div class="flex-1 flex flex-col min-h-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full lg:w-[calc(100%-18rem)] z-50 flex justify-between items-center px-margin-mobile lg:px-margin-desktop h-16 bg-surface/75 backdrop-blur-xl border-b border-white/10 lg:hidden">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity p-xs">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary">Mychurch</h1>
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity p-xs">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto pt-20 lg:pt-8 pb-24 px-margin-mobile lg:px-margin-desktop">
+<!-- Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-md">
+<div>
+<h1 class="font-display-xl text-display-xl text-on-surface mb-xs">مدیریت پرزنتیشن</h1>
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(0,220,228,0.8)] animate-pulse"></span>
+<span class="font-body-base text-body-base text-tertiary">پخش زنده - سرویس یکشنبه</span>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="flex gap-sm w-full md:w-auto overflow-x-auto pb-xs md:pb-0">
+<button class="glass-panel flex items-center gap-xs px-md py-sm rounded-lg hover:bg-surface-container-high transition-colors text-on-surface whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">upload</span>
+<span class="font-body-bold text-body-bold">آپلود فایل جدید</span>
+</button>
+<button class="glass-panel flex items-center gap-xs px-md py-sm rounded-lg hover:bg-surface-container-high transition-colors text-on-surface whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">create_new_folder</span>
+<span class="font-body-bold text-body-bold">ایجاد کالکشن</span>
+</button>
+<button class="glass-panel flex items-center gap-xs px-md py-sm rounded-lg hover:bg-surface-container-high transition-colors text-on-surface whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">preview</span>
+<span class="font-body-bold text-body-bold">پیش‌نمایش لایه</span>
+</button>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column (Active & Settings) -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Section 1: Active Presentation -->
+<section class="glass-panel rounded-xl p-md flex flex-col relative overflow-hidden spotlight-card" onmousemove="handleMouseMove(event, this)">
+<!-- Decorative bg -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-center mb-md relative z-10">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary">cast</span>
+                                در حال پخش
+                            </h2>
+</div>
+<div class="aspect-video bg-surface-container-lowest rounded-lg mb-md border border-outline-variant overflow-hidden relative group">
+<img alt="Active Slide" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A stylized, glowing slide presentation showing lyrics for a worship song in Farsi, dark background with cyan accents, modern typography, high contrast for easy reading in a sanctuary setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx49u7Kfov9CHgmm_fh2QGD_9kXgiBW8RxqGPt_LWgpBOlckfbPJDQt-Mcuppv70nCZ9zunlFSH-RcWN8gFjWANfelhUjw6ekIy-yWTxeYLqg8cMA4E0djlMvzsJQ7IUrqmiyE7ODHNdC1KdFHcKgpLWPqm0KGvz6ktSv5cXnqWQ_94zMaQ3q9AihipSYMrnJQ0vAFPgNgsr-dg6IPHyUHmD0mfL2Ob5hd--TKp7UnbWh-tU3SgkJs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex items-end p-md">
+<p class="font-body-bold text-body-bold text-white text-shadow-md">اسلاید ۱۲: سرود پرستش</p>
+</div>
+</div>
+<div class="flex gap-md relative z-10">
+<button class="flex-1 bg-gradient-to-r from-secondary to-[#d4af37] text-on-secondary font-body-bold text-body-bold py-sm rounded-lg hover:-translate-y-[2px] transition-transform shadow-lg shadow-secondary/20 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined">play_arrow</span>
+                                رفتن به اسلاید بعدی
+                            </button>
+<button class="w-14 h-14 bg-error-container text-on-error-container rounded-lg flex items-center justify-center hover:bg-error transition-colors flex-shrink-0 border border-error/20">
+<span class="material-symbols-outlined text-[28px]">stop_circle</span>
+</button>
+</div>
+</section>
+<!-- Section 3: Display Settings -->
+<section class="glass-panel rounded-xl p-md">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">animated_images</span>
+                            تنظیمات نمایش
+                        </h2>
+<div class="space-y-sm">
+<label class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer border border-transparent hover:border-white/5">
+<div class="flex flex-col">
+<span class="font-body-bold text-body-bold text-on-surface">پخش خودکار اسلایدها</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">هر ۱۰ ثانیه</span>
+</div>
+<div class="relative inline-block w-12 h-6 rounded-full bg-surface-container border border-outline-variant">
+<input class="peer sr-only" type="checkbox"/>
+<span class="absolute inset-y-1 left-1 w-4 h-4 bg-outline rounded-full transition-all peer-checked:bg-tertiary peer-checked:left-7"></span>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer border border-transparent hover:border-white/5 bg-surface-container/50">
+<div class="flex flex-col">
+<span class="font-body-bold text-body-bold text-on-surface">نمایش متن سرودها (Lyrics)</span>
+<span class="font-label-caps text-label-caps text-tertiary">فعال</span>
+</div>
+<div class="relative inline-block w-12 h-6 rounded-full bg-tertiary-container border border-tertiary/30">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<span class="absolute inset-y-1 right-1 w-4 h-4 bg-on-tertiary-container rounded-full transition-all left-7 shadow-[0_0_5px_rgba(0,220,228,0.5)]"></span>
+</div>
+</label>
+<label class="flex items-center justify-between p-sm rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer border border-transparent hover:border-white/5">
+<div class="flex flex-col">
+<span class="font-body-bold text-body-bold text-on-surface">ادغام فید شبکه‌های اجتماعی</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">غیرفعال در طول پرستش</span>
+</div>
+<div class="relative inline-block w-12 h-6 rounded-full bg-surface-container border border-outline-variant">
+<input class="peer sr-only" type="checkbox"/>
+<span class="absolute inset-y-1 left-1 w-4 h-4 bg-outline rounded-full transition-all peer-checked:bg-tertiary peer-checked:left-7"></span>
+</div>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Column (Library) -->
+<div class="lg:col-span-7">
+<!-- Section 2: Slide Library -->
+<section class="glass-panel rounded-xl p-md h-full flex flex-col">
+<div class="flex justify-between items-center mb-md border-b border-white/10 pb-md">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">view_carousel</span>
+                                کتابخانه رسانه
+                            </h2>
+<div class="flex gap-xs">
+<button class="p-xs text-on-surface hover:text-primary transition-colors"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">view_list</span></button>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-md overflow-y-auto pr-sm custom-scrollbar pb-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-low rounded-lg border border-white/5 overflow-hidden hover:border-primary/50 transition-colors group flex flex-col cursor-pointer">
+<div class="aspect-video bg-surface-container-highest relative overflow-hidden">
+<img alt="Sermon Title" class="w-full h-full object-cover" data-alt="A beautifully designed title slide for a sermon, dark background with subtle golden light rays coming from above, bold Farsi typography in the center. Modern church aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEkES3jpE5sWKufXI5ksqtBsbyjLchdghB2al6PHASrn7i60LNr2XiSqZyVNqwXe-RNyH6LkQE5iwROPF6CZgnA-bdcOVvvilCo7CYA9FqbxzPlOV3ulW376jl1M8h1ntaQJwQVoTtSvdJiNweSOgVTOErd5CQ9duS6OSn0AVpbjRWQ0eOnMnSvNe8zv3SHTwBFfmziWD26mdIlMhh_IY9UUcR7-xszFOImI8xmJPqj6cNgAWwJk41"/>
+<div class="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-primary/90 text-on-primary w-10 h-10 rounded-full flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<div class="p-sm flex-1 flex flex-col justify-between">
+<h3 class="font-body-bold text-body-bold text-on-surface text-sm truncate">عنوان موعظه امروز</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">تصویر • ۱۹۲۰x۱۰۸۰</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-low rounded-lg border border-tertiary/30 shadow-[0_0_15px_rgba(0,220,228,0.1)] overflow-hidden transition-colors group flex flex-col relative">
+<div class="absolute top-2 right-2 z-10 w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<div class="aspect-video bg-surface-container-highest relative overflow-hidden border-b border-tertiary/20">
+<img alt="Worship Background" class="w-full h-full object-cover" data-alt="A worship background looping video still, deep space nebulae in blues and purples with subtle starlight, designed as a backdrop for lyrics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfIM-W-647dGX4l4sInoNNiz_Ek_J5GmHFKTKPDXvU6GEo32EUJ_7DF5AD1xfY3_rrkjrBARU0QhUc6V2R7egHrGy1fNT4DVjvFpOw842LgP2WuWgiPCaW837OkZnt3t_RV6MN53wR2svtBjdKG_-RuyMUCpe4cYZ7w5LHGI08ksiljaq_BcLPylAWLKB9nWDt3F5ICuJw1q0sWRczWp8pnM8gv2S7YeqsDWs6zSXPWDW910SHUd7B"/>
+<div class="absolute bottom-2 left-2 bg-black/60 rounded px-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-white">movie</span>
+<span class="font-label-caps text-label-caps text-white text-[10px]">۰:۳۰</span>
+</div>
+</div>
+<div class="p-sm flex-1 flex flex-col justify-between bg-tertiary-container/10">
+<h3 class="font-body-bold text-body-bold text-on-surface text-sm truncate">بک‌گراند پرستش (آبی)</h3>
+<p class="font-label-caps text-label-caps text-tertiary">در حال پخش</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-low rounded-lg border border-white/5 overflow-hidden hover:border-primary/50 transition-colors group flex flex-col cursor-pointer">
+<div class="aspect-video bg-surface-container-highest relative overflow-hidden">
+<div class="w-full h-full bg-gradient-to-br from-[#1a1c29] to-[#0f111a] flex items-center justify-center">
+<span class="font-scripture-calligraphy text-scripture-calligraphy text-on-surface text-center px-4 leading-tight opacity-70">خداوند شبان من است...</span>
+</div>
+<div class="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-primary/90 text-on-primary w-10 h-10 rounded-full flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<div class="p-sm flex-1 flex flex-col justify-between">
+<h3 class="font-body-bold text-body-bold text-on-surface text-sm truncate">مزمور ۲۳</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">متن آیه</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-low rounded-lg border border-white/5 overflow-hidden hover:border-primary/50 transition-colors group flex flex-col cursor-pointer">
+<div class="aspect-video bg-surface-container-highest relative overflow-hidden">
+<img alt="Announcement" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all" data-alt="An announcement slide for a church event, dark mode styling, elegant typography, subtle geometric shapes in the background, promoting a community gathering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqTH9w24ay1cBr_bqVmFyTZsNBO6hnBNgG-b11chAhwoxJV3iXH86TJxLv4ka4zrJgbYHXy8piOZrt80eD3W-KA31DzWe6lCcw__Ocz8jnpGTk2bGOtG1t2YQIQ2kgNXSw5wC1BSFr-r0-E8pUo34a-gglutrFlcFKRSa9dSyJQGes8BBllrBoahk242KnY2qNaBza_9FG4RHbU-Q4AIa3BqCtUDQtTFSMxhdIS-UfPYR71EZpSNbA"/>
+<div class="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-primary/90 text-on-primary w-10 h-10 rounded-full flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<div class="p-sm flex-1 flex flex-col justify-between">
+<h3 class="font-body-bold text-body-bold text-on-surface text-sm truncate">اطلاعیه جلسه جوانان</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">تصویر</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-low rounded-lg border border-white/5 overflow-hidden hover:border-primary/50 transition-colors group flex flex-col cursor-pointer border-dashed border-outline-variant flex items-center justify-center min-h-[140px]">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center mb-sm text-outline group-hover:text-primary group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">upload_file</span>
+</div>
+<p class="font-body-bold text-body-bold text-on-surface-variant group-hover:text-on-surface transition-colors">افزودن مدیا</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="lg:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-surface/80 backdrop-blur-md border-t border-white/5 shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined">church</span>
+<span class="font-label-caps text-label-caps mt-xs">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined">diversity_3</span>
+<span class="font-label-caps text-label-caps mt-xs">Groups</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-tertiary-container text-on-tertiary-container rounded-full px-4 py-1 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-caps text-label-caps mt-xs">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-caps text-label-caps mt-xs">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for spotlight cards
+        function handleMouseMove(e, element) {
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            element.style.setProperty('--mouse-x', `${x}px`);
+            element.style.setProperty('--mouse-y', `${y}px`);
+        }
+    </script>
+</body></html>

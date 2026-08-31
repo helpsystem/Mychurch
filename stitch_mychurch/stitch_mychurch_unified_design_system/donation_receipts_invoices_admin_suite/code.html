@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Donation Receipts &amp; Invoicing - Sanctuary Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;family=Noto+Serif:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#002f31",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#313032",
+                        "secondary": "#e7c26c",
+                        "primary-fixed-dim": "#adc6ff",
+                        "outline-variant": "#424754",
+                        "on-primary-fixed": "#001a42",
+                        "surface-tint": "#adc6ff",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "tertiary": "#00dce4",
+                        "on-tertiary": "#003739",
+                        "on-secondary": "#3f2e00",
+                        "surface-container-high": "#2a2a2c",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container-low": "#1c1b1d",
+                        "surface-dim": "#131315",
+                        "tertiary-fixed": "#5cf7ff",
+                        "on-surface": "#e5e1e4",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-secondary-fixed": "#251a00",
+                        "surface-bright": "#39393b",
+                        "on-primary-container": "#00285d",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "inverse-surface": "#e5e1e4",
+                        "on-secondary-container": "#ebc56f",
+                        "surface": "#131315",
+                        "on-background": "#e5e1e4",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "secondary-fixed": "#ffdf9a",
+                        "surface-container": "#201f22",
+                        "on-surface-variant": "#c2c6d6",
+                        "primary-container": "#4d8eff",
+                        "on-primary-fixed-variant": "#004395",
+                        "background": "#131315",
+                        "on-error": "#690005",
+                        "on-primary": "#002e6a",
+                        "secondary-container": "#6c5100",
+                        "outline": "#8c909f",
+                        "tertiary-container": "#00a1a7",
+                        "surface-variant": "#353437",
+                        "surface-container-highest": "#353437",
+                        "inverse-primary": "#005ac2",
+                        "primary": "#adc6ff",
+                        "on-tertiary-fixed": "#002021",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-base": ["Work Sans"],
+                        "headline-md": ["Work Sans"],
+                        "display-xl": ["Playfair Display"],
+                        "headline-lg": ["Work Sans"],
+                        "scripture-calligraphy": ["Noto Serif"],
+                        "body-bold": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "display-2xl": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #00040F; color: #e5e1e4; }
+        .glass-panel { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .sacred-btn { background: linear-gradient(135deg, #e7c26c, #ffdf9a); color: #3f2e00; transition: transform 0.2s; }
+        .sacred-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(231, 194, 108, 0.3); }
+        .input-matte { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #e5e1e4; transition: all 0.2s; }
+        .input-matte:focus { border-color: #00dce4; outline: none; box-shadow: 0 0 0 1px #00dce4; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-body-base text-body-base">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 z-40 bg-surface-container dark:bg-surface-container border-r border-white/10 py-lg">
+<div class="px-margin-desktop mb-8">
+<h1 class="font-headline-lg text-headline-lg text-secondary">Nocturnal Sanctuary</h1>
+<p class="text-on-surface-variant text-sm mt-1">Administrative Suite</p>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full sacred-btn font-body-bold rounded-lg py-2 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> New Document
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 hover:bg-white/5 transition-all duration-200 rounded-lg active:translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 hover:bg-white/5 transition-all duration-200 rounded-lg active:translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined">description</span> Official Letters
+            </a>
+<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 mx-2 active:translate-y-[-2px] transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span> IRS Receipts
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 hover:bg-white/5 transition-all duration-200 rounded-lg active:translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined">payments</span> Invoicing
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 hover:bg-white/5 transition-all duration-200 rounded-lg active:translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined">verified</span> Verification
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 hover:bg-white/5 transition-all duration-200 rounded-lg active:translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</div>
+<div class="mt-auto border-t border-white/10 pt-4">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 hover:bg-white/5 transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span> Support
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-4 py-3 mx-2 hover:bg-white/5 transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">language</span> Language: EN/FA
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 relative h-full">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 bg-surface/75 dark:bg-surface/75 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-white/10">
+<div class="flex items-center gap-4">
+<div class="font-headline-md text-headline-md font-bold text-secondary dark:text-secondary">Sanctuary Admin</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant font-medium hover:text-tertiary transition-colors duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant font-medium hover:text-tertiary transition-colors duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="Administrator profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small circular profile image of a professional administrator in a dark, nocturnal themed setting with subtle glowing highlights, high quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqZpN-Sl-dab3azZ7nToZ_aFWzuFefParWLEAF9ExwsDGVm2_1jw8U4aRf14w1xQcMp5iL6RM6foWSafYJdHKTiDIfQ_7zz9wRO8vZc_g0ClZOvGfnOArV67BZI53Ow52kwXpL87Tj-Crn19TbwjmH9-Zc_v6QIQ5EJydDzE0gqmDYqDwoLRbTklB8mlnBomV18dCOcCK3p_QRkeM4idQyxLGzww86df9L89eG7dSTVmTblcaZ9Jt7"/>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop space-y-lg relative">
+<div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at top right, rgba(0,220,228,0.05), transparent 40%);"></div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h2 class="font-display-xl text-display-xl text-on-surface">Donation Receipts</h2>
+<p class="text-on-surface-variant mt-2 font-body-base">Manage and generate IRS-compliant documentation.</p>
+</div>
+<div class="flex gap-4">
+<button class="glass-panel text-on-surface px-4 py-2 rounded-lg font-body-bold flex items-center gap-2 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-sm">print</span> Print Batch
+                    </button>
+<button class="sacred-btn px-6 py-2 rounded-lg font-body-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> New Receipt
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Data Entry Form -->
+<div class="lg:col-span-2 glass-panel rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+<h3 class="font-headline-md text-headline-md text-secondary mb-6 border-b border-white/10 pb-4">Donor Information</h3>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Donor Name</label>
+<input class="input-matte w-full rounded-lg px-4 py-3" placeholder="Full Legal Name" type="text"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Email Address</label>
+<input class="input-matte w-full rounded-lg px-4 py-3" placeholder="donor@example.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Donation Type</label>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-lg cursor-pointer border border-tertiary">
+<input checked="" class="text-tertiary bg-transparent border-outline" name="dtype" type="radio"/>
+<span>Cash / Monetary</span>
+</label>
+<label class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-lg cursor-pointer border border-transparent hover:border-white/10 text-on-surface-variant">
+<input class="text-tertiary bg-transparent border-outline" name="dtype" type="radio"/>
+<span>In-Kind / Asset</span>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Amount (USD)</label>
+<div class="relative">
+<span class="absolute left-4 top-3 text-on-surface-variant">$</span>
+<input class="input-matte w-full rounded-lg pl-8 pr-4 py-3" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2">Date Received</label>
+<input class="input-matte w-full rounded-lg px-4 py-3" type="date"/>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded-lg border border-outline-variant/30 flex gap-4 items-start">
+<span class="material-symbols-outlined text-tertiary mt-1">info</span>
+<p class="text-sm text-on-surface-variant">
+<strong>IRS Disclosure (501c3):</strong> No goods or services were provided in exchange for this contribution. This receipt serves as official tax documentation.
+                            </p>
+</div>
+</form>
+</div>
+<!-- Verification Side Panel -->
+<div class="glass-panel rounded-xl p-6 flex flex-col h-full">
+<h3 class="font-headline-md text-headline-md text-tertiary mb-6 border-b border-white/10 pb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">verified</span> Verification
+                    </h3>
+<div class="flex-1 flex flex-col items-center justify-center text-center space-y-4">
+<div class="w-48 h-48 bg-white p-2 rounded-lg shadow-[0_0_20px_rgba(0,220,228,0.2)]">
+<img alt="Document QR Code" class="w-full h-full object-cover rounded" data-alt="A high contrast, sharp QR code image displayed on a bright white background, perfectly square, suitable for scanning, set within a dark mode UI environment, glowing edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSkfAx0UjcUMjvkfXfltQUN4CRtXRVYsyyxreijCMW8VvSTJmH1Gb1IkeFqS1oe7cgp3RBGs9-MdEyt8rRW5rH-42txJYfqtTWgtY6SV72OxFviCIm-NSstDvjf-MUsEwnPc_Ysl3vTe6O5u406OyythjV2_W9khjNyfXMd3Bgt9iRZX0aq_AE_jP2dduLceTpQcBB1gtr69bhGQeosBR7GJanY4inarB9y-BvIhPNxefRLoN2c-IP"/>
+</div>
+<p class="font-body-base text-on-surface-variant">Document ID: <br/><span class="font-mono text-on-surface">RCPT-2023-8942A</span></p>
+<div class="w-full bg-surface-container-high rounded p-3 mt-4 text-left">
+<p class="font-label-caps text-on-surface-variant mb-1">Status</p>
+<div class="flex items-center gap-2 text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span>Pending Generation</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

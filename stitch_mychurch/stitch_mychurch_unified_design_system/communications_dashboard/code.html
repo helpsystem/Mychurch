@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Communication Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500&amp;family=Work+Sans:wght@400;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#131315",
+                        "primary-container": "#4d8eff",
+                        "surface-variant": "#353437",
+                        "on-primary-container": "#00285d",
+                        "tertiary-fixed": "#5cf7ff",
+                        "surface-tint": "#adc6ff",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#002f31",
+                        "surface-container-lowest": "#0e0e10",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "on-secondary-container": "#ebc56f",
+                        "on-tertiary-fixed": "#002021",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e5e1e4",
+                        "inverse-on-surface": "#313032",
+                        "surface-container-low": "#1c1b1d",
+                        "on-primary": "#002e6a",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-secondary": "#3f2e00",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary": "#003739",
+                        "tertiary-container": "#00a1a7",
+                        "surface-container-high": "#2a2a2c",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface-container": "#201f22",
+                        "primary-fixed": "#d8e2ff",
+                        "tertiary": "#00dce4",
+                        "primary": "#adc6ff",
+                        "on-background": "#e5e1e4",
+                        "inverse-primary": "#005ac2",
+                        "surface-bright": "#39393b",
+                        "on-primary-fixed-variant": "#004395",
+                        "surface": "#131315",
+                        "on-surface-variant": "#c2c6d6",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "surface-container-highest": "#353437",
+                        "outline-variant": "#424754",
+                        "background": "#131315",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#251a00",
+                        "secondary": "#e7c26c",
+                        "on-surface": "#e5e1e4",
+                        "secondary-container": "#6c5100",
+                        "secondary-fixed": "#ffdf9a",
+                        "outline": "#8c909f"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "base": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "margin-desktop": "32px",
+                        "lg": "24px",
+                        "safe": "env(safe-area-inset-bottom)"
+                    },
+                    fontFamily: {
+                        "scripture-calligraphy": ["Noto Serif"],
+                        "headline-lg": ["Work Sans"],
+                        "display-xl": ["Playfair Display"],
+                        "body-bold": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "headline-md": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "body-base": ["Work Sans"]
+                    },
+                    fontSize: {
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #00040F; color: #e5e1e4; }
+        .glass-panel { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .interactive-spotlight { position: relative; overflow: hidden; }
+        .interactive-spotlight::before { content: ''; position: absolute; top: var(--y, 50%); left: var(--x, 50%); width: 200px; height: 200px; background: radial-gradient(circle, rgba(173,198,255,0.15) 0%, transparent 70%); transform: translate(-50%, -50%); pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+        .interactive-spotlight:active::before { opacity: 1; }
+        .sacred-gradient { background: linear-gradient(135deg, #e7c26c 0%, #ffdf9a 100%); color: #3f2e00; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-base antialiased pb-[90px]">
+<!-- Top App Bar (Mobile optimized) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface-dim/75 backdrop-blur-xl border-b border-white/10 flat no shadows lg:hidden">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary truncate">Sanctuary Mail</div>
+<div class="flex items-center gap-sm">
+<button aria-label="Translate" class="p-2 text-on-surface-variant hover:text-tertiary transition-colors duration-200 Active: scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+</button>
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:text-tertiary transition-colors duration-200 Active: scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover ml-2" data-alt="A small circular profile picture of an administrator, featuring a professional individual in a dimly lit, modern church office setting. The lighting is soft and cinematic, with deep shadows and subtle cyan and gold highlights reflecting the Nocturnal Sanctuary aesthetic. The mood is calm and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCosOiE-cnu6pTPTmu1OKnFI1VI_omfkMR1K3Hj0KAaAwws1KwyGydfCSRJRD1tCzP8JQorXA5RxCIoWFTvpD6l1wYgq7RpeuYwoXd60JM0znm2GTtAX4niZ9rxpmxdpIUF5LZHmvP4FlSbNXdOfIsHZMEtispcTiU3TLV9mnJlB2Uuw2_d3vrAMuS3ruWGR3vk11Ui9dw3WsK_7V9BS8BfEjxQZnnPDvzNQf_4fZFlwYKZdcl1ph_R"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin-mobile flex flex-col gap-lg pb-xl max-w-lg mx-auto lg:hidden">
+<!-- Header & Action -->
+<div class="flex flex-col gap-sm">
+<h1 class="font-display-2xl-mobile text-display-2xl-mobile text-on-background">Dashboard</h1>
+<p class="font-body-base text-body-base text-on-surface-variant">داشبورد / Overview of communication efforts.</p>
+</div>
+<!-- Quick Action FAB alternative for mobile dashboard -->
+<button class="sacred-gradient w-full py-3 px-4 rounded-lg flex items-center justify-center gap-2 font-body-bold text-body-bold shadow-lg transform transition-transform active:translate-y-[2px] interactive-spotlight">
+<span class="material-symbols-outlined">campaign</span>
+            Create New Update
+        </button>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Email Campaigns Metric -->
+<div class="col-span-2 glass-panel rounded-xl p-md interactive-spotlight flex flex-col gap-sm">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="forward_to_inbox">forward_to_inbox</span>
+<h2 class="font-headline-md text-headline-md">Recent Campaigns</h2>
+</div>
+<div class="flex justify-between items-end mt-2">
+<div>
+<div class="font-display-xl text-display-xl text-on-background">2.4k</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Emails Sent This Week</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-tertiary font-body-bold text-body-bold">+12%</span>
+<span class="text-xs text-on-surface-variant">vs last week</span>
+</div>
+</div>
+<!-- Mini sparkline mock -->
+<div class="w-full h-8 flex items-end gap-1 mt-2">
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[30%]"></div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[50%]"></div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[40%]"></div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[70%]"></div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[60%]"></div>
+<div class="w-1/6 bg-tertiary-container rounded-t-sm h-[90%]"></div>
+</div>
+</div>
+<!-- Pending Mail Batch -->
+<div class="col-span-1 glass-panel rounded-xl p-md flex flex-col justify-between">
+<div class="text-secondary">
+<span class="material-symbols-outlined mb-2 block">local_post_office</span>
+<h3 class="font-body-bold text-body-bold">Pending Print</h3>
+</div>
+<div class="mt-4">
+<div class="font-display-xl text-display-xl text-on-background">45</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Batches</div>
+</div>
+</div>
+<!-- Audience Growth -->
+<div class="col-span-1 glass-panel rounded-xl p-md flex flex-col justify-between">
+<div class="text-primary-container">
+<span class="material-symbols-outlined mb-2 block">group</span>
+<h3 class="font-body-bold text-body-bold">New Subs</h3>
+</div>
+<div class="mt-4">
+<div class="font-display-xl text-display-xl text-on-background">18</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">This Week</div>
+</div>
+</div>
+<!-- Live Status Alert -->
+<div class="col-span-2 bg-[#111217] rounded-xl p-md border border-tertiary/30 flex items-center gap-md relative overflow-hidden">
+<div class="absolute -left-2 top-0 bottom-0 w-1 bg-tertiary shadow-[0_0_10px_#00dce4]"></div>
+<div class="p-2 bg-tertiary/10 rounded-full text-tertiary shrink-0">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<div>
+<h4 class="font-body-bold text-body-bold text-on-background">Syncing Audience Data</h4>
+<p class="font-body-base text-body-base text-on-surface-variant text-sm">Translating Persian names... (85%)</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (From COMPONENTS_32 JSON) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-dim/80 backdrop-blur-2xl rounded-t-xl shadow-2xl">
+<a aria-current="page" class="flex flex-col items-center justify-center bg-primary-container/20 text-primary rounded-xl p-2 Active: scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="email" style="font-variation-settings: 'FILL' 1;">email</span>
+<span class="font-label-caps text-label-caps mt-1">Email</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-tertiary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="print">print</span>
+<span class="font-label-caps text-label-caps mt-1">Mail</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-tertiary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="style">style</span>
+<span class="font-label-caps text-label-caps mt-1">Templates</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-tertiary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="people">people</span>
+<span class="font-label-caps text-label-caps mt-1">Audience</span>
+</a>
+</nav>
+<script>
+        // Simple script for the spotlight effect on interactive cards
+        document.querySelectorAll('.interactive-spotlight').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

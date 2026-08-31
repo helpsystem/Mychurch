@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Broadcast Console - Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,700;1,400&amp;family=Playfair+Display:wght@400;700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#313032",
+                        "surface-container-highest": "#353437",
+                        "secondary-fixed": "#ffdf9a",
+                        "inverse-surface": "#e5e1e4",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#002021",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "primary-fixed": "#d8e2ff",
+                        "on-surface": "#e5e1e4",
+                        "surface-container-low": "#1c1b1d",
+                        "on-tertiary": "#003739",
+                        "surface-dim": "#131315",
+                        "primary-container": "#4d8eff",
+                        "outline": "#8c909f",
+                        "on-secondary": "#3f2e00",
+                        "surface-tint": "#adc6ff",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "tertiary-fixed": "#5cf7ff",
+                        "surface-bright": "#39393b",
+                        "on-primary": "#002e6a",
+                        "inverse-primary": "#005ac2",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#002f31",
+                        "surface-container": "#201f22",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#ebc56f",
+                        "surface-variant": "#353437",
+                        "primary": "#adc6ff",
+                        "on-background": "#e5e1e4",
+                        "outline-variant": "#424754",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "tertiary": "#00dce4",
+                        "secondary": "#e7c26c",
+                        "surface": "#131315",
+                        "on-error": "#690005",
+                        "secondary-container": "#6c5100",
+                        "background": "#131315",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "on-primary-container": "#00285d",
+                        "on-secondary-fixed": "#251a00",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#2a2a2c",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-container": "#00a1a7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "headline-md": ["Work Sans"],
+                        "body-bold": ["Work Sans"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "body-base": ["Work Sans"],
+                        "headline-lg": ["Work Sans"],
+                        "display-xl": ["Playfair Display"],
+                        "scripture-calligraphy": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-filled { font-variation-settings: 'FILL' 1; }
+        
+        /* Custom Scrollbar for dense UI */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #424754; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8c909f; }
+
+        /* Vertical range input styling */
+        input[type=range][orient=vertical] {
+            writing-mode: bt-lr; /* IE */
+            -webkit-appearance: slider-vertical; /* Chromium */
+            width: 8px;
+            height: 100px;
+            padding: 0 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen w-screen overflow-hidden flex">
+<!-- SHARED COMPONENT: NavigationDrawer -->
+<nav class="h-full w-80 rounded-r-xl border-r border-outline-variant/10 shadow-2xl bg-surface-dim dark:bg-surface-dim flex flex-col p-lg gap-md flex-shrink-0 z-40 relative">
+<!-- Header: Profile -->
+<div class="flex items-center gap-md mb-xl">
+<div class="w-12 h-12 rounded-full bg-surface-container overflow-hidden border border-outline-variant/20 flex-shrink-0">
+<img alt="Church Leader" class="w-full h-full object-cover" data-alt="A professional headshot of a church leader against a dark, moody studio background with subtle edge lighting. They are looking confidently at the camera." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6bjapEDNYGAsB3F0eyNGXtQBpL5qCsJkA6ID5iZu5uzKVW44QNwhxi3CWEyuw9a9bsXKm4_S3X34--bRVeeBfqWn8QQ1Hfif9f964iWmydEouGbld1XJO3kkGUYlcOjcz-RpIPmCVhM8FwSCRSN_WMnzIdxtJ778YxrlM3v_SUo3wy7mfC7KmOzkilEjB_agmNefvUEkWPZXAV2DfrbzwihjUnvTLJK4sRNd0L3CFlL5zpwrWhZxe"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary m-0">Pastor Marcus</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant m-0">Lead Administrator</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-error">Live Session Active</span>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-sm flex-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-body-base text-body-base">Daily Devotionals</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-base text-body-base">Small Groups</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-body-base text-body-base">Prayer Wall</span>
+</a>
+<!-- ACTIVE ITEM: Presentation Mode matches Broadcast intent closest -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-tertiary bg-tertiary-container/20 font-bold transition-colors" href="#">
+<span class="material-symbols-outlined icon-filled">present_to_all</span>
+<span class="font-body-base text-body-base font-bold">Presentation Mode</span>
+</a>
+</div>
+<!-- Bottom Brand Area -->
+<div class="mt-auto pt-lg border-t border-outline-variant/10">
+<div class="font-headline-lg text-headline-lg text-secondary">Sanctuary System</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mt-1">Version 4.2.1</div>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col h-full relative overflow-hidden bg-surface-container-lowest">
+<!-- SHARED COMPONENT: TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b border-outline-variant/10 flex justify-between items-center px-gutter h-16 bg-surface/75 dark:bg-surface/75 backdrop-blur-xl" style="width: calc(100% - 320px); left: 320px;">
+<div class="flex items-center gap-md">
+<div class="font-display-xl text-display-xl tracking-tighter text-secondary dark:text-secondary">Sanctuary</div>
+<div class="h-6 w-px bg-outline-variant/30 mx-2"></div>
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">broadcast_on_home</span>
+                    Broadcast Console
+                </div>
+</div>
+<div class="flex items-center gap-lg">
+<!-- Bilingual Toggle -->
+<div class="flex bg-surface-container rounded-full p-1 border border-outline-variant/20">
+<button class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-caps text-label-caps">EN</button>
+<button class="px-3 py-1 rounded-full text-on-surface-variant font-label-caps text-label-caps hover:text-on-surface">FA</button>
+</div>
+<!-- Leading Avatar (from JSON) -->
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/20 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small circular avatar placeholder image of a generic user silhouette in subtle grey tones, appropriate for a technical dashboard interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAadH6OGntIAgXVESV63KVFhZIPpWqo_qkDuaa6twnImIhRjb32PddC-Vr1aXxgXr05iBLP1pJqdsZ4F-p2j-3bmO1Gh_7v46MB1ufxxUx25ce6zGaeCURJZY8TK_P8k3QqWXxPQe1caaif3hqQmL3kGve4kINtpG3F9D1ssfuPkUseJiyke617-Q94dg3ckarSy0JGZZCYMERu3oUKCj0N6GLyxrwraHgd2ze3M8ZGKTU7SNEKXZ7N"/>
+</div>
+<!-- Trailing Icon (from JSON) -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-white/5 transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Broadcast Console Content -->
+<div class="flex-1 p-gutter pt-[80px] overflow-y-auto grid grid-cols-12 gap-gutter content-start">
+<!-- ROW 1: Video Monitors & Transitions -->
+<!-- Preview Monitor -->
+<div class="col-span-5 bg-surface-container border border-outline-variant/10 rounded-xl p-md flex flex-col gap-sm relative">
+<div class="flex justify-between items-center">
+<h3 class="font-label-caps text-label-caps text-tertiary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> PREVIEW
+                    </h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant">CAM 02 - WIDE</span>
+</div>
+<div class="aspect-video bg-black rounded-lg border border-outline-variant/20 overflow-hidden relative group">
+<img alt="Preview Feed" class="w-full h-full object-cover opacity-80" data-alt="A wide-angle, cinematic view from the back of a modern, dimly lit church sanctuary, looking towards an empty stage bathed in cool blue and purple atmospheric lighting. A large LED screen on stage displays an abstract, luminous texture. High-tech camera equipment is visible in the foreground silhouette. Photorealistic, moody, technological." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdbo2b71fI2BO2BWBG7Iz8MSR3sJf26wKMTq4tjewC8WRh_X6BAmmy_d_BynZcmWYGG9XuAYLyGhPRN8DvSjx98cFtSJ71gJA6HRjCiwmI_suNWGMeVEOZL4M6hQdwkgoIVa2rZeKtQPe4mx_nd82c_QDLJT1nS_r4o1BRj9-LDEpAL5O-eLWgl6vEiXBAT6KecIBD0khzwfrrMwatoMlw3Vj8vSKsefY6F4qLt7abo0jjgf94Lnz6"/>
+<!-- Overlay Grid -->
+<div class="absolute inset-0 pointer-events-none opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDEwaDQwTTAgMjBoNDBNMCAzMGg0ME0xMCAwdjQwTTIwIDB2NDBNeTMwIDB2NDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')]"></div>
+</div>
+</div>
+<!-- Transitions Center -->
+<div class="col-span-2 flex flex-col items-center justify-center gap-md px-sm">
+<button class="w-full py-lg rounded-xl bg-surface-container-high border border-outline-variant/20 hover:bg-surface-bright transition-colors flex flex-col items-center justify-center gap-sm group">
+<span class="material-symbols-outlined text-primary group-hover:text-primary-fixed transition-colors text-3xl">switch_access_shortcut</span>
+<span class="font-label-caps text-label-caps text-on-surface">AUTO FADE</span>
+</button>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<button class="w-full py-xl rounded-xl bg-error/10 border border-error/30 hover:bg-error/20 transition-colors flex flex-col items-center justify-center gap-sm group shadow-[0_0_15px_rgba(255,180,171,0.05)] hover:shadow-[0_0_20px_rgba(255,180,171,0.15)]">
+<span class="material-symbols-outlined text-error icon-filled text-4xl">cut</span>
+<span class="font-headline-md text-headline-md text-error tracking-widest">CUT</span>
+</button>
+</div>
+<!-- Program Monitor (Live) -->
+<div class="col-span-5 bg-surface-container border border-error/30 shadow-[0_0_30px_rgba(255,180,171,0.05)] rounded-xl p-md flex flex-col gap-sm relative">
+<div class="flex justify-between items-center">
+<h3 class="font-label-caps text-label-caps text-error flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span> PROGRAM OUT
+                    </h3>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">visibility</span> 1.2k</span>
+<span class="font-label-caps text-label-caps text-error bg-error/10 px-2 py-0.5 rounded">LIVE 00:45:22</span>
+</div>
+</div>
+<div class="aspect-video bg-black rounded-lg border border-error/50 overflow-hidden relative">
+<img alt="Program Feed" class="w-full h-full object-cover" data-alt="A close-up, dynamic shot of a charismatic worship leader playing an acoustic guitar on a brightly lit stage. Warm golden spotlights highlight the subject against a dark background. The image has a crisp, professional broadcast quality feel. Cinematic lighting, energetic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrLjT1v3iye-pDgRXhRwVQMiY-OtlWXAD6rixMVKnKHpk2NxljmlFsS4S_E4um5Gr1jptpuKbUFH1Nl7VHkM74qud2Qc0Wgqm6fIFoQs3FVVeqIgHrpA0TXImNe5rlHA7Wxjr5-eoJOSAbFagDuQF436BeaO39t9b7QuaeLWj8vPqBwG_5YDiXU2mXheQF6NMYVNw27qaFB__as24dXX80tQjpmSbz-4uDMI1KOqAf2avOOsNq6pCm"/>
+<!-- Lower Third Overlay Simulation -->
+<div class="absolute bottom-4 left-4 right-4 h-16 bg-surface/90 backdrop-blur-md border-l-4 border-secondary rounded flex items-center px-4">
+<div>
+<div class="font-headline-md text-headline-md text-on-surface">Pastor John Doe</div>
+<div class="font-body-base text-body-base text-on-surface-variant">Sermon: The Nocturnal Sanctuary</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ROW 2: Lower Control Section -->
+<!-- Left Col: Layers & Conference -->
+<div class="col-span-3 flex flex-col gap-gutter">
+<!-- Layer Management -->
+<div class="bg-surface-container border border-outline-variant/10 rounded-xl p-md flex flex-col gap-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2">Layer Management</h4>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-high border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">branding_watermark</span>
+<span class="font-body-base text-body-base text-on-surface">Lower Thirds</span>
+</div>
+<button class="w-10 h-6 bg-primary rounded-full relative transition-colors"><div class="absolute right-1 top-1 w-4 h-4 rounded-full bg-on-primary"></div></button>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-high border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">qr_code_2</span>
+<span class="font-body-base text-body-base text-on-surface-variant">Giving QR Code</span>
+</div>
+<button class="w-10 h-6 bg-surface-variant rounded-full relative transition-colors"><div class="absolute left-1 top-1 w-4 h-4 rounded-full bg-outline"></div></button>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-high border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">desktop_windows</span>
+<span class="font-body-base text-body-base text-on-surface-variant">Stage Display</span>
+</div>
+<button class="w-10 h-6 bg-surface-variant rounded-full relative transition-colors"><div class="absolute left-1 top-1 w-4 h-4 rounded-full bg-outline"></div></button>
+</div>
+</div>
+<!-- Online Conference Controls -->
+<div class="bg-surface-container border border-outline-variant/10 rounded-xl p-md flex flex-col gap-sm flex-1">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2 flex justify-between items-center">
+                        Conference Bridge 
+                        <span class="text-tertiary text-[10px] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> SYNCED</span>
+</h4>
+<div class="grid grid-cols-2 gap-2 mt-auto">
+<button class="p-3 rounded-lg bg-surface-container-high border border-outline-variant/20 hover:bg-surface-bright flex flex-col items-center gap-1 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">mic_off</span>
+<span class="font-label-caps text-[10px]">Mute All</span>
+</button>
+<button class="p-3 rounded-lg bg-error/10 border border-error/30 hover:bg-error/20 flex flex-col items-center gap-1 text-error transition-colors">
+<span class="material-symbols-outlined icon-filled">radio_button_checked</span>
+<span class="font-label-caps text-[10px]">Recording</span>
+</button>
+<button class="p-3 rounded-lg bg-surface-container-high border border-outline-variant/20 hover:bg-surface-bright flex flex-col items-center gap-1 text-on-surface-variant hover:text-on-surface transition-colors col-span-2">
+<span class="material-symbols-outlined">present_to_all</span>
+<span class="font-label-caps text-[10px]">Share Screen</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Middle Col: Dynamic Cue List -->
+<div class="col-span-6 bg-surface-container border border-outline-variant/10 rounded-xl flex flex-col overflow-hidden h-[400px]">
+<div class="p-md border-b border-outline-variant/10 bg-surface/50 backdrop-blur flex justify-between items-center sticky top-0 z-10">
+<h4 class="font-headline-md text-headline-md text-on-surface">Playlist / Cues</h4>
+<button class="flex items-center gap-1 text-primary hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+<span class="font-label-caps text-label-caps">Add Item</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-sm flex flex-col gap-1">
+<!-- Cue Item: Video (Done) -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-lowest border border-transparent opacity-60">
+<span class="material-symbols-outlined text-outline cursor-grab">drag_indicator</span>
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center text-outline">
+<span class="material-symbols-outlined">movie</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-body-bold text-body-bold text-on-surface truncate">Countdown Timer (5m)</div>
+<div class="font-body-base text-[12px] text-on-surface-variant">Media • 05:00</div>
+</div>
+<span class="material-symbols-outlined text-outline">check_circle</span>
+</div>
+<!-- Cue Item: Song (Active) -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-primary-container/10 border border-primary/30 shadow-[inset_0_0_20px_rgba(77,142,255,0.05)]">
+<span class="material-symbols-outlined text-primary cursor-grab">drag_indicator</span>
+<div class="w-10 h-10 rounded bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-body-bold text-body-bold text-primary truncate">10,000 Reasons</div>
+<div class="font-body-base text-[12px] text-primary/70">Worship • Verse 1</div>
+<!-- Mini lyrics preview -->
+<div class="mt-1 font-body-base text-[11px] text-on-surface-variant italic truncate">"Bless the Lord oh my soul, oh my soul..."</div>
+</div>
+<button class="p-2 rounded hover:bg-white/5 text-primary">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+<!-- Cue Item: Scripture (Bilingual) -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface hover:bg-surface-container-high border border-outline-variant/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline cursor-grab">drag_indicator</span>
+<div class="w-10 h-10 rounded bg-secondary-container/30 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-body-bold text-body-bold text-on-surface truncate">John 3:16 / یوحنا 3:16</div>
+<div class="font-body-base text-[12px] text-on-surface-variant">Scripture • EN/FA Layout</div>
+</div>
+</div>
+<!-- Cue Item: Sermon Notes -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface hover:bg-surface-container-high border border-outline-variant/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline cursor-grab">drag_indicator</span>
+<div class="w-10 h-10 rounded bg-tertiary-container/20 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined">assignment</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-body-bold text-body-bold text-on-surface truncate">Sermon Point 1</div>
+<div class="font-body-base text-[12px] text-on-surface-variant">Slide • "The Foundation"</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Col: Audio & Logs -->
+<div class="col-span-3 flex flex-col gap-gutter">
+<!-- Audio Mixer -->
+<div class="bg-surface-container border border-outline-variant/10 rounded-xl p-md flex flex-col gap-sm">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant flex justify-between items-center">
+                        Audio Mixer
+                        <span class="material-symbols-outlined text-[16px]">tune</span>
+</h4>
+<div class="flex justify-around items-end h-[140px] mt-2 pt-2 border-t border-outline-variant/10">
+<!-- Ch 1: Music -->
+<div class="flex flex-col items-center gap-2">
+<!-- Peak Meter -->
+<div class="w-1 h-20 bg-surface-lowest rounded-full overflow-hidden flex flex-col justify-end">
+<div class="w-full h-[60%] bg-gradient-to-t from-primary to-tertiary"></div>
+</div>
+<input max="100" min="0" orient="vertical" type="range" value="60"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant">MUS</span>
+</div>
+<!-- Ch 2: Speech -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-1 h-20 bg-surface-lowest rounded-full overflow-hidden flex flex-col justify-end">
+<div class="w-full h-[85%] bg-gradient-to-t from-primary via-secondary to-error"></div>
+</div>
+<input max="100" min="0" orient="vertical" type="range" value="85"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant">MIC 1</span>
+</div>
+<!-- Master -->
+<div class="flex flex-col items-center gap-2 ml-2 pl-4 border-l border-outline-variant/10">
+<div class="w-1.5 h-20 bg-surface-lowest rounded-full overflow-hidden flex flex-col justify-end">
+<div class="w-full h-[75%] bg-gradient-to-t from-primary via-tertiary to-error"></div>
+</div>
+<input class="border border-error/50" max="100" min="0" orient="vertical" type="range" value="75"/>
+<span class="font-label-caps text-[10px] text-error font-bold">MST</span>
+</div>
+</div>
+</div>
+<!-- System Log / Crew Chat -->
+<div class="bg-surface-container border border-outline-variant/10 rounded-xl flex flex-col flex-1 overflow-hidden min-h-[150px]">
+<div class="p-2 border-b border-outline-variant/10 bg-surface-container-high flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">System Log</span>
+<span class="material-symbols-outlined text-[14px] text-outline">forum</span>
+</div>
+<div class="flex-1 overflow-y-auto p-2 flex flex-col gap-2 font-mono text-[10px]">
+<div class="text-on-surface-variant"><span class="text-outline">[10:42:01]</span> SYS: Connection stable.</div>
+<div class="text-tertiary"><span class="text-outline">[10:45:00]</span> AUTO: Switched to CAM 02.</div>
+<div class="text-secondary"><span class="text-outline">[10:45:10]</span> FOH: Mic 1 battery at 15%.</div>
+<div class="text-error"><span class="text-outline">[10:45:22]</span> SYS: RECORDING INITIATED.</div>
+<div class="text-on-surface"><span class="text-primary">[Prod] Dave:</span> Get ready for the scripture slide next.</div>
+</div>
+<div class="p-2 border-t border-outline-variant/10 bg-surface-container-highest">
+<input class="w-full bg-transparent border-none text-[12px] text-on-surface focus:ring-0 p-0 placeholder:text-outline-variant" placeholder="Message crew..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

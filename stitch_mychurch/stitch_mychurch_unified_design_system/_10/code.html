@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Broadcast Console - Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,700;1,400&amp;family=Playfair+Display:wght@400;700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#313032",
+                        "surface-container-highest": "#353437",
+                        "secondary-fixed": "#ffdf9a",
+                        "inverse-surface": "#e5e1e4",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#002021",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "primary-fixed": "#d8e2ff",
+                        "on-surface": "#e5e1e4",
+                        "surface-container-low": "#1c1b1d",
+                        "on-tertiary": "#003739",
+                        "surface-dim": "#131315",
+                        "primary-container": "#4d8eff",
+                        "outline": "#8c909f",
+                        "on-secondary": "#3f2e00",
+                        "surface-tint": "#adc6ff",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "tertiary-fixed": "#5cf7ff",
+                        "surface-bright": "#39393b",
+                        "on-primary": "#002e6a",
+                        "inverse-primary": "#005ac2",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#002f31",
+                        "surface-container": "#201f22",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#ebc56f",
+                        "surface-variant": "#353437",
+                        "primary": "#adc6ff",
+                        "on-background": "#e5e1e4",
+                        "outline-variant": "#424754",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "tertiary": "#00dce4",
+                        "secondary": "#e7c26c",
+                        "surface": "#131315",
+                        "on-error": "#690005",
+                        "secondary-container": "#6c5100",
+                        "background": "#131315",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "on-primary-container": "#00285d",
+                        "on-secondary-fixed": "#251a00",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#2a2a2c",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-container": "#00a1a7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "headline-md": ["Work Sans"],
+                        "body-bold": ["Work Sans"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "body-base": ["Work Sans"],
+                        "headline-lg": ["Work Sans"],
+                        "display-xl": ["Playfair Display"],
+                        "scripture-calligraphy": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-filled { font-variation-settings: 'FILL' 1; }
+        
+        /* Custom Scrollbar for dense UI */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #424754; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8c909f; }
+
+        /* Vertical range input styling */
+        input[type=range][orient=vertical] {
+            writing-mode: bt-lr; /* IE */
+            -webkit-appearance: slider-vertical; /* Chromium */
+            width: 8px;
+            height: 100px;
+            padding: 0 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen w-screen overflow-hidden flex">
+<!-- SHARED COMPONENT: NavigationDrawer -->
+<nav class="h-full w-80 rounded-r-xl border-r border-outline-variant/10 shadow-2xl bg-surface-dim dark:bg-surface-dim flex flex-col p-lg gap-md flex-shrink-0 z-40 relative">
+<!-- Header: Profile -->
+<div class="flex items-center gap-md mb-xl">
+<div class="w-12 h-12 rounded-full bg-surface-container overflow-hidden border border-outline-variant/20 flex-shrink-0">
+<img alt="Church Leader" class="w-full h-full object-cover" data-alt="A professional headshot of a church leader against a dark, moody studio background with subtle edge lighting. They are looking confidently at the camera." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary m-0">Pastor Marcus</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant m-0">Lead Administrator</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-error">Live Session Active</span>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-sm flex-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-body-base text-body-base">Daily Devotionals</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-base text-body-base">Small Groups</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-body-base text-body-base">Prayer Wall</span>
+</a>
+<!-- ACTIVE ITEM: Presentation Mode matches Broadcast intent closest -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-tertiary bg-tertiary-container/20 font-bold transition-colors" href="#">
+<span class="material-symbols-outlined icon-filled">present_to_all</span>
+<span class="font-body-base text-body-base font-bold">Presentation Mode</span>
+</a>
+</div>
+<!-- Bottom Brand Area -->
+<div class="mt-auto pt-lg border-t border-outline-variant/10">
+<div class="font-headline-lg text-headline-lg text-secondary">Sanctuary System</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mt-1">Version 4.2.1</div>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col h-full relative overflow-hidden bg-surface-container-lowest">
+<!-- SHARED COMPONENT: TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b border-outline-variant/10 flex justify-between items-center px-gutter h-16 bg-surface/75 dark:bg-surface/75 backdrop-blur-xl" style="width: calc(100% - 320px); left: 320px;">
+<div class="flex items-center gap-md">
+<div class="font-display-xl text-display-xl tracking-tighter text-secondary dark:text-secondary">Sanctuary</div>
+<div class="h-6 w-px bg-outline-variant/30 mx-2"></div>
+<div class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">broadcast_on_home</span>
+                    Broadcast Console
+                </div>
+</div>
+<div class="flex items-center gap-lg">
+<!-- Bilingual Toggle -->
+<div class="flex bg-surface-container rounded-full p-1 border border-outline-variant/20">
+<button class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-caps text-label-caps">EN</button>
+<button class="px-3 py-1 rounded-full text-on-surface-variant font-label-caps text-label-caps hover:text-on-surface">FA</button>
+</div>
+<!-- Leading Avatar (from JSON) -->
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/20 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small circular avatar placeholder image of a generic user silhouette in subtle grey tones, appropriate for a technical dashboard interface." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</div>
+<!-- Trailing Icon (from JSON) -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-white/5 transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Broadcast Console Content -->
+<div class="flex-1 p-gutter pt-[80px] overflow-y-auto grid grid-cols-12 gap-gutter content-start">
+<!-- ROW 1: Video Monitors & Transitions -->
+<!-- Preview--></div></main></body></html>

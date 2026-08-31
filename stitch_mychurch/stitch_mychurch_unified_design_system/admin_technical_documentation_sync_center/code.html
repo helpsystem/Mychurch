@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Documentation &amp; Help Center - Sanctuary Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500&amp;family=Playfair+Display:wght@700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#313032",
+                        "surface-container-highest": "#353437",
+                        "secondary-fixed": "#ffdf9a",
+                        "inverse-surface": "#e5e1e4",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#002021",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "primary-fixed": "#d8e2ff",
+                        "on-surface": "#e5e1e4",
+                        "surface-container-low": "#1c1b1d",
+                        "on-tertiary": "#003739",
+                        "surface-dim": "#131315",
+                        "primary-container": "#4d8eff",
+                        "outline": "#8c909f",
+                        "on-secondary": "#3f2e00",
+                        "surface-tint": "#adc6ff",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "tertiary-fixed": "#5cf7ff",
+                        "surface-bright": "#39393b",
+                        "on-primary": "#002e6a",
+                        "inverse-primary": "#005ac2",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#002f31",
+                        "surface-container": "#201f22",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#ebc56f",
+                        "surface-variant": "#353437",
+                        "primary": "#adc6ff",
+                        "on-background": "#e5e1e4",
+                        "outline-variant": "#424754",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "tertiary": "#00dce4",
+                        "secondary": "#e7c26c",
+                        "surface": "#131315",
+                        "on-error": "#690005",
+                        "secondary-container": "#6c5100",
+                        "background": "#131315",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "on-primary-container": "#00285d",
+                        "on-secondary-fixed": "#251a00",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#2a2a2c",
+                        "on-primary-fixed-variant": "#004395",
+                        "tertiary-container": "#00a1a7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "headline-md": ["Work Sans"],
+                        "body-bold": ["Work Sans"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "body-base": ["Work Sans"],
+                        "headline-lg": ["Work Sans"],
+                        "display-xl": ["Playfair Display"],
+                        "scripture-calligraphy": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #00040F; /* Core Level 0 Void */
+        }
+        .glass-panel {
+            background: rgba(17, 18, 23, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .code-block {
+            background: #111217;
+            border: 1px solid #424754;
+            font-family: monospace;
+        }
+        .spotlight-card:hover {
+            background: radial-gradient(circle at center, rgba(77, 142, 255, 0.1) 0%, transparent 70%);
+        }
+        /* Custom scrollbar for deep canvas */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #00040F; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #424754; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8c909f; 
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen flex flex-col relative font-body-base antialiased selection:bg-primary selection:text-on-primary">
+<!-- Ambient Background Glow -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[40%] h-[40%] rounded-full bg-secondary/5 blur-[100px]"></div>
+</div>
+<!-- TopAppBar -->
+<header class="bg-surface/75 dark:bg-surface/75 backdrop-blur-xl text-primary dark:text-primary font-headline-md text-headline-md fixed top-0 w-full z-50 border-b border-outline-variant/10 flex justify-between items-center px-gutter h-16 w-full">
+<div class="flex items-center gap-md">
+<button class="hover:bg-white/5 transition-colors p-2 rounded-full hidden md:flex active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant">menu</span>
+</button>
+<h1 class="font-display-xl text-display-xl tracking-tighter text-secondary dark:text-secondary">Sanctuary</h1>
+<span class="ml-4 font-label-caps text-label-caps text-on-surface-variant px-2 py-1 bg-surface-container rounded border border-outline-variant/30">DOCS</span>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Trigger -->
+<button class="glass-panel hover:bg-white/5 transition-colors flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-on-surface-variant group">
+<span class="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">search</span>
+<span class="hidden md:inline">Search Documentation...</span>
+<kbd class="hidden md:inline-block ml-4 px-1.5 py-0.5 rounded bg-surface-container border border-outline-variant text-[10px] font-mono text-outline">⌘K</kbd>
+</button>
+<button class="hover:bg-white/5 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/30 overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="A macro shot of a sleek, dark metallic user avatar placeholder silhouette. The lighting is moody and cinematic, with a soft cyan edge light reflecting off the smooth metal surface. The background is a pitch-black void, emphasizing the premium, high-tech nocturnal sanctuary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbIMLRKbSpfhJuVA4hTJHRGmgyKVRigEVYD_NDsF-S2SXoHh7h3Rx3rQGVJxmY6wR3l09a6vsCsuwD5EQGnOPDfAlvnDhZgS8y0X21RotX-Lw2jb5gzp96Gkqmm4HIbIgRaEkU2D6JNGGBo_EKVLMsIqCBUz-WfktVQ_FYRBemA8aJLY6j7Hs_q4NekookGzjFZ16vVRpWYdizGwuPjzV3hE3OkEqtYgPuSB5zyhFyh9lm7eJbORPN"/>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex-1 flex pt-16 z-10 relative">
+<!-- SideNav (Desktop) -->
+<aside class="hidden md:flex flex-col w-64 h-[calc(100vh-64px)] fixed left-0 border-r border-outline-variant/10 bg-surface-dim overflow-y-auto">
+<nav class="flex flex-col p-lg gap-md flex-1">
+<div class="mb-4">
+<h3 class="font-label-caps text-label-caps text-outline mb-2 px-2">BROADCAST</h3>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-primary bg-primary-container/10 font-bold hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">live_tv</span>
+<span class="font-body-bold text-body-bold">Console Guide</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings_input_component</span>
+<span class="font-body-base text-body-base">Hardware Setup</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="mb-4">
+<h3 class="font-label-caps text-label-caps text-outline mb-2 px-2">DEVELOPMENT</h3>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span class="font-body-base text-body-base">Git Workflow</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">api</span>
+<span class="font-body-base text-body-base">API References</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="mb-4">
+<h3 class="font-label-caps text-label-caps text-outline mb-2 px-2">SUPPORT</h3>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">troubleshoot</span>
+<span class="font-body-base text-body-base">Troubleshooting</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">help_center</span>
+<span class="font-body-base text-body-base">Service Day FAQ</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="p-4 border-t border-outline-variant/10">
+<button class="w-full flex items-center justify-center gap-2 py-2 glass-panel rounded-lg text-on-surface-variant hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-[18px]">translate</span>
+<span class="font-label-caps text-label-caps">EN / FA</span>
+</button>
+</div>
+</aside>
+<!-- Content Canvas -->
+<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop overflow-y-auto pb-32 md:pb-16 max-w-5xl mx-auto w-full">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-on-surface-variant mb-8 font-label-caps text-label-caps">
+<a class="hover:text-primary transition-colors" href="#">ADMIN</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">DOCS</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">BROADCAST CONSOLE</span>
+</nav>
+<!-- Header -->
+<div class="mb-12 border-b border-outline-variant/10 pb-8">
+<div class="flex items-start justify-between gap-4 flex-wrap">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-2 flex items-center gap-3">
+                            Broadcast Console Guide
+                            <span class="px-2 py-0.5 rounded text-[10px] bg-tertiary-container/20 text-tertiary border border-tertiary/20 uppercase tracking-wider">v2.4.0</span>
+</h1>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-2xl">
+                            Step-by-step instructions for operating the Sanctuary Broadcast Console during live service days. Includes camera switching, overlay management, and stream health monitoring.
+                        </p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface-container rounded-lg text-on-surface hover:bg-surface-container-highest border border-outline-variant/20 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit_document</span>
+<span class="font-label-caps text-label-caps">EDIT ON GITHUB</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Content Grid (Bento Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Content Area -->
+<div class="lg:col-span-2 space-y-8">
+<section class="glass-panel p-6 rounded-xl spotlight-card transition-all duration-300">
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-4">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">mobile_arrow_right</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Initializing the Stream</h2>
+</div>
+<div class="prose prose-invert prose-p:text-on-surface-variant prose-headings:text-on-surface max-w-none">
+<p class="font-body-base text-body-base mb-4">
+                                Before initiating the broadcast to external platforms (YouTube, internal RTMP), ensure that the local OBS bridge is connected and receiving video data from the sanctuary cameras.
+                            </p>
+<div class="code-block rounded-lg p-4 mb-4 overflow-x-auto text-sm text-primary-fixed-dim">
+<code>
+                                    // Verify RTMP status<br/>
+                                    $ sanctuary-cli stream status --env=production<br/>
+<br/>
+                                    // Expected Output:<br/>
+                                    // [OK] RTMP Server active on port 1935<br/>
+                                    // [OK] Audio sync latency: 12ms
+                                </code>
+</div>
+<div class="bg-surface-container-high border-l-2 border-secondary p-4 rounded-r-lg mb-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5">warning</span>
+<div>
+<h4 class="font-body-bold text-body-bold text-secondary mb-1">Pre-flight Checklist</h4>
+<p class="font-body-base text-body-base text-on-surface-variant text-sm">Always verify audio levels in the Dante controller before clicking "Go Live". The console will warn you if levels are below -40dB, but visual confirmation is mandatory.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="glass-panel p-6 rounded-xl spotlight-card transition-all duration-300">
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant/20 pb-4">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">waves</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Managing Presentation Overlays</h2>
+</div>
+<div class="mb-4">
+<img class="w-full rounded-lg border border-outline-variant/30 object-cover aspect-video mb-4" data-alt="A clean, dark-mode software interface mockup showing a broadcast control panel. Features dual video preview monitors, audio level meters in neon cyan and green, and a grid of buttons for lower-thirds overlays. The aesthetic is highly technical, nocturnal, and premium, utilizing deep blacks, slate grays, and glowing cyan accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJHM1Y73MhQr4zxgbPWDBf-1ECQGSk91_S-iY0ISOGbkFwPWdMQskX_iG-4Lb7WnAQNwvWdQyiWSyZSIIDBolwzA2KA3xViKmBOnfaIIvyD8isUHo1SmleWP9fNcQrGTLZPZfxdIE66FKaEWOhymBaaW7iwbezLoqPgknfvAnh7RMYW_t-qI5pLR2hOcF1cB0VThybnMmgmKbpuU76DvzayfNqqebx_FSRv087CiaF6sQo9BEJKLx5"/>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant mb-4">
+                            Overlays (lyrics, sermon notes, lower thirds) are managed via the left sidebar in the Broadcast view. They are synchronized with the Sanctuary Presentation Mode.
+                        </p>
+<ul class="space-y-3 font-body-base text-body-base text-on-surface-variant">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-1">check_circle</span>
+<span><strong>Lyrics Overlay:</strong> Auto-advances based on the Presentation Operator's cues.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[18px] mt-1">check_circle</span>
+<span><strong>Translation Subtitles:</strong> Toggle dual-language mode (EN/FA) using the `Alt+T` shortcut.</span>
+</li>
+</ul>
+</section>
+</div>
+<!-- Right Sidebar (On this page & Quick Links) -->
+<div class="space-y-6">
+<!-- Table of Contents -->
+<div class="glass-panel p-5 rounded-xl sticky top-24">
+<h3 class="font-label-caps text-label-caps text-outline mb-4">ON THIS PAGE</h3>
+<ul class="space-y-3 font-body-base text-body-base text-sm">
+<li>
+<a class="text-primary hover:underline transition-all block" href="#">Initializing the Stream</a>
+</li>
+<li>
+<a class="text-on-surface-variant hover:text-on-surface transition-all block pl-3 border-l border-outline-variant/30" href="#">Pre-flight Checklist</a>
+</li>
+<li>
+<a class="text-on-surface-variant hover:text-on-surface transition-all block" href="#">Managing Overlays</a>
+</li>
+<li>
+<a class="text-on-surface-variant hover:text-on-surface transition-all block" href="#">Troubleshooting Audio Sync</a>
+</li>
+</ul>
+</div>
+<!-- Tech Support Card -->
+<div class="bg-surface-container rounded-xl p-5 border border-outline-variant/20 relative overflow-hidden group">
+<!-- Subtle gradient hover effect -->
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-tertiary mb-3 block text-3xl">support_agent</span>
+<h3 class="font-body-bold text-body-bold text-on-surface mb-2">Need Immediate Help?</h3>
+<p class="font-body-base text-body-base text-sm text-on-surface-variant mb-4">
+                                If you are experiencing critical issues during a live service, contact the A/V lead immediately.
+                            </p>
+<button class="w-full py-2 bg-tertiary text-on-tertiary rounded-lg font-body-bold text-sm hover:bg-tertiary-fixed transition-colors">
+                                Page A/V Lead
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container/80 dark:bg-surface-container/80 backdrop-blur-2xl text-tertiary dark:text-tertiary font-label-caps text-label-caps font-display-2xl text-display-2xl text-secondary fixed bottom-0 w-full z-50 rounded-t-xl border-t border-outline-variant/10 shadow-xl flex justify-around items-center h-20 px-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">monitoring</span>
+<span class="text-[10px]">Growth</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">forum</span>
+<span class="text-[10px]">Messages</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">live_tv</span>
+<span class="text-[10px]">Broadcast</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">payments</span>
+<span class="text-[10px]">Giving</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 -translate-y-1 duration-300" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+<span class="text-[10px]">Admin</span>
+</a>
+</nav>
+</body></html>

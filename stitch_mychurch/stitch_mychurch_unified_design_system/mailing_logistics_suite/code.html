@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Physical Mail - Sanctuary Mail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#131315",
+                        "primary-container": "#4d8eff",
+                        "surface-variant": "#353437",
+                        "on-primary-container": "#00285d",
+                        "tertiary-fixed": "#5cf7ff",
+                        "surface-tint": "#adc6ff",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#002f31",
+                        "surface-container-lowest": "#0e0e10",
+                        "secondary-fixed-dim": "#e7c26c",
+                        "on-secondary-container": "#ebc56f",
+                        "on-tertiary-fixed": "#002021",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e5e1e4",
+                        "inverse-on-surface": "#313032",
+                        "surface-container-low": "#1c1b1d",
+                        "on-primary": "#002e6a",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-secondary": "#3f2e00",
+                        "on-tertiary-fixed-variant": "#004f52",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary": "#003739",
+                        "tertiary-container": "#00a1a7",
+                        "surface-container-high": "#2a2a2c",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface-container": "#201f22",
+                        "primary-fixed": "#d8e2ff",
+                        "tertiary": "#00dce4",
+                        "primary": "#adc6ff",
+                        "on-background": "#e5e1e4",
+                        "inverse-primary": "#005ac2",
+                        "surface-bright": "#39393b",
+                        "on-primary-fixed-variant": "#004395",
+                        "surface": "#131315",
+                        "on-surface-variant": "#c2c6d6",
+                        "tertiary-fixed-dim": "#00dce4",
+                        "surface-container-highest": "#353437",
+                        "outline-variant": "#424754",
+                        "background": "#131315",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#251a00",
+                        "secondary": "#e7c26c",
+                        "on-surface": "#e5e1e4",
+                        "secondary-container": "#6c5100",
+                        "secondary-fixed": "#ffdf9a",
+                        "outline": "#8c909f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "margin-desktop": "32px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "scripture-calligraphy": ["Noto Serif"],
+                        "headline-lg": ["Work Sans"],
+                        "display-xl": ["Playfair Display"],
+                        "body-bold": ["Work Sans"],
+                        "display-2xl": ["Playfair Display"],
+                        "headline-md": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "display-2xl-mobile": ["Playfair Display"],
+                        "body-base": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "scripture-calligraphy": ["22px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-bold": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-2xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-2xl-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #00040F; /* Level 0 Canvas */
+            color: #e5e1e4;
+        }
+        .glass-panel {
+            background-color: rgba(15, 23, 42, 0.75); /* Level 2 Glass */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Hairline Border */
+        }
+        .interactive-card {
+            background-color: #111217; /* Level 1 Surface */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(173, 198, 255, 0.15); /* Primary Glow */
+        }
+        .input-matte {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.2s;
+        }
+        .input-matte:focus {
+            border-color: #00dce4; /* Electric Cyan */
+            outline: none;
+        }
+        .btn-primary {
+            background-color: #adc6ff; /* Sanctuary Blue fill */
+            color: #002e6a;
+            border-radius: 0.25rem;
+            padding: 8px 16px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #d8e2ff;
+        }
+        
+        .bilingual-text {
+            font-family: 'Noto Serif', serif;
+        }
+    </style>
+</head>
+<body class="font-body-base text-body-base bg-background text-on-background flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-20 pb-md w-64 bg-surface-container-low border-r border-white/5 z-40">
+<div class="px-md mb-xl flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">church</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Admin Suite</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Bilingual Logistics</p>
+</div>
+</div>
+<div class="px-md mb-lg">
+<button class="w-full bg-secondary-fixed-dim text-on-secondary-fixed flex items-center justify-center gap-sm py-2 rounded-lg font-body-bold hover:-translate-y-0.5 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                New Campaign
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto px-sm flex flex-col gap-base">
+<a class="flex items-center gap-md px-md py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="forward_to_inbox">forward_to_inbox</span>
+<span>Email Campaigns</span>
+</a>
+<a class="flex items-center gap-md px-md py-2 bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 font-body-bold" href="#">
+<span class="material-symbols-outlined" data-icon="local_post_office" style="font-variation-settings: 'FILL' 1;">local_post_office</span>
+<span>Physical Mail</span>
+</a>
+<a class="flex items-center gap-md px-md py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Templates</span>
+</a>
+<a class="flex items-center gap-md px-md py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Audience</span>
+</a>
+</div>
+<div class="mt-auto px-sm flex flex-col gap-base border-t border-white/5 pt-md">
+<a class="flex items-center gap-md px-md py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center gap-md px-md py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg mx-2 my-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-lg h-16 bg-surface-dim/75 backdrop-blur-xl border-b border-white/10 lg:pl-72">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">Sanctuary Mail</h1>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden md:flex items-center bg-surface-container-high rounded-full px-4 py-1.5 border border-white/5">
+<span class="material-symbols-outlined text-on-surface-variant mr-2 text-sm">search</span>
+<input class="bg-transparent border-none text-body-base text-on-surface focus:outline-none w-48 placeholder:text-on-surface-variant/50" placeholder="Search mailings..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-tertiary transition-colors duration-200 rounded-full hover:bg-surface-variant/30">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-tertiary transition-colors duration-200 rounded-full hover:bg-surface-variant/30 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-tertiary transition-colors duration-200 rounded-full hover:bg-surface-variant/30">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-primary/30 ml-2">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A small circular profile picture of an administrator, featuring a generic silhouette icon in deep blue against a soft glowing cyan background, suitable for a dark theme UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX-RR-LGZfyjC2Rrpg2Sy9-Mvn7-gCrCuR7-Pc7KAhQSG0UmuBUmvvDwAdRMRu3JzhJASnZQh3E9jtomtCRjMjKUAYNf8ZliJ_Kudsfs1I8M2eyPC39dl1ddHQ8b0SNUYmvDHOV_hzoU4UYaRYNvo1UtCFYj98QyOFYcsQVQZIK-Gicv08VXqCHhEonjIlmGGk8KiRRT-jOhhckrFuzrLT5GmsSLMQkdt4vyXNd-0v2ZmS_9r6tozN"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 pt-20 px-gutter md:px-margin-desktop pb-margin-desktop h-full overflow-y-auto">
+<div class="max-w-7xl mx-auto flex flex-col gap-lg">
+<!-- Header Section -->
+<div class="flex justify-between items-end pb-sm border-b border-white/5">
+<div>
+<h2 class="font-display-xl text-display-xl text-on-surface">Physical Mailing</h2>
+<p class="text-on-surface-variant mt-2 font-body-base">Configure labels, letters, and verifiable addresses.</p>
+</div>
+<div class="flex gap-md">
+<button class="px-4 py-2 border border-white/10 rounded-lg text-on-surface hover:bg-white/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span>
+                        Save Draft
+                    </button>
+<button class="btn-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">print</span>
+                        Print Batch
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Column (Config) -->
+<div class="lg:col-span-8 flex flex-col gap-lg">
+<!-- Template Selector -->
+<div class="glass-panel p-md rounded-xl flex flex-col gap-md">
+<div class="flex items-center gap-2 text-primary border-b border-white/10 pb-2">
+<span class="material-symbols-outlined">style</span>
+<h3 class="font-headline-md text-headline-md">Document Template</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mt-2">
+<!-- Option 1 -->
+<div class="interactive-card p-md rounded-lg cursor-pointer border-primary/50 bg-primary/5 relative">
+<div class="absolute top-2 right-2 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant">mail</span>
+<h4 class="font-body-bold text-body-bold text-on-surface">Standard Envelope</h4>
+<p class="text-xs text-on-surface-variant mt-1">#10 Windowed / Non-Windowed</p>
+</div>
+<!-- Option 2 -->
+<div class="interactive-card p-md rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant">drafts</span>
+<h4 class="font-body-bold text-body-bold text-on-surface">Formal Invitation</h4>
+<p class="text-xs text-on-surface-variant mt-1">A7 Envelopes &amp; Card Stock</p>
+</div>
+<!-- Option 3 -->
+<div class="interactive-card p-md rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant">receipt_long</span>
+<h4 class="font-body-bold text-body-bold text-on-surface">Donation Receipt</h4>
+<p class="text-xs text-on-surface-variant mt-1">Trifold Letter w/ Tear-off</p>
+</div>
+</div>
+</div>
+<!-- Editor / Dual Pane for Bilingual -->
+<div class="glass-panel rounded-xl flex flex-col overflow-hidden">
+<div class="flex items-center justify-between p-md border-b border-white/10 bg-surface-container-high/50">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">edit_document</span>
+<h3 class="font-headline-md text-headline-md">Content Editor</h3>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="form-checkbox rounded bg-surface border-white/20 text-primary" type="checkbox"/>
+<span class="text-on-surface-variant">Bilingual Support (EN/FA)</span>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
+<!-- LTR Pane (English) -->
+<div class="bg-[#111217] p-md flex flex-col gap-4">
+<div class="flex justify-between items-center text-xs text-on-surface-variant font-label-caps">
+<span>ENGLISH (LTR)</span>
+</div>
+<input class="input-matte w-full rounded p-2 text-on-surface font-body-bold" type="text" value="Dear Member,"/>
+<textarea class="input-matte w-full rounded p-2 text-on-surface h-48 resize-none font-body-base" placeholder="Enter message body...">We invite you to our upcoming gathering this weekend. Please find enclosed the schedule of events.</textarea>
+</div>
+<!-- RTL Pane (Persian) -->
+<div class="bg-[#111217] p-md flex flex-col gap-4" dir="rtl">
+<div class="flex justify-between items-center text-xs text-on-surface-variant font-label-caps" dir="ltr">
+<span>PERSIAN (RTL)</span>
+</div>
+<input class="input-matte w-full rounded p-2 text-on-surface font-scripture-calligraphy text-scripture-calligraphy" type="text" value="عضو محترم،"/>
+<textarea class="input-matte w-full rounded p-2 text-on-surface h-48 resize-none font-scripture-calligraphy text-scripture-calligraphy" placeholder="متن پیام را وارد کنید...">از شما دعوت می‌کنیم در گردهمایی این آخر هفته ما شرکت کنید. لطفاً برنامه رویدادها را در پیوست ملاحظه فرمایید.</textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Audience & Preview) -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Recipient List & Verification -->
+<div class="glass-panel p-md rounded-xl flex flex-col gap-md">
+<div class="flex items-center justify-between border-b border-white/10 pb-2">
+<div class="flex items-center gap-2 text-tertiary">
+<span class="material-symbols-outlined">contact_mail</span>
+<h3 class="font-headline-md text-headline-md">Recipients</h3>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-1 rounded text-xs">42 Selected</span>
+</div>
+<div class="flex gap-2 mb-2">
+<button class="flex-1 bg-surface-container py-1.5 rounded text-sm text-on-surface hover:bg-surface-variant transition-colors border border-white/5">Select List</button>
+<button class="flex-1 bg-surface-container py-1.5 rounded text-sm text-on-surface hover:bg-surface-variant transition-colors border border-white/5">Import CSV</button>
+</div>
+<!-- Mini List -->
+<div class="flex flex-col gap-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+<!-- Verified Address -->
+<div class="bg-surface-container-low p-2 rounded flex justify-between items-start border-l-2 border-tertiary">
+<div>
+<p class="text-sm font-body-bold text-on-surface">The Smith Family</p>
+<p class="text-xs text-on-surface-variant mt-0.5">123 Sanctuary Blvd, Apt 4<br/>Metropolis, NY 10001</p>
+</div>
+<span class="material-symbols-outlined text-tertiary text-sm mt-1" title="Address Verified">verified</span>
+</div>
+<!-- Needs Attention -->
+<div class="bg-surface-container-low p-2 rounded flex justify-between items-start border-l-2 border-error">
+<div>
+<p class="text-sm font-body-bold text-on-surface">Omid Rezaei</p>
+<p class="text-xs text-on-surface-variant mt-0.5">45 Pine Ln<br/>Unknown City</p>
+</div>
+<span class="material-symbols-outlined text-error text-sm mt-1" title="Verification Failed">error</span>
+</div>
+<!-- Verified Address -->
+<div class="bg-surface-container-low p-2 rounded flex justify-between items-start border-l-2 border-tertiary">
+<div>
+<p class="text-sm font-body-bold text-on-surface">Sarah Johnson</p>
+<p class="text-xs text-on-surface-variant mt-0.5">88 Cedar St<br/>Metropolis, NY 10002</p>
+</div>
+<span class="material-symbols-outlined text-tertiary text-sm mt-1" title="Address Verified">verified</span>
+</div>
+</div>
+<button class="w-full mt-2 py-2 border border-error/50 text-error rounded hover:bg-error/10 transition-colors text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">plumbing</span>
+                            Fix 3 Addresses
+                        </button>
+</div>
+<!-- Print Preview -->
+<div class="interactive-card rounded-xl flex flex-col p-md bg-gradient-to-br from-surface-container-lowest to-surface-container">
+<div class="flex items-center gap-2 text-on-surface mb-4">
+<span class="material-symbols-outlined">visibility</span>
+<h3 class="font-headline-md text-headline-md">Print Preview</h3>
+</div>
+<!-- Simulated Envelope -->
+<div class="bg-white rounded p-4 aspect-[2/1] relative shadow-inner overflow-hidden">
+<!-- Return Address -->
+<div class="text-[8px] text-gray-800 absolute top-3 left-3">
+<strong>Sanctuary Central</strong><br/>
+                                100 Main St.<br/>
+                                City, ST 12345
+                            </div>
+<!-- Postage Stamp Area -->
+<div class="absolute top-3 right-3 w-8 h-10 border border-gray-300 bg-gray-50 flex items-center justify-center">
+<span class="text-[6px] text-gray-400 text-center">Place<br/>Stamp<br/>Here</span>
+</div>
+<!-- Recipient Address -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[20%] text-[10px] text-gray-900 w-2/3">
+<div class="font-bold border-b border-gray-200 pb-1 mb-1">The Smith Family</div>
+<div class="font-mono text-gray-700">
+                                    123 Sanctuary Blvd, Apt 4<br/>
+                                    Metropolis, NY 10001
+                                </div>
+</div>
+</div>
+<div class="mt-4 flex justify-between items-center text-xs text-on-surface-variant">
+<span>Label: Avery 5160</span>
+<button class="hover:text-primary underline">Change Layout</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-dim/80 backdrop-blur-2xl border-t border-white/10 rounded-t-xl shadow-2xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-tertiary" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="email">email</span>
+<span class="font-label-caps text-[10px] mt-1">Email</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary rounded-xl p-2 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="print" style="font-variation-settings: 'FILL' 1;">print</span>
+<span class="font-label-caps text-[10px] mt-1">Mail</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-tertiary" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="style">style</span>
+<span class="font-label-caps text-[10px] mt-1">Templates</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-tertiary" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="people">people</span>
+<span class="font-label-caps text-[10px] mt-1">Audience</span>
+</a>
+</nav>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</body></html>

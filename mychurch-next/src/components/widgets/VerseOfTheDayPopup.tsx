@@ -99,7 +99,21 @@ export function VerseOfTheDayPopup({ config }: VerseOfTheDayPopupProps) {
         }
 
         if (!hasSeen) {
-            const timer = setTimeout(() => setIsVisible(true), Math.max(0, delaySeconds) * 1000);
+            const timer = setTimeout(() => {
+                setIsVisible(true);
+                // Save immediately so it doesn't reappear on route change
+                const seenKeyLocal = makeSeenKey();
+                const freqLocal = config.displayFrequency || "session";
+                try {
+                    if (freqLocal === "always") {
+                        sessionStorage.setItem(seenKeyLocal, "true"); // 'always' should still be at most once per session to avoid SPA spam
+                    } else if (freqLocal === "session") {
+                        sessionStorage.setItem(seenKeyLocal, "true");
+                    } else if (freqLocal === "24h" || freqLocal === "7d") {
+                        localStorage.setItem(seenKeyLocal, String(Date.now()));
+                    }
+                } catch {}
+            }, Math.max(0, delaySeconds) * 1000);
             return () => clearTimeout(timer);
         }
 

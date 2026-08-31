@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Official Letters - Admin Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#002f31",
+                      "on-error-container": "#ffdad6",
+                      "inverse-on-surface": "#313032",
+                      "secondary": "#e7c26c",
+                      "primary-fixed-dim": "#adc6ff",
+                      "outline-variant": "#424754",
+                      "on-primary-fixed": "#001a42",
+                      "surface-tint": "#adc6ff",
+                      "tertiary-fixed-dim": "#00dce4",
+                      "on-tertiary-fixed-variant": "#004f52",
+                      "tertiary": "#00dce4",
+                      "on-tertiary": "#003739",
+                      "on-secondary": "#3f2e00",
+                      "surface-container-high": "#2a2a2c",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-container-low": "#1c1b1d",
+                      "surface-dim": "#131315",
+                      "tertiary-fixed": "#5cf7ff",
+                      "on-surface": "#e5e1e4",
+                      "surface-container-lowest": "#0e0e10",
+                      "on-secondary-fixed": "#251a00",
+                      "surface-bright": "#39393b",
+                      "on-primary-container": "#00285d",
+                      "on-secondary-fixed-variant": "#5a4300",
+                      "inverse-surface": "#e5e1e4",
+                      "on-secondary-container": "#ebc56f",
+                      "surface": "#131315",
+                      "on-background": "#e5e1e4",
+                      "error": "#ffb4ab",
+                      "secondary-fixed-dim": "#e7c26c",
+                      "secondary-fixed": "#ffdf9a",
+                      "surface-container": "#201f22",
+                      "on-surface-variant": "#c2c6d6",
+                      "primary-container": "#4d8eff",
+                      "on-primary-fixed-variant": "#004395",
+                      "background": "#131315",
+                      "on-error": "#690005",
+                      "on-primary": "#002e6a",
+                      "secondary-container": "#6c5100",
+                      "outline": "#8c909f",
+                      "tertiary-container": "#00a1a7",
+                      "surface-variant": "#353437",
+                      "surface-container-highest": "#353437",
+                      "inverse-primary": "#005ac2",
+                      "primary": "#adc6ff",
+                      "on-tertiary-fixed": "#002021",
+                      "error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "margin-desktop": "32px",
+                      "xs": "4px",
+                      "xl": "32px",
+                      "gutter": "16px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "base": "4px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "body-base": [
+                              "Work Sans"
+                      ],
+                      "headline-md": [
+                              "Work Sans"
+                      ],
+                      "display-xl": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg": [
+                              "Work Sans"
+                      ],
+                      "scripture-calligraphy": [
+                              "Noto Serif"
+                      ],
+                      "body-bold": [
+                              "Work Sans"
+                      ],
+                      "label-caps": [
+                              "Work Sans"
+                      ],
+                      "display-2xl-mobile": [
+                              "Playfair Display"
+                      ],
+                      "display-2xl": [
+                              "Playfair Display"
+                      ]
+              },
+              "fontSize": {
+                      "body-base": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-xl": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "scripture-calligraphy": [
+                              "22px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-bold": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-2xl-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-2xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #00040F; /* Level 0 Canvas */
+            color: #e5e1e4;
+        }
+        
+        .glass-panel {
+            background: rgba(17, 18, 23, 0.6); /* Level 1 slightly transparent */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sacred-gradient-btn {
+            background: linear-gradient(135deg, #e7c26c 0%, #ebc56f 100%);
+            color: #3f2e00;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .sacred-gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 194, 108, 0.3);
+        }
+
+        .input-matte {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e5e1e4;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .input-matte:focus {
+            outline: none;
+            border-color: #00dce4;
+            box-shadow: 0 0 0 1px #00dce4;
+        }
+
+        /* Spot light effect for cards */
+        .spotlight-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+
+        /* RTL specific adjustments */
+        [dir="rtl"] {
+            font-family: Tahoma, Arial, sans-serif; /* Fallback for Persian if needed, though Noto Serif handles it well */
+        }
+        
+        /* A4 Print Preview Ratio */
+        .print-preview {
+            aspect-ratio: 1 / 1.414;
+            background-color: #fdfbf7; /* Off-white paper */
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body class="font-body-base text-body-base overflow-x-hidden flex h-screen">
+<!-- SIDE NAV (Shared Component mapping) -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 z-40 bg-surface-container dark:bg-surface-container border-r border-white/10 py-lg">
+<div class="px-lg mb-xl">
+<div class="flex items-center gap-sm mb-md">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A small, elegant circular logo featuring a subtle geometric owl or eye motif in gold and dark blue, suitable for a sophisticated administrative suite called Nocturnal Sanctuary. High contrast, minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmEyQ_8Hvc5gu2du317BQv5sf_yarajUEs1WGc0YE2N-VZBkR138ZxS-WF_ePwtw4RDiFSBUVAbzl_Gki_zVuDhMiK90f1pH4yq6Odkti5PsrrnxTeZxL0-oTHfo26jHi3PPJ3TWq91HaKd4hwA65bP76TvXjIfMFeR4Ukx8pinRdQd-0bCBgt1APwwQUBLnXUJ-zhURyxIG0S0JmEfLlOINitsBI3rOXV3sRFS0mrJ0_mcjDioBwW"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-secondary">Nocturnal Sanctuary</h1>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider">Administrative Suite</p>
+</div>
+</div>
+<button class="w-full sacred-gradient-btn font-body-bold rounded-lg py-2 px-4 flex items-center justify-center gap-2 mt-4">
+<span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 0;">add</span>
+                New Document
+            </button>
+</div>
+<div class="flex-grow flex flex-col gap-1 mt-4">
+<!-- Inactive -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 active:translate-y-[-2px] px-4 py-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<!-- Active -->
+<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 mx-2 active:translate-y-[-2px] transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-bold">Official Letters</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 active:translate-y-[-2px] px-4 py-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+                IRS Receipts
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 active:translate-y-[-2px] px-4 py-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                Invoicing
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 active:translate-y-[-2px] px-4 py-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+                Verification
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 active:translate-y-[-2px] px-4 py-3 mx-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto flex flex-col gap-1 border-t border-white/10 pt-4 mx-2">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 px-4 py-3 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all duration-200 px-4 py-3 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+                Language: EN/FA
+            </a>
+</div>
+</nav>
+<!-- MAIN CONTENT WRAPPER -->
+<div class="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden">
+<!-- TOP NAV (Shared Component mapping) -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 bg-surface/75 dark:bg-surface/75 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-white/10">
+<div class="flex items-center gap-4">
+<div class="font-headline-md text-headline-md font-bold text-secondary dark:text-secondary md:hidden">
+                    Sanctuary Admin
+                </div>
+<!-- Search -->
+<div class="relative hidden sm:block w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full input-matte rounded-full pl-10 pr-4 py-1.5 text-sm" placeholder="Search members, docs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-tertiary transition-colors duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-tertiary transition-colors duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="Administrator profile" class="w-8 h-8 rounded-full border border-white/20 object-cover" data-alt="A formal professional headshot of an administrator, subtle cinematic lighting, dark background, suitable for a premium admin dashboard profile image." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoVEphixvh5oYHbMlsNu4Bx5Wpr82EMFlIxo5bzYFaRHdU9lNk6nOwbRft9MbduSs7N-JiE7ov4qeEEuxt-YPfaZrenasLTf5sbaOmvCsY1jsUYMOTpMTOwCWV7Gau4yLUDlTrMjdtF89fV-61iIk5VD35DAkP-1PWyD93OhBuSYm9q2FufNHv34-q1Awc6q8Oe4Uyw-X4sX3EfxSCbbYS138P4QaSYGi-EDFBYKoQVZa251-cKsaj"/>
+</div>
+</header>
+<!-- DASHBOARD CANVAS -->
+<main class="flex-1 overflow-y-auto p-margin-desktop">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<h2 class="font-display-xl text-display-xl text-on-surface">Document Generator</h2>
+<p class="text-on-surface-variant mt-1">Create official letters with bilingual support and live preview.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span>
+                        Save Draft
+                    </button>
+<button class="sacred-gradient-btn px-6 py-2 rounded-lg font-body-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">print</span>
+                        Print &amp; Finalize
+                    </button>
+</div>
+</div>
+<!-- Complex Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-220px)] min-h-[600px]">
+<!-- Left Panel: Controls & Input (Cols 1-5) -->
+<div class="lg:col-span-5 flex flex-col gap-6 overflow-y-auto pr-2 pb-8">
+<!-- Template Selection (Glassmorphism Card) -->
+<div class="glass-panel rounded-xl p-6 spotlight-card" onmousemove="handleMouseMove(event, this)">
+<h3 class="font-headline-md text-headline-md text-secondary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                            Template Selection
+                        </h3>
+<div class="grid grid-cols-2 gap-3 mb-4">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="template" type="radio"/>
+<div class="p-3 rounded-lg border border-white/10 peer-checked:border-tertiary peer-checked:bg-tertiary/10 transition-all text-center">
+<span class="material-symbols-outlined block mb-1 text-on-surface-variant peer-checked:text-tertiary">gavel</span>
+<span class="text-sm font-medium">USCIS Immigration</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="template" type="radio"/>
+<div class="p-3 rounded-lg border border-white/10 peer-checked:border-tertiary peer-checked:bg-tertiary/10 transition-all text-center">
+<span class="material-symbols-outlined block mb-1 text-on-surface-variant peer-checked:text-tertiary">badge</span>
+<span class="text-sm font-medium">Character Reference</span>
+</div>
+</label>
+<label class="cursor-pointer col-span-2">
+<input class="peer sr-only" name="template" type="radio"/>
+<div class="p-3 rounded-lg border border-white/10 peer-checked:border-tertiary peer-checked:bg-tertiary/10 transition-all text-center flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-tertiary">home</span>
+<span class="text-sm font-medium">Housing / Rental Support</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Member Search & Autofill -->
+<div class="glass-panel rounded-xl p-6 spotlight-card" onmousemove="handleMouseMove(event, this)">
+<h3 class="font-headline-md text-headline-md text-secondary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">person_search</span>
+                            Subject Details
+                        </h3>
+<div class="relative mb-4">
+<input class="w-full input-matte rounded-lg pl-10 pr-4 py-2" placeholder="Search Member ID or Name..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant">search</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase">Full Name (EN)</label>
+<input class="w-full input-matte rounded-lg px-3 py-2 text-sm" type="text" value="Omid R."/>
+</div>
+<div dir="rtl">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase text-right">Full Name (FA)</label>
+<input class="w-full input-matte rounded-lg px-3 py-2 text-sm" type="text" value="امید ر."/>
+</div>
+<div class="col-span-2">
+<label class="block text-xs font-label-caps text-on-surface-variant mb-1 uppercase">Membership Start Date</label>
+<input class="w-full input-matte rounded-lg px-3 py-2 text-sm" type="date" value="2018-04-15"/>
+</div>
+</div>
+</div>
+<!-- Bilingual Content Editor -->
+<div class="glass-panel rounded-xl p-0 spotlight-card flex-1 min-h-[300px] flex flex-col" onmousemove="handleMouseMove(event, this)">
+<div class="border-b border-white/10 p-4 flex justify-between items-center bg-white/5 rounded-t-xl">
+<h3 class="font-headline-md text-headline-md text-secondary flex items-center gap-2 m-0">
+<span class="material-symbols-outlined">edit_document</span>
+                                Content Editor
+                            </h3>
+<div class="flex bg-surface-container rounded-lg p-1 border border-white/5">
+<button class="px-3 py-1 rounded bg-white/10 text-xs font-medium">Split</button>
+<button class="px-3 py-1 rounded hover:bg-white/5 text-xs text-on-surface-variant">EN Only</button>
+<button class="px-3 py-1 rounded hover:bg-white/5 text-xs text-on-surface-variant">FA Only</button>
+</div>
+</div>
+<div class="flex flex-1 divide-x divide-white/10">
+<!-- LTR Side -->
+<div class="flex-1 p-4 flex flex-col gap-2">
+<label class="text-xs text-tertiary uppercase tracking-wider font-semibold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary inline-block animate-pulse"></span>
+                                    English (LTR)
+                                </label>
+<textarea class="w-full h-full input-matte rounded-lg p-3 text-sm resize-none" placeholder="Enter formal English text here...">To Whom It May Concern,
+
+This letter serves to verify that Omid R. has been an active and valued member of the Nocturnal Sanctuary congregation since April 2018...</textarea>
+</div>
+<!-- RTL Side -->
+<div class="flex-1 p-4 flex flex-col gap-2" dir="rtl">
+<label class="text-xs text-secondary uppercase tracking-wider font-semibold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>
+                                    فارسی (RTL)
+                                </label>
+<textarea class="w-full h-full input-matte rounded-lg p-3 text-sm resize-none font-scripture-calligraphy" placeholder="متن رسمی فارسی را اینجا وارد کنید...">به نهاد مربوطه،
+
+این نامه تأیید می‌کند که امید ر. از آوریل ۲۰۱۸ عضو فعال و ارزشمند پناهگاه شبانه بوده است...</textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Live Print Preview (Cols 6-12) -->
+<div class="lg:col-span-7 bg-surface-container-low rounded-xl border border-white/5 p-6 flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Decor element behind preview -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 50% 50%, rgba(0, 220, 228, 0.1) 0%, transparent 60%);"></div>
+<div class="w-full flex justify-end mb-4 relative z-10">
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface hover:bg-surface-bright border border-white/10 transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined text-sm">zoom_out</span>
+</button>
+<span class="p-2 text-sm text-on-surface-variant">75%</span>
+<button class="p-2 rounded-lg bg-surface hover:bg-surface-bright border border-white/10 transition-colors" title="Zoom In">
+<span class="material-symbols-outlined text-sm">zoom_in</span>
+</button>
+</div>
+</div>
+<!-- The Paper -->
+<div class="print-preview w-[80%] max-w-[600px] shadow-2xl rounded-sm p-10 flex flex-col relative z-10 overflow-y-auto">
+<!-- Letterhead -->
+<div class="border-b-2 border-gray-300 pb-6 mb-8 flex justify-between items-start">
+<div>
+<h1 class="text-2xl font-display-xl font-bold text-gray-900 tracking-tight">NOCTURNAL SANCTUARY</h1>
+<p class="text-xs text-gray-500 mt-1 uppercase tracking-widest">Office of Administration</p>
+<div class="mt-4 text-xs text-gray-600 leading-tight">
+<p>123 Sacred Grove Way</p>
+<p>Metropolis, ST 12345</p>
+<p>EIN: 99-9999999</p>
+</div>
+</div>
+<!-- Small logo in print -->
+<img class="w-16 h-16 opacity-80 mix-blend-multiply" data-alt="A clean, high-contrast monochrome version of the Nocturnal Sanctuary owl/eye geometric logo, suitable for printing on official letterhead." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5idoIwk3ynl3cg1Ss2RStvgh3ggITvYyUxZnNa9FLfQdduEsLAMwEsy-GkgN5GIQc6D4fyiLG_wSkypO2-2QKjMDV0_rdwmawWyYe0oIBH8oRKLgFMF2lRROuc_XVfxXRZ1sBlX-AID0B-e5AmkzbBs7mkrr8XZQLjed2HCtbMYnbs9NW3qAaU575Z89zZROr-oUK9HlAbGb1QX8qt_XwK-2uL3VAwWR0Ps6fbv9refZK78WH5VD6"/>
+</div>
+<!-- Date & Ref -->
+<div class="flex justify-between text-sm text-gray-700 mb-8 font-serif">
+<span>Date: October 24, 2023</span>
+<span>Ref: IMM-2023-8472</span>
+</div>
+<!-- Content Area (Dual Column for Bilingual) -->
+<div class="flex gap-8 flex-1">
+<!-- English Column -->
+<div class="flex-1 text-sm text-gray-800 font-serif leading-relaxed text-justify">
+<p class="font-bold mb-4">TO WHOM IT MAY CONCERN</p>
+<p class="mb-4">This letter serves to verify that <strong>Omid R.</strong> has been an active and valued member of the Nocturnal Sanctuary congregation since April 2018.</p>
+<p>Throughout this time, they have demonstrated upstanding moral character and have been a vital part of our community support programs...</p>
+</div>
+<!-- Divider -->
+<div class="w-px bg-gray-300"></div>
+<!-- Persian Column -->
+<div class="flex-1 text-sm text-gray-800 font-scripture-calligraphy leading-relaxed text-justify" dir="rtl">
+<p class="font-bold mb-4">به نهاد مربوطه</p>
+<p class="mb-4">این نامه تأیید می‌کند که <strong>امید ر.</strong> از آوریل ۲۰۱۸ عضو فعال و ارزشمند جماعت پناهگاه شبانه بوده است.</p>
+<p>در طول این مدت، ایشان شخصیتی اخلاقی و برجسته از خود نشان داده و بخش مهمی از برنامه‌های حمایتی جامعه ما بوده‌اند...</p>
+</div>
+</div>
+<!-- Signature Block -->
+<div class="mt-12 pt-8 flex justify-between items-end">
+<div>
+<div class="w-48 h-px bg-gray-400 mb-2"></div>
+<p class="text-sm font-bold text-gray-900">Rev. Elias Thorne</p>
+<p class="text-xs text-gray-600">Senior Administrator</p>
+</div>
+<!-- Official Seal Placeholder -->
+<div class="w-20 h-20 rounded-full border-2 border-gray-300 flex items-center justify-center opacity-50">
+<span class="text-xs text-center text-gray-400 uppercase font-bold tracking-tighter transform -rotate-12">Official<br/>Seal</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Simple spotlight effect script for cards
+        function handleMouseMove(e, element) {
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            element.style.setProperty('--mouse-x', `${x}px`);
+            element.style.setProperty('--mouse-y', `${y}px`);
+        }
+    </script>
+</body></html>
