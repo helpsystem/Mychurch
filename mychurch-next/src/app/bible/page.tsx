@@ -1217,7 +1217,7 @@ export default function BibleReaderPage() {
               {/* Iframe Container */}
               <div className="flex-1 w-full h-full relative bg-zinc-950">
                 <iframe
-                  src="https://www.alhayatgpt.com/widget/chat?theme=dark&allowCharacterSelection=true&parentOrigin=https%3A%2F%2Fwww.iranianchurchdc.com&source=www.iranianchurchdc.com"
+                  src="https://www.alhayatgpt.com/widget/chat?theme=dark&persona=jesus&character=jesus&allowCharacterSelection=true&showCharacterSelector=true&parentOrigin=https%3A%2F%2Fwww.iranianchurchdc.com&source=www.iranianchurchdc.com"
                   id="alhayat-gpt-widget-iframe"
                   title="Al Hayat GPT Chat Widget"
                   sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
