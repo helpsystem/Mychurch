@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { User, Shield } from "lucide-react";
+import { User, Shield, Sparkles } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { createClient } from "@/utils/supabase/client";
@@ -93,8 +93,14 @@ export function PublicHeader() {
                     📖 {t?.bible || "کتاب مقدس"}
                     <span className="absolute -top-2 -right-3 text-[9px] bg-amber-400 text-black font-black px-1.5 rounded-full">NEW</span>
                 </Link>
+                <Link href="/gpt" className="flex items-center gap-1.5 relative group">
+                    <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-l from-violet-600/20 to-amber-500/20 border border-violet-500/30 text-violet-300 hover:text-white hover:border-violet-400/50 hover:bg-violet-500/20 transition-all font-bold text-sm shadow-sm shadow-violet-500/10">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+                        {language === 'fa' ? 'هوش مصنوعی' : 'AI Chat'}
+                    </span>
+                </Link>
                 <Link href="/contact" className="hover:text-primary transition-colors cursor-pointer">
-                    {t?.contact || "تماس"}
+                    {t?.contact || "ارتباط با ما"}
                 </Link>
             </div>
 
