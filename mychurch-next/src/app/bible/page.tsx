@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Book, Music2, ChevronLeft, ChevronRight, Play, Pause,
   Columns2, Search, Loader2, List, X, ExternalLink, Highlighter, Copy, GitCompareArrows, Share2, Link2,
-  Sparkles, Send, Bot, User
+  Sparkles, Send, Bot, User, Maximize2, Minimize2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type jsPDF from "jspdf";
@@ -77,47 +77,9 @@ export default function BibleReaderPage() {
   const [audioProgress, setAudioProgress] = useState(0);
   const [audioDuration, setAudioDuration] = useState(0);
 
-  // Chatbot State
+  // Chatbot State (Al Hayat GPT Integration)
   const [showChat, setShowChat] = useState(false);
-  const [chatInput, setChatInput] = useState("");
-  const [chatMessages, setChatMessages] = useState<Array<{ id: string; sender: "user" | "bot"; text: string }>>([
-    { id: "welcome", sender: "bot", text: language === 'fa' ? "سلام! من دستیار هوش مصنوعی کتاب‌مقدس هستم. هر سوالی درباره کتب و مفاهیم کتاب‌مقدس دارید بنویسید تا پاسخ دهم." : "Hello! I am your Bible AI assistant. Ask me any questions about the Bible scriptures or topics." }
-  ]);
-  const [chatLoading, setChatLoading] = useState(false);
-  const chatScrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (showChat) {
-      chatScrollRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [chatMessages, chatLoading, showChat]);
-
-  const handleSendPublicChat = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!chatInput.trim() || chatLoading) return;
-
-    const userMsg = { id: crypto.randomUUID(), sender: "user" as const, text: chatInput.trim() };
-    setChatMessages(prev => [...prev, userMsg]);
-    const question = chatInput.trim();
-    setChatInput("");
-    setChatLoading(true);
-
-    try {
-      const res = await fetch("/api/ai/local-chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
-
-      setChatMessages(prev => [...prev, { id: crypto.randomUUID(), sender: "bot", text: data.answer }]);
-    } catch (err: any) {
-      setChatMessages(prev => [...prev, { id: crypto.randomUUID(), sender: "bot", text: language === 'fa' ? "خطا در اتصال به هوش مصنوعی." : "Failed to connect to AI assistant." }]);
-    } finally {
-      setChatLoading(false);
-    }
-  };
+  const [isChatExpanded, setIsChatExpanded] = useState(false);
 
   // --- Selection Logic ---
   const toggleVerseSelection = (v: any) => {
@@ -1184,7 +1146,7 @@ export default function BibleReaderPage() {
         )}
       </AnimatePresence>
 
-      {/* ── Floating AI Chat Assistant ── */}
+      {/* ── Floating AI Chat Assistant (Al Hayat GPT) ── */}
       <div className="fixed bottom-6 right-6 z-[100]" dir={language === 'fa' ? 'rtl' : 'ltr'}>
         <AnimatePresence>
           {showChat && (
@@ -1192,90 +1154,69 @@ export default function BibleReaderPage() {
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              className="mb-4 w-[340px] sm:w-[380px] h-[450px] bg-zinc-950/95 backdrop-blur border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col text-right"
+              className={`mb-4 ${
+                isChatExpanded
+                  ? "w-[94vw] max-w-[800px] h-[82vh]"
+                  : "w-[360px] sm:w-[460px] h-[600px] max-h-[82vh]"
+              } bg-zinc-950/95 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col transition-all duration-300`}
             >
               {/* Header */}
-              <div className="p-4 border-b border-white/5 bg-black/40 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 border border-amber-500/20">
-                    <Sparkles className="w-4 h-4 animate-pulse" />
+              <div className="p-3.5 border-b border-white/10 bg-black/50 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-600 flex items-center justify-center text-black font-bold shadow-lg shadow-amber-500/20">
+                    <Sparkles className="w-4 h-4" />
                   </div>
                   <div className="text-right">
-                    <h4 className="text-xs font-bold text-white font-[Vazirmatn]">
-                      {language === 'fa' ? "دستیار هوشمند کتاب‌مقدس" : "Bible AI Assistant"}
-                    </h4>
-                    <span className="text-[10px] text-zinc-500 font-mono">Local RAG Enabled</span>
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="text-xs font-bold text-white font-[Vazirmatn]">
+                        {language === 'fa' ? "دستیار هوشمند کتاب‌مقدس" : "Bible AI Assistant"}
+                      </h4>
+                      <span className="text-[10px] px-1.5 py-0.2 bg-amber-500/20 text-amber-300 rounded-md font-sans">Al Hayat GPT</span>
+                    </div>
+                    <p className="text-[10px] text-zinc-400 font-[Vazirmatn]">
+                      {language === 'fa' ? "پاسخ تخصصی به سوالات الهیاتی و کتب مقدس" : "Theological questions & answers"}
+                    </p>
                   </div>
                 </div>
-                <button
-                  onClick={() => setShowChat(false)}
-                  className="p-1 hover:bg-white/5 rounded-full text-zinc-400 hover:text-white transition-colors"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Messages list */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar text-xs">
-                {chatMessages.map(msg => (
-                  <div
-                    key={msg.id}
-                    className={`flex gap-2 max-w-[85%] ${
-                      msg.sender === "user" ? "mr-auto flex-row-reverse" : "ml-auto"
-                    }`}
+                <div className="flex items-center gap-1">
+                  <a
+                    href="/gpt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 hover:bg-white/10 rounded-xl text-zinc-400 hover:text-white transition-colors"
+                    title={language === 'fa' ? "باز کردن در صفحه تمام‌صفحه" : "Open full page"}
                   >
-                    <div
-                      className={`w-6 h-6 rounded-md shrink-0 flex items-center justify-center border text-[10px] ${
-                        msg.sender === "user"
-                          ? "bg-blue-500/10 text-blue-400 border-blue-500/20"
-                          : "bg-white/5 text-amber-400 border-white/10"
-                      }`}
-                    >
-                      {msg.sender === "user" ? <User className="w-3.5 h-3.5" /> : <Bot className="w-3.5 h-3.5" />}
-                    </div>
-                    <div
-                      className={`p-2.5 rounded-xl whitespace-pre-wrap font-[Vazirmatn] leading-relaxed ${
-                        msg.sender === "user"
-                          ? "bg-blue-600/20 text-white rounded-tr-none border border-blue-500/20 text-right"
-                          : "bg-white/5 text-zinc-300 rounded-tl-none border border-white/5 text-right"
-                      }`}
-                    >
-                      {msg.text}
-                    </div>
-                  </div>
-                ))}
-                {chatLoading && (
-                  <div className="flex gap-2 max-w-[85%] ml-auto">
-                    <div className="w-6 h-6 rounded-md shrink-0 flex items-center justify-center bg-white/5 text-amber-400 border border-white/10">
-                      <Loader2 className="w-3 h-3 animate-spin" />
-                    </div>
-                    <div className="bg-white/5 text-zinc-400 p-2.5 rounded-xl rounded-tl-none border border-white/5 font-[Vazirmatn] text-right">
-                      {language === 'fa' ? "در حال دریافت پاسخ..." : "Thinking..."}
-                    </div>
-                  </div>
-                )}
-                <div ref={chatScrollRef} />
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <button
+                    onClick={() => setIsChatExpanded(!isChatExpanded)}
+                    className="p-1.5 hover:bg-white/10 rounded-xl text-zinc-400 hover:text-white transition-colors"
+                    title={isChatExpanded ? "کوچک‌نمایی" : "بزرگ‌نمایی"}
+                  >
+                    {isChatExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                  </button>
+                  <button
+                    onClick={() => setShowChat(false)}
+                    className="p-1.5 hover:bg-white/10 rounded-xl text-zinc-400 hover:text-white transition-colors"
+                    title="Close"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
-              {/* Form Input */}
-              <form onSubmit={handleSendPublicChat} className="p-3 border-t border-white/5 bg-black/20 flex gap-2">
-                <input
-                  type="text"
-                  value={chatInput}
-                  onChange={e => setChatInput(e.target.value)}
-                  placeholder={language === 'fa' ? "سوال خود را بنویسید..." : "Ask a question..."}
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 transition-colors font-[Vazirmatn] text-right"
-                  disabled={chatLoading}
+              {/* Iframe Container */}
+              <div className="flex-1 w-full h-full relative bg-zinc-950">
+                <iframe
+                  src="https://www.alhayatgpt.com/widget/chat?theme=dark&allowCharacterSelection=true&parentOrigin=https%3A%2F%2Fwww.iranianchurchdc.com&source=www.iranianchurchdc.com"
+                  id="alhayat-gpt-widget-iframe"
+                  title="Al Hayat GPT Chat Widget"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                  allow="clipboard-write"
+                  loading="lazy"
+                  className="w-full h-full border-none block"
                 />
-                <button
-                  type="submit"
-                  disabled={!chatInput.trim() || chatLoading}
-                  className="p-2 rounded-xl bg-amber-500 hover:bg-amber-600 disabled:bg-neutral-800 disabled:text-neutral-500 text-black flex items-center justify-center transition-all"
-                  title="Send"
-                >
-                  <Send className={`w-3.5 h-3.5 ${language === 'fa' ? 'rotate-180' : ''}`} />
-                </button>
-              </form>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

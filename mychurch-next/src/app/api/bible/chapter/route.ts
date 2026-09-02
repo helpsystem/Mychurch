@@ -12,24 +12,24 @@ const YOUVERSION_APP_KEY = process.env.YOUVERSION_APP_KEY || "f6E6HZKwtYii0xLZMx
 const YOUVERSION_BASE = "https://api.youversion.com/v1";
 
 const YOUVERSION_BIBLE_MAP: Record<string, string | number> = {
-  // English
-  KJV: 1,
-  ESV: 59,
-  NIV: 111,
-  NLT: 116,
-  BSB: 1171,
-  NASB: 100,
-  CSB: 1713,
-  // Farsi (Persian)
-  NMV: 118,      // هزارۀ نو
-  TPV: 181,      // ترجمه تفسیری
-  PCB: 3034,     // ترجمه قدیم
-  MOZ: 181,      // مژده برای عصر جدید
-  FARSIO: 3034,  // متن اصیل کهن
+  // English Available via this YouVersion API Key
+  KJV: 12,       // ASV (Fallback)
+  ESV: 206,      // WEB (Fallback)
+  NIV: 3034,     // BSB (Fallback)
+  NLT: 3034,     // BSB (Fallback)
+  BSB: 3034,     // BSB
+  NASB: 2692,    // NASB2020
+  CSB: 3034,     // BSB (Fallback)
+  // Farsi (Persian) Available via this YouVersion API Key
+  NMV: 1619,      // Farsi PCB
+  TPV: 1619,      // Farsi PCB
+  PCB: 1619,      // Farsi PCB
+  MOZ: 1619,      // Farsi PCB
+  FARSIO: 1619,   // Farsi PCB
 };
 
 async function fetchFromYouVersion(versionAbbr: string, bookId: string, chapter: number) {
-  const bibleId = YOUVERSION_BIBLE_MAP[versionAbbr.toUpperCase()] || 118;
+  const bibleId = YOUVERSION_BIBLE_MAP[versionAbbr.toUpperCase()] || 1619;
   const passageId = `${bookId.toUpperCase()}.${chapter}`;
   const url = `${YOUVERSION_BASE}/bibles/${bibleId}/passages/${passageId}`;
 
@@ -164,6 +164,7 @@ export async function GET(req: Request) {
     const bookId = (searchParams.get("book") || "GEN").toUpperCase();
     const chapterNum = parseInt(searchParams.get("chapter") || "1", 10);
     const cacheKey = `${versionAbbr}|${bookId}|${chapterNum}`;
+    const debugErrors: any[] = [];
 
     // ── In-memory cache ────────────────────────────────────────────────────
     const cached = chapterCache.get(cacheKey);
@@ -198,8 +199,9 @@ export async function GET(req: Request) {
             },
           });
         }
-      } catch (yvErr) {
+      } catch (yvErr: any) {
         console.warn("[bible/chapter] Primary lookup fallback:", yvErr);
+        debugErrors.push({ source: 'youversion', error: yvErr?.message || String(yvErr) });
       }
     }
 
@@ -270,8 +272,9 @@ export async function GET(req: Request) {
           });
         }
       }
-    } catch (dbErr) {
+    } catch (dbErr: any) {
       console.warn("[bible/chapter] Local DB lookup failed, trying API fallback:", dbErr);
+      debugErrors.push({ source: 'sqlite', error: dbErr?.message || String(dbErr) });
     }
 
     // ── Layer 3: Fallback Engine ───────────────────────────────────────────
@@ -309,6 +312,7 @@ export async function GET(req: Request) {
       verses,
       headings,
       audio: [],
+      debugErrors,
     };
 
     chapterCache.set(cacheKey, { ts: Date.now(), payload });
