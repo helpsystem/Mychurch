@@ -50,29 +50,35 @@ npm install --legacy-peer-deps
 
 echo '🔨 Building Next.js on the VPS...'
 export NODE_OPTIONS="--max-old-space-size=2048"
-npm run build
+node ./node_modules/next/dist/bin/next build
 
-echo '♻️ Reloading PM2 with IPv4 Fix...'
-rm -rf standalone.old
-if [ -d standalone ]; then
-    mv standalone standalone.old
+if [ -f .next/standalone/server.js ]; then
+    echo '♻️ Deploying new standalone build and reloading PM2...'
+    rm -rf standalone.old
+    if [ -d standalone ]; then
+        mv standalone standalone.old
+    fi
+    mkdir -p standalone
+    cp -r .next/standalone/* standalone/
+    cp -r public standalone/public
+    cp -r Bible standalone/Bible 2>/dev/null || true
+    cp -f Bible/bible_output/bible_complete.db standalone/Bible/bible_output/bible_complete.db 2>/dev/null || true
+    cp -rf node_modules/better-sqlite3 standalone/node_modules/ 2>/dev/null || true
+    mkdir -p standalone/.next/static
+    cp -r .next/static/* standalone/.next/static/
+    cp .env.local standalone/.env.local 2>/dev/null || true
+
+    cd standalone
+    export NODE_OPTIONS="--dns-result-order=ipv4first"
+    export PORT=3000
+    export HOSTNAME="127.0.0.1"
+    pm2 delete mychurch-next 2>/dev/null || true
+    pm2 start server.js --name mychurch-next
+    cd ..
+else
+    echo '⚠️ Standalone build not found or build failed, keeping existing deployment running.'
+    pm2 restart mychurch-next 2>/dev/null || true
 fi
-mkdir -p standalone
-cp -r .next/standalone/* standalone/
-cp -r public standalone/public
-cp -r Bible standalone/Bible 2>/dev/null || true
-cp -f Bible/bible_output/bible_complete.db standalone/Bible/bible_output/bible_complete.db 2>/dev/null || true
-cp -rf node_modules/better-sqlite3 standalone/node_modules/ 2>/dev/null || true
-mkdir -p standalone/.next/static
-cp -r .next/static/* standalone/.next/static/
-cp .env.local standalone/.env.local 2>/dev/null || true
-
-cd standalone
-export NODE_OPTIONS="--dns-result-order=ipv4first"
-export PORT=3000
-export HOSTNAME="127.0.0.1"
-pm2 delete mychurch-next 2>/dev/null || true
-pm2 start server.js --name mychurch-next
 
 cd ..
 if ! pm2 show socket-server > /dev/null 2>&1; then

@@ -12,6 +12,11 @@ export const revalidate = 3600;
 const CACHE_TTL_MS = 60 * 60 * 1000;
 const parallelCache = new Map<string, { ts: number; payload: unknown }>();
 
+function cleanVerseText(t: string | null | undefined): string | null {
+  if (!t) return null;
+  return t.replace(/^[\s\d\u0660-\u0669\u06F0-\u06F9]+[:.\s\-–—]*/, "").trim();
+}
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -40,8 +45,8 @@ export async function GET(req: Request) {
         for (let i = 0; i < maxVerse; i++) {
           parallel.push({
             verse_num: i + 1,
-            en: apiResult.verses.en[i] || null,
-            fa: apiResult.verses.fa[i] || null,
+            en: cleanVerseText(apiResult.verses.en[i]),
+            fa: cleanVerseText(apiResult.verses.fa[i]),
           });
         }
 
@@ -157,11 +162,6 @@ export async function GET(req: Request) {
     const verseNumbers = Array.from(
       new Set([...enVerses.map((v) => v.verse_num), ...faVerses.map((v) => v.verse_num)])
     ).sort((a, b) => a - b);
-
-    function cleanVerseText(t: string | null | undefined): string | null {
-      if (!t) return null;
-      return t.replace(/^[\s\d\u0660-\u0669\u06F0-\u06F9]+[:.\s\-–—]*/, "").trim();
-    }
 
     // Create matched pairs with nullable values where a translation is missing.
     const parallel = verseNumbers.map((verseNum) => ({
