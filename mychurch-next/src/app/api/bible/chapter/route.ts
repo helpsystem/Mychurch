@@ -227,6 +227,11 @@ export async function GET(req: Request) {
         );
 
         if (verses.length > 0) {
+          const cleanedVerses = verses.map(v => ({
+            verse_num: v.verse_num,
+            text: (v.text || "").replace(/^[\s\d\u0660-\u0669\u06F0-\u06F9]+[:.\s\-–—]*/, "").trim(),
+          }));
+
           let headings: { before_verse: number; text: string }[] = [];
           try {
             headings = await dbAll<{ before_verse: number; text: string }>(
@@ -258,7 +263,7 @@ export async function GET(req: Request) {
             bookNameFa: book?.book_name_fa,
             chapterCount: book?.chapter_count,
             chapter: chapterNum,
-            verses,
+            verses: cleanedVerses,
             headings,
             audio,
           };

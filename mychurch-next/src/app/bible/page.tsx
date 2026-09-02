@@ -41,6 +41,11 @@ function groupByTestament(books: BibleBook[]) {
   };
 }
 
+function stripLeadingVerseNumber(text: string | null | undefined): string {
+  if (!text) return "";
+  return text.replace(/^[\s\d\u0660-\u0669\u06F0-\u06F9]+[:.\s\-–—]*/, "").trim();
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function BibleReaderPage() {
   const { language } = useLanguage();
@@ -93,8 +98,8 @@ export default function BibleReaderPage() {
   const getSelectedVersesText = useCallback(() => {
     return selectedVerses
       .map(v => {
-        const en = v.en ?? "";
-        const fa = v.fa ?? "";
+        const en = stripLeadingVerseNumber(v.en);
+        const fa = stripLeadingVerseNumber(v.fa);
         const content = readingMode === "parallel" ? `${en} | ${fa}` : (readingMode === "fa" ? fa : en);
         return `(${v.verse_num}) ${content}`.trim();
       })
@@ -598,6 +603,7 @@ export default function BibleReaderPage() {
               <div className="space-y-1 prose prose-invert max-w-none" dir="ltr" style={{ fontSize: `${fontSize}px`, lineHeight: 1.8 }}>
                 {verses.map((v: any) => {
                   const isSelected = selectedVerses.some(sv => sv.verse_num === v.verse_num);
+                  const cleanText = stripLeadingVerseNumber(v.text);
                   return (
                     <span key={v.verse_num}>
                       {headingMap.has(v.verse_num) && (
@@ -607,10 +613,10 @@ export default function BibleReaderPage() {
                         dir="ltr"
                         className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${isSelected ? "text-white" : "hover:bg-white/5 active:scale-95"}`}
                         style={selectedStyle(isSelected)}
-                        onClick={() => toggleVerseSelection({ verse_num: v.verse_num, en: v.text, fa: null })}
+                        onClick={() => toggleVerseSelection({ verse_num: v.verse_num, en: cleanText, fa: null })}
                       >
-                        <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{v.verse_num}</sup>
-                        {v.text}{" "}
+                        <sup className="text-xs md:text-sm font-black text-blue-400 mr-1.5 select-none">{v.verse_num}</sup>
+                        {cleanText}{" "}
                       </span>
                     </span>
                   );
@@ -626,15 +632,16 @@ export default function BibleReaderPage() {
                 ) : (
                   faVerses.map((v: any) => {
                     const isSelected = selectedVerses.some(sv => sv.verse_num === v.verse_num);
+                    const cleanText = stripLeadingVerseNumber(v.text);
                     return (
                       <span
                         key={v.verse_num}
                         className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${isSelected ? "text-white" : "hover:bg-white/5 active:scale-95"}`}
                         style={selectedStyle(isSelected)}
-                        onClick={() => toggleVerseSelection({ verse_num: v.verse_num, en: null, fa: v.text })}
+                        onClick={() => toggleVerseSelection({ verse_num: v.verse_num, en: null, fa: cleanText })}
                       >
-                        <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{v.verse_num}</sup>
-                        {v.text}{" "}
+                        <sup className="text-xs md:text-sm font-black text-purple-400 ml-1.5 select-none">{v.verse_num}</sup>
+                        {cleanText}{" "}
                       </span>
                     );
                   })
@@ -647,20 +654,22 @@ export default function BibleReaderPage() {
               <div className="space-y-6">
                 {parallelVerses.map(v => {
                   const isSelected = selectedVerses.some(sv => sv.verse_num === v.verse_num);
+                  const cleanEn = stripLeadingVerseNumber(v.en);
+                  const cleanFa = stripLeadingVerseNumber(v.fa);
                   return (
                     <div
                       key={v.verse_num}
                       className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${isSelected ? "border" : "hover:bg-white/5"}`}
                       style={isSelected ? { backgroundColor: `${selectedHighlightColor}1f`, borderColor: `${selectedHighlightColor}66` } : undefined}
-                      onClick={() => toggleVerseSelection(v)}
+                      onClick={() => toggleVerseSelection({ ...v, en: cleanEn, fa: cleanFa })}
                     >
-                      <div className="flex gap-3" dir="ltr">
-                        <span className="text-xs font-black text-blue-500/60 mt-1 shrink-0">{v.verse_num}</span>
-                        <p className="text-zinc-100 leading-relaxed font-sans" style={{ fontSize: `${fontSize}px` }}>{v.en}</p>
+                      <div className="flex gap-3.5 items-baseline" dir="ltr">
+                        <span className="text-sm md:text-base font-black text-blue-400 select-none shrink-0 leading-none">{v.verse_num}</span>
+                        <p className="text-zinc-100 leading-relaxed font-sans" style={{ fontSize: `${fontSize}px` }}>{cleanEn}</p>
                       </div>
-                      <div className="flex gap-3 text-right" dir="rtl">
-                        <span className="text-xs font-black text-purple-500/60 mt-1 shrink-0">{v.verse_num}</span>
-                        <p className="text-zinc-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${fontSize + 2}px` }}>{v.fa}</p>
+                      <div className="flex gap-3.5 items-baseline text-right" dir="rtl">
+                        <span className="text-sm md:text-base font-black text-purple-400 select-none shrink-0 leading-none">{v.verse_num}</span>
+                        <p className="text-zinc-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${fontSize + 2}px` }}>{cleanFa}</p>
                       </div>
                     </div>
                   );

@@ -158,11 +158,16 @@ export async function GET(req: Request) {
       new Set([...enVerses.map((v) => v.verse_num), ...faVerses.map((v) => v.verse_num)])
     ).sort((a, b) => a - b);
 
+    function cleanVerseText(t: string | null | undefined): string | null {
+      if (!t) return null;
+      return t.replace(/^[\s\d\u0660-\u0669\u06F0-\u06F9]+[:.\s\-–—]*/, "").trim();
+    }
+
     // Create matched pairs with nullable values where a translation is missing.
     const parallel = verseNumbers.map((verseNum) => ({
       verse_num: verseNum,
-      en: enMap.get(verseNum) ?? null,
-      fa: faMap.get(verseNum) ?? null,
+      en: cleanVerseText(enMap.get(verseNum)),
+      fa: cleanVerseText(faMap.get(verseNum)),
     }));
 
     const payload = {

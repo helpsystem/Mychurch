@@ -4,9 +4,11 @@
  * Allows sending SMS from your Android phone via web without Twilio
  */
 
-import puppeteer, { Browser, Page } from 'puppeteer';
 import path from 'path';
 import fs from 'fs';
+
+type Browser = any;
+type Page = any;
 
 const SESSION_DIR = process.env.GOOGLE_MESSAGES_SESSION_DIR || '/root/.google-messages-session';
 const MESSAGES_URL = 'https://messages.google.com/web/';
@@ -27,7 +29,15 @@ async function ensureBrowser(): Promise<{ browser: Browser; page: Page }> {
         fs.mkdirSync(SESSION_DIR, { recursive: true });
     }
 
-    _browser = await puppeteer.launch({
+    let puppeteerModule: any;
+    try {
+        const req = eval('require');
+        puppeteerModule = req('puppeteer');
+    } catch {
+        throw new Error('Puppeteer is not installed on this system.');
+    }
+
+    _browser = await puppeteerModule.launch({
         headless: true,
         args: [
             '--no-sandbox',
