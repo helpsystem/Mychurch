@@ -157,7 +157,7 @@ export async function searchPresentations(searchQuery: string): Promise<Broadcas
             FROM presentations
             WHERE title ILIKE $1
             ORDER BY COALESCE(date, created_at, NOW()) DESC, created_at DESC
-        `, [\`%\${searchQuery}%\`]);
+        `, [`%${searchQuery}%`]);
         
         const sessions = rows.map(rowToSession);
         for (const session of sessions) {

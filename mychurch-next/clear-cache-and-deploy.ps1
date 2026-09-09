@@ -28,6 +28,8 @@ Write-Host "`n============================================================" -For
 Write-Host "  [2/3] Uploading Source Code to VPS..." -ForegroundColor Yellow
 Write-Host "============================================================" -ForegroundColor Cyan
 
+Start-Sleep -Seconds 5
+
 scp -o StrictHostKeyChecking=no $TAR_FILE "${VPS_USER}@${VPS_HOST}:${VPS_NEXT_PATH}/"
 if ($LASTEXITCODE -ne 0) { Write-Host "Upload FAILED." -ForegroundColor Red; exit 1 }
 
