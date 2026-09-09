@@ -142,9 +142,34 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
             session.slides = await mergeSlidesWithLatestSongData(session.slides);
         }
         return sessions;
-    } catch (error) {
+} catch (error) {
         console.error('[Action] Database unreachable, falling back to mock presentations.');
         return [...mockPresentations].sort((a, b) => b.date.getTime() - a.date.getTime());
+    }
+}
+
+export async function searchPresentations(searchQuery: string): Promise<BroadcastSession[]> {
+    await ensureBroadcastAccess();
+
+    try {
+        const { rows } = await query(`
+            SELECT *
+            FROM presentations
+            WHERE title ILIKE $1
+            ORDER BY COALESCE(date, created_at, NOW()) DESC, created_at DESC
+        `, [\`%\${searchQuery}%\`]);
+        
+        const sessions = rows.map(rowToSession);
+        for (const session of sessions) {
+            session.slides = await mergeSlidesWithLatestSongData(session.slides);
+        }
+        return sessions;
+    } catch (error) {
+        console.error('[Action] Database unreachable for search, falling back to mock presentations.');
+        const lowerQ = searchQuery.toLowerCase();
+        return mockPresentations
+            .filter(p => p.title.toLowerCase().includes(lowerQ))
+            .sort((a, b) => b.date.getTime() - a.date.getTime());
     }
 }
 

@@ -4,7 +4,7 @@ import React, { useState, useTransition, useEffect } from "react";
 import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2, Play, Video, Clock, MoreVertical, ChevronDown, Check, BookOpen, Eye, Copy, CalendarDays, LayoutGrid } from "lucide-react";
 import { toast } from "sonner";
 import { BroadcastSession } from "@/types/broadcast";
-import { deletePresentation, savePresentation } from "@/actions/presentations";
+import { deletePresentation, savePresentation, searchPresentations } from "@/actions/presentations";
 import { scheduleEvent } from "@/actions/events";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -29,6 +29,7 @@ export default function PresentationsClient({
     initialPrograms: ChurchProgram[];
 }) {
     const [searchTerm, setSearchTerm] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
     const [presentations, setPresentations] = useState<BroadcastSession[]>(() =>
         initialPresentations.map((presentation) => ({
             ...presentation,
@@ -37,6 +38,22 @@ export default function PresentationsClient({
     );
     const [sharingId, setSharingId] = useState<string | null>(null);
     const [viewingId, setViewingId] = useState<string | null>(null);
+
+    // Debounced Search Effect
+    useEffect(() => {
+        // Skip first render since we have initialPresentations
+        const timer = setTimeout(() => {
+            setIsSearching(true);
+            searchPresentations(searchTerm).then(results => {
+                setPresentations(results.map(p => ({ ...p, date: new Date(p.date) })));
+            }).catch(() => {
+                toast.error(language === 'fa' ? 'خطا در جستجوی ارائه‌ها' : 'Error searching presentations');
+            }).finally(() => {
+                setIsSearching(false);
+            });
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [searchTerm, language]);
     
     // UI Interaction States
     const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
@@ -74,13 +91,15 @@ export default function PresentationsClient({
 
         startTransition(async () => {
              const res = await savePresentation(newSession);
-             if (res.success && res.serverSaved) {
-                 toast.success("ارائه با موفقیت ساخته شد. در حال هدایت به ویرایشگر...");
+             if (res.success) {
+                 if (res.serverSaved) {
+                     toast.success("ارائه با موفقیت ساخته شد. در حال هدایت به ویرایشگر...");
+                 } else if (res.fallbackSaved) {
+                     toast.warning("ذخیره در سرور با خطا مواجه شد. فقط روی سرور محلی ذخیره شد (Local Fallback). در حال هدایت...");
+                 }
                  router.push(`/broadcast/builder?id=${newId}`);
-             } else if (res.success && !res.serverSaved) {
-                 toast.error(res.error || "Saved locally only. Server save failed.");
              } else {
-                 toast.error(res.error || "Failed to create presentation.");
+                 toast.error(res.error || "خطا در ایجاد ارائه.");
              }
          });
     };
@@ -348,7 +367,11 @@ export default function PresentationsClient({
             <div className="glass-strong p-6 rounded-3xl border border-white/10 flex flex-col md:flex-row gap-4 justify-between items-center relative overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-noise opacity-[0.14] pointer-events-none" />
                 <div className="relative w-full z-10">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    {isSearching ? (
+                        <Loader2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-400 animate-spin" />
+                    ) : (
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    )}
                     <input
                         type="text"
                         placeholder={t.searchPresentations || "جستجوی ارائه‌ها..."}
@@ -361,7 +384,14 @@ export default function PresentationsClient({
 
             {/* Presentations Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-[Vazirmatn]" dir="rtl">
-                {presentations.filter(p => p.title.toLowerCase().includes(searchTerm.toLowerCase())).map((pres) => (
+                {presentations.length === 0 && !isSearching ? (
+                    <div className="col-span-full py-12 text-center flex flex-col items-center justify-center text-muted-foreground bg-black/20 rounded-3xl border border-white/5 border-dashed">
+                        <MonitorPlay className="w-16 h-16 opacity-20 mb-4" />
+                        <p className="font-bold text-lg">{language === 'fa' ? 'هیچ ارائه‌ای یافت نشد' : 'No presentations found'}</p>
+                        <p className="text-sm opacity-60 mt-2">{language === 'fa' ? 'شاید عبارت دیگری را جستجو کنید' : 'Try searching for something else'}</p>
+                    </div>
+                ) : null}
+                {presentations.map((pres) => (
                     <div 
                         key={pres.id} 
                         className={cn(

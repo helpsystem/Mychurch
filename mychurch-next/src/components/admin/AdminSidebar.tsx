@@ -54,9 +54,9 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
         <>
             {/* Mobile Header Toggle Button */}
             <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-black/80 backdrop-blur-xl border-b border-white/10 z-[60] flex items-center justify-between px-4">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3" dir="rtl">
                     <Image src="/logo-transparent.png" alt="Logo" width={32} height={32} className="object-contain" />
-                    <span className="font-bold text-sm tracking-widest text-primary uppercase">ADMIN PANEL</span>
+                    <span className="font-bold text-sm tracking-widest text-primary font-[Vazirmatn]">پنل مدیریت</span>
                 </div>
                 <button onClick={toggleSidebar} className="p-2 bg-white/5 rounded-xl text-white" title="Toggle Sidebar">
                     {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -83,9 +83,9 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                 <div className="h-16 md:h-20 flex items-center justify-between gap-3 px-6 border-b border-white/5 bg-black/20 relative z-10">
                     <div className="flex items-center gap-3">
                         <Image src="/logo-transparent.png" alt="Logo" width={36} height={36} className="object-contain hidden md:block" />
-                        <div className="flex flex-col">
-                            <span className="font-bold text-sm tracking-widest text-primary uppercase hidden md:block">ADMIN PANEL</span>
-                            <span className="text-xs text-emerald-500 font-bold uppercase tracking-widest">{role} MODE</span>
+                        <div className="flex flex-col" dir="rtl">
+                            <span className="font-bold text-sm tracking-widest text-primary font-[Vazirmatn] hidden md:block">پنل مدیریت</span>
+                            <span className="text-xs text-emerald-500 font-bold tracking-widest font-[Vazirmatn]">سطح: {role}</span>
                         </div>
                     </div>
                     <button onClick={toggleSidebar} className="md:hidden p-2 text-white/50 hover:text-white transition-colors" title="Close Sidebar">
@@ -94,7 +94,7 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                 </div>
 
                 <nav className="flex-1 overflow-y-auto p-4 space-y-1 relative z-10 custom-scrollbar">
-                    <NavItem href="/admin" icon={LayoutDashboard}>Dashboard</NavItem>
+                    <NavItem href="/admin" icon={LayoutDashboard}><span className="font-[Vazirmatn]">داشبورد اصلی</span></NavItem>
 
                     {(isAdmin || role === "Leader" || role === "Operator" || permissions?.canManageWorship) && (
                         <>

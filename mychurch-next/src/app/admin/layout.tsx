@@ -52,14 +52,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             />
 
             {/* Admin Main Content Area */}
-            <main className="flex-1 flex flex-col bg-[#09090b] relative overflow-y-auto md:pt-0 pt-16 w-full max-w-[100vw]">
+            <main className="flex-1 flex flex-col bg-[#09090b] relative overflow-y-auto md:pt-0 pt-16 min-w-0">
                 {/* Background Watermark */}
                 <DynamicWatermark defaultSize={800} defaultPosition="center" defaultOpacity={2} className="md:pt-0 pt-32" />
 
-                <header className="h-16 md:h-20 px-4 md:px-8 flex items-center justify-between border-b border-white/10 sticky top-0 bg-black/20 backdrop-blur-xl z-20 shadow-sm">
-                    <h1 className="text-xl font-bold">System Status</h1>
+                <header className="h-16 md:h-20 px-4 md:px-8 flex items-center justify-between border-b border-white/10 sticky top-0 bg-black/20 backdrop-blur-xl z-20 shadow-sm" dir="rtl">
+                    <h1 className="text-xl font-bold font-[Vazirmatn]">وضعیت سیستم</h1>
                     <div className="flex items-center gap-4">
-                        <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold shadow-[0_0_10px_rgba(16,185,129,0.2)]">All Systems Operational</span>
+                        <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold font-[Vazirmatn] shadow-[0_0_10px_rgba(16,185,129,0.2)]">سیستم‌ها فعال هستند</span>
                     </div>
                 </header>
                 <div className="flex-1 p-4 md:p-8 relative z-10 w-full max-w-[1600px] mx-auto overflow-x-hidden">
