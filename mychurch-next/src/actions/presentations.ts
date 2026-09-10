@@ -131,6 +131,25 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
     await ensureBroadcastAccess();
 
     try {
+        const { createAdminClient } = await import('@/utils/supabase/server');
+        const supabase = await createAdminClient();
+        const { data, error } = await supabase
+            .from('presentations')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (!error && data) {
+            const sessions = data.map(rowToSession);
+            for (const session of sessions) {
+                session.slides = await mergeSlidesWithLatestSongData(session.slides);
+            }
+            return sessions;
+        }
+    } catch (e) {
+        console.warn('[Action] Supabase getPresentations error, falling back to pg pool:', e);
+    }
+
+    try {
         const { rows } = await query(`
             SELECT *
             FROM presentations
@@ -142,7 +161,7 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
             session.slides = await mergeSlidesWithLatestSongData(session.slides);
         }
         return sessions;
-} catch (error) {
+    } catch (error) {
         console.error('[Action] Database unreachable, falling back to mock presentations.');
         return [...mockPresentations].sort((a, b) => b.date.getTime() - a.date.getTime());
     }
@@ -150,6 +169,26 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
 
 export async function searchPresentations(searchQuery: string): Promise<BroadcastSession[]> {
     await ensureBroadcastAccess();
+
+    try {
+        const { createAdminClient } = await import('@/utils/supabase/server');
+        const supabase = await createAdminClient();
+        const { data, error } = await supabase
+            .from('presentations')
+            .select('*')
+            .ilike('title', `%${searchQuery}%`)
+            .order('created_at', { ascending: false });
+
+        if (!error && data) {
+            const sessions = data.map(rowToSession);
+            for (const session of sessions) {
+                session.slides = await mergeSlidesWithLatestSongData(session.slides);
+            }
+            return sessions;
+        }
+    } catch (e) {
+        console.warn('[Action] Supabase searchPresentations error, trying pg pool:', e);
+    }
 
     try {
         const { rows } = await query(`
@@ -177,6 +216,24 @@ export async function getPresentationById(id: string): Promise<BroadcastSession 
     await ensureBroadcastAccess();
 
     try {
+        const { createAdminClient } = await import('@/utils/supabase/server');
+        const supabase = await createAdminClient();
+        const { data, error } = await supabase
+            .from('presentations')
+            .select('*')
+            .eq('id', id)
+            .maybeSingle();
+
+        if (!error && data) {
+            const session = rowToSession(data);
+            session.slides = await mergeSlidesWithLatestSongData(session.slides);
+            return session;
+        }
+    } catch (e) {
+        console.warn('[Action] Supabase getPresentationById error, trying pg pool:', e);
+    }
+
+    try {
         const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
         if (rows.length === 0) return null;
         
@@ -197,34 +254,72 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
         return { success: false, serverSaved: false, error: "Invalid presentation payload" };
     }
 
+    // Auto-extract metadata from slides
+    const extractedVerses: string[] = [];
+    const extractedSongs: string[] = [];
+    
+    safeSession.slides.forEach(slide => {
+        if (slide.type === 'SCRIPTURE' && slide.content) {
+            const scripture = slide.content as any;
+            if (Array.isArray(scripture.pages)) {
+                scripture.pages.forEach((page: any) => {
+                    extractedVerses.push(`${page.bookName?.fa || page.book} ${page.chapter}:${page.verses}`);
+                });
+            }
+        }
+        if (slide.type === 'LYRICS' && slide.content) {
+            const lyrics = slide.content as any;
+            if (lyrics.title) {
+                extractedSongs.push(lyrics.titleFa || lyrics.title);
+            }
+        }
+    });
+
+    const newMetadata = {
+        verses: Array.from(new Set(extractedVerses)),
+        songs: Array.from(new Set(extractedSongs))
+    };
+
+    // ── Primary: Supabase REST Client (Works everywhere via IPv4 HTTPS) ──
+    try {
+        const { createAdminClient } = await import('@/utils/supabase/server');
+        const supabase = await createAdminClient();
+
+        const payload: Record<string, any> = {
+            id: safeSession.id,
+            title: safeSession.title,
+            date: safeSession.date.toISOString(),
+            session_date: safeSession.date.toISOString().split('T')[0],
+            host_name: safeSession.hostName || null,
+            slides: safeSession.slides,
+            slides_json: safeSession.slides,
+            status: safeSession.status,
+            updated_at: new Date().toISOString()
+        };
+
+        const { error } = await supabase
+            .from('presentations')
+            .upsert(payload);
+
+        if (!error) {
+            revalidatePath('/admin/presentations');
+            revalidatePath('/broadcast');
+            
+            // Also update in-memory mock for hot fallback
+            const index = mockPresentations.findIndex(p => p.id === safeSession.id);
+            if (index > -1) mockPresentations[index] = safeSession;
+            else mockPresentations.push(safeSession);
+
+            return { success: true, serverSaved: true };
+        }
+        console.warn('[Action] Supabase upsert presentation failed, trying pg query:', error.message);
+    } catch (supErr) {
+        console.warn('[Action] Supabase client exception in savePresentation:', supErr);
+    }
+
+    // ── Secondary Fallback: Direct PostgreSQL pool ──
     try {
         await ensurePresentationsSchemaOnce();
-
-        // Auto-extract metadata from slides
-        const extractedVerses: string[] = [];
-        const extractedSongs: string[] = [];
-        
-        safeSession.slides.forEach(slide => {
-            if (slide.type === 'SCRIPTURE' && slide.content) {
-                const scripture = slide.content as any;
-                if (Array.isArray(scripture.pages)) {
-                    scripture.pages.forEach((page: any) => {
-                        extractedVerses.push(`${page.bookName?.fa || page.book} ${page.chapter}:${page.verses}`);
-                    });
-                }
-            }
-            if (slide.type === 'LYRICS' && slide.content) {
-                const lyrics = slide.content as any;
-                if (lyrics.title) {
-                    extractedSongs.push(lyrics.titleFa || lyrics.title);
-                }
-            }
-        });
-
-        const newMetadata = {
-            verses: Array.from(new Set(extractedVerses)),
-            songs: Array.from(new Set(extractedSongs))
-        };
 
         await query(`
             INSERT INTO presentations (id, title, date, jalali_date, host_name, slides_json, audio_file_id, metadata, status, created_at)
@@ -304,6 +399,19 @@ export async function deletePresentation(id: string): Promise<{ success: boolean
     }
 
     try {
+        const { createAdminClient } = await import('@/utils/supabase/server');
+        const supabase = await createAdminClient();
+        const { error } = await supabase.from('presentations').delete().eq('id', id);
+        if (!error) {
+            revalidatePath('/admin/presentations');
+            mockPresentations = mockPresentations.filter(p => p.id !== id);
+            return { success: true };
+        }
+    } catch (supErr) {
+        console.warn('[Action] Supabase deletePresentation error, trying pg pool:', supErr);
+    }
+
+    try {
         await query('DELETE FROM presentations WHERE id = $1', [id]);
         revalidatePath('/admin/presentations');
         mockPresentations = mockPresentations.filter(p => p.id !== id);
@@ -317,10 +425,27 @@ export async function deletePresentation(id: string): Promise<{ success: boolean
 export async function getPublicPresentationById(id: string): Promise<BroadcastSession | null> {
     // PUBLIC endpoint — no role check
     try {
+        const { createAdminClient } = await import('@/utils/supabase/server');
+        const supabase = await createAdminClient();
+        const { data, error } = await supabase
+            .from('presentations')
+            .select('*')
+            .eq('id', id)
+            .maybeSingle();
+
+        if (!error && data) {
+            const session = rowToSession(data);
+            session.slides = await mergeSlidesWithLatestSongData(session.slides);
+            return session;
+        }
+    } catch (e) {
+        console.warn('[Action] Supabase getPublicPresentationById error, trying pg query:', e);
+    }
+
+    try {
         await ensurePresentationsSchemaOnce();
         const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
         if (rows.length === 0) {
-            // Also check mockPresentations for public offline testing
             return mockPresentations.find(p => p.id === id) || null;
         }
         
