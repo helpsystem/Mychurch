@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { BookOpen, ChevronLeft, ChevronRight, Columns2, List, Loader2, Music2, Pause, Play, Search, Trash2, X } from "lucide-react";
+import { BookOpen, Check, ChevronLeft, ChevronRight, Columns2, List, Loader2, Music2, Pause, Play, Search, Trash2, X, Zap } from "lucide-react";
 import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
 import SelectedVersesModal from "./SelectedVersesModal";
 
@@ -138,6 +138,9 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const [selectedVerses, setSelectedVerses] = useState<SelectedVerseEntry[]>([]);
   const [lastInteractedVerse, setLastInteractedVerse] = useState<number | null>(null);
   const [verseManagerOpen, setVerseManagerOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [rangeStart, setRangeStart] = useState(1);
+  const [rangeEnd, setRangeEnd] = useState(10);
 
   const currentBook = books.find((book) => book.book_id === selectedBookId) || null;
   const filteredBooks = bookSearch
@@ -304,7 +307,6 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     if (!currentBook) return;
     const id = `${currentBook.book_id}-${selectedChapter}-${verseNum}`;
     const texts = getVerseTexts(verseNum);
-    const isAlreadySelected = selectedVerses.some((entry) => entry.id === id);
 
     setSelectedVerses((previous) => {
       if (previous.some((entry) => entry.id === id)) return previous.filter((entry) => entry.id !== id);
@@ -320,8 +322,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         fa: texts.fa,
       }].sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
     });
-    // Open full verse details modal only when adding (not removing) a verse
-    if (!isAlreadySelected) openVerseDetails();
+    // Fast & uninterrupted: No auto-opening drawer on click!
   };
 
   const isCurrentVerseSelected = (verseNum: number) => selectedVerses.some((entry) => entry.book_id === currentBook?.book_id && entry.chapter === selectedChapter && entry.verse_num === verseNum);
@@ -366,16 +367,43 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     });
 
     setLastInteractedVerse(toVerseNum);
-    openVerseDetails();
   };
 
-  const handleVerseClick = (verseNum: number, shiftKey: boolean) => {
-    if (shiftKey && lastInteractedVerse !== null) {
+  const handleVerseClick = (verseNum: number, event: React.MouseEvent) => {
+    if (event.shiftKey && lastInteractedVerse !== null) {
       applyRangeSelection(verseNum);
       return;
     }
     toggleVerse(verseNum);
     setLastInteractedVerse(verseNum);
+  };
+
+  const selectCustomRange = () => {
+    if (!currentBook) return;
+    const start = Math.max(1, Math.min(rangeStart, rangeEnd));
+    const end = Math.max(rangeStart, rangeEnd);
+    const range = Array.from({ length: end - start + 1 }, (_, idx) => start + idx);
+
+    setSelectedVerses((previous) => {
+      const byId = new Map(previous.map((entry) => [entry.id, entry]));
+      range.forEach((verseNum) => {
+        const id = `${currentBook.book_id}-${selectedChapter}-${verseNum}`;
+        const texts = getVerseTexts(verseNum);
+        byId.set(id, {
+          id,
+          book_id: currentBook.book_id,
+          book_name_en: currentBook.book_name_en,
+          book_name_fa: currentBook.book_name_fa,
+          book_order: currentBook.book_order,
+          chapter: selectedChapter,
+          verse_num: verseNum,
+          en: texts.en,
+          fa: texts.fa,
+        });
+      });
+      return Array.from(byId.values()).sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
+    });
+    setLastInteractedVerse(end);
   };
 
   const addVisibleVerses = () => {
@@ -534,7 +562,26 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     if (!selectedVerses.length) return;
     onAddSlides(buildSlides());
     setSelectedVerses([]);
+    onClose();
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && selectedVerses.length > 0) {
+        const tag = (document.activeElement?.tagName || "").toLowerCase();
+        if (tag === "input" || tag === "textarea") return;
+        e.preventDefault();
+        handleAddSlides();
+      } else if (e.key === "Escape") {
+        if (showBookList) setShowBookList(false);
+        else if (showChapterGrid) setShowChapterGrid(false);
+        else if (showSidebar) setShowSidebar(false);
+        else onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedVerses, showBookList, showChapterGrid, showSidebar]);
 
   const selectedReferences = Array.from(new Set(selectedVerses.map((entry) => `${entry.book_name_fa}-${entry.chapter}`)));
   const chapterGrid = currentBook ? Array.from({ length: currentBook.chapter_count }, (_, index) => index + 1) : [];
@@ -650,34 +697,77 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
           </div>
         )}
 
-        <div className="max-w-5xl mx-auto px-4 pt-4 pb-1"><p className="text-xs text-slate-600 text-center">{isRTL ? "برای انتخاب هر آیه روی آن کلیک کنید" : "Click on any verse to select it"}</p></div>
+        <div className="max-w-5xl mx-auto px-4 pt-3 pb-2 flex flex-wrap items-center justify-center gap-2.5">
+          {/* Segmented Range Selector Box */}
+          <div className="flex items-center gap-2 bg-black/70 border border-amber-400/60 rounded-xl px-3 py-1.5 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+            <span className="text-xs text-amber-300 font-bold font-[Vazirmatn] select-none">انتخاب بازه:</span>
+            <div className="flex items-center gap-1">
+              <span className="text-xs text-zinc-400 font-[Vazirmatn]">از آیه</span>
+              <input
+                type="number"
+                min={1}
+                max={150}
+                value={rangeStart}
+                onChange={(e) => setRangeStart(Math.max(1, parseInt(e.target.value) || 1))}
+                className="w-12 bg-white/10 border border-amber-400/40 rounded px-1.5 py-0.5 text-center text-xs font-bold font-mono text-white outline-none focus:border-amber-400"
+              />
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="text-xs text-zinc-400 font-[Vazirmatn]">تا</span>
+              <input
+                type="number"
+                min={1}
+                max={150}
+                value={rangeEnd}
+                onChange={(e) => setRangeEnd(Math.max(1, parseInt(e.target.value) || 1))}
+                className="w-12 bg-white/10 border border-amber-400/40 rounded px-1.5 py-0.5 text-center text-xs font-bold font-mono text-white outline-none focus:border-amber-400"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={selectCustomRange}
+              className="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-black font-black text-xs rounded-lg transition shadow flex items-center gap-1 cursor-pointer font-[Vazirmatn]"
+            >
+              <Check className="w-3.5 h-3.5" />
+              <span>انتخاب این بازه</span>
+            </button>
+          </div>
 
-        <div className="max-w-5xl mx-auto px-4 pb-2 flex flex-wrap items-center justify-center gap-2">
-          <button
-            onClick={addVisibleVerses}
-            className="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-600/30 transition"
-          >
-            {isRTL ? "افزودن همه نتایج" : "Select All Results"}
-          </button>
-          <button
-            onClick={clearCurrentChapterSelection}
-            className="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600/15 border border-rose-500/35 text-rose-300 hover:bg-rose-600/25 transition"
-          >
-            {isRTL ? "پاک کردن انتخاب‌های این باب" : "Clear Chapter Selection"}
-          </button>
-          <p className="text-[11px] text-slate-500 font-[Vazirmatn]">
-            {isRTL ? "برای انتخاب بازه، Shift + کلیک استفاده کنید" : "Use Shift+Click to select a range"}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={addVisibleVerses}
+              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-600/30 transition"
+            >
+              {isRTL ? "افزودن همه آیات این باب" : "Select All Verses"}
+            </button>
+            <button
+              onClick={clearCurrentChapterSelection}
+              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600/15 border border-rose-500/35 text-rose-300 hover:bg-rose-600/25 transition"
+            >
+              {isRTL ? "پاک کردن انتخاب‌ها" : "Clear Selection"}
+            </button>
+          </div>
+        </div>
+
+        <div className="max-w-5xl mx-auto px-4 pb-2">
+          <p className="text-xs text-zinc-400 text-center font-[Vazirmatn] flex items-center justify-center gap-2 flex-wrap select-none">
+            <span className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded text-[11px] text-amber-300 font-bold">💡 راهنمای انتخاب:</span>
+            <span>کلیک روی آیه: انتخاب یا حذف</span>
+            <span>•</span>
+            <span><kbd className="px-1.5 py-0.5 bg-zinc-800 border border-zinc-600 rounded text-[10px] text-zinc-200">Ctrl + کلیک</kbd>: سلکت دستی چندگانه</span>
+            <span>•</span>
+            <span><kbd className="px-1.5 py-0.5 bg-zinc-800 border border-zinc-600 rounded text-[10px] text-zinc-200">Shift + کلیک</kbd>: انتخاب بازه</span>
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto px-4 py-3">
+        <div className="max-w-5xl mx-auto px-4 py-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <input
               value={verseSearch}
               onChange={(event) => setVerseSearch(event.target.value)}
               placeholder={isRTL ? "جستجو در آیات..." : "Search in verses..."}
-              className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-3 py-2.5 text-sm outline-none focus:border-blue-500/50 focus:bg-white/10 text-white placeholder-slate-600 transition-all"
+              className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-3 py-2 text-sm outline-none focus:border-blue-500/50 focus:bg-white/10 text-white placeholder-slate-600 transition-all"
             />
             {verseSearch && (
               <button
@@ -693,16 +783,16 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         {loading ? (
           <div className="flex items-center justify-center py-24"><Loader2 className="w-8 h-8 animate-spin text-blue-400" /></div>
         ) : (
-          <div className="max-w-5xl mx-auto px-4 pb-16 pt-4">
+          <div className="max-w-5xl mx-auto px-4 pb-28 pt-2">
             {readingMode === "parallel" && (
               <div className="space-y-3">
                 {filteredParallelVerses.length > 0 ? (
                   filteredParallelVerses.map((verse) => {
                     const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
                     return (
-                      <div key={verse.verse_num} onClick={(event) => handleVerseClick(verse.verse_num, event.shiftKey)} className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${selected ? "bg-amber-500/10 border border-amber-500/30" : "hover:bg-white/5 border border-transparent"}`}>
-                        <div className="flex gap-3" dir="ltr"><span className="text-sm font-black text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded mt-1 shrink-0 select-none">{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize}px`, fontFamily: fontEn }}>{verse.en || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
-                        <div className="flex gap-3 text-right" dir="rtl"><span className="text-sm font-black text-amber-500 bg-amber-500/10 px-1.5 py-0.5 rounded mt-1 shrink-0 select-none">{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize + 2}px`, fontFamily: fontFa }}>{verse.fa || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
+                      <div key={verse.verse_num} onClick={(event) => handleVerseClick(verse.verse_num, event)} className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-150 cursor-pointer select-none ${selected ? "bg-amber-500/15 border-2 border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)]" : "hover:bg-white/5 border border-transparent"}`}>
+                        <div className="flex gap-3" dir="ltr"><span className={`text-sm font-black px-1.5 py-0.5 rounded mt-1 shrink-0 select-none ${selected ? "text-black bg-amber-400" : "text-blue-400 bg-blue-500/10"}`}>{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize}px`, fontFamily: fontEn }}>{verse.en || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
+                        <div className="flex gap-3 text-right" dir="rtl"><span className={`text-sm font-black px-1.5 py-0.5 rounded mt-1 shrink-0 select-none ${selected ? "text-black bg-amber-400" : "text-amber-500 bg-amber-500/10"}`}>{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize + 2}px`, fontFamily: fontFa }}>{verse.fa || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
                       </div>
                     );
                   })
@@ -720,7 +810,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     return (
                       <span key={verse.verse_num}>
                         {headingMap.has(verse.verse_num) && <h3 className="text-base font-black text-blue-300 mt-8 mb-2 not-prose tracking-wide" dir="ltr">{headingMap.get(verse.verse_num)}</h3>}
-                        <span dir="ltr" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event.shiftKey)}>
+                        <span dir="ltr" className={`inline cursor-pointer rounded px-1 transition-all duration-150 select-none ${selected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-400 font-bold" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event)}>
                           <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{verse.verse_num}</sup>
                           {verse.text} 
                         </span>
@@ -741,7 +831,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                   filteredFaVerses.map((verse) => {
                     const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
                     return (
-                      <span key={verse.verse_num} dir="rtl" className={`inline cursor-pointer rounded px-1 transition-all duration-200 ${selected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-500" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event.shiftKey)}>
+                      <span key={verse.verse_num} dir="rtl" className={`inline cursor-pointer rounded px-1 transition-all duration-150 select-none ${selected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-400 font-bold" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event)}>
                         <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{verse.verse_num}</sup>
                         {verse.text} 
                       </span>
@@ -754,9 +844,68 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             {!parallelVerses.length && !verses.length && !faVerses.length && !loading && <p className="text-center text-slate-600 py-16">{isRTL ? "آیه‌ای یافت نشد" : "No verses found"}</p>}
           </div>
         )}
+
+        {/* ── کپسول شناور اکشن‌ها (Floating Action Bar) ── */}
+        {selectedVerses.length > 0 && (
+          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[300] bg-zinc-950/95 border border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.3)] backdrop-blur-2xl rounded-2xl px-4 py-2.5 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-5 max-w-[95vw] overflow-x-auto">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
+              <span className="text-amber-300 font-black text-xs md:text-sm font-[Vazirmatn] select-none">
+                {selectedVerses.length} {isRTL ? "آیه انتخاب شد" : "verses"}
+              </span>
+            </div>
+
+            <div className="h-5 w-px bg-white/20 shrink-0" />
+
+            {/* Quick Mode Switcher */}
+            <div className="hidden sm:flex items-center bg-black/60 border border-white/10 rounded-xl p-0.5 text-xs shrink-0">
+              <button
+                type="button"
+                onClick={() => { setSlideBuildMode("perVerse"); persist("bp_slide_mode", "perVerse"); }}
+                className={`px-2 py-1 rounded-lg font-bold transition font-[Vazirmatn] ${slideBuildMode === "perVerse" ? "bg-amber-500/30 text-amber-300" : "text-zinc-400 hover:text-white"}`}
+              >
+                {isRTL ? "هر آیه مجزا" : "Per Verse"}
+              </button>
+              <button
+                type="button"
+                onClick={() => { setSlideBuildMode("single"); persist("bp_slide_mode", "single"); }}
+                className={`px-2 py-1 rounded-lg font-bold transition font-[Vazirmatn] ${slideBuildMode === "single" ? "bg-amber-500/30 text-amber-300" : "text-zinc-400 hover:text-white"}`}
+              >
+                {isRTL ? "همه در یک اسلاید" : "Combined"}
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowSidebar(prev => !prev)}
+              className={`px-2.5 py-1 text-xs rounded-lg transition font-[Vazirmatn] shrink-0 ${showSidebar ? "bg-white/20 text-white" : "text-zinc-400 hover:text-white hover:bg-white/10"}`}
+              title={isRTL ? "نمایش یا بستن لیست انتخاب‌ها" : "Toggle selected list"}
+            >
+              {showSidebar ? (isRTL ? "بستن لیست" : "Hide List") : (isRTL ? "نمایش لیست" : "Show List")}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setSelectedVerses([])}
+              className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition shrink-0"
+              title={isRTL ? "پاک کردن انتخاب‌ها" : "Clear selection"}
+            >
+              <Trash2 className="w-4 h-4" />
+            </button>
+
+            <button
+              type="button"
+              onClick={handleAddSlides}
+              className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_18px_rgba(245,158,11,0.5)] transition cursor-pointer font-[Vazirmatn] shrink-0"
+            >
+              <Zap className="w-4 h-4 fill-black" />
+              <span>{isRTL ? "افزودن اسلایدها (Enter)" : "Add Slides (Enter)"}</span>
+            </button>
+          </div>
+        )}
         </main>
 
-        {selectedVerses.length > 0 && (
+        {showSidebar && selectedVerses.length > 0 && (
           <div className={`w-80 bg-slate-900/95 border-l border-white/10 overflow-hidden flex flex-col ${isRTL ? 'border-l border-r-0' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
             <div className="shrink-0 bg-gradient-to-r from-amber-600/20 to-amber-500/10 border-b border-amber-500/20 px-4 py-3">
               <div className="flex items-center justify-between mb-2">

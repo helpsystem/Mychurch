@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
-import { BroadcastSession, AppLanguage, Slide } from "@/types/broadcast";
+import { BroadcastSession, AppLanguage, Slide, ScripturePage, SlideType } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
 import { ArrowRight, CalendarDays, Loader2, Save, BookOpen, MonitorPlay } from "lucide-react";
 import Link from "next/link";
@@ -11,6 +11,8 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
 import { useRouter } from "next/navigation";
 import TemplateManager from "@/components/broadcast/TemplateManager";
+import QuickScriptureBar from "@/components/broadcast/QuickScriptureBar";
+import ScriptureSelector from "@/components/broadcast/ScriptureSelector";
 
 type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
     date: string;
@@ -25,11 +27,30 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     const [isPending, startTransition] = useTransition();
     const [isOpeningPresenter, setIsOpeningPresenter] = useState(false);
     const [templateModalOpen, setTemplateModalOpen] = useState(false);
+    const [fullScriptureModalOpen, setFullScriptureModalOpen] = useState(false);
     const [isAutoSaveInProgress, setIsAutoSaveInProgress] = useState(false);
     const viewerChannelRef = useRef<BroadcastChannel | null>(null);
     const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const { t, language } = useLanguage();
     const router = useRouter();
+
+    const handleQuickAddScripture = (pages: ScripturePage[]) => {
+        if (!pages.length) return;
+        const newSlides: Slide[] = pages.map((page, idx) => ({
+            id: crypto.randomUUID(),
+            order: session.slides.length + idx,
+            type: SlideType.SCRIPTURE,
+            content: { pages: [page] },
+            notes: '',
+            zoom: 1.15,
+        }));
+        setSession(prev => ({
+            ...prev,
+            slides: [...prev.slides, ...newSlides]
+        }));
+        setActiveSlideIndex(session.slides.length);
+        setFullScriptureModalOpen(false);
+    };
 
     const stateRef = useRef({ slides: session.slides, activeSlideIndex });
     useEffect(() => {
@@ -303,12 +324,20 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                 />
                 
                 {/* Advanced Live Preview Hub */}
-                <div className="flex-1 bg-neutral-950 flex flex-col items-center justify-center p-8 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0.1))] relative overflow-hidden">
+                <div className="flex-1 bg-neutral-950 flex flex-col p-4 md:p-6 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0.1))] relative overflow-y-auto">
                      <div className="absolute inset-0 bg-indigo-500/5 mix-blend-overlay pointer-events-none" />
 
-                     
+                     {/* Segmented Quick Scripture Bar with Illuminated Inputs */}
+                     <div className="w-full max-w-5xl mx-auto mb-4 relative z-20 shrink-0">
+                       <QuickScriptureBar
+                         onAddSlides={handleQuickAddScripture}
+                         onOpenFullSelector={() => setFullScriptureModalOpen(true)}
+                         isRTL={language === 'fa'}
+                       />
+                     </div>
+
                      {/* Preview Wrapper forces 16:9 aspect ratio - perfectly centered */}
-                     <div className="relative w-screen h-screen flex items-center justify-center" style={{width: '100%', height: '100%'}}>
+                     <div className="relative flex-1 flex items-center justify-center min-h-[340px] w-full">
                           <div className="relative w-full aspect-video bg-black rounded-3xl border-4 border-neutral-800 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden group max-w-5xl">
                                {session.slides.length > 0 ? (
                                    <SlideRenderer 
@@ -347,6 +376,15 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                 currentSlides={session.slides}
                 isRTL={language === 'fa'}
             />
+
+            {/* Full Bible Presentation Selector Modal (Exploration & Visual Select) */}
+            {fullScriptureModalOpen && (
+                <ScriptureSelector
+                    lang={language as any}
+                    onAddSlides={handleQuickAddScripture}
+                    onClose={() => setFullScriptureModalOpen(false)}
+                />
+            )}
         </div>
     );
 }
