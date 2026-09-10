@@ -1,4 +1,5 @@
 import { query } from "@/lib/db";
+import { createAdminClient } from "@/utils/supabase/server";
 
 const isValidUUID = (val: any): boolean => {
   if (typeof val !== 'string') return false;
@@ -112,12 +113,26 @@ export async function mergeSlidesWithLatestSongData(slides: any[]): Promise<any[
   }
 
   try {
-    const { rows } = await query(
-      `SELECT id, title_fa, title_en, lyrics_fa, lyrics_en, lyrics_finglish, chords, timing_data, timepoints, audio_url 
-       FROM church_worship_songs 
-       WHERE id = ANY($1)`,
-      [songIds]
-    );
+    let rows: any[] = [];
+    try {
+      const supabase = await createAdminClient();
+      const { data, error } = await supabase
+        .from('church_worship_songs')
+        .select('id, title_fa, title_en, lyrics_fa, lyrics_en, lyrics_finglish, chords, timing_data, timepoints, audio_url')
+        .in('id', songIds);
+      if (!error && data) {
+        rows = data;
+      }
+    } catch {
+      // Fallback to direct pg query if needed
+      const result = await query(
+        `SELECT id, title_fa, title_en, lyrics_fa, lyrics_en, lyrics_finglish, chords, timing_data, timepoints, audio_url 
+         FROM church_worship_songs 
+         WHERE id = ANY($1)`,
+        [songIds]
+      );
+      rows = result.rows || [];
+    }
 
     const songMap = new Map<string, any>();
     for (const row of rows) {

@@ -212,8 +212,14 @@ export async function searchPresentations(searchQuery: string): Promise<Broadcas
     }
 }
 
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export async function getPresentationById(id: string): Promise<BroadcastSession | null> {
     await ensureBroadcastAccess();
+
+    if (!id || !UUID_REGEX.test(id)) {
+        return mockPresentations.find(p => p.id === id) || null;
+    }
 
     try {
         const { createAdminClient } = await import('@/utils/supabase/server');
@@ -252,6 +258,10 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
     const safeSession = normalizeSession(session);
     if (!safeSession.id || !safeSession.title) {
         return { success: false, serverSaved: false, error: "Invalid presentation payload" };
+    }
+
+    if (!UUID_REGEX.test(safeSession.id)) {
+        safeSession.id = crypto.randomUUID();
     }
 
     // Auto-extract metadata from slides
@@ -398,6 +408,11 @@ export async function deletePresentation(id: string): Promise<{ success: boolean
         return { success: false, error: "Invalid presentation id" };
     }
 
+    if (!UUID_REGEX.test(id)) {
+        mockPresentations = mockPresentations.filter(p => p.id !== id);
+        return { success: true };
+    }
+
     try {
         const { createAdminClient } = await import('@/utils/supabase/server');
         const supabase = await createAdminClient();
@@ -424,6 +439,10 @@ export async function deletePresentation(id: string): Promise<{ success: boolean
 
 export async function getPublicPresentationById(id: string): Promise<BroadcastSession | null> {
     // PUBLIC endpoint — no role check
+    if (!id || !UUID_REGEX.test(id)) {
+        return null;
+    }
+
     try {
         const { createAdminClient } = await import('@/utils/supabase/server');
         const supabase = await createAdminClient();
