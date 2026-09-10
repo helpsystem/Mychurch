@@ -225,13 +225,22 @@ function ViewerContent() {
                     `/api/broadcast/viewer-session?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(viewerToken)}`,
                     { cache: 'no-store' }
                 );
-                if (!res.ok) return;
+                if (!res.ok) {
+                    console.warn('[Viewer] viewer-session fetch returned status:', res.status);
+                    return;
+                }
 
                 const data = await res.json();
                 if (!isMounted || !Array.isArray(data?.slides)) return;
-                setSessionSlides(data.slides as Slide[]);
-            } catch {
-                // Viewer can still run via BroadcastChannel in same-browser mode.
+                const loadedSlides = data.slides as Slide[];
+                setSessionSlides(loadedSlides);
+                setState(prev => ({
+                    ...prev,
+                    currentSlide: prev.currentSlide || loadedSlides[prev.slideIndex] || loadedSlides[0] || null,
+                    connected: true
+                }));
+            } catch (err) {
+                console.warn('[Viewer] Failed to load session slides:', err);
             }
         };
 
@@ -243,7 +252,7 @@ function ViewerContent() {
 
     // Stable slide change handler to prevent WebSocket infinite connection loops
     const handleSlideChange = useCallback((index: number) => {
-        const fromSession = slidesRef.current[index] || null;
+        const fromSession = slidesRef.current[index] || slidesRef.current[0] || null;
         setState(prev => ({
             ...prev,
             currentSlide: fromSession,
@@ -265,12 +274,13 @@ function ViewerContent() {
         if (!sessionSlides.length) return;
         if (state.currentSlide) return;
 
-        const fromSession = sessionSlides[state.slideIndex] || null;
+        const fromSession = sessionSlides[state.slideIndex] || sessionSlides[0] || null;
         if (!fromSession) return;
 
         setState(prev => ({
             ...prev,
-            currentSlide: fromSession
+            currentSlide: fromSession,
+            connected: true
         }));
     }, [sessionSlides, state.slideIndex, state.currentSlide]);
 
@@ -295,7 +305,7 @@ function ViewerContent() {
                 console.log('📺 [Viewer Realtime] Received message:', msg);
 
                 if (msg.type === 'SET_SLIDE') {
-                    const fromSession = slidesRef.current[msg.slideIndex] || null;
+                    const fromSession = msg.slide || slidesRef.current[msg.slideIndex] || slidesRef.current[0] || null;
                     setState(prev => ({
                         ...prev,
                         currentSlide: fromSession,
@@ -371,10 +381,14 @@ function ViewerContent() {
 
             if (msg.type === 'slide_change' && msg.payload) {
                 console.log('📺 [Viewer Channel] Slide changed to index:', msg.payload.index, 'slide:', msg.payload.slide);
+                if (Array.isArray(msg.payload.slides) && msg.payload.slides.length > 0) {
+                    setSessionSlides(msg.payload.slides);
+                }
+                const activeSlide = msg.payload.slide || (Array.isArray(msg.payload.slides) ? msg.payload.slides[msg.payload.index ?? 0] : null);
                 setState(prev => ({
                     ...prev,
-                    currentSlide: msg.payload.slide,
-                    slideIndex: msg.payload.index,
+                    currentSlide: activeSlide || prev.currentSlide,
+                    slideIndex: msg.payload.index ?? prev.slideIndex,
                     internalPageIndex: msg.payload.internalPageIndex || 0,
                     lyricsVisibility: null, // Reset overrides upon active slide change
                     activeScriptureReference: null,
@@ -405,10 +419,14 @@ function ViewerContent() {
 
             if (msg.type === 'full_state' && msg.payload) {
                 console.log('📺 [Viewer Channel] Full state update:', msg.payload);
+                if (Array.isArray(msg.payload.slides) && msg.payload.slides.length > 0) {
+                    setSessionSlides(msg.payload.slides);
+                }
+                const activeSlide = msg.payload.currentSlide || (Array.isArray(msg.payload.slides) ? (msg.payload.slides[msg.payload.slideIndex || 0] || msg.payload.slides[0]) : null);
                 setState(prev => ({
                     ...prev,
-                    currentSlide: msg.payload.currentSlide,
-                    slideIndex: msg.payload.slideIndex,
+                    currentSlide: activeSlide || prev.currentSlide,
+                    slideIndex: msg.payload.slideIndex ?? prev.slideIndex,
                     internalPageIndex: msg.payload.internalPageIndex || 0,
                     config: msg.payload.config,
                     activeScriptureReference: msg.payload.activeScriptureReference || null,
@@ -484,7 +502,9 @@ function ViewerContent() {
     }, [syncState.isConnected]);
 
     const renderSlideContent = () => {
-        if (!state.currentSlide) {
+        const slide = state.currentSlide || (sessionSlides.length > 0 ? (sessionSlides[state.slideIndex] || sessionSlides[0]) : null);
+
+        if (!slide) {
             return (
                 <div className="flex items-center justify-center h-full bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
                     <div className="text-center animate-pulse">
@@ -505,8 +525,6 @@ function ViewerContent() {
                 </div>
             );
         }
-
-        const slide = state.currentSlide;
 
         if (slide.type === SlideType.SCRIPTURE) {
             return (

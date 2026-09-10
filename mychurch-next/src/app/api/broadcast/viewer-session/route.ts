@@ -9,6 +9,8 @@ function getSecret(): string {
   return (
     process.env.BROADCAST_VIEWER_SECRET ||
     process.env.BROADCAST_VIEWER_TOKEN_SECRET ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     process.env.NEXTAUTH_SECRET ||
     "dev-broadcast-secret"
   );
@@ -86,21 +88,48 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const { rows } = await query(
-      "SELECT id, slides_json, slides FROM presentations WHERE id = $1 LIMIT 1",
-      [sessionId]
-    );
+    let row: { id: string; slides_json?: unknown; slides?: unknown } | null = null;
 
-    if (rows.length === 0) {
+    // 1. Primary: Query Supabase REST client (works across IPv4/IPv6 without node-pg socket limits)
+    try {
+      const { createAdminClient } = await import("@/utils/supabase/server");
+      const supabase = await createAdminClient();
+      const { data, error } = await supabase
+        .from("presentations")
+        .select("id, slides_json, slides")
+        .eq("id", sessionId)
+        .maybeSingle();
+
+      if (!error && data) {
+        row = data;
+      }
+    } catch (sbErr) {
+      console.warn("[viewer-session] Supabase fetch error, trying direct query:", sbErr);
+    }
+
+    // 2. Secondary fallback: direct PostgreSQL query
+    if (!row) {
+      try {
+        const { rows } = await query(
+          "SELECT id, slides_json, slides FROM presentations WHERE id = $1 LIMIT 1",
+          [sessionId]
+        );
+        if (rows.length > 0) {
+          row = rows[0] as { id: string; slides_json?: unknown; slides?: unknown };
+        }
+      } catch (pgErr) {
+        console.warn("[viewer-session] Direct pg query error:", pgErr);
+      }
+    }
+
+    if (!row) {
       return NextResponse.json({ ok: false, error: "session-not-found" }, { status: 404 });
     }
 
-    const row = rows[0] as { id: string; slides_json?: unknown; slides?: unknown };
     let rawSlides: unknown[];
-
     if (Array.isArray(row.slides_json)) {
       rawSlides = row.slides_json;
-    } else if (typeof row.slides_json === 'string') {
+    } else if (typeof row.slides_json === "string") {
       try {
         rawSlides = JSON.parse(row.slides_json);
       } catch {
@@ -108,14 +137,20 @@ export async function GET(req: NextRequest) {
       }
     } else if (Array.isArray(row.slides)) {
       rawSlides = row.slides;
+    } else if (typeof row.slides === "string") {
+      try {
+        rawSlides = JSON.parse(row.slides);
+      } catch {
+        rawSlides = [];
+      }
     } else {
       rawSlides = [];
     }
 
     const mergedSlides = await mergeSlidesWithLatestSongData(rawSlides);
-
     return NextResponse.json({ ok: true, sessionId: row.id, slides: mergedSlides });
-  } catch {
+  } catch (err) {
+    console.error("[viewer-session] unexpected error:", err);
     return NextResponse.json({ ok: false, error: "db-error" }, { status: 500 });
   }
 }

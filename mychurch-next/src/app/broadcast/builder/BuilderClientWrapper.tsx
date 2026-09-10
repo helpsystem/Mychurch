@@ -70,12 +70,13 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
 
         const pushFullState = () => {
             const current = stateRef.current;
-            const currentSlide = current.slides[current.activeSlideIndex] || null;
+            const currentSlide = current.slides[current.activeSlideIndex] || current.slides[0] || null;
             channel.postMessage({
                 type: "full_state",
                 payload: {
                     currentSlide,
                     slideIndex: current.activeSlideIndex,
+                    slides: current.slides,
                     internalPageIndex: 0,
                     config: null
                 }
@@ -94,20 +95,21 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
             channel.close();
             viewerChannelRef.current = null;
         };
-    }, [session.id]); // Depends ONLY on session.id
+    }, [session.id]);
 
     useEffect(() => {
         if (!session.id || !viewerChannelRef.current) return;
-        const currentSlide = session.slides[activeSlideIndex] || null;
+        const currentSlide = session.slides[activeSlideIndex] || session.slides[0] || null;
         viewerChannelRef.current.postMessage({
             type: "slide_change",
             payload: {
                 slide: currentSlide,
                 index: activeSlideIndex,
+                slides: session.slides,
                 internalPageIndex: 0
             }
         });
-    }, [activeSlideIndex]); // Triggers only on index changes
+    }, [activeSlideIndex, session.slides, session.id]);
 
     useEffect(() => {
         return () => {
@@ -208,6 +210,13 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
 
         setIsOpeningPresenter(true);
         try {
+            // 1. Ensure latest slides are committed to database/Supabase
+            try {
+                await savePresentation(session);
+            } catch (saveErr) {
+                console.warn("[Builder] Auto-save before opening presenter failed:", saveErr);
+            }
+
             const tokenRes = await fetch('/api/broadcast/viewer-token', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -219,8 +228,21 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                 throw new Error(tokenData?.error || 'token_failed');
             }
 
+            // 2. Broadcast latest state immediately to local broadcast channel
+            const currentSlide = session.slides[activeSlideIndex] || session.slides[0] || null;
+            viewerChannelRef.current?.postMessage({
+                type: "full_state",
+                payload: {
+                    currentSlide,
+                    slideIndex: activeSlideIndex,
+                    slides: session.slides,
+                    internalPageIndex: 0,
+                    config: null
+                }
+            });
+
             const url = `/broadcast/view?session=${encodeURIComponent(session.id)}&token=${encodeURIComponent(tokenData.token)}`;
-            window.open(url, '_blank', 'noopener,noreferrer');
+            window.open(url, '_blank');
             toast.success(language === 'fa' ? 'Presenter باز شد' : 'Presenter opened');
         } catch {
             toast.error(language === 'fa' ? 'ساخت لینک Presenter ناموفق بود.' : 'Failed to open presenter link.');
