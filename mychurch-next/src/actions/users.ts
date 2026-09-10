@@ -1,8 +1,9 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { hasAdminRoleOrPermission } from "@/lib/access-control";
+import { logUserActivity } from "@/actions/audit";
 
 export type UserRow = {
     id: string;
@@ -60,15 +61,39 @@ export async function updateUserRole(id: string, newRole: string) {
     }
 
     try {
-        const supabase = await createClient();
-        const { error } = await supabase
+        const adminSupabase = await createAdminClient();
+        
+        // Fetch current user details
+        const { data: targetUser } = await adminSupabase
+            .from('users')
+            .select('email, role, name')
+            .eq('id', id)
+            .maybeSingle();
+
+        const oldRole = targetUser?.role || 'Unknown';
+
+        const { error } = await adminSupabase
             .from('users')
             .update({ role: newRole })
             .eq('id', id);
 
         if (error) throw error;
 
+        // Log role change in audit_logs
+        await logUserActivity({
+            action: 'UPDATE_USER_ROLE',
+            resourceType: 'user',
+            resourceId: id,
+            details: {
+                targetEmail: targetUser?.email,
+                targetName: targetUser?.name,
+                oldRole,
+                newRole
+            }
+        });
+
         revalidatePath('/admin/users');
+        revalidatePath('/admin/audit-logs');
         return true;
     } catch (error) {
         console.error("Failed to update user role:", error);
@@ -104,15 +129,34 @@ export async function updateUserPermissions(id: string, permissions: Record<stri
     }
 
     try {
-        const supabase = await createClient();
-        const { error } = await supabase
+        const adminSupabase = await createAdminClient();
+
+        const { data: targetUser } = await adminSupabase
+            .from('users')
+            .select('email, role, name')
+            .eq('id', id)
+            .maybeSingle();
+
+        const { error } = await adminSupabase
             .from('users')
             .update({ permissions })
             .eq('id', id);
 
         if (error) throw error;
 
+        await logUserActivity({
+            action: 'UPDATE_USER_PERMISSIONS',
+            resourceType: 'user',
+            resourceId: id,
+            details: {
+                targetEmail: targetUser?.email,
+                targetName: targetUser?.name,
+                permissions
+            }
+        });
+
         revalidatePath('/admin/users');
+        revalidatePath('/admin/audit-logs');
         return true;
     } catch (error) {
         console.error("Failed to update user permissions:", error);

@@ -10,6 +10,10 @@ export interface DashboardStats {
     activeWidgets: number;
     dbConnections: number;
     totalCategories: number;
+    pendingPrayersCount: number;
+    presentationsCount: number;
+    scannedDocsCount: number;
+    trashedItemsCount: number;
     translationStats: TranslationUsageStats;
     recentActivities: Array<{
         id: number;
@@ -35,19 +39,31 @@ export async function getDashboardStats(): Promise<DashboardStats> {
             widgetsRes,
             songsRes,
             mediaRes,
-            auditRes
+            auditRes,
+            prayersRes,
+            presRes,
+            docsRes,
+            trashRes
         ] = await Promise.all([
             adminSupabase.from('users').select('*', { count: 'exact', head: true }),
             adminSupabase.from('widgets').select('*', { count: 'exact', head: true }),
             adminSupabase.from('worship_songs').select('*', { count: 'exact', head: true }),
             adminSupabase.from('media_library').select('*', { count: 'exact', head: true }).or('is_deleted.is.null,is_deleted.eq.false'),
-            adminSupabase.from('audit_logs').select('*').order('created_at', { ascending: false }).limit(6)
+            adminSupabase.from('audit_logs').select('*').order('created_at', { ascending: false }).limit(6),
+            adminSupabase.from('prayer_requests').select('*', { count: 'exact', head: true }).eq('is_deleted', false),
+            adminSupabase.from('presentations').select('*', { count: 'exact', head: true }).eq('is_deleted', false),
+            adminSupabase.from('scanned_documents').select('*', { count: 'exact', head: true }).eq('is_deleted', false),
+            adminSupabase.from('media_library').select('*', { count: 'exact', head: true }).eq('is_deleted', true)
         ]);
 
         const activeUsers = usersRes.count || 0;
         const activeWidgets = (widgetsRes.count && widgetsRes.count > 0) ? widgetsRes.count : 4;
         const totalCategories = songsRes.count || 12;
         const dbConnections = mediaRes.count || 1;
+        const pendingPrayersCount = prayersRes.count || 0;
+        const presentationsCount = presRes.count || 0;
+        const scannedDocsCount = docsRes.count || 0;
+        const trashedItemsCount = trashRes.count || 0;
 
         // 2. Format real recent activities from audit_logs
         const recentActivities: Array<{
@@ -99,6 +115,10 @@ export async function getDashboardStats(): Promise<DashboardStats> {
             activeWidgets,
             dbConnections,
             totalCategories,
+            pendingPrayersCount,
+            presentationsCount,
+            scannedDocsCount,
+            trashedItemsCount,
             translationStats,
             recentActivities
         };
@@ -109,6 +129,10 @@ export async function getDashboardStats(): Promise<DashboardStats> {
             activeWidgets: 4,
             dbConnections: 1,
             totalCategories: 12,
+            pendingPrayersCount: 0,
+            presentationsCount: 0,
+            scannedDocsCount: 0,
+            trashedItemsCount: 0,
             translationStats: {
                 monthlyChars: 0,
                 monthlyQuota: 2000000,
