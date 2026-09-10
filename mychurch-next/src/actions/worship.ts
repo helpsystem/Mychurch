@@ -75,6 +75,29 @@ export async function initializeWorshipDB() {
 
 export async function getWorshipSongs(): Promise<WorshipSong[]> {
     try {
+        const { createAdminClient } = await import('@/utils/supabase/server');
+        const supabase = await createAdminClient();
+        const { data, error } = await supabase
+            .from('church_worship_songs')
+            .select('*')
+            .order('title_fa', { ascending: true });
+
+        if (!error && data && data.length > 0) {
+            return data.map((r: any) => ({
+                ...r,
+                created_at: r.created_at ? new Date(r.created_at) : undefined,
+                audio_health_checked_at: r.audio_health_checked_at ? new Date(r.audio_health_checked_at) : undefined,
+                likes_count: r.likes_count || 0
+            }));
+        }
+        if (error) {
+            console.warn('[Worship] Supabase query returned error, trying direct query:', error.message);
+        }
+    } catch (supErr) {
+        console.warn('[Worship] Supabase client fetch failed, falling back to pg pool:', supErr);
+    }
+
+    try {
         await initializeWorshipDB();
         const { rows } = await query("SELECT * FROM church_worship_songs ORDER BY title_fa ASC");
         return rows.map(r => ({ 
