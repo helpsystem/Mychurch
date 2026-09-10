@@ -111,7 +111,7 @@ const DEFAULT_CONFIG: BroadcastOverlayConfig = {
     pipScale: 0.3,
     leaderVideoShape: 'rectangle',
     showLogo: true,
-    logoUrl: '/logo-transparent.png',
+    logoUrl: '/logo-transparent.png?v=2026',
     lowerThirds: [],
     activeLowerThirdIndex: 0,
     showLowerThird: false,

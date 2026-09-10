@@ -46,14 +46,13 @@ export default function BroadcastOverlays({
                 >
                     <div className="relative group">
                         <img
-                            src={logoUrl || "/logo-transparent.png"}
+                            src={logoUrl || "/logo-transparent.png?v=2026"}
                             alt="Church Logo"
                             className={`${isProgramMonitor ? 'h-9 md:h-12' : 'h-14 md:h-20'} w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)] filter`}
                             onError={(e) => {
-                                // Fallback to /logo.png if /logo-transparent.png fails
                                 const target = e.currentTarget;
-                                if (target.src !== window.location.origin + "/logo.png") {
-                                    target.src = "/logo.png";
+                                if (!target.src.includes("/logo.png")) {
+                                    target.src = "/logo.png?v=2026";
                                 }
                             }}
                         />
