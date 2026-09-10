@@ -7,7 +7,7 @@ import {
     LayoutDashboard, Users, LayoutTemplate, Settings, 
     Power, FileVideo, Music, UserCircle, Megaphone, 
     Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio, Sparkles, Zap, Send, MessageSquare,
-    History, Trash2, ScanLine
+    History, Trash2, ScanLine, Heart
 } from "lucide-react";
 import Image from "next/image";
 import ViewAsRoleSwitcher from "@/components/admin/ViewAsRoleSwitcher";
@@ -144,6 +144,12 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                         </>
                     )}
 
+                    {(isAdmin || role === "Leader") && (
+                        <NavItem href="/admin/prayers" icon={Heart} colorClass="text-rose-400/90 group-hover:text-rose-300">
+                            <span className="font-[Vazirmatn]">درخواست‌های دعا</span>
+                        </NavItem>
+                    )}
+
                     {(isAdmin || permissions?.canManageDocuments || role === "Leader") && (
                         <>
                             <NavItem href="/admin/documents" icon={FileText} colorClass="text-blue-500/80 group-hover:text-blue-400">
@@ -182,7 +188,7 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                 </nav>
 
                 <div className="p-4 border-t border-border/10 space-y-2 relative z-10">
-                    {isAdmin && (
+                    {(isAdmin || realRole === 'Admin') && (
                         <ViewAsRoleSwitcher currentRole={role} realRole={realRole} />
                     )}
 
