@@ -50,20 +50,20 @@ export function PublicHeader() {
             >
                 رد شدن از منو به محتوی اصلی
             </a>
-            <nav className="fixed top-0 inset-x-0 h-20 glass-strong border-b border-white/5 z-50 flex items-center justify-between px-6 lg:px-12 shadow-lg shadow-black/10">
-            <Link href="/" className="flex items-center gap-4 group">
-                <div className="w-14 items-center justify-center flex">
+            <nav className="fixed top-0 inset-x-0 h-20 glass-strong border-b border-white/5 z-50 flex items-center justify-between px-4 sm:px-6 lg:px-12 shadow-lg shadow-black/10">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-4 group min-w-0">
+                <div className="w-10 sm:w-14 items-center justify-center flex shrink-0">
                     <Image
                         src="/logo-transparent.png"
                         alt="لوگوی کلیسای انجیلی ایرانیان واشنگتن دی‌سی"
                         width={56}
                         height={56}
-                        className="object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] group-hover:scale-105 transition-transform"
+                        className="w-10 h-10 sm:w-14 sm:h-14 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] group-hover:scale-105 transition-transform"
                     />
                 </div>
-                <div className="flex flex-col">
-                    <span className="font-black text-xl tracking-tight leading-none text-gradient uppercase drop-shadow-sm group-hover:opacity-90 transition-all">Iranian Presbyterian Church</span>
-                    <span className="text-xs font-bold text-primary tracking-widest uppercase">{t.heroTitle || "Of Washington D.C."}</span>
+                <div className="flex flex-col min-w-0">
+                    <span className="font-black text-xs sm:text-base md:text-xl tracking-tight leading-none text-gradient uppercase drop-shadow-sm group-hover:opacity-90 transition-all truncate">Iranian Presbyterian Church</span>
+                    <span className="text-[9px] sm:text-xs font-bold text-primary tracking-widest uppercase truncate">{t.heroTitle || "Of Washington D.C."}</span>
                 </div>
             </Link>
 

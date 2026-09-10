@@ -419,31 +419,33 @@ export default function BibleReaderPage() {
       <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} onEnded={() => setIsPlaying(false)} />
 
       {/* ── Top Toolbar — Responsive wrapping for mobile ── */}
-      <div className="sticky top-16 z-40 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 py-3 shadow-lg" dir="ltr">
-        <div className="max-w-6xl mx-auto px-4 flex flex-wrap items-center gap-2 md:gap-3">
+      <div className="sticky top-20 z-40 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 py-2.5 md:py-3 shadow-lg" dir="ltr">
+        <div className="max-w-6xl mx-auto px-3 md:px-4 flex flex-wrap items-center gap-2 md:gap-3">
 
           {/* Book Picker */}
-          <div className="relative">
+          <div className="relative flex-1 sm:flex-initial min-w-[10rem]">
             <button
               onClick={() => {
                 setShowBookList(v => !v);
                 if (!showBookList) setShowChapterGrid(false);
               }}
-              className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3.5 py-2 text-xs md:text-sm font-bold transition-all min-w-[11rem] md:min-w-[14rem] max-w-[16rem] md:max-w-none"
+              className="flex items-center justify-between w-full gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2 text-xs md:text-sm font-bold transition-all"
             >
-              <Book className="w-4 h-4 text-blue-400 shrink-0" />
-              <span className="flex items-center gap-1 min-w-0">
-                {currentBook ? (
-                  language === 'fa' 
-                    ? <><span className="font-[Vazirmatn] text-sm md:text-base truncate">{currentBook.book_name_fa}</span> <span className="text-muted-foreground text-[11px] md:text-xs font-normal ml-1 border-l border-white/20 pl-2 opacity-70 hidden sm:inline">({currentBook.book_name_en})</span></>
-                    : <span className="truncate">{currentBook.book_id} — {currentBook.book_name_en}</span>
-                ) : selectedBook}
-              </span>
-              <List className="w-3.5 h-3.5 text-muted-foreground" />
+              <div className="flex items-center gap-2 min-w-0">
+                <Book className="w-4 h-4 text-blue-400 shrink-0" />
+                <span className="flex items-center gap-1 min-w-0">
+                  {currentBook ? (
+                    language === 'fa' 
+                      ? <><span className="font-[Vazirmatn] text-xs sm:text-sm md:text-base truncate">{currentBook.book_name_fa}</span> <span className="text-muted-foreground text-[10px] md:text-xs font-normal ml-1 border-l border-white/20 pl-2 opacity-70 hidden sm:inline">({currentBook.book_name_en})</span></>
+                      : <span className="truncate">{currentBook.book_id} — {currentBook.book_name_en}</span>
+                  ) : selectedBook}
+                </span>
+              </div>
+              <List className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
             </button>
 
             {showBookList && (
-              <div className="absolute top-full mt-2 left-0 z-50 w-72 max-h-[70vh] overflow-y-auto bg-[#18181b] border border-white/20 rounded-2xl shadow-2xl p-3 flex flex-col gap-2 ring-1 ring-white/10" dir="ltr">
+              <div className="absolute top-full mt-2 left-0 z-50 w-72 max-w-[90vw] max-h-[70vh] overflow-y-auto bg-[#18181b] border border-white/20 rounded-2xl shadow-2xl p-3 flex flex-col gap-2 ring-1 ring-white/10" dir="ltr">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
                   <input
@@ -534,7 +536,7 @@ export default function BibleReaderPage() {
                 setShowChapterGrid(true);
                 setShowBookList(false);
               }}
-              className="bg-white/5 hover:bg-white/10 text-xs md:text-sm font-bold px-3 md:px-4 py-2 transition-all border-x border-white/5 flex items-center gap-2"
+              className="bg-white/5 hover:bg-white/10 text-xs md:text-sm font-bold px-2.5 md:px-4 py-2 transition-all border-x border-white/5 flex items-center gap-1.5"
             >
               <span className="text-blue-400">Ch.</span>
               <span>{selectedChapter}</span>
@@ -551,12 +553,12 @@ export default function BibleReaderPage() {
           </div>
 
           {/* English version selector */}
-          <select value={selectedVersionEn} onChange={e => setSelectedVersionEn(e.target.value)} aria-label="English Bible version" className="max-w-[92px] md:max-w-[120px] bg-white/5 border border-white/10 rounded-xl px-2 md:px-3 py-2 text-xs md:text-sm font-bold outline-none focus:border-blue-500/50 cursor-pointer shrink-0 [&>option]:bg-zinc-900 [&>option]:text-white">
+          <select value={selectedVersionEn} onChange={e => setSelectedVersionEn(e.target.value)} aria-label="English Bible version" className="max-w-[84px] md:max-w-[120px] bg-white/5 border border-white/10 rounded-xl px-2 md:px-3 py-2 text-xs md:text-sm font-bold outline-none focus:border-blue-500/50 cursor-pointer shrink-0 [&>option]:bg-zinc-900 [&>option]:text-white">
             {englishVersions.map(v => <option key={v.abbr} value={v.abbr} title={v.name} className="bg-zinc-900 text-white">{v.hasAudio ? '🔊 ' : ''}{v.abbr}</option>)}
           </select>
 
           {/* Farsi version selector */}
-          <select value={selectedVersionFa} onChange={e => setSelectedVersionFa(e.target.value)} aria-label="Farsi Bible version" className={`font-[Vazirmatn] max-w-[132px] md:max-w-[200px] truncate bg-white/5 border rounded-xl px-2 md:px-3 py-2 text-xs md:text-sm font-bold outline-none cursor-pointer shrink-0 [&>option]:bg-zinc-900 [&>option]:text-white ${persianVersions.length === 0 ? 'border-red-500/30 text-red-100' : 'border-purple-500/30 focus:border-purple-500'}`} dir="rtl">
+          <select value={selectedVersionFa} onChange={e => setSelectedVersionFa(e.target.value)} aria-label="Farsi Bible version" className={`font-[Vazirmatn] max-w-[120px] md:max-w-[200px] truncate bg-white/5 border rounded-xl px-2 md:px-3 py-2 text-xs md:text-sm font-bold outline-none cursor-pointer shrink-0 [&>option]:bg-zinc-900 [&>option]:text-white ${persianVersions.length === 0 ? 'border-red-500/30 text-red-100' : 'border-purple-500/30 focus:border-purple-500'}`} dir="rtl">
             {persianVersions.length === 0
               ? <option value="" className="bg-zinc-900 text-white">— ترجمه‌ای یافت نشد —</option>
               : persianVersions.map(v => <option key={v.abbr} value={v.abbr} className="bg-zinc-900 text-white">{v.name} {v.hasAudio ? '🔊' : ''}</option>)
@@ -565,22 +567,22 @@ export default function BibleReaderPage() {
 
           {/* Reading Mode Switcher & Font Controls */}
           <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-2xl p-1 shrink-0 shadow-sm" dir="ltr">
-            <button onClick={() => setReadingMode("en")} className={`px-2.5 md:px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold transition-all ${readingMode === "en" ? "bg-blue-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>EN</button>
-            <button onClick={() => setReadingMode("fa")} className={`px-2.5 md:px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold transition-all ${readingMode === "fa" ? "bg-purple-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>FA</button>
-            <button onClick={() => setReadingMode("parallel")} className={`flex items-center gap-1 px-2.5 md:px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold transition-all ${readingMode === "parallel" ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>
+            <button onClick={() => setReadingMode("en")} className={`px-2 md:px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-bold transition-all ${readingMode === "en" ? "bg-blue-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>EN</button>
+            <button onClick={() => setReadingMode("fa")} className={`px-2 md:px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-bold transition-all ${readingMode === "fa" ? "bg-purple-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>FA</button>
+            <button onClick={() => setReadingMode("parallel")} className={`flex items-center gap-1 px-2 md:px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-bold transition-all ${readingMode === "parallel" ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow" : "text-muted-foreground hover:text-white"}`}>
               <Columns2 className="w-3 h-3" /> EN|FA
             </button>
             
             <div className="w-px h-5 bg-white/20 mx-1 shrink-0"></div>
             
-            <button onClick={() => setFontSize(f => Math.max(12, f - 2))} className="px-2 py-1.5 rounded-lg text-[11px] md:text-xs font-bold text-muted-foreground hover:text-white transition-all hover:bg-white/10 shrink-0" title="Decrease font size">A-</button>
-            <button onClick={() => setFontSize(f => Math.min(48, f + 2))} className="px-2 py-1.5 rounded-lg text-[11px] md:text-sm font-bold text-muted-foreground hover:text-white transition-all hover:bg-white/10 shrink-0" title="Increase font size">A+</button>
+            <button onClick={() => setFontSize(f => Math.max(12, f - 2))} className="px-2 py-1.5 rounded-lg text-[10px] md:text-xs font-bold text-muted-foreground hover:text-white transition-all hover:bg-white/10 shrink-0" title="Decrease font size">A-</button>
+            <button onClick={() => setFontSize(f => Math.min(48, f + 2))} className="px-2 py-1.5 rounded-lg text-[10px] md:text-sm font-bold text-muted-foreground hover:text-white transition-all hover:bg-white/10 shrink-0" title="Increase font size">A+</button>
           </div>
         </div>
       </div>
 
       {/* ── Main Reader ── */}
-      <main className="flex-1 pb-60 px-4 max-w-5xl w-full mx-auto pt-44 md:pt-32 relative" dir="ltr">
+      <main className="flex-1 pb-60 px-3 md:px-4 max-w-5xl w-full mx-auto pt-52 sm:pt-44 md:pt-36 relative" dir="ltr">
         {loading ? (
           <div className="flex items-center justify-center py-32">
             <Loader2 className="w-8 h-8 animate-spin text-blue-400" />
@@ -651,7 +653,7 @@ export default function BibleReaderPage() {
 
             {/* ── Parallel (EN left | FA right) ── */}
             {readingMode === "parallel" && (
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 {parallelVerses.map(v => {
                   const isSelected = selectedVerses.some(sv => sv.verse_num === v.verse_num);
                   const cleanEn = stripLeadingVerseNumber(v.en);
@@ -659,16 +661,20 @@ export default function BibleReaderPage() {
                   return (
                     <div
                       key={v.verse_num}
-                      className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-200 cursor-pointer ${isSelected ? "border" : "hover:bg-white/5"}`}
+                      className={`grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 p-3.5 md:p-4 rounded-2xl transition-all duration-200 cursor-pointer border ${
+                        isSelected 
+                          ? "border-blue-400/60 bg-blue-500/10 shadow-lg" 
+                          : "border-white/5 bg-white/[0.02] hover:bg-white/5"
+                      }`}
                       style={isSelected ? { backgroundColor: `${selectedHighlightColor}1f`, borderColor: `${selectedHighlightColor}66` } : undefined}
                       onClick={() => toggleVerseSelection({ ...v, en: cleanEn, fa: cleanFa })}
                     >
-                      <div className="flex gap-3.5 items-baseline" dir="ltr">
-                        <span className="text-sm md:text-base font-black text-blue-400 select-none shrink-0 leading-none">{v.verse_num}</span>
-                        <p className="text-zinc-100 leading-relaxed font-sans" style={{ fontSize: `${fontSize}px` }}>{cleanEn}</p>
+                      <div className="flex gap-3 items-baseline border-b border-white/5 pb-2 md:border-b-0 md:pb-0" dir="ltr">
+                        <span className="text-xs md:text-sm font-black text-blue-400 select-none shrink-0 leading-none">{v.verse_num}</span>
+                        <p className="text-zinc-200 leading-relaxed font-sans" style={{ fontSize: `${fontSize}px` }}>{cleanEn}</p>
                       </div>
-                      <div className="flex gap-3.5 items-baseline text-right" dir="rtl">
-                        <span className="text-sm md:text-base font-black text-purple-400 select-none shrink-0 leading-none">{v.verse_num}</span>
+                      <div className="flex gap-3 items-baseline text-right" dir="rtl">
+                        <span className="text-xs md:text-sm font-black text-purple-400 select-none shrink-0 leading-none">{v.verse_num}</span>
                         <p className="text-zinc-100 leading-relaxed font-[Vazirmatn]" style={{ fontSize: `${fontSize + 2}px` }}>{cleanFa}</p>
                       </div>
                     </div>
@@ -682,7 +688,7 @@ export default function BibleReaderPage() {
 
       {/* ── YouVersion-style Selection Action Panel ── */}
       <div
-        className={`fixed left-1/2 z-[999] w-[calc(100%-1rem)] max-w-[520px] -translate-x-1/2 rounded-t-3xl border border-white/10 bg-white text-zinc-900 shadow-2xl backdrop-blur-xl transition-all duration-300 ${selectedVerses.length > 0 ? "bottom-0 translate-y-0 opacity-100" : "-bottom-8 translate-y-10 opacity-0 pointer-events-none"}`}
+        className={`fixed left-1/2 z-[55] w-[calc(100%-1rem)] max-w-[520px] -translate-x-1/2 rounded-t-3xl border border-white/10 bg-white text-zinc-900 shadow-2xl backdrop-blur-xl transition-all duration-300 ${selectedVerses.length > 0 ? "bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] md:bottom-0 translate-y-0 opacity-100" : "-bottom-8 translate-y-10 opacity-0 pointer-events-none"}`}
         dir="rtl"
       >
         <div className="p-3 sm:p-4">
@@ -697,11 +703,11 @@ export default function BibleReaderPage() {
               </a>
             </div>
             <button
-              className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-100 hover:shadow"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 active:scale-95 transition-all"
               aria-label="انصراف"
               onClick={() => setSelectedVerses([])}
             >
-              <X className="h-3.5 w-3.5" />
+              <X className="h-4 w-4" />
             </button>
           </div>
 
@@ -997,7 +1003,7 @@ export default function BibleReaderPage() {
 
       {/* ── Sticky Audio Player — always LTR, hover above Mobile Bottom Nav ── */}
       {audioTracks.length > 0 && (
-        <div className="fixed bottom-20 md:bottom-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-2xl border-y md:border-b-0 md:border-t border-white/10 px-4 py-3 shadow-2xl" dir="ltr">
+        <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] md:bottom-0 left-0 right-0 z-[45] bg-zinc-950/95 backdrop-blur-2xl border-y md:border-b-0 md:border-t border-white/10 px-4 py-3 shadow-2xl transition-all" dir="ltr">
           <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center gap-3 md:gap-6" dir="ltr">
             {/* Row 1: icon | title/subtitle | play btn */}
             <div className="flex items-center gap-4 flex-1" dir="ltr">
@@ -1058,7 +1064,7 @@ export default function BibleReaderPage() {
 
       {/* ── Bottom Chapter Nav — Prev LEFT, Next RIGHT, always LTR ── */}
       <div
-        className={`fixed ${audioTracks.length > 0 ? "bottom-52 md:bottom-24" : "bottom-24 md:bottom-6"} left-0 right-0 z-40 flex items-center justify-center gap-2 md:gap-3 pointer-events-none transition-all duration-500`}
+        className={`fixed ${audioTracks.length > 0 ? "bottom-[calc(env(safe-area-inset-bottom)+12.5rem)] md:bottom-24" : "bottom-[calc(env(safe-area-inset-bottom)+5.5rem)] md:bottom-6"} left-0 right-0 z-40 flex items-center justify-center gap-2 md:gap-3 pointer-events-none transition-all duration-500`}
         dir="ltr"
       >
         {/* Prev (left) */}
@@ -1156,17 +1162,17 @@ export default function BibleReaderPage() {
       </AnimatePresence>
 
       {/* ── Floating AI Chat Assistant (Al Hayat GPT) ── */}
-      <div className="fixed bottom-6 right-6 z-[100]" dir={language === 'fa' ? 'rtl' : 'ltr'}>
+      <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+5.5rem)] right-3 sm:right-6 md:bottom-6 md:right-6 z-[46]" dir={language === 'fa' ? 'rtl' : 'ltr'}>
         <AnimatePresence>
           {showChat && (
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              className={`mb-4 ${
+              className={`mb-3 md:mb-4 ${
                 isChatExpanded
                   ? "w-[94vw] max-w-[800px] h-[82vh]"
-                  : "w-[360px] sm:w-[460px] h-[600px] max-h-[82vh]"
+                  : "w-[calc(100vw-1.5rem)] sm:w-[460px] h-[540px] max-h-[75vh]"
               } bg-zinc-950/95 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col transition-all duration-300`}
             >
               {/* Header */}

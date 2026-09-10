@@ -103,16 +103,6 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
     }
   };
 
-  const playSong = useCallback((song: WorshipSong, playlist: WorshipSong[]) => {
-    if (!song.audio_url) return;
-    const index = playlist.findIndex(s => s.id === song.id);
-    setPlayer(p => ({ ...p, song, index, playlist, isPlaying: true, progress: 0 }));
-    if (audioRef.current) {
-      audioRef.current.src = getSafeAudioUrl(song.audio_url);
-      audioRef.current.play().catch(console.error);
-    }
-  }, []);
-
   const togglePlay = useCallback(() => {
     if (!audioRef.current) return;
     if (player.isPlaying) {
@@ -123,6 +113,23 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
       setPlayer(p => ({ ...p, isPlaying: true }));
     }
   }, [player.isPlaying]);
+
+  const playSong = useCallback((song: WorshipSong, playlist: WorshipSong[]) => {
+    if (!song.audio_url) {
+      setDetailsSong(song);
+      return;
+    }
+    if (player.song?.id === song.id) {
+      togglePlay();
+      return;
+    }
+    const index = playlist.findIndex(s => s.id === song.id);
+    setPlayer(p => ({ ...p, song, index, playlist, isPlaying: true, progress: 0 }));
+    if (audioRef.current) {
+      audioRef.current.src = getSafeAudioUrl(song.audio_url);
+      audioRef.current.play().catch(console.error);
+    }
+  }, [player.song?.id, togglePlay]);
 
   const playNext = useCallback(() => {
     const next = (player.index + 1) % player.playlist.length;
@@ -370,7 +377,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
       />
 
       {player.song && (
-        <div className="fixed bottom-20 md:bottom-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-2xl border-t border-border/50 shadow-2xl">
+        <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] md:bottom-0 left-0 right-0 z-[45] bg-card/95 backdrop-blur-2xl border-t border-border/50 shadow-2xl transition-all">
           <div className="max-w-7xl mx-auto px-4 py-3">
             {/* Progress Bar */}
             <div className="mb-2 flex items-center gap-3 text-xs text-muted-foreground">
@@ -400,8 +407,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
               {/* Song Info */}
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-sm truncate" dir="rtl">{player.song.title_fa}</p>
-                <p className="text-[10px] uppercase tracking-wider text-primary/70 font-black mb-0.5">خواننده</p>
-                <p className="text-xs text-muted-foreground truncate font-bold">{player.song.artist || "نامشخص"}</p>
+                <p className="text-xs text-muted-foreground truncate font-medium">{player.song.artist || "ناشناس"}</p>
               </div>
 
               {/* Transport */}
@@ -412,7 +418,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
                 <button
                   title={player.isPlaying ? "Pause" : "Play"}
                   onClick={togglePlay}
-                  className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 transition-all shadow-lg shadow-primary/30"
+                  className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 transition-all shadow-lg shadow-primary/30 active:scale-95"
                 >
                   {player.isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5 fill-current" />}
                 </button>
@@ -447,9 +453,9 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
   return (
     <div className={cn(
       "group relative overflow-hidden rounded-3xl bg-secondary/30 border backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-1 p-5 flex flex-col gap-4",
-      isCurrentSong ? "border-primary/50 shadow-lg shadow-primary/10" : "border-border/50"
+      isCurrentSong ? "border-primary/60 shadow-lg shadow-primary/15 ring-1 ring-primary/40 bg-primary/5" : "border-border/50"
     )}>
-      {/* Now Playing */}
+      {/* Now Playing badge */}
       {isCurrentlyPlaying && (
         <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 bg-primary px-3 py-1 rounded-full text-primary-foreground text-[10px] font-black shadow-lg">
           <div className="flex items-end gap-0.5 h-3">
@@ -468,16 +474,32 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
         </div>
       )}
 
-      {/* Thumbnail */}
-      <div className="w-full h-36 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 overflow-hidden relative flex flex-col justify-end p-4 border border-border/30">
+      {/* Thumbnail with direct Play overlay */}
+      <div 
+        onClick={song.audio_url ? onPlay : onViewDetails}
+        className="w-full h-36 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 overflow-hidden relative flex flex-col justify-end p-4 border border-border/30 cursor-pointer group/thumb"
+      >
         {song.youtube_id && (
           <img src={`https://img.youtube.com/vi/${song.youtube_id}/hqdefault.jpg`} alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700"
+            className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover/thumb:scale-110 transition-transform duration-700"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
-        <h3 className="relative font-bold text-lg text-foreground truncate drop-shadow-md" dir="rtl">{song.title_fa}</h3>
-        {song.title_en && <p className="relative text-xs text-muted-foreground/80 mt-0.5">{song.title_en}</p>}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
+        
+        {/* Play hover button overlay */}
+        {song.audio_url && (
+          <div className={cn(
+            "absolute inset-0 flex items-center justify-center transition-all duration-300",
+            isCurrentlyPlaying ? "opacity-100 bg-black/40 backdrop-blur-[2px]" : "opacity-0 group-hover/thumb:opacity-100 bg-black/30 backdrop-blur-[2px]"
+          )}>
+            <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-xl shadow-primary/30 transform group-hover/thumb:scale-110 transition-transform">
+              {isCurrentlyPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5 fill-current" />}
+            </div>
+          </div>
+        )}
+
+        <h3 className="relative font-bold text-lg text-foreground truncate drop-shadow-md z-10" dir="rtl">{song.title_fa}</h3>
+        {song.title_en && <p className="relative text-xs text-muted-foreground/80 mt-0.5 z-10">{song.title_en}</p>}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -494,7 +516,7 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
             onClick={onToggleLike}
             title={isLiked ? "Unlike" : "Like"}
             className={cn(
-              "flex items-center gap-1.5 py-2 px-3 rounded-xl font-bold text-xs transition-all",
+              "flex items-center gap-1.5 py-2.5 px-3 rounded-xl font-bold text-xs transition-all",
               isLiked ? "bg-pink-500/20 text-pink-500 border border-pink-500/30" : "bg-secondary hover:bg-white/10 text-muted-foreground border border-white/10"
             )}
         >
@@ -502,30 +524,63 @@ function SongCard({ song, isCurrentlyPlaying, isCurrentSong, onPlay, onKaraoke, 
             {song.likes_count || 0}
         </button>
 
+        {/* Dedicated Audio Play / Pause button */}
+        {song.audio_url ? (
+          <button
+            onClick={onPlay}
+            title={isCurrentlyPlaying ? "توقف پخش" : "پخش سرود"}
+            className={cn(
+              "flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl font-bold text-xs transition-all shadow-sm active:scale-95",
+              isCurrentlyPlaying
+                ? "bg-primary text-primary-foreground shadow-primary/30 ring-2 ring-primary/40"
+                : "bg-primary/10 hover:bg-primary/20 text-primary border border-primary/25 hover:scale-[1.02]"
+            )}
+          >
+            {isCurrentlyPlaying ? (
+              <>
+                <Pause className="w-3.5 h-3.5" />
+                <span>توقف</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3.5 h-3.5 fill-current" />
+                <span>پخش</span>
+              </>
+            )}
+          </button>
+        ) : (
+          <span className="text-[11px] text-muted-foreground/60 font-bold px-2 py-2 border border-border/30 rounded-xl bg-secondary/30">
+            فقط متن
+          </span>
+        )}
+
+        {/* View Details / Lyrics */}
         <button
             onClick={onViewDetails}
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all bg-secondary hover:bg-white/10 text-foreground border border-white/10"
+            title="مشاهده متن کامل، آکورد و جزئیات"
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2.5 rounded-xl font-bold text-xs transition-all bg-secondary hover:bg-white/10 text-foreground border border-white/10"
         >
-            <FileText className="w-4 h-4" />
+            <FileText className="w-3.5 h-3.5" />
             نمایش
         </button>
 
-        {/* Combined Play + Live Lyrics button */}
+        {/* Live Lyrics / Karaoke button */}
         {song.audio_url && (
           <button
             onClick={onKaraoke}
-            title="پخش + Live Lyrics کارائوکه"
-            className="flex items-center justify-center gap-1.5 bg-purple-500/10 hover:bg-purple-500/20 text-purple-500 border border-purple-500/20 py-2.5 px-3 rounded-xl font-bold text-xs transition-all"
+            title="پخش با متن زنده (Live Lyrics)"
+            className="flex items-center justify-center gap-1 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/20 py-2.5 px-2.5 rounded-xl font-bold text-xs transition-all"
           >
-            <Play className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Live</span>
+            <Play className="w-3 h-3" />
+            <span>Live</span>
           </button>
         )}
+
         {song.youtube_id && (
           <button
             onClick={onViewDetails}
-            title="پخش یوتیوب داخل مودال"
-            className="flex items-center justify-center bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 py-2.5 px-3 rounded-xl transition-all"
+            title="پخش ویدیو یوتیوب داخل مودال"
+            className="flex items-center justify-center bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 py-2.5 px-2.5 rounded-xl transition-all"
           >
             <Youtube className="w-4 h-4" />
           </button>
@@ -543,50 +598,60 @@ function SongListItem({ song, index, isCurrentlyPlaying, isCurrentSong, onPlay, 
 }) {
   return (
     <div className={cn(
-      "flex items-center gap-4 p-4 rounded-2xl border transition-all hover:-translate-x-1",
-      isCurrentSong ? "border-primary/40 bg-primary/5" : "border-border/40 bg-secondary/20 hover:bg-secondary/40"
+      "flex items-center gap-3 md:gap-4 p-3.5 md:p-4 rounded-2xl border transition-all hover:-translate-x-1",
+      isCurrentSong ? "border-primary/50 bg-primary/5 ring-1 ring-primary/30" : "border-border/40 bg-secondary/20 hover:bg-secondary/40"
     )}>
-      {/* Number / state */}
-      <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-primary/20 to-blue-600/20 shrink-0 flex items-center justify-center">
-        {song.youtube_id
-          ? <img src={`https://img.youtube.com/vi/${song.youtube_id}/default.jpg`} alt="" className="w-full h-full object-cover" />
-          : <span className="text-xs font-black text-muted-foreground">{index + 1}</span>}
-      </div>
+      {/* Play/State Button */}
+      <button
+        onClick={song.audio_url ? onPlay : onViewDetails}
+        title={isCurrentlyPlaying ? "توقف" : song.audio_url ? "پخش سرود" : "مشاهده"}
+        className={cn(
+          "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all",
+          isCurrentlyPlaying
+            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30 ring-2 ring-primary/40"
+            : song.audio_url
+              ? "bg-primary/10 text-primary hover:bg-primary/20"
+              : "bg-secondary/40 text-muted-foreground/40 cursor-default"
+        )}
+      >
+        {isCurrentlyPlaying ? (
+          <Pause className="w-4 h-4" />
+        ) : song.audio_url ? (
+          <Play className="w-4 h-4 fill-current ml-0.5" />
+        ) : (
+          <span className="text-xs font-black text-muted-foreground">{index + 1}</span>
+        )}
+      </button>
 
       <div className="flex-1 min-w-0">
-        <p className="font-bold truncate" dir="rtl">{song.title_fa}</p>
-        <div className="flex items-center gap-1 mt-0.5">
+        <p className="font-bold truncate text-sm md:text-base" dir="rtl">{song.title_fa}</p>
+        <div className="flex items-center gap-2 mt-0.5">
           <span className="text-[9px] uppercase font-black text-primary/50">خواننده:</span>
-          <p className="text-xs text-muted-foreground truncate font-bold">{song.artist || "ناشناس"}</p>
+          <p className="text-xs text-muted-foreground truncate font-medium">{song.artist || "ناشناس"}</p>
         </div>
       </div>
 
       {/* Controls */}
-      <div className="flex items-center gap-2 shrink-0">
+      <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
         <button title="Like" onClick={onToggleLike}
           className={cn("w-9 h-9 rounded-full flex items-center justify-center transition-all", isLiked ? "bg-pink-500/20 text-pink-500 border border-pink-500/30" : "bg-secondary hover:bg-white/10 border border-border/40 text-muted-foreground")}>
           <Heart className={cn("w-4 h-4", isLiked && "fill-current")} />
         </button>
 
         <button title="مشاهده کامل" onClick={onViewDetails}
-          className={cn(
-            "w-9 h-9 rounded-full flex items-center justify-center border transition-all",
-            "bg-secondary border-border/40 text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30"
-          )}>
+          className="w-9 h-9 rounded-full flex items-center justify-center border transition-all bg-secondary border-border/40 text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30">
           <FileText className="w-4 h-4" />
         </button>
 
-        {/* Unified Live button for List view */}
         {song.audio_url && (
-          <button title="پخش + Live Lyrics کارائوکه" onClick={onKaraoke}
-            className="w-9 h-9 rounded-full flex items-center justify-center bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 text-purple-500 transition-all font-bold text-[10px]">
+          <button title="پخش با متن زنده" onClick={onKaraoke}
+            className="w-9 h-9 rounded-full flex items-center justify-center bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 text-purple-400 transition-all font-bold text-[10px]">
             Live
           </button>
         )}
 
-        {/* Unified YouTube button for List view */}
         {song.youtube_id && (
-          <button title="پخش یوتیوب داخل مودال" onClick={onViewDetails}
+          <button title="پخش یوتیوب" onClick={onViewDetails}
             className="w-9 h-9 rounded-full flex items-center justify-center bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-500 transition-all">
             <Youtube className="w-4 h-4" />
           </button>

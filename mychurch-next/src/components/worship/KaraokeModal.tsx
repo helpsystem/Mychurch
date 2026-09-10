@@ -136,14 +136,17 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
             {/* Lyrics Engine */}
             <div className="w-full h-[70vh] max-w-5xl mx-auto px-4 mt-20">
                 {hasNoData ? (
-                    <div className="flex flex-col items-center justify-center h-full text-center">
-                        <Music className="w-16 h-16 text-white/20 mb-4" />
-                        <p className="text-white/50 text-xl font-bold" dir="rtl">
-                            تایمینگ کارائوکه برای این سرود ثبت نشده است
-                        </p>
-                        <p className="text-white/30 text-sm mt-2" dir="rtl">
-                            برای فعال‌سازی کارائوکه، فایل ZIP را در بخش ادمین آپلود کنید
-                        </p>
+                    <div className="flex flex-col items-center h-full max-w-3xl mx-auto overflow-y-auto px-4 py-8 custom-scrollbar">
+                        <span className="text-purple-400/80 text-xs font-black uppercase tracking-widest mb-6 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+                            متن سرود پرستشی
+                        </span>
+                        <div className="space-y-4 font-[Vazirmatn] text-lg sm:text-2xl text-white/90 leading-[2.2] select-text text-center" dir="rtl">
+                            {(song.lyrics_fa || song.lyrics_en || "متن سرود به زودی افزوده خواهد شد").split('\n').map((line, idx) => {
+                                const trimmed = line.trim();
+                                if (!trimmed) return <div key={idx} className="h-4" />;
+                                return <p key={idx} className="transition-all hover:text-white">{trimmed}</p>;
+                            })}
+                        </div>
                     </div>
                 ) : (
                     <AppleMusicLyrics

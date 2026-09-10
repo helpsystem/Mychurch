@@ -80,11 +80,9 @@ async function routeAudioUrl(request: Request, url: string): Promise<NextRespons
         return proxyAudio(request, url, { Authorization: authHeader });
     }
 
-    // ── Local /worship/audio/* ────────────────────────────────────────────
+    // ── Local /worship/audio/* or /audio/* (Stream directly from disk) ───
     if (url.startsWith('/worship/audio/') || url.startsWith('/audio/')) {
-        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-        const fullUrl = `${appUrl}${url}`;
-        return proxyAudio(request, fullUrl);
+        return serveLocalAudio(request, url);
     }
 
     // ── Other absolute URLs ───────────────────────────────────────────────
@@ -93,6 +91,82 @@ async function routeAudioUrl(request: Request, url: string): Promise<NextRespons
     }
 
     return new NextResponse('Unsupported audio source', { status: 400 });
+}
+
+async function serveLocalAudio(request: Request, url: string): Promise<NextResponse> {
+    try {
+        const { createReadStream, existsSync } = await import('fs');
+        const { stat } = await import('fs/promises');
+        const { join } = await import('path');
+
+        const cleanPath = decodeURIComponent(url.replace(/^\/+/, ''));
+        const filePath = join(process.cwd(), 'public', cleanPath);
+
+        if (!existsSync(filePath)) {
+            // Also try NFC / NFD normalization in case of Persian unicode difference
+            const dir = join(process.cwd(), 'public', 'worship', 'audio', 'kalameh');
+            if (cleanPath.startsWith('worship/audio/kalameh/')) {
+                const targetFilename = cleanPath.split('/').pop() || '';
+                const { readdirSync } = await import('fs');
+                const files = readdirSync(dir);
+                const matched = files.find(f => 
+                    f.normalize('NFC').toLowerCase() === targetFilename.normalize('NFC').toLowerCase() ||
+                    f.normalize('NFD').toLowerCase() === targetFilename.normalize('NFD').toLowerCase()
+                );
+                if (matched) {
+                    return streamFile(request, join(dir, matched));
+                }
+            }
+            return new NextResponse('Audio file not found on disk', { status: 404 });
+        }
+
+        return streamFile(request, filePath);
+    } catch (error) {
+        console.error('[worship-audio] Error serving local audio file:', error);
+        return new NextResponse('Internal error serving audio', { status: 500 });
+    }
+}
+
+async function streamFile(request: Request, filePath: string): Promise<NextResponse> {
+    const { createReadStream } = await import('fs');
+    const { stat } = await import('fs/promises');
+    const fileStat = await stat(filePath);
+    const range = request.headers.get('range');
+    const mimeType = filePath.endsWith('.m4a') ? 'audio/mp4' : 'audio/mpeg';
+
+    if (!range) {
+        const stream = createReadStream(filePath);
+        return new NextResponse(stream as any, {
+            headers: {
+                'Content-Type': mimeType,
+                'Content-Length': String(fileStat.size),
+                'Accept-Ranges': 'bytes',
+                'Cache-Control': 'public, max-age=31536000, immutable',
+            },
+        });
+    }
+
+    const [startStr, endStr] = range.replace(/bytes=/, '').split('-');
+    const start = Number(startStr);
+    const end = endStr ? Number(endStr) : fileStat.size - 1;
+
+    if (Number.isNaN(start) || Number.isNaN(end) || start < 0 || end >= fileStat.size || start > end) {
+        return new NextResponse('Invalid range', { status: 416 });
+    }
+
+    const chunkSize = end - start + 1;
+    const stream = createReadStream(filePath, { start, end });
+
+    return new NextResponse(stream as any, {
+        status: 206,
+        headers: {
+            'Content-Type': mimeType,
+            'Content-Length': String(chunkSize),
+            'Content-Range': `bytes ${start}-${end}/${fileStat.size}`,
+            'Accept-Ranges': 'bytes',
+            'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+    });
 }
 
 async function proxyAudio(

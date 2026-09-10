@@ -76,6 +76,16 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Dynamic HTML pages — always revalidate so all users immediately see site updates
+        source: '/((?!api|_next/static|_next/image|favicon.ico|worship/audio|files).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
+      {
         // Static Audio & worship files (immutable caching for maximum speed)
         source: '/worship/audio/:path*',
         headers: [

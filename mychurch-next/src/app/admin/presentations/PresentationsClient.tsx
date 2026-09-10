@@ -28,6 +28,11 @@ export default function PresentationsClient({
     initialCategories: ChurchProgramCategory[];
     initialPrograms: ChurchProgram[];
 }) {
+    const router = useRouter();
+    const { t, language } = useLanguage();
+    const [isPending, startTransition] = useTransition();
+    const [activeTab, setActiveTab] = useState<ActiveTab>('presentations');
+
     const [searchTerm, setSearchTerm] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const [presentations, setPresentations] = useState<BroadcastSession[]>(() =>
@@ -65,11 +70,6 @@ export default function PresentationsClient({
     const [scheduleDate, setScheduleDate] = useState("");
     const [scheduleTime, setScheduleTime] = useState("");
     const [isScheduling, setIsScheduling] = useState(false);
-
-    const [isPending, startTransition] = useTransition();
-    const [activeTab, setActiveTab] = useState<ActiveTab>('presentations');
-    const router = useRouter();
-    const { t, language } = useLanguage();
 
     const statusLabel: Record<BroadcastSession['status'], string> = {
         draft: 'پیش نویس',
