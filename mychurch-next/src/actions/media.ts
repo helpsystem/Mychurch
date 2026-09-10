@@ -108,10 +108,11 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
     try {
         const supabase = await createClient();
         
-        // 1. Fetch all media from media_library
+        // 1. Fetch all non-deleted media from media_library
         const { data: mediaLibraryAssets, error } = await supabase
             .from('media_library')
             .select('*')
+            .or('is_deleted.is.null,is_deleted.eq.false')
             .order('created_at', { ascending: false });
             
         if (error) {
@@ -176,27 +177,46 @@ export async function deleteMediaFile(idOrFilename: string): Promise<{ success: 
             return { success: false, error: "File not found in database" };
         }
 
-        // Delete from Telegram Storage
-        if (asset.telegram_message_id) {
-            const { deleteFromTelegramStorage } = await import('@/services/telegram');
-            await deleteFromTelegramStorage(asset.telegram_message_id);
+        // Safe Soft Delete: Move to Trash (preserves Telegram Cloud Storage and enables instant recovery)
+        const { data: { user } } = await supabase.auth.getUser();
+        const userEmail = user?.email || 'operator';
+
+        const { error: updateError } = await supabase
+            .from('media_library')
+            .update({
+                is_deleted: true,
+                deleted_at: new Date().toISOString(),
+                deleted_by: userEmail
+            })
+            .eq('id', asset.id);
+
+        if (updateError) {
+            return { success: false, error: updateError.message };
         }
 
-        // Remove from local database
-        await supabase.from('media_library').delete().eq('id', asset.id);
-
-        // Remove from gallery DB if it exists
-        const url = `/api/serve/cloud/${asset.id}`;
-        await supabase.from('gallery_images').delete().eq('src', url);
+        // Log action in Audit Logs
+        const { logUserActivity } = await import('@/actions/audit');
+        await logUserActivity({
+            action: 'TRASH_MEDIA',
+            resourceType: 'media',
+            resourceId: asset.id,
+            details: {
+                fileName: asset.file_name,
+                size: asset.size,
+                deleted_by: userEmail
+            }
+        });
 
         revalidatePath("/admin/media");
+        revalidatePath("/admin/trash");
         revalidatePath("/gallery");
         return { success: true };
     } catch (error: any) {
-        console.error("Error deleting media file:", error);
+        console.error("Error moving media file to trash:", error);
         return { success: false, error: error.message };
     }
 }
+
 
 export async function renameMediaFile(idOrOldFilename: string, requestedName: string): Promise<{ success: boolean; newName?: string; error?: string }> {
     if (!(await canAccessMediaLibrary())) {

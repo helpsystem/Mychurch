@@ -133,6 +133,26 @@ export async function POST(request: Request) {
     revalidatePath('/admin/media');
     revalidatePath('/broadcast');
 
+    // 4. Log activity
+    try {
+      const { logUserActivity } = await import('@/actions/audit');
+      await logUserActivity({
+        action: 'UPLOAD_MEDIA',
+        resourceType: 'media',
+        resourceId: dbId || filename,
+        details: {
+          filename,
+          folder: safeFolder,
+          target,
+          size: file.size,
+          mimeType,
+          storage: uploadResult?.fileId ? 'telegram' : 'local'
+        }
+      });
+    } catch (auditErr) {
+      console.warn('[Broadcast Asset Upload] Audit log failed:', auditErr);
+    }
+
     const primaryUrl = dbId ? `/api/serve/cloud/${dbId}` : localUrl;
 
     return NextResponse.json({

@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { 
     LayoutDashboard, Users, LayoutTemplate, Settings, 
     Power, FileVideo, Music, UserCircle, Megaphone, 
-    Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio, Sparkles, Zap, Send, MessageSquare
+    Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio, Sparkles, Zap, Send, MessageSquare,
+    History, Trash2
 } from "lucide-react";
 import Image from "next/image";
 import ViewAsRoleSwitcher from "@/components/admin/ViewAsRoleSwitcher";
@@ -55,7 +56,7 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
             {/* Mobile Header Toggle Button */}
             <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-black/80 backdrop-blur-xl border-b border-white/10 z-[60] flex items-center justify-between px-4">
                 <div className="flex items-center gap-3" dir="rtl">
-                    <Image src="/logo-transparent.png" alt="Logo" width={32} height={32} className="object-contain" />
+                    <Image src="/logo-transparent.png" alt="Logo" width={32} height={32} unoptimized priority className="object-contain" />
                     <span className="font-bold text-sm tracking-widest text-primary font-[Vazirmatn]">پنل مدیریت</span>
                 </div>
                 <button onClick={toggleSidebar} className="p-2 bg-white/5 rounded-xl text-white" title="Toggle Sidebar">
@@ -82,7 +83,7 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                 
                 <div className="h-16 md:h-20 flex items-center justify-between gap-3 px-6 border-b border-white/5 bg-black/20 relative z-10">
                     <div className="flex items-center gap-3">
-                        <Image src="/logo-transparent.png" alt="Logo" width={36} height={36} className="object-contain hidden md:block" />
+                        <Image src="/logo-transparent.png" alt="Logo" width={36} height={36} unoptimized priority className="object-contain hidden md:block" />
                         <div className="flex flex-col" dir="rtl">
                             <span className="font-bold text-sm tracking-widest text-primary font-[Vazirmatn] hidden md:block">پنل مدیریت</span>
                             <span className="text-xs text-emerald-500 font-bold tracking-widest font-[Vazirmatn]">سطح: {role}</span>
@@ -123,7 +124,15 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                     )}
 
                     {(isAdmin || permissions?.canManageMedia) && (
-                        <NavItem href="/admin/media" icon={FileVideo}>Media Library</NavItem>
+                        <>
+                            <NavItem href="/admin/media" icon={FileVideo}>Media Library</NavItem>
+                            <NavItem href="/admin/trash" icon={Trash2} colorClass="text-rose-400/80">
+                                <span className="font-[Vazirmatn]">زباله‌دان و بازیابی</span>
+                            </NavItem>
+                            <NavItem href="/admin/audit-logs" icon={History} colorClass="text-cyan-400/80">
+                                <span className="font-[Vazirmatn]">لاگ فعالیت‌ها</span>
+                            </NavItem>
+                        </>
                     )}
 
                     {(isAdmin || permissions?.canManageMedia) && (

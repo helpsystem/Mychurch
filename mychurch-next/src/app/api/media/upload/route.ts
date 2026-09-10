@@ -95,6 +95,25 @@ export async function POST(request: Request) {
         const parts = relativePath.split('/');
         const encoded = parts.map(p => encodeURIComponent(p)).join('/');
 
+        // 5. Log activity
+        try {
+            const { logUserActivity } = await import('@/actions/audit');
+            await logUserActivity({
+                action: 'UPLOAD_MEDIA',
+                resourceType: 'media',
+                resourceId: dbId || filename,
+                details: {
+                    filename,
+                    folder: cleanFolder,
+                    size: file.size,
+                    mimeType,
+                    storage: uploadResult?.fileId ? 'telegram' : 'local'
+                }
+            });
+        } catch (auditErr) {
+            console.warn('[Media Upload] Audit log failed:', auditErr);
+        }
+
         revalidatePath('/admin/media');
         revalidatePath('/gallery');
 

@@ -136,6 +136,7 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
         const { data, error } = await supabase
             .from('presentations')
             .select('*')
+            .or('is_deleted.is.null,is_deleted.eq.false')
             .order('created_at', { ascending: false });
 
         if (!error && data) {
@@ -153,6 +154,7 @@ export async function getPresentations(): Promise<BroadcastSession[]> {
         const { rows } = await query(`
             SELECT *
             FROM presentations
+            WHERE (is_deleted IS NULL OR is_deleted = false)
             ORDER BY COALESCE(date, created_at, NOW()) DESC, created_at DESC
         `);
         
@@ -177,6 +179,7 @@ export async function searchPresentations(searchQuery: string): Promise<Broadcas
             .from('presentations')
             .select('*')
             .ilike('title', `%${searchQuery}%`)
+            .or('is_deleted.is.null,is_deleted.eq.false')
             .order('created_at', { ascending: false });
 
         if (!error && data) {
@@ -194,7 +197,7 @@ export async function searchPresentations(searchQuery: string): Promise<Broadcas
         const { rows } = await query(`
             SELECT *
             FROM presentations
-            WHERE title ILIKE $1
+            WHERE title ILIKE $1 AND (is_deleted IS NULL OR is_deleted = false)
             ORDER BY COALESCE(date, created_at, NOW()) DESC, created_at DESC
         `, [`%${searchQuery}%`]);
         
@@ -423,9 +426,32 @@ export async function deletePresentation(id: string): Promise<{ success: boolean
     try {
         const { createAdminClient } = await import('@/utils/supabase/server');
         const supabase = await createAdminClient();
-        const { error } = await supabase.from('presentations').delete().eq('id', id);
+        
+        // Fetch presentation title for audit logging
+        const { data: item } = await supabase.from('presentations').select('title').eq('id', id).maybeSingle();
+        const { data: { user } } = await supabase.auth.getUser();
+        const userEmail = user?.email || 'operator';
+
+        const { error } = await supabase
+            .from('presentations')
+            .update({
+                is_deleted: true,
+                deleted_at: new Date().toISOString(),
+                deleted_by: userEmail
+            })
+            .eq('id', id);
+
         if (!error) {
+            const { logUserActivity } = await import('@/actions/audit');
+            await logUserActivity({
+                action: 'TRASH_PRESENTATION',
+                resourceType: 'presentation',
+                resourceId: id,
+                details: { title: item?.title || id, deleted_by: userEmail }
+            });
+
             revalidatePath('/admin/presentations');
+            revalidatePath('/admin/trash');
             mockPresentations = mockPresentations.filter(p => p.id !== id);
             return { success: true };
         }
@@ -434,8 +460,9 @@ export async function deletePresentation(id: string): Promise<{ success: boolean
     }
 
     try {
-        await query('DELETE FROM presentations WHERE id = $1', [id]);
+        await query('UPDATE presentations SET is_deleted = true, deleted_at = NOW() WHERE id = $1', [id]);
         revalidatePath('/admin/presentations');
+        revalidatePath('/admin/trash');
         mockPresentations = mockPresentations.filter(p => p.id !== id);
         return { success: true };
     } catch (error) {

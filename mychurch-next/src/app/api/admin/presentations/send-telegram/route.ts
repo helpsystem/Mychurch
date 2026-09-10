@@ -290,6 +290,22 @@ export async function POST(request: Request) {
             console.warn('[Telegram Export] Database record update error:', dbErr);
         }
 
+        try {
+            const { logUserActivity } = await import('@/actions/audit');
+            await logUserActivity({
+                action: 'EXPORT_TELEGRAM',
+                resourceType: 'presentation',
+                resourceId: presentationId || 'session',
+                details: {
+                    title,
+                    messageId,
+                    targetChatId
+                }
+            });
+        } catch (e) {
+            console.warn('[Telegram Export] Failed to log activity:', e);
+        }
+
         return NextResponse.json({
             success: true,
             messageId,

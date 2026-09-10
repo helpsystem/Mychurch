@@ -54,10 +54,12 @@ export function PublicHeader() {
             <Link href="/" className="flex items-center gap-2.5 sm:gap-4 group min-w-0">
                 <div className="w-10 sm:w-14 items-center justify-center flex shrink-0">
                     <Image
-                        src="/logo-transparent.png?v=2026"
+                        src="/logo-transparent.png"
                         alt="لوگوی کلیسای انجیلی ایرانیان واشنگتن دی‌سی"
                         width={56}
                         height={56}
+                        unoptimized
+                        priority
                         className="w-10 h-10 sm:w-14 sm:h-14 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] group-hover:scale-105 transition-transform"
                     />
                 </div>

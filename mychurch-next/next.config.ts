@@ -102,6 +102,14 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Logo and branding assets — short cache with revalidation so all users always have fresh logo
+        source: '/(logo-transparent.png|logo.png|apple-touch-icon.png|favicon.ico)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=60, stale-while-revalidate=600, must-revalidate' },
+          { key: 'Vary', value: 'Accept-Encoding' },
+        ],
+      },
+      {
         // Static images, video, and font files — 1 year immutable browser caching
         source: '/:path*.(png|jpg|jpeg|webp|avif|svg|gif|ico|woff|woff2|ttf|otf|webm|mp4)',
         headers: [

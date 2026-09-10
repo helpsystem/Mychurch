@@ -23,10 +23,11 @@ export function PublicFooter() {
                 <div className="col-span-1 md:col-span-2 space-y-6">
                     <div className="flex items-center gap-4">
                         <Image
-                            src="/logo-transparent.png?v=2026"
+                            src="/logo-transparent.png"
                             alt="لوگوی کلیسای انجیلی ایرانیان واشنگتن دی‌سی"
                             width={48}
                             height={48}
+                            unoptimized
                             className="drop-shadow-lg"
                         />
                         <div className="flex flex-col">
