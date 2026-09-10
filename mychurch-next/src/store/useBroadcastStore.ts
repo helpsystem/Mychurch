@@ -80,6 +80,7 @@ interface BroadcastState {
     setInternalPageIndex: (index: number, skipSync?: boolean) => void;
     setActiveScriptureReference: (ref: ScriptureReferenceItem | null, skipSync?: boolean) => void;
     setScripturePopupScale: (scale: number, skipSync?: boolean) => void;
+    updateActiveSlideZoom: (zoom: number, skipSync?: boolean) => void;
     nextSlide: () => void;
     prevSlide: () => void;
     updateConfig: (updates: Partial<BroadcastOverlayConfig>) => void;
@@ -257,6 +258,30 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
         }
     },
 
+    updateActiveSlideZoom: (zoom, skipSync = false) => {
+        const { slides, activeSlideIndex, sessionId } = get();
+        if (!slides[activeSlideIndex]) return;
+        const clampedZoom = Math.max(0.5, Math.min(zoom, 2.5));
+        const newSlides = slides.map((s, i) => i === activeSlideIndex ? { ...s, zoom: clampedZoom } : s);
+        set({ slides: newSlides });
+
+        if (!skipSync) {
+            if (typeof window !== 'undefined') {
+                const bc = new BroadcastChannel(`broadcast-console-${sessionId}`);
+                bc.postMessage({
+                    type: 'slide_zoom_change',
+                    payload: { slideIndex: activeSlideIndex, zoom: clampedZoom, slide: newSlides[activeSlideIndex] }
+                });
+                bc.close();
+            }
+            get().pushRemoteSync({
+                type: 'SET_SLIDE_ZOOM',
+                slideIndex: activeSlideIndex,
+                zoom: clampedZoom
+            });
+        }
+    },
+
     nextSlide: () => {
         const { activeSlideIndex, slides } = get();
         if (activeSlideIndex < slides.length - 1) {
@@ -352,6 +377,11 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
                         break;
                     case 'SET_AUDIO_STAGE':
                         set({ isAudioStageEnabled: data.enabled });
+                        break;
+                    case 'SET_SLIDE_ZOOM':
+                        set((state) => ({
+                            slides: state.slides.map((s, i) => i === data.slideIndex ? { ...s, zoom: data.zoom } : s)
+                        }));
                         break;
                 }
             })

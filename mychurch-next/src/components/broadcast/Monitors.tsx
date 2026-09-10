@@ -8,6 +8,7 @@ import { SmartWorshipPlayer } from "@/components/worship/SmartWorshipPlayer";
 import { SlideType, SlideContentLyrics } from "@/types/broadcast";
 import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
 import { AudioStage3D } from "@/components/broadcast/AudioStage3D";
+import BroadcastOverlays from "@/components/broadcast/BroadcastOverlays";
 import { cn } from "@/lib/utils";
 
 // Camera Stream Video Renderer
@@ -271,20 +272,26 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
             </div>
 
             <div className="flex-1 flex flex-col bg-neutral-950 relative overflow-hidden">
-                <div className="absolute inset-0">
+                <div 
+                    className="absolute inset-0 w-full h-full"
+                    style={{
+                        transform: `scale(${config.contentScale ?? 1.0})`,
+                        transformOrigin: 'center center',
+                        transition: 'transform 0.2s ease-out'
+                    }}
+                >
                     {renderLayoutContent()}
                 </div>
                 
-                {/* Live Translation Overlay */}
-                {showLiveTranslation && liveTranslationText && (
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[70] max-w-[90%] text-center pointer-events-none">
-                        <span className="bg-black/70 text-yellow-400 font-bold text-xl md:text-3xl px-4 py-2 rounded-lg leading-relaxed shadow-lg backdrop-blur-sm border border-yellow-400/20 whitespace-pre-wrap" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
-                            {liveTranslationText}
-                        </span>
-                    </div>
-                )}
+                {/* Broadcast Overlays: Logo, Lower Thirds, Prayer Ticker, Meeting Banner, Subtitles */}
+                <BroadcastOverlays
+                    config={config}
+                    showLiveTranslation={showLiveTranslation}
+                    liveTranslationText={liveTranslationText}
+                    isProgramMonitor={true}
+                />
 
-                <p className="absolute bottom-3 right-3 text-[11px] text-white/70 bg-black/50 rounded px-2 py-1 z-[65] font-mono">
+                <p className="absolute bottom-3 right-3 text-[11px] text-white/70 bg-black/50 rounded px-2 py-1 z-[65] font-mono pointer-events-none">
                     Slide {activeSlideIndex + 1} - {activeSlide?.type || 'No slide'}
                 </p>
             </div>

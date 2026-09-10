@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square, Activity } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square, Activity, SendHorizontal } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -21,6 +21,7 @@ import { BroadcastProperties } from "./BroadcastProperties";
 import { PreviewMonitor, ProgramMonitor } from "./Monitors";
 import { SlideGrid } from "./SlideGrid";
 import { DeviceSettingsModal } from "./DeviceSettingsModal";
+import SlideFontControls from "./SlideFontControls";
 import { HelpTooltip } from "@/components/ui/HelpTooltip";
 
 interface LiveConsoleProps {
@@ -45,6 +46,8 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const setInternalPageIndex = useBroadcastStore(state => state.setInternalPageIndex);
     const nextSlide = useBroadcastStore(state => state.nextSlide);
     const prevSlide = useBroadcastStore(state => state.prevSlide);
+    const updateActiveSlideZoom = useBroadcastStore(state => state.updateActiveSlideZoom);
+    const activeSlide = slides[activeSlideIndex] || null;
     const config = useBroadcastStore(state => state.config);
     const lyricsVisibility = useBroadcastStore(state => state.lyricsVisibility);
     const initRemoteSync = useBroadcastStore(state => state.initRemoteSync);
@@ -68,6 +71,43 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const clearSessionMetadata = useBroadcastStore(state => state.clearSessionMetadata);
 
     const viewerChannelRef = React.useRef<BroadcastChannel | null>(null);
+    const [isSendingTelegram, setIsSendingTelegram] = useState(false);
+
+    const handleSendTelegram = async () => {
+        if (!slides || slides.length === 0) {
+            toast.error("اسلایدی برای ارسال وجود ندارد.");
+            return;
+        }
+
+        setIsSendingTelegram(true);
+        const toastId = toast.loading("در حال آماده‌سازی و ارسال فایل پرزنتیشن به گروه تلگرام...");
+
+        try {
+            const res = await fetch("/api/admin/presentations/send-telegram", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    presentationId,
+                    title: sessionId || "جلسه پخش زنده کلیسا",
+                    date: new Date().toISOString(),
+                    slides,
+                    prayerRequests: config.prayerRequests || []
+                })
+            });
+
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data.error || "خطا در ارسال به تلگرام");
+            }
+
+            toast.success("گزارش جلسه و فایل متنی کامل با موفقیت به گروه تلگرام ارسال شد! ✈️", { id: toastId });
+        } catch (err: any) {
+            console.error("Telegram send error:", err);
+            toast.error(err.message || "خطا در ارسال به تلگرام", { id: toastId });
+        } finally {
+            setIsSendingTelegram(false);
+        }
+    };
 
     // Hardware bindings
     const {
@@ -983,6 +1023,17 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                         </span>
                     </div>
 
+                    {/* Telegram Export Button */}
+                    <button
+                        onClick={handleSendTelegram}
+                        disabled={isSendingTelegram}
+                        className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer border bg-sky-600/20 text-sky-400 border-sky-500/30 hover:bg-sky-600/30 disabled:opacity-50 font-[Vazirmatn]"
+                        title="ارسال گزارش متنی و فایل پرزنتیشن به گروه تلگرام"
+                    >
+                        {isSendingTelegram ? <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin" /> : <SendHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />}
+                        <span className="hidden sm:inline">ارسال به تلگرام</span>
+                    </button>
+
                     <button
                         onClick={() => setIsAudioStageEnabled(!isAudioStageEnabled)}
                         className={cn(
@@ -1069,6 +1120,22 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
 
                 {/* Center Panel: Preview & Program */}
                 <main dir="ltr" className="flex-1 flex flex-col bg-black relative p-4 gap-4 overflow-y-auto">
+                    {/* Monitors Header & Font Zoom Bar */}
+                    <div className="flex items-center justify-between px-1 py-0.5 shrink-0 font-[Vazirmatn]" dir="rtl">
+                        <span className="text-xs font-bold text-neutral-400">مانیتورهای پیش‌نمایش و خروجی زنده</span>
+                        {activeSlide && (
+                            <div className="flex items-center gap-2" dir="ltr">
+                                <span className="text-[11px] text-neutral-400 hidden sm:inline font-[Vazirmatn]">سایز متن اسلاید:</span>
+                                <SlideFontControls
+                                    currentZoom={activeSlide.zoom || 1.0}
+                                    slide={activeSlide}
+                                    onChangeZoom={updateActiveSlideZoom}
+                                    compact={true}
+                                />
+                            </div>
+                        )}
+                    </div>
+
                     {/* Monitors Area */}
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 min-h-[300px] xl:h-1/2 shrink-0">
                         <PreviewMonitor />

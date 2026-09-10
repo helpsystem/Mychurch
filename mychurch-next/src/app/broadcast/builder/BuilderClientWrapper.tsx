@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
 import { BroadcastSession, AppLanguage, Slide, ScripturePage, SlideType } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
-import { ArrowRight, CalendarDays, Loader2, Save, BookOpen, MonitorPlay } from "lucide-react";
+import { ArrowRight, CalendarDays, Loader2, Save, BookOpen, MonitorPlay, SendHorizontal } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import TemplateManager from "@/components/broadcast/TemplateManager";
 import QuickScriptureBar from "@/components/broadcast/QuickScriptureBar";
 import ScriptureSelector from "@/components/broadcast/ScriptureSelector";
+import SlideFontControls from "@/components/broadcast/SlideFontControls";
 
 type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
     date: string;
@@ -33,6 +34,43 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
     const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const { t, language } = useLanguage();
     const router = useRouter();
+    const [isSendingTelegram, setIsSendingTelegram] = useState(false);
+
+    const handleSendTelegram = async () => {
+        if (!session.slides || session.slides.length === 0) {
+            toast.error("اسلایدی برای ارسال وجود ندارد.");
+            return;
+        }
+
+        setIsSendingTelegram(true);
+        const toastId = toast.loading("در حال آماده‌سازی و ارسال فایل پرزنتیشن به گروه تلگرام...");
+
+        try {
+            const res = await fetch("/api/admin/presentations/send-telegram", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    presentationId: session.id,
+                    title: session.title || "جلسه کلیسا",
+                    date: session.date.toISOString(),
+                    slides: session.slides,
+                    prayerRequests: []
+                })
+            });
+
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data.error || "خطا در ارسال به تلگرام");
+            }
+
+            toast.success("گزارش جلسه و فایل متنی کامل با موفقیت به گروه تلگرام ارسال شد! ✈️", { id: toastId });
+        } catch (err: any) {
+            console.error("Telegram send error:", err);
+            toast.error(err.message || "خطا در ارسال به تلگرام", { id: toastId });
+        } finally {
+            setIsSendingTelegram(false);
+        }
+    };
 
     const handleQuickAddScripture = (pages: ScripturePage[]) => {
         if (!pages.length) return;
@@ -302,32 +340,63 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                     </select>
                 </div>
                 
-                <button 
-                    onClick={handleSave}
-                    disabled={isPending}
-                    className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-indigo-500/20 disabled:opacity-50"
-                >
-                    {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-                    {t.cloudSave || 'Cloud Save'}
-                </button>
+                <div className="flex flex-wrap items-center gap-2">
+                    {/* Active Slide Font Controls */}
+                    {session.slides[activeSlideIndex] && (
+                        <div className="hidden lg:flex items-center gap-1.5 ml-2">
+                            <span className="text-[11px] text-slate-400">سایز متن اسلاید:</span>
+                            <SlideFontControls
+                                currentZoom={session.slides[activeSlideIndex].zoom || 1.0}
+                                slide={session.slides[activeSlideIndex]}
+                                onChangeZoom={(newZoom) => {
+                                    setSession(prev => ({
+                                        ...prev,
+                                        slides: prev.slides.map((s, i) => i === activeSlideIndex ? { ...s, zoom: newZoom } : s)
+                                    }));
+                                }}
+                                compact={true}
+                            />
+                        </div>
+                    )}
 
-                <button
-                    onClick={handleOpenPresenter}
-                    disabled={isOpeningPresenter}
-                    className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50"
-                >
-                    {isOpeningPresenter ? <Loader2 className="w-4 h-4 animate-spin" /> : <MonitorPlay className="w-4 h-4" />}
-                    {language === 'fa' ? 'باز کردن Presenter' : 'Open Presenter'}
-                </button>
-
-                <div className="flex items-center gap-2 ml-4">
                     <button 
-                        onClick={() => setTemplateModalOpen(true)}
-                        className="flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-amber-500/20"
+                        onClick={handleSave}
+                        disabled={isPending}
+                        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-indigo-500/20 disabled:opacity-50"
                     >
-                        <BookOpen className="w-4 h-4" />
-                        {language === 'fa' ? '💾 نمونه' : '💾 Templates'}
+                        {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                        {t.cloudSave || 'Cloud Save'}
                     </button>
+
+                    <button
+                        type="button"
+                        onClick={handleSendTelegram}
+                        disabled={isSendingTelegram}
+                        className="flex items-center gap-2 bg-sky-600 hover:bg-sky-500 text-white px-3.5 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-sky-600/20 disabled:opacity-50"
+                        title="ارسال گزارش متنی و فایل کامل پرزنتیشن به گروه تلگرام"
+                    >
+                        {isSendingTelegram ? <Loader2 className="w-4 h-4 animate-spin" /> : <SendHorizontal className="w-4 h-4" />}
+                        <span>ارسال به تلگرام</span>
+                    </button>
+
+                    <button
+                        onClick={handleOpenPresenter}
+                        disabled={isOpeningPresenter}
+                        className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50"
+                    >
+                        {isOpeningPresenter ? <Loader2 className="w-4 h-4 animate-spin" /> : <MonitorPlay className="w-4 h-4" />}
+                        {language === 'fa' ? 'باز کردن Presenter' : 'Open Presenter'}
+                    </button>
+
+                    <div className="flex items-center gap-2 ml-2">
+                        <button 
+                            onClick={() => setTemplateModalOpen(true)}
+                            className="flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white px-3.5 py-1.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-amber-500/20"
+                        >
+                            <BookOpen className="w-4 h-4" />
+                            {language === 'fa' ? 'نمونه' : 'Templates'}
+                        </button>
+                    </div>
                 </div>
             </div>
 

@@ -27,6 +27,7 @@ import ScriptureSelector from './ScriptureSelector';
 import WorshipSongSelector from './WorshipSongSelector';
 import SlidePreviewModal from './SlidePreviewModal';
 import { MediaPickerModal } from './MediaPickerModal';
+import SlideFontControls from './SlideFontControls';
 
 interface SlideBuilderProps {
   session: BroadcastSession;
@@ -1177,29 +1178,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         </h2>
 
         {session.slides[activeSlideIndex] && (
-          <div className="mb-4 rounded-xl border border-slate-700 bg-slate-950/70 p-3 space-y-2">
-            <div className="flex items-center justify-between text-xs text-slate-300">
-              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'زوم اسلاید فعال' : 'Active slide zoom'}</span>
-              <span className="font-mono text-indigo-300">
-                {Math.round((session.slides[activeSlideIndex].zoom || 1) * 100)}%
-              </span>
-            </div>
-            <input
-              type="range"
-              min="0.5"
-              max="2"
-              step="0.05"
-              value={session.slides[activeSlideIndex].zoom || 1}
-              onChange={(e) => updateSlideZoom(activeSlideIndex, clampZoom(parseFloat(e.target.value)))}
-              className="w-full accent-indigo-500"
-              aria-label={isRTL ? 'زوم اسلاید فعال' : 'Active slide zoom'}
+          <div className="mb-4 space-y-2">
+            <SlideFontControls
+              currentZoom={session.slides[activeSlideIndex].zoom || 1.0}
+              slide={session.slides[activeSlideIndex]}
+              onChangeZoom={(newZoom) => updateSlideZoom(activeSlideIndex, clampZoom(newZoom))}
+              compact={false}
             />
-            <div className="flex gap-2 text-[10px] text-slate-500">
-              <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 0.85)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">85%</button>
-              <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 1)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">100%</button>
-              <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 1.15)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">115%</button>
-              <button type="button" onClick={() => updateSlideZoom(activeSlideIndex, 1.3)} className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700">130%</button>
-            </div>
 
           {/* Save as Template */}
           {showSaveTemplateInput ? (

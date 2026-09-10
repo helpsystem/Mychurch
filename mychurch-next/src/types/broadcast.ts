@@ -253,11 +253,20 @@ export interface LowerThirdItem {
 
 export interface PrayerRequest {
     id: string;
-    name: string;
+    name?: string;
+    user_name?: string;
     content: string;
+    title?: string;
     timestamp?: Date;
+    created_at?: Date | string;
     category?: string;
     priority?: number;
+    user_id?: string;
+    email?: string;
+    is_public?: boolean;
+    status?: string;
+    prayed_count?: number;
+    answer_text?: string | null;
 }
 
 export interface DonationItem {

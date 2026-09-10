@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
-import { Settings, Camera, Mic, LayoutGrid, Tv, Layers, MoreHorizontal } from "lucide-react";
+import React, { useState } from "react";
+import { Settings, Camera, Mic, LayoutGrid, Tv, Layers, MoreHorizontal, HeartHandshake, User } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
+import PrayerTickerManagerModal from "@/components/broadcast/PrayerTickerManagerModal";
 import { cn } from "@/lib/utils";
 
 interface BroadcastPropertiesProps {
@@ -29,6 +30,27 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
     const translationDisplayMode = useBroadcastStore(state => state.translationDisplayMode);
     const setTranslationDisplayMode = useBroadcastStore(state => state.setTranslationDisplayMode);
     const liveTranslationText = useBroadcastStore(state => state.liveTranslationText);
+
+    // Modal state for managing prayer ticker requests
+    const [isPrayerModalOpen, setIsPrayerModalOpen] = useState(false);
+
+    const activeLowerThird = config.lowerThirds?.[config.activeLowerThirdIndex ?? 0] || {
+        id: "lt-1",
+        title: "",
+        subtitle: ""
+    };
+
+    const handleUpdateLowerThird = (title: string, subtitle: string) => {
+        const list = [...(config.lowerThirds || [])];
+        const idx = config.activeLowerThirdIndex ?? 0;
+        list[idx] = {
+            id: list[idx]?.id || "lt-1",
+            title,
+            subtitle,
+            imageUrl: list[idx]?.imageUrl
+        };
+        updateConfig({ lowerThirds: list });
+    };
 
     return (
         <aside className={cn("w-72 bg-neutral-900 border-l border-border/10 flex flex-col font-[Vazirmatn] shrink-0", className)}>
@@ -172,33 +194,77 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
                         </div>
 
                         {/* Lower Third Toggle */}
-                        <div className="flex items-center justify-between py-1">
-                            <span className="text-xs text-slate-300">پخش زیرنویس / اسامی گویندگان</span>
-                            <label className="relative inline-flex items-center cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    className="sr-only peer"
-                                    checked={config.showLowerThird}
-                                    onChange={() => updateConfig({ showLowerThird: !config.showLowerThird })}
-                                    title="Show Lower Third"
-                                />
-                                <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
-                            </label>
+                        <div className="space-y-2 py-1">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs text-slate-300">پخش زیرنویس / اسامی گویندگان</span>
+                                <label className="relative inline-flex items-center cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        className="sr-only peer"
+                                        checked={config.showLowerThird}
+                                        onChange={() => updateConfig({ showLowerThird: !config.showLowerThird })}
+                                        title="Show Lower Third"
+                                    />
+                                    <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+                                </label>
+                            </div>
+
+                            {/* Speaker Name & Subtitle Inputs */}
+                            {config.showLowerThird && (
+                                <div className="p-2.5 bg-neutral-950/60 rounded-xl border border-white/5 space-y-2 animate-in slide-in-from-top-2 duration-200">
+                                    <div>
+                                        <span className="text-[10px] text-muted-foreground block mb-1">نام گوینده / سخنران:</span>
+                                        <input
+                                            type="text"
+                                            value={activeLowerThird.title || ""}
+                                            onChange={(e) => handleUpdateLowerThird(e.target.value, activeLowerThird.subtitle || "")}
+                                            placeholder="مثلاً: کشیش سامیار / سرودخوان"
+                                            className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                                        />
+                                    </div>
+                                    <div>
+                                        <span className="text-[10px] text-muted-foreground block mb-1">عنوان / نقش:</span>
+                                        <input
+                                            type="text"
+                                            value={activeLowerThird.subtitle || ""}
+                                            onChange={(e) => handleUpdateLowerThird(activeLowerThird.title || "", e.target.value)}
+                                            placeholder="مثلاً: شبان کلیسای ایرانیان واشنگتن"
+                                            className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
-                        {/* Prayer Ticker Toggle */}
-                        <div className="flex items-center justify-between py-1">
-                            <span className="text-xs text-slate-300">نمایش تیکر روان درخواست‌های دعا</span>
-                            <label className="relative inline-flex items-center cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    className="sr-only peer"
-                                    checked={config.showPrayerTicker}
-                                    onChange={() => updateConfig({ showPrayerTicker: !config.showPrayerTicker })}
-                                    title="Show Prayer Ticker"
-                                />
-                                <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
-                            </label>
+                        {/* Prayer Ticker Toggle & Manager */}
+                        <div className="space-y-1.5 py-1">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs text-slate-300">نمایش تیکر روان درخواست‌های دعا</span>
+                                <label className="relative inline-flex items-center cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        className="sr-only peer"
+                                        checked={config.showPrayerTicker}
+                                        onChange={() => updateConfig({ showPrayerTicker: !config.showPrayerTicker })}
+                                        title="Show Prayer Ticker"
+                                    />
+                                    <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+                                </label>
+                            </div>
+                            
+                            <button
+                                type="button"
+                                onClick={() => setIsPrayerModalOpen(true)}
+                                className="w-full py-1.5 px-2.5 bg-amber-950/40 hover:bg-amber-900/50 border border-amber-500/30 text-amber-300 rounded-lg text-xs font-bold flex items-center justify-between transition group"
+                            >
+                                <span className="flex items-center gap-1.5">
+                                    <HeartHandshake className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110 transition-transform" />
+                                    <span>مدیریت و ثبت دعاها</span>
+                                </span>
+                                <span className="bg-amber-500/20 text-amber-200 text-[10px] px-1.5 py-0.5 rounded font-mono">
+                                    {config.prayerRequests?.length || 0} دعا
+                                </span>
+                            </button>
                         </div>
 
                         {/* Live Meeting Banner Toggle */}
@@ -361,6 +427,12 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
                 </div>
 
             </div>
+
+            {/* Prayer Requests Manager Modal */}
+            <PrayerTickerManagerModal
+                isOpen={isPrayerModalOpen}
+                onClose={() => setIsPrayerModalOpen(false)}
+            />
         </aside>
     );
 }
