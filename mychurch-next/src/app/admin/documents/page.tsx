@@ -1,7 +1,7 @@
 import { getUserRole, getUserPermissions } from "@/utils/rbac";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { FileText, Plus, FileSignature, CheckSquare, Settings, CreditCard, Wand2 } from "lucide-react";
+import { FileText, Plus, FileSignature, CheckSquare, Settings, CreditCard, Wand2, ScanLine, ShieldCheck, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -25,9 +25,42 @@ export default async function DocumentsAdminPage() {
     return (
         <div className="space-y-8 animate-in fade-in zoom-in-95 duration-500">
             <div>
-                <h1 className="text-display-xl font-display-xl text-on-surface mb-2">Sacred Archive Registry</h1>
-                <p className="text-body-base font-body-base text-on-surface-variant font-scripture-calligraphy italic">Maryland Diocesan Archives</p>
+                <h1 className="text-display-xl font-display-xl text-on-surface mb-2 font-[Vazirmatn]">بایگانی اسناد و مرکز اسکن کلیسا</h1>
+                <p className="text-body-base font-body-base text-on-surface-variant font-[Vazirmatn]">بایگانی محرمانه، صدور اسناد رسمی و دیجیتالی‌سازی با OCR هوشمند</p>
             </div>
+
+            {/* Featured Hero Card: Smart Scanner & Confidential Archive */}
+            <Link 
+                href="/admin/documents/scanner" 
+                className="glass-panel p-8 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-cyan-500/30 bg-gradient-to-r from-cyan-950/30 via-neutral-900/60 to-blue-950/30 hover:border-cyan-500/60 transition-all group shadow-2xl relative overflow-hidden"
+            >
+                <div className="flex items-start gap-5">
+                    <div className="p-5 bg-cyan-500/15 border border-cyan-500/30 rounded-2xl group-hover:scale-105 transition-transform shrink-0">
+                        <ScanLine className="w-10 h-10 text-cyan-400" />
+                    </div>
+                    <div className="space-y-2">
+                        <div className="flex items-center gap-2 flex-wrap">
+                            <h2 className="text-xl md:text-2xl font-bold text-white group-hover:text-cyan-400 transition font-[Vazirmatn]">
+                                مرکز اسکن هوشمند و بایگانی امن اسناد (OCR)
+                            </h2>
+                            <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
+                                <Sparkles className="w-3 h-3" /> دوزبانه (فارسی / انگلیسی)
+                            </span>
+                            <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                                <ShieldCheck className="w-3 h-3" /> فوق‌محرمانه
+                            </span>
+                        </div>
+                        <p className="text-sm text-neutral-300 max-w-2xl font-[Vazirmatn] leading-relaxed">
+                            اتصال مستقیم به اسکنر سخت‌افزاری کامپیوتر/شبکه (eSCL)، اسکنر زنده دوربین با فیلترهای کنتراست سند، بازشناسی دقیق متن (OCR فارسی و انگلیسی) و آرشیو امن با لینک‌های موقت اعتبارسنجی.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="shrink-0 flex items-center gap-2 px-5 py-3 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-xs shadow-xl shadow-cyan-500/20 transition-all">
+                    <span>ورود به اسکنر و آرشیو</span>
+                    <Wand2 className="w-4 h-4" />
+                </div>
+            </Link>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Baptism Certificates */}

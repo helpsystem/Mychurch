@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 
 export interface TrashedItem {
     id: string;
-    resourceType: 'media' | 'presentation' | 'prayer';
+    resourceType: 'media' | 'presentation' | 'prayer' | 'document';
     title: string;
     deletedAt: string;
     deletedBy: string | null;
@@ -15,7 +15,7 @@ export interface TrashedItem {
     previewUrl?: string;
 }
 
-export async function getTrashedItems(filter: 'all' | 'media' | 'presentation' | 'prayer' = 'all'): Promise<TrashedItem[]> {
+export async function getTrashedItems(filter: 'all' | 'media' | 'presentation' | 'prayer' | 'document' = 'all'): Promise<TrashedItem[]> {
     try {
         const adminSupabase = await createAdminClient();
         const items: TrashedItem[] = [];
@@ -100,6 +100,33 @@ export async function getTrashedItems(filter: 'all' | 'media' | 'presentation' |
             }
         }
 
+        // 4. Trashed Scanned Documents
+        if (filter === 'all' || filter === 'document') {
+            const { data: docs } = await adminSupabase
+                .from('scanned_documents')
+                .select('*')
+                .eq('is_deleted', true)
+                .order('deleted_at', { ascending: false });
+
+            if (docs) {
+                docs.forEach((doc: any) => {
+                    items.push({
+                        id: doc.id,
+                        resourceType: 'document',
+                        title: doc.title || doc.file_name || 'سند اسکن شده',
+                        deletedAt: doc.deleted_at || doc.created_at,
+                        deletedBy: doc.deleted_by,
+                        meta: {
+                            category: doc.category,
+                            security_level: doc.security_level,
+                            fileName: doc.file_name,
+                            fileSize: doc.file_size
+                        }
+                    });
+                });
+            }
+        }
+
         // Sort all descending by deletedAt
         return items.sort((a, b) => new Date(b.deletedAt).getTime() - new Date(a.deletedAt).getTime());
     } catch (err) {
@@ -108,13 +135,14 @@ export async function getTrashedItems(filter: 'all' | 'media' | 'presentation' |
     }
 }
 
-export async function restoreItem(resourceType: 'media' | 'presentation' | 'prayer', id: string): Promise<{ success: boolean; error?: string }> {
+export async function restoreItem(resourceType: 'media' | 'presentation' | 'prayer' | 'document', id: string): Promise<{ success: boolean; error?: string }> {
     try {
         const adminSupabase = await createAdminClient();
         let table = '';
         if (resourceType === 'media') table = 'media_library';
         else if (resourceType === 'presentation') table = 'presentations';
         else if (resourceType === 'prayer') table = 'prayer_requests';
+        else if (resourceType === 'document') table = 'scanned_documents';
         else return { success: false, error: 'Invalid resource type' };
 
         const { data, error } = await adminSupabase
@@ -145,6 +173,7 @@ export async function restoreItem(resourceType: 'media' | 'presentation' | 'pray
         revalidatePath('/admin/trash');
         revalidatePath('/admin/media');
         revalidatePath('/admin/presentations');
+        revalidatePath('/admin/documents/scanner');
         revalidatePath('/broadcast');
 
         return { success: true };
@@ -154,7 +183,7 @@ export async function restoreItem(resourceType: 'media' | 'presentation' | 'pray
     }
 }
 
-export async function permanentlyDeleteItem(resourceType: 'media' | 'presentation' | 'prayer', id: string): Promise<{ success: boolean; error?: string }> {
+export async function permanentlyDeleteItem(resourceType: 'media' | 'presentation' | 'prayer' | 'document', id: string): Promise<{ success: boolean; error?: string }> {
     const isAdmin = await hasAdminRoleOrPermission(['canManageMedia', 'canManageUsers']);
     if (!isAdmin) {
         return { success: false, error: 'تنها ادمین اصلی مجاز به حذف دائمی اطلاعات است.' };
@@ -164,7 +193,6 @@ export async function permanentlyDeleteItem(resourceType: 'media' | 'presentatio
         const adminSupabase = await createAdminClient();
 
         if (resourceType === 'media') {
-            // Fetch asset to get telegram_message_id
             const { data: asset } = await adminSupabase
                 .from('media_library')
                 .select('*')
@@ -180,9 +208,7 @@ export async function permanentlyDeleteItem(resourceType: 'media' | 'presentatio
                 }
             }
 
-            // Remove from gallery if linked
             await adminSupabase.from('gallery_images').delete().eq('src', `/api/serve/cloud/${id}`);
-            // Remove from media_library
             await adminSupabase.from('media_library').delete().eq('id', id);
 
             await logUserActivity({
@@ -209,11 +235,35 @@ export async function permanentlyDeleteItem(resourceType: 'media' | 'presentatio
                 resourceType: 'prayer',
                 resourceId: id
             });
+        } else if (resourceType === 'document') {
+            const { data: doc } = await adminSupabase
+                .from('scanned_documents')
+                .select('*')
+                .eq('id', id)
+                .maybeSingle();
+
+            if (doc && doc.file_url) {
+                try {
+                    await adminSupabase.storage.from('secure-documents').remove([doc.file_url]);
+                } catch (sErr) {
+                    console.warn('[Trash] Document storage removal error:', sErr);
+                }
+            }
+
+            await adminSupabase.from('scanned_documents').delete().eq('id', id);
+
+            await logUserActivity({
+                action: 'PERMANENT_DELETE_DOCUMENT',
+                resourceType: 'document',
+                resourceId: id,
+                details: { title: doc?.title, file_name: doc?.file_name }
+            });
         }
 
         revalidatePath('/admin/trash');
         revalidatePath('/admin/media');
         revalidatePath('/admin/presentations');
+        revalidatePath('/admin/documents/scanner');
         return { success: true };
     } catch (err: any) {
         console.error('[Trash] Permanent deletion exception:', err);

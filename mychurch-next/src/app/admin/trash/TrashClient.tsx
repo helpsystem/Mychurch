@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import { 
     Trash2, RotateCcw, AlertTriangle, Search, Filter, 
     FileVideo, Music, Image as ImageIcon, MonitorPlay, HeartHandshake, 
-    CheckCircle, ShieldAlert, Clock, User, HardDrive
+    CheckCircle, ShieldAlert, Clock, User, HardDrive, FileText
 } from "lucide-react";
 import { TrashedItem, getTrashedItems, restoreItem, permanentlyDeleteItem } from "@/actions/trash";
 
@@ -15,7 +15,7 @@ interface TrashClientProps {
 
 export default function TrashClient({ initialItems, isAdmin }: TrashClientProps) {
     const [items, setItems] = useState<TrashedItem[]>(initialItems);
-    const [filter, setFilter] = useState<'all' | 'media' | 'presentation' | 'prayer'>('all');
+    const [filter, setFilter] = useState<'all' | 'media' | 'presentation' | 'prayer' | 'document'>('all');
     const [search, setSearch] = useState("");
     const [isPending, startTransition] = useTransition();
     const [confirmModal, setConfirmModal] = useState<{ isOpen: boolean; item: TrashedItem | null }>({
@@ -29,7 +29,7 @@ export default function TrashClient({ initialItems, isAdmin }: TrashClientProps)
         setTimeout(() => setStatusMessage(null), 4000);
     };
 
-    const handleFilterChange = (newFilter: 'all' | 'media' | 'presentation' | 'prayer') => {
+    const handleFilterChange = (newFilter: 'all' | 'media' | 'presentation' | 'prayer' | 'document') => {
         setFilter(newFilter);
         startTransition(async () => {
             const fresh = await getTrashedItems(newFilter);
@@ -58,9 +58,9 @@ export default function TrashClient({ initialItems, isAdmin }: TrashClientProps)
             const res = await permanentlyDeleteItem(item.resourceType, item.id);
             if (res.success) {
                 setItems(prev => prev.filter(i => i.id !== item.id));
-                showMessage('success', `آیتم "${item.title}" برای همیشه از دیتابیس و استوریج ابری حذف شد.`);
+                showMessage('success', `آیتم "${item.title}" برای همیشه پاکسازی شد.`);
             } else {
-                showMessage('error', res.error || 'خطا در حذف دائمی');
+                showMessage('error', res.error || 'خطا در پاکسازی دائمی آیتم');
             }
         });
     };
@@ -95,6 +95,7 @@ export default function TrashClient({ initialItems, isAdmin }: TrashClientProps)
         if (type === 'media') return <FileVideo className="w-5 h-5 text-indigo-400" />;
         if (type === 'presentation') return <MonitorPlay className="w-5 h-5 text-amber-400" />;
         if (type === 'prayer') return <HeartHandshake className="w-5 h-5 text-emerald-400" />;
+        if (type === 'document') return <FileText className="w-5 h-5 text-cyan-400" />;
         return <Trash2 className="w-5 h-5 text-rose-400" />;
     };
 
@@ -102,6 +103,7 @@ export default function TrashClient({ initialItems, isAdmin }: TrashClientProps)
         if (type === 'media') return 'فایل مدیا';
         if (type === 'presentation') return 'پرزنتیشن / اسلاید';
         if (type === 'prayer') return 'درخواست دعا';
+        if (type === 'document') return 'سند اسکن شده';
         return type;
     };
 
@@ -123,7 +125,7 @@ export default function TrashClient({ initialItems, isAdmin }: TrashClientProps)
             <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-200/90 font-[Vazirmatn] text-xs flex items-center gap-3">
                 <ShieldAlert className="w-6 h-6 text-amber-400 shrink-0" />
                 <p>
-                    <strong>قابلیت بازگردانی امن (Safe Soft Delete):</strong> تمامی فایل‌ها، تصاویر، ویدئوها و پرزنتیشن‌هایی که توسط کاربران حذف می‌شوند در این بخش نگهداری شده و از استوریج ابری تلگرام و سرور پاک نمی‌شوند. در صورت نیاز می‌توانید فوراً آنها را «بازیابی» کنید. تنها با تائید مستقیم ادمین، اطلاعات برای همیشه پاکسازی خواهد شد.
+                    <strong>قابلیت بازگردانی امن (Safe Soft Delete):</strong> تمامی فایل‌ها، تصاویر، ویدئوها، اسناد اسکن‌شده و پرزنتیشن‌هایی که توسط کاربران حذف می‌شوند در این بخش نگهداری شده و از استوریج ابری و پایگاه داده پاک نمی‌شوند. در صورت نیاز می‌توانید فوراً آنها را «بازیابی» کنید. تنها با تائید مستقیم ادمین، اطلاعات برای همیشه پاکسازی خواهد شد.
                 </p>
             </div>
 
@@ -137,6 +139,14 @@ export default function TrashClient({ initialItems, isAdmin }: TrashClientProps)
                         }`}
                     >
                         همه ({items.length.toLocaleString('fa-IR')})
+                    </button>
+                    <button
+                        onClick={() => handleFilterChange('document')}
+                        className={`px-4 py-2 rounded-xl text-xs font-bold font-[Vazirmatn] transition-colors ${
+                            filter === 'document' ? 'bg-cyan-500 text-black' : 'bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-white'
+                        }`}
+                    >
+                        اسناد اسکن‌شده
                     </button>
                     <button
                         onClick={() => handleFilterChange('media')}

@@ -7,7 +7,7 @@ import {
     LayoutDashboard, Users, LayoutTemplate, Settings, 
     Power, FileVideo, Music, UserCircle, Megaphone, 
     Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio, Sparkles, Zap, Send, MessageSquare,
-    History, Trash2
+    History, Trash2, ScanLine
 } from "lucide-react";
 import Image from "next/image";
 import ViewAsRoleSwitcher from "@/components/admin/ViewAsRoleSwitcher";
@@ -145,7 +145,14 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                     )}
 
                     {(isAdmin || permissions?.canManageDocuments || role === "Leader") && (
-                        <NavItem href="/admin/documents" icon={FileText} colorClass="text-blue-500/80 group-hover:text-blue-400">Documents</NavItem>
+                        <>
+                            <NavItem href="/admin/documents" icon={FileText} colorClass="text-blue-500/80 group-hover:text-blue-400">
+                                <span className="font-[Vazirmatn]">بایگانی اسناد</span>
+                            </NavItem>
+                            <NavItem href="/admin/documents/scanner" icon={ScanLine} colorClass="text-cyan-400/90 pl-6 group-hover:text-cyan-300">
+                                <span className="font-[Vazirmatn]">اسکنر و OCR اسناد</span>
+                            </NavItem>
+                        </>
                     )}
 
                     {(role === "Admin" || role === "Leader") && (
