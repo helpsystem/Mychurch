@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { hasRoleOrPermission } from '@/lib/access-control';
+import { uploadToTelegramStorage } from '@/services/telegram';
+import { createClient } from '@/utils/supabase/server';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(request: Request) {
     try {
@@ -19,24 +22,24 @@ export async function POST(request: Request) {
 
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
+        const mimeType = file.type || 'application/octet-stream';
 
         const folder = data.get('folder') as string;
         let mediaDir = join(process.cwd(), 'public', 'media');
         
-        if (folder) {
-            // sanitize folder path
-            const cleanFolder = folder.replace(/\\/g, '/').replace(/[^a-zA-Z0-9/ _.-]/g, '');
+        const cleanFolder = folder ? folder.replace(/\\/g, '/').replace(/[^a-zA-Z0-9/ _.-]/g, '') : '';
+        if (cleanFolder) {
             mediaDir = join(mediaDir, cleanFolder);
         }
 
-        // Ensure media directory exists
+        // Ensure local media directory exists for fast serving
         try {
             await mkdir(mediaDir, { recursive: true });
         } catch (e) {
             // Already exists
         }
 
-        // Generate a WordPress-like friendly filename while preserving extension.
+        // Generate a friendly filename while preserving extension
         const original = file.name || 'media-file';
         const dotIndex = original.lastIndexOf('.');
         const ext = dotIndex > -1 ? original.substring(dotIndex) : '';
@@ -50,18 +53,63 @@ export async function POST(request: Request) {
         const filename = `${originalName}-${Date.now()}${ext}`;
         const filePath = join(mediaDir, filename);
 
+        // 1. Save to local disk cache
         await writeFile(filePath, buffer);
 
-        // Return API-served URL to avoid nginx static path conflicts.
+        // 2. Upload to Telegram Cloud Storage
+        let uploadResult: any = null;
+        try {
+            uploadResult = await uploadToTelegramStorage(buffer, filename, `Media Library: ${filename}`);
+        } catch (storageErr) {
+            console.warn('[Media Upload] Telegram storage upload warning:', storageErr);
+        }
+
+        // 3. Register and verify record in Supabase Database (media_library)
+        let dbId: string | null = null;
+        try {
+            const supabase = await createClient();
+            const { data: inserted, error: dbError } = await supabase.from('media_library').insert({
+                file_name: filename,
+                telegram_file_id: uploadResult?.fileId || null,
+                telegram_message_id: uploadResult?.messageId || null,
+                mime_type: mimeType,
+                size: file.size,
+                folder: cleanFolder || '',
+                visibility: 'admin'
+            }).select('id').single();
+
+            if (dbError) {
+                console.error('[Media Upload] Database insert error:', dbError);
+            } else if (inserted) {
+                dbId = inserted.id;
+            }
+        } catch (dbErr) {
+            console.error('[Media Upload] Supabase client error:', dbErr);
+        }
+
+        // 4. Return serving URL and metadata
         let relativePath = filename;
-        if (folder) {
-            const cleanFolder = folder.replace(/\\/g, '/').replace(/[^a-zA-Z0-9/ _.-]/g, '');
+        if (cleanFolder) {
             relativePath = `${cleanFolder}/${filename}`;
         }
         const parts = relativePath.split('/');
         const encoded = parts.map(p => encodeURIComponent(p)).join('/');
 
-        return NextResponse.json({ success: true, url: `/api/serve/media/${encoded}` });
+        revalidatePath('/admin/media');
+        revalidatePath('/gallery');
+
+        return NextResponse.json({
+            success: true,
+            url: dbId ? `/api/serve/cloud/${dbId}` : `/api/serve/media/${encoded}`,
+            localUrl: `/api/serve/media/${encoded}`,
+            cloudUrl: dbId ? `/api/serve/cloud/${dbId}` : undefined,
+            id: dbId,
+            filename,
+            size: file.size,
+            mimeType,
+            registeredInDatabase: !!dbId,
+            registeredInStorage: !!uploadResult?.fileId
+        });
     } catch (error: any) {
         console.error('Error uploading media file:', error);
         return NextResponse.json({ success: false, error: error.message || 'Upload failed' }, { status: 500 });

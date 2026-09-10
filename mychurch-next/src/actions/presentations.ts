@@ -290,6 +290,11 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
         songs: Array.from(new Set(extractedSongs))
     };
 
+    const combinedMetadata = {
+        ...newMetadata,
+        ...(safeSession.metadata && typeof safeSession.metadata === 'object' ? safeSession.metadata : {})
+    };
+
     // ── Primary: Supabase REST Client (Works everywhere via IPv4 HTTPS) ──
     try {
         const { createAdminClient } = await import('@/utils/supabase/server');
@@ -303,6 +308,8 @@ export async function savePresentation(session: BroadcastSession): Promise<{ suc
             host_name: safeSession.hostName || null,
             slides: safeSession.slides,
             slides_json: safeSession.slides,
+            audio_file_id: safeSession.audioFileId || null,
+            metadata: combinedMetadata,
             status: safeSession.status,
             updated_at: new Date().toISOString()
         };

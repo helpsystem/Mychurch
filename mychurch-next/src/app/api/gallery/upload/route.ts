@@ -62,6 +62,15 @@ export async function POST(request: Request) {
 
         await writeFile(filePath, buffer);
 
+        // Upload to Telegram Cloud Storage
+        let uploadResult: any = null;
+        try {
+            const { uploadToTelegramStorage } = await import('@/services/telegram');
+            uploadResult = await uploadToTelegramStorage(buffer, filename, `Gallery Image: ${title || filename}`);
+        } catch (storageErr) {
+            console.warn('[Gallery Upload] Telegram storage upload warning:', storageErr);
+        }
+
         // Save metadata to database
         const dbSrc = `/uploads/gallery/${filename}`;
         const adminSupabase = await createAdminClient();
@@ -84,14 +93,32 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: false, error: 'Failed to record image metadata in database.' }, { status: 500 });
         }
 
+        // Also register in media_library for unified tracking
+        try {
+            await adminSupabase.from('media_library').insert({
+                file_name: filename,
+                telegram_file_id: uploadResult?.fileId || null,
+                telegram_message_id: uploadResult?.messageId || null,
+                mime_type: mimeType,
+                size: file.size,
+                folder: folder || 'gallery',
+                visibility: visibility || 'public'
+            });
+        } catch (mErr) {
+            console.warn('[Gallery Upload API] media_library registration warning:', mErr);
+        }
+
         return NextResponse.json({
             success: true,
             url: `/api/serve/gallery/${filename}`,
             src: dbSrc,
-            image: dbData?.[0]
+            image: dbData?.[0],
+            registeredInDatabase: true,
+            registeredInStorage: !!uploadResult?.fileId
         });
     } catch (error: any) {
         console.error('Error in gallery upload route:', error);
         return NextResponse.json({ success: false, error: error.message || 'Upload failed' }, { status: 500 });
     }
 }
+

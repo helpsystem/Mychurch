@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { mkdir, writeFile } from 'fs/promises';
 import { join } from 'path';
 import { hasRoleOrPermission } from '@/lib/access-control';
+import { uploadToTelegramStorage } from '@/services/telegram';
+import { createAdminClient, createClient } from '@/utils/supabase/server';
+import { revalidatePath } from 'next/cache';
 
 type UploadTarget = 'uploads' | 'media';
 
@@ -83,21 +86,72 @@ export async function POST(request: Request) {
     const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '');
     const filename = `asset-${Date.now()}-${safeName}`;
     const filePath = join(targetDir, filename);
+
+    // 1. Save locally for fast disk caching / OBS serving
     await writeFile(filePath, buffer);
 
     const relativePath = safeFolder ? `${safeFolder}/${filename}` : filename;
-    const url = buildPublicUrl(target, relativePath);
+    const localUrl = buildPublicUrl(target, relativePath);
+
+    // 2. Upload to Telegram Cloud Storage
+    let uploadResult: any = null;
+    try {
+      uploadResult = await uploadToTelegramStorage(buffer, filename, `Broadcast Asset: ${filename}`);
+    } catch (storageErr) {
+      console.warn('[Broadcast Asset Upload] Telegram storage upload warning:', storageErr);
+    }
+
+    // 3. Register and verify record in Supabase Database (media_library)
+    let dbId: string | null = null;
+    try {
+      let supabase: any;
+      try {
+        supabase = await createAdminClient();
+      } catch {
+        supabase = await createClient();
+      }
+
+      const { data: inserted, error: dbError } = await supabase.from('media_library').insert({
+        file_name: filename,
+        telegram_file_id: uploadResult?.fileId || null,
+        telegram_message_id: uploadResult?.messageId || null,
+        mime_type: mimeType,
+        size: file.size,
+        folder: safeFolder || 'broadcast',
+        visibility: 'admin'
+      }).select('id').single();
+
+      if (dbError) {
+        console.error('[Broadcast Asset Upload] Database insert error:', dbError);
+      } else if (inserted) {
+        dbId = inserted.id;
+      }
+    } catch (dbErr) {
+      console.error('[Broadcast Asset Upload] Supabase client error:', dbErr);
+    }
+
+    revalidatePath('/admin/media');
+    revalidatePath('/broadcast');
+
+    const primaryUrl = dbId ? `/api/serve/cloud/${dbId}` : localUrl;
 
     return NextResponse.json({
       success: true,
-      url,
+      url: primaryUrl,
+      localUrl,
+      cloudUrl: dbId ? `/api/serve/cloud/${dbId}` : undefined,
+      id: dbId,
       target,
       folder: safeFolder,
       path: relativePath,
       mimeType,
+      size: file.size,
+      registeredInDatabase: !!dbId,
+      registeredInStorage: !!uploadResult?.fileId,
     });
   } catch (error: any) {
     console.error('[Broadcast Asset Upload Error]', error?.message);
     return NextResponse.json({ success: false, error: error?.message || 'Upload failed' }, { status: 500 });
   }
 }
+

@@ -247,11 +247,55 @@ export async function POST(request: Request) {
         const docData = await docRes.json();
         console.log('Telegram sendDocument status:', docData.ok);
 
+        // 7. Register and verify export record in Database
+        let registeredInDb = false;
+        try {
+            const { createAdminClient } = await import('@/utils/supabase/server');
+            const supabase = await createAdminClient();
+
+            if (presentationId) {
+                const { data: existing } = await supabase
+                    .from('presentations')
+                    .select('metadata')
+                    .eq('id', presentationId)
+                    .maybeSingle();
+
+                const existingMeta = (existing?.metadata && typeof existing.metadata === 'object') ? existing.metadata : {};
+                const updatedMeta = {
+                    ...existingMeta,
+                    telegram_export: {
+                        exported_at: new Date().toISOString(),
+                        message_id: messageId,
+                        document_message_id: docData.result?.message_id,
+                        chat_id: targetChatId,
+                        title
+                    }
+                };
+
+                const { error: updateError } = await supabase
+                    .from('presentations')
+                    .update({
+                        metadata: updatedMeta,
+                        updated_at: new Date().toISOString()
+                    })
+                    .eq('id', presentationId);
+
+                if (!updateError) {
+                    registeredInDb = true;
+                } else {
+                    console.warn('[Telegram Export] Failed to update presentation metadata:', updateError);
+                }
+            }
+        } catch (dbErr) {
+            console.warn('[Telegram Export] Database record update error:', dbErr);
+        }
+
         return NextResponse.json({
             success: true,
             messageId,
             documentMessageId: docData.result?.message_id,
-            chatId: targetChatId
+            chatId: targetChatId,
+            registeredInDatabase: registeredInDb
         });
 
     } catch (error: any) {
@@ -261,6 +305,7 @@ export async function POST(request: Request) {
         }, { status: 500 });
     }
 }
+
 
 function escapeHtml(text: string): string {
     return text

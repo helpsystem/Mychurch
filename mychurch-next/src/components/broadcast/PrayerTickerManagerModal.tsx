@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { X, Plus, Trash2, HeartHandshake, CloudDownload, Loader2 } from "lucide-react";
 import { PrayerRequest } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
-import { getPrayers } from "@/actions/prayers";
+import { getPrayers, createPrayer } from "@/actions/prayers";
 import { toast } from "sonner";
 
 interface PrayerTickerManagerModalProps {
@@ -23,21 +23,25 @@ export default function PrayerTickerManagerModal({ isOpen, onClose }: PrayerTick
 
     const prayers = config.prayerRequests || [];
 
-    const handleAddPrayer = (e: React.FormEvent) => {
+    const handleAddPrayer = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!newName.trim() || !newContent.trim()) {
             toast.error("لطفاً نام و متن دعا را وارد نمایید.");
             return;
         }
 
+        const prayerTitle = newName.trim();
+        const prayerContent = newContent.trim();
+        const newUuid = crypto.randomUUID();
+
         const newRequest: PrayerRequest = {
-            id: crypto.randomUUID(),
+            id: newUuid,
             user_id: "operator",
-            name: newName.trim(),
-            user_name: newName.trim(),
+            name: prayerTitle,
+            user_name: prayerTitle,
             email: "",
-            title: newName.trim(),
-            content: newContent.trim(),
+            title: prayerTitle,
+            content: prayerContent,
             is_public: true,
             status: "active",
             prayed_count: 0,
@@ -52,7 +56,22 @@ export default function PrayerTickerManagerModal({ isOpen, onClose }: PrayerTick
 
         setNewName("");
         setNewContent("");
-        toast.success("درخواست دعا به تیکر اضافه شد.");
+
+        // Persist and verify in Database permanently
+        try {
+            await createPrayer({
+                user_id: "operator",
+                user_name: prayerTitle,
+                title: prayerTitle,
+                content: prayerContent,
+                is_public: true,
+                status: "active"
+            });
+            toast.success("درخواست دعا در دیتابیس ثبت و در تیکر فعال شد.");
+        } catch (dbErr) {
+            console.warn("DB save warning for prayer:", dbErr);
+            toast.success("درخواست دعا به تیکر اضافه شد.");
+        }
     };
 
     const handleDeletePrayer = (id: string) => {
