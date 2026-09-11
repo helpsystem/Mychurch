@@ -11,7 +11,8 @@ type Browser = any;
 type Page = any;
 
 const SESSION_DIR = process.env.GOOGLE_MESSAGES_SESSION_DIR || '/root/.google-messages-session';
-const MESSAGES_URL = 'https://messages.google.com/web/';
+const MESSAGES_AUTH_URL = 'https://messages.google.com/web/authentication';
+const MESSAGES_URL = 'https://messages.google.com/web/conversations';
 
 let _browser: Browser | null = null;
 let _page: Page | null = null;
@@ -33,45 +34,69 @@ async function ensureBrowser(): Promise<{ browser: Browser; page: Page }> {
     try {
         const req = eval('require');
         try {
-            puppeteerModule = req('puppeteer-core');
-        } catch {
             puppeteerModule = req('puppeteer');
+        } catch {
+            puppeteerModule = req('puppeteer-core');
         }
     } catch {
-        throw new Error('Neither puppeteer-core nor puppeteer is installed.');
+        throw new Error('Puppeteer is not installed.');
     }
 
-    const launchArgs = [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--disable-gpu',
-    ];
+    const chromePaths = [
+        process.env.CHROME_BIN,
+        process.env.PUPPETEER_EXECUTABLE_PATH,
+        '/usr/bin/google-chrome',
+        '/usr/bin/google-chrome-stable',
+        '/usr/bin/chromium-browser',
+        '/usr/bin/chromium',
+        'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+        'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    ].filter(Boolean);
 
-    const launchOptions: any = {
-        headless: true,
-        args: launchArgs,
-        userDataDir: SESSION_DIR,
-    };
-
-    if (process.platform === 'linux' && fs.existsSync('/usr/bin/google-chrome')) {
-        launchOptions.executablePath = '/usr/bin/google-chrome';
+    let executablePath: string | undefined;
+    for (const p of chromePaths) {
+        if (p && fs.existsSync(p)) {
+            executablePath = p;
+            break;
+        }
     }
 
     try {
-        _browser = await puppeteerModule.launch(launchOptions);
+        _browser = await puppeteerModule.launch({
+            headless: true,
+            executablePath,
+            userDataDir: SESSION_DIR,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu',
+                '--disable-extensions',
+                '--disable-blink-features=AutomationControlled',
+                '--window-size=1280,800'
+            ]
+        });
     } catch (launchErr: any) {
         if (launchErr.message && launchErr.message.includes('already running')) {
-            console.warn('[GoogleMessages] Stale Chrome instance detected. Terminating orphaned processes...');
+            console.warn('[GoogleMessages] Killing stale browser processes...');
             try {
-                const req = eval('require');
-                const cp = req('child_process');
-                cp.execSync('pkill -f "chrome.*google-messages-session" || true');
-                await new Promise(r => setTimeout(r, 1500));
-                _browser = await puppeteerModule.launch(launchOptions);
+                const { execSync } = eval('require')('child_process');
+                execSync('pkill -f "chrome.*google-messages-session" || true');
+                await new Promise(r => setTimeout(r, 1000));
+                _browser = await puppeteerModule.launch({
+                    headless: true,
+                    executablePath,
+                    userDataDir: SESSION_DIR,
+                    args: [
+                        '--no-sandbox',
+                        '--disable-setuid-sandbox',
+                        '--disable-dev-shm-usage',
+                        '--disable-gpu',
+                        '--disable-extensions',
+                        '--disable-blink-features=AutomationControlled',
+                        '--window-size=1280,800'
+                    ]
+                });
             } catch (err: any) {
                 console.error('[GoogleMessages] Failed to relaunch after kill:', err.message);
                 throw launchErr;
@@ -96,7 +121,7 @@ export async function checkGoogleMessagesPairing(): Promise<{ paired: boolean; q
     try {
         const { page } = await ensureBrowser();
         
-        await page.goto(MESSAGES_URL, { waitUntil: 'networkidle2', timeout: 30000 });
+        await page.goto(MESSAGES_AUTH_URL, { waitUntil: 'networkidle2', timeout: 30000 });
 
         // Wait a bit for the page to settle
         await new Promise(r => setTimeout(r, 3000));
@@ -241,7 +266,7 @@ export async function sendSMSViaGoogleMessages(phoneNumber: string, text: string
 export async function getGoogleMessagesQRCode(): Promise<string | null> {
     try {
         const { page } = await ensureBrowser();
-        await page.goto(MESSAGES_URL, { waitUntil: 'networkidle2', timeout: 30000 });
+        await page.goto(MESSAGES_AUTH_URL, { waitUntil: 'networkidle2', timeout: 30000 });
         await new Promise(r => setTimeout(r, 3000));
 
         let qrDataUrl = await page.evaluate(() => {
