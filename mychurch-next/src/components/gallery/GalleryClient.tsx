@@ -4,7 +4,7 @@ import React, { useState, useMemo } from "react";
 import { GalleryGrid, type GalleryPhoto } from "./GalleryGrid";
 import { cn } from "@/lib/utils";
 
-const CATEGORIES = ["همه", "کلیسا", "رویداد", "طبیعت"];
+const CATEGORIES = ["همه", "ویدیوها", "کلیسا", "رویداد", "طبیعت", "پس‌زمینه اسلاید", "پرستش"];
 
 interface GalleryClientProps {
     photos: GalleryPhoto[];
@@ -15,14 +15,29 @@ export function GalleryClient({ photos }: GalleryClientProps) {
 
     const filtered = useMemo(() => {
         if (activeCategory === "همه") return photos;
+        if (activeCategory === "ویدیوها") {
+            return photos.filter(p => p.mediaType === 'video' || p.category === 'ویدیوها' || p.category === 'ویدیو پس‌زمینه');
+        }
         return photos.filter(p => p.category === activeCategory);
     }, [photos, activeCategory]);
 
     // Only show categories that have photos
     const availableCategories = useMemo(() => {
+        const hasVideos = photos.some(p => p.mediaType === 'video' || p.category === 'ویدیوها' || p.category === 'ویدیو پس‌زمینه');
         const used = new Set(photos.map(p => p.category).filter(Boolean));
-        return CATEGORIES.filter(c => c === "همه" || used.has(c));
+        return CATEGORIES.filter(c => {
+            if (c === "همه") return true;
+            if (c === "ویدیوها") return hasVideos;
+            return used.has(c);
+        });
     }, [photos]);
+
+    const getCount = (cat: string) => {
+        if (cat === "ویدیوها") {
+            return photos.filter(p => p.mediaType === 'video' || p.category === 'ویدیوها' || p.category === 'ویدیو پس‌زمینه').length;
+        }
+        return photos.filter(p => p.category === cat).length;
+    };
 
     return (
         <div className="w-full">
@@ -42,7 +57,7 @@ export function GalleryClient({ photos }: GalleryClientProps) {
                         {cat}
                         {cat !== "همه" && (
                             <span className="ml-2 text-xs opacity-60">
-                                ({photos.filter(p => p.category === cat).length})
+                                ({getCount(cat)})
                             </span>
                         )}
                     </button>

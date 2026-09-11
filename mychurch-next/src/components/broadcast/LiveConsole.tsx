@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square, Activity, SendHorizontal } from "lucide-react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square, Activity, SendHorizontal, LayoutDashboard, Layers, Globe, ArrowRight, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -23,13 +23,14 @@ import { SlideGrid } from "./SlideGrid";
 import { DeviceSettingsModal } from "./DeviceSettingsModal";
 import SlideFontControls from "./SlideFontControls";
 import { HelpTooltip } from "@/components/ui/HelpTooltip";
+import { SendTelegramSlidesModal } from "./SendTelegramSlidesModal";
 
 interface LiveConsoleProps {
     initialPresentationId?: string | null;
 }
 
 export default function LiveConsole({ initialPresentationId = null }: LiveConsoleProps) {
-    const { t, isRTL } = useLanguage();
+    const { t, isRTL, language, setLanguage } = useLanguage();
     const presentationId = initialPresentationId;
 
     const isLive = useBroadcastStore(state => state.isLive);
@@ -71,42 +72,15 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const clearSessionMetadata = useBroadcastStore(state => state.clearSessionMetadata);
 
     const viewerChannelRef = React.useRef<BroadcastChannel | null>(null);
-    const [isSendingTelegram, setIsSendingTelegram] = useState(false);
+    const [isTelegramModalOpen, setIsTelegramModalOpen] = useState(false);
+    const [isFccExpanded, setIsFccExpanded] = useState(false);
 
-    const handleSendTelegram = async () => {
+    const handleSendTelegram = () => {
         if (!slides || slides.length === 0) {
-            toast.error("اسلایدی برای ارسال وجود ندارد.");
+            toast.error(isRTL ? "اسلایدی برای ارسال وجود ندارد." : "No slides to send.");
             return;
         }
-
-        setIsSendingTelegram(true);
-        const toastId = toast.loading("در حال آماده‌سازی و ارسال فایل پرزنتیشن به گروه تلگرام...");
-
-        try {
-            const res = await fetch("/api/admin/presentations/send-telegram", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    presentationId,
-                    title: sessionId || "جلسه پخش زنده کلیسا",
-                    date: new Date().toISOString(),
-                    slides,
-                    prayerRequests: config.prayerRequests || []
-                })
-            });
-
-            const data = await res.json();
-            if (!res.ok) {
-                throw new Error(data.error || "خطا در ارسال به تلگرام");
-            }
-
-            toast.success("گزارش جلسه و فایل متنی کامل با موفقیت به گروه تلگرام ارسال شد! ✈️", { id: toastId });
-        } catch (err: any) {
-            console.error("Telegram send error:", err);
-            toast.error(err.message || "خطا در ارسال به تلگرام", { id: toastId });
-        } finally {
-            setIsSendingTelegram(false);
-        }
+        setIsTelegramModalOpen(true);
     };
 
     // Hardware bindings
@@ -980,64 +954,125 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     }, [goNextStep, goPrevStep, setActiveSlideIndex, setInternalPageIndex, slides.length]);
 
     return (
-        <div className="flex flex-col h-[100dvh] w-full bg-neutral-950 text-foreground overflow-hidden font-sans selection:bg-primary/30">
+        <div 
+            dir={isRTL ? "rtl" : "ltr"}
+            className={cn(
+                "flex flex-col h-[100dvh] w-full bg-neutral-950 text-foreground overflow-hidden selection:bg-primary/30",
+                isRTL ? "font-[Vazirmatn]" : "font-sans"
+            )}
+        >
             <PageVisuals soft />
             {/* Top Navigation / Status Bar */}
-            <header className="h-16 px-4 sm:px-6 border-b border-border/10 flex items-center justify-between bg-neutral-900 shrink-0 z-10 w-full shadow-md">
-                <div className="flex items-center gap-2 sm:gap-4">
+            <header className="h-16 px-3 sm:px-5 border-b border-border/10 flex items-center justify-between bg-neutral-900/95 backdrop-blur-md shrink-0 z-20 w-full shadow-md gap-2">
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                     {/* Left Sidebar Toggle Button (only on mobile/tablet) */}
                     <button
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                         className="p-2 hover:bg-neutral-800 rounded-lg text-muted-foreground lg:hidden transition-colors cursor-pointer"
-                        title="Toggle Scenes"
+                        title={isRTL ? "نمایش صحنه‌ها" : "Toggle Scenes"}
                     >
                         <Menu className="w-5 h-5" />
                     </button>
 
-                    <div className="flex items-center gap-3">
-                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-primary overflow-hidden shrink-0">
-                            <Image src="/logo-transparent.png" alt="MyChurch" width={32} height={32} className="object-contain drop-shadow" />
-                        </div>
-                        <span className="font-bold tracking-wide text-sm sm:text-base hidden xs:inline">{t.broadcastConsole || 'Broadcast Console'}</span>
+                    <div className="flex items-center gap-2.5">
+                        <Link href="/admin/presentations" className="flex items-center gap-2 group cursor-pointer" title={isRTL ? "کنسول پخش زنده کلیسا" : "Broadcast Console"}>
+                            <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-primary overflow-hidden shrink-0 group-hover:scale-105 transition-transform">
+                                <Image src="/logo-transparent.png" alt="MyChurch" width={32} height={32} className="object-contain drop-shadow" />
+                            </div>
+                            <span className="font-bold tracking-wide text-xs sm:text-sm hidden xs:inline text-white">
+                                {t.broadcastConsole || (isRTL ? 'کنسول پخش زنده' : 'Broadcast Console')}
+                            </span>
+                        </Link>
                         <span className="text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 hidden md:inline">
                             {t.pro || 'PRO'}
                         </span>
                         {isConnected && (
                             <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 animate-pulse flex items-center gap-1 uppercase" title="Listening for Remote Control">
-                                <RadioReceiver className="w-2.5 h-2.5" /> <span className="hidden sm:inline">Remote Sync</span>
+                                <RadioReceiver className="w-2.5 h-2.5" /> <span className="hidden xl:inline">Remote Sync</span>
                             </span>
                         )}
                         {!isOnline && (
                             <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center gap-1 uppercase" title="Network Disconnected">
-                                <RadioReceiver className="w-2.5 h-2.5" /> <span className="hidden sm:inline">Offline</span>
+                                <RadioReceiver className="w-2.5 h-2.5" /> <span className="hidden xl:inline">Offline</span>
                             </span>
                         )}
                     </div>
+
+                    {/* Quick Navigation / Return Buttons */}
+                    <div className="h-6 w-px bg-white/10 hidden sm:block mx-1" />
+
+                    <div className="flex items-center gap-1.5">
+                        {/* 1. Back to Presentations */}
+                        <Link
+                            href="/admin/presentations"
+                            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-neutral-800/90 hover:bg-neutral-750 text-neutral-200 hover:text-white border border-white/10 hover:border-indigo-500/40 text-xs font-bold transition-all shadow-sm group cursor-pointer"
+                            title={isRTL ? "بازگشت به صفحه ارائه‌ها و جلسات کلیسا" : "Return to Presentations list"}
+                        >
+                            {isRTL ? (
+                                <ArrowRight className="w-3.5 h-3.5 text-indigo-400 group-hover:-translate-x-0.5 transition-transform" />
+                            ) : (
+                                <ArrowLeft className="w-3.5 h-3.5 text-indigo-400 group-hover:-translate-x-0.5 transition-transform" />
+                            )}
+                            <Layers className="w-3.5 h-3.5 text-indigo-400 hidden sm:inline" />
+                            <span>{isRTL ? "ارائه‌ها" : "Presentations"}</span>
+                        </Link>
+
+                        {/* 2. Slide Builder */}
+                        <Link
+                            href={presentationId ? `/broadcast/builder?id=${presentationId}` : "/broadcast/builder"}
+                            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-neutral-800/90 hover:bg-neutral-750 text-neutral-200 hover:text-white border border-white/10 hover:border-amber-500/40 text-xs font-bold transition-all shadow-sm group cursor-pointer"
+                            title={isRTL ? "ورود به ویرایشگر گرافیکی و طراحی اسلایدها" : "Open Slide Builder"}
+                        >
+                            <Edit3 className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110 transition-transform" />
+                            <span className="hidden md:inline">{isRTL ? "طراحی اسلایدها" : "Slide Builder"}</span>
+                        </Link>
+
+                        {/* 3. Admin Panel */}
+                        <Link
+                            href="/admin"
+                            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-neutral-800/90 hover:bg-neutral-750 text-neutral-200 hover:text-white border border-white/10 hover:border-emerald-500/40 text-xs font-bold transition-all shadow-sm group cursor-pointer"
+                            title={isRTL ? "بازگشت به کنترل پنل مدیریتی کلیسا" : "Back to Admin Dashboard"}
+                        >
+                            <LayoutDashboard className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
+                            <span className="hidden lg:inline">{isRTL ? "پنل مدیریت" : "Admin Panel"}</span>
+                        </Link>
+                    </div>
                 </div>
 
-                <div className="flex items-center gap-2 sm:gap-4">
-                    <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-lg bg-neutral-800 border border-border/10">
+                <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+                    {/* Live / Offline Status Pill */}
+                    <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 rounded-lg bg-neutral-800/90 border border-border/10">
                         <div className={cn("w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full", isLive ? "bg-red-500 animate-pulse" : "bg-neutral-500")} />
                         <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground">
                             {isLive ? t.onAir : t.offline}
                         </span>
                     </div>
 
+                    {/* Language & RTL/LTR Switcher */}
+                    <button
+                        onClick={() => setLanguage(language === 'fa' ? 'en' : 'fa')}
+                        className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg bg-neutral-800/90 hover:bg-neutral-700 text-neutral-200 hover:text-white border border-white/10 hover:border-indigo-500/40 text-xs font-bold transition-all cursor-pointer shadow-sm"
+                        title={isRTL ? "تغییر زبان به انگلیسی (LTR)" : "تغییر زبان به فارسی (RTL)"}
+                    >
+                        <Globe className="w-3.5 h-3.5 text-indigo-400" />
+                        <span className="font-mono text-[11px] font-extrabold uppercase">{language === 'fa' ? 'EN' : 'فا'}</span>
+                    </button>
+
                     {/* Telegram Export Button */}
                     <button
                         onClick={handleSendTelegram}
-                        disabled={isSendingTelegram}
-                        className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer border bg-sky-600/20 text-sky-400 border-sky-500/30 hover:bg-sky-600/30 disabled:opacity-50 font-[Vazirmatn]"
-                        title="ارسال گزارش متنی و فایل پرزنتیشن به گروه تلگرام"
+                        className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer border bg-sky-600/20 text-sky-400 border-sky-500/30 hover:bg-sky-600/30"
+                        title={isRTL ? "ارسال به تلگرام با انتخاب اسلایدها و فایل صوتی سرودها" : "Send slides & worship audio to Telegram Channel"}
                     >
-                        {isSendingTelegram ? <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin" /> : <SendHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />}
-                        <span className="hidden sm:inline">ارسال به تلگرام</span>
+                        <SendHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" />
+                        <span className="hidden sm:inline">{isRTL ? "ارسال به تلگرام" : "Send Telegram"}</span>
                     </button>
 
+                    {/* 3D Audio Stage */}
                     <button
                         onClick={() => setIsAudioStageEnabled(!isAudioStageEnabled)}
                         className={cn(
-                            "flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer border",
+                            "flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer border",
                             isAudioStageEnabled
                                 ? "bg-indigo-500/20 text-indigo-400 border-indigo-500/30 hover:bg-indigo-500/30"
                                 : "bg-neutral-800 text-neutral-400 border-neutral-700 hover:bg-neutral-700 hover:text-white"
@@ -1045,13 +1080,14 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                         title="3D Audio Stage"
                     >
                         <Activity className={cn("w-3.5 h-3.5 sm:w-4 sm:h-4", isAudioStageEnabled && "animate-pulse")} />
-                        <span className="hidden xs:inline">Audio Stage 3D</span>
+                        <span className="hidden xl:inline">Audio Stage 3D</span>
                     </button>
 
+                    {/* Go Live / End Stream */}
                     <button
                         onClick={() => setIsLive(!isLive)}
                         className={cn(
-                            "flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer",
+                            "flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer",
                             isLive
                                 ? "bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20"
                                 : "bg-primary text-primary-foreground hover:bg-primary/90"
@@ -1067,7 +1103,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     <button
                         onClick={() => setIsPropertiesOpen(!isPropertiesOpen)}
                         className="p-2 hover:bg-neutral-800 rounded-lg text-muted-foreground lg:hidden transition-colors cursor-pointer"
-                        title="Toggle Properties"
+                        title={isRTL ? "تنظیمات پخش" : "Toggle Properties"}
                     >
                         <Settings className="w-5 h-5" />
                     </button>
@@ -1143,92 +1179,109 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     </div>
 
                     {/* Bottom Area: Deck / Quick Controls */}
-                    <SlideGrid />
+                    <div className="shrink-0">
+                        <SlideGrid />
+                    </div>
 
-                    {/* FreeConferenceCall Live Control Widget */}
-                    <div className="bg-neutral-900/60 border border-white/5 rounded-2xl p-4 flex flex-col md:flex-row gap-4 font-[Vazirmatn] text-white backdrop-blur-md mt-2">
-                        {/* Farsi content: Active Callers count & List */}
-                        <div className="flex-1 flex flex-col gap-3 text-right">
-                            <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                                <h3 className="text-sm font-bold flex items-center gap-2">
-                                    <Phone className="text-emerald-500 w-4 h-4 animate-pulse" />
-                                    <span>شرکت‌کنندگان تماس زنده (تلفنی و تصویری وب)</span>
-                                    <HelpTooltip text="از اینجا می‌توانید صدای کسانی که تلفنی به جلسه وصل شده‌اند را وصل یا قطع کنید." />
-                                    {fccCallers.length > 0 && (
-                                        <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-0.5 rounded-full font-bold">
+                    {/* FreeConferenceCall Live Control Widget (Compact & Collapsible) */}
+                    <div className="bg-neutral-900/80 border border-white/10 rounded-xl p-2 sm:p-2.5 font-[Vazirmatn] text-white backdrop-blur-md mt-2 transition-all shrink-0">
+                        {/* Compact Header Bar */}
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                            {/* Callers count & toggle button */}
+                            <div className="flex items-center gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsFccExpanded(!isFccExpanded)}
+                                    className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-750 text-neutral-200 hover:text-white border border-white/5 text-xs font-bold transition cursor-pointer"
+                                >
+                                    <Phone className={cn("w-3.5 h-3.5", fccCallers.length > 0 ? "text-emerald-400 animate-pulse" : "text-neutral-400")} />
+                                    <span>شرکت‌کنندگان تماس زنده</span>
+                                    {fccCallers.length > 0 ? (
+                                        <span className="bg-emerald-500/20 text-emerald-400 text-[11px] px-1.5 py-0.5 rounded-full font-bold">
                                             {fccCallers.length} نفر فعال
                                         </span>
+                                    ) : (
+                                        <span className="text-neutral-400 text-[11px]">(بدون تماس)</span>
                                     )}
-                                </h3>
+                                    {isFccExpanded ? <ChevronUp className="w-3.5 h-3.5 text-neutral-400" /> : <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />}
+                                </button>
+                                <HelpTooltip text="مدیریت صدای شرکت‌کنندگانی که با تلفن یا وب به جلسه وصل شده‌اند." />
                             </div>
-                            
-                            {fccCallers.length === 0 ? (
-                                <div className="flex items-center justify-center py-6 text-muted-foreground text-xs gap-2">
-                                    <PhoneOff className="w-4 h-4 opacity-40 animate-pulse" />
-                                    <span>هیچ تماسی در حال حاضر فعال نیست. منتظر اتصال کاربران روی خط کلیسا...</span>
+
+                            {/* Conference Dial-in numbers inline chips */}
+                            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] text-neutral-300">
+                                <span className="text-neutral-400 font-bold hidden sm:inline">📞 خط کنفرانس:</span>
+                                <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px]">
+                                    <span className="text-neutral-400 text-[10px]">تلفن:</span>
+                                    <span className="text-emerald-400 font-bold select-all" dir="ltr">(605) 313-9689</span>
                                 </div>
-                            ) : (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 overflow-y-auto max-h-[140px] p-1">
-                                    {fccCallers.map((caller: any) => (
-                                        <div key={caller.id} className="flex items-center justify-between p-2.5 bg-neutral-950/60 rounded-xl border border-white/5 hover:border-white/10 transition-all">
-                                            <div className="flex items-center gap-2.5">
-                                                <div className={cn(
-                                                    "p-1.5 rounded-lg flex items-center justify-center",
-                                                    caller.muted ? "bg-red-500/10 text-red-400" : "bg-emerald-500/10 text-emerald-400"
-                                                )}>
-                                                    {caller.muted ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
-                                                </div>
-                                                <div className="text-right">
-                                                    <span className="font-bold text-xs block truncate max-w-[120px]">{caller.display_name || caller.name || 'شرکت‌کننده'}</span>
-                                                    <span className="text-[9px] text-muted-foreground font-mono font-bold" dir="ltr">{caller.caller_number || caller.phone_number || '-'}</span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="flex items-center gap-1">
-                                                <button
-                                                    onClick={() => handleModerateCaller(caller.id, caller.muted ? 'unmute' : 'mute')}
-                                                    disabled={isModeratingId === caller.id}
-                                                    className={cn(
-                                                        "p-1.5 rounded-md text-[10px] font-bold transition flex items-center justify-center",
-                                                        caller.muted 
-                                                            ? "bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30" 
-                                                            : "bg-red-600/20 text-red-400 hover:bg-red-600/30"
-                                                    )}
-                                                    title={caller.muted ? 'وصل صدا' : 'قطع صدا'}
-                                                >
-                                                    {isModeratingId === caller.id ? <Loader2 className="w-3 h-3 animate-spin" /> : caller.muted ? <Mic className="w-3 h-3" /> : <MicOff className="w-3 h-3" />}
-                                                </button>
-                                                <button
-                                                    onClick={() => handleModerateCaller(caller.id, 'kick')}
-                                                    disabled={isModeratingId === caller.id}
-                                                    className="p-1.5 bg-neutral-800 hover:bg-red-950/40 text-muted-foreground hover:text-red-400 rounded-md transition"
-                                                    title="قطع تماس"
-                                                >
-                                                    <PhoneOff className="w-3 h-3" />
-                                                </button>
-                                            </div>
+                                <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px]">
+                                    <span className="text-neutral-400 text-[10px]">کد:</span>
+                                    <span className="text-amber-400 font-bold select-all">1036379#</span>
+                                </div>
+                                <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px] hidden md:flex">
+                                    <span className="text-neutral-400 text-[10px]">شناسه:</span>
+                                    <span className="text-cyan-400 font-bold select-all" dir="ltr">iranianchurchdcus</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Collapsible Details Area */}
+                        {isFccExpanded && (
+                            <div className="mt-2.5 pt-2.5 border-t border-white/10 flex flex-col md:flex-row gap-3 animate-in fade-in duration-200">
+                                <div className="flex-1">
+                                    {fccCallers.length === 0 ? (
+                                        <div className="flex items-center justify-center py-3 text-muted-foreground text-xs gap-2 bg-neutral-950/40 rounded-lg">
+                                            <PhoneOff className="w-3.5 h-3.5 opacity-40 animate-pulse" />
+                                            <span>هیچ تماسی در حال حاضر فعال نیست. منتظر اتصال کاربران روی خط کلیسا...</span>
                                         </div>
-                                    ))}
+                                    ) : (
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 overflow-y-auto max-h-[140px] p-1">
+                                            {fccCallers.map((caller: any) => (
+                                                <div key={caller.id} className="flex items-center justify-between p-2 bg-neutral-950/60 rounded-xl border border-white/5 hover:border-white/10 transition-all">
+                                                    <div className="flex items-center gap-2">
+                                                        <div className={cn(
+                                                            "p-1.5 rounded-lg flex items-center justify-center",
+                                                            caller.muted ? "bg-red-500/10 text-red-400" : "bg-emerald-500/10 text-emerald-400"
+                                                        )}>
+                                                            {caller.muted ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+                                                        </div>
+                                                        <div className="text-right">
+                                                            <span className="font-bold text-xs block truncate max-w-[120px]">{caller.display_name || caller.name || 'شرکت‌کننده'}</span>
+                                                            <span className="text-[9px] text-muted-foreground font-mono font-bold" dir="ltr">{caller.caller_number || caller.phone_number || '-'}</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div className="flex items-center gap-1">
+                                                        <button
+                                                            onClick={() => handleModerateCaller(caller.id, caller.muted ? 'unmute' : 'mute')}
+                                                            disabled={isModeratingId === caller.id}
+                                                            className={cn(
+                                                                "p-1.5 rounded-md text-[10px] font-bold transition flex items-center justify-center",
+                                                                caller.muted 
+                                                                    ? "bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30" 
+                                                                    : "bg-red-600/20 text-red-400 hover:bg-red-600/30"
+                                                            )}
+                                                            title={caller.muted ? 'وصل صدا' : 'قطع صدا'}
+                                                        >
+                                                            {isModeratingId === caller.id ? <Loader2 className="w-3 h-3 animate-spin" /> : caller.muted ? <Mic className="w-3 h-3" /> : <MicOff className="w-3 h-3" />}
+                                                        </button>
+                                                        <button
+                                                            onClick={() => handleModerateCaller(caller.id, 'kick')}
+                                                            disabled={isModeratingId === caller.id}
+                                                            className="p-1.5 bg-neutral-800 hover:bg-red-950/40 text-muted-foreground hover:text-red-400 rounded-md transition"
+                                                            title="قطع تماس"
+                                                        >
+                                                            <PhoneOff className="w-3 h-3" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                        </div>
-                        
-                        {/* Static connection information */}
-                        <div className="w-full md:w-80 border-t md:border-t-0 md:border-r border-white/5 pt-3 md:pt-0 md:pr-4 flex flex-col justify-center gap-2.5 text-xs text-right shrink-0">
-                            <div className="text-white/60 font-bold border-b border-white/5 pb-1 mb-1">📞 اطلاعات اتصال خط کنفرانس تلفنی:</div>
-                            <div className="flex items-center justify-between gap-2">
-                                <span className="font-bold tracking-wide font-mono select-all text-emerald-400" dir="ltr">(605) 313-9689</span>
-                                <span className="text-white/50">:شماره تماس خط آمریکا</span>
                             </div>
-                            <div className="flex items-center justify-between gap-2">
-                                <span className="font-bold text-amber-400 font-mono select-all">1036379#</span>
-                                <span className="text-white/50">:کد دسترسی (Access Code)</span>
-                            </div>
-                            <div className="flex items-center justify-between gap-2">
-                                <span className="font-bold text-cyan-400 font-mono select-all truncate max-w-[140px]" dir="ltr">iranianchurchdcus</span>
-                                <span className="text-white/50">:شناسه آنلاین (Meeting ID)</span>
-                            </div>
-                        </div>
+                        )}
                     </div>
 
                     {/* Action Footer */}
@@ -1327,7 +1380,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                             <Power className="w-3.5 h-3.5" /> <span>{isLive ? (t.endStream || 'Stop') : (t.goLive || 'Go Live')}</span>
                         </button>
                         
-                        <Link href="/broadcast/builder" className="px-4 py-2 bg-neutral-850 hover:bg-neutral-700 text-white font-bold rounded-xl transition-all flex items-center gap-1.5 text-xs border border-border/10 font-[Vazirmatn]" title="Builder">
+                        <Link href={presentationId ? `/broadcast/builder?id=${presentationId}` : "/broadcast/builder"} className="px-4 py-2 bg-neutral-850 hover:bg-neutral-700 text-white font-bold rounded-xl transition-all flex items-center gap-1.5 text-xs border border-border/10" title="Slide Builder">
                             <Edit3 className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t.slideBuilder || 'Slide Builder'}</span>
                         </Link>
                         
@@ -1462,6 +1515,16 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                 isBlur={isBlur}
                 onBlurChange={setIsBlur}
                 isRTL={true}
+            />
+
+            {/* Telegram Slides Selection & Dispatch Modal */}
+            <SendTelegramSlidesModal
+                isOpen={isTelegramModalOpen}
+                onClose={() => setIsTelegramModalOpen(false)}
+                slides={slides}
+                presentationId={presentationId || undefined}
+                presentationTitle={sessionId || (isRTL ? "جلسه پخش زنده کلیسا" : "Church Live Service")}
+                isRTL={isRTL}
             />
 
             {/* Floating Picture-in-Picture FreeConferenceCall Video Feed */}

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useTransition, useEffect } from "react";
-import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2, Play, Video, Clock, MoreVertical, ChevronDown, Check, BookOpen, Eye, Copy, CalendarDays, LayoutGrid } from "lucide-react";
+import { MonitorPlay, Plus, Search, Trash2, Edit2, ShieldAlert, FileJson, Calendar as CalIcon, Share2, Loader2, Play, Video, Clock, MoreVertical, ChevronDown, Check, BookOpen, Eye, Copy, CalendarDays, LayoutGrid, SendHorizontal } from "lucide-react";
 import { toast } from "sonner";
 import { BroadcastSession } from "@/types/broadcast";
 import { deletePresentation, savePresentation, searchPresentations } from "@/actions/presentations";
@@ -12,6 +12,7 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 import ProgramSchedulePanel from "./ProgramSchedulePanel";
 import type { ChurchProgramCategory, ChurchProgram } from "@/types/church-programs";
+import { SendTelegramSlidesModal } from "@/components/broadcast/SendTelegramSlidesModal";
 
 type SerializedBroadcastSession = Omit<BroadcastSession, "date"> & {
     date: string;
@@ -70,6 +71,16 @@ export default function PresentationsClient({
     const [scheduleDate, setScheduleDate] = useState("");
     const [scheduleTime, setScheduleTime] = useState("");
     const [isScheduling, setIsScheduling] = useState(false);
+    const [sendingTelegramId, setSendingTelegramId] = useState<string | null>(null);
+    const [telegramModalPres, setTelegramModalPres] = useState<BroadcastSession | null>(null);
+
+    const handleSendTelegram = (pres: BroadcastSession) => {
+        if (!pres.slides || pres.slides.length === 0) {
+            toast.error(language === 'fa' ? 'اسلایدی برای ارسال در این ارائه وجود ندارد.' : 'No slides in this presentation to send.');
+            return;
+        }
+        setTelegramModalPres(pres);
+    };
 
     const statusLabel: Record<BroadcastSession['status'], string> = {
         draft: 'پیش نویس',
@@ -565,7 +576,22 @@ export default function PresentationsClient({
                                                   <span>کپی لینک پروژکتور</span>
                                               </button>
 
-                                              <div className="my-1 border-t border-white/10" />
+                                               {/* ✈️ ارسال به کانال تلگرام */}
+                                               <button
+                                                   onClick={(e) => {
+                                                       e.stopPropagation();
+                                                       handleSendTelegram(pres);
+                                                       setActiveMenuId(null);
+                                                   }}
+                                                   disabled={sendingTelegramId === pres.id}
+                                                   className="w-full text-right px-3 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-2 text-sky-400 hover:bg-sky-500/10 cursor-pointer disabled:opacity-50"
+                                                   title={language === 'fa' ? 'ارسال فایل متنی و گزارش این ارائه به کانال تلگرام (@iranianchurchdc)' : 'Export to Telegram Channel'}
+                                               >
+                                                   {sendingTelegramId === pres.id ? <Loader2 className="w-4 h-4 animate-spin text-sky-400" /> : <SendHorizontal className="w-4 h-4 text-sky-400" />}
+                                                   <span>{language === 'fa' ? 'ارسال به کانال تلگرام' : 'Send to Telegram'}</span>
+                                               </button>
+
+                                               <div className="my-1 border-t border-white/10" />
 
                                               {/* 🗑️ حذف ارائه */}
                                               <button
@@ -649,6 +675,18 @@ export default function PresentationsClient({
                         </form>
                     </div>
                 </div>
+            )}
+
+            {/* Telegram Slides Selection & Dispatch Modal */}
+            {telegramModalPres && (
+                <SendTelegramSlidesModal
+                    isOpen={!!telegramModalPres}
+                    onClose={() => setTelegramModalPres(null)}
+                    slides={telegramModalPres.slides || []}
+                    presentationId={telegramModalPres.id}
+                    presentationTitle={telegramModalPres.title || (language === 'fa' ? "جلسه کلیسا" : "Church Service")}
+                    isRTL={language === 'fa'}
+                />
             )}
         </div>
     );

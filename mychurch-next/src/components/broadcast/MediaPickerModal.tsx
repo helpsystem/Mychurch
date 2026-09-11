@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { X, Search, FileVideo, Image as ImageIcon, Music, Upload, CheckCircle2 } from "lucide-react";
+import { X, Search, FileVideo, Image as ImageIcon, Music, Upload, CheckCircle2, Link2 } from "lucide-react";
 import { listMediaFiles, MediaAsset } from "@/actions/media";
+import { AddMediaLinkModal } from "@/components/admin/media/AddMediaLinkModal";
 
 export interface MediaPickerModalProps {
     isOpen: boolean;
@@ -15,9 +16,10 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
     const [assets, setAssets] = useState<MediaAsset[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
-    const [activeTab, setActiveTab] = useState<"all" | "image" | "video" | "audio">("all");
+    const [activeTab, setActiveTab] = useState<"all" | "image" | "video" | "audio" | "links">("all");
     const [sortBy, setSortBy] = useState<"newest" | "oldest" | "nameAsc" | "nameDesc" | "sizeDesc">("newest");
     const [uploading, setUploading] = useState(false);
+    const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Initial restriction
@@ -88,13 +90,11 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
         }
 
         // Tab Filter
-        if (activeTab !== "all") {
+        if (activeTab === "links") {
+            result = result.filter(a => a.isExternalLink || a.folder === 'links');
+        } else if (activeTab !== "all") {
             result = result.filter(a => a.type === activeTab);
         }
-
-        // Visibility Filter: Only show items that can be selected by the presenter
-        // Since this modal is used by admins/leaders for presentation, show all visibility levels
-        // (real filtering happens in gallery view)
 
         // Sort
         return result.sort((a, b) => {
@@ -119,12 +119,14 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
     if (!isOpen) return null;
 
     const translate = {
-        title: title || (isRTL ? 'گالری مدیا' : 'Media Gallery'),
-        search: isRTL ? 'جستجوی فایل...' : 'Search files...',
+        title: title || (isRTL ? 'گالری مدیا و پس‌زمینه‌ها' : 'Media & Background Gallery'),
+        search: isRTL ? 'جستجوی فایل یا لینک...' : 'Search files or links...',
         all: isRTL ? 'همه' : 'All',
         image: isRTL ? 'تصاویر' : 'Images',
-        video: isRTL ? 'ویدیو' : 'Videos',
+        video: isRTL ? 'ویدیوها' : 'Videos',
         audio: isRTL ? 'صدا' : 'Audio',
+        links: isRTL ? 'لینک‌ها' : 'Links',
+        addLink: isRTL ? 'افزودن با لینک' : 'Add via Link',
         upload: isRTL ? 'آپلود فایل جدید' : 'Upload File',
         uploading: isRTL ? 'در حال آپلود...' : 'Uploading...',
         empty: isRTL ? 'هیچ فایلی یافت نشد.' : 'No files found.',
@@ -151,11 +153,11 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
 
                 {/* Toolbar */}
                 <div className="p-4 flex flex-col md:flex-row gap-4 justify-between bg-slate-900/50 border-b border-white/5 shrink-0">
-                    <div className="flex gap-2 p-1 bg-slate-950/50 rounded-lg border border-white/5">
+                    <div className="flex flex-wrap gap-1.5 p-1 bg-slate-950/50 rounded-lg border border-white/5">
                         {allowedTypes.includes('all') && (
                             <button
                                 onClick={() => setActiveTab("all")}
-                                className={`px-4 py-1.5 rounded-md text-sm transition-colors ${activeTab === "all" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"}`}
+                                className={`px-3 py-1.5 rounded-md text-xs font-bold transition-colors ${activeTab === "all" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"}`}
                             >
                                 {translate.all}
                             </button>
@@ -163,30 +165,36 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                         {(allowedTypes.includes('all') || allowedTypes.includes('image')) && (
                             <button
                                 onClick={() => setActiveTab("image")}
-                                className={`px-4 py-1.5 rounded-md text-sm flex items-center gap-1.5 transition-colors ${activeTab === "image" ? "bg-emerald-600 text-white" : "text-slate-400 hover:text-white"}`}
+                                className={`px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-colors ${activeTab === "image" ? "bg-emerald-600 text-white" : "text-slate-400 hover:text-white"}`}
                             >
-                                <ImageIcon className="w-4 h-4" /> {translate.image}
+                                <ImageIcon className="w-3.5 h-3.5" /> {translate.image}
                             </button>
                         )}
                         {(allowedTypes.includes('all') || allowedTypes.includes('video')) && (
                             <button
                                 onClick={() => setActiveTab("video")}
-                                className={`px-4 py-1.5 rounded-md text-sm flex items-center gap-1.5 transition-colors ${activeTab === "video" ? "bg-blue-600 text-white" : "text-slate-400 hover:text-white"}`}
+                                className={`px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-colors ${activeTab === "video" ? "bg-blue-600 text-white" : "text-slate-400 hover:text-white"}`}
                             >
-                                <FileVideo className="w-4 h-4" /> {translate.video}
+                                <FileVideo className="w-3.5 h-3.5" /> {translate.video}
                             </button>
                         )}
                         {(allowedTypes.includes('all') || allowedTypes.includes('audio')) && (
                             <button
                                 onClick={() => setActiveTab("audio")}
-                                className={`px-4 py-1.5 rounded-md text-sm flex items-center gap-1.5 transition-colors ${activeTab === "audio" ? "bg-purple-600 text-white" : "text-slate-400 hover:text-white"}`}
+                                className={`px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-colors ${activeTab === "audio" ? "bg-purple-600 text-white" : "text-slate-400 hover:text-white"}`}
                             >
-                                <Music className="w-4 h-4" /> {translate.audio}
+                                <Music className="w-3.5 h-3.5" /> {translate.audio}
                             </button>
                         )}
+                        <button
+                            onClick={() => setActiveTab("links")}
+                            className={`px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-colors ${activeTab === "links" ? "bg-amber-600 text-white" : "text-slate-400 hover:text-white"}`}
+                        >
+                            <Link2 className="w-3.5 h-3.5" /> {translate.links}
+                        </button>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-2.5">
                         <div className="relative">
                             <button
                                 type="button"
@@ -202,28 +210,38 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                                 placeholder={translate.search}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className={`w-full md:w-48 bg-slate-950 border border-slate-800 rounded-lg pr-9 pl-3 py-1.5 text-sm focus:border-indigo-500 transition-colors ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                                className={`w-full md:w-44 bg-slate-950 border border-slate-800 rounded-lg pr-9 pl-3 py-1.5 text-xs focus:border-indigo-500 transition-colors ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                                 dir={isRTL ? "rtl" : "ltr"}
                             />
                         </div>
                         <select
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value as any)}
-                            className={`bg-slate-950 border border-slate-800 rounded-lg px-2 py-1.5 text-sm outline-none focus:border-indigo-500 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                            className={`bg-slate-950 border border-slate-800 rounded-lg px-2 py-1.5 text-xs outline-none focus:border-indigo-500 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                         >
                             <option value="newest">{translate.newest}</option>
                             <option value="oldest">{translate.oldest}</option>
                             <option value="nameAsc">{translate.nameAsc}</option>
                             <option value="nameDesc">{translate.nameDesc}</option>
-                            <option value="sizeDesc">{translate.sizeDesc}</option>
                         </select>
+
+                        {/* Add via Link Button */}
+                        <button
+                            type="button"
+                            onClick={() => setIsLinkModalOpen(true)}
+                            className={`flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-500 border border-indigo-500 px-3 py-1.5 rounded-lg text-xs font-bold text-white shadow-lg transition-colors font-[Vazirmatn]`}
+                        >
+                            <Link2 className="w-3.5 h-3.5" />
+                            <span>{translate.addLink}</span>
+                        </button>
+
                         <button
                             onClick={() => fileInputRef.current?.click()}
                             disabled={uploading}
-                            className={`flex items-center gap-2 bg-slate-800 hover:bg-slate-700 disabled:opacity-50 border border-slate-700 px-3 py-1.5 rounded-lg text-sm text-white transition-colors ${isRTL ? 'font-[Vazirmatn]' : ''}`}
+                            className={`flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-50 border border-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold text-white transition-colors font-[Vazirmatn]`}
                         >
-                            {uploading ? <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" /> : <Upload className="w-4 h-4" />}
-                            <span className="hidden md:inline">{uploading ? translate.uploading : translate.upload}</span>
+                            {uploading ? <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
+                            <span>{uploading ? translate.uploading : translate.upload}</span>
                         </button>
                         <input
                             type="file"
@@ -266,13 +284,21 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                                             <CheckCircle2 className="w-10 h-10 text-white shadow-sm" />
                                         </div>
 
+                                        {/* External Link Badge */}
+                                        {asset.isExternalLink && (
+                                            <span className="absolute top-2 right-2 z-10 bg-amber-500/90 text-slate-950 text-[10px] font-black px-1.5 py-0.5 rounded-md flex items-center gap-1 shadow">
+                                                <Link2 className="w-2.5 h-2.5" />
+                                                لینک
+                                            </span>
+                                        )}
+
                                         {asset.type === 'image' && (
                                             <img src={asset.url} alt={asset.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                                         )}
                                         {asset.type === 'video' && (
                                             <>
                                                 <video src={asset.url} className="w-full h-full object-cover opacity-60" />
-                                                <FileVideo className="absolute w-8 h-8 text-white/50 z-10" />
+                                                <FileVideo className="absolute w-8 h-8 text-white/70 z-10" />
                                             </>
                                         )}
                                         {asset.type === 'audio' && (
@@ -282,7 +308,9 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                                     <div className="p-2.5 bg-slate-900 border-t border-slate-800 shrink-0">
                                         <p className="text-xs font-medium truncate w-full text-slate-200" title={asset.name} dir="ltr">{asset.name}</p>
                                         <div className="flex justify-between items-center mt-1.5 opacity-60">
-                                            <span className="text-[10px] tabular-nums" dir="ltr">{formatBytes(asset.size)}</span>
+                                            <span className="text-[10px] tabular-nums" dir="ltr">
+                                                {asset.isExternalLink ? "لینک اینترنتی" : formatBytes(asset.size)}
+                                            </span>
                                             {asset.type === 'image' && <ImageIcon className={"w-3 h-3 text-emerald-400"} />}
                                             {asset.type === 'video' && <FileVideo className={"w-3 h-3 text-blue-400"} />}
                                             {asset.type === 'audio' && <Music className={"w-3 h-3 text-purple-400"} />}
@@ -293,6 +321,20 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                         </div>
                     )}
                 </div>
+
+                {/* Add Media Link Modal */}
+                <AddMediaLinkModal
+                    isOpen={isLinkModalOpen}
+                    onClose={() => setIsLinkModalOpen(false)}
+                    isRTL={isRTL}
+                    onSuccess={() => {
+                        loadFiles();
+                    }}
+                    onSelectAndApply={(newUrl, newType) => {
+                        onSelect(newUrl, newType);
+                        onClose();
+                    }}
+                />
             </div>
         </div>
     );

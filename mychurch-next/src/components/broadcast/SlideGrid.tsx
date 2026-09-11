@@ -29,16 +29,18 @@ export function SlideGrid() {
 
     const [filter, setFilter] = useState<'all' | 'lyrics' | 'bible' | 'media'>('all');
 
-    // Auto-update filter based on Sidebar Scene selections
-    useEffect(() => {
-        if (activeSceneId === 'scene_1') {
-            setFilter('lyrics');
-        } else if (activeSceneId === 'scene_2') {
-            setFilter('bible');
-        } else if (activeSceneId === 'scene_5') {
-            setFilter('media');
-        }
-    }, [activeSceneId]);
+    // Counts for tabs
+    const counts = useMemo(() => {
+        let lyrics = 0;
+        let bible = 0;
+        let media = 0;
+        slides.forEach(s => {
+            if (s.type === SlideType.LYRICS) lyrics++;
+            else if (s.type === SlideType.SCRIPTURE) bible++;
+            else if (s.type === SlideType.MEDIA) media++;
+        });
+        return { total: slides.length, lyrics, bible, media };
+    }, [slides]);
 
     // Filter slides and keep track of original index
     const filteredSlides = useMemo(() => {
@@ -54,56 +56,77 @@ export function SlideGrid() {
     }, [slides, filter]);
 
     return (
-        <div className="h-64 bg-neutral-900 rounded-xl border border-border/10 flex flex-col overflow-hidden font-[Vazirmatn]">
+        <div className="h-72 min-h-[260px] shrink-0 bg-neutral-900 rounded-xl border border-border/10 flex flex-col overflow-hidden font-[Vazirmatn] shadow-md">
             {/* Quick Filters */}
-            <div className="p-2 border-b border-border/10 bg-neutral-950/50 flex gap-2" dir="rtl">
-                <button 
-                    onClick={() => setFilter('all')}
-                    className={cn(
-                        "px-4 py-1 text-xs font-bold rounded transition-colors",
-                        filter === 'all' ? "bg-primary text-white" : "bg-neutral-800 hover:bg-neutral-700 text-muted-foreground hover:text-foreground"
-                    )} 
-                    title="All"
-                >
-                    {t.all || 'همه'}
-                </button>
-                <button 
-                    onClick={() => setFilter('lyrics')}
-                    className={cn(
-                        "px-4 py-1 text-xs font-bold rounded transition-colors",
-                        filter === 'lyrics' ? "bg-primary text-white" : "bg-neutral-800 hover:bg-neutral-700 text-muted-foreground hover:text-foreground"
-                    )} 
-                    title="Lyrics"
-                >
-                    {t.lyrics || 'سرودها'}
-                </button>
-                <button 
-                    onClick={() => setFilter('bible')}
-                    className={cn(
-                        "px-4 py-1 text-xs font-bold rounded transition-colors",
-                        filter === 'bible' ? "bg-primary text-white" : "bg-neutral-800 hover:bg-neutral-700 text-muted-foreground hover:text-foreground"
-                    )} 
-                    title="Bible"
-                >
-                    {t.bible || 'کتاب‌مقدس'}
-                </button>
-                <button 
-                    onClick={() => setFilter('media')}
-                    className={cn(
-                        "px-4 py-1 text-xs font-bold rounded transition-colors",
-                        filter === 'media' ? "bg-primary text-white" : "bg-neutral-800 hover:bg-neutral-700 text-muted-foreground hover:text-foreground"
-                    )} 
-                    title="Media"
-                >
-                    {t.media || 'رسانه'}
-                </button>
+            <div className="p-2 border-b border-border/10 bg-neutral-950/60 flex flex-wrap items-center justify-between gap-2" dir="rtl">
+                <div className="flex items-center gap-1.5 overflow-x-auto">
+                    <button 
+                        type="button"
+                        onClick={() => setFilter('all')}
+                        className={cn(
+                            "px-3.5 py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 font-[Vazirmatn]",
+                            filter === 'all' ? "bg-blue-600 text-white shadow-sm" : "bg-neutral-800 hover:bg-neutral-700 text-neutral-300"
+                        )} 
+                        title="All"
+                    >
+                        <span>{t.all || 'همه'}</span>
+                        <span className="text-[10px] opacity-80 font-mono">({counts.total})</span>
+                    </button>
+                    <button 
+                        type="button"
+                        onClick={() => setFilter('lyrics')}
+                        className={cn(
+                            "px-3.5 py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 font-[Vazirmatn]",
+                            filter === 'lyrics' ? "bg-pink-600 text-white shadow-sm" : "bg-neutral-800 hover:bg-neutral-700 text-neutral-300"
+                        )} 
+                        title="Lyrics"
+                    >
+                        <span>{t.lyrics || 'متن سرود'}</span>
+                        <span className="text-[10px] opacity-80 font-mono">({counts.lyrics})</span>
+                    </button>
+                    <button 
+                        type="button"
+                        onClick={() => setFilter('bible')}
+                        className={cn(
+                            "px-3.5 py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 font-[Vazirmatn]",
+                            filter === 'bible' ? "bg-amber-600 text-white shadow-sm" : "bg-neutral-800 hover:bg-neutral-700 text-neutral-300"
+                        )} 
+                        title="Bible"
+                    >
+                        <span>{t.bible || 'کتاب مقدس'}</span>
+                        <span className="text-[10px] opacity-80 font-mono">({counts.bible})</span>
+                    </button>
+                    <button 
+                        type="button"
+                        onClick={() => setFilter('media')}
+                        className={cn(
+                            "px-3.5 py-1.5 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 font-[Vazirmatn]",
+                            filter === 'media' ? "bg-blue-500 text-white shadow-sm" : "bg-neutral-800 hover:bg-neutral-700 text-neutral-300"
+                        )} 
+                        title="Media"
+                    >
+                        <span>{t.media || 'رسانه'}</span>
+                        <span className="text-[10px] opacity-80 font-mono">({counts.media})</span>
+                    </button>
+                </div>
+
+                <div className="text-[11px] text-neutral-400 font-bold px-2 hidden sm:block">
+                    اسلاید فعال: <b className="text-white font-mono">{activeSlideIndex + 1}</b> از <b className="font-mono">{slides.length}</b>
+                </div>
             </div>
 
             {/* Grid */}
-            <div className="flex-1 p-4 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 overflow-y-auto" dir="ltr">
+            <div className="flex-1 p-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 overflow-y-auto" dir="ltr">
                 {filteredSlides.length === 0 ? (
-                    <div className="col-span-full h-full flex items-center justify-center text-muted-foreground text-sm font-medium font-[Vazirmatn]">
-                        {t.noSlides || "اسلایدی با این مشخصات یافت نشد"}
+                    <div className="col-span-full h-full flex flex-col items-center justify-center text-muted-foreground text-xs font-medium font-[Vazirmatn] gap-2 py-8">
+                        <span>اسلایدی در دسته‌بندی فیلترشده یافت نشد.</span>
+                        <button
+                            type="button"
+                            onClick={() => setFilter('all')}
+                            className="px-3 py-1 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/30 rounded-lg text-xs font-bold transition"
+                        >
+                            نمایش همه اسلایدها ({counts.total})
+                        </button>
                     </div>
                 ) : (
                     filteredSlides.map(({ slide, originalIndex }) => (

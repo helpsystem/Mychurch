@@ -12,7 +12,7 @@ interface BroadcastPropertiesProps {
 }
 
 export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
-    const { t } = useLanguage();
+    const { t, isRTL } = useLanguage();
     const config = useBroadcastStore(state => state.config);
     const updateConfig = useBroadcastStore(state => state.updateConfig);
     const isCameraOn = useBroadcastStore(state => state.isCameraOn);
@@ -53,7 +53,14 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
     };
 
     return (
-        <aside className={cn("w-72 bg-neutral-900 border-l border-border/10 flex flex-col font-[Vazirmatn] shrink-0", className)}>
+        <aside 
+            dir={isRTL ? "rtl" : "ltr"} 
+            className={cn(
+                "w-72 bg-neutral-900 flex flex-col shrink-0", 
+                isRTL ? "border-r border-border/10 font-[Vazirmatn]" : "border-l border-border/10 font-sans",
+                className
+            )}
+        >
             <div className="h-14 p-4 border-b border-border/10 flex items-center justify-between">
                 <span className="text-sm font-bold tracking-wide">{t.properties || 'تنظیمات پخش'}</span>
                 <Settings className="w-4 h-4 text-muted-foreground" />

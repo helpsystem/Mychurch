@@ -11,20 +11,27 @@ interface BroadcastSidebarProps {
 }
 
 export function BroadcastSidebar({ className }: BroadcastSidebarProps) {
-    const { t } = useLanguage();
+    const { t, isRTL } = useLanguage();
     const activeSceneId = useBroadcastStore(state => state.activeSceneId);
     const setActiveSceneId = useBroadcastStore(state => state.setActiveSceneId);
 
     const scenes = [
-        { id: "scene_1", name: t.worship || 'Worship', icon: Mic },
-        { id: "scene_2", name: t.bible || 'Bible', icon: Type },
-        { id: "scene_3", name: t.lowerThirds || 'Lower Thirds', icon: Layout },
-        { id: "scene_4", name: t.mainCam || 'Main Camera', icon: Video },
-        { id: "scene_5", name: t.media || 'Media', icon: Layout }
+        { id: "scene_1", name: t.worship || 'سرودهای پرستشی', icon: Mic },
+        { id: "scene_2", name: t.bible || 'کتاب مقدس', icon: Type },
+        { id: "scene_3", name: t.lowerThirds || 'زیرنویس‌ها', icon: Layout },
+        { id: "scene_4", name: t.mainCam || 'دوربین اصلی', icon: Video },
+        { id: "scene_5", name: t.media || 'رسانه', icon: Layout }
     ];
 
     return (
-        <aside className={cn("w-72 bg-neutral-900 border-r border-border/10 flex flex-col shrink-0", className)}>
+        <aside 
+            dir={isRTL ? "rtl" : "ltr"} 
+            className={cn(
+                "w-72 bg-neutral-900 flex flex-col shrink-0", 
+                isRTL ? "border-l border-border/10 font-[Vazirmatn]" : "border-r border-border/10 font-sans",
+                className
+            )}
+        >
             <div className="h-14 p-4 border-b border-border/10 flex items-center justify-between">
                 <span className="text-sm font-bold tracking-wide">{t.scenes || 'Scenes'}</span>
                 <button className="p-1.5 hover:bg-neutral-800 rounded text-muted-foreground transition" title="Scenes Options">
@@ -38,13 +45,14 @@ export function BroadcastSidebar({ className }: BroadcastSidebarProps) {
                         key={scene.id}
                         onClick={() => setActiveSceneId(scene.id)}
                         className={cn(
-                            "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all text-right",
+                            "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all",
+                            isRTL ? "text-right" : "text-left",
                             activeSceneId === scene.id
                                 ? "bg-primary/20 text-primary font-bold border border-primary/20"
                                 : "hover:bg-neutral-800 text-muted-foreground hover:text-foreground font-medium"
                         )}
                     >
-                        <scene.icon className={cn("w-4 h-4", activeSceneId === scene.id ? "text-primary" : "text-muted-foreground")} />
+                        <scene.icon className={cn("w-4 h-4 shrink-0", activeSceneId === scene.id ? "text-primary" : "text-muted-foreground")} />
                         <span className={cn(activeSceneId === scene.id ? "font-bold" : "opacity-90")}>{scene.name}</span>
                     </button>
                 ))}

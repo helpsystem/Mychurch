@@ -61,7 +61,25 @@ async function ensureBrowser(): Promise<{ browser: Browser; page: Page }> {
         launchOptions.executablePath = '/usr/bin/google-chrome';
     }
 
-    _browser = await puppeteerModule.launch(launchOptions);
+    try {
+        _browser = await puppeteerModule.launch(launchOptions);
+    } catch (launchErr: any) {
+        if (launchErr.message && launchErr.message.includes('already running')) {
+            console.warn('[GoogleMessages] Stale Chrome instance detected. Terminating orphaned processes...');
+            try {
+                const req = eval('require');
+                const cp = req('child_process');
+                cp.execSync('pkill -f "chrome.*google-messages-session" || true');
+                await new Promise(r => setTimeout(r, 1500));
+                _browser = await puppeteerModule.launch(launchOptions);
+            } catch (err: any) {
+                console.error('[GoogleMessages] Failed to relaunch after kill:', err.message);
+                throw launchErr;
+            }
+        } else {
+            throw launchErr;
+        }
+    }
 
     _page = await _browser.newPage();
     await _page.setUserAgent(

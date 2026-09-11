@@ -39,25 +39,31 @@ export async function POST(req: NextRequest) {
                 // Unregistered user
                 const welcomeUnregistered = `
 سلام ${fromUser?.first_name || 'گرامی'} عزیز! 🕊️
+Hello dear ${fromUser?.first_name || 'friend'}!
+
 به ربات رسمی <b>کلیسای پروتستان ایرانیان واشنگتن دی‌سی</b> خوش آمدید.
+Welcome to the official Telegram bot of <b>Iranian Presbyterian Church DC</b>.
 
 برای اینکه نوتیفیکیشن‌ها و اعلان‌های اختصاصی متناسب با سطح دسترسی خود (مدیریت، شبانی، برودکست یا عضویت) را دریافت کنید، حساب کاربری شما باید به این شناسه متصل باشد:
+To receive custom notifications matching your role (Admin, Pastoral, Operator, or Member), connect your account using your Telegram Chat ID:
 
-🆔 <b>شناسه عددی تلگرام شما:</b>
+🆔 <b>شناسه عددی تلگرام شما | Your Telegram Chat ID:</b>
 <code>${chatId}</code>
 
-🔗 <b>نحوه اتصال:</b>
-۱. وارد سایت کلیسا شوید: <a href="https://www.iranianchurchdc.com/profile">پروفایل کاربری من</a>
-۲. در بخش «کانال‌های ارتباطی و اعلان»، شناسه عددی بالا را وارد و ذخیره کنید.
-۳. پس از ذخیره، هرگونه دسترسی که توسط مدیر به شما داده شود فوراً در این ربات فعال خواهد شد.
+🔗 <b>نحوه اتصال | How to connect:</b>
+۱. وارد پروفایل خود در سایت شوید | Go to: <a href="https://www.iranianchurchdc.com/profile">پروفایل کاربری من | My Profile</a>
+۲. در بخش «کانال‌های ارتباطی و اعلان»، شناسه عددی بالا را ذخیره کنید.
+Enter and save the numeric ID above in the "Communication & Notifications" section.
+۳. پس از ذخیره، دسترسی‌های شما بلافاصله در این ربات فعال خواهند شد.
+Your role permissions and alerts will activate immediately.
 `.trim();
 
                 await sendTelegramMessage(chatId, welcomeUnregistered, {
                     parse_mode: "HTML",
                     reply_markup: {
                         inline_keyboard: [
-                            [{ text: "🌐 ورود به پروفایل و ثبت شناسه", url: "https://www.iranianchurchdc.com/profile" }],
-                            [{ text: "🕊️ مشاهده دیوار دعای کلیسا", url: "https://www.iranianchurchdc.com/prayers" }]
+                            [{ text: "🌐 ورود به پروفایل و ثبت شناسه | Profile & Setup", url: "https://www.iranianchurchdc.com/profile" }],
+                            [{ text: "🕊️ مشاهده دیوار دعا | Prayer Wall", url: "https://www.iranianchurchdc.com/prayers" }]
                         ]
                     }
                 });
@@ -70,48 +76,52 @@ export async function POST(req: NextRequest) {
             const userName = user.name || fromUser?.first_name || "ایماندار گرامی";
             const perms = user.permissions || {};
 
-            let roleBadge = "👤 عضو کلیسا (Church Member)";
-            let roleDescription = "شما اعلان‌های مربوط به وضعیت دعاهای شخصی، گواهی‌های تعمید و فیش‌های خود را در این چت دریافت خواهید کرد.";
+            let roleBadge = "👤 عضو کلیسا | Church Member";
+            let roleDescription = "شما اعلان‌های مربوط به وضعیت دعاهای شخصی، گواهی‌ها و حساب کاربری خود را در این چت دریافت خواهید کرد.\nYou will receive notifications regarding your personal prayers, certificates, and church account updates.";
 
             if (role === "Admin") {
-                roleBadge = "👑 مدیر ارشد سیستم (System Administrator)";
-                roleDescription = "شما دسترسی کامل دارید. تمامی هشدارهای امنیتی، درخواست‌های دعای جدید، اسناد محرمانه، تبرعات، و ارتقای کاربران به صورت آنی برای شما ارسال می‌گردد.";
+                roleBadge = "👑 مدیر ارشد سیستم | System Administrator";
+                roleDescription = "شما دسترسی کامل دارید. تمامی هشدارهای امنیتی، درخواست‌های دعای جدید، اسناد محرمانه، تبرعات، و ارتقای کاربران به صورت آنی برای شما ارسال می‌گردد.\nYou have full system access. All security alerts, new prayer requests, confidential documents, and user permission updates are sent to you in real-time.";
             } else if (role === "Leader") {
-                roleBadge = "🛡️ رهبر کلیسا و خدمت شبانی (Church Leader)";
-                roleDescription = "شما دسترسی شبانی دارید. اعلان‌های درخواست‌های دعای جدید اعضا، ارائه‌های موعظه، و اسناد شبانی برای بررسی و تأیید برای شما ارسال می‌گردد.";
+                roleBadge = "🛡️ رهبر کلیسا و خدمت شبانی | Church Leader / Pastoral Staff";
+                roleDescription = "شما دسترسی شبانی دارید. اعلان‌های درخواست‌های دعای جدید اعضا، ارائه‌های موعظه، و اسناد شبانی برای بررسی و تأیید برای شما ارسال می‌گردد.\nYou have pastoral access. Member prayer requests, sermon presentations, and pastoral documents are routed to you for review and approval.";
             } else if (role === "Operator") {
-                roleBadge = "💼 مدیر / اپراتور فنی استودیو (Studio Operator)";
-                roleDescription = "شما به کنسول برودکست و رسانه متصل هستید. اعلان‌های استودیوی پخش زنده، سینک کارائوکه، و ذخیره‌سازی مدیا برای شما فعال است.";
+                roleBadge = "💼 مدیر / اپراتور فنی استودیو | Studio & Broadcast Operator";
+                roleDescription = "شما به کنسول برودکست متصل هستید. اعلان‌های استودیوی پخش زنده، سینک کارائوکه، و ذخیره‌سازی مدیا برای شما فعال است.\nYou are connected to the Broadcast Console. Live studio, karaoke sync, and media storage notifications are active.";
             }
 
             const welcomeRegistered = `
 سلام <b>${userName}</b> عزیز! 🕊️
-به سامانه اعلان‌های هوشمند <b>کلیسای پروتستان ایرانیان واشنگتن دی‌سی</b> خوش آمدید.
+Hello dear <b>${userName}</b>!
 
-📌 <b>سطح دسترسی فعلی شما در سیستم:</b>
+به سامانه اعلان‌های هوشمند <b>کلیسای پروتستان ایرانیان واشنگتن دی‌سی</b> خوش آمدید.
+Welcome to the intelligent notification system of <b>Iranian Presbyterian Church DC</b>.
+
+📌 <b>سطح دسترسی فعلی شما در سیستم | Your System Role:</b>
 <b>${roleBadge}</b>
 
-📄 <b>وضعیت اعلان‌ها:</b>
+📄 <b>وضعیت اعلان‌ها | Notification Status:</b>
 ${roleDescription}
 
-🔒 <b>سیستم مجوزدهی پویا:</b>
-این سیستم مستقیماً به پایگاه داده کلیسا متصل است. در صورتی که مدیر ارشد دسترسی جدیدی به شما اختصاص دهد، فوراً فعال می‌گردد و در صورت لغو دسترسی، اعلان‌های مدیریتی بلافاصله متوقف می‌شوند.
+🔒 <b>سیستم مجوزدهی پویا | Dynamic Permissions:</b>
+این سیستم مستقیماً به پایگاه داده کلیسا متصل است و تغییرات سطح دسترسی به صورت خودکار و آنی اعمال می‌گردد.
+Connected directly to the church database. Permissions and alerts are updated dynamically in real-time.
 `.trim();
 
             const actionButtons = [];
             if (role === "Admin") {
-                actionButtons.push([{ text: "👑 داشبورد مدیریت کل", url: "https://www.iranianchurchdc.com/admin" }]);
-                actionButtons.push([{ text: "🕊️ بررسی درخواست‌های دعا", url: "https://www.iranianchurchdc.com/admin/prayers" }]);
-                actionButtons.push([{ text: "📑 بایگانی و اسکنر اسناد", url: "https://www.iranianchurchdc.com/admin/documents" }]);
+                actionButtons.push([{ text: "👑 داشبورد مدیریت کل | Admin Cockpit", url: "https://www.iranianchurchdc.com/admin" }]);
+                actionButtons.push([{ text: "🕊️ بررسی درخواست‌های دعا | Review Prayers", url: "https://www.iranianchurchdc.com/admin/prayers" }]);
+                actionButtons.push([{ text: "📑 بایگانی و اسکنر اسناد | Documents", url: "https://www.iranianchurchdc.com/admin/documents" }]);
             } else if (role === "Leader") {
-                actionButtons.push([{ text: "🕊️ بررسی و تأیید دعاها", url: "https://www.iranianchurchdc.com/admin/prayers" }]);
-                actionButtons.push([{ text: "🛡️ فضای کاری رهبران", url: "https://www.iranianchurchdc.com/admin" }]);
+                actionButtons.push([{ text: "🕊️ بررسی و تأیید دعاها | Review Prayers", url: "https://www.iranianchurchdc.com/admin/prayers" }]);
+                actionButtons.push([{ text: "🛡️ فضای کاری رهبران | Leader Workspace", url: "https://www.iranianchurchdc.com/admin" }]);
             } else if (role === "Operator") {
-                actionButtons.push([{ text: "🎥 استودیوی پخش زنده", url: "https://www.iranianchurchdc.com/broadcast" }]);
-                actionButtons.push([{ text: "🎵 بانک سرودها و کارائوکه", url: "https://www.iranianchurchdc.com/admin/worship" }]);
+                actionButtons.push([{ text: "🎥 استودیوی پخش زنده | Broadcast Studio", url: "https://www.iranianchurchdc.com/broadcast" }]);
+                actionButtons.push([{ text: "🎵 بانک سرودها و کارائوکه | Worship Songs", url: "https://www.iranianchurchdc.com/admin/worship" }]);
             } else {
-                actionButtons.push([{ text: "🕊️ ثبت درخواست دعا", url: "https://www.iranianchurchdc.com/prayers" }]);
-                actionButtons.push([{ text: "👤 پروفایل من", url: "https://www.iranianchurchdc.com/profile" }]);
+                actionButtons.push([{ text: "🕊️ ثبت درخواست دعا | Submit Prayer", url: "https://www.iranianchurchdc.com/prayers" }]);
+                actionButtons.push([{ text: "👤 پروفایل من | My Profile", url: "https://www.iranianchurchdc.com/profile" }]);
             }
 
             await sendTelegramMessage(chatId, welcomeRegistered, {
@@ -125,7 +135,10 @@ ${roleDescription}
         }
 
         // Generic reply for any other message
-        await sendTelegramMessage(chatId, "پیام شما دریافت شد. جهت مشاهده وضعیت دسترسی و پنل خود از دستور /status استفاده فرمایید.");
+        await sendTelegramMessage(
+            chatId,
+            "پیام شما دریافت شد. جهت مشاهده وضعیت دسترسی از دستور /status استفاده فرمایید.\nYour message was received. Please use the /status command to check your access level and panel."
+        );
         return NextResponse.json({ ok: true });
 
     } catch (err: any) {

@@ -13,6 +13,9 @@ export interface GalleryImage {
     category?: string;
     visibility?: 'public' | 'admin' | 'user';
     uploaded_at?: string;
+    mediaType?: 'image' | 'video' | 'audio';
+    isExternalLink?: boolean;
+    metadata?: any;
 }
 
 export async function fetchGalleryImages(filterByVisibility = true): Promise<GalleryImage[]> {
@@ -28,17 +31,30 @@ export async function fetchGalleryImages(filterByVisibility = true): Promise<Gal
             return [];
         }
 
-        let images = data.map(row => ({
-            id: row.id,
-            src: normalizeAssetUrl(row.src),
-            width: row.width || 800,
-            height: row.height || 600,
-            title: row.title || undefined,
-            description: row.description || undefined,
-            category: row.category || undefined,
-            visibility: row.visibility || 'admin',
-            uploaded_at: row.uploaded_at,
-        }));
+        let images: GalleryImage[] = data.map(row => {
+            const isVideo = row.metadata?.mediaType === 'video' ||
+                !!row.src?.match(/\.(mp4|webm|mov|mkv)$/i) ||
+                row.src?.includes('youtube.com') ||
+                row.src?.includes('youtu.be') ||
+                row.src?.includes('vimeo.com');
+            const isAudio = row.metadata?.mediaType === 'audio' || !!row.src?.match(/\.(mp3|wav|ogg|m4a)$/i);
+            const mediaType: 'image' | 'video' | 'audio' = isVideo ? 'video' : (isAudio ? 'audio' : 'image');
+
+            return {
+                id: row.id,
+                src: normalizeAssetUrl(row.src),
+                width: row.width || 800,
+                height: row.height || 600,
+                title: row.title || undefined,
+                description: row.description || row.metadata?.description || undefined,
+                category: row.metadata?.category || row.category || undefined,
+                visibility: row.visibility || 'admin',
+                uploaded_at: row.uploaded_at,
+                mediaType,
+                isExternalLink: !!row.metadata?.isExternalLink || row.src?.startsWith('http'),
+                metadata: row.metadata || undefined
+            };
+        });
 
         // Filter by visibility if requested
         if (filterByVisibility) {

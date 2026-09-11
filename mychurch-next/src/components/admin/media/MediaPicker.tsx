@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useTransition, useCallback, useEffect } from "react";
-import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus, Globe, GlobeLock, Pencil, Link as LinkIcon, Lock, Users, Folder, FolderPlus, ArrowRight, CornerLeftUp } from "lucide-react";
+import { Upload, Trash2, FileVideo, Image as ImageIcon, Music, Search, X, File as FileIcon, ImagePlus, Globe, GlobeLock, Pencil, Link as LinkIcon, Lock, Users, Folder, FolderPlus, ArrowRight, CornerLeftUp, Link2 } from "lucide-react";
 import { type MediaAsset, deleteMediaFile, listMediaFiles, renameMediaFile, toggleGalleryVisibility, updateMediaVisibility, createMediaFolder, moveMediaFile } from "@/actions/media";
+import { AddMediaLinkModal } from "./AddMediaLinkModal";
 import { useRouter } from "next/navigation";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -20,8 +21,9 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
     const [isPending, startTransition] = useTransition();
     const [files, setFiles] = useState<MediaAsset[]>(initialFiles || []);
     const [searchQuery, setSearchQuery] = useState("");
-    const [activeTab, setActiveTab] = useState<"all" | "image" | "video" | "audio">("all");
+    const [activeTab, setActiveTab] = useState<"all" | "image" | "video" | "audio" | "links">("all");
     const [currentFolder, setCurrentFolder] = useState<string>("");
+    const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
 
     // Upload state
     const [uploading, setUploading] = useState(false);
@@ -212,7 +214,11 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
         : typeFiltered;
 
     // Filter by Tab (if not searching globally)
-    const tabFiltered = searchQuery ? searchFiltered : searchFiltered.filter(f => activeTab === "all" || f.type === activeTab);
+    const tabFiltered = searchQuery ? searchFiltered : searchFiltered.filter(f => {
+        if (activeTab === "all") return true;
+        if (activeTab === "links") return !!f.isExternalLink;
+        return f.type === activeTab;
+    });
 
     // Group into current folder
     let displayedFiles: MediaAsset[] = [];
@@ -253,39 +259,62 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
                     <div>
                         <h2 className="text-xl font-bold font-[Vazirmatn]">مدیریت فایل‌ها <span className="text-muted-foreground font-sans font-medium text-lg ml-2">/ Media Files</span></h2>
                         <p className="text-sm text-muted-foreground mt-1 font-[Vazirmatn]">
-                            آپلود تصاویر، ویدیوهای پس زمینه، و فایل‌های صوتی
+                            آپلود تصاویر، ویدیوهای پس زمینه، و درج لینک‌های اینترنتی
                         </p>
                     </div>
-                    {renderUploadZone(getRootProps, getInputProps, isDragActive, uploading, uploadProgress)}
+                    <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                        <button
+                            type="button"
+                            onClick={() => setIsLinkModalOpen(true)}
+                            className="flex items-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-md shadow-indigo-600/20 font-[Vazirmatn]"
+                        >
+                            <Link2 className="w-4 h-4" />
+                            <span>افزودن با لینک (عکس / ویدیو)</span>
+                        </button>
+                        {renderUploadZone(getRootProps, getInputProps, isDragActive, uploading, uploadProgress)}
+                    </div>
                 </div>
             ) : (
                 <div className="flex items-center justify-between pb-2 border-b border-border/10">
                     <h2 className="text-lg font-bold font-[Vazirmatn]">انتخاب مدیا</h2>
-                    <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg"><X className="w-5 h-5"/></button>
+                    <div className="flex items-center gap-2">
+                        <button
+                            type="button"
+                            onClick={() => setIsLinkModalOpen(true)}
+                            className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg text-xs transition shadow-sm font-[Vazirmatn]"
+                        >
+                            <Link2 className="w-3.5 h-3.5" />
+                            <span>افزودن با لینک</span>
+                        </button>
+                        <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg"><X className="w-5 h-5"/></button>
+                    </div>
                 </div>
             )}
 
             {mode === "modal" && (
-                <div className="w-full">
-                    {renderUploadZone(getRootProps, getInputProps, isDragActive, uploading, uploadProgress, "h-24 py-2")}
+                <div className="w-full flex gap-3 items-center">
+                    <div className="flex-1">
+                        {renderUploadZone(getRootProps, getInputProps, isDragActive, uploading, uploadProgress, "h-20 py-2")}
+                    </div>
                 </div>
             )}
 
             {/* Toolbar */}
             <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
                 <div className="flex bg-neutral-900 p-1 rounded-lg border border-border/10 overflow-x-auto max-w-full">
-                    {(["all", "image", "video", "audio"] as const).map(tab => {
-                        if (isModal && !allowedTypes.includes("all") && !allowedTypes.includes(tab) && tab !== "all") return null;
+                    {(["all", "image", "video", "audio", "links"] as const).map(tab => {
+                        if (isModal && !allowedTypes.includes("all") && !allowedTypes.includes(tab as any) && tab !== "all" && tab !== "links") return null;
                         return (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors font-[Vazirmatn] capitalize whitespace-nowrap ${activeTab === tab
+                                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors font-[Vazirmatn] capitalize whitespace-nowrap flex items-center gap-1.5 ${activeTab === tab
                                     ? "bg-white/10 text-white shadow-sm"
                                     : "text-muted-foreground hover:text-white hover:bg-white/5"
                                     }`}
                             >
-                                {tab === "all" ? "همه" : tab === "image" ? "تصاویر" : tab === "video" ? "ویدیو" : "صدا"}
+                                {tab === "links" && <Link2 className="w-3.5 h-3.5 text-indigo-400" />}
+                                {tab === "all" ? "همه" : tab === "image" ? "تصاویر" : tab === "video" ? "ویدیو" : tab === "audio" ? "صدا" : "لینک‌ها"}
                             </button>
                         );
                     })}
@@ -381,11 +410,27 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
                                     }
                                 }}
                             >
-                                <div className="flex-1 w-full bg-neutral-950 flex items-center justify-center overflow-hidden">
+                                <div className="flex-1 w-full bg-neutral-950 flex items-center justify-center overflow-hidden relative">
                                     {f.type === 'image' && <img src={f.url} alt={f.name} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" />}
-                                    {f.type === 'video' && <video src={f.url} className="w-full h-full object-cover opacity-50" />}
+                                    {f.type === 'video' && (
+                                        <div className="w-full h-full relative flex items-center justify-center bg-black/40">
+                                            <video src={f.url} className="w-full h-full object-cover opacity-50 pointer-events-none" />
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <div className="w-9 h-9 rounded-full bg-blue-600/80 backdrop-blur-md flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+                                                    <FileVideo className="w-4 h-4" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                     {f.type === 'audio' && <Music className="w-10 h-10 text-purple-500/50" />}
                                     {f.type === 'other' && <FileIcon className="w-10 h-10 text-neutral-600" />}
+
+                                    {/* External Link Badge */}
+                                    {f.isExternalLink && (
+                                        <span className="absolute top-2 left-2 z-10 bg-indigo-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow font-[Vazirmatn]">
+                                            <Link2 className="w-2.5 h-2.5" /> لینک
+                                        </span>
+                                    )}
                                 </div>
 
                                 <div className="p-2 bg-neutral-900 border-t border-border/10">
@@ -397,10 +442,11 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
                                 </div>
 
                                 {mode === "page" && (
-                                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                                         <button
                                             onClick={(e) => { e.stopPropagation(); handleDelete(f); }}
                                             className="p-1 bg-red-500 hover:bg-red-600 text-white rounded shadow"
+                                            title="حذف"
                                         >
                                             <Trash2 className="w-3.5 h-3.5" />
                                         </button>
@@ -424,7 +470,18 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
                         </div>
                         <div className="p-4 flex-1 overflow-auto bg-black flex items-center justify-center min-h-[300px]">
                             {previewFile.type === 'image' && <img src={previewFile.url} alt={previewFile.name} className="max-w-full max-h-full object-contain" />}
-                            {previewFile.type === 'video' && <video src={previewFile.url} controls autoPlay className="max-w-full max-h-[60vh]" />}
+                            {previewFile.type === 'video' && (
+                                previewFile.url.includes('youtube.com') || previewFile.url.includes('youtu.be') ? (
+                                    <iframe
+                                        src={`https://www.youtube-nocookie.com/embed/${previewFile.url.match(/(?:youtu\.be\/|v=)([^&]+)/)?.[1] || ''}?autoplay=1`}
+                                        title={previewFile.name}
+                                        className="w-full max-w-3xl aspect-video rounded-xl border border-white/10"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <video src={previewFile.url} controls autoPlay className="max-w-full max-h-[60vh] rounded-xl" />
+                                )
+                            )}
                             {previewFile.type === 'audio' && <audio src={previewFile.url} controls autoPlay className="w-full max-w-md" />}
                         </div>
                         <div className="p-4 bg-neutral-950 space-y-4">
@@ -465,6 +522,19 @@ export function MediaPicker({ mode = "page", onSelect, onClose, initialFiles, al
                     </div>
                 </div>
             )}
+
+            {/* Add Media via Link Modal */}
+            <AddMediaLinkModal
+                isOpen={isLinkModalOpen}
+                onClose={() => setIsLinkModalOpen(false)}
+                onSuccess={() => {
+                    refreshFiles();
+                }}
+                onSelectAndApply={isModal && onSelect ? (url) => {
+                    onSelect(url);
+                    if (onClose) onClose();
+                } : undefined}
+            />
         </div>
     );
 

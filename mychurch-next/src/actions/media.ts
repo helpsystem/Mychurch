@@ -3,7 +3,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/utils/supabase/server";
+import { createClient, createAdminClient } from "@/utils/supabase/server";
 import { hasRoleOrPermission, normalizeAssetUrl } from "@/lib/access-control";
 
 export interface MediaAsset {
@@ -19,6 +19,7 @@ export interface MediaAsset {
     id: string;
     telegram_file_id?: string;
     telegram_message_id?: number;
+    isExternalLink?: boolean;
 }
 
 const MEDIA_DIR = path.join(process.cwd(), "public", "media");
@@ -123,17 +124,18 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
         // 2. Fetch gallery mapping to know which ones are in the public gallery
         const { data: galleryImages } = await supabase
             .from('gallery_images')
-            .select('id, src, visibility');
+            .select('id, src, visibility, title, metadata, folder, uploaded_at');
 
-        const assets: MediaAsset[] = mediaLibraryAssets.map((asset) => {
-            const url = `/api/serve/cloud/${asset.id}`;
-            const galleryEntry = galleryImages?.find(g => normalizeAssetUrl(g.src) === normalizeAssetUrl(url));
+        const assets: MediaAsset[] = (mediaLibraryAssets || []).map((asset) => {
+            const isExternal = asset.folder === 'links' || asset.file_name?.startsWith('http');
+            const url = isExternal ? asset.file_name : `/api/serve/cloud/${asset.id}`;
+            const galleryEntry = galleryImages?.find(g => normalizeAssetUrl(g.src) === normalizeAssetUrl(url) || g.id === asset.id);
             
             return {
                 name: asset.file_name,
                 url: url,
                 type: asset.mime_type?.startsWith('video/') ? 'video' : (asset.mime_type?.startsWith('audio/') ? 'audio' : 'image'),
-                size: asset.size,
+                size: asset.size || 0,
                 createdAt: new Date(asset.created_at).getTime(),
                 folder: asset.folder || '',
                 visibility: asset.visibility || 'admin',
@@ -141,9 +143,35 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
                 galleryId: galleryEntry?.id,
                 telegram_file_id: asset.telegram_file_id,
                 telegram_message_id: asset.telegram_message_id,
-                id: asset.id
+                id: asset.id,
+                isExternalLink: isExternal
             };
         });
+
+        // 3. Include external links / background items stored in gallery_images
+        if (galleryImages && Array.isArray(galleryImages)) {
+            for (const g of galleryImages) {
+                const gUrl = normalizeAssetUrl(g.src);
+                const exists = assets.some(a => normalizeAssetUrl(a.url) === gUrl || a.id === g.id);
+                if (!exists && (g.src?.startsWith('http://') || g.src?.startsWith('https://') || g.folder === 'links')) {
+                    const isVideo = g.metadata?.mediaType === 'video' || !!g.src.match(/\.(mp4|webm|mov|mkv)$/i) || g.src.includes('youtube.com') || g.src.includes('youtu.be');
+                    const isAudio = g.metadata?.mediaType === 'audio' || !!g.src.match(/\.(mp3|wav|ogg|m4a)$/i);
+                    assets.unshift({
+                        name: g.title || g.src.split('/').pop()?.split('?')[0] || 'لینک مدیا',
+                        url: g.src,
+                        type: isVideo ? 'video' : (isAudio ? 'audio' : 'image'),
+                        size: 0,
+                        createdAt: g.uploaded_at ? new Date(g.uploaded_at).getTime() : Date.now(),
+                        folder: g.folder || 'links',
+                        visibility: g.visibility || 'public',
+                        inGallery: true,
+                        galleryId: g.id,
+                        id: g.id,
+                        isExternalLink: true
+                    });
+                }
+            }
+        }
 
         return assets;
     } catch (error) {
@@ -152,6 +180,111 @@ export async function listMediaFiles(): Promise<MediaAsset[]> {
     }
 }
 
+export async function addMediaLink(payload: {
+    url: string;
+    title?: string;
+    mediaType?: 'image' | 'video' | 'audio';
+    category?: string;
+    visibility?: 'public' | 'admin' | 'user';
+    description?: string;
+}): Promise<{ success: boolean; asset?: MediaAsset; error?: string }> {
+    if (!(await canAccessMediaLibrary())) {
+        return { success: false, error: "Unauthorized" };
+    }
+
+    try {
+        let rawUrl = payload.url?.trim() || "";
+        if (rawUrl.startsWith('://')) {
+            rawUrl = 'https' + rawUrl;
+        } else if (rawUrl.startsWith('//')) {
+            rawUrl = 'https:' + rawUrl;
+        } else if (!rawUrl.startsWith('http://') && !rawUrl.startsWith('https://') && !rawUrl.startsWith('/')) {
+            rawUrl = 'https://' + rawUrl;
+        }
+
+        if (!rawUrl || (!rawUrl.startsWith('http://') && !rawUrl.startsWith('https://') && !rawUrl.startsWith('/'))) {
+            return { success: false, error: "آدرس اینترنتی نامعتبر است. آدرس باید با http یا https آغاز گردد." };
+        }
+
+        let detectedType: 'image' | 'video' | 'audio' = payload.mediaType || 'image';
+        if (!payload.mediaType) {
+            if (rawUrl.match(/\.(mp4|webm|mov|mkv)$/i) || rawUrl.includes('youtube.com') || rawUrl.includes('youtu.be') || rawUrl.includes('vimeo.com')) {
+                detectedType = 'video';
+            } else if (rawUrl.match(/\.(mp3|wav|ogg|m4a)$/i)) {
+                detectedType = 'audio';
+            } else {
+                detectedType = 'image';
+            }
+        }
+
+        const title = payload.title?.trim() || (detectedType === 'video' ? 'ویدیو پس‌زمینه' : 'تصویر پس‌زمینه');
+        const visibility = payload.visibility || 'public';
+        const category = payload.category || 'پس‌زمینه اسلاید';
+
+        const supabase = await createAdminClient();
+
+        // 1. Insert into gallery_images
+        const { data: gData, error: gError } = await supabase
+            .from('gallery_images')
+            .insert({
+                src: rawUrl,
+                width: 1920,
+                height: 1080,
+                title: title,
+                visibility: visibility,
+                folder: 'links',
+                metadata: {
+                    mediaType: detectedType,
+                    category: category,
+                    description: payload.description || '',
+                    isExternalLink: true,
+                    addedAt: new Date().toISOString()
+                }
+            })
+            .select()
+            .single();
+
+        if (gError) {
+            console.error("Error inserting into gallery_images:", gError);
+            throw gError;
+        }
+
+        // 2. Also register in media_library so it is tracked consistently
+        try {
+            await supabase.from('media_library').insert({
+                file_name: title,
+                mime_type: detectedType === 'video' ? 'video/mp4' : (detectedType === 'audio' ? 'audio/mpeg' : 'image/jpeg'),
+                size: 0,
+                folder: 'links',
+                visibility: visibility
+            });
+        } catch (mErr) {
+            console.warn("media_library link registration note:", mErr);
+        }
+
+        revalidatePath("/admin/media");
+        revalidatePath("/gallery");
+
+        const newAsset: MediaAsset = {
+            id: gData.id,
+            name: title,
+            url: rawUrl,
+            type: detectedType,
+            size: 0,
+            createdAt: Date.now(),
+            folder: 'links',
+            visibility: visibility,
+            inGallery: true,
+            galleryId: gData.id,
+            isExternalLink: true
+        };
+
+        return { success: true, asset: newAsset };
+    } catch (err: any) {
+        console.error("addMediaLink error:", err);
+        return { success: false, error: err.message || "Failed to add media link" };
+    }
+}
 
 export async function deleteMediaFile(idOrFilename: string): Promise<{ success: boolean; error?: string }> {
     if (!(await canAccessMediaLibrary())) {
@@ -161,7 +294,18 @@ export async function deleteMediaFile(idOrFilename: string): Promise<{ success: 
     try {
         const supabase = await createClient();
         
-        // Find the record
+        // Check if it's in gallery_images directly
+        const { data: gAsset } = await supabase
+            .from('gallery_images')
+            .select('id, src')
+            .or(`id.eq.${idOrFilename},src.eq.${idOrFilename}`)
+            .maybeSingle();
+
+        if (gAsset) {
+            await supabase.from('gallery_images').delete().eq('id', gAsset.id);
+        }
+
+        // Find the record in media_library
         const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(idOrFilename);
         let query = supabase.from('media_library').select('*');
         
@@ -171,9 +315,14 @@ export async function deleteMediaFile(idOrFilename: string): Promise<{ success: 
             query = query.eq('file_name', idOrFilename);
         }
 
-        const { data: asset, error: fetchError } = await query.single();
+        const { data: asset, error: fetchError } = await query.maybeSingle();
             
-        if (fetchError || !asset) {
+        if (!asset) {
+            if (gAsset) {
+                revalidatePath("/admin/media");
+                revalidatePath("/gallery");
+                return { success: true };
+            }
             return { success: false, error: "File not found in database" };
         }
 
