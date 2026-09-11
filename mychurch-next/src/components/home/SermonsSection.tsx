@@ -1,118 +1,196 @@
 "use client";
 
+import "@/lib/react-polyfill";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Video, Mic, ArrowLeft } from "lucide-react";
+import { Play, ArrowLeft, Radio, Clock, User, Sparkles } from "lucide-react";
+
+const recentSermons = [
+  {
+    title: "قدرت دعا در طوفان‌های زندگی",
+    category: "تعالیم ایمان",
+    categoryColor: "text-amber-400",
+    desc: "آموزش کشیش جواد در زمینه استواری در ایمان",
+    duration: "۴۸ دقیقه",
+    date: "یکشنبه گذشته",
+    image: "/images/pastor-javad-real.jpg",
+    alt: "کشیش جواد در حال موعظه کلام خدا",
+    href: "/sermons",
+  },
+  {
+    title: "فیض بی‌پایان در مشارکت مسیحی",
+    category: "پیام‌های آرامش",
+    categoryColor: "text-cyan-400",
+    desc: "پیام هفتگی سرکار خانم نازی راستی پیرامون محبت الهی",
+    duration: "۳۵ دقیقه",
+    date: "۲ هفته پیش",
+    image: "/images/leader-nazi-real.jpg",
+    alt: "سرکار خانم نازی راستی در اشتراک کلام و دعا",
+    href: "/sermons",
+  },
+  {
+    title: "هویت ما در مسیح: غلاطیان ۲:۲۰",
+    category: "تفسیر رسالات",
+    categoryColor: "text-indigo-400",
+    desc: "موعظه عمیق با محوریت حیات تازه ایماندار",
+    duration: "۵۲ دقیقه",
+    date: "ماه گذشته",
+    image: "/bible-cover.webp",
+    alt: "کتاب مقدس و کلام خداوند",
+    href: "/sermons",
+  },
+];
 
 export default function SermonsSection() {
-  const sermonCards = [
-    {
-      icon: Video,
-      title: "مواعظ و تعلیمات",
-      desc: "آرشیو کامل پیام‌های شبانه و آموزش‌های کلام خدا",
-      href: "/sermons",
-      color: "#F472B6",
-      badge: "آرشیو ویدیویی",
-      bgImage: "/live-stage.webp",
-    },
-    {
-      icon: Mic,
-      title: "پخش زنده جلسات",
-      desc: "شرکت آنلاین در جلسات عبادتی یکشنبه‌ها ساعت ۱:۰۰ بعد از ظهر",
-      href: "/broadcast/view",
-      color: "#F87171",
-      badge: "🔴 Live Stream",
-      bgImage: "/hero-fallback.webp",
-    },
-  ];
-
   return (
-    <section className="py-24 px-6 bg-[#050A0F] relative overflow-hidden" dir="rtl">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center justify-between mb-14 flex-wrap gap-4"
-        >
+    <section className="w-full py-16 bg-[#0a0e18]/90 relative px-4 border-y border-white/5" dir="rtl">
+      <div className="max-w-[1240px] mx-auto">
+        
+        {/* ── Section Header ─────────────────────────────────────────── */}
+        <div className="flex items-center justify-between gap-2 mb-8 text-right">
           <div>
-            <h2
-              className="text-4xl font-black text-white mb-2"
-              style={{ fontFamily: "var(--font-homa, serif)" }}
-            >
+            <span className="text-amber-400 text-[13px] font-semibold flex items-center gap-1.5 mb-1">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>آخرین پیام‌ها و تعلیمات</span>
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
               پخش زنده و مواعظ
             </h2>
-            <p className="text-slate-500 text-sm">آخرین پیام‌ها و تعلیمات کلیسای ایرانیان</p>
           </div>
+
           <Link
             href="/sermons"
-            className="flex items-center gap-2 text-amber-400 hover:text-amber-300 font-semibold text-sm transition-colors group"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1c1f2a] text-amber-400 text-[13px] font-bold border border-amber-500/20 hover:bg-[#262a35] transition-colors"
           >
             <span>مشاهده همه</span>
-            <ArrowLeft size={15} className="group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft className="w-4 h-4" />
           </Link>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {sermonCards.map((item, i) => {
-            const Icon = item.icon;
-            return (
+        {/* ── Grid: Main Video Player Card + 3 Recent Sermons ────────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          {/* Main Featured Broadcast Card (7 cols) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7 rounded-2xl bg-[#171b26] p-4 sm:p-5 border border-white/8 shadow-xl flex flex-col justify-between overflow-hidden"
+          >
+            {/* Video Frame with Live Badges and Play Button */}
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-slate-900 shadow-md">
+              <Image
+                src="/live-stage.webp"
+                alt="پخش زنده جلسات کلیسای ایرانیان واشنگتن"
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover filter brightness-[0.7] contrast-110"
+              />
+
+              {/* Badges on top */}
+              <div className="absolute top-3 right-3 flex items-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[11px] font-bold flex items-center gap-1.5 shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+                  <span>زنده (Live)</span>
+                </span>
+                <span className="px-3 py-1 rounded-full bg-[#0a0e18]/85 backdrop-blur-md text-gray-200 text-[11px] font-medium border border-white/10">
+                  یکشنبه ۱۰:۰۰ AM EST
+                </span>
+              </div>
+
+              {/* Play Overlay Button */}
+              <Link
+                href="/broadcast/view"
+                className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-gradient-to-tr from-amber-500 to-amber-400 text-slate-950 flex items-center justify-center shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:scale-110 active:scale-95 transition-all duration-300"
+                aria-label="پخش زنده"
+              >
+                <Play className="w-7 h-7 fill-slate-950 ml-0.5" />
+              </Link>
+            </div>
+
+            {/* Video Card Details */}
+            <div className="pt-4 text-right">
+              <span className="text-[12px] text-cyan-400 font-semibold tracking-wide">
+                جلسه عبادتی و موعظه هفتگی
+              </span>
+              <h3 className="text-[18px] sm:text-[20px] font-bold text-white mt-1.5 mb-2 leading-snug">
+                پخش زنده جلسات — کلیسای مسیحی ایرانیان واشنگتن
+              </h3>
+              <p className="text-[13px] text-gray-300 leading-relaxed mb-4">
+                شرکت آنلاین در جلسات عبادتی یکشنبه‌ها ساعت ۱۰:۰۰ صبح به وقت واشنگتن (EST) همراه با دعا، شفاعت، سرودهای پرستشی و مشارکت زنده.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-white/5">
+                <span className="text-gray-400 text-[12px] flex items-center gap-1.5">
+                  <User className="w-4 h-4 text-amber-400" />
+                  <span>کشیش جواد و سرکار خانم نازی راستی</span>
+                </span>
+                <Link
+                  href="/broadcast/view"
+                  className="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-[13px] font-bold shadow hover:shadow-amber-500/25 transition-all"
+                >
+                  ورود به اتاق پخش زنده
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 3 Sermon Cards List (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-3.5">
+            {recentSermons.map((item, idx) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, x: i === 0 ? -30 : 30 }}
+                key={item.title}
+                initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.7 }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
               >
                 <Link
                   href={item.href}
-                  className="group relative block p-8 rounded-3xl border border-white/10 overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-1.5 hover:border-amber-500/40"
+                  className="p-3.5 rounded-2xl bg-[#171b26] border border-white/8 hover:bg-[#1c1f2a] hover:border-white/20 shadow transition-all flex gap-3.5 items-center group text-right"
                 >
-                  {/* Photo Background Layer with Dark Gradient (Optimized WebP) */}
-                  <Image
-                    src={item.bgImage}
-                    alt={item.title}
-                    fill
-                    loading="lazy"
-                    quality={75}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover opacity-25 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700 pointer-events-none"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050A0F] via-[#050A0F]/80 to-transparent pointer-events-none" />
+                  {/* Thumbnail with mini play button */}
+                  <div className="w-20 h-20 rounded-xl bg-slate-900 overflow-hidden shrink-0 relative">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      sizes="80px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute inset-0 m-auto w-7 h-7 rounded-full bg-[#0a0e18]/80 text-amber-400 flex items-center justify-center border border-white/10 group-hover:bg-amber-500 group-hover:text-black transition-colors">
+                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                    </span>
+                  </div>
 
-                  {/* Card Content */}
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-8">
-                      <div
-                        className="w-14 h-14 rounded-2xl flex items-center justify-center border border-white/15 backdrop-blur-md shadow-lg"
-                        style={{ background: `${item.color}25`, color: item.color }}
-                      >
-                        <Icon size={26} />
-                      </div>
-                      <span className="text-xs px-3.5 py-1.5 rounded-full border border-white/15 text-slate-200 bg-black/60 backdrop-blur-md font-bold shadow">
-                        {item.badge}
-                      </span>
-                    </div>
-                    <h3
-                      className="text-2xl font-bold text-white mb-2 group-hover:text-amber-300 transition-colors"
-                      style={{ fontFamily: "var(--font-homa, serif)" }}
-                    >
+                  {/* Sermon Info */}
+                  <div className="flex-1 min-w-0">
+                    <span className={`${item.categoryColor} text-[11px] font-bold`}>
+                      {item.category}
+                    </span>
+                    <h4 className="text-[14px] font-bold text-white truncate mt-1 group-hover:text-amber-300 transition-colors">
                       {item.title}
-                    </h3>
-                    <p className="text-slate-300 text-sm leading-relaxed mb-6">{item.desc}</p>
-                    <div className="flex items-center gap-2 text-sm font-semibold text-white/90 group-hover:text-amber-400 transition-colors">
-                      <span>ورود به بخش</span>
-                      <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                    </h4>
+                    <p className="text-[12px] text-gray-400 truncate mt-1">
+                      {item.desc}
+                    </p>
+                    <div className="flex items-center gap-2 text-gray-400 text-[11px] mt-2">
+                      <Clock className="w-3 h-3 text-gray-400" />
+                      <span>{item.duration}</span>
+                      <span>•</span>
+                      <span>{item.date}</span>
                     </div>
                   </div>
                 </Link>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
+
         </div>
+
       </div>
     </section>
   );

@@ -1,124 +1,122 @@
 "use client";
 
+import "@/lib/react-polyfill";
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Sparkles, Flame, Music2, HeartHandshake, Star } from "lucide-react";
+import { ArrowLeft, Sparkles } from "lucide-react";
+
+const ministries = [
+  {
+    title: "خدمت کودکان",
+    tag: "محیط شاد و خلاق",
+    tagColor: "text-amber-400 bg-amber-500/15 border-amber-500/25",
+    desc: "تعلیم داستان‌های کتاب‌مقدس، سرود، بازی و نقاشی در محیطی امن و شاد برای فرزندان.",
+    image: "/images/stitch/stitch_asset_3.webp",
+    alt: "کودکان در کلاس کلیسا و داستان‌های کتاب مقدس",
+    action: "اطلاعات برنامه کودکان",
+    actionColor: "text-amber-400",
+    href: "/about",
+  },
+  {
+    title: "جوانان و نوجوانان",
+    tag: "نسل پرشور ایمان",
+    tagColor: "text-cyan-400 bg-cyan-500/15 border-cyan-500/25",
+    desc: "جلسات صمیمانه گفتگو، پاسخ به پرسش‌های ایمانی و کشف استعدادهای روحانی نسل جوان.",
+    image: "/images/stitch/stitch_asset_4.webp",
+    alt: "جوانان کلیسای ایرانیان در مشارکت و گفتگو",
+    action: "مشارکت‌های هفتگی",
+    actionColor: "text-cyan-400",
+    href: "/about",
+  },
+  {
+    title: "پرستش و سرود",
+    tag: "حضور زنده خداوند",
+    tagColor: "text-amber-300 bg-amber-400/15 border-amber-400/25",
+    desc: "هدایت کلیسا در سرودهای روحانی جدید و کهن در حضور پرجلال روح‌القدس.",
+    image: "/images/stitch/stitch_asset_5.webp",
+    alt: "تیم سرود و پرستش کلیسا",
+    action: "گروه سرود کلیسا",
+    actionColor: "text-amber-300",
+    href: "/worship",
+  },
+  {
+    title: "گروه‌های خانگی و شبانی",
+    tag: "مشارکت هفتگی",
+    tagColor: "text-indigo-400 bg-indigo-500/15 border-indigo-500/25",
+    desc: "مشارکت صمیمانه ایمانداران، دعای اختصاصی و مطالعه کلام در جمع گرم خانوادگی.",
+    image: "/images/stitch/stitch_asset_6.webp",
+    alt: "جلسات صمیمانه کلیسای خانگی",
+    action: "پیوستن به نزدیک‌ترین گروه",
+    actionColor: "text-indigo-400",
+    href: "/contact",
+  },
+];
 
 export default function MinistriesSection() {
-  const ministries = [
-    {
-      icon: Sparkles,
-      title: "خدمت کودکان",
-      badge: "محیط شاد و خلاق",
-      desc: "تعلیم داستان‌های کتاب‌مقدس، سرود، بازی و نقاشی در محیطی پر از محبت و امنیت برای کودکان.",
-      color: "#38BDF8",
-      glowBg: "rgba(56, 189, 248, 0.15)",
-      borderGlow: "group-hover:border-sky-400/50",
-      iconBg: "bg-sky-500/10 text-sky-400 border-sky-500/30",
-    },
-    {
-      icon: Flame,
-      title: "جوانان و نوجوانان",
-      badge: "نسل پرشور ایمان",
-      desc: "جلسات صمیمانه گفتگو، پاسخ به سوالات ایمانی، همراهی و کشف استعدادهای الهی در جوانان.",
-      color: "#A78BFA",
-      glowBg: "rgba(167, 139, 250, 0.15)",
-      borderGlow: "group-hover:border-purple-400/50",
-      iconBg: "bg-purple-500/10 text-purple-400 border-purple-500/30",
-    },
-    {
-      icon: Music2,
-      title: "پرستش و سرود",
-      badge: "حضور زنده خداوند",
-      desc: "هدایت کلیسا در پرستش زنده، سرودهای روحانی جدید و کهن، و تجربه‌ی آرامش در حضور روح‌القدس.",
-      color: "#F5A623",
-      glowBg: "rgba(245, 166, 35, 0.15)",
-      borderGlow: "group-hover:border-amber-400/50",
-      iconBg: "bg-amber-500/10 text-amber-400 border-amber-500/30",
-    },
-    {
-      icon: HeartHandshake,
-      title: "گروه‌های خانگی و شبانی",
-      badge: "مشارکت هفتگی",
-      desc: "مشارکت صمیمانه برادران و خواهران، دعای اختصاصی، مطالعه گروهی کلام و پیوند عمیق خانوادگی.",
-      color: "#34D399",
-      glowBg: "rgba(52, 211, 153, 0.15)",
-      borderGlow: "group-hover:border-emerald-400/50",
-      iconBg: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
-    },
-  ];
-
   return (
-    <section className="py-28 px-6 bg-gradient-to-b from-[#050A0F] via-[#060B14] to-[#050A0F] relative overflow-hidden" dir="rtl">
-      {/* Background Decorative Glow */}
-      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+    <section className="w-full py-16 px-4 max-w-[1240px] mx-auto" dir="rtl">
+      {/* ── Section Header ───────────────────────────────────────────── */}
+      <div className="text-right mb-8">
+        <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#1c1f2a] text-amber-400 text-[12px] font-semibold mb-2.5 border border-amber-500/20">
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>بخش‌های فعال کلیسا</span>
+        </span>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+          خدمات و شاخه‌های کلیسا
+        </h2>
+        <p className="text-[14px] text-gray-300 mt-1.5 leading-relaxed">
+          محیطی صمیمی برای رشد ایمانی تمامی رده‌های سنی
+        </p>
+      </div>
 
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-300 text-xs font-bold mb-4">
-            <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-            بخش‌های فعال کلیسای ایرانیان
-          </span>
-          <h2
-            className="text-4xl md:text-5xl font-black text-white"
-            style={{ fontFamily: "var(--font-homa, serif)" }}
+      {/* ── 4 Ministry Cards ─────────────────────────────────────────── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {ministries.map((item, idx) => (
+          <motion.div
+            key={item.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.08, duration: 0.5 }}
+            className="rounded-2xl bg-[#171b26] overflow-hidden border border-white/8 shadow-lg flex flex-col justify-between hover:border-white/20 transition-all group"
           >
-            خدمات و شاخه‌های کلیسا
-          </h2>
-          <p className="text-slate-400 text-base mt-3 max-w-xl mx-auto">
-            محیطی صمیمی و روحانی برای رشد ایمانی تمامی رده‌های سنی
-          </p>
-        </motion.div>
+            {/* Image Banner */}
+            <div className="h-44 w-full relative overflow-hidden bg-slate-900">
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 25vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <span className={`absolute top-3 right-3 px-3 py-1 rounded-full backdrop-blur-md text-[11px] font-semibold border ${item.tagColor}`}>
+                {item.tag}
+              </span>
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {ministries.map((m, i) => {
-            const IconComponent = m.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                className={`group relative p-7 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between ${m.borderGlow}`}
+            {/* Content Body */}
+            <div className="p-5 flex-1 flex flex-col justify-between text-right">
+              <div>
+                <h3 className="text-[16px] font-bold text-white mb-2 group-hover:text-amber-300 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-[13px] text-gray-300 leading-relaxed mb-4">
+                  {item.desc}
+                </p>
+              </div>
+
+              <Link
+                href={item.href}
+                className={`inline-flex items-center gap-1.5 ${item.actionColor} text-[13px] font-bold hover:underline pt-2 border-t border-white/5`}
               >
-                <div>
-                  {/* Top: Glowing Icon Box & Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className={`p-3.5 rounded-2xl border ${m.iconBg} shadow-lg transition-transform duration-500 group-hover:scale-110`}>
-                      <IconComponent className="w-6 h-6" />
-                    </div>
-                    <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
-                      {m.badge}
-                    </span>
-                  </div>
-
-                  <h3
-                    className="font-bold text-xl text-white mb-3 group-hover:text-amber-300 transition-colors"
-                    style={{ fontFamily: "var(--font-homa, serif)" }}
-                  >
-                    {m.title}
-                  </h3>
-                  <p className="text-slate-400 text-xs leading-relaxed">{m.desc}</p>
-                </div>
-
-                {/* Bottom interactive highlight bar */}
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
-                  <div
-                    className="h-1 w-8 group-hover:w-full rounded-full transition-all duration-500"
-                    style={{ background: m.color }}
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                <span>{item.action}</span>
+                <ArrowLeft className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

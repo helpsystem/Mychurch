@@ -131,11 +131,11 @@ export default function AboutPage() {
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                         </div>
                         <div className="p-6">
-                            <h3 className="text-xl md:text-2xl font-black mb-1 text-foreground" dir="rtl">نازی رستی</h3>
-                            <span className="text-xs font-bold text-muted-foreground font-serif uppercase tracking-widest block mb-1" dir="ltr">Nazi Raasti</span>
-                            <p className="text-purple-500 text-sm font-bold mb-4 uppercase tracking-wider">رهبر مطالعه کتاب مقدس بانوان</p>
+                            <h3 className="text-xl md:text-2xl font-black mb-1 text-foreground" dir="rtl">سرکار خانم نازی راستی</h3>
+                            <span className="text-xs font-bold text-muted-foreground font-serif uppercase tracking-widest block mb-1" dir="ltr">Nazi Rasti</span>
+                            <p className="text-purple-500 text-sm font-bold mb-4 uppercase tracking-wider">رهبر مطالعه کتاب مقدس بانوان و خدمت شبانی</p>
                             <p className="text-muted-foreground text-sm leading-relaxed">
-                                نازی رستی خدمت بانوان ما را با قلبی برای مشارکت و شاگردسازی رهبری می‌کند و فضایی پذیرا برای رشد مشترک بانوان در ایمانشان ایجاد می‌نماید.
+                                سرکار خانم نازی راستی خدمت بانوان ما را با قلبی برای مشارکت و شاگردسازی رهبری می‌کند و فضایی پذیرا برای رشد مشترک بانوان در ایمانشان ایجاد می‌نماید.
                             </p>
                         </div>
                     </div>

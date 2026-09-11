@@ -14,7 +14,7 @@ import LeadershipSection from "@/components/home/LeadershipSection";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#050A0F] flex flex-col text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0e18] flex flex-col text-white overflow-x-hidden">
       <PublicHeader />
 
       <main id="main-content" className="flex-1">

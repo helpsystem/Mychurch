@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { MessageSquare, Send, Users, Calendar, Loader2, ArrowLeft, PhoneCall, Info, Key } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { MessageSquare, Send, Users, Calendar, Loader2, ArrowLeft, PhoneCall, Info, Key, Smartphone, QrCode, ShieldCheck, RefreshCw, ExternalLink, LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { sendWhatsAppBroadcast, sendTestWhatsAppMessage, WhatsAppLog } from "@/actions/communications";
 import Link from "next/link";
@@ -14,6 +14,22 @@ export default function WhatsAppClient({
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isTestingWhatsApp, setIsTestingWhatsApp] = useState(false);
     const [testPhone, setTestPhone] = useState("");
+    const [selectedProvider, setSelectedProvider] = useState<"personal" | "twilio" | "meta">("personal");
+
+    // Personal WhatsApp Linked Device State
+    const [personalStatus, setPersonalStatus] = useState<{
+        paired: boolean;
+        qrCode: string | null;
+        userPhone: string | null;
+        userName: string | null;
+    }>({
+        paired: false,
+        qrCode: null,
+        userPhone: null,
+        userName: null
+    });
+    const [loadingPersonal, setLoadingPersonal] = useState(true);
+    const [disconnecting, setDisconnecting] = useState(false);
     
     const [whatsappData, setWhatsappData] = useState({
         body: "",
@@ -22,6 +38,53 @@ export default function WhatsAppClient({
         langCode: "en_US"
     });
 
+    const checkPersonalStatus = async () => {
+        try {
+            const res = await fetch("/api/admin/whatsapp/status");
+            const data = await res.json();
+            setPersonalStatus({
+                paired: !!data.paired,
+                qrCode: data.qrCode || null,
+                userPhone: data.userPhone || null,
+                userName: data.userName || null
+            });
+        } catch {
+            // bridge might be starting
+        } finally {
+            setLoadingPersonal(false);
+        }
+    };
+
+    useEffect(() => {
+        checkPersonalStatus();
+        const interval = setInterval(() => {
+            if (!personalStatus.paired) {
+                checkPersonalStatus();
+            }
+        }, 8000);
+        return () => clearInterval(interval);
+    }, [personalStatus.paired]);
+
+    const handleDisconnectPersonal = async () => {
+        if (!confirm("آیا مطمئن هستید که می‌خواهید اتصال این خط شخصی را قطع نمایید؟")) return;
+        setDisconnecting(true);
+        try {
+            const res = await fetch("/api/admin/whatsapp/disconnect", { method: "POST" });
+            const data = await res.json();
+            if (data.success) {
+                toast.success("اتصال خط با موفقیت قطع شد. می‌توانید شماره جدیدی متصل کنید.");
+                setPersonalStatus({ paired: false, qrCode: null, userPhone: null, userName: null });
+                checkPersonalStatus();
+            } else {
+                toast.error(data.error || "خطا در قطع اتصال");
+            }
+        } catch {
+            toast.error("خطا در ارتباط با سرور");
+        } finally {
+            setDisconnecting(false);
+        }
+    };
+
     const handleWhatsAppSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -29,12 +92,13 @@ export default function WhatsAppClient({
             whatsappData.body,
             whatsappData.isTemplate,
             whatsappData.templateName,
-            whatsappData.langCode
+            whatsappData.langCode,
+            selectedProvider
         );
         setIsSubmitting(false);
 
         if (res.success) {
-            toast.success(`پیام با موفقیت به ${res.count || 0} کاربر ارسال شد. (WhatsApp broadcast sent)`);
+            toast.success(`پیام با موفقیت به ${res.count || 0} کاربر ارسال شد.`);
             setWhatsappData({ body: "", isTemplate: false, templateName: "hello_world", langCode: "en_US" });
             window.location.reload();
         } else {
@@ -53,43 +117,191 @@ export default function WhatsAppClient({
             whatsappData.body,
             whatsappData.isTemplate,
             whatsappData.templateName,
-            whatsappData.langCode
+            whatsappData.langCode,
+            selectedProvider
         );
         setIsTestingWhatsApp(false);
 
         if (res.success) {
-            toast.success("پیام تستی با موفقیت ارسال شد. (Test message sent)");
+            toast.success("پیام تستی با موفقیت ارسال شد.");
         } else {
             toast.error(res.error || "خطا در ارسال پیام تستی واتساپ.");
         }
     };
 
+    const openDirectWhatsApp = () => {
+        const clean = testPhone.replace(/[^\d]/g, "");
+        if (!clean) {
+            toast.error("شماره تلفن را وارد کنید.");
+            return;
+        }
+        const text = encodeURIComponent(whatsappData.body || "سلام! از سوی کلیسای ایرانیان واشنگتن 🕊️");
+        window.open(`https://api.whatsapp.com/send?phone=${clean}&text=${text}`, "_blank");
+    };
+
     return (
         <div className="flex-1 flex flex-col min-h-screen font-[Vazirmatn]">
             {/* TopAppbar */}
-            <header className="flex items-center px-8 h-20 bg-[#131315]/80 backdrop-blur-xl border-b border-white/10 sticky top-0 z-40">
-                <Link href="/admin/communications" className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 transition-colors text-white mr-4">
-                    <ArrowLeft className="w-5 h-5" />
-                </Link>
-                <div>
-                    <h1 className="text-2xl font-bold text-[#00dce4] font-[Work Sans]">WhatsApp Campaigns</h1>
-                    <p className="text-sm text-[#c2c6d6]">ارسال پیام گروهی در واتساپ</p>
+            <header className="flex items-center justify-between px-8 h-20 bg-[#131315]/80 backdrop-blur-xl border-b border-white/10 sticky top-0 z-40">
+                <div className="flex items-center">
+                    <Link href="/admin/communications" className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 transition-colors text-white mr-4">
+                        <ArrowLeft className="w-5 h-5" />
+                    </Link>
+                    <div>
+                        <h1 className="text-2xl font-bold text-[#00dce4] font-[Work Sans]">WhatsApp Campaigns</h1>
+                        <p className="text-sm text-[#c2c6d6]">ارسال پیام از خط و شماره شخصی شما یا درگاه‌های ابری</p>
+                    </div>
                 </div>
+
+                <button
+                    onClick={checkPersonalStatus}
+                    className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-[#00dce4] border border-white/10 transition"
+                    title="بروزرسانی وضعیت"
+                >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                    <span>بروزرسانی اتصال</span>
+                </button>
             </header>
 
             <main className="flex-1 p-8 grid grid-cols-1 xl:grid-cols-12 gap-8 overflow-y-auto">
                 {/* Left Column: Compose & Active Campaigns */}
                 <div className="xl:col-span-8 flex flex-col gap-8">
-                    <div className="bg-[rgba(15,23,42,0.75)] backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
-                        <div className="flex items-start gap-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm font-medium mb-6" dir="rtl">
-                            <Info className="w-5 h-5 shrink-0 mt-0.5 text-emerald-400" />
-                            <div className="space-y-1">
-                                <p>سیستم ارسال پیام گروهی از طریق **Meta WhatsApp Business API**.</p>
-                                <p className="text-xs opacity-80">نکته: بر اساس قوانین فیس‌بوک، ارسال پیام‌های متنی ساده به کاربرانی که طی ۲۴ ساعت گذشته تعاملی با شماره شما نداشته‌اند محدود است. برای شروع مکالمه جدید حتماً باید از پیام قالب (Template) تایید شده استفاده کنید.</p>
+
+                    {/* Personal WhatsApp Device Status & Pairing Card */}
+                    <div className="bg-[rgba(15,23,42,0.75)] backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-4" dir="rtl">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                                    <Smartphone className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h3 className="text-base font-bold text-white flex items-center gap-2">
+                                        <span>خط شخصی شما (WhatsApp Linked Device)</span>
+                                        {personalStatus.paired ? (
+                                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold">متصل و فعال</span>
+                                        ) : (
+                                            <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">آماده اسکن</span>
+                                        )}
+                                    </h3>
+                                    <p className="text-xs text-slate-400">
+                                        ارسال مستقیم پیام‌ها با شماره و پروفایل شخصی خودتان (بدون نیاز به پرداخت دلاری یا تأیید قالب متا)
+                                    </p>
+                                </div>
                             </div>
+
+                            {personalStatus.paired && (
+                                <button
+                                    onClick={handleDisconnectPersonal}
+                                    disabled={disconnecting}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 text-xs transition disabled:opacity-50"
+                                >
+                                    <LogOut className="w-3.5 h-3.5" />
+                                    <span>{disconnecting ? "در حال خروج..." : "قطع اتصال خط"}</span>
+                                </button>
+                            )}
                         </div>
 
+                        {personalStatus.paired ? (
+                            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                    <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                                    <span>
+                                        دستگاه متصل: <strong className="font-mono text-white text-sm">{personalStatus.userPhone}</strong>
+                                        {personalStatus.userName && <span className="opacity-90 mr-2 font-sans">({personalStatus.userName})</span>}
+                                    </span>
+                                </div>
+                                <span className="text-[11px] px-2 py-0.5 rounded bg-emerald-500/20 font-bold">Online & Ready</span>
+                            </div>
+                        ) : (
+                            <div className="flex flex-col md:flex-row items-center gap-6 pt-2">
+                                <div className="shrink-0 flex justify-center">
+                                    {personalStatus.qrCode ? (
+                                        <div className="p-2.5 bg-white rounded-2xl shadow-xl border-2 border-emerald-500/30">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={personalStatus.qrCode}
+                                                alt="WhatsApp QR Code"
+                                                className="w-48 h-48 rounded-xl"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="w-48 h-48 bg-black/40 border border-white/10 rounded-2xl flex flex-col items-center justify-center gap-2 text-slate-400">
+                                            <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
+                                            <span className="text-[11px]">دریافت بارکد QR...</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="space-y-2 text-xs text-slate-300">
+                                    <p className="font-bold text-white text-sm mb-1">دستورالعمل اتصال خط شخصی به سامانه:</p>
+                                    <ol className="list-decimal list-inside space-y-1.5 text-slate-400 leading-relaxed">
+                                        <li>برنامه <strong className="text-white">WhatsApp</strong> را روی گوشی موبایل خود باز کنید.</li>
+                                        <li>به منوی <strong className="text-emerald-400">Settings (تنظیمات)</strong> بروید.</li>
+                                        <li>گزینه <strong className="text-emerald-400">Linked Devices (دستگاه‌های متصل)</strong> را انتخاب کنید.</li>
+                                        <li>روی <strong className="text-white">Link a Device (اتصال یک دستگاه)</strong> زده و بارکد مقابل را اسکن کنید.</li>
+                                    </ol>
+                                    <p className="text-[11px] text-emerald-300/80 pt-1">
+                                        💡 پس از اسکن، دستگاه برای همیشه ذخیره شده و تمام پیام‌ها از شماره شخصی شما ارسال می‌شوند.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="bg-[rgba(15,23,42,0.75)] backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
                         <form onSubmit={handleWhatsAppSubmit} className="space-y-6" dir="rtl">
+                            {/* Provider Selection */}
+                            <div className="space-y-2">
+                                <label className="text-sm font-bold text-[#c2c6d6]">درگاه فرستنده پیام (Sender Channel)</label>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <button
+                                        type="button"
+                                        onClick={() => setSelectedProvider("personal")}
+                                        className={`p-3 rounded-xl border text-right transition flex items-center justify-between ${
+                                            selectedProvider === "personal"
+                                                ? "bg-emerald-500/20 border-emerald-500 text-white"
+                                                : "bg-black/30 border-white/10 text-slate-400 hover:text-white"
+                                        }`}
+                                    >
+                                        <div>
+                                            <div className="font-bold text-xs">📱 خط شخصی شما</div>
+                                            <div className="text-[10px] opacity-75">سیم‌کارت / وب بدون هزینه</div>
+                                        </div>
+                                        {personalStatus.paired && <span className="w-2 h-2 rounded-full bg-emerald-400" />}
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={() => setSelectedProvider("twilio")}
+                                        className={`p-3 rounded-xl border text-right transition flex items-center justify-between ${
+                                            selectedProvider === "twilio"
+                                                ? "bg-[#00dce4]/20 border-[#00dce4] text-white"
+                                                : "bg-black/30 border-white/10 text-slate-400 hover:text-white"
+                                        }`}
+                                    >
+                                        <div>
+                                            <div className="font-bold text-xs">☁️ درگاه ابری Twilio</div>
+                                            <div className="text-[10px] opacity-75">شماره رسمی سرور</div>
+                                        </div>
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={() => setSelectedProvider("meta")}
+                                        className={`p-3 rounded-xl border text-right transition flex items-center justify-between ${
+                                            selectedProvider === "meta"
+                                                ? "bg-blue-500/20 border-blue-500 text-white"
+                                                : "bg-black/30 border-white/10 text-slate-400 hover:text-white"
+                                        }`}
+                                    >
+                                        <div>
+                                            <div className="font-bold text-xs">🏢 Meta Cloud API</div>
+                                            <div className="text-[10px] opacity-75">قالب‌های رسمی فیس‌بوک</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
                             {/* Mode Select */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
@@ -99,8 +311,10 @@ export default function WhatsAppClient({
                                         onChange={(e) => setWhatsappData({...whatsappData, isTemplate: e.target.value === "template"})} 
                                         className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00dce4]/50 font-[Vazirmatn] appearance-none"
                                     >
-                                        <option value="text" className="bg-[#131315]">پیام متنی آزاد (Text Session Message)</option>
-                                        <option value="template" className="bg-[#131315]">قالب آماده متا (Meta Approved Template)</option>
+                                        <option value="text" className="bg-[#131315]">پیام متنی آزاد (بدون محدودیت قالب)</option>
+                                        {selectedProvider === "meta" && (
+                                            <option value="template" className="bg-[#131315]">قالب آماده تأیید شده متا (Meta Template)</option>
+                                        )}
                                     </select>
                                 </div>
 
@@ -132,8 +346,10 @@ export default function WhatsAppClient({
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-200 text-xs flex items-center h-[52px] mt-7">
-                                        تنها به کاربرانی ارسال می‌شود که کمتر از ۲۴ ساعت پیش به شماره شما پیام داده باشند.
+                                    <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-200 text-xs flex items-center h-[52px] mt-7">
+                                        {selectedProvider === "personal" 
+                                            ? "✅ در ارسال با خط شخصی شما، هیچ محدودیت ۲۴ ساعته‌ای وجود ندارد." 
+                                            : "ارسال مستقیم به تمام مخاطبان و اعضای ثبت شده."}
                                     </div>
                                 )}
                             </div>
@@ -169,24 +385,34 @@ export default function WhatsAppClient({
                                             dir="ltr"
                                         />
                                     </div>
-                                    <button 
-                                        type="button" 
-                                        disabled={isTestingWhatsApp || isSubmitting} 
-                                        onClick={handleTestWhatsApp} 
-                                        className="px-6 py-2.5 rounded-xl font-bold text-sm bg-neutral-800 hover:bg-neutral-700 text-white transition flex items-center gap-2 disabled:opacity-50 shrink-0 border border-white/10 w-full sm:w-auto justify-center"
-                                    >
-                                        {isTestingWhatsApp ? <Loader2 className="w-4 h-4 animate-spin" /> : "ارسال پیام تست"}
-                                    </button>
+                                    <div className="flex gap-2 w-full sm:w-auto">
+                                        <button 
+                                            type="button" 
+                                            disabled={isTestingWhatsApp || isSubmitting} 
+                                            onClick={handleTestWhatsApp} 
+                                            className="px-6 py-2.5 rounded-xl font-bold text-sm bg-neutral-800 hover:bg-neutral-700 text-white transition flex items-center gap-2 disabled:opacity-50 shrink-0 border border-white/10 justify-center flex-1 sm:flex-none"
+                                        >
+                                            {isTestingWhatsApp ? <Loader2 className="w-4 h-4 animate-spin" /> : "ارسال پیام تست"}
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={openDirectWhatsApp}
+                                            className="px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 transition flex items-center gap-1.5 shrink-0 justify-center"
+                                            title="باز کردن مستقیم چت در واتساپ"
+                                        >
+                                            <ExternalLink className="w-3.5 h-3.5" />
+                                            <span>چت مستقیم</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-white/10">
-                                {/* Quick Setup Guide link block */}
-                                <div className="p-3 rounded-xl bg-neutral-900/50 border border-white/10 text-xs text-[#c2c6d6] flex gap-2 items-center">
-                                    <a href="/WHATSAPP_SETUP_GUIDE.md" target="_blank" className="text-[#00dce4] hover:underline font-bold flex items-center gap-1 shrink-0">
-                                        <Key className="w-3.5 h-3.5" /> راهنما
-                                    </a>
-                                    <span>تنظیمات توکن واتساپ نیاز به ست شدن در .env سرور دارد.</span>
+                                <div className="text-xs text-[#c2c6d6] flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                                    <span>
+                                        ارسال از: <strong>{selectedProvider === "personal" ? "خط شخصی شما" : selectedProvider === "twilio" ? "Twilio ابری" : "Meta API"}</strong>
+                                    </span>
                                 </div>
 
                                 <button disabled={isSubmitting || isTestingWhatsApp} type="submit" className="px-6 py-2.5 rounded-xl font-bold text-sm bg-[#00dce4] text-[#003739] hover:opacity-90 transition-transform hover:-translate-y-0.5 shadow-lg flex items-center gap-2 disabled:opacity-50 w-full md:w-auto justify-center" dir="ltr">

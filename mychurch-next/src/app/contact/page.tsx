@@ -104,8 +104,8 @@ export default function ContactPage() {
                                                 <Image src="/images/leader-nazi-real.jpg" alt="Nazi Rasti" fill className="object-cover" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="text-sm font-bold text-foreground">نازی رستی</span>
-                                                <span className="text-xs text-purple-400">امور بانوان</span>
+                                                <span className="text-sm font-bold text-foreground">سرکار خانم نازی راستی</span>
+                                                <span className="text-xs text-purple-400">امور بانوان و خدمت شبانی</span>
                                             </div>
                                         </label>
 

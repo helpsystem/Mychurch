@@ -32,24 +32,36 @@ async function ensureBrowser(): Promise<{ browser: Browser; page: Page }> {
     let puppeteerModule: any;
     try {
         const req = eval('require');
-        puppeteerModule = req('puppeteer');
+        try {
+            puppeteerModule = req('puppeteer-core');
+        } catch {
+            puppeteerModule = req('puppeteer');
+        }
     } catch {
-        throw new Error('Puppeteer is not installed on this system.');
+        throw new Error('Neither puppeteer-core nor puppeteer is installed.');
     }
 
-    _browser = await puppeteerModule.launch({
+    const launchArgs = [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--disable-gpu',
+    ];
+
+    const launchOptions: any = {
         headless: true,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
-            '--disable-accelerated-2d-canvas',
-            '--no-first-run',
-            '--no-zygote',
-            '--disable-gpu',
-        ],
-        userDataDir: SESSION_DIR, // Persist session across restarts
-    });
+        args: launchArgs,
+        userDataDir: SESSION_DIR,
+    };
+
+    if (process.platform === 'linux' && fs.existsSync('/usr/bin/google-chrome')) {
+        launchOptions.executablePath = '/usr/bin/google-chrome';
+    }
+
+    _browser = await puppeteerModule.launch(launchOptions);
 
     _page = await _browser.newPage();
     await _page.setUserAgent(
@@ -72,34 +84,32 @@ export async function checkGoogleMessagesPairing(): Promise<{ paired: boolean; q
         await new Promise(r => setTimeout(r, 3000));
 
         // Check if we're on the main messages view (paired)
-        const isMainView = await page.$('mws-conversations-list').catch(() => null);
+        const isMainView = await page.$('mws-conversations-list, [data-e2e-new-conversation-button]').catch(() => null);
         if (isMainView) {
             console.log('[GoogleMessages] ✅ Already paired and logged in');
             _isPaired = true;
             return { paired: true };
         }
 
-        // Check for QR code
-        const qrElement = await page.$('mw-qr-code').catch(() => null);
-        if (qrElement) {
-            const qrCanvas = await page.$('canvas').catch(() => null);
-            if (qrCanvas) {
-                const qrDataUrl = await page.evaluate(() => {
-                    const canvas = document.querySelector('canvas') as HTMLCanvasElement;
-                    return canvas ? canvas.toDataURL() : null;
-                });
-                console.log('[GoogleMessages] 📱 QR code available for pairing');
-                return { paired: false, qrCodeDataUrl: qrDataUrl || undefined };
-            }
-        }
-
-        // Try to find pairing button or remember this device option
-        const rememberDeviceBtn = await page.$('[data-e2e-remember-this-computer]').catch(() => null);
-        if (rememberDeviceBtn) {
+        // Try to ensure "Remember this computer" is checked
+        try {
             await page.evaluate(() => {
-                const checkbox = document.querySelector('[data-e2e-remember-this-computer]') as HTMLInputElement;
+                const checkbox = (document.querySelector('[data-e2e-remember-this-computer]') || document.querySelector('input[type="checkbox"]')) as HTMLInputElement;
                 if (checkbox && !checkbox.checked) checkbox.click();
             });
+        } catch {}
+
+        // Check for QR canvas
+        const qrCanvas = await page.$('canvas, mw-qr-code canvas').catch(() => null);
+        if (qrCanvas) {
+            const qrDataUrl = await page.evaluate(() => {
+                const canvas = document.querySelector('canvas') as HTMLCanvasElement;
+                return canvas ? canvas.toDataURL() : null;
+            });
+            if (qrDataUrl) {
+                console.log('[GoogleMessages] 📱 QR code available for pairing');
+                return { paired: false, qrCodeDataUrl: qrDataUrl };
+            }
         }
 
         // Screenshot for debugging
