@@ -235,6 +235,30 @@ export async function saveScannedDocument(payload: {
             }
         });
 
+        // Dispatch notification for confidential and top_secret documents
+        if (newDoc.security_level === 'top_secret' || newDoc.security_level === 'confidential') {
+            try {
+                const { dispatchRoleNotification } = await import("@/services/notificationService");
+                const levelFa = newDoc.security_level === 'top_secret' ? 'فوق‌محرمانه (Top Secret)' : 'محرمانه (Confidential)';
+                await dispatchRoleNotification({
+                    event: 'document_scanned_confidential',
+                    title: `📑 ثبت سند محرمانه در بایگانی: ${newDoc.title}`,
+                    summary: `سند جدیدی با درجه امنیتی «${levelFa}» توسط «${userEmail}» اسکن و پردازش گردید.`,
+                    targetRoles: newDoc.security_level === 'top_secret' ? ['Admin'] : ['Admin', 'Leader'],
+                    metadata: {
+                        'عنوان سند': newDoc.title,
+                        'سطح طبقه‌بندی': levelFa,
+                        'منبع اسکن': newDoc.scanner_source,
+                        'ثبت‌کننده': userEmail
+                    },
+                    actionUrl: '/admin/documents',
+                    actionText: 'مشاهده در بایگانی امن اسناد'
+                });
+            } catch (notifErr) {
+                console.error('[ScannedDocuments] Non-blocking notification error:', notifErr);
+            }
+        }
+
         revalidatePath('/admin/documents');
         revalidatePath('/admin/documents/scanner');
         revalidatePath('/admin/audit-logs');

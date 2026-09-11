@@ -92,6 +92,28 @@ export async function updateUserRole(id: string, newRole: string) {
             }
         });
 
+        // Notify Admins and Target User
+        try {
+            const { dispatchRoleNotification } = await import("@/services/notificationService");
+            await dispatchRoleNotification({
+                event: 'user_role_changed',
+                title: '👤 تغییر و ارتقای سطح دسترسی کاربر',
+                summary: `نقش کاربری «${targetUser?.name || targetUser?.email}» از سطح «${oldRole}» به سطح «${newRole}» ارتقا/تغییر یافت.`,
+                targetRoles: ['Admin'],
+                directEmails: targetUser?.email ? [targetUser.email] : undefined,
+                metadata: {
+                    'نام کاربر': targetUser?.name || 'ناشناس',
+                    'ایمیل': targetUser?.email || '',
+                    'نقش قبلی': oldRole,
+                    'نقش جدید': newRole
+                },
+                actionUrl: '/admin/users',
+                actionText: 'مشاهده مدیریت کاربران'
+            });
+        } catch (notifErr) {
+            console.error('[Action] Non-blocking notification error on user role update:', notifErr);
+        }
+
         revalidatePath('/admin/users');
         revalidatePath('/admin/audit-logs');
         return true;

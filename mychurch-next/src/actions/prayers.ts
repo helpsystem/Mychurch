@@ -74,6 +74,8 @@ export async function getPrayers(filter: 'all' | 'public' | 'answered' = 'all'):
     }
 }
 
+import { dispatchRoleNotification } from "@/services/notificationService";
+
 export async function createPrayer(data: Partial<PrayerRequest>): Promise<{ success: boolean }> {
     try {
         await query(
@@ -83,6 +85,28 @@ export async function createPrayer(data: Partial<PrayerRequest>): Promise<{ succ
         );
         revalidatePath('/prayers');
         revalidatePath('/admin/prayers');
+
+        // Dispatch Role-based Notification to Leaders and Admins
+        try {
+            await dispatchRoleNotification({
+                event: 'prayer_created',
+                title: '🕊️ درخواست دعای جدید جهت بررسی و تأیید',
+                summary: `ایماندار گرامی «${data.user_name || 'ناشناس'}» یک درخواست دعای جدید با عنوان «${data.title}» ثبت نموده است. لطفاً جهت بررسی، تأیید یا پاسخگویی وارد پنل شوید.`,
+                targetRoles: ['Admin', 'Leader'],
+                metadata: {
+                    'نام متقاضی': data.user_name || 'ناشناس',
+                    'ایمیل متقاضی': data.email || 'ثبت‌نشده',
+                    'عنوان دعا': data.title,
+                    'وضعیت نمایش': data.is_public ? 'عمومی بر روی دیوار دعا' : 'محرمانه (صرفاً کادر شبانی)',
+                    'متن درخواست': (data.content || '').substring(0, 150) + ((data.content || '').length > 150 ? '...' : '')
+                },
+                actionUrl: '/admin/prayers',
+                actionText: 'بررسی و تأیید درخواست دعا'
+            });
+        } catch (notifErr) {
+            console.error('[Action] Non-blocking notification error on prayer create:', notifErr);
+        }
+
         return { success: true };
     } catch (e) {
         console.error('Error creating prayer', e);
@@ -127,9 +151,36 @@ export async function incrementPrayerCount(prayerId: string, userIdentifier: str
 
 export async function updatePrayerStatus(id: string, status: 'pending' | 'active' | 'answered'): Promise<{ success: boolean; error?: string }> {
     try {
+        const prev = await query('SELECT * FROM prayer_requests WHERE id = $1', [id]);
+        const prayerRow = prev.rows && prev.rows[0];
+
         await query('UPDATE prayer_requests SET status = $1 WHERE id = $2', [status, id]);
         revalidatePath('/prayers');
         revalidatePath('/admin/prayers');
+
+        if (prayerRow && (prayerRow.email || prayerRow.user_id)) {
+            const statusLabels: Record<string, string> = {
+                active: 'تأیید شده و در حال دعا',
+                answered: 'پاسخ داده شده / حاجت‌روا',
+                pending: 'در حال بررسی توسط شبانان'
+            };
+
+            dispatchRoleNotification({
+                event: 'prayer_status_updated',
+                title: '🕊️ به‌روزرسانی وضعیت درخواست دعای شما',
+                summary: `ایماندار گرامی «${prayerRow.user_name || ''}»، درخواست دعای شما با عنوان «${prayerRow.title}» توسط کادر شبانی بررسی شد و به وضعیت «${statusLabels[status] || status}» تغییر یافت. کلیسا همراه و هم‌صدا با شما در دعا ایستاده است.`,
+                targetRoles: [],
+                directEmails: prayerRow.email ? [prayerRow.email] : undefined,
+                directUserIds: prayerRow.user_id && prayerRow.user_id !== 'guest' ? [prayerRow.user_id] : undefined,
+                metadata: {
+                    'عنوان دعا': prayerRow.title,
+                    'وضعیت جدید': statusLabels[status] || status
+                },
+                actionUrl: '/prayers',
+                actionText: 'مشاهده در دیوار دعای کلیسا'
+            }).catch(() => {});
+        }
+
         return { success: true };
     } catch (e) {
         console.error('Error updating prayer status:', e);
@@ -144,9 +195,30 @@ export async function updatePrayerStatus(id: string, status: 'pending' | 'active
 
 export async function answerPrayer(id: string, answerText: string): Promise<{ success: boolean; error?: string }> {
     try {
+        const prev = await query('SELECT * FROM prayer_requests WHERE id = $1', [id]);
+        const prayerRow = prev.rows && prev.rows[0];
+
         await query('UPDATE prayer_requests SET status = $1, answer_text = $2 WHERE id = $3', ['answered', answerText, id]);
         revalidatePath('/prayers');
         revalidatePath('/admin/prayers');
+
+        if (prayerRow && (prayerRow.email || prayerRow.user_id)) {
+            dispatchRoleNotification({
+                event: 'prayer_status_updated',
+                title: '🕊️ ثبت پاسخ و شهادت بر روی درخواست دعای شما',
+                summary: `ایماندار گرامی «${prayerRow.user_name || ''}»، بر روی درخواست دعای شما «${prayerRow.title}» پیام شبانی جدیدی ثبت گردید: «${answerText}». شکر برای فیض خداوند و اجابت دعاها!`,
+                targetRoles: [],
+                directEmails: prayerRow.email ? [prayerRow.email] : undefined,
+                directUserIds: prayerRow.user_id && prayerRow.user_id !== 'guest' ? [prayerRow.user_id] : undefined,
+                metadata: {
+                    'عنوان دعا': prayerRow.title,
+                    'پیام شبانی': answerText
+                },
+                actionUrl: '/prayers',
+                actionText: 'مشاهده در دیوار دعای کلیسا'
+            }).catch(() => {});
+        }
+
         return { success: true };
     } catch (e) {
         console.error('Error answering prayer:', e);

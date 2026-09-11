@@ -218,10 +218,14 @@ export async function deleteFromTelegramStorage(messageId: number): Promise<bool
   }
 }
 
-export async function sendTelegramMessage(chatId: string, text: string): Promise<boolean> {
+export async function sendTelegramMessage(
+  chatId: string, 
+  text: string,
+  options?: { parse_mode?: "HTML" | "Markdown" | "MarkdownV2"; reply_markup?: any }
+): Promise<boolean> {
   try {
     const { bot } = getBot();
-    await bot.api.sendMessage(chatId, text);
+    await bot.api.sendMessage(chatId, text, options);
     return true;
   } catch (error) {
     console.error("❌ [Telegram Bot] Failed to send message:", error);
