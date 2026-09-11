@@ -117,23 +117,40 @@ export async function checkGoogleMessagesPairing(): Promise<{ paired: boolean; q
             });
         } catch {}
 
-        // Check for QR canvas
-        const qrCanvas = await page.$('canvas, mw-qr-code canvas').catch(() => null);
-        if (qrCanvas) {
-            const qrDataUrl = await page.evaluate(() => {
-                const canvas = document.querySelector('canvas') as HTMLCanvasElement;
-                return canvas ? canvas.toDataURL() : null;
-            });
-            if (qrDataUrl) {
-                console.log('[GoogleMessages] 📱 QR code available for pairing');
-                return { paired: false, qrCodeDataUrl: qrDataUrl };
+        // Multi-strategy QR extraction for modern Google Messages Web:
+        // Strategy 1: Look for <img> tags rendered with data:image base64 PNG
+        let qrDataUrl = await page.evaluate(() => {
+            const imgs = Array.from(document.querySelectorAll('img'));
+            const qrImg = imgs.find(i => i.src && i.src.startsWith('data:image') && i.src.length > 500);
+            if (qrImg && qrImg.src) return qrImg.src;
+
+            const canvas = document.querySelector('canvas') as HTMLCanvasElement;
+            if (canvas) {
+                try {
+                    const data = canvas.toDataURL();
+                    if (data && data.length > 500) return data;
+                } catch {}
+            }
+            return null;
+        });
+
+        // Strategy 2: If img/canvas didn't yield, take direct screenshot of the QR element
+        if (!qrDataUrl) {
+            const qrElement = await page.$('mw-qr-code, .qr-container, [class*="qr-code"], mw-authentication-instructions').catch(() => null);
+            if (qrElement) {
+                const shot = await qrElement.screenshot({ encoding: 'base64' }).catch(() => null);
+                if (shot && shot.length > 500) {
+                    qrDataUrl = `data:image/png;base64,${shot}`;
+                }
             }
         }
 
-        // Screenshot for debugging
-        const screenshot = await page.screenshot({ encoding: 'base64' });
-        console.log('[GoogleMessages] ⚠️ Unknown state — check screenshot');
-        
+        if (qrDataUrl) {
+            console.log('[GoogleMessages] 📱 QR code extracted successfully for pairing');
+            return { paired: false, qrCodeDataUrl: qrDataUrl };
+        }
+
+        console.log('[GoogleMessages] ⚠️ QR code element not found or still rendering');
         return { paired: false };
     } catch (err: any) {
         console.error('[GoogleMessages] ❌ Error checking pairing:', err.message);
@@ -227,10 +244,30 @@ export async function getGoogleMessagesQRCode(): Promise<string | null> {
         await page.goto(MESSAGES_URL, { waitUntil: 'networkidle2', timeout: 30000 });
         await new Promise(r => setTimeout(r, 3000));
 
-        const qrDataUrl = await page.evaluate(() => {
+        let qrDataUrl = await page.evaluate(() => {
+            const imgs = Array.from(document.querySelectorAll('img'));
+            const qrImg = imgs.find(i => i.src && i.src.startsWith('data:image') && i.src.length > 500);
+            if (qrImg && qrImg.src) return qrImg.src;
+
             const canvas = document.querySelector('canvas') as HTMLCanvasElement;
-            return canvas ? canvas.toDataURL() : null;
+            if (canvas) {
+                try {
+                    const data = canvas.toDataURL();
+                    if (data && data.length > 500) return data;
+                } catch {}
+            }
+            return null;
         });
+
+        if (!qrDataUrl) {
+            const qrElement = await page.$('mw-qr-code, .qr-container, [class*="qr-code"], mw-authentication-instructions').catch(() => null);
+            if (qrElement) {
+                const shot = await qrElement.screenshot({ encoding: 'base64' }).catch(() => null);
+                if (shot && shot.length > 500) {
+                    qrDataUrl = `data:image/png;base64,${shot}`;
+                }
+            }
+        }
         
         return qrDataUrl;
     } catch (err: any) {

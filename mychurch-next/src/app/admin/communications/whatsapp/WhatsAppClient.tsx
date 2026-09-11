@@ -189,7 +189,7 @@ export default function WhatsAppClient({
                                 </div>
                             </div>
 
-                            {personalStatus.paired && (
+                            {personalStatus.paired ? (
                                 <button
                                     onClick={handleDisconnectPersonal}
                                     disabled={disconnecting}
@@ -197,6 +197,15 @@ export default function WhatsAppClient({
                                 >
                                     <LogOut className="w-3.5 h-3.5" />
                                     <span>{disconnecting ? "در حال خروج..." : "قطع اتصال خط"}</span>
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() => { setLoadingPersonal(true); checkPersonalStatus(); }}
+                                    disabled={loadingPersonal}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs transition disabled:opacity-50"
+                                >
+                                    <RefreshCw className={`w-3.5 h-3.5 ${loadingPersonal ? "animate-spin text-emerald-400" : ""}`} />
+                                    <span>تازه‌سازی بارکد</span>
                                 </button>
                             )}
                         </div>

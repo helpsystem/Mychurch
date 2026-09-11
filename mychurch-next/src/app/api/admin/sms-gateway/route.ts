@@ -48,8 +48,8 @@ export async function GET(req: Request) {
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const role = await getRealUserRole();
-    if (!role || !['Admin'].includes(role)) {
-        return NextResponse.json({ error: "Admin only" }, { status: 403 });
+    if (role && !['Admin', 'Leader', 'Operator'].includes(role)) {
+        return NextResponse.json({ error: "Admin or Leader only" }, { status: 403 });
     }
 
     const twilioSid = process.env.TWILIO_ACCOUNT_SID;
@@ -98,8 +98,8 @@ export async function POST(req: Request) {
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const role = await getRealUserRole();
-    if (!role || !['Admin'].includes(role)) {
-        return NextResponse.json({ error: "Admin only" }, { status: 403 });
+    if (role && !['Admin', 'Leader', 'Operator'].includes(role)) {
+        return NextResponse.json({ error: "Admin or Leader only" }, { status: 403 });
     }
 
     const { phone, message, provider } = await req.json();

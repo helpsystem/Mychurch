@@ -30,6 +30,10 @@ export default function SMSGatewayPage() {
             const res = await fetch("/api/admin/sms-gateway");
             const data = await res.json();
             
+            if (data.error) {
+                console.warn("[SMSGateway] Status error:", data.error);
+                toast.error(data.error);
+            }
             if (data.googleMessages) {
                 setGmPaired(!!data.googleMessages.paired);
                 setGmQrCode(data.googleMessages.qrCode || null);
@@ -193,7 +197,7 @@ export default function SMSGatewayPage() {
                                 <p className="text-xs text-slate-400">اپلیکیشن Messages گوگل را در گوشی باز کرده و بارکد زیر را اسکن فرمایید.</p>
                             </div>
 
-                            <div className="flex justify-center">
+                            <div className="flex flex-col items-center justify-center gap-3">
                                 {gmQrCode ? (
                                     <div className="p-3 bg-white rounded-2xl shadow-2xl inline-block border-4 border-amber-500/30">
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -204,11 +208,20 @@ export default function SMSGatewayPage() {
                                         />
                                     </div>
                                 ) : (
-                                    <div className="w-64 h-64 mx-auto bg-black/40 border border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3 text-slate-400">
+                                    <div className="w-64 h-64 mx-auto bg-black/40 border border-white/10 rounded-2xl flex flex-col items-center justify-center gap-3 text-slate-400 p-4">
                                         <Loader2 className="w-8 h-8 animate-spin text-amber-400" />
                                         <span className="text-xs">در حال بارگذاری بارکد QR از سرور...</span>
+                                        <span className="text-[10px] text-slate-500 text-center">چند ثانیه طول می‌کشد تا مرورگر سرور بارکد را از گوگل دریافت کند</span>
                                     </div>
                                 )}
+                                <button
+                                    onClick={() => checkStatus()}
+                                    disabled={polling}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-slate-300 transition-colors"
+                                >
+                                    <RefreshCw className={`w-3.5 h-3.5 ${polling ? "animate-spin text-amber-400" : ""}`} />
+                                    <span>تازه‌سازی بارکد</span>
+                                </button>
                             </div>
 
                             <div className="bg-black/30 border border-white/5 rounded-xl p-4 text-right text-xs text-slate-300 space-y-2 max-w-md mx-auto">
