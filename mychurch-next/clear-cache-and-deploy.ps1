@@ -19,7 +19,7 @@ if (Test-Path "src\app\twitter-image.tsx") { Remove-Item -Force "src\app\twitter
 if (Test-Path "scripts\apply-new-logo.js") { node scripts\apply-new-logo.js }
 
 # Package source code only (skip heavy folders)
-tar -czf $TAR_FILE --exclude="node_modules" --exclude=".next" --exclude="standalone" --exclude=".git" --exclude="Bible" --exclude="public" --exclude=$TAR_FILE ./*
+tar -czf $TAR_FILE --exclude="node_modules" --exclude=".next" --exclude="standalone" --exclude=".git" --exclude="Bible" --exclude=$TAR_FILE src public package.json tsconfig.json next.config.ts
 
 $sizeMB = [Math]::Round((Get-Item $TAR_FILE).Length / 1MB, 2)
 Write-Host "Source Package Created: $TAR_FILE ($sizeMB MB)" -ForegroundColor Green
