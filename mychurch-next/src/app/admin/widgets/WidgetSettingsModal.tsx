@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useState, useRef, useTransition } from "react";
+import React, { useEffect, useState, useRef, useTransition, useMemo } from "react";
 import { updateWidgetConfig, DashboardWidget } from "@/actions/widgets";
 import { translateFaToEn, translateEnToFa } from "@/actions/ai";
-import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film, ImagePlus, Music, Calendar, QrCode, Heart } from "lucide-react";
+import { X, Save, Image as ImageIcon, Type, RefreshCw, Code2, UploadCloud, Sparkles, FolderOpen, Film, ImagePlus, Music, Calendar, QrCode, Heart, BookOpen, Globe, CheckCircle2, RotateCw } from "lucide-react";
 import { NowruzPopup } from "@/components/widgets/NowruzPopup";
 import { toast } from "sonner";
 import { MediaPicker } from "@/components/admin/media/MediaPicker";
+import { getTodayVerse } from "@/lib/daily-verses";
 
 interface Props {
     widget: DashboardWidget;
@@ -209,30 +210,52 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
     const [translatingKey, setTranslatingKey] = useState<string | null>(null);
     const [announcementRecords, setAnnouncementRecords] = useState<any[]>(config.announcementRecords || []);
     
+    // Modal-wide language switcher
+    const [modalLang, setModalLang] = useState<"fa" | "en">("fa");
+    const isModalEn = modalLang === "en";
+
     // w_verse_donation widget states
+    const [useCustomVerse, setUseCustomVerse] = useState<boolean>(config.useCustomVerse === true);
     const [verseFa, setVerseFa] = useState(config.verseFa || "آیا تو را امر نکردم؟ قوی و دلیر باش! نترس و هراسان مباش، زیرا هر جا که بروی، یَهُوَه خدایت با تو خواهد بود.");
     const [verseEn, setVerseEn] = useState(config.verseEn || "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.");
     const [refFa, setRefFa] = useState(config.refFa || "یوشع ۱:۹");
     const [refEn, setRefEn] = useState(config.refEn || "Joshua 1:9");
+    const [givingPromptFa, setGivingPromptFa] = useState(config.givingPromptFa || "هر کس طبق تصمیم دل خود عمل نماید، نه با اکراه یا به اجبار؛ زیرا خدا بخشنده شادمان را دوست دارد. (دوم قرنتیان ۹:۷)");
+    const [givingPromptEn, setGivingPromptEn] = useState(config.givingPromptEn || "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver. (2 Corinthians 9:7)");
     const [showDelaySeconds, setShowDelaySeconds] = useState<number | ''>(config.showDelaySeconds ?? 2);
+
+    const todayRotatingVerse = useMemo(() => {
+        return getTodayVerse({ useCustomVerse: false });
+    }, []);
 
     // w_ai_avatar widget states
     const [aiModel, setAiModel] = useState(config.model || "stability-ai/sdxl");
     const [maxGenerations, setMaxGenerations] = useState<number>(config.maxGenerationsPerUser || 5);
 
-    // w_worship_audio widget states
+    // w_worship_audio / w_audio_sync widget states
     const [audioAutoplay, setAudioAutoplay] = useState<boolean>(config.autoplay === true);
     const [audioVolume, setAudioVolume] = useState<number>(config.volume ?? 0.8);
     const [audioLoop, setAudioLoop] = useState<boolean>(config.loop === true);
 
-    // w_calendar widget states
+    // w_calendar / w_cal widget states
     const [showPastEvents, setShowPastEvents] = useState<boolean>(config.showPastEvents === true);
     const [maxEventsShown, setMaxEventsShown] = useState<number>(config.maxEventsShown || 5);
+    const [calendarDefaultView, setCalendarDefaultView] = useState<string>(config.defaultView || "month");
 
-    // w_qr_code widget states
+    // w_qr_code / w_qr widget states
     const [telegramLink, setTelegramLink] = useState(config.telegramLink || "");
     const [instagramLink, setInstagramLink] = useState(config.instagramLink || "");
     const [zoomLink, setZoomLink] = useState(config.zoomLink || "");
+    const [givingLink, setGivingLink] = useState(config.givingLink || "https://www.iranianchurchdc.com/payment");
+    const [youtubeLink, setYoutubeLink] = useState(config.youtubeLink || "");
+
+    // w_bible widget states
+    const [bibleDefaultTranslation, setBibleDefaultTranslation] = useState(config.defaultTranslation || "NMV");
+    const [bibleCompareTranslation, setBibleCompareTranslation] = useState(config.compareTranslation || "ESV");
+    const [bibleShowParallel, setBibleShowParallel] = useState<boolean>(config.showParallel !== false);
+    const [bibleDailyPlan, setBibleDailyPlan] = useState<boolean>(config.dailyPlan !== false);
+    const [bibleFontSize, setBibleFontSize] = useState<string>(config.fontSize || "md");
+    const [bibleCrossReferences, setBibleCrossReferences] = useState<boolean>(config.crossReferences !== false);
 
     const [isPending, startTransition] = useTransition();
     const [isUploading, setIsUploading] = useState(false);
@@ -487,10 +510,13 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                 };
             } else if (widget.id === 'w_verse_donation') {
                 newConfig = {
+                    useCustomVerse,
                     verseFa,
                     verseEn,
                     refFa,
                     refEn,
+                    givingPromptFa,
+                    givingPromptEn,
                     showDelaySeconds: showDelaySeconds === '' ? 2 : Number(showDelaySeconds),
                     displayFrequency,
                     enabledPaths,
@@ -501,22 +527,34 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     model: aiModel,
                     maxGenerationsPerUser: Number(maxGenerations)
                 };
-            } else if (widget.id === 'w_worship_audio') {
+            } else if (widget.id === 'w_worship_audio' || widget.id === 'w_audio_sync') {
                 newConfig = {
                     autoplay: audioAutoplay,
                     volume: Number(audioVolume),
                     loop: audioLoop
                 };
-            } else if (widget.id === 'w_calendar') {
+            } else if (widget.id === 'w_calendar' || widget.id === 'w_cal') {
                 newConfig = {
                     showPastEvents: showPastEvents,
-                    maxEventsShown: Number(maxEventsShown)
+                    maxEventsShown: Number(maxEventsShown),
+                    defaultView: calendarDefaultView
                 };
-            } else if (widget.id === 'w_qr_code') {
+            } else if (widget.id === 'w_qr_code' || widget.id === 'w_qr') {
                 newConfig = {
                     telegramLink,
                     instagramLink,
-                    zoomLink
+                    zoomLink,
+                    givingLink,
+                    youtubeLink
+                };
+            } else if (widget.id === 'w_bible') {
+                newConfig = {
+                    defaultTranslation: bibleDefaultTranslation,
+                    compareTranslation: bibleCompareTranslation,
+                    showParallel: bibleShowParallel,
+                    dailyPlan: bibleDailyPlan,
+                    fontSize: bibleFontSize,
+                    crossReferences: bibleCrossReferences
                 };
             } else {
                 try {
@@ -743,15 +781,26 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={onClose} />
             
-            <div className={`relative bg-background border border-white/10 rounded-3xl w-full shadow-2xl flex flex-col max-h-[95vh] min-h-[400px] ${widget.id === 'w_global_popup' ? 'max-w-[95vw] xl:max-w-7xl' : 'max-w-4xl'}`} dir="rtl">
+            <div className={`relative bg-background border border-white/10 rounded-3xl w-full shadow-2xl flex flex-col max-h-[95vh] min-h-[400px] ${widget.id === 'w_global_popup' ? 'max-w-[95vw] xl:max-w-7xl' : 'max-w-4xl'}`} dir={isModalEn ? "ltr" : "rtl"}>
                 <div className="flex items-center justify-between p-6 border-b border-white/5">
                     <h2 className="text-xl font-bold flex items-center gap-2">
                         <Type className="w-5 h-5 text-primary" />
-                        تنظیمات ابزار: {widget.name}
+                        {isModalEn ? `Widget Settings: ${widget.name_en || widget.name}` : `تنظیمات ابزار: ${widget.name_fa || widget.name}`}
                     </h2>
-                    <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-full transition-colors" title="بستن">
-                        <X className="w-5 h-5" />
-                    </button>
+                    <div className="flex items-center gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setModalLang(isModalEn ? 'fa' : 'en')}
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-all border border-white/15 shadow-sm"
+                            title={isModalEn ? "تغییر به زبان فارسی" : "Switch to English"}
+                        >
+                            <Globe className="w-3.5 h-3.5 text-amber-400" />
+                            <span className="font-mono">{isModalEn ? "FA فارسی" : "EN English"}</span>
+                        </button>
+                        <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-full transition-colors" title={isModalEn ? "Close" : "بستن"}>
+                            <X className="w-5 h-5" />
+                        </button>
+                    </div>
                 </div>
 
                 <div className="p-6 overflow-y-auto space-y-6 flex-1 custom-scrollbar">
@@ -1361,42 +1410,153 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                         </div> 
                     ) : widget.id === 'w_verse_donation' ? (
                         <div className="space-y-6">
-                            <div className="bg-rose-500/10 border border-rose-500/20 p-4 rounded-xl text-rose-400 text-sm leading-relaxed">
-                                تنظیمات نمایش آیه روز و دریافت هدیه در این بخش پیکربندی می‌شود. آیه زیر به صورت پاپ‌آپ زیبا در صفحات فعال نمایش داده می‌شود.
+                            <div className="bg-gradient-to-r from-rose-500/15 via-purple-500/10 to-amber-500/15 border border-rose-500/30 p-5 rounded-2xl text-sm leading-relaxed space-y-2 shadow-sm">
+                                <div className="flex items-center gap-2 font-bold text-rose-400 text-base">
+                                    <Heart className="w-5 h-5 text-rose-400" />
+                                    <span>{isModalEn ? "Daily Scripture & Voluntary Giving Ecosystem" : "اکوسیستم آیه روز و هدیه شکرگزاری داوطلبانه"}</span>
+                                </div>
+                                <p className="text-muted-foreground">
+                                    {isModalEn 
+                                        ? "Presents God's Word daily in Persian & English with an inspiring invitation to joyful, voluntary church giving (2 Corinthians 9:7: 'Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion')." 
+                                        : "نمایش هوشمندانه کلام خدا به دو زبان فارسی و انگلیسی به همراه دعوت صمیمانه و محبت‌آمیز به هدیه داوطلبانه (بر پایه دوم قرنتیان ۹:۷: 'نه با اکراه یا به اجبار بلکه هرکس با شادی دل')."}
+                                </p>
                             </div>
-                            
-                            <DualField 
-                                label="متن آیه روز / Daily Verse Text"
-                                faValue={verseFa}
-                                enValue={verseEn}
-                                setFaValue={setVerseFa}
-                                setEnValue={setVerseEn}
-                                onTranslateFaToEn={() => handleTranslateFaToEn('verse', verseFa, setVerseEn)}
-                                onTranslateEnToFa={() => handleTranslateEnToFa('verse', verseEn, setVerseFa)}
-                                isTranslatingFaToEn={translatingKey === 'fa-en:verse'}
-                                isTranslatingEnToFa={translatingKey === 'en-fa:verse'}
-                                isTextarea
-                                placeholderFa="آیه را به فارسی وارد کنید..."
-                                placeholderEn="Enter the verse in English..."
-                            />
 
-                            <DualField 
-                                label="آدرس آیه (رفرنس) / Verse Reference"
-                                faValue={refFa}
-                                enValue={refEn}
-                                setFaValue={setRefFa}
-                                setEnValue={setRefEn}
-                                onTranslateFaToEn={() => handleTranslateFaToEn('ref', refFa, setRefEn)}
-                                onTranslateEnToFa={() => handleTranslateEnToFa('ref', refEn, setRefFa)}
-                                isTranslatingFaToEn={translatingKey === 'fa-en:ref'}
-                                isTranslatingEnToFa={translatingKey === 'en-fa:ref'}
-                                placeholderFa="مثال: یوشع ۱:۹"
-                                placeholderEn="Example: Joshua 1:9"
-                            />
+                            {/* Rotation Mode Selector */}
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+                                    <div>
+                                        <h4 className="text-sm font-bold text-foreground">
+                                            {isModalEn ? "Scripture Selection Strategy" : "روش انتخاب و چرخش آیات"}
+                                        </h4>
+                                        <p className="text-xs text-muted-foreground mt-0.5">
+                                            {isModalEn 
+                                                ? "Choose between automated 365-day rotation or manual custom verse" 
+                                                : "انتخاب بین چرخش خودکار روزانه ۳۶۵ روزه یا تعیین آیه سفارشی دستی"}
+                                        </p>
+                                    </div>
+                                    <div className="flex items-center gap-2 bg-neutral-900 p-1 rounded-xl border border-white/10 shrink-0">
+                                        <button
+                                            type="button"
+                                            onClick={() => setUseCustomVerse(false)}
+                                            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                                                !useCustomVerse 
+                                                    ? 'bg-primary text-primary-foreground shadow-md' 
+                                                    : 'text-muted-foreground hover:text-white'
+                                            }`}
+                                        >
+                                            {isModalEn ? "365-Day Auto (Recommended)" : "چرخش خودکار ۳۶۵ روزه (پیشنهادی)"}
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setUseCustomVerse(true)}
+                                            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                                                useCustomVerse 
+                                                    ? 'bg-amber-500 text-black font-black shadow-md' 
+                                                    : 'text-muted-foreground hover:text-white'
+                                            }`}
+                                        >
+                                            {isModalEn ? "Manual Custom Verse" : "تعیین دستی آیه سفارشی"}
+                                        </button>
+                                    </div>
+                                </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/5 border border-white/10 rounded-2xl p-4">
+                                {/* Rotating Verse Preview */}
+                                {!useCustomVerse && (
+                                    <div className="bg-black/30 border border-emerald-500/25 rounded-xl p-4 space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                                                <CheckCircle2 className="w-4 h-4" />
+                                                {isModalEn ? `Today's Active Verse (Day #${todayRotatingVerse.id})` : `آیه فعال امروز بر روی وب‌سایت (روز #${todayRotatingVerse.id})`}
+                                            </span>
+                                            <span className="text-[11px] font-mono text-muted-foreground bg-white/5 px-2 py-0.5 rounded">
+                                                {todayRotatingVerse.refEn} • {todayRotatingVerse.refFa}
+                                            </span>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs leading-relaxed">
+                                            <div className="bg-secondary/40 p-3 rounded-lg border border-white/5 font-vazirmatn text-right" dir="rtl">
+                                                <p className="text-white/90">{todayRotatingVerse.verseFa}</p>
+                                                <span className="text-primary font-bold block mt-1.5">{todayRotatingVerse.refFa}</span>
+                                            </div>
+                                            <div className="bg-secondary/40 p-3 rounded-lg border border-white/5 font-sans text-left" dir="ltr">
+                                                <p className="text-white/90">{todayRotatingVerse.verseEn}</p>
+                                                <span className="text-primary font-bold block mt-1.5">{todayRotatingVerse.refEn}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Manual Override Inputs */}
+                                {useCustomVerse && (
+                                    <div className="space-y-4 pt-2 animate-in fade-in duration-300">
+                                        <DualField 
+                                            label={isModalEn ? "Custom Scripture Text" : "متن آیه سفارشی"}
+                                            faValue={verseFa}
+                                            enValue={verseEn}
+                                            setFaValue={setVerseFa}
+                                            setEnValue={setVerseEn}
+                                            onTranslateFaToEn={() => handleTranslateFaToEn('verse', verseFa, setVerseEn)}
+                                            onTranslateEnToFa={() => handleTranslateEnToFa('verse', verseEn, setVerseFa)}
+                                            isTranslatingFaToEn={translatingKey === 'fa-en:verse'}
+                                            isTranslatingEnToFa={translatingKey === 'en-fa:verse'}
+                                            isTextarea
+                                            placeholderFa="متن کامل آیه به زبان فارسی..."
+                                            placeholderEn="Full verse text in English..."
+                                        />
+
+                                        <DualField 
+                                            label={isModalEn ? "Scripture Reference" : "آدرس و رفرنس آیه"}
+                                            faValue={refFa}
+                                            enValue={refEn}
+                                            setFaValue={setRefFa}
+                                            setEnValue={setRefEn}
+                                            onTranslateFaToEn={() => handleTranslateFaToEn('ref', refFa, setRefEn)}
+                                            onTranslateEnToFa={() => handleTranslateEnToFa('ref', refEn, setRefFa)}
+                                            isTranslatingFaToEn={translatingKey === 'fa-en:ref'}
+                                            isTranslatingEnToFa={translatingKey === 'en-fa:ref'}
+                                            placeholderFa="مثال: یوحنا ۳:۱۶ یا رومیان ۸:۲۸"
+                                            placeholderEn="Example: John 3:16 or Romans 8:28"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Voluntary Giving Invitation Phrasing */}
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-bold text-foreground flex items-center gap-2">
+                                        <Heart className="w-4 h-4 text-rose-400" />
+                                        {isModalEn ? "Voluntary Giving Invitation Message (Not Coercive)" : "متن دعوت به هدیه داوطلبانه (ترغیب با محبت، بدون هرگونه تحمیل)"}
+                                    </h4>
+                                    <p className="text-xs text-muted-foreground mt-0.5">
+                                        {isModalEn 
+                                            ? "Displayed directly below the verse to inspire generous giving rooted in joy and grace." 
+                                            : "در زیر آیه روز نمایش داده می‌شود تا مؤمنان با شادی و آزادی کامل در برکت کلیسا سهیم شوند."}
+                                    </p>
+                                </div>
+
+                                <DualField 
+                                    label={isModalEn ? "Giving Encouragement Text" : "پیام محبت‌آمیز تشویق به هدیه"}
+                                    faValue={givingPromptFa}
+                                    enValue={givingPromptEn}
+                                    setFaValue={setGivingPromptFa}
+                                    setEnValue={setGivingPromptEn}
+                                    onTranslateFaToEn={() => handleTranslateFaToEn('givingPrompt', givingPromptFa, setGivingPromptEn)}
+                                    onTranslateEnToFa={() => handleTranslateEnToFa('givingPrompt', givingPromptEn, setGivingPromptFa)}
+                                    isTranslatingFaToEn={translatingKey === 'fa-en:givingPrompt'}
+                                    isTranslatingEnToFa={translatingKey === 'en-fa:givingPrompt'}
+                                    isTextarea
+                                    placeholderFa="پیام دعوت به مشارکت در هدیه داوطلبانه..."
+                                    placeholderEn="Encouraging voluntary giving message..."
+                                />
+                            </div>
+
+                            {/* Timing & Path Restrictions */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/5 border border-white/10 rounded-2xl p-5">
                                 <div className="space-y-1">
-                                    <label className="text-xs text-muted-foreground block mb-1">میزان تاخیر نمایش (ثانیه)</label>
+                                    <label className="text-xs font-bold text-muted-foreground block mb-1">
+                                        {isModalEn ? "Display Delay (Seconds)" : "تاخیر در نمایش (ثانیه)"}
+                                    </label>
                                     <input 
                                         type="number" 
                                         value={showDelaySeconds} 
@@ -1405,20 +1565,24 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                     />
                                 </div>
                                 <div className="space-y-1">
-                                    <label className="text-xs text-muted-foreground block mb-1">فرکانس نمایش</label>
+                                    <label className="text-xs font-bold text-muted-foreground block mb-1">
+                                        {isModalEn ? "Display Frequency" : "فرکانس نمایش"}
+                                    </label>
                                     <select 
                                         value={displayFrequency}
                                         onChange={(e) => setDisplayFrequency(e.target.value)}
                                         className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-right"
                                     >
-                                        <option value="always">همیشه (در هر لود صفحه)</option>
-                                        <option value="session">یک‌بار در هر نشست (Session)</option>
-                                        <option value="24h">یک‌بار در ۲۴ ساعت</option>
-                                        <option value="7d">یک‌بار در ۷ روز</option>
+                                        <option value="always">{isModalEn ? "Always (Every Page Load)" : "همیشه (در هر لود صفحه)"}</option>
+                                        <option value="session">{isModalEn ? "Once per Session" : "یک‌بار در هر نشست (Session)"}</option>
+                                        <option value="24h">{isModalEn ? "Once in 24 Hours" : "یک‌بار در ۲۴ ساعت"}</option>
+                                        <option value="7d">{isModalEn ? "Once in 7 Days" : "یک‌بار در ۷ روز"}</option>
                                     </select>
                                 </div>
                                 <div className="space-y-1 col-span-2">
-                                    <label className="text-xs text-muted-foreground block mb-1">صفحات فعال (جدا شده با کاما)</label>
+                                    <label className="text-xs font-bold text-muted-foreground block mb-1">
+                                        {isModalEn ? "Enabled URL Paths (comma-separated, leave empty for all)" : "صفحات فعال (جدا شده با کاما، خالی برای همه صفحات)"}
+                                    </label>
                                     <input 
                                         type="text" 
                                         value={enabledPaths} 
@@ -1429,12 +1593,14 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                     />
                                 </div>
                                 <div className="space-y-1 col-span-2">
-                                    <label className="text-xs text-muted-foreground block mb-1">صفحات غیرفعال/مستثنی (جدا شده با کاما)</label>
+                                    <label className="text-xs font-bold text-muted-foreground block mb-1">
+                                        {isModalEn ? "Excluded URL Paths (comma-separated)" : "صفحات مستثنی و غیرفعال (جدا شده با کاما)"}
+                                    </label>
                                     <input 
                                         type="text" 
                                         value={excludedPaths} 
                                         onChange={(e) => setExcludedPaths(e.target.value)}
-                                        placeholder="مثال: /broadcast,/admin"
+                                        placeholder="مثال: /broadcast,/admin,/live"
                                         className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2 focus:border-primary transition-colors text-left font-mono text-sm"
                                         dir="ltr"
                                     />
@@ -1444,12 +1610,16 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                     ) : widget.id === 'w_ai_avatar' ? (
                         <div className="space-y-6">
                             <div className="bg-indigo-500/10 border border-indigo-500/20 p-4 rounded-xl text-indigo-400 text-sm leading-relaxed">
-                                تنظیمات مولد آواتار هوش مصنوعی (AI Avatar). کاربران در صفحه پروفایل خود می‌توانند تصاویر پرستشی یا کارتونی تولید کنند.
+                                {isModalEn 
+                                    ? "Configure Christian AI avatar generator. Members can generate worship portraits on their profile." 
+                                    : "تنظیمات مولد آواتار هوش مصنوعی. کاربران در صفحه پروفایل خود می‌توانند تصاویر پرتره و ایمانی تولید نمایند."}
                             </div>
 
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-foreground block">مدل هوش مصنوعی (AI Model Path)</label>
+                                    <label className="text-sm font-bold text-foreground block">
+                                        {isModalEn ? "AI Model Endpoint Path" : "آدرس مدل هوش مصنوعی (AI Model)"}
+                                    </label>
                                     <input 
                                         type="text" 
                                         value={aiModel} 
@@ -1460,28 +1630,35 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-foreground block">حداکثر دفعات مجاز تولید تصویر برای هر کاربر</label>
+                                    <label className="text-sm font-bold text-foreground block">
+                                        {isModalEn ? "Maximum Generations Allowed Per User" : "حداکثر دفعات مجاز تولید تصویر برای هر کاربر"}
+                                    </label>
                                     <input 
                                         type="number" 
                                         value={maxGenerations} 
                                         onChange={(e) => setMaxGenerations(Number(e.target.value))}
                                         className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-right"
                                     />
-                                    <p className="text-xs text-muted-foreground">برای محدود کردن مصرف منابع سرور و هزینه‌های API.</p>
                                 </div>
                             </div>
                         </div>
-                    ) : widget.id === 'w_worship_audio' ? (
+                    ) : widget.id === 'w_worship_audio' || widget.id === 'w_audio_sync' ? (
                         <div className="space-y-6">
                             <div className="bg-cyan-500/10 border border-cyan-500/20 p-4 rounded-xl text-cyan-400 text-sm leading-relaxed">
-                                تنظیمات پخش‌کننده صوتی سرودهای پرستشی در صفحات عمومی سایت.
+                                {isModalEn 
+                                    ? "Worship Audio Player & Karaoke Lyrics Synchronizer settings across public website pages." 
+                                    : "تنظیمات پخش‌کننده صوتی سرودهای پرستشی و همگام‌ساز کارائوکه متن در صفحات عمومی سایت."}
                             </div>
 
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
                                 <div className="flex items-center justify-between py-2 border-b border-white/5">
                                     <div>
-                                        <h4 className="text-sm font-bold text-foreground">پخش خودکار (Autoplay)</h4>
-                                        <p className="text-xs text-muted-foreground">پخش خودکار سرود صوتی به محض ورود کاربر به سایت (توسط برخی مرورگرها ممکن است بلاک شود)</p>
+                                        <h4 className="text-sm font-bold text-foreground">
+                                            {isModalEn ? "Autoplay Worship Audio" : "پخش خودکار سرود (Autoplay)"}
+                                        </h4>
+                                        <p className="text-xs text-muted-foreground">
+                                            {isModalEn ? "Starts audio upon visiting website" : "پخش خودکار سرود صوتی به محض ورود کاربر به سایت"}
+                                        </p>
                                     </div>
                                     <button
                                         onClick={() => setAudioAutoplay(!audioAutoplay)}
@@ -1493,8 +1670,12 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
 
                                 <div className="flex items-center justify-between py-2 border-b border-white/5">
                                     <div>
-                                        <h4 className="text-sm font-bold text-foreground">تکرار پخش لیست سرودها (Loop)</h4>
-                                        <p className="text-xs text-muted-foreground">پخش بی‌پایان پس از اتمام تمامی فایل‌های صوتی</p>
+                                        <h4 className="text-sm font-bold text-foreground">
+                                            {isModalEn ? "Continuous Playlist Loop" : "تکرار پخش لیست سرودها (Loop)"}
+                                        </h4>
+                                        <p className="text-xs text-muted-foreground">
+                                            {isModalEn ? "Endless audio playback after playlist ends" : "پخش بی‌پایان پس از اتمام تمامی فایل‌های صوتی"}
+                                        </p>
                                     </div>
                                     <button
                                         onClick={() => setAudioLoop(!audioLoop)}
@@ -1506,13 +1687,15 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
 
                                 <div className="space-y-2">
                                     <div className="flex justify-between">
-                                        <label className="text-sm font-bold text-foreground">ولوم صدای پیش‌فرض ({Math.round(audioVolume * 100)}%)</label>
+                                        <label className="text-sm font-bold text-foreground">
+                                            {isModalEn ? `Default Audio Volume (${Math.round(audioVolume * 100)}%)` : `ولوم صدای پیش‌فرض (${Math.round(audioVolume * 100)}%)`}
+                                        </label>
                                     </div>
                                     <input 
                                         type="range" 
                                         min="0" 
                                         max="1" 
-                                        step="0.05"
+                                        step="0.05" 
                                         value={audioVolume} 
                                         onChange={(e) => setAudioVolume(Number(e.target.value))}
                                         className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-cyan-500"
@@ -1520,17 +1703,23 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                 </div>
                             </div>
                         </div>
-                    ) : widget.id === 'w_calendar' ? (
+                    ) : widget.id === 'w_calendar' || widget.id === 'w_cal' ? (
                         <div className="space-y-6">
                             <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl text-blue-400 text-sm leading-relaxed">
-                                تنظیمات نمایش تقویم و رویدادهای کلیسا در صفحه اصلی و ابزارها.
+                                {isModalEn 
+                                    ? "Iranian Church Smart Calendar & Weekly Services Schedule configuration." 
+                                    : "تنظیمات تقویم هوشمند کلیسا و نمایش جلسات و رویدادهای هفتگی."}
                             </div>
 
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
                                 <div className="flex items-center justify-between py-2 border-b border-white/5">
                                     <div>
-                                        <h4 className="text-sm font-bold text-foreground">نمایش رویدادهای گذشته</h4>
-                                        <p className="text-xs text-muted-foreground">آیا رویدادهایی که زمان آن‌ها گذشته است نیز نمایش داده شوند؟</p>
+                                        <h4 className="text-sm font-bold text-foreground">
+                                            {isModalEn ? "Display Past Events" : "نمایش رویدادهای گذشته"}
+                                        </h4>
+                                        <p className="text-xs text-muted-foreground">
+                                            {isModalEn ? "Include completed meetings in agenda" : "آیا رویدادهایی که زمان آن‌ها سپری شده در لیست نمایش داده شوند؟"}
+                                        </p>
                                     </div>
                                     <button
                                         onClick={() => setShowPastEvents(!showPastEvents)}
@@ -1541,7 +1730,9 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-foreground block">حداکثر تعداد رویدادهای نمایشی در لیست</label>
+                                    <label className="text-sm font-bold text-foreground block">
+                                        {isModalEn ? "Maximum Upcoming Events to Display" : "حداکثر تعداد رویدادهای نمایشی در لیست"}
+                                    </label>
                                     <input 
                                         type="number" 
                                         value={maxEventsShown} 
@@ -1549,49 +1740,198 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                                         className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-right"
                                     />
                                 </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-foreground block">
+                                        {isModalEn ? "Default View Mode" : "نمای پیش‌فرض تقویم"}
+                                    </label>
+                                    <select
+                                        value={calendarDefaultView}
+                                        onChange={(e) => setCalendarDefaultView(e.target.value)}
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-right"
+                                    >
+                                        <option value="month">{isModalEn ? "Monthly Grid View (نمای ماهانه)" : "نمای ماهانه تقویم"}</option>
+                                        <option value="list">{isModalEn ? "Upcoming Events List (لیست رویدادها)" : "لیست رویدادهای آینده"}</option>
+                                        <option value="week">{isModalEn ? "Weekly View (نمای هفتگی)" : "نمای هفتگی"}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    ) : widget.id === 'w_qr_code' ? (
+                    ) : widget.id === 'w_qr_code' || widget.id === 'w_qr' ? (
                         <div className="space-y-6">
                             <div className="bg-teal-500/10 border border-teal-500/20 p-4 rounded-xl text-teal-400 text-sm leading-relaxed">
-                                تنظیم آدرس‌های لینک‌ها برای تولید کدهای QR جهت اشتراک‌گذاری سریع کلیسا با کاربران.
+                                {isModalEn 
+                                    ? "Configure target URLs for Church QR Code Quick Connect Studio cards and printed badges." 
+                                    : "تنظیم آدرس‌های لینک‌ها برای تولید کدهای QR جهت اشتراک‌گذاری سریع، شبکه‌های اجتماعی و هدایا."}
                             </div>
 
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-foreground block">لینک کانال تلگرام</label>
+                                    <label className="text-sm font-bold text-foreground block">
+                                        {isModalEn ? "Telegram Channel Link" : "لینک کانال تلگرام کلیسا"}
+                                    </label>
                                     <input 
                                         type="text" 
                                         value={telegramLink} 
                                         onChange={(e) => setTelegramLink(e.target.value)}
-                                        placeholder="https://t.me/yourchurch"
-                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left"
+                                        placeholder="https://t.me/iranianchurchdc"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left font-mono text-sm"
                                         dir="ltr"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-foreground block">لینک پیج اینستاگرام</label>
+                                    <label className="text-sm font-bold text-foreground block">
+                                        {isModalEn ? "Instagram Profile Link" : "لینک پیج اینستاگرام کلیسا"}
+                                    </label>
                                     <input 
                                         type="text" 
                                         value={instagramLink} 
                                         onChange={(e) => setInstagramLink(e.target.value)}
-                                        placeholder="https://instagram.com/yourchurch"
-                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left"
+                                        placeholder="https://instagram.com/iranianchurchdc"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left font-mono text-sm"
                                         dir="ltr"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-bold text-foreground block">لینک جلسه زوم (Zoom Meeting Link)</label>
+                                    <label className="text-sm font-bold text-foreground block">
+                                        {isModalEn ? "Online Giving / Donation Link" : "لینک پرداخت هدیه و شکرگزاری"}
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        value={givingLink} 
+                                        onChange={(e) => setGivingLink(e.target.value)}
+                                        placeholder="https://www.iranianchurchdc.com/payment"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left font-mono text-sm"
+                                        dir="ltr"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-foreground block">
+                                        {isModalEn ? "Live Meeting Link (Zoom / YouTube)" : "لینک جلسات زنده (Zoom / YouTube)"}
+                                    </label>
                                     <input 
                                         type="text" 
                                         value={zoomLink} 
                                         onChange={(e) => setZoomLink(e.target.value)}
                                         placeholder="https://zoom.us/j/..."
-                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left"
+                                        className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-left font-mono text-sm"
                                         dir="ltr"
                                     />
+                                </div>
+                            </div>
+                        </div>
+                    ) : widget.id === 'w_bible' ? (
+                        <div className="space-y-6">
+                            <div className="bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-xl text-emerald-400 text-sm leading-relaxed">
+                                {isModalEn 
+                                    ? "Scripture Engine & Multilingual Bible Reader configuration." 
+                                    : "تنظیمات موتور کلام خدا و کتاب‌مقدس آنلاین با ترجمه‌های فارسی و انگلیسی."}
+                            </div>
+
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-foreground block">
+                                            {isModalEn ? "Default Translation" : "ترجمه پیش‌فرض فارسی"}
+                                        </label>
+                                        <select
+                                            value={bibleDefaultTranslation}
+                                            onChange={(e) => setBibleDefaultTranslation(e.target.value)}
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-right"
+                                        >
+                                            <option value="NMV">ترجمه هزاره نو (NMV)</option>
+                                            <option value="TPV">ترجمه تفسیری مژده (TPV)</option>
+                                            <option value="PCB">ترجمه قدیم فارسی (PCB)</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-foreground block">
+                                            {isModalEn ? "Comparison Translation (English)" : "ترجمه موازی تطبیقی (انگلیسی)"}
+                                        </label>
+                                        <select
+                                            value={bibleCompareTranslation}
+                                            onChange={(e) => setBibleCompareTranslation(e.target.value)}
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-right"
+                                        >
+                                            <option value="ESV">English Standard Version (ESV)</option>
+                                            <option value="NIV">New International Version (NIV)</option>
+                                            <option value="KJV">King James Version (KJV)</option>
+                                            <option value="NASB">New American Standard (NASB)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center justify-between py-2 border-b border-white/5">
+                                    <div>
+                                        <h4 className="text-sm font-bold text-foreground">
+                                            {isModalEn ? "Parallel Bilingual Compare Mode" : "حالت مقایسه موازی دو زبانه"}
+                                        </h4>
+                                        <p className="text-xs text-muted-foreground">
+                                            {isModalEn ? "Show Persian & English verses side-by-side" : "نمایش همزمان آیات به صورت فارسی و انگلیسی کنار هم"}
+                                        </p>
+                                    </div>
+                                    <button
+                                        onClick={() => setBibleShowParallel(!bibleShowParallel)}
+                                        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${bibleShowParallel ? 'bg-emerald-500' : 'bg-white/10'}`}
+                                    >
+                                        <span className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${bibleShowParallel ? 'translate-x-5' : 'translate-x-0'}`} />
+                                    </button>
+                                </div>
+
+                                <div className="flex items-center justify-between py-2 border-b border-white/5">
+                                    <div>
+                                        <h4 className="text-sm font-bold text-foreground">
+                                            {isModalEn ? "Daily Scripture Reading Plan" : "برنامه خواندن روزانه کتاب‌مقدس"}
+                                        </h4>
+                                        <p className="text-xs text-muted-foreground">
+                                            {isModalEn ? "Activate daily chapter reading tracker" : "فعال‌سازی رهگیری مطالعه فصول روزانه برای اعضا"}
+                                        </p>
+                                    </div>
+                                    <button
+                                        onClick={() => setBibleDailyPlan(!bibleDailyPlan)}
+                                        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${bibleDailyPlan ? 'bg-emerald-500' : 'bg-white/10'}`}
+                                    >
+                                        <span className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${bibleDailyPlan ? 'translate-x-5' : 'translate-x-0'}`} />
+                                    </button>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-foreground block">
+                                            {isModalEn ? "Default Verse Font Size" : "اندازه قلم متن آیات"}
+                                        </label>
+                                        <select
+                                            value={bibleFontSize}
+                                            onChange={(e) => setBibleFontSize(e.target.value)}
+                                            className="w-full bg-secondary border border-white/5 rounded-xl px-4 py-2.5 focus:border-primary transition-colors text-right"
+                                        >
+                                            <option value="sm">کوچک (Small)</option>
+                                            <option value="md">استاندارد (Medium)</option>
+                                            <option value="lg">بزرگ (Large)</option>
+                                            <option value="xl">خیلی بزرگ (Extra Large)</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="flex items-center justify-between py-2">
+                                        <div>
+                                            <h4 className="text-sm font-bold text-foreground">
+                                                {isModalEn ? "Cross-Reference Footnotes" : "ارجاعات متقابل و پاورقی‌ها"}
+                                            </h4>
+                                            <p className="text-xs text-muted-foreground">
+                                                {isModalEn ? "Show interconnected verses" : "نمایش آیات مرتبط با کلیک روی واژگان"}
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={() => setBibleCrossReferences(!bibleCrossReferences)}
+                                            className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${bibleCrossReferences ? 'bg-emerald-500' : 'bg-white/10'}`}
+                                        >
+                                            <span className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out ${bibleCrossReferences ? 'translate-x-5' : 'translate-x-0'}`} />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1623,17 +1963,17 @@ export function WidgetSettingsModal({ widget, onClose }: Props) {
                 </div>
 
                 <div className="p-6 border-t border-white/5 bg-secondary/80 flex justify-end gap-3 rounded-b-3xl">
-                    <button onClick={onClose} className="px-6 py-2 rounded-xl text-muted-foreground hover:bg-white/5 font-medium transition-colors" title="انصراف">
-                        انصراف
+                    <button onClick={onClose} className="px-6 py-2 rounded-xl text-muted-foreground hover:bg-white/5 font-medium transition-colors" title={isModalEn ? "Cancel" : "انصراف"}>
+                        {isModalEn ? "Cancel" : "انصراف"}
                     </button>
                     <button 
                         onClick={handleSave} 
                         disabled={isPending}
-                        title="ذخیره"
+                        title={isModalEn ? "Save Dynamic Settings" : "ذخیره تنظیمات پویا"}
                         className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-colors flex items-center gap-2 shadow-lg shadow-primary/30"
                     >
                         {isPending ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-                        ذخیره تنظیمات پویا
+                        {isModalEn ? "Save Live Settings" : "ذخیره تنظیمات پویا"}
                     </button>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, ArrowLeft } from "lucide-react";
+import { X, ArrowRight, ArrowLeft, Globe } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -50,24 +50,31 @@ interface PopupConfig {
 }
 
 export function NowruzPopup({ config = {}, isPreview = false }: { config?: PopupConfig, isPreview?: boolean }) {
-    const { language } = useLanguage();
+    const { language, setLanguage } = useLanguage();
     const pathname = usePathname();
-    const isEn = language === 'en';
+    const [popupLang, setPopupLang] = useState<"fa" | "en">(language === 'en' ? 'en' : 'fa');
+
+    useEffect(() => {
+        setPopupLang(language === 'en' ? 'en' : 'fa');
+    }, [language]);
+
+    const isEn = popupLang === 'en';
     const alignClass = isEn ? 'text-left' : 'text-center';
     
     const [isVisible, setIsVisible] = useState(false);
     const [petals, setPetals] = useState<any[]>([]);
 
-    const title = (isEn ? config.titleEn : config.titleFa) || "";
+    // Bilingual content with automatic fallback so content never disappears if one language is missing
+    const title = (isEn ? (config.titleEn || config.titleFa) : (config.titleFa || config.titleEn)) || "";
     const imageUrl = config.imageUrl || "/images/nowruz-bg.png";
     const mediaType = config.mediaType || "image";
     const rawVideoUrl = (config.videoUrl || "").trim();
     const rawVideoPosterUrl = (config.videoPosterUrl || "").trim();
-    const badge1 = (isEn ? config.badge1En : config.badge1Fa) || "";
-    const badge2 = (isEn ? config.badge2En : config.badge2Fa) || "";
-    const message = (isEn ? config.messageEn : config.messageFa) || "";
-    const subMessage = (isEn ? config.subMessageEn : config.subMessageFa) || "";
-    const buttonText = (isEn ? config.buttonTextEn : config.buttonTextFa) || (isEn ? "Enter" : "ورود");
+    const badge1 = (isEn ? (config.badge1En || config.badge1Fa) : (config.badge1Fa || config.badge1En)) || "";
+    const badge2 = (isEn ? (config.badge2En || config.badge2Fa) : (config.badge2Fa || config.badge2En)) || "";
+    const message = (isEn ? (config.messageEn || config.messageFa) : (config.messageFa || config.messageEn)) || "";
+    const subMessage = (isEn ? (config.subMessageEn || config.subMessageFa) : (config.subMessageFa || config.subMessageEn)) || "";
+    const buttonText = (isEn ? (config.buttonTextEn || config.buttonTextFa) : (config.buttonTextFa || config.buttonTextEn)) || (isEn ? "Enter Site" : "ورود به سایت");
     const buttonLink = config.buttonLink || "";
     const heroIconValue = (config.heroIcon || "").trim();
     const heroIconUrl = (config.heroIconUrl || "").trim();
@@ -411,15 +418,34 @@ export function NowruzPopup({ config = {}, isPreview = false }: { config?: Popup
                                 loading="eager"
                             />
                         ) : null}
-                        {config.showCloseButton !== false && (
-                            <button 
-                                onClick={handleClose}
-                                title="بستن"
-                                className={`absolute top-4 ${isEn ? 'right-4' : 'left-4'} p-2 bg-black/40 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-all z-10`}
+                        {/* Floating Top Controls: Language Switcher & Close Button */}
+                        <div className="absolute top-3.5 inset-x-3.5 flex items-center justify-between z-20 pointer-events-none">
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    const next = isEn ? 'fa' : 'en';
+                                    setPopupLang(next);
+                                    if (setLanguage) {
+                                        try { setLanguage(next); } catch {}
+                                    }
+                                }}
+                                title={isEn ? "تغییر زبان به فارسی" : "Switch language to English"}
+                                className="pointer-events-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 hover:bg-black/85 text-white/95 border border-white/20 text-xs font-bold backdrop-blur-md transition-all shadow-lg hover:scale-105 active:scale-95"
                             >
-                                <X className="w-5 h-5" />
+                                <Globe className="w-3.5 h-3.5 text-amber-400 animate-spin-slow" />
+                                <span className="font-mono">{isEn ? "FA فارسی" : "EN English"}</span>
                             </button>
-                        )}
+
+                            {config.showCloseButton !== false && (
+                                <button 
+                                    onClick={handleClose}
+                                    title={isEn ? "Close" : "بستن"}
+                                    className="pointer-events-auto p-2 bg-black/60 hover:bg-black/85 text-white rounded-full border border-white/20 backdrop-blur-md transition-all shadow-lg hover:scale-105 active:scale-95"
+                                >
+                                    <X className="w-4 h-4" />
+                                </button>
+                            )}
+                        </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
                     </div>
 

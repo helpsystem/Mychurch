@@ -19,14 +19,14 @@ interface Props {
     currentConfig: any;
 }
 
-const POSITIONS: { id: WatermarkPosition, label: string }[] = [
-    { id: 'top-left', label: 'Top Left' },
-    { id: 'top-center', label: 'Top Center' },
-    { id: 'top-right', label: 'Top Right' },
-    { id: 'center', label: 'Center' },
-    { id: 'bottom-left', label: 'Bottom Left' },
-    { id: 'bottom-center', label: 'Bottom Center' },
-    { id: 'bottom-right', label: 'Bottom Right' }
+const POSITIONS: { id: WatermarkPosition, label: string; labelFa: string }[] = [
+    { id: 'top-left', label: 'Top Left', labelFa: 'بالا چپ' },
+    { id: 'top-center', label: 'Top Center', labelFa: 'بالا وسط' },
+    { id: 'top-right', label: 'Top Right', labelFa: 'بالا راست' },
+    { id: 'center', label: 'Center', labelFa: 'مرکز' },
+    { id: 'bottom-left', label: 'Bottom Left', labelFa: 'پایین چپ' },
+    { id: 'bottom-center', label: 'Bottom Center', labelFa: 'پایین وسط' },
+    { id: 'bottom-right', label: 'Bottom Right', labelFa: 'پایین راست' }
 ];
 
 export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props) {
@@ -115,10 +115,10 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
             <div className="bg-neutral-900 border border-border/20 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col">
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-border/10 bg-neutral-950/50">
-                    <h2 className="text-xl font-bold flex items-center gap-2">
-                        Watermark Configuration
+                    <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+                        واترمارک و نشان کلیسا / Watermark Branding
                     </h2>
-                    <button onClick={onClose} aria-label="Close" title="Close" className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full text-muted-foreground hover:text-foreground transition-colors">
+                    <button onClick={onClose} aria-label="Close" title="بستن" className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full text-muted-foreground hover:text-foreground transition-colors">
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -129,8 +129,8 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                     {/* Live Preview Box */}
                     <div className="space-y-3">
                         <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider flex justify-between">
-                            <span>Live Preview</span>
-                            <span className="text-xs font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">Real-time</span>
+                            <span>پیش‌نمایش زنده / Live Preview</span>
+                            <span className="text-xs font-medium text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded font-bold">Real-time</span>
                         </label>
                         <div
                             className={cn(
@@ -151,11 +151,11 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
 
                             {position === 'custom' && (
                                 <span className="absolute top-2 right-4 text-[10px] font-bold text-primary animate-pulse select-none pointer-events-none">
-                                    DRAG TO MOVE
+                                    DRAG TO MOVE • جابه‌جا کنید
                                 </span>
                             )}
 
-                            {/* Scaled down dynamically for the preview window. Add !opacity-100 if user sets 100 opacity to bypass any css overrides */}
+                            {/* Scaled down dynamically for the preview window */}
                             <WatermarkLogo
                                 size={size / 2.5}
                                 opacity={opacity}
@@ -169,7 +169,9 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
 
                     {/* Custom Image Upload */}
                     <div className="space-y-3">
-                        <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Watermark Image</label>
+                        <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+                            تصویر واترمارک / Watermark Image
+                        </label>
                         <div className="flex gap-3">
                             <div className="flex-1 px-4 py-3 bg-neutral-950 border border-border/10 rounded-xl flex items-center gap-3 overflow-hidden text-sm">
                                 <ImageIcon className="w-5 h-5 text-muted-foreground shrink-0" />
@@ -215,7 +217,9 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
 
                     {/* Position Selector */}
                     <div className="space-y-3">
-                        <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Position</label>
+                        <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+                            موقعیت قرارگیری / Position
+                        </label>
                         <div className="grid grid-cols-4 gap-2 p-4 bg-neutral-950 rounded-xl border border-border/5">
                             <button
                                 onClick={() => setPosition('custom')}
@@ -227,20 +231,21 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                                 )}
                             >
                                 <span className="w-2 h-2 rounded-full bg-current animate-pulse opacity-70" />
-                                Custom Drag (Use Live Preview box)
+                                جابه‌جایی آزاد دستی (Custom Drag)
                             </button>
                             {POSITIONS.map(pos => (
                                 <button
                                     key={pos.id}
                                     onClick={() => setPosition(pos.id)}
                                     className={cn(
-                                        "col-span-1 py-3 text-[10px] md:text-xs font-medium rounded-lg border transition-all duration-200",
+                                        "col-span-1 py-3 text-[10px] md:text-xs font-medium rounded-lg border transition-all duration-200 text-center",
                                         position === pos.id
-                                            ? "bg-primary/20 border-primary/50 text-primary shadow-sm"
+                                            ? "bg-primary/20 border-primary/50 text-primary shadow-sm font-bold"
                                             : "bg-neutral-900 border-border/10 text-muted-foreground hover:bg-neutral-800 hover:border-border/30"
                                     )}
                                 >
-                                    {pos.label}
+                                    <div className="block font-vazirmatn">{pos.labelFa}</div>
+                                    <div className="text-[9px] opacity-70">{pos.label}</div>
                                 </button>
                             ))}
                         </div>
@@ -249,7 +254,9 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                     {/* Size Slider */}
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                            <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Size (Width px)</label>
+                            <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+                                اندازه عرض / Size (Width px)
+                            </label>
                             <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">{size}px</span>
                         </div>
                         <input
@@ -264,15 +271,17 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                             className="w-full accent-primary bg-neutral-800 h-2 rounded-lg appearance-none cursor-pointer"
                         />
                         <div className="flex justify-between text-xs text-muted-foreground">
-                            <span>100px</span>
-                            <span>1200px</span>
+                            <span>100px (کوچک)</span>
+                            <span>1200px (کامل)</span>
                         </div>
                     </div>
 
                     {/* Opacity Slider */}
                     <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                            <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Opacity (%)</label>
+                            <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+                                میزان شفافیت / Opacity (%)
+                            </label>
                             <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">{opacity}%</span>
                         </div>
                         <input
@@ -286,8 +295,8 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                             className="w-full accent-primary bg-neutral-800 h-2 rounded-lg appearance-none cursor-pointer"
                         />
                         <div className="flex justify-between text-xs text-muted-foreground">
-                            <span>Invisible (1%)</span>
-                            <span>Solid (100%)</span>
+                            <span>1% (محو)</span>
+                            <span>100% (کاملاً واضح)</span>
                         </div>
                     </div>
 
@@ -300,7 +309,7 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                         disabled={isPending}
                         className="px-5 py-2.5 rounded-xl font-medium text-muted-foreground hover:text-foreground hover:bg-neutral-800 transition-colors"
                     >
-                        Cancel
+                        انصراف / Cancel
                     </button>
                     <button
                         onClick={handleSave}
@@ -308,7 +317,7 @@ export function WatermarkSettingsModal({ isOpen, onClose, currentConfig }: Props
                         className="px-6 py-2.5 flex items-center gap-2 rounded-xl bg-primary text-primary-foreground font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {isPending ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-                        {isPending ? "Saving..." : "Save Settings"}
+                        {isPending ? "در حال ذخیره..." : "ذخیره تنظیمات / Save Settings"}
                     </button>
                 </div>
             </div>
