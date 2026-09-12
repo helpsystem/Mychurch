@@ -77,7 +77,7 @@ ${lyricsFA}`;
                     "Authorization": `Bearer ${nvidiaKey}`
                 },
                 body: JSON.stringify({
-                    model: "z-ai/glm-5.1",
+                    model: "z-ai/glm-5.3-flash",
                     messages: [
                         {
                             role: "system",

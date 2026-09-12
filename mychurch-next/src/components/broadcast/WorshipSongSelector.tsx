@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { WorshipSong, SlideContentLyrics, LyricsLine, LyricsDisplayOptions, AppLanguage } from '@/types/broadcast';
 import { fetchWorshipSongs, searchSongs, parseLyrics, BROADCAST_TRANSLATIONS } from './dataService';
+import AddFromYoutubeModal from '@/components/worship/AddFromYoutubeModal';
 
 interface WorshipSongSelectorProps {
   lang: AppLanguage;
@@ -260,6 +261,22 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
   // UI state
   const [step, setStep] = useState<'search' | 'configure' | 'preview'>('search');
   const [expandedSections, setExpandedSections] = useState<string[]>(['display', 'background']);
+  const [showYoutubeModal, setShowYoutubeModal] = useState(false);
+
+  // Handle song added from YouTube modal
+  const handleYoutubeSongAdded = async (newSong: any) => {
+    setIsLoading(true);
+    const updatedSongs = await fetchWorshipSongs();
+    setSongs(updatedSongs);
+    setIsLoading(false);
+
+    // Auto-select the newly added song if found
+    const targetYtId = newSong.youtube_id || (newSong as any).youtubeId;
+    const match = updatedSongs.find(s => s.id === newSong.id || (targetYtId && (s.youtubeId === targetYtId || (s as any).youtube_id === targetYtId)));
+    if (match) {
+      handleSongSelect(match);
+    }
+  };
 
   // Load songs on mount
   useEffect(() => {
@@ -477,16 +494,29 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
         <div className="flex-1 overflow-y-auto p-6">
           {step === 'search' && (
             <div className="space-y-4">
-              {/* Search */}
-              <div className="relative">
-                <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-                <input
-                  type="text"
-                  value={songSearch}
-                  onChange={(e) => setSongSearch(e.target.value)}
-                  placeholder={isRTL ? 'جستجوی سرود...' : 'Search songs...'}
-                  className={`w-full bg-slate-800 border border-slate-700 rounded-xl pr-10 pl-4 py-3 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn] text-right' : ''}`}
-                />
+              {/* Search & Add from YouTube */}
+              <div className="flex gap-2 items-center">
+                <div className="relative flex-1">
+                  <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <input
+                    type="text"
+                    value={songSearch}
+                    onChange={(e) => setSongSearch(e.target.value)}
+                    placeholder={isRTL ? 'جستجوی سرود...' : 'Search songs...'}
+                    className={`w-full bg-slate-800 border border-slate-700 rounded-xl pr-10 pl-4 py-3 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn] text-right' : ''}`}
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowYoutubeModal(true)}
+                  className="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-red-600/20 transition whitespace-nowrap"
+                  title={isRTL ? 'افزودن سرود جدید از لینک یوتیوب' : 'Add from YouTube link'}
+                >
+                  <Youtube className="w-5 h-5" />
+                  <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
+                    {isRTL ? 'افزودن از یوتیوب' : 'From YouTube'}
+                  </span>
+                </button>
               </div>
 
               {/* Suggestions Filter Switcher */}
@@ -934,6 +964,14 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
           )}
         </div>
       </div>
+
+      {/* YouTube Song Import Modal */}
+      <AddFromYoutubeModal
+        isOpen={showYoutubeModal}
+        onClose={() => setShowYoutubeModal(false)}
+        onSongAdded={handleYoutubeSongAdded}
+        isPresentationMode={true}
+      />
     </div>
   );
 };

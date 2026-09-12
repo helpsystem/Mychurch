@@ -51,6 +51,13 @@ const normalizeFarsi = (str: string): string => {
     .trim();
 };
 
+const toAsciiDigits = (str: string): string => {
+  if (!str) return '';
+  return str
+    .replace(/[۰-۹]/g, (d) => String(d.charCodeAt(0) - 1776))
+    .replace(/[٠-٩]/g, (d) => String(d.charCodeAt(0) - 1632));
+};
+
 interface SelectedVerseEntry {
   id: string;
   book_id: string;
@@ -107,6 +114,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const bookDropdownRef = useRef<HTMLDivElement | null>(null);
   const selectedBookIdRef = useRef("GEN");
+  const mainScrollRef = useRef<HTMLElement | null>(null);
 
   const [versions, setVersions] = useState<BibleVersion[]>([]);
   const [books, setBooks] = useState<BookItem[]>([]);
@@ -140,8 +148,15 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   const [lastInteractedVerse, setLastInteractedVerse] = useState<number | null>(null);
   const [verseManagerOpen, setVerseManagerOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const [rangeStart, setRangeStart] = useState(1);
-  const [rangeEnd, setRangeEnd] = useState(10);
+  const [rangeStartStr, setRangeStartStr] = useState("1");
+  const [rangeEndStr, setRangeEndStr] = useState("10");
+
+  const totalVerseCount = useMemo(() => {
+    if (parallelVerses.length > 0) return Math.max(...parallelVerses.map((v) => v.verse_num));
+    if (verses.length > 0) return Math.max(...verses.map((v) => v.verse_num));
+    if (faVerses.length > 0) return Math.max(...faVerses.map((v) => v.verse_num));
+    return 0;
+  }, [parallelVerses, verses, faVerses]);
 
   const currentBook = books.find((book) => book.book_id === selectedBookId) || null;
   const filteredBooks = bookSearch
@@ -265,8 +280,9 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     loadChapter();
     setIsPlaying(false);
     setAudioProgress(0);
-    // Optionally clear verse search when chapter changes
-    // setVerseSearch("");
+    if (mainScrollRef.current) {
+      mainScrollRef.current.scrollTo({ top: 0, behavior: "instant" });
+    }
   }, [loadChapter]);
 
   useEffect(() => {
@@ -380,18 +396,12 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   };
 
   // Auto-adapt rangeEnd to current chapter's actual verse count
-  // NOTE: Only fires on chapter/book change – NOT on visibleVerseNumbers so that
-  // a user's manually-entered range is preserved when they type in the search box.
   useEffect(() => {
-    const maxV = parallelVerses.length > 0
-      ? Math.max(...parallelVerses.map((v) => v.verse_num))
-      : Math.max(verses.length, faVerses.length);
-    if (maxV > 0) {
-      setRangeStart(1);
-      setRangeEnd(Math.min(10, maxV));
+    if (totalVerseCount > 0) {
+      setRangeStartStr("1");
+      setRangeEndStr(String(Math.min(10, totalVerseCount)));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedChapter, selectedBookId]);
+  }, [selectedChapter, selectedBookId, totalVerseCount]);
 
   // Keep selected verses texts synced with active translation
   useEffect(() => {
@@ -415,11 +425,14 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
   const selectCustomRange = () => {
     if (!currentBook) return;
-    const maxAvailable = visibleVerseNumbers.length > 0
-      ? Math.max(...visibleVerseNumbers)
-      : Math.max(verses.length, faVerses.length, parallelVerses.length);
+    const maxAvailable = totalVerseCount > 0
+      ? totalVerseCount
+      : (visibleVerseNumbers.length > 0 ? Math.max(...visibleVerseNumbers) : 176);
 
-    if (maxAvailable > 0 && Math.min(rangeStart, rangeEnd) > maxAvailable) {
+    const parsedStart = parseInt(toAsciiDigits(rangeStartStr), 10) || 1;
+    const parsedEnd = parseInt(toAsciiDigits(rangeEndStr), 10) || parsedStart;
+
+    if (maxAvailable > 0 && Math.min(parsedStart, parsedEnd) > maxAvailable) {
       toast.error(
         isRTL
           ? `باب ${selectedChapter} از ${currentBook.book_name_fa} تنها دارای ${maxAvailable} آیه است (آیات ۱ تا ${maxAvailable}).`
@@ -428,9 +441,13 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       return;
     }
 
-    const start = Math.max(1, Math.min(rangeStart, rangeEnd));
-    const rawEnd = Math.max(rangeStart, rangeEnd);
+    const start = Math.max(1, Math.min(parsedStart, parsedEnd));
+    const rawEnd = Math.max(parsedStart, parsedEnd);
     const end = maxAvailable > 0 ? Math.min(rawEnd, maxAvailable) : rawEnd;
+
+    setRangeStartStr(String(start));
+    setRangeEndStr(String(end));
+
     const range = Array.from({ length: end - start + 1 }, (_, idx) => start + idx);
 
     setSelectedVerses((previous) => {
@@ -454,10 +471,19 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       return Array.from(byId.values()).sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
     });
     setLastInteractedVerse(end);
+
+    // Scroll smoothly to first selected verse
+    setTimeout(() => {
+      const targetEl = document.getElementById(`verse-row-${start}`);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 50);
+
     toast.success(
       isRTL
-        ? `آیات ${start} تا ${end} انتخاب شدند.`
-        : `Selected verses ${start} to ${end}.`
+        ? `✓ آیات ${start} تا ${end} انتخاب شدند (${range.length} آیه).`
+        : `Selected verses ${start} to ${end} (${range.length} verses).`
     );
   };
 
@@ -492,13 +518,20 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
   const addCustomRangeDirectlyToSlides = () => {
     if (!currentBook) return;
-    const maxAvailable = parallelVerses.length > 0
-      ? Math.max(...parallelVerses.map((v) => v.verse_num))
-      : Math.max(verses.length, faVerses.length);
+    const maxAvailable = totalVerseCount > 0
+      ? totalVerseCount
+      : (visibleVerseNumbers.length > 0 ? Math.max(...visibleVerseNumbers) : 176);
 
-    const start = Math.max(1, Math.min(rangeStart, rangeEnd));
-    const rawEnd = Math.max(rangeStart, rangeEnd);
+    const parsedStart = parseInt(toAsciiDigits(rangeStartStr), 10) || 1;
+    const parsedEnd = parseInt(toAsciiDigits(rangeEndStr), 10) || parsedStart;
+
+    const start = Math.max(1, Math.min(parsedStart, parsedEnd));
+    const rawEnd = Math.max(parsedStart, parsedEnd);
     const end = maxAvailable > 0 ? Math.min(rawEnd, maxAvailable) : rawEnd;
+
+    setRangeStartStr(String(start));
+    setRangeEndStr(String(end));
+
     const range = Array.from({ length: end - start + 1 }, (_, idx) => start + idx);
 
     const entries: SelectedVerseEntry[] = [];
@@ -880,7 +913,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       )}
 
       <div className="flex-1 flex overflow-hidden relative z-0">
-        <main className="flex-1 overflow-y-auto bg-[#0e0e0f] px-4 pb-32">
+        <main ref={mainScrollRef} className="flex-1 overflow-y-auto bg-[#0e0e0f] px-4 pb-32">
         {currentBook && (
           <div className="text-center pt-8 pb-6 border-b border-white/5" dir="ltr">
             <p className="text-xs uppercase tracking-[0.3em] text-slate-500 mb-1">{currentBook.book_name_en}</p>
@@ -900,25 +933,54 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             <div className="flex items-center gap-1">
               <span className="text-xs text-zinc-400 font-[Vazirmatn]">از آیه</span>
               <input
-                type="number"
-                min={1}
-                max={176}
-                value={rangeStart}
-                onChange={(e) => setRangeStart(Math.max(1, parseInt(e.target.value) || 1))}
-                className="w-12 bg-white/10 border border-amber-400/40 rounded px-1.5 py-0.5 text-center text-xs font-bold font-mono text-white outline-none focus:border-amber-400"
+                type="text"
+                inputMode="numeric"
+                value={rangeStartStr}
+                onChange={(e) => {
+                  const clean = toAsciiDigits(e.target.value).replace(/\D/g, "");
+                  setRangeStartStr(clean);
+                }}
+                onBlur={() => {
+                  const parsed = parseInt(toAsciiDigits(rangeStartStr), 10);
+                  const max = totalVerseCount > 0 ? totalVerseCount : 176;
+                  if (isNaN(parsed) || parsed < 1) {
+                    setRangeStartStr("1");
+                  } else if (parsed > max) {
+                    setRangeStartStr(String(max));
+                  }
+                }}
+                className="w-12 bg-white/10 border border-amber-400/40 rounded px-1.5 py-0.5 text-center text-xs font-bold font-mono text-white outline-none focus:border-amber-400 focus:bg-white/20 transition-all"
+                placeholder="1"
               />
             </div>
             <div className="flex items-center gap-1">
               <span className="text-xs text-zinc-400 font-[Vazirmatn]">تا</span>
               <input
-                type="number"
-                min={1}
-                max={176}
-                value={rangeEnd}
-                onChange={(e) => setRangeEnd(Math.max(1, parseInt(e.target.value) || 1))}
-                className="w-12 bg-white/10 border border-amber-400/40 rounded px-1.5 py-0.5 text-center text-xs font-bold font-mono text-white outline-none focus:border-amber-400"
+                type="text"
+                inputMode="numeric"
+                value={rangeEndStr}
+                onChange={(e) => {
+                  const clean = toAsciiDigits(e.target.value).replace(/\D/g, "");
+                  setRangeEndStr(clean);
+                }}
+                onBlur={() => {
+                  const parsed = parseInt(toAsciiDigits(rangeEndStr), 10);
+                  const max = totalVerseCount > 0 ? totalVerseCount : 176;
+                  if (isNaN(parsed) || parsed < 1) {
+                    setRangeEndStr("1");
+                  } else if (parsed > max) {
+                    setRangeEndStr(String(max));
+                  }
+                }}
+                className="w-12 bg-white/10 border border-amber-400/40 rounded px-1.5 py-0.5 text-center text-xs font-bold font-mono text-white outline-none focus:border-amber-400 focus:bg-white/20 transition-all"
+                placeholder={String(totalVerseCount || 10)}
               />
             </div>
+            {totalVerseCount > 0 && (
+              <span className="text-[11px] text-zinc-400 font-mono select-none">
+                (از {totalVerseCount})
+              </span>
+            )}
             <button
               type="button"
               onClick={selectCustomRange}
@@ -1007,7 +1069,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                   filteredParallelVerses.map((verse) => {
                     const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
                     return (
-                      <div key={verse.verse_num} onClick={(event) => handleVerseClick(verse.verse_num, event)} className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-150 cursor-pointer select-none ${selected ? "bg-amber-500/15 border-2 border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)]" : "hover:bg-white/5 border border-transparent"}`}>
+                      <div key={verse.verse_num} id={`verse-row-${verse.verse_num}`} onClick={(event) => handleVerseClick(verse.verse_num, event)} className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 p-3 rounded-2xl transition-all duration-150 cursor-pointer select-none ${selected ? "bg-amber-500/15 border-2 border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)]" : "hover:bg-white/5 border border-transparent"}`}>
                         <div className="flex gap-3" dir="ltr"><span className={`text-sm font-black px-1.5 py-0.5 rounded mt-1 shrink-0 select-none ${selected ? "text-black bg-amber-400" : "text-blue-400 bg-blue-500/10"}`}>{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize}px`, fontFamily: fontEn }}>{verse.en || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
                         <div className="flex gap-3 text-right" dir="rtl"><span className={`text-sm font-black px-1.5 py-0.5 rounded mt-1 shrink-0 select-none ${selected ? "text-black bg-amber-400" : "text-amber-500 bg-amber-500/10"}`}>{verse.verse_num}</span><p className="text-zinc-100 leading-relaxed" style={{ fontSize: `${fontSize + 2}px`, fontFamily: fontFa }}>{verse.fa || <span className="text-zinc-600 italic text-sm">—</span>}</p></div>
                       </div>
@@ -1025,7 +1087,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                   filteredVerses.map((verse) => {
                     const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
                     return (
-                      <span key={verse.verse_num}>
+                      <span key={verse.verse_num} id={`verse-row-${verse.verse_num}`}>
                         {headingMap.has(verse.verse_num) && <h3 className="text-base font-black text-blue-300 mt-8 mb-2 not-prose tracking-wide" dir="ltr">{headingMap.get(verse.verse_num)}</h3>}
                         <span dir="ltr" className={`inline cursor-pointer rounded px-1 transition-all duration-150 select-none ${selected ? "bg-amber-500/30 text-amber-200 border-b-2 border-amber-400 font-bold" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event)}>
                           <sup className="text-[0.6em] font-black text-blue-400/70 mr-1 select-none">{verse.verse_num}</sup>
@@ -1048,7 +1110,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                   filteredFaVerses.map((verse) => {
                     const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
                     return (
-                      <span key={verse.verse_num} dir="rtl" className={`inline cursor-pointer rounded px-1 transition-all duration-150 select-none ${selected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-400 font-bold" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event)}>
+                      <span key={verse.verse_num} id={`verse-row-${verse.verse_num}`} dir="rtl" className={`inline cursor-pointer rounded px-1 transition-all duration-150 select-none ${selected ? "bg-amber-500/30 text-amber-100 border-b-2 border-amber-400 font-bold" : "hover:bg-white/5 active:scale-95"}`} onClick={(event) => handleVerseClick(verse.verse_num, event)}>
                         <sup className="text-[0.6em] font-black text-purple-400/70 ml-1 select-none">{verse.verse_num}</sup>
                         {verse.text} 
                       </span>

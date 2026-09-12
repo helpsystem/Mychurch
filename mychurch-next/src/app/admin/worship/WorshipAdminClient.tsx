@@ -20,6 +20,7 @@ import { migrateLegacyWorshipData } from "@/actions/migration";
 import { SmartWorshipPlayer, getSafeAudioUrl } from "@/components/worship/SmartWorshipPlayer";
 import BulkEnrichmentModal from "./BulkEnrichmentModal";
 import CronDashboard from "@/components/admin/CronJobManager";
+import AddFromYoutubeModal from "@/components/worship/AddFromYoutubeModal";
 import Link from "next/link";
 
 export default function WorshipAdminClient() {
@@ -47,6 +48,7 @@ export default function WorshipAdminClient() {
     const [previewSong, setPreviewSong] = useState<WorshipSong | null>(null);
     const [isMigrating, setIsMigrating] = useState(false);
     const [showEnrichmentHub, setShowEnrichmentHub] = useState(false);
+    const [showYoutubeModal, setShowYoutubeModal] = useState(false);
     const [processingAiId, setProcessingAiId] = useState<string | null>(null);
 
     useEffect(() => {
@@ -757,6 +759,14 @@ export default function WorshipAdminClient() {
                     <CronDashboard />
 
                     <button
+                        onClick={() => setShowYoutubeModal(true)}
+                        className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white px-4 py-2 rounded-xl font-bold transition shadow-sm"
+                        title="افزودن سریع و استخراج هوشمند سرود از یوتیوب"
+                    >
+                        <Youtube className="w-5 h-5" /> افزودن از یوتیوب
+                    </button>
+
+                    <button
                         onClick={openNewSong}
                         className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-xl font-bold hover:bg-primary/90 transition shadow-sm"
                     >
@@ -1248,6 +1258,15 @@ export default function WorshipAdminClient() {
                     loadSongs();
                 }} />
             )}
+
+            {/* YouTube Import Modal */}
+            <AddFromYoutubeModal
+                isOpen={showYoutubeModal}
+                onClose={() => setShowYoutubeModal(false)}
+                onSongAdded={async () => {
+                    await loadSongs();
+                }}
+            />
 
             {/* Pagination / Footer */}
             <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground bg-card p-4 rounded-xl border border-border/50">
