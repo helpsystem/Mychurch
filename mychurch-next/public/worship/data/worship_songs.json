@@ -79,10 +79,10 @@
       "en": "مجید دستوری",
       "es": "مجید دستوری"
     },
-    "artist": "مجید دستوری",
-    "composer": "",
+    "artist": "شاعر و آهنگساز مجید دستوری",
+    "composer": "شاعر و آهنگساز مجید دستوری",
     "youtubeId": "v8wDZ9pxTPc",
-    "audioUrl": "/worship/audio/kalameh/Bekhan name Isa ra.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Bekhan name Isa ra.mp3",
     "videoUrl": "https://www.youtube.com/embed/v8wDZ9pxTPc",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BEKHANNAMEISARA.pptx",
     "lyricsFiles": {
@@ -90,11 +90,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nهر جا که تـ[D]ـنهایی ، هر جا که بی‌[F#m]تابی\nهر جا غریبـ[G]ـی و ندیدی آ[A]شنایی\nهر جا که تر[D]سیدی ، هر جا که رنـ[F#m]ـجیدی\nهر جا اگر غـ[G]ـم بود هر جا نبخـ[A]ـشیدی\nChorus (x2)\nبخو[Bm]ان نام عیـ[F#m]ـسی را\nبخو[A]ان منجی یکـ[Bm]ـتا را\n[column]\nV2\nاگر د[Bm]نیا تو را پـ[F#m]ـس زد\nاگر مـ[Bm]ـغلوب و مطـ[F#m]ـرودی\nاگر نـ[G]ـداری هیچ امـ[F#m]ـید\nدنیا[Bm] گفت تو نا[F#m]بودی\nبدان عـ[G]ـیسی تو را[A] خوانده \nاو گـ[Bm]ـفته تو فر[G]زندی\nنه منفو[Bm]ر و نه محکـ[F#m]ـومی\nتو محبـ[A]ـوب خداو[Bm]ندی\nTag\nتو محبـ[A]ـوب [G]خداونـ[Bm]ـدی\nChorus (x2)",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nهر جا که تــنهایی ، هر جا که بی‌تابی\nهر جا غریبــی و ندیدی آشنایی\nهر جا که ترسیدی ، هر جا که رنــجیدی\nهر جا اگر غــم بود هر جا نبخــشیدی\n\n[Chorus]\nبخوان نام عیــسی را ، بخوان منجی یکــتا را\n\n[Bridge]\nاگر دنیا تو را پــس زد ، اگر مــغلوب و مطــرودی\nاگر نــداری هیچ امــید ، دنیا گفت تو نابودی\nبدان عــیسی تو را خوانده  ، او گــفته تو فرزندی\nنه منفور و نه محکــومی ، تو محبــوب خداوندی\n\n[Tag]\nتو محبــوب خداونــدی\n\n[Chorus]\n\n[Verse]\n\n[Chorus]\n\n[Bridge]\n\n[Tag]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "B",
+    "chord": "D",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -105,7 +104,9 @@
     "dateAdded": "2025-01-24",
     "slug": "مجید-دستوری",
     "youtubeUrl": "https://www.youtube.com/watch?v=v8wDZ9pxTPc",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Bekha%CC%84n%20na%CC%84me%20Isa%CC%84%20ra%CC%84%20%28Bm%29.pdf",
+    "chordsText": "[Verse]\nهر جا که تـ[D]ـنهایی ، هر جا که بی‌[F#m]تابی\nهر جا غریبـ[G]ـی و ندیدی آ[A]شنایی\nهر جا که تر[D]سیدی ، هر جا که رنـ[F#m]ـجیدی\nهر جا اگر غـ[G]ـم بود هر جا نبخـ[A]ـشیدی\n\n[Chorus]\nبخو[Bm]ان نام عیـ[F#m]ـسی را ، بخو[A]ان منجی یکـ[Bm]ـتا را\n\n[Bridge]\nاگر د[Bm]نیا تو را پـ[F#m]ـس زد ، اگر مـ[Bm]ـغلوب و مطـ[F#m]ـرودی\nاگر نـ[G]ـداری هیچ امـ[F#m]ـید ، دنیا [Bm]گفت تو نا[F#m]بودی\nبدان عـ[G]ـیسی تو را [A]خوانده  ، او گـ[Bm]ـفته تو فر[G]زندی\nنه منفو[Bm]ر و نه محکـ[F#m]ـومی ، تو محبـ[A]ـوب خداو[Bm]ندی\n\n[Tag]\nتو محبـ[A]ـوب [G]خداونـ[Bm]ـدی\n\n[Chorus]\n\n[Verse]\n\n[Chorus]\n\n[Bridge]\n\n[Tag]\n\n[Chorus]"
   },
   {
     "id": 4,
@@ -264,10 +265,10 @@
       "en": "أنا محتاج لمسة روحك",
       "es": "أنا محتاج لمسة روحك"
     },
-    "artist": "أنا محتاج لمسة روحك",
-    "composer": "",
+    "artist": "سرود اصلی أنا محتاج لمسة روحكترجمه شده از سرود عربی",
+    "composer": "سرود اصلی أنا محتاج لمسة روحكترجمه شده از سرود عربی",
     "youtubeId": "jn1VM50hws4",
-    "audioUrl": "/worship/audio/kalameh/به دیدار و لمسی تازه.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/به دیدار و لمسی تازه.mp3",
     "videoUrl": "https://www.youtube.com/embed/jn1VM50hws4",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BEDIDAROLAMSITAZE.pptx",
     "lyricsFiles": {
@@ -275,11 +276,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse (x2)\nبه[Gm] دیدار و لـ[Cm]ـمسی تازه من محتاجـ[Gm]ـم\nو به قدرت خـ[G]ـونت عیسی[Cm] ، من محتاجـ[Gm]ـم\nPre-Chorus \nبـ[Gm]ـه پری و آتش روحت\nچـ[Eb]ـشمه های جاری روحت \nبـه[Dsus4] مسح و تجهیز روح [D]من محتاجم\nChorus (x2)\nدر[Gm] غم و ترس و تنهایی [Eb]تو رفیقی تو همراهی\nتو[Cm]یی آن صخره محکم ، [D]پابرجایی\nاز[Gm] گناه و از عصیانم [Eb]طاهرم ساز ای پادشاهم\nکـ[Cm]ـن مداوا قلب و جانم ، [D]ای درمانم",
-      "en": "",
-      "es": ""
+      "fa": "[Verse (x2)]\nبه دیدار و لــمسی تازه من محتاجــم\nو به قدرت خــونت عیسی ، من محتاجــم\n\n[Pre-Chorus]\nبــه پری و آتش روحت\nچــشمه های جاری روحت\nبـه مسح و تجهیز روح من محتاجم\n\n[Chorus (x2)]\nدر غم و ترس و تنهایی تو رفیقی تو همراهی\nتویی آن صخره محکم ، پابرجایی\nاز گناه و از عصیانم طاهرم ساز ای پادشاهم\nکــن مداوا قلب و جانم ، ای درمانم\n\n[Verse (x2)]\n\n[Pre-Chorus]\n\n[Chorus (x2)]",
+      "en": ""
     },
-    "chord": "G",
+    "chord": "Gm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -290,7 +290,9 @@
     "dateAdded": "2025-01-24",
     "slug": "أنا-محتاج-لمسة-روحك",
     "youtubeUrl": "https://www.youtube.com/watch?v=imH_tsWORto",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Be%20dida%CC%84r%20o%20lamsi%20ta%CC%84ze%20%28Gm%29.pdf",
+    "chordsText": "[Verse (x2)]\nبه [Gm]دیدار و لـ[Cm]ـمسی تازه من محتاجـ[Gm]ـم\nو به قدرت خـ[G]ـونت عیسی [Cm]، من محتاجـ[Gm]ـم\n\n[Pre-Chorus]\nبـ[Gm]ـه پری و آتش روحت\nچـ[Eb]ـشمه های جاری روحت\nبـه [Dsus4]مسح و تجهیز روح [D]من محتاجم\n\n[Chorus (x2)]\nدر [Gm]غم و ترس و تنهایی [Eb]تو رفیقی تو همراهی\nتو[Cm]یی آن صخره محکم ، [D]پابرجایی\nاز [Gm]گناه و از عصیانم [Eb]طاهرم ساز ای پادشاهم\nکـ[Cm]ـن مداوا قلب و جانم ، [D]ای درمانم\n\n[Verse (x2)]\n\n[Pre-Chorus]\n\n[Chorus (x2)]"
   },
   {
     "id": 9,
@@ -441,10 +443,10 @@
       "en": "دریا",
       "es": "دریا"
     },
-    "artist": "دریا",
-    "composer": "",
+    "artist": "شاعر و آهنگساز دریا",
+    "composer": "شاعر و آهنگساز دریا",
     "youtubeId": "6_Jth1qiOeA",
-    "audioUrl": "/worship/audio/kalameh/عظیمی .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/عظیمی .mp3",
     "videoUrl": "https://www.youtube.com/embed/6_Jth1qiOeA",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZIMIAJIBI.pptx",
     "lyricsFiles": {
@@ -452,11 +454,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nعظیمی[Bm] ، عجیبـ[G]ـی\nخدای[D] من ، قدوس و [F#]پاک\nChorus\nتنها تـ[Bm]ـو را می‌پرستم ای خدا[G]وند و شاهم\nتمامـ[D]ـی جانم تسلیـ[F#]ـمت",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nعظیمی ، عجیبــی\nخدای من ، قدوس و پاک\n\n[Chorus]\nتنها تــو را می‌پرستم ای خداوند و شاهم\nتمامــی جانم تسلیــمت\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "B",
+    "chord": "Bm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -467,7 +468,8 @@
     "dateAdded": "2025-01-24",
     "slug": "دریا",
     "youtubeUrl": "https://www.youtube.com/watch?v=6_Jth1qiOeA",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse]\nعظیمی [Bm]، عجیبـ[G]ـی\nخدای [D]من ، قدوس و [F#]پاک\n\n[Chorus]\nتنها تـ[Bm]ـو را می‌پرستم ای خدا[G]وند و شاهم\nتمامـ[D]ـی جانم تسلیـ[F#]ـمت\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 14,
@@ -799,10 +801,10 @@
       "en": "وحید نوروزی",
       "es": "وحید نوروزی"
     },
-    "artist": "وحید نوروزی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز وحید نوروزی",
+    "composer": "شاعر و آهنگساز وحید نوروزی",
     "youtubeId": null,
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/اکنون در تو آزادم.mp3",
     "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AKNUNDARTOAZADAM.pptx",
     "lyricsFiles": {
@@ -810,9 +812,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nچه نیکـ[C]ـوست در تو دارم نجـ[Am]ـات\nتو هستی خـ[F]ـدای قد[G]وس و پاک \nچه نیکـ[C]ـوست بهرم تویی حیـ[Am]ـات\nتو چشمه‌ی[F] شیرین و زلـ[G]ـال و پاک \nChorus\nاکنون د[C]ر تو آزاد[Am]م\nسرود[F]ی نو بهرت سرایـ[G]ـم\nبا تما[C]م وجود خو[Am]د\nخداو[F]ندم نزدت می آیـ[G]ـم\n[column]\nV2\nپاهایـ[C]ـم را بر روی صخـ[Am]ـره\nتو نها[C]ده ای تا د[G]یگر نلغزم\nسپر[C] و قلعه ام تو هستـ[Am]ـی\nتو با منـ[F]ـی خداوند دیگـ[G]ـر نترسم\nBridge\nمرا تـ[C]ـو صخره‌ی امنـ[F]ـی\nبا پایـ[C]ـداری در تو می‌مانـ[F]ـم\nبا تما[C]م قلب و وجود[F]م\nخداو[C]ندم دوستت می‌دا[F]رم",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nچه نیکــوست در تو دارم نجــات\nتو هستی خــدای قدوس و پاک\nچه نیکــوست بهرم تویی حیــات\nتو چشمه‌ی شیرین و زلــال و پاک\n\n[Chorus]\nاکنون در تو آزادم\nسرودی نو بهرت سرایــم\nبا تمام وجود خود\nخداوندم نزدت می آیــم\n\n[V2]\nپاهایــم را بر روی صخــره\nتو نهاده ای تا دیگر نلغزم\nسپر و قلعه ام تو هستــی\nتو با منــی خداوند دیگــر نترسم\n\n[Bridge]\nمرا تــو صخره‌ی امنــی\nبا پایــداری در تو می‌مانــم\nبا تمام قلب و وجودم\nخداوندم دوستت می‌دارم\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Bridge]",
+      "en": ""
     },
     "chord": "C",
     "mode": "ماژور",
@@ -824,11 +825,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Aknoon dar to āzādam (Che nikoost dar to dāram nejāt).pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Aknoon%20dar%20to%20a%CC%84za%CC%84dam%20%28Che%20nikoost%20dar%20to%20da%CC%84ram%20neja%CC%84t%29.pdf",
     "youtubeUrl": "",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1]\nچه نیکـ[C]ـوست در تو دارم نجـ[Am]ـات\nتو هستی خـ[F]ـدای قد[G]وس و پاک\nچه نیکـ[C]ـوست بهرم تویی حیـ[Am]ـات\nتو چشمه‌ی [F]شیرین و زلـ[G]ـال و پاک\n\n[Chorus]\nاکنون د[C]ر تو آزاد[Am]م\nسرود[F]ی نو بهرت سرایـ[G]ـم\nبا تما[C]م وجود خو[Am]د\nخداو[F]ندم نزدت می آیـ[G]ـم\n\n[V2]\nپاهایـ[C]ـم را بر روی صخـ[Am]ـره\nتو نها[C]ده ای تا د[G]یگر نلغزم\nسپر [C]و قلعه ام تو هستـ[Am]ـی\nتو با منـ[F]ـی خداوند دیگـ[G]ـر نترسم\n\n[Bridge]\nمرا تـ[C]ـو صخره‌ی امنـ[F]ـی\nبا پایـ[C]ـداری در تو می‌مانـ[F]ـم\nبا تما[C]م قلب و وجود[F]م\nخداو[C]ندم دوستت می‌دا[F]رم\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Bridge]"
   },
   {
     "id": 24,
@@ -985,10 +987,10 @@
       "en": "داریوش",
       "es": "داریوش"
     },
-    "artist": "ژیلبرت هوسپیان",
-    "composer": "ژیلبرت هوسپیان",
+    "artist": "شاعر داریوشآهنگساز ژیلبرت هوسپیان",
+    "composer": "شاعر داریوشآهنگساز ژیلبرت هوسپیان",
     "youtubeId": "mmm-nZB5BC4",
-    "audioUrl": "/worship/audio/kalameh/پشت در قلب توست.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/پشت در قلب توست.mp3",
     "videoUrl": "https://www.youtube.com/embed/mmm-nZB5BC4",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AGEDELETSHEKASTE.pptx",
     "lyricsFiles": {
@@ -996,11 +998,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nاگه[Am] دلت شــ[Dm]ـکسته تنـ[G]ـها شدی و [Am]خسته\nغـم[F] تو دلت نشـ[Dm]ـسته تـمـوم[Esus4] راهها بسته[E]\nبغـ[Am]ـض داری یه [Dm]دنیا دا[G]د می زنی بی[Am] صدا\nرا[F]ه رهایـی[Dm] بازه آمـده [Esus4]عشقـی[E] تـازه[Am]\nChorus\nپشـ[Am]ـت در قلـ[E]ـب توست خد[Dm]ای زنده [Am]با توست\nبــ[C]ـشکن این سـ[G]ـکوتو خط[F] بزن این هـ[E]ـبوطو\nرها[Am] شو از این[E] قـفس صـ[Dm]ـداش بزن یک[Am] نفس\nپــ[C]ـشت در قلـ[E]ـب توست خد[F]ای زنده[G] با تو[Am]ست",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nاگه دلت شـــکسته تنــها شدی و خسته\nغـم تو دلت نشــسته تـمـوم راهها بسته\nبغــض داری یه دنیا داد می زنی بی صدا\nراه رهایـی بازه آمـده عشقـی تـازه\n\n[Chorus]\nپشــت در قلــب توست خدای زنده با توست\nبـــشکن این ســکوتو خط بزن این هــبوطو\nرها شو از این قـفس صــداش بزن یک نفس\nپـــشت در قلــب توست خدای زنده با توست\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "A",
+    "chord": "Am",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -1011,7 +1012,9 @@
     "dateAdded": "2025-01-24",
     "slug": "داریوش",
     "youtubeUrl": "https://www.youtube.com/watch?v=mmm-nZB5BC4",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Age%20delet%20shekaste%20tanha%CC%84%20shodi%20ya%CC%84%20khaste%20%28Poshte%20dare%20ghalbe%20tost%29.pdf",
+    "chordsText": "[Verse]\nاگه [Am]دلت شــ[Dm]ـکسته تنـ[G]ـها شدی و [Am]خسته\nغـم [F]تو دلت نشـ[Dm]ـسته تـمـوم [Esus4]راهها بسته[E]\nبغـ[Am]ـض داری یه [Dm]دنیا دا[G]د می زنی بی [Am]صدا\nرا[F]ه رهایـی [Dm]بازه آمـده [Esus4]عشقـی [E]تـازه[Am]\n\n[Chorus]\nپشـ[Am]ـت در قلـ[E]ـب توست خد[Dm]ای زنده [Am]با توست\nبــ[C]ـشکن این سـ[G]ـکوتو خط [F]بزن این هـ[E]ـبوطو\nرها [Am]شو از این [E]قـفس صـ[Dm]ـداش بزن یک [Am]نفس\nپــ[C]ـشت در قلـ[E]ـب توست خد[F]ای زنده [G]با تو[Am]ست\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 29,
@@ -1020,10 +1023,10 @@
       "en": "وحید نوروزی",
       "es": "وحید نوروزی"
     },
-    "artist": "وحید نوروزی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز وحید نوروزی",
+    "composer": "شاعر و آهنگساز وحید نوروزی",
     "youtubeId": "l20uPh-NERo",
-    "audioUrl": "/worship/audio/kalameh/ابا ای پدر آسمانی.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/ابا ای پدر آسمانی.mp3",
     "videoUrl": "https://www.youtube.com/embed/l20uPh-NERo",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/PEDARSHOKRATGUYAN.pptx",
     "lyricsFiles": {
@@ -1031,11 +1034,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nپدر شـ[Em]ـکرت گویـ[Bm]ـان نزد تو آیـ[Em]ـم\nپدر د[Em]ر روح پـ[Bm]ـر فیضت سرایـ[Em]ـم\nتو مالــ[C]ـک وجود[D] و جسم و جانـ[Bm]ـم\nتو هستـ[C]ـی منــ[D]ـی تو را ستایـ[Em]ـم\nV2\nپدر شـ[Em]ـکرت گویـ[Bm]ـان تو را سرایـ[Em]ـم\nخودم ر[Em]ا وقف خا[Bm]نه ی تو دانـ[Em]ـم\nتو میرا[C]ث منـ[D]ـی نصیب جانـ[Bm]ـم\nتو را حـ[C]ـرمت نهــ[D]ـم از دل و جانـ[Em]ـم\nChorus\nابا ا[G]ی پدر[D] آسمانی ابا تـ[Am]ـو بهر جانـ[C]ـم جاودانــ[Em]ـی\nابا تـ[G]ـشنه‌ی حـ[D]ـضور تو هستم \nابا از[Am] پُری[C] روحت کن مستـ[Em]ـم   [D]    [C]     [Em]\n[column]\nV3\nپدر شـ[Em]ـکرت گویا[Bm]ن تو را می خوانـ[Em]ـم\nپدر د[Em]ر نور عیسـ[Bm]ـی نزد تو آیـ[Em]ـم\nتو میر[C]اث منــ[D]ـی نصیب جانــ[Bm]ـم\nخداو[C]ندم به آغـو[D]ش تو آیـ[Em]ـم\nChorus\nBridge\nتو از د[Em]ور چشم به راه[E7] من می مانـ[Am]ـی\nتو منتـ[D]ـظر تا من[C] نزد تو آیـ[Em]ـم\nمرا به[Em] آغوش[E7] امنت بگیر[Am]ی\nتا در آ[D]غـوش پـر[C]مهرت سرایـ[Em]ـم\nتو رد[Em]ای عدالـ[E7]ـت بهر جانـ[Am]ـم\nبه دنیــ[D]ـا مهرت را[C] اعلام نمایـ[Em]ـم\nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nپدر شــکرت گویــان نزد تو آیــم\nپدر در روح پــر فیضت سرایــم\nتو مالـــک وجود و جسم و جانــم\nتو هستــی منـــی تو را ستایــم\n\n[V2]\nپدر شــکرت گویــان تو را سرایــم\nخودم را وقف خانه ی تو دانــم\nتو میراث منــی نصیب جانــم\nتو را حــرمت نهـــم از دل و جانــم\n\n[Chorus]\nابا ای پدر آسمانی ابا تــو بهر جانــم جاودانـــی\nابا تــشنه‌ی حــضور تو هستم\nابا از پُری روحت کن مستــم\n\n[V3]\nپدر شــکرت گویان تو را می خوانــم\nپدر در نور عیســی نزد تو آیــم\nتو میراث منـــی نصیب جانـــم\nخداوندم به آغـوش تو آیــم\n\n[Chorus]\n\n[Bridge]\nتو از دور چشم به راه من می مانــی\nتو منتــظر تا من نزد تو آیــم\nمرا به آغوش امنت بگیری\nتا در آغـوش پـرمهرت سرایــم\nتو ردای عدالــت بهر جانــم\nبه دنیـــا مهرت را اعلام نمایــم\n\n[Chorus]\n\n[V1]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]\n\n[Bridge]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -1046,7 +1048,9 @@
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
     "youtubeUrl": "https://www.youtube.com/watch?v=bwRuo-skNi8",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Aba%CC%84%20ey%20pedare%20a%CC%84sema%CC%84ni.pdf",
+    "chordsText": "[V1]\nپدر شـ[Em]ـکرت گویـ[Bm]ـان نزد تو آیـ[Em]ـم\nپدر د[Em]ر روح پـ[Bm]ـر فیضت سرایـ[Em]ـم\nتو مالــ[C]ـک وجود [D]و جسم و جانـ[Bm]ـم\nتو هستـ[C]ـی منــ[D]ـی تو را ستایـ[Em]ـم\n\n[V2]\nپدر شـ[Em]ـکرت گویـ[Bm]ـان تو را سرایـ[Em]ـم\nخودم ر[Em]ا وقف خا[Bm]نه ی تو دانـ[Em]ـم\nتو میرا[C]ث منـ[D]ـی نصیب جانـ[Bm]ـم\nتو را حـ[C]ـرمت نهــ[D]ـم از دل و جانـ[Em]ـم\n\n[Chorus]\nابا ا[G]ی پدر [D]آسمانی ابا تـ[Am]ـو بهر جانـ[C]ـم جاودانــ[Em]ـی\nابا تـ[G]ـشنه‌ی حـ[D]ـضور تو هستم\nابا از [Am]پُری [C]روحت کن مستـ[Em]ـم   [D]    [C]     [Em]\n\n[V3]\nپدر شـ[Em]ـکرت گویا[Bm]ن تو را می خوانـ[Em]ـم\nپدر د[Em]ر نور عیسـ[Bm]ـی نزد تو آیـ[Em]ـم\nتو میر[C]اث منــ[D]ـی نصیب جانــ[Bm]ـم\nخداو[C]ندم به آغـو[D]ش تو آیـ[Em]ـم\n\n[Chorus]\n\n[Bridge]\nتو از د[Em]ور چشم به راه [E7]من می مانـ[Am]ـی\nتو منتـ[D]ـظر تا من [C]نزد تو آیـ[Em]ـم\nمرا به [Em]آغوش [E7]امنت بگیر[Am]ی\nتا در آ[D]غـوش پـر[C]مهرت سرایـ[Em]ـم\nتو رد[Em]ای عدالـ[E7]ـت بهر جانـ[Am]ـم\nبه دنیــ[D]ـا مهرت را [C]اعلام نمایـ[Em]ـم\n\n[Chorus]\n\n[V1]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]\n\n[Bridge]\n\n[Chorus]"
   },
   {
     "id": 30,
@@ -1092,10 +1096,10 @@
       "en": "علیرضا سیدیان",
       "es": "علیرضا سیدیان"
     },
-    "artist": "ژیلبرت هوسپیان",
-    "composer": "ژیلبرت هوسپیان",
+    "artist": "شاعر علیرضا سیدیانآهنگساز ژیلبرت هوسپیان",
+    "composer": "شاعر علیرضا سیدیانآهنگساز ژیلبرت هوسپیان",
     "youtubeId": "Y4WGU6hpNdA",
-    "audioUrl": "/worship/audio/kalameh/Aknoon azadam nama.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Aknoon azadam nama.mp3",
     "videoUrl": "https://www.youtube.com/embed/Y4WGU6hpNdA",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AKNUNAZADAMNAMA.pptx",
     "lyricsFiles": {
@@ -1103,11 +1107,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nای[Gm] خالق این جهـ[Eb]ـان ، تــ[Cm]ـویی نـ[F]ـور بی کر[Eb]ان [D]\nقـــد[Gm]رت تو جاود[Eb]ان ، ا[Cm]ی ایز[F]د مهربــ[Eb]ـان [D]\nChorus1\nاکـ[Gm]ـنون آزادم نمـ[Eb]ـا از[Cm] اسـ[D]ـارت گنـ[Gm]ـاه  [D]\nبــ[Gm]ـر من ترحم فرمـ[Eb]ـا ، بــ[Cm]ـازهم ا[D]ی شاه شاهـ[Gm]ـان\nV2\nای[Gm] خداوندم عیسـ[Eb]ـی ، ا[Cm]ی خد[F]اوند یکتـ[Eb]ـا   [D]\nمـر[Gm]ا از خواهش جـ[Eb]ـسم ، بــ[Cm]ـا کلـ[F]ـامت کن رهـ[Eb]ــا [D]\nChorus1\nChorus2\nاکـ[Gm]ـنون آزادم کرد[Eb]ی ، ا[Cm]ز اسـ[D]ـارت گنـ[Gm]ـاه   [D]\nبــ[Gm]ـر من ترحم کرد[Eb]ی ، بـ[Cm]ـازهم ا[D]ی شاه شاهـ[Gm]ـان",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nای خالق این جهــان ، تـــویی نــور بی کران\nقـــدرت تو جاودان ، ای ایزد مهربـــان\n\n[Chorus1]\nاکــنون آزادم نمــا از اســارت گنــاه\nبـــر من ترحم فرمــا ، بـــازهم ای شاه شاهــان\n\n[V2]\nای خداوندم عیســی ، ای خداوند یکتــا\nمـرا از خواهش جــسم ، بـــا کلــامت کن رهـــا\n\n[Chorus1]\n\n[Chorus2]\nاکــنون آزادم کردی ، از اســارت گنــاه\nبـــر من ترحم کردی ، بــازهم ای شاه شاهــان\n\n[V1]\n\n[Chorus1]\n\n[V2]\n\n[Chorus1]\n\n[Chorus2]",
+      "en": ""
     },
-    "chord": "G",
+    "chord": "Gm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -1120,7 +1123,9 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=S4iFgzKYqrY",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Aknoon%20azadam%20nama%20%28Ey%20khaleghe%20in%20jahan%29.pdf",
+    "chordsText": "[V1]\nای [Gm]خالق این جهـ[Eb]ـان ، تــ[Cm]ـویی نـ[F]ـور بی کر[Eb]ان [D]\nقـــد[Gm]رت تو جاود[Eb]ان ، ا[Cm]ی ایز[F]د مهربــ[Eb]ـان [D]\n\n[Chorus1]\nاکـ[Gm]ـنون آزادم نمـ[Eb]ـا از [Cm]اسـ[D]ـارت گنـ[Gm]ـاه  [D]\nبــ[Gm]ـر من ترحم فرمـ[Eb]ـا ، بــ[Cm]ـازهم ا[D]ی شاه شاهـ[Gm]ـان\n\n[V2]\nای [Gm]خداوندم عیسـ[Eb]ـی ، ا[Cm]ی خد[F]اوند یکتـ[Eb]ـا   [D]\nمـر[Gm]ا از خواهش جـ[Eb]ـسم ، بــ[Cm]ـا کلـ[F]ـامت کن رهـ[Eb]ــا [D]\n\n[Chorus1]\n\n[Chorus2]\nاکـ[Gm]ـنون آزادم کرد[Eb]ی ، ا[Cm]ز اسـ[D]ـارت گنـ[Gm]ـاه   [D]\nبــ[Gm]ـر من ترحم کرد[Eb]ی ، بـ[Cm]ـازهم ا[D]ی شاه شاهـ[Gm]ـان\n\n[V1]\n\n[Chorus1]\n\n[V2]\n\n[Chorus1]\n\n[Chorus2]"
   },
   {
     "id": 32,
@@ -1129,10 +1134,10 @@
       "en": "سرود ارمنی",
       "es": "سرود ارمنی"
     },
-    "artist": "جان مارک",
-    "composer": "جان مارک",
+    "artist": "ترجمه شده از سرود ارمنیشاعر جان مارکمترجم زنده یاد کشیش هایک هوسپیان",
+    "composer": "ترجمه شده از سرود ارمنیشاعر جان مارکمترجم زنده یاد کشیش هایک هوسپیان",
     "youtubeId": null,
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Az in donyaye.mp3",
     "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZINDONYAYEMAGHMUM.pptx",
     "lyricsFiles": {
@@ -1140,11 +1145,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nاز این دنیـ[Dm]ـای مغموم و فـ[Gm]ـانی\nفریاد کنـ[A]ـم به سوی سمـ[Dm]ـا\nروحم افسـ[Dm]ـرده [D]در زیر گـ[Gm]ـناه\nخداوند[Dm]ا بر [A]من رحم نمـ[Dm]ـا\nChorus\nاین قلب نـ[Gm]ـالان در پی شـ[Dm]ـادی\nتنهای تـ[A]ـنها و بی نو[Dm]ا\nقلبم شکـ[Gm]ـسته پر درد و خـ[Dm]ـسته\nخداوند[A]ا بر من رحم نمـ[Dm]ـا\n[column]\nV2\nاین روح عــ[Dm]ـاصی آواره گـ[Gm]ـشته\nدر پی لـ[A]ـذات دور از خد[Dm]ا\nدر بیابـ[Dm]ـان [D]این عمر بـ[Gm]ـاطل\nخداوند[Dm]ا بر [A]من رحم نمـ[Dm]ـا\nChorus\nV3\nدنیای مـ[Dm]ـکار مرا فر[Gm]یب داد\nهستی ام ر[A]فــت بر باد فنـ[Dm]ـا\nرانده ز هـ[Dm]ـر جا [D]خسته ز د[Gm]نیا\nخداوند[Dm]ا بر [A]من رحم نمـ[Dm]ـا",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nاز این دنیــای مغموم و فــانی\nفریاد کنــم به سوی سمــا\nروحم افســرده در زیر گــناه\nخداوندا بر من رحم نمــا\n\n[Chorus]\nاین قلب نــالان در پی شــادی\nتنهای تــنها و بی نوا\nقلبم شکــسته پر درد و خــسته\nخداوندا بر من رحم نمــا\n\n[V2]\nاین روح عـــاصی آواره گــشته\nدر پی لــذات دور از خدا\nدر بیابــان این عمر بــاطل\nخداوندا بر من رحم نمــا\n\n[Chorus]\n\n[V3]\nدنیای مــکار مرا فریب داد\nهستی ام رفــت بر باد فنــا\nرانده ز هــر جا خسته ز دنیا\nخداوندا بر من رحم نمــا\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]",
+      "en": ""
     },
-    "chord": "D",
+    "chord": "Dm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -1157,7 +1161,9 @@
     "youtubeUrl": "",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Az%20in%20donyaye%20maghmoom%20o%20fani.pdf",
+    "chordsText": "[V1]\nاز این دنیـ[Dm]ـای مغموم و فـ[Gm]ـانی\nفریاد کنـ[A]ـم به سوی سمـ[Dm]ـا\nروحم افسـ[Dm]ـرده [D]در زیر گـ[Gm]ـناه\nخداوند[Dm]ا بر [A]من رحم نمـ[Dm]ـا\n\n[Chorus]\nاین قلب نـ[Gm]ـالان در پی شـ[Dm]ـادی\nتنهای تـ[A]ـنها و بی نو[Dm]ا\nقلبم شکـ[Gm]ـسته پر درد و خـ[Dm]ـسته\nخداوند[A]ا بر من رحم نمـ[Dm]ـا\n\n[V2]\nاین روح عــ[Dm]ـاصی آواره گـ[Gm]ـشته\nدر پی لـ[A]ـذات دور از خد[Dm]ا\nدر بیابـ[Dm]ـان [D]این عمر بـ[Gm]ـاطل\nخداوند[Dm]ا بر [A]من رحم نمـ[Dm]ـا\n\n[Chorus]\n\n[V3]\nدنیای مـ[Dm]ـکار مرا فر[Gm]یب داد\nهستی ام ر[A]فــت بر باد فنـ[Dm]ـا\nرانده ز هـ[Dm]ـر جا [D]خسته ز د[Gm]نیا\nخداوند[Dm]ا بر [A]من رحم نمـ[Dm]ـا\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]"
   },
   {
     "id": 33,
@@ -1704,10 +1710,10 @@
       "en": "I enter to holy of holies",
       "es": "I enter to holy of holies"
     },
-    "artist": "Paul Wilbur",
-    "composer": "Paul Wilbur",
+    "artist": "سرود اصلی I enter to holy of holiesشاعر و آهنگساز Paul Wilbur",
+    "composer": "سرود اصلی I enter to holy of holiesشاعر و آهنگساز Paul Wilbur",
     "youtubeId": "4gxtBxJ4o4k",
-    "audioUrl": "/worship/audio/kalameh/195 Be sahne ghodsat vared shavam.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/195 Be sahne ghodsat vared shavam.mp3",
     "videoUrl": "https://www.youtube.com/embed/4gxtBxJ4o4k",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BESAHNEGHODSATVAREDSHAVAM.pptx",
     "lyricsFiles": {
@@ -1715,11 +1721,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nبه صـ[Em]ـحن قدست وارد شـ[D]ـوم\nاز طر[C]یق خـ[D]ـون عـ[Em]ـیسی\nتنهــ[Em]ـا بهر پرستش[D] تو\nبهر اِ[C]کرام و حـ[D]ـمدت خــد[Em]ا\nChorus (x2)\nای معبـ[G]ـود مـ[D]ـن ، محبـ[Am]ـوب مـ[Em]ـن\nBridge1 (x2)\nنام تو قد[C]وس است ، قـ[D]ـدوس یا[Em]ه\nBridge2 (x2)\nبا قلبی با[Em]ز با قلبی با[C]ز مشتاق مـ[Am]ـلاقـا[D]ت تو هستم[Em]",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nبه صــحن قدست وارد شــوم\nاز طریق خــون عــیسی\nتنهـــا بهر پرستش تو\nبهر اِکرام و حــمدت خــدا\n\n[Chorus (x2)]\nای معبــود مــن ، محبــوب مــن\n\n[Bridge1 (x2)]\nنام تو قدوس است ، قــدوس یاه\n\n[Bridge2 (x2)]\nبا قلبی باز با قلبی باز مشتاق مــلاقـات تو هستم\n\n[Verse]\n\n[Chorus (x2)]\n\n[Bridge1 (x2)]\n\n[Bridge2 (x2)]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -1730,7 +1735,9 @@
     "dateAdded": "2025-01-24",
     "slug": "i-enter-to-holy-of-holies",
     "youtubeUrl": "https://www.youtube.com/watch?v=4gxtBxJ4o4k",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Be%20sahne%20ghodsat%20%28Ey%20maboode%20man%20mahboobe%20man%29%20%28Em%29.pdf",
+    "chordsText": "[Verse]\nبه صـ[Em]ـحن قدست وارد شـ[D]ـوم\nاز طر[C]یق خـ[D]ـون عـ[Em]ـیسی\nتنهــ[Em]ـا بهر پرستش [D]تو\nبهر اِ[C]کرام و حـ[D]ـمدت خــد[Em]ا\n\n[Chorus (x2)]\nای معبـ[G]ـود مـ[D]ـن ، محبـ[Am]ـوب مـ[Em]ـن\n\n[Bridge1 (x2)]\nنام تو قد[C]وس است ، قـ[D]ـدوس یا[Em]ه\n\n[Bridge2 (x2)]\nبا قلبی با[Em]ز با قلبی با[C]ز مشتاق مـ[Am]ـلاقـا[D]ت تو هستم[Em]\n\n[Verse]\n\n[Chorus (x2)]\n\n[Bridge1 (x2)]\n\n[Bridge2 (x2)]"
   },
   {
     "id": 49,
@@ -1848,10 +1855,10 @@
       "en": "Healing Rain is falling down",
       "es": "Healing Rain is falling down"
     },
-    "artist": "Michael W.Smith",
-    "composer": "Michael W.Smith",
+    "artist": "سرود اصلی Healing Rain is falling downشاعر و آهنگساز Michael W.Smith",
+    "composer": "سرود اصلی Healing Rain is falling downشاعر و آهنگساز Michael W.Smith",
     "youtubeId": "JilgyVW17Lg",
-    "audioUrl": "/worship/audio/kalameh/191 Barane shafa rizad.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/191 Barane shafa rizad.mp3",
     "videoUrl": "https://www.youtube.com/embed/JilgyVW17Lg",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARANESHAFARIZAD.pptx",
     "lyricsFiles": {
@@ -1859,9 +1866,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "با[G]ران شفا ریزد ، با[D]ران شفا ریزد (x۴)\nبر[Em]یزد بر[C]یزد بریز[Em]د بریز[C]د\nبـ[G]ـگشا درهای آسما[D]ن تا[D] ریزد[Em] برکـ[C]ـت\nبـ[G]ـگشا درهای آسما[D]ن\nبـ[D]ــریزد [Em] بریز[C]د\nبـ[G]ـگشا درهای آسما[D]ن تا[D] ریزد[Em] قو[C]ت\nبــ[G]ـگشا درهای آسما[D]ن",
-      "en": "",
-      "es": ""
+      "fa": "باران شفا ریزد ، باران شفا ریزد (x۴)\nبریزد بریزد بریزد بریزد\nبــگشا درهای آسمان تا ریزد برکــت\nبــگشا درهای آسمان\nبـــریزد  بریزد\nبــگشا درهای آسمان تا ریزد قوت\nبـــگشا درهای آسمان",
+      "en": ""
     },
     "chord": "G",
     "mode": "ماژور",
@@ -1873,9 +1879,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "healing-rain-is-falling-down",
-    "pdfFileUrl": "/worship/pdf/kalameh/برنامه این هفته 26 الی 2 آذر 1400.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ba%CC%84ra%CC%84ne%20shafa%CC%84%20rizad%20%28G%29.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=rfIYi_1oQ4k",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "با[G]ران شفا ریزد ، با[D]ران شفا ریزد (x۴)\nبر[Em]یزد بر[C]یزد بریز[Em]د بریز[C]د\nبـ[G]ـگشا درهای آسما[D]ن تا [D]ریزد [Em]برکـ[C]ـت\nبـ[G]ـگشا درهای آسما[D]ن\nبـ[D]ــریزد  [Em]بریز[C]د\nبـ[G]ـگشا درهای آسما[D]ن تا [D]ریزد [Em]قو[C]ت\nبــ[G]ـگشا درهای آسما[D]ن"
   },
   {
     "id": 53,
@@ -1887,7 +1894,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "xWEuAfaACLM",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/190 Baham gerd ayim.mp3",
     "videoUrl": "https://www.youtube.com/embed/xWEuAfaACLM",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAHAMGERDAYIMHAMEIANDARAN.pptx",
     "lyricsFiles": {
@@ -1895,11 +1902,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1 (x2)\nباهم گر[Gm]‌دآییم همه ایمانداران\nاز دل سراییم نام خداو[Cm]ند را\nزیرا خـ[F]ـداوند ما لایق[Dm] حمد و پرستش ا[Gm]ست\nChorus\nسرایـ[Cm]ـیم سراییم او خداو[Gm]ند است\nسرایـ[Dm]ـیم عیسی خداوند ا[Gm]ست\nشاد باشـ[Cm]ـیم شاد باشیم او خداو[Gm]ند است\nسرایـ[Dm]ـیم عیسی خداوند ا[Gm]ست\n[column]\nV2 (x2)\nبیافر[Gm]ازیم دست‌ها را سوی بالا\nپرستیم با تمام دل عیسـ[Cm]ـی را\nزیرا خـ[F]ـداوند ما لایق[Dm] حمد و پرستش ا[Gm]ست\nChorus\nV3 (x2)\nاگر د[Gm]ر سختی‌ها و تنگی باشیم\nباز می‌سراییم عیسی خداو[Cm]ند است\nزیرا خـ[F]ـداوند ما لایق[Dm] حمد و پرستش ا[Gm]ست",
-      "en": "",
-      "es": ""
+      "fa": "[V1 (x2)]\nباهم گر‌دآییم همه ایمانداران\nاز دل سراییم نام خداوند را\nزیرا خــداوند ما لایق حمد و پرستش است\n\n[Chorus]\nسرایــیم سراییم او خداوند است\nسرایــیم عیسی خداوند است\nشاد باشــیم شاد باشیم او خداوند است\nسرایــیم عیسی خداوند است\n\n[V2 (x2)]\nبیافرازیم دست‌ها را سوی بالا\nپرستیم با تمام دل عیســی را\nزیرا خــداوند ما لایق حمد و پرستش است\n\n[Chorus]\n\n[V3 (x2)]\nاگر در سختی‌ها و تنگی باشیم\nباز می‌سراییم عیسی خداوند است\nزیرا خــداوند ما لایق حمد و پرستش است\n\n[V1 (x2)]\n\n[Chorus]\n\n[V2 (x2)]\n\n[Chorus]\n\n[V3 (x2)]",
+      "en": ""
     },
-    "chord": "G",
+    "chord": "Gm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -1912,7 +1918,9 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=xWEuAfaACLM",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ba%CC%84ham%20gerd%20a%CC%84yim%20%28Sara%CC%84yim%20sara%CC%84yim%20oo%20khoda%CC%84vand%20ast%29%20%28Gm%29.pdf",
+    "chordsText": "[V1 (x2)]\nباهم گر[Gm]‌دآییم همه ایمانداران\nاز دل سراییم نام خداو[Cm]ند را\nزیرا خـ[F]ـداوند ما لایق [Dm]حمد و پرستش ا[Gm]ست\n\n[Chorus]\nسرایـ[Cm]ـیم سراییم او خداو[Gm]ند است\nسرایـ[Dm]ـیم عیسی خداوند ا[Gm]ست\nشاد باشـ[Cm]ـیم شاد باشیم او خداو[Gm]ند است\nسرایـ[Dm]ـیم عیسی خداوند ا[Gm]ست\n\n[V2 (x2)]\nبیافر[Gm]ازیم دست‌ها را سوی بالا\nپرستیم با تمام دل عیسـ[Cm]ـی را\nزیرا خـ[F]ـداوند ما لایق [Dm]حمد و پرستش ا[Gm]ست\n\n[Chorus]\n\n[V3 (x2)]\nاگر د[Gm]ر سختی‌ها و تنگی باشیم\nباز می‌سراییم عیسی خداو[Cm]ند است\nزیرا خـ[F]ـداوند ما لایق [Dm]حمد و پرستش ا[Gm]ست\n\n[V1 (x2)]\n\n[Chorus]\n\n[V2 (x2)]\n\n[Chorus]\n\n[V3 (x2)]"
   },
   {
     "id": 54,
@@ -1956,10 +1964,10 @@
       "en": "سرود ارمنی",
       "es": "سرود ارمنی"
     },
-    "artist": "سرود ارمنی",
-    "composer": "",
+    "artist": "ترجمه شده از سرود ارمنی",
+    "composer": "ترجمه شده از سرود ارمنی",
     "youtubeId": "gU-oU-29N3c",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Azim ast name to isa     .mp3",
     "videoUrl": "https://www.youtube.com/embed/gU-oU-29N3c",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZIMASTNAMETOISA.pptx",
     "lyricsFiles": {
@@ -1967,11 +1975,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nعظيم است نـ[Dm]ـام تو عيسـ[Gm]ـى\nجلال بر نـ[C]ـام تو عيسـ[F]ـى\nقدرت از آ[Bb]ن تو عیسـ[Gm]ـی\nستاییم نـ[A]ـام قدوست عیسـ[Dm]ـی\nChorus\nهــللويـ[Dm]ـاه ، هــللويـ[Gm]ـاه\nهـــللويـ[C]ـاه ، هــللويـ[F]ـاه\nهـــللويـ[Bb]ـاه ، هـــللويـ[Gm]ـاه\nستاييم نــ[A]ـام قدوست عیسـ[Dm]ـى",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nعظيم است نــام تو عيســى\nجلال بر نــام تو عيســى\nقدرت از آن تو عیســی\nستاییم نــام قدوست عیســی\n\n[Chorus]\nهــللويــاه ، هــللويــاه\nهـــللويــاه ، هــللويــاه\nهـــللويــاه ، هـــللويــاه\nستاييم نـــام قدوست عیســى\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "D",
+    "chord": "Am",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -1981,11 +1988,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-ارمنی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Azim ast khodā (G).pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Azim%20ast%20na%CC%84me%20to%20isa%CC%84%20%28Dm%29.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=PuQol8iWd-k",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[Verse]\nعظيم است نـ[Am]ـام تو عيسـ[Dm]ـى\nجلال بر نـ[G]ـام تو عيسـ[C]ـى\nقدرت از آ[F]ن تو عیسـ[Dm]ـی\nستاییم نـ[E]ـام قدوست عیسـ[Am]ـی\n\n[Chorus]\nهــللويـ[Am]ـاه ، هــللويـ[Dm]ـاه\nهـــللويـ[G]ـاه ، هــللويـ[C]ـاه\nهـــللويـ[F]ـاه ، هـــللويـ[Dm]ـاه\nستاييم نــ[E]ـام قدوست عیسـ[Am]ـى\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 56,
@@ -3474,10 +3482,10 @@
       "en": "دانیال کابلی",
       "es": "دانیال کابلی"
     },
-    "artist": "دانیال کابلی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز دانیال کابلی",
+    "composer": "شاعر و آهنگساز دانیال کابلی",
     "youtubeId": "48klQfS4TRQ",
-    "audioUrl": "/worship/audio/kalameh/به حضورت آییم.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/208 Be hozurat amadeam.mp3",
     "videoUrl": "https://www.youtube.com/embed/48klQfS4TRQ",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BEHOZURATAMADEAM.pptx",
     "lyricsFiles": {
@@ -3485,11 +3493,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nبـه[Em] حـضــو[Bm7]رت ، آمـ[Em]ــــده‌ام [Bm7]\nسـ[Am7]ـیراب سـ[Bm7]ــاز ، وجـ[Am7]ـودم را [Bm7]تشـنه‌ام [Em]\nقـ[Em]ـلب و جـا[Bm7]نـم ، مـ[Em]ـشتاق توسـ[Bm7]ـت\nلــ[Am7]ـبریز سـ[Bm7]ــاز ، وجـ[Am7]ـودم را [Bm7]خــالی‌ام [Em]\nChorus\nنیاز[Em] من حضور تـوسـ[Am7]ـت\nتا[D] که پاک شوم با آتـ[Bm]ـش روحـ[Em]ـت\nنیا[Em]ز من قوت تـو[Am7]ست\nتا[D] که آرامی یابـ[Bm]ـم در حضـور[Em]ت",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nبـه حـضــورت ، آمـــــده‌ام\nســیراب ســـاز ، وجــودم را تشـنه‌ام\nقــلب و جـانـم ، مــشتاق توســت\nلـــبریز ســـاز ، وجــودم را خــالی‌ام\n\n[Chorus]\nنیاز من حضور تـوســت\nتا که پاک شوم با آتــش روحــت\nنیاز من قوت تـوست\nتا که آرامی یابــم در حضـورت\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -3499,11 +3506,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "دانیال-کابلی",
-    "pdfFileUrl": "/worship/pdf/kalameh/30شهریور تا 5 مهر ماه.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Be%20hozurat%20a%CC%84madeam%20%28Em%29.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=4gxtBxJ4o4k",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[Verse]\nبـه [Em]حـضــو[Bm7]رت ، آمـ[Em]ــــده‌ام [Bm7]\nسـ[Am7]ـیراب سـ[Bm7]ــاز ، وجـ[Am7]ـودم را [Bm7]تشـنه‌ام [Em]\nقـ[Em]ـلب و جـا[Bm7]نـم ، مـ[Em]ـشتاق توسـ[Bm7]ـت\nلــ[Am7]ـبریز سـ[Bm7]ــاز ، وجـ[Am7]ـودم را [Bm7]خــالی‌ام [Em]\n\n[Chorus]\nنیاز [Em]من حضور تـوسـ[Am7]ـت\nتا [D]که پاک شوم با آتـ[Bm]ـش روحـ[Em]ـت\nنیا[Em]ز من قوت تـو[Am7]ست\nتا [D]که آرامی یابـ[Bm]ـم در حضـور[Em]ت\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 98,
@@ -3512,10 +3520,10 @@
       "en": "فراز دولتخواه",
       "es": "فراز دولتخواه"
     },
-    "artist": "فراز دولتخواه",
-    "composer": "",
+    "artist": "شاعر و آهنگساز فراز دولتخواه",
+    "composer": "شاعر و آهنگساز فراز دولتخواه",
     "youtubeId": "5p-VgIvqT_w",
-    "audioUrl": "/worship/audio/kalameh/6 Beruye zanovanam .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/6 Beruye zanovanam .mp3",
     "videoUrl": "https://www.youtube.com/embed/5p-VgIvqT_w",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BERUYEZANOVANAM.pptx",
     "lyricsFiles": {
@@ -3523,11 +3531,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nبه رو[Em]ى زانوانم در حضو[Bm]رت\nمـ[D]ـسـت آغـوشـت شـدم پــد[C]ر\nخـانـه هـمـا[Em]ن خـانـه اسـت\nكـوچــه هـمـا[C]ن كـوچـه اسـت\nشهـ[Am]ـر همان شهر است و من [B7]مدهوشم\nاين چه حسـ[Em]ـى‌ست اين چه[C] روزى‌ست\nاين لـطافــت[Am] از چـه روحى[B7]‌ست\nChorus\nهــ[Em]ـللويـاه[C] ، هــ[Am]ـللويـاه[B7]\nهــ[Em]ـللويـاه[C] ، هــ[Am]ـللويـاه[B7]\nمى‌سـتـايـم[Em] ، مى‌سـتـا[C]يـم\nمى‌سـتـايـم[Am] اى عيـ[B7]ـسى\nمى‌پـرسـتـم[Em] ، مى‌پـر[C]سـتـم\nمى‌پـرسـتـم[Am] اى عيـ[B7]ـسى",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nبه روى زانوانم در حضورت\nمــسـت آغـوشـت شـدم پــدر\nخـانـه هـمـان خـانـه اسـت\nكـوچــه هـمـان كـوچـه اسـت\nشهــر همان شهر است و من مدهوشم\nاين چه حســى‌ست اين چه روزى‌ست\nاين لـطافــت از چـه روحى‌ست\n\n[Chorus]\nهـــللويـاه ، هـــللويـاه\nهـــللويـاه ، هـــللويـاه\nمى‌سـتـايـم ، مى‌سـتـايـم\nمى‌سـتـايـم اى عيــسى\nمى‌پـرسـتـم ، مى‌پـرسـتـم\nمى‌پـرسـتـم اى عيــسى\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -3540,7 +3547,8 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=5p-VgIvqT_w",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[Verse]\nبه رو[Em]ى زانوانم در حضو[Bm]رت\nمـ[D]ـسـت آغـوشـت شـدم پــد[C]ر\nخـانـه هـمـا[Em]ن خـانـه اسـت\nكـوچــه هـمـا[C]ن كـوچـه اسـت\nشهـ[Am]ـر همان شهر است و من [B7]مدهوشم\nاين چه حسـ[Em]ـى‌ست اين چه [C]روزى‌ست\nاين لـطافــت [Am]از چـه روحى[B7]‌ست\n\n[Chorus]\nهــ[Em]ـللويـاه [C]، هــ[Am]ـللويـاه[B7]\nهــ[Em]ـللويـاه [C]، هــ[Am]ـللويـاه[B7]\nمى‌سـتـايـم [Em]، مى‌سـتـا[C]يـم\nمى‌سـتـايـم [Am]اى عيـ[B7]ـسى\nمى‌پـرسـتـم [Em]، مى‌پـر[C]سـتـم\nمى‌پـرسـتـم [Am]اى عيـ[B7]ـسى\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 99,
@@ -3584,10 +3592,10 @@
       "en": "All heaven declares",
       "es": "All heaven declares"
     },
-    "artist": "Noel-Tricia Richards",
-    "composer": "Noel-Tricia Richards",
+    "artist": "سرود اصلی All heaven declaresشاعر و آهنگساز Noel-Tricia Richards",
+    "composer": "سرود اصلی All heaven declaresشاعر و آهنگساز Noel-Tricia Richards",
     "youtubeId": "Qg8-AMxRaas",
-    "audioUrl": "/worship/audio/kalameh/آسمان گوید جلال و شکوه عیسی.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/آسمان گوید جلال و شکوه عیسی.mp3",
     "videoUrl": "https://www.youtube.com/embed/Qg8-AMxRaas",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ASMANGUYAD.pptx",
     "lyricsFiles": {
@@ -3595,9 +3603,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nآ[F]سمان گويد[Bb] ، جـ[C]ـلال و شكوه[Bb] عيسى[F]\nكـيست همچو او[Bb] ، نـ[C]ـوبر قيام‌كر[Bb]دگان[F]\nChorus (x2)\nتا ابـ[F]ـد تو هستى[Bb] بـ[C]ـره‌ى تخت‌نشيـ[Am]ـن\nنـ[Dm]ـزدت زانو زنم[Bb] و تـ[C]ـو را پرستم[F]\nV2\nاعـ[F]ـلام كنم[Bb] ، زیـ[C]ـبایی خداو[Bb]نـدم[F]\nاو فديه گـ[Bb]ـشت بهـ[C]ـر نجات انـ[Bb]ـسانها[F]\nChorus (x2)",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nآسمان گويد ، جــلال و شكوه عيسى\nكـيست همچو او ، نــوبر قيام‌كردگان\n\n[Chorus (x2)]\nتا ابــد تـو هستـ ــىبـــره‌ى تخت‌نـشـيـ ـن\nنــزدت زانو زنم و تــو را پرستم\n\n[V2]\nاعــلام كنم ، زیــبایی خداونـدم\nاو فديه گــشت بهــر نجات انــسانها\n\n[Chorus (x2)]\n\n[V1]\n\n[Chorus (x2)]\n\n[V2]\n\n[Chorus (x2)]",
+      "en": ""
     },
     "chord": "F",
     "mode": "ماژور",
@@ -3610,7 +3617,9 @@
     "dateAdded": "2025-01-24",
     "slug": "all-heaven-declares",
     "youtubeUrl": "https://www.youtube.com/watch?v=Qg8-AMxRaas",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Asman%20gooyad%20jalalo%20shokoohe%20isa%20%28Ta%20abad%20to%20hasti%29.pdf",
+    "chordsText": "[V1]\nآ[F]سمان گويد [Bb]، جـ[C]ـلال و شكوه [Bb]عيسى[F]\nكـيست همچو او [Bb]، نـ[C]ـوبر قيام‌كر[Bb]دگان[F]\n\n[Chorus (x2)]\nتا ابـ[F]ـد تـو هستـ [Bb]ــى[C]بـــره‌ى تخت‌نـشـيـ [Am]ـن\nنـ[Dm]ـزدت زانو زنم [Bb]و تـ[C]ـو را پرستم[F]\n\n[V2]\nاعـ[F]ـلام كنم [Bb]، زیـ[C]ـبایی خداو[Bb]نـدم[F]\nاو فديه گـ[Bb]ـشت بهـ[C]ـر نجات انـ[Bb]ـسانها[F]\n\n[Chorus (x2)]\n\n[V1]\n\n[Chorus (x2)]\n\n[V2]\n\n[Chorus (x2)]"
   },
   {
     "id": 101,
@@ -4080,10 +4089,10 @@
       "en": "پیمان-نیلوفر-دنی",
       "es": "پیمان-نیلوفر-دنی"
     },
-    "artist": "پیمان-نیلوفر-دنی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز پیمان-نیلوفر-دنی",
+    "composer": "شاعر و آهنگساز پیمان-نیلوفر-دنی",
     "youtubeId": null,
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/بازایستیم و دانیم .mp3",
     "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAZISTIMODANIM.pptx",
     "lyricsFiles": {
@@ -4091,11 +4100,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nدر بلندی[Bbm]‌های زندگی یا دره[Ab]‌های عمیق\nبشنویم[Ebm] آوایش را که گوید [Bbm]آرام بگیر\nگرچه خسـ[Bbm]ـته یا درمانده از وادی‌[Ab]‌ها بگذریم\n۱. از بدی‌[Ebm]‌ها نترسیم چون بر او [Gb]پناه بریم\n۲. یک چیز[Ebm] را می‌دانیم و بدان[Gb] می‌نگریم[F7]\nPre-Chorus\nبازایسـ[Bbm]ـتیم و دانیم او خدا[Fm]ســت\nکه او خدا[Ab]ســت که او خدا[Bbm]ســت  [F7]\nبازایسـ[Bbm]ـتیم و دانیم او خدا[Fm]ســت\nکه او خدا[Ab]ســت که او خدا[Bbm]ســت\n[column]\nChorus\nیهوه[Bbm] نِسی پرچم پیروزی یهوه[Ab] روعی شبان قوم‌هایی\nیهوه[Gb] شالوم خداوند صلح و سلامتی[Ab]\nیهوه[Bbm] رافا خداوند شفا یهوه[Ab] یریٰ می‌کند مهیا\nیهوه[Gb] صَبایوت خداوند لشکرها[Ab]\nV2\nاوست خدای[Bbm] یتیمان اوست حا[Ab]می غریبان\nو بـرافــر[Ebm]ازنـده‌ی افـتـادگــا[Bbm]ن\nرهاننده[Bbm]‌ی زندانیان و پناه[Ab] بی‌کسان\n۱. مرهم شـ[Ebm]ـکسته‌دلان ، تسلی[Bbm] ماتمیان\n۲. اوست قاد[Ebm]ر مطلق ، متعا[Gb]ل است در جهان[F7]",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nدر بلندی‌های زندگی یا دره‌های عمیق\nبشنویم آوایش را که گوید آرام بگیر\nگرچه خســته یا درمانده از وادی‌‌ها بگذریم\n۱. از بدی‌‌ها نترسیم چون بر او پناه بریم\n۲. یک چیز را می‌دانیم و بدان می‌نگریم\n\n[Pre-Chorus]\nبازایســتیم و دانیم او خداســت\nکه او خداســت که او خداســت\nبازایســتیم و دانیم او خداســت\nکه او خداســت که او خداســت\n\n[Chorus]\nیهوه نِسی پرچم پیروزی یهوه روعی شبان قوم‌هایی\nیهوه شالوم خداوند صلح و سلامتی\nیهوه رافا خداوند شفا یهوه یریٰ می‌کند مهیا\nیهوه صَبایوت خداوند لشکرها\n\n[V2]\nاوست خدای یتیمان اوست حامی غریبان\nو بـرافــرازنـده‌ی افـتـادگــان\nرهاننده‌ی زندانیان و پناه بی‌کسان\n۱. مرهم شــکسته‌دلان ، تسلی ماتمیان\n۲. اوست قادر مطلق ، متعال است در جهان\n\n[V1]\n\n[Pre-Chorus]\n\n[Chorus]\n\n[V2]",
+      "en": ""
     },
-    "chord": "Bb",
+    "chord": "Bbm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -4105,11 +4113,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "پیمان-نیلوفر-دنی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Bāzistimo dānim.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ba%CC%84zistimo%20da%CC%84nim.pdf",
     "youtubeUrl": "",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1]\nدر بلندی[Bbm]‌های زندگی یا دره[Ab]‌های عمیق\nبشنویم [Ebm]آوایش را که گوید [Bbm]آرام بگیر\nگرچه خسـ[Bbm]ـته یا درمانده از وادی‌[Ab]‌ها بگذریم\n۱. از بدی‌[Ebm]‌ها نترسیم چون بر او [Gb]پناه بریم\n۲. یک چیز [Ebm]را می‌دانیم و بدان [Gb]می‌نگریم[F7]\n\n[Pre-Chorus]\nبازایسـ[Bbm]ـتیم و دانیم او خدا[Fm]ســت\nکه او خدا[Ab]ســت که او خدا[Bbm]ســت  [F7]\nبازایسـ[Bbm]ـتیم و دانیم او خدا[Fm]ســت\nکه او خدا[Ab]ســت که او خدا[Bbm]ســت\n\n[Chorus]\nیهوه [Bbm]نِسی پرچم پیروزی یهوه [Ab]روعی شبان قوم‌هایی\nیهوه [Gb]شالوم خداوند صلح و سلامتی[Ab]\nیهوه [Bbm]رافا خداوند شفا یهوه [Ab]یریٰ می‌کند مهیا\nیهوه [Gb]صَبایوت خداوند لشکرها[Ab]\n\n[V2]\nاوست خدای [Bbm]یتیمان اوست حا[Ab]می غریبان\nو بـرافــر[Ebm]ازنـده‌ی افـتـادگــا[Bbm]ن\nرهاننده[Bbm]‌ی زندانیان و پناه [Ab]بی‌کسان\n۱. مرهم شـ[Ebm]ـکسته‌دلان ، تسلی [Bbm]ماتمیان\n۲. اوست قاد[Ebm]ر مطلق ، متعا[Gb]ل است در جهان[F7]\n\n[V1]\n\n[Pre-Chorus]\n\n[Chorus]\n\n[V2]"
   },
   {
     "id": 115,
@@ -4298,10 +4307,10 @@
       "en": "سرود انگلیسی",
       "es": "سرود انگلیسی"
     },
-    "artist": "سرود انگلیسی",
-    "composer": "",
+    "artist": "ترجمه شده از سرود انگلیسی",
+    "composer": "ترجمه شده از سرود انگلیسی",
     "youtubeId": "HyBnrW9MRS4",
-    "audioUrl": "/worship/audio/kalameh/عجیب است چه عجیب است.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/عجیب است چه عجیب است.mp3",
     "videoUrl": "https://www.youtube.com/embed/HyBnrW9MRS4",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AJIBASTCHEAJIBAST.pptx",
     "lyricsFiles": {
@@ -4309,11 +4318,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nعـ[F]ـجیب است چه عـ[G]ـجیب است\nعشق[Am] تو ای عیسی\nصلـ[F]ـیب تو آو[G]رده آزاد[Am]ی\nهیچکـ[F]ـس نمی‌تو[G]اند درک کند[Am] این حقیقت\nچه پر[F]جلال چه ز[G]یبایی عیسـ[C]ـی\nChorus (x2)\nدوستت دار[F]م عیسـ[G]ـی ، خداوند[F] بی همتا[G]\nجانم سر[F]اید حـ[G]ـمدت ر[C]ا\nV2\nپر[F]جلال  چه پر[G]جلال است خـ[Am]ـلقت دستت\nکارها[F]ی تو نما[G]یان در جها[Am]ن\nدر حـ[F]ـضورت می‌پر[G]ستم با تـ[Am]ـمامی جان\nچه پر[F]جلال چه ز[G]یبایی عیسـ[C]ـی\n(x2) Chorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nعــجیب است چه عــجیب است\nعشق تو ای عیسی\nصلــیب تو آورده آزادی\nهیچکــس نمی‌تواند درک کند این حقیقت\nچه پرجلال چه زیبایی عیســی\n\n[Chorus]\nدوستت دارم عیســی ، خداوند بی همتا\nجانم سراید حــمدت را\n\n[V2]\nپرجلال  چه پرجلال است خــلقت دستت\nکارهای تو نمایان در جهان\nدر حــضورت می‌پرستم با تــمامی جان\nچه پرجلال چه زیبایی عیســی\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "C",
+    "chord": "F",
     "mode": "ماژور",
     "duration": 0,
     "tags": [
@@ -4323,9 +4331,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "سرود-انگلیسی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Ajib ast che ajib ast (Doostat dāram ey Isā).pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ajib%20ast%20che%20ajib%20ast%20%28Doostat%20da%CC%84ram%20ey%20Isa%CC%84%29.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=HyBnrW9MRS4",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nعـ[F]ـجیب است چه عـ[G]ـجیب است\nعشق [Am]تو ای عیسی\nصلـ[F]ـیب تو آو[G]رده آزاد[Am]ی\nهیچکـ[F]ـس نمی‌تو[G]اند درک کند [Am]این حقیقت\nچه پر[F]جلال چه ز[G]یبایی عیسـ[C]ـی\n\n[Chorus]\nدوستت دار[F]م عیسـ[G]ـی ، خداوند [F]بی همتا[G]\nجانم سر[F]اید حـ[G]ـمدت ر[C]ا\n\n[V2]\nپر[F]جلال  چه پر[G]جلال است خـ[Am]ـلقت دستت\nکارها[F]ی تو نما[G]یان در جها[Am]ن\nدر حـ[F]ـضورت می‌پر[G]ستم با تـ[Am]ـمامی جان\nچه پر[F]جلال چه ز[G]یبایی عیسـ[C]ـی\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]"
   },
   {
     "id": 121,
@@ -4512,10 +4521,10 @@
       "en": "روزبه-نیلوفر-دریا",
       "es": "روزبه-نیلوفر-دریا"
     },
-    "artist": "روزبه-نیلوفر-دریا",
-    "composer": "",
+    "artist": "شاعر و آهنگساز روزبه-نیلوفر-دریا",
+    "composer": "شاعر و آهنگساز روزبه-نیلوفر-دریا",
     "youtubeId": null,
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/به حضورت آییم.mp3",
     "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BEHOZURATAIM.pptx",
     "lyricsFiles": {
@@ -4523,11 +4532,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبه حـ[Em]ـضورت آییـ[Bm]ـم ، نزد[C]ت زانو زنـ[G]ـیم\nو بــ[Am]ه یاد آریم تو[Bm]یی پادشا[Em]ه\nسرمــ[Em]ـنشأ خلقـ[Bm]ـت ، منبـ[C]ـع محبـ[G]ـت\nمرکـ[Am]ـز هستی خد[Bm]اوند عـ[Em]ـیسی\nV2\nپیش ا[Em]ز آفرینـ[Bm]ـش تو بو[C]دی و هستـ[G]ـی\nاز عـ[Am]ـشقت پدید آ[Bm]مده هستـ[Em]ـی\nتو ابـ[Em]ـدیت ر[Bm]ا همر[C]اه ما خواستـ[G]ـی\nدر پی[Am]‌ات آییم ا[Bm]ی راه و را[Em]ستی\n[column]\nChorus\nتو ما را خـ[G]ـواندی در عیسی پیش از خلقـ[D]ـت\nتا باشیم فـ[Am]ـرزندان ا[C]با در فیضـ[Em]ـت\nو چون خون[G] عیسی که در رگهای ما[D]ست\nتضمین هـ[Am]ـویت و عـ[Bm]ـشق تو به مـ[Em]ـاست",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبه حــضورت آییــم ، نزدت زانو زنــیم\nو بــه یاد آریم تویی پادشاه\nسرمـــنشأ خلقــت ، منبــع محبــت\nمرکــز هستی خداوند عــیسی\n\n[V2]\nپیش از آفرینــش تو بودی و هستــی\nاز عــشقت پدید آمده هستــی\nتو ابــدیت را همراه ما خواستــی\nدر پی‌ات آییم ای راه و راستی\n\n[Chorus]\nتو ما را خــواندی در عیسی پیش از خلقــت\nتا باشیم فــرزندان ابا در فیضــت\nو چون خون عیسی که در رگهای ماست\nتضمین هــویت و عــشق تو به مــاست\n\n[V1]\n\n[V2]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -4537,11 +4545,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نیلوفر-دریا",
-    "pdfFileUrl": "/worship/pdf/kalameh/Be hozoorat āyim nazdat zānoo zanim.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Be%20hozoorat%20a%CC%84yim%20nazdat%20za%CC%84noo%20zanim.pdf",
     "youtubeUrl": "",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1]\nبه حـ[Em]ـضورت آییـ[Bm]ـم ، نزد[C]ت زانو زنـ[G]ـیم\nو بــ[Am]ه یاد آریم تو[Bm]یی پادشا[Em]ه\nسرمــ[Em]ـنشأ خلقـ[Bm]ـت ، منبـ[C]ـع محبـ[G]ـت\nمرکـ[Am]ـز هستی خد[Bm]اوند عـ[Em]ـیسی\n\n[V2]\nپیش ا[Em]ز آفرینـ[Bm]ـش تو بو[C]دی و هستـ[G]ـی\nاز عـ[Am]ـشقت پدید آ[Bm]مده هستـ[Em]ـی\nتو ابـ[Em]ـدیت ر[Bm]ا همر[C]اه ما خواستـ[G]ـی\nدر پی[Am]‌ات آییم ا[Bm]ی راه و را[Em]ستی\n\n[Chorus]\nتو ما را خـ[G]ـواندی در عیسی پیش از خلقـ[D]ـت\nتا باشیم فـ[Am]ـرزندان ا[C]با در فیضـ[Em]ـت\nو چون خون [G]عیسی که در رگهای ما[D]ست\nتضمین هـ[Am]ـویت و عـ[Bm]ـشق تو به مـ[Em]ـاست\n\n[V1]\n\n[V2]\n\n[Chorus]"
   },
   {
     "id": 127,
@@ -4765,10 +4774,10 @@
       "en": "گ.نوراللـه",
       "es": "گ.نوراللـه"
     },
-    "artist": "گ.نوراللـه",
-    "composer": "",
+    "artist": "شاعر و آهنگساز گ.نوراللـه",
+    "composer": "شاعر و آهنگساز گ.نوراللـه",
     "youtubeId": "hO_N4LAD7C8",
-    "audioUrl": "/worship/audio/kalameh/آمد مسیح اندر جهان.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/آمد مسیح اندر جهان.mp3",
     "videoUrl": "https://www.youtube.com/embed/hO_N4LAD7C8",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AMADMASIHANDARJAHAN.pptx",
     "lyricsFiles": {
@@ -4776,9 +4785,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nآمد[Gm/D] مسیح ا[D7]ندر جهـ[Gm/D]ـان\nشـ[Cm6]ـادی کنید ا[D7]ی مؤمنان\nتسـ[Gm/D]ـبیح و تمجـ[D7]ـیدش کـ[Gm/D]ـنید\nحمـ[Cdim7]ـدش کنید و[D7]رد زبــــا[Gm/D]ن\nV2\nپـو[Gm/D]ر خدای[D7] بی مـ[Gm/D]ـکان\nشـ[Cm6]ـد آشکار ا[D7]ندر جهان\nاز نـ[Gm/D]ـور روی[D7] خود نـ[Gm/D]ـمود\nروشـ[Cdim7]ـن زمین[D7] و آسما[Gm/D]ن\n[column]\nV3\nشاد[Gm/D]ی و وجد ا[D7]ی کود[Gm/D]کان\nبـ[Cm6]ـنمایید از[D7] دل و جان\nامـر[Gm/D]وز اندر بـ[D7]ـیـت الحـ[Gm/D]ـم\nمنـ[Cdim7]ـجی عالـ[D7]ـم شد عیا[Gm/D]ن\nV4\nاینـ[Gm/D]ـک خدای[D7] بی مکـ[Gm/D]ـان\nکز[Cm6] دیده ها بـ[D7]ـودی نهان\nانـد[Gm/D]ر لباس[D7] بند[Gm/D]گی\nشد[Cdim7] خلق گمر[D7]ه را شبا[Gm/D]ن",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nآمد مسیح اندر جهــان\nشــادی کنید ای مؤمنان\nتســبیح و تمجــیدش کــنید\nحمــدش کنید ورد زبــــان\n\n[V2]\nپـور خدای بی مــکان\nشــد آشکار اندر جهان\nاز نــور روی خود نــمود\nروشــن زمین و آسمان\n\n[V3]\nشادی و وجد ای کودکان\nبــنمایید از دل و جان\nامـروز اندر بــیـت الحــم\nمنــجی عالــم شد عیان\n\n[V4]\nاینــک خدای بی مکــان\nکز دیده ها بــودی نهان\nانـدر لباس بندگی\nشد خلق گمره را شبان\n\n[V1]\n\n[V2]\n\n[V3]\n\n[V4]",
+      "en": ""
     },
     "chord": "G",
     "mode": "مینور",
@@ -4790,9 +4798,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "گنوراللـه",
-    "pdfFileUrl": "/worship/pdf/kalameh/Āmad masih andar jahān.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/A%CC%84mad%20masih%20andar%20jaha%CC%84n.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=hO_N4LAD7C8",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nآمد [Gm/D]مسیح ا[D7]ندر جهـ[Gm/D]ـان\nشـ[Cm6]ـادی کنید ا[D7]ی مؤمنان\nتسـ[Gm/D]ـبیح و تمجـ[D7]ـیدش کـ[Gm/D]ـنید\nحمـ[Cdim7]ـدش کنید و[D7]رد زبــــا[Gm/D]ن\n\n[V2]\nپـو[Gm/D]ر خدای [D7]بی مـ[Gm/D]ـکان\nشـ[Cm6]ـد آشکار ا[D7]ندر جهان\nاز نـ[Gm/D]ـور روی [D7]خود نـ[Gm/D]ـمود\nروشـ[Cdim7]ـن زمین [D7]و آسما[Gm/D]ن\n\n[V3]\nشاد[Gm/D]ی و وجد ا[D7]ی کود[Gm/D]کان\nبـ[Cm6]ـنمایید از [D7]دل و جان\nامـر[Gm/D]وز اندر بـ[D7]ـیـت الحـ[Gm/D]ـم\nمنـ[Cdim7]ـجی عالـ[D7]ـم شد عیا[Gm/D]ن\n\n[V4]\nاینـ[Gm/D]ـک خدای [D7]بی مکـ[Gm/D]ـان\nکز [Cm6]دیده ها بـ[D7]ـودی نهان\nانـد[Gm/D]ر لباس [D7]بند[Gm/D]گی\nشد [Cdim7]خلق گمر[D7]ه را شبا[Gm/D]ن\n\n[V1]\n\n[V2]\n\n[V3]\n\n[V4]"
   },
   {
     "id": 134,
@@ -5835,10 +5844,10 @@
       "en": "وحید نوروزی",
       "es": "وحید نوروزی"
     },
-    "artist": "وحید نوروزی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز وحید نوروزی",
+    "composer": "شاعر و آهنگساز وحید نوروزی",
     "youtubeId": "CbUvoPe7N6c",
-    "audioUrl": "/worship/audio/kalameh/51 Azimo heyratzast .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/51 Azimo heyratzast .mp3",
     "videoUrl": "https://www.youtube.com/embed/CbUvoPe7N6c",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZIMOHEYRATZAST.pptx",
     "lyricsFiles": {
@@ -5846,11 +5855,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nعظیم[Bm] و حیرت‌زاست همه کا[A]رهای تو\nخدا[G]وند خدای[A] قـادر مـ[Bm]ـطــلق\nعدا[Bm]لت و حق است همه را[A]ه‌های تو\nای [G]پــادشــاه[A] هـمه‌ی ا[Bm]عــصار\nPre-Chorus (x2)\nکیست [A]که از تو نتر[G]سد ای خداو[Bm]ند\nو نـ[A]ـام تـو را[G] جـلال نـدهــد[Bm]\nChorus (x2)\nزیـر[G]ا تـو تـنها[A] خـدای قـد[Bm]وسی\nهمه‌[G]ی قوم‌هـا[A] نزد تـو می‌آ[Bm]یـند",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nعظیم و حیرت‌زاست همه کارهای تو\nخداوند خدای قـادر مــطــلق\nعدالت و حق است همه راه‌های تو\nای پــادشــاه هـمه‌ی اعــصار\n\n[Pre-Chorus (x2)]\nکیست که از تو نترسد ای خداوند\nو نــام تـو را جـلال نـدهــد\n\n[Chorus (x2)]\nزیـرا تـو تـنها خـدای قـدوسی\nهمه‌ی قوم‌هـا نزد تـو می‌آیـند\n\n[Verse]\n\n[Pre-Chorus (x2)]\n\n[Chorus (x2)]",
+      "en": ""
     },
-    "chord": "B",
+    "chord": "Bm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -5860,9 +5868,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Azimo heyratzāst.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Azimo%20heyratza%CC%84st.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=Im9bilZUGkI",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse]\nعظیم [Bm]و حیرت‌زاست همه کا[A]رهای تو\nخدا[G]وند خدای [A]قـادر مـ[Bm]ـطــلق\nعدا[Bm]لت و حق است همه را[A]ه‌های تو\nای [G]پــادشــاه [A]هـمه‌ی ا[Bm]عــصار\n\n[Pre-Chorus (x2)]\nکیست [A]که از تو نتر[G]سد ای خداو[Bm]ند\nو نـ[A]ـام تـو را [G]جـلال نـدهــد[Bm]\n\n[Chorus (x2)]\nزیـر[G]ا تـو تـنها [A]خـدای قـد[Bm]وسی\nهمه‌[G]ی قوم‌هـا [A]نزد تـو می‌آ[Bm]یـند\n\n[Verse]\n\n[Pre-Chorus (x2)]\n\n[Chorus (x2)]"
   },
   {
     "id": 164,
@@ -5906,10 +5915,10 @@
       "en": "How great is our God",
       "es": "How great is our God"
     },
-    "artist": "Chris Tomlin-Ed Cash-Jesse Reeves",
-    "composer": "Chris Tomlin-Ed Cash-Jesse Reeves",
+    "artist": "سرود اصلی How great is our Godشاعر و آهنگساز Chris Tomlin-Ed Cash-Jesse Reeves",
+    "composer": "سرود اصلی How great is our Godشاعر و آهنگساز Chris Tomlin-Ed Cash-Jesse Reeves",
     "youtubeId": null,
-    "audioUrl": "/worship/audio/kalameh/49 Azim ast khoda .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/49 Azim ast khoda .mp3",
     "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZIMASTKHODA.pptx",
     "lyricsFiles": {
@@ -5917,9 +5926,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nعـظـیـ[G]ـم اسـت خـدا\nبـاهم گویـیـم عـظـیـ[Em]ـم اسـت خـدا\nهـمـه خـوانـیـم عـظـیـ[C]ـم\nچـه عـظـیـ[D]ـم اسـت خـدا[G]\nChorus\nنــا[G]م تـو بـرتـر ، تـو را [Em]می‌پـرسـتـم\nقلبـ[C]ـم گوید عـظـیـ[D]ـم اسـت خـدا[G]",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nعـظـیــم اسـت خـدا\nبـاهم گویـیـم عـظـیــم اسـت خـدا\nهـمـه خـوانـیـم عـظـیــم\nچـه عـظـیــم اسـت خـدا\n\n[Chorus]\nنــام تـو بـرتـر ، تـو را می‌پـرسـتـم\nقلبــم گوید عـظـیــم اسـت خـدا\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
     "chord": "G",
     "mode": "ماژور",
@@ -5931,9 +5939,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "how-great-is-our-god",
-    "pdfFileUrl": "/worship/pdf/kalameh/01 - تاج حکیمان - شرکت کننده.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Azim%20ast%20khoda%CC%84%20%28G%29.pdf",
     "youtubeUrl": "",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse]\nعـظـیـ[G]ـم اسـت خـدا\nبـاهم گویـیـم عـظـیـ[Em]ـم اسـت خـدا\nهـمـه خـوانـیـم عـظـیـ[C]ـم\nچـه عـظـیـ[D]ـم اسـت خـدا[G]\n\n[Chorus]\nنــا[G]م تـو بـرتـر ، تـو را [Em]می‌پـرسـتـم\nقلبـ[C]ـم گوید عـظـیـ[D]ـم اسـت خـدا[G]\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 166,
@@ -6193,22 +6202,21 @@
       "en": "روزبه نجارنژاد",
       "es": "روزبه نجارنژاد"
     },
-    "artist": "روزبه نجارنژاد",
-    "composer": "",
+    "artist": "شاعر و آهنگساز روزبه نجارنژاد",
+    "composer": "شاعر و آهنگساز روزبه نجارنژاد",
     "youtubeId": "hjrfhF_1RuQ",
-    "audioUrl": "/worship/audio/kalameh/40 Az zakhmhayash shafa yafti .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/40 Az zakhmhayash shafa yafti .mp3",
     "videoUrl": "https://www.youtube.com/embed/hjrfhF_1RuQ",
-    "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARZAKHMHAYEOUBENGAR.pptx",
+    "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARZAKHMHAYEOUBENGAR%28AZZAKHMHAYASH%29.pptx",
     "lyricsFiles": {
       "fa": "",
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبر ز[Em]خمهای او بـ[Bm]ـنگر ، بر د[C]رد و رنج ا[D]و \nکه بـ[Am]ـهر گناها[C]نت کشته شـ[B]ـد  \nتاج[Em] خاری بر سـ[Bm]ـرش ، مصلو[C]ب و تنها[D]\nاو [Am]غمهایت را [C]بر خود گر[B]فت\nChorus\nاز زخمهایـ[G]ـش شفا یافتی[D]\nاز زخمهایـ[C]ـش شفا[D] یافتی[Em]\nV2\nخوا[Em]ر و مردود گشت ا[Bm]و نزد[C] مردما[D]ن \nصاحـ[Am]ـب درد و ر[C]نج من و تـ[B]ـو\nاو ر[Em]ا نه صور[Bm]تی است و نـ[C]ـه جمالی[D]\nامـ[Am]ـا آمـد این نـ[C]ـدا از آسما[B]ن",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبر زخمهای او بــنگر ، بر درد و رنج او\nکه بــهر گناهانت کشته شــد\nتاج خاری بر ســرش ، مصلوب و تنها\nاو غمهایت را بر خود گرفت\n\n[Chorus]\nاز زخمهایــش شفا یافتی\nاز زخمهایــش شفا یافتی\n\n[V2]\nخوار و مردود گشت او نزد مردمان\nصاحــب درد و رنج من و تــو\nاو را نه صورتی است و نــه جمالی\nامــا آمـد این نــدا از آسمان\n\n[V1]\n\n[Chorus]\n\n[V2]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -6218,9 +6226,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نجارنژاد",
-    "pdfFileUrl": "/worship/pdf/kalameh/Bar zakhmhāye oo bengar (Az zakhmhāyash shafā yāfti).pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Bar%20zakhmha%CC%84ye%20oo%20bengar%20%28Az%20zakhmha%CC%84yash%20shafa%CC%84%20ya%CC%84fti%29.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=hjrfhF_1RuQ",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nبر ز[Em]خمهای او بـ[Bm]ـنگر ، بر د[C]رد و رنج ا[D]و\nکه بـ[Am]ـهر گناها[C]نت کشته شـ[B]ـد\nتاج [Em]خاری بر سـ[Bm]ـرش ، مصلو[C]ب و تنها[D]\nاو [Am]غمهایت را [C]بر خود گر[B]فت\n\n[Chorus]\nاز زخمهایـ[G]ـش شفا یافتی[D]\nاز زخمهایـ[C]ـش شفا [D]یافتی[Em]\n\n[V2]\nخوا[Em]ر و مردود گشت ا[Bm]و نزد [C]مردما[D]ن\nصاحـ[Am]ـب درد و ر[C]نج من و تـ[B]ـو\nاو ر[Em]ا نه صور[Bm]تی است و نـ[C]ـه جمالی[D]\nامـ[Am]ـا آمـد این نـ[C]ـدا از آسما[B]ن\n\n[V1]\n\n[Chorus]\n\n[V2]"
   },
   {
     "id": 174,
@@ -6375,7 +6384,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "3CTdpl7vJEU",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/237 Mikhanam shokr    .mp3",
     "videoUrl": "https://www.youtube.com/embed/3CTdpl7vJEU",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/MIKHANAMSHOKRBAHRAT.pptx",
     "lyricsFiles": {
@@ -6383,11 +6392,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبا مهر[Em]ت سویم آمدی ، مرا نـ[D]ـجات بخشیدی\nو در کـ[C]ـنار تو من آرامی دار[B]م\nاینک بـ[Em]ـرای این همه لطف و مـ[D]ـهر فراوان\nبا تسلـ[C]ـیم قلب خود می سرایـ[B]ـم\nChorus (x2)\nمی خوانم شـ[G]ـکر بهـر[D]ت ، شـ[Am]ـکر بهر[Em]ت\nشـ[G]ـکر بهر[D]ت خداو[C]ند\nV2\nبه جایـ[Em]ـم فدا شدی بر صلـ[D]ـیب مصلوب گشتی\nو زند[C]گی جاودان عطا کرد[B]ی\nاینک بـ[Em]ـه بهای خونت ، قادر[D]م نزدت آیم\nو به چـ[C]ـشمان تو من خیره شو[B]م\nChorus (x2)",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبا مهرت سویم آمدی ، مرا نــجات بخشیدی\nو در کــنار تو من آرامی دارم\nاینک بــرای این همه لطف و مــهر فراوان\nبا تسلــیم قلب خود می سرایــم\n\n[Chorus (x2)]\nمی خوانم شــکر بهـرت ، شــکر بهرت\nشــکر بهرت خداوند\n\n[V2]\nبه جایــم فدا شدی بر صلــیب مصلوب گشتی\nو زندگی جاودان عطا کردی\nاینک بــه بهای خونت ، قادرم نزدت آیم\nو به چــشمان تو من خیره شوم\n\n[Chorus (x2)]\n\n[V1]\n\n[Chorus (x2)]\n\n[V2]\n\n[Chorus (x2)]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -6397,11 +6405,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "با-مهرت-سویم-آمدی-می-خوانم-شکر-بهرت",
-    "pdfFileUrl": "/worship/pdf/kalameh/Bā mehrat sooyam āmadi (Mikhānam shokr bahrat).pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ba%CC%84%20mehrat%20sooyam%20a%CC%84madi%20%28Mikha%CC%84nam%20shokr%20bahrat%29.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=fRRXn2IULzU",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1]\nبا مهر[Em]ت سویم آمدی ، مرا نـ[D]ـجات بخشیدی\nو در کـ[C]ـنار تو من آرامی دار[B]م\nاینک بـ[Em]ـرای این همه لطف و مـ[D]ـهر فراوان\nبا تسلـ[C]ـیم قلب خود می سرایـ[B]ـم\n\n[Chorus (x2)]\nمی خوانم شـ[G]ـکر بهـر[D]ت ، شـ[Am]ـکر بهر[Em]ت\nشـ[G]ـکر بهر[D]ت خداو[C]ند\n\n[V2]\nبه جایـ[Em]ـم فدا شدی بر صلـ[D]ـیب مصلوب گشتی\nو زند[C]گی جاودان عطا کرد[B]ی\nاینک بـ[Em]ـه بهای خونت ، قادر[D]م نزدت آیم\nو به چـ[C]ـشمان تو من خیره شو[B]م\n\n[Chorus (x2)]\n\n[V1]\n\n[Chorus (x2)]\n\n[V2]\n\n[Chorus (x2)]"
   },
   {
     "id": 179,
@@ -6665,10 +6674,10 @@
       "en": "شمعون - ژیلبرت هوسپیان",
       "es": "شمعون - ژیلبرت هوسپیان"
     },
-    "artist": "شمعون - ژیلبرت هوسپیان",
-    "composer": "",
+    "artist": "از شمعون - ژیلبرت هوسپیان",
+    "composer": "از شمعون - ژیلبرت هوسپیان",
     "youtubeId": "y21nO3_z_WA",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/ایران من.mp3",
     "videoUrl": "https://www.youtube.com/embed/y21nO3_z_WA",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/IRANEMAN.pptx",
     "lyricsFiles": {
@@ -6676,11 +6685,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبه آ[Em]ن روزی ایمـ[D]ـان داریم که ایر[Bm]ان آزاد شو[Em]د\nدر[Em] سرتاسر[D] کشور نام مـ[Bm]ـسیـح پر شو[Em]د\nاز[Em] هر قوم و هـ[D]ـر ملت نام مـ[Bm]ـسیح را خوانـ[Em]ـند\nو [C]با شادی مـ[D]ـی گویند که عیسـ[Bm]ـی خداوند ا[Em]ست\nChorus\nایـ[Em]ـمان دار[Bm]م ، ایـ[D]ـمان دار[Em]م\nایـ[C]ـمان دار[D]م ، ایـ[Bm]ـمان دار[Em]م\nV2\nبه آ[Em]ن روزی ایمـ[D]ـان داریم که ایر[Bm]ان آزاد شو[Em]د\nزنـ[Em]ـدگی ایـ[D]ـرانیان پر از بـ[Bm]ـرکت شو[Em]د\nهــ[Em]ـر تاریکی و[D] ظلمت از ایر[Bm]ان خارج شو[Em]د\nنـ[C]ـور خدا یـ[D]ـهوه بر ایر[Bm]ان تابان شو[Em]د\nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبه آن روزی ایمــان داریم که ایران آزاد شود\nدر سرتاسر کشور نام مــسیـح پر شود\nاز هر قوم و هــر ملت نام مــسیح را خوانــند\nو با شادی مــی گویند که عیســی خداوند است\n\n[Chorus]\nایــمان دارم ، ایــمان دارم\nایــمان دارم ، ایــمان دارم\n\n[V2]\nبه آن روزی ایمــان داریم که ایران آزاد شود\nزنــدگی ایــرانیان پر از بــرکت شود\nهـــر تاریکی و ظلمت از ایران خارج شود\nنــور خدا یــهوه بر ایران تابان شود\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -6690,11 +6698,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "شمعون-ژیلبرت-هوسپیان",
-    "pdfFileUrl": "/worship/pdf/kalameh/Be ān roozi imān dārim ke irān āzād shavad.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Be%20a%CC%84n%20roozi%20ima%CC%84n%20da%CC%84rim%20ke%20ira%CC%84n%20a%CC%84za%CC%84d%20shavad.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=y21nO3_z_WA",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1]\nبه آ[Em]ن روزی ایمـ[D]ـان داریم که ایر[Bm]ان آزاد شو[Em]د\nدر [Em]سرتاسر [D]کشور نام مـ[Bm]ـسیـح پر شو[Em]د\nاز [Em]هر قوم و هـ[D]ـر ملت نام مـ[Bm]ـسیح را خوانـ[Em]ـند\nو [C]با شادی مـ[D]ـی گویند که عیسـ[Bm]ـی خداوند ا[Em]ست\n\n[Chorus]\nایـ[Em]ـمان دار[Bm]م ، ایـ[D]ـمان دار[Em]م\nایـ[C]ـمان دار[D]م ، ایـ[Bm]ـمان دار[Em]م\n\n[V2]\nبه آ[Em]ن روزی ایمـ[D]ـان داریم که ایر[Bm]ان آزاد شو[Em]د\nزنـ[Em]ـدگی ایـ[D]ـرانیان پر از بـ[Bm]ـرکت شو[Em]د\nهــ[Em]ـر تاریکی و [D]ظلمت از ایر[Bm]ان خارج شو[Em]د\nنـ[C]ـور خدا یـ[D]ـهوه بر ایر[Bm]ان تابان شو[Em]د\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]"
   },
   {
     "id": 187,
@@ -6775,10 +6784,10 @@
       "en": "نیلوفر-اوژنی سرکیسیان",
       "es": "نیلوفر-اوژنی سرکیسیان"
     },
-    "artist": "نیلوفر-اوژنی سرکیسیان",
-    "composer": "",
+    "artist": "شاعر و آهنگساز نیلوفر-اوژنی سرکیسیان",
+    "composer": "شاعر و آهنگساز نیلوفر-اوژنی سرکیسیان",
     "youtubeId": "Sk0q0q4mwT0",
-    "audioUrl": "/worship/audio/kalameh/برخیزیم بنا کنیم.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Barkhizim bana konim.mp3",
     "videoUrl": "https://www.youtube.com/embed/Sk0q0q4mwT0",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARKHIZIMBANAKONIM.pptx",
     "lyricsFiles": {
@@ -6786,11 +6795,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nبر[Dm]خیز[C]یم بنـ[Bb]ـا کنیم\nلبــ[Dm]ـاس ر[C]زم به تـ[Bb]ـن کنیم (x2)\nبــ[Dm]ـا پرستـ[C]ـش در نـ[Am]ـام عیسـ[Bb]ـی\nبرا[Dm]ی نبـ[C]ـرد شو[Am]یم هم دعـ[Bb]ـا (x2)\nPre-Chorus (x2)\nگوییم نبـ[Gm]ـرد از آ[Dm]نِ خد[C]اســت\nدستهای سـ[Gm]ـست تو[Dm]انش از خد[C]است\nChorus\n(x2)\nبرخیز[Gm]یم برخیز[Dm]یم دیوارها[F] را بنا کنـ[C]ـیم\n[column]\nPre-Chorus (x2)\nBridge\nدسـ[Dm]ـتهای سست را قوی سازید\nپا[Dm]های لرزان استوار\nبـر[Dm]خیزید به دورتا دور دیوار\nبایستـ[Dm]ـیم بنا کنـ[G]ـیم\nبـا[Dm] یکدست بنا کنیم بـا[Dm] دستی دیگر بجنگیم\nردای[Dm] یأس را از تـ[G]ـن به در کنـ[A]ـیم\nChorus (x2)",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nبرخیزیم بنــا کنیم\nلبـــاس رزم به تــن کنیم (x2)\nبـــا پرستــش در نــام عیســی\nبرای نبــرد شویم هم دعــا (x2)\n\n[Pre-Chorus (x2)]\nگوییم نبــرد از آنِ خداســت\nدستهای ســست توانش از خداست\n\n[Chorus (x2)]\nبرخیزیم برخیزیم دیوارها را بنا کنــیم\n\n[Pre-Chorus (x2)]\n\n[Bridge]\nدســتهای سست را قوی سازید\nپاهای لرزان استوار\nبـرخیزید به دورتا دور دیوار\nبایستــیم بنا کنــیم\nبـا یکدست بنا کنیم بـا دستی دیگر بجنگیم\nردای یأس را از تــن به در کنــیم\n\n[Chorus (x2)]\n\n[Verse]\n\n[Pre-Chorus (x2)]\n\n[Chorus (x2)]\n\n[Pre-Chorus (x2)]\n\n[Bridge]\n\n[Chorus (x2)]",
+      "en": ""
     },
-    "chord": "D",
+    "chord": "Dm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -6800,9 +6808,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "نیلوفر-اوژنی-سرکیسیان",
-    "pdfFileUrl": "/worship/pdf/kalameh/Barkhizim banā konim.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Barkhizim%20bana%CC%84%20konim.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=Sk0q0q4mwT0",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse]\nبر[Dm]خیز[C]یم بنـ[Bb]ـا کنیم\nلبــ[Dm]ـاس ر[C]زم به تـ[Bb]ـن کنیم (x2)\nبــ[Dm]ـا پرستـ[C]ـش در نـ[Am]ـام عیسـ[Bb]ـی\nبرا[Dm]ی نبـ[C]ـرد شو[Am]یم هم دعـ[Bb]ـا (x2)\n\n[Pre-Chorus (x2)]\nگوییم نبـ[Gm]ـرد از آ[Dm]نِ خد[C]اســت\nدستهای سـ[Gm]ـست تو[Dm]انش از خد[C]است\n\n[Chorus (x2)]\nبرخیز[Gm]یم برخیز[Dm]یم دیوارها [F]را بنا کنـ[C]ـیم\n\n[Pre-Chorus (x2)]\n\n[Bridge]\nدسـ[Dm]ـتهای سست را قوی سازید\nپا[Dm]های لرزان استوار\nبـر[Dm]خیزید به دورتا دور دیوار\nبایستـ[Bb]ـیم بنا کنـ[G]ـیم\nبـا [Dm]یکدست بنا کنیم بـا [Dm]دستی دیگر بجنگیم\nردای [Dm]یأس را از تـ[G]ـن به در کنـ[A]ـیم\n\n[Chorus (x2)]\n\n[Verse]\n\n[Pre-Chorus (x2)]\n\n[Chorus (x2)]\n\n[Pre-Chorus (x2)]\n\n[Bridge]\n\n[Chorus (x2)]"
   },
   {
     "id": 190,
@@ -6847,10 +6856,10 @@
       "en": "Come now is the time to worship",
       "es": "Come now is the time to worship"
     },
-    "artist": "Brian Doerksen",
-    "composer": "Brian Doerksen",
+    "artist": "سرود اصلی Come now is the time to worshipشاعر و آهنگساز Brian Doerksen",
+    "composer": "سرود اصلی Come now is the time to worshipشاعر و آهنگساز Brian Doerksen",
     "youtubeId": "aYsw_wYRHls",
-    "audioUrl": "/worship/audio/kalameh/221 Barkhiz .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/221 Barkhiz .mp3",
     "videoUrl": "https://www.youtube.com/embed/aYsw_wYRHls",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARKHIZ.pptx",
     "lyricsFiles": {
@@ -6858,9 +6867,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nبر[D]خيز ، وقت پرستش[G] او[D]ست\nبر[A]خيز ، پرستش محبوب[Em] نيكـو[G]ست\nبر[D]خيز ، پنهان نشو از نــز[G]دش[D]\nبر[A]خيز ، امروز او تو را پــذ[Em]يــرد[G]\nبر[D]خيز\nChorus\nر[G]وزى همه گويند تو خـ[D]ـداوندى د[G]ر حضورت زانو زنـ[D]ـند\nاما[G] خوشابحال آنـ[Bm]ـانكه ا[Em]مروز تو را ستايـ[A]ـند\nامـ[G]ـروز با شادى تو را مـ[D]‌ـى پرستيم فـ[G]ـرياد شادمانى زنـ[D]ـيم\nبـ[G]ـه حضورت اى شاه آ[Bm]سمانى با[Em] شادى مى‌شتابـ[A]ـيم",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nبرخيز ، وقت پرستش اوست\nبرخيز ، پرستش محبوب نيكـوست\nبرخيز ، پنهان نشو از نــزدش\nبرخيز ، امروز او تو را پــذيــرد\nبرخيز\n\n[Chorus]\nروزى همه گويند تو خــداوندى در حضورت زانو زنــند\nاما خوشابحال آنــانكه امروز تو را ستايــند\nامــروز با شادى تو را مـ‌ـى پرستيم فــرياد شادمانى زنــيم\nبــه حضورت اى شاه آسمانى با شادى مى‌شتابــيم\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
     "chord": "D",
     "mode": "ماژور",
@@ -6873,7 +6881,8 @@
     "dateAdded": "2025-01-24",
     "slug": "come-now-is-the-time-to-worship",
     "youtubeUrl": "https://www.youtube.com/watch?v=EWxzK8TA7og",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse]\nبر[D]خيز ، وقت پرستش [G]او[D]ست\nبر[A]خيز ، پرستش محبوب [Em]نيكـو[G]ست\nبر[D]خيز ، پنهان نشو از نــز[G]دش[D]\nبر[A]خيز ، امروز او تو را پــذ[Em]يــرد[G]\nبر[D]خيز\n\n[Chorus]\nر[G]وزى همه گويند تو خـ[D]ـداوندى د[G]ر حضورت زانو زنـ[D]ـند\nاما [G]خوشابحال آنـ[Bm]ـانكه ا[Em]مروز تو را ستايـ[A]ـند\nامـ[G]ـروز با شادى تو را مـ[D]‌ـى پرستيم فـ[G]ـرياد شادمانى زنـ[D]ـيم\nبـ[G]ـه حضورت اى شاه آ[Bm]سمانى با [Em]شادى مى‌شتابـ[A]ـيم\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 192,
@@ -6955,10 +6964,10 @@
       "en": "روزبه نجارنژاد",
       "es": "روزبه نجارنژاد"
     },
-    "artist": "روزبه نجارنژاد",
-    "composer": "",
+    "artist": "شاعر و آهنگساز روزبه نجارنژاد",
+    "composer": "شاعر و آهنگساز روزبه نجارنژاد",
     "youtubeId": "5Jvh-uHd3qs",
-    "audioUrl": "/worship/audio/kalameh/نام تو .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/4 Barafrazim name tora.mp3",
     "videoUrl": "https://www.youtube.com/embed/5Jvh-uHd3qs",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARAFRAZIMNAMETORA.pptx",
     "lyricsFiles": {
@@ -6966,11 +6975,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse (x2)\nبر[Em]افرازيم نام تو را ا[G]ی سرور و پادشاه\nبنا[D] کنيم بهرت تختی تا[C] جلوس کنی عيسی\nسر[Em]ودها و ستايش‌ها [G]جلال دهند نامت را\nآ[D]شکار نما روی خود را ا[C]كنون در ميان ما\nChorus (x2)\nگو[G]ييم هللوياه ، گو[D]ييم هللوياه\nگو[Am]ييم هللوياه اى[Em] پادشاه\nگو[G]ييم جلال بر تو ، گو[D]ييم جلال بر تو\nگو[Am]ييم جلال بر تو ا[Em]ى پادشاه",
-      "en": "",
-      "es": ""
+      "fa": "[Verse (x2)]\nبرافرازيم نام تو را ای سرور و پادشاه\nبنا کنيم بهرت تختی تا جلوس کنی عيسی\nسرودها و ستايش‌ها جلال دهند نامت را\nآشکار نما روی خود را اكنون در ميان ما\n\n[Chorus (x2)]\nگوييم هللوياه ، گوييم هللوياه\nگوييم هللوياه اى پادشاه\nگوييم جلال بر تو ، گوييم جلال بر تو\nگوييم جلال بر تو اى پادشاه\n\n[Verse (x2)]\n\n[Chorus (x2)]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -6980,11 +6988,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نجارنژاد",
-    "pdfFileUrl": "/worship/pdf/kalameh/Barafrāzim nāme to rā.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Barafra%CC%84zim%20na%CC%84me%20to%20ra%CC%84.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=5Jvh-uHd3qs",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[Verse (x2)]\nبر[Em]افرازيم نام تو را ا[G]ی سرور و پادشاه\nبنا [D]کنيم بهرت تختی تا [C]جلوس کنی عيسی\nسر[Em]ودها و ستايش‌ها [G]جلال دهند نامت را\nآ[D]شکار نما روی خود را ا[C]كنون در ميان ما\n\n[Chorus (x2)]\nگو[G]ييم هللوياه ، گو[D]ييم هللوياه\nگو[Am]ييم هللوياه اى [Em]پادشاه\nگو[G]ييم جلال بر تو ، گو[D]ييم جلال بر تو\nگو[Am]ييم جلال بر تو ا[Em]ى پادشاه\n\n[Verse (x2)]\n\n[Chorus (x2)]"
   },
   {
     "id": 195,
@@ -9222,10 +9231,10 @@
       "en": "I'm trading my sorrows",
       "es": "I'm trading my sorrows"
     },
-    "artist": "Darrell Patton Evans",
-    "composer": "Darrell Patton Evans",
+    "artist": "سرود اصلی I'm trading my sorrowsشاعر و آهنگساز Darrell Patton Evans",
+    "composer": "سرود اصلی I'm trading my sorrowsشاعر و آهنگساز Darrell Patton Evans",
     "youtubeId": "zYKzNx5RweE",
-    "audioUrl": "/worship/audio/kalameh/81 Bejaye gham'ha.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/81 Bejaye gham'ha.mp3",
     "videoUrl": "https://www.youtube.com/embed/zYKzNx5RweE",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BEJAYEGHAMHA.pptx",
     "lyricsFiles": {
@@ -9233,9 +9242,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبـ[G]ــه جــا[Em]ی غــم‌[C]هــا[D]\nرنــ[G]ـج و[Em] غــصــه‌[C]هــا[D]\nمی‌[G]پــذ[Em]یرم شـ[C]ـادی[D] خـدا[G]\nV2\nبـ[G]ــه جــا[Em]ی گــنــ[C]ـاه[D]\nشــر[G]م و[Em] اشــتــبــ[C]ـاه[D]\nآز[G]ادی دار[Em]م د[C]ر نام[D] عیسـی[G]\nChorus\nمی‌[G]پــذیـ[Em]ـرم خــدا[C]ونــد[D]\nمی‌[G]پــذیـ[Em]ـرم خــدا[C]ونــد[D]\nمی‌[G]پــذیـ[Em]ـرم د[C]ر نام[D] عیسـی[G]",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبـــه جــای غــم‌هــا\nرنـــج و غــصــه‌هــا\nمی‌پــذیرم شــادی خـدا\n\n[V2]\nبـــه جــای گــنـــاه\nشــرم و اشــتــبـــاه\nآزادی دارم در نام عیسـی\n\n[Chorus]\nمی‌پــذیــرم خــداونــد\nمی‌پــذیــرم خــداونــد\nمی‌پــذیــرم در نام عیسـی\n\n[V1]\n\n[V2]\n\n[Chorus]",
+      "en": ""
     },
     "chord": "G",
     "mode": "ماژور",
@@ -9250,7 +9258,9 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=gcIO8XB1qSs",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Be%20ja%CC%84ye%20ghamha%CC%84%20%28G%29.pdf",
+    "chordsText": "[V1]\nبـ[G]ــه جــا[Em]ی غــم‌[C]هــا[D]\nرنــ[G]ـج و [Em]غــصــه‌[C]هــا[D]\nمی‌[G]پــذ[Em]یرم شـ[C]ـادی [D]خـدا[G]\n\n[V2]\nبـ[G]ــه جــا[Em]ی گــنــ[C]ـاه[D]\nشــر[G]م و [Em]اشــتــبــ[C]ـاه[D]\nآز[G]ادی دار[Em]م د[C]ر نام [D]عیسـی[G]\n\n[Chorus]\nمی‌[G]پــذیـ[Em]ـرم خــدا[C]ونــد[D]\nمی‌[G]پــذیـ[Em]ـرم خــدا[C]ونــد[D]\nمی‌[G]پــذیـ[Em]ـرم د[C]ر نام [D]عیسـی[G]\n\n[V1]\n\n[V2]\n\n[Chorus]"
   },
   {
     "id": 200,
@@ -9259,10 +9269,10 @@
       "en": "Sing out",
       "es": "Sing out"
     },
-    "artist": "Ron Kenoly",
-    "composer": "Ron Kenoly",
+    "artist": "سرود اصلی Sing outشاعر و آهنگساز Ron Kenolyمترجم آستوازادوریان",
+    "composer": "سرود اصلی Sing outشاعر و آهنگساز Ron Kenolyمترجم آستوازادوریان",
     "youtubeId": "fq1Ws4-4aQ0",
-    "audioUrl": "/worship/audio/kalameh/80 Becheshid va bebinid.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/80 Becheshid va bebinid.mp3",
     "videoUrl": "https://www.youtube.com/embed/fq1Ws4-4aQ0",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BECHESHIDVABEBINID.pptx",
     "lyricsFiles": {
@@ -9270,9 +9280,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Chorus\nبچشـ[G]ـید و بـ[C]ـبـیـنـیـد [D]که خداوند نیکو[G]ست\nV1\nکاخـ[G]ـی ز حـ[C]ـمد ساز[D]ید او [G/B]را بـرا[C]فـرازیـد[D]\nبـا [C]قلـب و زبـا[D]ن بـا حـ[B7]ـمـد و شکـرگـو[Em7]یـان \nبـهــر[Am7] شـــاه‌شـاهـا[D7]ن\nV2\nبـهـر[G]ش ســرو[C]د خــوانـیـد[D] \nبـا شـ[G/B]ـادی ســر[C]ایـیـد[D]\nمـهـر[C]ش بـی‌زو[D]ال آن شـا[B7]ه پــرجــلا[Em7]ل \nدر [Am7]وصـفـش سرایـ[D7]ـیــد\nبـهـر[C]ش ســرو[D]د خــوانـیــد[G]",
-      "en": "",
-      "es": ""
+      "fa": "[Chorus]\nبچشــید و بــبـیـنـیـد که خداوند نیکوست\n\n[V1]\nکاخــی ز حــمد سازید او را بـرافـرازیـد\nبـا قلـب و زبـان بـا حــمـد و شکـرگـویـان\nبـهــر شـــاه‌شـاهـان\n\n[V2]\nبـهـرش ســرود خــوانـیـد\nبـا شــادی ســرایـیـد\nمـهـرش بـی‌زوال آن شـاه پــرجــلال\nدر وصـفـش سرایــیــد\nبـهـرش ســرود خــوانـیــد\n\n[Chorus]\n\n[V1]\n\n[V2]",
+      "en": ""
     },
     "chord": "G",
     "mode": "ماژور",
@@ -9285,7 +9294,8 @@
     "dateAdded": "2025-01-24",
     "slug": "sing-out",
     "youtubeUrl": "https://www.youtube.com/watch?v=zYKzNx5RweE",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Chorus]\nبچشـ[G]ـید و بـ[C]ـبـیـنـیـد [D]که خداوند نیکو[G]ست\n\n[V1]\nکاخـ[G]ـی ز حـ[C]ـمد ساز[D]ید او [G/B]را بـرا[C]فـرازیـد[D]\nبـا [C]قلـب و زبـا[D]ن بـا حـ[B7]ـمـد و شکـرگـو[Em7]یـان\nبـهــر [Am7]شـــاه‌شـاهـا[D7]ن\n\n[V2]\nبـهـر[G]ش ســرو[C]د خــوانـیـد[D]\nبـا شـ[G/B]ـادی ســر[C]ایـیـد[D]\nمـهـر[C]ش بـی‌زو[D]ال آن شـا[B7]ه پــرجــلا[Em7]ل\nدر [Am7]وصـفـش سرایـ[D7]ـیــد\nبـهـر[C]ش ســرو[D]د خــوانـیــد[G]\n\n[Chorus]\n\n[V1]\n\n[V2]"
   },
   {
     "id": 201,
@@ -9294,10 +9304,10 @@
       "en": "وحید نوروزی",
       "es": "وحید نوروزی"
     },
-    "artist": "وحید نوروزی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز وحید نوروزی",
+    "composer": "شاعر و آهنگساز وحید نوروزی",
     "youtubeId": "khtAURm_EMI",
-    "audioUrl": "/worship/audio/kalameh/به من هر روزه می گویی.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/به من هر روزه می گویی.mp3",
     "videoUrl": "https://www.youtube.com/embed/khtAURm_EMI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BEMANHARRUZEMIGUYI.pptx",
     "lyricsFiles": {
@@ -9305,9 +9315,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبه مـ[G]ـن هر روزه می‌گویـ[Em]ـی که مـ[C]ـن فرز[G]ند تو هستـ[D]ـم\nبه یا[G]د من می‌آور[Em]ی گویی کـ[D]ـه میراث تو هستـ[G]ـم\nبه مـ[G]ـن هر روزه می‌گویـ[Em]ـی متـ[C]ـرس که مـ[G]ـن با تو هسـ[D]ـتم\nبه با[G]ل‌هایت می‌پوشانـ[Em]ـی مرا کـ[D]ـه دل به تو بستـ[G]ـم\nChorus\nاین ر[Em]ا دانـــ[Bm]ـم \nکه هستـ[C]ــی هردم به یا[D]دم \nاین ر[Em]ا دانـــ[Bm]ـم\nدر تو ا[C]منیت دار[G]م\n[column]\nV2\nاین را[G] در دل ایمان دار[Em]م که تـ[C]ـو خداوندم هسـ[D]ـتی\nگرچـ[G]ـه در ظاهر نبیـ[Em]ـنم ولی د[D]ر قلبم ساکن هستـ[G]ـی\nاین ر[G]ا به یاد می‌آور[Em]م که نـ[C]ـجات جانم هـ[D]ـستی\nسر[G]ودها بهرت سرایـ[Em]ـم که تو مـ[D]ـحبوب جانم هستـ[G]ـی\nBridge\nمرا [G]تو به نزد خود می‌خوا[Em]نــــی [C] \nمرا [G]تو فرزند خود می‌دا[Em]نـــی [D] \nمرا [G]تو به نزد خود می‌خوا[Em]نــــی [C]\nمرا [G]تو محبوب خود می‌دا[Em]نـــی [D]",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبه مــن هر روزه می‌گویــی که مــن فرزند تو هستــم\nبه یاد من می‌آوری گویی کــه میراث تو هستــم\nبه مــن هر روزه می‌گویــی متــرس که مــن با تو هســتم\nبه بال‌هایت می‌پوشانــی مرا کــه دل به تو بستــم\n\n[Chorus]\nاین را دانــــم\nکه هستـــی هردم به یادم\nاین را دانــــم\nدر تو امنیت دارم\n\n[V2]\nاین را در دل ایمان دارم که تــو خداوندم هســتی\nگرچــه در ظاهر نبیــنم ولی در قلبم ساکن هستــی\nاین را به یاد می‌آورم که نــجات جانم هــستی\nسرودها بهرت سرایــم که تو مــحبوب جانم هستــی\n\n[Bridge]\nمرا تو به نزد خود می‌خوانــــی\nمرا تو فرزند خود می‌دانـــی\nمرا تو به نزد خود می‌خوانــــی\nمرا تو محبوب خود می‌دانـــی\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Bridge]",
+      "en": ""
     },
     "chord": "G",
     "mode": "ماژور",
@@ -9319,9 +9328,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Be man har rooze migooi.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Be%20man%20har%20rooze%20migooi.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=khtAURm_EMI",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nبه مـ[G]ـن هر روزه می‌گویـ[Em]ـی که مـ[C]ـن فرز[G]ند تو هستـ[D]ـم\nبه یا[G]د من می‌آور[Em]ی گویی کـ[D]ـه میراث تو هستـ[G]ـم\nبه مـ[G]ـن هر روزه می‌گویـ[Em]ـی متـ[C]ـرس که مـ[G]ـن با تو هسـ[D]ـتم\nبه با[G]ل‌هایت می‌پوشانـ[Em]ـی مرا کـ[D]ـه دل به تو بستـ[G]ـم\n\n[Chorus]\nاین ر[Em]ا دانـــ[Bm]ـم\nکه هستـ[C]ــی هردم به یا[D]دم\nاین ر[Em]ا دانـــ[Bm]ـم\nدر تو ا[C]منیت دار[G]م\n\n[V2]\nاین را [G]در دل ایمان دار[Em]م که تـ[C]ـو خداوندم هسـ[D]ـتی\nگرچـ[G]ـه در ظاهر نبیـ[Em]ـنم ولی د[D]ر قلبم ساکن هستـ[G]ـی\nاین ر[G]ا به یاد می‌آور[Em]م که نـ[C]ـجات جانم هـ[D]ـستی\nسر[G]ودها بهرت سرایـ[Em]ـم که تو مـ[D]ـحبوب جانم هستـ[G]ـی\n\n[Bridge]\nمرا [G]تو به نزد خود می‌خوا[Em]نــــی [C]\nمرا [G]تو فرزند خود می‌دا[Em]نـــی [D]\nمرا [G]تو به نزد خود می‌خوا[Em]نــــی [C]\nمرا [G]تو محبوب خود می‌دا[Em]نـــی [D]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Bridge]"
   },
   {
     "id": 202,
@@ -9330,10 +9340,10 @@
       "en": "I raise a Hallelujah",
       "es": "I raise a Hallelujah"
     },
-    "artist": "Jonathan Melissa Helser-Bethel Church",
-    "composer": "Jonathan Melissa Helser-Bethel Church",
+    "artist": "سرود اصلی I raise a Hallelujahشاعر و آهنگساز Jonathan Melissa Helser-Bethel Churchمترجم روزبه-نیلوفر",
+    "composer": "سرود اصلی I raise a Hallelujahشاعر و آهنگساز Jonathan Melissa Helser-Bethel Churchمترجم روزبه-نیلوفر",
     "youtubeId": "SSG4DnDXyXI",
-    "audioUrl": "/worship/audio/kalameh/79 Barafrazam halelujah.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Barafrazam Hallelujah  I raise a hallelujah in FARSI   .mp3",
     "videoUrl": "https://www.youtube.com/embed/SSG4DnDXyXI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARAFRAZAMHALLELUJAH.pptx",
     "lyricsFiles": {
@@ -9341,9 +9351,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبرافرا[G]زم هللویاه ، در حضـ[C]ـور دشمنانم\nبرافرا[Em]زم هللویاه ، بلـ[D]ـندتر از بی‌ایمانی\nبرافرا[G]زم هللویاه ، پر[C]ستش است سلاحم\nبرافرا[Em]زم هللویاه ، آسما[D]ن برایم می‌جنگد\nChorus\nمـ[C]ـی‌‌سرایم در میـ[G]ـان طوفان\nتا[Em] بانگ من را بشنو[D]د آسِمان\nاز[C] خاکستر برمی‌خـ[G]ـیزد اُمید\nبر[Em] مرگ پیروز شد، زنده ا[D]ست شاه‌شاهان\nV2\nبرافرا[G]زم هللویاه ، با تـ[C]ـمام وجودم\nبرافرا[Em]زم هللویاه ، خواهم د[D]ید تاریکی محو گشته\nبرافرا[G]زم هللویاه ، گرچـ[C]ـه گیج و حیرانم\nبرافرا[Em]زم هللویاه ، قدر[D]ت ترس محو گشته\n[column]\nBridge\nخوانـ[G]ـم بلندتر خوانـ[C]ـم بلندتر \nخوانـ[Em]ـم بلندتر خوانـ[D]ـم بلندتر\nخوانـ[G]ـم بلندتر ، در حضور دشمنانم\nخوانـ[C]ـم بلندتر ، بلندتر از بی‌ایمانی\nخوانـ[Em]ـم بلندتر ، پرستش است سلاحم\nخوانـ[D]ـم بلندتر ، آسمان برایم می‌جنگد",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبرافرازم هللویاه ، در حضــور دشمنانم\nبرافرازم هللویاه ، بلــندتر از بی‌ایمانی\nبرافرازم هللویاه ، پرستش است سلاحم\nبرافرازم هللویاه ، آسمان برایم می‌جنگد\n\n[Chorus]\nمــی‌‌سرایم در میــان طوفان\nتا بانگ من را بشنود آسِمان\nاز خاکستر برمی‌خــیزد اُمید\nبر مرگ پیروز شد، زنده است شاه‌شاهان\n\n[V2]\nبرافرازم هللویاه ، با تــمام وجودم\nبرافرازم هللویاه ، خواهم دید تاریکی محو گشته\nبرافرازم هللویاه ، گرچــه گیج و حیرانم\nبرافرازم هللویاه ، قدرت ترس محو گشته\n\n[Bridge]\nخوانــم بلندتر خوانــم بلندتر\nخوانــم بلندتر خوانــم بلندتر\nخوانــم بلندتر ، در حضور دشمنانم\nخوانــم بلندتر ، بلندتر از بی‌ایمانی\nخوانــم بلندتر ، پرستش است سلاحم\nخوانــم بلندتر ، آسمان برایم می‌جنگد\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Bridge]",
+      "en": ""
     },
     "chord": "G",
     "mode": "ماژور",
@@ -9355,9 +9364,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "i-raise-a-hallelujah",
-    "pdfFileUrl": "/worship/pdf/kalameh/Barafrāzam Halelooyāh.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Barafra%CC%84zam%20Halelooya%CC%84h.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=fq1Ws4-4aQ0",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nبرافرا[G]زم هللویاه ، در حضـ[C]ـور دشمنانم\nبرافرا[Em]زم هللویاه ، بلـ[D]ـندتر از بی‌ایمانی\nبرافرا[G]زم هللویاه ، پر[C]ستش است سلاحم\nبرافرا[Em]زم هللویاه ، آسما[D]ن برایم می‌جنگد\n\n[Chorus]\nمـ[C]ـی‌‌سرایم در میـ[G]ـان طوفان\nتا [Em]بانگ من را بشنو[D]د آسِمان\nاز [C]خاکستر برمی‌خـ[G]ـیزد اُمید\nبر [Em]مرگ پیروز شد، زنده ا[D]ست شاه‌شاهان\n\n[V2]\nبرافرا[G]زم هللویاه ، با تـ[C]ـمام وجودم\nبرافرا[Em]زم هللویاه ، خواهم د[D]ید تاریکی محو گشته\nبرافرا[G]زم هللویاه ، گرچـ[C]ـه گیج و حیرانم\nبرافرا[Em]زم هللویاه ، قدر[D]ت ترس محو گشته\n\n[Bridge]\nخوانـ[G]ـم بلندتر خوانـ[C]ـم بلندتر\nخوانـ[Em]ـم بلندتر خوانـ[D]ـم بلندتر\nخوانـ[G]ـم بلندتر ، در حضور دشمنانم\nخوانـ[C]ـم بلندتر ، بلندتر از بی‌ایمانی\nخوانـ[Em]ـم بلندتر ، پرستش است سلاحم\nخوانـ[D]ـم بلندتر ، آسمان برایم می‌جنگد\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Bridge]"
   },
   {
     "id": 203,
@@ -9366,10 +9376,10 @@
       "en": "وحید نوروزی",
       "es": "وحید نوروزی"
     },
-    "artist": "وحید نوروزی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز وحید نوروزی",
+    "composer": "شاعر و آهنگساز وحید نوروزی",
     "youtubeId": "lZukeHMLU4E",
-    "audioUrl": "/worship/audio/kalameh/77 Ba toloue to dar sobhi taze.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/77 Ba toloue to dar sobhi taze.mp3",
     "videoUrl": "https://www.youtube.com/embed/lZukeHMLU4E",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BATOLUETODARSOBHITAZE.pptx",
     "lyricsFiles": {
@@ -9377,11 +9387,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبا[Em] طلوع تو در صـ[D]ـبحی تازه\nپــ[Am]ـیش روم با تو خدا[B7]وند زنده\nدر[Em] امیدی نو ا[D]یمانی تازه\nرا[Am]ه روم با تو خدا[B7]وند هر روزه\nChorus\nاشـ[Em]ـتیاق من بـ[D]ـودنِ در توست\nایـ[Am]ـمان در من طالـ[B7]ـب روی توست\nاشـ[Em]ـتیاق من بـ[D]ـودنِ در توست\nایـ[Am]ـمان در من در جـ[B7]ـستجوی توست\n[column]\nV2\nبا[Em] دعای در نام[D] تو همیشه\nایـ[Am]ـن را می‌بینم پیر[B7]وزم هر روزه\nچو[Em]ن کلام توست در جا[D]نم اندیشه\nمن[Am] شاخه‌ام و تو بـ[B7]ـهر من ریشه\nBridge\nدر[Em] حضور تـ[B7]ــو ، محو[Em] شکوه تـ[B7]ــو\nدید[Em]ن روی تـ[B7]ــو پدر ، شنیــ[Em]ـدن از روح تـ[B7]ــو\nاین ا[Am]ست نیاز جا[Em]نم پدر ، بما[Am]نم در آن نـ[Em]ـور تو\nپر گـ[Am]ـردم از روح پاک[Em]ت ، قوتـ[B7]ـم بخشد فیض تـ[Em]ـو",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبا طلوع تو در صــبحی تازه\nپـــیش روم با تو خداوند زنده\nدر امیدی نو ایمانی تازه\nراه روم با تو خداوند هر روزه\n\n[Chorus]\nاشــتیاق من بــودنِ در توست\nایــمان در من طالــب روی توست\nاشــتیاق من بــودنِ در توست\nایــمان در من در جــستجوی توست\n\n[V2]\nبا دعای در نام تو همیشه\nایــن را می‌بینم پیروزم هر روزه\nچون کلام توست در جانم اندیشه\nمن شاخه‌ام و تو بــهر من ریشه\n\n[Bridge]\nدر حضور تـــو ، محو شکوه تـــو\nدیدن روی تـــو پدر ، شنیـــدن از روح تـــو\nاین است نیاز جانم پدر ، بمانم در آن نــور تو\nپر گــردم از روح پاکت ، قوتــم بخشد فیض تــو\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Bridge]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -9392,7 +9401,8 @@
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
     "youtubeUrl": "https://www.youtube.com/watch?v=cA_cn-7GWPE",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nبا [Em]طلوع تو در صـ[D]ـبحی تازه\nپــ[Am]ـیش روم با تو خدا[B7]وند زنده\nدر [Em]امیدی نو ا[D]یمانی تازه\nرا[Am]ه روم با تو خدا[B7]وند هر روزه\n\n[Chorus]\nاشـ[Em]ـتیاق من بـ[D]ـودنِ در توست\nایـ[Am]ـمان در من طالـ[B7]ـب روی توست\nاشـ[Em]ـتیاق من بـ[D]ـودنِ در توست\nایـ[Am]ـمان در من در جـ[B7]ـستجوی توست\n\n[V2]\nبا [Em]دعای در نام [D]تو همیشه\nایـ[Am]ـن را می‌بینم پیر[B7]وزم هر روزه\nچو[Em]ن کلام توست در جا[D]نم اندیشه\nمن [Am]شاخه‌ام و تو بـ[B7]ـهر من ریشه\n\n[Bridge]\nدر [Em]حضور تـ[B7]ــو ، محو [Em]شکوه تـ[B7]ــو\nدید[Em]ن روی تـ[B7]ــو پدر ، شنیــ[Em]ـدن از روح تـ[B7]ــو\nاین ا[Am]ست نیاز جا[Em]نم پدر ، بما[Am]نم در آن نـ[Em]ـور تو\nپر گـ[Am]ـردم از روح پاک[Em]ت ، قوتـ[B7]ـم بخشد فیض تـ[Em]ـو\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Bridge]"
   },
   {
     "id": 204,
@@ -9401,10 +9411,10 @@
       "en": "With everything",
       "es": "With everything"
     },
-    "artist": "Hillsong",
-    "composer": "Hillsong",
+    "artist": "سرود اصلی With everythingشاعر و آهنگساز Hillsong",
+    "composer": "سرود اصلی With everythingشاعر و آهنگساز Hillsong",
     "youtubeId": "Lnai3-9I3zo",
-    "audioUrl": "/worship/audio/kalameh/78 Ba tamame vojude khod .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Ba tamame vojude khod.mp3",
     "videoUrl": "https://www.youtube.com/embed/Lnai3-9I3zo",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BATAMAMEVOJUDEKHOD.pptx",
     "lyricsFiles": {
@@ -9412,11 +9422,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse (x4)\nبا تـ[C]ـمام وجو[Em]د خود ، می‌پر[G]ستیم نامت[D] را\nPre-Chorus\nقلب‌ها[C]ی ما ، فریا[Em]د ما ، جلا[G]ل دهند نامـ[D]ـت را\nچون تو[C] عیسی ، ای پادشا[Em]ه ، تنها تـ[G]ـویی خدا[D]\nChorus (melody)\nاُ..[C]......... اُ..[Em]......... اُ..[G]......... اُ...[D]..",
-      "en": "",
-      "es": ""
+      "fa": "[Verse (x4)]\nبا تــمام وجود خود ، می‌پرستیم نامت را\n\n[Pre-Chorus]\nقلب‌های ما ، فریاد ما ، جلال دهند نامــت را\nچون تو عیسی ، ای پادشاه ، تنها تــویی خدا\n\n[Chorus (melody)]\nاُ........... اُ........... اُ........... اُ.....\n\n[Verse (x4)]\n\n[Pre-Chorus]\n\n[Chorus (melody)]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "C",
     "mode": "ماژور",
     "duration": 0,
     "tags": [
@@ -9427,7 +9436,8 @@
     "dateAdded": "2025-01-24",
     "slug": "with-everything",
     "youtubeUrl": "https://www.youtube.com/watch?v=Lnai3-9I3zo",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse (x4)]\nبا تـ[C]ـمام وجو[Em]د خود ، می‌پر[G]ستیم نامت [D]را\n\n[Pre-Chorus]\nقلب‌ها[C]ی ما ، فریا[Em]د ما ، جلا[G]ل دهند نامـ[D]ـت را\nچون تو [C]عیسی ، ای پادشا[Em]ه ، تنها تـ[G]ـویی خدا[D]\n\n[Chorus (melody)]\nاُ..[C]......... اُ..[Em]......... اُ..[G]......... اُ...[D]..\n\n[Verse (x4)]\n\n[Pre-Chorus]\n\n[Chorus (melody)]"
   },
   {
     "id": 205,
@@ -9439,7 +9449,7 @@
     "artist": "",
     "composer": "",
     "youtubeId": "8B7pPVsEd0g",
-    "audioUrl": "/worship/audio/kalameh/Ba shadi namash ra sarayim .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Ba shadi namash.mp3",
     "videoUrl": "https://www.youtube.com/embed/8B7pPVsEd0g",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BASHADINAMASHRASARAYIM.pptx",
     "lyricsFiles": {
@@ -9447,11 +9457,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nبا[Em] شادى نامش[Am] را سراييم[Em]\nاو[C] شايسته[D]‌ى حمد ا[Em]ست\nدسـ[Em]ـتك زنان او[Am] را ستاييم[Em]\nاو[C] شايسته[D]‌ى حمد ا[Em]ست\nChorus\nشا[Em]يــــستــ[Am]ـه اســـ[Em]ـت\nاو[C] شايسته[D]‌ى حمد ا[Em]ست\nهــ[Em]ـلــــلـــــو[Am]يـــــاه [Em]\nاو[C] شايسته[D]‌ى حمد ا[Em]ست",
-      "en": "",
-      "finglish": ""
+      "fa": "[Verse]\nبا شادى نامش را سراييم\nاو شايسته‌ى حمد است\nدســتك زنان او را ستاييم\nاو شايسته‌ى حمد است\n\n[Chorus]\nشايــــستـــه اســــت\nاو شايسته‌ى حمد است\nهـــلــــلـــــويـــــاه\nاو شايسته‌ى حمد است\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -9461,11 +9470,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "با-شادی-نامش-را-سراییم",
-    "pdfFileUrl": "/worship/pdf/kalameh/Bā shādi nāmash rā sarāyim (Em).pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ba%CC%84%20sha%CC%84di%20na%CC%84mash%20ra%CC%84%20sara%CC%84yim%20%28Em%29.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=8B7pPVsEd0g",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[Verse]\nبا [Em]شادى نامش [Am]را سراييم[Em]\nاو [C]شايسته[D]‌ى حمد ا[Em]ست\nدسـ[Em]ـتك زنان او [Am]را ستاييم[Em]\nاو [C]شايسته[D]‌ى حمد ا[Em]ست\n\n[Chorus]\nشا[Em]يــــستــ[Am]ـه اســـ[Em]ـت\nاو [C]شايسته[D]‌ى حمد ا[Em]ست\nهــ[Em]ـلــــلـــــو[Am]يـــــاه [Em]\nاو [C]شايسته[D]‌ى حمد ا[Em]ست\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 206,
@@ -9509,10 +9519,10 @@
       "en": "زنده یاد اسقف ح.ب.دهقانی تفتی",
       "es": "زنده یاد اسقف ح.ب.دهقانی تفتی"
     },
-    "artist": "ورا",
-    "composer": "ورا",
+    "artist": "شاعر زنده یاد اسقف ح.ب.دهقانی تفتیآهنگساز ورا",
+    "composer": "شاعر زنده یاد اسقف ح.ب.دهقانی تفتیآهنگساز ورا",
     "youtubeId": null,
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/74 Az jano del khaham tora.mp3",
     "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZJANODELKHAHAMTORA.pptx",
     "lyricsFiles": {
@@ -9520,9 +9530,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nاز جـ[C]ـان و د[Dm]ل خواهـ[Em]ـم تو ر[F]ا\nعیسـ[C]ـی بـه قـ[G]ـلب مـ[F]ـن درآ[C] \nبـاشـ[Am]ـد تو ر[Em]ا آنجـ[F]ـا سـرا[C] \nکن ر[Am]هبری[Dm] مـرا[C]\nV2\nغوغـ[C]ـا و شـ[Dm]ـور ایـ[Em]ـن جها[F]ن\nنامـ[C]ـت کنـ[G]ـد از د[F]ل نها[C]ن \nلیکـ[Am]ـن تـویـ[Em]ـی نیکـ[F]ـو شبـا[C]ن\nظاهـ[Am]ـر کنـ[Dm]ـی خود را[C] \nV3\nخودخو[C]اهی و[Dm] کبر [Em]و غرو[F]ر\nاز مـ[C]ـن نما[G] یکبا[F]ره دو[C]ر \nگرد[Am]ان تو قـ[Em]ـلبم پـ[F]ـر سرو[C]ر\nخواهـ[Am]ـم از د[Dm]ل تو ر[C]ا\n[column]\nV4\nاین ر[C]وح سـ[Dm]ـرگردا[Em]ن مـن[F]\nوین قـ[C]ـلب نا[G]فرما[F]ن مـ[C]ـن\nدر[Am]آی و کـ[Em]ـن درما[F]ن مـ[C]ـن\nفرما[Am]ن بر[Dm]م جانا[C]\nV5\nگر ا[C]یـن دل از[Dm] عیسـ[Em]ـی شو[F]د\nهرچـ[C]ـیز رو[G]ح‌افزا[F] شـو[C]د\nزشتـ[Am]ــی رو[Em]د زیبـ[F]ـا شـو[C]د\nتاز[Am]ه شـو[Dm]د دنیا[C]\nV6\nسرتـ[C]ـاسـر[Dm] قلبـ[Em]ـم اگـ[F]ـر\nاز آ[C]نِ تو[G] باشـ[F]ـد دگـ[C]ـر\nچیز[Am]ی نخو[Em]اهم ا[F]ی پد[C]ر\nپس ا[Am]ی خد[Dm]ا بیا[C]",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nاز جــان و دل خواهــم تو را\nعیســی بـه قــلب مــن درآ\nبـاشــد تو را آنجــا سـرا\nکن رهبری مـرا\n\n[V2]\nغوغــا و شــور ایــن جهان\nنامــت کنــد از دل نهان\nلیکــن تـویــی نیکــو شبـان\nظاهــر کنــی خود را\n\n[V3]\nخودخواهی و کبر و غرور\nاز مــن نما یکباره دور\nگردان تو قــلبم پــر سرور\nخواهــم از دل تو را\n\n[V4]\nاین روح ســرگردان مـن\nوین قــلب نافرمان مــن\nدرآی و کــن درمان مــن\nفرمان برم جانا\n\n[V5]\nگر ایـن دل از عیســی شود\nهرچــیز روح‌افزا شـود\nزشتـــی رود زیبــا شـود\nتازه شـود دنیا\n\n[V6]\nسرتــاسـر قلبــم اگــر\nاز آنِ تو باشــد دگــر\nچیزی نخواهم ای پدر\nپس ای خدا بیا\n\n[V1]\n\n[V2]\n\n[V3]\n\n[V4]\n\n[V5]\n\n[V6]",
+      "en": ""
     },
     "chord": "C",
     "mode": "ماژور",
@@ -9534,11 +9543,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-اسقف-حبدهقانی-تفتی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Az jāno del khāham torā (C).pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Az%20ja%CC%84no%20del%20kha%CC%84ham%20tora%CC%84%20%28C%29.pdf",
     "youtubeUrl": "",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1]\nاز جـ[C]ـان و د[Dm]ل خواهـ[Em]ـم تو ر[F]ا\nعیسـ[C]ـی بـه قـ[G]ـلب مـ[F]ـن درآ[C]\nبـاشـ[Am]ـد تو ر[Em]ا آنجـ[F]ـا سـرا[C]\nکن ر[Am]هبری [Dm]مـرا[C]\n\n[V2]\nغوغـ[C]ـا و شـ[Dm]ـور ایـ[Em]ـن جها[F]ن\nنامـ[C]ـت کنـ[G]ـد از د[F]ل نها[C]ن\nلیکـ[Am]ـن تـویـ[Em]ـی نیکـ[F]ـو شبـا[C]ن\nظاهـ[Am]ـر کنـ[Dm]ـی خود را[C]\n\n[V3]\nخودخو[C]اهی و [Dm]کبر [Em]و غرو[F]ر\nاز مـ[C]ـن نما [G]یکبا[F]ره دو[C]ر\nگرد[Am]ان تو قـ[Em]ـلبم پـ[F]ـر سرو[C]ر\nخواهـ[Am]ـم از د[Dm]ل تو ر[C]ا\n\n[V4]\nاین ر[C]وح سـ[Dm]ـرگردا[Em]ن مـن[F]\nوین قـ[C]ـلب نا[G]فرما[F]ن مـ[C]ـن\nدر[Am]آی و کـ[Em]ـن درما[F]ن مـ[C]ـن\nفرما[Am]ن بر[Dm]م جانا[C]\n\n[V5]\nگر ا[C]یـن دل از [Dm]عیسـ[Em]ـی شو[F]د\nهرچـ[C]ـیز رو[G]ح‌افزا [F]شـو[C]د\nزشتـ[Am]ــی رو[Em]د زیبـ[F]ـا شـو[C]د\nتاز[Am]ه شـو[Dm]د دنیا[C]\n\n[V6]\nسرتـ[C]ـاسـر [Dm]قلبـ[Em]ـم اگـ[F]ـر\nاز آ[C]نِ تو [G]باشـ[F]ـد دگـ[C]ـر\nچیز[Am]ی نخو[Em]اهم ا[F]ی پد[C]ر\nپس ا[Am]ی خد[Dm]ا بیا[C]\n\n[V1]\n\n[V2]\n\n[V3]\n\n[V4]\n\n[V5]\n\n[V6]"
   },
   {
     "id": 208,
@@ -9547,10 +9557,10 @@
       "en": "سرود عربی",
       "es": "سرود عربی"
     },
-    "artist": "زنده یاد کشیش هایک هوسپیان",
-    "composer": "زنده یاد کشیش هایک هوسپیان",
+    "artist": "سرود اصلی سرود عربیشاعر زنده یاد کشیش هایک هوسپیان",
+    "composer": "سرود اصلی سرود عربیشاعر زنده یاد کشیش هایک هوسپیان",
     "youtubeId": "mNSGpxAZ7ok",
-    "audioUrl": "/worship/audio/kalameh/Andar in jahane mamlo az gonah .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/73 Andar in jahane mamlov az gonah.mp3",
     "videoUrl": "https://www.youtube.com/embed/mNSGpxAZ7ok",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ANDARINJAHANEMAMLUAZGONAH.pptx",
     "lyricsFiles": {
@@ -9558,11 +9568,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nاند[Bm]ر اين جهان مملو ا[Em]ز گناه \nدو[A]ر ز آب حيات و راستى[Bm] و راه\nسر[Bm]گردان و بى‌پناه و نا[F#7]اميد \nبه ا[F#7]نتظار كه چاره‌اى گرد[Bm]د پديد\nChorus\nاى[Bm] منجى‌ام تويى خداى من \nاى[A] سرورم تويى شفاى من\nاى[G] رهـبـرم تويـى اميد من \nمسـ[F#7]ـيح اى تنها منجى جـ[Bm]ـهان\n[column]\nV2\nاينـ[Bm]ـك از گناه و غم آزا[Em]دم من \nبين[A] چگونه در حضورش شا[Bm]دم من\nدائمـ[Bm]ـا قلبم در جستجو[F#7]ى اوست \nدائـ[F#7]ـم كه اين همه از فيض و ر[Bm]حم اوست\nV3\nقلـ[Bm]ـب تو اى دوست گر در فغا[Em]ن بُـوَد \nعيـ[A]ـسى را بخوان تا شيطان د[Bm]ور شود\nدر [Bm]روح و وجودت حكـمـرا[F#7]نى كـند \nآرامـ[F#7]ـش مسـيح در تـو پـد[Bm]يـد آيـد",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nاندر اين جهان مملو از گناه\nدور ز آب حيات و راستى و راه\nسرگردان و بى‌پناه و نااميد\nبه انتظار كه چاره‌اى گردد پديد\n\n[Chorus]\nاى منجى‌ام تويى خداى من\nاى سرورم تويى شفاى من\nاى رهـبـرم تويـى اميد من\nمســيح اى تنها منجى جــهان\n\n[V2]\nاينــك از گناه و غم آزادم من\nبين چگونه در حضورش شادم من\nدائمــا قلبم در جستجوى اوست\nدائــم كه اين همه از فيض و رحم اوست\n\n[V3]\nقلــب تو اى دوست گر در فغان بُـوَد\nعيــسى را بخوان تا شيطان دور شود\nدر روح و وجودت حكـمـرانى كـند\nآرامــش مسـيح در تـو پـديـد آيـد\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[V3]",
+      "en": ""
     },
-    "chord": "B",
+    "chord": "Bm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -9573,7 +9582,9 @@
     "dateAdded": "2025-01-24",
     "slug": "سرود-عربی",
     "youtubeUrl": "https://www.youtube.com/watch?v=xvJx93Efajc",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Andar%20in%20jaha%CC%84ne%20mamlo%20az%20gona%CC%84h%20%28Bm%29.pdf",
+    "chordsText": "[V1]\nاند[Bm]ر اين جهان مملو ا[Em]ز گناه\nدو[A]ر ز آب حيات و راستى [Bm]و راه\nسر[Bm]گردان و بى‌پناه و نا[F#7]اميد\nبه ا[F#7]نتظار كه چاره‌اى گرد[Bm]د پديد\n\n[Chorus]\nاى [Bm]منجى‌ام تويى خداى من\nاى [A]سرورم تويى شفاى من\nاى [G]رهـبـرم تويـى اميد من\nمسـ[F#7]ـيح اى تنها منجى جـ[Bm]ـهان\n\n[V2]\nاينـ[Bm]ـك از گناه و غم آزا[Em]دم من\nبين [A]چگونه در حضورش شا[Bm]دم من\nدائمـ[Bm]ـا قلبم در جستجو[F#7]ى اوست\nدائـ[F#7]ـم كه اين همه از فيض و ر[Bm]حم اوست\n\n[V3]\nقلـ[Bm]ـب تو اى دوست گر در فغا[Em]ن بُـوَد\nعيـ[A]ـسى را بخوان تا شيطان د[Bm]ور شود\nدر [Bm]روح و وجودت حكـمـرا[F#7]نى كـند\nآرامـ[F#7]ـش مسـيح در تـو پـد[Bm]يـد آيـد\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[V3]"
   },
   {
     "id": 209,
@@ -9582,10 +9593,10 @@
       "en": "روزبه نجارنژاد",
       "es": "روزبه نجارنژاد"
     },
-    "artist": "روزبه نجارنژاد",
-    "composer": "",
+    "artist": "شاعر و آهنگساز روزبه نجارنژاد",
+    "composer": "شاعر و آهنگساز روزبه نجارنژاد",
     "youtubeId": "DENKwPlDbZw",
-    "audioUrl": "/worship/audio/kalameh/عمیق‌تر.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/عمیق‌تر.mp3",
     "videoUrl": "https://www.youtube.com/embed/DENKwPlDbZw",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AMIGHTAR.pptx",
     "lyricsFiles": {
@@ -9593,11 +9604,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر \nعمیق[Em]‌تر مرا ببر به عمق‌ها[Am]یت\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر \nعمیق[D7]‌تر مرا بخوان به ژرفا[G]یت\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر \nعمیق[Em]‌تر بگذار درک کنم فیض[Am] تو را\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر \nعمیق[D7]‌تر بگذار بشنوم قلب تو[G] را\nPre-Chorus1\nبر وعده‌ها[Am]ی تو می‌سازم ز[B]ندگی‌ام را من ای پد[Em]ر\nV2\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر \nعمیق[Em]‌ترین مکاشفات آ[Am]سمان\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر \nعمیق[D7]‌ترین نیایشم زِ [G]قلب و جان\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر \nعمیق[Em]‌ترین پرستشم به سو[Am]ی تو\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر \nعمیق[D7]‌ترین چشیدنِ حضو[G]ر تو\nPre-Chorus2\nبه فیض و ر[Am]حم تو می‌آیم من[B] به نزد تختت ای پد[Em]ر\n[column]\nChorus\nمـ[E]ـبهوت از محبت و [Am]عشق تو \nبـ[D]ـس عـظـیـم‌تر از درک[G] من\nفد[C7+]یه دادی مرا[Am7] از گناه و خطا تا[F7+] جلالت را ببینم[Bsus4]    [B]\nچـ[E]ــشیدم و دیدم نیکو[Am]یی‌ات اما[D]نت پایدار تو[G]\nشیر[C7+]ین است چون عسل [Am7]حضورت ای پدر \nمـر[F7+]ا بـخـوان به عـمق‌هـایـت[Bsus4]      [B]\nV3\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر \nعمیق[Em]‌تر بگذار درک کنم فرزند[Am]یم\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر \nعمیق[D7]‌تر بگذار کشف کنم آزاد[G]یم\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر \nعمیق[Em]‌تر بینم کیستم در نگا[Am]ه تو\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر \nعمیق[D7]‌تر درک کنم هستم میرا[G]ث تو\nPre-Chorus2\nهدف از بود[Am]نم حیات و ز[B]یستنم تنها تویی پد[Em]ر\nEnding\nعـمیق[Em]‌تر کمی عمیق[C7+]‌تر",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nعمیق‌تر کمی عمیق‌تر\nعمیق‌تر مرا ببر به عمق‌هایت\nعمیق‌تر کمی عمیق‌تر\nعمیق‌تر مرا بخوان به ژرفایت\nعمیق‌تر کمی عمیق‌تر\nعمیق‌تر بگذار درک کنم فیض تو را\nعمیق‌تر کمی عمیق‌تر\nعمیق‌تر بگذار بشنوم قلب تو را\n\n[Pre-Chorus1]\nبر وعده‌های تو می‌سازم زندگی‌ام را من ای پدر\n\n[V2]\nعمیق‌تر کمی عمیق‌تر\nعمیق‌ترین مکاشفات آسمان\nعمیق‌تر کمی عمیق‌تر\nعمیق‌ترین نیایشم زِ قلب و جان\nعمیق‌تر کمی عمیق‌تر\nعمیق‌ترین پرستشم به سوی تو\nعمیق‌تر کمی عمیق‌تر\nعمیق‌ترین چشیدنِ حضور تو\n\n[Pre-Chorus2]\nبه فیض و رحم تو می‌آیم من به نزد تختت ای پدر\n\n[Chorus]\nمــبهوت از محبت و عشق تو\nبــس عـظـیـم‌تر از درک من\nفدیه دادی مرا از گناه و خطا تا جلالت را ببینم\nچـــشیدم و دیدم نیکویی‌ات امانت پایدار تو\nشیرین است چون عسل حضورت ای پدر\nمـرا بـخـوان به عـمق‌هـایـت\n\n[V3]\nعمیق‌تر کمی عمیق‌تر\nعمیق‌تر بگذار درک کنم فرزندیم\nعمیق‌تر کمی عمیق‌تر\nعمیق‌تر بگذار کشف کنم آزادیم\nعمیق‌تر کمی عمیق‌تر\nعمیق‌تر بینم کیستم در نگاه تو\nعمیق‌تر کمی عمیق‌تر\nعمیق‌تر درک کنم هستم میراث تو\n\n[Pre-Chorus2]\nهدف از بودنم حیات و زیستنم تنها تویی پدر\n\n[Ending]\nعـمیق‌تر کمی عمیق‌تر\n\n[V1]\n\n[Pre-Chorus1]\n\n[V2]\n\n[Pre-Chorus2]\n\n[Chorus]\n\n[V3]\n\n[Pre-Chorus2]\n\n[Ending]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -9608,7 +9618,9 @@
     "dateAdded": "2025-01-24",
     "slug": "روزبه-نجارنژاد",
     "youtubeUrl": "https://www.youtube.com/watch?v=DENKwPlDbZw",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Amightar%20kami%20amightar.pdf",
+    "chordsText": "[V1]\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر\nعمیق[Em]‌تر مرا ببر به عمق‌ها[Am]یت\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر\nعمیق[D7]‌تر مرا بخوان به ژرفا[G]یت\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر\nعمیق[Em]‌تر بگذار درک کنم فیض [Am]تو را\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر\nعمیق[D7]‌تر بگذار بشنوم قلب تو [G]را\n\n[Pre-Chorus1]\nبر وعده‌ها[Am]ی تو می‌سازم ز[B]ندگی‌ام را من ای پد[Em]ر\n\n[V2]\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر\nعمیق[Em]‌ترین مکاشفات آ[Am]سمان\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر\nعمیق[D7]‌ترین نیایشم زِ [G]قلب و جان\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر\nعمیق[Em]‌ترین پرستشم به سو[Am]ی تو\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر\nعمیق[D7]‌ترین چشیدنِ حضو[G]ر تو\n\n[Pre-Chorus2]\nبه فیض و ر[Am]حم تو می‌آیم من [B]به نزد تختت ای پد[Em]ر\n\n[Chorus]\nمـ[E]ـبهوت از محبت و [Am]عشق تو\nبـ[D]ـس عـظـیـم‌تر از درک [G]من\nفد[C7+]یه دادی مرا [Am7]از گناه و خطا تا [F7+]جلالت را ببینم[Bsus4]    [B]\nچـ[E]ــشیدم و دیدم نیکو[Am]یی‌ات اما[D]نت پایدار تو[G]\nشیر[C7+]ین است چون عسل [Am7]حضورت ای پدر\nمـر[F7+]ا بـخـوان به عـمق‌هـایـت[Bsus4]      [B]\n\n[V3]\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر\nعمیق[Em]‌تر بگذار درک کنم فرزند[Am]یم\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر\nعمیق[D7]‌تر بگذار کشف کنم آزاد[G]یم\nعمیق[Em]‌تر کمی عمیق[C7+]‌تر\nعمیق[Em]‌تر بینم کیستم در نگا[Am]ه تو\nعمیق[D]‌تر کمی عمیق[Bm7]‌تر\nعمیق[D7]‌تر درک کنم هستم میرا[G]ث تو\n\n[Pre-Chorus2]\nهدف از بود[Am]نم حیات و ز[B]یستنم تنها تویی پد[Em]ر\n\n[Ending]\nعـمیق[Em]‌تر کمی عمیق[C7+]‌تر\n\n[V1]\n\n[Pre-Chorus1]\n\n[V2]\n\n[Pre-Chorus2]\n\n[Chorus]\n\n[V3]\n\n[Pre-Chorus2]\n\n[Ending]"
   },
   {
     "id": 210,
@@ -9617,10 +9629,10 @@
       "en": "وحید نوروزی",
       "es": "وحید نوروزی"
     },
-    "artist": "وحید نوروزی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز وحید نوروزی",
+    "composer": "شاعر و آهنگساز وحید نوروزی",
     "youtubeId": "RNy0UFCKW_I",
-    "audioUrl": "/worship/audio/kalameh/71 Abi ravan saz  .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/71 Abi ravan saz  .mp3",
     "videoUrl": "https://www.youtube.com/embed/RNy0UFCKW_I",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ABIRAVANSAZ.pptx",
     "lyricsFiles": {
@@ -9628,11 +9640,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nآبی[Bm] روان ساز در بیـ[C]ـابان قلبم\nنهر[Bm]ت را عیان ساز از تو[C] سیراب گردم\nهمچـ[Em]ـون آهویی در بیـ[Bm]ـابانم من\nتشنه‌[C]ی نهر توست این [D]قلب و جانم[Bm]\nهمچـ[Em]ـون آهویی در بیـ[Bm]ـابانم من\nتشنه‌[C]ی روح توست این [D]قلب و جانم[Bm]\nChorus\nمـ[Bm]ـی‌خواهم د[Em]ر نور تو سا[D]کن شوم\nمی‌خواهم ا[D]ز روح تو مـ[Am]ـن پر شوم [C]\nدر برگیر ا[C]ین روح و جا[D]نم خــداو[Bm]ند",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nآبی روان ساز در بیــابان قلبم\nنهرت را عیان ساز از تو سیراب گردم\nهمچــون آهویی در بیــابانم من\nتشنه‌ی نهر توست این قلب و جانم\nهمچــون آهویی در بیــابانم من\nتشنه‌ی روح توست این قلب و جانم\n\n[Chorus]\nمــی‌خواهم در نور تو ساکن شوم\nمی‌خواهم از روح تو مــن پر شوم\nدر برگیر این روح و جانم خــداوند\n\n[Verse]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "B",
+    "chord": "Bm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -9642,9 +9653,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Ābi ravān sāz.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/A%CC%84bi%20rava%CC%84n%20sa%CC%84z.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=Qg8-AMxRaas",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse]\nآبی [Bm]روان ساز در بیـ[C]ـابان قلبم\nنهر[Bm]ت را عیان ساز از تو [C]سیراب گردم\nهمچـ[Em]ـون آهویی در بیـ[Bm]ـابانم من\nتشنه‌[C]ی نهر توست این [D]قلب و جانم[Bm]\nهمچـ[Em]ـون آهویی در بیـ[Bm]ـابانم من\nتشنه‌[C]ی روح توست این [D]قلب و جانم[Bm]\n\n[Chorus]\nمـ[Bm]ـی‌خواهم د[Em]ر نور تو سا[D]کن شوم\nمی‌خواهم ا[D]ز روح تو مـ[Am]ـن پر شوم [C]\nدر برگیر ا[C]ین روح و جا[D]نم خــداو[Bm]ند\n\n[Verse]\n\n[Chorus]"
   },
   {
     "id": 211,
@@ -9653,10 +9665,10 @@
       "en": "شهاب زاهدمهاجرانی",
       "es": "شهاب زاهدمهاجرانی"
     },
-    "artist": "شهاب زاهدمهاجرانی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز شهاب زاهدمهاجرانی",
+    "composer": "شاعر و آهنگساز شهاب زاهدمهاجرانی",
     "youtubeId": "-CO4PnZA07U",
-    "audioUrl": "/worship/audio/kalameh/70 Aba man az ane to hastam .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/70 Aba man az ane to hastam .mp3",
     "videoUrl": "https://www.youtube.com/embed/-CO4PnZA07U",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ABAMANAZANETOHASTAM_0.pptx",
     "lyricsFiles": {
@@ -9664,11 +9676,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nآنـ[Dm]ـقدر مـات و مـ[Am]ـبهوت از\nعـشقـت مـ[C]ـحبوبم سرمستـ[Bb]ـم \nکـه[Dm] از خـود بی‌[Am]خــود شـده\nچون بـه آ[C]غـوشـت پـیـوسـ[Bb]ــتـم   [Dm]\nPre-Chorus\nمر[F]ا به عمق‌ها[C]ی قلب پرمهر[Bb]ت می‌کشا[Dm]نی\nسر[F]ودی تاز[C]ه در وصف فرز[Bb]ند خود می‌خوا[Dm]نی \nChorus\nاَبـ[Bb]ــا مـن از آ[C]ن تـو هستــم[F]\n[column]\nV2\nرو[Dm]ح و جانم آر[Am]ام است وقتی آ[C]وایت به گوش آ[Bb]ید\nسر[Dm]ودهای رضا[Am]یت که بهر [C]فرزندت می‌خو[Bb]انی  [Dm]\nPre-Chorus\nChorus\nBridge\nتنها[Dm] بهر خا[Am]لق در [Bb]ابــتــدا[C] خلق شد[Dm]م\nتنها[Dm] در آغو[Am]شش از بی‌[Bb]قراری [C]آزاد شد[Dm]م",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nآنــقدر مـات و مــبهوت از\nعـشقـت مــحبوبم سرمستــم\nکـه از خـود بی‌خــود شـده\nچون بـه آغـوشـت پـیـوســـتـم\n\n[Pre-Chorus]\nمرا به عمق‌های قلب پرمهرت می‌کشانی\nسرودی تازه در وصف فرزند خود می‌خوانی\n\n[Chorus]\nاَبـــا مـن از آن تـو هستــم\n\n[V2]\nروح و جانم آرام است وقتی آوایت به گوش آید\nسرودهای رضایت که بهر فرزندت می‌خوانی\n\n[Pre-Chorus]\n\n[Chorus]\n\n[Bridge]\nتنها بهر خالق در ابــتــدا خلق شدم\nتنها در آغوشش از بی‌قراری آزاد شدم\n\n[V1]\n\n[Pre-Chorus]\n\n[Chorus]\n\n[V2]\n\n[Pre-Chorus]\n\n[Chorus]\n\n[Bridge]",
+      "en": ""
     },
-    "chord": "D",
+    "chord": "Dm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -9678,9 +9689,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "شهاب-زاهدمهاجرانی",
-    "pdfFileUrl": "/worship/pdf/kalameh/In tāj az āne tost.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Aba%CC%84%20man%20az%20a%CC%84ne%20to%20hastam.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=K3KUXYRYW6M",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nآنـ[Dm]ـقدر مـات و مـ[Am]ـبهوت از\nعـشقـت مـ[C]ـحبوبم سرمستـ[Bb]ـم\nکـه [Dm]از خـود بی‌[Am]خــود شـده\nچون بـه آ[C]غـوشـت پـیـوسـ[Bb]ــتـم   [Dm]\n\n[Pre-Chorus]\nمر[F]ا به عمق‌ها[C]ی قلب پرمهر[Bb]ت می‌کشا[Dm]نی\nسر[F]ودی تاز[C]ه در وصف فرز[Bb]ند خود می‌خوا[Dm]نی\n\n[Chorus]\nاَبـ[Bb]ــا مـن از آ[C]ن تـو هستــم[F]\n\n[V2]\nرو[Dm]ح و جانم آر[Am]ام است وقتی آ[C]وایت به گوش آ[Bb]ید\nسر[Dm]ودهای رضا[Am]یت که بهر [C]فرزندت می‌خو[Bb]انی  [Dm]\n\n[Pre-Chorus]\n\n[Chorus]\n\n[Bridge]\nتنها [Dm]بهر خا[Am]لق در [Bb]ابــتــدا [C]خلق شد[Dm]م\nتنها [Dm]در آغو[Am]شش از بی‌[Bb]قراری [C]آزاد شد[Dm]م\n\n[V1]\n\n[Pre-Chorus]\n\n[Chorus]\n\n[V2]\n\n[Pre-Chorus]\n\n[Chorus]\n\n[Bridge]"
   },
   {
     "id": 212,
@@ -12377,10 +12389,10 @@
       "en": "وحید نوروزی",
       "es": "وحید نوروزی"
     },
-    "artist": "وحید نوروزی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز وحید نوروزی",
+    "composer": "شاعر و آهنگساز وحید نوروزی",
     "youtubeId": "gk-WhRWTaxg",
-    "audioUrl": "/worship/audio/kalameh/به چشمان تو که می نگرم.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/به چشمان تو که می نگرم.mp3",
     "videoUrl": "https://www.youtube.com/embed/gk-WhRWTaxg",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BECHESHMANETOKEMINEGARAM.pptx",
     "lyricsFiles": {
@@ -12388,11 +12400,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nبه چشمـ[Em]ـان تو که می نگر[B7]م من (x۲)\nمی بینـ[Am]ـم آن نور خد[Em]ا را\nمی بینـ[B7]ـم آن نور خد[Em]ا را\nبه چشمــ[Em]ـان تو که می نگر[B7]م من (x۲)\nمی چشــ[Am]ـم آن روح خد[Em]ا را\nمی چشــ[B7]ـم آن روح خد[Em]ا را  [E]\nChorus\nای[Am] معبود مـ[Em]ـن ، تویــ[Am]ـی سلطان مـ[Em]ـن\nمی بینـ[B7]ـم آن نور خد[Em]ا را می چشـ[B7]ـم آن روح خد[Em]ا را\nVerse\nChorus\nBridge\nآغـ[Am]ـوش توست پنـ[Em]ـاهم ، مـ[Am]ـرهم و تکیه گـ[Em]ـاهم\nدر[Am] تو فقط من آز[Em]ادم ، تـ[B7]ـویی طریق و نجـ[Em]ـاتم",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nبه چشمــان تو که می نگرم من (x۲)\nمی بینــم آن نور خدا را\nمی بینــم آن نور خدا را\nبه چشمـــان تو که می نگرم من (x۲)\nمی چشـــم آن روح خدا را\nمی چشـــم آن روح خدا را\n\n[Chorus]\nای معبود مــن ، تویـــی سلطان مــن\nمی بینــم آن نور خدا را می چشــم آن روح خدا را\n\n[Verse]\n\n[Chorus]\n\n[Bridge]\nآغــوش توست پنــاهم ، مــرهم و تکیه گــاهم\nدر تو فقط من آزادم ، تــویی طریق و نجــاتم\n\n[Verse]\n\n[Chorus]\n\n[Verse]\n\n[Chorus]\n\n[Bridge]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -12403,7 +12414,8 @@
     "dateAdded": "2025-01-24",
     "slug": "وحید-نوروزی",
     "youtubeUrl": "https://www.youtube.com/watch?v=WQZdzxZZVXU",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse]\nبه چشمـ[Em]ـان تو که می نگر[B7]م من (x۲)\nمی بینـ[Am]ـم آن نور خد[Em]ا را\nمی بینـ[B7]ـم آن نور خد[Em]ا را\nبه چشمــ[Em]ـان تو که می نگر[B7]م من (x۲)\nمی چشــ[Am]ـم آن روح خد[Em]ا را\nمی چشــ[B7]ـم آن روح خد[Em]ا را  [E]\n\n[Chorus]\nای [Am]معبود مـ[Em]ـن ، تویــ[Am]ـی سلطان مـ[Em]ـن\nمی بینـ[B7]ـم آن نور خد[Em]ا را می چشـ[B7]ـم آن روح خد[Em]ا را\n\n[Verse]\n\n[Chorus]\n\n[Bridge]\nآغـ[Am]ـوش توست پنـ[Em]ـاهم ، مـ[Am]ـرهم و تکیه گـ[Em]ـاهم\nدر [Am]تو فقط من آز[Em]ادم ، تـ[B7]ـویی طریق و نجـ[Em]ـاتم\n\n[Verse]\n\n[Chorus]\n\n[Verse]\n\n[Chorus]\n\n[Bridge]"
   },
   {
     "id": 288,
@@ -12412,10 +12424,10 @@
       "en": "Kari Jobe-Cody Carnes-Elevation worship",
       "es": "Kari Jobe-Cody Carnes-Elevation worship"
     },
-    "artist": "روزبه نجارنژاد-نیلوفر",
-    "composer": "روزبه نجارنژاد-نیلوفر",
+    "artist": "شاعر و آهنگساز Kari Jobe-Cody Carnes-Elevation worshipمترجم روزبه نجارنژاد-نیلوفرمترجم روزبه نجارنژاد-نیلوفر",
+    "composer": "شاعر و آهنگساز Kari Jobe-Cody Carnes-Elevation worshipمترجم روزبه نجارنژاد-نیلوفرمترجم روزبه نجارنژاد-نیلوفر",
     "youtubeId": null,
-    "audioUrl": "/worship/audio/kalameh/در پی خدا بودم اجابتم کرد .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/سرود برکت .mp3",
     "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAREKAT.pptx",
     "lyricsFiles": {
@@ -12423,9 +12435,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse (x2)\nخـ[Ab]ـداوند تو را [Db]برکت دهد\nر[Ab]ویش تابان بر تو [Ebsus]باشد تا به ابد\nر[Fm]وی خود را بر [Db]تو برافرازد [Ab]و سلامـتی[Ebsus] بخشــد[Ab]\nChorus (x2)\nآ--[Fm]-- مــیـ[Db]ـن  آمـــیـ[Ab]ـن  آمـیـ[Eb]ـن\nVerse (x2)\nChorus (x4)\nBridge1\nلطف او[Fm] بر شما باشد \nو بمـ[Db]ـاند تا هزار نسل\nاهل خا[Ab]‌نه ات و فرزندانت\nو فرزنـ[Eb]ـدانِ فرزندانت\n[column]\nBridge2\nحضور [Fm]او با تو باشد پیش رو[Db]یت و پشت سر\nگرداگـ[Ab]ـرد و درونت با تو با[Eb]شد با تو باشد\nدر صبحگا[Fm]هان و هر شامگاه\nدر ور[Db]ود و در خروجت\nدر غمها[Ab]یت شادی‌هایت\nخدا با[Eb] توست ، خدا با توست\nخدا با[Fm] توست ، خدا با توست\nخدا با[Db] توست ، خدا با توست\nخدا با[Ab] توست ، خدا با توست\nخدا با[Eb] توست\nChorus (x2)",
-      "en": "",
-      "es": ""
+      "fa": "[Verse (x2)]\nخــداوند تو را برکت دهد\nرویش تابان بر تو باشد تا به ابد\nروی خود را بر تو برافرازد و سلامـتی بخشــد\n\n[Chorus (x2)]\nآ---- مــیــن  آمـــیــن  آمـیــن\n\n[Verse (x2)]\n\n[Chorus (x4)]\n\n[Bridge1]\nلطف او بر شما باشد\nو بمــاند تا هزار نسل\nاهل خا‌نه ات و فرزندانت\nو فرزنــدانِ فرزندانت\n\n[Bridge2]\nحضور او با تو باشد پیش رویت و پشت سر\nگرداگــرد و درونت با تو باشد با تو باشد\nدر صبحگاهان و هر شامگاه\nدر ورود و در خروجت\nدر غمهایت شادی‌هایت\nخدا با توست ، خدا با توست\nخدا با توست ، خدا با توست\nخدا با توست ، خدا با توست\nخدا با توست ، خدا با توست\nخدا با توست\n\n[Chorus (x2)]\n\n[Verse (x2)]\n\n[Chorus (x2)]\n\n[Verse (x2)]\n\n[Chorus (x4)]\n\n[Bridge1]\n\n[Bridge2]\n\n[Chorus (x2)]",
+      "en": ""
     },
     "chord": "Ab",
     "mode": "ماژور",
@@ -12437,9 +12448,10 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "kari-jobe-cody-carnes-elevation-worship",
-    "pdfFileUrl": "/worship/pdf/kalameh/برنامه ی این هفته 19تا 24مرداد.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Barekat%20%28Khoda%CC%84vand%20to%20ra%CC%84%20barekat%20dahad%29%20%28Ab%29.pdf",
     "youtubeUrl": "",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse (x2)]\nخـ[Ab]ـداوند تو را [Db]برکت دهد\nر[Ab]ویش تابان بر تو [Ebsus]باشد تا به ابد\nر[Fm]وی خود را بر [Db]تو برافرازد [Ab]و سلامـتی [Ebsus]بخشــد[Ab]\n\n[Chorus (x2)]\nآ--[Fm]-- مــیـ[Db]ـن  آمـــیـ[Ab]ـن  آمـیـ[Eb]ـن\n\n[Verse (x2)]\n\n[Chorus (x4)]\n\n[Bridge1]\nلطف او [Fm]بر شما باشد\nو بمـ[Db]ـاند تا هزار نسل\nاهل خا[Ab]‌نه ات و فرزندانت\nو فرزنـ[Eb]ـدانِ فرزندانت\n\n[Bridge2]\nحضور [Fm]او با تو باشد پیش رو[Db]یت و پشت سر\nگرداگـ[Ab]ـرد و درونت با تو با[Eb]شد با تو باشد\nدر صبحگا[Fm]هان و هر شامگاه\nدر ور[Db]ود و در خروجت\nدر غمها[Ab]یت شادی‌هایت\nخدا با [Eb]توست ، خدا با توست\nخدا با [Fm]توست ، خدا با توست\nخدا با [Db]توست ، خدا با توست\nخدا با [Ab]توست ، خدا با توست\nخدا با [Eb]توست\n\n[Chorus (x2)]\n\n[Verse (x2)]\n\n[Chorus (x2)]\n\n[Verse (x2)]\n\n[Chorus (x4)]\n\n[Bridge1]\n\n[Bridge2]\n\n[Chorus (x2)]"
   },
   {
     "id": 289,
@@ -12448,10 +12460,10 @@
       "en": "پیمان-نیلوفر-دنی",
       "es": "پیمان-نیلوفر-دنی"
     },
-    "artist": "پیمان-نیلوفر-دنی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز پیمان-نیلوفر-دنی",
+    "composer": "شاعر و آهنگساز پیمان-نیلوفر-دنی",
     "youtubeId": "enB96btEJtw",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Bar vadehayat.mp3",
     "videoUrl": "https://www.youtube.com/embed/enB96btEJtw",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARVADEHAYAT.pptx",
     "lyricsFiles": {
@@ -12459,11 +12471,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nنام[Em] تو را می خو[C]انم \nبا[Em] پرستش با دعایـ[C]ـم\nچو[Am]ن تو هستی تکیه گا[Em]هم \nمـ[C]ـنجی و پشت و پناهـ[Em]ـم\nز[Em]مین را می نگـ[C]ـری فـ[Em]ـریادها را می شنو[C]ی\nنا[Am]م توست چون صخره محکـ[Em]ـم د[C]ر روز بلا و تنـ[Em]ـگی\nPre-Chorus1\nجایی که پـ[Am]ـرستیدن آسا[Em]ن نیست\nهرچیز را نـ[Am]ـیکو دیدن آسـ[Em]ـان نیست\nچون به ایمـ[C]ـان زنده ام نه به دید[D]ار\nامیدم بـ[Am]ـر یاوریست وفاد[D]ار\nChorus\nبر وعده هـ[G]ـایت خواهم زیست خداو[D]ند\nگر باشد طـ[Am]ـوفانها یا تون آتـ[Em]ـش\nمی دانم هـ[G]ـمراه و غم خوارم هستـ[D]ـی\nبر وعده هـ[C]ـایت تو امـ[D]ـین هسـتـ[Em]ـی   [D/F#] \nبر وعده هـ[G]ـایت خواهم زیست خداو[D]ند\nگر باشد طـ[Am]ـوفانها یا تون آتـ[Em]ـش\nمی دانم هـ[G]ـمراه و غم خوارم هستـ[D]ـی\nبر وعده هـ[C]ـایت تو امـ[D]ـین هسـتـ[Em]ـی\n[column]\nV2\nو[Em]عده دادی با من هستـ[C]ـی\nتا[Em] به انقضای عالـ[C]ـم\nدر[Am] بیماری یا تنگدسـ[Em]ـتی\nبـ[C]ـر عهدت همواره هستـ[Em]ـی\nگفـ[Em]ـتی هستم آنکه هستــ[C]ـم در[Em] محبت پایدار هستــ[C]ـم\nای[Am] خداوندم یهو[Em]ه بـ[C]ـر کلامت من دل بستـ[Em]ـم\nPre-Chorus2\nزمین قــ[Am]ـلبم را تسلیم کرد[Em]ه ام\nوعده را هـ[Am]ـمچون دانه ای کاشتــ[Em]ـه ام\nخداوند تـ[C]ـو بر دانه دیده بانــ[D]ـی\nوعده ات ر[Am]ا به کمال می رسانـ[D]ـی\nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nنام تو را می خوانم\nبا پرستش با دعایــم\nچون تو هستی تکیه گاهم\nمــنجی و پشت و پناهــم\nزمین را می نگــری فــریادها را می شنوی\nنام توست چون صخره محکــم در روز بلا و تنــگی\n\n[Pre-Chorus1]\nجایی که پــرستیدن آسان نیست\nهرچیز را نــیکو دیدن آســان نیست\nچون به ایمــان زنده ام نه به دیدار\nامیدم بــر یاوریست وفادار\n\n[Chorus]\nبر وعده هــایت خواهم زیست خداوند\nگر باشد طــوفانها یا تون آتــش\nمی دانم هــمراه و غم خوارم هستــی\nبر وعده هــایت تو امــین هسـتــی\nبر وعده هــایت خواهم زیست خداوند\nگر باشد طــوفانها یا تون آتــش\nمی دانم هــمراه و غم خوارم هستــی\nبر وعده هــایت تو امــین هسـتــی\n\n[V2]\nوعده دادی با من هستــی\nتا به انقضای عالــم\nدر بیماری یا تنگدســتی\nبــر عهدت همواره هستــی\nگفــتی هستم آنکه هستـــم در محبت پایدار هستـــم\nای خداوندم یهوه بــر کلامت من دل بستــم\n\n[Pre-Chorus2]\nزمین قـــلبم را تسلیم کرده ام\nوعده را هــمچون دانه ای کاشتـــه ام\nخداوند تــو بر دانه دیده بانـــی\nوعده ات را به کمال می رسانــی\n\n[Chorus]\n\n[V1]\n\n[Pre-Chorus1]\n\n[Chorus]\n\n[V2]\n\n[Pre-Chorus2]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -12473,11 +12484,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "پیمان-نیلوفر-دنی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Bar vadehāyat.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Bar%20vadeha%CC%84yat.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=2WH9epO-rHw",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1]\nنام [Em]تو را می خو[C]انم\nبا [Em]پرستش با دعایـ[C]ـم\nچو[Am]ن تو هستی تکیه گا[Em]هم\nمـ[C]ـنجی و پشت و پناهـ[Em]ـم\nز[Em]مین را می نگـ[C]ـری فـ[Em]ـریادها را می شنو[C]ی\nنا[Am]م توست چون صخره محکـ[Em]ـم د[C]ر روز بلا و تنـ[Em]ـگی\n\n[Pre-Chorus1]\nجایی که پـ[Am]ـرستیدن آسا[Em]ن نیست\nهرچیز را نـ[Am]ـیکو دیدن آسـ[Em]ـان نیست\nچون به ایمـ[C]ـان زنده ام نه به دید[D]ار\nامیدم بـ[Am]ـر یاوریست وفاد[D]ار\n\n[Chorus]\nبر وعده هـ[G]ـایت خواهم زیست خداو[D]ند\nگر باشد طـ[Am]ـوفانها یا تون آتـ[Em]ـش\nمی دانم هـ[G]ـمراه و غم خوارم هستـ[D]ـی\nبر وعده هـ[C]ـایت تو امـ[D]ـین هسـتـ[Em]ـی   [D/F#]\nبر وعده هـ[G]ـایت خواهم زیست خداو[D]ند\nگر باشد طـ[Am]ـوفانها یا تون آتـ[Em]ـش\nمی دانم هـ[G]ـمراه و غم خوارم هستـ[D]ـی\nبر وعده هـ[C]ـایت تو امـ[D]ـین هسـتـ[Em]ـی\n\n[V2]\nو[Em]عده دادی با من هستـ[C]ـی\nتا [Em]به انقضای عالـ[C]ـم\nدر [Am]بیماری یا تنگدسـ[Em]ـتی\nبـ[C]ـر عهدت همواره هستـ[Em]ـی\nگفـ[Em]ـتی هستم آنکه هستــ[C]ـم در [Em]محبت پایدار هستــ[C]ـم\nای [Am]خداوندم یهو[Em]ه بـ[C]ـر کلامت من دل بستـ[Em]ـم\n\n[Pre-Chorus2]\nزمین قــ[Am]ـلبم را تسلیم کرد[Em]ه ام\nوعده را هـ[Am]ـمچون دانه ای کاشتــ[Em]ـه ام\nخداوند تـ[C]ـو بر دانه دیده بانــ[D]ـی\nوعده ات ر[Am]ا به کمال می رسانـ[D]ـی\n\n[Chorus]\n\n[V1]\n\n[Pre-Chorus1]\n\n[Chorus]\n\n[V2]\n\n[Pre-Chorus2]\n\n[Chorus]"
   },
   {
     "id": 290,
@@ -12521,10 +12533,10 @@
       "en": "روزبه نجارنژاد",
       "es": "روزبه نجارنژاد"
     },
-    "artist": "روزبه نجارنژاد",
-    "composer": "",
+    "artist": "شاعر و آهنگساز روزبه نجارنژاد",
+    "composer": "شاعر و آهنگساز روزبه نجارنژاد",
     "youtubeId": "L9CvVpzd2ec",
-    "audioUrl": "/worship/audio/kalameh/Beshno doayam.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Beshno doayam.mp3",
     "videoUrl": "https://www.youtube.com/embed/L9CvVpzd2ec",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BESHNODOAYAM.pptx",
     "lyricsFiles": {
@@ -12532,11 +12544,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبشنو[Em] دعایم ، بشنو[Am] دعایم ، چـ[C]ـون تو را مـ[B]‌ـی خوانم\nبشنو[Em] دعایم ، بشنو[Am] دعایم ، چـ[C]ـون تو ر[B]ا می‌خوانـ[Em]ـم\nV2\nبشنو[Em] آوازم ، بشنو[Am] آوازم ، چـ[C]ـون تو را مـ[B]‌ـیخوانم\nبشنو[Em] آوازم ، بشنو[Am] آوازم ، چـ[C]ـون تو ر[B]ا می‌خوانـ[Em]ـم\nV3\nبشنو[Em] صدایم ، بشنو[Am] صدایم ، چـ[C]ـون تو را مـ[B]ـی‌خوانم\nبشنو[Em] صدایم ، بشنو[Am] صدایم ، چـ[C]ـون تو ر[B]ا می‌خوانـ[Em]ـم",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبشنو دعایم ، بشنو دعایم ، چــون تو را مـ‌ـی خوانم\nبشنو دعایم ، بشنو دعایم ، چــون تو را می‌خوانــم\n\n[V2]\nبشنو آوازم ، بشنو آوازم ، چــون تو را مـ‌ـیخوانم\nبشنو آوازم ، بشنو آوازم ، چــون تو را می‌خوانــم\n\n[V3]\nبشنو صدایم ، بشنو صدایم ، چــون تو را مــی‌خوانم\nبشنو صدایم ، بشنو صدایم ، چــون تو را می‌خوانــم\n\n[V1]\n\n[V2]\n\n[V3]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -12548,7 +12559,8 @@
     "slug": "روزبه-نجارنژاد",
     "pdfFileUrl": "/worship/pdf/kalameh/بشنو و ادامه بده.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=__gqzcS8mq8",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nبشنو [Em]دعایم ، بشنو [Am]دعایم ، چـ[C]ـون تو را مـ[B]‌ـی خوانم\nبشنو [Em]دعایم ، بشنو [Am]دعایم ، چـ[C]ـون تو ر[B]ا می‌خوانـ[Em]ـم\n\n[V2]\nبشنو [Em]آوازم ، بشنو [Am]آوازم ، چـ[C]ـون تو را مـ[B]‌ـیخوانم\nبشنو [Em]آوازم ، بشنو [Am]آوازم ، چـ[C]ـون تو ر[B]ا می‌خوانـ[Em]ـم\n\n[V3]\nبشنو [Em]صدایم ، بشنو [Am]صدایم ، چـ[C]ـون تو را مـ[B]ـی‌خوانم\nبشنو [Em]صدایم ، بشنو [Am]صدایم ، چـ[C]ـون تو ر[B]ا می‌خوانـ[Em]ـم\n\n[V1]\n\n[V2]\n\n[V3]"
   },
   {
     "id": 292,
@@ -12557,10 +12569,10 @@
       "en": "آرش بهزاد زاده",
       "es": "آرش بهزاد زاده"
     },
-    "artist": "آرش بهزاد زاده",
-    "composer": "",
+    "artist": "شاعر و آهنگساز آرش بهزاد زاده",
+    "composer": "شاعر و آهنگساز آرش بهزاد زاده",
     "youtubeId": "eNsqKFXak2E",
-    "audioUrl": "/worship/audio/kalameh/Ba eshghash u ba man ast .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Ba eshghash u ba man ast .mp3",
     "videoUrl": "https://www.youtube.com/embed/eNsqKFXak2E",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAESHGHASHOUBAMANAST.pptx",
     "lyricsFiles": {
@@ -12568,9 +12580,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse (x2)\nخـ[D]ـداوند [F#m]من زند[G]ه است\nبـ[Bm]ـا عشقـ[A]ـش او با من ا[G]ست\nPre-Chorus1\nاو[D] که زنجیر[F#m]های گنـ[G]ـاهم دید\nاز[Bm] تاریکــ[A]ـی من را بیر[G]ون کشید\nاو[D] که ناله[F#m] های من ر[G]ا شنید\nد[Bm]ر آغوشـ[A]ـش آرامـ[G]ـی بخشید\nChorus (x2)\nچون ا[A]و زند[G]ه است چون ا[A]و ، [Bm]خداوند[A] زند[G]ه است\nVerse (x2)\n[column]\nPre-Chorus2\nو[D]قتی از غـ[F#m]ـمها مرا ر[G]هانید\nبا[Bm] محبـ[A]ـتش مرا پـ[G]ـوشانید\nعـ[D]ـشقش را دید[F#m]م بر روی[G] صلیب\nجـ[Bm]ـانش د[A]اد جانم ر[G]ا خرید\nChorus (x2)\nBridge\nبا روح[D] القدس من آز[A]ادم ، من آز[Bm]ادم ، من آز[G]ادم\nدر نام عـ[D]ـیسی من آز[A]ادم ، من آز[Bm]ادم ، من آز[G]ادم",
-      "en": "",
-      "es": ""
+      "fa": "[Verse (x2)]\nخــداوند من زنده است\nبــا عشقــش او با من است\n\n[Pre-Chorus1]\nاو که زنجیرهای گنــاهم دید\nاز تاریکـــی من را بیرون کشید\nاو که ناله های من را شنید\nدر آغوشــش آرامــی بخشید\n\n[Chorus (x2)]\nچون او زنده است چون او ، خداوند زنده است\n\n[Verse (x2)]\n\n[Pre-Chorus2]\nوقتی از غــمها مرا رهانید\nبا محبــتش مرا پــوشانید\nعــشقش را دیدم بر روی صلیب\nجــانش داد جانم را خرید\n\n[Chorus (x2)]\n\n[Bridge]\nبا روح القدس من آزادم ، من آزادم ، من آزادم\nدر نام عــیسی من آزادم ، من آزادم ، من آزادم\n\n[Verse (x2)]\n\n[Pre-Chorus1]\n\n[Chorus (x2)]\n\n[Verse (x2)]\n\n[Pre-Chorus2]\n\n[Chorus (x2)]\n\n[Bridge]",
+      "en": ""
     },
     "chord": "D",
     "mode": "ماژور",
@@ -12583,7 +12594,9 @@
     "dateAdded": "2025-01-24",
     "slug": "آرش-بهزاد-زاده",
     "youtubeUrl": "https://www.youtube.com/watch?v=E7irjNWCvJE",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ba%CC%84%20eshghash%20oo%20ba%CC%84%20man%20ast%20%28D%29.pdf",
+    "chordsText": "[Verse (x2)]\nخـ[D]ـداوند [F#m]من زند[G]ه است\nبـ[Bm]ـا عشقـ[A]ـش او با من ا[G]ست\n\n[Pre-Chorus1]\nاو [D]که زنجیر[F#m]های گنـ[G]ـاهم دید\nاز [Bm]تاریکــ[A]ـی من را بیر[G]ون کشید\nاو [D]که ناله [F#m]های من ر[G]ا شنید\nد[Bm]ر آغوشـ[A]ـش آرامـ[G]ـی بخشید\n\n[Chorus (x2)]\nچون ا[A]و زند[G]ه است چون ا[A]و ، [Bm]خداوند [A]زند[G]ه است\n\n[Verse (x2)]\n\n[Pre-Chorus2]\nو[D]قتی از غـ[F#m]ـمها مرا ر[G]هانید\nبا [Bm]محبـ[A]ـتش مرا پـ[G]ـوشانید\nعـ[D]ـشقش را دید[F#m]م بر روی [G]صلیب\nجـ[Bm]ـانش د[A]اد جانم ر[G]ا خرید\n\n[Chorus (x2)]\n\n[Bridge]\nبا روح [D]القدس من آز[A]ادم ، من آز[Bm]ادم ، من آز[G]ادم\nدر نام عـ[D]ـیسی من آز[A]ادم ، من آز[Bm]ادم ، من آز[G]ادم\n\n[Verse (x2)]\n\n[Pre-Chorus1]\n\n[Chorus (x2)]\n\n[Verse (x2)]\n\n[Pre-Chorus2]\n\n[Chorus (x2)]\n\n[Bridge]"
   },
   {
     "id": 293,
@@ -12592,10 +12605,10 @@
       "en": "O the deep deep love of Jesus",
       "es": "O the deep deep love of Jesus"
     },
-    "artist": "Samuel Trevor Francis",
-    "composer": "Samuel Trevor Francis",
+    "artist": "سرود اصلی O the deep deep love of Jesusشاعر و آهنگساز Samuel Trevor Francis",
+    "composer": "سرود اصلی O the deep deep love of Jesusشاعر و آهنگساز Samuel Trevor Francis",
     "youtubeId": "9XL_7iN3apw",
-    "audioUrl": "/worship/audio/kalameh/با من باش .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/با من باش .mp3",
     "videoUrl": "https://www.youtube.com/embed/9XL_7iN3apw",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAMANBASH.pptx",
     "lyricsFiles": {
@@ -12603,11 +12616,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nای[Em] مالک جانم ، ا[B]ی شاه و سلطـ[Em]ـانم\nد[G]وست[B] مهربـ[D]ـانم ، بـ[Am]ـا مـ[B]ـن با[Em]ش\nگــ[Em]ـر خسته و تنها ، د[B]ر غربت دنـ[Em]ـیا\nگر[G] بـ[B]ـر اوج ابـ[D]ـرها ، بـ[Am]ـا مـ[B]ـن بـا[Em]ش\nChorus\nبا[G] تو وحشتـ[B]ـی نیست از[Em] سایه‌ی ظـ[B]ـلمت\nتا[C] که رسد فــ[Am]ـردا با من بـ[B]ـاش\nتا[Em] آخر عالم ا[B]ز پی تو آیـ[Em]ـم\nای[G] شبان جانم با[B] من با[Em]ش\n[column]\nV2\nای [Em]نور و نجاتم ، ا[B]مــید و حیا[Em]تم\nد[G]ر شـ[B]ـادی و مــ[D]ـاتم ، بـ[G]ـا مـ[B]ـن با[Em]ش\nبـا[Em] وسعت عشقت ، د[B]ر این ره بـ[Em]ـاریک\nچـ[G]ـون نـ[B]ـفسم نــ[D]ـزدیک ، بـ[G]ـا مـ[B]ـن با[Em]ش\nChorus\nV3\nتــ[Em]ـنها مرا کافیست ، سـ[B]ـرشاری فـ[Em]ـیضت\nبـ[G]ـا فـ[B]ـیض عظـ[D]ـیمت ، بـ[G]ـا مـ[B]ـن با[Em]ش\nجــ[Em]ـانم را بپوشان ، بـ[B]ـا سپر ایـ[Em]ـمان\nتـــ[G]ـا دیـ[B]ـدار در آسـ[D]ـمان ، بـ[G]ـا مـ[B]ـن با[Em]ش",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nای مالک جــانم ، ای شاه و سلطــانم\nدوست مهربــانم ، بــا مــن باش\nگـــر خسته و تــنهــا ، در غربت دنــیا\nگر بــر اوج ابـرها ، بــا مــن بـاش\n\n[Chorus]\nبا تو وحشتــی نیست از سایه‌ی ظــلمت\nتا که رسد فـــردا با مـــن بــاش\nتا آخر عــالــم از پی تو آیــم\nای شبان جــانــــم با مــن باش\n\n[V2]\nای نور و نجــاتــم ، امــید و حیاتم\nدر شــادی و مـــاتم ، بــا مــن باش\nبـا وسعت عــشقـــت ، در این ره بــاریک\nچــون نفسم نـــزدیــک ، بــا مــن باش\n\n[Chorus]\n\n[V3]\nتـــنها مرا کــافیســت ، ســرشاری فــیضت\nبــا فیض عظــیمــــت ، بــا مــن باش\nجـــانم را بپوشــان ، بــا سپر ایــمان\nتــــا دیـدار در آسمـــان ، بــا مــن باش\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -12618,7 +12630,8 @@
     "dateAdded": "2025-01-24",
     "slug": "o-the-deep-deep-love-of-jesus",
     "youtubeUrl": "https://www.youtube.com/watch?v=X3bl5Sb4CVw",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nای [Em]مالک جـ[B]ـانم [Em]، ا[B]ی شاه و سلطـ[Em]ـانم\nد[G]وست مهربـ[B]ـانم [Em]، بـ[Am]ـا مـ[B]ـن با[Em]ش\nگــ[Em]ـر خسته و تـ[B]ـنهــا [Em]، د[B]ر غربت دنـ[Em]ـیا\nگر [G]بــر اوج ا[B]بـرها [Em]، بـ[Am]ـا مـ[B]ـن بـا[Em]ش\n\n[Chorus]\nبا [G]تو وحشتـ[D]ـی نیست از [Em]سایه‌ی ظـ[B]ـلمت\nتا [C]که رسد فــ[Am]ـردا با [G]مــ[Am]ـن بـ[B]ـاش\nتا [Em]آخر عـ[B]ـالـ[Em]ـم ا[B]ز پی تو آیـ[Em]ـم\nای [G]شبان جـ[B]ـانــ[Em]ــم با [Am]مـ[B]ـن با[Em]ش\n\n[V2]\nای [Em]نور و نجـ[B]ـاتــم [Em]، ا[B]مــید و حیا[Em]تم\nد[G]ر شــادی و مــ[B]ـاتم [Em]، بـ[Am]ـا مـ[B]ـن با[Em]ش\nبـا [Em]وسعت عـ[B]ـشقــ[Em]ـت ، د[B]ر این ره بـ[Em]ـاریک\nچـ[G]ـون نفسم نــ[B]ـزدیـ[Em]ـک ، بـ[Am]ـا مـ[B]ـن با[Em]ش\n\n[Chorus]\n\n[V3]\nتــ[Em]ـنها مرا کـ[B]ـافیسـ[Em]ـت ، سـ[B]ـرشاری فـ[Em]ـیضت\nبـ[G]ـا فیض عظـ[B]ـیمـــ[Em]ـت ، بـ[Am]ـا مـ[B]ـن با[Em]ش\nجــ[Em]ـانم را بپو[B]شــا[Em]ن ، بـ[B]ـا سپر ایـ[Em]ـمان\nتـــ[G]ـا دیـدار در آ[B]سمــ[Em]ـان ، بـ[Am]ـا مـ[B]ـن با[Em]ش\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]"
   },
   {
     "id": 294,
@@ -12627,10 +12640,10 @@
       "en": "داوود طوماس",
       "es": "داوود طوماس"
     },
-    "artist": "سرود انگلیسی",
-    "composer": "سرود انگلیسی",
+    "artist": "ترجمه شده از داوود طوماسشاعر سرود انگلیسی",
+    "composer": "ترجمه شده از داوود طوماسشاعر سرود انگلیسی",
     "youtubeId": "aw9MlFIxnzI",
-    "audioUrl": "/worship/audio/kalameh/باران آخر می خواهیم .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/باران آخر می خواهیم .mp3",
     "videoUrl": "https://www.youtube.com/embed/aw9MlFIxnzI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARANEAKHARMIKHAHIM.pptx",
     "lyricsFiles": {
@@ -12638,9 +12651,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبــ[G]ـاران آخر می‌خواهیم ا[D]ین است وعده‌ی خد[G]ا\nکــ[C]ـز منجی نازل می‌شـ[G]ـود بـ[Em]ـاران روح خد[D]ا\nChorus\nبـ[G]ـاران آخر بــ[Em]ـاران روح القـد[D]س\nقـ[G]ـطره‌های فیض می‌بـ[C]ـارد ر[D]گبارش را می‌خواهـ[G]ـیم\nV2\nبــ[G]ـاران آخر می‌خواهیم کـ[D]ـه بخشد حیات نـ[G]ـو\nبر[C] روی باغ کلـ[G]ـیسا ای[Em] روح اکنون نازل شـ[D]ـو\nChorus\n[column]\nV3\nبـــ[G]ـاران آخر می‌خواهـیم نـ[D]ـهرهای آب زند[G]ه\nتـــ[C]ـا سیراب شود این د[G]شتها هــ[Em]ـمه دلهای تشنـ[D]ـه\nChorus\nV4\nبــ[G]ـاران آخر می‌خواهیم ا[D]ز بهر پیر و جـو[G]ان\nنــ[C]ـام مـسیح را بخـ[G]ـوانـیم بــ[Em]ـا دلی پر از ایمـ[D]ـان\nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبـــاران آخر می‌خواهیم این است وعده‌ی خدا\nکـــز منجی نازل می‌شــود بــاران روح خدا\n\n[Chorus]\nبــاران آخر بـــاران روح القـدس\nقــطره‌های فیض می‌بــارد رگبارش را می‌خواهــیم\n\n[V2]\nبـــاران آخر می‌خواهیم کــه بخشد حیات نــو\nبر روی باغ کلــیسا ای روح اکنون نازل شــو\n\n[Chorus]\n\n[V3]\nبــــاران آخر می‌خواهـیم نــهرهای آب زنده\nتــــا سیراب شود این دشتها هـــمه دلهای تشنــه\n\n[Chorus]\n\n[V4]\nبـــاران آخر می‌خواهیم از بهر پیر و جـوان\nنـــام مـسیح را بخــوانـیم بـــا دلی پر از ایمــان\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]\n\n[V4]\n\n[Chorus]",
+      "en": ""
     },
     "chord": "G",
     "mode": "ماژور",
@@ -12653,7 +12665,8 @@
     "dateAdded": "2025-01-24",
     "slug": "داوود-طوماس",
     "youtubeUrl": "https://www.youtube.com/watch?v=TH4WOXbISXg",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nبــ[G]ـاران آخر می‌خواهیم ا[D]ین است وعده‌ی خد[G]ا\nکــ[C]ـز منجی نازل می‌شـ[G]ـود بـ[Em]ـاران روح خد[D]ا\n\n[Chorus]\nبـ[G]ـاران آخر بــ[Em]ـاران روح القـد[D]س\nقـ[G]ـطره‌های فیض می‌بـ[C]ـارد ر[D]گبارش را می‌خواهـ[G]ـیم\n\n[V2]\nبــ[G]ـاران آخر می‌خواهیم کـ[D]ـه بخشد حیات نـ[G]ـو\nبر [C]روی باغ کلـ[G]ـیسا ای [Em]روح اکنون نازل شـ[D]ـو\n\n[Chorus]\n\n[V3]\nبـــ[G]ـاران آخر می‌خواهـیم نـ[D]ـهرهای آب زند[G]ه\nتـــ[C]ـا سیراب شود این د[G]شتها هــ[Em]ـمه دلهای تشنـ[D]ـه\n\n[Chorus]\n\n[V4]\nبــ[G]ـاران آخر می‌خواهیم ا[D]ز بهر پیر و جـو[G]ان\nنــ[C]ـام مـسیح را بخـ[G]ـوانـیم بــ[Em]ـا دلی پر از ایمـ[D]ـان\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]\n\n[V4]\n\n[Chorus]"
   },
   {
     "id": 295,
@@ -12662,10 +12675,10 @@
       "en": "زنده یاد کشیش ورویر آوانسیان",
       "es": "زنده یاد کشیش ورویر آوانسیان"
     },
-    "artist": "زنده یاد کشیش ورویر آوانسیان",
-    "composer": "",
+    "artist": "شاعر زنده یاد کشیش ورویر آوانسیان",
+    "composer": "شاعر زنده یاد کشیش ورویر آوانسیان",
     "youtubeId": "XcmoW91y_-k",
-    "audioUrl": "/worship/audio/kalameh/آه چه زیباست.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Baharan.mp3",
     "videoUrl": "https://www.youtube.com/embed/XcmoW91y_-k",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BAHARAN.pptx",
     "lyricsFiles": {
@@ -12673,11 +12686,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nندار[Em]م هیچ غم و غصه‌ا[Am]ی در دنیا\nوقتی مـ[B]ـن هستم در مسیحــ[Em]ـا\nبا شاد[Em]ی و سرور مشتاق[Am] بهارم\nدر مسـ[B]ـیح من آرامی یابـ[Em]ـم\nChorus\nبهار[Em]ان چه زیبـ[Am]ـاست عیسی با گلهـ[D]ـای خوش‌بو و زیبـ[G]ـا\nخدایـ[Em]ـم بخشیده بهار[Am] سماوی همراه بـ[B]ـا صلیب جلجتـ[Em]ـا\nV2\nای جو[Em]ان تو بسپار زندگـ[Am]ـی خود را\nبهر خـ[B]ـدمت خالق مـ[Em]ـا\nتا رسـ[Em]ـد در پیری روزهای[Am] آرامی\nبهار[B] روحانی از سمـ[Em]ـا\nChorus\n[column]\nV3\nبر قلبهـ[Em]ـا بتابد خورشید[Am] بهاران\nزندگـ[B]ـی ما گردد احیـ[Em]ـا\nمیوه‌ها[Em]ی عالی بخشد ر[Am]وح خدا\nتا مقـ[B]ـدس گردد کلیسـ[Em]ـا\nChorus\nV4\nامداد نـ[Em]ـما باشیم همیشـ[Am]ـه وفادار\nمقد[B]س زندگی نمایـ[Em]ـیم\nضعیف غـ[Em]ـالب شود بر هـ[Am]ـر گناهی\nتا ابـ[B]ـد بماند بهار[Em]ان\nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nندارم هیچ غم و غصه‌ای در دنیا\nوقتی مــن هستم در مسیحـــا\nبا شادی و سرور مشتاق بهارم\nدر مســیح من آرامی یابــم\n\n[Chorus]\nبهاران چه زیبــاست عیسی با گلهــای خوش‌بو و زیبــا\nخدایــم بخشیده بهار سماوی همراه بــا صلیب جلجتــا\n\n[V2]\nای جوان تو بسپار زندگــی خود را\nبهر خــدمت خالق مــا\nتا رســد در پیری روزهای آرامی\nبهار روحانی از سمــا\n\n[Chorus]\n\n[V3]\nبر قلبهــا بتابد خورشید بهاران\nزندگــی ما گردد احیــا\nمیوه‌های عالی بخشد روح خدا\nتا مقــدس گردد کلیســا\n\n[Chorus]\n\n[V4]\nامداد نــما باشیم همیشــه وفادار\nمقدس زندگی نمایــیم\nضعیف غــالب شود بر هــر گناهی\nتا ابــد بماند بهاران\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]\n\n[V4]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -12690,7 +12702,8 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=YmtwvRvxO1U",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1]\nندار[Em]م هیچ غم و غصه‌ا[Am]ی در دنیا\nوقتی مـ[B]ـن هستم در مسیحــ[Em]ـا\nبا شاد[Em]ی و سرور مشتاق [Am]بهارم\nدر مسـ[B]ـیح من آرامی یابـ[Em]ـم\n\n[Chorus]\nبهار[Em]ان چه زیبـ[Am]ـاست عیسی با گلهـ[D]ـای خوش‌بو و زیبـ[G]ـا\nخدایـ[Em]ـم بخشیده بهار [Am]سماوی همراه بـ[B]ـا صلیب جلجتـ[Em]ـا\n\n[V2]\nای جو[Em]ان تو بسپار زندگـ[Am]ـی خود را\nبهر خـ[B]ـدمت خالق مـ[Em]ـا\nتا رسـ[Em]ـد در پیری روزهای [Am]آرامی\nبهار [B]روحانی از سمـ[Em]ـا\n\n[Chorus]\n\n[V3]\nبر قلبهـ[Em]ـا بتابد خورشید [Am]بهاران\nزندگـ[B]ـی ما گردد احیـ[Em]ـا\nمیوه‌ها[Em]ی عالی بخشد ر[Am]وح خدا\nتا مقـ[B]ـدس گردد کلیسـ[Em]ـا\n\n[Chorus]\n\n[V4]\nامداد نـ[Em]ـما باشیم همیشـ[Am]ـه وفادار\nمقد[B]س زندگی نمایـ[Em]ـیم\nضعیف غـ[Em]ـالب شود بر هـ[Am]ـر گناهی\nتا ابـ[B]ـد بماند بهار[Em]ان\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]\n\n[V4]\n\n[Chorus]"
   },
   {
     "id": 296,
@@ -12699,10 +12712,10 @@
       "en": "Hark the herald angels sing",
       "es": "Hark the herald angels sing"
     },
-    "artist": "George whitefield-Charles Wesley",
-    "composer": "George whitefield-Charles Wesley",
+    "artist": "سرود اصلی Hark the herald angels singشاعر و آهنگساز George whitefield-Charles Wesley",
+    "composer": "سرود اصلی Hark the herald angels singشاعر و آهنگساز George whitefield-Charles Wesley",
     "youtubeId": "vP4wgL7qNIk",
-    "audioUrl": "/worship/audio/kalameh/beshnavid in mojdeh ra.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/beshnavid in mojdeh ra.mp3",
     "videoUrl": "https://www.youtube.com/embed/vP4wgL7qNIk",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BESHNAVIDINMOJDEHRA.pptx",
     "lyricsFiles": {
@@ -12710,9 +12723,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبـ[F]ـشنوید این مژده را مولود گشته مسیحا\nصلـ[Dm7]ـح آمد از آسمان ر[C]حمتش جاریست بر ما\nPre-Chorus1\nای[F] امتها بر[Bb]خیز[C/F]ید [C]بـا[F] شادی وجد و[Bb] سرو[C/F]ر [C]\nهمر[Bb]اه فرشتگان سر[C]اییم عیـ[F]ـسی گـ[C]ـشت مولو[F]د\nهمر[Bb]اه فرشتگان سر[C]اییم عیـ[F]ـسی گشـ[Bb]ـت مولود\nV2\nبـ[F]ـشنوید این مژده را مولود گشته مسیحا\nاوسـ[Dm7]ـت خورشید عدالت پا[C]دشاهِ ارض و سَما\nPre-Chorus2\nنو[F]ر و زندگی[Bb] در ا[C/F]وست[C] شـ[F]ـفا در حضو[Bb]ر اوسـ[C/F]ـت [C]\nحیـ[Bb]ـات جاودانی [C]مهیا[F]ست در نا[C]م او[F]\nحیـ[Bb]ـات جاودانی[C] مهیا[F]ست در نا[Bb]م او\n[column]\nChorus\nشاه شاهان بیـ[F]ـا شاه شاهان بیـ[C]ـا\nبگذار جلالت [Dm7]نورانی سازد [Bb2]زمین ما ر[F]ا\nشاه شاهان با[F] ماست پس که بر ضد[C] مـاست\nاو نجات ما[Dm7]ست نام او عیسا[Bb2]ست او پادشاه ما[F]ست\nپاد[F]شاه بیـا[C] ، در [Dm7]قلب‌های مـا[Bb2]\nV3\nبـ[F]ـشنوید این مژده را مولود گشته مسیحا\nاوسـ[Dm7]ـت صاحب پرستش سـ[C]ـتایش او را سزا\nPre-Chorus3\nبا[F]زایستید و بـ[Bb]ـبینـ[C/F]ـید[C] او[F]ست صاحب ز[Bb]مـان‌هـ[C/F]‌ــا  [C]\nکه[Bb] از باکره‌ای پاک مو[C]لود گـ[F]ـشت خدا[C]ی ما[F]\nکه[Bb] از باکره‌ای پاک مو[C]لود گـ[F]ـشت خدا[Bb]ی ما\nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبــشنوید این مژده را مولود گشته مسیحا\nصلــح آمد از آسمان رحمتش جاریست بر ما\n\n[Pre-Chorus1]\nای امتها برخیزید بـا شادی وجد و سرور\nهمراه فرشتگان سراییم عیــسی گــشت مولود\nهمراه فرشتگان سراییم عیــسی گشــت مولود\n\n[V2]\nبــشنوید این مژده را مولود گشته مسیحا\nاوســت خورشید عدالت پادشاهِ ارض و سَما\n\n[Pre-Chorus2]\nنور و زندگی در اوست شــفا در حضور اوســت\nحیــات جاودانی مهیاست در نام او\nحیــات جاودانی مهیاست در نام او\n\n[Chorus]\nشاه شاهان بیــا شاه شاهان بیــا\nبگذار جلالت نورانی سازد زمین ما را\nشاه شاهان با ماست پس که بر ضد مـاست\nاو نجات ماست نام او عیساست او پادشاه ماست\nپادشاه بیـا ، در قلب‌های مـا\n\n[V3]\nبــشنوید این مژده را مولود گشته مسیحا\nاوســت صاحب پرستش ســتایش او را سزا\n\n[Pre-Chorus3]\nبازایستید و بــبینــید اوست صاحب زمـان‌هـ‌ــا\nکه از باکره‌ای پاک مولود گــشت خدای ما\nکه از باکره‌ای پاک مولود گــشت خدای ما\n\n[Chorus]\n\n[V1]\n\n[Pre-Chorus1]\n\n[V2]\n\n[Pre-Chorus2]\n\n[Chorus]\n\n[V3]\n\n[Pre-Chorus3]\n\n[Chorus]",
+      "en": ""
     },
     "chord": "F",
     "mode": "ماژور",
@@ -12725,7 +12737,8 @@
     "dateAdded": "2025-01-24",
     "slug": "hark-the-herald-angels-sing",
     "youtubeUrl": "https://www.youtube.com/watch?v=vP4wgL7qNIk",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nبـ[F]ـشنوید این مژده را مولود گشته مسیحا\nصلـ[Dm7]ـح آمد از آسمان ر[C]حمتش جاریست بر ما\n\n[Pre-Chorus1]\nای [F]امتها بر[Bb]خیز[C/F]ید [C]بـا [F]شادی وجد و [Bb]سرو[C/F]ر [C]\nهمر[Bb]اه فرشتگان سر[C]اییم عیـ[F]ـسی گـ[C]ـشت مولو[F]د\nهمر[Bb]اه فرشتگان سر[C]اییم عیـ[F]ـسی گشـ[Bb]ـت مولود\n\n[V2]\nبـ[F]ـشنوید این مژده را مولود گشته مسیحا\nاوسـ[Dm7]ـت خورشید عدالت پا[C]دشاهِ ارض و سَما\n\n[Pre-Chorus2]\nنو[F]ر و زندگی [Bb]در ا[C/F]وست [C]شـ[F]ـفا در حضو[Bb]ر اوسـ[C/F]ـت [C]\nحیـ[Bb]ـات جاودانی [C]مهیا[F]ست در نا[C]م او[F]\nحیـ[Bb]ـات جاودانی [C]مهیا[F]ست در نا[Bb]م او\n\n[Chorus]\nشاه شاهان بیـ[F]ـا شاه شاهان بیـ[C]ـا\nبگذار جلالت [Dm7]نورانی سازد [Bb2]زمین ما ر[F]ا\nشاه شاهان با [F]ماست پس که بر ضد [C]مـاست\nاو نجات ما[Dm7]ست نام او عیسا[Bb2]ست او پادشاه ما[F]ست\nپاد[F]شاه بیـا [C]، در [Dm7]قلب‌های مـا[Bb2]\n\n[V3]\nبـ[F]ـشنوید این مژده را مولود گشته مسیحا\nاوسـ[Dm7]ـت صاحب پرستش سـ[C]ـتایش او را سزا\n\n[Pre-Chorus3]\nبا[F]زایستید و بـ[Bb]ـبینـ[C/F]ـید [C]او[F]ست صاحب ز[Bb]مـان‌هـ[C/F]‌ــا  [C]\nکه [Bb]از باکره‌ای پاک مو[C]لود گـ[F]ـشت خدا[C]ی ما[F]\nکه [Bb]از باکره‌ای پاک مو[C]لود گـ[F]ـشت خدا[Bb]ی ما\n\n[Chorus]\n\n[V1]\n\n[Pre-Chorus1]\n\n[V2]\n\n[Pre-Chorus2]\n\n[Chorus]\n\n[V3]\n\n[Pre-Chorus3]\n\n[Chorus]"
   },
   {
     "id": 297,
@@ -12734,10 +12747,10 @@
       "en": "کاوه رفیعی",
       "es": "کاوه رفیعی"
     },
-    "artist": "کاوه رفیعی",
-    "composer": "",
+    "artist": "شاعر و آهنگساز کاوه رفیعی",
+    "composer": "شاعر و آهنگساز کاوه رفیعی",
     "youtubeId": "4OE1B7vWops",
-    "audioUrl": "/worship/audio/kalameh/باران نور و شبنمی .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/باران نور و شبنمی .mp3",
     "videoUrl": "https://www.youtube.com/embed/4OE1B7vWops",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARANENUROSHABNAMI.pptx",
     "lyricsFiles": {
@@ -12745,11 +12758,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nروح القد[Cm]س روح خد[Gm]ا روح تسـ[Cm]ـلی و شفا[Gm]\nپر کن وجـ[Fm]ـود خالیـ[Cm]ـم از روح ایما[Gsus4]ن و دعـ[G]ـا\nباران نو[Cm]ر و شبنمـ[Gm]ـی بر لحظه‌ها[Cm]ی بی‌مجا[Gm]ل\nلمست هو[Fm]ای تازه‌ایـ[Cm]ـست در صبح فرد[Gsus4]ای محا[G]ل\nChorus1\nبنشسته بر[Fm] بال نسـ[Cm]ـیم اکنون بـیا[Db] به دیدنم[Gsus4]  [G]\nزیر نگا[Fm]ه سایه‌ها[Cm] نقشی بز[G7]ن بر بودنم[Cm]    [C7]\nآه ای طلو[Fm]ع بی‌غـر[Cm]وب در فصل پا[Db]ییزم بها[Gsus4]ر   [G]\nخاک زمـ[Fm]ـین تشنه‌ام[Cm] روح حیا[G7]ت بر من ببا[Cm]ر\nVerse\n[column]\nChorus2\nآیینه با[Fm]ش در سینه‌ا[Cm]م بر تیرگـ[Db]ـیم دستی گذار[Gsus4]   [G]\nدر خاک خـ[Fm]ـشک هستیـ[Cm]ـم بذری بپا[G7]ش باغی برآر[Cm]    [C7]\nپر کن مر[Fm]ا از نور خـ[Cm]ـود نور حقیـ[Db]ـقت و کمال[Gsus4]  [G]\nاز روح مـ[Fm]ـنجیم مسـ[Cm]ـیح روح حیا[G7]ت بی‌زو[Cm]ال\nChorus3\nپر کن مر[Fm]ا از آتشـ[Cm]ـت از روح ا[Db]یمان و دعا[Gsus4]  [G]\nپر کن وجـ[Fm]ـود خالیـ[Cm]ـم از روح ا[G7]یمان و دعا[Cm]    [C7]\nپر کن مر[Fm]ا از آتشـ[Cm]ـت از روح ا[Db]یمان و دعا[Gsus4]  [G]\nپر کن وجـ[Fm]ـود خالیـ[Cm]ـم از روح ا[G7]یمان و دعا[Cm]",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nروح القدس روح خدا روح تســلی و شفا\nپر کن وجــود خالیــم از روح ایمان و دعــا\nباران نور و شبنمــی بر لحظه‌های بی‌مجال\nلمست هوای تازه‌ایــست در صبح فردای محال\n\n[Chorus1]\nبنشسته بر بال نســیم اکنون بـیا به دیدنم\nزیر نگاه سایه‌ها نقشی بزن بر بودنم\nآه ای طلوع بی‌غـروب در فصل پاییزم بهار\nخاک زمــین تشنه‌ام روح حیات بر من ببار\n\n[Verse]\n\n[Chorus2]\nآیینه باش در سینه‌ام بر تیرگــیم دستی گذار\nدر خاک خــشک هستیــم بذری بپاش باغی برآر\nپر کن مرا از نور خــود نور حقیــقت و کمال\nاز روح مــنجیم مســیح روح حیات بی‌زوال\n\n[Chorus3]\nپر کن مرا از آتشــت از روح ایمان و دعا\nپر کن وجــود خالیــم از روح ایمان و دعا\nپر کن مرا از آتشــت از روح ایمان و دعا\nپر کن وجــود خالیــم از روح ایمان و دعا\n\n[Verse]\n\n[Chorus1]\n\n[Verse]\n\n[Chorus2]\n\n[Chorus3]",
+      "en": ""
     },
-    "chord": "C",
+    "chord": "Cm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -12760,7 +12772,8 @@
     "dateAdded": "2025-01-24",
     "slug": "کاوه-رفیعی",
     "youtubeUrl": "https://www.youtube.com/watch?v=1yCWvEvicbs",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[Verse]\nروح القد[Cm]س روح خد[Gm]ا روح تسـ[Cm]ـلی و شفا[Gm]\nپر کن وجـ[Fm]ـود خالیـ[Cm]ـم از روح ایما[Gsus4]ن و دعـ[G]ـا\nباران نو[Cm]ر و شبنمـ[Gm]ـی بر لحظه‌ها[Cm]ی بی‌مجا[Gm]ل\nلمست هو[Fm]ای تازه‌ایـ[Cm]ـست در صبح فرد[Gsus4]ای محا[G]ل\n\n[Chorus1]\nبنشسته بر [Fm]بال نسـ[Cm]ـیم اکنون بـیا [Db]به دیدنم[Gsus4]  [G]\nزیر نگا[Fm]ه سایه‌ها [Cm]نقشی بز[G7]ن بر بودنم[Cm]    [C7]\nآه ای طلو[Fm]ع بی‌غـر[Cm]وب در فصل پا[Db]ییزم بها[Gsus4]ر   [G]\nخاک زمـ[Fm]ـین تشنه‌ام [Cm]روح حیا[G7]ت بر من ببا[Cm]ر\n\n[Verse]\n\n[Chorus2]\nآیینه با[Fm]ش در سینه‌ا[Cm]م بر تیرگـ[Db]ـیم دستی گذار[Gsus4]   [G]\nدر خاک خـ[Fm]ـشک هستیـ[Cm]ـم بذری بپا[G7]ش باغی برآر[Cm]    [C7]\nپر کن مر[Fm]ا از نور خـ[Cm]ـود نور حقیـ[Db]ـقت و کمال[Gsus4]  [G]\nاز روح مـ[Fm]ـنجیم مسـ[Cm]ـیح روح حیا[G7]ت بی‌زو[Cm]ال\n\n[Chorus3]\nپر کن مر[Fm]ا از آتشـ[Cm]ـت از روح ا[Db]یمان و دعا[Gsus4]  [G]\nپر کن وجـ[Fm]ـود خالیـ[Cm]ـم از روح ا[G7]یمان و دعا[Cm]    [C7]\nپر کن مر[Fm]ا از آتشـ[Cm]ـت از روح ا[Db]یمان و دعا[Gsus4]  [G]\nپر کن وجـ[Fm]ـود خالیـ[Cm]ـم از روح ا[G7]یمان و دعا[Cm]\n\n[Verse]\n\n[Chorus1]\n\n[Verse]\n\n[Chorus2]\n\n[Chorus3]"
   },
   {
     "id": 298,
@@ -12769,10 +12782,10 @@
       "en": "Above all powers",
       "es": "Above all powers"
     },
-    "artist": "Michael W.Smith",
-    "composer": "Michael W.Smith",
+    "artist": "سرود اصلی Above all powersشاعر Michael W.Smith",
+    "composer": "سرود اصلی Above all powersشاعر Michael W.Smith",
     "youtubeId": "kYWiPc6OHvs",
-    "audioUrl": "/worship/audio/kalameh/224 Bartar az shahan .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/224 Bartar az shahan .mp3",
     "videoUrl": "https://www.youtube.com/embed/kYWiPc6OHvs",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARTARAZSHAHAN.pptx",
     "lyricsFiles": {
@@ -12780,9 +12793,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nبرتر از شـ[C]ـاھان و قدرتھا[G]\nبرتر از خـ[C]ـلقت و کا[D]ر دست او[G]\nبرتر از حـ[Em]ـکمت و راه انسانهـ[C]ـا  [G]\nتو[Am] وجود داشتی از ابتد[D]ا\nV2\nبرتر از شـ[C]ـاھان و حاکما[G]ن\nبرتر از عـ[C]ـجایب[D] در این جھا[C]ن\nبرتر از گـ[Em]ـنج و ثروت دنیـ[C]ـا  [G]\nتو[Am] گرانبهاتر از اینهـ[B]ـا\n[column]\nChorus\nبــ[G]ـر صلـ[Am]ـیب مـ[D]ـتروک و تنهـ[G]ـا\nدادی جانـ[Am]ـت بهر[D]م شدی فد[G]ا\nچون گـُلـ[Em]ـی زیر پا افتا[C]دی[G]\nمصلوب شد[Am]ی و خوار گشتـ[C]ـی [D]بهر مـ[G]ـن",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nبرتر از شــاھان و قدرتھا\nبرتر از خــلقت و کار دست او\nبرتر از حــکمت و راه انسانهــا\nتو وجود داشتی از ابتدا\n\n[V2]\nبرتر از شــاھان و حاکمان\nبرتر از عــجایب در این جھان\nبرتر از گــنج و ثروت دنیــا\nتو گرانبهاتر از اینهــا\n\n[Chorus]\nبـــر صلــیب مــتروک و تنهــا\nدادی جانــت بهرم شدی فدا\nچون گـُلــی زیر پا افتادی\nمصلوب شدی و خوار گشتــی بهر مــن\n\n[V1]\n\n[V2]\n\n[Chorus]",
+      "en": ""
     },
     "chord": "C",
     "mode": "ماژور",
@@ -12795,7 +12807,8 @@
     "dateAdded": "2025-01-24",
     "slug": "above-all-powers",
     "youtubeUrl": "https://www.youtube.com/watch?v=2yP2F95K-M0",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nبرتر از شـ[C]ـاھان و قدرتھا[G]\nبرتر از خـ[C]ـلقت و کا[D]ر دست او[G]\nبرتر از حـ[Em]ـکمت و راه انسانهـ[C]ـا  [G]\nتو [Am]وجود داشتی از ابتد[D]ا\n\n[V2]\nبرتر از شـ[C]ـاھان و حاکما[G]ن\nبرتر از عـ[C]ـجایب [D]در این جھا[C]ن\nبرتر از گـ[Em]ـنج و ثروت دنیـ[C]ـا  [G]\nتو [Am]گرانبهاتر از اینهـ[B]ـا\n\n[Chorus]\nبــ[G]ـر صلـ[Am]ـیب مـ[D]ـتروک و تنهـ[G]ـا\nدادی جانـ[Am]ـت بهر[D]م شدی فد[G]ا\nچون گـُلـ[Em]ـی زیر پا افتا[C]دی[G]\nمصلوب شد[Am]ی و خوار گشتـ[C]ـی [D]بهر مـ[G]ـن\n\n[V1]\n\n[V2]\n\n[Chorus]"
   },
   {
     "id": 299,
@@ -12804,10 +12817,10 @@
       "en": "Glorify thy name",
       "es": "Glorify thy name"
     },
-    "artist": "Glorify thy name",
-    "composer": "",
+    "artist": "سرود اصلی Glorify thy name",
+    "composer": "سرود اصلی Glorify thy name",
     "youtubeId": null,
-    "audioUrl": "/worship/audio/kalameh/بر نامت جلال پدر دوستت دارم.mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/بر نامت جلال پدر دوستت دارم.mp3",
     "videoUrl": "",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BARNAMATJALAL.pptx",
     "lyricsFiles": {
@@ -12815,9 +12828,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nپـ[C]ـدر دوستـ[F]ـت دارم و تو[G] را می‌ستا[C]یم\nبـ[C]ـر نامت جلا[F]ل باد تا ابد[G]\nChorus\nبر[C] نامت جلا[F]ل ، بر[E7] نامت جلا[Am]ل\nبر[F] نامت جلا[G]ل باد تا ابـ[C]ـد [F]    [C]\nV2\nعـ[C]ـیسی دوستـ[F]ـت دارم و تو[G] را می‌ستا[C]یم\nبـ[C]ـر نامت جلا[F]ل باد تا ابد[G]\nChorus\nV3\nرو[C]ح‌القدس دوستـ[F]ـت دارم و تو[G] را می‌ستا[C]یم\nبـ[C]ـر نامت جلا[F]ل باد تا ابد[G]\nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nپــدر دوستــت دارم و تو را می‌ستایم\nبــر نامت جلال باد تا ابد\n\n[Chorus]\nبر نامت جلال ، بر نامت جلال\nبر نامت جلال باد تا ابــد\n\n[V2]\nعــیسی دوستــت دارم و تو را می‌ستایم\nبــر نامت جلال باد تا ابد\n\n[Chorus]\n\n[V3]\nروح‌القدس دوستــت دارم و تو را می‌ستایم\nبــر نامت جلال باد تا ابد\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]",
+      "en": ""
     },
     "chord": "C",
     "mode": "ماژور",
@@ -12830,7 +12842,8 @@
     "dateAdded": "2025-01-24",
     "slug": "glorify-thy-name",
     "youtubeUrl": "",
-    "hasTiming": true
+    "hasTiming": true,
+    "chordsText": "[V1]\nپـ[C]ـدر دوستـ[F]ـت دارم و تو [G]را می‌ستا[C]یم\nبـ[C]ـر نامت جلا[F]ل باد تا ابد[G]\n\n[Chorus]\nبر [C]نامت جلا[F]ل ، بر [E7]نامت جلا[Am]ل\nبر [F]نامت جلا[G]ل باد تا ابـ[C]ـد [F]    [C]\n\n[V2]\nعـ[C]ـیسی دوستـ[F]ـت دارم و تو [G]را می‌ستا[C]یم\nبـ[C]ـر نامت جلا[F]ل باد تا ابد[G]\n\n[Chorus]\n\n[V3]\nرو[C]ح‌القدس دوستـ[F]ـت دارم و تو [G]را می‌ستا[C]یم\nبـ[C]ـر نامت جلا[F]ل باد تا ابد[G]\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]"
   },
   {
     "id": 300,
@@ -13938,10 +13951,10 @@
       "en": "O come all ye faithful",
       "es": "O come all ye faithful"
     },
-    "artist": "John Francis Wade-Franz Gruber",
-    "composer": "John Francis Wade-Franz Gruber",
+    "artist": "سرود اصلی O come all ye faithfulشاعر و آهنگساز John Francis Wade-Franz Gruber",
+    "composer": "سرود اصلی O come all ye faithfulشاعر و آهنگساز John Francis Wade-Franz Gruber",
     "youtubeId": "a6LT6GruGS8",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Ayid ou ra parastim.mp3",
     "videoUrl": "https://www.youtube.com/embed/a6LT6GruGS8",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/GERDAYIDIMANDARAN.pptx",
     "lyricsFiles": {
@@ -13949,9 +13962,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nگرد آ[F]یــید ایمـ[C]ـاندار[Dm]ان شادان و فـ[F]ـیرو[C]ز\nگرد آیـ[Dm]ـید گرد آ[C]یـید ، در[G7] بـیــت لَـ[C]ـحـم\nPre-Chorus1\nشـ[F]ـاه مـلـــا[Fsus]ئک[F] گـــ[Dm]ـشته مـولـود ا[C]مروز\nChorus\nآییـ[F]ـد او را پرستیم ، آیید او را پرستـ[C]ـیم\nآییـ[Gm]ـد او را پرسـ[F/A]ـتیــ[C]ـم مـ[Dm]ـسیـ[C]ـح عیـ[F]ـسی\nV2\nای جـ[F]ـمله ملا[C]ئک با [Dm]شادی سرا[F]ئید [C]\nای کل [Dm]کائنا[C]ت ، تسبیح[G7] بخوانـ[C]ـید\n[column]\nPre-Chorus2\nخـ[F]ـدا را مجـ[Fsus]ــد با[F]د در [Dm]اعلی علیـ[C]ـین\nChorus\nBridge (x2)\nپـرستـــ[Bb]ـیـمـت[F/A] ، پـرستـــ[Bb]ـیـمـت[Dm]\nپـرستـــ[Bb]ـیـمـت[F/A] عـیسـی[C]",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nگرد آیــید ایمــانداران شادان و فــیروز\nگرد آیــید گرد آیـید ، در بـیــت لَــحـم\n\n[Pre-Chorus1]\nشــاه مـلـــائــــک گــــشته مـولـود امروز\n\n[Chorus]\nآییــد او را پرستیم ، آیید او را پرستــیم\nآییــد او را پرســتیـــم مــسیــح عیــسی\n\n[V2]\nای جــمله ملائک با شادی سرائید\nای کل کائنات ، تسبیح بخوانــید\n\n[Pre-Chorus2]\nخــدا را مـــــجـــد بــاد در اعلی علیــین\n\n[Chorus]\n\n[Bridge (x2)]\nپـرستــــیـمـت ، پـرستــــیـمـت\nپـرستــــیـمـت عـیسـی\n\n[V1]\n\n[Pre-Chorus1]\n\n[Chorus]\n\n[V2]\n\n[Pre-Chorus2]\n\n[Chorus]\n\n[Bridge (x2)]",
+      "en": ""
     },
     "chord": "F",
     "mode": "ماژور",
@@ -13966,7 +13978,9 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=a6LT6GruGS8",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ayid%20oo%20ra%20parastim%20%28Gerd%20ayid%20imandaran%29.pdf",
+    "chordsText": "[V1]\nگرد آ[F]یــید ایمـ[C]ـاندار[Dm]ان شادان و فـ[F]ـیرو[C]ز\nگرد آیـ[Dm]ـید گرد آ[C]یـید ، در [G7]بـیــت لَـ[C]ـحـم\n\n[Pre-Chorus1]\nشـ[F]ـاه مـلـــا[Fsus]ئــــک [F]گـــ[Dm]ـشته مـولـود ا[C]مروز\n\n[Chorus]\nآییـ[F]ـد او را پرستیم ، آیید او را پرستـ[C]ـیم\nآییـ[Gm]ـد او را پرسـ[F/A]ـتیــ[C]ـم مـ[Dm]ـسیـ[C]ـح عیـ[F]ـسی\n\n[V2]\nای جـ[F]ـمله ملا[C]ئک با [Dm]شادی سرا[F]ئید [C]\nای کل [Dm]کائنا[C]ت ، تسبیح [G7]بخوانـ[C]ـید\n\n[Pre-Chorus2]\nخـ[F]ـدا را مـــــجـ[Fsus]ــد بــا[F]د در [Dm]اعلی علیـ[C]ـین\n\n[Chorus]\n\n[Bridge (x2)]\nپـرستـــ[Bb]ـیـمـت [F/A]، پـرستـــ[Bb]ـیـمـت[Dm]\nپـرستـــ[Bb]ـیـمـت [F/A]عـیسـی[C]\n\n[V1]\n\n[Pre-Chorus1]\n\n[Chorus]\n\n[V2]\n\n[Pre-Chorus2]\n\n[Chorus]\n\n[Bridge (x2)]"
   },
   {
     "id": 332,
@@ -14080,10 +14094,10 @@
       "en": "میلاد رسایی",
       "es": "میلاد رسایی"
     },
-    "artist": "روزبه نجارنژاد",
-    "composer": "روزبه نجارنژاد",
+    "artist": "شاعر میلاد رساییآهنگساز روزبه نجارنژاد",
+    "composer": "شاعر میلاد رساییآهنگساز روزبه نجارنژاد",
     "youtubeId": "a9WVtyBMI1w",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/آرامی دلهایی .mp3",
     "videoUrl": "https://www.youtube.com/embed/a9WVtyBMI1w",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ARAMIYEDELHAYI.pptx",
     "lyricsFiles": {
@@ -14091,9 +14105,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1 (x2)\nآر[D]امــی دلــهــایــی[Bm]\nســـازنــده‌ی دریــاهـ[G]ـا\nروشنی خورشید[A]ی ، زیبایی رویاهـ[D]ـا\nاز تو امنیت دار[Bm]م ، در کشمکش طوفـ[G]ـان\nمن قایق پوسید[A]ه ، تو رهبر این سکـ[D]ـان\nChorus (x2)\nتا مقصد آزاد[G]ی سرباز تو می‌‌مانـ[Em]ـم\nنعمت نجاتم ر[A]ا از فیض تو می‌دانـ[D]ـم\n[column]\nV2 (x2)\nآن‌د[D]م کـه در ایـن جـسـمـ[Bm]ـم\nدر غــصــه و در شـــاد[G]ی\nدر ثروت و فقر و ظـ[A]ـلم ویرانی و آباد[D]ی\nحاشا که اگر جز تـو[Bm] یار دگری گـیـر[G]م\nزنده‌ام از عشق تـو[A] در راه تو می‌مـیـر[D]م \nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1 (x2)]\nآرامــی دلــهــایــی\nســـازنــده‌ی دریــاهــا\nروشنی خورشیدی ، زیبایی رویاهــا\nاز تو امنیت دارم ، در کشمکش طوفــان\nمن قایق پوسیده ، تو رهبر این سکــان\n\n[Chorus (x2)]\nتا مقصد آزادی سرباز تو می‌‌مانــم\nنعمت نجاتم را از فیض تو می‌دانــم\n\n[V2 (x2)]\nآن‌دم کـه در ایـن جـسـمــم\nدر غــصــه و در شـــادی\nدر ثروت و فقر و ظــلم ویرانی و آبادی\nحاشا که اگر جز تـو یار دگری گـیـرم\nزنده‌ام از عشق تـو در راه تو می‌مـیـرم\n\n[Chorus]\n\n[V1 (x2)]\n\n[Chorus (x2)]\n\n[V2 (x2)]\n\n[Chorus]",
+      "en": ""
     },
     "chord": "D",
     "mode": "ماژور",
@@ -14105,11 +14118,12 @@
     "language": "fa",
     "dateAdded": "2025-01-24",
     "slug": "میلاد-رسایی",
-    "pdfFileUrl": "/worship/pdf/kalameh/Ārāmiye delhāyi.pdf",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/A%CC%84ra%CC%84miye%20delha%CC%84yi.pdf",
     "youtubeUrl": "https://www.youtube.com/watch?v=awwuz-Wg57g",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "chordsText": "[V1 (x2)]\nآر[D]امــی دلــهــایــی[Bm]\nســـازنــده‌ی دریــاهـ[G]ـا\nروشنی خورشید[A]ی ، زیبایی رویاهـ[D]ـا\nاز تو امنیت دار[Bm]م ، در کشمکش طوفـ[G]ـان\nمن قایق پوسید[A]ه ، تو رهبر این سکـ[D]ـان\n\n[Chorus (x2)]\nتا مقصد آزاد[G]ی سرباز تو می‌‌مانـ[Em]ـم\nنعمت نجاتم ر[A]ا از فیض تو می‌دانـ[D]ـم\n\n[V2 (x2)]\nآن‌د[D]م کـه در ایـن جـسـمـ[Bm]ـم\nدر غــصــه و در شـــاد[G]ی\nدر ثروت و فقر و ظـ[A]ـلم ویرانی و آباد[D]ی\nحاشا که اگر جز تـو [Bm]یار دگری گـیـر[G]م\nزنده‌ام از عشق تـو [A]در راه تو می‌مـیـر[D]م\n\n[Chorus]\n\n[V1 (x2)]\n\n[Chorus (x2)]\n\n[V2 (x2)]\n\n[Chorus]"
   },
   {
     "id": 336,
@@ -14878,10 +14892,10 @@
       "en": "آراد طفلان",
       "es": "آراد طفلان"
     },
-    "artist": "آراد طفلان",
-    "composer": "",
+    "artist": "شاعر و آهنگساز آراد طفلان",
+    "composer": "شاعر و آهنگساز آراد طفلان",
     "youtubeId": "AQNzkfZoQmc",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/آغوشت محبتی‌ست.mp3",
     "videoUrl": "https://www.youtube.com/embed/AQNzkfZoQmc",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AGHUSHATMOHABATIST.pptx",
     "lyricsFiles": {
@@ -14889,9 +14903,8 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nدر[A] عمق‌های تو [C#m]حقیقتیـ[D]ـست\nبـ[A]ـس فرا[D]تر از[E] درک مـ[A]ـن\nدر[A] آغوش تو [C#m]محبتیـ[D]ـست\nبـ[A]ـس فرا[D]تر از[E] درک مـ[A]ـن\nدر[A] حضور تو [C#m]آرامشیـ[D]ـست\nبـ[A]ـس فرا[D]تر از[E] درک مـ[A]ـن\nChorus\nآغوشت[F#m] محبتیست ، محبتی[C#m] حقیقیست\nمحبـ[D]ــتت را خواهـ[E]ـم\nوجودت[F#m] آرامشیست ، آرامشی[C#m] جاودانیست\nآرامـ[D]ـشت را خواهـ[E]ــم\nآغوشت[F#m] محبتیست ، محبتی[C#m] حقیقیست\nبیشتر[D] و بیشتر خواهـ[E]ـم\nوجودت[F#m] آرامشیست ، آرامشی[C#m] جاودانیست\nبیشتر[D] و بیشتر خواهـ[E]ـم\n[column]\nBridge1\nپدر آ[A]سمانی کن مرا محـ[F#m]ـبت\nچون دانم تویـ[C#m]ـی منشأ محـ[D]ـبت\nپدر آ[A]سمانی کن مرا یــا[F#m]ری\nچون دانم تویـ[C#m]ـی بهرم ر[D]اهی\nپدر آ[A]سمانی سرایم بــ[F#m]ـهرت\nچون تویـ[C#m]ـی عشق ابـ[D]ـدی\nChorus\nBridge2\nپدر آ[A]سمانی سرایم بــ[F#m]ـهرت\nچون تویـ[C#m]ـی منشأ محـ[D]ـبت\nپدر آ[A]سمانی سرایم بــ[F#m]ـهرت\nچون تویـ[C#m]ـی بهرم ر[D]اهی\nپدر آ[A]سمانی سرایم بــ[F#m]ـهرت\nچون تویـ[C#m]ـی عشق ا[D]بدی",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nدر عمق‌های تو حقیقتیــست\nبــس فراتر از درک مــن\nدر آغوش تو محبتیــست\nبــس فراتر از درک مــن\nدر حضور تو آرامشیــست\nبــس فراتر از درک مــن\n\n[Chorus]\nآغوشت محبتیست ، محبتی حقیقیست\nمحبـــتت را خواهــم\nوجودت آرامشیست ، آرامشی جاودانیست\nآرامــشت را خواهـــم\nآغوشت محبتیست ، محبتی حقیقیست\nبیشتر و بیشتر خواهــم\nوجودت آرامشیست ، آرامشی جاودانیست\nبیشتر و بیشتر خواهــم\n\n[Bridge1]\nپدر آسمانی کن مرا محــبت\nچون دانم تویــی منشأ محــبت\nپدر آسمانی کن مرا یــاری\nچون دانم تویــی بهرم راهی\nپدر آسمانی سرایم بـــهرت\nچون تویــی عشق ابــدی\n\n[Chorus]\n\n[Bridge2]\nپدر آسمانی سرایم بـــهرت\nچون تویــی منشأ محــبت\nپدر آسمانی سرایم بـــهرت\nچون تویــی بهرم راهی\nپدر آسمانی سرایم بـــهرت\nچون تویــی عشق ابدی\n\n[Verse]\n\n[Chorus]\n\n[Bridge1]\n\n[Chorus]\n\n[Bridge2]",
+      "en": ""
     },
     "chord": "A",
     "mode": "ماژور",
@@ -14906,7 +14919,9 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=-RaR6gqxc6w",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Aghooshat%20mohabatist.pdf",
+    "chordsText": "[Verse]\nدر [A]عمق‌های تو [C#m]حقیقتیـ[D]ـست\nبـ[A]ـس فرا[D]تر از [E]درک مـ[A]ـن\nدر [A]آغوش تو [C#m]محبتیـ[D]ـست\nبـ[A]ـس فرا[D]تر از [E]درک مـ[A]ـن\nدر [A]حضور تو [C#m]آرامشیـ[D]ـست\nبـ[A]ـس فرا[D]تر از [E]درک مـ[A]ـن\n\n[Chorus]\nآغوشت [F#m]محبتیست ، محبتی [C#m]حقیقیست\nمحبـ[D]ــتت را خواهـ[E]ـم\nوجودت [F#m]آرامشیست ، آرامشی [C#m]جاودانیست\nآرامـ[D]ـشت را خواهـ[E]ــم\nآغوشت [F#m]محبتیست ، محبتی [C#m]حقیقیست\nبیشتر [D]و بیشتر خواهـ[E]ـم\nوجودت [F#m]آرامشیست ، آرامشی [C#m]جاودانیست\nبیشتر [D]و بیشتر خواهـ[E]ـم\n\n[Bridge1]\nپدر آ[A]سمانی کن مرا محـ[F#m]ـبت\nچون دانم تویـ[C#m]ـی منشأ محـ[D]ـبت\nپدر آ[A]سمانی کن مرا یــا[F#m]ری\nچون دانم تویـ[C#m]ـی بهرم ر[D]اهی\nپدر آ[A]سمانی سرایم بــ[F#m]ـهرت\nچون تویـ[C#m]ـی عشق ابـ[D]ـدی\n\n[Chorus]\n\n[Bridge2]\nپدر آ[A]سمانی سرایم بــ[F#m]ـهرت\nچون تویـ[C#m]ـی منشأ محـ[D]ـبت\nپدر آ[A]سمانی سرایم بــ[F#m]ـهرت\nچون تویـ[C#m]ـی بهرم ر[D]اهی\nپدر آ[A]سمانی سرایم بــ[F#m]ـهرت\nچون تویـ[C#m]ـی عشق ا[D]بدی\n\n[Verse]\n\n[Chorus]\n\n[Bridge1]\n\n[Chorus]\n\n[Bridge2]"
   },
   {
     "id": 358,
@@ -14915,10 +14930,10 @@
       "en": "زنده یاد کشیش رافی شاهوردیان",
       "es": "زنده یاد کشیش رافی شاهوردیان"
     },
-    "artist": "زنده یاد کشیش رافی شاهوردیان",
-    "composer": "",
+    "artist": "شاعر و آهنگساز زنده یاد کشیش رافی شاهوردیان",
+    "composer": "شاعر و آهنگساز زنده یاد کشیش رافی شاهوردیان",
     "youtubeId": "3K4vBsDuGHQ",
-    "audioUrl": "",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/آه چه زیباست.mp3",
     "videoUrl": "https://www.youtube.com/embed/3K4vBsDuGHQ",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AHCHEZIBASTKESHAVANDJAM.pptx",
     "lyricsFiles": {
@@ -14926,11 +14941,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "V1\nآه چه زیبـ[Em]ـاست که شوند جـ[B]ـمع\nمقدسین یکدل باهـ[Em]ـم\nدر حضور[Em] خدای مـ[B]ـا در خانه‌ی پدر مـ[Em]ـا\nChorus\nای گرانبـ[Am]ـار تو نیز بیـ[Em]ـا به کلبه‌ی[B] پرمهر مـ[Em]ـا\nای گرانبـ[Am]ـار تو نیز بیـ[Em]ـا به خانه‌ی[B] ما کلیسـ[Em]ـا\nV2\nآه چه زیبـ[Em]ـاست خانه‌ی مـ[B]ـا\nمسیح ما در میان مـ[Em]ـا\nپدر مـ[Em]ـا در آسمـ[B]ـان پر از مهر است کلبه‌ی مـ[Em]ـا\n[column]\nChorus\nV3\nآه چه زیبـ[Em]ـاست آن کلیسـ[B]ـا\nکه سَر آن بُـوَد عیسـ[Em]ـی\nاعضای آ[Em]ن مقدسـ[B]ـین خانواده‌ی پاک خد[Em]ا\nChorus\nV4\nآه چه زیبـ[Em]ـاست مسکن مـ[B]ـا\nبـِه ز قصرهای این دنیـ[Em]ـا\nگرچه حقـ[Em]ـیر است این کلبـ[B]ـه لیکن عیسی باشد آنجـ[Em]ـا\nChorus",
-      "en": "",
-      "es": ""
+      "fa": "[V1]\nآه چه زیبــاست که شوند جــمع\nمقدسین یکدل باهــم\nدر حضور خدای مــا در خانه‌ی پدر مــا\n\n[Chorus]\nای گرانبــار تو نیز بیــا به کلبه‌ی پرمهر مــا\nای گرانبــار تو نیز بیــا به خانه‌ی ما کلیســا\n\n[V2]\nآه چه زیبــاست خانه‌ی مــا\nمسیح ما در میان مــا\nپدر مــا در آسمــان پر از مهر است کلبه‌ی مــا\n\n[Chorus]\n\n[V3]\nآه چه زیبــاست آن کلیســا\nکه سَر آن بُـوَد عیســی\nاعضای آن مقدســین خانواده‌ی پاک خدا\n\n[Chorus]\n\n[V4]\nآه چه زیبــاست مسکن مــا\nبـِه ز قصرهای این دنیــا\nگرچه حقــیر است این کلبــه لیکن عیسی باشد آنجــا\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]\n\n[V4]\n\n[Chorus]",
+      "en": ""
     },
-    "chord": "E",
+    "chord": "Em",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -14941,7 +14955,9 @@
     "dateAdded": "2025-01-24",
     "slug": "زنده-یاد-کشیش-رافی-شاهوردیان",
     "youtubeUrl": "https://www.youtube.com/watch?v=qfFx7uxTahs",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ah%20che%20zibast%20ke%20shavand%20jam.pdf",
+    "chordsText": "[V1]\nآه چه زیبـ[Em]ـاست که شوند جـ[B]ـمع\nمقدسین یکدل باهـ[Em]ـم\nدر حضور [Em]خدای مـ[B]ـا در خانه‌ی پدر مـ[Em]ـا\n\n[Chorus]\nای گرانبـ[Am]ـار تو نیز بیـ[Em]ـا به کلبه‌ی [B]پرمهر مـ[Em]ـا\nای گرانبـ[Am]ـار تو نیز بیـ[Em]ـا به خانه‌ی [B]ما کلیسـ[Em]ـا\n\n[V2]\nآه چه زیبـ[Em]ـاست خانه‌ی مـ[B]ـا\nمسیح ما در میان مـ[Em]ـا\nپدر مـ[Em]ـا در آسمـ[B]ـان پر از مهر است کلبه‌ی مـ[Em]ـا\n\n[Chorus]\n\n[V3]\nآه چه زیبـ[Em]ـاست آن کلیسـ[B]ـا\nکه سَر آن بُـوَد عیسـ[Em]ـی\nاعضای آ[Em]ن مقدسـ[B]ـین خانواده‌ی پاک خد[Em]ا\n\n[Chorus]\n\n[V4]\nآه چه زیبـ[Em]ـاست مسکن مـ[B]ـا\nبـِه ز قصرهای این دنیـ[Em]ـا\nگرچه حقـ[Em]ـیر است این کلبـ[B]ـه لیکن عیسی باشد آنجـ[Em]ـا\n\n[Chorus]\n\n[V1]\n\n[Chorus]\n\n[V2]\n\n[Chorus]\n\n[V3]\n\n[Chorus]\n\n[V4]\n\n[Chorus]"
   },
   {
     "id": 359,
@@ -14985,10 +15001,10 @@
       "en": "Our God (water you turned into wine)",
       "es": "Our God (water you turned into wine)"
     },
-    "artist": "Chris Tomlin",
-    "composer": "Chris Tomlin",
+    "artist": "سرود اصلی Our God (water you turned into wine)شاعر و آهنگساز Chris Tomlin",
+    "composer": "سرود اصلی Our God (water you turned into wine)شاعر و آهنگساز Chris Tomlin",
     "youtubeId": "E3Vnt1jAtaI",
-    "audioUrl": "/worship/audio/kalameh/222 Ab ra sharab .mp3",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Ab ra sharab .mp3",
     "videoUrl": "https://www.youtube.com/embed/E3Vnt1jAtaI",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ABRASHARABKARDEYI.pptx",
     "lyricsFiles": {
@@ -14996,11 +15012,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "Verse\nآب[Dm] را شرا[Bb]ب کرده‌ا[F]ی ، کـو[Dm]ر را بینا[Bb] کرده‌ای[F]\nتو بی‌همتـا[Gm]یی ‌، بی‌همتــا[C]\nدر[Dm] تاریکی[Bb] تابید[F]ی ، از[Dm] خاکستر[Bb] برخاستیم[F]\nتو بی‌همتـا[Gm]یی ‌، بی‌همتــا[C]\nChorus\nخدا[Dm] عظیمتر ، خدا[Bb] قویتر\nخـ[F]ـدایم برتر از هـ[C]ـر قدرتی\nشـ[Dm]ـفا‌دهنده ، قـا[Bb]در مهیب خـد[F]ا ، خـد[C]ا\nBridge\nپــ[Dm]ـس اگر خدا با ماست ، کـه[Bb] ایستد بر ضد ما\nپــ[F]ـس اگر خدا با ماست ، کـ[C]ـیست بر ضد ما",
-      "en": "",
-      "es": ""
+      "fa": "[Verse]\nآب را شراب کرده‌ای ، کـور را بینا کرده‌ای\nتو بی‌همتـایی ‌، بی‌همتــا\nدر تاریکی تابیدی ، از خاکستر برخاستیم\nتو بی‌همتـایی ‌، بی‌همتــا\n\n[Chorus]\nخدا عظیمتر ، خدا قویتر\nخــدایم برتر از هــر قدرتی\nشــفا‌دهنده ، قـادر مهیب خـدا ، خـدا\n\n[Bridge]\nپـــس اگر خدا با ماست ، کـه ایستد بر ضد ما\nپـــس اگر خدا با ماست ، کــیست بر ضد ما\n\n[Verse]\n\n[Chorus]\n\n[Bridge]",
+      "en": ""
     },
-    "chord": "D",
+    "chord": "Dm",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -15011,7 +15026,9 @@
     "dateAdded": "2025-01-24",
     "slug": "our-god-water-you-turned-into-wine",
     "youtubeUrl": "https://www.youtube.com/watch?v=Fucr07y-4V0",
-    "hasTiming": true
+    "hasTiming": true,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ab%20ra%20sharab%20kardeyi.pdf",
+    "chordsText": "[Verse]\nآب [Dm]را شرا[Bb]ب کرده‌ا[F]ی ، کـو[Dm]ر را بینا [Bb]کرده‌ای[F]\nتو بی‌همتـا[Gm]یی ‌، بی‌همتــا[C]\nدر [Dm]تاریکی [Bb]تابید[F]ی ، از [Dm]خاکستر [Bb]برخاستیم[F]\nتو بی‌همتـا[Gm]یی ‌، بی‌همتــا[C]\n\n[Chorus]\nخدا [Dm]عظیمتر ، خدا [Bb]قویتر\nخـ[F]ـدایم برتر از هـ[C]ـر قدرتی\nشـ[Dm]ـفا‌دهنده ، قـا[Bb]در مهیب خـد[F]ا ، خـد[C]ا\n\n[Bridge]\nپــ[Dm]ـس اگر خدا با ماست ، کـه [Bb]ایستد بر ضد ما\nپــ[F]ـس اگر خدا با ماست ، کـ[C]ـیست بر ضد ما\n\n[Verse]\n\n[Chorus]\n\n[Bridge]"
   },
   {
     "id": 361,
@@ -15128,10 +15145,10 @@
       "en": "Isn't the name of Jesus",
       "es": "Isn't the name of Jesus"
     },
-    "artist": "Isn&#039;t the name of Jesus",
-    "composer": "",
+    "artist": "سرود اصلی Isn't the name of Jesus",
+    "composer": "سرود اصلی Isn't the name of Jesus",
     "youtubeId": "fQjPntYLD7s",
-    "audioUrl": null,
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/212 Azadi dar name tost.mp3",
     "videoUrl": "https://www.youtube.com/embed/fQjPntYLD7s",
     "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/AZADIDARNAMETOST.pptx",
     "lyricsFiles": {
@@ -15139,11 +15156,10 @@
       "en": ""
     },
     "lyrics": {
-      "fa": "آزاد[Am]ی در نام توست شفـ[Am]ـا در نام توست\nقدر[F]ت در نام توست نجـ[F]ـات در نام توست\nحیـ[C]ـات در نام توست نـ[C]ـیست مانند تو\nای عـ[G]ـیسی ، عیسی\nبریز[Am]د شفایـت ، بریز[F]د قدرتت\nبریز[C]د حضورت عـ[G]ـیسی ، عیــسی",
-      "en": "",
-      "es": ""
+      "fa": "آزادی در نام توست شفــا در نام توست\nقدرت در نام توست نجــات در نام توست\nحیــات در نام توست نــیست مانند تو\nای عــیسی ، عیسی\nبریزد شفایـت ، بریزد قدرتت\nبریزد حضورت عــیسی ، عیــسی",
+      "en": ""
     },
-    "chord": "A",
+    "chord": "Am",
     "mode": "مینور",
     "duration": 0,
     "tags": [
@@ -15156,6 +15172,74 @@
     "youtubeUrl": "https://www.youtube.com/watch?v=lQ3fS_ecGJI",
     "hasTiming": false,
     "timing_data": null,
-    "timepoints": null
+    "timepoints": null,
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/A%CC%84za%CC%84di%20dar%20na%CC%84me%20tost%20%28Am%29.pdf",
+    "chordsText": "آزاد[Am]ی در نام توست شفـ[Am]ـا در نام توست\nقدر[F]ت در نام توست نجـ[F]ـات در نام توست\nحیـ[C]ـات در نام توست نـ[C]ـیست مانند تو\nای عـ[G]ـیسی ، عیسی\nبریز[Am]د شفایـت ، بریز[F]د قدرتت\nبریز[C]د حضورت عـ[G]ـیسی ، عیــسی"
+  },
+  {
+    "id": 365,
+    "title": {
+      "fa": "آنقدر خدا جهان را دوست داشت",
+      "en": ""
+    },
+    "artist": "سرود اصلی Savior of the worldآهنگساز Ben Cantelon",
+    "composer": "سرود اصلی Savior of the worldآهنگساز Ben Cantelon",
+    "youtubeId": "",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/آنقدر خدا.mp3",
+    "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/ANGHADRKHODAJAHANRADUSTDASHT.pptx",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/A%CC%84nghadr%20khoda%CC%84%20jaha%CC%84n%20ra%CC%84%20doost%20da%CC%84sht.pdf",
+    "lyrics": {
+      "fa": "[V1]\nآنقدر خدا جهان را  دوست داشت\nكه داد فرزندش  براى ما\nبر دوشـش  گرفت شرم و گنــاهم\nبر صليــب فرياد كرد تمام  شد\n\n[Chorus1]\nدر جلجتا بــر تاريكى پيروز شد\nاو زنده است ، قدرت مرگ را شــکســت\nراهى مــهیا كرد راه نجات من\nنجات دهنــده ى عالم\nنامت را برافرازيم تنها تو را ستاييم\nعيسى عيسى تويى منــجى دنيا\n\n[V2]\nاعلام كنيد آمدنــش را\nاو باز مىآید در جلالــش\nکلیسا خواند كه مسيــح آيد\nبا تاج  پيروزى در شكوهش\n\n[Chorus2]\nدر جلجتا بــر تاريكى پيروز شد\nاو زنده است ، قدرت مرگ را شــکســت\nاو حاكم است بر زمين و بر آســمـــان\nو اسم او ، عيسى خداونــد اســت\nراهى مــهیا كرد راه نجات من\nنجات دهنــده ى عالم\nنامت را برافرازيم تنها تو را ستاييم\nعيسى عيسى تويى منــجى دنيا\n\n[V1]\n\n[Chorus1]\n\n[V2]\n\n[Chorus2]",
+      "en": ""
+    },
+    "chord": "C#m",
+    "chordsText": "[V1]\nآنقدر [C#m]خدا جهان را  [B]دوست داشت\nكه داد فر[A]زندش  براى [C#m]ما[B]\nبر دوشـ[C#m]ش  گرفت شرم و گنـ[B]ـاهم\nبر صليـ[A]ـب فرياد كرد تمام  [C#m]شد[B]\n\n[Chorus1]\nدر جلجتا بـ[F#m]ـر تاريكى پيرو[E]ز شد[B]\nاو زنده است [F#m]، قدرت مرگ را شـ[E]ـکسـ[B]ـت\nراهى مـ[A]ـهیا كرد راه نجات [C#m]من\nنجات دهنـ[E]ـده ى عالم[B]\nنامت را [A]برافرازيم تنها تو ر[C#m]ا ستاييم\nعيسى [E]عيسى تويى منـ[B]ـجى دنيا\n\n[V2]\nاعلا[C#m]م كنيد آمدنـ[B]ـش را\nاو باز مى[A]آید در جلالـ[C#m]ـش [B]\nکلیسا [C#m]خواند كه مسيـ[B]ـح آيد\nبا تاج  [A]پيروزى در شكو[C#m]هش[B]\n\n[Chorus2]\nدر جلجتا بـ[F#m]ـر تاريكى پيرو[E]ز شد[B]\nاو زنده است [F#m]، قدرت مرگ را شـ[E]ـکسـ[B]ـت\nاو حاكم است [F#m]بر زمين و بر آسـ[E]ـمـــان[B]\nو اسم او ، [F#m]عيسى خداونـ[E]ـد اسـ[B]ـت\nراهى مـ[A]ـهیا كرد راه نجات [C#m]من\nنجات دهنـ[E]ـده ى عالم[B]\nنامت را [A]برافرازيم تنها تو ر[C#m]ا ستاييم\nعيسى [E]عيسى تويى منـ[B]ـجى دنيا\n\n[V1]\n\n[Chorus1]\n\n[V2]\n\n[Chorus2]",
+    "language": "fa",
+    "dateAdded": "2026-09-12",
+    "hasTiming": false
+  },
+  {
+    "id": 366,
+    "title": {
+      "fa": "با لمسش آزادم",
+      "en": ""
+    },
+    "artist": "شاعر و آهنگساز روزبه نجارنژاد",
+    "composer": "شاعر و آهنگساز روزبه نجارنژاد",
+    "youtubeId": "",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/با لمسش آزادم .mp3",
+    "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BALAMSASHAZADAM.pptx",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Ba%CC%84%20lamsash%20a%CC%84za%CC%84dam.pdf",
+    "lyrics": {
+      "fa": "[Verse]\nبا لمسش آزادم ، با روح او شادم\nمرا پر می‌سازد با قـوتـش\nبا لمسش آرامم ، چون سرود می‌خوانم\nمرا پر می‌سازد با حضــورش\n\n[Pre-Chorus]\nبارهــایم را او برمی‌دارد\nفریــاد آزادی سرایـم\n\n[Chorus]\nمی‌خوانم سرودی تازه چون آزادم کرده\nزنجــیـرهایـم در نـامـش گـسستــه\nمی‌خوانم سرودی تازه چون آزادم کرده\nزنجــیـرهایـم در نـامـش گـسستــه\n\n[Verse]\n\n[Pre-Chorus]\n\n[Chorus]",
+      "en": ""
+    },
+    "chord": "Am",
+    "chordsText": "[Verse]\nبا [Am]لمسش آزادم ، با ر[C]وح او شادم\nمر[D]ا پر می‌سازد با قـو[Em]تـش\nبا [Am]لمسش آرامم ، چون سر[C]ود می‌خوانم\nمر[D]ا پر می‌سازد با حضـ[Em]ـورش\n\n[Pre-Chorus]\nبارهـ[C]ـایم را او [D]برمی‌دارد[Em]\nفریـ[C]ـاد آزاد[D]ی سرایـم[G]\n\n[Chorus]\nمی‌خوانم سر[Am]ودی تاز[D]ه چون آ[G]زادم کرده[C]\nزنجـ[Am]ـیـرهایـم در نـا[D]مـش گـسستـ[B]ـه\nمی‌خوانم سر[Am]ودی تاز[D]ه چون آ[G]زادم کرده[C]\nزنجـ[Am]ـیـرهایـم در نـا[D]مـش گـسستـ[Em]ـه\n\n[Verse]\n\n[Pre-Chorus]\n\n[Chorus]",
+    "language": "fa",
+    "dateAdded": "2026-09-12",
+    "hasTiming": false
+  },
+  {
+    "id": 367,
+    "title": {
+      "fa": "به محبت خداوند می نگرم روی صلیب ( اوج قدرت محبت )",
+      "en": ""
+    },
+    "artist": "شاعر و آهنگساز وحید نوروزی",
+    "composer": "شاعر و آهنگساز وحید نوروزی",
+    "youtubeId": "",
+    "audioUrl": "https://storage.googleapis.com/kalameh-hub/files/songs/mp3/Be mohabate khodavand.mp3",
+    "presentationFileUrl": "https://www.kalameh.com/sites/default/files/songs/powerpoints/BEMOHABATEKHODAVAND.pptx",
+    "pdfFileUrl": "https://www.kalameh.com/sites/default/files/Be%20mohabate%20khoda%CC%84vand%20minegaram%20rooye%20salib%20%28Oje%20ghodrate%20mohabat%29.pdf",
+    "lyrics": {
+      "fa": "[Verse]\nبه محبت خداوند می نگرم روی صلیــب\nآزادم ساخته خداوند از گناهان در کمین\nراز عشق  خدای ما آشکار گردید و عیان\nبا طلوع مهر عیسی گشته ام من نور جهان\n\n[Chorus]\nاوج قدرت محبت بر صلیب گشته عیســی\nآن کلمه خداوند فدا گردیده بهر ما\nخستگان قوت گیرند زخم دلان را دهد شفا\nدرمانده نباشد هیچــکس هرکه خواند نام او را\n\n[Bridge (x2)]\nای کلمه خداوند می پذیرم من کلامــت\nبه ندایت گوش گیرم ای خداوندم خدایم\n\n[Chorus]\n\n[Verse]\n\n[Chorus]\n\n[Bridge (x2)]\n\n[Chorus]",
+      "en": ""
+    },
+    "chord": "Em",
+    "chordsText": "[Verse]\nبه محبت [Em]خداوند می نگرم [C]روی صلیـ[D]ـب\nآزادم ساخته خداوند [B7]از گناهان [Am]در کمین[Em]\nراز عشق  [Em]خدای ما آشکار [C]گردید و عیان[D]\nبا طلوع مهر عیسی [B7]گشته ام من [Am]نور جهان [Em]\n\n[Chorus]\nاوج قدرت [Em]محبت [C]بر صلیب گشته عیسـ[D]ـی\nآن کلمه خداوند [B7]فدا گردیده بهر ما[Em]\nخستگان [Em]قوت گیرند زخم دلان را [E7]دهد شفا[Am]\nدرمانده نباشد هیچـ[B7]ـکس هرکه خواند نام او را [Em]\n\n[Bridge (x2)]\nای کلمه [Em]خداوند می پذیرم من کلامـ[Am]ـت\nبه ندایت [B7]گوش گیرم ای خداوندم خدایم [Em]\n\n[Chorus]\n\n[Verse]\n\n[Chorus]\n\n[Bridge (x2)]\n\n[Chorus]",
+    "language": "fa",
+    "dateAdded": "2026-09-12",
+    "hasTiming": false
   }
 ]

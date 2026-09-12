@@ -1,4 +1,5 @@
 import { INITIAL_BIBLE_BOOKS } from './bibleData';
+import { normalizeToUsfm, getBookInfo } from './bibleUsfm';
 
 const API_KEY = process.env.API_BIBLE_KEY || "b27dc6902b00019756980695a12eb0da";
 const BASE_URL = "https://api.scripture.api.bible/v1";
@@ -144,9 +145,9 @@ export async function fetchApiBibleContent(
       return null;
     }
 
-    // API.Bible chapter IDs use format BOOK.CHAPTER (e.g. GEN.1, JHN.3)
-    // Normalise bookId: API expects uppercase 3-letter codes (GEN, EXO, etc.)
-    const chapterId = `${bookId.toUpperCase()}.${chapterNum}`;
+    // Normalise bookId: API expects uppercase 3-letter codes (GEN, MRK, PSA, etc.)
+    const usfm = normalizeToUsfm(bookId);
+    const chapterId = `${usfm}.${chapterNum}`;
 
     const fetchOpts = {
       headers: { "api-key": API_KEY },
@@ -184,9 +185,7 @@ export async function fetchApiBibleContent(
       return null;
     }
 
-    const book = INITIAL_BIBLE_BOOKS.find(b =>
-      b.key.toUpperCase() === bookId.toUpperCase()
-    );
+    const bookInfo = getBookInfo(usfm);
 
     return {
       success: true,
@@ -197,9 +196,9 @@ export async function fetchApiBibleContent(
         enVersion: enTranslation.toUpperCase() === "BSB" ? "WEB" : enTranslation.toUpperCase(),
         availableFa: ['NMV', 'OPCB'],
         availableEn: ['BSB', 'KJV', 'NIV'],
-        bookId,
-        bookNameEn: book?.name.en || bookId,
-        bookNameFa: book?.name.fa || bookId,
+        bookId: usfm,
+        bookNameEn: bookInfo.nameEn || usfm,
+        bookNameFa: bookInfo.nameFa || usfm,
       },
       verses: {
         fa: faVerses,

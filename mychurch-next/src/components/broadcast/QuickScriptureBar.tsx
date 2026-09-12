@@ -1,12 +1,15 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { BookOpen, Zap, ChevronDown, Check, Sparkles, SlidersHorizontal, Loader2 } from "lucide-react";
-import { ScripturePage } from "@/types/broadcast";
+import { BookOpen, Zap, ChevronDown, Check, Sparkles, SlidersHorizontal, Loader2, Plus } from "lucide-react";
+import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
+import { CANONICAL_BOOKS } from "@/lib/bibleUsfm";
 import { toast } from "sonner";
 
 interface QuickScriptureBarProps {
   onAddSlides: (slides: ScripturePage[]) => void;
+  onInsertIntoActiveSlide?: (referenceItem: ScriptureReferenceItem, newPage: ScripturePage) => void;
+  isCurrentSlideScripture?: boolean;
   onOpenFullSelector: () => void;
   isRTL?: boolean;
   className?: string;
@@ -19,31 +22,23 @@ interface BookOption {
   chapter_count: number;
 }
 
-// Default initial popular books for instant zero-delay render
-const POPULAR_BOOKS: BookOption[] = [
-  { book_id: "GEN", book_name_en: "Genesis", book_name_fa: "پیدایش", chapter_count: 50 },
-  { book_id: "EXO", book_name_en: "Exodus", book_name_fa: "خروج", chapter_count: 40 },
-  { book_id: "PSA", book_name_en: "Psalms", book_name_fa: "مزامیر", chapter_count: 150 },
-  { book_id: "PRO", book_name_en: "Proverbs", book_name_fa: "امثال", chapter_count: 31 },
-  { book_id: "ISA", book_name_en: "Isaiah", book_name_fa: "اشعیا", chapter_count: 66 },
-  { book_id: "MAT", book_name_en: "Matthew", book_name_fa: "متی", chapter_count: 28 },
-  { book_id: "MRK", book_name_en: "Mark", book_name_fa: "مرقس", chapter_count: 16 },
-  { book_id: "LUK", book_name_en: "Luke", book_name_fa: "لوقا", chapter_count: 24 },
-  { book_id: "JHN", book_name_en: "John", book_name_fa: "یوحنا", chapter_count: 21 },
-  { book_id: "ACT", book_name_en: "Acts", book_name_fa: "اعمال رسولان", chapter_count: 28 },
-  { book_id: "ROM", book_name_en: "Romans", book_name_fa: "رومیان", chapter_count: 16 },
-  { book_id: "1CO", book_name_en: "1 Corinthians", book_name_fa: "اول قرنتیان", chapter_count: 16 },
-  { book_id: "HEB", book_name_en: "Hebrews", book_name_fa: "عبرانیان", chapter_count: 13 },
-  { book_id: "REV", book_name_en: "Revelation", book_name_fa: "مکاشفه", chapter_count: 22 },
-];
+// Full 66 canonical Bible books for instant zero-delay render
+const INITIAL_BOOKS: BookOption[] = CANONICAL_BOOKS.map((b) => ({
+  book_id: b.usfm,
+  book_name_en: b.nameEn,
+  book_name_fa: b.nameFa,
+  chapter_count: b.chapters,
+}));
 
 export default function QuickScriptureBar({
   onAddSlides,
+  onInsertIntoActiveSlide,
+  isCurrentSlideScripture = false,
   onOpenFullSelector,
   isRTL = true,
   className = "",
 }: QuickScriptureBarProps) {
-  const [books, setBooks] = useState<BookOption[]>(POPULAR_BOOKS);
+  const [books, setBooks] = useState<BookOption[]>(INITIAL_BOOKS);
   const [selectedBookId, setSelectedBookId] = useState<string>("GEN");
   const [chapter, setChapter] = useState<number>(1);
   const [fromVerse, setFromVerse] = useState<number>(1);
@@ -57,20 +52,6 @@ export default function QuickScriptureBar({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const bookInputRef = useRef<HTMLInputElement>(null);
 
-  // Fetch full 66 books from API
-  useEffect(() => {
-    fetch("/api/bible/books?version=BSB")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.books?.length) {
-          setBooks(data.books);
-        }
-      })
-      .catch(() => {
-        // use default popular books fallback
-      });
-  }, []);
-
   // Handle clicking outside the book dropdown
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -83,7 +64,7 @@ export default function QuickScriptureBar({
   }, []);
 
   const currentBook = useMemo(() => {
-    return books.find((b) => b.book_id === selectedBookId) || books[0] || POPULAR_BOOKS[0];
+    return books.find((b) => b.book_id === selectedBookId) || books[0] || INITIAL_BOOKS[0];
   }, [books, selectedBookId]);
 
   // Filtered books for dropdown search
@@ -107,7 +88,7 @@ export default function QuickScriptureBar({
   };
 
   // Quick Insert Handler
-  const handleQuickInsert = async () => {
+  const handleQuickInsert = async (forceNewSlide = false) => {
     if (isLoading) return;
     setIsLoading(true);
 
@@ -117,7 +98,7 @@ export default function QuickScriptureBar({
 
       // Fetch parallel bilingual text
       const res = await fetch(
-        `/api/bible/parallel?versionEn=BSB&versionFa=NMV&book=${currentBook.book_id}&chapter=${chapter}`
+        `/api/bible/parallel?versionEn=BSB&versionFa=NMV&book=${encodeURIComponent(currentBook.book_id)}&chapter=${chapter}`
       );
       if (!res.ok) throw new Error("Failed to fetch scripture");
 
@@ -130,10 +111,11 @@ export default function QuickScriptureBar({
       );
 
       if (!selectedList.length) {
+        const maxVerses = parallelList.length;
         toast.error(
           isRTL
-            ? `آیه‌ای در بازه ${startV} تا ${endV} یافت نشد.`
-            : `No verses found in range ${startV}-${endV}.`
+            ? `باب ${chapter} از ${currentBook.book_name_fa} تنها دارای ${maxVerses} آیه است (آیات ۱ تا ${maxVerses}). آیه ${startV} تا ${endV} در این باب وجود ندارد.`
+            : `${currentBook.book_name_en} ${chapter} only contains ${maxVerses} verses (1 to ${maxVerses}).`
         );
         setIsLoading(false);
         return;
@@ -141,7 +123,7 @@ export default function QuickScriptureBar({
 
       const verseNumbers = selectedList.map((v) => v.verse_num);
       const versesLabel = startV === endV ? `${startV}` : `${startV}-${endV}`;
-      const referenceItem = {
+      const referenceItem: ScriptureReferenceItem = {
         id: crypto.randomUUID(),
         book: currentBook.book_id,
         bookName: { fa: currentBook.book_name_fa, en: currentBook.book_name_en },
@@ -228,12 +210,17 @@ export default function QuickScriptureBar({
         ];
       }
 
-      onAddSlides(generatedPages);
-      toast.success(
-        isRTL
-          ? `✓ ${generatedPages.length} اسلاید از ${currentBook.book_name_fa} ${chapter}:${versesLabel} افزوده شد.`
-          : `✓ Added ${generatedPages.length} slide(s) from ${currentBook.book_name_en} ${chapter}:${versesLabel}.`
-      );
+      // If requested to insert into the currently selected scripture slide
+      if (!forceNewSlide && isCurrentSlideScripture && onInsertIntoActiveSlide) {
+        onInsertIntoActiveSlide(referenceItem, generatedPages[0]);
+      } else {
+        onAddSlides(generatedPages);
+        toast.success(
+          isRTL
+            ? `✓ ${generatedPages.length} اسلاید از ${currentBook.book_name_fa} ${chapter}:${versesLabel} افزوده شد.`
+            : `✓ Added ${generatedPages.length} slide(s) from ${currentBook.book_name_en} ${chapter}:${versesLabel}.`
+        );
+      }
     } catch {
       toast.error(isRTL ? "خطا در دریافت متن آیه" : "Failed to load scripture");
     } finally {
@@ -244,7 +231,7 @@ export default function QuickScriptureBar({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleQuickInsert();
+      handleQuickInsert(false);
     }
   };
 
@@ -289,30 +276,31 @@ export default function QuickScriptureBar({
               type="text"
               value={bookSearchQuery}
               onChange={(e) => setBookSearchQuery(e.target.value)}
-              placeholder={isRTL ? "جستجوی کتاب... (مثلاً متی، پیدایش)" : "Search book..."}
-              className={`w-full bg-white/5 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-400 mb-2 ${isRTL ? "font-[Vazirmatn]" : ""}`}
+              placeholder={isRTL ? "جستجوی نام کتاب..." : "Search book name..."}
+              className={`w-full bg-black/50 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-400/60 mb-2 ${
+                isRTL ? "font-[Vazirmatn]" : ""
+              }`}
             />
-            <div className="overflow-y-auto flex-1 space-y-0.5">
-              {filteredBooks.map((b) => {
-                const isSelected = b.book_id === selectedBookId;
-                return (
-                  <button
-                    key={b.book_id}
-                    type="button"
-                    onClick={() => handleSelectBook(b)}
-                    className={`w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-all text-right ${
-                      isSelected
-                        ? "bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40"
-                        : "text-zinc-300 hover:bg-white/10 hover:text-white"
-                    }`}
-                  >
-                    <span className="font-[Vazirmatn]">{b.book_name_fa}</span>
-                    <span className="text-[11px] text-zinc-500 font-mono" dir="ltr">
-                      {b.book_name_en}
-                    </span>
-                  </button>
-                );
-              })}
+            <div className="overflow-y-auto flex-1 space-y-0.5 custom-scrollbar max-h-60">
+              {filteredBooks.map((b) => (
+                <button
+                  key={b.book_id}
+                  type="button"
+                  onClick={() => handleSelectBook(b)}
+                  className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all text-right ${
+                    b.book_id === currentBook.book_id
+                      ? "bg-amber-500/20 text-amber-300"
+                      : "text-zinc-300 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  <span className={isRTL ? "font-[Vazirmatn]" : ""}>
+                    {isRTL ? b.book_name_fa : b.book_name_en}
+                  </span>
+                  <span className="text-[10px] text-zinc-500 font-mono">
+                    {b.chapter_count} ch.
+                  </span>
+                </button>
+              ))}
               {filteredBooks.length === 0 && (
                 <div className="text-center py-4 text-xs text-zinc-500">
                   {isRTL ? "کتابی یافت نشد" : "No book found"}
@@ -323,9 +311,9 @@ export default function QuickScriptureBar({
         )}
       </div>
 
-      {/* ── كادر ۲: باب (Chapter Box) ── */}
+      {/* ── كادر ۲: شماره باب (Chapter Box) ── */}
       <div className="flex items-center gap-1.5 bg-black/60 border border-amber-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(245,158,11,0.2)] focus-within:ring-2 focus-within:ring-amber-400/50">
-        <span className={`text-xs text-amber-400/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+        <span className={`text-xs text-amber-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
           {isRTL ? "باب:" : "Ch:"}
         </span>
         <input
@@ -338,8 +326,11 @@ export default function QuickScriptureBar({
             setChapter(isNaN(v) ? 1 : Math.max(1, Math.min(currentBook.chapter_count, v)));
           }}
           onKeyDown={handleKeyDown}
-          className="w-12 bg-transparent text-center text-white font-mono font-bold text-sm outline-none"
+          className="w-10 bg-transparent text-center text-amber-200 font-mono font-bold text-sm outline-none"
         />
+        <span className="text-[10px] text-zinc-500 font-mono select-none">
+          /{currentBook.chapter_count}
+        </span>
       </div>
 
       {/* ── كادر ۳: از آیه (From Verse Box) ── */}
@@ -410,13 +401,13 @@ export default function QuickScriptureBar({
         </button>
       </div>
 
-      {/* ── دکمه اکشن درخشان: درج در اسلاید (Action Button) ── */}
+      {/* ── دکمه اکشن اصلی: درج در اسلاید (Action Button) ── */}
       <button
         type="button"
-        onClick={handleQuickInsert}
+        onClick={() => handleQuickInsert(false)}
         disabled={isLoading}
         className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_18px_rgba(245,158,11,0.4)] transition-all cursor-pointer disabled:opacity-50 select-none shrink-0"
-        title={isRTL ? "افزودن فوری به اسلایدها (Enter)" : "Quick Add to Slides (Enter)"}
+        title={isCurrentSlideScripture ? (isRTL ? "افزودن این آیه به اسلاید جاری انتخابی" : "Add to Current Slide") : (isRTL ? "درج در اسلاید جدید (Enter)" : "Add to New Slide")}
       >
         {isLoading ? (
           <Loader2 className="w-4 h-4 animate-spin text-black" />
@@ -424,9 +415,27 @@ export default function QuickScriptureBar({
           <Zap className="w-4 h-4 text-black fill-black" />
         )}
         <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-          {isRTL ? "درج در اسلاید (Enter)" : "Add to Slide"}
+          {isCurrentSlideScripture
+            ? (isRTL ? "افزودن در این اسلاید (Enter)" : "Add into This Slide")
+            : (isRTL ? "درج در اسلاید (Enter)" : "Add to Slide")}
         </span>
       </button>
+
+      {/* ── دکمه افزودن به عنوان اسلاید جدید (در صورت انتخاب اسلاید فعلی) ── */}
+      {isCurrentSlideScripture && (
+        <button
+          type="button"
+          onClick={() => handleQuickInsert(true)}
+          disabled={isLoading}
+          className="flex items-center gap-1 px-3 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl border border-white/20 transition cursor-pointer select-none shrink-0"
+          title={isRTL ? "افزودن به عنوان یک اسلاید کاملاً جدید" : "Create as New Slide"}
+        >
+          <Plus className="w-3.5 h-3.5 text-amber-400" />
+          <span className={isRTL ? "font-[Vazirmatn]" : ""}>
+            {isRTL ? "اسلاید جدید" : "New Slide"}
+          </span>
+        </button>
+      )}
 
       {/* ── دکمه مرور کامل (Open Full Modal/Selector) ── */}
       <button

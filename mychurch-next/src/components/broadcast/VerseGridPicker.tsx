@@ -381,8 +381,9 @@ const VerseGridPicker: React.FC<VerseGridPickerProps> = ({
                             {preview && !loading && (
                                 <div className="bg-slate-800 rounded-lg p-4">
                                     <div className="text-xs text-slate-400 mb-2">{t.preview}</div>
-                                    <div className="text-emerald-400 font-bold mb-2">
-                                        {isRTL ? preview.bookName.fa : preview.bookName.en} {preview.chapter}:{preview.verses}
+                                    <div className="text-emerald-400 font-bold mb-2 flex items-center gap-1.5" dir={isRTL ? "rtl" : "ltr"}>
+                                        <span>{isRTL ? preview.bookName.fa : preview.bookName.en}</span>
+                                        <bdi dir="ltr" className="inline-block font-sans font-bold">{preview.chapter}:{preview.verses}</bdi>
                                     </div>
                                     <div className="text-white leading-relaxed mb-2 space-y-1">
                                         {preview.textPrimary.map((line, i) => (

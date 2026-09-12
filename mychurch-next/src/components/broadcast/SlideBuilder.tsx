@@ -574,7 +574,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       pages: scripturePages.map(page => ({
         ...page,
         glassPopupEnabled: true,
-        popupLabelFa: `${page.bookName.fa} ${page.chapter}:${page.verses}`,
+        popupLabelFa: `${page.bookName.fa} \u2066${page.chapter}:${page.verses}\u2069`,
         popupLabelEn: `${page.bookName.en} ${page.chapter}:${page.verses}`
       }))
     };
@@ -946,6 +946,36 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     if (editingSlideIndex !== null) {
       setSession((prev) => {
         const updatedSlides = [...prev.slides];
+        const currentSlide = updatedSlides[editingSlideIndex];
+        const currentContent = (currentSlide?.content || {}) as SlideContentScripture;
+        const currentPages = currentContent.pages || [];
+        const currentPage = currentPages[0];
+
+        // If the current slide is a reference list, merge new references into it
+        if (currentPage?.displayMode === 'referenceList' && currentPage?.referenceItems) {
+          const newRefItems = pages.flatMap((p) => p.referenceItems || []);
+          const existingRefs = [...currentPage.referenceItems];
+          for (const item of newRefItems) {
+            if (!existingRefs.some((r) => r.book === item.book && r.chapter === item.chapter && r.verses === item.verses)) {
+              existingRefs.push(item);
+            }
+          }
+          const mergedPage: ScripturePage = {
+            ...currentPage,
+            referenceItems: existingRefs,
+            popupLabelFa: `${existingRefs.length} آیه انتخابی`,
+            popupLabelEn: `${existingRefs.length} Selected Verses`,
+          };
+          updatedSlides[editingSlideIndex] = {
+            ...currentSlide,
+            content: { pages: [mergedPage] },
+          };
+          return {
+            ...prev,
+            slides: updatedSlides,
+          };
+        }
+
         const replacement: Slide = {
           ...updatedSlides[editingSlideIndex],
           type: SlideType.SCRIPTURE,
@@ -1185,6 +1215,70 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               onChangeZoom={(newZoom) => updateSlideZoom(activeSlideIndex, clampZoom(newZoom))}
               compact={false}
             />
+
+            {/* Custom Header & Footer Text Overlay Inputs */}
+            <div className="mt-3 p-3 bg-slate-900/90 border border-slate-700/80 rounded-xl space-y-2.5 shadow-inner">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-amber-300 flex items-center gap-1">
+                  <span>✍️</span>
+                  <span>{isRTL ? 'متن‌های بالا و پایین اسلاید' : 'Top & Bottom Texts'}</span>
+                </span>
+                {(session.slides[activeSlideIndex].headerText || session.slides[activeSlideIndex].footerText) && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSession(prev => ({
+                        ...prev,
+                        slides: prev.slides.map((s, i) => i === activeSlideIndex ? { ...s, headerText: '', footerText: '' } : s)
+                      }));
+                    }}
+                    className="text-[10px] text-zinc-400 hover:text-red-400 transition"
+                  >
+                    {isRTL ? 'پاک کردن' : 'Clear'}
+                  </button>
+                )}
+              </div>
+
+              {/* Top Text (Header) */}
+              <div>
+                <label className="block text-[11px] font-bold text-amber-200/90 mb-1">
+                  {isRTL ? 'متن بالای اسلاید (تیتر/عنوان):' : 'Top Slide Text (Header):'}
+                </label>
+                <input
+                  type="text"
+                  value={session.slides[activeSlideIndex].headerText || ''}
+                  onChange={(e) => {
+                    const text = e.target.value;
+                    setSession(prev => ({
+                      ...prev,
+                      slides: prev.slides.map((s, i) => i === activeSlideIndex ? { ...s, headerText: text } : s)
+                    }));
+                  }}
+                  placeholder={isRTL ? 'مثال: جلسه دعای یکشنبه یا پیام شبان...' : 'e.g., Welcome or Special Announcement...'}
+                  className="w-full bg-black/60 border border-amber-500/30 focus:border-amber-400 rounded-lg px-2.5 py-1.5 text-xs text-amber-100 outline-none transition placeholder-zinc-500"
+                />
+              </div>
+
+              {/* Bottom Text (Footer) */}
+              <div>
+                <label className="block text-[11px] font-bold text-indigo-200/90 mb-1">
+                  {isRTL ? 'متن پایین اسلاید (پانویس/توضیح):' : 'Bottom Slide Text (Footer):'}
+                </label>
+                <input
+                  type="text"
+                  value={session.slides[activeSlideIndex].footerText || ''}
+                  onChange={(e) => {
+                    const text = e.target.value;
+                    setSession(prev => ({
+                      ...prev,
+                      slides: prev.slides.map((s, i) => i === activeSlideIndex ? { ...s, footerText: text } : s)
+                    }));
+                  }}
+                  placeholder={isRTL ? 'مثال: ترجمه تفسیری / آدرس وب‌سایت کلیسا...' : 'e.g., Translation notes, reference...'}
+                  className="w-full bg-black/60 border border-indigo-500/30 focus:border-indigo-400 rounded-lg px-2.5 py-1.5 text-xs text-indigo-100 outline-none transition placeholder-zinc-500"
+                />
+              </div>
+            </div>
 
           {/* Save as Template */}
           {showSaveTemplateInput ? (
@@ -1481,7 +1575,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                     result.textSecondary = [];
                   }
                   result.glassPopupEnabled = true;
-                  result.popupLabelFa = `${result.bookName.fa} ${result.chapter}:${result.verses}`;
+                  result.popupLabelFa = `${result.bookName.fa} \u2066${result.chapter}:${result.verses}\u2069`;
                   result.popupLabelEn = `${result.bookName.en} ${result.chapter}:${result.verses}`;
                   setScripturePages([result]);
                 }
@@ -1498,8 +1592,9 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               <div className="bg-slate-900 rounded-lg p-4 mb-4">
                 {scripturePages.map((page, i) => (
                   <div key={i} className="mb-4 last:mb-0">
-                    <p className={`text-amber-400 text-sm mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {page.bookName[lang]} {page.chapter}:{page.verses}
+                    <p className={`text-amber-400 text-sm mb-2 flex items-center gap-1.5 ${isRTL ? 'font-[Vazirmatn]' : ''}`} dir={isRTL ? "rtl" : "ltr"}>
+                      <span>{page.bookName[lang]}</span>
+                      <bdi dir="ltr" className="inline-block font-sans font-bold">{page.chapter}:{page.verses}</bdi>
                     </p>
                     {/* Display verses as array if available */}
                     {Array.isArray(page.textPrimary) ? (

@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { dbAll, dbGet } from "@/lib/bibleDb";
 import { fetchApiBibleContent } from "@/lib/apiBible";
+import { normalizeToUsfm } from "@/lib/bibleUsfm";
+import { fetchYouVersionChapter } from "@/lib/youversion";
+import { getLocalBibleChapter } from "@/lib/bibleLocalJson";
 
 interface VerseRow {
   verse_num: number;
@@ -22,7 +25,8 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const versionEn = searchParams.get("versionEn") || "BSB";
     const versionFa = searchParams.get("versionFa") || "NMV";
-    const bookId = searchParams.get("book") || "GEN";
+    const rawBook = searchParams.get("book") || "GEN";
+    const bookId = normalizeToUsfm(rawBook);
     const chapterNum = parseInt(searchParams.get("chapter") || "1", 10);
     const cacheKey = `${versionEn.toUpperCase()}|${versionFa.toUpperCase()}|${bookId.toUpperCase()}|${chapterNum}`;
 
@@ -36,10 +40,46 @@ export async function GET(req: Request) {
       });
     }
 
-    // Try API.Bible first
+    // Layer 0: Direct Authentic Local JSON for chosen translation (NMV, TPV, PCB, MOZ, BSB, NIV, ESV, KJV, etc.)
+    const localFa = getLocalBibleChapter(versionFa, bookId, chapterNum);
+    const localEn = getLocalBibleChapter(versionEn, bookId, chapterNum);
+
+    if (localFa && localEn && (localFa.verses.length > 0 || localEn.verses.length > 0)) {
+      const faMap = new Map(localFa.verses.map((v) => [v.verse_num, v.text]));
+      const enMap = new Map(localEn.verses.map((v) => [v.verse_num, v.text]));
+      const verseNumbers = Array.from(
+        new Set([...localEn.verses.map((v) => v.verse_num), ...localFa.verses.map((v) => v.verse_num)])
+      ).sort((a, b) => a - b);
+
+      const parallel = verseNumbers.map((vNum) => ({
+        verse_num: vNum,
+        en: cleanVerseText(enMap.get(vNum)),
+        fa: cleanVerseText(faMap.get(vNum)),
+      }));
+
+      const payload = {
+        versionEn: localEn.version_abbr || versionEn,
+        versionFa: localFa.version_abbr || versionFa,
+        book: bookId.toUpperCase(),
+        chapter: chapterNum,
+        parallel,
+        audioEn: localEn.audio || [],
+        audioFa: localFa.audio || [],
+      };
+
+      parallelCache.set(cacheKey, { ts: Date.now(), payload });
+      return NextResponse.json(payload, {
+        headers: {
+          "Cache-Control": "public, max-age=600, s-maxage=3600, stale-while-revalidate=86400",
+          "X-Cache": "HIT_LOCAL_JSON",
+        },
+      });
+    }
+
+    // Layer 1: API.Bible
     try {
       const apiResult = await fetchApiBibleContent(bookId, chapterNum, versionFa, versionEn);
-      if (apiResult) {
+      if (apiResult && (apiResult.verses.en.length > 0 || apiResult.verses.fa.length > 0)) {
         const maxVerse = Math.max(apiResult.verses.en.length, apiResult.verses.fa.length);
         const parallel = [];
         for (let i = 0; i < maxVerse; i++) {
@@ -69,46 +109,72 @@ export async function GET(req: Request) {
         });
       }
     } catch (apiErr) {
-      console.error("API.Bible parallel fetch failed, falling back to DB:", apiErr);
+      console.error("API.Bible parallel fetch failed, falling back to DB/YouVersion:", apiErr);
     }
 
-    // Resolve both version_ids
-    const [vEn, vFa] = await Promise.all([
-      dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1", [versionEn]),
-      dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1", [versionFa]),
-    ]);
+    // Layer 2: Local SQLite DB
+    let enVerses: VerseRow[] = [];
+    let faVerses: VerseRow[] = [];
+    let enVersionId: number | undefined;
+    let faVersionId: number | undefined;
 
-    const [fallbackEn, fallbackFa] = await Promise.all([
-      vEn
-        ? Promise.resolve(undefined)
-        : dbGet<{ version_id: number }>(
-            "SELECT version_id FROM versions WHERE LOWER(language) IN ('english','en') ORDER BY version_id ASC LIMIT 1"
+    try {
+      const [vEn, vFa] = await Promise.all([
+        dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1", [versionEn]),
+        dbGet<{ version_id: number }>("SELECT version_id FROM versions WHERE UPPER(abbr) = UPPER(?) LIMIT 1", [versionFa]),
+      ]);
+
+      const [fallbackEn, fallbackFa] = await Promise.all([
+        vEn
+          ? Promise.resolve(undefined)
+          : dbGet<{ version_id: number }>(
+              "SELECT version_id FROM versions WHERE LOWER(language) IN ('english','en') ORDER BY version_id ASC LIMIT 1"
+            ),
+        vFa
+          ? Promise.resolve(undefined)
+          : dbGet<{ version_id: number }>(
+              "SELECT version_id FROM versions WHERE LOWER(language) IN ('persian','fa','فارسی') ORDER BY version_id ASC LIMIT 1"
+            ),
+      ]);
+
+      enVersionId = vEn?.version_id ?? fallbackEn?.version_id;
+      faVersionId = vFa?.version_id ?? fallbackFa?.version_id;
+
+      if (enVersionId && faVersionId) {
+        const [dbEn, dbFa] = await Promise.all([
+          dbAll<VerseRow>(
+            `SELECT verse_num, text FROM verses WHERE version_id = ? AND book_id = ? AND chapter_num = ? ORDER BY verse_num ASC`,
+            [enVersionId, bookId.toUpperCase(), chapterNum]
           ),
-      vFa
-        ? Promise.resolve(undefined)
-        : dbGet<{ version_id: number }>(
-            "SELECT version_id FROM versions WHERE LOWER(language) IN ('persian','fa','فارسی') ORDER BY version_id ASC LIMIT 1"
+          dbAll<VerseRow>(
+            `SELECT verse_num, text FROM verses WHERE version_id = ? AND book_id = ? AND chapter_num = ? ORDER BY verse_num ASC`,
+            [faVersionId, bookId.toUpperCase(), chapterNum]
           ),
-    ]);
-
-    const enVersionId = vEn?.version_id ?? fallbackEn?.version_id;
-    const faVersionId = vFa?.version_id ?? fallbackFa?.version_id;
-
-    if (!enVersionId || !faVersionId) {
-      return NextResponse.json({ parallel: [], audioEn: [], audioFa: [] });
+        ]);
+        enVerses = dbEn;
+        faVerses = dbFa;
+      }
+    } catch (dbErr) {
+      console.warn("[parallel] SQLite query failed:", dbErr);
     }
 
-    // Fetch verses for both versions in parallel
-    const [enVerses, faVerses] = await Promise.all([
-      dbAll<VerseRow>(
-        `SELECT verse_num, text FROM verses WHERE version_id = ? AND book_id = ? AND chapter_num = ? ORDER BY verse_num ASC`,
-        [enVersionId, bookId.toUpperCase(), chapterNum]
-      ),
-      dbAll<VerseRow>(
-        `SELECT verse_num, text FROM verses WHERE version_id = ? AND book_id = ? AND chapter_num = ? ORDER BY verse_num ASC`,
-        [faVersionId, bookId.toUpperCase(), chapterNum]
-      ),
-    ]);
+    // Layer 3: YouVersion Platform API (Guaranteed coverage for all 66 books)
+    if (enVerses.length === 0 || faVerses.length === 0) {
+      try {
+        const [yvEn, yvFa] = await Promise.all([
+          enVerses.length === 0 ? fetchYouVersionChapter(versionEn, bookId, chapterNum).catch(() => ({ verses: [] })) : Promise.resolve({ verses: [] }),
+          faVerses.length === 0 ? fetchYouVersionChapter(versionFa, bookId, chapterNum).catch(() => ({ verses: [] })) : Promise.resolve({ verses: [] })
+        ]);
+        if (enVerses.length === 0 && yvEn.verses.length > 0) {
+          enVerses = yvEn.verses;
+        }
+        if (faVerses.length === 0 && yvFa.verses.length > 0) {
+          faVerses = yvFa.verses;
+        }
+      } catch (yvErr) {
+        console.warn("[parallel] YouVersion fallback failed:", yvErr);
+      }
+    }
 
     // Audio - fetch for both English and Farsi versions
     let audioEn: Array<{

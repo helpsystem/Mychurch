@@ -36,6 +36,17 @@ const SCRIPTURE_COLUMNS = {
     en: { label: 'English', dir: 'ltr' as const },
 } as const;
 
+const getTranslationBadgeName = (abbr?: string) => {
+    if (!abbr) return null;
+    const a = abbr.toUpperCase().trim();
+    if (a === 'PCB' || a === 'POV' || a === 'FCB') return 'ترجمه قدیم (فاضل‌خان)';
+    if (a === 'TPV') return 'ترجمه تفسیری (مژده)';
+    if (a === 'NMV') return 'هزارۀ نو';
+    if (a === 'MOZ' || a === 'مژده') return 'مژده برای عصر جدید';
+    if (a === 'FARSIO') return 'متن اصیل کهن';
+    return abbr;
+};
+
 const renderWavyPaperFilter = (id: string, scale: number, seed: number) => (
     <svg className="absolute w-0 h-0" aria-hidden="true" focusable="false">
         <filter id={id}>
@@ -541,8 +552,10 @@ export function SlideRenderer({
                                                                 >{ref.bookName.fa}</span>
                                                                 {/* Chapter:verse badge */}
                                                                 <span
-                                                                    className="shrink-0 font-black tabular-nums"
+                                                                    dir="ltr"
+                                                                    className="shrink-0 font-black tabular-nums inline-block font-sans"
                                                                     style={{
+                                                                        unicodeBidi: 'isolate',
                                                                         fontSize: `${2 * slideZoom}rem`,
                                                                         padding: `${0.2 * slideZoom}rem ${0.7 * slideZoom}rem`,
                                                                         borderRadius: `${0.5 * slideZoom}rem`,
@@ -583,8 +596,10 @@ export function SlideRenderer({
                                                                 >{ref.bookName.en}</span>
                                                                 {/* Chapter:verse badge */}
                                                                 <span
-                                                                    className="shrink-0 font-black tabular-nums"
+                                                                    dir="ltr"
+                                                                    className="shrink-0 font-black tabular-nums inline-block font-sans"
                                                                     style={{
+                                                                        unicodeBidi: 'isolate',
                                                                         fontSize: `${1.8 * slideZoom}rem`,
                                                                         padding: `${0.2 * slideZoom}rem ${0.7 * slideZoom}rem`,
                                                                         borderRadius: `${0.5 * slideZoom}rem`,
@@ -617,26 +632,86 @@ export function SlideRenderer({
                                     <>
                                         {/* Integrated Elegant Active Verse Header */}
                                         <div className="shrink-0 flex items-center justify-between" style={{ padding: `${1.2 * slideZoom}rem ${2 * slideZoom}rem`, borderBottom: `${headerBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.2)' : 'rgba(99,102,241,0.2)'}` }}>
-                                            <div className="flex flex-col gap-0.5">
-                                                <h3
-                                                    className={`font-black ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
-                                                    style={{
-                                                        fontSize: `${3 * slideZoom}rem`,
-                                                        lineHeight: 1.1,
-                                                        fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)',
-                                                    }}
-                                                >
-                                                    {activeReference.bookName.fa} {activeReference.chapter}:{activeReference.verses}
-                                                </h3>
-                                                <p
-                                                    className={`font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-indigo-300'}`}
-                                                    style={{
-                                                        fontSize: `${1.6 * slideZoom}rem`,
-                                                        fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)',
-                                                    }}
-                                                >
-                                                    {activeReference.bookName.en} {activeReference.chapter}:{activeReference.verses}
-                                                </p>
+                                            <div className="flex flex-col gap-0.5" dir={page.primaryLanguage === 'en' ? 'ltr' : 'rtl'}>
+                                                {page.primaryLanguage === 'en' ? (
+                                                    <>
+                                                        <h3
+                                                            className={`font-black tracking-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
+                                                            dir="ltr"
+                                                            style={{
+                                                                fontSize: `${3 * slideZoom}rem`,
+                                                                lineHeight: 1.15,
+                                                                fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)',
+                                                            }}
+                                                        >
+                                                            <span>{activeReference.bookName.en}</span>{' '}
+                                                            <bdi dir="ltr" className="inline-block font-sans font-black tracking-normal" style={{ unicodeBidi: 'isolate' }}>
+                                                                {activeReference.chapter}:{activeReference.verses}
+                                                            </bdi>
+                                                            {(activeReference.enTranslation || page.enTranslation) && (
+                                                                <span className={`inline-block ml-3 text-[1rem] px-2.5 py-0.5 rounded-lg border font-bold align-middle font-sans ${
+                                                                    useWavyPaper
+                                                                        ? 'border-[#8a4d0f]/30 bg-[#8a4d0f]/10 text-[#5a320a]'
+                                                                        : 'border-blue-500/40 bg-blue-500/15 text-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.2)]'
+                                                                }`}>
+                                                                    {activeReference.enTranslation || page.enTranslation}
+                                                                </span>
+                                                            )}
+                                                        </h3>
+                                                        <p
+                                                            className={`font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-indigo-300'}`}
+                                                            dir="rtl"
+                                                            style={{
+                                                                fontSize: `${1.6 * slideZoom}rem`,
+                                                                fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)',
+                                                            }}
+                                                        >
+                                                            <span className="font-[Vazirmatn]">{activeReference.bookName.fa}</span>{' '}
+                                                            <bdi dir="ltr" className="inline-block font-sans font-semibold tracking-normal" style={{ unicodeBidi: 'isolate' }}>
+                                                                {activeReference.chapter}:{activeReference.verses}
+                                                            </bdi>
+                                                        </p>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <h3
+                                                            className={`font-black tracking-tight ${useWavyPaper ? 'text-[#41290e]' : 'text-white'}`}
+                                                            dir="rtl"
+                                                            style={{
+                                                                fontSize: `${3 * slideZoom}rem`,
+                                                                lineHeight: 1.15,
+                                                                fontFamily: activeReference.fontFa || page.fontFa || 'var(--font-vazirmatn)',
+                                                            }}
+                                                        >
+                                                            <span className="font-[Vazirmatn]">{activeReference.bookName.fa}</span>{' '}
+                                                            <bdi dir="ltr" className="inline-block font-sans font-black tracking-normal" style={{ unicodeBidi: 'isolate' }}>
+                                                                {activeReference.chapter}:{activeReference.verses}
+                                                            </bdi>
+                                                            {(activeReference.translation || page.translation) && (
+                                                                <span className={`inline-block mr-3 text-[1rem] px-2.5 py-0.5 rounded-lg border font-bold align-middle font-[Vazirmatn] ${
+                                                                    useWavyPaper
+                                                                        ? 'border-[#8a4d0f]/30 bg-[#8a4d0f]/10 text-[#5a320a]'
+                                                                        : 'border-amber-500/40 bg-amber-500/15 text-amber-300 shadow-[0_0_10px_rgba(245,158,11,0.2)]'
+                                                                }`}>
+                                                                    {getTranslationBadgeName(activeReference.translation || page.translation)}
+                                                                </span>
+                                                            )}
+                                                        </h3>
+                                                        <p
+                                                            className={`font-semibold ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-indigo-300'}`}
+                                                            dir="ltr"
+                                                            style={{
+                                                                fontSize: `${1.6 * slideZoom}rem`,
+                                                                fontFamily: activeReference.fontEn || page.fontEn || 'var(--font-inter)',
+                                                            }}
+                                                        >
+                                                            <span className="font-[Inter]">{activeReference.bookName.en}</span>{' '}
+                                                            <bdi dir="ltr" className="inline-block font-sans font-semibold tracking-normal" style={{ unicodeBidi: 'isolate' }}>
+                                                                {activeReference.chapter}:{activeReference.verses}
+                                                            </bdi>
+                                                        </p>
+                                                    </>
+                                                )}
                                             </div>
 
                                             {/* Presenter Controls: Scale & Close */}
@@ -717,7 +792,12 @@ export function SlideRenderer({
                                                                 متن فارسی
                                                             </StickyScriptureHeader>
                                                             <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
-                                                                {activeReference.textFa.map((line, i) => (
+                                                                {activeReference.textFa.length > 0 && activeReference.textFa.every(l => !isNonEmptyText(l)) ? (
+                                                                    <div className={`p-4 rounded-xl text-center font-[Vazirmatn] ${useWavyPaper ? 'bg-[#8a4d0f]/10 text-[#41290e] border border-[#8a4d0f]/20' : 'bg-amber-500/10 text-amber-200 border border-amber-500/30'}`}>
+                                                                        <p className="font-bold text-lg">آیات انتخابی در {activeReference.bookName.fa} باب {activeReference.chapter} یافت نشد.</p>
+                                                                        <p className="text-sm mt-1 opacity-80">این باب در کتاب مقدس دارای تعداد آیات کمتری است. لطفاً شماره آیه معتبر این باب را انتخاب نمایید.</p>
+                                                                    </div>
+                                                                ) : activeReference.textFa.map((line, i) => (
                                                                     <p 
                                                                         key={`fa-${i}`} 
                                                                         className={`leading-relaxed font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-slate-100'}`} 
@@ -749,7 +829,12 @@ export function SlideRenderer({
                                                                 English Text
                                                             </StickyScriptureHeader>
                                                             <div style={{ display: 'flex', flexDirection: 'column', gap: `${1.2 * slideZoom}rem` }}>
-                                                                {activeReference.textEn.map((line, i) => (
+                                                                {activeReference.textEn.length > 0 && activeReference.textEn.every(l => !isNonEmptyText(l)) ? (
+                                                                    <div className={`p-4 rounded-xl text-center font-[Inter] ${useWavyPaper ? 'bg-[#8a4d0f]/10 text-[#41290e] border border-[#8a4d0f]/20' : 'bg-amber-500/10 text-amber-200 border border-amber-500/30'}`}>
+                                                                        <p className="font-bold text-base">Selected verses not found in {activeReference.bookName.en} chapter {activeReference.chapter}.</p>
+                                                                        <p className="text-xs mt-1 opacity-80">This chapter contains fewer verses in the Bible text. Please select a valid verse range for this chapter.</p>
+                                                                    </div>
+                                                                ) : activeReference.textEn.map((line, i) => (
                                                                     <p 
                                                                         key={`en-${i}`} 
                                                                         className={`leading-relaxed ${useWavyPaper ? 'text-[#5e4021]' : 'text-slate-200'}`} 
@@ -821,7 +906,7 @@ export function SlideRenderer({
                                                                         {isActive && <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />}
                                                                         {ref.bookName.fa}
                                                                     </span>
-                                                                    <span className="text-[0.95rem] font-black text-amber-400 tabular-nums">
+                                                                    <span dir="ltr" className="text-[0.95rem] font-black text-amber-400 tabular-nums inline-block font-sans" style={{ unicodeBidi: 'isolate' }}>
                                                                         {ref.chapter}:{ref.verses}
                                                                     </span>
                                                                 </div>
@@ -847,7 +932,10 @@ export function SlideRenderer({
                         
                         {/* Reference Badge */}
                         <div className="absolute top-4 left-4 sm:top-8 sm:left-8 bg-amber-500/15 border border-amber-500/25 px-3 py-1.5 rounded-full backdrop-blur-md shadow-sm">
-                            <span className="font-bold font-[Vazirmatn] text-[0.95rem] sm:text-[1.2rem]" style={{ color: 'rgb(251 191 36)' }}>{page.bookName.fa} {page.chapter}:{page.verses}</span>
+                            <span className="font-bold font-[Vazirmatn] text-[0.95rem] sm:text-[1.2rem] flex items-center gap-1.5" style={{ color: 'rgb(251 191 36)' }} dir="rtl">
+                                <span>{page.bookName.fa}</span>
+                                <bdi dir="ltr" className="inline-block font-sans font-black" style={{ unicodeBidi: 'isolate' }}>{page.chapter}:{page.verses}</bdi>
+                            </span>
                         </div>
                         
                         <div className="max-w-6xl w-full text-center space-y-5 sm:space-y-6">
@@ -1072,6 +1160,28 @@ export function SlideRenderer({
                         >
                             {renderContent()}
                         </div>
+
+                        {/* Top / Header Custom Text Overlay */}
+                        {Boolean(slide?.headerText?.trim()) && (
+                            <div className="absolute top-6 left-12 right-12 z-50 flex items-center justify-center pointer-events-none animate-in fade-in zoom-in duration-300">
+                                <div className="max-w-[85%] px-8 py-3 rounded-2xl bg-black/80 backdrop-blur-md border border-amber-400/50 shadow-[0_8px_32px_rgba(0,0,0,0.75)] text-center">
+                                    <span className="text-3xl md:text-4xl font-extrabold text-amber-200 font-[Vazirmatn] tracking-wide drop-shadow-md">
+                                        {slide.headerText}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Bottom / Footer Custom Text Overlay */}
+                        {Boolean(slide?.footerText?.trim()) && (
+                            <div className="absolute bottom-6 left-12 right-12 z-50 flex items-center justify-center pointer-events-none animate-in fade-in zoom-in duration-300">
+                                <div className="max-w-[85%] px-8 py-3 rounded-2xl bg-black/80 backdrop-blur-md border border-indigo-400/50 shadow-[0_8px_32px_rgba(0,0,0,0.75)] text-center">
+                                    <span className="text-2xl md:text-3xl font-bold text-indigo-100 font-[Vazirmatn] tracking-wide drop-shadow-md">
+                                        {slide.footerText}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

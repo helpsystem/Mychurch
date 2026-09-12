@@ -167,8 +167,9 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
                                   {/* Primary Ref Text */}
                                   {primaryRefText && primaryRefText.length > 0 && (
                                     <div className="space-y-2">
-                                      <p className="text-xs font-bold text-blue-400/90 tracking-wider">
-                                        {isRefFa ? refItem.bookName.fa : refItem.bookName.en} {refItem.chapter}:{refItem.verses}
+                                      <p className="text-xs font-bold text-blue-400/90 tracking-wider flex items-center gap-1.5" dir={isRefFa ? "rtl" : "ltr"}>
+                                        <span>{isRefFa ? refItem.bookName.fa : refItem.bookName.en}</span>
+                                        <bdi dir="ltr" className="inline-block font-sans font-bold">{refItem.chapter}:{refItem.verses}</bdi>
                                       </p>
                                       <div
                                         className="text-sm text-slate-300 leading-relaxed font-[Vazirmatn] space-y-1"
@@ -189,8 +190,9 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
                                   {/* Secondary Ref Text */}
                                   {secondaryRefText && secondaryRefText.length > 0 && (
                                     <div className="space-y-2 pt-2">
-                                      <p className="text-[10px] font-bold text-slate-500 tracking-wider">
-                                        {isRefFa ? refItem.bookName.en : refItem.bookName.fa} {refItem.chapter}:{refItem.verses}
+                                      <p className="text-[10px] font-bold text-slate-500 tracking-wider flex items-center gap-1.5" dir={isRefFa ? "ltr" : "rtl"}>
+                                        <span>{isRefFa ? refItem.bookName.en : refItem.bookName.fa}</span>
+                                        <bdi dir="ltr" className="inline-block font-sans font-bold">{refItem.chapter}:{refItem.verses}</bdi>
                                       </p>
                                       <div
                                         className="text-xs text-slate-400 leading-relaxed space-y-1 font-[Vazirmatn]"

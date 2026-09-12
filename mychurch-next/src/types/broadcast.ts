@@ -217,6 +217,8 @@ export interface Slide {
     notes?: string;
     duration?: number;
     zoom?: number;
+    headerText?: string;
+    footerText?: string;
 }
 
 export interface BroadcastSession {

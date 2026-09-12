@@ -24,11 +24,14 @@ const STATIC_VERSIONS = [
   { version_id: 7,   abbr: "CSB",  name: "Christian Standard Bible (CSB)",          language: "en", hasAudio: false },
 
   // ── Farsi (Persian) Translations ──
-  { version_id: 118, abbr: "NMV",  name: "هزارۀ نو (ترجمه استاندارد معاصر)",       language: "fa", hasAudio: true },
-  { version_id: 119, abbr: "TPV",  name: "کتاب مقدس ترجمه تفسیری (مژده)",          language: "fa", hasAudio: true },
-  { version_id: 120, abbr: "PCB",  name: "ترجمه قدیم (فاضل‌خان همدانی)",           language: "fa", hasAudio: true },
-  { version_id: 121, abbr: "MOZ",  name: "مژده برای عصر جدید (فارسی)",             language: "fa", hasAudio: false },
-  { version_id: 122, abbr: "FARSIO", name: "متن اصیل فارسی کهن",                   language: "fa", hasAudio: false },
+  { version_id: 118, abbr: "NMV",    name: "هزارۀ نو (ترجمه استاندارد معاصر)",     language: "fa", hasAudio: true  },
+  { version_id: 119, abbr: "TPV",    name: "کتاب مقدس ترجمه تفسیری (مژده)",        language: "fa", hasAudio: true  },
+  { version_id: 120, abbr: "PCB",    name: "ترجمه قدیم (فاضل‌خان همدانی)",         language: "fa", hasAudio: true  },
+  { version_id: 121, abbr: "MOZ",    name: "مژده برای عصر جدید (فارسی)",           language: "fa", hasAudio: false },
+  { version_id: 122, abbr: "FARSIO", name: "متن اصیل فارسی کهن",                  language: "fa", hasAudio: false },
+  { version_id: 123, abbr: "BBK",    name: "کتاب مقدس (ترجمه بیگدلی)",             language: "fa", hasAudio: false },
+  { version_id: 124, abbr: "RCPV",   name: "کتاب مقدس (ترجمه ون‌دایک / عهد قدیم)", language: "fa", hasAudio: false },
+  { version_id: 125, abbr: "PES",    name: "پشیتا / سریانی فارسی (PES)",           language: "fa", hasAudio: false },
 ];
 
 function normalizeAbbr(abbr: string): string {

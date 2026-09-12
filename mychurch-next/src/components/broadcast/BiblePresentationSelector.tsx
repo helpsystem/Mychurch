@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { BookOpen, Check, ChevronLeft, ChevronRight, Columns2, List, Loader2, Music2, Pause, Play, Search, Trash2, X, Zap } from "lucide-react";
 import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
 import SelectedVersesModal from "./SelectedVersesModal";
+import { toast } from "sonner";
 
 interface BibleVersion {
   version_id: number;
@@ -378,17 +379,66 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     setLastInteractedVerse(verseNum);
   };
 
+  // Auto-adapt rangeEnd to current chapter's actual verse count
+  // NOTE: Only fires on chapter/book change – NOT on visibleVerseNumbers so that
+  // a user's manually-entered range is preserved when they type in the search box.
+  useEffect(() => {
+    const maxV = parallelVerses.length > 0
+      ? Math.max(...parallelVerses.map((v) => v.verse_num))
+      : Math.max(verses.length, faVerses.length);
+    if (maxV > 0) {
+      setRangeStart(1);
+      setRangeEnd(Math.min(10, maxV));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedChapter, selectedBookId]);
+
+  // Keep selected verses texts synced with active translation
+  useEffect(() => {
+    setSelectedVerses((previous) => {
+      if (!previous.length) return previous;
+      return previous.map((entry) => {
+        if (entry.book_id === currentBook?.book_id && entry.chapter === selectedChapter) {
+          const texts = getVerseTexts(entry.verse_num);
+          if (texts.fa || texts.en) {
+            return {
+              ...entry,
+              fa: texts.fa || entry.fa,
+              en: texts.en || entry.en,
+            };
+          }
+        }
+        return entry;
+      });
+    });
+  }, [parallelVerses, faVerses, verses]);
+
   const selectCustomRange = () => {
     if (!currentBook) return;
+    const maxAvailable = visibleVerseNumbers.length > 0
+      ? Math.max(...visibleVerseNumbers)
+      : Math.max(verses.length, faVerses.length, parallelVerses.length);
+
+    if (maxAvailable > 0 && Math.min(rangeStart, rangeEnd) > maxAvailable) {
+      toast.error(
+        isRTL
+          ? `باب ${selectedChapter} از ${currentBook.book_name_fa} تنها دارای ${maxAvailable} آیه است (آیات ۱ تا ${maxAvailable}).`
+          : `${currentBook.book_name_en} ${selectedChapter} only contains ${maxAvailable} verses.`
+      );
+      return;
+    }
+
     const start = Math.max(1, Math.min(rangeStart, rangeEnd));
-    const end = Math.max(rangeStart, rangeEnd);
+    const rawEnd = Math.max(rangeStart, rangeEnd);
+    const end = maxAvailable > 0 ? Math.min(rawEnd, maxAvailable) : rawEnd;
     const range = Array.from({ length: end - start + 1 }, (_, idx) => start + idx);
 
     setSelectedVerses((previous) => {
       const byId = new Map(previous.map((entry) => [entry.id, entry]));
       range.forEach((verseNum) => {
-        const id = `${currentBook.book_id}-${selectedChapter}-${verseNum}`;
         const texts = getVerseTexts(verseNum);
+        if (!texts.fa && !texts.en) return;
+        const id = `${currentBook.book_id}-${selectedChapter}-${verseNum}`;
         byId.set(id, {
           id,
           book_id: currentBook.book_id,
@@ -404,6 +454,11 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       return Array.from(byId.values()).sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
     });
     setLastInteractedVerse(end);
+    toast.success(
+      isRTL
+        ? `آیات ${start} تا ${end} انتخاب شدند.`
+        : `Selected verses ${start} to ${end}.`
+    );
   };
 
   const addVisibleVerses = () => {
@@ -428,6 +483,102 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       });
       return Array.from(byId.values()).sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
     });
+    toast.success(
+      isRTL
+        ? `تمام آیات باب ${selectedChapter} انتخاب شدند.`
+        : `Selected all verses of chapter ${selectedChapter}.`
+    );
+  };
+
+  const addCustomRangeDirectlyToSlides = () => {
+    if (!currentBook) return;
+    const maxAvailable = parallelVerses.length > 0
+      ? Math.max(...parallelVerses.map((v) => v.verse_num))
+      : Math.max(verses.length, faVerses.length);
+
+    const start = Math.max(1, Math.min(rangeStart, rangeEnd));
+    const rawEnd = Math.max(rangeStart, rangeEnd);
+    const end = maxAvailable > 0 ? Math.min(rawEnd, maxAvailable) : rawEnd;
+    const range = Array.from({ length: end - start + 1 }, (_, idx) => start + idx);
+
+    const entries: SelectedVerseEntry[] = [];
+    range.forEach((verseNum) => {
+      const texts = getVerseTexts(verseNum);
+      // Skip verses that have no text in either language
+      if (!texts.fa && !texts.en) return;
+      const id = `${currentBook.book_id}-${selectedChapter}-${verseNum}`;
+      entries.push({
+        id,
+        book_id: currentBook.book_id,
+        book_name_en: currentBook.book_name_en,
+        book_name_fa: currentBook.book_name_fa,
+        book_order: currentBook.book_order,
+        chapter: selectedChapter,
+        verse_num: verseNum,
+        en: texts.en ?? "",
+        fa: texts.fa ?? "",
+      });
+    });
+
+    if (entries.length === 0) {
+      toast.error(isRTL ? 'در این بازه آیه‌ای یافت نشد. لطفاً ابتدا فصل را بارگذاری کنید.' : 'No verses found in this range. Please load the chapter first.');
+      return;
+    }
+    const slides = buildSlides(entries);
+    onAddSlides(slides);
+    setSelectedVerses([]);
+    onClose();
+    toast.success(
+      isRTL
+        ? `✓ آیات ${start} تا ${end} از ${currentBook.book_name_fa} باب ${selectedChapter} به اسلایدها افزوده شد.`
+        : `✓ Added ${currentBook.book_name_en} ${selectedChapter}:${start}-${end} to slides.`
+    );
+  };
+
+  const addAllChapterDirectlyToSlides = () => {
+    if (!currentBook) return;
+    const maxAvailable = parallelVerses.length > 0
+      ? Math.max(...parallelVerses.map((v) => v.verse_num))
+      : Math.max(verses.length, faVerses.length);
+
+    if (maxAvailable <= 0) {
+      toast.error(isRTL ? 'لطفاً ابتدا فصل را بارگذاری کنید.' : 'Please load the chapter first.');
+      return;
+    }
+    const range = Array.from({ length: maxAvailable }, (_, idx) => idx + 1);
+
+    const entries: SelectedVerseEntry[] = [];
+    range.forEach((verseNum) => {
+      const texts = getVerseTexts(verseNum);
+      // Skip verses that have no text in either language
+      if (!texts.fa && !texts.en) return;
+      const id = `${currentBook.book_id}-${selectedChapter}-${verseNum}`;
+      entries.push({
+        id,
+        book_id: currentBook.book_id,
+        book_name_en: currentBook.book_name_en,
+        book_name_fa: currentBook.book_name_fa,
+        book_order: currentBook.book_order,
+        chapter: selectedChapter,
+        verse_num: verseNum,
+        en: texts.en ?? "",
+        fa: texts.fa ?? "",
+      });
+    });
+
+    if (entries.length === 0) {
+      toast.error(isRTL ? 'آیه‌ای برای افزودن یافت نشد.' : 'No verses to add.');
+      return;
+    }
+    const slides = buildSlides(entries);
+    onAddSlides(slides);
+    setSelectedVerses([]);
+    onClose();
+    toast.success(
+      isRTL
+        ? `✓ کل باب ${selectedChapter} از ${currentBook.book_name_fa} (${entries.length} آیه) به اسلایدها افزوده شد.`
+        : `✓ Added entire ${currentBook.book_name_en} chapter ${selectedChapter} (${entries.length} verses) to slides.`
+    );
   };
 
   const clearCurrentChapterSelection = () => {
@@ -435,8 +586,10 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     setSelectedVerses((previous) => previous.filter((entry) => !(entry.book_id === currentBook.book_id && entry.chapter === selectedChapter)));
   };
 
-  const buildSlides = (): ScripturePage[] => {
-    const sorted = [...selectedVerses].sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
+  const buildSlides = (customVerses?: SelectedVerseEntry[]): ScripturePage[] => {
+    const list = customVerses && customVerses.length > 0 ? customVerses : selectedVerses;
+    if (!list.length) return [];
+    const sorted = [...list].sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
     const groups = new Map<string, SelectedVerseEntry[]>();
     sorted.forEach((entry) => {
       const key = `${entry.book_id}-${entry.chapter}`;
@@ -507,7 +660,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         primaryLanguage: primaryLang,
         glassPopupEnabled: true,
         referenceItems,
-        popupLabelFa: single ? `${firstReference.bookName.fa} ${firstReference.chapter}:${firstReference.verses}` : `${referenceItems.length} آیه انتخابی`,
+        popupLabelFa: single ? `${firstReference.bookName.fa} \u2066${firstReference.chapter}:${firstReference.verses}\u2069` : `${referenceItems.length} آیه انتخابی`,
         popupLabelEn: single ? `${firstReference.bookName.en} ${firstReference.chapter}:${firstReference.verses}` : `${referenceItems.length} Selected Verses`,
       }];
     }
@@ -531,7 +684,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         primaryLanguage: primaryLang,
         glassPopupEnabled: false,
         referenceItems: [{ ...reference, verses: `${verseNum}`, verseNumbers: [verseNum], textFa: [reference.textFa[idx]], textEn: [reference.textEn[idx]] }],
-        popupLabelFa: `اسلاید ${slideNumber++}: ${reference.bookName.fa} ${reference.chapter}:${verseNum}`,
+        popupLabelFa: `اسلاید ${slideNumber++}: ${reference.bookName.fa} \u2066${reference.chapter}:${verseNum}\u2069`,
         popupLabelEn: `Slide ${slideNumber - 1}: ${reference.bookName.en} ${reference.chapter}:${verseNum}`,
       })));
     }
@@ -553,16 +706,25 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       primaryLanguage: primaryLang,
       glassPopupEnabled: false,
       referenceItems: [reference],
-      popupLabelFa: `${reference.bookName.fa} ${reference.chapter}:${reference.verses}`,
+      popupLabelFa: `${reference.bookName.fa} \u2066${reference.chapter}:${reference.verses}\u2069`,
       popupLabelEn: `${reference.bookName.en} ${reference.chapter}:${reference.verses}`,
     }));
   };
 
   const handleAddSlides = () => {
-    if (!selectedVerses.length) return;
-    onAddSlides(buildSlides());
+    if (!selectedVerses.length) {
+      toast.error(isRTL ? 'هیچ آیه‌ای انتخاب نشده است.' : 'No verses selected.');
+      return;
+    }
+    const slides = buildSlides();
+    if (!slides.length) {
+      toast.error(isRTL ? 'آیات انتخاب‌شده متنی ندارند. لطفاً دوباره تلاش کنید.' : 'Selected verses have no text. Please try again.');
+      return;
+    }
+    onAddSlides(slides);
+    // onClose is called by applyScripturePages inside SlideBuilder (via setActiveModal),
+    // so we only clear local selection state here without calling onClose twice.
     setSelectedVerses([]);
-    onClose();
   };
 
   useEffect(() => {
@@ -665,22 +827,52 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
           <button onClick={() => { const next = Math.min(36, fontSize + 2); setFontSize(next); persist("bp_font_size", String(next)); }} className="px-2 py-1.5 rounded-lg text-[11px] md:text-sm font-bold text-slate-400 hover:text-white transition-all hover:bg-white/10 shrink-0">A+</button>
         </div>
 
+        {selectedVerses.length > 0 && (
+          <button
+            type="button"
+            onClick={handleAddSlides}
+            className="flex items-center gap-1.5 px-3 md:px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_16px_rgba(245,158,11,0.5)] transition cursor-pointer font-[Vazirmatn] shrink-0"
+            title={isRTL ? "افزودن آیات انتخاب‌شده به اسلایدها" : "Add selected verses to presentation slides"}
+          >
+            <Zap className="w-4 h-4 fill-black" />
+            <span>{isRTL ? `✓ افزودن به اسلاید (${selectedVerses.length})` : `✓ Add to Slides (${selectedVerses.length})`}</span>
+          </button>
+        )}
+
         <button onClick={onClose} className="ml-auto p-2 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-all" aria-label="Close scripture selector"><X className="w-5 h-5" /></button>
       </div>
 
       {showChapterGrid && currentBook && (
-        <div className="absolute inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-start justify-center p-4 pt-24">
-          <div className="w-full max-w-3xl bg-[#18181b] border border-white/10 rounded-3xl shadow-2xl p-4">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-slate-400 text-xs uppercase tracking-[0.2em]">{currentBook.book_name_en}</p>
-                <h3 className="text-xl font-black font-[Vazirmatn]">{currentBook.book_name_fa}</h3>
+        <div className="absolute inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-start justify-center p-4 pt-16 sm:pt-20">
+          <div className="w-full max-w-3xl bg-[#18181b] border border-white/10 rounded-3xl shadow-2xl p-5 max-h-[85vh] flex flex-col">
+            <div className="flex items-center justify-between mb-4 shrink-0 pb-3 border-b border-white/10">
+              <div className="flex items-center gap-3">
+                <span className="w-9 h-9 rounded-xl bg-indigo-500/20 text-indigo-400 font-black flex items-center justify-center text-sm">
+                  {currentBook.chapter_count}
+                </span>
+                <div>
+                  <h3 className="text-xl font-black font-[Vazirmatn] text-white flex items-center gap-2">
+                    <span>{currentBook.book_name_fa}</span>
+                    <span className="text-xs font-normal text-slate-400 font-sans">({currentBook.chapter_count} {currentBook.book_id === 'PSA' || currentBook.book_name_en === 'Psalms' ? 'مزمور' : 'باب'})</span>
+                  </h3>
+                  <p className="text-slate-400 text-xs uppercase tracking-[0.2em]">{currentBook.book_name_en} — {currentBook.chapter_count} Chapters</p>
+                </div>
               </div>
-              <button onClick={() => setShowChapterGrid(false)} className="p-2 rounded-lg hover:bg-white/10"><X className="w-5 h-5" /></button>
+              <button onClick={() => setShowChapterGrid(false)} className="p-2 rounded-xl hover:bg-white/10 text-white/70 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
             </div>
-            <div className="grid grid-cols-7 sm:grid-cols-10 gap-2">
+            <div className="grid grid-cols-6 sm:grid-cols-10 gap-2 overflow-y-auto pr-1 flex-1 py-1">
               {chapterGrid.map((chapterNumber) => (
-                <button key={chapterNumber} onClick={() => { setSelectedChapter(chapterNumber); setShowChapterGrid(false); }} className={`aspect-square rounded-xl text-sm font-medium transition-all border ${chapterNumber === selectedChapter ? "bg-indigo-600 text-white scale-105 shadow-lg shadow-indigo-500/30 border-indigo-500/60" : "bg-slate-800 text-slate-300 hover:bg-slate-700 border-slate-700"}`}>{chapterNumber}</button>
+                <button 
+                  key={chapterNumber} 
+                  onClick={() => { setSelectedChapter(chapterNumber); setShowChapterGrid(false); }} 
+                  className={`aspect-square rounded-xl text-sm font-bold transition-all border flex items-center justify-center ${
+                    chapterNumber === selectedChapter 
+                      ? "bg-indigo-600 text-white scale-105 shadow-lg shadow-indigo-500/40 border-indigo-400" 
+                      : "bg-slate-850 text-slate-200 hover:bg-slate-750 hover:text-white hover:border-indigo-500/50 border-slate-700/60"
+                  }`}
+                >
+                  {chapterNumber}
+                </button>
               ))}
             </div>
           </div>
@@ -692,21 +884,25 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         {currentBook && (
           <div className="text-center pt-8 pb-6 border-b border-white/5" dir="ltr">
             <p className="text-xs uppercase tracking-[0.3em] text-slate-500 mb-1">{currentBook.book_name_en}</p>
-            <h1 className="text-2xl font-black tracking-tight">Chapter {selectedChapter}</h1>
-            <p className="font-[Vazirmatn] mt-1.5 text-base text-slate-400" dir="rtl">{currentBook.book_name_fa} — باب {selectedChapter}</p>
+            <h1 className="text-2xl font-black tracking-tight">
+              {currentBook.book_id === 'PSA' ? 'Psalm' : 'Chapter'} {selectedChapter}
+            </h1>
+            <p className="font-[Vazirmatn] mt-1.5 text-base text-slate-400" dir="rtl">
+              {currentBook.book_name_fa} — {currentBook.book_id === 'PSA' ? 'مزمور' : 'باب'} {selectedChapter}
+            </p>
           </div>
         )}
 
         <div className="max-w-5xl mx-auto px-4 pt-3 pb-2 flex flex-wrap items-center justify-center gap-2.5">
           {/* Segmented Range Selector Box */}
-          <div className="flex items-center gap-2 bg-black/70 border border-amber-400/60 rounded-xl px-3 py-1.5 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+          <div className="flex items-center gap-2 bg-black/80 border border-amber-400/60 rounded-xl px-3 py-1.5 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
             <span className="text-xs text-amber-300 font-bold font-[Vazirmatn] select-none">انتخاب بازه:</span>
             <div className="flex items-center gap-1">
               <span className="text-xs text-zinc-400 font-[Vazirmatn]">از آیه</span>
               <input
                 type="number"
                 min={1}
-                max={150}
+                max={176}
                 value={rangeStart}
                 onChange={(e) => setRangeStart(Math.max(1, parseInt(e.target.value) || 1))}
                 className="w-12 bg-white/10 border border-amber-400/40 rounded px-1.5 py-0.5 text-center text-xs font-bold font-mono text-white outline-none focus:border-amber-400"
@@ -717,7 +913,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
               <input
                 type="number"
                 min={1}
-                max={150}
+                max={176}
                 value={rangeEnd}
                 onChange={(e) => setRangeEnd(Math.max(1, parseInt(e.target.value) || 1))}
                 className="w-12 bg-white/10 border border-amber-400/40 rounded px-1.5 py-0.5 text-center text-xs font-bold font-mono text-white outline-none focus:border-amber-400"
@@ -726,23 +922,44 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             <button
               type="button"
               onClick={selectCustomRange}
-              className="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-black font-black text-xs rounded-lg transition shadow flex items-center gap-1 cursor-pointer font-[Vazirmatn]"
+              className="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-lg transition shadow flex items-center gap-1 cursor-pointer font-[Vazirmatn]"
+              title={isRTL ? "انتخاب این بازه در لیست آیات" : "Select this range in list"}
             >
-              <Check className="w-3.5 h-3.5" />
-              <span>انتخاب این بازه</span>
+              <Check className="w-3.5 h-3.5 text-amber-400" />
+              <span>انتخاب</span>
+            </button>
+            <button
+              type="button"
+              onClick={addCustomRangeDirectlyToSlides}
+              className="px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs rounded-lg transition shadow-[0_0_12px_rgba(245,158,11,0.4)] flex items-center gap-1 cursor-pointer font-[Vazirmatn]"
+              title={isRTL ? "ساخت فوری اسلاید از این بازه" : "Directly add this range as slides"}
+            >
+              <Zap className="w-3.5 h-3.5 fill-black" />
+              <span>➕ افزودن به اسلاید</span>
             </button>
           </div>
 
           <div className="flex items-center gap-2">
             <button
-              onClick={addVisibleVerses}
-              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-600/30 transition"
+              type="button"
+              onClick={addAllChapterDirectlyToSlides}
+              className="px-3 py-1.5 rounded-lg text-xs font-black bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white shadow-lg shadow-emerald-600/30 transition flex items-center gap-1.5 font-[Vazirmatn] cursor-pointer"
+              title={isRTL ? "ساخت مستقیم اسلاید از تمام آیات این باب" : "Directly add whole chapter to slides"}
             >
-              {isRTL ? "افزودن همه آیات این باب" : "Select All Verses"}
+              <Zap className="w-3.5 h-3.5 fill-white" />
+              <span>{isRTL ? "➕ افزودن کل این باب به اسلاید" : "Add Whole Chapter"}</span>
             </button>
             <button
+              type="button"
+              onClick={addVisibleVerses}
+              className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white/5 border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 transition font-[Vazirmatn]"
+            >
+              {isRTL ? "انتخاب همه آیات" : "Select All"}
+            </button>
+            <button
+              type="button"
               onClick={clearCurrentChapterSelection}
-              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600/15 border border-rose-500/35 text-rose-300 hover:bg-rose-600/25 transition"
+              className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-rose-600/15 border border-rose-500/35 text-rose-300 hover:bg-rose-600/25 transition font-[Vazirmatn]"
             >
               {isRTL ? "پاک کردن انتخاب‌ها" : "Clear Selection"}
             </button>
@@ -847,7 +1064,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
         {/* ── کپسول شناور اکشن‌ها (Floating Action Bar) ── */}
         {selectedVerses.length > 0 && (
-          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[300] bg-zinc-950/95 border border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.3)] backdrop-blur-2xl rounded-2xl px-4 py-2.5 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-5 max-w-[95vw] overflow-x-auto">
+          <div className={`fixed ${audioTracks.length > 0 ? "bottom-24 md:bottom-20" : "bottom-6"} left-1/2 -translate-x-1/2 z-[350] bg-zinc-950/95 border border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.3)] backdrop-blur-2xl rounded-2xl px-4 py-2.5 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-5 max-w-[95vw] overflow-x-auto`}>
             <div className="flex items-center gap-2 shrink-0">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
               <span className="text-amber-300 font-black text-xs md:text-sm font-[Vazirmatn] select-none">

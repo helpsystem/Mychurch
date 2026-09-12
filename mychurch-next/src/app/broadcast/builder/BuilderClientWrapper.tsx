@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
-import { BroadcastSession, AppLanguage, Slide, ScripturePage, SlideType } from "@/types/broadcast";
+import { BroadcastSession, AppLanguage, Slide, ScripturePage, SlideType, ScriptureReferenceItem, SlideContentScripture } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
 import { ArrowRight, CalendarDays, Loader2, Save, BookOpen, MonitorPlay, SendHorizontal } from "lucide-react";
 import Link from "next/link";
@@ -88,6 +88,65 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
         }));
         setActiveSlideIndex(session.slides.length);
         setFullScriptureModalOpen(false);
+    };
+
+    const handleInsertIntoCurrentSlide = (referenceItem: ScriptureReferenceItem, newPage: ScripturePage) => {
+        const activeSlide = session.slides[activeSlideIndex];
+        if (!activeSlide || activeSlide.type !== SlideType.SCRIPTURE) {
+            handleQuickAddScripture([newPage]);
+            return;
+        }
+
+        const content = (activeSlide.content || {}) as SlideContentScripture;
+        const pages = [...(content.pages || [])];
+        const targetPage = pages[0] || newPage;
+
+        const existingRefs: ScriptureReferenceItem[] = targetPage.referenceItems && targetPage.referenceItems.length > 0
+            ? [...targetPage.referenceItems]
+            : [
+                {
+                    id: crypto.randomUUID(),
+                    book: targetPage.book,
+                    bookName: targetPage.bookName,
+                    chapter: targetPage.chapter,
+                    verses: targetPage.verses,
+                    verseNumbers: targetPage.verseNumbers || [],
+                    textFa: targetPage.textPrimary || [],
+                    textEn: targetPage.textSecondary || [],
+                    translation: targetPage.translation || 'NMV',
+                    enTranslation: targetPage.enTranslation || 'BSB'
+                }
+            ];
+
+        // Avoid exact duplicate reference entries
+        const alreadyExists = existingRefs.some(
+            r => r.book === referenceItem.book && r.chapter === referenceItem.chapter && r.verses === referenceItem.verses
+        );
+
+        const updatedRefs = alreadyExists ? existingRefs : [...existingRefs, referenceItem];
+        const updatedPage: ScripturePage = {
+            ...targetPage,
+            displayMode: 'referenceList',
+            referenceItems: updatedRefs,
+            popupLabelFa: `${updatedRefs.length} آیه انتخابی`,
+            popupLabelEn: `${updatedRefs.length} Selected Verses`,
+        };
+
+        pages[0] = updatedPage;
+
+        setSession(prev => ({
+            ...prev,
+            slides: prev.slides.map((s, idx) => idx === activeSlideIndex ? {
+                ...s,
+                content: { ...content, pages }
+            } : s)
+        }));
+
+        toast.success(
+            language === 'fa'
+                ? `✓ ${referenceItem.bookName.fa} \u2066${referenceItem.chapter}:${referenceItem.verses}\u2069 به اسلاید جاری اضافه شد.`
+                : `✓ Added ${referenceItem.bookName.en} ${referenceItem.chapter}:${referenceItem.verses} to current slide.`
+        );
     };
 
     const stateRef = useRef({ slides: session.slides, activeSlideIndex });
@@ -419,13 +478,15 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                      <div className="absolute inset-0 bg-indigo-500/5 mix-blend-overlay pointer-events-none" />
 
                      {/* Segmented Quick Scripture Bar with Illuminated Inputs */}
-                     <div className="w-full max-w-5xl mx-auto mb-4 relative z-20 shrink-0">
-                       <QuickScriptureBar
-                         onAddSlides={handleQuickAddScripture}
-                         onOpenFullSelector={() => setFullScriptureModalOpen(true)}
-                         isRTL={language === 'fa'}
-                       />
-                     </div>
+                      <div className="w-full max-w-5xl mx-auto mb-4 relative z-20 shrink-0">
+                        <QuickScriptureBar
+                          onAddSlides={handleQuickAddScripture}
+                          onInsertIntoActiveSlide={handleInsertIntoCurrentSlide}
+                          isCurrentSlideScripture={session.slides[activeSlideIndex]?.type === SlideType.SCRIPTURE}
+                          onOpenFullSelector={() => setFullScriptureModalOpen(true)}
+                          isRTL={language === 'fa'}
+                        />
+                      </div>
 
                      {/* Preview Wrapper forces 16:9 aspect ratio - perfectly centered */}
                      <div className="relative flex-1 flex items-center justify-center min-h-[340px] w-full">
