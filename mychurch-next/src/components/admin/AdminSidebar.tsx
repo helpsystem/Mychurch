@@ -7,7 +7,7 @@ import {
     LayoutDashboard, Users, LayoutTemplate, Settings, 
     Power, FileVideo, Music, UserCircle, Megaphone, 
     Crown, Tags, MonitorPlay, Menu, X, Gift, Mail, FileText, Mic, FileAudio, Sparkles, Zap, Send, MessageSquare,
-    History, Trash2, ScanLine, Heart
+    History, Trash2, ScanLine, Heart, Calendar
 } from "lucide-react";
 import Image from "next/image";
 import ViewAsRoleSwitcher from "@/components/admin/ViewAsRoleSwitcher";
@@ -236,8 +236,11 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                         </>
                     )}
 
-                    {(isAdmin || permissions?.canManageWidgets) && (
+                    {(isAdmin || permissions?.canManageWidgets || role === "Leader") && (
                         <>
+                            <NavItem href="/admin/schedule" icon={Calendar} colorClass="text-amber-400/90 group-hover:text-amber-300">
+                                <span className="font-[Vazirmatn]">برنامه‌های هفتگی و جلسات</span>
+                            </NavItem>
                             <NavItem href="/admin/widgets" icon={LayoutTemplate} colorClass="text-purple-400/80">Site Widgets</NavItem>
                             <NavItem href="/admin/categories" icon={Tags}>Categories</NavItem>
                         </>

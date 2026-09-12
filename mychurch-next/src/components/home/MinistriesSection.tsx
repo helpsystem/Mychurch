@@ -9,14 +9,14 @@ import { ArrowLeft, Sparkles } from "lucide-react";
 
 const ministries = [
   {
-    title: "خدمت کودکان",
-    tag: "محیط شاد و خلاق",
-    tagColor: "text-amber-400 bg-amber-500/15 border-amber-500/25",
-    desc: "تعلیم داستان‌های کتاب‌مقدس، سرود، بازی و نقاشی در محیطی امن و شاد برای فرزندان.",
+    title: "خدمت و مشارکت بانوان",
+    tag: "مشارکت و رشد ایمانی",
+    tagColor: "text-rose-400 bg-rose-500/15 border-rose-500/25",
+    desc: "جلسات صمیمانه دعا، مطالعه کلام و توانمندسازی روحانی بانوان و خانواده‌ها در فیض خداوند.",
     image: "/images/stitch/stitch_asset_3.webp",
-    alt: "کودکان در کلاس کلیسا و داستان‌های کتاب مقدس",
-    action: "اطلاعات برنامه کودکان",
-    actionColor: "text-amber-400",
+    alt: "مشارکت و جلسات بانوان کلیسای ایرانیان",
+    action: "اطلاعات برنامه بانوان",
+    actionColor: "text-rose-400",
     href: "/about",
   },
   {

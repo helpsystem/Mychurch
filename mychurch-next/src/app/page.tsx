@@ -8,6 +8,7 @@ import HeroSection from "@/components/home/HeroSection";
 import FeaturesSection from "@/components/home/FeaturesSection";
 import StatsSection from "@/components/home/StatsSection";
 import MinistriesSection from "@/components/home/MinistriesSection";
+import WeeklyProgramsSection from "@/components/home/WeeklyProgramsSection";
 import SermonsSection from "@/components/home/SermonsSection";
 import PrayerSection from "@/components/home/PrayerSection";
 import LeadershipSection from "@/components/home/LeadershipSection";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <main id="main-content" className="flex-1">
         <HeroSection />
         <FeaturesSection />
+        <WeeklyProgramsSection />
         <StatsSection />
         <MinistriesSection />
         <SermonsSection />

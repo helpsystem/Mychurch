@@ -4,7 +4,7 @@ import "@/lib/react-polyfill";
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { BookOpen, Music, Video, Radio, HeartHandshake, Users, ArrowLeft, Sparkles } from "lucide-react";
+import { BookOpen, Music, Video, Radio, HeartHandshake, Users, ArrowLeft, Sparkles, Calendar } from "lucide-react";
 
 const features = [
   {
@@ -63,11 +63,11 @@ const features = [
     actionColor: "text-amber-300",
   },
   {
-    icon: Users,
-    title: "جوانان و کودکان",
-    desc: "برنامه‌های تعاملی، مدرسه یکشنبه و حلقه‌های رشد جوانان.",
-    href: "/about",
-    action: "برنامه‌ها",
+    icon: Calendar,
+    title: "برنامه‌ها و جلسات هفتگی",
+    desc: "کلاس‌های تدریس کتاب مقدس در طول هفته و جلسات یکشنبه به وقت واشنگتن.",
+    href: "#weekly-schedule",
+    action: "مشاهده جلسات",
     iconColor: "text-emerald-400",
     iconBg: "bg-emerald-500/15",
     hoverBorder: "hover:border-emerald-500/40",
