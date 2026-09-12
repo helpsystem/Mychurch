@@ -25,28 +25,67 @@ interface AdminSidebarProps {
 export default function AdminSidebar({ role, realRole, permissions, userEmail, initials, isAdmin }: AdminSidebarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const [counts, setCounts] = useState<{ prayers: number; messages: number; documents: number; users: number }>({
+        prayers: 0,
+        messages: 0,
+        documents: 0,
+        users: 0,
+    });
 
     // Close sidebar on route change when on mobile
     useEffect(() => {
         setIsOpen(false);
     }, [pathname]);
 
+    // Live counts for notification badges
+    useEffect(() => {
+        const fetchCounts = async () => {
+            try {
+                const res = await fetch("/api/admin/sidebar-counts");
+                if (res.ok) {
+                    const data = await res.json();
+                    setCounts(data);
+                }
+            } catch {
+                // ignore network glitch
+            }
+        };
+        fetchCounts();
+        const interval = setInterval(fetchCounts, 30000);
+        return () => clearInterval(interval);
+    }, []);
+
     const toggleSidebar = () => setIsOpen(!isOpen);
 
-    const NavItem = ({ href, icon: Icon, children, colorClass = "text-muted-foreground", hoverClass = "hover:bg-white/5 hover:text-foreground" }: any) => {
+    const NavItem = ({ 
+        href, 
+        icon: Icon, 
+        children, 
+        badge,
+        badgeColor = "bg-rose-500/20 text-rose-300 border-rose-500/30",
+        colorClass = "text-muted-foreground", 
+        hoverClass = "hover:bg-white/5 hover:text-foreground" 
+    }: any) => {
         const isActive = pathname && (pathname === href || (href !== '/admin' && pathname.startsWith(href)));
         
         return (
             <Link 
                 href={href} 
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${
+                className={`flex items-center justify-between px-4 py-3 rounded-xl font-medium transition-colors ${
                     isActive 
                         ? 'bg-primary/10 text-primary font-bold' 
                         : `${colorClass} ${hoverClass}`
                 }`}
             >
-                <Icon className={`w-5 h-5 ${isActive ? 'text-primary' : ''}`} /> 
-                {children}
+                <div className="flex items-center gap-3">
+                    <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-primary' : ''}`} /> 
+                    {children}
+                </div>
+                {badge !== undefined && Number(badge) > 0 && (
+                    <span className={`px-2 py-0.5 rounded-full text-[11px] font-bold font-mono tracking-tight shrink-0 shadow-sm border ${badgeColor}`}>
+                        {badge}
+                    </span>
+                )}
             </Link>
         );
     };
@@ -145,14 +184,38 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                     )}
 
                     {(isAdmin || role === "Leader") && (
-                        <NavItem href="/admin/prayers" icon={Heart} colorClass="text-rose-400/90 group-hover:text-rose-300">
+                        <NavItem 
+                            href="/admin/prayers" 
+                            icon={Heart} 
+                            badge={counts.prayers}
+                            badgeColor="bg-amber-500/20 text-amber-300 border-amber-500/30"
+                            colorClass="text-rose-400/90 group-hover:text-rose-300"
+                        >
                             <span className="font-[Vazirmatn]">درخواست‌های دعا</span>
+                        </NavItem>
+                    )}
+
+                    {(isAdmin || role === "Leader" || permissions?.canViewMessages) && (
+                        <NavItem 
+                            href="/admin/messages" 
+                            icon={MessageSquare} 
+                            badge={counts.messages > 0 ? counts.messages : undefined}
+                            badgeColor="bg-sky-500/20 text-sky-300 border-sky-500/30"
+                            colorClass="text-sky-400/80 group-hover:text-sky-300"
+                        >
+                            <span className="font-[Vazirmatn]">پیام‌ها و تیکت‌ها</span>
                         </NavItem>
                     )}
 
                     {(isAdmin || permissions?.canManageDocuments || role === "Leader") && (
                         <>
-                            <NavItem href="/admin/documents" icon={FileText} colorClass="text-blue-500/80 group-hover:text-blue-400">
+                            <NavItem 
+                                href="/admin/documents" 
+                                icon={FileText} 
+                                badge={counts.documents > 0 ? counts.documents : undefined}
+                                badgeColor="bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
+                                colorClass="text-blue-500/80 group-hover:text-blue-400"
+                            >
                                 <span className="font-[Vazirmatn]">بایگانی اسناد</span>
                             </NavItem>
                             <NavItem href="/admin/documents/scanner" icon={ScanLine} colorClass="text-cyan-400/90 pl-6 group-hover:text-cyan-300">

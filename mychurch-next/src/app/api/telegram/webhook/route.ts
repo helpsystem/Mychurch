@@ -134,7 +134,107 @@ Connected directly to the church database. Permissions and alerts are updated dy
             return NextResponse.json({ ok: true });
         }
 
-        // Generic reply for any other message
+        // --- Reverse Sync: Auto-register photos, documents, and videos into Gallery & Media Library ---
+        const hasPhoto = msg.photo && Array.isArray(msg.photo) && msg.photo.length > 0;
+        const hasDoc = !!msg.document;
+        const hasVideo = !!msg.video;
+
+        if (hasPhoto || hasDoc || hasVideo) {
+            let fileId = "";
+            let fileName = "";
+            let mimeType = "image/jpeg";
+            let fileSize = 0;
+            const caption = msg.caption?.trim() || "";
+
+            if (hasPhoto) {
+                // Largest resolution photo is the last item
+                const photo = msg.photo[msg.photo.length - 1];
+                fileId = photo.file_id;
+                fileSize = photo.file_size || 0;
+                fileName = caption ? `${caption.slice(0, 60)}.jpg` : `telegram_photo_${Date.now()}.jpg`;
+                mimeType = "image/jpeg";
+            } else if (hasDoc) {
+                fileId = msg.document.file_id;
+                fileSize = msg.document.file_size || 0;
+                fileName = msg.document.file_name || caption || `telegram_doc_${Date.now()}`;
+                mimeType = msg.document.mime_type || "application/octet-stream";
+            } else if (hasVideo) {
+                fileId = msg.video.file_id;
+                fileSize = msg.video.file_size || 0;
+                fileName = msg.video.file_name || caption || `telegram_video_${Date.now()}.mp4`;
+                mimeType = msg.video.mime_type || "video/mp4";
+            }
+
+            try {
+                const { createAdminClient } = await import("@/utils/supabase/server");
+                const adminSupabase = await createAdminClient();
+
+                // 1. Insert into media_library
+                const { data: mediaRec, error: mediaErr } = await adminSupabase
+                    .from("media_library")
+                    .insert({
+                        file_name: fileName,
+                        size: fileSize,
+                        mime_type: mimeType,
+                        telegram_file_id: fileId,
+                        telegram_message_id: msg.message_id,
+                        folder: "gallery",
+                        visibility: "public"
+                    })
+                    .select("id")
+                    .maybeSingle();
+
+                if (mediaErr) {
+                    console.warn("[Telegram Webhook] media_library insert notice:", mediaErr.message);
+                }
+
+                // 2. If it's an image, also register directly into gallery_images
+                if (mimeType.startsWith("image/")) {
+                    try {
+                        await adminSupabase.from("gallery_images").insert({
+                            src: `/api/telegram/stream/${fileId}`,
+                            title: caption || fileName.replace(/\.[^/.]+$/, ""),
+                            folder: "gallery",
+                            visibility: "public",
+                            metadata: {
+                                source: "telegram_bot",
+                                uploader_chat_id: chatId,
+                                sender_name: fromUser?.first_name || "Telegram",
+                                uploaded_at: new Date().toISOString()
+                            }
+                        });
+                    } catch (gErr: any) {
+                        console.warn("[Telegram Webhook] gallery_images notice:", gErr.message);
+                    }
+                }
+
+                // 3. Send rich confirmation to Telegram
+                const confirmMsg = `
+🕊️ <b>فایل جدید با موفقیت در گالری و رسانه کلیسا ذخیره شد!</b>
+📸 <b>عنوان / نام فایل:</b> <code>${fileName}</code>
+${caption ? `📝 <b>توضیحات:</b> ${caption}\n` : ""}📁 <b>دسته‌بندی:</b> گالری عمومی
+💾 <b>حجم:</b> ${(fileSize / (1024 * 1024)).toFixed(2)} MB
+
+💡 <i>می‌توانید عنوان، دسته‌بندی و وضعیت انتشار را در پنل مدیریت ویرایش فرمایید.</i>
+`.trim();
+
+                await sendTelegramMessage(chatId, confirmMsg, {
+                    parse_mode: "HTML",
+                    reply_markup: {
+                        inline_keyboard: [
+                            [{ text: "🖼️ گالری عمومی کلیسا", url: "https://www.iranianchurchdc.com/gallery" }],
+                            [{ text: "✏️ ویرایش در پنل مدیریت", url: "https://www.iranianchurchdc.com/admin/media" }]
+                        ]
+                    }
+                });
+
+                return NextResponse.json({ ok: true });
+            } catch (err: any) {
+                console.error("[Telegram Webhook] Failed to register media:", err.message);
+            }
+        }
+
+        // Generic reply for any other text message
         await sendTelegramMessage(
             chatId,
             "پیام شما دریافت شد. جهت مشاهده وضعیت دسترسی از دستور /status استفاده فرمایید.\nYour message was received. Please use the /status command to check your access level and panel."
