@@ -20,7 +20,7 @@ import {
 import {
   BookOpen, Music, FileImage, Video, Plus, GripVertical, Upload,
   PieChart, BarChart, LineChart, Activity,
-  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall, Eye, Heart
+  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall, Eye, Heart, QrCode
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
 import ScriptureSelector from './ScriptureSelector';
@@ -381,6 +381,24 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     // Select the new slide
     onSlideSelect(session.slides.length);
   }, [session.slides.length, setSession, onSlideSelect]);
+
+  // Add QR Share Slide for Congregation
+  const handleAddQrShareSlide = useCallback(() => {
+    const serviceUrl = typeof window !== 'undefined'
+      ? `${window.location.origin}/service/${session.id}?ref=qr`
+      : `https://www.iranianchurchdc.com/service/${session.id}?ref=qr`;
+
+    const content: SlideContentAnnouncement = {
+      title: isRTL ? 'دریافت فایل‌ها، سرودها و برنامه جلسه' : 'Get Service Notes & Songs',
+      content: isRTL
+        ? 'برای دسترسی به متن و آکورد سرودها، صوت، آیات موعظه امروز و دریافت در تلگرام و واتساپ، دوربین گوشی خود را مقابل بارکد قرار دهید.'
+        : 'Scan the QR code with your phone camera to get worship audio, lyrics, scripture verses, and sermon notes on Telegram or WhatsApp.',
+      qrCodeUrl: serviceUrl,
+      link: serviceUrl,
+    };
+
+    addSlide(SlideType.ANNOUNCEMENT, content);
+  }, [addSlide, isRTL, session.id]);
 
   // Delete slide
   const deleteSlide = useCallback((index: number) => {
@@ -1418,6 +1436,18 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           >
             <span className="text-sm">✨</span>
             <span className={isRTL ? 'font-[Vazirmatn] truncate font-bold' : 'truncate font-bold'}>{isRTL ? 'افزودن دعای ربانی (لوکس)' : "Lord's Prayer (Luxury)"}</span>
+          </button>
+
+          {/* Smart QR Code Service Hub Slide Button */}
+          <button
+            onClick={() => handleAddQrShareSlide()}
+            className="flex items-center gap-1.5 px-2 py-1.5 bg-gradient-to-r from-blue-600/25 to-indigo-600/25 border border-blue-400/50 rounded-lg text-blue-300 hover:bg-blue-600/35 transition text-xs col-span-2 justify-center shadow-[0_0_12px_rgba(59,130,246,0.25)]"
+            title={isRTL ? 'افزودن اسلاید بارکد QR دریافت فایل‌ها و برنامه جلسه' : 'Add QR Service Slide'}
+          >
+            <QrCode className="w-4 h-4 shrink-0 text-amber-400" />
+            <span className={isRTL ? 'font-[Vazirmatn] truncate font-bold' : 'truncate font-bold'}>
+              {isRTL ? '📲 اسلاید بارکد QR دریافت فایل‌ها و برنامه' : 'Add QR Service Slide'}
+            </span>
           </button>
         </div>
       </div>

@@ -255,6 +255,42 @@ export async function getPresentationById(id: string): Promise<BroadcastSession 
     }
 }
 
+export async function getPublicPresentationById(id: string): Promise<BroadcastSession | null> {
+    if (!id || !UUID_REGEX.test(id)) {
+        return mockPresentations.find(p => p.id === id) || null;
+    }
+
+    try {
+        const { createAdminClient } = await import('@/utils/supabase/server');
+        const supabase = await createAdminClient();
+        const { data, error } = await supabase
+            .from('presentations')
+            .select('*')
+            .eq('id', id)
+            .maybeSingle();
+
+        if (!error && data) {
+            const session = rowToSession(data);
+            session.slides = await mergeSlidesWithLatestSongData(session.slides);
+            return session;
+        }
+    } catch (e) {
+        console.warn('[Action] Supabase getPublicPresentationById error, trying pg pool:', e);
+    }
+
+    try {
+        const { rows } = await query('SELECT * FROM presentations WHERE id = $1 AND (is_deleted IS NULL OR is_deleted = false)', [id]);
+        if (rows.length === 0) return null;
+        
+        const session = rowToSession(rows[0]);
+        session.slides = await mergeSlidesWithLatestSongData(session.slides);
+        return session;
+    } catch (error) {
+        console.error('[Action] Database unreachable, fallback to mock fetch.');
+        return mockPresentations.find(p => p.id === id) || null;
+    }
+}
+
 export async function savePresentation(session: BroadcastSession): Promise<{ success: boolean; serverSaved: boolean; fallbackSaved?: boolean; error?: string }> {
     await ensureBroadcastAccess();
 
@@ -471,42 +507,3 @@ export async function deletePresentation(id: string): Promise<{ success: boolean
     }
 }
 
-export async function getPublicPresentationById(id: string): Promise<BroadcastSession | null> {
-    // PUBLIC endpoint — no role check
-    if (!id || !UUID_REGEX.test(id)) {
-        return null;
-    }
-
-    try {
-        const { createAdminClient } = await import('@/utils/supabase/server');
-        const supabase = await createAdminClient();
-        const { data, error } = await supabase
-            .from('presentations')
-            .select('*')
-            .eq('id', id)
-            .maybeSingle();
-
-        if (!error && data) {
-            const session = rowToSession(data);
-            session.slides = await mergeSlidesWithLatestSongData(session.slides);
-            return session;
-        }
-    } catch (e) {
-        console.warn('[Action] Supabase getPublicPresentationById error, trying pg query:', e);
-    }
-
-    try {
-        await ensurePresentationsSchemaOnce();
-        const { rows } = await query('SELECT * FROM presentations WHERE id = $1', [id]);
-        if (rows.length === 0) {
-            return mockPresentations.find(p => p.id === id) || null;
-        }
-        
-        const session = rowToSession(rows[0]);
-        session.slides = await mergeSlidesWithLatestSongData(session.slides);
-        return session;
-    } catch (error) {
-        console.error('[Action] getPublicPresentationById error:', error);
-        return mockPresentations.find(p => p.id === id) || null;
-    }
-}

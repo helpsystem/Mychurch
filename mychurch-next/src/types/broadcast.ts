@@ -108,6 +108,7 @@ export interface SlideContentLyrics {
     title: string;
     titleFa?: string;
     titleEn?: string;
+    artist?: string;
     lines: LyricsLine[];
     lyricsEnLines?: string[];
     chords?: string;
@@ -147,6 +148,8 @@ export interface SlideContentAnnouncement {
     imageUrl?: string;
     link?: string;
     eventDate?: string;
+    qrCodeUrl?: string;
+    qrSubtitle?: string;
 }
 
 export interface SlideContentGeneric {

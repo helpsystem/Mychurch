@@ -7,7 +7,8 @@ import {
     SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting, ScriptureReferenceItem
 } from "@/types/broadcast";
 import { cn } from "@/lib/utils";
-import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart, CheckCircle } from "lucide-react";
+import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart, CheckCircle, QrCode, Smartphone, Sparkles, Send, Share2 } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { LordsPrayerSlide } from "./luxury/LordsPrayerSlide";
 
@@ -990,41 +991,99 @@ export function SlideRenderer({
 
             case SlideType.ANNOUNCEMENT: {
                 const content = slide.content as SlideContentAnnouncement;
+                const qrTarget = content.qrCodeUrl || content.link;
+                const isQrSlide = Boolean(qrTarget);
+
                 return (
-                    <div className="w-full h-full flex bg-gradient-to-br from-indigo-950 to-black p-12 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-1/2 h-full bg-indigo-600/10 blur-[150px] -z-10" />
+                    <div className="w-full h-full flex bg-gradient-to-br from-slate-950 via-indigo-950/80 to-black p-10 md:p-14 relative overflow-hidden select-none">
+                        {/* Ambient glow effects */}
+                        <div className="absolute top-0 right-0 w-2/3 h-full bg-indigo-600/15 blur-[160px] -z-10 pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-blue-500/10 blur-[140px] -z-10 pointer-events-none" />
                         
-                        <div className="flex-1 flex flex-col justify-center max-w-4xl z-10 space-y-8" dir="rtl">
-                            <div className="inline-flex items-center gap-3 bg-white/10 border border-white/20 px-4 py-2 rounded-full w-fit">
-                                <Megaphone className="w-6 h-6 text-indigo-400" />
-                                <span className="text-indigo-200 font-bold tracking-widest text-lg font-[Vazirmatn]">اطلاعیه کلیسا</span>
-                            </div>
+                        <div className="flex-1 flex flex-col justify-center max-w-4xl z-10 space-y-6" dir="rtl">
+                            {isQrSlide ? (
+                                <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-500/20 to-blue-500/20 border border-amber-400/40 px-5 py-2 rounded-full w-fit shadow-lg shadow-amber-500/10 backdrop-blur-md">
+                                    <Smartphone className="w-5 h-5 text-amber-300 animate-pulse" />
+                                    <span className="text-amber-200 font-bold tracking-wider text-base md:text-lg font-[Vazirmatn]">
+                                        اسکن هوشمند با دوربین گوشی تلفن همراه
+                                    </span>
+                                </div>
+                            ) : (
+                                <div className="inline-flex items-center gap-3 bg-white/10 border border-white/20 px-4 py-2 rounded-full w-fit">
+                                    <Megaphone className="w-6 h-6 text-indigo-400" />
+                                    <span className="text-indigo-200 font-bold tracking-widest text-lg font-[Vazirmatn]">اطلاعیه کلیسا</span>
+                                </div>
+                            )}
                             
-                            <h1 className="text-6xl md:text-8xl font-black text-white font-[Vazirmatn] leading-tight">
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white font-[Vazirmatn] leading-tight drop-shadow-md">
                                 {content.title}
                             </h1>
                             
                             {content.content && (
-                                <p className="text-3xl text-slate-300 leading-relaxed font-[Vazirmatn] max-w-3xl">
+                                <p className="text-2xl md:text-3xl text-slate-200 leading-relaxed font-[Vazirmatn] max-w-3xl font-medium">
                                     {content.content}
                                 </p>
                             )}
+
+                            {isQrSlide && (
+                                <div className="grid grid-cols-2 gap-3 pt-2 max-w-2xl">
+                                    <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-lg font-[Vazirmatn]">
+                                        <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">🎵</div>
+                                        <span>فایل صوتی و متن سرودها</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-lg font-[Vazirmatn]">
+                                        <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold shrink-0">📖</div>
+                                        <span>آیات موعظه و یادداشت‌ها</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-lg font-[Vazirmatn]">
+                                        <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold shrink-0">💬</div>
+                                        <span>دریافت در تلگرام و واتساپ</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-lg font-[Vazirmatn]">
+                                        <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold shrink-0">✨</div>
+                                        <span>ورق زدن اسلایدهای برنامه</span>
+                                    </div>
+                                </div>
+                            )}
                             
                             {content.eventDate && (
-                                <div className="flex items-center gap-4 text-2xl text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-2xl w-fit mt-8">
+                                <div className="flex items-center gap-4 text-2xl text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-2xl w-fit mt-4">
                                     <Calendar className="w-8 h-8" />
                                     <span>تاریخ: {content.eventDate}</span>
                                 </div>
                             )}
                         </div>
 
-                        {content.imageUrl && (
+                        {/* Right / Visual Side: Either QR Code or image */}
+                        {isQrSlide ? (
+                            <div className="flex-1 flex flex-col items-center justify-center z-10 pl-4">
+                                <div className="p-6 md:p-8 bg-white/95 rounded-[2.5rem] shadow-[0_0_50px_rgba(99,102,241,0.35)] border-4 border-amber-400/60 flex flex-col items-center justify-center relative group">
+                                    <div className="absolute -top-3.5 bg-gradient-to-r from-amber-500 to-indigo-600 text-white font-bold text-xs md:text-sm px-4 py-1 rounded-full shadow-md font-[Vazirmatn]">
+                                        اسکن کنید
+                                    </div>
+                                    <div className="p-2 bg-white rounded-2xl">
+                                        <QRCodeSVG
+                                            value={qrTarget!}
+                                            size={280}
+                                            level="H"
+                                            includeMargin={false}
+                                        />
+                                    </div>
+                                    <div className="mt-3 text-center text-slate-700 font-bold text-xs md:text-sm dir-ltr tracking-wider font-mono select-all">
+                                        {qrTarget!.replace(/^https?:\/\//, '')}
+                                    </div>
+                                </div>
+                                <p className="text-slate-400 text-sm md:text-base mt-4 font-[Vazirmatn] text-center font-medium">
+                                    دوربین موبایل خود را مقابل بارکد قرار دهید
+                                </p>
+                            </div>
+                        ) : content.imageUrl ? (
                             <div className="flex-1 flex items-center justify-end z-10">
                                 <div className="w-[80%] aspect-square rounded-[3rem] overflow-hidden border-8 border-white/10 shadow-2xl relative">
                                     <img src={content.imageUrl} key={content.imageUrl} crossOrigin="anonymous" alt={content.title} className="w-full h-full object-cover" />
                                 </div>
                             </div>
-                        )}
+                        ) : null}
                     </div>
                 );
             }
