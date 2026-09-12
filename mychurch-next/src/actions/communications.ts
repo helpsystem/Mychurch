@@ -519,3 +519,139 @@ export async function sendTestWhatsAppMessage(
         return { success: false, error: error.message || 'خطای غیرمنتظره در ارسال تست واتساپ.' };
     }
 }
+
+/**
+ * Fetch current Verse of the Day text and reference from database or default dictionary
+ */
+export async function getVerseOfTheDayContent(): Promise<{
+    verseFa: string;
+    verseEn: string;
+    refFa: string;
+    refEn: string;
+    formattedFa: string;
+}> {
+    let verseFa = "آیا تو را امر نکردم؟ قوی و دلیر باش! نترس و هراسان مباش، زیرا هر جا که بروی، یَهُوَه خدایت با تو خواهد بود.";
+    let verseEn = "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.";
+    let refFa = "یوشع ۱:۹";
+    let refEn = "Joshua 1:9";
+
+    try {
+        const { rows } = await query("SELECT config FROM widgets WHERE id = 'w_verse_donation' LIMIT 1");
+        if (rows && rows[0]?.config) {
+            const cfg = rows[0].config;
+            if (cfg.verseFa) verseFa = cfg.verseFa;
+            if (cfg.verseEn) verseEn = cfg.verseEn;
+            if (cfg.refFa) refFa = cfg.refFa;
+            if (cfg.refEn) refEn = cfg.refEn;
+        }
+    } catch (e) {
+        console.warn('[Action] getVerseOfTheDayContent DB warning:', e);
+    }
+
+    const formattedFa = `📖 آیه روز:\n«${verseFa}»\n— ${refFa}\n\n🕊️ کلیسای انجیلی ایرانیان واشنگتن دی‌سی\nhttps://www.iranianchurchdc.com`;
+
+    return {
+        verseFa,
+        verseEn,
+        refFa,
+        refEn,
+        formattedFa
+    };
+}
+
+/**
+ * Broadcast SMS to all registered users with valid phone numbers
+ */
+export async function sendSMSBroadcast(
+    body: string,
+    providerPreference: "google-messages" | "twilio" | "auto" = "auto"
+): Promise<{ success: boolean; error?: string; count?: number }> {
+    try {
+        await requireRole(["Admin"]);
+
+        if (!body?.trim()) {
+            return { success: false, error: "متن پیامک الزامی است." };
+        }
+
+        const { rows } = await query("SELECT phone FROM users WHERE phone IS NOT NULL AND phone != ''");
+        const recipients = Array.from(
+            new Set(rows.map(r => r.phone.trim()).filter(Boolean))
+        );
+
+        if (recipients.length === 0) {
+            return { success: false, error: "هیچ کاربری با شماره موبایل در پایگاه‌داده یافت نشد." };
+        }
+
+        const { sendSMSViaGoogleMessages, checkGoogleMessagesPairing } = await import("@/services/google-messages");
+        const { sendSMS } = await import("@/lib/twilio");
+
+        let gmPaired = false;
+        if (providerPreference === "google-messages" || providerPreference === "auto") {
+            try {
+                const gmStatus = await checkGoogleMessagesPairing();
+                gmPaired = gmStatus.paired;
+            } catch {}
+        }
+
+        let successCount = 0;
+        let lastError = "";
+
+        for (const recipient of recipients) {
+            let sent = false;
+
+            // 1. Google Messages SIM
+            if ((providerPreference === "google-messages" || providerPreference === "auto") && gmPaired) {
+                try {
+                    sent = await sendSMSViaGoogleMessages(recipient, body.trim());
+                } catch (e: any) {
+                    lastError = e?.message || "Google Messages error";
+                }
+            }
+
+            // 2. Fallback to Twilio SMS
+            if (!sent && (providerPreference === "twilio" || providerPreference === "auto")) {
+                try {
+                    const twRes = await sendSMS(recipient, body.trim());
+                    sent = twRes.success;
+                    if (!sent) lastError = twRes.error || "Twilio SMS delivery failure";
+                } catch (e: any) {
+                    lastError = e?.message || "Twilio SMS exception";
+                }
+            }
+
+            if (sent) {
+                successCount++;
+            }
+
+            // Stagger 300ms between SMS sends
+            await new Promise(r => setTimeout(r, 300));
+        }
+
+        // Ensure logs table exists
+        await query(`
+            CREATE TABLE IF NOT EXISTS sms_logs (
+                id SERIAL PRIMARY KEY,
+                recipient_count INT,
+                body TEXT,
+                provider VARCHAR(50),
+                status VARCHAR(50),
+                sent_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            )
+        `);
+
+        const statusStr = successCount === recipients.length ? "success" : successCount > 0 ? "partial_success" : "failed";
+        await query(
+            "INSERT INTO sms_logs (recipient_count, body, provider, status, sent_at) VALUES ($1, $2, $3, $4, NOW())",
+            [successCount, body.trim(), providerPreference, statusStr]
+        );
+
+        if (successCount === 0) {
+            return { success: false, error: `ارسال پیامک به گیرندگان ناموفق بود: ${lastError}` };
+        }
+
+        return { success: true, count: successCount };
+    } catch (error: any) {
+        console.error('[Action] Error in sendSMSBroadcast:', error);
+        return { success: false, error: error.message || 'خطا در ارسال گروهی پیامک.' };
+    }
+}

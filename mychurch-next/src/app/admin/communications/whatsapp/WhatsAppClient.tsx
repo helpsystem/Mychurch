@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { MessageSquare, Send, Users, Calendar, Loader2, ArrowLeft, PhoneCall, Info, Key, Smartphone, QrCode, ShieldCheck, RefreshCw, ExternalLink, LogOut } from "lucide-react";
+import { MessageSquare, Send, Users, Calendar, Loader2, ArrowLeft, PhoneCall, Info, Key, Smartphone, QrCode, ShieldCheck, RefreshCw, ExternalLink, LogOut, BookOpen, Sparkles, Radio, Bell } from "lucide-react";
 import { toast } from "sonner";
-import { sendWhatsAppBroadcast, sendTestWhatsAppMessage, WhatsAppLog } from "@/actions/communications";
+import { sendWhatsAppBroadcast, sendTestWhatsAppMessage, WhatsAppLog, getVerseOfTheDayContent } from "@/actions/communications";
 import Link from "next/link";
 
 export default function WhatsAppClient({ 
@@ -37,6 +37,48 @@ export default function WhatsAppClient({
         templateName: "hello_world",
         langCode: "en_US"
     });
+
+    const [loadingPreset, setLoadingPreset] = useState(false);
+
+    const applyPreset = async (type: 'verse' | 'sunday' | 'broadcast' | 'prayer') => {
+        if (type === 'verse') {
+            setLoadingPreset(true);
+            try {
+                const data = await getVerseOfTheDayContent();
+                setWhatsappData(prev => ({
+                    ...prev,
+                    isTemplate: false,
+                    body: data.formattedFa
+                }));
+                toast.success("آیه روز بارگذاری شد.");
+            } catch {
+                toast.error("خطا در بارگذاری آیه روز");
+            } finally {
+                setLoadingPreset(false);
+            }
+        } else if (type === 'sunday') {
+            setWhatsappData(prev => ({
+                ...prev,
+                isTemplate: false,
+                body: `🕊️ سلام و فیض خداوند بر شما باد\n\nجلسه موعظه و پرستش این یکشنبه ساعت ۱۱:۰۰ صبح در کلیسای ایرانیان واشنگتن دی‌سی برگزار می‌گردد.\nمشتاق دیدار و مشارکت پربرکت شما عزیزان هستیم.\n\n🌐 پخش زنده و جزییات:\nhttps://www.iranianchurchdc.com`
+            }));
+            toast.success("قالب اطلاعیه یکشنبه درج شد.");
+        } else if (type === 'broadcast') {
+            setWhatsappData(prev => ({
+                ...prev,
+                isTemplate: false,
+                body: `🎥 پخش زنده مراسم کلیسا هم‌اکنون آغاز شد!\nجهت مشاهده موعظه و پرستش زنده به لینک زیر وارد شوید:\nhttps://www.iranianchurchdc.com/broadcast/view`
+            }));
+            toast.success("قالب پخش زنده درج شد.");
+        } else if (type === 'prayer') {
+            setWhatsappData(prev => ({
+                ...prev,
+                isTemplate: false,
+                body: `🙏 در سختی‌ها و شادی‌ها همراه شماییم.\nهرگونه درخواست دعا یا نیاز روحی دارید، با ما در میان بگذارید تا تیم شفاعت کلیسا برای شما دعا کند.\n\nثبت آنلاین درخواست دعا:\nhttps://www.iranianchurchdc.com/prayer`
+            }));
+            toast.success("قالب درخواست دعا درج شد.");
+        }
+    };
 
     const checkPersonalStatus = async () => {
         try {
@@ -364,14 +406,56 @@ export default function WhatsAppClient({
                             </div>
 
                             {!whatsappData.isTemplate && (
-                                <div className="space-y-2 flex-1 flex flex-col">
-                                    <label className="text-sm font-bold text-[#c2c6d6]">متن پیام واتساپ (Message Body)</label>
+                                <div className="space-y-3 flex-1 flex flex-col">
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                        <label className="text-sm font-bold text-[#c2c6d6]">متن پیام واتساپ (Message Body)</label>
+                                        <div className="flex items-center gap-1.5 flex-wrap">
+                                            <span className="text-[11px] text-slate-400 ml-1">قالب‌های سریع:</span>
+                                            <button
+                                                type="button"
+                                                onClick={() => applyPreset('verse')}
+                                                disabled={loadingPreset}
+                                                className="px-2.5 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs transition flex items-center gap-1"
+                                                title="درج خودکار آیه روز از پایگاه داده"
+                                            >
+                                                <BookOpen className="w-3 h-3" />
+                                                <span>{loadingPreset ? "..." : "📖 آیه روز"}</span>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => applyPreset('sunday')}
+                                                className="px-2.5 py-1 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs transition flex items-center gap-1"
+                                                title="اطلاعیه جلسه یکشنبه"
+                                            >
+                                                <Bell className="w-3 h-3" />
+                                                <span>📢 جلسه یکشنبه</span>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => applyPreset('broadcast')}
+                                                className="px-2.5 py-1 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs transition flex items-center gap-1"
+                                                title="لینک پخش زنده"
+                                            >
+                                                <Radio className="w-3 h-3" />
+                                                <span>🎥 پخش زنده</span>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => applyPreset('prayer')}
+                                                className="px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs transition flex items-center gap-1"
+                                                title="دعوت به شفاعت و دعا"
+                                            >
+                                                <Sparkles className="w-3 h-3" />
+                                                <span>🙏 درخواست دعا</span>
+                                            </button>
+                                        </div>
+                                    </div>
                                     <textarea
                                         required
                                         rows={6}
                                         value={whatsappData.body}
                                         onChange={(e) => setWhatsappData({...whatsappData, body: e.target.value})}
-                                        placeholder="متن پیام خود را بنویسید..."
+                                        placeholder="متن پیام خود را بنویسید یا یکی از قالب‌های سریع بالا را انتخاب کنید..."
                                         className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00dce4]/50 transition-all resize-none font-[Vazirmatn]"
                                     />
                                 </div>

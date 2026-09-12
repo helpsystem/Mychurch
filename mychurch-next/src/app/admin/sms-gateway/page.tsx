@@ -1,13 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Smartphone, Send, RefreshCw, CheckCircle, XCircle, Loader2, Zap, ShieldCheck, QrCode, Cpu } from "lucide-react";
+import { Smartphone, Send, RefreshCw, CheckCircle, XCircle, Loader2, Zap, ShieldCheck, QrCode, Cpu, BookOpen, Bell, Radio, Sparkles, Users, User } from "lucide-react";
 import { toast } from "sonner";
+import { getVerseOfTheDayContent, sendSMSBroadcast } from "@/actions/communications";
 
 export default function SMSGatewayPage() {
     const [activeTab, setActiveTab] = useState<"google-messages" | "twilio">("google-messages");
     const [loading, setLoading] = useState(true);
     const [polling, setPolling] = useState(false);
+
+    // Broadcast vs Single mode
+    const [sendMode, setSendMode] = useState<"single" | "broadcast">("single");
+    const [loadingPreset, setLoadingPreset] = useState(false);
 
     // Google Messages (Personal SIM) State
     const [gmPaired, setGmPaired] = useState(false);
@@ -23,6 +28,30 @@ export default function SMSGatewayPage() {
     const [sending, setSending] = useState(false);
     const [lastDeliverySid, setLastDeliverySid] = useState<string | null>(null);
     const [lastProviderUsed, setLastProviderUsed] = useState<string | null>(null);
+
+    const applyPreset = async (type: 'verse' | 'sunday' | 'broadcast' | 'prayer') => {
+        if (type === 'verse') {
+            setLoadingPreset(true);
+            try {
+                const data = await getVerseOfTheDayContent();
+                setTestMsg(data.formattedFa);
+                toast.success("آیه روز بارگذاری شد.");
+            } catch {
+                toast.error("خطا در بارگذاری آیه روز");
+            } finally {
+                setLoadingPreset(false);
+            }
+        } else if (type === 'sunday') {
+            setTestMsg(`🕊️ سلام و فیض خداوند بر شما باد\n\nجلسه موعظه و پرستش این یکشنبه ساعت ۱۱:۰۰ صبح در کلیسای ایرانیان واشنگتن دی‌سی برگزار می‌گردد.\nمشتاق دیدار شما عزیزان هستیم.\n\nhttps://www.iranianchurchdc.com`);
+            toast.success("قالب اطلاعیه یکشنبه درج شد.");
+        } else if (type === 'broadcast') {
+            setTestMsg(`🎥 پخش زنده مراسم کلیسا آغاز شد:\nhttps://www.iranianchurchdc.com/broadcast/view`);
+            toast.success("قالب پخش زنده درج شد.");
+        } else if (type === 'prayer') {
+            setTestMsg(`🙏 در سختی‌ها و شادی‌ها همراه شماییم.\nثبت آنلاین درخواست دعا و شفاعت:\nhttps://www.iranianchurchdc.com/prayer`);
+            toast.success("قالب درخواست دعا درج شد.");
+        }
+    };
 
     const checkStatus = async () => {
         setPolling(true);
@@ -60,7 +89,33 @@ export default function SMSGatewayPage() {
         return () => clearInterval(interval);
     }, [gmPaired]);
 
-    const sendTest = async () => {
+    const handleSendSMS = async () => {
+        if (!testMsg.trim()) {
+            toast.error("لطفا متن پیامک را وارد کنید.");
+            return;
+        }
+
+        if (sendMode === "broadcast") {
+            if (!confirm(`آیا مطمئن هستید که می‌خواهید این پیامک از طریق ${activeTab === 'google-messages' ? 'سیم‌کارت شخصی شما' : 'درگاه ابری'} به تمام اعضای کلیسا ارسال شود؟`)) {
+                return;
+            }
+            setSending(true);
+            try {
+                const res = await sendSMSBroadcast(testMsg, activeTab);
+                if (res.success) {
+                    toast.success(`✅ پیامک با موفقیت به ${res.count || 0} نفر از اعضای کلیسا مخابره شد!`);
+                } else {
+                    toast.error(res.error || "خطا در ارسال گروهی پیامک");
+                }
+            } catch {
+                toast.error("خطا در ارتباط با سرور");
+            } finally {
+                setSending(false);
+            }
+            return;
+        }
+
+        // Single Test mode
         if (!testPhone.trim()) {
             toast.error("لطفا شماره تلفن گیرنده را وارد کنید.");
             return;
@@ -258,45 +313,126 @@ export default function SMSGatewayPage() {
                 </div>
             )}
 
-            {/* Test Sending Panel */}
+            {/* Sending Panel: Single Test or Mass Broadcast */}
             <div className="bg-[#141824] border border-white/10 rounded-2xl p-6 space-y-4 shadow-xl">
-                <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-white/10 gap-2">
                     <div className="flex items-center gap-2">
                         <Send className="w-4 h-4 text-amber-400" />
-                        <h2 className="font-bold text-white text-base">ارسال پیامک آزمایشی</h2>
+                        <h2 className="font-bold text-white text-base">مرکز ارسال پیامک (SMS Center)</h2>
                     </div>
-                    <span className="text-xs text-amber-400 font-bold">
-                        ارسال از: {activeTab === "google-messages" ? "📱 سیم‌کارت شخصی" : "☁️ درگاه ابری Twilio"}
-                    </span>
+                    
+                    {/* Mode Toggle */}
+                    <div className="flex items-center gap-1.5 p-1 bg-black/40 border border-white/10 rounded-xl">
+                        <button
+                            type="button"
+                            onClick={() => setSendMode("single")}
+                            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition ${
+                                sendMode === "single"
+                                    ? "bg-amber-500 text-slate-950 shadow"
+                                    : "text-slate-400 hover:text-white"
+                            }`}
+                        >
+                            <User className="w-3.5 h-3.5" />
+                            <span>تست تکی</span>
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setSendMode("broadcast")}
+                            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition ${
+                                sendMode === "broadcast"
+                                    ? "bg-amber-500 text-slate-950 shadow"
+                                    : "text-slate-400 hover:text-white"
+                            }`}
+                        >
+                            <Users className="w-3.5 h-3.5" />
+                            <span>ارسال گروهی به اعضا</span>
+                        </button>
+                    </div>
                 </div>
 
-                <div className="space-y-2">
-                    <label className="text-xs font-semibold text-slate-300">شماره موبایل گیرنده (همراه با کد کشور):</label>
-                    <input
-                        type="tel"
-                        value={testPhone}
-                        onChange={(e) => setTestPhone(e.target.value)}
-                        placeholder="+12029677030 یا +98..."
-                        className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white font-mono text-left focus:outline-none focus:border-amber-400 transition-colors"
-                        dir="ltr"
-                    />
-                </div>
+                {sendMode === "single" ? (
+                    <div className="space-y-2">
+                        <label className="text-xs font-semibold text-slate-300">شماره موبایل گیرنده (همراه با کد کشور):</label>
+                        <input
+                            type="tel"
+                            value={testPhone}
+                            onChange={(e) => setTestPhone(e.target.value)}
+                            placeholder="+12029677030 یا +98..."
+                            className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white font-mono text-left focus:outline-none focus:border-amber-400 transition-colors"
+                            dir="ltr"
+                        />
+                    </div>
+                ) : (
+                    <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <Users className="w-4 h-4 text-amber-400 shrink-0" />
+                            <span>ارسال همگانی پیامک به تمامی اعضا و خادمین ثبت‌نام شده در پایگاه‌داده با شماره معتبر.</span>
+                        </div>
+                        <span className="font-bold px-2 py-0.5 rounded bg-amber-500/20">Mass SMS</span>
+                    </div>
+                )}
 
                 <div className="space-y-2">
-                    <div className="flex justify-between items-center text-xs text-slate-300">
-                        <label className="font-semibold">متن پیامک:</label>
-                        <span className="text-[11px] text-slate-400">{testMsg.length} کاراکتر</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-300">
+                        <div className="flex items-center gap-2">
+                            <label className="font-semibold">متن پیامک:</label>
+                            <span className="text-[11px] text-slate-400">({testMsg.length} کاراکتر)</span>
+                        </div>
+
+                        {/* Presets Toolbar */}
+                        <div className="flex items-center gap-1 flex-wrap">
+                            <span className="text-[10px] text-slate-400 ml-1">قالب‌های سریع:</span>
+                            <button
+                                type="button"
+                                onClick={() => applyPreset('verse')}
+                                disabled={loadingPreset}
+                                className="px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] transition flex items-center gap-1"
+                                title="درج آیه روز"
+                            >
+                                <BookOpen className="w-3 h-3" />
+                                <span>{loadingPreset ? "..." : "📖 آیه روز"}</span>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => applyPreset('sunday')}
+                                className="px-2 py-0.5 rounded bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-[11px] transition flex items-center gap-1"
+                                title="اطلاعیه یکشنبه"
+                            >
+                                <Bell className="w-3 h-3" />
+                                <span>📢 یکشنبه</span>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => applyPreset('broadcast')}
+                                className="px-2 py-0.5 rounded bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[11px] transition flex items-center gap-1"
+                                title="پخش زنده"
+                            >
+                                <Radio className="w-3 h-3" />
+                                <span>🎥 پخش زنده</span>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => applyPreset('prayer')}
+                                className="px-2 py-0.5 rounded bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-[11px] transition flex items-center gap-1"
+                                title="درخواست دعا"
+                            >
+                                <Sparkles className="w-3 h-3" />
+                                <span>🙏 دعا</span>
+                            </button>
+                        </div>
                     </div>
+
                     <textarea
                         value={testMsg}
                         onChange={(e) => setTestMsg(e.target.value)}
-                        rows={3}
+                        rows={4}
+                        placeholder="متن پیامک را وارد کنید یا یکی از قالب‌های سریع بالا را برگزینید..."
                         className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:outline-none focus:border-amber-400 transition-colors resize-none text-sm leading-relaxed"
                     />
                 </div>
 
                 <button
-                    onClick={sendTest}
+                    onClick={handleSendSMS}
                     disabled={sending || (activeTab === "google-messages" && !gmPaired && !loading)}
                     className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
@@ -305,7 +441,9 @@ export default function SMSGatewayPage() {
                         ? "در حال مخابره پیامک..." 
                         : activeTab === "google-messages" && !gmPaired 
                         ? "ابتدا گوشی را با QR بالا جفت کنید" 
-                        : "ارسال پیامک تست"}
+                        : sendMode === "broadcast"
+                        ? `ارسال همگانی به اعضای کلیسا (${activeTab === 'google-messages' ? 'سیم‌کارت شخصی' : 'ابری'})`
+                        : "ارسال پیامک"}
                 </button>
 
                 {lastDeliverySid && (

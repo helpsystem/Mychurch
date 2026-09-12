@@ -105,6 +105,24 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
 
     if (finalChannel === "whatsapp" && whatsapp) {
         console.log(`[Auth OTP] 🚀 Attempting to send OTP via WhatsApp to ${whatsapp}...`);
+        
+        // 1. Try personal paired WhatsApp line first
+        try {
+            const { getPersonalWhatsAppStatus, sendPersonalWhatsAppMessage } = await import("@/services/whatsapp-personal");
+            const pwStatus = await getPersonalWhatsAppStatus();
+            if (pwStatus.paired) {
+                console.log(`[Auth OTP] 📱 Sending via paired personal WhatsApp line...`);
+                const resPersonal = await sendPersonalWhatsAppMessage(whatsapp, messageText);
+                if (resPersonal.success) {
+                    return { success: true, channelUsed: "whatsapp" };
+                }
+                console.warn(`[Auth OTP] ⚠️ Personal WhatsApp failed: ${resPersonal.error}. Falling back to cloud WhatsApp...`);
+            }
+        } catch (pwErr: any) {
+            console.warn(`[Auth OTP] ⚠️ Personal WhatsApp exception: ${pwErr.message}`);
+        }
+
+        // 2. Fallback to Cloud/Twilio WhatsApp
         const res = await sendWhatsApp(whatsapp, messageText);
         if (res.success) {
             return { success: true, channelUsed: "whatsapp" };
@@ -120,13 +138,28 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
     }
 
     if (finalChannel === "sms" && phone) {
-        console.log(`[Auth OTP] 🚀 Attempting to send OTP via SMS (Google Messages) to ${phone}...`);
-        const sent = await sendSMSViaGoogleMessages(phone, messageText);
-        if (sent) {
-            return { success: true, channelUsed: "sms" };
+        console.log(`[Auth OTP] 🚀 Attempting to send OTP via SMS (Google Messages SIM) to ${phone}...`);
+        try {
+            const sent = await sendSMSViaGoogleMessages(phone, messageText);
+            if (sent) {
+                return { success: true, channelUsed: "sms" };
+            }
+        } catch (gmErr: any) {
+            console.warn(`[Auth OTP] ⚠️ Google Messages exception: ${gmErr.message}`);
         }
 
-        console.warn(`[Auth OTP] ⚠️ SMS (Google Messages) sending failed. Switching to Email fallback...`);
+        // Fallback to Twilio Cloud SMS
+        console.log(`[Auth OTP] 📱 Google Messages unavailable. Attempting Twilio SMS fallback to ${phone}...`);
+        try {
+            const twilioRes = await sendSMS(phone, messageText);
+            if (twilioRes.success) {
+                return { success: true, channelUsed: "sms" };
+            }
+        } catch (twErr: any) {
+            console.warn(`[Auth OTP] ⚠️ Twilio SMS failed: ${twErr.message}`);
+        }
+
+        console.warn(`[Auth OTP] ⚠️ All SMS providers failed. Switching to Email fallback...`);
         finalChannel = "email";
     }
 
