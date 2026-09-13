@@ -11,18 +11,18 @@ $confirm = Read-Host "`nStart upload now? (yes/no)"
 
 if ($confirm -eq "yes") {
     Write-Host "`n Creating audio directory..." -ForegroundColor Cyan
-    ssh root@samanabyar.online "mkdir -p /root/Mychurch/backend/bible_data/audio"
+    ssh root@iranianchurchdc.com "mkdir -p /root/Mychurch/backend/bible_data/audio"
     
     Write-Host "`n Uploading audio files..." -ForegroundColor Cyan
     Write-Host "Starting at: $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Gray
     
-    scp -r bible_data/audio/TPV root@samanabyar.online:/root/Mychurch/backend/bible_data/audio/
+    scp -r bible_data/audio/TPV root@iranianchurchdc.com:/root/Mychurch/backend/bible_data/audio/
     
     Write-Host "`n Upload Complete!" -ForegroundColor Green
     Write-Host "Finished at: $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor Gray
     
     Write-Host "`n Verifying..." -ForegroundColor Cyan
-    ssh root@samanabyar.online "ls -lah /root/Mychurch/backend/bible_data/audio/TPV/ | head -10"
+    ssh root@iranianchurchdc.com "ls -lah /root/Mychurch/backend/bible_data/audio/TPV/ | head -10"
 } else {
     Write-Host "`n Upload cancelled" -ForegroundColor Red
 }

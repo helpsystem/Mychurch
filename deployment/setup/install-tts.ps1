@@ -72,7 +72,7 @@ TTS_SPEAKING_RATE=0.9
 TTS_PITCH=0
 
 # Server Sync Configuration
-SERVER_HOST="samanabyar.online"
+SERVER_HOST="iranianchurchdc.com"
 SERVER_USER="root"
 SERVER_PORT=22
 SERVER_AUDIO_PATH="/var/www/html/audio"

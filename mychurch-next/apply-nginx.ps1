@@ -38,9 +38,9 @@ $newFilePath = ".\vps-nginx-nextjs.conf"
 Write-Host "Generated vps-nginx-nextjs.conf locally!" -ForegroundColor Green
 Write-Host "Uploading to VPS and restarting NGINX..." -ForegroundColor Yellow
 
-scp $newFilePath root@samanabyar.online:/etc/nginx/sites-available/default
+scp $newFilePath root@iranianchurchdc.com:/etc/nginx/sites-available/default
 if ($?) {
-    ssh root@samanabyar.online "if [ -f /etc/nginx/sites-enabled/mychurch ]; then sed -i 's/listen 443 ssl http2;/listen 443 ssl;/g' /etc/nginx/sites-enabled/mychurch; sed -i 's/listen \[::\]:443 ssl http2;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/mychurch; sed -i 's/listen \[::\]:443 ssl ipv6only=on;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/mychurch; cp /etc/nginx/sites-enabled/mychurch /etc/nginx/sites-available/mychurch || true; fi; if [ -f /etc/nginx/sites-enabled/n8n ]; then sed -i 's/listen 443 ssl http2;/listen 443 ssl;/g' /etc/nginx/sites-enabled/n8n; sed -i 's/listen \[::\]:443 ssl http2;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/n8n; sed -i 's/listen \[::\]:443 ssl ipv6only=on;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/n8n; fi; find /etc/nginx/sites-enabled -maxdepth 1 -type f -name '*.bak-*' -delete || true; nginx -t && systemctl reload nginx && nginx -t"
+    ssh root@iranianchurchdc.com "if [ -f /etc/nginx/sites-enabled/mychurch ]; then sed -i 's/listen 443 ssl http2;/listen 443 ssl;/g' /etc/nginx/sites-enabled/mychurch; sed -i 's/listen \[::\]:443 ssl http2;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/mychurch; sed -i 's/listen \[::\]:443 ssl ipv6only=on;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/mychurch; cp /etc/nginx/sites-enabled/mychurch /etc/nginx/sites-available/mychurch || true; fi; if [ -f /etc/nginx/sites-enabled/n8n ]; then sed -i 's/listen 443 ssl http2;/listen 443 ssl;/g' /etc/nginx/sites-enabled/n8n; sed -i 's/listen \[::\]:443 ssl http2;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/n8n; sed -i 's/listen \[::\]:443 ssl ipv6only=on;/listen [::]:443 ssl;/g' /etc/nginx/sites-enabled/n8n; fi; find /etc/nginx/sites-enabled -maxdepth 1 -type f -name '*.bak-*' -delete || true; nginx -t && systemctl reload nginx && nginx -t"
     Write-Host "NGINX successfully updated! Your Next.js site is now LIVE!" -ForegroundColor Cyan
 }
 else {

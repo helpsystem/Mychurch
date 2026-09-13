@@ -12,8 +12,8 @@ const CoverPage = React.forwardRef<HTMLDivElement, {}>((_, ref) => (
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
         <img src="/logo-transparent.png" alt="Church Logo" className="w-28 h-28 object-contain mb-6 drop-shadow-2xl" />
         <h2 className="text-3xl font-black text-center leading-normal mb-2 drop-shadow-lg" dir="rtl">خبرنامه کلیسا</h2>
-        <p className="text-blue-300 font-semibold text-lg mb-1" dir="rtl">کلیسای ایرانیان واشنگتن دی‌سی</p>
-        <p className="text-white/40 text-sm font-mono mt-4" dir="ltr">Iran Church DC</p>
+        <p className="text-blue-300 font-semibold text-lg mb-1" dir="rtl">کلیسای انجیلی ایرانیان واشنگتن دی‌سی</p>
+        <p className="text-white/40 text-sm font-mono mt-4" dir="ltr">Iranian Presbyterian Church</p>
         <div className="absolute bottom-6 text-white/30 text-xs" dir="rtl">تلنگر برای ورق زدن ←</div>
     </div>
 ));

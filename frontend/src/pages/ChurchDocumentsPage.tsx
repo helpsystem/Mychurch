@@ -135,8 +135,7 @@ const ChurchLetterhead: React.FC<{ settings: any; lang: 'en' | 'fa'; docRef?: st
     <div className="flex justify-between items-start pb-5 border-b-4 border-double border-gray-700">
       <div className="flex items-center gap-5">
         <img src={settings.logoUrl} alt="Church Logo" className="w-20 h-20 object-contain" />
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">{settings.churchName?.[lang] || 'Iranian Church of Washington DC'}</h1>
+          <h1 className="text-2xl font-bold text-gray-900">{settings.churchName?.[lang] || (lang === 'fa' ? 'کلیسای انجیلی ایرانیان واشنگتن دی‌سی' : 'Iranian Presbyterian Church')}</h1>
           <p className="text-sm text-gray-600 mt-1">A 501(c)(3) Non-Profit Religious Organization</p>
           <div className="text-xs text-gray-500 mt-1 space-y-0.5">
             <div>{settings.address}</div>
@@ -144,7 +143,7 @@ const ChurchLetterhead: React.FC<{ settings: any; lang: 'en' | 'fa'; docRef?: st
               {settings.phone && <span>Tel: {settings.phone}</span>}
               {settings.whatsappNumber && <span>WhatsApp: {settings.whatsappNumber}</span>}
             </div>
-            {settings.facebookUrl && <div>Web: samanabyar.online</div>}
+            <div>Web: iranianchurchdc.com</div>
           </div>
         </div>
       </div>
@@ -226,8 +225,8 @@ const DonationReceiptPrint: React.FC<{ receipt: DonationReceipt; settings: any; 
           <div className="text-xs text-gray-500">Authorized Signature</div>
         </div>
         <div className="text-right text-xs text-gray-400">
-          <div>Iranian Church of Washington DC</div>
-          <div>samanabyar.online</div>
+          <div>Iranian Presbyterian Church</div>
+          <div>iranianchurchdc.com</div>
         </div>
       </div>
     </div>

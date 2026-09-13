@@ -20,12 +20,12 @@ async function sendTestEmail() {
         return;
     }
 
-    const siteUrl = 'https://samanabyar.online';
+    const siteUrl = 'https://www.iranianchurchdc.com';
     
     try {
         await sendMail({
             to: testUser.email,
-            subject: "تست ایمیل پریمیوم کلیسای متی | Premium Email Test",
+            subject: "تست ایمیل کلیسای انجیلی ایرانیان واشنگتن دی‌سی | Iranian Presbyterian Church Email Test",
             attachments: [
                 {
                     filename: 'jesus-hero.png',

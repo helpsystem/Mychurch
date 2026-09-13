@@ -23,7 +23,7 @@ stream_settings = {
         "acceptProxyProtocol": False,
         "path": "/vpn-stream",
         "headers": {
-            "Host": "samanabyar.online"
+            "Host": "iranianchurchdc.com"
         }
     }
 }
@@ -44,7 +44,7 @@ c.execute('''
 conn.commit()
 conn.close()
 
-link = f"vless://{client_id}@samanabyar.online:443?type=ws&security=tls&path=%2Fvpn-stream&sni=samanabyar.online&alpn=http/1.1&host=samanabyar.online#Iran_VLESS_WS_Proxy"
+link = f"vless://{client_id}@iranianchurchdc.com:443?type=ws&security=tls&path=%2Fvpn-stream&sni=iranianchurchdc.com&alpn=http/1.1&host=iranianchurchdc.com#Iran_VLESS_WS_Proxy"
 
 print("--- RESTARTING X-UI ---")
 subprocess.call(["docker", "restart", "3x-ui"])

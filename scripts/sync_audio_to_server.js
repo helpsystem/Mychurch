@@ -15,7 +15,7 @@ class AudioSyncManager {
   constructor() {
     this.config = {
       server: {
-        host: process.env.SERVER_HOST || 'samanabyar.online',
+        host: process.env.SERVER_HOST || 'iranianchurchdc.com',
         port: parseInt(process.env.SERVER_PORT || '22'),
         username: process.env.SERVER_USER || 'root',
         privateKey: process.env.SERVER_SSH_KEY_PATH 

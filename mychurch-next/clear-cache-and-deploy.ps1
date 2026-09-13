@@ -1,5 +1,5 @@
 # clear-cache-and-deploy.ps1 - 🚀 Ultra Fast Deploy (Source Only)
-$VPS_HOST = "samanabyar.online"
+$VPS_HOST = "iranianchurchdc.com"
 $VPS_USER = "root"
 $VPS_NEXT_PATH = "/root/mychurch-v2/mychurch-next"
 $TAR_FILE = "source_code.tar.gz"

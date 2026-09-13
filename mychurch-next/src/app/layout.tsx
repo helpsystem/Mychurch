@@ -26,11 +26,11 @@ const merriweather = Merriweather({ subsets: ['latin'], weight: ['400', '700'], 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.iranianchurchdc.com"),
   title: {
-    default: "Iranian Presbyterian Church of D.C. | کلیسای انجیلی ایرانیان واشنگتن",
-    template: "%s | Iranian Presbyterian Church DC",
+    default: "Iranian Presbyterian Church | کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
+    template: "%s | Iranian Presbyterian Church",
   },
   description: "وب‌سایت رسمی کلیسای انجیلی ایرانیان واشنگتن دی‌سی — پخش زنده جلسات عبادتی یکشنبه‌ها، سرودهای پرستشی، کتاب مقدس به زبان فارسی و انگلیسی، مواعظ و دعا.",
-  keywords: ["کلیسای انجیلی ایرانیان واشنگتن", "کلیسای ایرانیان واشنگتن", "کتاب مقدس فارسی", "سرود پرستشی", "پخش زنده کلیسا", "Iranian Presbyterian Church DC", "Persian Presbyterian Church Washington"],
+  keywords: ["کلیسای انجیلی ایرانیان واشنگتن دی‌سی", "کلیسای انجیلی ایرانیان", "کتاب مقدس فارسی", "سرود پرستشی", "پخش زنده کلیسا", "Iranian Presbyterian Church", "Persian Presbyterian Church Washington"],
   icons: {
     icon: [
       { url: "/logo-transparent.png", sizes: "32x32", type: "image/png" },

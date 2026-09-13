@@ -18,7 +18,7 @@
             "settings": {
                 "vnext": [
                     {
-                        "address": "samanabyar.online",
+                        "address": "iranianchurchdc.com",
                         "port": 443,
                         "users": [
                             {
@@ -33,12 +33,12 @@
                 "network": "ws",
                 "security": "tls",
                 "tlsSettings": {
-                    "serverName": "samanabyar.online"
+                    "serverName": "iranianchurchdc.com"
                 },
                 "wsSettings": {
                     "path": "/vpn-stream",
                     "headers": {
-                        "Host": "samanabyar.online"
+                        "Host": "iranianchurchdc.com"
                     }
                 }
             }

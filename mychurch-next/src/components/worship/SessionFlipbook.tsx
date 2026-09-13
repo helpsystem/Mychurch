@@ -44,8 +44,8 @@ const BookCover = React.forwardRef<HTMLDivElement, { session: BroadcastSession }
 
             <div className="flex flex-col items-center gap-2 z-10">
                 <img src="/logo-transparent.png" alt="Church Logo" className="w-20 h-20 object-contain drop-shadow-xl opacity-80" />
-                <p className="text-sm font-semibold text-[#d4af37] mt-2">کلیسای ایرانیان واشنگتن دی‌سی</p>
-                <p className="text-[10px] opacity-40 font-mono tracking-wider">IRANIAN CHURCH DC</p>
+                <p className="text-sm font-semibold text-[#d4af37] mt-2">کلیسای انجیلی ایرانیان واشنگتن دی‌سی</p>
+                <p className="text-[10px] opacity-40 font-mono tracking-wider uppercase">IRANIAN PRESBYTERIAN CHURCH</p>
             </div>
 
             <div className="w-full text-center mb-8 z-10">

@@ -83,7 +83,7 @@ export const KaraokeLyricsDisplay: React.FC<KaraokeLyricsDisplayProps> = ({
         // Try multiple paths
         const paths = [
           `/worship/data/timings/song_${songId}_timing.json`,
-          `https://samanabyar.online/worship/data/timings/song_${songId}_timing.json`
+          `https://www.iranianchurchdc.com/worship/data/timings/song_${songId}_timing.json`
         ];
         
         let data: TimingData | null = null;

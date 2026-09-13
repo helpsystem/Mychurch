@@ -29,7 +29,7 @@ const TestAmllPage: React.FC = () => {
     const SONG_ID = 335;
     const SONG_TITLE = "آرامی دلهایی";
     const SONG_ARTIST = "ترنم‌های نیایش";
-    const AUDIO_URL = `https://samanabyar.online/worship/audio/335.mp3`;
+    const AUDIO_URL = `https://www.iranianchurchdc.com/worship/audio/335.mp3`;
 
     // Load timing data
     useEffect(() => {

@@ -1,9 +1,9 @@
 
 # fix-502.ps1
-# Run this to diagnose and fix the 502 Bad Gateway error on samanabyar.online
+# Run this to diagnose and fix the 502 Bad Gateway error on iranianchurchdc.com
 
 param(
-    [string]$SshHost = "samanabyar.online",
+    [string]$SshHost = "iranianchurchdc.com",
     [string]$SshUser = "root"
 )
 

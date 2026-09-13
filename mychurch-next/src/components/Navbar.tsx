@@ -32,9 +32,9 @@ export default function Navbar() {
           </div>
           <div>
             <h1 className="text-lg font-bold text-white tracking-wide">
-              کلیسای ایرانیان واشنگتن دی‌سی
+              کلیسای انجیلی ایرانیان واشنگتن دی‌سی
             </h1>
-            <p className="text-xs text-accentGold/80">Iranian Church DC</p>
+            <p className="text-xs text-accentGold/80">Iranian Presbyterian Church</p>
           </div>
         </div>
 

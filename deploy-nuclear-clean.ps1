@@ -3,7 +3,7 @@
 
 param([switch]$SkipBuild, [switch]$DryRun)
 
-$SERVER = "root@samanabyar.online"
+$SERVER = "root@iranianchurchdc.com"
 $REMOTE_PATH = "/root/Mychurch"
 $REMOTE_DIST = "/var/www/mychurch"
 $LOCAL_DIST = "dist"
@@ -159,7 +159,7 @@ Write-Host "========================================" -ForegroundColor Green
 Write-Host "  DEPLOYMENT COMPLETE" -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Green
 Write-Host ""
-Write-Host "Site: https://samanabyar.online" -ForegroundColor Cyan
+Write-Host "Site: https://iranianchurchdc.com" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Yellow
 Write-Host "  1. Clear browser cache (Ctrl+Shift+Delete)" -ForegroundColor White

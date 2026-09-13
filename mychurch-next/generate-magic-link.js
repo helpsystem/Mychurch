@@ -12,7 +12,7 @@ async function run() {
         type: 'magiclink',
         email: 'help.system@ymail.com',
         options: {
-            redirectTo: 'https://samanabyar.online/admin/widgets'
+            redirectTo: 'https://www.iranianchurchdc.com/admin/widgets'
         }
     });
 

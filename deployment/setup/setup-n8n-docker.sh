@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ====== تنظیمات ======
-DOMAIN="n8n.samanabyar.online"
+DOMAIN="n8n.iranianchurchdc.com"
 EMAIL="help.system@ymail.com"
 N8N_USER="admin"
 N8N_PASSWORD="Iranian@1989"
@@ -145,9 +145,9 @@ echo ""
 echo "✅ Files created successfully!"
 echo ""
 echo "📋 Next steps:"
-echo "   1. Add DNS A record: n8n.samanabyar.online -> $(curl -s ifconfig.me)"
+echo "   1. Add DNS A record: n8n.iranianchurchdc.com -> $(curl -s ifconfig.me)"
 echo "   2. Open firewall: ufw allow 8443/tcp"
 echo "   3. Start services: docker compose pull && docker compose up -d"
 echo "   4. Check logs: docker compose logs -f"
-echo "   5. Access: https://n8n.samanabyar.online"
+echo "   5. Access: https://n8n.iranianchurchdc.com"
 echo ""

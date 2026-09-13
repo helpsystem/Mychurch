@@ -1,7 +1,7 @@
 # Auto-deploy script with embedded credentials
 # Usage: .\deploy-auto.ps1
 
-$SERVER = "root@samanabyar.online"
+$SERVER = "root@iranianchurchdc.com"
 $SERVER_PASSWORD = "Iranian@1989"
 $HIDRIVE_USER = "adminchurch"
 $HIDRIVE_PASSWORD = "Iranian@1989"
@@ -68,4 +68,4 @@ Write-Host "`n✅ Deployment completed!" -ForegroundColor Green
 Write-Host "`nChecking services status..." -ForegroundColor Cyan
 Invoke-SSHCommand "pm2 list"
 
-Write-Host "`n🎉 All done! Visit https://samanabyar.online" -ForegroundColor Green
+Write-Host "`n🎉 All done! Visit https://iranianchurchdc.com" -ForegroundColor Green

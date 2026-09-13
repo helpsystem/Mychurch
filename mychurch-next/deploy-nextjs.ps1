@@ -36,7 +36,7 @@ else {
 }
 
 # VPS Configuration
-$VPS_HOST = "samanabyar.online"
+$VPS_HOST = "iranianchurchdc.com"
 $VPS_USER = "root"
 $VPS_REPO_PATH = "/root/mychurch-v2"
 $VPS_NEXT_PATH = "/root/mychurch-v2/mychurch-next"

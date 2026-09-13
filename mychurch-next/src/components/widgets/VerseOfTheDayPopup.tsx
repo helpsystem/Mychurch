@@ -235,7 +235,7 @@ export function VerseOfTheDayPopup({ config }: VerseOfTheDayPopupProps) {
                             </div>
 
                             <span className="text-[11px] text-gray-400">
-                                {isEn ? "Iranian Presbyterian Church of D.C." : "کلیسای ایرانیان واشنگتن دی‌سی"}
+                                {isEn ? "Iranian Presbyterian Church" : "کلیسای انجیلی ایرانیان واشنگتن دی‌سی"}
                             </span>
                         </div>
                     </div>

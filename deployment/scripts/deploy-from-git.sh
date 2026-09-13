@@ -95,6 +95,6 @@ echo "  - Build hash: $(grep -o 'index-[^"]*\.js' "$WEB_ROOT/index.html" | head 
 echo "  - Backup: $BACKUP_DIR/backup_$TIMESTAMP.tar.gz"
 echo "  - Web root: $WEB_ROOT"
 echo ""
-echo -e "${BLUE}🌐 Site: https://samanabyar.online${NC}"
+echo -e "${BLUE}🌐 Site: https://iranianchurchdc.com${NC}"
 echo ""
 echo -e "${GREEN}🎉 Done! Clear browser cache (Ctrl+Shift+R) to see changes${NC}"

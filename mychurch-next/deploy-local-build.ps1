@@ -8,7 +8,7 @@ Write-Host "============================================================" -Foreg
 Write-Host "  MyChurch - Local Build + VPS Deploy" -ForegroundColor Cyan
 Write-Host "============================================================" -ForegroundColor Cyan
 
-$VPS_HOST = "samanabyar.online"
+$VPS_HOST = "iranianchurchdc.com"
 $VPS_USER = "root"
 $VPS_NEXT_PATH = "/root/mychurch-v2/mychurch-next"
 $LOCAL_ENV_PATH = ".\.env.local"
@@ -115,6 +115,6 @@ if (Test-Path $TAR_FILE) {
 
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor Green
-Write-Host "  SUCCESS! Site deployed to samanabyar.online" -ForegroundColor Green
+Write-Host "  SUCCESS! Site deployed to iranianchurchdc.com" -ForegroundColor Green
 Write-Host "  Visit: https://www.iranianchurchdc.com" -ForegroundColor Cyan
 Write-Host "============================================================" -ForegroundColor Green

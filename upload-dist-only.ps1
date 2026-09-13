@@ -1,7 +1,7 @@
 # Upload only essential dist files to server
 # این اسکریپت فقط فایل‌های ضروری را آپلود می‌کند
 
-$serverHost = "samanabyar.online"
+$serverHost = "iranianchurchdc.com"
 $serverUser = "root"
 $remotePath = "/root/Mychurch/dist/assets"
 

@@ -5,7 +5,7 @@ Write-Host "Starting Local Next.js Build and Fast VPS Deployment..." -Foreground
 Write-Host "============================================================" -ForegroundColor Gray
 
 # Configuration
-$VPS_HOST = "samanabyar.online"
+$VPS_HOST = "iranianchurchdc.com"
 $VPS_USER = "root"
 $VPS_NEXT_PATH = "/root/mychurch-v2/mychurch-next"
 $LOCAL_ENV_PATH = ".\.env.local"
@@ -104,5 +104,5 @@ if (Test-Path $tarFile) {
 
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor Gray
-Write-Host "Done! Next.js application has been deployed successfully to samanabyar.online." -ForegroundColor Green
+Write-Host "Done! Next.js application has been deployed successfully to iranianchurchdc.com." -ForegroundColor Green
 Write-Host "============================================================" -ForegroundColor Gray

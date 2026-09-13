@@ -18,7 +18,7 @@ async function regenerate() {
 
     const service = new PrecisionTimingService();
     // Explicit URL to the verified large file
-    const audioUrl = 'https://samanabyar.online/worship/audio/kalameh/1%20Aramiye%20delhaayee.mp3';
+    const audioUrl = 'https://www.iranianchurchdc.com/worship/audio/kalameh/1%20Aramiye%20delhaayee.mp3';
 
     // Lyrics from file - cleaned
     const lyrics = `V1 (x2)

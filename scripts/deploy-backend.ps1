@@ -1,7 +1,7 @@
 # Deploy Backend to VPS
 # Uploads backend code and restarts PM2 service
 
-$SERVER = "root@samanabyar.online"
+$SERVER = "root@iranianchurchdc.com"
 $REMOTE_PATH = "/var/www/Mychurch/backend"
 $LOCAL_PATH = "backend"
 

@@ -11,7 +11,7 @@ const getBaseURL = () => {
   }
   
   // Production: use full URL to avoid HTTP/2 protocol issues
-  return 'https://samanabyar.online';
+  return 'https://www.iranianchurchdc.com';
 };
 
 // Create axios instance with default config

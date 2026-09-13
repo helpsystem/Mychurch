@@ -6,7 +6,7 @@
 
 ### بخش اصلی (Next.js 14)
 - مسئول: صفحات لایو، مدیریت محتوای جدید، و جریان اصلی تجربه کاربری.
-- آدرس لایو: https://samanabyar.online
+- آدرس لایو: https://iranianchurchdc.com
 - تکنولوژی‌ها: React 18, Next.js 14, Tailwind CSS, TypeScript
 - مسیر محلی: `d:\...\Git\Mychurch\mychurch-next`
 

@@ -135,7 +135,7 @@ const AdminSyncManagementPage: React.FC = () => {
           book: 'GEN',
           bookName: { fa: 'پیدایش', en: 'Genesis' },
           chapter: 1,
-          audioUrl: 'https://samanabyar.online/audio/bible/GEN_1_fa.mp3',
+          audioUrl: 'https://www.iranianchurchdc.com/audio/bible/GEN_1_fa.mp3',
           translation: 'fa',
           hasTiming: false
         }

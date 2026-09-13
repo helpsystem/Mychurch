@@ -36,9 +36,8 @@ export interface ChapterData {
     verses: UnifiedVerse[];
 }
 
-// ─── Database (Persian translations + fallback) ──────────────────────────────
 const pool = new Pool({
-    connectionString: 'postgresql://mychurch_user:MyChurch2024Secure!@samanabyar.online:5433/mychurch',
+    connectionString: process.env.DATABASE_URL || 'postgresql://postgres.xjliwbfdzmxncyebblxw:OExGvmxE8SsoIUGH@aws-1-us-east-1.pooler.supabase.com:6543/postgres',
     ssl: { rejectUnauthorized: false },
 });
 

@@ -13,7 +13,7 @@ Write-Host ""
 
 # فرمان اتصال SSH
 Write-Host "1️⃣ اتصال به سرور:" -ForegroundColor Cyan
-Write-Host "   ssh root@samanabyar.online" -ForegroundColor White
+Write-Host "   ssh root@iranianchurchdc.com" -ForegroundColor White
 Write-Host ""
 
 # فرمان deployment
@@ -27,7 +27,7 @@ Write-Host ("=" * 80) -ForegroundColor Gray
 Write-Host ""
 
 Write-Host "✅ بعد از اجرا، سایت در آدرس زیر به‌روز می‌شود:" -ForegroundColor Yellow
-Write-Host "   🌐 https://samanabyar.online" -ForegroundColor White
+Write-Host "   🌐 https://iranianchurchdc.com" -ForegroundColor White
 Write-Host ""
 
 Write-Host ("=" * 80) -ForegroundColor Gray

@@ -3,7 +3,7 @@
 
 param([switch]$DatabaseOnly, [switch]$ConfigOnly)
 
-$SERVER = "root@samanabyar.online"
+$SERVER = "root@iranianchurchdc.com"
 $REMOTE_BACKUP_PATH = "/var/www/storage/backups"
 $LOCAL_BACKUP_PATH = "D:\Backups\Mychurch"
 

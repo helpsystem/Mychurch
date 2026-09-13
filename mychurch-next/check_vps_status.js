@@ -4,7 +4,7 @@ const path = require('path');
 
 console.log("Connecting to VPS via SSH to check PM2 logs...");
 
-const sshCmd = 'ssh root@samanabyar.online "echo \'=== PM2 PROCESS LIST ===\' && pm2 list && echo \'=== PM2 LOGS ===\' && pm2 logs mychurch-next --lines 100 --raw --no-colors --err && echo \'=== PM2 OUT LOGS ===\' && pm2 logs mychurch-next --lines 100 --raw --no-colors --out"';
+const sshCmd = 'ssh root@iranianchurchdc.com "echo \'=== PM2 PROCESS LIST ===\' && pm2 list && echo \'=== PM2 LOGS ===\' && pm2 logs mychurch-next --lines 100 --raw --no-colors --err && echo \'=== PM2 OUT LOGS ===\' && pm2 logs mychurch-next --lines 100 --raw --no-colors --out"';
 
 exec(sshCmd, (error, stdout, stderr) => {
     let output = '';

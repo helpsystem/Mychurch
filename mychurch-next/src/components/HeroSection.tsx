@@ -79,7 +79,7 @@ export default function HeroSection() {
       {/* eyebrow */}
       <div className="relative z-10 flex justify-center pt-8 sm:pt-10">
         <p className="text-xs tracking-[0.25em] text-[#8B93AA]">
-          کلیسای ایرانیان مسیحی واشنگتن دی‌سی &nbsp;·&nbsp; EST. 1990
+          کلیسای انجیلی ایرانیان واشنگتن دی‌سی &nbsp;·&nbsp; EST. 1990
         </p>
       </div>
 
