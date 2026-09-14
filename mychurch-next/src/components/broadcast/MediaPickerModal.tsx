@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { X, Search, FileVideo, Image as ImageIcon, Music, Upload, CheckCircle2, Link2 } from "lucide-react";
+import { X, Search, FileVideo, Image as ImageIcon, Music, Upload, CheckCircle2, Link2, Eye } from "lucide-react";
 import { listMediaFiles, MediaAsset } from "@/actions/media";
 import { AddMediaLinkModal } from "@/components/admin/media/AddMediaLinkModal";
 
@@ -21,6 +21,43 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
     const [uploading, setUploading] = useState(false);
     const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    // Hover preview state before selecting
+    const [hoveredAsset, setHoveredAsset] = useState<MediaAsset | null>(null);
+    const [hoverPosition, setHoverPosition] = useState<{ x: number; y: number } | null>(null);
+    const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    const handleTileMouseEnter = (asset: MediaAsset, e: React.MouseEvent<HTMLDivElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+
+        const cardWidth = 320;
+        const cardHeight = 310;
+
+        let x = rect.right + 12;
+        if (x + cardWidth > window.innerWidth - 10) {
+            x = rect.left - cardWidth - 12;
+        }
+        if (x < 10) {
+            x = Math.max(10, (window.innerWidth - cardWidth) / 2);
+        }
+
+        let y = rect.top;
+        if (y + cardHeight > window.innerHeight - 10) {
+            y = Math.max(10, window.innerHeight - cardHeight - 10);
+        }
+
+        hoverTimeoutRef.current = setTimeout(() => {
+            setHoverPosition({ x, y });
+            setHoveredAsset(asset);
+        }, 120);
+    };
+
+    const handleTileMouseLeave = () => {
+        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+        setHoveredAsset(null);
+        setHoverPosition(null);
+    };
 
     // Initial restriction
     useEffect(() => {
@@ -255,7 +292,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                 </div>
 
                 {/* Gallery Grid */}
-                <div className="flex-1 overflow-y-auto p-4 bg-slate-950">
+                <div className="flex-1 overflow-y-auto p-4 bg-slate-950" onScroll={handleTileMouseLeave}>
                     {isLoading ? (
                         <div className="flex items-center justify-center h-full">
                             <div className="w-8 h-8 flex items-center justify-center">
@@ -273,9 +310,12 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                                 <div
                                     key={asset.url}
                                     onClick={() => {
+                                        handleTileMouseLeave();
                                         onSelect(asset.url, asset.type);
                                         onClose();
                                     }}
+                                    onMouseEnter={(e) => handleTileMouseEnter(asset, e)}
+                                    onMouseLeave={handleTileMouseLeave}
                                     className="group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-500/20 transition-all cursor-pointer aspect-square flex flex-col"
                                 >
                                     <div className="flex-1 w-full bg-black flex items-center justify-center overflow-hidden relative">
@@ -335,6 +375,69 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                         onClose();
                     }}
                 />
+
+                {/* Floating Live Hover Preview Card */}
+                {hoveredAsset && hoverPosition && (
+                    <div
+                        style={{ top: hoverPosition.y, left: hoverPosition.x }}
+                        className="fixed z-[130] pointer-events-none w-80 bg-slate-950/95 border border-indigo-500/60 rounded-2xl shadow-[0_25px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl p-3 space-y-2.5 animate-in fade-in zoom-in-95 duration-150"
+                        dir={isRTL ? "rtl" : "ltr"}
+                    >
+                        {/* Preview Header */}
+                        <div className="flex items-center justify-between gap-2 pb-2 border-b border-white/10">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                                <Eye className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                                <span className="text-[11px] font-bold text-indigo-300">
+                                    {isRTL ? "پیش‌نمایش قبل از انتخاب" : "Preview before select"}
+                                </span>
+                            </div>
+                            <span className="text-[10px] font-mono bg-white/10 text-slate-300 px-1.5 py-0.5 rounded">
+                                {hoveredAsset.isExternalLink ? (isRTL ? "لینک" : "Link") : formatBytes(hoveredAsset.size)}
+                            </span>
+                        </div>
+
+                        {/* Media Preview Box (Uncropped full aspect ratio) */}
+                        <div className="w-full h-48 bg-black/90 rounded-xl overflow-hidden flex items-center justify-center border border-white/10 relative shadow-inner">
+                            {hoveredAsset.type === 'image' && (
+                                <img
+                                    src={hoveredAsset.url}
+                                    alt={hoveredAsset.name}
+                                    className="w-full h-full object-contain"
+                                />
+                            )}
+                            {hoveredAsset.type === 'video' && (
+                                <video
+                                    src={hoveredAsset.url}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="w-full h-full object-contain"
+                                />
+                            )}
+                            {hoveredAsset.type === 'audio' && (
+                                <div className="flex flex-col items-center gap-2 text-purple-400">
+                                    <Music className="w-12 h-12 animate-pulse" />
+                                    <span className="text-xs font-bold text-slate-300">{isRTL ? "فایل صوتی" : "Audio File"}</span>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Info & Action Hint */}
+                        <div className="space-y-1">
+                            <p className="text-xs font-bold text-white truncate" dir="ltr">
+                                {hoveredAsset.name}
+                            </p>
+                            <div className="flex items-center justify-between text-[11px] text-slate-400 pt-0.5">
+                                <span className="flex items-center gap-1 text-emerald-400 font-bold">
+                                    <CheckCircle2 className="w-3 h-3" />
+                                    {isRTL ? "کلیک کنید برای انتخاب" : "Click to select"}
+                                </span>
+                                <span className="capitalize text-slate-500 font-mono text-[10px]">{hoveredAsset.type}</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

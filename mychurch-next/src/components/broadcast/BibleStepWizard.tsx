@@ -138,8 +138,12 @@ export default function BibleStepWizard({
   const [layoutMode, setLayoutMode] = useState<SlideLayoutMode>("perVerse");
   const [primaryLang, setPrimaryLang] = useState<"fa" | "en">("fa");
 
-  // Step 4 edit modal state
+  // Step 4 edit modal state (kept for backward compat)
   const [editingVerse, setEditingVerse] = useState<VerseItem | null>(null);
+  // Inline editing in Step 4 — no modal needed
+  const [inlineEditId, setInlineEditId] = useState<string | null>(null);
+  const [inlineFa, setInlineFa] = useState("");
+  const [inlineEn, setInlineEn] = useState("");
 
   const activeBook = useMemo(() => {
     return books.find((b) => b.book_id === activeBookId) || books[0] || null;
@@ -403,6 +407,28 @@ export default function BibleStepWizard({
     );
     setEditingVerse(null);
     toast.success(isRTL ? "متن آیه با موفقیت به‌روزرسانی شد." : "Verse text updated.");
+  };
+
+  // ── Inline edit helpers (Step 4) ──
+
+  const startInlineEdit = (v: VerseItem) => {
+    setInlineEditId(v.id);
+    setInlineFa(v.fa);
+    setInlineEn(v.en);
+  };
+  const cancelInlineEdit = () => setInlineEditId(null);
+  const saveInlineEdit = () => {
+    if (!inlineEditId) return;
+    setSections((prev) =>
+      prev.map((sec) => ({
+        ...sec,
+        verses: sec.verses.map((v) =>
+          v.id === inlineEditId ? { ...v, fa: inlineFa || v.fa, en: inlineEn || v.en } : v
+        ),
+      }))
+    );
+    setInlineEditId(null);
+    toast.success(isRTL ? "✓ متن آیه ویرایش شد." : "✓ Verse updated.");
   };
 
   // Build the final ScripturePage[] slides
@@ -1046,26 +1072,58 @@ export default function BibleStepWizard({
               </div>
             )}
 
-            {/* Step 2 Footer Action */}
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
-              <button
-                type="button"
-                onClick={() => setCurrentStep(1)}
-                className="px-5 py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition cursor-pointer"
-              >
-                {isRTL ? "⬅️ بازگشت به انتخاب فصل" : "Back to Chapters"}
-              </button>
-
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-zinc-400">
-                  {totalSelectedVersesCount > 0 ? (
-                    <span className="text-amber-300 font-bold">
-                      {totalSelectedVersesCount} {isRTL ? "آیه انتخاب شده است" : "verses selected"}
+            {/* Step 2 Footer / Smart Action Panel */}
+            <div className="bg-gradient-to-r from-amber-500/10 via-zinc-900 to-amber-500/10 border border-amber-500/30 rounded-3xl p-5 space-y-4">
+              <div className="flex items-center justify-between flex-wrap gap-3">
+                <div className="space-y-1">
+                  <h4 className="text-sm font-black text-amber-300 flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-amber-400" />
+                    <span>
+                      {totalSelectedVersesCount > 0 ? (
+                        <>
+                          {totalSelectedVersesCount} {isRTL ? "آیه انتخاب شد" : "verses selected"} (
+                          {activeBook.book_name_fa} باب {activeChapter})
+                        </>
+                      ) : (
+                        <>{isRTL ? "هنوز آیه‌ای انتخاب نشده است" : "No verses selected yet"}</>
+                      )}
                     </span>
-                  ) : (
-                    <span>{isRTL ? "حداقل یک آیه را انتخاب کنید" : "Select at least 1 verse"}</span>
-                  )}
-                </span>
+                  </h4>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    {totalSelectedVersesCount > 0
+                      ? isRTL
+                        ? "آیا می‌خواهید آیه/بخش دیگری از کتاب یا فصل دیگر به این مجموعه بیفزایید، یا برای انتخاب چیدمان به مرحله بعد بروید؟"
+                        : "Would you like to add verses from another book/chapter or proceed to slide layout?"
+                      : isRTL
+                      ? "روی آیات مورد نظر در بالا کلیک کنید یا از جعبه «بازه آیات» استفاده نمایید."
+                      : "Click verses above or enter a range to select."}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10">
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep(1)}
+                    className="px-4 py-2 rounded-xl text-xs font-bold text-zinc-400 hover:text-white hover:bg-white/10 transition cursor-pointer"
+                  >
+                    {isRTL ? "⬅️ تغییر کتاب یا فصل" : "Back to Book/Chapter"}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEditingSectionId(null);
+                      setCurrentStep(1);
+                      toast.info(isRTL ? "کتاب یا فصل دوم را برای اضافه کردن انتخاب کنید." : "Select second book/chapter.");
+                    }}
+                    className="px-4 py-2 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/20 text-amber-300 transition flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>{isRTL ? "➕ افزودن بخش دیگر (کتاب/باب متفاوت)" : "Add Another Section"}</span>
+                  </button>
+                </div>
 
                 <button
                   type="button"
@@ -1073,7 +1131,7 @@ export default function BibleStepWizard({
                   disabled={totalSelectedVersesCount === 0}
                   className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-black text-sm shadow-[0_0_20px_rgba(245,158,11,0.4)] active:scale-95 transition flex items-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                 >
-                  <span>{isRTL ? "تایید و رفتن به تنظیم چیدمان اسلاید" : "Proceed to Slide Layout"}</span>
+                  <span>{isRTL ? "ادامه به مرحله ۳: انتخاب چیدمان و ساختار اسلایدها" : "Proceed to Slide Layout"}</span>
                   <ChevronLeft className="w-4 h-4" />
                 </button>
               </div>
@@ -1112,7 +1170,7 @@ export default function BibleStepWizard({
                 <span>{isRTL ? "این آیات چگونه در اسلایدها چیده شوند؟" : "How should verses be arranged on slides?"}</span>
               </h4>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
                 {/* Option 1: Per Verse */}
                 <div
                   onClick={() => setLayoutMode("perVerse")}
@@ -1204,6 +1262,39 @@ export default function BibleStepWizard({
                     <span className="text-zinc-500">{isRTL ? "تعداد اسلاید نهایی:" : "Output slides:"}</span>
                     <span className="font-black text-emerald-400">
                       {Math.ceil(totalSelectedVersesCount / 2)} اسلاید
+                    </span>
+                  </div>
+                </div>
+
+                {/* Option 4: Chunks of 3 */}
+                <div
+                  onClick={() => setLayoutMode("chunk3")}
+                  className={`p-5 rounded-3xl border transition-all cursor-pointer select-none flex flex-col justify-between ${
+                    layoutMode === "chunk3"
+                      ? "bg-amber-500/15 border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.2)]"
+                      : "bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/15"
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-9 h-9 rounded-2xl bg-purple-500/20 text-purple-300 flex items-center justify-center">
+                        <Layers className="w-5 h-5" />
+                      </div>
+                      {layoutMode === "chunk3" && <CheckCircle2 className="w-5 h-5 text-amber-400" />}
+                    </div>
+                    <h5 className="font-black text-sm text-white mb-1">
+                      {isRTL ? "دسته‌بندی ۳ آیه در هر اسلاید" : "3 Verses Per Slide"}
+                    </h5>
+                    <p className="text-xs text-zinc-400 leading-relaxed">
+                      {isRTL
+                        ? "برای متون طولانی مثل مزامیر — سه آیه در هر اسلاید، تعداد اسلایدها کمتر."
+                        : "For longer passages like Psalms — 3 verses per slide, fewer total slides."}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                    <span className="text-zinc-500">{isRTL ? "تعداد اسلاید نهایی:" : "Output slides:"}</span>
+                    <span className="font-black text-purple-400">
+                      {Math.ceil(totalSelectedVersesCount / 3)} اسلاید
                     </span>
                   </div>
                 </div>
@@ -1396,63 +1487,122 @@ export default function BibleStepWizard({
                     </div>
                   </div>
 
-                  {/* Verses inside section */}
+                  {/* Verses inside section — with inline edit support */}
                   <div className="space-y-2">
                     {sec.verses.map((v, vIdx) => (
                       <div
                         key={v.id}
-                        className="p-3 bg-white/5 border border-white/5 rounded-2xl flex items-start gap-3 hover:border-white/15 transition group"
+                        className={`border rounded-2xl transition-all duration-200 ${
+                          inlineEditId === v.id
+                            ? "p-4 bg-zinc-800/80 border-blue-400/50 shadow-[0_0_15px_rgba(59,130,246,0.15)]"
+                            : "p-3 bg-white/5 border-white/5 flex items-start gap-3 hover:border-white/15 group"
+                        }`}
                       >
-                        <span className="w-6 h-6 rounded-lg bg-black/40 border border-white/10 text-amber-300 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                          {v.verse_num}
-                        </span>
+                        {inlineEditId === v.id ? (
+                          /* ── Inline Edit Mode ── */
+                          <div className="space-y-3 w-full animate-in fade-in duration-150">
+                            <div className="flex items-center gap-2">
+                              <span className="w-6 h-6 rounded-lg bg-blue-400/20 text-blue-300 font-bold text-xs flex items-center justify-center">
+                                {v.verse_num}
+                              </span>
+                              <span className="text-xs font-bold text-blue-300">
+                                {isRTL ? "ویرایش آیه" : "Editing verse"} {v.verse_num}
+                              </span>
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-bold text-zinc-400 block mb-1">متن فارسی:</label>
+                              <textarea
+                                value={inlineFa}
+                                onChange={(e) => setInlineFa(e.target.value)}
+                                rows={3}
+                                className="w-full bg-black/40 border border-white/15 rounded-xl p-3 text-sm text-zinc-100 font-[Vazirmatn] outline-none focus:border-blue-400 resize-none"
+                                dir="rtl"
+                                autoFocus
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-bold text-zinc-400 block mb-1">English Text:</label>
+                              <textarea
+                                value={inlineEn}
+                                onChange={(e) => setInlineEn(e.target.value)}
+                                rows={2}
+                                className="w-full bg-black/40 border border-white/15 rounded-xl p-3 text-xs text-zinc-200 font-sans outline-none focus:border-blue-400 resize-none"
+                                dir="ltr"
+                              />
+                            </div>
+                            <div className="flex items-center gap-2 pt-1">
+                              <button
+                                type="button"
+                                onClick={saveInlineEdit}
+                                className="px-4 py-1.5 bg-blue-500 hover:bg-blue-400 text-white rounded-xl text-xs font-black transition flex items-center gap-1.5 cursor-pointer"
+                              >
+                                <Check className="w-3.5 h-3.5" />
+                                {isRTL ? "ذخیره تغییرات" : "Save"}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={cancelInlineEdit}
+                                className="px-4 py-1.5 text-zinc-400 hover:text-white text-xs font-bold transition cursor-pointer rounded-xl hover:bg-white/5"
+                              >
+                                {isRTL ? "انصراف" : "Cancel"}
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          /* ── Normal View Mode ── */
+                          <>
+                            <span className="w-6 h-6 rounded-lg bg-black/40 border border-white/10 text-amber-300 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                              {v.verse_num}
+                            </span>
 
-                        <div className="flex-1 min-w-0 space-y-0.5">
-                          <p className="text-sm text-zinc-100 font-[Vazirmatn] leading-relaxed line-clamp-2">
-                            {v.fa}
-                          </p>
-                          <p className="text-xs text-zinc-400 font-sans leading-snug line-clamp-1" dir="ltr">
-                            {v.en}
-                          </p>
-                        </div>
+                            <div className="flex-1 min-w-0 space-y-0.5">
+                              <p className="text-sm text-zinc-100 font-[Vazirmatn] leading-relaxed line-clamp-2">
+                                {v.fa}
+                              </p>
+                              <p className="text-xs text-zinc-400 font-sans leading-snug line-clamp-1" dir="ltr">
+                                {v.en}
+                              </p>
+                            </div>
 
-                        {/* Actions: Move Up / Down, Edit, Delete */}
-                        <div className="flex items-center gap-1 shrink-0 pt-0.5">
-                          <button
-                            type="button"
-                            onClick={() => moveVerse(sec.id, vIdx, "up")}
-                            disabled={vIdx === 0}
-                            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition cursor-pointer"
-                            title={isRTL ? "انتقال به بالا" : "Move up"}
-                          >
-                            <ArrowUp className="w-3.5 h-3.5" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => moveVerse(sec.id, vIdx, "down")}
-                            disabled={vIdx === sec.verses.length - 1}
-                            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition cursor-pointer"
-                            title={isRTL ? "انتقال به پایین" : "Move down"}
-                          >
-                            <ArrowDown className="w-3.5 h-3.5" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setEditingVerse(v)}
-                            className="p-1.5 rounded-lg text-zinc-400 hover:text-blue-400 hover:bg-blue-500/10 transition cursor-pointer"
-                            title={isRTL ? "ویرایش متن آیه" : "Edit verse text"}
-                          >
-                            <Edit3 className="w-3.5 h-3.5" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => removeVerse(sec.id, v.id)}
-                            className="p-1.5 rounded-lg text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 transition cursor-pointer"
-                            title={isRTL ? "حذف آیه" : "Remove"}
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
+                            {/* Actions */}
+                            <div className="flex items-center gap-1 shrink-0 pt-0.5">
+                              <button
+                                type="button"
+                                onClick={() => moveVerse(sec.id, vIdx, "up")}
+                                disabled={vIdx === 0}
+                                className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition cursor-pointer"
+                                title={isRTL ? "انتقال به بالا" : "Move up"}
+                              >
+                                <ArrowUp className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => moveVerse(sec.id, vIdx, "down")}
+                                disabled={vIdx === sec.verses.length - 1}
+                                className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition cursor-pointer"
+                                title={isRTL ? "انتقال به پایین" : "Move down"}
+                              >
+                                <ArrowDown className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => startInlineEdit(v)}
+                                className="p-1.5 rounded-lg text-zinc-400 hover:text-blue-400 hover:bg-blue-500/10 transition cursor-pointer"
+                                title={isRTL ? "ویرایش متن آیه" : "Edit verse text"}
+                              >
+                                <Edit3 className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => removeVerse(sec.id, v.id)}
+                                className="p-1.5 rounded-lg text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 transition cursor-pointer"
+                                title={isRTL ? "حذف آیه" : "Remove"}
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </>
+                        )}
                       </div>
                     ))}
                   </div>
