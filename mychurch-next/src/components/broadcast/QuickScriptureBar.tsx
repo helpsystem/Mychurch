@@ -1,7 +1,18 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { BookOpen, Zap, ChevronDown, Check, Sparkles, SlidersHorizontal, Loader2, Plus } from "lucide-react";
+import {
+  BookOpen,
+  Zap,
+  ChevronDown,
+  Sparkles,
+  SlidersHorizontal,
+  Loader2,
+  Plus,
+  Star,
+  Languages,
+  Check,
+} from "lucide-react";
 import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
 import { CANONICAL_BOOKS } from "@/lib/bibleUsfm";
 import { toast } from "sonner";
@@ -22,13 +33,62 @@ interface BookOption {
   chapter_count: number;
 }
 
-// Full 66 canonical Bible books for instant zero-delay render
+interface TranslationOption {
+  abbr: string;
+  nameFa: string;
+  nameEn: string;
+  descFa: string;
+  descEn: string;
+}
+
+// Available Persian Translations
+const FA_TRANSLATIONS: TranslationOption[] = [
+  { abbr: "NMV", nameFa: "هزارۀ نو (معاصر)", nameEn: "New Millennium (NMV)", descFa: "ترجمه استاندارد و روان معاصر - رایج‌ترین در کلیساها", descEn: "Contemporary standard Persian" },
+  { abbr: "TPV", nameFa: "کتاب مقدس مژده (تفسیری)", nameEn: "Good News / Tafsiri (TPV)", descFa: "ترجمه تفسیری ساده و روان برای درک آسان", descEn: "Dynamic thought-for-thought" },
+  { abbr: "PCB", nameFa: "ترجمه قدیم (فاضل‌خان)", nameEn: "Classic Farsi (PCB)", descFa: "متن سنتی و کهن ادبی فاخر، ممتاز برای موعظه", descEn: "Classic traditional literary" },
+  { abbr: "MOZ", nameFa: "مژده برای عصر جدید", nameEn: "Mozhdeh New Era (MOZ)", descFa: "ترجمه عصر جدید برای نسل نو", descEn: "New era contemporary translation" },
+  { abbr: "FARSIO", nameFa: "متن اصیل کهن", nameEn: "Ancient Historical (FARSIO)", descFa: "نگارش اصیل تاریخی فارسی", descEn: "Historical ancient Persian" },
+  { abbr: "RCPV", nameFa: "کتاب مقدس ون‌دایک", nameEn: "Van Dyke (RCPV)", descFa: "عهد قدیم و ترجمه مشهور ون‌دایک", descEn: "Historic Van Dyke translation" },
+  { abbr: "BBK", nameFa: "ترجمه بیگدلی (عهد جدید)", nameEn: "Bigdeli NT (BBK)", descFa: "فقط شامل عهد جدید", descEn: "New Testament only" },
+  { abbr: "PES", nameFa: "پشیتا سریانی (عهد جدید)", nameEn: "Peshitta NT (PES)", descFa: "برگردان از زبان سریانی", descEn: "Peshitta Syriac translation" },
+];
+
+// Available English Translations
+const EN_TRANSLATIONS: TranslationOption[] = [
+  { abbr: "BSB", nameFa: "Berean Standard Bible", nameEn: "Berean Standard Bible (BSB)", descFa: "دقیق، روان و بدون کپی‌رایت محدودکننده", descEn: "Accurate & readable modern text" },
+  { abbr: "NIV", nameFa: "New International Version", nameEn: "New International Version (NIV)", descFa: "محبوب‌ترین ترجمه معاصر جهان", descEn: "Most widely read worldwide" },
+  { abbr: "ESV", nameFa: "English Standard Version", nameEn: "English Standard Version (ESV)", descFa: "ترجمه لفظ‌به‌لفظ دقیق و رسمی", descEn: "Word-for-word literal and formal" },
+  { abbr: "KJV", nameFa: "King James Version", nameEn: "King James Version (KJV)", descFa: "متن تاریخی فاخر و کلاسیک ۱۶۱۱", descEn: "Classic traditional 1611 text" },
+  { abbr: "NLT", nameFa: "New Living Translation", nameEn: "New Living Translation (NLT)", descFa: "بسیار روان و زنده با درک فوری", descEn: "Living, clear thought-for-thought" },
+  { abbr: "NASB", nameFa: "New American Standard Bible", nameEn: "New American Standard (NASB)", descFa: "فوق‌العاده وفادار به ساختار زبان اصلی", descEn: "Strictly literal and scholarly" },
+  { abbr: "CSB", nameFa: "Christian Standard Bible", nameEn: "Christian Standard Bible (CSB)", descFa: "تعادل کم‌نظیر میان دقت و وضوح کلام", descEn: "Optimal blend of accuracy & clarity" },
+];
+
+// Canonical 66 Books
 const INITIAL_BOOKS: BookOption[] = CANONICAL_BOOKS.map((b) => ({
   book_id: b.usfm,
   book_name_en: b.nameEn,
   book_name_fa: b.nameFa,
   chapter_count: b.chapters,
 }));
+
+const loadStorage = (key: string, fallback: string): string => {
+  if (typeof window === "undefined") return fallback;
+  try {
+    return localStorage.getItem(key) || fallback;
+  } catch {
+    return fallback;
+  }
+};
+
+const saveStorage = (key: string, value: string) => {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // ignore
+  }
+};
 
 export default function QuickScriptureBar({
   onAddSlides,
@@ -38,25 +98,46 @@ export default function QuickScriptureBar({
   isRTL = true,
   className = "",
 }: QuickScriptureBarProps) {
-  const [books, setBooks] = useState<BookOption[]>(INITIAL_BOOKS);
-  const [selectedBookId, setSelectedBookId] = useState<string>("GEN");
+  const books = INITIAL_BOOKS;
+
+  // Defaults persisted in localStorage
+  const [defaultBookId, setDefaultBookId] = useState<string>(() => loadStorage("bp_default_book", "GEN"));
+  const [defaultVersionFa, setDefaultVersionFa] = useState<string>(() => loadStorage("bp_default_ver_fa", "NMV"));
+  const [defaultVersionEn, setDefaultVersionEn] = useState<string>(() => loadStorage("bp_default_ver_en", "BSB"));
+
+  // Active selections
+  const [selectedBookId, setSelectedBookId] = useState<string>(() =>
+    loadStorage("bp_quick_book", loadStorage("bp_default_book", "GEN"))
+  );
+  const [selectedVersionFa, setSelectedVersionFa] = useState<string>(() =>
+    loadStorage("bp_ver_fa", loadStorage("bp_default_ver_fa", "NMV"))
+  );
+  const [selectedVersionEn, setSelectedVersionEn] = useState<string>(() =>
+    loadStorage("bp_ver_en", loadStorage("bp_default_ver_en", "BSB"))
+  );
+
   const [chapter, setChapter] = useState<number>(1);
   const [fromVerse, setFromVerse] = useState<number>(1);
   const [toVerse, setToVerse] = useState<number>(1);
   const [slideMode, setSlideMode] = useState<"perVerse" | "single" | "perReference">("perVerse");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Book dropdown search state
+  // Dropdown states
   const [bookDropdownOpen, setBookDropdownOpen] = useState<boolean>(false);
+  const [faDropdownOpen, setFaDropdownOpen] = useState<boolean>(false);
+  const [enDropdownOpen, setEnDropdownOpen] = useState<boolean>(false);
   const [bookSearchQuery, setBookSearchQuery] = useState<string>("");
-  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const containerRef = useRef<HTMLDivElement>(null);
   const bookInputRef = useRef<HTMLInputElement>(null);
 
-  // Handle clicking outside the book dropdown
+  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setBookDropdownOpen(false);
+        setFaDropdownOpen(false);
+        setEnDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -64,10 +145,18 @@ export default function QuickScriptureBar({
   }, []);
 
   const currentBook = useMemo(() => {
-    return books.find((b) => b.book_id === selectedBookId) || books[0] || INITIAL_BOOKS[0];
+    return books.find((b) => b.book_id === selectedBookId) || books[0];
   }, [books, selectedBookId]);
 
-  // Filtered books for dropdown search
+  const currentFa = useMemo(() => {
+    return FA_TRANSLATIONS.find((v) => v.abbr === selectedVersionFa) || FA_TRANSLATIONS[0];
+  }, [selectedVersionFa]);
+
+  const currentEn = useMemo(() => {
+    return EN_TRANSLATIONS.find((v) => v.abbr === selectedVersionEn) || EN_TRANSLATIONS[0];
+  }, [selectedVersionEn]);
+
+  // Filtered books for search
   const filteredBooks = useMemo(() => {
     if (!bookSearchQuery.trim()) return books;
     const q = bookSearchQuery.trim().toLowerCase();
@@ -79,15 +168,66 @@ export default function QuickScriptureBar({
     );
   }, [books, bookSearchQuery]);
 
-  // When book changes, clamp chapter
+  // Handle setting/toggling default book
+  const handleToggleDefaultBook = (e: React.MouseEvent, bookId: string) => {
+    e.stopPropagation();
+    const targetBook = books.find((b) => b.book_id === bookId) || currentBook;
+    saveStorage("bp_default_book", bookId);
+    setDefaultBookId(bookId);
+    toast.success(
+      isRTL
+        ? `⭐ کتاب «${targetBook.book_name_fa}» به عنوان کتاب پیش‌فرض ذخیره شد.`
+        : `⭐ ${targetBook.book_name_en} saved as default book.`
+    );
+  };
+
+  // Handle setting/toggling default Persian translation
+  const handleToggleDefaultFa = (e: React.MouseEvent, verAbbr: string) => {
+    e.stopPropagation();
+    const targetVer = FA_TRANSLATIONS.find((v) => v.abbr === verAbbr) || currentFa;
+    saveStorage("bp_default_ver_fa", verAbbr);
+    setDefaultVersionFa(verAbbr);
+    toast.success(
+      isRTL
+        ? `⭐ ترجمه فارسی «${targetVer.nameFa}» به عنوان پیش‌فرض ذخیره شد.`
+        : `⭐ Persian translation ${verAbbr} saved as default.`
+    );
+  };
+
+  // Handle setting/toggling default English translation
+  const handleToggleDefaultEn = (e: React.MouseEvent, verAbbr: string) => {
+    e.stopPropagation();
+    const targetVer = EN_TRANSLATIONS.find((v) => v.abbr === verAbbr) || currentEn;
+    saveStorage("bp_default_ver_en", verAbbr);
+    setDefaultVersionEn(verAbbr);
+    toast.success(
+      isRTL
+        ? `⭐ ترجمه انگلیسی «${targetVer.nameEn}» به عنوان پیش‌فرض ذخیره شد.`
+        : `⭐ English translation ${verAbbr} saved as default.`
+    );
+  };
+
   const handleSelectBook = (book: BookOption) => {
     setSelectedBookId(book.book_id);
+    saveStorage("bp_quick_book", book.book_id);
     if (chapter > book.chapter_count) setChapter(1);
     setBookDropdownOpen(false);
     setBookSearchQuery("");
   };
 
-  // Quick Insert Handler
+  const handleSelectFa = (abbr: string) => {
+    setSelectedVersionFa(abbr);
+    saveStorage("bp_ver_fa", abbr);
+    setFaDropdownOpen(false);
+  };
+
+  const handleSelectEn = (abbr: string) => {
+    setSelectedVersionEn(abbr);
+    saveStorage("bp_ver_en", abbr);
+    setEnDropdownOpen(false);
+  };
+
+  // Quick Insert Handler using selected translations
   const handleQuickInsert = async (forceNewSlide = false) => {
     if (isLoading) return;
     setIsLoading(true);
@@ -96,9 +236,11 @@ export default function QuickScriptureBar({
       const startV = Math.max(1, Math.min(fromVerse, toVerse));
       const endV = Math.max(fromVerse, toVerse);
 
-      // Fetch parallel bilingual text
+      // Fetch parallel bilingual text with user-selected Persian & English versions
       const res = await fetch(
-        `/api/bible/parallel?versionEn=BSB&versionFa=NMV&book=${encodeURIComponent(currentBook.book_id)}&chapter=${chapter}`
+        `/api/bible/parallel?versionEn=${encodeURIComponent(selectedVersionEn)}&versionFa=${encodeURIComponent(
+          selectedVersionFa
+        )}&book=${encodeURIComponent(currentBook.book_id)}&chapter=${chapter}`
       );
       if (!res.ok) throw new Error("Failed to fetch scripture");
 
@@ -106,9 +248,7 @@ export default function QuickScriptureBar({
       const parallelList: { verse_num: number; en: string; fa: string }[] = data.parallel || [];
 
       // Filter requested range
-      const selectedList = parallelList.filter(
-        (v) => v.verse_num >= startV && v.verse_num <= endV
-      );
+      const selectedList = parallelList.filter((v) => v.verse_num >= startV && v.verse_num <= endV);
 
       if (!selectedList.length) {
         const maxVerses = parallelList.length;
@@ -132,8 +272,8 @@ export default function QuickScriptureBar({
         verseNumbers: verseNumbers,
         textFa: selectedList.map((v) => v.fa || ""),
         textEn: selectedList.map((v) => v.en || ""),
-        translation: "NMV",
-        enTranslation: "BSB",
+        translation: selectedVersionFa,
+        enTranslation: selectedVersionEn,
       };
 
       let generatedPages: ScripturePage[] = [];
@@ -149,14 +289,14 @@ export default function QuickScriptureBar({
             verseNumbers: verseNumbers,
             textPrimary: selectedList.map((v) => v.fa || ""),
             textSecondary: selectedList.map((v) => v.en || ""),
-            translation: "NMV",
-            enTranslation: "BSB",
+            translation: selectedVersionFa,
+            enTranslation: selectedVersionEn,
             displayMode: "referenceList",
             primaryLanguage: "fa",
             glassPopupEnabled: true,
             referenceItems: [referenceItem],
-            popupLabelFa: `${currentBook.book_name_fa} ${chapter}:${versesLabel}`,
-            popupLabelEn: `${currentBook.book_name_en} ${chapter}:${versesLabel}`,
+            popupLabelFa: `${currentBook.book_name_fa} ${chapter}:${versesLabel} (${selectedVersionFa})`,
+            popupLabelEn: `${currentBook.book_name_en} ${chapter}:${versesLabel} (${selectedVersionEn})`,
           },
         ];
       } else if (slideMode === "perVerse") {
@@ -169,8 +309,8 @@ export default function QuickScriptureBar({
           verseNumbers: [v.verse_num],
           textPrimary: [v.fa || ""],
           textSecondary: [v.en || ""],
-          translation: "NMV",
-          enTranslation: "BSB",
+          translation: selectedVersionFa,
+          enTranslation: selectedVersionEn,
           displayMode: "list" as const,
           primaryLanguage: "fa",
           glassPopupEnabled: false,
@@ -183,8 +323,8 @@ export default function QuickScriptureBar({
               textEn: [v.en || ""],
             },
           ],
-          popupLabelFa: `${currentBook.book_name_fa} ${chapter}:${v.verse_num}`,
-          popupLabelEn: `${currentBook.book_name_en} ${chapter}:${v.verse_num}`,
+          popupLabelFa: `${currentBook.book_name_fa} ${chapter}:${v.verse_num} (${selectedVersionFa})`,
+          popupLabelEn: `${currentBook.book_name_en} ${chapter}:${v.verse_num} (${selectedVersionEn})`,
         }));
       } else {
         // perReference
@@ -198,27 +338,26 @@ export default function QuickScriptureBar({
             verseNumbers: verseNumbers,
             textPrimary: selectedList.map((v) => v.fa || ""),
             textSecondary: selectedList.map((v) => v.en || ""),
-            translation: "NMV",
-            enTranslation: "BSB",
+            translation: selectedVersionFa,
+            enTranslation: selectedVersionEn,
             displayMode: "list",
             primaryLanguage: "fa",
             glassPopupEnabled: true,
             referenceItems: [referenceItem],
-            popupLabelFa: `${currentBook.book_name_fa} ${chapter}:${versesLabel}`,
-            popupLabelEn: `${currentBook.book_name_en} ${chapter}:${versesLabel}`,
+            popupLabelFa: `${currentBook.book_name_fa} ${chapter}:${versesLabel} (${selectedVersionFa})`,
+            popupLabelEn: `${currentBook.book_name_en} ${chapter}:${versesLabel} (${selectedVersionEn})`,
           },
         ];
       }
 
-      // If requested to insert into the currently selected scripture slide
       if (!forceNewSlide && isCurrentSlideScripture && onInsertIntoActiveSlide) {
         onInsertIntoActiveSlide(referenceItem, generatedPages[0]);
       } else {
         onAddSlides(generatedPages);
         toast.success(
           isRTL
-            ? `✓ ${generatedPages.length} اسلاید از ${currentBook.book_name_fa} ${chapter}:${versesLabel} افزوده شد.`
-            : `✓ Added ${generatedPages.length} slide(s) from ${currentBook.book_name_en} ${chapter}:${versesLabel}.`
+            ? `✓ ${generatedPages.length} اسلاید از ${currentBook.book_name_fa} ${chapter}:${versesLabel} (${selectedVersionFa} / ${selectedVersionEn}) افزوده شد.`
+            : `✓ Added ${generatedPages.length} slide(s) from ${currentBook.book_name_en} ${chapter}:${versesLabel} (${selectedVersionFa}/${selectedVersionEn}).`
         );
       }
     } catch {
@@ -237,23 +376,405 @@ export default function QuickScriptureBar({
 
   return (
     <div
+      ref={containerRef}
       dir={isRTL ? "rtl" : "ltr"}
-      className={`relative bg-gradient-to-r from-slate-900/95 via-zinc-900/95 to-slate-900/95 border border-amber-500/30 shadow-[0_0_25px_rgba(245,158,11,0.08)] rounded-2xl p-2.5 flex flex-wrap items-center gap-2 text-white ${className}`}
+      className={`relative bg-gradient-to-r from-slate-950/95 via-zinc-900/95 to-slate-950/95 border border-amber-500/35 shadow-[0_0_30px_rgba(245,158,11,0.12)] rounded-2xl p-2.5 sm:p-3 flex flex-col gap-2.5 text-white ${className}`}
     >
-      {/* Title Badge */}
-      <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-300 font-black text-xs shrink-0 select-none shadow-[0_0_10px_rgba(245,158,11,0.15)]">
-        <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-        <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-          {isRTL ? "درج سریع آیه" : "Quick Verse"}
-        </span>
+      {/* ══════════════════════════════════════════════════════════════════
+          ردیف ۱ (قبل از درج آیه): تعیین کتاب و ترجمه‌های فارسی و انگلیسی
+          با قابلیت ستاره‌دار کردن (پیش‌فرض) برای هر یک
+          ══════════════════════════════════════════════════════════════════ */}
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/10 text-xs">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* نشان مشخص‌کننده بخش تنظیمات و پیش‌فرض‌ها */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-300 font-bold select-none">
+            <Languages className="w-3.5 h-3.5 text-amber-400" />
+            <span className={isRTL ? "font-[Vazirmatn]" : ""}>
+              {isRTL ? "کتاب و ترجمه‌ها:" : "Book & Translations:"}
+            </span>
+          </div>
+
+          {/* ۱. انتخاب کتاب و ستاره پیش‌فرض */}
+          <div className="relative">
+            <div className="flex items-center bg-black/60 border border-amber-400/50 hover:border-amber-400 rounded-xl overflow-hidden shadow-[0_0_12px_rgba(245,158,11,0.15)] transition-all">
+              <button
+                type="button"
+                onClick={() => {
+                  setBookDropdownOpen((prev) => !prev);
+                  setFaDropdownOpen(false);
+                  setEnDropdownOpen(false);
+                  setTimeout(() => bookInputRef.current?.focus(), 50);
+                }}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-white/5 transition text-amber-200 font-bold max-w-[140px] md:max-w-[170px]"
+                title={isRTL ? "انتخاب کتاب مقدس" : "Select Bible Book"}
+              >
+                <BookOpen className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span className={`truncate ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+                  {isRTL ? currentBook.book_name_fa : currentBook.book_name_en}
+                </span>
+                <ChevronDown className="w-3 h-3 text-amber-400/70 shrink-0" />
+              </button>
+
+              {/* دکمه ستاره کتاب انتخابی */}
+              <button
+                type="button"
+                onClick={(e) => handleToggleDefaultBook(e, currentBook.book_id)}
+                className={`p-1.5 border-r border-white/10 transition flex items-center justify-center ${
+                  currentBook.book_id === defaultBookId
+                    ? "bg-amber-500/20 text-amber-400 hover:bg-amber-500/30"
+                    : "text-zinc-500 hover:text-amber-300 hover:bg-white/5"
+                }`}
+                title={
+                  currentBook.book_id === defaultBookId
+                    ? isRTL
+                      ? "این کتاب، کتاب پیش‌فرض است (⭐)"
+                      : "This is the default book (⭐)"
+                    : isRTL
+                    ? "تنظیم این کتاب به عنوان پیش‌فرض"
+                    : "Set as default book"
+                }
+              >
+                <Star
+                  className={`w-3.5 h-3.5 ${
+                    currentBook.book_id === defaultBookId ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_6px_rgba(245,158,11,0.8)]" : ""
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* منوی دراپ‌داون کتاب‌ها با جستجو و ستاره */}
+            {bookDropdownOpen && (
+              <div className="absolute top-full mt-1.5 right-0 z-50 w-72 max-h-80 bg-zinc-950/98 backdrop-blur-2xl border border-amber-500/40 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 flex flex-col">
+                <input
+                  ref={bookInputRef}
+                  type="text"
+                  value={bookSearchQuery}
+                  onChange={(e) => setBookSearchQuery(e.target.value)}
+                  placeholder={isRTL ? "جستجوی کتاب... (مثال: یوحنا)" : "Search book... (e.g. John)"}
+                  className={`w-full bg-black/60 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-400 mb-2 ${
+                    isRTL ? "font-[Vazirmatn]" : ""
+                  }`}
+                />
+                <div className="overflow-y-auto flex-1 space-y-0.5 custom-scrollbar max-h-64">
+                  {filteredBooks.map((b) => {
+                    const isSelected = b.book_id === currentBook.book_id;
+                    const isDefault = b.book_id === defaultBookId;
+                    return (
+                      <div
+                        key={b.book_id}
+                        className={`w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                          isSelected ? "bg-amber-500/20 text-amber-300" : "text-zinc-300 hover:bg-white/10 hover:text-white"
+                        }`}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => handleSelectBook(b)}
+                          className="flex-1 flex items-center justify-between text-right truncate pl-2"
+                        >
+                          <span className={`truncate ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+                            {isRTL ? b.book_name_fa : b.book_name_en}
+                          </span>
+                          <span className="text-[10px] text-zinc-500 font-mono ml-2 shrink-0">
+                            {b.chapter_count} ch.
+                          </span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => handleToggleDefaultBook(e, b.book_id)}
+                          className={`p-1 rounded hover:bg-white/10 transition shrink-0 ${
+                            isDefault ? "text-amber-400" : "text-zinc-600 hover:text-amber-400"
+                          }`}
+                          title={
+                            isDefault
+                              ? isRTL
+                                ? "کتاب پیش‌فرض فعلی (⭐)"
+                                : "Current default book"
+                              : isRTL
+                              ? `ستاره‌دار کردن «${b.book_name_fa}» به عنوان پیش‌فرض`
+                              : `Set ${b.book_name_en} as default`
+                          }
+                        >
+                          <Star
+                            className={`w-3.5 h-3.5 ${
+                              isDefault ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_5px_rgba(245,158,11,0.8)]" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
+                    );
+                  })}
+                  {filteredBooks.length === 0 && (
+                    <div className="text-center py-4 text-xs text-zinc-500">
+                      {isRTL ? "کتابی با این نام یافت نشد" : "No books found"}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* ۲. انتخاب ترجمه فارسی و ستاره پیش‌فرض */}
+          <div className="relative">
+            <div className="flex items-center bg-black/60 border border-emerald-500/50 hover:border-emerald-400 rounded-xl overflow-hidden shadow-[0_0_12px_rgba(16,185,129,0.15)] transition-all">
+              <button
+                type="button"
+                onClick={() => {
+                  setFaDropdownOpen((prev) => !prev);
+                  setBookDropdownOpen(false);
+                  setEnDropdownOpen(false);
+                }}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-white/5 transition text-emerald-200 font-bold max-w-[150px] md:max-w-[190px]"
+                title={isRTL ? "انتخاب ترجمه فارسی" : "Select Persian Translation"}
+              >
+                <span className="text-[10px] px-1 py-0.5 bg-emerald-500/20 text-emerald-300 rounded font-mono font-black">
+                  FA
+                </span>
+                <span className={`truncate ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+                  {currentFa.nameFa}
+                </span>
+                <ChevronDown className="w-3 h-3 text-emerald-400/70 shrink-0" />
+              </button>
+
+              {/* دکمه ستاره ترجمه فارسی */}
+              <button
+                type="button"
+                onClick={(e) => handleToggleDefaultFa(e, currentFa.abbr)}
+                className={`p-1.5 border-r border-white/10 transition flex items-center justify-center ${
+                  currentFa.abbr === defaultVersionFa
+                    ? "bg-amber-500/20 text-amber-400 hover:bg-amber-500/30"
+                    : "text-zinc-500 hover:text-amber-300 hover:bg-white/5"
+                }`}
+                title={
+                  currentFa.abbr === defaultVersionFa
+                    ? isRTL
+                      ? "این ترجمه، پیش‌فرض فارسی است (⭐)"
+                      : "Default Persian translation"
+                    : isRTL
+                    ? "تنظیم این ترجمه به عنوان پیش‌فرض فارسی"
+                    : "Set as default Persian translation"
+                }
+              >
+                <Star
+                  className={`w-3.5 h-3.5 ${
+                    currentFa.abbr === defaultVersionFa
+                      ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_6px_rgba(245,158,11,0.8)]"
+                      : ""
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* دراپ‌داون ترجمه‌های فارسی */}
+            {faDropdownOpen && (
+              <div className="absolute top-full mt-1.5 right-0 z-50 w-72 max-h-80 bg-zinc-950/98 backdrop-blur-2xl border border-emerald-500/40 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 overflow-y-auto custom-scrollbar">
+                <div className="text-[11px] font-bold text-emerald-400 px-2 py-1 mb-1 border-b border-white/10 flex items-center justify-between">
+                  <span>{isRTL ? "ترجمه‌های معتبر فارسی" : "Persian Translations"}</span>
+                  <span className="text-[10px] text-zinc-400 font-normal">
+                    {isRTL ? "کلیک روی ⭐ = پیش‌فرض" : "Click ⭐ to set default"}
+                  </span>
+                </div>
+                {FA_TRANSLATIONS.map((ver) => {
+                  const isSelected = ver.abbr === selectedVersionFa;
+                  const isDefault = ver.abbr === defaultVersionFa;
+                  return (
+                    <div
+                      key={ver.abbr}
+                      className={`flex items-center justify-between p-2 rounded-xl transition-all ${
+                        isSelected ? "bg-emerald-500/20 text-emerald-200" : "hover:bg-white/5 text-zinc-300"
+                      }`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => handleSelectFa(ver.abbr)}
+                        className="flex-1 text-right truncate pl-2"
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] px-1 bg-emerald-500/20 text-emerald-300 rounded font-mono font-bold">
+                            {ver.abbr}
+                          </span>
+                          <span className={`text-xs font-bold ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+                            {ver.nameFa}
+                          </span>
+                        </div>
+                        <p className={`text-[10px] text-zinc-400 mt-0.5 truncate ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+                          {ver.descFa}
+                        </p>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => handleToggleDefaultFa(e, ver.abbr)}
+                        className={`p-1.5 rounded-lg hover:bg-white/10 transition shrink-0 ${
+                          isDefault ? "text-amber-400" : "text-zinc-600 hover:text-amber-400"
+                        }`}
+                        title={
+                          isDefault
+                            ? isRTL
+                              ? "ترجمه پیش‌فرض فعلی (⭐)"
+                              : "Current default"
+                            : isRTL
+                            ? `ستاره‌دار کردن «${ver.nameFa}» به عنوان پیش‌فرض`
+                            : `Set ${ver.abbr} as default`
+                        }
+                      >
+                        <Star
+                          className={`w-3.5 h-3.5 ${
+                            isDefault ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_5px_rgba(245,158,11,0.8)]" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* ۳. انتخاب ترجمه انگلیسی و ستاره پیش‌فرض */}
+          <div className="relative">
+            <div className="flex items-center bg-black/60 border border-blue-500/50 hover:border-blue-400 rounded-xl overflow-hidden shadow-[0_0_12px_rgba(59,130,246,0.15)] transition-all">
+              <button
+                type="button"
+                onClick={() => {
+                  setEnDropdownOpen((prev) => !prev);
+                  setBookDropdownOpen(false);
+                  setFaDropdownOpen(false);
+                }}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-white/5 transition text-blue-200 font-bold max-w-[150px] md:max-w-[190px]"
+                title={isRTL ? "انتخاب ترجمه انگلیسی" : "Select English Translation"}
+              >
+                <span className="text-[10px] px-1 py-0.5 bg-blue-500/20 text-blue-300 rounded font-mono font-black">
+                  EN
+                </span>
+                <span className="truncate">{currentEn.abbr}</span>
+                <ChevronDown className="w-3 h-3 text-blue-400/70 shrink-0" />
+              </button>
+
+              {/* دکمه ستاره ترجمه انگلیسی */}
+              <button
+                type="button"
+                onClick={(e) => handleToggleDefaultEn(e, currentEn.abbr)}
+                className={`p-1.5 border-r border-white/10 transition flex items-center justify-center ${
+                  currentEn.abbr === defaultVersionEn
+                    ? "bg-amber-500/20 text-amber-400 hover:bg-amber-500/30"
+                    : "text-zinc-500 hover:text-amber-300 hover:bg-white/5"
+                }`}
+                title={
+                  currentEn.abbr === defaultVersionEn
+                    ? isRTL
+                      ? "این ترجمه، پیش‌فرض انگلیسی است (⭐)"
+                      : "Default English translation"
+                    : isRTL
+                    ? "تنظیم این ترجمه به عنوان پیش‌فرض انگلیسی"
+                    : "Set as default English translation"
+                }
+              >
+                <Star
+                  className={`w-3.5 h-3.5 ${
+                    currentEn.abbr === defaultVersionEn
+                      ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_6px_rgba(245,158,11,0.8)]"
+                      : ""
+                  }`}
+                />
+              </button>
+            </div>
+
+            {/* دراپ‌داون ترجمه‌های انگلیسی */}
+            {enDropdownOpen && (
+              <div className="absolute top-full mt-1.5 right-0 z-50 w-72 max-h-80 bg-zinc-950/98 backdrop-blur-2xl border border-blue-500/40 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 overflow-y-auto custom-scrollbar">
+                <div className="text-[11px] font-bold text-blue-400 px-2 py-1 mb-1 border-b border-white/10 flex items-center justify-between">
+                  <span>{isRTL ? "ترجمه‌های انگلیسی" : "English Translations"}</span>
+                  <span className="text-[10px] text-zinc-400 font-normal">
+                    {isRTL ? "کلیک روی ⭐ = پیش‌فرض" : "Click ⭐ to set default"}
+                  </span>
+                </div>
+                {EN_TRANSLATIONS.map((ver) => {
+                  const isSelected = ver.abbr === selectedVersionEn;
+                  const isDefault = ver.abbr === defaultVersionEn;
+                  return (
+                    <div
+                      key={ver.abbr}
+                      className={`flex items-center justify-between p-2 rounded-xl transition-all ${
+                        isSelected ? "bg-blue-500/20 text-blue-200" : "hover:bg-white/5 text-zinc-300"
+                      }`}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => handleSelectEn(ver.abbr)}
+                        className="flex-1 text-right truncate pl-2"
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] px-1 bg-blue-500/20 text-blue-300 rounded font-mono font-bold">
+                            {ver.abbr}
+                          </span>
+                          <span className="text-xs font-bold">{ver.nameEn}</span>
+                        </div>
+                        <p className="text-[10px] text-zinc-400 mt-0.5 truncate">{ver.descEn}</p>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => handleToggleDefaultEn(e, ver.abbr)}
+                        className={`p-1.5 rounded-lg hover:bg-white/10 transition shrink-0 ${
+                          isDefault ? "text-amber-400" : "text-zinc-600 hover:text-amber-400"
+                        }`}
+                        title={
+                          isDefault
+                            ? isRTL
+                              ? "ترجمه پیش‌فرض فعلی (⭐)"
+                              : "Current default"
+                            : isRTL
+                            ? `ستاره‌دار کردن «${ver.abbr}» به عنوان پیش‌فرض`
+                            : `Set ${ver.abbr} as default`
+                        }
+                      >
+                        <Star
+                          className={`w-3.5 h-3.5 ${
+                            isDefault ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_5px_rgba(245,158,11,0.8)]" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* خلاصه پیش‌فرض‌های ستاره‌دار ذخیره شده */}
+        <div className="hidden lg:flex items-center gap-2 text-[11px] text-zinc-400">
+          <span className="flex items-center gap-1 text-amber-300/90 font-mono">
+            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+            <span className={isRTL ? "font-[Vazirmatn]" : ""}>
+              {isRTL ? "پیش‌فرض‌ها:" : "Defaults:"}
+            </span>
+            <span className="text-white font-bold">{defaultBookId}</span>
+            <span className="text-zinc-600">|</span>
+            <span className="text-emerald-300 font-bold">{defaultVersionFa}</span>
+            <span className="text-zinc-600">|</span>
+            <span className="text-blue-300 font-bold">{defaultVersionEn}</span>
+          </span>
+        </div>
       </div>
 
-      {/* ── كادر ۱: انتخاب کتاب (Book Box) ── */}
-      <div ref={dropdownRef} className="relative">
+      {/* ══════════════════════════════════════════════════════════════════
+          ردیف ۲: نوار درج سریع آیه (مطابق تصویر ارسالی با همگام‌سازی کامل)
+          ══════════════════════════════════════════════════════════════════ */}
+      <div className="flex flex-wrap items-center gap-2 text-white">
+        {/* Title Badge */}
+        <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-300 font-black text-xs shrink-0 select-none shadow-[0_0_10px_rgba(245,158,11,0.15)]">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+          <span className={isRTL ? "font-[Vazirmatn]" : ""}>
+            {isRTL ? "درج سریع آیه" : "Quick Verse"}
+          </span>
+        </div>
+
+        {/* ── كادر ۱: انتخاب کتاب و نمایش سریع ── */}
         <button
           type="button"
           onClick={() => {
             setBookDropdownOpen((prev) => !prev);
+            setFaDropdownOpen(false);
+            setEnDropdownOpen(false);
             setTimeout(() => bookInputRef.current?.focus(), 50);
           }}
           className="flex items-center justify-between gap-2 bg-black/60 hover:bg-black/80 border border-amber-400/60 rounded-xl px-3 py-1.5 text-xs md:text-sm font-bold transition-all shadow-[0_0_12px_rgba(245,158,11,0.2)] hover:border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400/50 min-w-[130px] md:min-w-[160px]"
@@ -264,188 +785,161 @@ export default function QuickScriptureBar({
             <span className={`text-amber-200 truncate ${isRTL ? "font-[Vazirmatn]" : ""}`}>
               {isRTL ? currentBook.book_name_fa : currentBook.book_name_en}
             </span>
+            {currentBook.book_id === defaultBookId && (
+              <Star className="w-3 h-3 fill-amber-400 text-amber-400 shrink-0" />
+            )}
           </div>
           <ChevronDown className="w-3.5 h-3.5 text-amber-400/70 shrink-0" />
         </button>
 
-        {/* Dropdown Menu */}
-        {bookDropdownOpen && (
-          <div className="absolute top-full mt-1.5 right-0 z-50 w-64 max-h-80 bg-zinc-950/95 backdrop-blur-xl border border-amber-500/40 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 flex flex-col">
-            <input
-              ref={bookInputRef}
-              type="text"
-              value={bookSearchQuery}
-              onChange={(e) => setBookSearchQuery(e.target.value)}
-              placeholder={isRTL ? "جستجوی نام کتاب..." : "Search book name..."}
-              className={`w-full bg-black/50 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-400/60 mb-2 ${
-                isRTL ? "font-[Vazirmatn]" : ""
-              }`}
-            />
-            <div className="overflow-y-auto flex-1 space-y-0.5 custom-scrollbar max-h-60">
-              {filteredBooks.map((b) => (
-                <button
-                  key={b.book_id}
-                  type="button"
-                  onClick={() => handleSelectBook(b)}
-                  className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all text-right ${
-                    b.book_id === currentBook.book_id
-                      ? "bg-amber-500/20 text-amber-300"
-                      : "text-zinc-300 hover:bg-white/10 hover:text-white"
-                  }`}
-                >
-                  <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-                    {isRTL ? b.book_name_fa : b.book_name_en}
-                  </span>
-                  <span className="text-[10px] text-zinc-500 font-mono">
-                    {b.chapter_count} ch.
-                  </span>
-                </button>
-              ))}
-              {filteredBooks.length === 0 && (
-                <div className="text-center py-4 text-xs text-zinc-500">
-                  {isRTL ? "کتابی یافت نشد" : "No book found"}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
+        {/* ── كادر ۲: شماره باب (Chapter Box) ── */}
+        <div className="flex items-center gap-1.5 bg-black/60 border border-amber-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(245,158,11,0.2)] focus-within:ring-2 focus-within:ring-amber-400/50">
+          <span className={`text-xs text-amber-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+            {isRTL ? "باب:" : "Ch:"}
+          </span>
+          <input
+            type="number"
+            min={1}
+            max={currentBook.chapter_count}
+            value={chapter}
+            onChange={(e) => {
+              const v = parseInt(e.target.value, 10);
+              setChapter(isNaN(v) ? 1 : Math.max(1, Math.min(currentBook.chapter_count, v)));
+            }}
+            onKeyDown={handleKeyDown}
+            className="w-10 bg-transparent text-center text-amber-200 font-mono font-bold text-sm outline-none"
+          />
+          <span className="text-[10px] text-zinc-500 font-mono select-none">
+            /{currentBook.chapter_count}
+          </span>
+        </div>
 
-      {/* ── كادر ۲: شماره باب (Chapter Box) ── */}
-      <div className="flex items-center gap-1.5 bg-black/60 border border-amber-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(245,158,11,0.2)] focus-within:ring-2 focus-within:ring-amber-400/50">
-        <span className={`text-xs text-amber-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
-          {isRTL ? "باب:" : "Ch:"}
-        </span>
-        <input
-          type="number"
-          min={1}
-          max={currentBook.chapter_count}
-          value={chapter}
-          onChange={(e) => {
-            const v = parseInt(e.target.value, 10);
-            setChapter(isNaN(v) ? 1 : Math.max(1, Math.min(currentBook.chapter_count, v)));
-          }}
-          onKeyDown={handleKeyDown}
-          className="w-10 bg-transparent text-center text-amber-200 font-mono font-bold text-sm outline-none"
-        />
-        <span className="text-[10px] text-zinc-500 font-mono select-none">
-          /{currentBook.chapter_count}
-        </span>
-      </div>
+        {/* ── كادر ۳: از آیه (From Verse Box) ── */}
+        <div className="flex items-center gap-1.5 bg-black/60 border border-blue-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(59,130,246,0.2)] focus-within:ring-2 focus-within:ring-blue-400/50">
+          <span className={`text-xs text-blue-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+            {isRTL ? "از آیه:" : "From:"}
+          </span>
+          <input
+            type="number"
+            min={1}
+            max={200}
+            value={fromVerse}
+            onChange={(e) => {
+              const v = parseInt(e.target.value, 10);
+              const val = isNaN(v) ? 1 : Math.max(1, v);
+              setFromVerse(val);
+              if (val > toVerse) setToVerse(val);
+            }}
+            onKeyDown={handleKeyDown}
+            className="w-12 bg-transparent text-center text-blue-200 font-mono font-bold text-sm outline-none"
+          />
+        </div>
 
-      {/* ── كادر ۳: از آیه (From Verse Box) ── */}
-      <div className="flex items-center gap-1.5 bg-black/60 border border-blue-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(59,130,246,0.2)] focus-within:ring-2 focus-within:ring-blue-400/50">
-        <span className={`text-xs text-blue-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
-          {isRTL ? "از آیه:" : "From:"}
-        </span>
-        <input
-          type="number"
-          min={1}
-          max={200}
-          value={fromVerse}
-          onChange={(e) => {
-            const v = parseInt(e.target.value, 10);
-            const val = isNaN(v) ? 1 : Math.max(1, v);
-            setFromVerse(val);
-            if (val > toVerse) setToVerse(val);
-          }}
-          onKeyDown={handleKeyDown}
-          className="w-12 bg-transparent text-center text-blue-200 font-mono font-bold text-sm outline-none"
-        />
-      </div>
+        {/* ── كادر ۴: تا آیه (To Verse Box) ── */}
+        <div className="flex items-center gap-1.5 bg-black/60 border border-blue-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(59,130,246,0.2)] focus-within:ring-2 focus-within:ring-blue-400/50">
+          <span className={`text-xs text-blue-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
+            {isRTL ? "تا آیه:" : "To:"}
+          </span>
+          <input
+            type="number"
+            min={1}
+            max={200}
+            value={toVerse}
+            onChange={(e) => {
+              const v = parseInt(e.target.value, 10);
+              setToVerse(isNaN(v) ? fromVerse : Math.max(fromVerse, v));
+            }}
+            onKeyDown={handleKeyDown}
+            className="w-12 bg-transparent text-center text-blue-200 font-mono font-bold text-sm outline-none"
+          />
+        </div>
 
-      {/* ── كادر ۴: تا آیه (To Verse Box) ── */}
-      <div className="flex items-center gap-1.5 bg-black/60 border border-blue-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(59,130,246,0.2)] focus-within:ring-2 focus-within:ring-blue-400/50">
-        <span className={`text-xs text-blue-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
-          {isRTL ? "تا آیه:" : "To:"}
-        </span>
-        <input
-          type="number"
-          min={1}
-          max={200}
-          value={toVerse}
-          onChange={(e) => {
-            const v = parseInt(e.target.value, 10);
-            setToVerse(isNaN(v) ? fromVerse : Math.max(fromVerse, v));
-          }}
-          onKeyDown={handleKeyDown}
-          className="w-12 bg-transparent text-center text-blue-200 font-mono font-bold text-sm outline-none"
-        />
-      </div>
+        {/* ── كادر ۵: نحوه چیدمان اسلایدها (Mode Box) ── */}
+        <div className="hidden sm:flex items-center bg-black/50 border border-white/10 rounded-xl p-0.5 text-xs">
+          <button
+            type="button"
+            onClick={() => setSlideMode("perVerse")}
+            className={`px-2 py-1 rounded-lg font-bold transition-all ${
+              slideMode === "perVerse"
+                ? "bg-amber-500/30 text-amber-300 shadow-sm"
+                : "text-zinc-400 hover:text-white"
+            } ${isRTL ? "font-[Vazirmatn]" : ""}`}
+            title={isRTL ? "هر آیه در یک اسلاید جداگانه" : "1 Slide Per Verse"}
+          >
+            {isRTL ? "تک‌آیه" : "Per Verse"}
+          </button>
+          <button
+            type="button"
+            onClick={() => setSlideMode("single")}
+            className={`px-2 py-1 rounded-lg font-bold transition-all ${
+              slideMode === "single"
+                ? "bg-amber-500/30 text-amber-300 shadow-sm"
+                : "text-zinc-400 hover:text-white"
+            } ${isRTL ? "font-[Vazirmatn]" : ""}`}
+            title={isRTL ? "تمام آیات در یک اسلاید باهم" : "All In 1 Slide"}
+          >
+            {isRTL ? "کل بازه" : "Combined"}
+          </button>
+        </div>
 
-      {/* ── كادر ۵: نحوه چیدمان اسلایدها (Mode Box) ── */}
-      <div className="hidden sm:flex items-center bg-black/50 border border-white/10 rounded-xl p-0.5 text-xs">
+        {/* ── دکمه اکشن اصلی: درج در اسلاید (Action Button) ── */}
         <button
           type="button"
-          onClick={() => setSlideMode("perVerse")}
-          className={`px-2 py-1 rounded-lg font-bold transition-all ${
-            slideMode === "perVerse"
-              ? "bg-amber-500/30 text-amber-300 shadow-sm"
-              : "text-zinc-400 hover:text-white"
-          } ${isRTL ? "font-[Vazirmatn]" : ""}`}
-          title={isRTL ? "هر آیه در یک اسلاید جداگانه" : "1 Slide Per Verse"}
-        >
-          {isRTL ? "تک‌آیه" : "Per Verse"}
-        </button>
-        <button
-          type="button"
-          onClick={() => setSlideMode("single")}
-          className={`px-2 py-1 rounded-lg font-bold transition-all ${
-            slideMode === "single"
-              ? "bg-amber-500/30 text-amber-300 shadow-sm"
-              : "text-zinc-400 hover:text-white"
-          } ${isRTL ? "font-[Vazirmatn]" : ""}`}
-          title={isRTL ? "تمام آیات در یک اسلاید باهم" : "All In 1 Slide"}
-        >
-          {isRTL ? "کل بازه" : "Combined"}
-        </button>
-      </div>
-
-      {/* ── دکمه اکشن اصلی: درج در اسلاید (Action Button) ── */}
-      <button
-        type="button"
-        onClick={() => handleQuickInsert(false)}
-        disabled={isLoading}
-        className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_18px_rgba(245,158,11,0.4)] transition-all cursor-pointer disabled:opacity-50 select-none shrink-0"
-        title={isCurrentSlideScripture ? (isRTL ? "افزودن این آیه به اسلاید جاری انتخابی" : "Add to Current Slide") : (isRTL ? "درج در اسلاید جدید (Enter)" : "Add to New Slide")}
-      >
-        {isLoading ? (
-          <Loader2 className="w-4 h-4 animate-spin text-black" />
-        ) : (
-          <Zap className="w-4 h-4 text-black fill-black" />
-        )}
-        <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-          {isCurrentSlideScripture
-            ? (isRTL ? "افزودن در این اسلاید (Enter)" : "Add into This Slide")
-            : (isRTL ? "درج در اسلاید (Enter)" : "Add to Slide")}
-        </span>
-      </button>
-
-      {/* ── دکمه افزودن به عنوان اسلاید جدید (در صورت انتخاب اسلاید فعلی) ── */}
-      {isCurrentSlideScripture && (
-        <button
-          type="button"
-          onClick={() => handleQuickInsert(true)}
+          onClick={() => handleQuickInsert(false)}
           disabled={isLoading}
-          className="flex items-center gap-1 px-3 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl border border-white/20 transition cursor-pointer select-none shrink-0"
-          title={isRTL ? "افزودن به عنوان یک اسلاید کاملاً جدید" : "Create as New Slide"}
+          className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_18px_rgba(245,158,11,0.4)] transition-all cursor-pointer disabled:opacity-50 select-none shrink-0"
+          title={
+            isCurrentSlideScripture
+              ? isRTL
+                ? "افزودن این آیه به اسلاید جاری انتخابی"
+                : "Add to Current Slide"
+              : isRTL
+              ? "درج در اسلاید جدید (Enter)"
+              : "Add to Slide"
+          }
         >
-          <Plus className="w-3.5 h-3.5 text-amber-400" />
+          {isLoading ? (
+            <Loader2 className="w-4 h-4 animate-spin text-black" />
+          ) : (
+            <Zap className="w-4 h-4 text-black fill-black" />
+          )}
           <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-            {isRTL ? "اسلاید جدید" : "New Slide"}
+            {isCurrentSlideScripture
+              ? isRTL
+                ? "افزودن در این اسلاید (Enter)"
+                : "Add into This Slide"
+              : isRTL
+              ? "درج در اسلاید (Enter)"
+              : "Add to Slide"}
           </span>
         </button>
-      )}
 
-      {/* ── دکمه مرور کامل (Open Full Modal/Selector) ── */}
-      <button
-        type="button"
-        onClick={onOpenFullSelector}
-        className="p-2 text-zinc-400 hover:text-white hover:bg-white/10 rounded-xl transition-all ml-auto shrink-0"
-        title={isRTL ? "باز کردن صفحه کامل کاوش و انتخاب آیه" : "Open Full Bible Explorer"}
-      >
-        <SlidersHorizontal className="w-4 h-4" />
-      </button>
+        {/* ── دکمه افزودن به عنوان اسلاید جدید (در صورت انتخاب اسلاید فعلی) ── */}
+        {isCurrentSlideScripture && (
+          <button
+            type="button"
+            onClick={() => handleQuickInsert(true)}
+            disabled={isLoading}
+            className="flex items-center gap-1 px-3 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl border border-white/20 transition cursor-pointer select-none shrink-0"
+            title={isRTL ? "افزودن به عنوان یک اسلاید کاملاً جدید" : "Create as New Slide"}
+          >
+            <Plus className="w-3.5 h-3.5 text-amber-400" />
+            <span className={isRTL ? "font-[Vazirmatn]" : ""}>
+              {isRTL ? "اسلاید جدید" : "New Slide"}
+            </span>
+          </button>
+        )}
+
+        {/* ── دکمه مرور کامل (Open Full Modal/Selector) ── */}
+        <button
+          type="button"
+          onClick={onOpenFullSelector}
+          className="p-2 text-zinc-400 hover:text-white hover:bg-white/10 rounded-xl transition-all ml-auto shrink-0"
+          title={isRTL ? "باز کردن صفحه کامل کاوش و انتخاب آیه" : "Open Full Bible Explorer"}
+        >
+          <SlidersHorizontal className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }
