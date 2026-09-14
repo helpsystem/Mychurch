@@ -41,8 +41,31 @@ export async function GET(req: Request) {
     }
 
     // Layer 0: Direct Authentic Local JSON for chosen translation (NMV, TPV, PCB, MOZ, BSB, NIV, ESV, KJV, etc.)
-    const localFa = getLocalBibleChapter(versionFa, bookId, chapterNum);
-    const localEn = getLocalBibleChapter(versionEn, bookId, chapterNum);
+    let localFa = getLocalBibleChapter(versionFa, bookId, chapterNum);
+    let localEn = getLocalBibleChapter(versionEn, bookId, chapterNum);
+
+    let isFaFallback = false;
+    let fallbackNoticeFa: string | null = null;
+    if (!localFa || localFa.verses.length === 0) {
+      // Version doesn't have this book (e.g. PES/BBK only have NT, but requested book is OT like Genesis)
+      const fallback = getLocalBibleChapter("NMV", bookId, chapterNum) || getLocalBibleChapter("PCB", bookId, chapterNum);
+      if (fallback && fallback.verses.length > 0) {
+        localFa = fallback;
+        isFaFallback = true;
+        fallbackNoticeFa = `ترجمه «${versionFa}» برای این کتاب متن ندارد (فقط شامل عهد جدید است). متن به صورت هوشمند از ترجمه «${fallback.version_name || "هزارۀ نو"}» جایگزین شد.`;
+      }
+    }
+
+    let isEnFallback = false;
+    let fallbackNoticeEn: string | null = null;
+    if (!localEn || localEn.verses.length === 0) {
+      const fallback = getLocalBibleChapter("BSB", bookId, chapterNum) || getLocalBibleChapter("NIV", bookId, chapterNum);
+      if (fallback && fallback.verses.length > 0) {
+        localEn = fallback;
+        isEnFallback = true;
+        fallbackNoticeEn = `Translation "${versionEn}" is not available for this book. Showing text from "${fallback.version_name || "BSB"}".`;
+      }
+    }
 
     if (localFa && localEn && (localFa.verses.length > 0 || localEn.verses.length > 0)) {
       const faMap = new Map(localFa.verses.map((v) => [v.verse_num, v.text]));
@@ -60,6 +83,12 @@ export async function GET(req: Request) {
       const payload = {
         versionEn: localEn.version_abbr || versionEn,
         versionFa: localFa.version_abbr || versionFa,
+        requestedVersionEn: versionEn,
+        requestedVersionFa: versionFa,
+        isFaFallback,
+        isEnFallback,
+        fallbackNoticeFa,
+        fallbackNoticeEn,
         book: bookId.toUpperCase(),
         chapter: chapterNum,
         parallel,

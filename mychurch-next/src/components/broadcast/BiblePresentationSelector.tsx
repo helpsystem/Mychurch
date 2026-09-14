@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { BookOpen, Check, ChevronLeft, ChevronRight, Columns2, List, Loader2, Music2, Pause, Play, Search, Trash2, X, Zap } from "lucide-react";
+import { BookOpen, Check, ChevronLeft, ChevronRight, Columns2, List, Loader2, Music2, Pause, Play, Search, Trash2, X, Zap, Star, Sparkles } from "lucide-react";
 import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
 import SelectedVersesModal from "./SelectedVersesModal";
+import BibleStepWizard from "./BibleStepWizard";
 import { toast } from "sonner";
 
 interface BibleVersion {
@@ -12,6 +13,7 @@ interface BibleVersion {
   name: string;
   language: string;
   hasAudio?: boolean;
+  scope?: string;
 }
 
 interface BookItem {
@@ -118,9 +120,27 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
   const [versions, setVersions] = useState<BibleVersion[]>([]);
   const [books, setBooks] = useState<BookItem[]>([]);
-  const [selectedVersionEn, setSelectedVersionEn] = useState(() => load("bp_ver_en", "BSB"));
-  const [selectedVersionFa, setSelectedVersionFa] = useState(() => load("bp_ver_fa", "NMV"));
+  const [defaultVersionEn, setDefaultVersionEn] = useState(() => load("bp_default_ver_en", "BSB"));
+  const [defaultVersionFa, setDefaultVersionFa] = useState(() => load("bp_default_ver_fa", "NMV"));
+  const [selectedVersionEn, setSelectedVersionEn] = useState(() => load("bp_ver_en", load("bp_default_ver_en", "BSB")));
+  const [selectedVersionFa, setSelectedVersionFa] = useState(() => load("bp_ver_fa", load("bp_default_ver_fa", "NMV")));
+  const [fallbackNotice, setFallbackNotice] = useState<string | null>(null);
+  const [isWizardModeOpen, setIsWizardModeOpen] = useState(false);
   const [selectedBookId, setSelectedBookId] = useState("GEN");
+
+  const isCurrentVersionsDefault = selectedVersionFa === defaultVersionFa && selectedVersionEn === defaultVersionEn;
+
+  const handleToggleDefaultVersions = () => {
+    setDefaultVersionEn(selectedVersionEn);
+    setDefaultVersionFa(selectedVersionFa);
+    persist("bp_default_ver_en", selectedVersionEn);
+    persist("bp_default_ver_fa", selectedVersionFa);
+    toast.success(
+      isRTL
+        ? `✓ ترجمه پیش‌فرض فارسی به «${selectedVersionFa}» و انگلیسی به «${selectedVersionEn}» تنظیم شد.`
+        : `✓ Default set: ${selectedVersionFa} (FA) & ${selectedVersionEn} (EN)`
+    );
+  };
 
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [bookSearch, setBookSearch] = useState("");
@@ -198,14 +218,14 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         setVersions(items);
 
         if (!items.some((version) => version.abbr === selectedVersionEn)) {
-          const nextEn = items.find((version) => version.abbr === "BSB") || items.find((version) => version.language !== "fa");
+          const nextEn = items.find((version) => version.abbr === defaultVersionEn) || items.find((version) => version.abbr === "BSB") || items.find((version) => version.language !== "fa");
           if (nextEn) {
             setSelectedVersionEn(nextEn.abbr);
             persist("bp_ver_en", nextEn.abbr);
           }
         }
         if (!items.some((version) => version.abbr === selectedVersionFa)) {
-          const nextFa = items.find((version) => version.abbr === "NMV") || items.find((version) => version.language === "fa");
+          const nextFa = items.find((version) => version.abbr === defaultVersionFa) || items.find((version) => version.abbr === "NMV") || items.find((version) => version.language === "fa");
           if (nextFa) {
             setSelectedVersionFa(nextFa.abbr);
             persist("bp_ver_fa", nextFa.abbr);
@@ -248,6 +268,12 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       setAudioTracks(lang === "fa" ? (parallelData.audioFa || []) : (parallelData.audioEn || []));
       setSelectedTrackIdx(0);
 
+      if (parallelData.isFaFallback && parallelData.fallbackNoticeFa) {
+        setFallbackNotice(parallelData.fallbackNoticeFa);
+      } else {
+        setFallbackNotice(null);
+      }
+
       if (readingMode === "parallel") {
         setVerses([]);
         setFaVerses([]);
@@ -256,6 +282,9 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         const response = await fetch(`/api/bible/chapter?version=${selectedVersionFa}&book=${currentBook.book_id}&chapter=${selectedChapter}`);
         const data = await response.json();
         setFaVerses(data.verses || []);
+        if (data.isFallback && data.fallbackNotice) {
+          setFallbackNotice(data.fallbackNotice);
+        }
         setVerses([]);
         setHeadings([]);
       } else {
@@ -263,6 +292,9 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         const data = await response.json();
         setVerses(data.verses || []);
         setHeadings(data.headings || []);
+        if (data.isFallback && data.fallbackNotice) {
+          setFallbackNotice(data.fallbackNotice);
+        }
         setFaVerses([]);
       }
     } catch {
@@ -271,6 +303,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       setFaVerses([]);
       setHeadings([]);
       setAudioTracks([]);
+      setFallbackNotice(null);
     } finally {
       setLoading(false);
     }
@@ -843,13 +876,84 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
           <button onClick={nextChapter} disabled={!currentBook || selectedChapter >= currentBook.chapter_count} className="p-2 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label="Next chapter"><ChevronRight className="w-4 h-4" /></button>
         </div>
 
-        <select value={selectedVersionEn} onChange={(event) => { setSelectedVersionEn(event.target.value); persist("bp_ver_en", event.target.value); }} aria-label="English Bible version" className={`${VERSION_SELECT_STYLE.en} ${VERSION_SELECT_STYLE.base} border-white/10 focus:border-blue-500/50`}>
-          {englishVersions.map((version) => <option key={version.abbr} value={version.abbr} title={version.name} className="bg-zinc-900 text-white">{version.hasAudio ? "🔊 " : ""}{version.abbr}</option>)}
+        {/* English version select */}
+        <select
+          value={selectedVersionEn}
+          onChange={(event) => {
+            setSelectedVersionEn(event.target.value);
+            persist("bp_ver_en", event.target.value);
+          }}
+          aria-label="English Bible version"
+          className={`${VERSION_SELECT_STYLE.en} ${VERSION_SELECT_STYLE.base} border-white/10 focus:border-blue-500/50`}
+        >
+          {englishVersions.map((version) => (
+            <option key={version.abbr} value={version.abbr} title={version.name} className="bg-zinc-900 text-white">
+              {version.hasAudio ? "🔊 " : ""}
+              {version.abbr}
+              {version.abbr === defaultVersionEn ? " ⭐" : ""}
+            </option>
+          ))}
         </select>
 
-        <select value={selectedVersionFa} onChange={(event) => { setSelectedVersionFa(event.target.value); persist("bp_ver_fa", event.target.value); }} aria-label="Farsi Bible version" className={`font-[Vazirmatn] ${VERSION_SELECT_STYLE.fa} ${VERSION_SELECT_STYLE.base} truncate ${persianVersions.length === 0 ? VERSION_SELECT_STYLE.empty : VERSION_SELECT_STYLE.normal}`} dir="rtl">
-          {persianVersions.length === 0 ? <option value="" className="bg-zinc-900 text-white">— ترجمه‌ای یافت نشد —</option> : persianVersions.map((version) => <option key={version.abbr} value={version.abbr} className="bg-zinc-900 text-white">{version.name} {version.hasAudio ? "🔊" : ""}</option>)}
+        {/* Farsi version select */}
+        <select
+          value={selectedVersionFa}
+          onChange={(event) => {
+            setSelectedVersionFa(event.target.value);
+            persist("bp_ver_fa", event.target.value);
+          }}
+          aria-label="Farsi Bible version"
+          className={`font-[Vazirmatn] ${VERSION_SELECT_STYLE.fa} ${VERSION_SELECT_STYLE.base} truncate ${persianVersions.length === 0 ? VERSION_SELECT_STYLE.empty : VERSION_SELECT_STYLE.normal}`}
+          dir="rtl"
+        >
+          {persianVersions.length === 0 ? (
+            <option value="" className="bg-zinc-900 text-white">— ترجمه‌ای یافت نشد —</option>
+          ) : (
+            persianVersions.map((version) => {
+              const isNTOnly = version.scope === "NT" || version.abbr === "PES" || version.abbr === "BBK";
+              const isCurrentBookOT = currentBook && currentBook.testament === "OT";
+              return (
+                <option key={version.abbr} value={version.abbr} className="bg-zinc-900 text-white">
+                  {version.name} {version.hasAudio ? "🔊" : ""}
+                  {version.abbr === defaultVersionFa ? " ⭐ (پیش‌فرض)" : ""}
+                  {isNTOnly && isCurrentBookOT ? " ⚠️ (فقط عهد جدید)" : ""}
+                </option>
+              );
+            })
+          )}
         </select>
+
+        {/* Set as Default Button */}
+        <button
+          type="button"
+          onClick={handleToggleDefaultVersions}
+          className={`px-2.5 py-2 rounded-xl border text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 cursor-pointer ${
+            isCurrentVersionsDefault
+              ? "bg-amber-500/20 border-amber-400/50 text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.25)]"
+              : "bg-white/5 border-white/10 text-zinc-400 hover:text-white hover:bg-white/10"
+          }`}
+          title={
+            isCurrentVersionsDefault
+              ? (isRTL ? `ترجمه‌های پیش‌فرض فعال: ${defaultVersionFa} و ${defaultVersionEn}` : `Default active: ${defaultVersionFa} & ${defaultVersionEn}`)
+              : (isRTL ? `تنظیم ${selectedVersionFa} و ${selectedVersionEn} به عنوان پیش‌فرض همیشگی` : `Set ${selectedVersionFa} & ${selectedVersionEn} as permanent default`)
+          }
+        >
+          <Star className={`w-3.5 h-3.5 ${isCurrentVersionsDefault ? "fill-amber-400 text-amber-400" : ""}`} />
+          <span className="hidden xl:inline text-[11px] font-[Vazirmatn]">
+            {isCurrentVersionsDefault ? (isRTL ? "پیش‌فرض" : "Default") : (isRTL ? "ذخیره پیش‌فرض" : "Set Default")}
+          </span>
+        </button>
+
+        {/* Switch to Step Wizard Button */}
+        <button
+          type="button"
+          onClick={() => setIsWizardModeOpen(true)}
+          className="flex items-center gap-1.5 bg-gradient-to-r from-purple-600/30 via-indigo-600/30 to-purple-600/30 hover:from-purple-600/50 hover:to-indigo-600/50 border border-purple-500/40 text-purple-200 px-3 py-2 rounded-xl text-xs font-bold transition shadow shrink-0 font-[Vazirmatn] cursor-pointer"
+          title={isRTL ? "باز کردن دستیار گام‌به‌گام هوشمند آیات" : "Open Step-by-Step Bible Wizard"}
+        >
+          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <span className="hidden sm:inline">{isRTL ? "دستیار گام‌به‌گام" : "Step Wizard"}</span>
+        </button>
 
         <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1 shrink-0" dir="ltr">
           <button onClick={() => { setReadingMode("en"); persist("bp_reading_mode", "en"); }} className={`px-2.5 md:px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-bold transition-all ${readingMode === "en" ? "bg-blue-500 text-white shadow" : "text-slate-400 hover:text-white"}`}>EN</button>
@@ -923,6 +1027,28 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             <p className="font-[Vazirmatn] mt-1.5 text-base text-slate-400" dir="rtl">
               {currentBook.book_name_fa} — {currentBook.book_id === 'PSA' ? 'مزمور' : 'باب'} {selectedChapter}
             </p>
+          </div>
+        )}
+
+        {/* Fallback Notice Banner */}
+        {fallbackNotice && (
+          <div className="max-w-5xl mx-auto px-4 mt-3 mb-1 animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="bg-amber-500/15 border border-amber-500/40 text-amber-200 rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs" dir={isRTL ? "rtl" : "ltr"}>
+              <div className="flex items-center gap-2.5">
+                <span className="text-base shrink-0">⚠️</span>
+                <span className="font-[Vazirmatn] leading-relaxed">{fallbackNotice}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedVersionFa(defaultVersionFa);
+                  persist("bp_ver_fa", defaultVersionFa);
+                }}
+                className="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 active:scale-95 text-black font-black rounded-xl transition cursor-pointer text-xs shrink-0 font-[Vazirmatn]"
+              >
+                {isRTL ? `تغییر به ترجمه پیش‌فرض (${defaultVersionFa})` : `Switch to Default (${defaultVersionFa})`}
+              </button>
+            </div>
           </div>
         )}
 
@@ -1346,6 +1472,28 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         onClear={() => setSelectedVerses([])}
         lang={lang}
       />
+
+      {/* Bible Step Wizard - Step by step interactive assistant */}
+      {isWizardModeOpen && (
+        <BibleStepWizard
+          onClose={() => setIsWizardModeOpen(false)}
+          onAddSlides={(slides) => {
+            setIsWizardModeOpen(false);
+            onAddSlides(slides);
+          }}
+          lang={lang}
+          versions={versions}
+          books={books}
+          selectedVersionEn={selectedVersionEn}
+          selectedVersionFa={selectedVersionFa}
+          setSelectedVersionEn={(v) => { setSelectedVersionEn(v); persist("bp_ver_en", v); }}
+          setSelectedVersionFa={(v) => { setSelectedVersionFa(v); persist("bp_ver_fa", v); }}
+          fontFa={fontFa}
+          fontEn={fontEn}
+          fontSize={fontSize}
+          onSwitchToFreeReader={() => setIsWizardModeOpen(false)}
+        />
+      )}
 
     </div>
   );

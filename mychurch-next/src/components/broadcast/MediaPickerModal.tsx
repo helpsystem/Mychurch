@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { X, Search, FileVideo, Image as ImageIcon, Music, Upload, CheckCircle2, Link2, Eye } from "lucide-react";
+import { X, Search, FileVideo, Image as ImageIcon, Music, Upload, CheckCircle2, Link2, Eye, LayoutGrid, Film } from "lucide-react";
 import { listMediaFiles, MediaAsset } from "@/actions/media";
 import { AddMediaLinkModal } from "@/components/admin/media/AddMediaLinkModal";
+import AccordionMediaPreview, { AccordionMediaItem } from "./AccordionMediaPreview";
 
 export interface MediaPickerModalProps {
     isOpen: boolean;
@@ -20,6 +21,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
     const [sortBy, setSortBy] = useState<"newest" | "oldest" | "nameAsc" | "nameDesc" | "sizeDesc">("newest");
     const [uploading, setUploading] = useState(false);
     const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
+    const [viewMode, setViewMode] = useState<"grid" | "accordion">("grid");
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Hover preview state before selecting
@@ -262,6 +264,26 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                             <option value="nameDesc">{translate.nameDesc}</option>
                         </select>
 
+                        {/* View Mode Toggle (Grid / Accordion Frames) */}
+                        <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg p-0.5">
+                            <button
+                                type="button"
+                                onClick={() => setViewMode("grid")}
+                                title={isRTL ? "نمایش شبکه‌ای (Grid)" : "Grid View"}
+                                className={`p-1.5 rounded-md transition-colors ${viewMode === "grid" ? "bg-indigo-600 text-white shadow" : "text-slate-400 hover:text-white"}`}
+                            >
+                                <LayoutGrid className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setViewMode("accordion")}
+                                title={isRTL ? "نمایش فریم‌های آکاردئونی (Spotlight Accordion)" : "Accordion Frames"}
+                                className={`p-1.5 rounded-md transition-colors ${viewMode === "accordion" ? "bg-indigo-600 text-white shadow" : "text-slate-400 hover:text-white"}`}
+                            >
+                                <Film className="w-3.5 h-3.5" />
+                            </button>
+                        </div>
+
                         {/* Add via Link Button */}
                         <button
                             type="button"
@@ -291,7 +313,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                     </div>
                 </div>
 
-                {/* Gallery Grid */}
+                {/* Gallery Content Area */}
                 <div className="flex-1 overflow-y-auto p-4 bg-slate-950" onScroll={handleTileMouseLeave}>
                     {isLoading ? (
                         <div className="flex items-center justify-center h-full">
@@ -303,6 +325,29 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                         <div className="flex flex-col items-center justify-center h-full text-slate-500">
                             <ImageIcon className="w-16 h-16 opacity-10 mb-4" />
                             <p className={isRTL ? 'font-[Vazirmatn]' : ''}>{translate.empty}</p>
+                        </div>
+                    ) : viewMode === "accordion" ? (
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between px-1 text-xs text-slate-400">
+                                <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
+                                    {isRTL ? 'روی هر فریم بروید تا بزرگ‌نمایی و فوکوس روان را مشاهده کنید یا کلیک کنید تا انتخاب شود:' : 'Hover over any frame to inspect or click to select:'}
+                                </span>
+                            </div>
+                            <AccordionMediaPreview
+                                items={filteredAndSortedAssets.map(a => ({
+                                    url: a.url,
+                                    name: a.name,
+                                    type: a.type,
+                                    size: a.size,
+                                    isExternalLink: a.isExternalLink
+                                }))}
+                                onSelect={(item) => {
+                                    onSelect(item.url, item.type as any);
+                                    onClose();
+                                }}
+                                isRTL={isRTL}
+                                height={380}
+                            />
                         </div>
                     ) : (
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">

@@ -131,6 +131,9 @@ export interface MediaDisplayConfig {
     objectFit: 'cover' | 'contain' | 'fill' | 'none';
     borderRadius?: number;
     opacity?: number;
+    scale?: number; // Zoom level (e.g. 1 = 100%, 1.5 = 150%, 0.5 = 50%)
+    panX?: number;  // Pan X offset in percentage (-100 to 100)
+    panY?: number;  // Pan Y offset in percentage (-100 to 100)
 }
 
 export interface SlideContentMedia {

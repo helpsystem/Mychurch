@@ -11,6 +11,7 @@ import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart, Che
 import { QRCodeSVG } from "qrcode.react";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { LordsPrayerSlide } from "./luxury/LordsPrayerSlide";
+import InteractiveMediaFrame from "./InteractiveMediaFrame";
 
 const isVideoUrl = (url: string | undefined): boolean => {
     if (!url) return false;
@@ -1090,14 +1091,44 @@ export function SlideRenderer({
 
             case SlideType.MEDIA: {
                 const content = slide.content as SlideContentMedia;
+                const displayConfig = content.displayConfig;
+
+                // If customized width/height or position specified
+                const widthPercent = displayConfig?.width ?? 100;
+                const heightPercent = displayConfig?.height ?? 100;
+                const position = displayConfig?.position || 'center';
+
+                let positionClasses = 'items-center justify-center';
+                if (position === 'top-left') positionClasses = 'items-start justify-start';
+                else if (position === 'top-right') positionClasses = 'items-start justify-end';
+                else if (position === 'bottom-left') positionClasses = 'items-end justify-start';
+                else if (position === 'bottom-right') positionClasses = 'items-end justify-end';
+
                 return (
-                    <div className="w-full h-full bg-black flex items-center justify-center relative overflow-hidden">
-                        {content.mediaType === 'image' && (
-                            <img src={content.url} key={content.url} crossOrigin="anonymous" className="w-full h-full object-contain" alt="Media" />
-                        )}
-                        {content.mediaType === 'video' && (
-                            <video key={content.url} src={content.url} crossOrigin="anonymous" className="w-full h-full object-contain" autoPlay={content.isAutoPlay} loop={content.isLoop} muted={isRemotePreview} />
-                        )}
+                    <div className={cn("w-full h-full bg-black flex relative overflow-hidden", positionClasses)}>
+                        <div
+                            style={{
+                                width: `${widthPercent}%`,
+                                height: `${heightPercent}%`,
+                                ...(position === 'custom' && {
+                                    position: 'absolute',
+                                    left: `${displayConfig?.customX ?? 50}%`,
+                                    top: `${displayConfig?.customY ?? 50}%`,
+                                    transform: 'translate(-50%, -50%)',
+                                })
+                            }}
+                            className="relative flex items-center justify-center overflow-hidden"
+                        >
+                            <InteractiveMediaFrame
+                                url={content.url}
+                                type={content.mediaType === 'video' ? 'video' : 'image'}
+                                config={displayConfig}
+                                isEditable={false}
+                                autoPlay={content.isAutoPlay}
+                                loop={content.isLoop}
+                                className="w-full h-full"
+                            />
+                        </div>
                     </div>
                 );
             }

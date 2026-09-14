@@ -15,23 +15,23 @@ const FARSI_ABBRS = new Set([
 // Full catalog of Persian & English Bible Translations (YouVersion & Native)
 const STATIC_VERSIONS = [
   // ── English Translations ──
-  { version_id: 1,   abbr: "BSB",  name: "Berean Standard Bible (BSB)",             language: "en", hasAudio: true },
-  { version_id: 2,   abbr: "NIV",  name: "New International Version (NIV)",         language: "en", hasAudio: true },
-  { version_id: 3,   abbr: "ESV",  name: "English Standard Version (ESV)",          language: "en", hasAudio: true },
-  { version_id: 4,   abbr: "KJV",  name: "King James Version (KJV)",                language: "en", hasAudio: true },
-  { version_id: 5,   abbr: "NLT",  name: "New Living Translation (NLT)",            language: "en", hasAudio: true },
-  { version_id: 6,   abbr: "NASB", name: "New American Standard Bible (NASB)",      language: "en", hasAudio: false },
-  { version_id: 7,   abbr: "CSB",  name: "Christian Standard Bible (CSB)",          language: "en", hasAudio: false },
+  { version_id: 1,   abbr: "BSB",  name: "Berean Standard Bible (BSB)",             language: "en", hasAudio: true,  scope: "full" },
+  { version_id: 2,   abbr: "NIV",  name: "New International Version (NIV)",         language: "en", hasAudio: true,  scope: "full" },
+  { version_id: 3,   abbr: "ESV",  name: "English Standard Version (ESV)",          language: "en", hasAudio: true,  scope: "full" },
+  { version_id: 4,   abbr: "KJV",  name: "King James Version (KJV)",                language: "en", hasAudio: true,  scope: "full" },
+  { version_id: 5,   abbr: "NLT",  name: "New Living Translation (NLT)",            language: "en", hasAudio: true,  scope: "full" },
+  { version_id: 6,   abbr: "NASB", name: "New American Standard Bible (NASB)",      language: "en", hasAudio: false, scope: "full" },
+  { version_id: 7,   abbr: "CSB",  name: "Christian Standard Bible (CSB)",          language: "en", hasAudio: false, scope: "full" },
 
   // ── Farsi (Persian) Translations ──
-  { version_id: 118, abbr: "NMV",    name: "هزارۀ نو (ترجمه استاندارد معاصر)",     language: "fa", hasAudio: true  },
-  { version_id: 119, abbr: "TPV",    name: "کتاب مقدس ترجمه تفسیری (مژده)",        language: "fa", hasAudio: true  },
-  { version_id: 120, abbr: "PCB",    name: "ترجمه قدیم (فاضل‌خان همدانی)",         language: "fa", hasAudio: true  },
-  { version_id: 121, abbr: "MOZ",    name: "مژده برای عصر جدید (فارسی)",           language: "fa", hasAudio: false },
-  { version_id: 122, abbr: "FARSIO", name: "متن اصیل فارسی کهن",                  language: "fa", hasAudio: false },
-  { version_id: 123, abbr: "BBK",    name: "کتاب مقدس (ترجمه بیگدلی)",             language: "fa", hasAudio: false },
-  { version_id: 124, abbr: "RCPV",   name: "کتاب مقدس (ترجمه ون‌دایک / عهد قدیم)", language: "fa", hasAudio: false },
-  { version_id: 125, abbr: "PES",    name: "پشیتا / سریانی فارسی (PES)",           language: "fa", hasAudio: false },
+  { version_id: 118, abbr: "NMV",    name: "هزارۀ نو (ترجمه استاندارد معاصر)",       language: "fa", hasAudio: true,  scope: "full" },
+  { version_id: 119, abbr: "TPV",    name: "کتاب مقدس ترجمه تفسیری (مژده)",          language: "fa", hasAudio: true,  scope: "full" },
+  { version_id: 120, abbr: "PCB",    name: "ترجمه قدیم (فاضل‌خان همدانی)",           language: "fa", hasAudio: true,  scope: "full" },
+  { version_id: 121, abbr: "MOZ",    name: "مژده برای عصر جدید (فارسی)",             language: "fa", hasAudio: false, scope: "full" },
+  { version_id: 122, abbr: "FARSIO", name: "متن اصیل فارسی کهن",                    language: "fa", hasAudio: false, scope: "full" },
+  { version_id: 124, abbr: "RCPV",   name: "کتاب مقدس (ترجمه ون‌دایک / عهد قدیم)",   language: "fa", hasAudio: false, scope: "full" },
+  { version_id: 123, abbr: "BBK",    name: "کتاب مقدس ترجمه بیگدلی (فقط عهد جدید)",  language: "fa", hasAudio: false, scope: "NT" },
+  { version_id: 125, abbr: "PES",    name: "پشیتا / سریانی فارسی (فقط عهد جدید)",    language: "fa", hasAudio: false, scope: "NT" },
 ];
 
 function normalizeAbbr(abbr: string): string {

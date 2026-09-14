@@ -28,6 +28,7 @@ import WorshipSongSelector from './WorshipSongSelector';
 import SlidePreviewModal from './SlidePreviewModal';
 import { MediaPickerModal } from './MediaPickerModal';
 import SlideFontControls from './SlideFontControls';
+import InteractiveMediaFrame from './InteractiveMediaFrame';
 
 interface SlideBuilderProps {
   session: BroadcastSession;
@@ -1811,12 +1812,42 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </button>
             </div>
 
-            {/* Preview */}
+            {/* Interactive Preview & Positioning (Drag, Pan, Zoom, Fit) */}
             {mediaUrl && (
-              <div className="mb-4 bg-slate-900 rounded-lg p-4">
-                {mediaType === 'image' && <img src={mediaUrl} alt="Preview" className="max-h-40 mx-auto rounded" />}
-                {mediaType === 'video' && <video src={mediaUrl} className="max-h-40 mx-auto rounded" controls />}
-                {mediaType === 'audio' && <audio src={mediaUrl} className="w-full" controls />}
+              <div className="mb-4 bg-slate-950/80 border border-indigo-500/30 rounded-xl p-3 shadow-xl">
+                <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className={`text-xs font-bold text-slate-200 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'پیش‌نمایش زنده تعاملی (درگ، زوم، فیت)' : 'Interactive Live Preview (Pan, Zoom, Fit)'}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-slate-400 font-mono">
+                    {mediaType.toUpperCase()}
+                  </span>
+                </div>
+
+                {/* Interactive Media Container */}
+                {mediaType === 'audio' ? (
+                  <div className="py-4">
+                    <audio src={mediaUrl} className="w-full" controls />
+                  </div>
+                ) : (
+                  <div className="w-full h-64 bg-black/90 rounded-lg overflow-hidden border border-white/5 relative">
+                    <InteractiveMediaFrame
+                      url={mediaUrl}
+                      type={mediaType}
+                      config={mediaDisplayConfig}
+                      onChangeConfig={(newCfg) => setMediaDisplayConfig(newCfg)}
+                      isEditable={true}
+                      isRTL={isRTL}
+                      showToolbarByDefault={true}
+                      autoPlay={mediaAutoplay}
+                      loop={mediaLoop}
+                      className="w-full h-full"
+                    />
+                  </div>
+                )}
               </div>
             )}
 
@@ -1842,18 +1873,18 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </label>
             </div>
 
-            {/* === Display Settings (ابعاد و موقعیت تصویر) === */}
-            {mediaType === 'image' && (
+            {/* === Display Settings (ابعاد، موقعیت و کادر تصویر/ویدیو) === */}
+            {(mediaType === 'image' || mediaType === 'video') && (
               <div className="mb-4 p-4 bg-slate-900/50 rounded-xl border border-slate-700">
                 <h4 className={`text-sm font-bold text-white mb-3 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  📐 {isRTL ? 'تنظیمات نمایش' : 'Display Settings'}
+                  📐 {isRTL ? 'تنظیمات اندازه و کادر نمایش' : 'Display & Framing Settings'}
                 </h4>
 
                 <div className="grid grid-cols-2 gap-4">
                   {/* Width */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'عرض:' : 'Width:'} {mediaDisplayConfig.width}%
+                      {isRTL ? 'عرض کادر:' : 'Width:'} {mediaDisplayConfig.width}%
                     </label>
                     <input
                       type="range"
@@ -1869,7 +1900,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   {/* Height */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'ارتفاع:' : 'Height:'} {mediaDisplayConfig.height}%
+                      {isRTL ? 'ارتفاع کادر:' : 'Height:'} {mediaDisplayConfig.height}%
                     </label>
                     <input
                       type="range"
@@ -1885,7 +1916,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   {/* Position */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'موقعیت:' : 'Position:'}
+                      {isRTL ? 'موقعیت در اسلاید:' : 'Position:'}
                     </label>
                     <select
                       value={mediaDisplayConfig.position}
@@ -1905,7 +1936,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   {/* Object Fit */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'برش تصویر:' : 'Fit Mode:'}
+                      {isRTL ? 'حالت فیت (Fit):' : 'Fit Mode:'}
                     </label>
                     <select
                       value={mediaDisplayConfig.objectFit}
@@ -1913,8 +1944,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 py-1.5 text-white text-sm"
                       aria-label={isRTL ? 'برش تصویر' : 'Fit Mode'}
                     >
-                      <option value="cover">{isRTL ? 'پر کردن (Cover)' : 'Cover'}</option>
                       <option value="contain">{isRTL ? 'کامل (Contain)' : 'Contain'}</option>
+                      <option value="cover">{isRTL ? 'پر کردن (Cover)' : 'Cover'}</option>
                       <option value="fill">{isRTL ? 'کشیدن (Fill)' : 'Fill'}</option>
                       <option value="none">{isRTL ? 'بدون تغییر' : 'None'}</option>
                     </select>

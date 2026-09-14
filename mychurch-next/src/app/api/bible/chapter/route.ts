@@ -107,11 +107,36 @@ export async function GET(req: Request) {
     }
 
     // ── Layer 0: Direct Authentic Local JSON for selected version ───────────
-    const localCh = getLocalBibleChapter(versionAbbr, bookId, chapterNum);
+    let localCh = getLocalBibleChapter(versionAbbr, bookId, chapterNum);
+    let isFallback = false;
+    let fallbackNotice: string | null = null;
+
+    if (!localCh || localCh.verses.length === 0) {
+      const isFarsi = ["PES", "BBK", "MOZ", "FARSIO", "RCPV", "NMV", "TPV", "PCB", "POV"].includes(versionAbbr);
+      if (isFarsi) {
+        const fallback = getLocalBibleChapter("NMV", bookId, chapterNum) || getLocalBibleChapter("PCB", bookId, chapterNum);
+        if (fallback && fallback.verses.length > 0) {
+          localCh = fallback;
+          isFallback = true;
+          fallbackNotice = `ترجمه «${versionAbbr}» برای این کتاب موجود نیست (فقط شامل عهد جدید است). متن از «${fallback.version_name || "هزارۀ نو"}» نمایش داده شده است.`;
+        }
+      } else {
+        const fallback = getLocalBibleChapter("BSB", bookId, chapterNum) || getLocalBibleChapter("NIV", bookId, chapterNum);
+        if (fallback && fallback.verses.length > 0) {
+          localCh = fallback;
+          isFallback = true;
+          fallbackNotice = `Translation "${versionAbbr}" not available for this book. Showing text from "${fallback.version_name || "BSB"}".`;
+        }
+      }
+    }
+
     if (localCh && localCh.verses.length > 0) {
       const payload = {
         version: localCh.version_abbr,
         versionName: localCh.version_name,
+        requestedVersion: versionAbbr,
+        isFallback,
+        fallbackNotice,
         book: bookId,
         chapter: chapterNum,
         verses: localCh.verses,
