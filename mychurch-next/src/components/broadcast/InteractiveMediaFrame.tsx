@@ -10,9 +10,50 @@ import {
   Volume2,
   VolumeX,
   Play,
-  Pause
+  Pause,
+  Youtube,
+  ExternalLink
 } from 'lucide-react';
 import { MediaDisplayConfig } from '@/types/broadcast';
+
+export function extractYoutubeId(urlOrId: string | undefined | null): string | null {
+  if (!urlOrId) return null;
+  const trimmed = urlOrId.trim();
+
+  // Direct 11-char ID
+  if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  // URLs (watch?v=, youtu.be/, shorts/, embed/, live/)
+  const match = trimmed.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/|live\/))([a-zA-Z0-9_-]{11})/i
+  );
+  return match ? match[1] : null;
+}
+
+export function isYoutubeUrl(urlOrId: string | undefined | null): boolean {
+  return Boolean(extractYoutubeId(urlOrId));
+}
+
+export function getYoutubeEmbedUrl(
+  urlOrId: string,
+  options: {
+    autoplay?: boolean;
+    mute?: boolean;
+    loop?: boolean;
+    controls?: boolean;
+  } = {}
+): string {
+  const id = extractYoutubeId(urlOrId) || urlOrId;
+  const autoplay = options.autoplay ? '1' : '0';
+  const mute = options.mute !== false ? '1' : '0';
+  const loop = options.loop ? '1' : '0';
+  const controls = options.controls !== false ? '1' : '0';
+  const playlist = options.loop ? `&playlist=${id}` : '';
+
+  return `https://www.youtube-nocookie.com/embed/${id}?autoplay=${autoplay}&mute=${mute}&controls=${controls}&loop=${loop}${playlist}&enablejsapi=1&rel=0&modestbranding=1`;
+}
 
 interface InteractiveMediaFrameProps {
   url: string;
@@ -74,6 +115,11 @@ export default function InteractiveMediaFrame({
   const [showToolbar, setShowToolbar] = useState(showToolbarByDefault);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [isMuted, setIsMuted] = useState(true);
+
+  // YouTube detection
+  const isYoutube = isYoutubeUrl(url);
+  const youtubeId = isYoutube ? extractYoutubeId(url) : null;
+  const [isDirectInteraction, setIsDirectInteraction] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -256,7 +302,7 @@ export default function InteractiveMediaFrame({
           />
         )}
 
-        {type === 'video' && (
+        {type === 'video' && !isYoutube && (
           <video
             ref={videoRef}
             src={url}
@@ -269,6 +315,30 @@ export default function InteractiveMediaFrame({
             className="w-full h-full pointer-events-none select-none"
           />
         )}
+
+        {type === 'video' && isYoutube && youtubeId && (
+          <div className="w-full h-full relative flex items-center justify-center">
+            <iframe
+              key={`${youtubeId}-${isMuted}`}
+              src={getYoutubeEmbedUrl(youtubeId, {
+                autoplay: autoPlay,
+                mute: isMuted,
+                loop: loop,
+                controls: true
+              })}
+              title={alt || "YouTube video player"}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 0,
+                pointerEvents: isEditable && !isDirectInteraction ? 'none' : 'auto',
+              }}
+              className="w-full h-full"
+            />
+          </div>
+        )}
       </div>
 
       {/* Interactive Controls Overlay for Editable Mode */}
@@ -276,27 +346,79 @@ export default function InteractiveMediaFrame({
         <>
           {/* Header Action / Quick Toggle */}
           <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-auto z-30">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/10 text-white text-[11px] shadow-lg">
-              <Move className="w-3 h-3 text-indigo-400 animate-pulse" />
-              <span className="font-[Vazirmatn]">
-                {isRTL ? 'درگ برای جابجایی کادر' : 'Drag to pan'}
-              </span>
-              <span className="text-[10px] text-slate-400 font-mono px-1 bg-white/10 rounded">
-                {Math.round(scale * 100)}%
-              </span>
+            <div className="flex items-center gap-1.5">
+              {isYoutube ? (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-600/90 backdrop-blur-md text-white text-[11px] font-bold shadow-lg">
+                  <Youtube className="w-3.5 h-3.5" />
+                  <span>YouTube</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/10 text-white text-[11px] shadow-lg">
+                  <Move className="w-3 h-3 text-indigo-400 animate-pulse" />
+                  <span className="font-[Vazirmatn]">
+                    {isRTL ? 'درگ برای جابجایی کادر' : 'Drag to pan'}
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-mono px-1 bg-white/10 rounded">
+                    {Math.round(scale * 100)}%
+                  </span>
+                </div>
+              )}
+
+              {isYoutube && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsDirectInteraction(!isDirectInteraction);
+                  }}
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-[Vazirmatn] font-bold shadow-lg border transition ${
+                    isDirectInteraction
+                      ? 'bg-emerald-600 text-white border-emerald-400'
+                      : 'bg-black/75 text-slate-200 border-white/10 hover:bg-black/90'
+                  }`}
+                  title={isRTL ? (isDirectInteraction ? 'سوییچ به حالت درگ کادر' : 'سوییچ به حالت کلیک و پخش ویدیو') : 'Toggle Interactive/Drag mode'}
+                >
+                  {isDirectInteraction ? (
+                    <>
+                      <Move className="w-3 h-3" />
+                      <span>{isRTL ? 'حالت درگ کادر' : 'Pan Mode'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Play className="w-3 h-3 text-emerald-400" />
+                      <span>{isRTL ? 'تست و پخش ویدیو' : 'Play Video'}</span>
+                    </>
+                  )}
+                </button>
+              )}
             </div>
 
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowToolbar(!showToolbar);
-              }}
-              title={isRTL ? 'تنظیمات کادر و زوم' : 'Frame Controls'}
-              className="p-1.5 rounded-lg bg-black/75 hover:bg-black/90 backdrop-blur-md border border-white/10 text-slate-200 hover:text-white shadow-lg transition-colors"
-            >
-              <Sliders className="w-3.5 h-3.5" />
-            </button>
+            <div className="flex items-center gap-1.5">
+              {isYoutube && (
+                <a
+                  href={`https://www.youtube.com/watch?v=${youtubeId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  title={isRTL ? 'باز کردن در وبسایت یوتیوب' : 'Open in YouTube'}
+                  className="p-1.5 rounded-lg bg-black/75 hover:bg-black/90 backdrop-blur-md border border-white/10 text-slate-200 hover:text-white shadow-lg transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowToolbar(!showToolbar);
+                }}
+                title={isRTL ? 'تنظیمات کادر و زوم' : 'Frame Controls'}
+                className="p-1.5 rounded-lg bg-black/75 hover:bg-black/90 backdrop-blur-md border border-white/10 text-slate-200 hover:text-white shadow-lg transition-colors"
+              >
+                <Sliders className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
 
           {/* Floating Controls Bar (Bottom) */}
@@ -319,13 +441,13 @@ export default function InteractiveMediaFrame({
               {/* Zoom Slider */}
               <input
                 type="range"
-                min="0.5"
-                max="2.5"
-                step="0.05"
+                min={0.4}
+                max={3}
+                step={0.05}
                 value={scale}
                 onChange={(e) => handleZoomSlider(parseFloat(e.target.value))}
-                className="w-16 sm:w-20 accent-indigo-500 cursor-pointer"
                 title={`Zoom: ${Math.round(scale * 100)}%`}
+                className="w-16 sm:w-20 accent-indigo-500 cursor-pointer"
               />
 
               {/* Zoom In */}
@@ -341,7 +463,7 @@ export default function InteractiveMediaFrame({
               <div className="w-[1px] h-4 bg-white/20" />
 
               {/* Fit Modes */}
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 font-[Vazirmatn]">
                 <button
                   type="button"
                   onClick={() => handleFitChange('contain')}
@@ -352,7 +474,7 @@ export default function InteractiveMediaFrame({
                       : 'hover:bg-white/10 text-slate-400 hover:text-white'
                   }`}
                 >
-                  {isRTL ? 'کامل' : 'Contain'}
+                  {isRTL ? 'کامل' : 'Fit'}
                 </button>
                 <button
                   type="button"
@@ -382,8 +504,8 @@ export default function InteractiveMediaFrame({
 
               <div className="w-[1px] h-4 bg-white/20" />
 
-              {/* Video specific controls if video */}
-              {type === 'video' && (
+              {/* Video specific controls if standard video */}
+              {type === 'video' && !isYoutube && (
                 <>
                   <button
                     type="button"
@@ -400,6 +522,22 @@ export default function InteractiveMediaFrame({
                     className="p-1.5 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
                   >
                     {isMuted ? <VolumeX className="w-3.5 h-3.5 text-amber-400" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-400" />}
+                  </button>
+                  <div className="w-[1px] h-4 bg-white/20" />
+                </>
+              )}
+
+              {/* YouTube specific toolbar controls */}
+              {type === 'video' && isYoutube && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setIsMuted(!isMuted)}
+                    title={isMuted ? 'صدا را باز کن (Unmute)' : 'بی‌صدا (Mute)'}
+                    className="p-1.5 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition-colors flex items-center gap-1"
+                  >
+                    {isMuted ? <VolumeX className="w-3.5 h-3.5 text-amber-400" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-400" />}
+                    <span className="text-[10px] font-[Vazirmatn]">{isMuted ? 'بی‌صدا' : 'صدا'}</span>
                   </button>
                   <div className="w-[1px] h-4 bg-white/20" />
                 </>

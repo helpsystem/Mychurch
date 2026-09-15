@@ -11,10 +11,11 @@ import { Megaphone, MapPin, Calendar, Clock, BarChart3, PieChart, LineChart, Che
 import { QRCodeSVG } from "qrcode.react";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { LordsPrayerSlide } from "./luxury/LordsPrayerSlide";
-import InteractiveMediaFrame from "./InteractiveMediaFrame";
+import InteractiveMediaFrame, { extractYoutubeId, isYoutubeUrl } from "./InteractiveMediaFrame";
 
 const isVideoUrl = (url: string | undefined): boolean => {
     if (!url) return false;
+    if (isYoutubeUrl(url)) return true;
     const cleanUrl = url.split('?')[0].toLowerCase();
     return cleanUrl.endsWith('.mp4') || cleanUrl.endsWith('.webm') || cleanUrl.endsWith('.ogg') || cleanUrl.endsWith('.mov') || cleanUrl.includes('video');
 };
@@ -356,7 +357,15 @@ export function SlideRenderer({
                         {/* Dynamic Background */}
                         {opts?.showBackground !== false && !isTransparent && (
                             <div className="absolute inset-0 -z-10 overflow-hidden">
-                                {opts?.backgroundUrl && isVideoUrl(opts.backgroundUrl) ? (
+                                {opts?.backgroundUrl && extractYoutubeId(opts.backgroundUrl) ? (
+                                    <iframe
+                                        key={opts.backgroundUrl}
+                                        src={`https://www.youtube-nocookie.com/embed/${extractYoutubeId(opts.backgroundUrl)}?autoplay=1&mute=1&loop=1&playlist=${extractYoutubeId(opts.backgroundUrl)}&controls=0&rel=0&modestbranding=1`}
+                                        className="w-full h-full object-cover scale-125 pointer-events-none border-0"
+                                        style={{ opacity: opts.backgroundOpacity ? opts.backgroundOpacity / 100 : 0.6 }}
+                                        allow="autoplay"
+                                    />
+                                ) : opts?.backgroundUrl && isVideoUrl(opts.backgroundUrl) ? (
                                     <video
                                         key={opts.backgroundUrl}
                                         src={opts.backgroundUrl}

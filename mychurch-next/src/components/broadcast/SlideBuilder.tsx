@@ -20,7 +20,7 @@ import {
 import {
   BookOpen, Music, FileImage, Video, Plus, GripVertical, Upload,
   PieChart, BarChart, LineChart, Activity,
-  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall, Eye, Heart, QrCode
+  Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall, Eye, Heart, QrCode, Youtube
 } from 'lucide-react';
 import VerseGridPicker from './VerseGridPicker';
 import ScriptureSelector from './ScriptureSelector';
@@ -28,7 +28,7 @@ import WorshipSongSelector from './WorshipSongSelector';
 import SlidePreviewModal from './SlidePreviewModal';
 import { MediaPickerModal } from './MediaPickerModal';
 import SlideFontControls from './SlideFontControls';
-import InteractiveMediaFrame from './InteractiveMediaFrame';
+import InteractiveMediaFrame, { extractYoutubeId, isYoutubeUrl } from './InteractiveMediaFrame';
 
 interface SlideBuilderProps {
   session: BroadcastSession;
@@ -1101,13 +1101,35 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </p>
             </div>
           )}
-          {slide.type === SlideType.MEDIA && (
-            <div className="text-center">
-              {(slide.content as SlideContentMedia).mediaType === 'image' && <FileImage className="w-6 h-6 text-blue-400 mx-auto" />}
-              {(slide.content as SlideContentMedia).mediaType === 'video' && <Video className="w-6 h-6 text-purple-400 mx-auto" />}
-              {(slide.content as SlideContentMedia).mediaType === 'audio' && <Mic className="w-6 h-6 text-green-400 mx-auto" />}
-            </div>
-          )}
+          {slide.type === SlideType.MEDIA && (() => {
+            const mediaContent = slide.content as SlideContentMedia;
+            const ytId = extractYoutubeId(mediaContent?.url);
+            if (ytId) {
+              return (
+                <div className="w-full h-full relative flex items-center justify-center">
+                  <img
+                    src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`}
+                    alt="YouTube"
+                    className="w-full h-full object-cover rounded opacity-60 absolute inset-0"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 rounded z-10 p-1">
+                    <Youtube className="w-5 h-5 text-red-500 drop-shadow-md" />
+                    <span className="text-[8px] text-white font-bold truncate max-w-full font-[Vazirmatn] mt-0.5">
+                      {mediaContent.title || 'یوتیوب'}
+                    </span>
+                  </div>
+                </div>
+              );
+            }
+            return (
+              <div className="text-center">
+                {mediaContent.mediaType === 'image' && <FileImage className="w-6 h-6 text-blue-400 mx-auto" />}
+                {mediaContent.mediaType === 'video' && <Video className="w-6 h-6 text-purple-400 mx-auto" />}
+                {mediaContent.mediaType === 'audio' && <Mic className="w-6 h-6 text-green-400 mx-auto" />}
+              </div>
+            );
+          })()}
           {slide.type === SlideType.ANNOUNCEMENT && (
             <div className="text-center">
               <Megaphone className="w-6 h-6 text-green-400 mx-auto mb-1" />
@@ -1779,17 +1801,62 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
             {/* Or URL */}
             <div className="mb-4">
-              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {t.fileUrl}
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label className={`text-sm text-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                  {t.fileUrl}
+                </label>
+                <span className="text-[11px] text-slate-400 font-[Vazirmatn]">
+                  {isRTL ? 'پشتیبانی کامل از لینک‌های یوتیوب (YouTube) و فایل‌های مدیا' : 'Supports YouTube links & direct media files'}
+                </span>
+              </div>
               <input
                 type="text"
                 value={mediaUrl}
-                onChange={(e) => setMediaUrl(e.target.value)}
-                placeholder="https://..."
-                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setMediaUrl(val);
+                  if (extractYoutubeId(val)) {
+                    setMediaType('video');
+                  }
+                }}
+                placeholder="https://www.youtube.com/watch?v=... یا لینک مستقیم"
+                className="w-full bg-slate-700 border border-slate-600 focus:border-indigo-500 rounded-lg px-3 py-2 text-white outline-none"
                 aria-label={t.fileUrl}
               />
+
+              {/* YouTube Detection Banner */}
+              {extractYoutubeId(mediaUrl) && (() => {
+                const ytId = extractYoutubeId(mediaUrl);
+                return (
+                  <div className="mt-2.5 flex items-center justify-between p-3 rounded-xl bg-red-950/40 border border-red-500/40 text-red-200 shadow-lg">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white shrink-0 shadow-md">
+                        <Youtube className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-bold text-white font-[Vazirmatn]">
+                            {isRTL ? 'ویدیوی یوتیوب شناسایی شد' : 'YouTube Video Detected'}
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-red-600/50 text-white">
+                            {ytId}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-red-300/90 font-[Vazirmatn] mt-0.5">
+                          {isRTL ? 'ویدیو آماده پخش در مانیتور کنسول و پروژکتور سالن است.' : 'Ready to stream in console & projector.'}
+                        </p>
+                      </div>
+                    </div>
+                    {ytId && (
+                      <img
+                        src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`}
+                        alt="YouTube Poster"
+                        className="w-16 h-10 object-cover rounded-lg border border-red-500/30 shadow shrink-0"
+                      />
+                    )}
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Asset Library Trigger */}

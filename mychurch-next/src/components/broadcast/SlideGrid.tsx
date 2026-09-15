@@ -17,8 +17,9 @@ import {
 import { cn } from "@/lib/utils";
 import { 
     BookOpen, Music, FileImage, Video, Mic, 
-    Megaphone, Edit3, PieChart, PhoneCall, Heart 
+    Megaphone, Edit3, PieChart, PhoneCall, Heart, Youtube
 } from "lucide-react";
+import { extractYoutubeId } from "./InteractiveMediaFrame";
 
 export function SlideGrid() {
     const { t } = useLanguage();
@@ -167,25 +168,49 @@ export function SlideGrid() {
                                         )}
                                     </div>
                                 )}
-                                {slide.type === SlideType.MEDIA && (
-                                    <div className="w-full h-full relative flex items-center justify-center">
-                                        {(slide.content as SlideContentMedia).url && (slide.content as SlideContentMedia).mediaType === 'image' ? (
-                                            <img 
-                                                src={(slide.content as SlideContentMedia).url} 
-                                                alt="Media Preview" 
-                                                className="w-full h-full object-cover rounded opacity-40 absolute inset-0"
-                                                onError={(e) => {
-                                                    e.currentTarget.style.display = 'none';
-                                                }}
-                                            />
-                                        ) : null}
-                                        <div className="absolute inset-0 flex items-center justify-center bg-black/25 rounded z-10">
-                                            {(slide.content as SlideContentMedia).mediaType === 'image' && <FileImage className="w-4 h-4 text-blue-400" />}
-                                            {(slide.content as SlideContentMedia).mediaType === 'video' && <Video className="w-4 h-4 text-purple-400" />}
-                                            {(slide.content as SlideContentMedia).mediaType === 'audio' && <Mic className="w-4 h-4 text-green-400" />}
+                                {slide.type === SlideType.MEDIA && (() => {
+                                    const mediaContent = slide.content as SlideContentMedia;
+                                    const ytId = extractYoutubeId(mediaContent?.url);
+                                    if (ytId) {
+                                        return (
+                                            <div className="w-full h-full relative flex items-center justify-center">
+                                                <img 
+                                                    src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`} 
+                                                    alt="YouTube Preview" 
+                                                    className="w-full h-full object-cover rounded opacity-60 absolute inset-0"
+                                                    onError={(e) => {
+                                                        e.currentTarget.style.display = 'none';
+                                                    }}
+                                                />
+                                                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 rounded z-10 p-1">
+                                                    <Youtube className="w-4 h-4 text-red-500 drop-shadow" />
+                                                    <span className="text-[7px] text-white font-bold truncate max-w-full font-[Vazirmatn] mt-0.5">
+                                                        {mediaContent.title || 'یوتیوب'}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+                                    return (
+                                        <div className="w-full h-full relative flex items-center justify-center">
+                                            {mediaContent.url && mediaContent.mediaType === 'image' ? (
+                                                <img 
+                                                    src={mediaContent.url} 
+                                                    alt="Media Preview" 
+                                                    className="w-full h-full object-cover rounded opacity-40 absolute inset-0"
+                                                    onError={(e) => {
+                                                        e.currentTarget.style.display = 'none';
+                                                    }}
+                                                />
+                                            ) : null}
+                                            <div className="absolute inset-0 flex items-center justify-center bg-black/25 rounded z-10">
+                                                {mediaContent.mediaType === 'image' && <FileImage className="w-4 h-4 text-blue-400" />}
+                                                {mediaContent.mediaType === 'video' && <Video className="w-4 h-4 text-purple-400" />}
+                                                {mediaContent.mediaType === 'audio' && <Mic className="w-4 h-4 text-green-400" />}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    );
+                                })()}
                                 {slide.type === SlideType.ANNOUNCEMENT && (
                                     <div className="w-full text-center px-1">
                                         <Megaphone className="w-4 h-4 text-emerald-400 mx-auto mb-1" />
