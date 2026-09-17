@@ -68,6 +68,19 @@ if [ ! -f ".next.new/BUILD_ID" ] || [ ! -f ".next.new/build-manifest.json" ]; th
 fi
 echo "[deploy] Build verified successfully."
 
+# Copy static and public to standalone before swap
+if [ -d ".next.new/standalone" ]; then
+    echo "[deploy] Syncing public and static into standalone..."
+    cp -rn public .next.new/standalone/public || true
+    mkdir -p .next.new/standalone/.next
+    cp -rn .next.new/static .next.new/standalone/.next/static || true
+    if [ -d ".next.new/standalone/mychurch-next" ]; then
+        cp -rn public .next.new/standalone/mychurch-next/public || true
+        mkdir -p .next.new/standalone/mychurch-next/.next
+        cp -rn .next.new/static .next.new/standalone/mychurch-next/.next/static || true
+    fi
+fi
+
 # ─── 4. ATOMIC SWAP ────────────────────────────────────────────────────────────
 echo "[deploy] Performing atomic .next swap..."
 rm -rf .next.old

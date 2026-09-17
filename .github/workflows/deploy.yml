@@ -27,6 +27,16 @@ jobs:
             git checkout main
             git pull origin main || (git fetch origin main && git reset --hard origin/main)
             cd /root/mychurch-v2/mychurch-next
+            if [ -d ".next/standalone" ] && [ -d ".next/static" ]; then
+                cp -rn public .next/standalone/public || true
+                mkdir -p .next/standalone/.next
+                cp -rn .next/static .next/standalone/.next/static || true
+                if [ -d ".next/standalone/mychurch-next" ]; then
+                    cp -rn public .next/standalone/mychurch-next/public || true
+                    mkdir -p .next/standalone/mychurch-next/.next
+                    cp -rn .next/static .next/standalone/mychurch-next/.next/static || true
+                fi
+            fi
             if pm2 show mychurch-next > /dev/null 2>&1; then pm2 delete mychurch-next || true; fi
             pm2 start run-server.js --name 'mychurch-next' --max-memory-restart 800M || true
             pm2 save || true
