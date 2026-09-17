@@ -979,7 +979,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     <div className="flex items-center gap-2.5">
                         <Link href="/admin/presentations" className="flex items-center gap-2 group cursor-pointer" title={isRTL ? "کنسول پخش زنده کلیسا" : "Broadcast Console"}>
                             <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-primary overflow-hidden shrink-0 group-hover:scale-105 transition-transform">
-                                <Image src="/logo-transparent.png" alt="MyChurch" width={32} height={32} className="object-contain drop-shadow" />
+                                <Image src="/logo-transparent.png" alt="MyChurch" width={32} height={32} unoptimized priority className="object-contain drop-shadow" />
                             </div>
                             <span className="font-bold tracking-wide text-xs sm:text-sm hidden xs:inline text-white">
                                 {t.broadcastConsole || (isRTL ? 'کنسول پخش زنده' : 'Broadcast Console')}

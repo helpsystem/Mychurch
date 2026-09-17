@@ -173,8 +173,12 @@ function ViewerContent() {
         }, 8000);
 
         const validateToken = async () => {
+            // If no token is provided, allow viewing directly (public projector / audience view)
             if (!viewerToken) {
-                if (isMounted) setTokenState("invalid");
+                if (isMounted) {
+                    clearTimeout(timeoutId);
+                    setTokenState("valid");
+                }
                 return;
             }
 
@@ -185,9 +189,13 @@ function ViewerContent() {
                 );
                 if (!isMounted) return;
                 clearTimeout(timeoutId);
-                setTokenState(res.ok ? "valid" : "invalid");
+                // Allow view if token is ok or if sessionId is provided
+                setTokenState(res.ok ? "valid" : (sessionId ? "valid" : "invalid"));
             } catch {
-                if (isMounted) setTokenState("invalid");
+                if (isMounted) {
+                    clearTimeout(timeoutId);
+                    setTokenState(sessionId ? "valid" : "invalid");
+                }
             }
         };
 
@@ -222,22 +230,46 @@ function ViewerContent() {
 
         const loadSessionSlides = async () => {
             try {
-                const res = await fetch(
-                    `/api/broadcast/viewer-session?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(viewerToken)}`,
-                    { cache: 'no-store' }
-                );
-                if (!res.ok) {
-                    console.warn('[Viewer] viewer-session fetch returned status:', res.status);
-                    return;
+                let loadedSlides: Slide[] | null = null;
+
+                // 1. Try secure viewer-session endpoint if token exists
+                if (viewerToken) {
+                    try {
+                        const res = await fetch(
+                            `/api/broadcast/viewer-session?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(viewerToken)}`,
+                            { cache: 'no-store' }
+                        );
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (Array.isArray(data?.slides)) {
+                                loadedSlides = data.slides as Slide[];
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('[Viewer] viewer-session failed, trying public endpoint:', e);
+                    }
                 }
 
-                const data = await res.json();
-                if (!isMounted || !Array.isArray(data?.slides)) return;
-                const loadedSlides = data.slides as Slide[];
+                // 2. Fallback to public presentation endpoint
+                if (!loadedSlides && sessionId && sessionId !== 'default') {
+                    try {
+                        const pubRes = await fetch(`/api/presentations/public/${encodeURIComponent(sessionId)}`, { cache: 'no-store' });
+                        if (pubRes.ok) {
+                            const pubData = await pubRes.json();
+                            if (Array.isArray(pubData?.presentation?.slides)) {
+                                loadedSlides = pubData.presentation.slides as Slide[];
+                            }
+                        }
+                    } catch (pubErr) {
+                        console.warn('[Viewer] Failed to load public presentation:', pubErr);
+                    }
+                }
+
+                if (!isMounted || !loadedSlides) return;
                 setSessionSlides(loadedSlides);
                 setState(prev => ({
                     ...prev,
-                    currentSlide: prev.currentSlide || loadedSlides[prev.slideIndex] || loadedSlides[0] || null,
+                    currentSlide: prev.currentSlide || loadedSlides![prev.slideIndex] || loadedSlides![0] || null,
                     connected: true
                 }));
             } catch (err) {

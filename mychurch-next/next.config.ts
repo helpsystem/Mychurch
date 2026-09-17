@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
     API_BIBLE_KEY: process.env.API_BIBLE_KEY || 'b27dc6902b00019756980695a12eb0da',
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       // Supabase Storage (primary media CDN)
       { protocol: 'https', hostname: '*.supabase.co' },

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { WorshipSong, SlideContentLyrics, LyricsLine, LyricsDisplayOptions, AppLanguage } from '@/types/broadcast';
 import { fetchWorshipSongs, searchSongs, parseLyrics, BROADCAST_TRANSLATIONS } from './dataService';
+import { isYoutubeUrl, getYoutubeEmbedUrl } from './InteractiveMediaFrame';
 import AddFromYoutubeModal from '@/components/worship/AddFromYoutubeModal';
 
 interface WorshipSongSelectorProps {
@@ -651,6 +652,37 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                       </span>
                     )}
                   </div>
+
+                  {/* Inline Audio / Video Preview Player */}
+                  {(selectedSong.audioUrl || selectedSong.youtubeId) && (
+                    <div className="mt-4 pt-3 border-t border-white/10 space-y-2">
+                      <div className="flex items-center justify-between text-xs text-pink-200">
+                        <span className="font-bold flex items-center gap-1.5 font-[Vazirmatn]">
+                          <Play className="w-3.5 h-3.5 fill-current text-pink-400" />
+                          {selectedSong.youtubeId || isYoutubeUrl(selectedSong.audioUrl) ? 'پلیر ویدیو / صوت سرود' : 'پلیر صوت سرود'}
+                        </span>
+                      </div>
+
+                      {selectedSong.youtubeId || isYoutubeUrl(selectedSong.audioUrl) ? (
+                        <div className="w-full h-44 rounded-xl overflow-hidden bg-black border border-white/10 shadow-lg">
+                          <iframe
+                            src={getYoutubeEmbedUrl(selectedSong.youtubeId || selectedSong.audioUrl!, {
+                              autoplay: false,
+                              controls: true,
+                            })}
+                            title={selectedSong.title.fa}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full border-0"
+                          />
+                        </div>
+                      ) : selectedSong.audioUrl ? (
+                        <div className="bg-black/40 p-2 rounded-xl border border-white/10">
+                          <audio src={selectedSong.audioUrl} controls className="w-full h-10" />
+                        </div>
+                      ) : null}
+                    </div>
+                  )}
                 </div>
 
                 {/* Display Options */}

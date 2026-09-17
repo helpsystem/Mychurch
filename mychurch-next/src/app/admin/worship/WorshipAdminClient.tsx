@@ -18,6 +18,8 @@ import {
 import { uploadToLocal, moveExternalToLocal } from "@/actions/storage";
 import { migrateLegacyWorshipData } from "@/actions/migration";
 import { SmartWorshipPlayer, getSafeAudioUrl } from "@/components/worship/SmartWorshipPlayer";
+import { isYoutubeUrl, getYoutubeEmbedUrl } from "@/components/broadcast/InteractiveMediaFrame";
+import { cn } from "@/lib/utils";
 import BulkEnrichmentModal from "./BulkEnrichmentModal";
 import CronDashboard from "@/components/admin/CronJobManager";
 import AddFromYoutubeModal from "@/components/worship/AddFromYoutubeModal";
@@ -46,10 +48,24 @@ export default function WorshipAdminClient() {
     const [isCleaning, setIsCleaning] = useState(false);
     const [isFinglishing, setIsFinglishing] = useState(false);
     const [previewSong, setPreviewSong] = useState<WorshipSong | null>(null);
+    const [previewTab, setPreviewTab] = useState<'karaoke' | 'video' | 'audio'>('karaoke');
     const [isMigrating, setIsMigrating] = useState(false);
     const [showEnrichmentHub, setShowEnrichmentHub] = useState(false);
     const [showYoutubeModal, setShowYoutubeModal] = useState(false);
     const [processingAiId, setProcessingAiId] = useState<string | null>(null);
+
+    const handleOpenPlayer = (song: WorshipSong, defaultTab?: 'karaoke' | 'video' | 'audio') => {
+        setPreviewSong(song);
+        if (defaultTab) {
+            setPreviewTab(defaultTab);
+        } else if (song.youtube_id || isYoutubeUrl(song.audio_url)) {
+            setPreviewTab('video');
+        } else if ((song.timing_data as any)?.lines?.length > 0) {
+            setPreviewTab('karaoke');
+        } else {
+            setPreviewTab('audio');
+        }
+    };
 
     useEffect(() => {
         loadSongs();
@@ -1100,10 +1116,34 @@ export default function WorshipAdminClient() {
                                                 <div className="break-all">{song.artist || '-'}</div>
                                             </td>
                                             <td className="p-4 align-top w-[10%]">
-                                                <div className="flex items-center gap-2 text-muted-foreground">
-                                                    {song.youtube_id && <span title="دارای ویدیو یوتیوب"><Youtube className="w-4 h-4 text-red-500" /></span>}
-                                                    {song.audio_url && <span title="دارای فایل صوتی محلی"><Music className="w-4 h-4 text-blue-500" /></span>}
-                                                    {(!song.youtube_id && !song.audio_url) && '-'}
+                                                <div className="flex items-center gap-1.5 text-muted-foreground">
+                                                    {song.youtube_id && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                handleOpenPlayer(song, 'video');
+                                                            }}
+                                                            className="p-1 rounded-lg bg-red-500/15 text-red-500 hover:bg-red-600 hover:text-white transition shadow-sm"
+                                                            title="پخش ویدیوی یوتیوب"
+                                                        >
+                                                            <Youtube className="w-4 h-4" />
+                                                        </button>
+                                                    )}
+                                                    {song.audio_url && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                handleOpenPlayer(song, isYoutubeUrl(song.audio_url) ? 'video' : 'audio');
+                                                            }}
+                                                            className="p-1 rounded-lg bg-blue-500/15 text-blue-400 hover:bg-blue-600 hover:text-white transition shadow-sm"
+                                                            title={isYoutubeUrl(song.audio_url) ? "پخش ویدیوی یوتیوب" : "پخش صوت سرود"}
+                                                        >
+                                                            {isYoutubeUrl(song.audio_url) ? <Youtube className="w-4 h-4" /> : <Music className="w-4 h-4" />}
+                                                        </button>
+                                                    )}
+                                                    {(!song.youtube_id && !song.audio_url) && <span className="opacity-30">-</span>}
                                                 </div>
                                             </td>
                                             <td className="p-4 align-top w-[25%]">
@@ -1144,7 +1184,20 @@ export default function WorshipAdminClient() {
                                                 </div>
                                             </td>
                                             <td className="p-4 text-left">
-                                                <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <div className="flex items-center justify-end gap-1.5">
+                                                    {/* Play & Preview Player Button */}
+                                                    <button 
+                                                        type="button"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleOpenPlayer(song);
+                                                        }}
+                                                        className="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition flex items-center gap-1.5 text-xs font-bold shadow-md shadow-emerald-600/20 active:scale-95"
+                                                        title="پخش و پیش‌نمایش زنده سرود (ویدیو، صوت و کارائوکه)"
+                                                    >
+                                                        <Play className="w-3.5 h-3.5 fill-current" />
+                                                        <span>پخش</span>
+                                                    </button>
                                                     
                                                     {/* Toggle Verified Button */}
                                                     <button 
@@ -1152,7 +1205,7 @@ export default function WorshipAdminClient() {
                                                             e.stopPropagation();
                                                             handleToggleVerify(song.id, !!song.is_verified);
                                                         }}
-                                                        className={`p-2 rounded-lg transition ${song.is_verified ? 'bg-green-500/10 text-green-500 hover:bg-green-500/20' : 'bg-secondary text-muted-foreground hover:bg-secondary/80'}`} 
+                                                        className={`p-1.5 rounded-lg transition ${song.is_verified ? 'bg-green-500/10 text-green-500 hover:bg-green-500/20' : 'bg-secondary text-muted-foreground hover:bg-secondary/80'}`} 
                                                         title={song.is_verified ? "تایید شده (کلیک برای باز کردن)" : "تایید نهایی و قفل (جلوگیری از ویرایش بات)"}
                                                     >
                                                         {song.is_verified ? <ShieldCheck className="w-4 h-4" /> : <Shield className="w-4 h-4" />}
@@ -1165,24 +1218,24 @@ export default function WorshipAdminClient() {
                                                             handleExtractRowAI(song.id);
                                                         }}
                                                         disabled={processingAiId === song.id}
-                                                        className="p-2 rounded-lg bg-indigo-500/10 text-indigo-500 hover:bg-indigo-500 hover:text-white transition disabled:opacity-50" 
+                                                        className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-500 hover:bg-indigo-500 hover:text-white transition disabled:opacity-50" 
                                                         title="استخراج خودکار هوش مصنوعی شامل ترجمه، آکورد و زمانبندی دقیق با Audio (AI Wizard)"
                                                     >
                                                         {processingAiId === song.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                                                     </button>
                                                     
                                                     {/* Manual Timing Studio Button */}
-                                                    <Link href={`/admin/worship/timing/${song.id}`} className="p-2 rounded-lg bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20 transition" title="استودیو کارائوکه - ثبت دستی زمان‌بندی (Spacebar)">
+                                                    <Link href={`/admin/worship/timing/${song.id}`} className="p-1.5 rounded-lg bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20 transition" title="استودیو کارائوکه - ثبت دستی زمان‌بندی (Spacebar)">
                                                         <Clock className="w-4 h-4" />
                                                     </Link>
                                                     
                                                     {/* Edit Text Button */}
-                                                    <button onClick={() => setEditingSong(song)} className="p-2 rounded-lg bg-secondary text-primary hover:bg-primary/20 transition" title="ویرایش اطلاعات">
+                                                    <button onClick={() => setEditingSong(song)} className="p-1.5 rounded-lg bg-secondary text-primary hover:bg-primary/20 transition" title="ویرایش اطلاعات">
                                                         <Edit2 className="w-4 h-4" />
                                                     </button>
                                                     
                                                     {/* Delete Button */}
-                                                    <button onClick={() => handleDelete(song.id)} className="p-2 rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition" title="حذف">
+                                                    <button onClick={() => handleDelete(song.id)} className="p-1.5 rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition" title="حذف">
                                                         <Trash2 className="w-4 h-4" />
                                                     </button>
                                                 </div>
@@ -1207,46 +1260,139 @@ export default function WorshipAdminClient() {
                 </div>
             )}
 
-            {/* Professional Preview Modal (Requested Feature) */}
+            {/* Professional Multi-Media Player & Preview Modal */}
             {previewSong && (
-                <div className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[100] flex flex-col items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[100] flex flex-col items-center justify-center p-4 animate-in fade-in duration-200">
                     <button 
                         onClick={() => setPreviewSong(null)}
-                        className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all z-[110]"
+                        className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all z-[120]"
                         title="بستن پیش‌نمایش"
                     >
-                        <X className="w-8 h-8" />
+                        <X className="w-7 h-7" />
                     </button>
-                    
-                    <div className="w-full max-w-5xl h-[80vh] bg-black/40 rounded-3xl overflow-hidden border border-white/5 shadow-2xl relative">
-                        <SmartWorshipPlayer 
-                            timingData={previewSong.timing_data as any} 
-                            audioSrc={previewSong.audio_url ? getSafeAudioUrl(previewSong.audio_url) : ""}
-                            title={previewSong.title_fa}
-                            viewOnly={true}
-                            onClose={() => setPreviewSong(null)}
-                            showPersian={true}
-                            showFinglish={true}
-                            showEnglish={true}
-                            translations={{
-                                finglish: previewSong.lyrics_finglish ? previewSong.lyrics_finglish.split('\n').map((l: string) => l.trim()).filter(Boolean) : undefined,
-                                english: previewSong.lyrics_en ? previewSong.lyrics_en.split('\n').map((l: string) => l.trim()).filter(Boolean) : undefined,
-                            }}
-                        />
+
+                    {/* Mode Switcher Tabs */}
+                    <div className="flex items-center gap-2 mb-3 bg-neutral-900/90 p-1.5 rounded-2xl border border-white/10 z-[110] font-[Vazirmatn]">
+                        {(previewSong.youtube_id || isYoutubeUrl(previewSong.audio_url)) && (
+                            <button
+                                type="button"
+                                onClick={() => setPreviewTab('video')}
+                                className={cn(
+                                    "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition",
+                                    previewTab === 'video'
+                                        ? "bg-red-600 text-white shadow-lg shadow-red-600/30"
+                                        : "text-slate-400 hover:text-white"
+                                )}
+                            >
+                                <Youtube className="w-4 h-4" />
+                                <span>پخش ویدیو (YouTube)</span>
+                            </button>
+                        )}
+
+                        <button
+                            type="button"
+                            onClick={() => setPreviewTab('karaoke')}
+                            className={cn(
+                                "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition",
+                                previewTab === 'karaoke'
+                                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30"
+                                    : "text-slate-400 hover:text-white"
+                            )}
+                        >
+                            <Clock className="w-4 h-4" />
+                            <span>کارائوکه و متن همگام</span>
+                        </button>
                         
-                        {/* Audio fallback message if no URL */}
-                        {!previewSong.audio_url && (
-                            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 text-white p-8 text-center pointer-events-none">
-                                <Music className="w-16 h-16 mb-4 opacity-20" />
-                                <h3 className="text-xl font-bold">پیش‌نمایش بدون صدا</h3>
-                                <p className="text-muted-foreground mt-2">این سرود فاقد فایل صوتی است. پیش‌نمایش فقط شامل نمایش بصری متن‌ها می‌باشد.</p>
+                        {previewSong.audio_url && !isYoutubeUrl(previewSong.audio_url) && (
+                            <button
+                                type="button"
+                                onClick={() => setPreviewTab('audio')}
+                                className={cn(
+                                    "flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition",
+                                    previewTab === 'audio'
+                                        ? "bg-emerald-600 text-white shadow-lg shadow-emerald-600/30"
+                                        : "text-slate-400 hover:text-white"
+                                )}
+                            >
+                                <Music className="w-4 h-4" />
+                                <span>پلیر صوتی</span>
+                            </button>
+                        )}
+                    </div>
+                    
+                    <div className="w-full max-w-5xl h-[78vh] bg-black/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative flex flex-col items-center justify-center">
+                        {previewTab === 'video' && (previewSong.youtube_id || isYoutubeUrl(previewSong.audio_url)) && (
+                            <div className="w-full h-full relative bg-black flex items-center justify-center">
+                                <iframe 
+                                    src={getYoutubeEmbedUrl(previewSong.youtube_id || previewSong.audio_url!, {
+                                        autoplay: true,
+                                        mute: false,
+                                        controls: true,
+                                    })}
+                                    title={previewSong.title_fa}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                    className="w-full h-full border-0 rounded-3xl"
+                                />
+                            </div>
+                        )}
+
+                        {previewTab === 'audio' && previewSong.audio_url && !isYoutubeUrl(previewSong.audio_url) && (
+                            <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-neutral-900/60 rounded-3xl space-y-6 font-[Vazirmatn]">
+                                <div className="w-24 h-24 rounded-3xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30 shadow-2xl">
+                                    <Music className="w-12 h-12 animate-pulse" />
+                                </div>
+                                <div className="text-center space-y-2">
+                                    <h3 className="text-2xl font-bold text-white">{previewSong.title_fa}</h3>
+                                    {previewSong.artist && <p className="text-emerald-400 font-medium">{previewSong.artist}</p>}
+                                </div>
+                                <div className="w-full max-w-xl">
+                                    <audio
+                                        src={getSafeAudioUrl(previewSong.audio_url)}
+                                        controls
+                                        autoPlay
+                                        className="w-full"
+                                    />
+                                </div>
+                                {previewSong.lyrics_fa && (
+                                    <div className="max-h-60 overflow-y-auto w-full max-w-xl p-4 bg-black/40 rounded-2xl border border-white/5 text-right text-slate-300 leading-relaxed text-sm whitespace-pre-wrap">
+                                        {previewSong.lyrics_fa}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {previewTab === 'karaoke' && (
+                            <div className="w-full h-full relative">
+                                <SmartWorshipPlayer 
+                                    timingData={previewSong.timing_data as any} 
+                                    audioSrc={previewSong.audio_url && !isYoutubeUrl(previewSong.audio_url) ? getSafeAudioUrl(previewSong.audio_url) : ""}
+                                    title={previewSong.title_fa}
+                                    viewOnly={true}
+                                    onClose={() => setPreviewSong(null)}
+                                    showPersian={true}
+                                    showFinglish={true}
+                                    showEnglish={true}
+                                    translations={{
+                                        finglish: previewSong.lyrics_finglish ? previewSong.lyrics_finglish.split('\n').map((l: string) => l.trim()).filter(Boolean) : undefined,
+                                        english: previewSong.lyrics_en ? previewSong.lyrics_en.split('\n').map((l: string) => l.trim()).filter(Boolean) : undefined,
+                                    }}
+                                />
+                                
+                                {!previewSong.audio_url && (
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 text-white p-8 text-center pointer-events-none font-[Vazirmatn]">
+                                        <Music className="w-16 h-16 mb-4 opacity-20" />
+                                        <h3 className="text-xl font-bold">پیش‌نمایش بدون صدا</h3>
+                                        <p className="text-muted-foreground mt-2">این سرود فاقد فایل صوتی مستقل است. پیش‌نمایش بصری متن‌ها فعال می‌باشد.</p>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>
                     
-                    <div className="mt-8 text-white/40 text-sm flex items-center gap-2 font-mono uppercase tracking-widest">
+                    <div className="mt-3 text-white/40 text-sm flex items-center gap-2 font-mono uppercase tracking-widest font-[Vazirmatn]">
                         <Sparkles className="w-4 h-4 text-emerald-400" />
-                        Professional Trilingual Preview Mode
+                        <span>پلیر جامع سرودهای پرستشی و ویدیویی</span>
                     </div>
                 </div>
             )}
