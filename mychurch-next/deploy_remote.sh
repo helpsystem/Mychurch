@@ -8,8 +8,15 @@ cd "$DEPLOY_DIR"
 
 export NEXT_TELEMETRY_DISABLED=1
 export NEXT_DISABLE_ESLINT=1
-export NODE_OPTIONS=--max-old-space-size=1536
-export NEXT_PRIVATE_BUILD_WORKER=1
+export NODE_OPTIONS="--max-old-space-size=1536"
+export NEXT_CPU_LIMIT=1
+export NEXT_PRIVATE_BUILD_WORKER=0
+
+cleanup() {
+    echo "[deploy] Restoring HugePages configuration..."
+    sysctl -w vm.nr_hugepages=1491 || true
+}
+trap cleanup EXIT
 
 # ─── 1. ENSURE SWAP ────────────────────────────────────────────────────────────
 current_swap_size=$(stat -c%s /swapfile 2>/dev/null || echo 0)
@@ -40,6 +47,10 @@ else
 fi
 
 # ─── 3. BUILD INTO .next.new (live site continues using .next) ──────────────────
+echo "[deploy] Temporarily releasing HugePages to maximize free RAM for build..."
+sysctl -w vm.nr_hugepages=0 || true
+free -h
+
 echo "[deploy] Starting build into .next.new (live site stays up)..."
 rm -rf .next.new
 NEXT_DIST_DIR=".next.new" timeout 120m npm run build 2>&1 || {
