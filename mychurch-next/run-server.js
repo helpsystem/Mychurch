@@ -3,6 +3,20 @@ const path = require('path');
 const http = require('http');
 const { spawn } = require('child_process');
 
+// 0. Load environment variables before doing anything else
+try {
+    const dotenv = require('dotenv');
+    const envLocal = path.join(__dirname, '.env.local');
+    const envProd = path.join(__dirname, '.env.production');
+    const envBase = path.join(__dirname, '.env');
+    if (fs.existsSync(envBase)) dotenv.config({ path: envBase });
+    if (fs.existsSync(envProd)) dotenv.config({ path: envProd, override: true });
+    if (fs.existsSync(envLocal)) dotenv.config({ path: envLocal, override: true });
+    console.log('[MyChurch] Environment variables loaded from .env.local / .env');
+} catch (e) {
+    console.warn('[MyChurch] Failed to load dotenv:', e.message);
+}
+
 const PUBLIC_PORT = parseInt(process.env.PORT || '3000', 10);
 const INTERNAL_PORT = PUBLIC_PORT + 1; // 3001
 
