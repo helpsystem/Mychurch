@@ -186,18 +186,79 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
 
                     <div className="space-y-2">
                         {/* Logo Toggle */}
-                        <div className="flex items-center justify-between py-1">
-                            <span className="text-xs text-slate-300">نمایش لوگوی کلیسا</span>
-                            <label className="relative inline-flex items-center cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    className="sr-only peer"
-                                    checked={config.showLogo}
-                                    onChange={() => updateConfig({ showLogo: !config.showLogo })}
-                                    title="Show Logo"
-                                />
-                                <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
-                            </label>
+                        <div className="space-y-2 py-1">
+                            <div className="flex items-center justify-between">
+                                <span className="text-xs text-slate-300">نمایش لوگوی کلیسا</span>
+                                <label className="relative inline-flex items-center cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        className="sr-only peer"
+                                        checked={config.showLogo}
+                                        onChange={() => updateConfig({ showLogo: !config.showLogo })}
+                                        title="Show Logo"
+                                    />
+                                    <div className="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+                                </label>
+                            </div>
+
+                            {/* Logo Customization Settings */}
+                            {config.showLogo && (
+                                <div className="p-2.5 bg-neutral-950/60 rounded-xl border border-white/5 space-y-2.5 animate-in slide-in-from-top-2 duration-200">
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div>
+                                            <span className="text-[10px] text-muted-foreground block mb-1">موقعیت لوگو:</span>
+                                            <select
+                                                title="Logo Position"
+                                                value={config.logoPosition || 'top-right'}
+                                                onChange={(e) => updateConfig({ logoPosition: e.target.value as any })}
+                                                className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-indigo-500"
+                                            >
+                                                <option value="top-right">بالا راست (پیش‌فرض)</option>
+                                                <option value="top-left">بالا چپ</option>
+                                                <option value="bottom-right">پایین راست</option>
+                                                <option value="bottom-left">پایین چپ</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <span className="text-[10px] text-muted-foreground block mb-1">اندازه:</span>
+                                            <div className="grid grid-cols-3 gap-1">
+                                                {(['sm', 'md', 'lg'] as const).map((sz) => (
+                                                    <button
+                                                        key={sz}
+                                                        type="button"
+                                                        onClick={() => updateConfig({ logoSize: sz })}
+                                                        className={cn(
+                                                            "py-1 rounded text-[10px] font-bold transition",
+                                                            (config.logoSize || 'md') === sz
+                                                                ? "bg-indigo-600 text-white font-black"
+                                                                : "bg-neutral-850 hover:bg-neutral-800 text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        {sz === 'sm' ? 'کوچک' : sz === 'md' ? 'متوسط' : 'بزرگ'}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="flex items-center justify-between text-[10px] text-muted-foreground mb-1">
+                                            <span>شفافیت لوگو:</span>
+                                            <span className="font-mono text-indigo-400">{config.logoOpacity ?? 100}%</span>
+                                        </div>
+                                        <input
+                                            type="range"
+                                            min="30"
+                                            max="100"
+                                            step="5"
+                                            value={config.logoOpacity ?? 100}
+                                            onChange={(e) => updateConfig({ logoOpacity: parseInt(e.target.value) })}
+                                            className="w-full accent-indigo-500"
+                                            aria-label="Logo Opacity"
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Lower Third Toggle */}

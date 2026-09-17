@@ -143,6 +143,10 @@ export interface SlideContentMedia {
     isLoop?: boolean;
     isAutoPlay?: boolean;
     displayConfig?: MediaDisplayConfig;
+    showLogo?: boolean;
+    logoPosition?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'center';
+    logoOpacity?: number;
+    logoSize?: 'sm' | 'md' | 'lg';
 }
 
 export interface SlideContentAnnouncement {
@@ -313,6 +317,9 @@ export interface BroadcastOverlayConfig {
     streamUrl?: string;
     logoUrl: string | null;
     showLogo: boolean;
+    logoPosition?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+    logoOpacity?: number;
+    logoSize?: 'sm' | 'md' | 'lg';
     churchName?: string;
     lowerThirds: LowerThirdItem[];
     activeLowerThirdIndex: number;

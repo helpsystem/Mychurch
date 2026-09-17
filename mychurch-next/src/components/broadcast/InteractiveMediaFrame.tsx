@@ -67,6 +67,10 @@ interface InteractiveMediaFrameProps {
   loop?: boolean;
   alt?: string;
   showToolbarByDefault?: boolean;
+  showWatermarkLogo?: boolean;
+  watermarkPosition?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'center';
+  watermarkOpacity?: number;
+  watermarkSize?: 'sm' | 'md' | 'lg';
 }
 
 export const defaultMediaConfig: MediaDisplayConfig = {
@@ -92,7 +96,11 @@ export default function InteractiveMediaFrame({
   autoPlay = true,
   loop = true,
   alt = 'Media content',
-  showToolbarByDefault = false
+  showToolbarByDefault = false,
+  showWatermarkLogo = false,
+  watermarkPosition = 'top-right',
+  watermarkOpacity = 90,
+  watermarkSize = 'md',
 }: InteractiveMediaFrameProps) {
   const mergedConfig: MediaDisplayConfig = {
     ...defaultMediaConfig,
@@ -340,6 +348,36 @@ export default function InteractiveMediaFrame({
           </div>
         )}
       </div>
+
+      {/* Transparent Church Watermark Logo */}
+      {showWatermarkLogo && (
+        <div
+          className={`absolute pointer-events-none z-20 transition-all duration-300 ${
+            watermarkPosition === 'top-left'
+              ? 'top-3 left-3 md:top-4 md:left-4'
+              : watermarkPosition === 'bottom-right'
+              ? 'bottom-3 right-3 md:bottom-4 md:right-4'
+              : watermarkPosition === 'bottom-left'
+              ? 'bottom-3 left-3 md:bottom-4 md:left-4'
+              : watermarkPosition === 'center'
+              ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+              : 'top-3 right-3 md:top-4 md:right-4'
+          }`}
+          style={{ opacity: (watermarkOpacity ?? 90) / 100 }}
+        >
+          <img
+            src="/logo-transparent.png"
+            alt="Church Logo"
+            className={`object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] filter select-none pointer-events-none ${
+              watermarkSize === 'sm'
+                ? 'w-12 h-12 md:w-16 md:h-16'
+                : watermarkSize === 'lg'
+                ? 'w-24 h-24 md:w-36 md:h-36'
+                : 'w-16 h-16 md:w-24 md:h-24'
+            }`}
+          />
+        </div>
+      )}
 
       {/* Interactive Controls Overlay for Editable Mode */}
       {isEditable && (

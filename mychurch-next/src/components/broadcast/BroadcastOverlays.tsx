@@ -40,25 +40,43 @@ export default function BroadcastOverlays({
     return (
         <div className="absolute inset-0 pointer-events-none z-50 overflow-hidden select-none font-[Vazirmatn]">
             {/* 1. Official Church Logo */}
-            {showLogo && (
-                <div 
-                    className={`absolute ${isProgramMonitor ? 'top-3 right-3' : 'top-6 right-6'} z-50 transition-all duration-500 animate-fadeIn`}
-                >
-                    <div className="relative group">
-                        <img
-                            src={logoUrl || "/logo-transparent.png"}
-                            alt="Church Logo"
-                            className={`${isProgramMonitor ? 'h-9 md:h-12' : 'h-14 md:h-20'} w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)] filter`}
-                            onError={(e) => {
-                                const target = e.currentTarget;
-                                if (!target.src.includes("/logo.png")) {
-                                    target.src = "/logo.png";
-                                }
-                            }}
-                        />
+            {showLogo && (() => {
+                const pos = config.logoPosition || 'top-right';
+                const posClass = 
+                    pos === 'top-left' ? (isProgramMonitor ? 'top-3 left-3' : 'top-6 left-6') :
+                    pos === 'bottom-right' ? (isProgramMonitor ? 'bottom-3 right-3' : 'bottom-6 right-6') :
+                    pos === 'bottom-left' ? (isProgramMonitor ? 'bottom-3 left-3' : 'bottom-6 left-6') :
+                    (isProgramMonitor ? 'top-3 right-3' : 'top-6 right-6');
+
+                const size = config.logoSize || 'md';
+                const sizeClass =
+                    size === 'sm' ? (isProgramMonitor ? 'h-7 md:h-9' : 'h-10 md:h-14') :
+                    size === 'lg' ? (isProgramMonitor ? 'h-12 md:h-16' : 'h-18 md:h-26') :
+                    (isProgramMonitor ? 'h-9 md:h-12' : 'h-14 md:h-20');
+
+                const opacity = (config.logoOpacity ?? 100) / 100;
+
+                return (
+                    <div 
+                        className={`absolute ${posClass} z-50 transition-all duration-500 animate-fadeIn`}
+                        style={{ opacity }}
+                    >
+                        <div className="relative group">
+                            <img
+                                src={logoUrl || "/logo-transparent.png"}
+                                alt="Church Logo"
+                                className={`${sizeClass} w-auto object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] filter`}
+                                onError={(e) => {
+                                    const target = e.currentTarget;
+                                    if (!target.src.includes("/logo.png")) {
+                                        target.src = "/logo.png";
+                                    }
+                                }}
+                            />
+                        </div>
                     </div>
-                </div>
-            )}
+                );
+            })()}
 
             {/* 2. Lower Third (Speaker / Subtitle) */}
             {showLowerThird && activeLowerThird && (

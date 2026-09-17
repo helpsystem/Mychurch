@@ -1135,6 +1135,10 @@ export function SlideRenderer({
                                 isEditable={false}
                                 autoPlay={content.isAutoPlay}
                                 loop={content.isLoop}
+                                showWatermarkLogo={content.showLogo}
+                                watermarkPosition={content.logoPosition}
+                                watermarkOpacity={content.logoOpacity}
+                                watermarkSize={content.logoSize}
                                 className="w-full h-full"
                             />
                         </div>

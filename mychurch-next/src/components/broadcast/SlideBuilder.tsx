@@ -195,6 +195,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const [mediaType, setMediaType] = useState<'image' | 'video' | 'audio'>('image');
   const [mediaLoop, setMediaLoop] = useState(false);
   const [mediaAutoplay, setMediaAutoplay] = useState(true);
+  const [mediaShowLogo, setMediaShowLogo] = useState(false);
+  const [mediaLogoPosition, setMediaLogoPosition] = useState<'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'center'>('top-right');
+  const [mediaLogoOpacity, setMediaLogoOpacity] = useState(90);
+  const [mediaLogoSize, setMediaLogoSize] = useState<'sm' | 'md' | 'lg'>('md');
   const [mediaDisplayConfig, setMediaDisplayConfig] = useState<MediaDisplayConfig>({
     width: 100,
     height: 100,
@@ -331,6 +335,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setMediaType('image');
     setMediaLoop(false);
     setMediaAutoplay(true);
+    setMediaShowLogo(false);
+    setMediaLogoPosition('top-right');
+    setMediaLogoOpacity(90);
+    setMediaLogoSize('md');
     setAnnouncementTitle('');
     setAnnouncementContent('');
     setAnnouncementImageUrl('');
@@ -454,6 +462,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       setMediaType(content.mediaType);
       setMediaLoop(content.isLoop || false);
       setMediaAutoplay(content.isAutoPlay || false);
+      setMediaShowLogo(content.showLogo ?? false);
+      setMediaLogoPosition(content.logoPosition || 'top-right');
+      setMediaLogoOpacity(content.logoOpacity ?? 90);
+      setMediaLogoSize(content.logoSize || 'md');
       // Load display config if exists
       if (content.displayConfig) {
         setMediaDisplayConfig(content.displayConfig);
@@ -738,7 +750,11 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       mediaType,
       isLoop: mediaLoop,
       isAutoPlay: mediaAutoplay,
-      displayConfig: mediaDisplayConfig
+      displayConfig: mediaDisplayConfig,
+      showLogo: mediaShowLogo,
+      logoPosition: mediaLogoPosition,
+      logoOpacity: mediaLogoOpacity,
+      logoSize: mediaLogoSize
     };
 
     // If editing, update existing slide
@@ -1911,6 +1927,10 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       showToolbarByDefault={true}
                       autoPlay={mediaAutoplay}
                       loop={mediaLoop}
+                      showWatermarkLogo={mediaShowLogo}
+                      watermarkPosition={mediaLogoPosition}
+                      watermarkOpacity={mediaLogoOpacity}
+                      watermarkSize={mediaLogoSize}
                       className="w-full h-full"
                     />
                   </div>
@@ -2080,6 +2100,100 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                         onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, customY: parseInt(e.target.value) }))}
                         className="w-full accent-purple-500"
                         aria-label="Custom Y Position"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* === Church Watermark Logo on Media (لوگوی ترنسپرنت کلیسا روی تصویر) === */}
+            {(mediaType === 'image' || mediaType === 'video') && (
+              <div className="mb-4 p-4 bg-gradient-to-br from-indigo-950/40 via-slate-900/60 to-purple-950/30 rounded-xl border border-indigo-500/20 shadow-lg">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/logo-transparent.png"
+                      alt="Logo"
+                      className="w-5 h-5 object-contain"
+                    />
+                    <span className={`text-sm font-bold text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                      {isRTL ? 'لوگوی ترنسپرنت کلیسا روی تصویر / مدیا' : 'Transparent Church Logo Watermark'}
+                    </span>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="sr-only peer"
+                      checked={mediaShowLogo}
+                      onChange={(e) => setMediaShowLogo(e.target.checked)}
+                      title={isRTL ? 'نمایش لوگو' : 'Show Logo'}
+                    />
+                    <div className="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+                  </label>
+                </div>
+
+                {mediaShowLogo && (
+                  <div className="space-y-3 pt-2 border-t border-indigo-500/20 animate-in fade-in duration-200">
+                    <div className="grid grid-cols-2 gap-3">
+                      {/* Logo Position */}
+                      <div>
+                        <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                          {isRTL ? 'موقعیت لوگو:' : 'Position:'}
+                        </label>
+                        <select
+                          value={mediaLogoPosition}
+                          onChange={(e) => setMediaLogoPosition(e.target.value as any)}
+                          className="w-full bg-slate-800 border border-indigo-500/30 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-indigo-400"
+                          aria-label={isRTL ? 'موقعیت لوگو' : 'Logo Position'}
+                        >
+                          <option value="top-right">{isRTL ? 'بالا راست (پیش‌فرض)' : 'Top Right'}</option>
+                          <option value="top-left">{isRTL ? 'بالا چپ' : 'Top Left'}</option>
+                          <option value="bottom-right">{isRTL ? 'پایین راست' : 'Bottom Right'}</option>
+                          <option value="bottom-left">{isRTL ? 'پایین چپ' : 'Bottom Left'}</option>
+                          <option value="center">{isRTL ? 'مرکز' : 'Center'}</option>
+                        </select>
+                      </div>
+
+                      {/* Logo Size */}
+                      <div>
+                        <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
+                          {isRTL ? 'اندازه لوگو:' : 'Size:'}
+                        </label>
+                        <div className="grid grid-cols-3 gap-1">
+                          {(['sm', 'md', 'lg'] as const).map((sz) => (
+                            <button
+                              key={sz}
+                              type="button"
+                              onClick={() => setMediaLogoSize(sz)}
+                              className={`py-1.5 rounded-lg text-xs font-bold transition border ${
+                                mediaLogoSize === sz
+                                  ? 'bg-indigo-600 text-white border-indigo-400 shadow'
+                                  : 'bg-slate-800 text-slate-300 border-white/5 hover:bg-slate-700'
+                              }`}
+                            >
+                              {sz === 'sm' ? (isRTL ? 'کوچک' : 'Small') : sz === 'md' ? (isRTL ? 'متوسط' : 'Medium') : (isRTL ? 'بزرگ' : 'Large')}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Logo Opacity Slider */}
+                    <div>
+                      <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
+                        <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'میزان شفافیت (Opacity):' : 'Opacity:'}</span>
+                        <span className="font-mono text-indigo-300">{mediaLogoOpacity}%</span>
+                      </div>
+                      <input
+                        type="range"
+                        min="20"
+                        max="100"
+                        step="5"
+                        value={mediaLogoOpacity}
+                        onChange={(e) => setMediaLogoOpacity(parseInt(e.target.value))}
+                        className="w-full accent-indigo-500"
+                        aria-label={isRTL ? 'شفافیت لوگو' : 'Logo Opacity'}
                       />
                     </div>
                   </div>
