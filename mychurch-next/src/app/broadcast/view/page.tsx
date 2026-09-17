@@ -153,7 +153,7 @@ function ViewerContent() {
             });
         }
     }, [state.internalPageIndex, state.currentSlide?.id]);
-    const [tokenState, setTokenState] = useState<"checking" | "valid" | "invalid">("checking");
+    const [tokenState, setTokenState] = useState<"checking" | "valid" | "invalid">("valid");
     const [tokenCheckTimeout, setTokenCheckTimeout] = useState(false);
     const [initialStateTimeout, setInitialStateTimeout] = useState(false);
     const [sessionSlides, setSessionSlides] = useState<Slide[]>([]);
@@ -164,37 +164,30 @@ function ViewerContent() {
     }, [sessionSlides]);
 
     useEffect(() => {
+        // If no token is provided, viewer is always valid (projector / audience screen)
+        if (!viewerToken) {
+            setTokenState("valid");
+            return;
+        }
+
         let isMounted = true;
-        const timeoutId = window.setTimeout(() => {
-            if (isMounted) {
-                setTokenCheckTimeout(true);
-                setTokenState("invalid");
-            }
-        }, 8000);
-
         const validateToken = async () => {
-            // If no token is provided, allow viewing directly (public projector / audience view)
-            if (!viewerToken) {
-                if (isMounted) {
-                    clearTimeout(timeoutId);
-                    setTokenState("valid");
-                }
-                return;
-            }
-
             try {
                 const res = await fetch(
                     `/api/broadcast/viewer-token?session=${encodeURIComponent(sessionId)}&token=${encodeURIComponent(viewerToken)}`,
                     { cache: 'no-store' }
                 );
                 if (!isMounted) return;
-                clearTimeout(timeoutId);
-                // Allow view if token is ok or if sessionId is provided
-                setTokenState(res.ok ? "valid" : (sessionId ? "valid" : "invalid"));
+                // Invalidate ONLY if token was explicitly provided and server rejected it
+                if (res.status === 401 || res.status === 403) {
+                    setTokenState("invalid");
+                } else {
+                    setTokenState("valid");
+                }
             } catch {
+                // On network glitch, keep valid so screen doesn't turn black/red
                 if (isMounted) {
-                    clearTimeout(timeoutId);
-                    setTokenState(sessionId ? "valid" : "invalid");
+                    setTokenState("valid");
                 }
             }
         };
@@ -202,7 +195,6 @@ function ViewerContent() {
         void validateToken();
         return () => {
             isMounted = false;
-            clearTimeout(timeoutId);
         };
     }, [sessionId, viewerToken]);
 
@@ -721,17 +713,6 @@ function ViewerContent() {
             style={{ userSelect: 'none', cursor: 'none', WebkitUserSelect: "none", MozUserSelect: "none", msUserSelect: "none" }}
             onContextMenu={(e) => e.preventDefault()}
         >
-            {tokenState === "checking" && (
-                <div className="absolute inset-0 z-[80] bg-black text-white flex items-center justify-center text-3xl font-[Vazirmatn]">
-                    در حال بررسی دسترسی Viewer...
-                </div>
-            )}
-            {tokenState === "invalid" && (
-                <div className="absolute inset-0 z-[80] bg-black text-red-400 flex flex-col items-center justify-center gap-4 font-[Vazirmatn]">
-                    <div className="text-4xl font-bold">دسترسی نامعتبر</div>
-                    <div className="text-xl text-red-300">{tokenCheckTimeout ? 'بررسی دسترسی timeout شد. دوباره لینک جدید بسازید.' : 'لینک Viewer منقضی شده یا معتبر نیست.'}</div>
-                </div>
-            )}
             {!state.connected && !state.currentSlide && (
                 <div className="absolute top-6 left-6 bg-red-600/90 backdrop-blur-md text-white px-6 py-3 rounded-xl z-50 shadow-2xl animate-pulse border-2 border-red-400 font-[Vazirmatn]">
                     <div className="flex items-center gap-2">

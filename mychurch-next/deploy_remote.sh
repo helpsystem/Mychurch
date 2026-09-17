@@ -80,10 +80,9 @@ echo "[deploy] Swap complete. New build is now active."
 # ─── 5. RESTART PM2 ────────────────────────────────────────────────────────────
 echo "[deploy] Restarting mychurch-next via PM2..."
 if pm2 show mychurch-next > /dev/null 2>&1; then
-    pm2 restart mychurch-next --update-env
-else
-    pm2 start npm --name 'mychurch-next' --max-memory-restart 800M -- start
+    pm2 delete mychurch-next || true
 fi
+pm2 start run-server.js --name 'mychurch-next' --max-memory-restart 800M
 pm2 save
 echo "[deploy] PM2 restarted."
 
