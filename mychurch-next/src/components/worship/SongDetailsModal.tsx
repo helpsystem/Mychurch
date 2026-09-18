@@ -389,6 +389,15 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
               </div>
             </div>
           )}
+
+          {!song.audio_url && !song.youtube_id && (
+            <div className="px-5 py-2.5 border-b border-border/50 shrink-0 bg-secondary/20 flex items-center justify-between text-xs text-muted-foreground">
+              <span className="flex items-center gap-2">
+                <Music className="w-3.5 h-3.5 text-primary/70" /> فایل صوتی این سرود هنوز آپلود نشده است
+              </span>
+              <span className="text-[10px] px-2.5 py-0.5 rounded-lg bg-secondary border border-border font-medium">متن و شعر</span>
+            </div>
+          )}
         </div>
 
         {/* ── Tabs (Universal Focus Toggles) */}
@@ -488,19 +497,35 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
               ) : (
                 <div className="px-5 pb-6">
                   {activeTab === "lyrics-fa" ? (
-                    <KaraokeLyrics 
-                       text={song.lyrics_fa || ""} 
-                       timingData={parsedTimingData}
-                       currentTime={currentTime}
-                       isExpanded={focusMode === "lyrics"} 
-                       dir="rtl"
-                    />
+                    song.lyrics_fa && song.lyrics_fa.trim().length > 0 ? (
+                      <KaraokeLyrics 
+                         text={song.lyrics_fa} 
+                         timingData={parsedTimingData}
+                         currentTime={currentTime}
+                         isExpanded={focusMode === "lyrics"} 
+                         dir="rtl"
+                      />
+                    ) : (
+                      <div className="text-center py-16 px-4">
+                        <AlignLeft className="w-10 h-10 mx-auto text-muted-foreground/40 mb-3" />
+                        <p className="text-base font-bold text-foreground">متن فارسی این سرود به زودی ثبت و تکمیل می‌شود</p>
+                        <p className="text-xs text-muted-foreground mt-1">در حال آماده‌سازی و همگام‌سازی شعر و آکورد</p>
+                      </div>
+                    )
                   ) : (
-                    <KaraokeLyrics 
-                       text={song.lyrics_en || ""} 
-                       isExpanded={focusMode === "lyrics"} 
-                       dir="ltr"
-                    />
+                    song.lyrics_en && song.lyrics_en.trim().length > 0 ? (
+                      <KaraokeLyrics 
+                         text={song.lyrics_en} 
+                         isExpanded={focusMode === "lyrics"} 
+                         dir="ltr"
+                      />
+                    ) : (
+                      <div className="text-center py-16 px-4">
+                        <AlignLeft className="w-10 h-10 mx-auto text-muted-foreground/40 mb-3" />
+                        <p className="text-base font-bold text-foreground">English lyrics not available</p>
+                        <p className="text-xs text-muted-foreground mt-1">Translations will be added soon</p>
+                      </div>
+                    )
                   )}
                 </div>
               )}

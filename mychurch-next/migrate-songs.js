@@ -16,7 +16,12 @@ async function migrate() {
                 title_en, artist, youtube_id, audio_url, lyrics_fa, lyrics_en, timepoints
             FROM worship_songs
             WHERE title_fa NOT IN (SELECT title_fa FROM church_worship_songs)
-            AND title_fa IS NOT NULL;
+            AND title_fa IS NOT NULL
+            AND (
+                (lyrics_fa IS NOT NULL AND length(trim(lyrics_fa)) > 0) OR
+                (audio_url IS NOT NULL AND length(trim(audio_url)) > 0) OR
+                (youtube_id IS NOT NULL AND length(trim(youtube_id)) > 0)
+            );
         `);
         console.log(`Successfully migrated ${res.rowCount} stranded songs.`);
         

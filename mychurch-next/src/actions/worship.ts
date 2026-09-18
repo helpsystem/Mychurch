@@ -73,22 +73,42 @@ export async function initializeWorshipDB() {
     }
 }
 
+function sortAndFilterWorshipSongs(rawList: any[]): WorshipSong[] {
+    const valid = rawList
+        .filter(r => r.title_fa && r.title_fa !== '(بدون نام)')
+        .map((r: any) => ({
+            ...r,
+            created_at: r.created_at ? new Date(r.created_at) : undefined,
+            audio_health_checked_at: r.audio_health_checked_at ? new Date(r.audio_health_checked_at) : undefined,
+            likes_count: r.likes_count || 0
+        }));
+
+    return valid.sort((a, b) => {
+        // 1. Songs with lyrics or audio come first
+        const aHasContent = (Boolean(a.lyrics_fa && a.lyrics_fa.trim()) || Boolean(a.audio_url && a.audio_url.trim()) || Boolean(a.youtube_id)) ? 1 : 0;
+        const bHasContent = (Boolean(b.lyrics_fa && b.lyrics_fa.trim()) || Boolean(b.audio_url && b.audio_url.trim()) || Boolean(b.youtube_id)) ? 1 : 0;
+        if (aHasContent !== bHasContent) return bHasContent - aHasContent;
+
+        // 2. Persian alphabet titles come before Latin/Finglish
+        const isFaA = /[\u0600-\u06FF]/.test(a.title_fa || '');
+        const isFaB = /[\u0600-\u06FF]/.test(b.title_fa || '');
+        if (isFaA !== isFaB) return isFaB ? 1 : -1;
+
+        // 3. Persian locale alphabetical order
+        return (a.title_fa || '').localeCompare(b.title_fa || '', 'fa');
+    });
+}
+
 export async function getWorshipSongs(): Promise<WorshipSong[]> {
     try {
         const { createAdminClient } = await import('@/utils/supabase/server');
         const supabase = await createAdminClient();
         const { data, error } = await supabase
             .from('church_worship_songs')
-            .select('*')
-            .order('title_fa', { ascending: true });
+            .select('*');
 
         if (!error && data && data.length > 0) {
-            return data.map((r: any) => ({
-                ...r,
-                created_at: r.created_at ? new Date(r.created_at) : undefined,
-                audio_health_checked_at: r.audio_health_checked_at ? new Date(r.audio_health_checked_at) : undefined,
-                likes_count: r.likes_count || 0
-            }));
+            return sortAndFilterWorshipSongs(data);
         }
         if (error) {
             console.warn('[Worship] Supabase query returned error, trying direct query:', error.message);
@@ -99,13 +119,8 @@ export async function getWorshipSongs(): Promise<WorshipSong[]> {
 
     try {
         await initializeWorshipDB();
-        const { rows } = await query("SELECT * FROM church_worship_songs ORDER BY title_fa ASC");
-        return rows.map(r => ({ 
-            ...r, 
-            created_at: new Date(r.created_at),
-            audio_health_checked_at: r.audio_health_checked_at ? new Date(r.audio_health_checked_at) : undefined,
-            likes_count: r.likes_count || 0 
-        }));
+        const { rows } = await query("SELECT * FROM church_worship_songs");
+        return sortAndFilterWorshipSongs(rows);
     } catch (e) {
         console.error('Error fetching worship songs', e);
         return [];
