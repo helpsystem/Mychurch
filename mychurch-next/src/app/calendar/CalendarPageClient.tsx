@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft, Calendar, MapPin, Clock, Tag, Globe } from "lucide-react";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 // =============================
 // Timezone Utilities
@@ -38,10 +39,80 @@ function gregorianToJalali(gy: number, gm: number, gd: number): [number, number,
 
 const GREGORIAN_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const GREGORIAN_MONTHS_FARSI = ["ژانویه", "فوریه", "مارس", "آوریل", "مه", "ژوئن", "ژوئیه", "اوت", "سپتامبر", "اکتبر", "نوامبر", "دسامبر"];
+const GREGORIAN_MONTHS_ES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+const MONTHS_BY_LANG: Record<"en" | "fa" | "es", string[]> = {
+    en: GREGORIAN_MONTHS,
+    fa: GREGORIAN_MONTHS_FARSI,
+    es: GREGORIAN_MONTHS_ES,
+};
 const JALALI_MONTHS = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"];
+const JALALI_MONTHS_LATIN = ["Farvardin", "Ordibehesht", "Khordad", "Tir", "Mordad", "Shahrivar", "Mehr", "Aban", "Azar", "Dey", "Bahman", "Esfand"];
+const JALALI_MONTHS_BY_LANG: Record<"en" | "fa" | "es", string[]> = {
+    en: JALALI_MONTHS_LATIN,
+    fa: JALALI_MONTHS,
+    es: JALALI_MONTHS_LATIN,
+};
 const DAYS_SHORT = ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه"];
+const DAYS_SHORT_EN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const DAYS_SHORT_ES = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+const DAYS_SHORT_BY_LANG: Record<"en" | "fa" | "es", string[]> = {
+    en: DAYS_SHORT_EN,
+    fa: DAYS_SHORT,
+    es: DAYS_SHORT_ES,
+};
 const PERSIAN_NUMS = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 const toPersianNum = (n: number) => String(n).split("").map(d => PERSIAN_NUMS[parseInt(d)] ?? d).join("");
+
+const localDict = {
+    en: {
+        badge: "International Church Calendar",
+        title: "Events & Gatherings",
+        subtitle: "Click on any day of the calendar to see the exact meeting times split between the US and Iran.",
+        prevMonth: "Previous Month",
+        nextMonth: "Next Month",
+        gregorianLabel: "Gregorian Calendar",
+        legend: {
+            worship: "Worship", prayer: "Prayer", study: "Study", special: "Special", youth: "Youth",
+        } as Record<string, string>,
+        eventsThisDay: "Events on this day",
+        eventsThisMonth: "Events this month",
+        noEvents: "No events are scheduled for this date.",
+        usaLabel: "USA (ET)",
+        tehranLabel: "Tehran",
+    },
+    fa: {
+        badge: "تقویم بین‌المللی کلیسا",
+        title: "رویدادها و جلسات",
+        subtitle: "با کلیک روی هر روز تقویم، ساعت دقیق جلسات را به تفکیک آمریکا و ایران مشاهده کنید.",
+        prevMonth: "ماه قبل",
+        nextMonth: "ماه بعد",
+        gregorianLabel: "تقویم میلادی",
+        legend: {
+            worship: "پرستش", prayer: "دعا", study: "مطالعه", special: "ویژه", youth: "جوانان",
+        } as Record<string, string>,
+        eventsThisDay: "رویدادهای این روز",
+        eventsThisMonth: "رویدادهای این ماه",
+        noEvents: "در این تاریخ رویدادی ثبت نشده است.",
+        usaLabel: "آمریکا (ET)",
+        tehranLabel: "تهران",
+    },
+    es: {
+        badge: "Calendario Internacional de la Iglesia",
+        title: "Eventos y Reuniones",
+        subtitle: "Haga clic en cualquier día del calendario para ver los horarios exactos de las reuniones en EE. UU. e Irán.",
+        prevMonth: "Mes Anterior",
+        nextMonth: "Mes Siguiente",
+        gregorianLabel: "Calendario Gregoriano",
+        legend: {
+            worship: "Adoración", prayer: "Oración", study: "Estudio", special: "Especial", youth: "Jóvenes",
+        } as Record<string, string>,
+        eventsThisDay: "Eventos de este día",
+        eventsThisMonth: "Eventos de este mes",
+        noEvents: "No hay eventos registrados para esta fecha.",
+        usaLabel: "EE. UU. (ET)",
+        tehranLabel: "Teherán",
+    },
+};
 
 export interface ChurchEvent {
     id: string;
@@ -62,18 +133,17 @@ const EVENT_COLORS: Record<ChurchEvent["type"], string> = {
     special: "bg-amber-500",
     youth: "bg-pink-500",
 };
-const EVENT_LABELS: Record<ChurchEvent["type"], string> = {
-    worship: "پرستش",
-    prayer: "دعا",
-    study: "مطالعه",
-    special: "ویژه",
-    youth: "جوانان",
-};
+const EVENT_TYPES: ChurchEvent["type"][] = ["worship", "prayer", "study", "special", "youth"];
 
 // =============================
 // Dual Calendar Component
 // =============================
 export default function CalendarPageClient({ initialEvents }: { initialEvents: ChurchEvent[] }) {
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
+    const months = MONTHS_BY_LANG[language] || GREGORIAN_MONTHS;
+    const jalaliMonths = JALALI_MONTHS_BY_LANG[language] || JALALI_MONTHS;
+    const weekDays = DAYS_SHORT_BY_LANG[language] || DAYS_SHORT;
     const today = new Date();
     const [viewYear, setViewYear] = useState(today.getFullYear());
     const [viewMonth, setViewMonth] = useState(today.getMonth() + 1); // 1-12
@@ -114,7 +184,7 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
     const isToday = (d: number) => d === today.getDate() && viewYear === today.getFullYear() && viewMonth === today.getMonth() + 1;
 
     return (
-        <div className="min-h-screen bg-background flex flex-col" dir="rtl">
+        <div className="min-h-screen bg-background flex flex-col" dir={isRTL ? "rtl" : "ltr"}>
             <PublicHeader />
 
             {/* Background */}
@@ -128,25 +198,25 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
                 <div className="mb-10 animate-fade-in-up flex flex-col lg:flex-row lg:items-end justify-between gap-6">
                     <div>
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 text-purple-400 text-sm font-bold border border-purple-500/20 mb-4">
-                            <Calendar className="w-4 h-4" /> تقویم بین‌المللی کلیسا
+                            <Calendar className="w-4 h-4" /> {d.badge}
                         </div>
                         <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/60 mb-3">
-                            رویدادها و جلسات
+                            {d.title}
                         </h1>
-                        <p className="text-muted-foreground">با کلیک روی هر روز تقویم، ساعت دقیق جلسات را به تفکیک آمریکا و ایران مشاهده کنید.</p>
+                        <p className="text-muted-foreground">{d.subtitle}</p>
                     </div>
 
                     {/* Live Timezones Banner */}
                     <div className="flex gap-4 shrink-0">
                         <div className="glass rounded-2xl p-4 flex flex-col items-center min-w-[120px]">
                             <span className="text-xs text-muted-foreground uppercase tracking-widest font-mono mb-1 flex items-center gap-1.5">
-                                <Globe className="w-3 h-3" /> US (ET)
+                                <Globe className="w-3 h-3" /> {d.usaLabel}
                             </span>
                             <span className="text-2xl font-black text-primary font-mono" dir="ltr">{timeET || "--:--"}</span>
                         </div>
                         <div className="glass rounded-2xl p-4 flex flex-col items-center min-w-[120px]">
                             <span className="text-xs text-muted-foreground uppercase tracking-widest font-mono mb-1 flex items-center gap-1.5">
-                                <Globe className="w-3 h-3" /> TEHRAN
+                                <Globe className="w-3 h-3" /> {d.tehranLabel}
                             </span>
                             <span className="text-2xl font-black text-primary font-mono" dir="ltr">{timeTehran || "--:--"}</span>
                         </div>
@@ -158,27 +228,27 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
                     <div className="lg:col-span-2 glass rounded-3xl p-6 md:p-8 animate-fade-in-up">
                         {/* Month Nav */}
                         <div className="flex items-center justify-between mb-8">
-                            <button onClick={nextMonth} className="p-2 rounded-xl hover:bg-secondary transition btn-lift" title="ماه بعد">
+                            <button onClick={nextMonth} className="p-2 rounded-xl hover:bg-secondary transition btn-lift" title={d.nextMonth}>
                                 <ChevronRight className="w-6 h-6" />
                             </button>
                             <div className="text-center">
                                 <h2 className="text-2xl md:text-3xl font-black flex items-center justify-center gap-2" dir="ltr">
-                                    {GREGORIAN_MONTHS[viewMonth - 1]} <span className="text-primary">{viewYear}</span>
+                                    {months[viewMonth - 1]} <span className="text-primary">{viewYear}</span>
                                 </h2>
                                 <p className="text-sm md:text-base text-muted-foreground font-medium mt-1">
-                                    {GREGORIAN_MONTHS_FARSI[viewMonth - 1]} | تقویم میلادی
+                                    {d.gregorianLabel}
                                 </p>
                             </div>
-                            <button onClick={prevMonth} className="p-2 rounded-xl hover:bg-secondary transition btn-lift" title="ماه قبل">
+                            <button onClick={prevMonth} className="p-2 rounded-xl hover:bg-secondary transition btn-lift" title={d.prevMonth}>
                                 <ChevronLeft className="w-6 h-6" />
                             </button>
                         </div>
 
                         {/* Day Headers */}
                         <div className="grid grid-cols-7 mb-4">
-                            {DAYS_SHORT.map((d, i) => (
+                            {weekDays.map((wd, i) => (
                                 <div key={i} className={`text-center text-xs md:text-sm font-bold py-2 ${i === 0 ? "text-red-400" : "text-muted-foreground"}`}>
-                                    {d}
+                                    {wd}
                                 </div>
                             ))}
                         </div>
@@ -214,7 +284,7 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
 
                                         {/* Jalali Small Subtext */}
                                         <span className={`text-[10px] md:text-xs font-medium z-10 ${today_ ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
-                                            {toPersianNum(jd)} {JALALI_MONTHS[jm - 1]}
+                                            {language === "fa" ? toPersianNum(jd) : jd} {jalaliMonths[jm - 1]}
                                         </span>
 
                                         {/* Event Dots */}
@@ -232,10 +302,10 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
 
                         {/* Legend */}
                         <div className="flex flex-wrap items-center justify-center gap-4 mt-8 pt-6 border-t border-border/10">
-                            {(Object.keys(EVENT_LABELS) as ChurchEvent["type"][]).map(type => (
+                            {EVENT_TYPES.map(type => (
                                 <div key={type} className="flex items-center gap-2 text-xs md:text-sm font-medium text-muted-foreground bg-secondary/30 px-3 py-1.5 rounded-full">
                                     <span className={`w-2.5 h-2.5 rounded-full ${EVENT_COLORS[type]}`} />
-                                    {EVENT_LABELS[type]}
+                                    {d.legend[type]}
                                 </div>
                             ))}
                         </div>
@@ -248,17 +318,17 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
                                 {selectedDate ? (
                                     <>
                                         <span className="text-primary tracking-wide" dir="ltr">
-                                            {selectedDate.getDate()} {GREGORIAN_MONTHS[selectedDate.getMonth()]}
+                                            {selectedDate.getDate()} {months[selectedDate.getMonth()]}
                                         </span>
                                         <span className="text-sm text-muted-foreground font-normal">
-                                            رویدادهای این روز
+                                            {d.eventsThisDay}
                                         </span>
                                     </>
                                 ) : (
                                     <>
-                                        <span>رویدادهای این ماه</span>
+                                        <span>{d.eventsThisMonth}</span>
                                         <span className="text-sm text-muted-foreground font-normal" dir="ltr">
-                                            {GREGORIAN_MONTHS[viewMonth - 1]} {viewYear}
+                                            {months[viewMonth - 1]} {viewYear}
                                         </span>
                                     </>
                                 )}
@@ -268,7 +338,7 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
                                 {(selectedDate ? selectedEvents : eventsThisMonth).length === 0 ? (
                                     <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
                                         <Calendar className="w-12 h-12 mb-3 opacity-20" />
-                                        <p className="font-medium">در این تاریخ رویدادی ثبت نشده است.</p>
+                                        <p className="font-medium">{d.noEvents}</p>
                                     </div>
                                 ) : (
                                     (selectedDate ? selectedEvents : eventsThisMonth).map(event => (
@@ -281,7 +351,7 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
                                                     <p className="font-black text-base md:text-lg leading-tight text-foreground">{event.title}</p>
                                                     {!selectedDate && (
                                                         <span className="text-xs font-black text-primary bg-primary/10 px-2 py-1 rounded-lg shrink-0" dir="ltr">
-                                                            {GREGORIAN_MONTHS[event.gm - 1].substring(0, 3)} {event.gd}
+                                                            {months[event.gm - 1].substring(0, 3)} {event.gd}
                                                         </span>
                                                     )}
                                                 </div>
@@ -289,13 +359,13 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
 
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4 bg-secondary/30 p-3 rounded-xl border border-border/10">
                                                     <div className="flex flex-col gap-1">
-                                                        <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono">USA (ET)</span>
+                                                        <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono">{d.usaLabel}</span>
                                                         <span className="flex items-center gap-1.5 text-sm font-bold text-foreground" dir="ltr">
                                                             <Clock className="w-3.5 h-3.5 text-primary" />{event.timeET}
                                                         </span>
                                                     </div>
                                                     <div className="flex flex-col gap-1">
-                                                        <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono">Tehran</span>
+                                                        <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-mono">{d.tehranLabel}</span>
                                                         <span className="flex items-center gap-1.5 text-sm font-bold text-foreground" dir="ltr">
                                                             <Clock className="w-3.5 h-3.5 text-primary" />{event.timeTehran}
                                                         </span>
@@ -309,7 +379,7 @@ export default function CalendarPageClient({ initialEvents }: { initialEvents: C
 
                                                 <div className="mt-4 flex justify-end">
                                                     <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-1 rounded-full text-white shadow-sm ${EVENT_COLORS[event.type]}`}>
-                                                        <Tag className="w-3 h-3" />{EVENT_LABELS[event.type]}
+                                                        <Tag className="w-3 h-3" />{d.legend[event.type]}
                                                     </span>
                                                 </div>
                                             </div>

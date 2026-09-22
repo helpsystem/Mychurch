@@ -10,6 +10,34 @@ import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/plugins/captions.css";
 import { motion, type Variants } from "framer-motion";
 import { Play, X, Link2, FileVideo } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        videoAlt: "Video",
+        photoAlt: "Gallery photo",
+        videoBadge: "Video",
+        linkBadge: "Link",
+        playVideoFallback: "Play video",
+        youtubeFallback: "YouTube video",
+    },
+    fa: {
+        videoAlt: "ویدیو",
+        photoAlt: "عکس گالری",
+        videoBadge: "ویدیو",
+        linkBadge: "لینک",
+        playVideoFallback: "پخش ویدیو",
+        youtubeFallback: "ویدیوی یوتیوب",
+    },
+    es: {
+        videoAlt: "Video",
+        photoAlt: "Foto de la galería",
+        videoBadge: "Video",
+        linkBadge: "Enlace",
+        playVideoFallback: "Reproducir video",
+        youtubeFallback: "Video de YouTube",
+    },
+};
 
 export interface GalleryPhoto {
     src: string;
@@ -58,6 +86,8 @@ function checkIsVideo(photo: GalleryPhoto): boolean {
 }
 
 export function GalleryGrid({ photos }: GalleryGridProps) {
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const [index, setIndex] = useState(-1);
     const [activeVideo, setActiveVideo] = useState<GalleryPhoto | null>(null);
 
@@ -111,7 +141,7 @@ export function GalleryGrid({ photos }: GalleryGridProps) {
                         ) : (
                             <img
                                 src={imgSrc}
-                                alt={alt || photo.title || (isVideo ? "ویدیو" : "عکس گالری")}
+                                alt={alt || photo.title || (isVideo ? d.videoAlt : d.photoAlt)}
                                 style={{ ...style, transition: "transform 0.5s ease" }}
                                 className="w-full h-full object-cover group-hover:scale-105"
                                 {...rest}
@@ -131,12 +161,12 @@ export function GalleryGrid({ photos }: GalleryGridProps) {
                         <div className="absolute top-3 left-3 flex items-center gap-1.5 pointer-events-none">
                             {isVideo && (
                                 <span className="bg-blue-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow">
-                                    <FileVideo className="w-3 h-3" /> ویدیو
+                                    <FileVideo className="w-3 h-3" /> {d.videoBadge}
                                 </span>
                             )}
                             {photo.isExternalLink && (
                                 <span className="bg-indigo-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow">
-                                    <Link2 className="w-3 h-3" /> لینک
+                                    <Link2 className="w-3 h-3" /> {d.linkBadge}
                                 </span>
                             )}
                         </div>
@@ -144,7 +174,7 @@ export function GalleryGrid({ photos }: GalleryGridProps) {
                         {/* Hover overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 pointer-events-none">
                             {photo.title && (
-                                <p className="text-white font-bold text-sm truncate" dir="rtl">{photo.title}</p>
+                                <p className="text-white font-bold text-sm truncate" dir={isRTL ? "rtl" : "ltr"}>{photo.title}</p>
                             )}
                         </div>
 
@@ -158,7 +188,7 @@ export function GalleryGrid({ photos }: GalleryGridProps) {
                 </motion.div>
             );
         },
-        []
+        [d, isRTL]
     );
 
     return (
@@ -210,12 +240,12 @@ export function GalleryGrid({ photos }: GalleryGridProps) {
                     <div
                         className="bg-neutral-900 border border-border/20 rounded-2xl overflow-hidden max-w-4xl w-full shadow-2xl flex flex-col"
                         onClick={(e) => e.stopPropagation()}
-                        dir="rtl"
+                        dir={isRTL ? "rtl" : "ltr"}
                     >
                         <div className="flex items-center justify-between p-4 border-b border-border/10 bg-neutral-950/60">
                             <h3 className="font-bold text-white text-base flex items-center gap-2">
                                 <FileVideo className="w-5 h-5 text-blue-400" />
-                                {activeVideo.title || "پخش ویدیو"}
+                                {activeVideo.title || d.playVideoFallback}
                             </h3>
                             <button
                                 onClick={() => setActiveVideo(null)}
@@ -229,7 +259,7 @@ export function GalleryGrid({ photos }: GalleryGridProps) {
                             {getYouTubeEmbedUrl(activeVideo.src) ? (
                                 <iframe
                                     src={getYouTubeEmbedUrl(activeVideo.src)!}
-                                    title={activeVideo.title || "YouTube video"}
+                                    title={activeVideo.title || d.youtubeFallback}
                                     className="w-full aspect-video rounded-xl"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen

@@ -1,6 +1,36 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        heading: "Looks like you're lost! 😕",
+        message: "The page you are looking for does not exist or has been moved.",
+        worship: "🎵 Worship",
+        bible: "📖 Bible",
+        home: "🏠 Back to Home",
+    },
+    fa: {
+        heading: "انگار گم شدید! 😕",
+        message: "صفحه‌ای که دنبالش می‌گردید وجود ندارد یا جابه‌جا شده است.",
+        worship: "🎵 سرودها",
+        bible: "📖 کتاب مقدس",
+        home: "🏠 بازگشت به خانه",
+    },
+    es: {
+        heading: "¡Parece que te has perdido! 😕",
+        message: "La página que busca no existe o ha sido movida.",
+        worship: "🎵 Adoración",
+        bible: "📖 Biblia",
+        home: "🏠 Volver al Inicio",
+    },
+};
 
 export default function NotFound() {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
+
     return (
         <>
             <style dangerouslySetInnerHTML={{ __html: `
@@ -116,16 +146,14 @@ export default function NotFound() {
                     </div>
 
                     <div className="contant_box_404">
-                        <h3>انگار گم شدید! 😕</h3>
+                        <h3>{d.heading}</h3>
                         <p>
-                            صفحه‌ای که دنبالش می‌گردید وجود ندارد یا جابه‌جا شده است.
-                            <br />
-                            <small style={{ color: "#aaa" }}>The page you are looking for is not available!</small>
+                            {d.message}
                         </p>
                         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "4px", marginBottom: "12px" }}>
-                            <Link href="/worship" className="link_worship">🎵 سرودها</Link>
-                            <Link href="/bible" className="link_bible">📖 کتاب مقدس</Link>
-                            <Link href="/" className="link_404">🏠 بازگشت به خانه</Link>
+                            <Link href="/worship" className="link_worship">{d.worship}</Link>
+                            <Link href="/bible" className="link_bible">{d.bible}</Link>
+                            <Link href="/" className="link_404">{d.home}</Link>
                         </div>
                         <p className="footer_404">MyChurch — Iranian Church of Washington DC</p>
                     </div>

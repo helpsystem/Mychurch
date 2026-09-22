@@ -5,7 +5,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Radio, BookOpen, ArrowLeft, Globe, Sparkles, Flame, Lightbulb, Heart } from "lucide-react";
+import { Radio, BookOpen, ArrowLeft, ArrowRight, Globe, Sparkles, Flame, Lightbulb, Heart } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const textVariants: any = {
   hidden: { opacity: 0, y: 25 },
@@ -16,14 +17,90 @@ const textVariants: any = {
   }),
 };
 
+const localDict = {
+  en: {
+    heroImgAlt: "The altar and the Word of God at the Iranian Church",
+    liveBadge: "Live Sunday Service — 10:00 AM Washington D.C. Time (EST)",
+    headline: "Iranian Christian Church",
+    scriptureQuote: "\"I am the light of the world\"",
+    scriptureRef: "John 8:12",
+    diasporaText: "Connecting over",
+    diasporaMembers: "12,400+",
+    diasporaMiddle: "members in",
+    diasporaCountries: "34",
+    diasporaEnd: "countries worldwide",
+    ctaLive: "Watch Live Service",
+    ctaBible: "Read the Bible Online",
+    card1Label: "Light of Life",
+    card1Quote: "\"I am the light of the world\"",
+    card1Ref: "John 8:12",
+    card2Label: "Calling of the Saints",
+    card2Quote: "\"You are the light of the world\"",
+    card2Ref: "Matthew 5:14",
+    card3Label: "New Life",
+    card3Quote: "\"Christ lives in me\"",
+    card3Ref: "Galatians 2:20",
+  },
+  fa: {
+    heroImgAlt: "محراب و کلام خدا در کلیسای ایرانیان",
+    liveBadge: "پخش زنده یکشنبه‌ها — ساعت ۱۰:۰۰ صبح به وقت واشنگتن (EST)",
+    headline: "کلیسای مسیحی ایرانیان",
+    scriptureQuote: "«من نور جهان هستم»",
+    scriptureRef: "انجیل یوحنا ۸:۱۲",
+    diasporaText: "پیوند بیش از",
+    diasporaMembers: "۱۲,۴۰۰+",
+    diasporaMiddle: "عضو در",
+    diasporaCountries: "۳۴",
+    diasporaEnd: "کشور جهان",
+    ctaLive: "پخش زنده جلسات",
+    ctaBible: "کتاب مقدس آنلاین",
+    card1Label: "نور حیات",
+    card1Quote: "«من نور جهان هستم»",
+    card1Ref: "یوحنا ۸:۱۲",
+    card2Label: "دعوت مقدسین",
+    card2Quote: "«شما نور جهانید»",
+    card2Ref: "متی ۵:۱۴",
+    card3Label: "حیات تازه",
+    card3Quote: "«مسیح در من زندگی می‌کند»",
+    card3Ref: "غلاطیان ۲:۲۰",
+  },
+  es: {
+    heroImgAlt: "El altar y la Palabra de Dios en la Iglesia Iraní",
+    liveBadge: "Servicio en Vivo los Domingos — 10:00 AM hora de Washington D.C. (EST)",
+    headline: "Iglesia Cristiana Iraní",
+    scriptureQuote: "\"Yo soy la luz del mundo\"",
+    scriptureRef: "Juan 8:12",
+    diasporaText: "Conectando a más de",
+    diasporaMembers: "12,400+",
+    diasporaMiddle: "miembros en",
+    diasporaCountries: "34",
+    diasporaEnd: "países del mundo",
+    ctaLive: "Ver Servicio en Vivo",
+    ctaBible: "Leer la Biblia en Línea",
+    card1Label: "Luz de Vida",
+    card1Quote: "\"Yo soy la luz del mundo\"",
+    card1Ref: "Juan 8:12",
+    card2Label: "Llamado de los Santos",
+    card2Quote: "\"Ustedes son la luz del mundo\"",
+    card2Ref: "Mateo 5:14",
+    card3Label: "Nueva Vida",
+    card3Quote: "\"Cristo vive en mí\"",
+    card3Ref: "Gálatas 2:20",
+  },
+};
+
 export default function HeroSection() {
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+
   return (
     <section className="relative w-full min-h-[760px] lg:min-h-[840px] flex items-center justify-center overflow-hidden bg-[#0a0e18] pt-20">
       {/* ── Background Imagery & Spiritual Luminous Glow ────────────────────── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Image
           src="/images/stitch/stitch_asset_2.webp"
-          alt="محراب و کلام خدا در کلیسای ایرانیان"
+          alt={d.heroImgAlt}
           fill
           priority
           className="object-cover object-center filter brightness-[0.38] contrast-125 scale-105 transition-transform duration-1000 ease-out"
@@ -36,8 +113,8 @@ export default function HeroSection() {
       </div>
 
       {/* ── Content Container ──────────────────────────────────────────────── */}
-      <div className="relative z-10 w-full max-w-[1240px] mx-auto px-4 pt-12 pb-16 flex flex-col items-center text-center" dir="rtl">
-        
+      <div className="relative z-10 w-full max-w-[1240px] mx-auto px-4 pt-12 pb-16 flex flex-col items-center text-center" dir={isRTL ? "rtl" : "ltr"}>
+
         {/* Live Broadcast Header Pill */}
         <motion.div custom={0} variants={textVariants} initial="hidden" animate="visible">
           <Link
@@ -49,9 +126,9 @@ export default function HeroSection() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
             </span>
             <span className="text-[13px] text-gray-100 font-medium tracking-wide">
-              پخش زنده یکشنبه‌ها — ساعت ۱۰:۰۰ صبح به وقت واشنگتن (EST)
+              {d.liveBadge}
             </span>
-            <ArrowLeft className="w-3.5 h-3.5 text-amber-400 group-hover:-translate-x-1 transition-transform" />
+            <ArrowIcon className="w-3.5 h-3.5 text-amber-400 group-hover:-translate-x-1 transition-transform" />
           </Link>
         </motion.div>
 
@@ -63,7 +140,7 @@ export default function HeroSection() {
           animate="visible"
           className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] leading-[1.25] mb-2"
         >
-          کلیسای مسیحی ایرانیان
+          {d.headline}
         </motion.h1>
 
         {/* Subheading / English Attestation */}
@@ -87,10 +164,10 @@ export default function HeroSection() {
         >
           <div className="text-amber-400/40 text-3xl font-serif leading-none text-right">❝</div>
           <p className="text-[22px] sm:text-[24px] font-bold text-amber-300 drop-shadow-md leading-relaxed my-1">
-            «من نور جهان هستم»
+            {d.scriptureQuote}
           </p>
           <span className="block text-[13px] text-cyan-400 font-medium mt-1 tracking-wide">
-            انجیل یوحنا ۸:۱۲
+            {d.scriptureRef}
           </span>
           <div className="text-amber-400/40 text-3xl font-serif leading-none text-left">❞</div>
         </motion.div>
@@ -104,7 +181,9 @@ export default function HeroSection() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1c1f2a]/80 backdrop-blur-md mb-8 text-gray-300 text-[13px] border border-white/10 shadow-inner"
         >
           <Globe className="w-4 h-4 text-amber-400 shrink-0" />
-          <span>پیوند بیش از <strong className="text-white font-bold">۱۲,۴۰۰+</strong> عضو در <strong className="text-white font-bold">۳۴</strong> کشور جهان</span>
+          <span>
+            {d.diasporaText} <strong className="text-white font-bold">{d.diasporaMembers}</strong> {d.diasporaMiddle} <strong className="text-white font-bold">{d.diasporaCountries}</strong> {d.diasporaEnd}
+          </span>
         </motion.div>
 
         {/* Primary Call to Action Buttons */}
@@ -120,7 +199,7 @@ export default function HeroSection() {
             className="w-full sm:flex-1 h-13 py-3.5 px-6 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-[16px] shadow-[0_8px_24px_rgba(245,158,11,0.35)] hover:shadow-[0_10px_28px_rgba(245,158,11,0.5)] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 group"
           >
             <Radio className="w-5 h-5 text-slate-950 group-hover:scale-110 transition-transform" />
-            <span>پخش زنده جلسات</span>
+            <span>{d.ctaLive}</span>
           </Link>
 
           <Link
@@ -128,7 +207,7 @@ export default function HeroSection() {
             className="w-full sm:flex-1 h-13 py-3.5 px-6 rounded-full bg-[#1c1f2a]/90 hover:bg-[#262a35] backdrop-blur-xl border border-white/15 text-white font-semibold text-[15px] shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 hover:border-white/30"
           >
             <BookOpen className="w-5 h-5 text-amber-400" />
-            <span>کتاب مقدس آنلاین</span>
+            <span>{d.ctaBible}</span>
           </Link>
         </motion.div>
 
@@ -143,28 +222,28 @@ export default function HeroSection() {
           <div className="p-4 rounded-2xl bg-[#0a0e18]/80 backdrop-blur-md border border-white/8 shadow text-right hover:border-amber-500/30 transition-all">
             <div className="flex items-center gap-2 text-amber-400 text-[13px] font-bold mb-1.5">
               <Flame className="w-4 h-4" />
-              <span>نور حیات</span>
+              <span>{d.card1Label}</span>
             </div>
-            <p className="text-[13px] text-gray-200 font-medium leading-relaxed">«من نور جهان هستم»</p>
-            <span className="text-[11px] text-gray-400 mt-1 block">یوحنا ۸:۱۲</span>
+            <p className="text-[13px] text-gray-200 font-medium leading-relaxed">{d.card1Quote}</p>
+            <span className="text-[11px] text-gray-400 mt-1 block">{d.card1Ref}</span>
           </div>
 
           <div className="p-4 rounded-2xl bg-[#0a0e18]/80 backdrop-blur-md border border-white/8 shadow text-right hover:border-cyan-500/30 transition-all">
             <div className="flex items-center gap-2 text-cyan-400 text-[13px] font-bold mb-1.5">
               <Lightbulb className="w-4 h-4" />
-              <span>دعوت مقدسین</span>
+              <span>{d.card2Label}</span>
             </div>
-            <p className="text-[13px] text-gray-200 font-medium leading-relaxed">«شما نور جهانید»</p>
-            <span className="text-[11px] text-gray-400 mt-1 block">متی ۵:۱۴</span>
+            <p className="text-[13px] text-gray-200 font-medium leading-relaxed">{d.card2Quote}</p>
+            <span className="text-[11px] text-gray-400 mt-1 block">{d.card2Ref}</span>
           </div>
 
           <div className="p-4 rounded-2xl bg-[#0a0e18]/80 backdrop-blur-md border border-white/8 shadow text-right hover:border-indigo-400/30 transition-all">
             <div className="flex items-center gap-2 text-indigo-300 text-[13px] font-bold mb-1.5">
               <Heart className="w-4 h-4" />
-              <span>حیات تازه</span>
+              <span>{d.card3Label}</span>
             </div>
-            <p className="text-[13px] text-gray-200 font-medium leading-relaxed">«مسیح در من زندگی می‌کند»</p>
-            <span className="text-[11px] text-gray-400 mt-1 block">غلاطیان ۲:۲۰</span>
+            <p className="text-[13px] text-gray-200 font-medium leading-relaxed">{d.card3Quote}</p>
+            <span className="text-[11px] text-gray-400 mt-1 block">{d.card3Ref}</span>
           </div>
         </motion.div>
 

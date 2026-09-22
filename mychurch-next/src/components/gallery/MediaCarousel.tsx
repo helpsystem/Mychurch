@@ -5,6 +5,40 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 import { fetchGalleryImages, type GalleryImage } from "@/actions/gallery";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        loading: "Loading images...",
+        empty: "No images found to display in the gallery.",
+        slideAlt: "Slider image",
+        prevSlide: "Previous Slide",
+        nextSlide: "Next Slide",
+        pauseAutoplay: "Pause Autoplay",
+        startAutoplay: "Start Autoplay",
+        goToSlide: (n: number) => `Go to slide ${n}`,
+    },
+    fa: {
+        loading: "در حال دریافت تصاویر...",
+        empty: "تصویری در گالری جهت نمایش یافت نشد.",
+        slideAlt: "تصویر اسلایدر",
+        prevSlide: "اسلاید قبلی",
+        nextSlide: "اسلاید بعدی",
+        pauseAutoplay: "توقف پخش خودکار",
+        startAutoplay: "شروع پخش خودکار",
+        goToSlide: (n: number) => `رفتن به اسلاید ${n}`,
+    },
+    es: {
+        loading: "Cargando imágenes...",
+        empty: "No se encontraron imágenes para mostrar en la galería.",
+        slideAlt: "Imagen del carrusel",
+        prevSlide: "Diapositiva Anterior",
+        nextSlide: "Diapositiva Siguiente",
+        pauseAutoplay: "Pausar Reproducción Automática",
+        startAutoplay: "Iniciar Reproducción Automática",
+        goToSlide: (n: number) => `Ir a la diapositiva ${n}`,
+    },
+};
 
 interface MediaCarouselProps {
     initialImages?: GalleryImage[];
@@ -45,6 +79,8 @@ export function MediaCarousel({
     autoplayInterval = 5000, 
     className 
 }: MediaCarouselProps) {
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const [images, setImages] = useState<GalleryImage[]>(initialImages || []);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
@@ -91,7 +127,7 @@ export function MediaCarousel({
             <div className={cn("relative w-full aspect-video rounded-3xl bg-neutral-900/50 border border-white/10 flex items-center justify-center animate-pulse", className)}>
                 <div className="flex flex-col items-center gap-3">
                     <div className="w-10 h-10 rounded-full border-4 border-primary border-t-transparent animate-spin" />
-                    <span className="text-sm font-[Vazirmatn] text-muted-foreground">در حال دریافت تصاویر...</span>
+                    <span className="text-sm font-[Vazirmatn] text-muted-foreground">{d.loading}</span>
                 </div>
             </div>
         );
@@ -100,7 +136,7 @@ export function MediaCarousel({
     if (images.length === 0) {
         return (
             <div className={cn("relative w-full aspect-video rounded-3xl bg-neutral-900/50 border border-white/10 flex items-center justify-center p-8 text-center", className)}>
-                <p className="text-muted-foreground font-[Vazirmatn]">تصویری در گالری جهت نمایش یافت نشد.</p>
+                <p className="text-muted-foreground font-[Vazirmatn]">{d.empty}</p>
             </div>
         );
     }
@@ -128,9 +164,9 @@ export function MediaCarousel({
                         exit="exit"
                         className="absolute inset-0 w-full h-full"
                     >
-                        <img 
-                            src={currentImg.src} 
-                            alt={currentImg.title || "تصویر اسلایدر"} 
+                        <img
+                            src={currentImg.src}
+                            alt={currentImg.title || d.slideAlt}
                             className="w-full h-full object-cover select-none pointer-events-none"
                         />
                         {/* Shadows and Vignette */}
@@ -140,7 +176,7 @@ export function MediaCarousel({
             </div>
 
             {/* Content Details Overlay */}
-            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 z-10 flex flex-col justify-end text-right font-[Vazirmatn]" dir="rtl">
+            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 z-10 flex flex-col justify-end text-right font-[Vazirmatn]" dir={isRTL ? "rtl" : "ltr"}>
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -176,14 +212,14 @@ export function MediaCarousel({
                     <button
                         onClick={handlePrev}
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 text-white flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 backdrop-blur-md cursor-pointer hover:scale-105 active:scale-95 z-20"
-                        title="Previous Slide"
+                        title={d.prevSlide}
                     >
                         <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                     </button>
                     <button
                         onClick={handleNext}
                         className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 text-white flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 backdrop-blur-md cursor-pointer hover:scale-105 active:scale-95 z-20"
-                        title="Next Slide"
+                        title={d.nextSlide}
                     >
                         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                     </button>
@@ -194,7 +230,7 @@ export function MediaCarousel({
                         <button
                             onClick={() => setIsAutoplay(!isAutoplay)}
                             className="text-white hover:text-primary transition-colors cursor-pointer"
-                            title={isAutoplay ? "Pause Autoplay" : "Start Autoplay"}
+                            title={isAutoplay ? d.pauseAutoplay : d.startAutoplay}
                         >
                             {isAutoplay ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
                         </button>
@@ -212,7 +248,7 @@ export function MediaCarousel({
                                         "w-2 h-2 rounded-full transition-all cursor-pointer",
                                         currentIndex === idx ? "bg-primary w-5" : "bg-white/40 hover:bg-white/60"
                                     )}
-                                    title={`Go to slide ${idx + 1}`}
+                                    title={d.goToSlide(idx + 1)}
                                 />
                             ))}
                         </div>

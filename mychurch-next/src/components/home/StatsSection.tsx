@@ -5,68 +5,82 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Globe, Users, Home, History, Radio, Clock } from "lucide-react";
 import CounterNumber from "@/components/ui/CounterNumber";
+import { useLanguage } from "@/providers/LanguageProvider";
 
-const stats = [
-  {
-    icon: Users,
-    end: 12400,
-    prefix: "+",
-    label: "عضو فعال",
-    sub: "در ۵ قاره جهان",
-    iconColor: "text-amber-400",
-    borderGlow: "border-amber-500/25",
-  },
-  {
-    icon: Globe,
-    end: 34,
-    prefix: "",
-    label: "کشور جهان",
-    sub: "شبانی برخط",
-    iconColor: "text-cyan-400",
-    borderGlow: "border-cyan-500/25",
-  },
-  {
-    icon: Home,
-    end: 150,
-    prefix: "+",
-    label: "گروه خانگی",
-    sub: "قاره‌های مختلف",
-    iconColor: "text-indigo-400",
-    borderGlow: "border-indigo-500/25",
-  },
-  {
-    icon: History,
-    end: 1990,
-    prefix: "",
-    label: "سال تأسیس",
-    sub: "واشنگتن دی‌سی",
-    iconColor: "text-amber-300",
-    borderGlow: "border-amber-400/25",
-  },
+const statsMeta = [
+  { id: "members", icon: Users, end: 12400, prefix: "+", iconColor: "text-amber-400", borderGlow: "border-amber-500/25" },
+  { id: "countries", icon: Globe, end: 34, prefix: "", iconColor: "text-cyan-400", borderGlow: "border-cyan-500/25" },
+  { id: "homeGroups", icon: Home, end: 150, prefix: "+", iconColor: "text-indigo-400", borderGlow: "border-indigo-500/25" },
+  { id: "founded", icon: History, end: 1990, prefix: "", iconColor: "text-amber-300", borderGlow: "border-amber-400/25" },
 ];
 
+const localDict = {
+  en: {
+    liveNetwork: "LIVE GLOBAL NETWORK • DC HUB",
+    heading: "A Living Church in 34 Countries Worldwide",
+    subheading: "Over three decades of continuous ministry, connecting Persian-speaking believers through live services and home groups across America, Europe, and the underground church in Iran.",
+    scheduleTitle: "Sunday Worship Services",
+    scheduleText: "Sundays at 10:00 AM Washington D.C. time (6:30 PM Iran time), live.",
+    stats: {
+      members: { label: "Active Members", sub: "On 5 continents" },
+      countries: { label: "Countries Worldwide", sub: "Online ministry" },
+      homeGroups: { label: "Home Groups", sub: "Across continents" },
+      founded: { label: "Year Founded", sub: "Washington D.C." },
+    },
+  },
+  fa: {
+    liveNetwork: "LIVE GLOBAL NETWORK • DC HUB",
+    heading: "کلیسایی زنده در ۳۴ کشور جهان",
+    subheading: "بیش از سه دهه خدمت پیوسته، اتصال ایمانداران فارسی‌زبان از طریق جلسات زنده و گروه‌های خانگی در آمریکا، اروپا و کلیسای زیرزمینی ایران.",
+    scheduleTitle: "جلسات عبادتی یکشنبه",
+    scheduleText: "یکشنبه‌ها ساعت ۱۰:۰۰ صبح به وقت واشنگتن (۶:۳۰ عصر ایران) به صورت زنده.",
+    stats: {
+      members: { label: "عضو فعال", sub: "در ۵ قاره جهان" },
+      countries: { label: "کشور جهان", sub: "شبانی برخط" },
+      homeGroups: { label: "گروه خانگی", sub: "قاره‌های مختلف" },
+      founded: { label: "سال تأسیس", sub: "واشنگتن دی‌سی" },
+    },
+  },
+  es: {
+    liveNetwork: "LIVE GLOBAL NETWORK • DC HUB",
+    heading: "Una Iglesia Viva en 34 Países del Mundo",
+    subheading: "Más de tres décadas de ministerio continuo, conectando a creyentes de habla persa a través de servicios en vivo y grupos hogareños en América, Europa y la iglesia clandestina de Irán.",
+    scheduleTitle: "Servicios Dominicales de Adoración",
+    scheduleText: "Los domingos a las 10:00 AM hora de Washington D.C. (6:30 PM hora de Irán), en vivo.",
+    stats: {
+      members: { label: "Miembros Activos", sub: "En 5 continentes" },
+      countries: { label: "Países del Mundo", sub: "Ministerio en línea" },
+      homeGroups: { label: "Grupos Hogareños", sub: "En varios continentes" },
+      founded: { label: "Año de Fundación", sub: "Washington D.C." },
+    },
+  },
+};
+
 export default function StatsSection() {
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
+
   return (
-    <section className="w-full py-16 bg-[#0a0e18]/90 relative overflow-hidden px-4 border-y border-white/5" dir="rtl">
+    <section className="w-full py-16 bg-[#0a0e18]/90 relative overflow-hidden px-4 border-y border-white/5" dir={isRTL ? "rtl" : "ltr"}>
       {/* Background ambient lighting */}
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-[1240px] mx-auto text-right relative z-10">
-        
+      <div className={`max-w-[1240px] mx-auto relative z-10 ${isRTL ? "text-right" : "text-left"}`}>
+
         {/* Header Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1c1f2a] text-cyan-400 text-[12px] font-semibold mb-3 border border-cyan-500/20">
           <Radio className="w-3.5 h-3.5 animate-pulse" />
-          <span>LIVE GLOBAL NETWORK • DC HUB</span>
+          <span>{d.liveNetwork}</span>
         </div>
 
         {/* Section Headline */}
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-2.5">
-          کلیسایی زنده در ۳۴ کشور جهان
+          {d.heading}
         </h2>
 
         <p className="text-[14px] text-gray-300 leading-relaxed mb-6 max-w-3xl">
-          بیش از سه دهه خدمت پیوسته، اتصال ایمانداران فارسی‌زبان از طریق جلسات زنده و گروه‌های خانگی در آمریکا، اروپا و کلیسای زیرزمینی ایران.
+          {d.subheading}
         </p>
 
         {/* Schedule Notice Banner */}
@@ -76,21 +90,22 @@ export default function StatsSection() {
           </div>
           <div>
             <span className="text-[14px] font-bold text-white block">
-              جلسات عبادتی یکشنبه
+              {d.scheduleTitle}
             </span>
             <p className="text-[13px] text-gray-300 mt-1 leading-relaxed">
-              یکشنبه‌ها ساعت ۱۰:۰۰ صبح به وقت واشنگتن (۶:۳۰ عصر ایران) به صورت زنده.
+              {d.scheduleText}
             </p>
           </div>
         </div>
 
         {/* 4 Stat Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {stats.map((item, idx) => {
+          {statsMeta.map((item, idx) => {
             const Icon = item.icon;
+            const text = d.stats[item.id as keyof typeof d.stats];
             return (
               <motion.div
-                key={item.label}
+                key={item.id}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -110,11 +125,11 @@ export default function StatsSection() {
                 </div>
 
                 <span className={`text-[14px] ${item.iconColor} font-bold block mt-1`}>
-                  {item.label}
+                  {text.label}
                 </span>
 
                 <span className="text-[12px] text-gray-400 block mt-0.5">
-                  {item.sub}
+                  {text.sub}
                 </span>
               </motion.div>
             );
