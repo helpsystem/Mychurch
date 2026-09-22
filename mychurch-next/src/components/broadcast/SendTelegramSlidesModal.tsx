@@ -29,10 +29,14 @@ export function SendTelegramSlidesModal({
     const [filterType, setFilterType] = useState<'all' | 'scripture' | 'lyrics' | 'other'>('all');
     const [isSending, setIsSending] = useState(false);
 
-    // Keep selected indices synced if slides change
+    // Reset selection only when the actual set of slides changes (by id), not
+    // just when the parent passes a new array reference for the same slides —
+    // otherwise an unrelated re-render silently wipes the user's deselections.
+    const slidesKey = useMemo(() => slides.map(s => s.id).join(','), [slides]);
     React.useEffect(() => {
         setSelectedIndices(slides.map((_, idx) => idx));
-    }, [slides]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [slidesKey]);
 
     if (!isOpen) return null;
 

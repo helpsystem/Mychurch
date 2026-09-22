@@ -9,20 +9,17 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {
   Slide, SlideType, BroadcastSession,
   SlideContentScripture, SlideContentLyrics, SlideContentMedia, SlideContentAnnouncement, SlideContentGeneric, SlideContentLiveData, SlideContentMeeting, SlideContentPrayer, ChartDataPoint,
-  ScripturePage, WorshipSong, BibleBook, AppLanguage, MediaDisplayConfig, BroadcastOverlayConfig
+  ScripturePage, AppLanguage, MediaDisplayConfig, BroadcastOverlayConfig
 } from '@/types/broadcast';
 import { getPrayers, PrayerRequest } from '@/actions/prayers';
 import {
-  fetchWorshipSongs, searchSongs, parseLyrics,
-  getBibleBooks, searchScripture, fetchBibleVerse,
-  BROADCAST_TRANSLATIONS, normalizeFarsi
+  BROADCAST_TRANSLATIONS
 } from './dataService';
 import {
   BookOpen, Music, FileImage, Video, Plus, GripVertical, Upload,
   PieChart, BarChart, LineChart, Activity,
   Trash2, ChevronDown, ChevronUp, Search, Mic, Megaphone, Calendar, Edit3, PhoneCall, Eye, Heart, QrCode, Youtube
 } from 'lucide-react';
-import VerseGridPicker from './VerseGridPicker';
 import ScriptureSelector from './ScriptureSelector';
 import WorshipSongSelector from './WorshipSongSelector';
 import SlidePreviewModal from './SlidePreviewModal';
@@ -50,66 +47,6 @@ type LibraryAsset = {
   modifiedAt: number;
 };
 
-// Normalize any format (flat array, legacy System V2, TranscriptData) into a standard nested lines object
-function normalizeTimingData(data: any): any {
-  if (!data) return null;
-
-  // Case 1: Standard SystemTimingV2 format
-  if (data.version && Array.isArray(data.lines)) {
-    return data;
-  }
-
-  // Case 2: TranscriptData format
-  if (Array.isArray(data.lines) && !data.version) {
-    return {
-      songId: data.songId || 0,
-      version: "2.0",
-      totalDuration: data.totalDuration || 0,
-      lines: data.lines.map((l: any) => ({
-        line: l.content || l.line || '',
-        start: l.start !== undefined ? l.start : (l.words?.[0]?.start_time || 0),
-        end: l.end !== undefined ? l.end : (l.words?.[l.words.length - 1]?.end_time || 0),
-        translations: l.translations || {},
-        words: (l.words || []).map((w: any) => ({
-          word: w.word || '',
-          start: w.start !== undefined ? w.start : (w.start_time || 0),
-          end: w.end !== undefined ? w.end : (w.end_time || 0),
-          finglish: w.finglish || null,
-          english: w.english || null
-        }))
-      }))
-    };
-  }
-
-  // Case 3: Flat array format (e.g. raw timing.json array)
-  if (Array.isArray(data)) {
-    return {
-      songId: 0,
-      version: "2.0",
-      totalDuration: 0,
-      lines: data.map((l: any) => ({
-        line: l.content || l.line || '',
-        start: l.start !== undefined ? l.start : (l.words?.[0]?.start_time || 0),
-        end: l.end !== undefined ? l.end : (l.words?.[l.words.length - 1]?.end_time || 0),
-        translations: l.translations || {
-          persian: l.translations?.persian || '',
-          english: l.translations?.english || '',
-          finglish: l.translations?.finglish || ''
-        },
-        words: (l.words || []).map((w: any) => ({
-          word: w.word || '',
-          start: w.start !== undefined ? w.start : (w.start_time || w.start || 0),
-          end: w.end !== undefined ? w.end : (w.end_time || w.end || 0),
-          finglish: w.finglish || null,
-          english: w.english || null
-        }))
-      }))
-    };
-  }
-
-  return null;
-}
-
 export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   session,
   setSession,
@@ -117,18 +54,6 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   activeSlideIndex,
   onSlideSelect
 }) => {
-  if (!session) {
-    return (
-      <div className="flex items-center justify-center h-full bg-slate-900 text-white p-8">
-        <div className="text-center">
-          <Activity className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
-          <p className="text-xl font-bold font-[Vazirmatn]">در حال بارگذاری جلسه...</p>
-          <p className="text-slate-400 mt-2">Initializing session...</p>
-        </div>
-      </div>
-    );
-  }
-
   const t = BROADCAST_TRANSLATIONS[lang];
   const isRTL = lang === 'fa';
 
@@ -163,32 +88,6 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
   const [prayerIsAnswered, setPrayerIsAnswered] = useState(false);
   const [prayerAnswerText, setPrayerAnswerText] = useState('');
 
-  // Data State
-  const [songs, setSongs] = useState<WorshipSong[]>([]);
-  const [songSearch, setSongSearch] = useState('');
-  const [selectedSong, setSelectedSong] = useState<WorshipSong | null>(null);
-  const [showAllSongs, setShowAllSongs] = useState(false);
-
-  // Scripture State
-  const [scriptureSearch, setScriptureSearch] = useState('');
-  const [scripturePages, setScripturePages] = useState<ScripturePage[]>([]);
-  const [isFetching, setIsFetching] = useState(false);
-
-  // Scripture Dropdown State (Enhanced)
-  const [selectedBook, setSelectedBook] = useState('John');
-  const [selectedChapter, setSelectedChapter] = useState(1);
-  const [selectedVerseStart, setSelectedVerseStart] = useState(1);
-  const [selectedVerseEnd, setSelectedVerseEnd] = useState(1);
-  const [showEnglish, setShowEnglish] = useState(true);
-  const [bookSearch, setBookSearch] = useState('');
-
-  // Use new verse grid picker (calendar-like UI)
-  const [useNewVersePicker] = useState(true);
-
-  // Lyrics Form State
-  const [lyricsTitle, setLyricsTitle] = useState('');
-  const [lyricsText, setLyricsText] = useState('');
-  const [lyricsChords, setLyricsChords] = useState('');
 
   // Media Form State
   const [mediaUrl, setMediaUrl] = useState('');
@@ -272,11 +171,6 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setSession({ ...session, slides: newSlides });
   };
 
-  // Load songs on mount
-  useEffect(() => {
-    fetchWorshipSongs().then(setSongs);
-  }, []);
-
   const loadLibraryAssets = useCallback(async (type: 'all' | 'image' | 'video' | 'audio' = 'all') => {
     try {
       setIsLoadingLibrary(true);
@@ -316,21 +210,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     }
   }, [activeModal, mediaType, genericBackgroundType, liveDataBackgroundType, loadLibraryAssets]);
 
-  // Filter songs based on search - show all if button clicked, otherwise limit
-  const filteredSongs = showAllSongs
-    ? searchSongs(songs, songSearch)
-    : searchSongs(songs, songSearch).slice(0, 10);
-
   // Reset forms
   const resetForms = () => {
-    setScriptureSearch('');
-    setScripturePages([]);
-    setSongSearch('');
-    setSelectedSong(null);
-    setShowAllSongs(false);
-    setLyricsTitle('');
-    setLyricsText('');
-    setLyricsChords('');
     setMediaUrl('');
     setMediaType('image');
     setMediaLoop(false);
@@ -430,8 +311,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     newSlides.forEach((s, i) => s.order = i);
 
     setSession(prev => ({ ...prev, slides: newSlides }));
-    onSlideSelect(targetIndex);
-  }, [session.slides, setSession, onSlideSelect]);
+
+    // Keep the active/live slide pointing at the same slide after the reorder —
+    // only follow the swap if the active slide was one of the two that moved,
+    // otherwise reordering unrelated slides would silently switch what's on-air.
+    if (activeSlideIndex === index) {
+      onSlideSelect(targetIndex);
+    } else if (activeSlideIndex === targetIndex) {
+      onSlideSelect(index);
+    }
+  }, [session.slides, setSession, onSlideSelect, activeSlideIndex]);
 
   // Edit slide - open modal with existing data
   const startEditSlide = useCallback((index: number) => {
@@ -439,14 +328,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setEditingSlideIndex(index);
 
     if (slide.type === SlideType.SCRIPTURE) {
-      const content = slide.content as SlideContentScripture;
-      setScripturePages(content.pages || []);
       setActiveModal('SCRIPTURE');
     } else if (slide.type === SlideType.LYRICS) {
-      const content = slide.content as SlideContentLyrics;
-      setLyricsTitle(content.title);
-      setLyricsText(content.lines?.map(l => l.text).join('\n') || '');
-      setLyricsChords(content.chords || '');
       setActiveModal('LYRICS');
     } else if (slide.type === SlideType.ANNOUNCEMENT) {
       const content = slide.content as SlideContentAnnouncement;
@@ -569,177 +452,6 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     setTemplates(updated);
     localStorage.setItem('slideTemplates', JSON.stringify(updated));
   }, [templates]);
-
-  // Handle Scripture Search
-  const handleScriptureSearch = async () => {
-    if (!scriptureSearch.trim()) return;
-
-    setIsFetching(true);
-    const result = await searchScripture(scriptureSearch);
-    if (result) {
-      setScripturePages([result]);
-    }
-    setIsFetching(false);
-  };
-
-  // Handle Scripture Submit
-  const handleScriptureSubmit = () => {
-    if (scripturePages.length === 0) return;
-
-    const hasMissingVerses = scripturePages.some((page) => {
-      const missingPrimary = page.missingPrimaryVerses?.length ?? 0;
-      const missingSecondary = page.missingSecondaryVerses?.length ?? 0;
-      return missingPrimary > 0 || missingSecondary > 0;
-    });
-
-    if (hasMissingVerses) {
-      const confirmed = window.confirm(
-        isRTL
-          ? 'در این محدوده، بعضی آیه‌ها در یکی از ترجمه‌ها موجود نیستند. برای جلوگیری از حذف بی‌صدا، ادامه می‌دهید؟'
-          : 'Some verses in this range are missing in one of the translations. Continue anyway?'
-      );
-      if (!confirmed) return;
-    }
-
-    const content: SlideContentScripture = {
-      pages: scripturePages.map(page => ({
-        ...page,
-        glassPopupEnabled: true,
-        popupLabelFa: `${page.bookName.fa} \u2066${page.chapter}:${page.verses}\u2069`,
-        popupLabelEn: `${page.bookName.en} ${page.chapter}:${page.verses}`
-      }))
-    };
-    addSlide(SlideType.SCRIPTURE, content);
-  };
-
-  // Handle Song Selection - with timing data loading
-  const handleSongSelect = async (song: WorshipSong) => {
-    setSelectedSong(song);
-    setLyricsTitle(song.title[lang] || song.title.fa);
-    setLyricsChords(song.chord || '');
-
-    console.log('🎵 [SlideBuilder] Song selected:', {
-      id: song.id,
-      title: song.title.fa,
-      hasTiming: song.hasTiming,
-      audioUrl: song.audioUrl
-    });
-
-    // Load timing data if available
-    let timingData = song.timing_data || null;
-
-    if (!timingData) {
-      // Always try to load timing data regardless of hasTiming flag
-      const timingPaths = [
-        `/worship/data/timings/song_${song.id}_timing.json`,
-        `/worship/timing/${song.id}_timing.json`,
-        `/worship/timing/song_${song.id}_timing.json`
-      ];
-
-      for (const path of timingPaths) {
-        try {
-          const timingRes = await fetch(path);
-          if (timingRes.ok) {
-            timingData = await timingRes.json();
-            console.log('✅ Loaded timing from:', path);
-            break;
-          }
-        } catch (err) {
-          // Try next path
-        }
-      }
-    } else {
-        console.log('✅ Loaded timing directly from database');
-    }
-
-    // Normalize timing data
-    timingData = normalizeTimingData(timingData);
-
-    if (timingData) {
-      // Store timing in song object temporarily
-      (song as any)._timingData = timingData;
-      console.log('📊 [SlideBuilder] Timing data loaded:', {
-        linesCount: timingData.lines?.length,
-        hasWords: timingData.lines?.[0]?.words?.length > 0
-      });
-    } else {
-      console.log('⚠️ No timing data found for song', song.id);
-    }
-
-    // Use song.lyrics if available, otherwise extract from timing data
-    let lyricsFromTiming = '';
-    if (timingData?.lines && Array.isArray(timingData.lines)) {
-      lyricsFromTiming = timingData.lines.map((l: any) => l.line || '').join('\n');
-    }
-
-    const finalLyrics = song.lyrics?.fa || lyricsFromTiming || '';
-    setLyricsText(finalLyrics);
-
-    console.log('📝 Song selected:', {
-      id: song.id,
-      title: song.title.fa,
-      hasLyrics: !!song.lyrics?.fa,
-      hasTimingData: !!timingData,
-      lyricsLength: finalLyrics.length
-    });
-  };
-
-  // Handle Lyrics Submit - with timing data
-  const handleLyricsSubmit = () => {
-    if (!lyricsTitle || !lyricsText) return;
-
-    const lines = parseLyrics(lyricsText);
-    
-    // Retrieve existing slide content if editing to preserve metadata
-    const existingContent = editingSlideIndex !== null ? (session.slides[editingSlideIndex]?.content as SlideContentLyrics) : null;
-
-    let timingData = (selectedSong as any)?._timingData || existingContent?.timingData;
-    
-    // Normalize existing timing data just in case
-    timingData = normalizeTimingData(timingData);
-
-    const songId = selectedSong?.id || existingContent?.songId;
-    const audioUrl = selectedSong?.audioUrl || existingContent?.audioUrl;
-    const youtubeId = selectedSong?.youtubeId || existingContent?.youtubeId;
-    const hasTiming = selectedSong?.hasTiming || !!timingData || existingContent?.hasTiming;
-
-    // Extract finglish and persian translation lines from timing data if available
-    let finglishLines = existingContent?.finglishLines;
-    let persianTranslationLines = existingContent?.persianTranslationLines;
-    if (timingData?.lines) {
-      finglishLines = timingData.lines.map((line: any) => {
-        if (line.translations?.finglish) return line.translations.finglish;
-        // Get finglish from word array
-        if (line.words && Array.isArray(line.words)) {
-          return line.words.map((w: any) => w.finglish || '').join(' ').trim();
-        }
-        return '';
-      });
-      persianTranslationLines = timingData.lines.map((line: any) => {
-        return line.translations?.persian || '';
-      });
-    }
-
-    const content: SlideContentLyrics = {
-      songId,
-      title: lyricsTitle,
-      lines,
-      chords: lyricsChords,
-      audioUrl,
-      youtubeId,
-      hasTiming,
-      timingData,
-      finglishLines,
-      persianTranslationLines
-    };
-
-    // If editing, update existing slide
-    if (editingSlideIndex !== null) {
-      updateSlide(editingSlideIndex, content);
-    } else {
-      addSlide(SlideType.LYRICS, content);
-    }
-  };
 
   // Handle Media Submit
   const handleMediaSubmit = () => {
@@ -1251,6 +963,22 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     );
   };
 
+  // Guard against a not-yet-loaded session. This must come after every Hook
+  // call above (React requires Hooks to run unconditionally on every render);
+  // an early return before them would call a different number of Hooks
+  // depending on `session`, corrupting Hook state or crashing the builder.
+  if (!session) {
+    return (
+      <div className="flex items-center justify-center h-full bg-slate-900 text-white p-8">
+        <div className="text-center">
+          <Activity className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
+          <p className="text-xl font-bold font-[Vazirmatn]">در حال بارگذاری جلسه...</p>
+          <p className="text-slate-400 mt-2">Initializing session...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className="w-full md:w-72 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800 flex flex-col h-[40vh] md:h-full overflow-hidden select-none shrink-0"
@@ -1507,242 +1235,12 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       {/* ============ MODALS ============ */}
 
       {/* Scripture Modal - Pro Version with full features */}
-      {activeModal === 'SCRIPTURE' && useNewVersePicker && (
+      {activeModal === 'SCRIPTURE' && (
         <ScriptureSelector
           lang={lang}
           onAddSlides={applyScripturePages}
           onClose={() => { setActiveModal('NONE'); resetForms(); }}
         />
-      )}
-
-      {/* Legacy Scripture Modal - Fallback */}
-      {activeModal === 'SCRIPTURE' && !useNewVersePicker && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[80vh] overflow-y-auto">
-            <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-              📖 {t.addScripture}
-            </h3>
-
-            {/* Book Selection */}
-            <div className="mb-4">
-              <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {t.book}
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  value={bookSearch}
-                  onChange={(e) => setBookSearch(e.target.value)}
-                  placeholder={isRTL ? 'جستجوی کتاب...' : 'Search book...'}
-                  className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                  aria-label={t.book}
-                />
-                <div className="absolute top-full left-0 right-0 bg-slate-900 rounded-lg mt-1 max-h-48 overflow-y-auto z-10 border border-slate-700">
-                  {getBibleBooks()
-                    .filter(b =>
-                      bookSearch === '' ||
-                      normalizeFarsi(b.name.fa).includes(normalizeFarsi(bookSearch)) ||
-                      b.name.en.toLowerCase().includes(bookSearch.toLowerCase()) ||
-                      b.key.toLowerCase().includes(bookSearch.toLowerCase())
-                    )
-                    .slice(0, 15)
-                    .map(book => (
-                      <button
-                        key={book.key}
-                        onClick={() => {
-                          setSelectedBook(book.key);
-                          setBookSearch(book.name[lang]);
-                          setSelectedChapter(1);
-                          setSelectedVerseStart(1);
-                          setSelectedVerseEnd(1);
-                        }}
-                        className={`w-full px-3 py-2 text-left hover:bg-slate-700 transition ${selectedBook === book.key ? 'bg-amber-600/30 text-amber-400' : 'text-white'
-                          } ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                      >
-                        {book.name[lang]} ({book.chapters} {isRTL ? 'باب' : 'ch.'})
-                      </button>
-                    ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Chapter & Verse Selection */}
-            <div className="grid grid-cols-3 gap-3 mb-4">
-              <div>
-                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {t.chapter}
-                </label>
-                <select
-                  value={selectedChapter}
-                  onChange={(e) => {
-                    setSelectedChapter(Number(e.target.value));
-                    setSelectedVerseStart(1);
-                    setSelectedVerseEnd(1);
-                  }}
-                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
-                  aria-label={t.chapter}
-                >
-                  {Array.from({ length: getBibleBooks().find(b => b.key === selectedBook)?.chapters || 1 }, (_, i) => (
-                    <option key={i + 1} value={i + 1}>{i + 1}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'از آیه' : 'From'}
-                </label>
-                <input
-                  type="number"
-                  min={1}
-                  max={176}
-                  value={selectedVerseStart}
-                  onChange={(e) => setSelectedVerseStart(Number(e.target.value))}
-                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
-                  aria-label={isRTL ? 'شماره آیه شروع' : 'Start Verse Number'}
-                />
-              </div>
-              <div>
-                <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'تا آیه' : 'To'}
-                </label>
-                <input
-                  type="number"
-                  min={selectedVerseStart}
-                  max={176}
-                  value={selectedVerseEnd}
-                  onChange={(e) => setSelectedVerseEnd(Number(e.target.value))}
-                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
-                  aria-label={isRTL ? 'شماره آیه پایان' : 'End Verse Number'}
-                />
-              </div>
-            </div>
-
-            {/* Show English Toggle */}
-            <label className="flex items-center gap-3 mb-4 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={showEnglish}
-                onChange={(e) => setShowEnglish(e.target.checked)}
-                className="accent-amber-500 w-5 h-5"
-              />
-              <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? '☑ نمایش متن انگلیسی' : '☑ Show English text'}
-              </span>
-            </label>
-
-            {/* Fetch Button */}
-            <button
-              onClick={async () => {
-                setIsFetching(true);
-                const verses = selectedVerseStart === selectedVerseEnd
-                  ? String(selectedVerseStart)
-                  : `${selectedVerseStart}-${selectedVerseEnd}`;
-                const result = await fetchBibleVerse(selectedBook, selectedChapter, verses);
-                if (result) {
-                  // اگر showEnglish فعال نیست، textSecondary را خالی کن
-                  if (!showEnglish) {
-                    result.textSecondary = [];
-                  }
-                  result.glassPopupEnabled = true;
-                  result.popupLabelFa = `${result.bookName.fa} \u2066${result.chapter}:${result.verses}\u2069`;
-                  result.popupLabelEn = `${result.bookName.en} ${result.chapter}:${result.verses}`;
-                  setScripturePages([result]);
-                }
-                setIsFetching(false);
-              }}
-              disabled={isFetching}
-              className={`w-full py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition disabled:opacity-50 mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-            >
-              {isFetching ? '...' : (isRTL ? '📥 دریافت آیه' : '📥 Fetch Verse')}
-            </button>
-
-            {/* Preview */}
-            {scripturePages.length > 0 && (
-              <div className="bg-slate-900 rounded-lg p-4 mb-4">
-                {scripturePages.map((page, i) => (
-                  <div key={i} className="mb-4 last:mb-0">
-                    <p className={`text-amber-400 text-sm mb-2 flex items-center gap-1.5 ${isRTL ? 'font-[Vazirmatn]' : ''}`} dir={isRTL ? "rtl" : "ltr"}>
-                      <span>{page.bookName[lang]}</span>
-                      <bdi dir="ltr" className="inline-block font-sans font-bold">{page.chapter}:{page.verses}</bdi>
-                    </p>
-                    {/* Display verses as array if available */}
-                    {Array.isArray(page.textPrimary) ? (
-                      <div className="space-y-2">
-                        {page.textPrimary.map((verse, idx) => (
-                          <div key={idx} className="flex gap-2 items-start">
-                            <span className="text-amber-400 font-bold min-w-[30px]">
-                              {page.verseNumbers?.[idx] || (idx + 1)}
-                            </span>
-                            <div className="flex-1">
-                              {String(verse || '').trim() ? (
-                                <p className={`text-white text-base leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                  {verse}
-                                </p>
-                              ) : (
-                                <p className="text-rose-400 text-xs font-bold uppercase tracking-wider">
-                                  {isRTL ? 'آیه در این ترجمه موجود نیست' : 'Verse missing in this translation'}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className={`text-white text-lg leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                        {page.textPrimary}
-                      </p>
-                    )}
-                    {page.textSecondary && (
-                      Array.isArray(page.textSecondary) ? (
-                        <div className="space-y-2 mt-3 border-t border-slate-700 pt-3">
-                          {page.textSecondary.map((verse, idx) => (
-                            <div key={idx} className="flex gap-2 items-start">
-                              <span className="text-slate-500 font-bold min-w-[30px] text-sm">
-                                {page.verseNumbers?.[idx] || (idx + 1)}
-                              </span>
-                              <div className="flex-1">
-                                {String(verse || '').trim() ? (
-                                  <p className="text-slate-400 text-sm leading-relaxed">
-                                    {verse}
-                                  </p>
-                                ) : (
-                                  <p className="text-rose-400 text-xs font-bold uppercase tracking-wider">
-                                    {isRTL ? 'آیه در این ترجمه موجود نیست' : 'Verse missing in this translation'}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-slate-400 text-sm mt-2 italic">
-                          {page.textSecondary}
-                        </p>
-                      )
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Actions */}
-            <div className="flex gap-3 justify-end">
-              <button
-                onClick={() => { setActiveModal('NONE'); resetForms(); }}
-                className={`px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-              >
-                {t.cancel}
-              </button>
-              <button
-                onClick={handleScriptureSubmit}
-                disabled={scripturePages.length === 0}
-                className={`px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-              >
-                {t.add}
-              </button>
-            </div>
-          </div>
-        </div>
       )}
 
       {/* Lyrics Modal - NEW Enhanced Worship Song Selector */}
@@ -1751,12 +1249,18 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           lang={lang}
           existingSlides={session.slides}
           onSelectSong={(content, options) => {
-            // Add the slide with the configured content
-            addSlide(SlideType.LYRICS, {
+            const finalContent = {
               ...content,
               // Store display options in the content for later use
               displayOptions: options
-            } as any);
+            } as any;
+            // If we opened this picker via "Edit" on an existing lyrics slide,
+            // update that slide in place instead of appending a duplicate.
+            if (editingSlideIndex !== null) {
+              updateSlide(editingSlideIndex, finalContent);
+            } else {
+              addSlide(SlideType.LYRICS, finalContent);
+            }
           }}
           onClose={() => { setActiveModal('NONE'); resetForms(); }}
         />

@@ -48,14 +48,17 @@ export async function middleware(request: NextRequest) {
         data: { user },
     } = await supabase.auth.getUser();
 
-    // Allow service key / internal authorization bypass for server automation and background tasks
+    // Allow service key / internal authorization bypass for server automation and background tasks.
+    // IMPORTANT: only the server-only SUPABASE_SERVICE_ROLE_KEY may grant this bypass.
+    // NEXT_PUBLIC_SUPABASE_ANON_KEY is shipped to every browser, so accepting it here would let
+    // anyone skip auth (and 2FA) on every /admin and /api/admin route by replaying a value
+    // visible in the page source — it must never be treated as a service credential.
     const authHeader = request.headers.get('authorization');
     const serviceKey = request.headers.get('x-internal-secret') || (authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null);
     const isServiceAuth = Boolean(
-        serviceKey && (
-            serviceKey === process.env.SUPABASE_SERVICE_ROLE_KEY ||
-            serviceKey === process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-        )
+        serviceKey &&
+        process.env.SUPABASE_SERVICE_ROLE_KEY &&
+        serviceKey === process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
     if (isServiceAuth) {

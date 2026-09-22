@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Book, Music2, ChevronLeft, ChevronRight, Play, Pause,
   Columns2, Search, Loader2, List, X, ExternalLink, Highlighter, Copy, GitCompareArrows, Share2, Link2,
-  Sparkles, Send, Bot, User, Maximize2, Minimize2
+  Sparkles, Maximize2, Minimize2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type jsPDF from "jspdf";
@@ -1044,9 +1044,10 @@ export default function BibleReaderPage() {
               <span className="w-9 tabular-nums">{formatTime(audioDuration)}</span>
             </div>
 
-            {/* Row 3: Track variants */}
+            {/* Row 3: Track variants (also shown on desktop - previously md:hidden hid this
+                from anyone who wasn't on a small screen, with no other way to switch tracks) */}
             {audioTracks.length > 1 && (
-              <div className="flex gap-2 flex-wrap items-center justify-center md:hidden" dir="ltr">
+              <div className="flex gap-2 flex-wrap items-center justify-center" dir="ltr">
                 {audioTracks.map((t, i) => (
                   <button
                     key={i}

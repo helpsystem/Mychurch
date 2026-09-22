@@ -92,6 +92,9 @@ export async function GET(req: Request) {
     const rawBook = searchParams.get("book") || "GEN";
     const bookId = normalizeToUsfm(rawBook);
     const chapterNum = parseInt(searchParams.get("chapter") || "1", 10);
+    if (!Number.isInteger(chapterNum) || chapterNum <= 0) {
+      return NextResponse.json({ error: "Invalid chapter" }, { status: 400 });
+    }
     const cacheKey = `${versionAbbr}|${bookId}|${chapterNum}`;
     const debugErrors: any[] = [];
 

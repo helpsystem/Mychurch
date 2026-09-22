@@ -1,5 +1,6 @@
 // lib/axios.ts
 import axios from 'axios';
+import { getAuthToken, removeToken } from './tokenManager';
 
 // Determine if we're in development
 const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -29,8 +30,9 @@ const api = axios.create({
 // Request interceptor to add auth token
 api.interceptors.request.use(
   (config) => {
-    // Get token from localStorage or cookies
-    const token = localStorage.getItem('token') || 
+    // Get token from the app's actual auth storage (falls back to legacy keys/cookie for safety)
+    const token = getAuthToken() ||
+                  localStorage.getItem('token') ||
                   document.cookie
                     .split('; ')
                     .find(row => row.startsWith('token='))
@@ -54,7 +56,8 @@ api.interceptors.response.use(
     // Handle authentication errors
     if (error.response?.status === 401) {
       console.warn('Unauthorized access - please login again');
-      // Clear stored token
+      // Clear stored token (canonical key + legacy key, whichever was in use)
+      removeToken();
       localStorage.removeItem('token');
       // You can add redirect to login page here if needed
       window.location.href = '/#/login';

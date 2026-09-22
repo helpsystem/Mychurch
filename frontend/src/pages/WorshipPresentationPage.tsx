@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
+import { getAuthToken } from '../lib/tokenManager';
 import PresentationViewer from '../components/PresentationViewer';
 import { 
   Music, 
@@ -331,11 +332,18 @@ How great Thou art! How great Thou art!`,
     if (!isAdmin) return;
     
     try {
+      // Same fallback chain as the shared axios interceptor, so a user who
+      // still only has a legacy token (pre-tokenManager login) doesn't get
+      // silently sent `Bearer null`.
+      const authToken = getAuthToken() ||
+        localStorage.getItem('token') ||
+        document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
+
       const response = await fetch('/api/presentations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${authToken}`
         },
         body: JSON.stringify({
           slides: currentSlides,

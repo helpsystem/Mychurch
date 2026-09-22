@@ -262,6 +262,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                             <option value="oldest">{translate.oldest}</option>
                             <option value="nameAsc">{translate.nameAsc}</option>
                             <option value="nameDesc">{translate.nameDesc}</option>
+                            <option value="sizeDesc">{translate.sizeDesc}</option>
                         </select>
 
                         {/* View Mode Toggle (Grid / Accordion Frames) */}

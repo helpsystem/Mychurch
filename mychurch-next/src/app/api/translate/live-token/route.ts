@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { requireRole } from '@/utils/rbac';
 
 export const dynamic = 'force-dynamic';
 
@@ -6,9 +7,14 @@ export const dynamic = 'force-dynamic';
  * Generates an Ephemeral Auth Token for Gemini Live Translation API (v1alpha).
  * This allows client-side browsers to establish direct, ultra-low latency WebSockets
  * with Google's Gemini Live API without exposing the server's GEMINI_API_KEY.
+ *
+ * Gated to broadcast operators: each call mints a billable Gemini Live token,
+ * so this must not be reachable by anonymous visitors.
  */
 export async function POST(request: Request) {
   try {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
     const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {

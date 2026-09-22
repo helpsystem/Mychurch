@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { Calendar, TrendingUp, Users, MessageSquare, Clock, AlertCircle, CheckCircle, XCircle } from 'lucide-react';
+import { getAuthToken } from '../../lib/tokenManager';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Title, Tooltip, Legend);
 
@@ -81,7 +82,7 @@ export const AnalyticsDashboard: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const token = getAuthToken() || localStorage.getItem('authToken') || localStorage.getItem('token');
       
       // Try to fetch site overview first (simpler, more reliable)
       try {

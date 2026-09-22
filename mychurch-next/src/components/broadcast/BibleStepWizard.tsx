@@ -138,8 +138,6 @@ export default function BibleStepWizard({
   const [layoutMode, setLayoutMode] = useState<SlideLayoutMode>("perVerse");
   const [primaryLang, setPrimaryLang] = useState<"fa" | "en">("fa");
 
-  // Step 4 edit modal state (kept for backward compat)
-  const [editingVerse, setEditingVerse] = useState<VerseItem | null>(null);
   // Inline editing in Step 4 — no modal needed
   const [inlineEditId, setInlineEditId] = useState<string | null>(null);
   const [inlineFa, setInlineFa] = useState("");
@@ -152,12 +150,16 @@ export default function BibleStepWizard({
   // Load chapter verses when active book/chapter changes
   useEffect(() => {
     if (!activeBook || !selectedVersionEn || !selectedVersionFa) return;
+    let cancelled = false;
     setLoadingVerses(true);
     fetch(
       `/api/bible/parallel?versionEn=${selectedVersionEn}&versionFa=${selectedVersionFa}&book=${activeBook.book_id}&chapter=${activeChapter}`
     )
       .then((res) => res.json())
       .then((data) => {
+        // A newer chapter/book selection may have started (and finished)
+        // while this request was in flight — don't overwrite it with stale data.
+        if (cancelled) return;
         const list = (data.parallel || []).map((p: any) => ({
           verse_num: p.verse_num,
           en: p.en || "",
@@ -173,7 +175,12 @@ export default function BibleStepWizard({
         }
       })
       .catch(() => undefined)
-      .finally(() => setLoadingVerses(false));
+      .finally(() => {
+        if (!cancelled) setLoadingVerses(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [activeBook, activeChapter, selectedVersionEn, selectedVersionFa]);
 
   // Filtered books for Step 1
@@ -389,24 +396,6 @@ export default function BibleStepWizard({
       updated.splice(newIdx, 0, moved);
       return updated;
     });
-  };
-
-  // Save edited verse text
-  const saveVerseEdit = (newFa: string, newEn: string) => {
-    if (!editingVerse) return;
-    setSections((prev) =>
-      prev.map((sec) => ({
-        ...sec,
-        verses: sec.verses.map((v) => {
-          if (v.id === editingVerse.id) {
-            return { ...v, fa: newFa, en: newEn };
-          }
-          return v;
-        }),
-      }))
-    );
-    setEditingVerse(null);
-    toast.success(isRTL ? "متن آیه با موفقیت به‌روزرسانی شد." : "Verse text updated.");
   };
 
   // ── Inline edit helpers (Step 4) ──
@@ -1637,70 +1626,6 @@ export default function BibleStepWizard({
         )}
       </main>
 
-      {/* ── MODAL: QUICK EDIT VERSE TEXT ── */}
-      {editingVerse && (
-        <div className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#18181b] border border-white/20 rounded-3xl p-6 max-w-xl w-full space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-              <h3 className="font-black text-base text-white flex items-center gap-2">
-                <Edit3 className="w-4 h-4 text-amber-400" />
-                <span>
-                  {isRTL ? "ویرایش متن آیه" : "Edit Verse"} — {editingVerse.book_name_fa} {editingVerse.chapter}:
-                  {editingVerse.verse_num}
-                </span>
-              </h3>
-              <button onClick={() => setEditingVerse(null)} className="text-zinc-400 hover:text-white cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="space-y-3">
-              <div>
-                <label className="text-xs font-bold text-zinc-300 block mb-1">متن فارسی:</label>
-                <textarea
-                  id="edit-fa-input"
-                  defaultValue={editingVerse.fa}
-                  rows={3}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-sm text-zinc-100 font-[Vazirmatn] outline-none focus:border-amber-400"
-                  dir="rtl"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs font-bold text-zinc-300 block mb-1">English Text:</label>
-                <textarea
-                  id="edit-en-input"
-                  defaultValue={editingVerse.en}
-                  rows={3}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-xs text-zinc-200 font-sans outline-none focus:border-blue-400"
-                  dir="ltr"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-end gap-2 pt-2">
-              <button
-                type="button"
-                onClick={() => setEditingVerse(null)}
-                className="px-4 py-2 rounded-xl text-xs text-zinc-400 hover:bg-white/10 transition cursor-pointer"
-              >
-                انصراف
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  const faVal = (document.getElementById("edit-fa-input") as HTMLTextAreaElement)?.value || "";
-                  const enVal = (document.getElementById("edit-en-input") as HTMLTextAreaElement)?.value || "";
-                  saveVerseEdit(faVal, enVal);
-                }}
-                className="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-black text-xs transition cursor-pointer"
-              >
-                ذخیره تغییرات
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

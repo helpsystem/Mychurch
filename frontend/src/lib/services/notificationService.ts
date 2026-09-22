@@ -1,6 +1,8 @@
 // Comprehensive notification service for Iranian Christian Church
 // Frontend client that communicates with secure backend notification API
 
+import { getAuthToken } from '../tokenManager';
+
 export interface NotificationChannel {
   email?: boolean;
   sms?: boolean;
@@ -96,7 +98,7 @@ class NotificationService {
   }
 
   private async fetchWithAuth(url: string, options: RequestInit = {}) {
-    const token = localStorage.getItem('token');
+    const token = getAuthToken() || localStorage.getItem('token');
     const headers = {
       'Content-Type': 'application/json',
       ...(token && { 'Authorization': `Bearer ${token}` }),

@@ -221,5 +221,3 @@ function broadcastDeviceList(io, sessionId) {
 }
 
 module.exports = { initBroadcastWebSocket };
-
-module.exports = { initBroadcastWebSocket };

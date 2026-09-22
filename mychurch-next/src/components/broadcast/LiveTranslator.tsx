@@ -79,7 +79,7 @@ export default function LiveTranslator({
       });
 
       const tokenData = await tokenRes.json();
-      const token = tokenData.token || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+      const token = tokenData.token;
 
       if (!token) {
         setStatus("error");

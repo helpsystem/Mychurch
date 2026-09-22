@@ -139,6 +139,57 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const audioChunksRef = React.useRef<Blob[]>([]);
     const [isUploadingRecording, setIsUploadingRecording] = React.useState(false);
 
+    // Release the camera/mic when leaving the console, whatever the live media
+    // stream is at that moment (mediaStream lives in the global store, so a
+    // plain empty-deps cleanup would only ever see the initial null value).
+    const mediaStreamRef = React.useRef(mediaStream);
+    React.useEffect(() => {
+        mediaStreamRef.current = mediaStream;
+    }, [mediaStream]);
+    React.useEffect(() => {
+        return () => {
+            mediaStreamRef.current?.getTracks().forEach(track => track.stop());
+        };
+    }, []);
+
+    // Start/stop session audio recording whenever the broadcast goes live or
+    // ends, regardless of which "Go Live" control (header or footer) triggered
+    // it — both just flip `isLive`, and this effect reacts to that transition.
+    React.useEffect(() => {
+        if (isLive && isRecording && mediaStream) {
+            const audioTracks = mediaStream.getAudioTracks();
+            if (audioTracks.length > 0) {
+                try {
+                    const streamToRecord = new MediaStream(audioTracks);
+                    const recorder = new MediaRecorder(streamToRecord, { mimeType: 'audio/webm' });
+                    mediaRecorderRef.current = recorder;
+                    audioChunksRef.current = [];
+                    recorder.ondataavailable = (e) => {
+                        if (e.data.size > 0) audioChunksRef.current.push(e.data);
+                    };
+                    recorder.onstop = () => {
+                        const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+                        handleUploadRecording(blob);
+                    };
+                    recorder.start(1000);
+                    toast.success('ضبط صدا شروع شد');
+                } catch (e) {
+                    console.error(e);
+                    toast.error('مرورگر از فرمت صوتی پشتیبانی نمی‌کند.');
+                }
+            } else {
+                toast.error('هیچ میکروفونی متصل نیست. ضبط انجام نمی‌شود.');
+            }
+        } else if (!isLive && mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+            mediaRecorderRef.current.stop();
+        }
+        // Deliberately keyed only on the isLive transition: isRecording is
+        // locked (button disabled) while live, and re-running this on every
+        // mediaStream/handleUploadRecording identity change would restart
+        // the recorder mid-broadcast.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLive]);
+
     // Enumerate available devices
     const enumerateDevices = React.useCallback(async () => {
         try {
@@ -846,7 +897,8 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
 
             if (!uploadRes.ok) throw new Error('Upload failed');
             const uploadData = await uploadRes.json();
-            const mediaLibraryId = uploadData.assets[0].id;
+            if (!uploadData.success || !uploadData.id) throw new Error('Upload did not return a media id');
+            const mediaLibraryId = uploadData.id;
 
             // Save session to database
             const sessionTitle = `جلسه ${new Date().toLocaleDateString('fa-IR')}`;
@@ -1355,38 +1407,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                             <Mic className="w-3.5 h-3.5" /> <span>{isRecording ? 'ضبط فعال است' : 'فعال‌سازی ضبط'}</span>
                         </button>
                         <button
-                            onClick={() => {
-                                const newIsLive = !isLive;
-                                setIsLive(newIsLive);
-                                
-                                if (newIsLive && isRecording && mediaStream) {
-                                    const audioTracks = mediaStream.getAudioTracks();
-                                    if (audioTracks.length > 0) {
-                                        try {
-                                            const streamToRecord = new MediaStream(audioTracks);
-                                            const recorder = new MediaRecorder(streamToRecord, { mimeType: 'audio/webm' });
-                                            mediaRecorderRef.current = recorder;
-                                            audioChunksRef.current = [];
-                                            recorder.ondataavailable = (e) => {
-                                                if (e.data.size > 0) audioChunksRef.current.push(e.data);
-                                            };
-                                            recorder.onstop = () => {
-                                                const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
-                                                handleUploadRecording(blob);
-                                            };
-                                            recorder.start(1000);
-                                            toast.success('ضبط صدا شروع شد');
-                                        } catch (e) {
-                                            console.error(e);
-                                            toast.error('مرورگر از فرمت صوتی پشتیبانی نمی‌کند.');
-                                        }
-                                    } else {
-                                        toast.error('هیچ میکروفونی متصل نیست. ضبط انجام نمی‌شود.');
-                                    }
-                                } else if (!newIsLive && mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
-                                    mediaRecorderRef.current.stop();
-                                }
-                            }}
+                            onClick={() => setIsLive(!isLive)}
                             className={cn(
                                 "px-5 py-2 font-bold rounded-xl transition-all shadow-lg flex items-center gap-1.5 text-xs tracking-wide font-[Vazirmatn] cursor-pointer",
                                 isLive ? "bg-neutral-800 text-white border border-border/10 hover:bg-neutral-700" : "bg-red-600 hover:bg-red-700 text-white shadow-red-500/10"

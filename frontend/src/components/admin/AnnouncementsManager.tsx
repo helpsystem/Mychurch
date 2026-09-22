@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useLanguage } from '../../hooks/useLanguage';
 import { ChurchAnnouncement, Language } from '../../types';
 import { Plus, Send, Edit, Trash2, Eye, Languages, MessageCircle, Mail, Smartphone, Bell, Globe } from 'lucide-react';
+import { getAuthToken } from '../../lib/tokenManager';
 
 interface AnnouncementFormData {
   title: string;
@@ -178,7 +179,7 @@ const AnnouncementsManager: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const token = getAuthToken() || localStorage.getItem('authToken') || localStorage.getItem('token');
       const response = await fetch('/api/announcements', {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -206,7 +207,7 @@ const AnnouncementsManager: React.FC = () => {
     setError(null);
 
     try {
-      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const token = getAuthToken() || localStorage.getItem('authToken') || localStorage.getItem('token');
       const url = editingAnnouncement 
         ? `/api/announcements/${editingAnnouncement.id}`
         : '/api/announcements';
@@ -252,7 +253,7 @@ const AnnouncementsManager: React.FC = () => {
   const handleAutoTranslate = async (announcementId: number) => {
     setTranslating(announcementId);
     try {
-      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const token = getAuthToken() || localStorage.getItem('authToken') || localStorage.getItem('token');
       
       // Call translation service
       const response = await fetch(`/api/announcements/${announcementId}/translate`, {
@@ -283,7 +284,7 @@ const AnnouncementsManager: React.FC = () => {
   const handlePublish = async (announcement: ChurchAnnouncement) => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const token = getAuthToken() || localStorage.getItem('authToken') || localStorage.getItem('token');
       const response = await fetch(`/api/announcements/${announcement.id}/publish`, {
         method: 'PUT',
         headers: {
@@ -315,7 +316,7 @@ const AnnouncementsManager: React.FC = () => {
 
     setLoading(true);
     try {
-      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
+      const token = getAuthToken() || localStorage.getItem('authToken') || localStorage.getItem('token');
       const response = await fetch(`/api/announcements/${announcementId}`, {
         method: 'DELETE',
         headers: {

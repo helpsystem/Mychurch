@@ -11,7 +11,7 @@
 
 "use client";
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
   Music, Search, X, Check, ChevronDown, ChevronUp,
   Play, Pause, Volume2, Youtube, FileText, Clock,
@@ -241,6 +241,10 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
   // Selected song state
   const [selectedSong, setSelectedSong] = useState<WorshipSong | null>(null);
   const [timingData, setTimingData] = useState<any>(null);
+  // Tracks which song's timing-data fetch is the latest one, so a slow
+  // response for a song the user already clicked past can't overwrite the
+  // timing data of the song they're now on.
+  const selectedSongRequestRef = useRef<string | number | null>(null);
 
   // Display options
   const [displayOptions, setDisplayOptions] = useState<LyricsDisplayOptions>({
@@ -305,6 +309,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
   const handleSongSelect = async (song: WorshipSong) => {
     setSelectedSong(song);
     setStep('configure');
+    selectedSongRequestRef.current = song.id;
 
     // Always try to load timing data from multiple paths first
     const timingPaths = [
@@ -327,8 +332,12 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
       }
     }
 
+    // The user may have already clicked a different song while these fetches
+    // were in flight — don't let a stale response overwrite it.
+    if (selectedSongRequestRef.current !== song.id) return;
+
     let finalTiming = normalizeTimingData(loadedTiming);
-    
+
     // Fall back to database timing_data if no static files found
     if (!finalTiming && song.timing_data) {
       let dbTiming: any = song.timing_data;
@@ -462,11 +471,18 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
     const file = e.target.files?.[0];
     if (!file) return;
     const objectUrl = URL.createObjectURL(file);
-    setDisplayOptions(prev => ({
-      ...prev,
-      backgroundType: 'image',
-      backgroundUrl: objectUrl
-    }));
+    setDisplayOptions(prev => {
+      // Release the previous blob URL before swapping in the new one,
+      // otherwise each background-image change leaks the old blob.
+      if (prev.backgroundUrl?.startsWith('blob:')) {
+        URL.revokeObjectURL(prev.backgroundUrl);
+      }
+      return {
+        ...prev,
+        backgroundType: 'image',
+        backgroundUrl: objectUrl
+      };
+    });
   };
 
   return (

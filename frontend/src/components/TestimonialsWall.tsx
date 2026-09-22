@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Star, Heart, Lock, User, Clock, MessageSquare, Filter, Search, RefreshCw, Calendar, MapPin, Eye, Share2 } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
+import { getAuthToken } from '../lib/tokenManager';
 
 interface Testimonial {
   id: string;
@@ -58,7 +59,7 @@ const TestimonialsWall: React.FC<TestimonialsWallProps> = ({
       
       const response = await fetch(`${window.location.origin.replace(':5000', ':3001')}/api/testimonials?${params.toString()}`, {
         headers: user && !showOnlyPublic ? {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}`
         } : {}
       });
       
@@ -129,7 +130,7 @@ const TestimonialsWall: React.FC<TestimonialsWallProps> = ({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...(user && { 'Authorization': `Bearer ${localStorage.getItem('token')}` })
+          ...(user && { 'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}` })
         }
       });
       
