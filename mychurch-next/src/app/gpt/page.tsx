@@ -5,7 +5,7 @@ import Link from "next/link";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import AlHayatGPTWidget from "@/components/AlHayatGPTWidget";
 import {
-  Sparkles, BookOpen, MessageCircle, ShieldCheck, HeartHandshake
+  Sparkles, BookOpen, MessageCircle, ShieldCheck
 } from "lucide-react";
 
 export default function GptPage() {
