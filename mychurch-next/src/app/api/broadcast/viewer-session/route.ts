@@ -6,14 +6,22 @@ import { mergeSlidesWithLatestSongData } from "@/lib/presentation-helper";
 const MAX_SESSION_ID_LENGTH = 128;
 
 function getSecret(): string {
-  return (
+  // NOTE: only server-only secrets belong in this fallback chain. Never fall
+  // back to a NEXT_PUBLIC_* value (shipped to every browser) or a hardcoded
+  // string here — either would let anyone forge a valid viewer token.
+  const secret =
     process.env.BROADCAST_VIEWER_SECRET ||
     process.env.BROADCAST_VIEWER_TOKEN_SECRET ||
     process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    process.env.NEXTAUTH_SECRET ||
-    "dev-broadcast-secret"
-  );
+    process.env.NEXTAUTH_SECRET;
+
+  if (!secret) {
+    throw new Error(
+      "BROADCAST_VIEWER_SECRET is not configured. Set it (or SUPABASE_SERVICE_ROLE_KEY / NEXTAUTH_SECRET) before verifying viewer tokens."
+    );
+  }
+
+  return secret;
 }
 
 function toBase64Url(input: Buffer | string): string {

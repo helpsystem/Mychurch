@@ -152,12 +152,16 @@ export default function BibleStepWizard({
   // Load chapter verses when active book/chapter changes
   useEffect(() => {
     if (!activeBook || !selectedVersionEn || !selectedVersionFa) return;
+    let cancelled = false;
     setLoadingVerses(true);
     fetch(
       `/api/bible/parallel?versionEn=${selectedVersionEn}&versionFa=${selectedVersionFa}&book=${activeBook.book_id}&chapter=${activeChapter}`
     )
       .then((res) => res.json())
       .then((data) => {
+        // A newer chapter/book selection may have started (and finished)
+        // while this request was in flight — don't overwrite it with stale data.
+        if (cancelled) return;
         const list = (data.parallel || []).map((p: any) => ({
           verse_num: p.verse_num,
           en: p.en || "",
@@ -173,7 +177,12 @@ export default function BibleStepWizard({
         }
       })
       .catch(() => undefined)
-      .finally(() => setLoadingVerses(false));
+      .finally(() => {
+        if (!cancelled) setLoadingVerses(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [activeBook, activeChapter, selectedVersionEn, selectedVersionFa]);
 
   // Filtered books for Step 1

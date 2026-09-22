@@ -430,8 +430,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     newSlides.forEach((s, i) => s.order = i);
 
     setSession(prev => ({ ...prev, slides: newSlides }));
-    onSlideSelect(targetIndex);
-  }, [session.slides, setSession, onSlideSelect]);
+
+    // Keep the active/live slide pointing at the same slide after the reorder —
+    // only follow the swap if the active slide was one of the two that moved,
+    // otherwise reordering unrelated slides would silently switch what's on-air.
+    if (activeSlideIndex === index) {
+      onSlideSelect(targetIndex);
+    } else if (activeSlideIndex === targetIndex) {
+      onSlideSelect(index);
+    }
+  }, [session.slides, setSession, onSlideSelect, activeSlideIndex]);
 
   // Edit slide - open modal with existing data
   const startEditSlide = useCallback((index: number) => {
@@ -1751,12 +1759,18 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           lang={lang}
           existingSlides={session.slides}
           onSelectSong={(content, options) => {
-            // Add the slide with the configured content
-            addSlide(SlideType.LYRICS, {
+            const finalContent = {
               ...content,
               // Store display options in the content for later use
               displayOptions: options
-            } as any);
+            } as any;
+            // If we opened this picker via "Edit" on an existing lyrics slide,
+            // update that slide in place instead of appending a duplicate.
+            if (editingSlideIndex !== null) {
+              updateSlide(editingSlideIndex, finalContent);
+            } else {
+              addSlide(SlideType.LYRICS, finalContent);
+            }
           }}
           onClose={() => { setActiveModal('NONE'); resetForms(); }}
         />

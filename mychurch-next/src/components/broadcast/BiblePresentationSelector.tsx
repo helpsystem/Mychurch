@@ -256,13 +256,20 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedVersionEn]);
 
+  // Guards against a slow response for a chapter/book the user has already
+  // navigated away from landing after a newer request and overwriting it.
+  const loadChapterRequestRef = useRef(0);
+
   const loadChapter = useCallback(async () => {
     if (!currentBook || !selectedVersionEn || !selectedVersionFa) return;
+    const requestId = ++loadChapterRequestRef.current;
+    const isStale = () => loadChapterRequestRef.current !== requestId;
     setLoading(true);
 
     try {
       const parallelResponse = await fetch(`/api/bible/parallel?versionEn=${selectedVersionEn}&versionFa=${selectedVersionFa}&book=${currentBook.book_id}&chapter=${selectedChapter}`);
       const parallelData = await parallelResponse.json();
+      if (isStale()) return;
       const nextParallel: ParallelVerse[] = parallelData.parallel || [];
       setParallelVerses(nextParallel);
       setAudioTracks(lang === "fa" ? (parallelData.audioFa || []) : (parallelData.audioEn || []));
@@ -281,6 +288,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       } else if (readingMode === "fa") {
         const response = await fetch(`/api/bible/chapter?version=${selectedVersionFa}&book=${currentBook.book_id}&chapter=${selectedChapter}`);
         const data = await response.json();
+        if (isStale()) return;
         setFaVerses(data.verses || []);
         if (data.isFallback && data.fallbackNotice) {
           setFallbackNotice(data.fallbackNotice);
@@ -290,6 +298,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       } else {
         const response = await fetch(`/api/bible/chapter?version=${selectedVersionEn}&book=${currentBook.book_id}&chapter=${selectedChapter}`);
         const data = await response.json();
+        if (isStale()) return;
         setVerses(data.verses || []);
         setHeadings(data.headings || []);
         if (data.isFallback && data.fallbackNotice) {
@@ -298,6 +307,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         setFaVerses([]);
       }
     } catch {
+      if (isStale()) return;
       setParallelVerses([]);
       setVerses([]);
       setFaVerses([]);
@@ -305,7 +315,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       setAudioTracks([]);
       setFallbackNotice(null);
     } finally {
-      setLoading(false);
+      if (!isStale()) setLoading(false);
     }
   }, [currentBook, lang, readingMode, selectedChapter, selectedVersionEn, selectedVersionFa]);
 
