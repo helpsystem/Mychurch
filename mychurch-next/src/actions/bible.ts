@@ -12,6 +12,7 @@
 
 import { Pool } from 'pg';
 import { INITIAL_BIBLE_BOOKS } from '@/lib/bibleData';
+import { requireRole } from '@/utils/rbac';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 export interface UnifiedVerse {
@@ -36,14 +37,18 @@ export interface ChapterData {
     verses: UnifiedVerse[];
 }
 
+if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL is not configured. Set it before using Bible sync actions.');
+}
+
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL || 'postgresql://postgres.xjliwbfdzmxncyebblxw:OExGvmxE8SsoIUGH@aws-1-us-east-1.pooler.supabase.com:6543/postgres',
+    connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false },
 });
 
 // BSB = Berean Standard Bible (ID 3034) - open license, excellent modern translation
 const BSB_ID = 3034;
-const YV_APP_KEY = 'mQSt6AbhCy2oUMbqw7AXWdjtpBEgErqZxrjgvG5AmaExT834';
+const YV_APP_KEY = process.env.YV_APP_KEY;
 
 // ─── Audio templates ──────────────────────────────────────────────────────────
 const AUDIO_TPV = (code: string, ch: number) =>
@@ -66,6 +71,7 @@ const TTL = 24 * 3600 * 1000;
 
 // ─── Fetch English chapter from YouVersion REST API (no SDK) ────────────────
 async function fetchEnglishVerses(bookCode: string, ch: number): Promise<Record<number, string>> {
+    if (!YV_APP_KEY) return {};
     try {
         // Fetch via direct REST API call — no SDK dependency required
         const apiRes = await fetch(
@@ -115,6 +121,7 @@ async function fetchEnglishVerses(bookCode: string, ch: number): Promise<Record<
 
 
 export async function initBibleSyncColumns() {
+    await requireRole(["Admin", "Leader", "Operator"]);
     try {
         await pool.query(`
             ALTER TABLE unified_bible_verses 
@@ -174,6 +181,9 @@ function patchEnglishInDb(book: string, ch: number, enVerses: Record<number, str
 
 // ─── Main exported function ───────────────────────────────────────────────────
 export async function fetchChapterData(bookCode: string, chapterNum: number): Promise<ChapterData | null> {
+    // Currently only reachable from admin tooling; also writes patched English
+    // verse text to the DB, so it needs the same gate as the rest of this file.
+    await requireRole(["Admin", "Leader", "Operator"]);
     const normalizedBook = (bookCode || '').trim();
     const parsed = parseInt(normalizedBook, 10);
 
@@ -290,6 +300,7 @@ export async function fetchChapterData(bookCode: string, chapterNum: number): Pr
 
 // ─── Gemini Multimodal AI Auto-Sync ───────────────────────────────────────────
 export async function syncBibleChapterAudioAI(bookCode: string, chapterNum: number): Promise<{ success: boolean; message?: string }> {
+    await requireRole(["Admin", "Leader", "Operator"]);
     try {
         await initBibleSyncColumns();
 
@@ -368,8 +379,15 @@ NO MARKDOWN. JUST RAW JSON.
             generationConfig: { temperature: 0.1 } 
         };
 
-        const DIRECT_API_KEY = process.env.GEMINI_API_KEY || 'AQ.Ab8RN6IpDe6-VgR8OumktCUPuVVPR015eoQRIjC8gAFaarcYSw';
-        const API_URL = `https://aiplatform.googleapis.com/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=${DIRECT_API_KEY}`;
+        const DIRECT_API_KEY = process.env.GEMINI_API_KEY;
+        if (!DIRECT_API_KEY) {
+            return { success: false, message: "GEMINI_API_KEY در سرور تنظیم نشده است." };
+        }
+        // Note: aiplatform.googleapis.com (Vertex AI) requires OAuth2, not a `?key=` API key -
+        // generativelanguage.googleapis.com is the correct endpoint for that auth style,
+        // matching the pattern already used elsewhere in this codebase (e.g.
+        // src/app/api/admin/gemini-proxy/route.ts, src/app/api/ai/local-chat/route.ts).
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${DIRECT_API_KEY}`;
 
         console.log(`[Bible Sync] Pinging Gemini 2.5 Flash...`);
         const response = await fetch(API_URL, {
