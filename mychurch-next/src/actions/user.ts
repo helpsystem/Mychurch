@@ -2,6 +2,17 @@
 
 import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { createClient } from "@/utils/supabase/server";
+
+// getUserProfile/updateUserProfile take an email identifying WHICH row to read/write.
+// As Server Actions they are directly callable with arbitrary parameters, so without
+// this check any visitor could read or overwrite another user's phone, WhatsApp
+// number, Telegram ID, bio and home address/GPS coordinates by passing their email.
+async function requireOwnEmail(email: string): Promise<boolean> {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    return Boolean(user?.email && user.email.toLowerCase() === email.trim().toLowerCase());
+}
 
 export async function initializeUserDB() {
     try {
@@ -56,6 +67,10 @@ export async function initializeUserDB() {
 }
 
 export async function getUserProfile(email: string) {
+    if (!(await requireOwnEmail(email))) {
+        return null;
+    }
+
     try {
         await initializeUserDB();
         const { rows } = await query("SELECT * FROM users WHERE LOWER(email) = LOWER($1)", [email]);
@@ -81,6 +96,10 @@ export async function updateUserProfile(email: string, data: {
     lat?: number | null;
     lng?: number | null;
 }) {
+    if (!(await requireOwnEmail(email))) {
+        return { success: false, error: "Unauthorized" };
+    }
+
     try {
         await initializeUserDB();
 

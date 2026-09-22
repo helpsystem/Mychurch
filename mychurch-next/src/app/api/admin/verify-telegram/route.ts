@@ -19,7 +19,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: "Access denied" }, { status: 403 });
     }
 
-    const { telegramId, userId, action } = await req.json();
+    const { telegramId, userId, action, code } = await req.json();
 
     if (!telegramId || !/^\d+$/.test(String(telegramId).trim())) {
         return NextResponse.json({ error: "شناسه تلگرام باید یک عدد باشد" }, { status: 400 });
@@ -50,7 +50,6 @@ export async function POST(req: Request) {
     }
 
     if (action === "verify_code") {
-        const { code } = await req.json();
         const key = `${userId}_${cleanId}`;
         const stored = verificationCodes.get(key);
 
