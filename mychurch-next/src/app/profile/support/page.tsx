@@ -15,8 +15,9 @@ export default async function UserSupportPage() {
         redirect("/login");
     }
 
-    // Fetch user-specific tickets (filtered by user_id on client)
-    const allTickets = await getTickets();
+    // Fetch only this user's own tickets (server-side filtered — support tickets
+    // carry private pastoral content and must never be sent to the client unfiltered).
+    const allTickets = await getTickets(undefined, user.email || "");
     
     return <ClientSupport initialTickets={allTickets} userEmail={user.email || ""} />;
 }

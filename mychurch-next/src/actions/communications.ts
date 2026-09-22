@@ -277,6 +277,8 @@ export async function getWhatsAppLogs(): Promise<WhatsAppLog[]> {
 }
 
 export async function getWhatsAppProviderInfo(): Promise<{ provider: "personal" | "twilio" | "meta" | "none"; activeSender: string; personalLinked: boolean; personalName?: string }> {
+    await requireRole(["Admin"]);
+
     const { getPersonalWhatsAppStatus } = await import("@/services/whatsapp-personal");
     const personalStatus = await getPersonalWhatsAppStatus();
     if (personalStatus.paired && personalStatus.userPhone) {
