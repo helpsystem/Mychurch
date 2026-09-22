@@ -3,6 +3,7 @@
 import { query } from "@/lib/db";
 import { getPaymentConfig, getPaymentSecretKey } from "@/actions/payment-config";
 import { sendMail } from "@/lib/mailer";
+import { requireRole } from "@/utils/rbac";
 
 export type GiftEventStatus = "checkout_started" | "success" | "cancelled" | "error";
 
@@ -267,6 +268,8 @@ interface StripeCustomerDetails {
     receiptUrl: string | null;
     paymentIntentId: string | null;
     chargeId: string | null;
+    /** True only when Stripe actually returned a matching session/intent/charge for this id. */
+    verified: boolean;
 }
 
 // Helper to recursively fetch customer details from Stripe sessions, intents, or charges
@@ -278,6 +281,7 @@ async function retrieveStripeCustomerDetails(secretKey: string, id: string): Pro
     let receiptUrl: string | null = null;
     let paymentIntentId: string | null = null;
     let chargeId: string | null = null;
+    let verified = false;
 
     try {
         if (id.startsWith("cs_")) {
@@ -286,6 +290,8 @@ async function retrieveStripeCustomerDetails(secretKey: string, id: string): Pro
             });
             if (res.ok) {
                 const data = await res.json();
+                // Only a session Stripe confirms as paid counts as a verified donation.
+                verified = data.payment_status === "paid" || data.status === "complete";
                 payerEmail = data.customer_details?.email || null;
                 payerName = data.customer_details?.name || null;
                 amount = (data.amount_total || 0) / 100;
@@ -304,6 +310,7 @@ async function retrieveStripeCustomerDetails(secretKey: string, id: string): Pro
             });
             if (res.ok) {
                 const data = await res.json();
+                verified = data.status === "succeeded";
                 amount = (data.amount || 0) / 100;
                 currency = data.currency || "usd";
                 payerEmail = data.receipt_email || null;
@@ -322,6 +329,7 @@ async function retrieveStripeCustomerDetails(secretKey: string, id: string): Pro
             });
             if (res.ok) {
                 const data = await res.json();
+                verified = data.paid === true || data.status === "succeeded";
                 amount = (data.amount || 0) / 100;
                 currency = data.currency || "usd";
                 payerEmail = data.billing_details?.email || data.receipt_email || null;
@@ -334,7 +342,7 @@ async function retrieveStripeCustomerDetails(secretKey: string, id: string): Pro
         console.error("[Stripe Customer Lookup] Error:", e);
     }
 
-    return { payerEmail, payerName, amount, currency, receiptUrl, paymentIntentId, chargeId };
+    return { payerEmail, payerName, amount, currency, receiptUrl, paymentIntentId, chargeId, verified };
 }
 
 export async function processPaymentSuccess(giftRef: string, sessionId?: string, orderId?: string) {
@@ -351,12 +359,17 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
     let stripePaymentIntent: string | null = null;
     let stripeChargeId: string | null = null;
     let squarePaymentId: string | null = null;
+    // Whether we actually confirmed this payment with the provider. Anyone can land on
+    // /payment?status=success with a made-up gift_ref/session_id — without this check we'd
+    // record it as a completed donation anyway.
+    let verified = false;
 
     if (secretKey) {
         if (config.provider === "square") {
             // Find payment in Square
             const p = await findSquarePayment(secretKey, config.square_application_id, giftRef, orderId);
             if (p) {
+                verified = true;
                 payerEmail = p.buyer_email_address || null;
                 payerName = p.card_details?.card?.cardholder_name || null;
                 amount = (p.amount_money?.amount || 0) / 100;
@@ -367,6 +380,7 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
         } else if (sessionId) {
             // Retrieve session details recursively from Stripe
             const stripeDetails = await retrieveStripeCustomerDetails(secretKey, sessionId);
+            verified = stripeDetails.verified;
             payerEmail = stripeDetails.payerEmail;
             payerName = stripeDetails.payerName;
             amount = stripeDetails.amount;
@@ -374,6 +388,13 @@ export async function processPaymentSuccess(giftRef: string, sessionId?: string,
             receiptUrl = stripeDetails.receiptUrl;
             stripePaymentIntent = stripeDetails.paymentIntentId;
             stripeChargeId = stripeDetails.chargeId;
+        }
+
+        // We have the means to verify (a configured secret key) and the lookup came back
+        // empty or unpaid — do not record a fake "success" donation.
+        if (!verified) {
+            console.warn(`[Gift Events] processPaymentSuccess: could not verify gift_ref=${giftRef} with provider ${config.provider}; not recording as success.`);
+            return;
         }
     }
 
@@ -467,6 +488,7 @@ async function findSquarePayment(secretKey: string, appId: string | null, giftRe
 }
 
 export async function getGiftEvents(limit = 100): Promise<GiftEvent[]> {
+    await requireRole(["Admin", "Leader"]);
     await ensureGiftEventsSchema();
 
     // Select all non-pending events OR pending events created within the last 72 hours
@@ -535,6 +557,7 @@ export async function getGiftEvents(limit = 100): Promise<GiftEvent[]> {
 }
 
 export async function getGiftNotificationsSummary() {
+    await requireRole(["Admin", "Leader"]);
     await ensureGiftEventsSchema();
 
     const { rows } = await query(
@@ -552,6 +575,8 @@ export async function getGiftNotificationsSummary() {
 }
 
 export async function resendGiftEmailAction(giftRef: string, overrideEmail?: string) {
+    await requireRole(["Admin", "Leader"]);
+
     try {
         await ensureGiftEventsSchema();
         
