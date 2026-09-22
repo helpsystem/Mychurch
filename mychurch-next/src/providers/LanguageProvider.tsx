@@ -32,7 +32,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         // Hydrate from localStorage
         const stored = localStorage.getItem("preferred-lang") as Language;
-        if (stored === "fa" || stored === "en") {
+        if (stored === "fa" || stored === "en" || stored === "es") {
             // eslint-disable-next-line
             setLanguage(stored);
         } else {
