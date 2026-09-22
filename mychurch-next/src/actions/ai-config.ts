@@ -1,6 +1,7 @@
 "use server";
 
 import { query } from "@/lib/db";
+import { requireRole } from "@/utils/rbac";
 
 export interface AIConfig {
     id: string;
@@ -109,17 +110,14 @@ export async function getAIConfig(): Promise<AIConfig> {
 }
 
 export async function updateAIConfig(config: Partial<AIConfig>) {
+    await requireRole(["Admin"]);
     await ensureAISettingsSchema();
-    const { createClient } = await import("@/utils/supabase/server");
-    const supabase = await createClient();
-    
-    // Auth check (Admin only)
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) throw new Error("Unauthorized");
 
     const currentConfig = await getAIConfig();
     const nextConfig = normalizeAIConfig({ ...currentConfig, ...config });
-    
+
+    const { createClient } = await import("@/utils/supabase/server");
+    const supabase = await createClient();
     const { error } = await supabase
         .from('church_ai_settings')
         .upsert({

@@ -74,8 +74,12 @@ async function routeAudioUrl(request: Request, url: string): Promise<NextRespons
 
     // ── HiDrive WebDAV (legacy) ───────────────────────────────────────────
     if (url.startsWith('https://webdav.hidrive.ionos.com/')) {
-        const username = process.env.HIDRIVE_USER || 'adminchurch';
-        const password = process.env.HIDRIVE_PASSWORD || 'SamanBbB1989bBb@';
+        const username = process.env.HIDRIVE_USER;
+        const password = process.env.HIDRIVE_PASSWORD;
+        if (!username || !password) {
+            console.error('[worship-audio] HIDRIVE_USER/HIDRIVE_PASSWORD not configured');
+            return new NextResponse('Audio source not configured', { status: 500 });
+        }
         const authHeader = 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64');
         return proxyAudio(request, url, { Authorization: authHeader });
     }

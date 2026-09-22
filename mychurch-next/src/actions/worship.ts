@@ -260,7 +260,15 @@ export async function toggleSongVerification(id: string, isVerified: boolean): P
 }
 
 
-export async function toggleLikeWorshipSong(songId: string, userId: string): Promise<{ success: boolean; liked: boolean; count: number }> {
+export async function toggleLikeWorshipSong(songId: string): Promise<{ success: boolean; liked: boolean; count: number }> {
+    const { createClient } = await import('@/utils/supabase/server');
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        return { success: false, liked: false, count: 0 };
+    }
+    const userId = user.id;
+
     try {
         const { rows: existingLike } = await query(
             "SELECT 1 FROM church_worship_song_likes WHERE user_id = $1 AND song_id = $2",
@@ -290,7 +298,13 @@ export async function toggleLikeWorshipSong(songId: string, userId: string): Pro
     }
 }
 
-export async function getUserLikedSongs(userId: string): Promise<string[]> {
+export async function getUserLikedSongs(): Promise<string[]> {
+    const { createClient } = await import('@/utils/supabase/server');
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return [];
+    const userId = user.id;
+
     try {
         const { rows } = await query(
             "SELECT song_id FROM church_worship_song_likes WHERE user_id = $1",
@@ -632,6 +646,10 @@ export async function scanMissingAudio() {
 
 export async function linkWorshipAudio(songId: string, fileName: string) {
     await ensureWorshipManagementAccess();
+
+    if (!fileName || fileName.includes('/') || fileName.includes('\\') || fileName.includes('..')) {
+        return { success: false, message: "نام فایل نامعتبر است" };
+    }
 
     try {
         const audioUrl = `/worship/audio/kalameh/${fileName}`;

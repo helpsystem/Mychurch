@@ -13,9 +13,14 @@ const __dirname = path.dirname(__filename);
 const envPath = path.resolve(__dirname, '../../.env.local');
 dotenv.config({ path: envPath });
 
-// The user provided this specific key and endpoint
-const DIRECT_API_KEY = 'AQ.Ab8RN6IpDe6-VgR8OumktCUPuVVPR015eoQRIjC8gAFaarcYSw';
-const API_URL = `https://aiplatform.googleapis.com/v1/publishers/google/models/gemini-2.5-flash-lite:generateContent?key=${DIRECT_API_KEY}`;
+const DIRECT_API_KEY = process.env.GEMINI_API_KEY;
+if (!DIRECT_API_KEY) {
+    console.error('GEMINI_API_KEY is not configured. Set it in .env.local before running this script.');
+    process.exit(1);
+}
+// generativelanguage.googleapis.com is the correct endpoint for `?key=` API-key auth
+// (aiplatform.googleapis.com / Vertex AI requires OAuth2, not a raw API key).
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${DIRECT_API_KEY}`;
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL,

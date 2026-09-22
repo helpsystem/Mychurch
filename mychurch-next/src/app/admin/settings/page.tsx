@@ -2,6 +2,7 @@ import React from "react";
 import { getAIConfig } from "@/actions/ai-config";
 import { getPaymentConfig } from "@/actions/payment-config";
 import { getConferenceConfig } from "@/actions/conference-config";
+import { requireRole } from "@/utils/rbac";
 import SettingsClient from "./SettingsClient";
 import PaymentSettingsClient from "./PaymentSettingsClient";
 import ConferenceSettingsClient from "./ConferenceSettingsClient";
@@ -9,6 +10,11 @@ import ConferenceSettingsClient from "./ConferenceSettingsClient";
 export const dynamic = "force-dynamic";
 
 export default async function AdminSettingsPage() {
+    // This page renders raw provider secrets (Gemini API key, Vertex service account,
+    // FreeConferenceCall credentials) into the client bundle, so it must be Admin-only —
+    // the blanket /admin middleware check only requires "any authenticated user".
+    await requireRole(["Admin"]);
+
     const [aiConfig, paymentConfig, conferenceConfig] = await Promise.all([
         getAIConfig(),
         getPaymentConfig(),

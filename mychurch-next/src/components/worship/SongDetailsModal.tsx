@@ -255,7 +255,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
 
   const handleLike = async () => {
     if (!user) { alert("لطفاً برای لایک کردن ابتدا وارد شوید"); return; }
-    const { success, liked: newLiked, count } = await toggleLikeWorshipSong(song.id, user.id);
+    const { success, liked: newLiked, count } = await toggleLikeWorshipSong(song.id);
     if (success) { setLiked(newLiked); setLikeCount(count); onLikeChange?.(song.id, newLiked, count); }
   };
 

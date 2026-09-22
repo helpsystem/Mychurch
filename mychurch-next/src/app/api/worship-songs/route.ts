@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getWorshipSongs } from '@/actions/worship';
 import { query } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
+import { createClient } from '@/utils/supabase/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,6 +18,22 @@ export async function GET() {
 
 export async function POST(req: Request) {
     try {
+        // ===== Security Check: Admin/Leader/Operator Role Required =====
+        const supabase = await createClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        if (authError || !user) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+        const { data: userRecord } = await supabase
+            .from('users')
+            .select('role')
+            .eq('email', user.email)
+            .single();
+        if (!userRecord || !['Admin', 'Leader', 'Operator'].includes(userRecord.role)) {
+            return NextResponse.json({ error: "Forbidden: Admin/Leader/Operator access required" }, { status: 403 });
+        }
+        // ===== End Security Check =====
+
         const body = await req.json();
         const {
             title_fa,
