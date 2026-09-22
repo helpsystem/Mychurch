@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import { Languages, Loader2, Check, X } from 'lucide-react';
 import axios from 'axios';
+import { getAuthToken } from '../../lib/tokenManager';
 
 interface TranslateButtonProps {
     sourceText: string;
@@ -46,7 +47,7 @@ export const TranslateButton: React.FC<TranslateButtonProps> = ({
                 quality: 'professional'
             }, {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}`
                 }
             });
 

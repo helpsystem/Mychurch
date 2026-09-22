@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { 
+import { getAuthToken } from '../../lib/tokenManager';
+import {
   Calendar, 
   Plus, 
   Edit3, 
@@ -90,7 +91,7 @@ const DailyContentManager: React.FC<DailyContentManagerProps> = ({ className = '
     try {
       const response = await fetch('/api/daily-content', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}`
         }
       });
 
@@ -185,7 +186,7 @@ const DailyContentManager: React.FC<DailyContentManagerProps> = ({ className = '
         method,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}`
         },
         body: JSON.stringify(contentData)
       });
@@ -228,7 +229,7 @@ const DailyContentManager: React.FC<DailyContentManagerProps> = ({ className = '
         const response = await fetch(`/api/daily-content/${contentId}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}`
           }
         });
 
@@ -249,7 +250,7 @@ const DailyContentManager: React.FC<DailyContentManagerProps> = ({ className = '
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}`
         },
         body: JSON.stringify({ isActive: !isActive })
       });
@@ -285,7 +286,7 @@ const DailyContentManager: React.FC<DailyContentManagerProps> = ({ className = '
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}`
           },
           body: JSON.stringify({ startDate: selectedDate })
         });

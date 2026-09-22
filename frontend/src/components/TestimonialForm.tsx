@@ -4,6 +4,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
 import MathCaptcha from './MathCaptcha';
 import HoneypotField from './HoneypotField';
+import { getAuthToken } from '../lib/tokenManager';
 
 interface TestimonialFormProps {
   onSubmit?: (testimonial: any) => void;
@@ -106,7 +107,7 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ onSubmit, className =
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...(user && { 'Authorization': `Bearer ${localStorage.getItem('token')}` })
+          ...(user && { 'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}` })
         },
         body: JSON.stringify(testimonialData)
       });

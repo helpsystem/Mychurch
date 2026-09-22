@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
 import { useContent } from '../hooks/useContent';
+import { getAuthToken } from '../lib/tokenManager';
 import { 
   MessageCircle, 
   Calendar, 
@@ -76,7 +77,7 @@ const DailyMessagesPage: React.FC = () => {
   const loadDailyMessages = async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem('authToken');
+      const token = getAuthToken() || localStorage.getItem('authToken');
       const response = await fetch('/api/daily-messages', {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -104,7 +105,7 @@ const DailyMessagesPage: React.FC = () => {
     if (!isAdmin) return;
     
     try {
-      const token = localStorage.getItem('authToken');
+      const token = getAuthToken() || localStorage.getItem('authToken');
       const response = await fetch('/api/daily-messages', {
         method: 'POST',
         headers: {
@@ -156,7 +157,7 @@ const DailyMessagesPage: React.FC = () => {
     if (!isAdmin) return;
     
     try {
-      const token = localStorage.getItem('authToken');
+      const token = getAuthToken() || localStorage.getItem('authToken');
       const response = await fetch(`/api/daily-messages/${messageId}/publish`, {
         method: 'POST',
         headers: {
@@ -193,7 +194,7 @@ const DailyMessagesPage: React.FC = () => {
     
     if (confirm(lang === 'fa' ? 'آیا مطمئن هستید؟' : 'Are you sure?')) {
       try {
-        const token = localStorage.getItem('authToken');
+        const token = getAuthToken() || localStorage.getItem('authToken');
         const response = await fetch(`/api/daily-messages/${messageId}`, {
           method: 'DELETE',
           headers: {

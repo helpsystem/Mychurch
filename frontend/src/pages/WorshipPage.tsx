@@ -4,6 +4,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
 import { WorshipSong } from '../types';
 import { useContent } from '../hooks/useContent';
+import { getAuthToken } from '../lib/tokenManager';
 import { Youtube, FileText, FileMusic, Play, Mic, ExternalLink, Presentation, Music2, Shuffle, PlayCircle, SkipBack, SkipForward, Heart } from 'lucide-react';
 import { useAudioPlayer, Song } from '../contexts/AudioPlayerContext';
 import UniversalMediaPlayer from '../components/UniversalMediaPlayer';
@@ -177,7 +178,7 @@ const WorshipSongCard: React.FC<{ song: WorshipSong; onClick?: () => void; onKar
               try {
                 const response = await fetch(`/api/worship-songs/songs/${song.id}/toggle-like`, {
                   method: 'POST',
-                  headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                  headers: { 'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}` }
                 });
                 const data = await response.json();
                 if (data.success) {

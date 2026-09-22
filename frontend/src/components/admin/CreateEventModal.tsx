@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Calendar, Clock, MapPin, Users, Tag, RefreshCw } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
+import { getAuthToken } from '../../lib/tokenManager';
 
 interface CreateEventModalProps {
   onClose: () => void;
@@ -83,7 +84,7 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({
         method: editEvent ? 'PUT' : 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken() || localStorage.getItem('token')}`
         },
         body: JSON.stringify(editEvent ? { ...eventData, id: editEvent.id } : eventData)
       });
