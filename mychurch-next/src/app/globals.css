@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-/* B Homa — consolidated from 6 identical declarations into one variable-weight block.
-   Convert BHoma.ttf to BHoma.woff2 for 30-50% smaller payload:
-   python -c "from fontTools.ttLib import TTFont; f=TTFont('public/fonts/BHoma.ttf'); f.flavor='woff2'; f.save('public/fonts/BHoma.woff2')"
-*/
+/* B Homa — consolidated from 6 identical declarations into one variable-weight block. */
 @font-face {
   font-family: 'B Homa';
   src: url('/fonts/BHoma.woff2') format('woff2'),
@@ -282,14 +279,13 @@
   50% { box-shadow: 0 0 40px rgba(245,166,35,0.6), 0 0 80px rgba(245,166,35,0.2); }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
 }
 
 @keyframes gradient-shift {
@@ -377,11 +373,15 @@
       transparent 100%
     );
     background-size: 200% 100%;
-    animation: shimmer 2s infinite;
+    animation: shimmer-sweep 2s infinite;
   }
 }
 
-@keyframes shimmer {
+/* Named uniquely — a second @keyframes shimmer further down (for .skeleton,
+   which uses pixel-based background-position matching its 1200px background-size)
+   would otherwise silently override this percentage-based one, since CSS keeps
+   only the last @keyframes rule for a given name rather than merging them. */
+@keyframes shimmer-sweep {
   from { background-position: 200% 0; }
   to { background-position: -200% 0; }
 }
