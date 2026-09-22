@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAuth } from '../hooks/useAuth';
+import { getAuthToken } from '../lib/tokenManager';
 import PresentationViewer from '../components/PresentationViewer';
 import { 
   Music, 
@@ -335,7 +336,7 @@ How great Thou art! How great Thou art!`,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken()}`
         },
         body: JSON.stringify({
           slides: currentSlides,
