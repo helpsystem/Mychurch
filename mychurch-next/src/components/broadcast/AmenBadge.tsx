@@ -25,8 +25,6 @@ const AmenBadge: React.FC<AmenBadgeProps> = ({
   const badgeRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  if (!config.show) return null;
-
   // Size classes
   const sizeClasses = {
     small: 'text-3xl',

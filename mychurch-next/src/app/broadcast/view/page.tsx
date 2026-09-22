@@ -3,16 +3,15 @@
 /**
  * 🎬 Broadcast Viewer Page
  * صفحه نمایش پخش زنده - برای نمایش روی پروژکتور
- * 
+ *
  * این صفحه از دو روش برای دریافت داده استفاده می‌کند:
  * 1. BroadcastChannel API - برای ارتباط بین تب‌های همان مرورگر (بدون نیاز به سرور)
- * 2. WebSocket - برای ارتباط بین دستگاه‌های مختلف
+ * 2. Supabase Realtime - برای ارتباط بین دستگاه‌های مختلف (کراس-دیوایس)
  */
 
-import React, { useEffect, useState, useRef, Suspense, useCallback } from 'react';
+import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
-import { useWebSocketSync } from '@/components/broadcast/hooks/useWebSocketSync';
 import { SmartWorshipPlayer, getSafeAudioUrl } from '@/components/worship/SmartWorshipPlayer';
 import AmenBadge from '@/components/broadcast/AmenBadge';
 import { SlideRenderer } from '@/components/broadcast/SlideRenderer';
@@ -275,26 +274,6 @@ function ViewerContent() {
         };
     }, [tokenState, sessionId, viewerToken]);
 
-    // Stable slide change handler to prevent WebSocket infinite connection loops
-    const handleSlideChange = useCallback((index: number) => {
-        const fromSession = slidesRef.current[index] || slidesRef.current[0] || null;
-        setState(prev => ({
-            ...prev,
-            currentSlide: fromSession,
-            slideIndex: index,
-            internalPageIndex: 0,
-            connected: true,
-            connectionType: prev.connectionType === 'broadcast-channel' ? prev.connectionType : 'websocket'
-        }));
-    }, []);
-
-    // WebSocket sync (for cross-device communication)
-    const { state: syncState } = useWebSocketSync({
-        sessionId: tokenState === "valid" ? sessionId : undefined,
-        isLeader: false,
-        onSlideChange: handleSlideChange
-    });
-
     useEffect(() => {
         if (!sessionSlides.length) return;
         if (state.currentSlide) return;
@@ -525,17 +504,6 @@ function ViewerContent() {
             channel.close();
         };
     }, [sessionId, tokenState]);
-
-    // Response to WebSocket sync state change
-    useEffect(() => {
-        if (syncState.isConnected) {
-            setState(prev => ({
-                ...prev,
-                connected: true,
-                connectionType: prev.connectionType === 'none' ? 'websocket' : prev.connectionType
-            }));
-        }
-    }, [syncState.isConnected]);
 
     const renderSlideContent = () => {
         const slide = state.currentSlide || (sessionSlides.length > 0 ? (sessionSlides[state.slideIndex] || sessionSlides[0]) : null);

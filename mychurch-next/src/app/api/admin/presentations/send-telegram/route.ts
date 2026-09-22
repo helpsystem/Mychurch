@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Slide, SlideType, PrayerRequest } from '@/types/broadcast';
+import { requireRole } from '@/utils/rbac';
 
 // Comprehensive bilingual Bible book mapping
 const BIBLE_BOOKS_MAP: Record<string, { fa: string; en: string }> = {
@@ -232,6 +233,12 @@ async function resolveAudioData(
 
 export async function POST(request: Request) {
     try {
+        // The middleware only checks that a user is logged in, not their role —
+        // this route uses the official Telegram bot to broadcast to a public
+        // church channel (and can be pointed at an arbitrary chat id), so it
+        // needs its own role gate like every other mutating presentations action.
+        await requireRole(["Admin", "Leader", "Operator"]);
+
         const body = await request.json();
         const {
             presentationId,
