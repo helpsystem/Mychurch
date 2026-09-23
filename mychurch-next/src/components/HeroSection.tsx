@@ -2,34 +2,106 @@
 
 import { useEffect, useRef, useState } from "react";
 import HeroParticleField from "@/components/HeroParticleField";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 type Verse = {
   text: string;
   reference: string;
 };
 
-const VERSES: Verse[] = [
-  {
-    text: "من نور جهان هستم. کسی که پیرو من باشد، در تاریکی نخواهد گشت، بلکه نور حیات را خواهد داشت.",
-    reference: "یوحنا ۸:۱۲",
+const VERSES_BY_LANG: Record<"en" | "fa" | "es", Verse[]> = {
+  fa: [
+    {
+      text: "من نور جهان هستم. کسی که پیرو من باشد، در تاریکی نخواهد گشت، بلکه نور حیات را خواهد داشت.",
+      reference: "یوحنا ۸:۱۲",
+    },
+    {
+      text: "شما نور جهانید. شهری که بر فراز کوهی بنا شده، پنهان نمی‌ماند.",
+      reference: "متی ۵:۱۴",
+    },
+    {
+      text: "آیا تو را امر نکردم؟ قوی و دلیر باش! نترس و هراسان مباش، زیرا هر جا که بروی، یَهُوَه خدایت با تو خواهد بود.",
+      reference: "یوشع ۱:۹",
+    },
+    {
+      text: "با مسیح مصلوب شده‌ام؛ دیگر من زندگی نمی‌کنم، بلکه مسیح در من زندگی می‌کند.",
+      reference: "غلاطیان ۲:۲۰",
+    },
+  ],
+  en: [
+    {
+      text: "I am the light of the world. Whoever follows me will never walk in darkness, but will have the light of life.",
+      reference: "John 8:12",
+    },
+    {
+      text: "You are the light of the world. A city set on a hill cannot be hidden.",
+      reference: "Matthew 5:14",
+    },
+    {
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go.",
+      reference: "Joshua 1:9",
+    },
+    {
+      text: "I have been crucified with Christ; it is no longer I who live, but Christ who lives in me.",
+      reference: "Galatians 2:20",
+    },
+  ],
+  es: [
+    {
+      text: "Yo soy la luz del mundo. El que me sigue no andará en tinieblas, sino que tendrá la luz de la vida.",
+      reference: "Juan 8:12",
+    },
+    {
+      text: "Vosotros sois la luz del mundo; una ciudad asentada sobre un monte no se puede esconder.",
+      reference: "Mateo 5:14",
+    },
+    {
+      text: "Mira que te mando que te esfuerces y seas valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo dondequiera que vayas.",
+      reference: "Josué 1:9",
+    },
+    {
+      text: "Con Cristo estoy juntamente crucificado, y ya no vivo yo, más vive Cristo en mí.",
+      reference: "Gálatas 2:20",
+    },
+  ],
+};
+
+const localDict = {
+  fa: {
+    eyebrow: "کلیسای انجیلی ایرانیان واشنگتن دی‌سی  ·  EST. 1990",
+    headline: "پلتفرم آنلاین جهانی",
+    subtitle: "فضایی برای پرستش، یادگیری، و رشد مشترک در ایمان.",
+    ctaWorship: "سرودهای پرستشی",
+    ctaBible: "کتاب مقدس",
+    verseAriaLabel: (i: number, total: number, reference: string) =>
+      `آیه ${i} از ${total}: ${reference}`,
   },
-  {
-    text: "شما نور جهانید. شهری که بر فراز کوهی بنا شده، پنهان نمی‌ماند.",
-    reference: "متی ۵:۱۴",
+  en: {
+    eyebrow: "Iranian Evangelical Church of Washington D.C.  ·  EST. 1990",
+    headline: "A Global Online Platform",
+    subtitle: "A space for worship, learning, and growing together in faith.",
+    ctaWorship: "Worship Songs",
+    ctaBible: "Bible",
+    verseAriaLabel: (i: number, total: number, reference: string) =>
+      `Verse ${i} of ${total}: ${reference}`,
   },
-  {
-    text: "آیا تو را امر نکردم؟ قوی و دلیر باش! نترس و هراسان مباش، زیرا هر جا که بروی، یَهُوَه خدایت با تو خواهد بود.",
-    reference: "یوشع ۱:۹",
+  es: {
+    eyebrow: "Iglesia Evangélica Iraní de Washington D.C.  ·  EST. 1990",
+    headline: "Una Plataforma Global en Línea",
+    subtitle: "Un espacio para adorar, aprender y crecer juntos en la fe.",
+    ctaWorship: "Canciones de Adoración",
+    ctaBible: "Biblia",
+    verseAriaLabel: (i: number, total: number, reference: string) =>
+      `Versículo ${i} de ${total}: ${reference}`,
   },
-  {
-    text: "با مسیح مصلوب شده‌ام؛ دیگر من زندگی نمی‌کنم، بلکه مسیح در من زندگی می‌کند.",
-    reference: "غلاطیان ۲:۲۰",
-  },
-];
+};
 
 const AUTO_ADVANCE_MS = 7000;
 
 export default function HeroSection() {
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
+  const VERSES = VERSES_BY_LANG[language] || VERSES_BY_LANG.fa;
   const [activeVerse, setActiveVerse] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -62,7 +134,7 @@ export default function HeroSection() {
 
   return (
     <section
-      dir="rtl"
+      dir={isRTL ? "rtl" : "ltr"}
       className="relative flex h-[100svh] min-h-[720px] w-full flex-col
                  overflow-hidden bg-[#070A14]"
     >
@@ -79,7 +151,7 @@ export default function HeroSection() {
       {/* eyebrow */}
       <div className="relative z-10 flex justify-center pt-8 sm:pt-10">
         <p className="text-xs tracking-[0.25em] text-[#8B93AA]">
-          کلیسای انجیلی ایرانیان واشنگتن دی‌سی &nbsp;·&nbsp; EST. 1990
+          {d.eyebrow}
         </p>
       </div>
 
@@ -89,10 +161,10 @@ export default function HeroSection() {
           className="max-w-3xl text-[2.75rem] font-extrabold leading-[1.15]
                      text-[#F5EFE6] sm:text-6xl"
         >
-          پلتفرم آنلاین جهانی
+          {d.headline}
         </h1>
         <p className="mt-5 max-w-xl text-base text-[#8B93AA] sm:text-lg">
-          فضایی برای پرستش، یادگیری، و رشد مشترک در ایمان.
+          {d.subtitle}
         </p>
 
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
@@ -101,7 +173,7 @@ export default function HeroSection() {
             className="rounded-full bg-[#E8B368] px-7 py-3 text-sm font-semibold
                        text-[#070A14] transition-colors hover:bg-[#f0c383]"
           >
-            سرودهای پرستشی
+            {d.ctaWorship}
           </a>
           <a
             href="/bible"
@@ -109,7 +181,7 @@ export default function HeroSection() {
                        font-semibold text-[#F5EFE6] transition-colors
                        hover:border-[#E8B368] hover:bg-[#E8B368]/10"
           >
-            کتاب مقدس
+            {d.ctaBible}
           </a>
         </div>
       </div>
@@ -138,7 +210,7 @@ export default function HeroSection() {
               <button
                 key={verse.reference}
                 onClick={() => goToVerse(i)}
-                aria-label={`آیه ${i + 1} از ${VERSES.length}: ${verse.reference}`}
+                aria-label={d.verseAriaLabel(i + 1, VERSES.length, verse.reference)}
                 aria-current={i === activeVerse}
                 className={`h-1.5 rounded-full transition-all ${
                   i === activeVerse

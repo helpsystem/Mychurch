@@ -4,6 +4,133 @@ import React, { useState, useMemo } from "react";
 import { Slide, SlideType, SlideContentScripture, SlideContentLyrics, SlideContentAnnouncement, SlideContentPrayer, SlideContentGeneric, SlideContentMedia } from "@/types/broadcast";
 import { X, Send, CheckSquare, Square, BookOpen, Music, Megaphone, Heart, Edit3, Film, Youtube, Volume2, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        bibleBookFallback: "Bible",
+        scriptureVerseFallback: "Bible verse",
+        scriptureVerseTextFallback: "Word of God verse text",
+        scriptureBadge: "Bible",
+        worshipSongFallback: (n: number) => `Worship song ${n}`,
+        linesCount: (n: number) => `${n} lines`,
+        worshipBadge: "Worship Song",
+        announcementFallback: "Church Announcement",
+        announcementBadge: "Announcement",
+        prayerRequestFallback: "Prayer Request",
+        prayerBadge: "Prayer",
+        mediaFallback: "Media",
+        mediaBadge: "Media",
+        slideFallback: (n: number) => `Slide ${n}`,
+        slideBadge: "Slide",
+        selectAtLeastOne: "Please select at least one slide to send.",
+        sendingProgress: (n: number) => `Sending ${n} slides to Telegram...`,
+        sendFailedError: "Error sending slides to Telegram",
+        sentSuccess: (n: number) => `${n} slides sent successfully as individual messages to Telegram! ✈️`,
+        sendGenericError: "Error sending to Telegram",
+        title: "Select & Send Slides to Telegram",
+        subtitle: "Each slide will be delivered as an individual message with bilingual text & audio.",
+        deselectAll: "Deselect All",
+        selectAll: (n: number) => `Select All (${n})`,
+        selected: (selected: number, total: number) => `Selected: `,
+        of: (total: number) => `of ${total}`,
+        filterAll: "All",
+        filterScripture: "Bible",
+        filterLyrics: "Songs",
+        filterOther: "Other",
+        noSlidesInCategory: "No slides found in this category.",
+        youtubeLinkAvailable: "YouTube link available",
+        audioFileWillSend: "MP3 audio file will be sent with this slide",
+        noSlideSelected: "No slide selected.",
+        readyToSend: (n: number) => `Ready to send `,
+        messagesTo: "message(s) to the Telegram channel",
+        cancel: "Cancel",
+        sending: "Sending...",
+        sendToTelegram: (n: number) => `Send ${n} slide(s) to Telegram`,
+    },
+    fa: {
+        bibleBookFallback: "کتاب‌مقدس",
+        scriptureVerseFallback: "آیه کتاب مقدس",
+        scriptureVerseTextFallback: "متن آیه کلام خدا",
+        scriptureBadge: "کتاب مقدس",
+        worshipSongFallback: (n: number) => `سرود پرستشی ${n}`,
+        linesCount: (n: number) => `${n} بند سرود`,
+        worshipBadge: "سرود پرستشی",
+        announcementFallback: "اطلاعیه کلیسا",
+        announcementBadge: "اطلاعیه",
+        prayerRequestFallback: "درخواست دعا",
+        prayerBadge: "دعا",
+        mediaFallback: "مدیا / رسانه",
+        mediaBadge: "رسانه",
+        slideFallback: (n: number) => `اسلاید ${n}`,
+        slideBadge: "اسلاید",
+        selectAtLeastOne: "لطفاً حداقل یک اسلاید را برای ارسال انتخاب کنید.",
+        sendingProgress: (n: number) => `در حال ارسال ${n} اسلاید به تلگرام...`,
+        sendFailedError: "خطا در ارسال اسلایدها به تلگرام",
+        sentSuccess: (n: number) => `${n} اسلاید با موفقیت به‌صورت پیام‌های مجزا به تلگرام ارسال گردید! ✈️`,
+        sendGenericError: "خطا در ارسال به تلگرام",
+        title: "انتخاب و ارسال اسلایدها به تلگرام",
+        subtitle: "هر اسلاید به‌صورت یک پیام مجزا همراه با آیه، سرود، فایل صوتی و اطلاعات کلیسا ارسال می‌شود.",
+        deselectAll: "لغو انتخاب همه",
+        selectAll: (n: number) => `انتخاب همه (${n})`,
+        selected: (selected: number, total: number) => `انتخاب‌شده: `,
+        of: (total: number) => `از ${total}`,
+        filterAll: "همه",
+        filterScripture: "کتاب مقدس",
+        filterLyrics: "سرودها",
+        filterOther: "سایر",
+        noSlidesInCategory: "اسلایدی در این دسته‌بندی یافت نشد.",
+        youtubeLinkAvailable: "لینک یوتیوب موجود است",
+        audioFileWillSend: "فایل صوتی MP3 همراه این اسلاید ارسال خواهد شد",
+        noSlideSelected: "هیچ اسلایدی انتخاب نشده است.",
+        readyToSend: (n: number) => `آماده ارسال `,
+        messagesTo: "پیام به کانال تلگرام",
+        cancel: "انصراف",
+        sending: "در حال ارسال...",
+        sendToTelegram: (n: number) => `ارسال ${n} اسلاید به تلگرام`,
+    },
+    es: {
+        bibleBookFallback: "Biblia",
+        scriptureVerseFallback: "Versículo bíblico",
+        scriptureVerseTextFallback: "Texto del versículo de la Palabra de Dios",
+        scriptureBadge: "Biblia",
+        worshipSongFallback: (n: number) => `Canción de adoración ${n}`,
+        linesCount: (n: number) => `${n} líneas`,
+        worshipBadge: "Canción de adoración",
+        announcementFallback: "Anuncio de la iglesia",
+        announcementBadge: "Anuncio",
+        prayerRequestFallback: "Petición de oración",
+        prayerBadge: "Oración",
+        mediaFallback: "Medios",
+        mediaBadge: "Medios",
+        slideFallback: (n: number) => `Diapositiva ${n}`,
+        slideBadge: "Diapositiva",
+        selectAtLeastOne: "Por favor seleccione al menos una diapositiva para enviar.",
+        sendingProgress: (n: number) => `Enviando ${n} diapositivas a Telegram...`,
+        sendFailedError: "Error al enviar las diapositivas a Telegram",
+        sentSuccess: (n: number) => `¡${n} diapositivas enviadas con éxito como mensajes individuales a Telegram! ✈️`,
+        sendGenericError: "Error al enviar a Telegram",
+        title: "Seleccionar y enviar diapositivas a Telegram",
+        subtitle: "Cada diapositiva se enviará como un mensaje individual con texto bilingüe y audio.",
+        deselectAll: "Deseleccionar todo",
+        selectAll: (n: number) => `Seleccionar todo (${n})`,
+        selected: (selected: number, total: number) => `Seleccionadas: `,
+        of: (total: number) => `de ${total}`,
+        filterAll: "Todas",
+        filterScripture: "Biblia",
+        filterLyrics: "Canciones",
+        filterOther: "Otras",
+        noSlidesInCategory: "No se encontraron diapositivas en esta categoría.",
+        youtubeLinkAvailable: "Enlace de YouTube disponible",
+        audioFileWillSend: "El archivo de audio MP3 se enviará con esta diapositiva",
+        noSlideSelected: "No se ha seleccionado ninguna diapositiva.",
+        readyToSend: (n: number) => `Listo para enviar `,
+        messagesTo: "mensaje(s) al canal de Telegram",
+        cancel: "Cancelar",
+        sending: "Enviando...",
+        sendToTelegram: (n: number) => `Enviar ${n} diapositiva(s) a Telegram`,
+    },
+};
 
 interface SendTelegramSlidesModalProps {
     isOpen: boolean;
@@ -22,6 +149,8 @@ export function SendTelegramSlidesModal({
     presentationTitle = "جلسه کلیسا",
     isRTL = true
 }: SendTelegramSlidesModalProps) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     // Default to all slides selected
     const [selectedIndices, setSelectedIndices] = useState<number[]>(() => 
         slides.map((_, idx) => idx)
@@ -68,11 +197,11 @@ export function SendTelegramSlidesModal({
         if (slide.type === SlideType.SCRIPTURE) {
             const content = slide.content as SlideContentScripture;
             const page = content?.pages?.[0];
-            const ref = page ? `${page.bookName?.fa || page.book || 'کتاب‌مقدس'} ${page.chapter || ''}:${page.verses || ''}` : `آیه کتاب مقدس`;
+            const ref = page ? `${page.bookName?.fa || page.book || d.bibleBookFallback} ${page.chapter || ''}:${page.verses || ''}` : d.scriptureVerseFallback;
             return {
                 title: ref,
-                sub: page?.textPrimary?.[0] || 'متن آیه کلام خدا',
-                badge: 'کتاب مقدس',
+                sub: page?.textPrimary?.[0] || d.scriptureVerseTextFallback,
+                badge: d.scriptureBadge,
                 badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
                 icon: <BookOpen className="w-4 h-4 text-amber-400" />
             };
@@ -80,9 +209,9 @@ export function SendTelegramSlidesModal({
         if (slide.type === SlideType.LYRICS) {
             const content = slide.content as SlideContentLyrics;
             return {
-                title: content?.titleFa || content?.title || `سرود پرستشی ${index + 1}`,
-                sub: content?.titleEn || `${content?.lines?.length || 0} بند سرود`,
-                badge: 'سرود پرستشی',
+                title: content?.titleFa || content?.title || d.worshipSongFallback(index + 1),
+                sub: content?.titleEn || d.linesCount(content?.lines?.length || 0),
+                badge: d.worshipBadge,
                 badgeColor: 'bg-pink-500/10 text-pink-400 border-pink-500/20',
                 icon: <Music className="w-4 h-4 text-pink-400" />,
                 hasYoutube: !!content?.youtubeId,
@@ -92,9 +221,9 @@ export function SendTelegramSlidesModal({
         if (slide.type === SlideType.ANNOUNCEMENT) {
             const content = slide.content as SlideContentAnnouncement;
             return {
-                title: content?.title || 'اطلاعیه کلیسا',
+                title: content?.title || d.announcementFallback,
                 sub: content?.content || '',
-                badge: 'اطلاعیه',
+                badge: d.announcementBadge,
                 badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
                 icon: <Megaphone className="w-4 h-4 text-emerald-400" />
             };
@@ -102,9 +231,9 @@ export function SendTelegramSlidesModal({
         if (slide.type === SlideType.PRAYER) {
             const content = slide.content as SlideContentPrayer;
             return {
-                title: content?.title || content?.userName || 'درخواست دعا',
+                title: content?.title || content?.userName || d.prayerRequestFallback,
                 sub: content?.content || '',
-                badge: 'دعا',
+                badge: d.prayerBadge,
                 badgeColor: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
                 icon: <Heart className="w-4 h-4 text-rose-400" />
             };
@@ -112,9 +241,9 @@ export function SendTelegramSlidesModal({
         if (slide.type === SlideType.MEDIA) {
             const content = slide.content as SlideContentMedia;
             return {
-                title: content?.title || 'مدیا / رسانه',
+                title: content?.title || d.mediaFallback,
                 sub: content?.url || '',
-                badge: 'رسانه',
+                badge: d.mediaBadge,
                 badgeColor: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
                 icon: <Film className="w-4 h-4 text-blue-400" />
             };
@@ -122,9 +251,9 @@ export function SendTelegramSlidesModal({
         // Generic / sermon
         const content = slide.content as SlideContentGeneric;
         return {
-            title: content?.title || `اسلاید ${index + 1}`,
+            title: content?.title || d.slideFallback(index + 1),
             sub: content?.htmlContent ? content.htmlContent.replace(/<[^>]+>/g, '').slice(0, 80) : '',
-            badge: 'اسلاید',
+            badge: d.slideBadge,
             badgeColor: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
             icon: <Edit3 className="w-4 h-4 text-purple-400" />
         };
@@ -132,12 +261,12 @@ export function SendTelegramSlidesModal({
 
     const handleSend = async () => {
         if (selectedIndices.length === 0) {
-            toast.error("لطفاً حداقل یک اسلاید را برای ارسال انتخاب کنید.");
+            toast.error(d.selectAtLeastOne);
             return;
         }
 
         setIsSending(true);
-        const toastId = toast.loading(isRTL ? `در حال ارسال ${selectedIndices.length} اسلاید به تلگرام...` : `Sending ${selectedIndices.length} slides to Telegram...`);
+        const toastId = toast.loading(d.sendingProgress(selectedIndices.length));
 
         try {
             const res = await fetch("/api/admin/presentations/send-telegram", {
@@ -153,18 +282,14 @@ export function SendTelegramSlidesModal({
 
             const data = await res.json();
             if (!res.ok) {
-                throw new Error(data.error || "خطا در ارسال اسلایدها به تلگرام");
+                throw new Error(data.error || d.sendFailedError);
             }
 
-            const successMsg = isRTL
-                ? `${data.slidesSent || selectedIndices.length} اسلاید با موفقیت به‌صورت پیام‌های مجزا به تلگرام ارسال گردید! ✈️`
-                : `${data.slidesSent || selectedIndices.length} slides sent successfully as individual messages to Telegram! ✈️`;
-
-            toast.success(successMsg, { id: toastId });
+            toast.success(d.sentSuccess(data.slidesSent || selectedIndices.length), { id: toastId });
             onClose();
         } catch (err: any) {
             console.error("Telegram send error:", err);
-            toast.error(err.message || "خطا در ارسال به تلگرام", { id: toastId });
+            toast.error(err.message || d.sendGenericError, { id: toastId });
         } finally {
             setIsSending(false);
         }
@@ -184,12 +309,10 @@ export function SendTelegramSlidesModal({
                         </div>
                         <div>
                             <h3 className="font-bold text-base text-white">
-                                {isRTL ? "انتخاب و ارسال اسلایدها به تلگرام" : "Select & Send Slides to Telegram"}
+                                {d.title}
                             </h3>
                             <p className="text-xs text-neutral-400">
-                                {isRTL 
-                                    ? "هر اسلاید به‌صورت یک پیام مجزا همراه با آیه، سرود، فایل صوتی و اطلاعات کلیسا ارسال می‌شود." 
-                                    : "Each slide will be delivered as an individual message with bilingual text & audio."}
+                                {d.subtitle}
                             </p>
                         </div>
                     </div>
@@ -212,18 +335,18 @@ export function SendTelegramSlidesModal({
                             {selectedIndices.length === slides.length ? (
                                 <>
                                     <CheckSquare className="w-4 h-4 text-blue-400" />
-                                    <span>لغو انتخاب همه</span>
+                                    <span>{d.deselectAll}</span>
                                 </>
                             ) : (
                                 <>
                                     <Square className="w-4 h-4" />
-                                    <span>انتخاب همه ({slides.length})</span>
+                                    <span>{d.selectAll(slides.length)}</span>
                                 </>
                             )}
                         </button>
 
                         <span className="text-neutral-400 font-bold mr-2">
-                            انتخاب‌شده: <b className="text-blue-400 font-mono">{selectedIndices.length}</b> از {slides.length}
+                            {d.selected(selectedIndices.length, slides.length)}<b className="text-blue-400 font-mono">{selectedIndices.length}</b> {d.of(slides.length)}
                         </span>
                     </div>
 
@@ -234,28 +357,28 @@ export function SendTelegramSlidesModal({
                             onClick={() => setFilterType('all')}
                             className={`px-2.5 py-1 rounded-md font-bold transition ${filterType === 'all' ? 'bg-blue-600 text-white' : 'text-neutral-400 hover:text-white'}`}
                         >
-                            همه
+                            {d.filterAll}
                         </button>
                         <button
                             type="button"
                             onClick={() => setFilterType('scripture')}
                             className={`px-2.5 py-1 rounded-md font-bold transition ${filterType === 'scripture' ? 'bg-amber-600 text-white' : 'text-neutral-400 hover:text-white'}`}
                         >
-                            کتاب مقدس
+                            {d.filterScripture}
                         </button>
                         <button
                             type="button"
                             onClick={() => setFilterType('lyrics')}
                             className={`px-2.5 py-1 rounded-md font-bold transition ${filterType === 'lyrics' ? 'bg-pink-600 text-white' : 'text-neutral-400 hover:text-white'}`}
                         >
-                            سرودها
+                            {d.filterLyrics}
                         </button>
                         <button
                             type="button"
                             onClick={() => setFilterType('other')}
                             className={`px-2.5 py-1 rounded-md font-bold transition ${filterType === 'other' ? 'bg-neutral-700 text-white' : 'text-neutral-400 hover:text-white'}`}
                         >
-                            سایر
+                            {d.filterOther}
                         </button>
                     </div>
                 </div>
@@ -264,7 +387,7 @@ export function SendTelegramSlidesModal({
                 <div className="p-6 overflow-y-auto flex-1 space-y-2 max-h-[50vh]">
                     {filteredSlides.length === 0 ? (
                         <div className="text-center py-12 text-neutral-500 text-xs">
-                            اسلایدی در این دسته‌بندی یافت نشد.
+                            {d.noSlidesInCategory}
                         </div>
                     ) : (
                         filteredSlides.map(({ slide, index }) => {
@@ -314,12 +437,12 @@ export function SendTelegramSlidesModal({
                                     {/* Song Badges (YouTube, MP3) */}
                                     <div className="flex items-center gap-1.5 shrink-0 mr-2">
                                         {info.hasYoutube && (
-                                            <span className="p-1 rounded bg-red-600/20 text-red-400 border border-red-500/20" title="لینک یوتیوب موجود است">
+                                            <span className="p-1 rounded bg-red-600/20 text-red-400 border border-red-500/20" title={d.youtubeLinkAvailable}>
                                                 <Youtube className="w-3.5 h-3.5" />
                                             </span>
                                         )}
                                         {info.hasAudio && (
-                                            <span className="p-1 rounded bg-emerald-600/20 text-emerald-400 border border-emerald-500/20" title="فایل صوتی MP3 همراه این اسلاید ارسال خواهد شد">
+                                            <span className="p-1 rounded bg-emerald-600/20 text-emerald-400 border border-emerald-500/20" title={d.audioFileWillSend}>
                                                 <Volume2 className="w-3.5 h-3.5" />
                                             </span>
                                         )}
@@ -334,9 +457,9 @@ export function SendTelegramSlidesModal({
                 <div className="flex items-center justify-between px-6 py-4 border-t border-neutral-800 bg-neutral-950/60">
                     <span className="text-xs text-neutral-400">
                         {selectedIndices.length === 0 ? (
-                            <span className="text-amber-400">هیچ اسلایدی انتخاب نشده است.</span>
+                            <span className="text-amber-400">{d.noSlideSelected}</span>
                         ) : (
-                            <span>آماده ارسال <b className="text-white font-mono">{selectedIndices.length}</b> پیام به کانال تلگرام</span>
+                            <span>{d.readyToSend(selectedIndices.length)}<b className="text-white font-mono">{selectedIndices.length}</b> {d.messagesTo}</span>
                         )}
                     </span>
 
@@ -347,7 +470,7 @@ export function SendTelegramSlidesModal({
                             disabled={isSending}
                             className="px-4 py-2 text-xs font-bold text-neutral-400 hover:text-white rounded-xl hover:bg-neutral-800 transition"
                         >
-                            انصراف
+                            {d.cancel}
                         </button>
 
                         <button
@@ -359,12 +482,12 @@ export function SendTelegramSlidesModal({
                             {isSending ? (
                                 <>
                                     <Loader2 className="w-4 h-4 animate-spin" />
-                                    <span>در حال ارسال...</span>
+                                    <span>{d.sending}</span>
                                 </>
                             ) : (
                                 <>
                                     <Send className="w-4 h-4" />
-                                    <span>ارسال {selectedIndices.length} اسلاید به تلگرام</span>
+                                    <span>{d.sendToTelegram(selectedIndices.length)}</span>
                                 </>
                             )}
                         </button>

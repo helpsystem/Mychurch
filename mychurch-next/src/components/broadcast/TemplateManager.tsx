@@ -4,6 +4,106 @@ import React, { useState, useEffect } from 'react';
 import { Slide, SessionTemplate, SlideTemplate } from '@/types/broadcast';
 import { saveSessionAsTemplate, getSessionTemplates, deleteSessionTemplate, toggleFavoriteTemplate, searchTemplates } from '@/actions/templates';
 import { Save, Loader, Trash2, Heart, Search, X } from 'lucide-react';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    en: {
+        nameAndSlideRequired: 'Please provide a name and at least one slide',
+        templateSaved: 'Template saved successfully',
+        saveFailed: 'Failed to save template',
+        confirmDelete: 'Are you sure?',
+        saveTitle: '💾 Save as Sample',
+        loadTitle: '📂 Load Sample',
+        save: '💾 Save',
+        load: '📂 Load',
+        nameFarsi: 'Name (Farsi)',
+        namePlaceholderFa: 'Sample name in Farsi...',
+        nameEnglish: 'Name (English)',
+        namePlaceholderEn: 'English sample name...',
+        description: 'Description',
+        optional: '(Optional)',
+        descPlaceholderFa: 'Description in Farsi...',
+        category: 'Category',
+        catCustom: 'Custom',
+        catWorship: 'Worship',
+        catSermon: 'Sermon',
+        catPrayer: 'Prayer',
+        catEvent: 'Event',
+        tags: 'Tags',
+        commaSeparated: '(comma-separated)',
+        slidesToSave: (n: number) => `Slides to save: ${n}`,
+        searchTemplates: 'Search templates...',
+        noTemplatesFound: 'No templates found',
+        slides: 'slides',
+        close: 'Close',
+        saving: 'Saving...',
+        saveSample: 'Save Sample',
+    },
+    fa: {
+        nameAndSlideRequired: 'لطفا نام و داشتن حداقل یک اسلاید مورد نیاز است',
+        templateSaved: 'نمونه با موفقیت ذخیره شد',
+        saveFailed: 'خرابی در ذخیره نمونه',
+        confirmDelete: 'آیا مطمئن هستید؟',
+        saveTitle: '💾 ذخیره نمونه',
+        loadTitle: '📂 بارگذاری نمونه',
+        save: '💾 ذخیره',
+        load: '📂 بارگذاری',
+        nameFarsi: 'نام فارسی',
+        namePlaceholderFa: 'نام نمونه فارسی...',
+        nameEnglish: 'نام انگلیسی',
+        namePlaceholderEn: 'english sample name...',
+        description: 'توضیحات',
+        optional: '(اختیاری)',
+        descPlaceholderFa: 'توضیحات فارسی...',
+        category: 'دسته‌بندی',
+        catCustom: 'سفارشی',
+        catWorship: 'عبادت',
+        catSermon: 'موعظه',
+        catPrayer: 'دعا',
+        catEvent: 'رویداد',
+        tags: 'برچسب‌ها',
+        commaSeparated: '(با کاما جدا کنید)',
+        slidesToSave: (n: number) => `اسلاید‌های موجود: ${n}`,
+        searchTemplates: 'جستجو کردن...',
+        noTemplatesFound: 'هیچ نمونه‌ای وجود ندارد',
+        slides: 'اسلاید',
+        close: 'بستن',
+        saving: 'ذخیره...',
+        saveSample: 'ذخیره نمونه',
+    },
+    es: {
+        nameAndSlideRequired: 'Por favor, proporcione un nombre y al menos una diapositiva',
+        templateSaved: 'Plantilla guardada con éxito',
+        saveFailed: 'Error al guardar la plantilla',
+        confirmDelete: '¿Está seguro?',
+        saveTitle: '💾 Guardar como muestra',
+        loadTitle: '📂 Cargar muestra',
+        save: '💾 Guardar',
+        load: '📂 Cargar',
+        nameFarsi: 'Nombre (persa)',
+        namePlaceholderFa: 'Nombre de la muestra en persa...',
+        nameEnglish: 'Nombre (inglés)',
+        namePlaceholderEn: 'Nombre de la muestra en inglés...',
+        description: 'Descripción',
+        optional: '(Opcional)',
+        descPlaceholderFa: 'Descripción en persa...',
+        category: 'Categoría',
+        catCustom: 'Personalizada',
+        catWorship: 'Adoración',
+        catSermon: 'Sermón',
+        catPrayer: 'Oración',
+        catEvent: 'Evento',
+        tags: 'Etiquetas',
+        commaSeparated: '(separadas por comas)',
+        slidesToSave: (n: number) => `Diapositivas a guardar: ${n}`,
+        searchTemplates: 'Buscar plantillas...',
+        noTemplatesFound: 'No se encontraron plantillas',
+        slides: 'diapositivas',
+        close: 'Cerrar',
+        saving: 'Guardando...',
+        saveSample: 'Guardar muestra',
+    },
+};
 
 interface TemplateManagerProps {
     isOpen: boolean;
@@ -22,6 +122,8 @@ export function TemplateManager({
     currentSlides = [],
     isRTL = true,
 }: TemplateManagerProps) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const [mode, setMode] = useState<'save' | 'load'>('load');
     const [templates, setTemplates] = useState<SessionTemplate[]>([]);
     const [loading, setLoading] = useState(false);
@@ -68,7 +170,7 @@ export function TemplateManager({
 
     const handleSave = async () => {
         if (!saveName.fa || !saveName.en || currentSlides.length === 0) {
-            alert(isRTL ? 'لطفا نام و داشتن حداقل یک اسلاید مورد نیاز است' : 'Please provide a name and at least one slide');
+            alert(d.nameAndSlideRequired);
             return;
         }
 
@@ -93,18 +195,18 @@ export function TemplateManager({
             setSaveCategory('custom');
             setSaveTags('');
 
-            alert(isRTL ? 'نمونه با موفقیت ذخیره شد' : 'Template saved successfully');
+            alert(d.templateSaved);
             setMode('load');
             loadTemplates();
         } catch (error) {
             console.error('Save failed:', error);
-            alert(isRTL ? 'خرابی در ذخیره نمونه' : 'Failed to save template');
+            alert(d.saveFailed);
         }
         setSaving(false);
     };
 
     const handleDelete = async (templateId: string) => {
-        if (!confirm(isRTL ? 'آیا مطمئن هستید؟' : 'Are you sure?')) return;
+        if (!confirm(d.confirmDelete)) return;
 
         try {
             await deleteSessionTemplate(templateId);
@@ -133,7 +235,7 @@ export function TemplateManager({
                 {/* Header */}
                 <div className="bg-gradient-to-r from-indigo-600 to-blue-600 px-6 py-4 flex items-center justify-between">
                     <h2 className="text-2xl font-bold text-white">
-                        {mode === 'save' ? (isRTL ? '💾 ذخیره نمونه' : '💾 Save as Sample') : (isRTL ? '📂 بارگذاری نمونه' : '📂 Load Sample')}
+                        {mode === 'save' ? d.saveTitle : d.loadTitle}
                     </h2>
                     <button
                         onClick={onClose}
@@ -149,13 +251,13 @@ export function TemplateManager({
                         onClick={() => setMode('save')}
                         className={`px-4 py-2 rounded-lg transition ${mode === 'save' ? 'bg-indigo-600 text-white' : 'bg-slate-600 text-slate-300 hover:bg-slate-500'}`}
                     >
-                        {isRTL ? '💾 ذخیره' : '💾 Save'}
+                        {d.save}
                     </button>
                     <button
                         onClick={() => setMode('load')}
                         className={`px-4 py-2 rounded-lg transition ${mode === 'load' ? 'bg-indigo-600 text-white' : 'bg-slate-600 text-slate-300 hover:bg-slate-500'}`}
                     >
-                        {isRTL ? '📂 بارگذاری' : '📂 Load'}
+                        {d.load}
                     </button>
                 </div>
 
@@ -165,13 +267,13 @@ export function TemplateManager({
                         <div className="space-y-4">
                             <div>
                                 <label className="block text-sm text-slate-400 mb-2">
-                                    {isRTL ? 'نام فارسی' : 'Name (Farsi)'}
+                                    {d.nameFarsi}
                                 </label>
                                 <input
                                     type="text"
                                     value={saveName.fa}
                                     onChange={(e) => setSaveName({ ...saveName, fa: e.target.value })}
-                                    placeholder={isRTL ? 'نام نمونه فارسی...' : 'Sample name in Farsi...'}
+                                    placeholder={d.namePlaceholderFa}
                                     className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                                     dir="rtl"
                                 />
@@ -179,25 +281,25 @@ export function TemplateManager({
 
                             <div>
                                 <label className="block text-sm text-slate-400 mb-2">
-                                    {isRTL ? 'نام انگلیسی' : 'Name (English)'}
+                                    {d.nameEnglish}
                                 </label>
                                 <input
                                     type="text"
                                     value={saveName.en}
                                     onChange={(e) => setSaveName({ ...saveName, en: e.target.value })}
-                                    placeholder="english sample name..."
+                                    placeholder={d.namePlaceholderEn}
                                     className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                                 />
                             </div>
 
                             <div>
                                 <label className="block text-sm text-slate-400 mb-2">
-                                    {isRTL ? 'توضیحات' : 'Description'} (Optional)
+                                    {d.description} {d.optional}
                                 </label>
                                 <textarea
                                     value={saveDesc.fa}
                                     onChange={(e) => setSaveDesc({ ...saveDesc, fa: e.target.value })}
-                                    placeholder={isRTL ? 'توضیحات فارسی...' : 'Description in Farsi...'}
+                                    placeholder={d.descPlaceholderFa}
                                     className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:out focus:border-indigo-500 h-20"
                                     dir="rtl"
                                 />
@@ -206,24 +308,24 @@ export function TemplateManager({
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-sm text-slate-400 mb-2">
-                                        {isRTL ? 'دسته‌بندی' : 'Category'}
+                                        {d.category}
                                     </label>
                                     <select
                                         value={saveCategory}
                                         onChange={(e) => setSaveCategory(e.target.value)}
                                         className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-indigo-500"
                                     >
-                                        <option value="custom">{isRTL ? 'سفارشی' : 'Custom'}</option>
-                                        <option value="worship">{isRTL ? 'عبادت' : 'Worship'}</option>
-                                        <option value="sermon">{isRTL ? 'موعظه' : 'Sermon'}</option>
-                                        <option value="prayer">{isRTL ? 'دعا' : 'Prayer'}</option>
-                                        <option value="event">{isRTL ? 'رویداد' : 'Event'}</option>
+                                        <option value="custom">{d.catCustom}</option>
+                                        <option value="worship">{d.catWorship}</option>
+                                        <option value="sermon">{d.catSermon}</option>
+                                        <option value="prayer">{d.catPrayer}</option>
+                                        <option value="event">{d.catEvent}</option>
                                     </select>
                                 </div>
 
                                 <div>
                                     <label className="block text-sm text-slate-400 mb-2">
-                                        {isRTL ? 'برچسب‌ها' : 'Tags'} (comma-separated)
+                                        {d.tags} {d.commaSeparated}
                                     </label>
                                     <input
                                         type="text"
@@ -237,7 +339,7 @@ export function TemplateManager({
 
                             <div className="bg-slate-700 p-3 rounded-lg border border-slate-600">
                                 <p className="text-sm text-slate-300">
-                                    📊 {isRTL ? `اسلاید‌های موجود: ${currentSlides.length}` : `Slides to save: ${currentSlides.length}`}
+                                    📊 {d.slidesToSave(currentSlides.length)}
                                 </p>
                             </div>
                         </div>
@@ -250,7 +352,7 @@ export function TemplateManager({
                                     type="text"
                                     value={searchTerm}
                                     onChange={(e) => handleSearch(e.target.value)}
-                                    placeholder={isRTL ? 'جستجو کردن...' : 'Search templates...'}
+                                    placeholder={d.searchTemplates}
                                     className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2 pl-10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                                     dir={isRTL ? 'rtl' : 'ltr'}
                                 />
@@ -264,7 +366,7 @@ export function TemplateManager({
                                     </div>
                                 ) : templates.length === 0 ? (
                                     <div className="text-center text-slate-400 py-8">
-                                        {isRTL ? 'هیچ نمونه‌ای وجود ندارد' : 'No templates found'}
+                                        {d.noTemplatesFound}
                                     </div>
                                 ) : (
                                     templates.map(template => (
@@ -281,7 +383,7 @@ export function TemplateManager({
                                                         {isRTL ? template.name.fa : template.name.en}
                                                     </h3>
                                                     <p className="text-sm text-slate-400 mb-2">
-                                                        {template.category} • {template.slideCount} {isRTL ? 'اسلاید' : 'slides'}
+                                                        {template.category} • {template.slideCount} {d.slides}
                                                     </p>
                                                     {template.description?.fa && (
                                                         <p className="text-xs text-slate-500 line-clamp-2" dir="rtl">
@@ -319,7 +421,7 @@ export function TemplateManager({
                         onClick={onClose}
                         className="px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-500 transition"
                     >
-                        {isRTL ? 'بستن' : 'Close'}
+                        {d.close}
                     </button>
 
                     {mode === 'save' && (
@@ -331,12 +433,12 @@ export function TemplateManager({
                             {saving ? (
                                 <>
                                     <Loader className="w-4 h-4 animate-spin" />
-                                    {isRTL ? 'ذخیره...' : 'Saving...'}
+                                    {d.saving}
                                 </>
                             ) : (
                                 <>
                                     <Save className="w-4 h-4" />
-                                    {isRTL ? 'ذخیره نمونه' : 'Save Sample'}
+                                    {d.saveSample}
                                 </>
                             )}
                         </button>

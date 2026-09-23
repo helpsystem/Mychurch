@@ -6,6 +6,49 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sparkles, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { Globe, Users, Home, MapPin, X } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  fa: {
+    badge: "شبکه بین‌المللی کلیسا",
+    heading: "پراکنده در سراسر زمین، متحد در یک بدن",
+    subheading: "اتصال بیش از ۱۲,۴۰۰ عضو فعال و ۱۵۰ گروه کوچک خانگی در ۳۴ کشور جهان",
+    statMembersValue: "۱۲,۴۰۰+",
+    statMembersLabel: "عضو فعال بین‌المللی",
+    statCountriesValue: "۳۴",
+    statCountriesLabel: "کشور تحت پوشش",
+    statGroupsValue: "۱۵۰+",
+    statGroupsLabel: "گروه کوچک خانگی",
+    membersSuffix: "عضو",
+    groupsSuffix: "گروه خانگی",
+  },
+  en: {
+    badge: "International Church Network",
+    heading: "Scattered across the earth, united in one body",
+    subheading: "Connecting more than 12,400 active members and 150 home groups across 34 countries",
+    statMembersValue: "12,400+",
+    statMembersLabel: "International active members",
+    statCountriesValue: "34",
+    statCountriesLabel: "Countries reached",
+    statGroupsValue: "150+",
+    statGroupsLabel: "Small home groups",
+    membersSuffix: "members",
+    groupsSuffix: "home groups",
+  },
+  es: {
+    badge: "Red Internacional de la Iglesia",
+    heading: "Dispersos por toda la tierra, unidos en un solo cuerpo",
+    subheading: "Conectando a más de 12,400 miembros activos y 150 grupos pequeños en 34 países",
+    statMembersValue: "12,400+",
+    statMembersLabel: "Miembros activos internacionales",
+    statCountriesValue: "34",
+    statCountriesLabel: "Países alcanzados",
+    statGroupsValue: "150+",
+    statGroupsLabel: "Grupos pequeños en casas",
+    membersSuffix: "miembros",
+    groupsSuffix: "grupos en casas",
+  },
+};
 
 // داده‌های نمونه گروه‌های خانگی و اعضا در نقاط جهان
 interface LocationMarker {
@@ -17,15 +60,31 @@ interface LocationMarker {
   position: [number, number, number];
 }
 
-const GLOBE_LOCATIONS: LocationMarker[] = [
-  { id: 1, city: "سیلور اسپرینگ (واشنگتن دی‌سی)", country: "آمریکا (مرکز کلیسا)", members: 3200, groups: 25, position: [0.7, 1.8, 1.6] },
-  { id: 2, city: "لندن", country: "انگلستان", members: 1100, groups: 12, position: [0.1, 2.3, 0.9] },
-  { id: 3, city: "فرانکفورت", country: "آلمان", members: 1400, groups: 15, position: [0.4, 2.1, 0.7] },
-  { id: 4, city: "تورنتو", country: "کانادا", members: 1800, groups: 18, position: [0.4, 1.9, 1.7] },
-  { id: 5, city: "سیدنی", country: "استرالیا", members: 850, groups: 8, position: [-1.8, -1.5, -1.2] },
-];
+const GLOBE_LOCATIONS_BY_LANG: Record<"en" | "fa" | "es", LocationMarker[]> = {
+  fa: [
+    { id: 1, city: "سیلور اسپرینگ (واشنگتن دی‌سی)", country: "آمریکا (مرکز کلیسا)", members: 3200, groups: 25, position: [0.7, 1.8, 1.6] },
+    { id: 2, city: "لندن", country: "انگلستان", members: 1100, groups: 12, position: [0.1, 2.3, 0.9] },
+    { id: 3, city: "فرانکفورت", country: "آلمان", members: 1400, groups: 15, position: [0.4, 2.1, 0.7] },
+    { id: 4, city: "تورنتو", country: "کانادا", members: 1800, groups: 18, position: [0.4, 1.9, 1.7] },
+    { id: 5, city: "سیدنی", country: "استرالیا", members: 850, groups: 8, position: [-1.8, -1.5, -1.2] },
+  ],
+  en: [
+    { id: 1, city: "Silver Spring (Washington D.C.)", country: "USA (Church Headquarters)", members: 3200, groups: 25, position: [0.7, 1.8, 1.6] },
+    { id: 2, city: "London", country: "United Kingdom", members: 1100, groups: 12, position: [0.1, 2.3, 0.9] },
+    { id: 3, city: "Frankfurt", country: "Germany", members: 1400, groups: 15, position: [0.4, 2.1, 0.7] },
+    { id: 4, city: "Toronto", country: "Canada", members: 1800, groups: 18, position: [0.4, 1.9, 1.7] },
+    { id: 5, city: "Sydney", country: "Australia", members: 850, groups: 8, position: [-1.8, -1.5, -1.2] },
+  ],
+  es: [
+    { id: 1, city: "Silver Spring (Washington D.C.)", country: "EE. UU. (Sede de la Iglesia)", members: 3200, groups: 25, position: [0.7, 1.8, 1.6] },
+    { id: 2, city: "Londres", country: "Reino Unido", members: 1100, groups: 12, position: [0.1, 2.3, 0.9] },
+    { id: 3, city: "Frankfurt", country: "Alemania", members: 1400, groups: 15, position: [0.4, 2.1, 0.7] },
+    { id: 4, city: "Toronto", country: "Canadá", members: 1800, groups: 18, position: [0.4, 1.9, 1.7] },
+    { id: 5, city: "Sídney", country: "Australia", members: 850, groups: 8, position: [-1.8, -1.5, -1.2] },
+  ],
+};
 
-function InteractiveGlobeMesh({ onSelectMarker }: { onSelectMarker: (loc: LocationMarker) => void }) {
+function InteractiveGlobeMesh({ locations, onSelectMarker }: { locations: LocationMarker[]; onSelectMarker: (loc: LocationMarker) => void }) {
   const globeGroupRef = useRef<THREE.Group>(null);
 
   // چرخش خرامان کره زمین
@@ -57,7 +116,7 @@ function InteractiveGlobeMesh({ onSelectMarker }: { onSelectMarker: (loc: Locati
       </mesh>
 
       {/* نقاط درخشان گروه‌های خانگی روی سطح کره */}
-      {GLOBE_LOCATIONS.map((loc) => (
+      {locations.map((loc) => (
         <group key={loc.id} position={loc.position}>
           <mesh onClick={() => onSelectMarker(loc)} className="cursor-pointer">
             <sphereGeometry args={[0.08, 16, 16]} />
@@ -71,22 +130,25 @@ function InteractiveGlobeMesh({ onSelectMarker }: { onSelectMarker: (loc: Locati
 }
 
 export default function GlobalGlobe() {
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
+  const GLOBE_LOCATIONS = GLOBE_LOCATIONS_BY_LANG[language] || GLOBE_LOCATIONS_BY_LANG.fa;
   const [selectedLoc, setSelectedLoc] = useState<LocationMarker | null>(null);
 
   return (
-    <section id="globe" className="relative w-full h-[90vh] bg-bgDark py-16 px-6 overflow-hidden flex flex-col justify-between border-y border-white/5" dir="rtl">
-      
+    <section id="globe" className="relative w-full h-[90vh] bg-bgDark py-16 px-6 overflow-hidden flex flex-col justify-between border-y border-white/5" dir={isRTL ? "rtl" : "ltr"}>
+
       {/* هدر فوقانی */}
       <div className="relative z-10 text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-accentCyan text-sm mb-3">
           <Globe size={16} />
-          <span>شبکه بین‌المللی کلیسا</span>
+          <span>{d.badge}</span>
         </div>
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">
-          پراکنده در سراسر زمین، متحد در یک بدن
+          {d.heading}
         </h2>
         <p className="text-slate-400 text-sm md:text-base">
-          اتصال بیش از ۱۲,۴۰۰ عضو فعال و ۱۵۰ گروه کوچک خانگی در ۳۴ کشور جهان
+          {d.subheading}
         </p>
       </div>
 
@@ -105,7 +167,7 @@ export default function GlobalGlobe() {
           <pointLight position={[5, 5, 5]} intensity={1.5} color="#06B6D4" />
           <pointLight position={[-5, -5, -5]} intensity={1} color="#FBBF24" />
 
-          <InteractiveGlobeMesh onSelectMarker={setSelectedLoc} />
+          <InteractiveGlobeMesh locations={GLOBE_LOCATIONS} onSelectMarker={setSelectedLoc} />
 
           <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.3} />
         </Canvas>
@@ -114,16 +176,16 @@ export default function GlobalGlobe() {
       {/* آمار کلیدی پایینی */}
       <div className="relative z-10 max-w-4xl mx-auto w-full grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
         <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-xl text-center">
-          <p className="text-accentGold text-2xl md:text-3xl font-bold">۱۲,۴۰۰+</p>
-          <p className="text-slate-400 text-xs md:text-sm">عضو فعال بین‌المللی</p>
+          <p className="text-accentGold text-2xl md:text-3xl font-bold">{d.statMembersValue}</p>
+          <p className="text-slate-400 text-xs md:text-sm">{d.statMembersLabel}</p>
         </div>
         <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-xl text-center">
-          <p className="text-accentCyan text-2xl md:text-3xl font-bold">۳۴</p>
-          <p className="text-slate-400 text-xs md:text-sm">کشور تحت پوشش</p>
+          <p className="text-accentCyan text-2xl md:text-3xl font-bold">{d.statCountriesValue}</p>
+          <p className="text-slate-400 text-xs md:text-sm">{d.statCountriesLabel}</p>
         </div>
         <div className="col-span-2 md:col-span-1 bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-xl text-center">
-          <p className="text-amber-400 text-2xl md:text-3xl font-bold">۱۵۰+</p>
-          <p className="text-slate-400 text-xs md:text-sm">گروه کوچک خانگی</p>
+          <p className="text-amber-400 text-2xl md:text-3xl font-bold">{d.statGroupsValue}</p>
+          <p className="text-slate-400 text-xs md:text-sm">{d.statGroupsLabel}</p>
         </div>
       </div>
 
@@ -146,11 +208,11 @@ export default function GlobalGlobe() {
           <div className="grid grid-cols-2 gap-3 border-t border-slate-800 pt-3 text-xs">
             <div className="flex items-center gap-2 text-slate-200">
               <Users size={14} className="text-accentGold" />
-              <span>{selectedLoc.members} عضو</span>
+              <span>{selectedLoc.members} {d.membersSuffix}</span>
             </div>
             <div className="flex items-center gap-2 text-slate-200">
               <Home size={14} className="text-accentCyan" />
-              <span>{selectedLoc.groups} گروه خانگی</span>
+              <span>{selectedLoc.groups} {d.groupsSuffix}</span>
             </div>
           </div>
         </div>

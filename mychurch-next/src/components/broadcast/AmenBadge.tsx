@@ -6,6 +6,13 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import type { AmenBadgeConfig } from '@/types/broadcast';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+  en: { dragToReposition: 'Drag to reposition' },
+  fa: { dragToReposition: 'جابجایی با کشیدن' },
+  es: { dragToReposition: 'Arrastrar para reposicionar' },
+};
 
 interface AmenBadgeProps {
   config: AmenBadgeConfig;
@@ -20,6 +27,8 @@ const AmenBadge: React.FC<AmenBadgeProps> = ({
   isEditable = false,
   className = ''
 }) => {
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const badgeRef = useRef<HTMLDivElement>(null);
@@ -152,7 +161,7 @@ const AmenBadge: React.FC<AmenBadgeProps> = ({
           animation: `heartbeat ${animationDuration[config.animationSpeed]} ease-in-out infinite`
         }}
         onMouseDown={handleMouseDown}
-        title={isEditable ? 'Drag to reposition' : undefined}
+        title={isEditable ? d.dragToReposition : undefined}
       >
         {renderContent()}
       </div>

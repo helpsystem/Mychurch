@@ -15,6 +15,88 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { MediaDisplayConfig } from '@/types/broadcast';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+  en: {
+    dragToPan: 'Drag to pan',
+    togglePanMode: 'Switch to frame drag mode',
+    toggleClickPlayMode: 'Switch to click & play mode',
+    panMode: 'Pan Mode',
+    playVideo: 'Play Video',
+    openInYoutube: 'Open in YouTube',
+    frameControls: 'Frame Controls',
+    zoomOut: 'Zoom Out',
+    zoomIn: 'Zoom In',
+    contain: 'Contain',
+    fit: 'Fit',
+    cover: 'Cover',
+    fill: 'Fill',
+    pause: 'Pause',
+    play: 'Play',
+    unmute: 'Unmute',
+    mute: 'Mute',
+    unmuteYoutube: 'Unmute',
+    muteYoutube: 'Mute',
+    audioOn: 'Sound',
+    audioOff: 'Muted',
+    resetZoomPan: 'Reset Zoom & Pan',
+    youtubeVideoPlayer: 'YouTube video player',
+    churchLogo: 'Church Logo',
+  },
+  fa: {
+    dragToPan: 'درگ برای جابجایی کادر',
+    togglePanMode: 'سوییچ به حالت درگ کادر',
+    toggleClickPlayMode: 'سوییچ به حالت کلیک و پخش ویدیو',
+    panMode: 'حالت درگ کادر',
+    playVideo: 'تست و پخش ویدیو',
+    openInYoutube: 'باز کردن در وبسایت یوتیوب',
+    frameControls: 'تنظیمات کادر و زوم',
+    zoomOut: 'کوچک‌نمایی',
+    zoomIn: 'بزرگ‌نمایی',
+    contain: 'کامل (Contain)',
+    fit: 'کامل',
+    cover: 'پر کردن کادر (Cover)',
+    fill: 'کشیده (Fill)',
+    pause: 'توقف',
+    play: 'پخش',
+    unmute: 'باز کردن صدا',
+    mute: 'بی‌صدا',
+    unmuteYoutube: 'صدا را باز کن (Unmute)',
+    muteYoutube: 'بی‌صدا (Mute)',
+    audioOn: 'صدا',
+    audioOff: 'بی‌صدا',
+    resetZoomPan: 'بازنشانی کادر و زوم',
+    youtubeVideoPlayer: 'پخش‌کننده ویدیوی یوتیوب',
+    churchLogo: 'لوگوی کلیسا',
+  },
+  es: {
+    dragToPan: 'Arrastrar para mover',
+    togglePanMode: 'Cambiar al modo de arrastrar el cuadro',
+    toggleClickPlayMode: 'Cambiar al modo de clic y reproducir',
+    panMode: 'Modo de desplazamiento',
+    playVideo: 'Reproducir video',
+    openInYoutube: 'Abrir en YouTube',
+    frameControls: 'Controles del cuadro',
+    zoomOut: 'Alejar',
+    zoomIn: 'Acercar',
+    contain: 'Contener',
+    fit: 'Ajustar',
+    cover: 'Cubrir',
+    fill: 'Rellenar',
+    pause: 'Pausar',
+    play: 'Reproducir',
+    unmute: 'Activar sonido',
+    mute: 'Silenciar',
+    unmuteYoutube: 'Activar sonido',
+    muteYoutube: 'Silenciar',
+    audioOn: 'Sonido',
+    audioOff: 'Silenciado',
+    resetZoomPan: 'Restablecer zoom y desplazamiento',
+    youtubeVideoPlayer: 'Reproductor de video de YouTube',
+    churchLogo: 'Logo de la iglesia',
+  },
+};
 
 export function extractYoutubeId(urlOrId: string | undefined | null): string | null {
   if (!urlOrId) return null;
@@ -102,6 +184,8 @@ export default function InteractiveMediaFrame({
   watermarkOpacity = 90,
   watermarkSize = 'md',
 }: InteractiveMediaFrameProps) {
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const mergedConfig: MediaDisplayConfig = {
     ...defaultMediaConfig,
     ...config,
@@ -334,7 +418,7 @@ export default function InteractiveMediaFrame({
                 loop: loop,
                 controls: true
               })}
-              title={alt || "YouTube video player"}
+              title={alt || d.youtubeVideoPlayer}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               style={{
@@ -367,7 +451,7 @@ export default function InteractiveMediaFrame({
         >
           <img
             src="/logo-transparent.png"
-            alt="Church Logo"
+            alt={d.churchLogo}
             className={`object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] filter select-none pointer-events-none ${
               watermarkSize === 'sm'
                 ? 'w-12 h-12 md:w-16 md:h-16'
@@ -394,7 +478,7 @@ export default function InteractiveMediaFrame({
                 <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/10 text-white text-[11px] shadow-lg">
                   <Move className="w-3 h-3 text-indigo-400 animate-pulse" />
                   <span className="font-[Vazirmatn]">
-                    {isRTL ? 'درگ برای جابجایی کادر' : 'Drag to pan'}
+                    {d.dragToPan}
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono px-1 bg-white/10 rounded">
                     {Math.round(scale * 100)}%
@@ -414,17 +498,17 @@ export default function InteractiveMediaFrame({
                       ? 'bg-emerald-600 text-white border-emerald-400'
                       : 'bg-black/75 text-slate-200 border-white/10 hover:bg-black/90'
                   }`}
-                  title={isRTL ? (isDirectInteraction ? 'سوییچ به حالت درگ کادر' : 'سوییچ به حالت کلیک و پخش ویدیو') : 'Toggle Interactive/Drag mode'}
+                  title={isDirectInteraction ? d.togglePanMode : d.toggleClickPlayMode}
                 >
                   {isDirectInteraction ? (
                     <>
                       <Move className="w-3 h-3" />
-                      <span>{isRTL ? 'حالت درگ کادر' : 'Pan Mode'}</span>
+                      <span>{d.panMode}</span>
                     </>
                   ) : (
                     <>
                       <Play className="w-3 h-3 text-emerald-400" />
-                      <span>{isRTL ? 'تست و پخش ویدیو' : 'Play Video'}</span>
+                      <span>{d.playVideo}</span>
                     </>
                   )}
                 </button>
@@ -438,7 +522,7 @@ export default function InteractiveMediaFrame({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  title={isRTL ? 'باز کردن در وبسایت یوتیوب' : 'Open in YouTube'}
+                  title={d.openInYoutube}
                   className="p-1.5 rounded-lg bg-black/75 hover:bg-black/90 backdrop-blur-md border border-white/10 text-slate-200 hover:text-white shadow-lg transition-colors"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -451,7 +535,7 @@ export default function InteractiveMediaFrame({
                   e.stopPropagation();
                   setShowToolbar(!showToolbar);
                 }}
-                title={isRTL ? 'تنظیمات کادر و زوم' : 'Frame Controls'}
+                title={d.frameControls}
                 className="p-1.5 rounded-lg bg-black/75 hover:bg-black/90 backdrop-blur-md border border-white/10 text-slate-200 hover:text-white shadow-lg transition-colors"
               >
                 <Sliders className="w-3.5 h-3.5" />
@@ -470,7 +554,7 @@ export default function InteractiveMediaFrame({
               <button
                 type="button"
                 onClick={() => handleZoom(-0.1)}
-                title={isRTL ? 'کوچک‌نمایی' : 'Zoom Out'}
+                title={d.zoomOut}
                 className="p-1.5 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
               >
                 <ZoomOut className="w-3.5 h-3.5" />
@@ -492,7 +576,7 @@ export default function InteractiveMediaFrame({
               <button
                 type="button"
                 onClick={() => handleZoom(0.1)}
-                title={isRTL ? 'بزرگ‌نمایی' : 'Zoom In'}
+                title={d.zoomIn}
                 className="p-1.5 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
               >
                 <ZoomIn className="w-3.5 h-3.5" />
@@ -505,38 +589,38 @@ export default function InteractiveMediaFrame({
                 <button
                   type="button"
                   onClick={() => handleFitChange('contain')}
-                  title={isRTL ? 'کامل (Contain)' : 'Contain'}
+                  title={d.contain}
                   className={`px-2 py-1 rounded text-[10px] font-bold transition-colors ${
                     objectFit === 'contain'
                       ? 'bg-indigo-600 text-white shadow-sm'
                       : 'hover:bg-white/10 text-slate-400 hover:text-white'
                   }`}
                 >
-                  {isRTL ? 'کامل' : 'Fit'}
+                  {d.fit}
                 </button>
                 <button
                   type="button"
                   onClick={() => handleFitChange('cover')}
-                  title={isRTL ? 'پر کردن کادر (Cover)' : 'Cover'}
+                  title={d.cover}
                   className={`px-2 py-1 rounded text-[10px] font-bold transition-colors ${
                     objectFit === 'cover'
                       ? 'bg-indigo-600 text-white shadow-sm'
                       : 'hover:bg-white/10 text-slate-400 hover:text-white'
                   }`}
                 >
-                  {isRTL ? 'کاور' : 'Cover'}
+                  {d.cover}
                 </button>
                 <button
                   type="button"
                   onClick={() => handleFitChange('fill')}
-                  title={isRTL ? 'کشیده (Fill)' : 'Fill'}
+                  title={d.fill}
                   className={`px-2 py-1 rounded text-[10px] font-bold transition-colors ${
                     objectFit === 'fill'
                       ? 'bg-indigo-600 text-white shadow-sm'
                       : 'hover:bg-white/10 text-slate-400 hover:text-white'
                   }`}
                 >
-                  {isRTL ? 'کشیده' : 'Fill'}
+                  {d.fill}
                 </button>
               </div>
 
@@ -548,7 +632,7 @@ export default function InteractiveMediaFrame({
                   <button
                     type="button"
                     onClick={togglePlay}
-                    title={isPlaying ? 'Pause' : 'Play'}
+                    title={isPlaying ? d.pause : d.play}
                     className="p-1.5 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
                   >
                     {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
@@ -556,7 +640,7 @@ export default function InteractiveMediaFrame({
                   <button
                     type="button"
                     onClick={toggleMute}
-                    title={isMuted ? 'Unmute' : 'Mute'}
+                    title={isMuted ? d.unmute : d.mute}
                     className="p-1.5 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
                   >
                     {isMuted ? <VolumeX className="w-3.5 h-3.5 text-amber-400" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-400" />}
@@ -571,11 +655,11 @@ export default function InteractiveMediaFrame({
                   <button
                     type="button"
                     onClick={() => setIsMuted(!isMuted)}
-                    title={isMuted ? 'صدا را باز کن (Unmute)' : 'بی‌صدا (Mute)'}
+                    title={isMuted ? d.unmuteYoutube : d.muteYoutube}
                     className="p-1.5 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white transition-colors flex items-center gap-1"
                   >
                     {isMuted ? <VolumeX className="w-3.5 h-3.5 text-amber-400" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-400" />}
-                    <span className="text-[10px] font-[Vazirmatn]">{isMuted ? 'بی‌صدا' : 'صدا'}</span>
+                    <span className="text-[10px] font-[Vazirmatn]">{isMuted ? d.audioOff : d.audioOn}</span>
                   </button>
                   <div className="w-[1px] h-4 bg-white/20" />
                 </>
@@ -585,7 +669,7 @@ export default function InteractiveMediaFrame({
               <button
                 type="button"
                 onClick={handleReset}
-                title={isRTL ? 'بازنشانی کادر و زوم' : 'Reset Zoom & Pan'}
+                title={d.resetZoomPan}
                 className="p-1.5 rounded-lg hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 transition-colors"
               >
                 <RotateCcw className="w-3.5 h-3.5" />

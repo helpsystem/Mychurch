@@ -4,6 +4,13 @@ import { cn } from '@/lib/utils';
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    en: { toggleNav: 'Toggle Navigation Menu' },
+    fa: { toggleNav: 'باز و بسته کردن منوی ناوبری' },
+    es: { toggleNav: 'Alternar menú de navegación' },
+};
 
 export const FloatingDock = ({
     items,
@@ -30,6 +37,8 @@ const FloatingDockMobile = ({
     className?: string;
 }) => {
     const [open, setOpen] = useState(false);
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     return (
         <div className={cn('relative block md:hidden', className)}>
             <AnimatePresence>
@@ -69,7 +78,7 @@ const FloatingDockMobile = ({
             </AnimatePresence>
             <button
                 onClick={() => setOpen(!open)}
-                aria-label="Toggle Navigation Menu"
+                aria-label={d.toggleNav}
                 className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center border border-gray-200 dark:border-white/10"
             >
                 <div className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />

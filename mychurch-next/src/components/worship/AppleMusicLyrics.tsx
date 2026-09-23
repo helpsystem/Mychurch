@@ -4,6 +4,19 @@ import React, { useMemo } from 'react';
 import { LyricPlayer } from '@applemusic-like-lyrics/react';
 import type { LyricLine, LyricWord } from '@applemusic-like-lyrics/core';
 import '@applemusic-like-lyrics/core/style.css';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    en: {
+        noTimingData: "No lyrics or timing data has been recorded for this song.",
+    },
+    fa: {
+        noTimingData: "متن و تایمینگ برای این سرود ثبت نشده است.",
+    },
+    es: {
+        noTimingData: "No se ha registrado letra ni sincronización para esta canción.",
+    },
+};
 
 export interface Timepoint {
     word: string;   // The database stores it as 'word' from gemini
@@ -68,11 +81,13 @@ function buildLyricLines(timepoints: Timepoint[]): LyricLine[] {
 
 export function AppleMusicLyrics({ timepoints, currentTimeMs, className = "" }: AppleMusicLyricsProps) {
     const lyricLines = useMemo(() => buildLyricLines(timepoints), [timepoints]);
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
 
     if (!timepoints || timepoints.length === 0) {
         return (
-            <div className={`flex items-center justify-center h-full w-full text-white/50 text-2xl font-bold italic ${className}`} dir="rtl">
-                متن و تایمینگ برای این سرود ثبت نشده است.
+            <div className={`flex items-center justify-center h-full w-full text-white/50 text-2xl font-bold italic ${className}`} dir={isRTL ? "rtl" : "ltr"}>
+                {d.noTimingData}
             </div>
         );
     }

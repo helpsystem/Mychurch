@@ -5,18 +5,138 @@ import HTMLFlipBook from 'react-pageflip';
 import { ChevronLeft, ChevronRight, BookOpen, Music, Book, Calendar, Info, HelpCircle } from 'lucide-react';
 import { BroadcastSession, Slide, SlideType, LyricsLine, ScripturePage } from '@/types/broadcast';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/providers/LanguageProvider';
 
-// Helper to format date in Persian
-function formatPersianDate(dateStr?: string | Date): string {
+const LOCALE_BY_LANG: Record<"en" | "fa" | "es", string> = {
+    fa: "fa-IR",
+    en: "en-US",
+    es: "es-ES",
+};
+
+const localDict = {
+    en: {
+        digitalBookletLabel: "Digital Session Booklet",
+        defaultBookletTitle: "Session Guide Booklet",
+        churchLogoAlt: "Church Logo",
+        churchName: "Iranian Evangelical Church of Washington, D.C.",
+        sessionHostLabel: "Session Host:",
+        swipeHint: "Swipe or click to turn the page →",
+        tocTitle: "Table of Contents",
+        noContentFound: "No content found to display.",
+        pageAbbrev: "p.",
+        indexQuote: "“For the word of God is alive and active, sharper than any double-edged sword” — Hebrews 4:12",
+        worshipSongBadge: "Worship Song",
+        digitalBookletFooter: "MyChurch Digital Booklet",
+        sectionOfTotal: (idx: number, total: number) => `Section ${idx} of ${total}`,
+        scriptureReadingBadge: "Scripture Reading",
+        chapterWord: "Chapter",
+        persianTranslationLabel: "Persian Translation",
+        englishTranslationLabel: "English Translation",
+        versesLabel: (verses: string | number) => `Verses ${verses}`,
+        announcementBadge: "Church Announcement",
+        prayerBadge: "Prayer Request",
+        messageBadge: "Message of the Week",
+        pageLabel: (pageNum: number) => `Page ${pageNum}`,
+        backCoverQuote: "“But you, keep your head in all situations, endure hardship, do the work of an evangelist, discharge all the duties of your ministry.”",
+        backCoverReference: "2 Timothy 4:5",
+        backCoverLocation: "Washington, D.C., United States",
+        closeBooklet: "Close Booklet",
+        pageWord: "Page",
+        prevPage: "Previous Page",
+        nextPage: "Next Page",
+        notesPlaceholder: "Notes...",
+        defaultSongTitle: "Worship Song",
+        defaultAnnouncementTitle: "Church Announcement",
+        defaultPrayerTitle: "Prayer Request",
+        defaultMessageTitle: "Message of the Week",
+    },
+    fa: {
+        digitalBookletLabel: "نشریه دیجیتال جلسات",
+        defaultBookletTitle: "دفترچه راهنمای جلسه",
+        churchLogoAlt: "لوگوی کلیسا",
+        churchName: "کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
+        sessionHostLabel: "رهبر جلسه:",
+        swipeHint: "برای ورق زدن بکشید یا کلیک کنید ←",
+        tocTitle: "فهرست مطالب جلسه",
+        noContentFound: "محتوایی برای نمایش یافت نشد.",
+        pageAbbrev: "ص",
+        indexQuote: "«کلام خدا زنده و مؤثر است و برنده‌تر از هر شمشیر دو دم» — عبرانیان ۴:۱۲",
+        worshipSongBadge: "سرود پرستشی",
+        digitalBookletFooter: "کتابچه دیجیتال MyChurch",
+        sectionOfTotal: (idx: number, total: number) => `بخش ${idx} از ${total}`,
+        scriptureReadingBadge: "قرائت کتاب مقدس",
+        chapterWord: "باب",
+        persianTranslationLabel: "ترجمه فارسی",
+        englishTranslationLabel: "English Translation",
+        versesLabel: (verses: string | number) => `آیات ${verses}`,
+        announcementBadge: "اعلان کلیسا",
+        prayerBadge: "درخواست دعا",
+        messageBadge: "پیام هفته",
+        pageLabel: (pageNum: number) => `صفحه ${pageNum}`,
+        backCoverQuote: "«اما تو در همه‌چیز هشیار باش، رنج را تحمل کن، کار تبشیر را انجام ده و خدمت خود را به کمال رسان.»",
+        backCoverReference: "دوم تیموتائوس ۴:۵",
+        backCoverLocation: "واشنگتن دی‌سی، ایالات متحده",
+        closeBooklet: "بستن کتابچه",
+        pageWord: "صفحه",
+        prevPage: "صفحه قبلی",
+        nextPage: "صفحه بعدی",
+        notesPlaceholder: "یادداشت‌ها...",
+        defaultSongTitle: "سرود پرستش",
+        defaultAnnouncementTitle: "اعلان کلیسا",
+        defaultPrayerTitle: "درخواست دعا",
+        defaultMessageTitle: "پیام هفته",
+    },
+    es: {
+        digitalBookletLabel: "Folleto Digital de la Sesión",
+        defaultBookletTitle: "Folleto Guía de la Sesión",
+        churchLogoAlt: "Logo de la Iglesia",
+        churchName: "Iglesia Evangélica Iraní de Washington, D.C.",
+        sessionHostLabel: "Líder de la sesión:",
+        swipeHint: "Desliza o haz clic para pasar la página →",
+        tocTitle: "Índice de la sesión",
+        noContentFound: "No se encontró contenido para mostrar.",
+        pageAbbrev: "pág.",
+        indexQuote: "“Porque la palabra de Dios es viva y eficaz, y más cortante que toda espada de dos filos” — Hebreos 4:12",
+        worshipSongBadge: "Canción de adoración",
+        digitalBookletFooter: "Folleto Digital MyChurch",
+        sectionOfTotal: (idx: number, total: number) => `Sección ${idx} de ${total}`,
+        scriptureReadingBadge: "Lectura bíblica",
+        chapterWord: "Capítulo",
+        persianTranslationLabel: "Traducción persa",
+        englishTranslationLabel: "English Translation",
+        versesLabel: (verses: string | number) => `Versículos ${verses}`,
+        announcementBadge: "Anuncio de la iglesia",
+        prayerBadge: "Petición de oración",
+        messageBadge: "Mensaje de la semana",
+        pageLabel: (pageNum: number) => `Página ${pageNum}`,
+        backCoverQuote: "“Pero tú, sé sobrio en todo, soporta las aflicciones, haz obra de evangelista, cumple tu ministerio.”",
+        backCoverReference: "2 Timoteo 4:5",
+        backCoverLocation: "Washington, D.C., Estados Unidos",
+        closeBooklet: "Cerrar folleto",
+        pageWord: "Página",
+        prevPage: "Página anterior",
+        nextPage: "Página siguiente",
+        notesPlaceholder: "Notas...",
+        defaultSongTitle: "Canción de adoración",
+        defaultAnnouncementTitle: "Anuncio de la iglesia",
+        defaultPrayerTitle: "Petición de oración",
+        defaultMessageTitle: "Mensaje de la semana",
+    },
+};
+
+// Helper to format date, using the Persian calendar for fa and the Gregorian calendar otherwise
+function formatPersianDate(dateStr: string | Date | undefined, language: "fa" | "en" | "es" = "fa"): string {
     if (!dateStr) return "";
     const date = dateStr instanceof Date ? dateStr : new Date(dateStr);
-    return date.toLocaleDateString("fa-IR", { year: "numeric", month: "long", day: "numeric" });
+    return date.toLocaleDateString(LOCALE_BY_LANG[language] || "fa-IR", { year: "numeric", month: "long", day: "numeric" });
 }
 
 // ─── Individual Page Components ───
 
 // 1. Cover Page Component
 const BookCover = React.forwardRef<HTMLDivElement, { session: BroadcastSession }>(({ session }, ref) => {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     return (
         <div ref={ref} className="relative w-full h-full bg-gradient-to-br from-[#2c1b18] via-[#4a2e2b] to-[#1c100f] flex flex-col items-center justify-between text-[#ebdcb9] select-none overflow-hidden rounded-l-2xl shadow-2xl p-8 font-[Vazirmatn]">
             {/* Gilded Border Frame */}
@@ -35,28 +155,28 @@ const BookCover = React.forwardRef<HTMLDivElement, { session: BroadcastSession }
             </div>
 
             <div className="w-full text-center mt-10 z-10">
-                <span className="text-xs uppercase tracking-widest text-[#d4af37] font-bold">نشریه دیجیتال جلسات</span>
+                <span className="text-xs uppercase tracking-widest text-[#d4af37] font-bold">{d.digitalBookletLabel}</span>
                 <div className="w-12 h-0.5 bg-[#d4af37]/40 mx-auto my-3" />
                 <h1 className="text-2xl font-black leading-normal drop-shadow-md mt-4 px-4">
-                    {session.title || "دفترچه راهنمای جلسه"}
+                    {session.title || d.defaultBookletTitle}
                 </h1>
             </div>
 
             <div className="flex flex-col items-center gap-2 z-10">
-                <img src="/logo-transparent.png" alt="Church Logo" className="w-20 h-20 object-contain drop-shadow-xl opacity-80" />
-                <p className="text-sm font-semibold text-[#d4af37] mt-2">کلیسای انجیلی ایرانیان واشنگتن دی‌سی</p>
+                <img src="/logo-transparent.png" alt={d.churchLogoAlt} className="w-20 h-20 object-contain drop-shadow-xl opacity-80" />
+                <p className="text-sm font-semibold text-[#d4af37] mt-2">{d.churchName}</p>
                 <p className="text-[10px] opacity-40 font-mono tracking-wider uppercase">IRANIAN PRESBYTERIAN CHURCH</p>
             </div>
 
             <div className="w-full text-center mb-8 z-10">
-                <p className="text-xs text-[#ebdcb9]/60">{formatPersianDate(session.date)}</p>
+                <p className="text-xs text-[#ebdcb9]/60">{formatPersianDate(session.date, language)}</p>
                 {session.hostName && (
                     <p className="text-xs text-[#d4af37]/80 mt-1">
-                        رهبر جلسه: <span className="font-bold">{session.hostName}</span>
+                        {d.sessionHostLabel} <span className="font-bold">{session.hostName}</span>
                     </p>
                 )}
                 <div className="text-[10px] text-[#d4af37]/50 mt-8 animate-pulse">
-                    برای ورق زدن بکشید یا کلیک کنید ←
+                    {d.swipeHint}
                 </div>
             </div>
         </div>
@@ -67,6 +187,8 @@ BookCover.displayName = 'BookCover';
 // 2. Table of Contents / Index Page
 const BookIndex = React.forwardRef<HTMLDivElement, { session: BroadcastSession, pagesMetadata: any[] }>(
     ({ session, pagesMetadata }, ref) => {
+        const { language } = useLanguage();
+        const d = localDict[language] || localDict.fa;
         // Find slide page indexes
         const indexItems = useMemo(() => {
             const items: { title: string; pageNum: number; icon: React.ReactNode }[] = [];
@@ -92,12 +214,12 @@ const BookIndex = React.forwardRef<HTMLDivElement, { session: BroadcastSession, 
                 
                 <div className="flex-1 flex flex-col justify-start">
                     <h2 className="text-lg font-black text-[#5c4033] mb-6 pb-2 border-b-2 border-[#e6dfc6] flex items-center gap-2">
-                        <span>فهرست مطالب جلسه</span>
+                        <span>{d.tocTitle}</span>
                     </h2>
 
                     <div className="space-y-4 overflow-y-auto max-h-[320px] pr-1">
                         {indexItems.length === 0 ? (
-                            <p className="text-xs text-stone-400 italic text-center py-10">محتوایی برای نمایش یافت نشد.</p>
+                            <p className="text-xs text-stone-400 italic text-center py-10">{d.noContentFound}</p>
                         ) : (
                             indexItems.map((item, idx) => (
                                 <div key={idx} className="flex items-center justify-between text-xs group">
@@ -106,7 +228,7 @@ const BookIndex = React.forwardRef<HTMLDivElement, { session: BroadcastSession, 
                                         <span className="hover:text-[#2c241e] transition-colors">{item.title}</span>
                                     </div>
                                     <div className="flex-1 border-b border-dashed border-[#e6dfc6] mx-2 h-1" />
-                                    <span className="font-mono text-[#a47c5c] font-bold">ص {item.pageNum}</span>
+                                    <span className="font-mono text-[#a47c5c] font-bold">{d.pageAbbrev} {item.pageNum}</span>
                                 </div>
                             ))
                         )}
@@ -114,7 +236,7 @@ const BookIndex = React.forwardRef<HTMLDivElement, { session: BroadcastSession, 
                 </div>
 
                 <div className="text-center pt-4 border-t border-[#e6dfc6] text-[10px] text-stone-400">
-                    «کلام خدا زنده و مؤثر است و برنده‌تر از هر شمشیر دو دم» — عبرانیان ۴:۱۲
+                    {d.indexQuote}
                 </div>
             </div>
         );
@@ -133,6 +255,8 @@ interface LyricsPageProps {
 }
 const LyricsPage = React.forwardRef<HTMLDivElement, LyricsPageProps>(
     ({ title, subTitle, lines, pageNum, totalSongPages, songPageIdx }, ref) => {
+        const { language } = useLanguage();
+        const d = localDict[language] || localDict.fa;
         return (
             <div ref={ref} className="relative w-full h-full bg-[#fdfaf2] text-[#2c241e] flex flex-col justify-between p-8 select-none shadow-inner font-[Vazirmatn]">
                 <div className="absolute top-0 right-0 left-0 h-1 bg-[#8b5cf6]/30" />
@@ -142,7 +266,7 @@ const LyricsPage = React.forwardRef<HTMLDivElement, LyricsPageProps>(
                     <div className="mb-4 pb-2 border-b border-[#ebdcb9] flex items-start justify-between">
                         <div>
                             <span className="text-[9px] bg-[#8b5cf6]/10 text-[#7c3aed] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider mb-1 inline-block">
-                                سرود پرستشی
+                                {d.worshipSongBadge}
                             </span>
                             <h3 className="text-sm font-black text-[#5c4033] leading-snug">
                                 {title}
@@ -176,8 +300,8 @@ const LyricsPage = React.forwardRef<HTMLDivElement, LyricsPageProps>(
                 </div>
 
                 <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#e6dfc6] text-[10px] text-stone-400">
-                    <span>کتابچه دیجیتال MyChurch</span>
-                    <span className="font-sans">بخش {songPageIdx + 1} از {totalSongPages}</span>
+                    <span>{d.digitalBookletFooter}</span>
+                    <span className="font-sans">{d.sectionOfTotal(songPageIdx + 1, totalSongPages)}</span>
                 </div>
             </div>
         );
@@ -192,6 +316,8 @@ interface ScripturePageProps {
 }
 const ScriptureBookPage = React.forwardRef<HTMLDivElement, ScripturePageProps>(
     ({ page, pageNum }, ref) => {
+        const { language } = useLanguage();
+        const d = localDict[language] || localDict.fa;
         return (
             <div ref={ref} className="relative w-full h-full bg-[#faf5e6] text-[#2c241e] flex flex-col justify-between p-8 select-none shadow-inner font-[Vazirmatn]">
                 <div className="absolute top-0 right-0 left-0 h-1 bg-[#10b981]/30" />
@@ -201,10 +327,10 @@ const ScriptureBookPage = React.forwardRef<HTMLDivElement, ScripturePageProps>(
                     <div className="mb-4 pb-2 border-b border-[#ebdcb9] flex items-center justify-between">
                         <div>
                             <span className="text-[9px] bg-[#10b981]/10 text-[#059669] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider mb-1 inline-block">
-                                قرائت کتاب مقدس
+                                {d.scriptureReadingBadge}
                             </span>
                             <h3 className="text-sm font-black text-[#5c4033] leading-snug">
-                                {page.bookName.fa} — باب {page.chapter}
+                                {page.bookName.fa} — {d.chapterWord} {page.chapter}
                             </h3>
                         </div>
                         <Book className="w-5 h-5 text-[#10b981]/40 shrink-0" />
@@ -214,7 +340,7 @@ const ScriptureBookPage = React.forwardRef<HTMLDivElement, ScripturePageProps>(
                     <div className="flex-1 overflow-y-auto max-h-[300px] pr-1 space-y-4">
                         {/* Persian Text */}
                         <div className="space-y-2" dir="rtl">
-                            <p className="text-xs font-black text-[#8c6239] border-r-2 border-[#8c6239]/30 pr-2">ترجمه فارسی</p>
+                            <p className="text-xs font-black text-[#8c6239] border-r-2 border-[#8c6239]/30 pr-2">{d.persianTranslationLabel}</p>
                             <div className="text-xs leading-relaxed text-stone-700 space-y-2 font-[Vazirmatn]">
                                 {page.textPrimary.map((verse, idx) => {
                                     const vNum = page.verseNumbers[idx];
@@ -231,7 +357,7 @@ const ScriptureBookPage = React.forwardRef<HTMLDivElement, ScripturePageProps>(
                         {/* English Text if exists */}
                         {page.textSecondary && page.textSecondary.length > 0 && (
                             <div className="space-y-2 mt-4 pt-4 border-t border-[#ebdcb9]/40" dir="ltr">
-                                <p className="text-[10px] font-black text-[#8c6239] border-l-2 border-[#8c6239]/30 pl-2 uppercase font-sans">English Translation</p>
+                                <p className="text-[10px] font-black text-[#8c6239] border-l-2 border-[#8c6239]/30 pl-2 uppercase font-sans">{d.englishTranslationLabel}</p>
                                 <div className="text-[11px] leading-relaxed text-stone-600 space-y-2 font-serif text-justify">
                                     {page.textSecondary.map((verse, idx) => {
                                         const vNum = page.verseNumbers[idx];
@@ -249,8 +375,8 @@ const ScriptureBookPage = React.forwardRef<HTMLDivElement, ScripturePageProps>(
                 </div>
 
                 <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#e6dfc6] text-[10px] text-stone-400">
-                    <span>کتابچه دیجیتال MyChurch</span>
-                    <span className="font-sans">آیات {page.verses}</span>
+                    <span>{d.digitalBookletFooter}</span>
+                    <span className="font-sans">{d.versesLabel(page.verses)}</span>
                 </div>
             </div>
         );
@@ -267,9 +393,11 @@ interface GenericBookPageProps {
 }
 const GenericBookPage = React.forwardRef<HTMLDivElement, GenericBookPageProps>(
     ({ title, type, htmlContent, pageNum }, ref) => {
+        const { language } = useLanguage();
+        const d = localDict[language] || localDict.fa;
         // Strip basic html tags if needed, or render safely
-        const typeBadge = type === SlideType.ANNOUNCEMENT ? 'اعلان کلیسا' :
-                          type === SlideType.PRAYER ? 'درخواست دعا' : 'پیام هفته';
+        const typeBadge = type === SlideType.ANNOUNCEMENT ? d.announcementBadge :
+                          type === SlideType.PRAYER ? d.prayerBadge : d.messageBadge;
 
         const badgeColor = type === SlideType.ANNOUNCEMENT ? 'from-amber-500 to-orange-500 bg-amber-500/10 text-amber-700' :
                            type === SlideType.PRAYER ? 'from-pink-500 to-rose-500 bg-pink-500/10 text-pink-700' :
@@ -298,8 +426,8 @@ const GenericBookPage = React.forwardRef<HTMLDivElement, GenericBookPageProps>(
                 </div>
 
                 <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#e6dfc6] text-[10px] text-stone-400">
-                    <span>کتابچه دیجیتال MyChurch</span>
-                    <span>صفحه {pageNum}</span>
+                    <span>{d.digitalBookletFooter}</span>
+                    <span>{d.pageLabel(pageNum)}</span>
                 </div>
             </div>
         );
@@ -309,6 +437,8 @@ GenericBookPage.displayName = 'GenericBookPage';
 
 // 6. Back Cover Page Component
 const BookBackCover = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     return (
         <div ref={ref} className="relative w-full h-full bg-gradient-to-br from-[#1c100f] via-[#4a2e2b] to-[#2c1b18] flex flex-col items-center justify-center text-[#ebdcb9] select-none overflow-hidden rounded-r-2xl shadow-2xl p-8 font-[Vazirmatn]">
             <div className="absolute inset-4 border-2 border-[#d4af37]/30 rounded-lg pointer-events-none" />
@@ -318,14 +448,14 @@ const BookBackCover = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
 
             <div className="text-center px-4 max-w-xs space-y-4">
                 <p className="text-xs text-[#ebdcb9]/80 italic leading-relaxed">
-                    «اما تو در همه‌چیز هشیار باش، رنج را تحمل کن، کار تبشیر را انجام ده و خدمت خود را به کمال رسان.»
+                    {d.backCoverQuote}
                 </p>
-                <p className="text-[10px] text-[#d4af37]/60 font-bold">دوم تیموتائوس ۴:۵</p>
+                <p className="text-[10px] text-[#d4af37]/60 font-bold">{d.backCoverReference}</p>
             </div>
 
             <div className="absolute bottom-12 flex flex-col items-center gap-1.5 text-[10px] text-[#ebdcb9]/40">
                 <p className="font-sans">www.iranianchurchdc.com</p>
-                <p className="opacity-80">واشنگتن دی‌سی، ایالات متحده</p>
+                <p className="opacity-80">{d.backCoverLocation}</p>
             </div>
         </div>
     );
@@ -342,6 +472,8 @@ interface SessionFlipbookProps {
 export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
     const bookRef = useRef<any>(null);
     const [page, setPage] = useState(0);
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
 
     // ── Generate Page Arrays dynamically ──
     const bookPages = useMemo(() => {
@@ -353,7 +485,7 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
         session.slides.forEach((slide) => {
             if (slide.type === SlideType.LYRICS) {
                 const content = slide.content as any;
-                const songTitle = content.titleFa || content.title || "سرود پرستش";
+                const songTitle = content.titleFa || content.title || d.defaultSongTitle;
                 const songSubTitle = content.titleEn || content.titleFa ? content.title : undefined;
                 const lines = content.lines || [];
 
@@ -426,7 +558,7 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
                 pages.push(
                     <GenericBookPage
                         key={`slide-${slide.id}`}
-                        title={content.title || "اعلان کلیسا"}
+                        title={content.title || d.defaultAnnouncementTitle}
                         type={SlideType.ANNOUNCEMENT}
                         htmlContent={content.content || ""}
                         pageNum={globalPageCounter}
@@ -434,7 +566,7 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
                 );
                 metadata.push({
                     slideId: slide.id,
-                    title: content.title || "اعلان کلیسا",
+                    title: content.title || d.defaultAnnouncementTitle,
                     type: SlideType.ANNOUNCEMENT,
                     displayPageNum: globalPageCounter
                 });
@@ -445,7 +577,7 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
                 pages.push(
                     <GenericBookPage
                         key={`slide-${slide.id}`}
-                        title={content.title || "درخواست دعا"}
+                        title={content.title || d.defaultPrayerTitle}
                         type={SlideType.PRAYER}
                         htmlContent={content.content || ""}
                         pageNum={globalPageCounter}
@@ -453,7 +585,7 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
                 );
                 metadata.push({
                     slideId: slide.id,
-                    title: content.title || "درخواست دعا",
+                    title: content.title || d.defaultPrayerTitle,
                     type: SlideType.PRAYER,
                     displayPageNum: globalPageCounter
                 });
@@ -461,7 +593,7 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
 
             } else if (slide.type === SlideType.GENERIC) {
                 const content = slide.content as any;
-                const title = content.title || "پیام هفته";
+                const title = content.title || d.defaultMessageTitle;
                 pages.push(
                     <GenericBookPage
                         key={`slide-${slide.id}`}
@@ -490,10 +622,10 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
                 <div key="blank-spacer" className="relative w-full h-full bg-[#fdfaf2] text-[#2c241e] flex flex-col justify-between p-8 select-none shadow-inner font-[Vazirmatn]">
                     <div className="absolute top-0 right-0 left-0 h-1 bg-[#ebdcb9]" />
                     <div className="flex-1 flex items-center justify-center italic text-stone-300 text-xs">
-                        یادداشت‌ها...
+                        {d.notesPlaceholder}
                     </div>
                     <div className="text-right text-[10px] text-stone-400">
-                        صفحه {globalPageCounter}
+                        {d.pageLabel(globalPageCounter)}
                     </div>
                 </div>
             );
@@ -501,7 +633,7 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
         }
 
         return { pages, metadata };
-    }, [session]);
+    }, [session, d]);
 
     const onPage = (e: { data: number }) => setPage(e.data);
 
@@ -509,31 +641,31 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
     const totalPagesCount = 1 + 1 + bookPages.pages.length + 1;
 
     return (
-        <div className="flex flex-col items-center gap-6 w-full py-4 animate-fade-in font-[Vazirmatn]" dir="rtl">
+        <div className="flex flex-col items-center gap-6 w-full py-4 animate-fade-in font-[Vazirmatn]" dir={isRTL ? "rtl" : "ltr"}>
             {/* Header info */}
             <div className="w-full flex items-center justify-between border-b border-white/5 pb-4 px-2">
                 <div className="flex items-center gap-3">
                     <BookOpen className="w-5 h-5 text-indigo-400" />
                     <div>
                         <h4 className="text-sm font-black text-white">{session.title}</h4>
-                        <p className="text-[10px] text-white/40">{formatPersianDate(session.date)}</p>
+                        <p className="text-[10px] text-white/40">{formatPersianDate(session.date, language)}</p>
                     </div>
                 </div>
                 {onClose && (
                     <button
                         onClick={onClose}
                         className="text-xs px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-white/60 hover:text-white hover:bg-white/10 transition-colors"
-                        title="Close Booklet"
-                        aria-label="Close Booklet"
+                        title={d.closeBooklet}
+                        aria-label={d.closeBooklet}
                     >
-                        بستن کتابچه
+                        {d.closeBooklet}
                     </button>
                 )}
             </div>
 
             {/* Page Counter */}
             <div className="flex items-center gap-3 text-xs text-white/40 font-mono">
-                <span>صفحه</span>
+                <span>{d.pageWord}</span>
                 <span className="text-indigo-400 font-bold">{page + 1}</span>
                 <span>/</span>
                 <span>{totalPagesCount}</span>
@@ -586,20 +718,20 @@ export function SessionFlipbook({ session, onClose }: SessionFlipbookProps) {
                     onClick={() => bookRef.current?.pageFlip().flipPrev()}
                     disabled={page === 0}
                     className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all font-bold text-xs"
-                    title="Previous Page"
-                    aria-label="Previous Page"
+                    title={d.prevPage}
+                    aria-label={d.prevPage}
                 >
                     <ChevronRight className="w-4 h-4" />
-                    صفحه قبلی
+                    {d.prevPage}
                 </button>
                 <button
                     onClick={() => bookRef.current?.pageFlip().flipNext()}
                     disabled={page >= totalPagesCount - 1}
                     className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all font-bold text-xs"
-                    title="Next Page"
-                    aria-label="Next Page"
+                    title={d.nextPage}
+                    aria-label={d.nextPage}
                 >
-                    صفحه بعدی
+                    {d.nextPage}
                     <ChevronLeft className="w-4 h-4" />
                 </button>
             </div>

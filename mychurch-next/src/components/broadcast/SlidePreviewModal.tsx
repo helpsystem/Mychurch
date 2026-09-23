@@ -4,6 +4,40 @@ import React, { useState } from "react";
 import { X, ChevronDown, ChevronUp, Copy, Check } from "lucide-react";
 import { ScripturePage, SlideType } from "@/types/broadcast";
 import { Slide } from "@/types/broadcast";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    scriptureSlidePreview: "Scripture Slide Preview",
+    noScriptureToDisplay: "No scripture to display",
+    chapterAbbr: "Ch.",
+    noContentToDisplay: "No content to display",
+    copied: "Copied",
+    copy: "Copy",
+    close: "Close",
+    slidePreview: "Slide Preview",
+  },
+  fa: {
+    scriptureSlidePreview: "پیش‌نمایش اسلاید کتاب مقدس",
+    noScriptureToDisplay: "داده‌ای برای نمایش نیست",
+    chapterAbbr: "باب",
+    noContentToDisplay: "محتوایی برای نمایش یافت نشد",
+    copied: "کپی شد",
+    copy: "کپی اطلاعات",
+    close: "بستن",
+    slidePreview: "پیش‌نمایش اسلاید",
+  },
+  es: {
+    scriptureSlidePreview: "Vista previa de la diapositiva bíblica",
+    noScriptureToDisplay: "No hay Escritura para mostrar",
+    chapterAbbr: "Cap.",
+    noContentToDisplay: "No se encontró contenido para mostrar",
+    copied: "Copiado",
+    copy: "Copiar",
+    close: "Cerrar",
+    slidePreview: "Vista previa de la diapositiva",
+  },
+};
 
 interface SlidePreviewModalProps {
   slide: Slide;
@@ -14,6 +48,8 @@ interface SlidePreviewModalProps {
 
 export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: SlidePreviewModalProps) {
   const isRTL = lang === "fa";
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
@@ -44,7 +80,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
           <div className="shrink-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-b border-white/10 px-6 py-4 flex items-center justify-between">
             <div>
               <h2 className="text-xl font-bold text-white mb-1">
-                {isRTL ? "پیش‌نمایش اسلاید کتاب مقدس" : "Scripture Slide Preview"}
+                {d.scriptureSlidePreview}
               </h2>
               <p className="text-sm text-slate-400">{(slide.content as any)?.title || "Scripture"}</p>
             </div>
@@ -60,7 +96,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {pages.length === 0 ? (
               <div className="text-center py-8 text-slate-500">
-                {isRTL ? "داده‌ای برای نمایش نیست" : "No scripture to display"}
+                {d.noScriptureToDisplay}
               </div>
             ) : (
               pages.map((page: ScripturePage, idx: number) => {
@@ -92,7 +128,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
 
                           {/* Chapter & Verses */}
                           <div className="text-xs text-slate-400">
-                            {isRTL ? "باب" : "Ch."} {page.chapter}: {page.verses}
+                            {d.chapterAbbr} {page.chapter}: {page.verses}
                           </div>
                         </div>
                       </div>
@@ -215,7 +251,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
                           </div>
                         ) : (
                           <div className="text-center py-4 text-slate-500 text-sm">
-                            {isRTL ? "محتوایی برای نمایش یافت نشد" : "No content to display"}
+                            {d.noContentToDisplay}
                           </div>
                         )}
 
@@ -227,12 +263,12 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
                           {isCopied ? (
                             <>
                               <Check className="w-3.5 h-3.5" />
-                              {isRTL ? "کپی شد" : "Copied"}
+                              {d.copied}
                             </>
                           ) : (
                             <>
                               <Copy className="w-3.5 h-3.5" />
-                              {isRTL ? "کپی اطلاعات" : "Copy"}
+                              {d.copy}
                             </>
                           )}
                         </button>
@@ -250,7 +286,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
               onClick={onClose}
               className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition-colors"
             >
-              {isRTL ? "بستن" : "Close"}
+              {d.close}
             </button>
           </div>
         </div>
@@ -268,7 +304,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
         <div className="shrink-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-b border-white/10 px-6 py-4 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold text-white mb-1">
-              {isRTL ? "پیش‌نمایش اسلاید" : "Slide Preview"}
+              {d.slidePreview}
             </h2>
             <p className="text-sm text-slate-400">{(slide.content as any)?.title || "Content"}</p>
           </div>
@@ -291,7 +327,7 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
             onClick={onClose}
             className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition-colors"
           >
-            {isRTL ? "بستن" : "Close"}
+            {d.close}
           </button>
         </div>
       </div>

@@ -3,25 +3,58 @@
 import React, { useState } from "react";
 import { ChevronDown, Music2, Repeat2, Zap, Mic2, Play, Pause, Hash } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/providers/LanguageProvider";
 
-// ── Section type map ─────────────────────────────────────────────────────────
-const SECTION_MAP: Record<string, { fa: string; icon: React.ElementType; color: string; bg: string }> = {
-  verse:       { fa: "بند",           icon: Mic2,    color: "text-blue-400",   bg: "bg-blue-500/10 border-blue-500/20" },
-  "verse 1":   { fa: "بند ۱",         icon: Mic2,    color: "text-blue-400",   bg: "bg-blue-500/10 border-blue-500/20" },
-  "verse 2":   { fa: "بند ۲",         icon: Mic2,    color: "text-cyan-400",   bg: "bg-cyan-500/10 border-cyan-500/20" },
-  "verse 3":   { fa: "بند ۳",         icon: Mic2,    color: "text-sky-400",    bg: "bg-sky-500/10 border-sky-500/20" },
-  chorus:      { fa: "ترجیع‌بند",      icon: Repeat2, color: "text-primary",    bg: "bg-primary/10 border-primary/20" },
-  bridge:      { fa: "پل",            icon: Zap,     color: "text-purple-400", bg: "bg-purple-500/10 border-purple-500/20" },
-  intro:       { fa: "مقدمه",         icon: Play,    color: "text-emerald-400",bg: "bg-emerald-500/10 border-emerald-500/20" },
-  outro:       { fa: "پایان‌بندی",    icon: Pause,   color: "text-rose-400",   bg: "bg-rose-500/10 border-rose-500/20" },
-  "pre-chorus":{ fa: "پیش ترجیع",    icon: Music2,  color: "text-amber-400",  bg: "bg-amber-500/10 border-amber-500/20" },
-  tag:         { fa: "تگ",            icon: Hash,    color: "text-pink-400",   bg: "bg-pink-500/10 border-pink-500/20" },
-  interlude:   { fa: "میانی",        icon: Music2,  color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
+const localDict = {
+  en: {
+    chordsLabel: "🎸 Chords:",
+  },
+  fa: {
+    chordsLabel: "🎸 آکوردها:",
+  },
+  es: {
+    chordsLabel: "🎸 Acordes:",
+  },
 };
 
-function getSectionMeta(raw: string) {
+// ── Section type map ─────────────────────────────────────────────────────────
+const SECTION_LABELS: Record<string, { en: string; fa: string; es: string }> = {
+  verse:        { en: "Verse",       fa: "بند",        es: "Estrofa" },
+  "verse 1":    { en: "Verse 1",     fa: "بند ۱",      es: "Estrofa 1" },
+  "verse 2":    { en: "Verse 2",     fa: "بند ۲",      es: "Estrofa 2" },
+  "verse 3":    { en: "Verse 3",     fa: "بند ۳",      es: "Estrofa 3" },
+  chorus:       { en: "Chorus",      fa: "ترجیع‌بند",   es: "Coro" },
+  bridge:       { en: "Bridge",      fa: "پل",         es: "Puente" },
+  intro:        { en: "Intro",       fa: "مقدمه",      es: "Introducción" },
+  outro:        { en: "Outro",       fa: "پایان‌بندی",  es: "Cierre" },
+  "pre-chorus": { en: "Pre-Chorus",  fa: "پیش ترجیع",  es: "Pre-coro" },
+  tag:          { en: "Tag",         fa: "تگ",         es: "Tag" },
+  interlude:    { en: "Interlude",   fa: "میانی",      es: "Interludio" },
+};
+
+const SECTION_MAP: Record<string, { icon: React.ElementType; color: string; bg: string }> = {
+  verse:       { icon: Mic2,    color: "text-blue-400",   bg: "bg-blue-500/10 border-blue-500/20" },
+  "verse 1":   { icon: Mic2,    color: "text-blue-400",   bg: "bg-blue-500/10 border-blue-500/20" },
+  "verse 2":   { icon: Mic2,    color: "text-cyan-400",   bg: "bg-cyan-500/10 border-cyan-500/20" },
+  "verse 3":   { icon: Mic2,    color: "text-sky-400",    bg: "bg-sky-500/10 border-sky-500/20" },
+  chorus:      { icon: Repeat2, color: "text-primary",    bg: "bg-primary/10 border-primary/20" },
+  bridge:      { icon: Zap,     color: "text-purple-400", bg: "bg-purple-500/10 border-purple-500/20" },
+  intro:       { icon: Play,    color: "text-emerald-400",bg: "bg-emerald-500/10 border-emerald-500/20" },
+  outro:       { icon: Pause,   color: "text-rose-400",   bg: "bg-rose-500/10 border-rose-500/20" },
+  "pre-chorus":{ icon: Music2,  color: "text-amber-400",  bg: "bg-amber-500/10 border-amber-500/20" },
+  tag:         { icon: Hash,    color: "text-pink-400",   bg: "bg-pink-500/10 border-pink-500/20" },
+  interlude:   { icon: Music2,  color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
+};
+
+function getSectionMeta(raw: string, language: "fa" | "en" | "es") {
   const key = raw.toLowerCase().trim();
-  return SECTION_MAP[key] || { fa: raw, icon: Music2, color: "text-muted-foreground", bg: "bg-secondary border-border/50" };
+  const meta = SECTION_MAP[key];
+  const labelEntry = SECTION_LABELS[key];
+  const label = labelEntry ? (labelEntry[language] || labelEntry.fa) : raw;
+  if (!meta) {
+    return { label, icon: Music2, color: "text-muted-foreground", bg: "bg-secondary border-border/50" };
+  }
+  return { label, ...meta };
 }
 
 // ── Parse lyrics into sections ───────────────────────────────────────────────
@@ -85,7 +118,8 @@ function SectionCard({
   section: Section; showChords: boolean; defaultOpen: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
-  const meta = getSectionMeta(section.header || "");
+  const { language } = useLanguage();
+  const meta = getSectionMeta(section.header || "", language);
   const Icon = meta.icon;
   const lines = section.content.split("\n");
   const hasHeader = !!section.header;
@@ -105,7 +139,7 @@ function SectionCard({
             )}>
               <Icon className={cn("w-3.5 h-3.5", meta.color)} />
             </span>
-            <span className={cn("font-black text-sm", meta.color)}>{meta.fa}</span>
+            <span className={cn("font-black text-sm", meta.color)}>{meta.label}</span>
             <span className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest">{section.header}</span>
           </div>
           <ChevronDown className={cn(
@@ -146,6 +180,8 @@ interface Props {
 
 export function SongSectionsAccordion({ lyrics, showChords }: Props) {
   const sections = parseSections(lyrics);
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
 
   // Fallback: no sections detected — render as plain text
   if (sections.length === 0) {
@@ -175,7 +211,7 @@ export function SongSectionsAccordion({ lyrics, showChords }: Props) {
       {/* Chord key bar */}
       {allChords.length > 0 && (
         <div className="flex flex-wrap items-center gap-2 px-1 pb-1">
-          <span className="text-xs text-muted-foreground font-bold shrink-0">🎸 آکوردها:</span>
+          <span className="text-xs text-muted-foreground font-bold shrink-0">{d.chordsLabel}</span>
           {allChords.map(c => (
             <span key={c} className="font-mono font-black text-xs bg-purple-500/10 text-purple-600 dark:text-purple-300 border border-purple-500/30 px-2.5 py-1 rounded-lg">
               {c}

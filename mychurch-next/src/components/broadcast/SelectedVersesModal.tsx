@@ -5,6 +5,61 @@ import {
   X, GripVertical, Trash2, ChevronUp, ChevronDown,
   ArrowUp, ArrowDown, Copy, Eye, EyeOff
 } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    manageVerses: "Manage Selected Verses",
+    versesCount: (n: number) => `${n} verses | Click for details`,
+    scrollTools: "Scroll Tools",
+    totalVerses: "Total Verses:",
+    clearAll: "Clear All",
+    toTop: "To Top",
+    toBottom: "To Bottom",
+    noVersesSelected: "No verses selected",
+    fullText: "Full text",
+    copy: "Copy",
+    moveUp: "Move up",
+    moveDown: "Move down",
+    remove: "Remove",
+    dragHint: "Drag to reorder | Click for full text",
+    close: "Close",
+  },
+  fa: {
+    manageVerses: "مدیریت آیات انتخابی",
+    versesCount: (n: number) => `${n} آیه | کلیک برای باز کردن جزئیات`,
+    scrollTools: "ابزار اسکرول",
+    totalVerses: "تعداد آیات:",
+    clearAll: "پاک کردن همه",
+    toTop: "به بالا",
+    toBottom: "به پایین",
+    noVersesSelected: "آیه‌ای انتخاب نشده است",
+    fullText: "متن کامل",
+    copy: "کپی",
+    moveUp: "بالا رفتن",
+    moveDown: "پایین رفتن",
+    remove: "حذف",
+    dragHint: "درگ و رها کنید برای تغییر ترتیب | کلیک برای متن کامل",
+    close: "بستن",
+  },
+  es: {
+    manageVerses: "Administrar versículos seleccionados",
+    versesCount: (n: number) => `${n} versículos | Haga clic para ver detalles`,
+    scrollTools: "Herramientas de desplazamiento",
+    totalVerses: "Total de versículos:",
+    clearAll: "Borrar todo",
+    toTop: "Ir arriba",
+    toBottom: "Ir abajo",
+    noVersesSelected: "No hay versículos seleccionados",
+    fullText: "Texto completo",
+    copy: "Copiar",
+    moveUp: "Subir",
+    moveDown: "Bajar",
+    remove: "Quitar",
+    dragHint: "Arrastre para reordenar | Haga clic para ver el texto completo",
+    close: "Cerrar",
+  },
+};
 
 interface SelectedVerseEntry {
   id: string;
@@ -38,6 +93,8 @@ export default function SelectedVersesModal({
   lang
 }: SelectedVersesModalProps) {
   const isRTL = lang === "fa";
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const [draggedItem, setDraggedItem] = useState<string | null>(null);
   const [showFullText, setShowFullText] = useState<string | null>(null);
   const [showScrollTools, setShowScrollTools] = useState(false);
@@ -140,10 +197,10 @@ export default function SelectedVersesModal({
         <div className="shrink-0 bg-gradient-to-r from-amber-600/20 to-amber-500/10 border-b border-amber-500/20 px-6 py-4 flex items-center justify-between">
           <div>
             <h2 className="text-lg font-bold text-amber-300">
-              {isRTL ? "مدیریت آیات انتخابی" : "Manage Selected Verses"}
+              {d.manageVerses}
             </h2>
             <p className="text-xs text-slate-400 mt-1">
-              {verses.length} {isRTL ? "آیه | کلیک برای باز کردن جزئیات" : "verses | Click for details"}
+              {d.versesCount(verses.length)}
             </p>
           </div>
           <button
@@ -165,13 +222,13 @@ export default function SelectedVersesModal({
                   : "bg-white/5 text-slate-400 hover:bg-white/10"
               }`}
             >
-              {isRTL ? "ابزار اسکرول" : "Scroll Tools"}
+              {d.scrollTools}
             </button>
           </div>
 
           <div className="flex items-center gap-2">
             <span className="text-xs text-slate-400">
-              {isRTL ? "تعداد آیات:" : "Total Verses:"}
+              {d.totalVerses}
             </span>
             <span className="text-sm font-bold text-amber-400">{verses.length}</span>
           </div>
@@ -181,7 +238,7 @@ export default function SelectedVersesModal({
             disabled={verses.length === 0}
             className="px-3 py-1.5 text-xs rounded-lg bg-red-500/20 text-red-300 hover:bg-red-500/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            {isRTL ? "پاک کردن همه" : "Clear All"}
+            {d.clearAll}
           </button>
         </div>
 
@@ -193,13 +250,13 @@ export default function SelectedVersesModal({
               className="flex-1 px-3 py-2 text-xs rounded-lg bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-colors flex items-center justify-center gap-2"
             >
               <ChevronUp className="w-4 h-4" />
-              {isRTL ? "به بالا" : "To Top"}
+              {d.toTop}
             </button>
             <button
               onClick={scrollToBottom}
               className="flex-1 px-3 py-2 text-xs rounded-lg bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-colors flex items-center justify-center gap-2"
             >
-              {isRTL ? "به پایین" : "To Bottom"}
+              {d.toBottom}
               <ChevronDown className="w-4 h-4" />
             </button>
           </div>
@@ -212,7 +269,7 @@ export default function SelectedVersesModal({
         >
           {verses.length === 0 ? (
             <div className="flex items-center justify-center h-full text-slate-400">
-              <p>{isRTL ? "آیه‌ای انتخاب نشده است" : "No verses selected"}</p>
+              <p>{d.noVersesSelected}</p>
             </div>
           ) : (
             verses.map((verse, index) => (
@@ -276,7 +333,7 @@ export default function SelectedVersesModal({
                           showFullText === verse.id ? null : verse.id
                         )
                       }
-                      title={isRTL ? "متن کامل" : "Full text"}
+                      title={d.fullText}
                       className="p-1.5 text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 rounded transition-colors"
                     >
                       {showFullText === verse.id ? (
@@ -288,7 +345,7 @@ export default function SelectedVersesModal({
 
                     <button
                       onClick={() => copyVerse(verse)}
-                      title={isRTL ? "کپی" : "Copy"}
+                      title={d.copy}
                       className="p-1.5 text-slate-400 hover:text-green-400 hover:bg-green-500/10 rounded transition-colors"
                     >
                       <Copy className="w-4 h-4" />
@@ -298,7 +355,7 @@ export default function SelectedVersesModal({
                     <button
                       onClick={() => moveVerse(index, "up")}
                       disabled={index === 0}
-                      title={isRTL ? "بالا رفتن" : "Move up"}
+                      title={d.moveUp}
                       className="p-1.5 text-slate-400 hover:text-purple-400 hover:bg-purple-500/10 disabled:opacity-30 disabled:cursor-not-allowed rounded transition-colors"
                     >
                       <ArrowUp className="w-4 h-4" />
@@ -308,7 +365,7 @@ export default function SelectedVersesModal({
                     <button
                       onClick={() => moveVerse(index, "down")}
                       disabled={index === verses.length - 1}
-                      title={isRTL ? "پایین رفتن" : "Move down"}
+                      title={d.moveDown}
                       className="p-1.5 text-slate-400 hover:text-purple-400 hover:bg-purple-500/10 disabled:opacity-30 disabled:cursor-not-allowed rounded transition-colors"
                     >
                       <ArrowDown className="w-4 h-4" />
@@ -317,7 +374,7 @@ export default function SelectedVersesModal({
                     {/* Delete */}
                     <button
                       onClick={() => onRemove(verse.id)}
-                      title={isRTL ? "حذف" : "Remove"}
+                      title={d.remove}
                       className="p-1.5 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded transition-colors"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -332,15 +389,13 @@ export default function SelectedVersesModal({
         {/* Footer */}
         <div className="shrink-0 bg-slate-950/50 border-t border-white/5 px-6 py-4 flex items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
-            {isRTL
-              ? "درگ و رها کنید برای تغییر ترتیب | کلیک برای متن کامل"
-              : "Drag to reorder | Click for full text"}
+            {d.dragHint}
           </p>
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-lg bg-amber-600 text-white font-medium text-sm hover:bg-amber-700 transition-colors"
           >
-            {isRTL ? "بستن" : "Close"}
+            {d.close}
           </button>
         </div>
       </div>

@@ -16,12 +16,34 @@ import { SmartWorshipPlayer, getSafeAudioUrl } from '@/components/worship/SmartW
 import AmenBadge from '@/components/broadcast/AmenBadge';
 import { SlideRenderer } from '@/components/broadcast/SlideRenderer';
 import BroadcastOverlays from '@/components/broadcast/BroadcastOverlays';
+import { useLanguage } from '@/providers/LanguageProvider';
 import {
     Slide,
     BroadcastOverlayConfig,
     SlideType,
     SlideContentLyrics,
 } from '@/types/broadcast';
+
+const localDict = {
+    en: {
+        connectingToConsole: "Connecting to console...",
+        awaitingConnection: "Awaiting connection...",
+        initialConnectionTitle: "No initial connection received",
+        initialConnectionBody: "Keep the broadcast console open and click Open Presenter again.",
+    },
+    fa: {
+        connectingToConsole: "در حال اتصال به کنسول...",
+        awaitingConnection: "در انتظار اتصال...",
+        initialConnectionTitle: "اتصال اولیه دریافت نشد",
+        initialConnectionBody: "کنسول پخش را باز نگه دارید و دوباره Open Presenter را بزنید.",
+    },
+    es: {
+        connectingToConsole: "Conectando a la consola...",
+        awaitingConnection: "Esperando conexión...",
+        initialConnectionTitle: "No se recibió la conexión inicial",
+        initialConnectionBody: "Mantenga abierta la consola de transmisión y vuelva a pulsar Open Presenter.",
+    },
+};
 
 interface ViewerState {
     currentSlide: Slide | null;
@@ -49,6 +71,8 @@ const stripChordMarkers = (text: string): string => {
 };
 
 function ViewerContent() {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const searchParams = useSearchParams();
     const sessionId = (searchParams && searchParams.get('session')) || 'default';
     const viewerToken = (searchParams && searchParams.get('token')) || '';
@@ -522,7 +546,7 @@ function ViewerContent() {
                         {!state.connected && (
                             <div className="mt-8 text-yellow-300 text-2xl flex items-center justify-center gap-3 font-[Vazirmatn]">
                                 <div className="w-3 h-3 bg-yellow-300 rounded-full animate-ping"></div>
-                                در حال اتصال به کنسول...
+                                {d.connectingToConsole}
                             </div>
                         )}
                     </div>
@@ -685,14 +709,14 @@ function ViewerContent() {
                 <div className="absolute top-6 left-6 bg-red-600/90 backdrop-blur-md text-white px-6 py-3 rounded-xl z-50 shadow-2xl animate-pulse border-2 border-red-400 font-[Vazirmatn]">
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
-                        <span className="font-bold">⚠️ در انتظار اتصال...</span>
+                        <span className="font-bold">⚠️ {d.awaitingConnection}</span>
                     </div>
                 </div>
             )}
             {tokenState === "valid" && initialStateTimeout && !state.currentSlide && (
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-amber-500/95 text-black px-6 py-3 rounded-xl z-50 shadow-2xl border border-amber-200 font-[Vazirmatn]">
-                    <div className="font-bold text-lg">اتصال اولیه دریافت نشد</div>
-                    <div className="text-sm">کنسول پخش را باز نگه دارید و دوباره Open Presenter را بزنید.</div>
+                    <div className="font-bold text-lg">{d.initialConnectionTitle}</div>
+                    <div className="text-sm">{d.initialConnectionBody}</div>
                 </div>
             )}
             <div 

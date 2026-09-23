@@ -2,6 +2,34 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Play, FileVideo, ImageIcon, Music, CheckCircle2, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+  en: {
+    previewLabel: 'Spotlight Accordion Preview',
+    previous: 'Previous',
+    next: 'Next',
+    image: 'Image',
+    video: 'Video',
+    select: 'Select',
+  },
+  fa: {
+    previewLabel: 'پیش‌نمایش آکاردئونی فریم‌ها (Spotlight Frames)',
+    previous: 'قبلی',
+    next: 'بعدی',
+    image: 'عکس',
+    video: 'ویدیو',
+    select: 'انتخاب',
+  },
+  es: {
+    previewLabel: 'Vista previa en acordeón (Spotlight Frames)',
+    previous: 'Anterior',
+    next: 'Siguiente',
+    image: 'Imagen',
+    video: 'Video',
+    select: 'Seleccionar',
+  },
+};
 
 export interface AccordionMediaItem {
   url: string;
@@ -36,6 +64,8 @@ export default function AccordionMediaPreview({
   className = '',
   maxVisiblePanels = 18,
 }: AccordionMediaPreviewProps) {
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const trackRef = useRef<HTMLDivElement>(null);
   const [trackWidth, setTrackWidth] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -108,7 +138,7 @@ export default function AccordionMediaPreview({
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center justify-center w-2 h-2 rounded-full bg-indigo-500 animate-ping" />
           <span className="text-xs font-bold text-indigo-300 font-[Vazirmatn]">
-            {isRTL ? 'پیش‌نمایش آکاردئونی فریم‌ها (Spotlight Frames)' : 'Spotlight Accordion Preview'}
+            {d.previewLabel}
           </span>
           <span className="text-[11px] text-slate-400 font-mono bg-white/5 px-2 py-0.5 rounded-md">
             {focusedIndex + 1} / {totalCount}
@@ -122,7 +152,7 @@ export default function AccordionMediaPreview({
             onClick={() => setFocusedIndex((prev) => Math.max(0, prev - 1))}
             disabled={focusedIndex === 0}
             className="p-1 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-white transition-colors"
-            title="Previous"
+            title={d.previous}
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -131,7 +161,7 @@ export default function AccordionMediaPreview({
             onClick={() => setFocusedIndex((prev) => Math.min(totalCount - 1, prev + 1))}
             disabled={focusedIndex === totalCount - 1}
             className="p-1 rounded bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-white transition-colors"
-            title="Next"
+            title={d.next}
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -220,7 +250,7 @@ export default function AccordionMediaPreview({
                           {item.name}
                         </p>
                         <span className="text-[10px] text-slate-300 capitalize font-mono">
-                          {item.type === 'image' ? (isRTL ? 'عکس' : 'Image') : item.type === 'video' ? (isRTL ? 'ویدیو' : 'Video') : item.type}
+                          {item.type === 'image' ? d.image : item.type === 'video' ? d.video : item.type}
                         </span>
                       </div>
 
@@ -234,7 +264,7 @@ export default function AccordionMediaPreview({
                           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg transition-colors font-[Vazirmatn]"
                         >
                           <CheckCircle2 className="w-3.5 h-3.5" />
-                          <span>{isRTL ? 'انتخاب' : 'Select'}</span>
+                          <span>{d.select}</span>
                         </button>
                       )}
                     </div>

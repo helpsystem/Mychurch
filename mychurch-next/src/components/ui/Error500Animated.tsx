@@ -1,12 +1,34 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 type Error500AnimatedProps = {
     title: string;
     message: string;
     hintEn?: string;
     onRetry?: () => void;
+};
+
+const localDict = {
+    en: {
+        retry: "Retry",
+        hymns: "🎵 Hymns",
+        bible: "📖 Bible",
+        home: "🏠 Back Home",
+    },
+    fa: {
+        retry: "تلاش مجدد",
+        hymns: "🎵 سرودها",
+        bible: "📖 کتاب مقدس",
+        home: "🏠 بازگشت به خانه",
+    },
+    es: {
+        retry: "Reintentar",
+        hymns: "🎵 Himnos",
+        bible: "📖 Biblia",
+        home: "🏠 Volver al Inicio",
+    },
 };
 
 export default function Error500Animated({
@@ -16,6 +38,8 @@ export default function Error500Animated({
     onRetry,
 }: Error500AnimatedProps) {
     const router = useRouter();
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
 
     return (
         <>
@@ -150,11 +174,11 @@ export default function Error500Animated({
                         </p>
                         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "4px", marginBottom: "12px" }}>
                             {onRetry ? (
-                                <button type="button" onClick={onRetry} className="link_worship">تلاش مجدد</button>
+                                <button type="button" onClick={onRetry} className="link_worship">{d.retry}</button>
                             ) : null}
-                            <button type="button" onClick={() => router.push('/worship')} className="link_worship">🎵 سرودها</button>
-                            <button type="button" onClick={() => router.push('/bible')} className="link_bible">📖 کتاب مقدس</button>
-                            <button type="button" onClick={() => router.push('/')} className="link_404">🏠 بازگشت به خانه</button>
+                            <button type="button" onClick={() => router.push('/worship')} className="link_worship">{d.hymns}</button>
+                            <button type="button" onClick={() => router.push('/bible')} className="link_bible">{d.bible}</button>
+                            <button type="button" onClick={() => router.push('/')} className="link_404">{d.home}</button>
                         </div>
                         <p className="footer_404">MyChurch — Iranian Church of Washington DC</p>
                     </div>

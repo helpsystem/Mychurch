@@ -6,6 +6,58 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sparkles, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { Heart, Sparkle, X, BookOpen, Send } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  fa: {
+    badge: "ارتباط معنوی آنلاین",
+    heading: "دیوار نوری دعا",
+    subheading: "«شما نور جهان هستید» — روی هر نقطه نوری کلیک کنید تا با دعای ایمانداران همراه شوید.",
+    addPrayerButton: "ثبت درخواست دعای جدید",
+    prayerFromPrefix: "درخواست دعا از طرف",
+    relatedVersePrefix: "آیه مرتبط:",
+    amenCountSuffix: "نفر همراه با این دعا آمین گفتند",
+    amenButton: "آمین / همدعا هستم",
+    modalTitle: "ثبت درخواست دعا",
+    textareaPlaceholder: "متن درخواست دعای خود را بنویسید...",
+    submitButton: "تاباندن نور دعا در بوم",
+    newPrayerName: "ایماندار",
+    newPrayerLocation: "عضو آنلاین",
+    newPrayerVerse: "متّی ۵:۱۴",
+  },
+  en: {
+    badge: "Online Spiritual Connection",
+    heading: "The Prayer Wall of Light",
+    subheading: "\"You are the light of the world\" — click any point of light to join in prayer with fellow believers.",
+    addPrayerButton: "Submit a New Prayer Request",
+    prayerFromPrefix: "Prayer request from",
+    relatedVersePrefix: "Related verse:",
+    amenCountSuffix: "people have said amen to this prayer",
+    amenButton: "Amen / Praying with you",
+    modalTitle: "Submit a Prayer Request",
+    textareaPlaceholder: "Write your prayer request here...",
+    submitButton: "Light this prayer on the canvas",
+    newPrayerName: "Believer",
+    newPrayerLocation: "Online member",
+    newPrayerVerse: "Matthew 5:14",
+  },
+  es: {
+    badge: "Conexión Espiritual en Línea",
+    heading: "El Muro de Oración de Luz",
+    subheading: "\"Vosotros sois la luz del mundo\" — haz clic en cualquier punto de luz para unirte en oración con otros creyentes.",
+    addPrayerButton: "Enviar una Nueva Petición de Oración",
+    prayerFromPrefix: "Petición de oración de",
+    relatedVersePrefix: "Versículo relacionado:",
+    amenCountSuffix: "personas dijeron amén a esta oración",
+    amenButton: "Amén / Oro contigo",
+    modalTitle: "Enviar una Petición de Oración",
+    textareaPlaceholder: "Escribe tu petición de oración aquí...",
+    submitButton: "Encender esta oración en el lienzo",
+    newPrayerName: "Creyente",
+    newPrayerLocation: "Miembro en línea",
+    newPrayerVerse: "Mateo 5:14",
+  },
+};
 
 // نمونه داده‌های درخواست دعا
 interface Prayer {
@@ -18,13 +70,29 @@ interface Prayer {
   position: [number, number, number];
 }
 
-const INITIAL_PRAYERS: Prayer[] = [
-  { id: 1, name: "سارا", location: "واشنگتن دی‌سی", text: "دعا برای سلامتی بیماران و هدایت روح‌القدس در خانواده‌ها.", verse: "یوشع ۱:۹", count: 14, position: [-2.5, 1.2, 1] },
-  { id: 2, name: "مهراد", location: "سیلور اسپرینگ", text: "شکرگزاری برای فیض عیسی مسیح و برکت جلسات خانگی.", verse: "یوحنا ۸:۱۲", count: 28, position: [2, -1, 0.5] },
-  { id: 3, name: "مریم", location: "مریلند", text: "دعا برای آرامش، ایمنی و حکمت خادمین کلیسا.", verse: "فیلیپیان ۴:۷", count: 19, position: [0.5, 2.2, -1.5] },
-  { id: 4, name: "دانیال", location: "ویرجینیا", text: "دعا برای هدایت جوانان و اشتیاق بیشتر برای کلام خدا.", verse: "مزامیر ۱۱۹:۱۰۵", count: 11, position: [-1.8, -2, -0.8] },
-  { id: 5, name: "هلن", location: "کالیفرنیا", text: "شکرگزاری برای رهایی و آرامشی که تنها در نام عیسی مسیح یافت می‌شود.", verse: "متّی ۱۱:۲۸", count: 35, position: [2.8, 1.8, -2] },
-];
+const INITIAL_PRAYERS_BY_LANG: Record<"en" | "fa" | "es", Prayer[]> = {
+  fa: [
+    { id: 1, name: "سارا", location: "واشنگتن دی‌سی", text: "دعا برای سلامتی بیماران و هدایت روح‌القدس در خانواده‌ها.", verse: "یوشع ۱:۹", count: 14, position: [-2.5, 1.2, 1] },
+    { id: 2, name: "مهراد", location: "سیلور اسپرینگ", text: "شکرگزاری برای فیض عیسی مسیح و برکت جلسات خانگی.", verse: "یوحنا ۸:۱۲", count: 28, position: [2, -1, 0.5] },
+    { id: 3, name: "مریم", location: "مریلند", text: "دعا برای آرامش، ایمنی و حکمت خادمین کلیسا.", verse: "فیلیپیان ۴:۷", count: 19, position: [0.5, 2.2, -1.5] },
+    { id: 4, name: "دانیال", location: "ویرجینیا", text: "دعا برای هدایت جوانان و اشتیاق بیشتر برای کلام خدا.", verse: "مزامیر ۱۱۹:۱۰۵", count: 11, position: [-1.8, -2, -0.8] },
+    { id: 5, name: "هلن", location: "کالیفرنیا", text: "شکرگزاری برای رهایی و آرامشی که تنها در نام عیسی مسیح یافت می‌شود.", verse: "متّی ۱۱:۲۸", count: 35, position: [2.8, 1.8, -2] },
+  ],
+  en: [
+    { id: 1, name: "Sara", location: "Washington D.C.", text: "Praying for healing for the sick and for the Holy Spirit's guidance in families.", verse: "Joshua 1:9", count: 14, position: [-2.5, 1.2, 1] },
+    { id: 2, name: "Mehrad", location: "Silver Spring", text: "Giving thanks for the grace of Jesus Christ and the blessing of the home gatherings.", verse: "John 8:12", count: 28, position: [2, -1, 0.5] },
+    { id: 3, name: "Maryam", location: "Maryland", text: "Praying for peace, safety, and wisdom for the church's servants.", verse: "Philippians 4:7", count: 19, position: [0.5, 2.2, -1.5] },
+    { id: 4, name: "Daniel", location: "Virginia", text: "Praying for guidance for the youth and a greater hunger for the Word of God.", verse: "Psalm 119:105", count: 11, position: [-1.8, -2, -0.8] },
+    { id: 5, name: "Helen", location: "California", text: "Giving thanks for the deliverance and peace found only in the name of Jesus Christ.", verse: "Matthew 11:28", count: 35, position: [2.8, 1.8, -2] },
+  ],
+  es: [
+    { id: 1, name: "Sara", location: "Washington D.C.", text: "Oración por la sanidad de los enfermos y la guía del Espíritu Santo en las familias.", verse: "Josué 1:9", count: 14, position: [-2.5, 1.2, 1] },
+    { id: 2, name: "Mehrad", location: "Silver Spring", text: "Acción de gracias por la gracia de Jesucristo y la bendición de las reuniones en casas.", verse: "Juan 8:12", count: 28, position: [2, -1, 0.5] },
+    { id: 3, name: "Maryam", location: "Maryland", text: "Oración por paz, seguridad y sabiduría para los siervos de la iglesia.", verse: "Filipenses 4:7", count: 19, position: [0.5, 2.2, -1.5] },
+    { id: 4, name: "Daniel", location: "Virginia", text: "Oración por guía para los jóvenes y mayor hambre por la Palabra de Dios.", verse: "Salmo 119:105", count: 11, position: [-1.8, -2, -0.8] },
+    { id: 5, name: "Helen", location: "California", text: "Acción de gracias por la liberación y la paz que solo se encuentran en el nombre de Jesucristo.", verse: "Mateo 11:28", count: 35, position: [2.8, 1.8, -2] },
+  ],
+};
 
 // کامپوننت ذرات ۳D
 function PrayerNodes({ prayers, onSelect }: { prayers: Prayer[]; onSelect: (p: Prayer) => void }) {
@@ -55,7 +123,11 @@ function PrayerNodes({ prayers, onSelect }: { prayers: Prayer[]; onSelect: (p: P
 }
 
 export default function PrayerWall() {
-  const [prayers, setPrayers] = useState<Prayer[]>(INITIAL_PRAYERS);
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
+  const [prayers, setPrayers] = useState<Prayer[]>(
+    INITIAL_PRAYERS_BY_LANG[language] || INITIAL_PRAYERS_BY_LANG.fa
+  );
   const [selectedPrayer, setSelectedPrayer] = useState<Prayer | null>(null);
   const [newPrayerText, setNewPrayerText] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
@@ -77,10 +149,10 @@ export default function PrayerWall() {
 
     const newEntry: Prayer = {
       id: Date.now(),
-      name: "ایماندار",
-      location: "عضو آنلاین",
+      name: d.newPrayerName,
+      location: d.newPrayerLocation,
       text: newPrayerText,
-      verse: "متّی ۵:۱۴",
+      verse: d.newPrayerVerse,
       count: 1,
       position: [
         (Math.random() - 0.5) * 5,
@@ -95,19 +167,19 @@ export default function PrayerWall() {
   };
 
   return (
-    <section id="prayer-wall" className="relative w-full h-screen bg-bgDark py-20 px-6 overflow-hidden flex flex-col justify-between" dir="rtl">
-      
+    <section id="prayer-wall" className="relative w-full h-screen bg-bgDark py-20 px-6 overflow-hidden flex flex-col justify-between" dir={isRTL ? "rtl" : "ltr"}>
+
       {/* عنوان فوقانی */}
       <div className="relative z-10 text-center max-w-2xl mx-auto">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-accentGold text-sm mb-3">
           <Sparkle size={16} />
-          <span>ارتباط معنوی آنلاین</span>
+          <span>{d.badge}</span>
         </div>
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">
-          دیوار نوری دعا
+          {d.heading}
         </h2>
         <p className="text-slate-400 text-sm md:text-base">
-          «شما نور جهان هستید» — روی هر نقطه نوری کلیک کنید تا با دعای ایمانداران همراه شوید.
+          {d.subheading}
         </p>
       </div>
 
@@ -146,7 +218,7 @@ export default function PrayerWall() {
           className="px-6 py-3 rounded-full bg-gradient-to-r from-accentGold to-amber-600 text-bgDark font-bold text-sm shadow-[0_0_20px_rgba(251,191,36,0.4)] hover:scale-105 transition-transform inline-flex items-center gap-2"
         >
           <Send size={16} />
-          ثبت درخواست دعای جدید
+          {d.addPrayerButton}
         </button>
       </div>
 
@@ -162,7 +234,7 @@ export default function PrayerWall() {
 
           <div className="flex items-center gap-2 text-accentGold mb-2 font-bold text-sm">
             <Sparkle size={16} />
-            <span>درخواست دعا از طرف {selectedPrayer.name}</span>
+            <span>{d.prayerFromPrefix} {selectedPrayer.name}</span>
             <span className="text-slate-500 text-xs">({selectedPrayer.location})</span>
           </div>
 
@@ -172,19 +244,19 @@ export default function PrayerWall() {
 
           <div className="flex items-center gap-2 text-cyan-400 text-xs mb-6">
             <BookOpen size={14} />
-            <span>آیه مرتبط: {selectedPrayer.verse}</span>
+            <span>{d.relatedVersePrefix} {selectedPrayer.verse}</span>
           </div>
 
           <div className="flex justify-between items-center border-t border-slate-800 pt-4">
             <span className="text-xs text-slate-400">
-              {selectedPrayer.count} نفر همراه با این دعا آمین گفتند
+              {selectedPrayer.count} {d.amenCountSuffix}
             </span>
             <button
               onClick={() => handleAmen(selectedPrayer.id)}
               className="px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors"
             >
               <Heart size={14} fill="#fff" />
-              آمین / همدعا هستم
+              {d.amenButton}
             </button>
           </div>
         </div>
@@ -200,19 +272,19 @@ export default function PrayerWall() {
             >
               <X size={20} />
             </button>
-            <h3 className="text-lg font-bold text-white mb-4">ثبت درخواست دعا</h3>
+            <h3 className="text-lg font-bold text-white mb-4">{d.modalTitle}</h3>
             <form onSubmit={handleAddPrayer} className="flex flex-col gap-4">
               <textarea
                 value={newPrayerText}
                 onChange={(e) => setNewPrayerText(e.target.value)}
-                placeholder="متن درخواست دعای خود را بنویسید..."
+                placeholder={d.textareaPlaceholder}
                 className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-accentGold h-28 resize-none"
               />
               <button
                 type="submit"
                 className="w-full py-3 bg-gradient-to-r from-accentGold to-amber-600 text-bgDark font-bold rounded-xl text-sm"
               >
-                تاباندن نور دعا در بوم
+                {d.submitButton}
               </button>
             </form>
           </div>

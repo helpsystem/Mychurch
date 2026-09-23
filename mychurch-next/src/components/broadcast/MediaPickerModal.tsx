@@ -3,6 +3,91 @@ import { X, Search, FileVideo, Image as ImageIcon, Music, Upload, CheckCircle2, 
 import { listMediaFiles, MediaAsset } from "@/actions/media";
 import { AddMediaLinkModal } from "@/components/admin/media/AddMediaLinkModal";
 import AccordionMediaPreview, { AccordionMediaItem } from "./AccordionMediaPreview";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        title: 'Media & Background Gallery',
+        search: 'Search files or links...',
+        all: 'All',
+        image: 'Images',
+        video: 'Videos',
+        audio: 'Audio',
+        links: 'Links',
+        addLink: 'Add via Link',
+        upload: 'Upload File',
+        uploading: 'Uploading...',
+        empty: 'No files found.',
+        newest: 'Newest',
+        oldest: 'Oldest',
+        nameAsc: 'Name (A-Z)',
+        nameDesc: 'Name (Z-A)',
+        sizeDesc: 'Largest Size',
+        gridView: 'Grid View',
+        accordionView: 'Accordion Frames',
+        hoverHint: 'Hover over any frame to inspect or click to select:',
+        previewBeforeSelect: 'Preview before select',
+        link: 'Link',
+        audioFile: 'Audio File',
+        clickToSelect: 'Click to select',
+        uploadFailed: (msg: string) => `Upload failed: ${msg}`,
+        externalLinkSize: 'Web link',
+    },
+    fa: {
+        title: 'گالری مدیا و پس‌زمینه‌ها',
+        search: 'جستجوی فایل یا لینک...',
+        all: 'همه',
+        image: 'تصاویر',
+        video: 'ویدیوها',
+        audio: 'صدا',
+        links: 'لینک‌ها',
+        addLink: 'افزودن با لینک',
+        upload: 'آپلود فایل جدید',
+        uploading: 'در حال آپلود...',
+        empty: 'هیچ فایلی یافت نشد.',
+        newest: 'جدیدترین',
+        oldest: 'قدیمی‌ترین',
+        nameAsc: 'نام (الف-ی)',
+        nameDesc: 'نام (ی-الف)',
+        sizeDesc: 'بزرگترین حجم',
+        gridView: 'نمایش شبکه‌ای (Grid)',
+        accordionView: 'نمایش فریم‌های آکاردئونی (Spotlight Accordion)',
+        hoverHint: 'روی هر فریم بروید تا بزرگ‌نمایی و فوکوس روان را مشاهده کنید یا کلیک کنید تا انتخاب شود:',
+        previewBeforeSelect: 'پیش‌نمایش قبل از انتخاب',
+        link: 'لینک',
+        audioFile: 'فایل صوتی',
+        clickToSelect: 'کلیک کنید برای انتخاب',
+        uploadFailed: (msg: string) => `خطا در آپلود فایل: ${msg}`,
+        externalLinkSize: 'لینک اینترنتی',
+    },
+    es: {
+        title: 'Galería de medios y fondos',
+        search: 'Buscar archivos o enlaces...',
+        all: 'Todos',
+        image: 'Imágenes',
+        video: 'Videos',
+        audio: 'Audio',
+        links: 'Enlaces',
+        addLink: 'Añadir con enlace',
+        upload: 'Subir archivo',
+        uploading: 'Subiendo...',
+        empty: 'No se encontraron archivos.',
+        newest: 'Más reciente',
+        oldest: 'Más antiguo',
+        nameAsc: 'Nombre (A-Z)',
+        nameDesc: 'Nombre (Z-A)',
+        sizeDesc: 'Tamaño mayor',
+        gridView: 'Vista de cuadrícula',
+        accordionView: 'Marcos en acordeón',
+        hoverHint: 'Pase el cursor sobre cualquier marco para inspeccionarlo o haga clic para seleccionarlo:',
+        previewBeforeSelect: 'Vista previa antes de seleccionar',
+        link: 'Enlace',
+        audioFile: 'Archivo de audio',
+        clickToSelect: 'Haga clic para seleccionar',
+        uploadFailed: (msg: string) => `Error al subir: ${msg}`,
+        externalLinkSize: 'Enlace web',
+    },
+};
 
 export interface MediaPickerModalProps {
     isOpen: boolean;
@@ -14,6 +99,8 @@ export interface MediaPickerModalProps {
 }
 
 export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedTypes = ['all'], isRTL = true }: MediaPickerModalProps) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const [assets, setAssets] = useState<MediaAsset[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
@@ -107,7 +194,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
             await loadFiles();
         } catch (error: any) {
             console.error("Upload failed", error);
-            alert(isRTL ? `خطا در آپلود فایل: ${error.message || ""}` : `Upload failed: ${error.message || ""}`);
+            alert(d.uploadFailed(error.message || ""));
         } finally {
             setUploading(false);
             if (fileInputRef.current) fileInputRef.current.value = "";
@@ -158,22 +245,22 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
     if (!isOpen) return null;
 
     const translate = {
-        title: title || (isRTL ? 'گالری مدیا و پس‌زمینه‌ها' : 'Media & Background Gallery'),
-        search: isRTL ? 'جستجوی فایل یا لینک...' : 'Search files or links...',
-        all: isRTL ? 'همه' : 'All',
-        image: isRTL ? 'تصاویر' : 'Images',
-        video: isRTL ? 'ویدیوها' : 'Videos',
-        audio: isRTL ? 'صدا' : 'Audio',
-        links: isRTL ? 'لینک‌ها' : 'Links',
-        addLink: isRTL ? 'افزودن با لینک' : 'Add via Link',
-        upload: isRTL ? 'آپلود فایل جدید' : 'Upload File',
-        uploading: isRTL ? 'در حال آپلود...' : 'Uploading...',
-        empty: isRTL ? 'هیچ فایلی یافت نشد.' : 'No files found.',
-        newest: isRTL ? 'جدیدترین' : 'Newest',
-        oldest: isRTL ? 'قدیمی‌ترین' : 'Oldest',
-        nameAsc: isRTL ? 'نام (الف-ی)' : 'Name (A-Z)',
-        nameDesc: isRTL ? 'نام (ی-الف)' : 'Name (Z-A)',
-        sizeDesc: isRTL ? 'بزرگترین حجم' : 'Largest Size'
+        title: title || d.title,
+        search: d.search,
+        all: d.all,
+        image: d.image,
+        video: d.video,
+        audio: d.audio,
+        links: d.links,
+        addLink: d.addLink,
+        upload: d.upload,
+        uploading: d.uploading,
+        empty: d.empty,
+        newest: d.newest,
+        oldest: d.oldest,
+        nameAsc: d.nameAsc,
+        nameDesc: d.nameDesc,
+        sizeDesc: d.sizeDesc,
     };
 
     return (
@@ -270,7 +357,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                             <button
                                 type="button"
                                 onClick={() => setViewMode("grid")}
-                                title={isRTL ? "نمایش شبکه‌ای (Grid)" : "Grid View"}
+                                title={d.gridView}
                                 className={`p-1.5 rounded-md transition-colors ${viewMode === "grid" ? "bg-indigo-600 text-white shadow" : "text-slate-400 hover:text-white"}`}
                             >
                                 <LayoutGrid className="w-3.5 h-3.5" />
@@ -278,7 +365,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                             <button
                                 type="button"
                                 onClick={() => setViewMode("accordion")}
-                                title={isRTL ? "نمایش فریم‌های آکاردئونی (Spotlight Accordion)" : "Accordion Frames"}
+                                title={d.accordionView}
                                 className={`p-1.5 rounded-md transition-colors ${viewMode === "accordion" ? "bg-indigo-600 text-white shadow" : "text-slate-400 hover:text-white"}`}
                             >
                                 <Film className="w-3.5 h-3.5" />
@@ -331,7 +418,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                         <div className="space-y-4">
                             <div className="flex items-center justify-between px-1 text-xs text-slate-400">
                                 <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
-                                    {isRTL ? 'روی هر فریم بروید تا بزرگ‌نمایی و فوکوس روان را مشاهده کنید یا کلیک کنید تا انتخاب شود:' : 'Hover over any frame to inspect or click to select:'}
+                                    {d.hoverHint}
                                 </span>
                             </div>
                             <AccordionMediaPreview
@@ -374,7 +461,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                                         {asset.isExternalLink && (
                                             <span className="absolute top-2 right-2 z-10 bg-amber-500/90 text-slate-950 text-[10px] font-black px-1.5 py-0.5 rounded-md flex items-center gap-1 shadow">
                                                 <Link2 className="w-2.5 h-2.5" />
-                                                لینک
+                                                {d.link}
                                             </span>
                                         )}
 
@@ -395,7 +482,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                                         <p className="text-xs font-medium truncate w-full text-slate-200" title={asset.name} dir="ltr">{asset.name}</p>
                                         <div className="flex justify-between items-center mt-1.5 opacity-60">
                                             <span className="text-[10px] tabular-nums" dir="ltr">
-                                                {asset.isExternalLink ? "لینک اینترنتی" : formatBytes(asset.size)}
+                                                {asset.isExternalLink ? d.externalLinkSize : formatBytes(asset.size)}
                                             </span>
                                             {asset.type === 'image' && <ImageIcon className={"w-3 h-3 text-emerald-400"} />}
                                             {asset.type === 'video' && <FileVideo className={"w-3 h-3 text-blue-400"} />}
@@ -434,11 +521,11 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                             <div className="flex items-center gap-1.5 min-w-0">
                                 <Eye className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
                                 <span className="text-[11px] font-bold text-indigo-300">
-                                    {isRTL ? "پیش‌نمایش قبل از انتخاب" : "Preview before select"}
+                                    {d.previewBeforeSelect}
                                 </span>
                             </div>
                             <span className="text-[10px] font-mono bg-white/10 text-slate-300 px-1.5 py-0.5 rounded">
-                                {hoveredAsset.isExternalLink ? (isRTL ? "لینک" : "Link") : formatBytes(hoveredAsset.size)}
+                                {hoveredAsset.isExternalLink ? d.link : formatBytes(hoveredAsset.size)}
                             </span>
                         </div>
 
@@ -464,7 +551,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                             {hoveredAsset.type === 'audio' && (
                                 <div className="flex flex-col items-center gap-2 text-purple-400">
                                     <Music className="w-12 h-12 animate-pulse" />
-                                    <span className="text-xs font-bold text-slate-300">{isRTL ? "فایل صوتی" : "Audio File"}</span>
+                                    <span className="text-xs font-bold text-slate-300">{d.audioFile}</span>
                                 </div>
                             )}
                         </div>
@@ -477,7 +564,7 @@ export function MediaPickerModal({ isOpen, onClose, onSelect, title, allowedType
                             <div className="flex items-center justify-between text-[11px] text-slate-400 pt-0.5">
                                 <span className="flex items-center gap-1 text-emerald-400 font-bold">
                                     <CheckCircle2 className="w-3 h-3" />
-                                    {isRTL ? "کلیک کنید برای انتخاب" : "Click to select"}
+                                    {d.clickToSelect}
                                 </span>
                                 <span className="capitalize text-slate-500 font-mono text-[10px]">{hoveredAsset.type}</span>
                             </div>

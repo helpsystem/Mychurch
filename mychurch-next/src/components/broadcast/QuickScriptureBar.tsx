@@ -16,6 +16,145 @@ import {
 import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
 import { CANONICAL_BOOKS } from "@/lib/bibleUsfm";
 import { toast } from "sonner";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    savedDefaultBook: (name: string) => `⭐ ${name} saved as default book.`,
+    savedDefaultFa: (abbr: string) => `⭐ Persian translation ${abbr} saved as default.`,
+    savedDefaultEn: (abbr: string) => `⭐ English translation ${abbr} saved as default.`,
+    notEnoughVerses: (bookName: string, chapter: number, maxVerses: number, startV: number, endV: number) =>
+      `${bookName} ${chapter} only contains ${maxVerses} verses (1 to ${maxVerses}). Verse ${startV}-${endV} does not exist in this chapter.`,
+    slidesAdded: (count: number, bookName: string, chapter: number, verses: string, verFa: string, verEn: string) =>
+      `✓ Added ${count} slide(s) from ${bookName} ${chapter}:${verses} (${verFa}/${verEn}).`,
+    scriptureFetchFailed: "Failed to load scripture",
+    bookAndTranslations: "Book & Translations:",
+    selectBibleBook: "Select Bible Book",
+    isDefaultBook: "This is the default book (⭐)",
+    setAsDefaultBook: "Set as default book",
+    searchBookPlaceholder: "Search book... (e.g. John)",
+    currentDefaultBook: "Current default book",
+    setBookAsDefault: (name: string) => `Set ${name} as default`,
+    noBooksFound: "No books found",
+    selectPersianTranslation: "Select Persian Translation",
+    defaultPersianTranslation: "Default Persian translation",
+    setAsDefaultPersian: "Set as default Persian translation",
+    persianTranslations: "Persian Translations",
+    clickStarToSetDefault: "Click ⭐ to set default",
+    currentDefault: "Current default",
+    setVersionAsDefault: (name: string) => `Set ${name} as default`,
+    selectEnglishTranslation: "Select English Translation",
+    defaultEnglishTranslation: "Default English translation",
+    setAsDefaultEnglish: "Set as default English translation",
+    englishTranslations: "English Translations",
+    defaultsLabel: "Defaults:",
+    quickVerse: "Quick Verse",
+    chapterLabel: "Ch:",
+    fromLabel: "From:",
+    toLabel: "To:",
+    perVerseTitle: "1 Slide Per Verse",
+    perVerse: "Per Verse",
+    combinedTitle: "All In 1 Slide",
+    combined: "Combined",
+    addToCurrentSlideTitle: "Add to Current Slide",
+    addToNewSlideTitle: "Add to Slide (Enter)",
+    addIntoThisSlide: "Add into This Slide",
+    addToSlide: "Add to Slide",
+    createNewSlideTitle: "Add as a brand new slide",
+    newSlide: "New Slide",
+    openFullExplorer: "Open Full Bible Explorer",
+  },
+  fa: {
+    savedDefaultBook: (name: string) => `⭐ کتاب «${name}» به عنوان کتاب پیش‌فرض ذخیره شد.`,
+    savedDefaultFa: (abbr: string) => `⭐ ترجمه فارسی «${abbr}» به عنوان پیش‌فرض ذخیره شد.`,
+    savedDefaultEn: (abbr: string) => `⭐ ترجمه انگلیسی «${abbr}» به عنوان پیش‌فرض ذخیره شد.`,
+    notEnoughVerses: (bookName: string, chapter: number, maxVerses: number, startV: number, endV: number) =>
+      `باب ${chapter} از ${bookName} تنها دارای ${maxVerses} آیه است (آیات ۱ تا ${maxVerses}). آیه ${startV} تا ${endV} در این باب وجود ندارد.`,
+    slidesAdded: (count: number, bookName: string, chapter: number, verses: string, verFa: string, verEn: string) =>
+      `✓ ${count} اسلاید از ${bookName} ${chapter}:${verses} (${verFa} / ${verEn}) افزوده شد.`,
+    scriptureFetchFailed: "خطا در دریافت متن آیه",
+    bookAndTranslations: "کتاب و ترجمه‌ها:",
+    selectBibleBook: "انتخاب کتاب مقدس",
+    isDefaultBook: "این کتاب، کتاب پیش‌فرض است (⭐)",
+    setAsDefaultBook: "تنظیم این کتاب به عنوان پیش‌فرض",
+    searchBookPlaceholder: "جستجوی کتاب... (مثال: یوحنا)",
+    currentDefaultBook: "کتاب پیش‌فرض فعلی (⭐)",
+    setBookAsDefault: (name: string) => `ستاره‌دار کردن «${name}» به عنوان پیش‌فرض`,
+    noBooksFound: "کتابی با این نام یافت نشد",
+    selectPersianTranslation: "انتخاب ترجمه فارسی",
+    defaultPersianTranslation: "این ترجمه، پیش‌فرض فارسی است (⭐)",
+    setAsDefaultPersian: "تنظیم این ترجمه به عنوان پیش‌فرض فارسی",
+    persianTranslations: "ترجمه‌های معتبر فارسی",
+    clickStarToSetDefault: "کلیک روی ⭐ = پیش‌فرض",
+    currentDefault: "ترجمه پیش‌فرض فعلی (⭐)",
+    setVersionAsDefault: (name: string) => `ستاره‌دار کردن «${name}» به عنوان پیش‌فرض`,
+    selectEnglishTranslation: "انتخاب ترجمه انگلیسی",
+    defaultEnglishTranslation: "این ترجمه، پیش‌فرض انگلیسی است (⭐)",
+    setAsDefaultEnglish: "تنظیم این ترجمه به عنوان پیش‌فرض انگلیسی",
+    englishTranslations: "ترجمه‌های انگلیسی",
+    defaultsLabel: "پیش‌فرض‌ها:",
+    quickVerse: "درج سریع آیه",
+    chapterLabel: "باب:",
+    fromLabel: "از آیه:",
+    toLabel: "تا آیه:",
+    perVerseTitle: "هر آیه در یک اسلاید جداگانه",
+    perVerse: "تک‌آیه",
+    combinedTitle: "تمام آیات در یک اسلاید باهم",
+    combined: "کل بازه",
+    addToCurrentSlideTitle: "افزودن این آیه به اسلاید جاری انتخابی",
+    addToNewSlideTitle: "درج در اسلاید جدید (Enter)",
+    addIntoThisSlide: "افزودن در این اسلاید (Enter)",
+    addToSlide: "درج در اسلاید (Enter)",
+    createNewSlideTitle: "افزودن به عنوان یک اسلاید کاملاً جدید",
+    newSlide: "اسلاید جدید",
+    openFullExplorer: "باز کردن صفحه کامل کاوش و انتخاب آیه",
+  },
+  es: {
+    savedDefaultBook: (name: string) => `⭐ ${name} guardado como libro predeterminado.`,
+    savedDefaultFa: (abbr: string) => `⭐ Traducción persa ${abbr} guardada como predeterminada.`,
+    savedDefaultEn: (abbr: string) => `⭐ Traducción inglesa ${abbr} guardada como predeterminada.`,
+    notEnoughVerses: (bookName: string, chapter: number, maxVerses: number, startV: number, endV: number) =>
+      `${bookName} ${chapter} solo tiene ${maxVerses} versículos (1 a ${maxVerses}). El versículo ${startV}-${endV} no existe en este capítulo.`,
+    slidesAdded: (count: number, bookName: string, chapter: number, verses: string, verFa: string, verEn: string) =>
+      `✓ Se añadieron ${count} diapositiva(s) de ${bookName} ${chapter}:${verses} (${verFa}/${verEn}).`,
+    scriptureFetchFailed: "Error al cargar la Escritura",
+    bookAndTranslations: "Libro y traducciones:",
+    selectBibleBook: "Seleccionar libro bíblico",
+    isDefaultBook: "Este es el libro predeterminado (⭐)",
+    setAsDefaultBook: "Establecer como libro predeterminado",
+    searchBookPlaceholder: "Buscar libro... (ej. Juan)",
+    currentDefaultBook: "Libro predeterminado actual",
+    setBookAsDefault: (name: string) => `Establecer ${name} como predeterminado`,
+    noBooksFound: "No se encontraron libros",
+    selectPersianTranslation: "Seleccionar traducción persa",
+    defaultPersianTranslation: "Traducción persa predeterminada",
+    setAsDefaultPersian: "Establecer como traducción persa predeterminada",
+    persianTranslations: "Traducciones persas",
+    clickStarToSetDefault: "Haga clic en ⭐ para establecer como predeterminada",
+    currentDefault: "Predeterminada actual",
+    setVersionAsDefault: (name: string) => `Establecer ${name} como predeterminada`,
+    selectEnglishTranslation: "Seleccionar traducción inglesa",
+    defaultEnglishTranslation: "Traducción inglesa predeterminada",
+    setAsDefaultEnglish: "Establecer como traducción inglesa predeterminada",
+    englishTranslations: "Traducciones inglesas",
+    defaultsLabel: "Predeterminados:",
+    quickVerse: "Versículo rápido",
+    chapterLabel: "Cap:",
+    fromLabel: "Desde:",
+    toLabel: "Hasta:",
+    perVerseTitle: "1 diapositiva por versículo",
+    perVerse: "Por versículo",
+    combinedTitle: "Todos los versículos en 1 diapositiva",
+    combined: "Combinado",
+    addToCurrentSlideTitle: "Añadir este versículo a la diapositiva actual",
+    addToNewSlideTitle: "Añadir a nueva diapositiva (Enter)",
+    addIntoThisSlide: "Añadir a esta diapositiva (Enter)",
+    addToSlide: "Añadir a la diapositiva",
+    createNewSlideTitle: "Añadir como una diapositiva completamente nueva",
+    newSlide: "Nueva diapositiva",
+    openFullExplorer: "Abrir explorador bíblico completo",
+  },
+};
 
 interface QuickScriptureBarProps {
   onAddSlides: (slides: ScripturePage[]) => void;
@@ -98,6 +237,8 @@ export default function QuickScriptureBar({
   isRTL = true,
   className = "",
 }: QuickScriptureBarProps) {
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const books = INITIAL_BOOKS;
 
   // Defaults persisted in localStorage
@@ -174,11 +315,7 @@ export default function QuickScriptureBar({
     const targetBook = books.find((b) => b.book_id === bookId) || currentBook;
     saveStorage("bp_default_book", bookId);
     setDefaultBookId(bookId);
-    toast.success(
-      isRTL
-        ? `⭐ کتاب «${targetBook.book_name_fa}» به عنوان کتاب پیش‌فرض ذخیره شد.`
-        : `⭐ ${targetBook.book_name_en} saved as default book.`
-    );
+    toast.success(d.savedDefaultBook(isRTL ? targetBook.book_name_fa : targetBook.book_name_en));
   };
 
   // Handle setting/toggling default Persian translation
@@ -187,11 +324,7 @@ export default function QuickScriptureBar({
     const targetVer = FA_TRANSLATIONS.find((v) => v.abbr === verAbbr) || currentFa;
     saveStorage("bp_default_ver_fa", verAbbr);
     setDefaultVersionFa(verAbbr);
-    toast.success(
-      isRTL
-        ? `⭐ ترجمه فارسی «${targetVer.nameFa}» به عنوان پیش‌فرض ذخیره شد.`
-        : `⭐ Persian translation ${verAbbr} saved as default.`
-    );
+    toast.success(d.savedDefaultFa(isRTL ? targetVer.nameFa : verAbbr));
   };
 
   // Handle setting/toggling default English translation
@@ -200,11 +333,7 @@ export default function QuickScriptureBar({
     const targetVer = EN_TRANSLATIONS.find((v) => v.abbr === verAbbr) || currentEn;
     saveStorage("bp_default_ver_en", verAbbr);
     setDefaultVersionEn(verAbbr);
-    toast.success(
-      isRTL
-        ? `⭐ ترجمه انگلیسی «${targetVer.nameEn}» به عنوان پیش‌فرض ذخیره شد.`
-        : `⭐ English translation ${verAbbr} saved as default.`
-    );
+    toast.success(d.savedDefaultEn(verAbbr));
   };
 
   const handleSelectBook = (book: BookOption) => {
@@ -252,11 +381,7 @@ export default function QuickScriptureBar({
 
       if (!selectedList.length) {
         const maxVerses = parallelList.length;
-        toast.error(
-          isRTL
-            ? `باب ${chapter} از ${currentBook.book_name_fa} تنها دارای ${maxVerses} آیه است (آیات ۱ تا ${maxVerses}). آیه ${startV} تا ${endV} در این باب وجود ندارد.`
-            : `${currentBook.book_name_en} ${chapter} only contains ${maxVerses} verses (1 to ${maxVerses}).`
-        );
+        toast.error(d.notEnoughVerses(isRTL ? currentBook.book_name_fa : currentBook.book_name_en, chapter, maxVerses, startV, endV));
         setIsLoading(false);
         return;
       }
@@ -355,13 +480,18 @@ export default function QuickScriptureBar({
       } else {
         onAddSlides(generatedPages);
         toast.success(
-          isRTL
-            ? `✓ ${generatedPages.length} اسلاید از ${currentBook.book_name_fa} ${chapter}:${versesLabel} (${selectedVersionFa} / ${selectedVersionEn}) افزوده شد.`
-            : `✓ Added ${generatedPages.length} slide(s) from ${currentBook.book_name_en} ${chapter}:${versesLabel} (${selectedVersionFa}/${selectedVersionEn}).`
+          d.slidesAdded(
+            generatedPages.length,
+            isRTL ? currentBook.book_name_fa : currentBook.book_name_en,
+            chapter,
+            versesLabel,
+            selectedVersionFa,
+            selectedVersionEn
+          )
         );
       }
     } catch {
-      toast.error(isRTL ? "خطا در دریافت متن آیه" : "Failed to load scripture");
+      toast.error(d.scriptureFetchFailed);
     } finally {
       setIsLoading(false);
     }
@@ -390,7 +520,7 @@ export default function QuickScriptureBar({
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-300 font-bold select-none">
             <Languages className="w-3.5 h-3.5 text-amber-400" />
             <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-              {isRTL ? "کتاب و ترجمه‌ها:" : "Book & Translations:"}
+              {d.bookAndTranslations}
             </span>
           </div>
 
@@ -406,7 +536,7 @@ export default function QuickScriptureBar({
                   setTimeout(() => bookInputRef.current?.focus(), 50);
                 }}
                 className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-white/5 transition text-amber-200 font-bold max-w-[140px] md:max-w-[170px]"
-                title={isRTL ? "انتخاب کتاب مقدس" : "Select Bible Book"}
+                title={d.selectBibleBook}
               >
                 <BookOpen className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span className={`truncate ${isRTL ? "font-[Vazirmatn]" : ""}`}>
@@ -424,15 +554,7 @@ export default function QuickScriptureBar({
                     ? "bg-amber-500/20 text-amber-400 hover:bg-amber-500/30"
                     : "text-zinc-500 hover:text-amber-300 hover:bg-white/5"
                 }`}
-                title={
-                  currentBook.book_id === defaultBookId
-                    ? isRTL
-                      ? "این کتاب، کتاب پیش‌فرض است (⭐)"
-                      : "This is the default book (⭐)"
-                    : isRTL
-                    ? "تنظیم این کتاب به عنوان پیش‌فرض"
-                    : "Set as default book"
-                }
+                title={currentBook.book_id === defaultBookId ? d.isDefaultBook : d.setAsDefaultBook}
               >
                 <Star
                   className={`w-3.5 h-3.5 ${
@@ -450,7 +572,7 @@ export default function QuickScriptureBar({
                   type="text"
                   value={bookSearchQuery}
                   onChange={(e) => setBookSearchQuery(e.target.value)}
-                  placeholder={isRTL ? "جستجوی کتاب... (مثال: یوحنا)" : "Search book... (e.g. John)"}
+                  placeholder={d.searchBookPlaceholder}
                   className={`w-full bg-black/60 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-400 mb-2 ${
                     isRTL ? "font-[Vazirmatn]" : ""
                   }`}
@@ -484,15 +606,7 @@ export default function QuickScriptureBar({
                           className={`p-1 rounded hover:bg-white/10 transition shrink-0 ${
                             isDefault ? "text-amber-400" : "text-zinc-600 hover:text-amber-400"
                           }`}
-                          title={
-                            isDefault
-                              ? isRTL
-                                ? "کتاب پیش‌فرض فعلی (⭐)"
-                                : "Current default book"
-                              : isRTL
-                              ? `ستاره‌دار کردن «${b.book_name_fa}» به عنوان پیش‌فرض`
-                              : `Set ${b.book_name_en} as default`
-                          }
+                          title={isDefault ? d.currentDefaultBook : d.setBookAsDefault(isRTL ? b.book_name_fa : b.book_name_en)}
                         >
                           <Star
                             className={`w-3.5 h-3.5 ${
@@ -505,7 +619,7 @@ export default function QuickScriptureBar({
                   })}
                   {filteredBooks.length === 0 && (
                     <div className="text-center py-4 text-xs text-zinc-500">
-                      {isRTL ? "کتابی با این نام یافت نشد" : "No books found"}
+                      {d.noBooksFound}
                     </div>
                   )}
                 </div>
@@ -524,7 +638,7 @@ export default function QuickScriptureBar({
                   setEnDropdownOpen(false);
                 }}
                 className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-white/5 transition text-emerald-200 font-bold max-w-[150px] md:max-w-[190px]"
-                title={isRTL ? "انتخاب ترجمه فارسی" : "Select Persian Translation"}
+                title={d.selectPersianTranslation}
               >
                 <span className="text-[10px] px-1 py-0.5 bg-emerald-500/20 text-emerald-300 rounded font-mono font-black">
                   FA
@@ -544,15 +658,7 @@ export default function QuickScriptureBar({
                     ? "bg-amber-500/20 text-amber-400 hover:bg-amber-500/30"
                     : "text-zinc-500 hover:text-amber-300 hover:bg-white/5"
                 }`}
-                title={
-                  currentFa.abbr === defaultVersionFa
-                    ? isRTL
-                      ? "این ترجمه، پیش‌فرض فارسی است (⭐)"
-                      : "Default Persian translation"
-                    : isRTL
-                    ? "تنظیم این ترجمه به عنوان پیش‌فرض فارسی"
-                    : "Set as default Persian translation"
-                }
+                title={currentFa.abbr === defaultVersionFa ? d.defaultPersianTranslation : d.setAsDefaultPersian}
               >
                 <Star
                   className={`w-3.5 h-3.5 ${
@@ -568,9 +674,9 @@ export default function QuickScriptureBar({
             {faDropdownOpen && (
               <div className="absolute top-full mt-1.5 right-0 z-50 w-72 max-h-80 bg-zinc-950/98 backdrop-blur-2xl border border-emerald-500/40 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 overflow-y-auto custom-scrollbar">
                 <div className="text-[11px] font-bold text-emerald-400 px-2 py-1 mb-1 border-b border-white/10 flex items-center justify-between">
-                  <span>{isRTL ? "ترجمه‌های معتبر فارسی" : "Persian Translations"}</span>
+                  <span>{d.persianTranslations}</span>
                   <span className="text-[10px] text-zinc-400 font-normal">
-                    {isRTL ? "کلیک روی ⭐ = پیش‌فرض" : "Click ⭐ to set default"}
+                    {d.clickStarToSetDefault}
                   </span>
                 </div>
                 {FA_TRANSLATIONS.map((ver) => {
@@ -606,15 +712,7 @@ export default function QuickScriptureBar({
                         className={`p-1.5 rounded-lg hover:bg-white/10 transition shrink-0 ${
                           isDefault ? "text-amber-400" : "text-zinc-600 hover:text-amber-400"
                         }`}
-                        title={
-                          isDefault
-                            ? isRTL
-                              ? "ترجمه پیش‌فرض فعلی (⭐)"
-                              : "Current default"
-                            : isRTL
-                            ? `ستاره‌دار کردن «${ver.nameFa}» به عنوان پیش‌فرض`
-                            : `Set ${ver.abbr} as default`
-                        }
+                        title={isDefault ? d.currentDefault : d.setVersionAsDefault(isRTL ? ver.nameFa : ver.abbr)}
                       >
                         <Star
                           className={`w-3.5 h-3.5 ${
@@ -640,7 +738,7 @@ export default function QuickScriptureBar({
                   setFaDropdownOpen(false);
                 }}
                 className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-white/5 transition text-blue-200 font-bold max-w-[150px] md:max-w-[190px]"
-                title={isRTL ? "انتخاب ترجمه انگلیسی" : "Select English Translation"}
+                title={d.selectEnglishTranslation}
               >
                 <span className="text-[10px] px-1 py-0.5 bg-blue-500/20 text-blue-300 rounded font-mono font-black">
                   EN
@@ -658,15 +756,7 @@ export default function QuickScriptureBar({
                     ? "bg-amber-500/20 text-amber-400 hover:bg-amber-500/30"
                     : "text-zinc-500 hover:text-amber-300 hover:bg-white/5"
                 }`}
-                title={
-                  currentEn.abbr === defaultVersionEn
-                    ? isRTL
-                      ? "این ترجمه، پیش‌فرض انگلیسی است (⭐)"
-                      : "Default English translation"
-                    : isRTL
-                    ? "تنظیم این ترجمه به عنوان پیش‌فرض انگلیسی"
-                    : "Set as default English translation"
-                }
+                title={currentEn.abbr === defaultVersionEn ? d.defaultEnglishTranslation : d.setAsDefaultEnglish}
               >
                 <Star
                   className={`w-3.5 h-3.5 ${
@@ -682,9 +772,9 @@ export default function QuickScriptureBar({
             {enDropdownOpen && (
               <div className="absolute top-full mt-1.5 right-0 z-50 w-72 max-h-80 bg-zinc-950/98 backdrop-blur-2xl border border-blue-500/40 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 overflow-y-auto custom-scrollbar">
                 <div className="text-[11px] font-bold text-blue-400 px-2 py-1 mb-1 border-b border-white/10 flex items-center justify-between">
-                  <span>{isRTL ? "ترجمه‌های انگلیسی" : "English Translations"}</span>
+                  <span>{d.englishTranslations}</span>
                   <span className="text-[10px] text-zinc-400 font-normal">
-                    {isRTL ? "کلیک روی ⭐ = پیش‌فرض" : "Click ⭐ to set default"}
+                    {d.clickStarToSetDefault}
                   </span>
                 </div>
                 {EN_TRANSLATIONS.map((ver) => {
@@ -716,15 +806,7 @@ export default function QuickScriptureBar({
                         className={`p-1.5 rounded-lg hover:bg-white/10 transition shrink-0 ${
                           isDefault ? "text-amber-400" : "text-zinc-600 hover:text-amber-400"
                         }`}
-                        title={
-                          isDefault
-                            ? isRTL
-                              ? "ترجمه پیش‌فرض فعلی (⭐)"
-                              : "Current default"
-                            : isRTL
-                            ? `ستاره‌دار کردن «${ver.abbr}» به عنوان پیش‌فرض`
-                            : `Set ${ver.abbr} as default`
-                        }
+                        title={isDefault ? d.currentDefault : d.setVersionAsDefault(ver.abbr)}
                       >
                         <Star
                           className={`w-3.5 h-3.5 ${
@@ -745,7 +827,7 @@ export default function QuickScriptureBar({
           <span className="flex items-center gap-1 text-amber-300/90 font-mono">
             <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
             <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-              {isRTL ? "پیش‌فرض‌ها:" : "Defaults:"}
+              {d.defaultsLabel}
             </span>
             <span className="text-white font-bold">{defaultBookId}</span>
             <span className="text-zinc-600">|</span>
@@ -764,7 +846,7 @@ export default function QuickScriptureBar({
         <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-300 font-black text-xs shrink-0 select-none shadow-[0_0_10px_rgba(245,158,11,0.15)]">
           <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
           <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-            {isRTL ? "درج سریع آیه" : "Quick Verse"}
+            {d.quickVerse}
           </span>
         </div>
 
@@ -778,7 +860,7 @@ export default function QuickScriptureBar({
             setTimeout(() => bookInputRef.current?.focus(), 50);
           }}
           className="flex items-center justify-between gap-2 bg-black/60 hover:bg-black/80 border border-amber-400/60 rounded-xl px-3 py-1.5 text-xs md:text-sm font-bold transition-all shadow-[0_0_12px_rgba(245,158,11,0.2)] hover:border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400/50 min-w-[130px] md:min-w-[160px]"
-          title={isRTL ? "انتخاب کتاب مقدس" : "Select Book"}
+          title={d.selectBibleBook}
         >
           <div className="flex items-center gap-1.5 truncate">
             <BookOpen className="w-3.5 h-3.5 text-amber-400 shrink-0" />
@@ -795,7 +877,7 @@ export default function QuickScriptureBar({
         {/* ── كادر ۲: شماره باب (Chapter Box) ── */}
         <div className="flex items-center gap-1.5 bg-black/60 border border-amber-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(245,158,11,0.2)] focus-within:ring-2 focus-within:ring-amber-400/50">
           <span className={`text-xs text-amber-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
-            {isRTL ? "باب:" : "Ch:"}
+            {d.chapterLabel}
           </span>
           <input
             type="number"
@@ -817,7 +899,7 @@ export default function QuickScriptureBar({
         {/* ── كادر ۳: از آیه (From Verse Box) ── */}
         <div className="flex items-center gap-1.5 bg-black/60 border border-blue-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(59,130,246,0.2)] focus-within:ring-2 focus-within:ring-blue-400/50">
           <span className={`text-xs text-blue-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
-            {isRTL ? "از آیه:" : "From:"}
+            {d.fromLabel}
           </span>
           <input
             type="number"
@@ -838,7 +920,7 @@ export default function QuickScriptureBar({
         {/* ── كادر ۴: تا آیه (To Verse Box) ── */}
         <div className="flex items-center gap-1.5 bg-black/60 border border-blue-400/60 rounded-xl px-2.5 py-1 shadow-[0_0_12px_rgba(59,130,246,0.2)] focus-within:ring-2 focus-within:ring-blue-400/50">
           <span className={`text-xs text-blue-300/80 font-bold select-none ${isRTL ? "font-[Vazirmatn]" : ""}`}>
-            {isRTL ? "تا آیه:" : "To:"}
+            {d.toLabel}
           </span>
           <input
             type="number"
@@ -864,9 +946,9 @@ export default function QuickScriptureBar({
                 ? "bg-amber-500/30 text-amber-300 shadow-sm"
                 : "text-zinc-400 hover:text-white"
             } ${isRTL ? "font-[Vazirmatn]" : ""}`}
-            title={isRTL ? "هر آیه در یک اسلاید جداگانه" : "1 Slide Per Verse"}
+            title={d.perVerseTitle}
           >
-            {isRTL ? "تک‌آیه" : "Per Verse"}
+            {d.perVerse}
           </button>
           <button
             type="button"
@@ -876,9 +958,9 @@ export default function QuickScriptureBar({
                 ? "bg-amber-500/30 text-amber-300 shadow-sm"
                 : "text-zinc-400 hover:text-white"
             } ${isRTL ? "font-[Vazirmatn]" : ""}`}
-            title={isRTL ? "تمام آیات در یک اسلاید باهم" : "All In 1 Slide"}
+            title={d.combinedTitle}
           >
-            {isRTL ? "کل بازه" : "Combined"}
+            {d.combined}
           </button>
         </div>
 
@@ -888,15 +970,7 @@ export default function QuickScriptureBar({
           onClick={() => handleQuickInsert(false)}
           disabled={isLoading}
           className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_18px_rgba(245,158,11,0.4)] transition-all cursor-pointer disabled:opacity-50 select-none shrink-0"
-          title={
-            isCurrentSlideScripture
-              ? isRTL
-                ? "افزودن این آیه به اسلاید جاری انتخابی"
-                : "Add to Current Slide"
-              : isRTL
-              ? "درج در اسلاید جدید (Enter)"
-              : "Add to Slide"
-          }
+          title={isCurrentSlideScripture ? d.addToCurrentSlideTitle : d.addToNewSlideTitle}
         >
           {isLoading ? (
             <Loader2 className="w-4 h-4 animate-spin text-black" />
@@ -904,13 +978,7 @@ export default function QuickScriptureBar({
             <Zap className="w-4 h-4 text-black fill-black" />
           )}
           <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-            {isCurrentSlideScripture
-              ? isRTL
-                ? "افزودن در این اسلاید (Enter)"
-                : "Add into This Slide"
-              : isRTL
-              ? "درج در اسلاید (Enter)"
-              : "Add to Slide"}
+            {isCurrentSlideScripture ? d.addIntoThisSlide : d.addToSlide}
           </span>
         </button>
 
@@ -921,11 +989,11 @@ export default function QuickScriptureBar({
             onClick={() => handleQuickInsert(true)}
             disabled={isLoading}
             className="flex items-center gap-1 px-3 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl border border-white/20 transition cursor-pointer select-none shrink-0"
-            title={isRTL ? "افزودن به عنوان یک اسلاید کاملاً جدید" : "Create as New Slide"}
+            title={d.createNewSlideTitle}
           >
             <Plus className="w-3.5 h-3.5 text-amber-400" />
             <span className={isRTL ? "font-[Vazirmatn]" : ""}>
-              {isRTL ? "اسلاید جدید" : "New Slide"}
+              {d.newSlide}
             </span>
           </button>
         )}
@@ -935,7 +1003,7 @@ export default function QuickScriptureBar({
           type="button"
           onClick={onOpenFullSelector}
           className="p-2 text-zinc-400 hover:text-white hover:bg-white/10 rounded-xl transition-all ml-auto shrink-0"
-          title={isRTL ? "باز کردن صفحه کامل کاوش و انتخاب آیه" : "Open Full Bible Explorer"}
+          title={d.openFullExplorer}
         >
           <SlidersHorizontal className="w-4 h-4" />
         </button>

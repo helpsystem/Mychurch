@@ -12,6 +12,85 @@ import { QRCodeSVG } from "qrcode.react";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { LordsPrayerSlide } from "./luxury/LordsPrayerSlide";
 import InteractiveMediaFrame, { extractYoutubeId, isYoutubeUrl } from "./InteractiveMediaFrame";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        noSlideSelected: "No slide selected",
+        selectedVersesList: "List of Selected Verses",
+        verseCountBadge: (n: number) => `${n} verse${n === 1 ? '' : 's'}`,
+        shrinkText: "Shrink text",
+        enlargeText: "Enlarge text",
+        backToList: "Back to list",
+        miniListTitle: "Selected Verses List",
+        activeVerseHintPreview: "The active verse is highlighted in gold",
+        activeVerseHintClick: "Click a verse to display it",
+        smartScanHint: "Smart scan with your phone camera",
+        churchAnnouncementBadge: "Church Announcement",
+        featAudioSongs: "Song audio & lyrics",
+        featSermonNotes: "Sermon verses & notes",
+        featTelegramWhatsapp: "Get it on Telegram & WhatsApp",
+        featBrowseSlides: "Browse the program's slides",
+        dateLabel: "Date:",
+        scanMeBadge: "Scan me",
+        pointCameraHint: "Point your phone camera at the barcode",
+        prayerRequestBadge: "Prayer Request",
+        byLabel: "By:",
+        anonymousFallback: "Anonymous",
+        answeredBadge: "Answered",
+        unsupportedSlideType: "Unsupported Slide Type",
+    },
+    fa: {
+        noSlideSelected: "هیچ اسلایدی انتخاب نشده",
+        selectedVersesList: "فهرست آیات انتخابی",
+        verseCountBadge: (n: number) => `${n} آیه`,
+        shrinkText: "کوچک‌تر کردن متن",
+        enlargeText: "بزرگ‌تر کردن متن",
+        backToList: "بازگشت به فهرست",
+        miniListTitle: "لیست آیات انتخابی",
+        activeVerseHintPreview: "آیه فعال با رنگ طلایی مشخص است",
+        activeVerseHintClick: "جهت پخش روی آیه کلیک کنید",
+        smartScanHint: "اسکن هوشمند با دوربین گوشی تلفن همراه",
+        churchAnnouncementBadge: "اطلاعیه کلیسا",
+        featAudioSongs: "فایل صوتی و متن سرودها",
+        featSermonNotes: "آیات موعظه و یادداشت‌ها",
+        featTelegramWhatsapp: "دریافت در تلگرام و واتساپ",
+        featBrowseSlides: "ورق زدن اسلایدهای برنامه",
+        dateLabel: "تاریخ:",
+        scanMeBadge: "اسکن کنید",
+        pointCameraHint: "دوربین موبایل خود را مقابل بارکد قرار دهید",
+        prayerRequestBadge: "درخواست دعا",
+        byLabel: "توسط:",
+        anonymousFallback: "ناشناس",
+        answeredBadge: "مستجاب شده",
+        unsupportedSlideType: "نوع اسلاید پشتیبانی نمی‌شود",
+    },
+    es: {
+        noSlideSelected: "Ninguna diapositiva seleccionada",
+        selectedVersesList: "Lista de versículos seleccionados",
+        verseCountBadge: (n: number) => `${n} versículo${n === 1 ? '' : 's'}`,
+        shrinkText: "Reducir texto",
+        enlargeText: "Aumentar texto",
+        backToList: "Volver a la lista",
+        miniListTitle: "Lista de versículos seleccionados",
+        activeVerseHintPreview: "El versículo activo se resalta en dorado",
+        activeVerseHintClick: "Haga clic en un versículo para mostrarlo",
+        smartScanHint: "Escaneo inteligente con la cámara de su teléfono",
+        churchAnnouncementBadge: "Anuncio de la iglesia",
+        featAudioSongs: "Audio y letras de canciones",
+        featSermonNotes: "Versículos y notas del sermón",
+        featTelegramWhatsapp: "Recíbalo en Telegram y WhatsApp",
+        featBrowseSlides: "Explorar las diapositivas del programa",
+        dateLabel: "Fecha:",
+        scanMeBadge: "Escanear",
+        pointCameraHint: "Apunte la cámara de su teléfono al código",
+        prayerRequestBadge: "Petición de oración",
+        byLabel: "Por:",
+        anonymousFallback: "Anónimo",
+        answeredBadge: "Respondida",
+        unsupportedSlideType: "Tipo de diapositiva no compatible",
+    },
+};
 
 const isVideoUrl = (url: string | undefined): boolean => {
     if (!url) return false;
@@ -145,6 +224,8 @@ export function SlideRenderer({
     onUpdatePopupScale,
     lyricsVisibility: propLyricsVisibility
 }: SlideRendererProps) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const storeActiveReference = useBroadcastStore(state => state.activeScriptureReference);
     const storePopupScale = useBroadcastStore(state => state.scripturePopupScale);
     const setStoreActiveReference = useBroadcastStore(state => state.setActiveScriptureReference);
@@ -272,7 +353,7 @@ export function SlideRenderer({
         return (
             <div className={cn("w-full h-full flex flex-col items-center justify-center bg-black text-white/30", className)}>
                 <div className="text-6xl mb-4">🖥️</div>
-                <div className="text-xl font-bold font-[Vazirmatn]">هیچ اسلایدی انتخاب نشده</div>
+                <div className="text-xl font-bold font-[Vazirmatn]">{d.noSlideSelected}</div>
             </div>
         );
     }
@@ -497,9 +578,9 @@ export function SlideRenderer({
                                     <>
                                         {/* Header */}
                                         <div className="shrink-0 flex items-center justify-between" style={{ padding: `${headerPaddingY}rem ${headerPaddingX}rem`, borderBottom: `${headerBorder}rem solid ${useWavyPaper ? 'rgba(138,77,15,0.25)' : 'rgba(99,102,241,0.25)'}` }}>
-                                            <h2 className={`font-black leading-tight font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>فهرست آیات انتخابی</h2>
+                                            <h2 className={`font-black leading-tight font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`} style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${3 * slideZoom}rem` }}>{d.selectedVersesList}</h2>
                                             <span style={{ fontFamily: 'var(--font-vazirmatn)', fontSize: `${1.5 * slideZoom}rem`, padding: `${0.4 * slideZoom}rem ${1 * slideZoom}rem`, borderRadius: `${999 * slideZoom}rem` }} className={`font-bold font-[Vazirmatn] ${useWavyPaper ? 'bg-[#8a4d0f]/15 text-[#41290e]' : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'}`}>
-                                                {references.length} آیه
+                                                {d.verseCountBadge(references.length)}
                                             </span>
                                         </div>
 
@@ -738,7 +819,7 @@ export function SlideRenderer({
                                                             }} 
                                                             className={`hover:text-white transition-all font-black rounded-lg flex items-center justify-center cursor-pointer select-none ${useWavyPaper ? 'text-[#8a4d0f] hover:bg-[#8a4d0f]/15' : 'text-slate-400 bg-white/5 hover:bg-white/10'}`}
                                                             style={{ width: `${2.8 * slideZoom}rem`, height: `${2.8 * slideZoom}rem`, fontSize: `${1.4 * slideZoom}rem` }}
-                                                            title="کوچک‌تر کردن متن"
+                                                            title={d.shrinkText}
                                                         >
                                                             A-
                                                         </button>
@@ -757,7 +838,7 @@ export function SlideRenderer({
                                                             }} 
                                                             className={`hover:text-white transition-all font-black rounded-lg flex items-center justify-center cursor-pointer select-none ${useWavyPaper ? 'text-[#8a4d0f] hover:bg-[#8a4d0f]/15' : 'text-slate-400 bg-white/5 hover:bg-white/10'}`}
                                                             style={{ width: `${2.8 * slideZoom}rem`, height: `${2.8 * slideZoom}rem`, fontSize: `${1.4 * slideZoom}rem` }}
-                                                            title="بزرگ‌تر کردن متن"
+                                                            title={d.enlargeText}
                                                         >
                                                             A+
                                                         </button>
@@ -772,7 +853,7 @@ export function SlideRenderer({
                                                             e.stopPropagation();
                                                             setActiveReference(null);
                                                         }}
-                                                        title="بازگشت به فهرست"
+                                                        title={d.backToList}
                                                         className={`rounded-2xl font-bold transition-all cursor-pointer ${useWavyPaper ? 'bg-[#8a4d0f]/10 hover:bg-[#8a4d0f]/20 text-[#41290e]' : 'bg-white/10 hover:bg-white/20 text-white'}`}
                                                         style={{ padding: `${0.6 * slideZoom}rem ${1.2 * slideZoom}rem`, fontSize: `${1.6 * slideZoom}rem` }}
                                                     >
@@ -885,9 +966,9 @@ export function SlideRenderer({
                                             >
                                                 {/* Mini List Header */}
                                                 <div className={`p-4 text-right shrink-0 border-b ${useWavyPaper ? 'border-[#8a4d0f]/15' : 'border-indigo-500/15'}`} dir="rtl">
-                                                    <h4 className={`font-bold text-[1.4rem] font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>لیست آیات انتخابی</h4>
+                                                    <h4 className={`font-bold text-[1.4rem] font-[Vazirmatn] ${useWavyPaper ? 'text-[#41290e]' : 'text-indigo-300'}`}>{d.miniListTitle}</h4>
                                                     <p className={`text-[0.95rem] mt-1 font-[Vazirmatn] ${useWavyPaper ? 'text-[#8a4d0f]' : 'text-slate-400'}`}>
-                                                        {isRemotePreview ? 'آیه فعال با رنگ طلایی مشخص است' : 'جهت پخش روی آیه کلیک کنید'}
+                                                        {isRemotePreview ? d.activeVerseHintPreview : d.activeVerseHintClick}
                                                     </p>
                                                 </div>
 
@@ -1015,13 +1096,13 @@ export function SlideRenderer({
                                 <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-500/20 to-blue-500/20 border border-amber-400/40 px-5 py-2 rounded-full w-fit shadow-lg shadow-amber-500/10 backdrop-blur-md">
                                     <Smartphone className="w-5 h-5 text-amber-300 animate-pulse" />
                                     <span className="text-amber-200 font-bold tracking-wider text-base md:text-lg font-[Vazirmatn]">
-                                        اسکن هوشمند با دوربین گوشی تلفن همراه
+                                        {d.smartScanHint}
                                     </span>
                                 </div>
                             ) : (
                                 <div className="inline-flex items-center gap-3 bg-white/10 border border-white/20 px-4 py-2 rounded-full w-fit">
                                     <Megaphone className="w-6 h-6 text-indigo-400" />
-                                    <span className="text-indigo-200 font-bold tracking-widest text-lg font-[Vazirmatn]">اطلاعیه کلیسا</span>
+                                    <span className="text-indigo-200 font-bold tracking-widest text-lg font-[Vazirmatn]">{d.churchAnnouncementBadge}</span>
                                 </div>
                             )}
                             
@@ -1039,19 +1120,19 @@ export function SlideRenderer({
                                 <div className="grid grid-cols-2 gap-3 pt-2 max-w-2xl">
                                     <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-lg font-[Vazirmatn]">
                                         <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold shrink-0">🎵</div>
-                                        <span>فایل صوتی و متن سرودها</span>
+                                        <span>{d.featAudioSongs}</span>
                                     </div>
                                     <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-lg font-[Vazirmatn]">
                                         <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold shrink-0">📖</div>
-                                        <span>آیات موعظه و یادداشت‌ها</span>
+                                        <span>{d.featSermonNotes}</span>
                                     </div>
                                     <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-lg font-[Vazirmatn]">
                                         <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold shrink-0">💬</div>
-                                        <span>دریافت در تلگرام و واتساپ</span>
+                                        <span>{d.featTelegramWhatsapp}</span>
                                     </div>
                                     <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-200 text-lg font-[Vazirmatn]">
                                         <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold shrink-0">✨</div>
-                                        <span>ورق زدن اسلایدهای برنامه</span>
+                                        <span>{d.featBrowseSlides}</span>
                                     </div>
                                 </div>
                             )}
@@ -1059,7 +1140,7 @@ export function SlideRenderer({
                             {content.eventDate && (
                                 <div className="flex items-center gap-4 text-2xl text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-2xl w-fit mt-4">
                                     <Calendar className="w-8 h-8" />
-                                    <span>تاریخ: {content.eventDate}</span>
+                                    <span>{d.dateLabel} {content.eventDate}</span>
                                 </div>
                             )}
                         </div>
@@ -1069,7 +1150,7 @@ export function SlideRenderer({
                             <div className="flex-1 flex flex-col items-center justify-center z-10 pl-4">
                                 <div className="p-6 md:p-8 bg-white/95 rounded-[2.5rem] shadow-[0_0_50px_rgba(99,102,241,0.35)] border-4 border-amber-400/60 flex flex-col items-center justify-center relative group">
                                     <div className="absolute -top-3.5 bg-gradient-to-r from-amber-500 to-indigo-600 text-white font-bold text-xs md:text-sm px-4 py-1 rounded-full shadow-md font-[Vazirmatn]">
-                                        اسکن کنید
+                                        {d.scanMeBadge}
                                     </div>
                                     <div className="p-2 bg-white rounded-2xl">
                                         <QRCodeSVG
@@ -1084,7 +1165,7 @@ export function SlideRenderer({
                                     </div>
                                 </div>
                                 <p className="text-slate-400 text-sm md:text-base mt-4 font-[Vazirmatn] text-center font-medium">
-                                    دوربین موبایل خود را مقابل بارکد قرار دهید
+                                    {d.pointCameraHint}
                                 </p>
                             </div>
                         ) : content.imageUrl ? (
@@ -1198,24 +1279,24 @@ export function SlideRenderer({
                         <div className="flex-1 flex flex-col justify-center max-w-4xl z-10 space-y-8" dir="rtl">
                             <div className="inline-flex items-center gap-3 bg-white/10 border border-white/20 px-4 py-2 rounded-full w-fit">
                                 <span className="text-2xl">🙏</span>
-                                <span className="text-rose-200 font-bold tracking-widest text-lg">درخواست دعا</span>
+                                <span className="text-rose-200 font-bold tracking-widest text-lg">{d.prayerRequestBadge}</span>
                             </div>
-                            
+
                             <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
                                 {content.title}
                             </h1>
-                            
+
                             <p className="text-3xl text-slate-300 leading-relaxed max-w-3xl border-r-4 border-rose-500/50 pr-6">
                                 {content.content}
                             </p>
-                            
+
                             <div className="flex items-center gap-4 mt-8">
                                 <div className="text-xl text-rose-300 font-bold bg-rose-500/10 border border-rose-500/20 px-6 py-3 rounded-2xl w-fit">
-                                    توسط: {content.userName || 'ناشناس'}
+                                    {d.byLabel} {content.userName || d.anonymousFallback}
                                 </div>
                                 {content.isAnswered && (
                                     <div className="text-xl text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-6 py-3 rounded-2xl w-fit flex items-center gap-2">
-                                        <CheckCircle className="w-6 h-6" /> مستجاب شده
+                                        <CheckCircle className="w-6 h-6" /> {d.answeredBadge}
                                     </div>
                                 )}
                             </div>
@@ -1231,7 +1312,7 @@ export function SlideRenderer({
             default:
                 return (
                     <div className="w-full h-full flex items-center justify-center bg-black">
-                        <h1 className="text-4xl text-white">Unsupported Slide Type</h1>
+                        <h1 className="text-4xl text-white">{d.unsupportedSlideType}</h1>
                     </div>
                 );
         }
