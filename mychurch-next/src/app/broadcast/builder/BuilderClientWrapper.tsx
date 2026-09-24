@@ -2,13 +2,14 @@
 
 import React, { useEffect, useRef, useState, useTransition } from "react";
 import SlideBuilder from "@/components/broadcast/SlideBuilder";
-import { BroadcastSession, AppLanguage, Slide, ScripturePage, SlideType, ScriptureReferenceItem, SlideContentScripture } from "@/types/broadcast";
+import { BroadcastSession, AppLanguage, Slide, ScripturePage, SlideType, ScriptureReferenceItem, SlideContentScripture, SlideContentLyrics } from "@/types/broadcast";
 import { savePresentation } from "@/actions/presentations";
 import { ArrowRight, CalendarDays, Loader2, Save, BookOpen, MonitorPlay, SendHorizontal } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
+import { SmartWorshipPlayer } from "@/components/worship/SmartWorshipPlayer";
 import { useRouter } from "next/navigation";
 import TemplateManager from "@/components/broadcast/TemplateManager";
 import QuickScriptureBar from "@/components/broadcast/QuickScriptureBar";
@@ -492,10 +493,35 @@ export default function BuilderClientWrapper({ initialSession }: { initialSessio
                      <div className="relative flex-1 flex items-center justify-center min-h-[340px] w-full">
                           <div className="relative w-full aspect-video bg-black rounded-3xl border-4 border-neutral-800 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden group max-w-5xl">
                                {session.slides.length > 0 ? (
-                                   <SlideRenderer 
-                                       slide={session.slides[activeSlideIndex]} 
-                                       isRemotePreview={true}
-                                   />
+                                   session.slides[activeSlideIndex]?.type === SlideType.LYRICS && (session.slides[activeSlideIndex].content as SlideContentLyrics)?.audioUrl ? (
+                                       (() => {
+                                           const lyricsContent = session.slides[activeSlideIndex].content as SlideContentLyrics;
+                                           const opts = lyricsContent.displayOptions;
+                                           return (
+                                               <SmartWorshipPlayer
+                                                   key={session.slides[activeSlideIndex].id}
+                                                   timingData={lyricsContent.timingData}
+                                                   audioSrc={lyricsContent.audioUrl!}
+                                                   title={lyricsContent.title}
+                                                   backgroundImage={opts?.backgroundUrl}
+                                                   backgroundOpacity={opts?.backgroundOpacity}
+                                                   backgroundBlur={opts?.backgroundBlur}
+                                                   textShadow={opts?.textShadow}
+                                                   objectFit={opts?.objectFit}
+                                                   translations={{
+                                                       finglish: lyricsContent.finglishLines,
+                                                       english: lyricsContent.lyricsEnLines,
+                                                       persian: lyricsContent.persianTranslationLines
+                                                   }}
+                                               />
+                                           );
+                                       })()
+                                   ) : (
+                                       <SlideRenderer
+                                           slide={session.slides[activeSlideIndex]}
+                                           isRemotePreview={true}
+                                       />
+                                   )
                                ) : (
                                    <div className="text-center h-full w-full flex flex-col items-center justify-center bg-neutral-900 absolute top-0 left-0 z-10 transition-transform group-hover:scale-105">
                                        <div className="text-8xl mb-6 drop-shadow-2xl opacity-50">🎬</div>

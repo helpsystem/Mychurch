@@ -1330,6 +1330,39 @@ export function SlideRenderer({
                 );
             }
 
+            case SlideType.MEETING: {
+                const content = slide.content as SlideContentMeeting;
+                const roomName = (content.roomName || '').trim();
+                if (!roomName) {
+                    return (
+                        <div className="w-full h-full flex items-center justify-center bg-black">
+                            <h1 className="text-4xl text-white">{d.unsupportedSlideType}</h1>
+                        </div>
+                    );
+                }
+                // Free, credential-less embed via Jitsi's public server. `roomName` doubles as
+                // the meeting's identity — anyone with the same room name joins the same call.
+                const configHash = [
+                    content.subject ? `config.subject=%22${encodeURIComponent(content.subject)}%22` : null,
+                    'config.prejoinPageEnabled=false',
+                    'config.startWithVideoMuted=false',
+                    'config.disableDeepLinking=true',
+                ].filter(Boolean).join('&');
+                const jitsiUrl = `https://meet.jit.si/${encodeURIComponent(roomName)}#${configHash}`;
+
+                return (
+                    <div className="w-full h-full bg-black relative">
+                        <iframe
+                            key={roomName}
+                            src={jitsiUrl}
+                            className="w-full h-full border-0"
+                            allow="camera; microphone; fullscreen; display-capture; autoplay"
+                            allowFullScreen
+                        />
+                    </div>
+                );
+            }
+
             case SlideType.LORDS_PRAYER: {
                 return <LordsPrayerSlide content={slide.content as any} isActive={true} />;
             }

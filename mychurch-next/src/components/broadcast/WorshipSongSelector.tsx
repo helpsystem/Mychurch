@@ -12,6 +12,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { toast } from 'sonner';
 import {
   Music, Search, X, Check, ChevronDown, ChevronUp,
   Play, Pause, Volume2, Youtube, FileText, Clock,
@@ -38,6 +39,8 @@ const localDict = {
         displaySettings: "📋 Display Settings",
         background: "🎨 Background",
         uploadBackgroundImage: "Upload Background Image",
+        uploadingBackgroundImage: "Uploading...",
+        backgroundImageUploadFailed: "Failed to upload background image",
         opacity: "Opacity",
         blur: "Blur",
         strongTextShadow: "Strong Text Shadow",
@@ -84,6 +87,8 @@ const localDict = {
         displaySettings: "📋 تنظیمات نمایش",
         background: "🎨 پس‌زمینه",
         uploadBackgroundImage: "آپلود تصویر زمینه",
+        uploadingBackgroundImage: "در حال آپلود...",
+        backgroundImageUploadFailed: "آپلود تصویر زمینه ناموفق بود",
         opacity: "شفافیت",
         blur: "تاری (Blur)",
         strongTextShadow: "سایه متن قوی (برای خوانایی)",
@@ -130,6 +135,8 @@ const localDict = {
         displaySettings: "Configuración de visualización",
         background: "Fondo",
         uploadBackgroundImage: "Subir imagen de fondo",
+        uploadingBackgroundImage: "Subiendo...",
+        backgroundImageUploadFailed: "Error al subir la imagen de fondo",
         opacity: "Opacidad",
         blur: "Desenfoque (Blur)",
         strongTextShadow: "Sombra de texto fuerte (para legibilidad)",
@@ -612,22 +619,49 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
   };
 
   // Handle Background Image Upload
-  const handleBgImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [isUploadingBg, setIsUploadingBg] = useState(false);
+
+  const handleBgImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const objectUrl = URL.createObjectURL(file);
+    e.target.value = ''; // allow re-selecting the same file later
+
+    // Show an instant local preview while the real upload is in flight.
+    const previewUrl = URL.createObjectURL(file);
     setDisplayOptions(prev => {
-      // Release the previous blob URL before swapping in the new one,
-      // otherwise each background-image change leaks the old blob.
-      if (prev.backgroundUrl?.startsWith('blob:')) {
-        URL.revokeObjectURL(prev.backgroundUrl);
-      }
-      return {
-        ...prev,
-        backgroundType: 'image',
-        backgroundUrl: objectUrl
-      };
+      if (prev.backgroundUrl?.startsWith('blob:')) URL.revokeObjectURL(prev.backgroundUrl);
+      return { ...prev, backgroundType: 'image', backgroundUrl: previewUrl };
     });
+
+    // A blob: URL only resolves in the tab that created it — it breaks as soon as this
+    // slide is shown in the console/projector/another device, or reloaded from the DB.
+    // Upload the file for real so the slide stores a durable, shareable URL.
+    setIsUploadingBg(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('folder', 'worship-backgrounds');
+      const res = await fetch('/api/media/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Upload failed');
+
+      setDisplayOptions(prev => {
+        if (prev.backgroundUrl?.startsWith('blob:')) URL.revokeObjectURL(prev.backgroundUrl);
+        // Only swap in the uploaded URL if the operator hasn't since picked something else.
+        if (prev.backgroundUrl !== previewUrl) return prev;
+        return { ...prev, backgroundType: 'image', backgroundUrl: data.url };
+      });
+    } catch (err) {
+      console.error('[WorshipSongSelector] Background image upload failed:', err);
+      toast.error(d.backgroundImageUploadFailed);
+      setDisplayOptions(prev => {
+        if (prev.backgroundUrl !== previewUrl) return prev;
+        URL.revokeObjectURL(previewUrl);
+        return { ...prev, backgroundUrl: undefined };
+      });
+    } finally {
+      setIsUploadingBg(false);
+    }
   };
 
   return (
@@ -946,12 +980,12 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                     <div className="p-4 border-t border-slate-700 space-y-4">
                       {/* Custom Image Upload */}
                       <div className="flex gap-4 items-center">
-                        <label className="flex-1 cursor-pointer bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-lg p-3 flex items-center justify-center gap-2 transition group">
-                          <Upload className="w-5 h-5 text-pink-400 group-hover:scale-110 transition" />
+                        <label className={`flex-1 cursor-pointer bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-lg p-3 flex items-center justify-center gap-2 transition group ${isUploadingBg ? 'opacity-60 pointer-events-none' : ''}`}>
+                          <Upload className={`w-5 h-5 text-pink-400 group-hover:scale-110 transition ${isUploadingBg ? 'animate-pulse' : ''}`} />
                           <span className="text-slate-300 group-hover:text-white text-sm">
-                            {d.uploadBackgroundImage}
+                            {isUploadingBg ? d.uploadingBackgroundImage : d.uploadBackgroundImage}
                           </span>
-                          <input type="file" accept="image/*" onChange={handleBgImageUpload} className="hidden" />
+                          <input type="file" accept="image/*" onChange={handleBgImageUpload} disabled={isUploadingBg} className="hidden" />
                         </label>
                       </div>
 
