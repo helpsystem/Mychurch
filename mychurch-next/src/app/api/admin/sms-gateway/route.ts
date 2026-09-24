@@ -70,10 +70,12 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({
-        // Backwards compatibility fields
+        // Backwards compatibility fields — Twilio is the primary/default provider whenever
+        // it's configured (a real API with delivery confirmation); Google Messages (browser
+        // automation against a paired Android phone) is reported as active only as a fallback.
         paired: gmStatus.paired || twilioConfigured,
-        provider: gmStatus.paired ? "google-messages" : twilioConfigured ? "twilio" : "none",
-        carrier: gmStatus.paired ? "Google Messages Android SIM" : twilioConfigured ? "Twilio Direct Cloud SMS" : "سرویس پیامک",
+        provider: twilioConfigured ? "twilio" : gmStatus.paired ? "google-messages" : "none",
+        carrier: twilioConfigured ? "Twilio Direct Cloud SMS" : gmStatus.paired ? "Google Messages Android SIM" : "سرویس پیامک",
         phoneNumber: twilioFrom || "",
         qrCode: gmQrCode,
 
@@ -136,7 +138,22 @@ export async function POST(req: Request) {
         }
     }
 
-    // 3. Auto mode: try Google Messages first if paired, else Twilio
+    // 3. Auto mode: try Twilio first (real API, delivery-confirmed), fall back to
+    // Google Messages (browser automation against a paired Android phone) only if Twilio
+    // isn't configured or the send fails.
+    const twilioSid = process.env.TWILIO_ACCOUNT_SID;
+    const twilioAuth = process.env.TWILIO_AUTH_TOKEN;
+    const twilioFrom = process.env.TWILIO_PHONE_NUMBER;
+
+    if (twilioSid && twilioAuth && twilioFrom) {
+        try {
+            const twilioRes = await sendSMSViaTwilio(phone, text);
+            return NextResponse.json({ success: true, phone, provider: "twilio", sid: twilioRes.sid });
+        } catch (err: any) {
+            console.warn('[SMSGateway API] Twilio failed, falling back to Google Messages:', err.message);
+        }
+    }
+
     try {
         const gmCheck = await checkGoogleMessagesPairing();
         if (gmCheck.paired) {
@@ -147,21 +164,8 @@ export async function POST(req: Request) {
         }
     } catch {}
 
-    const twilioSid = process.env.TWILIO_ACCOUNT_SID;
-    const twilioAuth = process.env.TWILIO_AUTH_TOKEN;
-    const twilioFrom = process.env.TWILIO_PHONE_NUMBER;
-
-    if (twilioSid && twilioAuth && twilioFrom) {
-        try {
-            const twilioRes = await sendSMSViaTwilio(phone, text);
-            return NextResponse.json({ success: true, phone, provider: "twilio", sid: twilioRes.sid });
-        } catch (err: any) {
-            return NextResponse.json({ success: false, error: err.message, phone }, { status: 500 });
-        }
-    }
-
-    return NextResponse.json({ 
-        success: false, 
-        error: "هیچ درگاه پیامکی (Google Messages سیم‌کارت یا Twilio) آماده ارسال نیست." 
+    return NextResponse.json({
+        success: false,
+        error: "هیچ درگاه پیامکی (Twilio یا Google Messages سیم‌کارت) آماده ارسال نیست."
     }, { status: 500 });
 }

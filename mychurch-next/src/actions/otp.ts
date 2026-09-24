@@ -138,7 +138,22 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
     }
 
     if (finalChannel === "sms" && phone) {
-        console.log(`[Auth OTP] 🚀 Attempting to send OTP via SMS (Google Messages SIM) to ${phone}...`);
+        // Twilio first: a real API with delivery confirmation, not dependent on a paired
+        // phone staying online or on Google's web UI not changing underneath us. Google
+        // Messages (browser automation against messages.google.com) is the fallback, not
+        // the primary path, for exactly that reason — it's the more fragile of the two.
+        console.log(`[Auth OTP] 🚀 Attempting to send OTP via SMS (Twilio) to ${phone}...`);
+        try {
+            const twilioRes = await sendSMS(phone, messageText);
+            if (twilioRes.success) {
+                return { success: true, channelUsed: "sms" };
+            }
+            console.warn(`[Auth OTP] ⚠️ Twilio SMS failed: ${twilioRes.error}. Falling back to Google Messages...`);
+        } catch (twErr: any) {
+            console.warn(`[Auth OTP] ⚠️ Twilio SMS exception: ${twErr.message}. Falling back to Google Messages...`);
+        }
+
+        // Fallback to Google Messages (SIM relay via a paired Android phone)
         try {
             const sent = await sendSMSViaGoogleMessages(phone, messageText);
             if (sent) {
@@ -146,17 +161,6 @@ export async function sendAdminOTP(channel: "whatsapp" | "sms" | "email" | "tele
             }
         } catch (gmErr: any) {
             console.warn(`[Auth OTP] ⚠️ Google Messages exception: ${gmErr.message}`);
-        }
-
-        // Fallback to Twilio Cloud SMS
-        console.log(`[Auth OTP] 📱 Google Messages unavailable. Attempting Twilio SMS fallback to ${phone}...`);
-        try {
-            const twilioRes = await sendSMS(phone, messageText);
-            if (twilioRes.success) {
-                return { success: true, channelUsed: "sms" };
-            }
-        } catch (twErr: any) {
-            console.warn(`[Auth OTP] ⚠️ Twilio SMS failed: ${twErr.message}`);
         }
 
         console.warn(`[Auth OTP] ⚠️ All SMS providers failed. Switching to Email fallback...`);
