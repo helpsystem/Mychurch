@@ -99,6 +99,19 @@ pm2 start run-server.js --name 'mychurch-next' --max-memory-restart 800M
 pm2 save
 echo "[deploy] PM2 restarted."
 
-# ─── 6. CLEANUP ────────────────────────────────────────────────────────────────
+# ─── 6. ENSURE SESSION RECORDING CLEANUP CRON IS REGISTERED ───────────────────
+# Re-registered idempotently on every deploy so it self-heals after a crash/reboot.
+# Runs daily at 03:00 server time; deletes local session-recording copies once they've
+# been published (sent to the public Telegram channel) and confirmed uploaded to
+# Telegram storage for 2 business days — the recording stays available forever via its
+# Telegram-backed cloud copy, only the local disk cache is cleaned up.
+echo "[deploy] Ensuring session-recording-cleanup cron is registered..."
+pm2 delete session-recording-cleanup >/dev/null 2>&1 || true
+pm2 start "npx tsx --env-file .env.local src/scripts/cron_cleanup_session_recordings.ts" \
+    --name "session-recording-cleanup" --cron-restart="0 3 * * *" --no-autorestart
+pm2 save
+echo "[deploy] Cleanup cron registered."
+
+# ─── 7. CLEANUP ────────────────────────────────────────────────────────────────
 rm -rf .next.old
 echo "[deploy] Done! Zero-downtime deploy complete."

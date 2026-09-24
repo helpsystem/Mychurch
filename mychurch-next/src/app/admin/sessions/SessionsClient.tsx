@@ -1,8 +1,20 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Play, CheckCircle2, Share2, Music, BookOpen, Clock, AlertCircle } from 'lucide-react';
+import { Play, CheckCircle2, Share2, Music, BookOpen, Clock, AlertCircle, Trash2, Cloud } from 'lucide-react';
 import { toast } from 'sonner';
+
+function formatRetentionDate(publishedAt: string) {
+    // Mirrors src/lib/business-days.ts's addBusinessDays(date, 2) for display purposes.
+    const d = new Date(publishedAt);
+    let remaining = 2;
+    while (remaining > 0) {
+        d.setDate(d.getDate() + 1);
+        const dow = d.getDay();
+        if (dow !== 0 && dow !== 6) remaining -= 1;
+    }
+    return d.toLocaleDateString('fa-IR');
+}
 
 export default function SessionsClient({ initialSessions }: { initialSessions: any[] }) {
     const [sessions, setSessions] = useState(initialSessions);
@@ -20,10 +32,22 @@ export default function SessionsClient({ initialSessions }: { initialSessions: a
             });
 
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error || 'Failed to publish');
+            if (!res.ok) {
+                // A publicMessageId in an error response means Telegram already has the post —
+                // warn clearly instead of letting the admin think retrying is safe.
+                if (data.publicMessageId) {
+                    toast.error(data.error, { duration: 15000 });
+                    return;
+                }
+                throw new Error(data.error || 'Failed to publish');
+            }
 
-            toast.success('جلسه با موفقیت در کانال عمومی منتشر شد!');
-            setSessions(prev => prev.map(s => s.id === sessionId ? { ...s, status: 'published', telegram_public_message_id: data.publicMessageId } : s));
+            if (data.alreadyPublished) {
+                toast.success('این جلسه قبلاً منتشر شده بود — دوباره ارسال نشد.');
+            } else {
+                toast.success('جلسه با موفقیت در کانال عمومی منتشر شد!');
+            }
+            setSessions(prev => prev.map(s => s.id === sessionId ? { ...s, status: 'published', telegram_public_message_id: data.publicMessageId, published_at: new Date().toISOString() } : s));
         } catch (error: any) {
             toast.error(error.message);
         } finally {
@@ -104,7 +128,7 @@ export default function SessionsClient({ initialSessions }: { initialSessions: a
                         </div>
                     </div>
 
-                    <div className="p-4 border-t border-border/10 bg-neutral-900 flex justify-end">
+                    <div className="p-4 border-t border-border/10 bg-neutral-900 flex flex-col gap-2">
                         {session.status !== 'published' ? (
                             <button
                                 onClick={() => handlePublish(session.id)}
@@ -115,9 +139,22 @@ export default function SessionsClient({ initialSessions }: { initialSessions: a
                                 {publishingId === session.id ? 'در حال انتشار...' : 'انتشار در کانال عمومی'}
                             </button>
                         ) : (
-                            <div className="text-xs text-muted-foreground flex justify-center w-full p-2">
-                                این جلسه قبلا منتشر شده است.
-                            </div>
+                            <>
+                                <div className="text-xs text-muted-foreground flex justify-center w-full p-2">
+                                    این جلسه قبلا منتشر شده است.
+                                </div>
+                                {session.media_library?.local_file_removed_at ? (
+                                    <div className="text-[11px] text-emerald-400/80 flex items-center justify-center gap-1.5">
+                                        <Cloud className="w-3.5 h-3.5" />
+                                        فایل محلی پاک شده — پخش از نسخه ابری تلگرام ادامه دارد
+                                    </div>
+                                ) : session.published_at ? (
+                                    <div className="text-[11px] text-muted-foreground/70 flex items-center justify-center gap-1.5">
+                                        <Trash2 className="w-3.5 h-3.5" />
+                                        فایل محلی تا {formatRetentionDate(session.published_at)} پاک می‌شود (نسخه ابری همیشه باقی می‌ماند)
+                                    </div>
+                                ) : null}
+                            </>
                         )}
                     </div>
                 </div>
