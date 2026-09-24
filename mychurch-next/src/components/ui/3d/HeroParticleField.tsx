@@ -101,7 +101,16 @@ export default function HeroParticleField({
     const camera = new THREE.PerspectiveCamera(50, mount.clientWidth / mount.clientHeight, 0.1, 100);
     camera.position.set(0, 0, 9);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (err) {
+      // No WebGL support (old browser, disabled GPU, etc.) — fail quietly and let
+      // the gradient background this component itself renders stand on its own,
+      // rather than crash the page it's decorating.
+      console.warn("[HeroParticleField] WebGL unavailable, skipping particle animation:", err);
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.setClearColor(0x000000, 0); // Transparent base so CSS backgrounds can show
