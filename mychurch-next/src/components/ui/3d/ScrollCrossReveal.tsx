@@ -32,11 +32,13 @@ export type Verse = {
 type ScrollCrossRevealProps = {
   verses: Verse[];
   className?: string;
+  dir?: "rtl" | "ltr";
 };
 
 export default function ScrollCrossReveal({
   verses,
   className = "",
+  dir = "rtl",
 }: ScrollCrossRevealProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const canvasMountRef = useRef<HTMLDivElement>(null);
@@ -51,6 +53,38 @@ export default function ScrollCrossReveal({
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
+    // ---------- scroll-driven progress ----------
+    // Wired up before the WebGL setup below so verse fading still works — via plain
+    // scroll position — even on a browser without WebGL support, where only the
+    // rotating glass cross itself is skipped.
+    let scrollProgress = 0; // 0 -> 1 across the whole section
+    function handleScroll() {
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      if (total <= 0) {
+        scrollProgress = 0;
+        return;
+      }
+      const raw = -rect.top / total;
+      scrollProgress = Math.min(1, Math.max(0, raw));
+
+      // fade verses based on which segment we're in
+      const segment = 1 / verses.length;
+      verseRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const segStart = i * segment;
+        const segEnd = segStart + segment;
+        const center = (segStart + segEnd) / 2;
+        const dist = Math.abs(scrollProgress - center) / (segment * 0.6);
+        const opacity = Math.max(0, 1 - dist);
+        el.style.opacity = String(opacity);
+        el.style.transform = `translateY(${(1 - opacity) * 12}px)`;
+      });
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       40,
@@ -60,7 +94,17 @@ export default function ScrollCrossReveal({
     );
     camera.position.set(0, 0, 6);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (err) {
+      // No WebGL support — fail quietly rather than crash the section; the verse text
+      // itself still renders and fades on scroll (just without the rotating glass cross
+      // behind it), since the fallback background color on the wrapping div covers for
+      // the missing canvas.
+      console.warn("[ScrollCrossReveal] WebGL unavailable, skipping 3D cross:", err);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
@@ -129,35 +173,6 @@ export default function ScrollCrossReveal({
     }
     window.addEventListener("resize", handleResize);
 
-    // ---------- scroll-driven progress ----------
-    let scrollProgress = 0; // 0 -> 1 across the whole section
-    function handleScroll() {
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const total = rect.height - window.innerHeight;
-      if (total <= 0) {
-        scrollProgress = 0;
-        return;
-      }
-      const raw = -rect.top / total;
-      scrollProgress = Math.min(1, Math.max(0, raw));
-
-      // fade verses based on which segment we're in
-      const segment = 1 / verses.length;
-      verseRefs.current.forEach((el, i) => {
-        if (!el) return;
-        const segStart = i * segment;
-        const segEnd = segStart + segment;
-        const center = (segStart + segEnd) / 2;
-        const dist = Math.abs(scrollProgress - center) / (segment * 0.6);
-        const opacity = Math.max(0, 1 - dist);
-        el.style.opacity = String(opacity);
-        el.style.transform = `translateY(${(1 - opacity) * 12}px)`;
-      });
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
     let rafId = 0;
     const clock = new THREE.Clock();
     function animate() {
@@ -200,7 +215,7 @@ export default function ScrollCrossReveal({
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#080D1A]">
         <div ref={canvasMountRef} className="absolute inset-0 h-full w-full" />
         <div className="relative z-10 flex h-full items-center justify-center px-6">
-          <div className="relative max-w-xl text-center" dir="rtl">
+          <div className="relative max-w-xl text-center" dir={dir}>
             {verses.map((verse, i) => (
               <div
                 key={verse.reference}

@@ -10,6 +10,7 @@ import StatsSection from "@/components/home/StatsSection";
 import MinistriesSection from "@/components/home/MinistriesSection";
 import WeeklyProgramsSection from "@/components/home/WeeklyProgramsSection";
 import SermonsSection from "@/components/home/SermonsSection";
+import GospelStorySection from "@/components/home/GospelStorySection";
 import PrayerSection from "@/components/home/PrayerSection";
 import LeadershipSection from "@/components/home/LeadershipSection";
 
@@ -25,6 +26,7 @@ export default function HomePage() {
         <StatsSection />
         <MinistriesSection />
         <SermonsSection />
+        <GospelStorySection />
         <PrayerSection />
         <LeadershipSection />
       </main>
