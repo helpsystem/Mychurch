@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import LiveConsole from "@/components/broadcast/LiveConsole";
 import { requireRole } from "@/utils/rbac";
+import { getConferenceConfig } from "@/actions/conference-config";
 
 export const metadata = {
     title: "Broadcast Console | MyChurch",
@@ -18,6 +19,7 @@ export default async function BroadcastPage({ searchParams }: BroadcastPageProps
     await requireRole(["Admin", "Leader", "Operator"]);
     const params = await searchParams;
     const presentationId = params.id || params.session || null;
+    const conferenceConfig = await getConferenceConfig();
     return (
         <Suspense fallback={
             <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center text-white gap-4 font-[Vazirmatn]">
@@ -25,7 +27,11 @@ export default async function BroadcastPage({ searchParams }: BroadcastPageProps
                 <p className="text-lg text-indigo-300">در حال بارگذاری کنسول پخش...</p>
             </div>
         }>
-            <LiveConsole initialPresentationId={presentationId} />
+            <LiveConsole
+                initialPresentationId={presentationId}
+                fccDialInNumber={conferenceConfig.dial_in_number || null}
+                fccAccessCode={conferenceConfig.access_code || null}
+            />
         </Suspense>
     );
 }

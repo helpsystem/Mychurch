@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square, Activity, SendHorizontal, LayoutDashboard, Layers, Globe, ArrowRight, ArrowLeft } from "lucide-react";
+import { Edit3, Power, Play, StopCircle, RadioReceiver, CloudDownload, X, FileJson, Loader2, SkipBack, SkipForward, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, ExternalLink, Phone, PhoneOff, Mic, MicOff, Menu, Settings, Square, Activity, SendHorizontal, LayoutDashboard, Layers, Globe, ArrowRight, ArrowLeft, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -28,9 +28,11 @@ import PrayerListModal from "./PrayerListModal";
 
 interface LiveConsoleProps {
     initialPresentationId?: string | null;
+    fccDialInNumber?: string | null;
+    fccAccessCode?: string | null;
 }
 
-export default function LiveConsole({ initialPresentationId = null }: LiveConsoleProps) {
+export default function LiveConsole({ initialPresentationId = null, fccDialInNumber = null, fccAccessCode = null }: LiveConsoleProps) {
     const { t, isRTL, language, setLanguage } = useLanguage();
     const presentationId = initialPresentationId;
 
@@ -507,6 +509,7 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
     const [isCallersModalOpen, setIsCallersModalOpen] = React.useState(false);
     const [fccCallers, setFccCallers] = React.useState<any[]>([]);
     const [fccConference, setFccConference] = React.useState<any | null>(null);
+    const [fccAuthExpired, setFccAuthExpired] = React.useState(false);
     const [isModeratingId, setIsModeratingId] = React.useState<string | null>(null);
     const lastKeyTimeRef = React.useRef<number>(0);
     const [isOnline, setIsOnline] = React.useState(true);
@@ -680,6 +683,12 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     const data = await res.json();
                     setFccCallers(data.participants || []);
                     setFccConference(data.conference || null);
+                    setFccAuthExpired(false);
+                } else if (res.status === 401) {
+                    // Silently returning here would leave the operator staring at an empty
+                    // caller list with no way to tell "no one's called in" apart from
+                    // "the FCC connection died" — surface it instead.
+                    setFccAuthExpired(true);
                 }
             } catch (err) {
                 console.error("Error polling FCC participants:", err);
@@ -1253,6 +1262,15 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
 
                     {/* FreeConferenceCall Live Control Widget (Compact & Collapsible) */}
                     <div className="bg-neutral-900/80 border border-white/10 rounded-xl p-2 sm:p-2.5 font-[Vazirmatn] text-white backdrop-blur-md mt-2 transition-all shrink-0">
+                        {fccAuthExpired && (
+                            <div className="mb-2 flex flex-wrap items-center gap-2 bg-red-950/60 border border-red-500/30 rounded-lg px-3 py-1.5 text-xs text-red-300">
+                                <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                                <span className="font-bold">اتصال FreeConferenceCall منقضی شده — لیست تماس‌گیرندگان و کنترل صدا در دسترس نیست.</span>
+                                <Link href="/admin/settings" className="underline hover:text-red-200 font-bold shrink-0">
+                                    احراز هویت مجدد در تنظیمات
+                                </Link>
+                            </div>
+                        )}
                         {/* Compact Header Bar */}
                         <div className="flex flex-wrap items-center justify-between gap-2">
                             {/* Callers count & toggle button */}
@@ -1276,22 +1294,47 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                                 <HelpTooltip text="مدیریت صدای شرکت‌کنندگانی که با تلفن یا وب به جلسه وصل شده‌اند." />
                             </div>
 
-                            {/* Conference Dial-in numbers inline chips */}
-                            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] text-neutral-300">
-                                <span className="text-neutral-400 font-bold hidden sm:inline">📞 خط کنفرانس:</span>
-                                <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px]">
-                                    <span className="text-neutral-400 text-[10px]">تلفن:</span>
-                                    <span className="text-emerald-400 font-bold select-all" dir="ltr">(605) 313-9689</span>
-                                </div>
-                                <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px]">
-                                    <span className="text-neutral-400 text-[10px]">کد:</span>
-                                    <span className="text-amber-400 font-bold select-all">1036379#</span>
-                                </div>
-                                <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px] hidden md:flex">
-                                    <span className="text-neutral-400 text-[10px]">شناسه:</span>
-                                    <span className="text-cyan-400 font-bold select-all" dir="ltr">iranianchurchdcus</span>
-                                </div>
-                            </div>
+                            {/* Conference Dial-in numbers inline chips — prefers the live FCC
+                                conference (polled every 4s) over the admin-configured fallback,
+                                so this never drifts from what's actually active on the account. */}
+                            {(() => {
+                                const liveDial = fccConference?.dial_number || fccConference?.dial_in_number;
+                                const liveCode = fccConference?.access_code;
+                                const liveId = fccConference?.online_meeting_id || fccConference?.meeting_id;
+                                const dial = liveDial || fccDialInNumber;
+                                const code = liveCode || fccAccessCode;
+                                const onlineId = liveId || config.meetingOnlineId;
+                                if (!dial && !code && !onlineId) {
+                                    return (
+                                        <div className="text-[11px] text-neutral-500 font-[Vazirmatn]">
+                                            خط کنفرانسی تنظیم نشده — از تنظیمات ادمین وارد کنید.
+                                        </div>
+                                    );
+                                }
+                                return (
+                                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] text-neutral-300">
+                                        <span className="text-neutral-400 font-bold hidden sm:inline">📞 خط کنفرانس:</span>
+                                        {dial && (
+                                            <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px]">
+                                                <span className="text-neutral-400 text-[10px]">تلفن:</span>
+                                                <span className="text-emerald-400 font-bold select-all" dir="ltr">{dial}</span>
+                                            </div>
+                                        )}
+                                        {code && (
+                                            <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px]">
+                                                <span className="text-neutral-400 text-[10px]">کد:</span>
+                                                <span className="text-amber-400 font-bold select-all">{code}</span>
+                                            </div>
+                                        )}
+                                        {onlineId && (
+                                            <div className="flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-md border border-white/5 font-mono text-[11px] hidden md:flex">
+                                                <span className="text-neutral-400 text-[10px]">شناسه:</span>
+                                                <span className="text-cyan-400 font-bold select-all" dir="ltr">{onlineId}</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })()}
                         </div>
 
                         {/* Collapsible Details Area */}
