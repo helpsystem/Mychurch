@@ -24,6 +24,239 @@ import {
 } from "lucide-react";
 import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
 import { toast } from "sonner";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    noVersesInRangeShort: "No verses found in this range.",
+    verseUpdatedToast: "✓ Verse updated.",
+    noSlidesCreatedToast: "No slides created.",
+    wizardTitle: "Step-by-Step Bible Slide Wizard",
+    wizardSubtitle: "Guided selection, smart layouts & multi-section scripture",
+    stepBookChapterLabel: "Book & Chapter",
+    stepSelectVersesLabel: "Select Verses",
+    stepSlideLayoutLabel: "Slide Layout",
+    stepReviewLabel: "Review & Insert",
+    switchToFreeViewTitle: "Switch to free reading view",
+    freeViewLabel: "Free View",
+    step1Heading: "Step 1: Choose Book and Chapter",
+    step1Description: "Select Testament or search to find your desired Bible book, then choose the chapter number.",
+    persianTranslationLabel: "Persian:",
+    testamentAllLabel: "All",
+    testamentNTLabel: "New Testament",
+    testamentOTLabel: "Old Testament",
+    testamentGospelsLabel: "Gospels",
+    searchBookPlaceholder: "Search book name...",
+    selectChapterInLabel: "Select Chapter in",
+    proceedToSelectVersesLabel: "Proceed to Select Verses",
+    step2Heading: "Step 2: Choose Verses",
+    step2Description: "Enter a range or click individual verses below to toggle them.",
+    rangeLabel: "Range:",
+    addRangeButtonLabel: "Add Range",
+    selectEntireChapterLabel: "Select Entire Chapter",
+    clearThisChapterLabel: "Clear This Chapter",
+    loadingVersesLabel: "Loading verses...",
+    versesSelectedSuffix: "verses selected",
+    noVersesSelectedYet: "No verses selected yet",
+    addMoreOrProceedQuestion: "Would you like to add verses from another book/chapter or proceed to slide layout?",
+    clickVersesOrRangeHint: "Click verses above or enter a range to select.",
+    backToBookChapterLabel: "Back to Book/Chapter",
+    selectSecondBookChapterHint: "Select second book/chapter.",
+    addAnotherSectionLabel: "Add Another Section",
+    proceedToSlideLayoutLabel: "Proceed to Slide Layout",
+    step3Heading: "Step 3: Slide Structure & Layout",
+    step3Description: "Choose how verses are grouped into presentation slides or add cross-reference verses.",
+    howVersesArrangedLabel: "How should verses be arranged on slides?",
+    oneVersePerSlideLabel: "One Verse Per Slide",
+    oneVersePerSlideDesc: "Ideal for sermons focusing on each verse individually. Large, clear typography.",
+    outputSlidesLabel: "Output slides:",
+    allInOneSlideLabel: "All Verses in One Slide",
+    allInOneSlideDesc: "Combines all selected verses continuously on a single slide. Great for short passages.",
+    twoVersesPerSlideLabel: "2 Verses Per Slide",
+    twoVersesPerSlideDesc: "Balanced view for longer scripture, avoiding tiny fonts or too many slide switches.",
+    threeVersesPerSlideLabel: "3 Verses Per Slide",
+    threeVersesPerSlideDesc: "For longer passages like Psalms — 3 verses per slide, fewer total slides.",
+    addAnotherSectionQuestion: "Would you like to add another scripture section from a different book/chapter?",
+    crossReferenceHint: "Add a cross-reference or secondary scripture section to compare passages together.",
+    selectSecondBookChapterPrompt: "Select second book and chapter.",
+    addAnotherSectionFromBibleLabel: "Add Another Section",
+    currentSectionsLabel: "Current Selected Sections:",
+    removeSectionTitle: "Remove section",
+    primaryLanguageLabel: "Primary Presentation Language:",
+    backToVersesLabel: "Back to Verses",
+    proceedToReviewLabel: "Proceed to Review",
+    step4Heading: "Step 4: Final Review & Reorder",
+    step4Description: "Reorder verses, edit text, delete unwanted items, and insert the final slides.",
+    moveSectionUpTitle: "Move section up",
+    moveSectionDownTitle: "Move section down",
+    editingVerseLabel: "Editing verse",
+    saveLabel: "Save",
+    cancelLabel: "Cancel",
+    moveUpTitle: "Move up",
+    moveDownTitle: "Move down",
+    editVerseTextTitle: "Edit verse text",
+    removeLabel: "Remove",
+    backToLayoutLabel: "Back to Layout",
+    closeLabel: "Close",
+    addedRangeToast: (start: number, end: number, count: number) => `✓ Added verses ${start} to ${end} (${count} verses).`,
+    selectedAllChapterToast: (chapter: number) => `✓ Selected all verses of chapter ${chapter}.`,
+    addedSlidesToast: (count: number) => `✓ Added ${count} slides to presentation.`,
+    finalInsertToast: (count: number) => `✓ Insert into Presentation (${count} Slides)`,
+  },
+  fa: {
+    noVersesInRangeShort: "هیچ آیه‌ای در این بازه یافت نشد.",
+    verseUpdatedToast: "✓ متن آیه ویرایش شد.",
+    noSlidesCreatedToast: "هیچ اسلایدی برای افزودن ساخته نشد.",
+    wizardTitle: "دستیار گام‌به‌گام انتخاب آیه کتاب مقدس",
+    wizardSubtitle: "انتخاب هدایت‌شده، ساختاردهی هوشمند اسلایدها و ترکیب چند بخشی",
+    stepBookChapterLabel: "انتخاب کتاب و فصل",
+    stepSelectVersesLabel: "انتخاب آیات",
+    stepSlideLayoutLabel: "چیدمان و ساختار اسلاید",
+    stepReviewLabel: "پیش‌نمایش و تایید نهایی",
+    switchToFreeViewTitle: "تغییر به نمای مطالعه آزاد متن کامل",
+    freeViewLabel: "نمای آزاد کتاب",
+    step1Heading: "مرحله ۱ از ۴: کتاب و فصل مورد نظر خود را انتخاب کنید",
+    step1Description: "می‌توانید با فیلترهای زیر (عهد جدید، عهد عتیق، اناجیل) یا جستجوی نام، کتاب دلخواه را بیابید و سپس شماره فصل را مشخص کنید.",
+    persianTranslationLabel: "ترجمه فارسی:",
+    testamentAllLabel: "همه کتب (۶۶)",
+    testamentNTLabel: "عهد جدید (۲۷)",
+    testamentOTLabel: "عهد قدیم (۳۹)",
+    testamentGospelsLabel: "اناجیل اربعه (۴)",
+    searchBookPlaceholder: "جستجوی نام کتاب (مثال: یوحنا، مزمور، پیدایش)...",
+    selectChapterInLabel: "انتخاب فصل از",
+    proceedToSelectVersesLabel: "تایید و رفتن به انتخاب آیات",
+    step2Heading: "مرحله ۲ از ۴: انتخاب آیات",
+    step2Description: "می‌توانید بازه آیات (از آیه تا آیه) را وارد کرده و دکمه «افزودن بازه» را بزنید، یا مستقیماً روی هر آیه در لیست زیر کلیک کنید.",
+    rangeLabel: "بازه آیات:",
+    addRangeButtonLabel: "✓ افزودن این بازه",
+    selectEntireChapterLabel: "انتخاب کل آیات این باب",
+    clearThisChapterLabel: "پاک کردن این باب",
+    loadingVersesLabel: "در حال بارگذاری آیات...",
+    versesSelectedSuffix: "آیه انتخاب شد",
+    noVersesSelectedYet: "هنوز آیه‌ای انتخاب نشده است",
+    addMoreOrProceedQuestion: "آیا می‌خواهید آیه/بخش دیگری از کتاب یا فصل دیگر به این مجموعه بیفزایید، یا برای انتخاب چیدمان به مرحله بعد بروید؟",
+    clickVersesOrRangeHint: "روی آیات مورد نظر در بالا کلیک کنید یا از جعبه «بازه آیات» استفاده نمایید.",
+    backToBookChapterLabel: "⬅️ تغییر کتاب یا فصل",
+    selectSecondBookChapterHint: "کتاب یا فصل دوم را برای اضافه کردن انتخاب کنید.",
+    addAnotherSectionLabel: "➕ افزودن بخش دیگر (کتاب/باب متفاوت)",
+    proceedToSlideLayoutLabel: "ادامه به مرحله ۳: انتخاب چیدمان و ساختار اسلایدها",
+    step3Heading: "مرحله ۳ از ۴: نحوه نمایش و ساختار اسلایدها",
+    step3Description: "مشخص کنید این آیات چگونه در پرزنتیشن نمایش یابند. همچنین می‌توانید در این مرحله آیات دیگری از کتاب‌های دیگر اضافه کنید.",
+    howVersesArrangedLabel: "این آیات چگونه در اسلایدها چیده شوند؟",
+    oneVersePerSlideLabel: "هر آیه در یک اسلاید جداگانه",
+    oneVersePerSlideDesc: "ایده‌آل برای خطبه‌ها و موعظه‌ها جهت تمرکز روی هر آیه. فونت درشت و خوانا از دور.",
+    outputSlidesLabel: "تعداد اسلاید نهایی:",
+    allInOneSlideLabel: "همه آیات در یک اسلاید پیوسته",
+    allInOneSlideDesc: "همه آیات انتخابی پشت سر هم درون یک اسلاید قرار می‌گیرند. عالی برای قرائت عمومی مزمور یا قطعه کوتاه.",
+    twoVersesPerSlideLabel: "دسته‌بندی ۲ آیه در هر اسلاید",
+    twoVersesPerSlideDesc: "متعادل‌ترین حالت برای متون طولانی تا فونت نه خیلی ریز شود و نه تعداد اسلایدها خیلی زیاد گردد.",
+    threeVersesPerSlideLabel: "دسته‌بندی ۳ آیه در هر اسلاید",
+    threeVersesPerSlideDesc: "برای متون طولانی مثل مزامیر — سه آیه در هر اسلاید، تعداد اسلایدها کمتر.",
+    addAnotherSectionQuestion: "آیا می‌خواهید آیه دیگری از کتاب یا فصل دیگری به این مجموعه اضافه کنید؟",
+    crossReferenceHint: "برای مقایسه نبوت عهد عتیق و تحقق آن در عهد جدید (یا مقایسه دو موضوع موعظه)، می‌توانید بخش دیگری را اضافه کنید بدون آنکه آیات قبلی پاک شوند.",
+    selectSecondBookChapterPrompt: "لطفاً کتاب و فصل دوم را انتخاب کنید.",
+    addAnotherSectionFromBibleLabel: "➕ افزودن بخش دیگر از کتاب مقدس",
+    currentSectionsLabel: "بخش‌های ثبت‌شده تا این لحظه:",
+    removeSectionTitle: "حذف این بخش",
+    primaryLanguageLabel: "زبان متن اصلی در پرزنتیشن:",
+    backToVersesLabel: "⬅️ بازگشت به انتخاب آیات",
+    proceedToReviewLabel: "رفتن به پیش‌نمایش و تایید نهایی",
+    step4Heading: "مرحله ۴ از ۴: پیش‌نمایش نهایی و مدیریت ردیف‌ها",
+    step4Description: "در این مرحله می‌توانید ترتیب ردیف‌ها را با دکمه‌های بالا/پایین تغییر دهید، متن آیه را اصلاح کنید یا با زدن دکمه تایید، اسلایدها را به پرزنتیشن اضافه نمایید.",
+    moveSectionUpTitle: "انتقال بخش به بالا",
+    moveSectionDownTitle: "انتقال بخش به پایین",
+    editingVerseLabel: "ویرایش آیه",
+    saveLabel: "ذخیره تغییرات",
+    cancelLabel: "انصراف",
+    moveUpTitle: "انتقال به بالا",
+    moveDownTitle: "انتقال به پایین",
+    editVerseTextTitle: "ویرایش متن آیه",
+    removeLabel: "حذف آیه",
+    backToLayoutLabel: "⬅️ بازگشت به تنظیم چیدمان",
+    closeLabel: "بستن",
+    addedRangeToast: (start: number, end: number, count: number) => `✓ آیات ${start} تا ${end} (${count} آیه) به لیست افزوده شدند.`,
+    selectedAllChapterToast: (chapter: number) => `✓ کل آیات باب ${chapter} انتخاب شدند.`,
+    addedSlidesToast: (count: number) => `✓ تعداد ${count} اسلاید با موفقیت به پرزنتیشن افزوده شد.`,
+    finalInsertToast: (count: number) => `✓ درج نهایی در پرزنتیشن (${count} اسلاید)`,
+  },
+  es: {
+    noVersesInRangeShort: "No se encontraron versículos en este rango.",
+    verseUpdatedToast: "✓ Versículo actualizado.",
+    noSlidesCreatedToast: "No se crearon diapositivas.",
+    wizardTitle: "Asistente paso a paso para versículos bíblicos",
+    wizardSubtitle: "Selección guiada, diseños inteligentes y escritura multisección",
+    stepBookChapterLabel: "Libro y capítulo",
+    stepSelectVersesLabel: "Seleccionar versículos",
+    stepSlideLayoutLabel: "Diseño de diapositiva",
+    stepReviewLabel: "Revisar e insertar",
+    switchToFreeViewTitle: "Cambiar a la vista de lectura libre",
+    freeViewLabel: "Vista libre",
+    step1Heading: "Paso 1: Elija el libro y el capítulo",
+    step1Description: "Seleccione un testamento o busque para encontrar el libro bíblico deseado y luego elija el número de capítulo.",
+    persianTranslationLabel: "Persa:",
+    testamentAllLabel: "Todos",
+    testamentNTLabel: "Nuevo Testamento",
+    testamentOTLabel: "Antiguo Testamento",
+    testamentGospelsLabel: "Evangelios",
+    searchBookPlaceholder: "Buscar nombre del libro...",
+    selectChapterInLabel: "Seleccionar capítulo en",
+    proceedToSelectVersesLabel: "Continuar a seleccionar versículos",
+    step2Heading: "Paso 2: Elegir versículos",
+    step2Description: "Ingrese un rango o haga clic en los versículos individuales a continuación para alternarlos.",
+    rangeLabel: "Rango:",
+    addRangeButtonLabel: "Agregar rango",
+    selectEntireChapterLabel: "Seleccionar todo el capítulo",
+    clearThisChapterLabel: "Borrar este capítulo",
+    loadingVersesLabel: "Cargando versículos...",
+    versesSelectedSuffix: "versículos seleccionados",
+    noVersesSelectedYet: "Aún no hay versículos seleccionados",
+    addMoreOrProceedQuestion: "¿Desea agregar versículos de otro libro/capítulo o continuar al diseño de diapositivas?",
+    clickVersesOrRangeHint: "Haga clic en los versículos anteriores o ingrese un rango para seleccionar.",
+    backToBookChapterLabel: "Volver a libro/capítulo",
+    selectSecondBookChapterHint: "Seleccione el segundo libro/capítulo.",
+    addAnotherSectionLabel: "Agregar otra sección",
+    proceedToSlideLayoutLabel: "Continuar al diseño de diapositivas",
+    step3Heading: "Paso 3: Estructura y diseño de diapositivas",
+    step3Description: "Elija cómo se agrupan los versículos en las diapositivas o agregue versículos de referencia cruzada.",
+    howVersesArrangedLabel: "¿Cómo deben organizarse los versículos en las diapositivas?",
+    oneVersePerSlideLabel: "Un versículo por diapositiva",
+    oneVersePerSlideDesc: "Ideal para sermones que se enfocan en cada versículo individualmente. Tipografía grande y clara.",
+    outputSlidesLabel: "Diapositivas resultantes:",
+    allInOneSlideLabel: "Todos los versículos en una diapositiva",
+    allInOneSlideDesc: "Combina todos los versículos seleccionados de forma continua en una sola diapositiva. Ideal para pasajes cortos.",
+    twoVersesPerSlideLabel: "2 versículos por diapositiva",
+    twoVersesPerSlideDesc: "Vista equilibrada para textos más largos, evitando fuentes diminutas o demasiados cambios de diapositiva.",
+    threeVersesPerSlideLabel: "3 versículos por diapositiva",
+    threeVersesPerSlideDesc: "Para pasajes más largos como los Salmos: 3 versículos por diapositiva, menos diapositivas en total.",
+    addAnotherSectionQuestion: "¿Desea agregar otra sección de las Escrituras de un libro/capítulo diferente?",
+    crossReferenceHint: "Agregue una referencia cruzada o una sección secundaria de las Escrituras para comparar pasajes juntos.",
+    selectSecondBookChapterPrompt: "Seleccione el segundo libro y capítulo.",
+    addAnotherSectionFromBibleLabel: "Agregar otra sección de la Biblia",
+    currentSectionsLabel: "Secciones seleccionadas actualmente:",
+    removeSectionTitle: "Eliminar esta sección",
+    primaryLanguageLabel: "Idioma principal de la presentación:",
+    backToVersesLabel: "Volver a versículos",
+    proceedToReviewLabel: "Continuar a revisión",
+    step4Heading: "Paso 4: Revisión final y reordenamiento",
+    step4Description: "Reordene los versículos, edite el texto, elimine elementos no deseados e inserte las diapositivas finales.",
+    moveSectionUpTitle: "Mover sección hacia arriba",
+    moveSectionDownTitle: "Mover sección hacia abajo",
+    editingVerseLabel: "Editando versículo",
+    saveLabel: "Guardar",
+    cancelLabel: "Cancelar",
+    moveUpTitle: "Mover hacia arriba",
+    moveDownTitle: "Mover hacia abajo",
+    editVerseTextTitle: "Editar texto del versículo",
+    removeLabel: "Eliminar",
+    backToLayoutLabel: "Volver al diseño",
+    closeLabel: "Cerrar",
+    addedRangeToast: (start: number, end: number, count: number) => `✓ Versículos ${start} a ${end} (${count} versículos) agregados a la lista.`,
+    selectedAllChapterToast: (chapter: number) => `✓ Se seleccionaron todos los versículos del capítulo ${chapter}.`,
+    addedSlidesToast: (count: number) => `✓ Se agregaron ${count} diapositivas a la presentación.`,
+    finalInsertToast: (count: number) => `✓ Insertar en la presentación (${count} diapositivas)`,
+  },
+};
+
 
 export interface BibleVersion {
   version_id: number;
@@ -112,6 +345,8 @@ export default function BibleStepWizard({
   onSwitchToFreeReader,
 }: BibleStepWizardProps) {
   const isRTL = lang === "fa";
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
 
   // Wizard current step: 1 = Book/Chapter, 2 = Verses, 3 = Layout & Structure, 4 = Review & Reorder
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
@@ -269,7 +504,7 @@ export default function BibleStepWizard({
     }
 
     if (rangeNums.length === 0) {
-      toast.error(isRTL ? "هیچ آیه‌ای در این بازه یافت نشد." : "No verses found in this range.");
+      toast.error(d.noVersesInRangeShort);
       return;
     }
 
@@ -315,9 +550,7 @@ export default function BibleStepWizard({
     });
 
     toast.success(
-      isRTL
-        ? `✓ آیات ${start} تا ${end} (${rangeNums.length} آیه) به لیست افزوده شدند.`
-        : `✓ Added verses ${start} to ${end} (${rangeNums.length} verses).`
+      d.addedRangeToast(start, end, rangeNums.length)
     );
   };
 
@@ -348,7 +581,7 @@ export default function BibleStepWizard({
       return [...existing, newSec];
     });
 
-    toast.success(isRTL ? `✓ کل آیات باب ${activeChapter} انتخاب شدند.` : `✓ Selected all verses of chapter ${activeChapter}.`);
+    toast.success(d.selectedAllChapterToast(activeChapter));
   };
 
   // Total verses count across all sections
@@ -417,7 +650,7 @@ export default function BibleStepWizard({
       }))
     );
     setInlineEditId(null);
-    toast.success(isRTL ? "✓ متن آیه ویرایش شد." : "✓ Verse updated.");
+    toast.success(d.verseUpdatedToast);
   };
 
   // Build the final ScripturePage[] slides
@@ -576,15 +809,13 @@ export default function BibleStepWizard({
   const handleFinish = () => {
     const slides = buildFinalSlides();
     if (slides.length === 0) {
-      toast.error(isRTL ? "هیچ اسلایدی برای افزودن ساخته نشد." : "No slides created.");
+      toast.error(d.noSlidesCreatedToast);
       return;
     }
     onAddSlides(slides);
     onClose();
     toast.success(
-      isRTL
-        ? `✓ تعداد ${slides.length} اسلاید با موفقیت به پرزنتیشن افزوده شد.`
-        : `✓ Added ${slides.length} slides to presentation.`
+      d.addedSlidesToast(slides.length)
     );
   };
 
@@ -603,15 +834,13 @@ export default function BibleStepWizard({
           </div>
           <div>
             <h2 className="text-base md:text-lg font-black text-white flex items-center gap-2">
-              <span>{isRTL ? "دستیار گام‌به‌گام انتخاب آیه کتاب مقدس" : "Step-by-Step Bible Slide Wizard"}</span>
+              <span>{d.wizardTitle}</span>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
                 PRO
               </span>
             </h2>
             <p className="text-xs text-zinc-400">
-              {isRTL
-                ? "انتخاب هدایت‌شده، ساختاردهی هوشمند اسلایدها و ترکیب چند بخشی"
-                : "Guided selection, smart layouts & multi-section scripture"}
+              {d.wizardSubtitle}
             </p>
           </div>
         </div>
@@ -628,7 +857,7 @@ export default function BibleStepWizard({
             }`}
           >
             <span className="w-4 h-4 rounded-full bg-black/30 flex items-center justify-center text-[10px]">۱</span>
-            <span>{isRTL ? "انتخاب کتاب و فصل" : "Book & Chapter"}</span>
+            <span>{d.stepBookChapterLabel}</span>
           </button>
 
           <ChevronLeft className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
@@ -643,7 +872,7 @@ export default function BibleStepWizard({
             }`}
           >
             <span className="w-4 h-4 rounded-full bg-black/30 flex items-center justify-center text-[10px]">۲</span>
-            <span>{isRTL ? "انتخاب آیات" : "Select Verses"}</span>
+            <span>{d.stepSelectVersesLabel}</span>
             {totalSelectedVersesCount > 0 && (
               <span className="bg-black/30 px-1.5 py-0.2 rounded-full text-[10px]">{totalSelectedVersesCount}</span>
             )}
@@ -662,7 +891,7 @@ export default function BibleStepWizard({
             }`}
           >
             <span className="w-4 h-4 rounded-full bg-black/30 flex items-center justify-center text-[10px]">۳</span>
-            <span>{isRTL ? "چیدمان و ساختار اسلاید" : "Slide Layout"}</span>
+            <span>{d.stepSlideLayoutLabel}</span>
           </button>
 
           <ChevronLeft className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
@@ -678,7 +907,7 @@ export default function BibleStepWizard({
             }`}
           >
             <span className="w-4 h-4 rounded-full bg-black/30 flex items-center justify-center text-[10px]">۴</span>
-            <span>{isRTL ? "پیش‌نمایش و تایید نهایی" : "Review & Insert"}</span>
+            <span>{d.stepReviewLabel}</span>
           </button>
         </div>
 
@@ -689,10 +918,10 @@ export default function BibleStepWizard({
               type="button"
               onClick={onSwitchToFreeReader}
               className="px-3 py-1.5 text-xs rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 transition flex items-center gap-1.5"
-              title={isRTL ? "تغییر به نمای مطالعه آزاد متن کامل" : "Switch to free reading view"}
+              title={d.switchToFreeViewTitle}
             >
               <BookOpen className="w-3.5 h-3.5 text-blue-400" />
-              <span className="hidden sm:inline">{isRTL ? "نمای آزاد کتاب" : "Free View"}</span>
+              <span className="hidden sm:inline">{d.freeViewLabel}</span>
             </button>
           )}
 
@@ -700,7 +929,7 @@ export default function BibleStepWizard({
             type="button"
             onClick={onClose}
             className="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-white/10 transition"
-            aria-label="Close"
+            aria-label={d.closeLabel}
           >
             <X className="w-5 h-5" />
           </button>
@@ -721,12 +950,10 @@ export default function BibleStepWizard({
               </div>
               <div>
                 <h3 className="text-sm md:text-base font-black text-blue-200">
-                  {isRTL ? "مرحله ۱ از ۴: کتاب و فصل مورد نظر خود را انتخاب کنید" : "Step 1: Choose Book and Chapter"}
+                  {d.step1Heading}
                 </h3>
                 <p className="text-xs text-blue-300/80 mt-1 leading-relaxed">
-                  {isRTL
-                    ? "می‌توانید با فیلترهای زیر (عهد جدید، عهد عتیق، اناجیل) یا جستجوی نام، کتاب دلخواه را بیابید و سپس شماره فصل را مشخص کنید."
-                    : "Select Testament or search to find your desired Bible book, then choose the chapter number."}
+                  {d.step1Description}
                 </p>
               </div>
             </div>
@@ -734,7 +961,7 @@ export default function BibleStepWizard({
             {/* Translation Selectors */}
             <div className="flex flex-wrap items-center justify-between gap-3 bg-white/5 border border-white/10 rounded-2xl p-3 px-4">
               <div className="flex items-center gap-2 text-xs font-bold text-zinc-300">
-                <span>{isRTL ? "ترجمه فارسی:" : "Persian:"}</span>
+                <span>{d.persianTranslationLabel}</span>
                 <select
                   value={selectedVersionFa}
                   onChange={(e) => setSelectedVersionFa(e.target.value)}
@@ -778,7 +1005,7 @@ export default function BibleStepWizard({
                     bookFilterTab === "all" ? "bg-white/20 text-white shadow" : "text-zinc-400 hover:text-white"
                   }`}
                 >
-                  {isRTL ? "همه کتب (۶۶)" : "All"}
+                  {d.testamentAllLabel}
                 </button>
                 <button
                   type="button"
@@ -787,7 +1014,7 @@ export default function BibleStepWizard({
                     bookFilterTab === "NT" ? "bg-indigo-600 text-white shadow" : "text-zinc-400 hover:text-white"
                   }`}
                 >
-                  {isRTL ? "عهد جدید (۲۷)" : "New Testament"}
+                  {d.testamentNTLabel}
                 </button>
                 <button
                   type="button"
@@ -796,7 +1023,7 @@ export default function BibleStepWizard({
                     bookFilterTab === "OT" ? "bg-amber-600 text-white shadow" : "text-zinc-400 hover:text-white"
                   }`}
                 >
-                  {isRTL ? "عهد قدیم (۳۹)" : "Old Testament"}
+                  {d.testamentOTLabel}
                 </button>
                 <button
                   type="button"
@@ -805,7 +1032,7 @@ export default function BibleStepWizard({
                     bookFilterTab === "gospels" ? "bg-emerald-600 text-white shadow" : "text-zinc-400 hover:text-white"
                   }`}
                 >
-                  {isRTL ? "اناجیل اربعه (۴)" : "Gospels"}
+                  {d.testamentGospelsLabel}
                 </button>
               </div>
 
@@ -815,7 +1042,7 @@ export default function BibleStepWizard({
                   type="text"
                   value={bookSearchQuery}
                   onChange={(e) => setBookSearchQuery(e.target.value)}
-                  placeholder={isRTL ? "جستجوی نام کتاب (مثال: یوحنا، مزمور، پیدایش)..." : "Search book name..."}
+                  placeholder={d.searchBookPlaceholder}
                   className="w-full bg-white/5 border border-white/10 rounded-2xl pr-9 pl-4 py-2 text-xs text-white placeholder-zinc-500 outline-none focus:border-amber-400 focus:bg-white/10 transition"
                 />
                 {bookSearchQuery && (
@@ -871,7 +1098,7 @@ export default function BibleStepWizard({
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-amber-400 font-black text-sm">
-                      {isRTL ? "انتخاب فصل از" : "Select Chapter in"} {activeBook.book_name_fa}:
+                      {d.selectChapterInLabel} {activeBook.book_name_fa}:
                     </span>
                     <span className="text-xs text-zinc-400">
                       ({activeBook.chapter_count} {activeBook.book_id === "PSA" ? "مزمور" : "فصل"})
@@ -913,7 +1140,7 @@ export default function BibleStepWizard({
                 onClick={() => setCurrentStep(2)}
                 className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-black text-sm shadow-[0_0_20px_rgba(245,158,11,0.4)] active:scale-95 transition flex items-center gap-2 cursor-pointer"
               >
-                <span>{isRTL ? "تایید و رفتن به انتخاب آیات" : "Proceed to Select Verses"}</span>
+                <span>{d.proceedToSelectVersesLabel}</span>
                 <ChevronLeft className="w-4 h-4" />
               </button>
             </div>
@@ -933,7 +1160,7 @@ export default function BibleStepWizard({
               <div className="flex-1">
                 <div className="flex items-center justify-between flex-wrap gap-2">
                   <h3 className="text-sm md:text-base font-black text-amber-200">
-                    {isRTL ? "مرحله ۲ از ۴: انتخاب آیات" : "Step 2: Choose Verses"} — {activeBook.book_name_fa} باب{" "}
+                    {d.step2Heading} — {activeBook.book_name_fa} باب{" "}
                     {activeChapter}
                   </h3>
                   <button
@@ -945,9 +1172,7 @@ export default function BibleStepWizard({
                   </button>
                 </div>
                 <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                  {isRTL
-                    ? "می‌توانید بازه آیات (از آیه تا آیه) را وارد کرده و دکمه «افزودن بازه» را بزنید، یا مستقیماً روی هر آیه در لیست زیر کلیک کنید."
-                    : "Enter a range or click individual verses below to toggle them."}
+                  {d.step2Description}
                 </p>
               </div>
             </div>
@@ -956,7 +1181,7 @@ export default function BibleStepWizard({
             <div className="bg-black/60 border border-white/10 rounded-3xl p-4 flex flex-wrap items-center justify-between gap-4">
               {/* Range Selector */}
               <div className="flex items-center gap-2 bg-white/5 border border-amber-400/40 rounded-2xl px-3 py-2">
-                <span className="text-xs text-amber-300 font-bold select-none">{isRTL ? "بازه آیات:" : "Range:"}</span>
+                <span className="text-xs text-amber-300 font-bold select-none">{d.rangeLabel}</span>
                 <span className="text-xs text-zinc-400 font-[Vazirmatn]">از آیه</span>
                 <input
                   type="text"
@@ -980,7 +1205,7 @@ export default function BibleStepWizard({
                   onClick={applyRangeSelection}
                   className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-black font-black text-xs rounded-xl shadow transition active:scale-95 cursor-pointer"
                 >
-                  {isRTL ? "✓ افزودن این بازه" : "Add Range"}
+                  {d.addRangeButtonLabel}
                 </button>
               </div>
 
@@ -991,7 +1216,7 @@ export default function BibleStepWizard({
                   onClick={selectAllChapter}
                   className="px-3 py-2 rounded-xl text-xs font-bold bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 text-emerald-300 transition cursor-pointer"
                 >
-                  {isRTL ? "انتخاب کل آیات این باب" : "Select Entire Chapter"}
+                  {d.selectEntireChapterLabel}
                 </button>
                 <button
                   type="button"
@@ -1002,7 +1227,7 @@ export default function BibleStepWizard({
                   }}
                   className="px-3 py-2 rounded-xl text-xs font-bold bg-rose-600/20 hover:bg-rose-600/30 border border-rose-500/30 text-rose-300 transition cursor-pointer"
                 >
-                  {isRTL ? "پاک کردن این باب" : "Clear This Chapter"}
+                  {d.clearThisChapterLabel}
                 </button>
               </div>
             </div>
@@ -1011,7 +1236,7 @@ export default function BibleStepWizard({
             {loadingVerses ? (
               <div className="py-20 text-center text-amber-400 font-bold flex flex-col items-center gap-2">
                 <div className="w-8 h-8 border-2 border-amber-400 border-t-transparent rounded-full animate-spin" />
-                <span>{isRTL ? "در حال بارگذاری آیات..." : "Loading verses..."}</span>
+                <span>{d.loadingVersesLabel}</span>
               </div>
             ) : (
               <div className="space-y-2 max-h-[46vh] overflow-y-auto pr-1">
@@ -1070,22 +1295,18 @@ export default function BibleStepWizard({
                     <span>
                       {totalSelectedVersesCount > 0 ? (
                         <>
-                          {totalSelectedVersesCount} {isRTL ? "آیه انتخاب شد" : "verses selected"} (
+                          {totalSelectedVersesCount} {d.versesSelectedSuffix} (
                           {activeBook.book_name_fa} باب {activeChapter})
                         </>
                       ) : (
-                        <>{isRTL ? "هنوز آیه‌ای انتخاب نشده است" : "No verses selected yet"}</>
+                        <>{d.noVersesSelectedYet}</>
                       )}
                     </span>
                   </h4>
                   <p className="text-xs text-zinc-400 leading-relaxed">
                     {totalSelectedVersesCount > 0
-                      ? isRTL
-                        ? "آیا می‌خواهید آیه/بخش دیگری از کتاب یا فصل دیگر به این مجموعه بیفزایید، یا برای انتخاب چیدمان به مرحله بعد بروید؟"
-                        : "Would you like to add verses from another book/chapter or proceed to slide layout?"
-                      : isRTL
-                      ? "روی آیات مورد نظر در بالا کلیک کنید یا از جعبه «بازه آیات» استفاده نمایید."
-                      : "Click verses above or enter a range to select."}
+                      ? d.addMoreOrProceedQuestion
+                      : d.clickVersesOrRangeHint}
                   </p>
                 </div>
               </div>
@@ -1097,7 +1318,7 @@ export default function BibleStepWizard({
                     onClick={() => setCurrentStep(1)}
                     className="px-4 py-2 rounded-xl text-xs font-bold text-zinc-400 hover:text-white hover:bg-white/10 transition cursor-pointer"
                   >
-                    {isRTL ? "⬅️ تغییر کتاب یا فصل" : "Back to Book/Chapter"}
+                    {d.backToBookChapterLabel}
                   </button>
 
                   <button
@@ -1105,12 +1326,12 @@ export default function BibleStepWizard({
                     onClick={() => {
                       setEditingSectionId(null);
                       setCurrentStep(1);
-                      toast.info(isRTL ? "کتاب یا فصل دوم را برای اضافه کردن انتخاب کنید." : "Select second book/chapter.");
+                      toast.info(d.selectSecondBookChapterHint);
                     }}
                     className="px-4 py-2 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/20 text-amber-300 transition flex items-center gap-1.5 cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
-                    <span>{isRTL ? "➕ افزودن بخش دیگر (کتاب/باب متفاوت)" : "Add Another Section"}</span>
+                    <span>{d.addAnotherSectionLabel}</span>
                   </button>
                 </div>
 
@@ -1120,7 +1341,7 @@ export default function BibleStepWizard({
                   disabled={totalSelectedVersesCount === 0}
                   className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-black text-sm shadow-[0_0_20px_rgba(245,158,11,0.4)] active:scale-95 transition flex items-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                 >
-                  <span>{isRTL ? "ادامه به مرحله ۳: انتخاب چیدمان و ساختار اسلایدها" : "Proceed to Slide Layout"}</span>
+                  <span>{d.proceedToSlideLayoutLabel}</span>
                   <ChevronLeft className="w-4 h-4" />
                 </button>
               </div>
@@ -1140,12 +1361,10 @@ export default function BibleStepWizard({
               </div>
               <div className="flex-1">
                 <h3 className="text-sm md:text-base font-black text-purple-200">
-                  {isRTL ? "مرحله ۳ از ۴: نحوه نمایش و ساختار اسلایدها" : "Step 3: Slide Structure & Layout"}
+                  {d.step3Heading}
                 </h3>
                 <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                  {isRTL
-                    ? "مشخص کنید این آیات چگونه در پرزنتیشن نمایش یابند. همچنین می‌توانید در این مرحله آیات دیگری از کتاب‌های دیگر اضافه کنید."
-                    : "Choose how verses are grouped into presentation slides or add cross-reference verses."}
+                  {d.step3Description}
                 </p>
               </div>
             </div>
@@ -1156,7 +1375,7 @@ export default function BibleStepWizard({
                 <span className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 text-xs flex items-center justify-center font-bold">
                   ۱
                 </span>
-                <span>{isRTL ? "این آیات چگونه در اسلایدها چیده شوند؟" : "How should verses be arranged on slides?"}</span>
+                <span>{d.howVersesArrangedLabel}</span>
               </h4>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
@@ -1177,16 +1396,14 @@ export default function BibleStepWizard({
                       {layoutMode === "perVerse" && <CheckCircle2 className="w-5 h-5 text-amber-400" />}
                     </div>
                     <h5 className="font-black text-sm text-white mb-1">
-                      {isRTL ? "هر آیه در یک اسلاید جداگانه" : "One Verse Per Slide"}
+                      {d.oneVersePerSlideLabel}
                     </h5>
                     <p className="text-xs text-zinc-400 leading-relaxed">
-                      {isRTL
-                        ? "ایده‌آل برای خطبه‌ها و موعظه‌ها جهت تمرکز روی هر آیه. فونت درشت و خوانا از دور."
-                        : "Ideal for sermons focusing on each verse individually. Large, clear typography."}
+                      {d.oneVersePerSlideDesc}
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                    <span className="text-zinc-500">{isRTL ? "تعداد اسلاید نهایی:" : "Output slides:"}</span>
+                    <span className="text-zinc-500">{d.outputSlidesLabel}</span>
                     <span className="font-black text-amber-400">{totalSelectedVersesCount} اسلاید</span>
                   </div>
                 </div>
@@ -1208,16 +1425,14 @@ export default function BibleStepWizard({
                       {layoutMode === "single" && <CheckCircle2 className="w-5 h-5 text-amber-400" />}
                     </div>
                     <h5 className="font-black text-sm text-white mb-1">
-                      {isRTL ? "همه آیات در یک اسلاید پیوسته" : "All Verses in One Slide"}
+                      {d.allInOneSlideLabel}
                     </h5>
                     <p className="text-xs text-zinc-400 leading-relaxed">
-                      {isRTL
-                        ? "همه آیات انتخابی پشت سر هم درون یک اسلاید قرار می‌گیرند. عالی برای قرائت عمومی مزمور یا قطعه کوتاه."
-                        : "Combines all selected verses continuously on a single slide. Great for short passages."}
+                      {d.allInOneSlideDesc}
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                    <span className="text-zinc-500">{isRTL ? "تعداد اسلاید نهایی:" : "Output slides:"}</span>
+                    <span className="text-zinc-500">{d.outputSlidesLabel}</span>
                     <span className="font-black text-blue-400">۱ اسلاید</span>
                   </div>
                 </div>
@@ -1239,16 +1454,14 @@ export default function BibleStepWizard({
                       {layoutMode === "chunk2" && <CheckCircle2 className="w-5 h-5 text-amber-400" />}
                     </div>
                     <h5 className="font-black text-sm text-white mb-1">
-                      {isRTL ? "دسته‌بندی ۲ آیه در هر اسلاید" : "2 Verses Per Slide"}
+                      {d.twoVersesPerSlideLabel}
                     </h5>
                     <p className="text-xs text-zinc-400 leading-relaxed">
-                      {isRTL
-                        ? "متعادل‌ترین حالت برای متون طولانی تا فونت نه خیلی ریز شود و نه تعداد اسلایدها خیلی زیاد گردد."
-                        : "Balanced view for longer scripture, avoiding tiny fonts or too many slide switches."}
+                      {d.twoVersesPerSlideDesc}
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                    <span className="text-zinc-500">{isRTL ? "تعداد اسلاید نهایی:" : "Output slides:"}</span>
+                    <span className="text-zinc-500">{d.outputSlidesLabel}</span>
                     <span className="font-black text-emerald-400">
                       {Math.ceil(totalSelectedVersesCount / 2)} اسلاید
                     </span>
@@ -1272,16 +1485,14 @@ export default function BibleStepWizard({
                       {layoutMode === "chunk3" && <CheckCircle2 className="w-5 h-5 text-amber-400" />}
                     </div>
                     <h5 className="font-black text-sm text-white mb-1">
-                      {isRTL ? "دسته‌بندی ۳ آیه در هر اسلاید" : "3 Verses Per Slide"}
+                      {d.threeVersesPerSlideLabel}
                     </h5>
                     <p className="text-xs text-zinc-400 leading-relaxed">
-                      {isRTL
-                        ? "برای متون طولانی مثل مزامیر — سه آیه در هر اسلاید، تعداد اسلایدها کمتر."
-                        : "For longer passages like Psalms — 3 verses per slide, fewer total slides."}
+                      {d.threeVersesPerSlideDesc}
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                    <span className="text-zinc-500">{isRTL ? "تعداد اسلاید نهایی:" : "Output slides:"}</span>
+                    <span className="text-zinc-500">{d.outputSlidesLabel}</span>
                     <span className="font-black text-purple-400">
                       {Math.ceil(totalSelectedVersesCount / 3)} اسلاید
                     </span>
@@ -1297,15 +1508,11 @@ export default function BibleStepWizard({
                   <h4 className="text-base font-black text-amber-300 flex items-center gap-2">
                     <HelpCircle className="w-5 h-5" />
                     <span>
-                      {isRTL
-                        ? "آیا می‌خواهید آیه دیگری از کتاب یا فصل دیگری به این مجموعه اضافه کنید؟"
-                        : "Would you like to add another scripture section from a different book/chapter?"}
+                      {d.addAnotherSectionQuestion}
                     </span>
                   </h4>
                   <p className="text-xs text-zinc-400 leading-relaxed max-w-2xl">
-                    {isRTL
-                      ? "برای مقایسه نبوت عهد عتیق و تحقق آن در عهد جدید (یا مقایسه دو موضوع موعظه)، می‌توانید بخش دیگری را اضافه کنید بدون آنکه آیات قبلی پاک شوند."
-                      : "Add a cross-reference or secondary scripture section to compare passages together."}
+                    {d.crossReferenceHint}
                   </p>
                 </div>
 
@@ -1315,19 +1522,19 @@ export default function BibleStepWizard({
                     // Set up new section and switch back to step 1
                     setEditingSectionId(null);
                     setCurrentStep(1);
-                    toast.info(isRTL ? "لطفاً کتاب و فصل دوم را انتخاب کنید." : "Select second book and chapter.");
+                    toast.info(d.selectSecondBookChapterPrompt);
                   }}
                   className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-black text-xs md:text-sm shadow-lg shadow-amber-500/20 active:scale-95 transition flex items-center gap-2 cursor-pointer"
                 >
                   <Plus className="w-4 h-4 stroke-[3]" />
-                  <span>{isRTL ? "➕ افزودن بخش دیگر از کتاب مقدس" : "Add Another Section"}</span>
+                  <span>{d.addAnotherSectionFromBibleLabel}</span>
                 </button>
               </div>
 
               {/* Current sections summary */}
               <div className="bg-black/40 border border-white/5 rounded-2xl p-3">
                 <span className="text-xs font-bold text-zinc-400 block mb-2">
-                  {isRTL ? "بخش‌های ثبت‌شده تا این لحظه:" : "Current Selected Sections:"}
+                  {d.currentSectionsLabel}
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {sections.map((sec, idx) => (
@@ -1350,7 +1557,7 @@ export default function BibleStepWizard({
                           setSections((prev) => prev.filter((s) => s.id !== sec.id));
                         }}
                         className="text-zinc-500 hover:text-rose-400 transition"
-                        title={isRTL ? "حذف این بخش" : "Remove section"}
+                        title={d.removeSectionTitle}
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
@@ -1363,7 +1570,7 @@ export default function BibleStepWizard({
             {/* Language Preference */}
             <div className="flex items-center justify-between bg-white/5 border border-white/10 rounded-2xl p-4">
               <span className="text-xs font-bold text-zinc-300">
-                {isRTL ? "زبان متن اصلی در پرزنتیشن:" : "Primary Presentation Language:"}
+                {d.primaryLanguageLabel}
               </span>
               <div className="flex items-center gap-2">
                 <button
@@ -1394,7 +1601,7 @@ export default function BibleStepWizard({
                 onClick={() => setCurrentStep(2)}
                 className="px-5 py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition cursor-pointer"
               >
-                {isRTL ? "⬅️ بازگشت به انتخاب آیات" : "Back to Verses"}
+                {d.backToVersesLabel}
               </button>
 
               <button
@@ -1402,7 +1609,7 @@ export default function BibleStepWizard({
                 onClick={() => setCurrentStep(4)}
                 className="px-6 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-black text-sm shadow-[0_0_20px_rgba(245,158,11,0.4)] active:scale-95 transition flex items-center gap-2 cursor-pointer"
               >
-                <span>{isRTL ? "رفتن به پیش‌نمایش و تایید نهایی" : "Proceed to Review"}</span>
+                <span>{d.proceedToReviewLabel}</span>
                 <ChevronLeft className="w-4 h-4" />
               </button>
             </div>
@@ -1422,16 +1629,14 @@ export default function BibleStepWizard({
               <div className="flex-1">
                 <div className="flex items-center justify-between flex-wrap gap-2">
                   <h3 className="text-sm md:text-base font-black text-emerald-200">
-                    {isRTL ? "مرحله ۴ از ۴: پیش‌نمایش نهایی و مدیریت ردیف‌ها" : "Step 4: Final Review & Reorder"}
+                    {d.step4Heading}
                   </h3>
                   <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-black">
                     {previewSlidesCount} اسلاید آماده درج
                   </span>
                 </div>
                 <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                  {isRTL
-                    ? "در این مرحله می‌توانید ترتیب ردیف‌ها را با دکمه‌های بالا/پایین تغییر دهید، متن آیه را اصلاح کنید یا با زدن دکمه تایید، اسلایدها را به پرزنتیشن اضافه نمایید."
-                    : "Reorder verses, edit text, delete unwanted items, and insert the final slides."}
+                  {d.step4Description}
                 </p>
               </div>
             </div>
@@ -1460,7 +1665,7 @@ export default function BibleStepWizard({
                         onClick={() => moveSection(secIdx, "up")}
                         disabled={secIdx === 0}
                         className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 disabled:opacity-20 transition cursor-pointer"
-                        title={isRTL ? "انتقال بخش به بالا" : "Move section up"}
+                        title={d.moveSectionUpTitle}
                       >
                         <ArrowUp className="w-4 h-4" />
                       </button>
@@ -1469,7 +1674,7 @@ export default function BibleStepWizard({
                         onClick={() => moveSection(secIdx, "down")}
                         disabled={secIdx === sections.length - 1}
                         className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 disabled:opacity-20 transition cursor-pointer"
-                        title={isRTL ? "انتقال بخش به پایین" : "Move section down"}
+                        title={d.moveSectionDownTitle}
                       >
                         <ArrowDown className="w-4 h-4" />
                       </button>
@@ -1495,7 +1700,7 @@ export default function BibleStepWizard({
                                 {v.verse_num}
                               </span>
                               <span className="text-xs font-bold text-blue-300">
-                                {isRTL ? "ویرایش آیه" : "Editing verse"} {v.verse_num}
+                                {d.editingVerseLabel} {v.verse_num}
                               </span>
                             </div>
                             <div>
@@ -1526,14 +1731,14 @@ export default function BibleStepWizard({
                                 className="px-4 py-1.5 bg-blue-500 hover:bg-blue-400 text-white rounded-xl text-xs font-black transition flex items-center gap-1.5 cursor-pointer"
                               >
                                 <Check className="w-3.5 h-3.5" />
-                                {isRTL ? "ذخیره تغییرات" : "Save"}
+                                {d.saveLabel}
                               </button>
                               <button
                                 type="button"
                                 onClick={cancelInlineEdit}
                                 className="px-4 py-1.5 text-zinc-400 hover:text-white text-xs font-bold transition cursor-pointer rounded-xl hover:bg-white/5"
                               >
-                                {isRTL ? "انصراف" : "Cancel"}
+                                {d.cancelLabel}
                               </button>
                             </div>
                           </div>
@@ -1560,7 +1765,7 @@ export default function BibleStepWizard({
                                 onClick={() => moveVerse(sec.id, vIdx, "up")}
                                 disabled={vIdx === 0}
                                 className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition cursor-pointer"
-                                title={isRTL ? "انتقال به بالا" : "Move up"}
+                                title={d.moveUpTitle}
                               >
                                 <ArrowUp className="w-3.5 h-3.5" />
                               </button>
@@ -1569,7 +1774,7 @@ export default function BibleStepWizard({
                                 onClick={() => moveVerse(sec.id, vIdx, "down")}
                                 disabled={vIdx === sec.verses.length - 1}
                                 className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition cursor-pointer"
-                                title={isRTL ? "انتقال به پایین" : "Move down"}
+                                title={d.moveDownTitle}
                               >
                                 <ArrowDown className="w-3.5 h-3.5" />
                               </button>
@@ -1577,7 +1782,7 @@ export default function BibleStepWizard({
                                 type="button"
                                 onClick={() => startInlineEdit(v)}
                                 className="p-1.5 rounded-lg text-zinc-400 hover:text-blue-400 hover:bg-blue-500/10 transition cursor-pointer"
-                                title={isRTL ? "ویرایش متن آیه" : "Edit verse text"}
+                                title={d.editVerseTextTitle}
                               >
                                 <Edit3 className="w-3.5 h-3.5" />
                               </button>
@@ -1585,7 +1790,7 @@ export default function BibleStepWizard({
                                 type="button"
                                 onClick={() => removeVerse(sec.id, v.id)}
                                 className="p-1.5 rounded-lg text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 transition cursor-pointer"
-                                title={isRTL ? "حذف آیه" : "Remove"}
+                                title={d.removeLabel}
                               >
                                 <Trash2 className="w-3.5 h-3.5" />
                               </button>
@@ -1606,7 +1811,7 @@ export default function BibleStepWizard({
                 onClick={() => setCurrentStep(3)}
                 className="px-5 py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition cursor-pointer"
               >
-                {isRTL ? "⬅️ بازگشت به تنظیم چیدمان" : "Back to Layout"}
+                {d.backToLayoutLabel}
               </button>
 
               <button
@@ -1616,9 +1821,7 @@ export default function BibleStepWizard({
               >
                 <Zap className="w-5 h-5 fill-black" />
                 <span>
-                  {isRTL
-                    ? `✓ درج نهایی در پرزنتیشن (${previewSlidesCount} اسلاید)`
-                    : `✓ Insert into Presentation (${previewSlidesCount} Slides)`}
+                  {d.finalInsertToast(previewSlidesCount)}
                 </span>
               </button>
             </div>

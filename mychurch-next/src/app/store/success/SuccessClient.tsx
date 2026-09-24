@@ -18,7 +18,7 @@ export default function SuccessClient() {
         clearCart();
     }, []);
 
-    const d = {
+    const successDict = {
         en: {
             title: "Thank You for Your Order!",
             subtitle: "Your payment was processed successfully. We are preparing your package.",
@@ -32,23 +32,16 @@ export default function SuccessClient() {
             orderId: "کد پیگیری پرداخت:",
             desc: "رسید خرید شما شامل جزئیات سفارش و اطلاعات رهگیری مرسوله پستی به آدرس ایمیل شما ارسال گردیده است.",
             backToStore: "بازگشت به فروشگاه",
-        }
-    }[language] || {
-        en: {
-            title: "Thank You for Your Order!",
-            subtitle: "Your payment was processed successfully. We are preparing your package.",
-            orderId: "Stripe Session Reference:",
-            desc: "A receipt containing order details and shipping tracking information has been sent to your email address.",
-            backToStore: "Continue Shopping",
         },
-        fa: {
-            title: "با تشکر از خرید شما!",
-            subtitle: "پرداخت شما با موفقیت انجام شد. ما در حال آماده‌سازی بسته شما هستیم.",
-            orderId: "کد پیگیری پرداخت:",
-            desc: "رسید خرید شما شامل جزئیات سفارش و اطلاعات رهگیری مرسوله پستی به آدرس ایمیل شما ارسال گردیده است.",
-            backToStore: "بازگشت به فروشگاه",
+        es: {
+            title: "¡Gracias por Su Pedido!",
+            subtitle: "Su pago se procesó con éxito. Estamos preparando su paquete.",
+            orderId: "Referencia de Sesión de Stripe:",
+            desc: "Un recibo con los detalles del pedido y la información de seguimiento de envío ha sido enviado a su correo electrónico.",
+            backToStore: "Seguir Comprando",
         }
-    }.fa;
+    };
+    const d = successDict[language] || successDict.fa;
 
     return (
         <div className="min-h-screen bg-zinc-950 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" dir={isRTL ? "rtl" : "ltr"}>

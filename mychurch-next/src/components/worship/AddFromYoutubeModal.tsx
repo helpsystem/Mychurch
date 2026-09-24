@@ -20,6 +20,211 @@ import {
     Check
 } from "lucide-react";
 import { WorshipSong } from "@/actions/worship";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        errorEnterUrl: "Please enter a YouTube link or video ID.",
+        errorExtractFailed: "Error extracting information from YouTube",
+        successExtracted: "Video information was successfully extracted from YouTube! You can review or save the fields.",
+        errorServerConnection: "Error connecting to the server",
+        errorNeedFarsiLyrics: "You must enter the Persian lyrics of the song first.",
+        errorAiService: "Error in the AI service",
+        errorAi: "AI error",
+        errorTitleRequired: "The Persian title of the song is required.",
+        errorSaveSong: "Error registering the song",
+        successSongSaved: "The song was successfully saved to the database!",
+        errorSaving: "Error saving",
+        alertEnterOneLink: "Please enter at least one YouTube link.",
+        errorExtractionFailedShort: "Extraction failed",
+        alertNoReadySongs: "No ready songs were found to save.",
+        successBatchSaved: (count: number) => `🎉 ${count} songs were successfully saved to the database and published on the site!`,
+        modalTitle: "Add Song from YouTube",
+        badgePresentation: "Presentation & Database",
+        badgeManage: "Song Management",
+        modalSubtitle: "Automatically extract metadata, cover art, channel name, and lyrics, along with saving them to the database",
+        closeWindow: "Close window",
+        tabSingle: "Add single song with precise editing",
+        tabBatch: "Bulk add links (Batch)",
+        urlLabel: "Video link or YouTube ID (YouTube URL):",
+        urlPlaceholder: "Example: https://youtu.be/rSB2en2gl-Q or rSB2en2gl-Q",
+        extracting: "Extracting...",
+        extractInfo: "Extract Info",
+        viewOnYoutube: "Watch on YouTube",
+        extractedTitleFallback: "Extracted title",
+        youtubeLink: "YouTube",
+        titleFaLabel: "Persian title of the song",
+        titleFaPlaceholder: "Example: Yahovah Tavanaieh Man",
+        titleEnLabel: "English title / Finglish:",
+        artistLabel: "Singer / Writer / Ministry (Artist):",
+        artistPlaceholder: "Example: Samarate Rooh or Mostafa Fadavi",
+        categoryLabel: "Song category:",
+        lyricsHeading: "Song Lyrics",
+        finglishTitle: "Automatically generate Finglish from the Persian text",
+        finglishLabel: "Finglish with AI",
+        translateTitle: "English translation with AI",
+        translateLabel: "English Translation with AI",
+        chordsTitle: "Suggest chords with AI",
+        chordsLabel: "Chords with AI",
+        lyricsFaLabel: "Persian lyrics of the song (one verse or line per row):",
+        lyricsFaPlaceholder: "Persian lyrics of the song...",
+        finglishFieldLabel: "Finglish Lyrics (Transliteration):",
+        finglishFieldPlaceholder: "Finglish lyrics...",
+        englishTranslationLabel: "English Translation:",
+        englishTranslationPlaceholder: "English translation...",
+        chordsFieldLabel: "Guitar / Piano Chords:",
+        batchUrlsLabel: "Paste YouTube links here (one link per line):",
+        batchUrlsHint: "You can enter short links (youtu.be) or regular ones (watch?v=).",
+        batchExtracting: "Extracting one by one...",
+        batchExtractAll: "Extract All Links",
+        batchExtractedHeading: (ready: number, total: number) => `Extracted songs (${ready} of ${total}):`,
+        titleFaBatchPlaceholder: "Persian title of the song...",
+        statusReady: "Ready to save",
+        statusSaved: "Saved",
+        statusError: "Error",
+        cancel: "Cancel",
+        saving: "Saving...",
+        saveAndCreateSlide: "Save to database and create slide",
+        saveAndPublish: "Save to database and publish on site",
+        savingWithProgress: (percent: number) => `Saving (${percent}%)...`,
+        savingGeneric: "Saving...",
+        saveAllInDb: (count: number) => `Save all to database (${count} songs)`,
+    },
+    fa: {
+        errorEnterUrl: "لطفاً لینک یا شناسه ویدیوی یوتیوب را وارد کنید.",
+        errorExtractFailed: "خطا در استخراج اطلاعات از یوتیوب",
+        successExtracted: "اطلاعات ویدیو با موفقیت از یوتیوب استخراج شد! می‌توانید فیلدها را بازبینی یا ذخیره کنید.",
+        errorServerConnection: "خطا در ارتباط با سرور",
+        errorNeedFarsiLyrics: "ابتدا باید متن فارسی سرود را وارد کنید.",
+        errorAiService: "خطا در سرویس هوش مصنوعی",
+        errorAi: "خطا در هوش مصنوعی",
+        errorTitleRequired: "عنوان فارسی سرود الزامی است.",
+        errorSaveSong: "خطا در ثبت سرود",
+        successSongSaved: "سرود با موفقیت در دیتابیس ثبت شد!",
+        errorSaving: "خطا در ذخیره‌سازی",
+        alertEnterOneLink: "لطفاً حداقل یک لینک یوتیوب وارد کنید.",
+        errorExtractionFailedShort: "استخراج نشد",
+        alertNoReadySongs: "سرود آماده‌ای برای ذخیره‌سازی یافت نشد.",
+        successBatchSaved: (count: number) => `🎉 ${count} سرود با موفقیت در دیتابیس ذخیره و در سایت فعال شد!`,
+        modalTitle: "افزودن سرود از یوتیوب",
+        badgePresentation: "پرزنتیشن & دیتابیس",
+        badgeManage: "مدیریت سرودها",
+        modalSubtitle: "استخراج خودکار متادیتا، کاور، نام کانال و متن سرود همراه با ثبت در دیتابیس",
+        closeWindow: "بستن پنجره",
+        tabSingle: "افزودن تکی و ویرایش دقیق",
+        tabBatch: "ثبت دسته‌جمعی لینک‌ها (Batch)",
+        urlLabel: "لینک ویدیو یا شناسه یوتیوب (YouTube URL):",
+        urlPlaceholder: "مثال: https://youtu.be/rSB2en2gl-Q یا rSB2en2gl-Q",
+        extracting: "در حال استخراج...",
+        extractInfo: "استخراج اطلاعات",
+        viewOnYoutube: "مشاهده در یوتیوب",
+        extractedTitleFallback: "عنوان استخراج شده",
+        youtubeLink: "یوتیوب",
+        titleFaLabel: "عنوان فارسی سرود",
+        titleFaPlaceholder: "مثال: یهوه توانایی من",
+        titleEnLabel: "عنوان انگلیسی / فینگلیش:",
+        artistLabel: "خواننده / شاعر / خدمت (Artist):",
+        artistPlaceholder: "مثال: ثمرات روح یا مصطفی فدوی",
+        categoryLabel: "دسته‌بندی سرود:",
+        lyricsHeading: "متن سرود (Lyrics)",
+        finglishTitle: "تولید فینگلیش خودکار از متن فارسی",
+        finglishLabel: "فینگلیش با AI",
+        translateTitle: "ترجمه انگلیسی با هوش مصنوعی",
+        translateLabel: "ترجمه انگلیسی با AI",
+        chordsTitle: "پیشنهاد آکورد با هوش مصنوعی",
+        chordsLabel: "آکورد با AI",
+        lyricsFaLabel: "متن فارسی سرود (هر بند یا خط در یک سطر):",
+        lyricsFaPlaceholder: "متن فارسی سرود...",
+        finglishFieldLabel: "Finglish Lyrics (Transliteration):",
+        finglishFieldPlaceholder: "Finglish lyrics...",
+        englishTranslationLabel: "English Translation:",
+        englishTranslationPlaceholder: "English translation...",
+        chordsFieldLabel: "Guitar / Piano Chords:",
+        batchUrlsLabel: "لینک‌های یوتیوب را اینجا بچسبانید (هر لینک در یک خط):",
+        batchUrlsHint: "می‌توانید لینک‌های کوتاه (youtu.be) یا معمولی (watch?v=) را وارد کنید.",
+        batchExtracting: "در حال استخراج پی‌درپی...",
+        batchExtractAll: "استخراج تمام لینک‌ها",
+        batchExtractedHeading: (ready: number, total: number) => `سرودهای استخراج‌شده (${ready} از ${total}):`,
+        titleFaBatchPlaceholder: "عنوان فارسی سرود...",
+        statusReady: "آماده ذخیره",
+        statusSaved: "ثبت شد",
+        statusError: "خطا",
+        cancel: "انصراف",
+        saving: "در حال ذخیره...",
+        saveAndCreateSlide: "ذخیره در دیتابیس و ایجاد اسلاید",
+        saveAndPublish: "ذخیره در دیتابیس و ثبت در سایت",
+        savingWithProgress: (percent: number) => `در حال ذخیره (${percent}٪)...`,
+        savingGeneric: "در حال ذخیره‌سازی...",
+        saveAllInDb: (count: number) => `ثبت همه در دیتابیس (${count} سرود)`,
+    },
+    es: {
+        errorEnterUrl: "Por favor ingresa un enlace de YouTube o un ID de video.",
+        errorExtractFailed: "Error al extraer información de YouTube",
+        successExtracted: "¡La información del video se extrajo correctamente de YouTube! Puedes revisar o guardar los campos.",
+        errorServerConnection: "Error al conectar con el servidor",
+        errorNeedFarsiLyrics: "Primero debes ingresar la letra en persa de la canción.",
+        errorAiService: "Error en el servicio de IA",
+        errorAi: "Error de IA",
+        errorTitleRequired: "El título en persa de la canción es obligatorio.",
+        errorSaveSong: "Error al registrar la canción",
+        successSongSaved: "¡La canción se guardó correctamente en la base de datos!",
+        errorSaving: "Error al guardar",
+        alertEnterOneLink: "Por favor ingresa al menos un enlace de YouTube.",
+        errorExtractionFailedShort: "La extracción falló",
+        alertNoReadySongs: "No se encontraron canciones listas para guardar.",
+        successBatchSaved: (count: number) => `🎉 ¡${count} canciones se guardaron correctamente en la base de datos y se publicaron en el sitio!`,
+        modalTitle: "Agregar canción desde YouTube",
+        badgePresentation: "Presentación y base de datos",
+        badgeManage: "Gestión de canciones",
+        modalSubtitle: "Extrae automáticamente metadatos, portada, nombre del canal y letra, además de guardarlos en la base de datos",
+        closeWindow: "Cerrar ventana",
+        tabSingle: "Agregar una canción con edición precisa",
+        tabBatch: "Agregar enlaces en lote (Batch)",
+        urlLabel: "Enlace del video o ID de YouTube (YouTube URL):",
+        urlPlaceholder: "Ejemplo: https://youtu.be/rSB2en2gl-Q o rSB2en2gl-Q",
+        extracting: "Extrayendo...",
+        extractInfo: "Extraer información",
+        viewOnYoutube: "Ver en YouTube",
+        extractedTitleFallback: "Título extraído",
+        youtubeLink: "YouTube",
+        titleFaLabel: "Título en persa de la canción",
+        titleFaPlaceholder: "Ejemplo: Yahovah Tavanaieh Man",
+        titleEnLabel: "Título en inglés / Finglish:",
+        artistLabel: "Cantante / Autor / Ministerio (Artista):",
+        artistPlaceholder: "Ejemplo: Samarate Rooh o Mostafa Fadavi",
+        categoryLabel: "Categoría de la canción:",
+        lyricsHeading: "Letra de la canción",
+        finglishTitle: "Generar automáticamente el Finglish a partir del texto en persa",
+        finglishLabel: "Finglish con IA",
+        translateTitle: "Traducción al inglés con IA",
+        translateLabel: "Traducción al inglés con IA",
+        chordsTitle: "Sugerir acordes con IA",
+        chordsLabel: "Acordes con IA",
+        lyricsFaLabel: "Letra en persa de la canción (un verso o línea por fila):",
+        lyricsFaPlaceholder: "Letra en persa de la canción...",
+        finglishFieldLabel: "Finglish Lyrics (Transliteration):",
+        finglishFieldPlaceholder: "Finglish lyrics...",
+        englishTranslationLabel: "English Translation:",
+        englishTranslationPlaceholder: "English translation...",
+        chordsFieldLabel: "Guitar / Piano Chords:",
+        batchUrlsLabel: "Pega aquí los enlaces de YouTube (un enlace por línea):",
+        batchUrlsHint: "Puedes ingresar enlaces cortos (youtu.be) o normales (watch?v=).",
+        batchExtracting: "Extrayendo una por una...",
+        batchExtractAll: "Extraer todos los enlaces",
+        batchExtractedHeading: (ready: number, total: number) => `Canciones extraídas (${ready} de ${total}):`,
+        titleFaBatchPlaceholder: "Título en persa de la canción...",
+        statusReady: "Lista para guardar",
+        statusSaved: "Guardada",
+        statusError: "Error",
+        cancel: "Cancelar",
+        saving: "Guardando...",
+        saveAndCreateSlide: "Guardar en la base de datos y crear diapositiva",
+        saveAndPublish: "Guardar en la base de datos y publicar en el sitio",
+        savingWithProgress: (percent: number) => `Guardando (${percent}%)...`,
+        savingGeneric: "Guardando...",
+        saveAllInDb: (count: number) => `Guardar todo en la base de datos (${count} canciones)`,
+    },
+};
 
 interface AddFromYoutubeModalProps {
     isOpen: boolean;
@@ -64,6 +269,8 @@ export default function AddFromYoutubeModal({
     isPresentationMode = false
 }: AddFromYoutubeModalProps) {
     const [mode, setMode] = useState<"single" | "batch">("single");
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
 
     // --- Single Song State ---
     const [singleUrl, setSingleUrl] = useState("");
@@ -99,7 +306,7 @@ export default function AddFromYoutubeModal({
     const handleExtractSingle = async (urlToExtract?: string) => {
         const targetUrl = (urlToExtract || singleUrl).trim();
         if (!targetUrl) {
-            setSingleError("لطفاً لینک یا شناسه ویدیوی یوتیوب را وارد کنید.");
+            setSingleError(d.errorEnterUrl);
             return;
         }
 
@@ -116,7 +323,7 @@ export default function AddFromYoutubeModal({
 
             const data = await res.json();
             if (!res.ok) {
-                throw new Error(data.error || "خطا در استخراج اطلاعات از یوتیوب");
+                throw new Error(data.error || d.errorExtractFailed);
             }
 
             setVideoId(data.videoId || "");
@@ -130,9 +337,9 @@ export default function AddFromYoutubeModal({
             setLyricsEn(data.lyrics_en || "");
             setChords(data.chords || "");
 
-            setSingleSuccess("اطلاعات ویدیو با موفقیت از یوتیوب استخراج شد! می‌توانید فیلدها را بازبینی یا ذخیره کنید.");
+            setSingleSuccess(d.successExtracted);
         } catch (err: any) {
-            setSingleError(err.message || "خطا در ارتباط با سرور");
+            setSingleError(err.message || d.errorServerConnection);
         } finally {
             setIsExtractingSingle(false);
         }
@@ -141,7 +348,7 @@ export default function AddFromYoutubeModal({
     // --- AI Assist Handlers (Finglish, Translate, Chords) ---
     const handleAiAssist = async (taskMode: "finglish" | "translate" | "chords") => {
         if (!lyricsFa.trim()) {
-            setSingleError("ابتدا باید متن فارسی سرود را وارد کنید.");
+            setSingleError(d.errorNeedFarsiLyrics);
             return;
         }
 
@@ -161,7 +368,7 @@ export default function AddFromYoutubeModal({
 
             const data = await res.json();
             if (!res.ok) {
-                throw new Error(data.error || "خطا در سرویس هوش مصنوعی");
+                throw new Error(data.error || d.errorAiService);
             }
 
             if (taskMode === "finglish") {
@@ -172,7 +379,7 @@ export default function AddFromYoutubeModal({
                 setChords(data.result || "");
             }
         } catch (err: any) {
-            setSingleError(err.message || "خطا در هوش مصنوعی");
+            setSingleError(err.message || d.errorAi);
         } finally {
             setIsAiLoading(false);
         }
@@ -181,7 +388,7 @@ export default function AddFromYoutubeModal({
     // --- Save Single Song to DB ---
     const handleSaveSingle = async () => {
         if (!titleFa.trim()) {
-            setSingleError("عنوان فارسی سرود الزامی است.");
+            setSingleError(d.errorTitleRequired);
             return;
         }
 
@@ -209,11 +416,11 @@ export default function AddFromYoutubeModal({
 
             const data = await res.json();
             if (!res.ok) {
-                throw new Error(data.error || "خطا در ثبت سرود");
+                throw new Error(data.error || d.errorSaveSong);
             }
 
             const createdSong = data.song as WorshipSong;
-            setSingleSuccess("سرود با موفقیت در دیتابیس ثبت شد!");
+            setSingleSuccess(d.successSongSaved);
 
             if (onSongAdded) {
                 onSongAdded(createdSong);
@@ -223,7 +430,7 @@ export default function AddFromYoutubeModal({
                 onClose();
             }, 800);
         } catch (err: any) {
-            setSingleError(err.message || "خطا در ذخیره‌سازی");
+            setSingleError(err.message || d.errorSaving);
         } finally {
             setIsSaving(false);
         }
@@ -237,7 +444,7 @@ export default function AddFromYoutubeModal({
             .filter(l => Boolean(l));
 
         if (lines.length === 0) {
-            alert("لطفاً حداقل یک لینک یوتیوب وارد کنید.");
+            alert(d.alertEnterOneLink);
             return;
         }
 
@@ -271,7 +478,7 @@ export default function AddFromYoutubeModal({
                 const data = await res.json();
 
                 if (!res.ok) {
-                    throw new Error(data.error || "استخراج نشد");
+                    throw new Error(data.error || d.errorExtractionFailedShort);
                 }
 
                 setBatchItems(prev => prev.map((item, idx) => idx === i ? {
@@ -304,7 +511,7 @@ export default function AddFromYoutubeModal({
     const handleSaveBatchAll = async () => {
         const readyItems = batchItems.filter(i => i.status === "ready" && i.title_fa);
         if (readyItems.length === 0) {
-            alert("سرود آماده‌ای برای ذخیره‌سازی یافت نشد.");
+            alert(d.alertNoReadySongs);
             return;
         }
 
@@ -345,7 +552,7 @@ export default function AddFromYoutubeModal({
         }
 
         setIsBatchProcessing(false);
-        alert(`🎉 ${savedCount} سرود با موفقیت در دیتابیس ذخیره و در سایت فعال شد!`);
+        alert(d.successBatchSaved(savedCount));
 
         if (lastSavedSong && onSongAdded) {
             onSongAdded(lastSavedSong);
@@ -364,7 +571,7 @@ export default function AddFromYoutubeModal({
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center p-3 md:p-6 overflow-y-auto">
             <div
                 className="bg-slate-900 text-slate-100 rounded-2xl w-full max-w-4xl shadow-2xl border border-slate-700 max-h-[92vh] flex flex-col overflow-hidden"
-                dir="rtl"
+                dir={isRTL ? "rtl" : "ltr"}
             >
                 {/* Modal Header */}
                 <div className="bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 p-4 px-6 flex items-center justify-between text-white shadow-md">
@@ -374,13 +581,13 @@ export default function AddFromYoutubeModal({
                         </div>
                         <div>
                             <h2 className="text-xl font-bold font-[Vazirmatn] flex items-center gap-2">
-                                افزودن سرود از یوتیوب
+                                {d.modalTitle}
                                 <span className="text-xs bg-white/25 px-2 py-0.5 rounded-full font-sans tracking-wide">
-                                    {isPresentationMode ? "پرزنتیشن & دیتابیس" : "مدیریت سرودها"}
+                                    {isPresentationMode ? d.badgePresentation : d.badgeManage}
                                 </span>
                             </h2>
                             <p className="text-xs text-white/80 font-[Vazirmatn]">
-                                استخراج خودکار متادیتا، کاور، نام کانال و متن سرود همراه با ثبت در دیتابیس
+                                {d.modalSubtitle}
                             </p>
                         </div>
                     </div>
@@ -388,7 +595,7 @@ export default function AddFromYoutubeModal({
                     <button
                         onClick={onClose}
                         className="text-white/80 hover:text-white p-2 hover:bg-white/10 rounded-lg transition"
-                        title="بستن پنجره"
+                        title={d.closeWindow}
                     >
                         <X className="w-6 h-6" />
                     </button>
@@ -406,7 +613,7 @@ export default function AddFromYoutubeModal({
                         }`}
                     >
                         <Plus className="w-4 h-4" />
-                        افزودن تکی و ویرایش دقیق
+                        {d.tabSingle}
                     </button>
 
                     <button
@@ -419,7 +626,7 @@ export default function AddFromYoutubeModal({
                         }`}
                     >
                         <ListPlus className="w-4 h-4" />
-                        ثبت دسته‌جمعی لینک‌ها (Batch)
+                        {d.tabBatch}
                     </button>
                 </div>
 
@@ -446,7 +653,7 @@ export default function AddFromYoutubeModal({
                             {/* URL Input Bar */}
                             <div className="bg-slate-800/70 p-4 rounded-2xl border border-slate-700/70 space-y-3">
                                 <label className="block text-sm font-bold font-[Vazirmatn] text-slate-200">
-                                    لینک ویدیو یا شناسه یوتیوب (YouTube URL):
+                                    {d.urlLabel}
                                 </label>
                                 <div className="flex gap-2">
                                     <div className="relative flex-1">
@@ -460,7 +667,7 @@ export default function AddFromYoutubeModal({
                                                     handleExtractSingle();
                                                 }
                                             }}
-                                            placeholder="مثال: https://youtu.be/rSB2en2gl-Q یا rSB2en2gl-Q"
+                                            placeholder={d.urlPlaceholder}
                                             className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 font-mono text-sm focus:outline-none focus:border-red-500 transition"
                                             dir="ltr"
                                         />
@@ -478,12 +685,12 @@ export default function AddFromYoutubeModal({
                                         {isExtractingSingle ? (
                                             <>
                                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                                در حال استخراج...
+                                                {d.extracting}
                                             </>
                                         ) : (
                                             <>
                                                 <Sparkles className="w-4 h-4" />
-                                                استخراج اطلاعات
+                                                {d.extractInfo}
                                             </>
                                         )}
                                     </button>
@@ -508,7 +715,7 @@ export default function AddFromYoutubeModal({
                                                 className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 text-white text-xs font-bold transition backdrop-blur-[2px]"
                                             >
                                                 <Play className="w-4 h-4 fill-white" />
-                                                مشاهده در یوتیوب
+                                                {d.viewOnYoutube}
                                             </a>
                                         </div>
                                     ) : (
@@ -529,7 +736,7 @@ export default function AddFromYoutubeModal({
                                             )}
                                         </div>
                                         <h3 className="text-base font-bold text-white font-[Vazirmatn]">
-                                            {titleFa || "عنوان استخراج شده"}
+                                            {titleFa || d.extractedTitleFallback}
                                         </h3>
                                         {titleEn && (
                                             <p className="text-xs text-slate-400 font-sans tracking-wide">
@@ -545,7 +752,7 @@ export default function AddFromYoutubeModal({
                                         className="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 p-2 rounded-lg hover:bg-slate-800 transition"
                                     >
                                         <ExternalLink className="w-4 h-4" />
-                                        یوتیوب
+                                        {d.youtubeLink}
                                     </a>
                                 </div>
                             )}
@@ -554,21 +761,21 @@ export default function AddFromYoutubeModal({
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-1.5">
                                     <label className="text-xs font-bold text-slate-300 font-[Vazirmatn] flex items-center gap-1">
-                                        <span>عنوان فارسی سرود</span>
+                                        <span>{d.titleFaLabel}</span>
                                         <span className="text-red-400">*</span>
                                     </label>
                                     <input
                                         type="text"
                                         value={titleFa}
                                         onChange={e => setTitleFa(e.target.value)}
-                                        placeholder="مثال: یهوه توانایی من"
+                                        placeholder={d.titleFaPlaceholder}
                                         className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-[Vazirmatn] text-sm focus:outline-none focus:border-red-500 transition"
                                     />
                                 </div>
 
                                 <div className="space-y-1.5">
                                     <label className="text-xs font-bold text-slate-300 font-[Vazirmatn]">
-                                        عنوان انگلیسی / فینگلیش:
+                                        {d.titleEnLabel}
                                     </label>
                                     <input
                                         type="text"
@@ -582,20 +789,20 @@ export default function AddFromYoutubeModal({
 
                                 <div className="space-y-1.5">
                                     <label className="text-xs font-bold text-slate-300 font-[Vazirmatn]">
-                                        خواننده / شاعر / خدمت (Artist):
+                                        {d.artistLabel}
                                     </label>
                                     <input
                                         type="text"
                                         value={artist}
                                         onChange={e => setArtist(e.target.value)}
-                                        placeholder="مثال: ثمرات روح یا مصطفی فدوی"
+                                        placeholder={d.artistPlaceholder}
                                         className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-[Vazirmatn] text-sm focus:outline-none focus:border-red-500 transition"
                                     />
                                 </div>
 
                                 <div className="space-y-1.5">
                                     <label className="text-xs font-bold text-slate-300 font-[Vazirmatn]">
-                                        دسته‌بندی سرود:
+                                        {d.categoryLabel}
                                     </label>
                                     <select
                                         value={category}
@@ -616,7 +823,7 @@ export default function AddFromYoutubeModal({
                                 <div className="flex items-center justify-between flex-wrap gap-2">
                                     <h4 className="text-sm font-bold font-[Vazirmatn] text-slate-200 flex items-center gap-2">
                                         <Music className="w-4 h-4 text-pink-400" />
-                                        متن سرود (Lyrics)
+                                        {d.lyricsHeading}
                                     </h4>
 
                                     {/* AI Assist Action Buttons */}
@@ -626,10 +833,10 @@ export default function AddFromYoutubeModal({
                                             onClick={() => handleAiAssist("finglish")}
                                             disabled={isAiLoading || !lyricsFa.trim()}
                                             className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded-lg border border-slate-700 flex items-center gap-1 font-[Vazirmatn] transition disabled:opacity-40"
-                                            title="تولید فینگلیش خودکار از متن فارسی"
+                                            title={d.finglishTitle}
                                         >
                                             <Languages className="w-3.5 h-3.5 text-amber-400" />
-                                            فینگلیش با AI
+                                            {d.finglishLabel}
                                         </button>
 
                                         <button
@@ -637,10 +844,10 @@ export default function AddFromYoutubeModal({
                                             onClick={() => handleAiAssist("translate")}
                                             disabled={isAiLoading || !lyricsFa.trim()}
                                             className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded-lg border border-slate-700 flex items-center gap-1 font-[Vazirmatn] transition disabled:opacity-40"
-                                            title="ترجمه انگلیسی با هوش مصنوعی"
+                                            title={d.translateTitle}
                                         >
                                             <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-                                            ترجمه انگلیسی با AI
+                                            {d.translateLabel}
                                         </button>
 
                                         <button
@@ -648,10 +855,10 @@ export default function AddFromYoutubeModal({
                                             onClick={() => handleAiAssist("chords")}
                                             disabled={isAiLoading || !lyricsFa.trim()}
                                             className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded-lg border border-slate-700 flex items-center gap-1 font-[Vazirmatn] transition disabled:opacity-40"
-                                            title="پیشنهاد آکورد با هوش مصنوعی"
+                                            title={d.chordsTitle}
                                         >
                                             <Guitar className="w-3.5 h-3.5 text-emerald-400" />
-                                            آکورد با AI
+                                            {d.chordsLabel}
                                         </button>
                                     </div>
                                 </div>
@@ -659,13 +866,13 @@ export default function AddFromYoutubeModal({
                                 <div className="space-y-3">
                                     <div>
                                         <label className="text-xs text-slate-400 font-[Vazirmatn] block mb-1">
-                                            متن فارسی سرود (هر بند یا خط در یک سطر):
+                                            {d.lyricsFaLabel}
                                         </label>
                                         <textarea
                                             rows={5}
                                             value={lyricsFa}
                                             onChange={e => setLyricsFa(e.target.value)}
-                                            placeholder="متن فارسی سرود..."
+                                            placeholder={d.lyricsFaPlaceholder}
                                             className="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-[Vazirmatn] text-sm focus:outline-none focus:border-red-500 transition"
                                         />
                                     </div>
@@ -673,13 +880,13 @@ export default function AddFromYoutubeModal({
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div>
                                             <label className="text-xs text-slate-400 font-sans block mb-1" dir="ltr">
-                                                Finglish Lyrics (Transliteration):
+                                                {d.finglishFieldLabel}
                                             </label>
                                             <textarea
                                                 rows={3}
                                                 value={lyricsFinglish}
                                                 onChange={e => setLyricsFinglish(e.target.value)}
-                                                placeholder="Finglish lyrics..."
+                                                placeholder={d.finglishFieldPlaceholder}
                                                 className="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-sans text-xs focus:outline-none focus:border-red-500 transition"
                                                 dir="ltr"
                                             />
@@ -687,13 +894,13 @@ export default function AddFromYoutubeModal({
 
                                         <div>
                                             <label className="text-xs text-slate-400 font-sans block mb-1" dir="ltr">
-                                                English Translation:
+                                                {d.englishTranslationLabel}
                                             </label>
                                             <textarea
                                                 rows={3}
                                                 value={lyricsEn}
                                                 onChange={e => setLyricsEn(e.target.value)}
-                                                placeholder="English translation..."
+                                                placeholder={d.englishTranslationPlaceholder}
                                                 className="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white font-sans text-xs focus:outline-none focus:border-red-500 transition"
                                                 dir="ltr"
                                             />
@@ -702,7 +909,7 @@ export default function AddFromYoutubeModal({
 
                                     <div>
                                         <label className="text-xs text-slate-400 font-sans block mb-1" dir="ltr">
-                                            Guitar / Piano Chords:
+                                            {d.chordsFieldLabel}
                                         </label>
                                         <textarea
                                             rows={2}
@@ -723,7 +930,7 @@ export default function AddFromYoutubeModal({
                         <div className="space-y-6">
                             <div className="bg-slate-800/70 p-4 rounded-2xl border border-slate-700/70 space-y-3">
                                 <label className="block text-sm font-bold font-[Vazirmatn] text-slate-200">
-                                    لینک‌های یوتیوب را اینجا بچسبانید (هر لینک در یک خط):
+                                    {d.batchUrlsLabel}
                                 </label>
                                 <textarea
                                     rows={4}
@@ -736,7 +943,7 @@ export default function AddFromYoutubeModal({
 
                                 <div className="flex justify-between items-center flex-wrap gap-2">
                                     <span className="text-xs text-slate-400 font-[Vazirmatn]">
-                                        می‌توانید لینک‌های کوتاه (youtu.be) یا معمولی (watch?v=) را وارد کنید.
+                                        {d.batchUrlsHint}
                                     </span>
                                     <button
                                         type="button"
@@ -751,12 +958,12 @@ export default function AddFromYoutubeModal({
                                         {isBatchProcessing ? (
                                             <>
                                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                                در حال استخراج پی‌درپی...
+                                                {d.batchExtracting}
                                             </>
                                         ) : (
                                             <>
                                                 <Sparkles className="w-4 h-4" />
-                                                استخراج تمام لینک‌ها
+                                                {d.batchExtractAll}
                                             </>
                                         )}
                                     </button>
@@ -768,7 +975,7 @@ export default function AddFromYoutubeModal({
                                 <div className="space-y-3">
                                     <div className="flex items-center justify-between">
                                         <h4 className="text-sm font-bold font-[Vazirmatn] text-slate-200">
-                                            سرودهای استخراج‌شده ({batchItems.filter(i => i.status === "ready" || i.status === "saved").length} از {batchItems.length}):
+                                            {d.batchExtractedHeading(batchItems.filter(i => i.status === "ready" || i.status === "saved").length, batchItems.length)}
                                         </h4>
                                     </div>
 
@@ -804,7 +1011,7 @@ export default function AddFromYoutubeModal({
                                                                 const val = e.target.value;
                                                                 setBatchItems(prev => prev.map(p => p.id === item.id ? { ...p, title_fa: val } : p));
                                                             }}
-                                                            placeholder="عنوان فارسی سرود..."
+                                                            placeholder={d.titleFaBatchPlaceholder}
                                                             className="bg-transparent border-b border-slate-700 hover:border-slate-500 focus:border-red-500 text-sm font-bold font-[Vazirmatn] text-white focus:outline-none w-full truncate"
                                                         />
                                                     </div>
@@ -820,17 +1027,17 @@ export default function AddFromYoutubeModal({
                                                     )}
                                                     {item.status === "ready" && (
                                                         <span className="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-md font-[Vazirmatn]">
-                                                            آماده ذخیره
+                                                            {d.statusReady}
                                                         </span>
                                                     )}
                                                     {item.status === "saved" && (
                                                         <span className="text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-md font-[Vazirmatn] flex items-center gap-1">
-                                                            <Check className="w-3 h-3" /> ثبت شد
+                                                            <Check className="w-3 h-3" /> {d.statusSaved}
                                                         </span>
                                                     )}
                                                     {item.status === "error" && (
                                                         <span className="text-xs bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md font-[Vazirmatn]">
-                                                            خطا
+                                                            {d.statusError}
                                                         </span>
                                                     )}
 
@@ -858,7 +1065,7 @@ export default function AddFromYoutubeModal({
                         onClick={onClose}
                         className="px-4 py-2 text-sm font-bold font-[Vazirmatn] text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition"
                     >
-                        انصراف
+                        {d.cancel}
                     </button>
 
                     {mode === "single" ? (
@@ -875,14 +1082,14 @@ export default function AddFromYoutubeModal({
                             {isSaving ? (
                                 <>
                                     <Loader2 className="w-4 h-4 animate-spin" />
-                                    در حال ذخیره...
+                                    {d.saving}
                                 </>
                             ) : (
                                 <>
                                     <Save className="w-4 h-4" />
                                     {isPresentationMode
-                                        ? "ذخیره در دیتابیس و ایجاد اسلاید"
-                                        : "ذخیره در دیتابیس و ثبت در سایت"}
+                                        ? d.saveAndCreateSlide
+                                        : d.saveAndPublish}
                                 </>
                             )}
                         </button>
@@ -905,14 +1112,13 @@ export default function AddFromYoutubeModal({
                                 <>
                                     <Loader2 className="w-4 h-4 animate-spin" />
                                     {batchSaveProgress !== null
-                                        ? `در حال ذخیره (${batchSaveProgress}٪)...`
-                                        : "در حال ذخیره‌سازی..."}
+                                        ? d.savingWithProgress(batchSaveProgress)
+                                        : d.savingGeneric}
                                 </>
                             ) : (
                                 <>
                                     <Save className="w-4 h-4" />
-                                    ثبت همه در دیتابیس (
-                                    {batchItems.filter(i => i.status === "ready").length} سرود)
+                                    {d.saveAllInDb(batchItems.filter(i => i.status === "ready").length)}
                                 </>
                             )}
                         </button>

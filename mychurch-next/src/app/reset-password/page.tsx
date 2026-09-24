@@ -5,10 +5,116 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Lock, Eye, EyeOff, CheckCircle2, Loader2, ShieldCheck, AlertCircle } from "lucide-react";
 import { PageVisuals } from "@/components/ui/PageVisuals";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 type PageState = "loading" | "form" | "success" | "no-session";
 
+const localDict = {
+    en: {
+        logoAlt: "MyChurch Logo",
+        verifyingTitle: "Verifying...",
+        verifyingSubtitle: "Verifying session",
+        setNewPasswordTitle: "Set New Password",
+        passwordUpdatedTitle: "Password Updated!",
+        invalidLinkTitle: "Invalid or Expired Link",
+        invalidLinkBody: "The recovery link is invalid or has expired.",
+        invalidLinkBodySub: "Please request a new one from the login page.",
+        backToLogin: "Back to Login",
+        passwordChangedTitle: "Password Updated Successfully!",
+        redirectingToLogin: "Redirecting to login...",
+        securityNotice: "Choose a strong, unique password.",
+        newPasswordLabel: "New Password",
+        newPasswordPlaceholder: "Min 8 characters",
+        confirmPasswordLabel: "Confirm Password",
+        confirmPasswordPlaceholder: "Repeat password",
+        showPassword: "Show password",
+        hidePassword: "Hide password",
+        saving: "Saving...",
+        savePassword: "Save Password",
+        securityTipsTitle: "Security tips:",
+        tipMinChars: "At least 8 characters",
+        tipMixCase: "Mix of uppercase, lowercase, and numbers",
+        tipNoReuse: "Don't reuse a previous password",
+        strengthWeak: "Weak",
+        strengthFair: "Fair",
+        strengthGood: "Good",
+        strengthStrong: "Strong",
+        errorMinLength: "Password must be at least 8 characters.",
+        errorMismatch: "Passwords do not match.",
+        errorUnexpected: "Unexpected error.",
+    },
+    fa: {
+        logoAlt: "لوگوی کلیسا",
+        verifyingTitle: "در حال بررسی...",
+        verifyingSubtitle: "بررسی نشست",
+        setNewPasswordTitle: "تعیین رمز عبور جدید",
+        passwordUpdatedTitle: "رمز تغییر کرد!",
+        invalidLinkTitle: "لینک نامعتبر",
+        invalidLinkBody: "لینک بازیابی نامعتبر یا منقضی شده است.",
+        invalidLinkBodySub: "لطفاً دوباره از صفحه ورود درخواست بازیابی رمز عبور بدهید.",
+        backToLogin: "بازگشت به ورود",
+        passwordChangedTitle: "رمز عبور با موفقیت تغییر کرد!",
+        redirectingToLogin: "در حال انتقال به صفحه ورود...",
+        securityNotice: "یک رمز عبور قوی و منحصربه‌فرد انتخاب کنید.",
+        newPasswordLabel: "رمز عبور جدید",
+        newPasswordPlaceholder: "حداقل ۸ کاراکتر",
+        confirmPasswordLabel: "تکرار رمز",
+        confirmPasswordPlaceholder: "تکرار رمز عبور",
+        showPassword: "نمایش رمز عبور",
+        hidePassword: "مخفی کردن رمز عبور",
+        saving: "در حال ذخیره...",
+        savePassword: "ذخیره رمز عبور",
+        securityTipsTitle: "نکات امنیتی:",
+        tipMinChars: "حداقل ۸ کاراکتر",
+        tipMixCase: "ترکیب حرف بزرگ، کوچک و عدد",
+        tipNoReuse: "از رمزهای قبلی استفاده نکنید",
+        strengthWeak: "ضعیف",
+        strengthFair: "متوسط",
+        strengthGood: "خوب",
+        strengthStrong: "قوی",
+        errorMinLength: "رمز عبور باید حداقل ۸ کاراکتر باشد.",
+        errorMismatch: "رمز عبور و تکرار آن یکسان نیستند.",
+        errorUnexpected: "خطای غیرمنتظره.",
+    },
+    es: {
+        logoAlt: "Logotipo de MyChurch",
+        verifyingTitle: "Verificando...",
+        verifyingSubtitle: "Verificando sesión",
+        setNewPasswordTitle: "Establecer Nueva Contraseña",
+        passwordUpdatedTitle: "¡Contraseña Actualizada!",
+        invalidLinkTitle: "Enlace Inválido o Expirado",
+        invalidLinkBody: "El enlace de recuperación es inválido o ha expirado.",
+        invalidLinkBodySub: "Por favor solicita uno nuevo desde la página de inicio de sesión.",
+        backToLogin: "Volver al Inicio de Sesión",
+        passwordChangedTitle: "¡Contraseña Actualizada con Éxito!",
+        redirectingToLogin: "Redirigiendo al inicio de sesión...",
+        securityNotice: "Elige una contraseña fuerte y única.",
+        newPasswordLabel: "Nueva Contraseña",
+        newPasswordPlaceholder: "Mínimo 8 caracteres",
+        confirmPasswordLabel: "Confirmar Contraseña",
+        confirmPasswordPlaceholder: "Repite la contraseña",
+        showPassword: "Mostrar contraseña",
+        hidePassword: "Ocultar contraseña",
+        saving: "Guardando...",
+        savePassword: "Guardar Contraseña",
+        securityTipsTitle: "Consejos de seguridad:",
+        tipMinChars: "Al menos 8 caracteres",
+        tipMixCase: "Combinación de mayúsculas, minúsculas y números",
+        tipNoReuse: "No reutilices una contraseña anterior",
+        strengthWeak: "Débil",
+        strengthFair: "Regular",
+        strengthGood: "Buena",
+        strengthStrong: "Fuerte",
+        errorMinLength: "La contraseña debe tener al menos 8 caracteres.",
+        errorMismatch: "Las contraseñas no coinciden.",
+        errorUnexpected: "Error inesperado.",
+    },
+};
+
 export default function ResetPasswordPage() {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
+
     const router = useRouter();
     const [pageState, setPageState] = useState<PageState>("loading");
     const [isPending, startTransition] = useTransition();
@@ -40,11 +146,11 @@ export default function ResetPasswordPage() {
         setError(null);
 
         if (password.length < 8) {
-            setError("رمز عبور باید حداقل ۸ کاراکتر باشد / Password must be at least 8 characters.");
+            setError(d.errorMinLength);
             return;
         }
         if (password !== confirm) {
-            setError("رمز عبور و تکرار آن یکسان نیستند / Passwords do not match.");
+            setError(d.errorMismatch);
             return;
         }
 
@@ -67,7 +173,7 @@ export default function ResetPasswordPage() {
                     router.push("/login?reset=success");
                 }, 3000);
             } catch (err: any) {
-                setError(err.message || "خطای غیرمنتظره / Unexpected error.");
+                setError(err.message || d.errorUnexpected);
             }
         });
     };
@@ -80,10 +186,10 @@ export default function ResetPasswordPage() {
         if (/[A-Z]/.test(pw)) score++;
         if (/[0-9]/.test(pw)) score++;
         if (/[^A-Za-z0-9]/.test(pw)) score++;
-        if (score <= 1) return { score, label: "ضعیف / Weak", color: "bg-red-500" };
-        if (score <= 2) return { score, label: "متوسط / Fair", color: "bg-yellow-500" };
-        if (score <= 3) return { score, label: "خوب / Good", color: "bg-blue-500" };
-        return { score, label: "قوی / Strong", color: "bg-emerald-500" };
+        if (score <= 1) return { score, label: d.strengthWeak, color: "bg-red-500" };
+        if (score <= 2) return { score, label: d.strengthFair, color: "bg-yellow-500" };
+        if (score <= 3) return { score, label: d.strengthGood, color: "bg-blue-500" };
+        return { score, label: d.strengthStrong, color: "bg-emerald-500" };
     };
 
     const strength = getStrength(password);
@@ -98,31 +204,28 @@ export default function ResetPasswordPage() {
                     {/* Logo */}
                     <div className="flex flex-col items-center mb-8">
                         <div className="w-20 h-20 bg-black/40 rounded-2xl flex items-center justify-center border border-white/5 mb-6 ring-1 ring-white/10 shadow-inner">
-                            <Image src="/logo-transparent.png" alt="MyChurch Logo" width={50} height={50} className="object-contain" />
+                            <Image src="/logo-transparent.png" alt={d.logoAlt} width={50} height={50} className="object-contain" />
                         </div>
 
                         {pageState === "loading" && (
                             <h1 className="text-xl font-black text-white tracking-tight text-center font-[Vazirmatn]">
-                                در حال بررسی...
-                                <span className="block text-sm font-medium text-white/60 mt-1 font-sans">Verifying session</span>
+                                {d.verifyingTitle}
+                                <span className="block text-sm font-medium text-white/60 mt-1 font-sans">{d.verifyingSubtitle}</span>
                             </h1>
                         )}
                         {pageState === "form" && (
                             <h1 className="text-2xl font-black text-white tracking-tight text-center font-[Vazirmatn]">
-                                تعیین رمز عبور جدید
-                                <span className="block text-sm font-medium text-white/80 mt-1 font-sans">Set New Password</span>
+                                {d.setNewPasswordTitle}
                             </h1>
                         )}
                         {pageState === "success" && (
                             <h1 className="text-2xl font-black text-white tracking-tight text-center font-[Vazirmatn]">
-                                رمز تغییر کرد!
-                                <span className="block text-sm font-medium text-emerald-400 mt-1 font-sans">Password Updated!</span>
+                                {d.passwordUpdatedTitle}
                             </h1>
                         )}
                         {pageState === "no-session" && (
                             <h1 className="text-2xl font-black text-white tracking-tight text-center font-[Vazirmatn]">
-                                لینک نامعتبر
-                                <span className="block text-sm font-medium text-red-400 mt-1 font-sans">Invalid or Expired Link</span>
+                                {d.invalidLinkTitle}
                             </h1>
                         )}
                     </div>
@@ -142,18 +245,15 @@ export default function ResetPasswordPage() {
                                     <AlertCircle className="w-10 h-10 text-red-400" />
                                 </div>
                             </div>
-                            <div className="bg-red-950/40 border border-red-400/30 rounded-xl p-4 text-sm text-red-200 font-[Vazirmatn] leading-relaxed text-right" dir="rtl">
-                                <p className="font-bold mb-1">لینک بازیابی نامعتبر یا منقضی شده است.</p>
-                                <p className="text-red-300/70">لطفاً دوباره از صفحه ورود درخواست بازیابی رمز عبور بدهید.</p>
+                            <div className="bg-red-950/40 border border-red-400/30 rounded-xl p-4 text-sm text-red-200 font-[Vazirmatn] leading-relaxed text-right">
+                                <p className="font-bold mb-1">{d.invalidLinkBody}</p>
+                                <p className="text-red-300/70">{d.invalidLinkBodySub}</p>
                             </div>
-                            <p className="text-xs text-white/40 font-sans" dir="ltr">
-                                The recovery link is invalid or has expired. Please request a new one from the login page.
-                            </p>
                             <button
                                 onClick={() => router.push("/login")}
                                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-black py-4 rounded-xl transition-all active:scale-[0.98] font-[Vazirmatn]"
                             >
-                                بازگشت به ورود / Back to Login
+                                {d.backToLogin}
                             </button>
                         </div>
                     )}
@@ -166,15 +266,15 @@ export default function ResetPasswordPage() {
                                     <CheckCircle2 className="w-10 h-10 text-emerald-400" />
                                 </div>
                             </div>
-                            <div className="space-y-2" dir="rtl">
-                                <p className="text-white font-black text-lg font-[Vazirmatn]">رمز عبور با موفقیت تغییر کرد!</p>
+                            <div className="space-y-2">
+                                <p className="text-white font-black text-lg font-[Vazirmatn]">{d.passwordChangedTitle}</p>
                                 <p className="text-white/60 text-sm font-[Vazirmatn]">
-                                    در حال انتقال به صفحه ورود...
+                                    {d.redirectingToLogin}
                                 </p>
                             </div>
                             <div className="flex items-center justify-center gap-2 text-emerald-400 text-sm font-sans">
                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                Redirecting to login...
+                                {d.redirectingToLogin}
                             </div>
                         </div>
                     )}
@@ -185,8 +285,8 @@ export default function ResetPasswordPage() {
                             {/* Security notice */}
                             <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-xl px-4 py-3 mb-6">
                                 <ShieldCheck className="w-5 h-5 text-primary shrink-0" />
-                                <p className="text-sm text-white/80 font-[Vazirmatn]" dir="rtl">
-                                    یک رمز عبور قوی و منحصربه‌فرد انتخاب کنید.
+                                <p className="text-sm text-white/80 font-[Vazirmatn]">
+                                    {d.securityNotice}
                                 </p>
                             </div>
 
@@ -201,8 +301,7 @@ export default function ResetPasswordPage() {
                                 {/* New Password */}
                                 <div className="space-y-1.5">
                                     <label className="text-sm font-bold text-white/90 flex justify-between font-[Vazirmatn]" htmlFor="new-password">
-                                        <span className="font-sans text-white/90">New Password</span>
-                                        <span>رمز عبور جدید</span>
+                                        <span>{d.newPasswordLabel}</span>
                                     </label>
                                     <div className="relative">
                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
@@ -212,7 +311,7 @@ export default function ResetPasswordPage() {
                                             type={showPassword ? "text" : "password"}
                                             value={password}
                                             onChange={e => setPassword(e.target.value)}
-                                            placeholder="حداقل ۸ کاراکتر / Min 8 characters"
+                                            placeholder={d.newPasswordPlaceholder}
                                             required
                                             minLength={8}
                                             autoFocus
@@ -222,7 +321,7 @@ export default function ResetPasswordPage() {
                                             type="button"
                                             onClick={() => setShowPassword(v => !v)}
                                             className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white/80 transition-colors"
-                                            aria-label={showPassword ? "Hide password" : "Show password"}
+                                            aria-label={showPassword ? d.hidePassword : d.showPassword}
                                         >
                                             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                         </button>
@@ -249,8 +348,7 @@ export default function ResetPasswordPage() {
                                 {/* Confirm Password */}
                                 <div className="space-y-1.5">
                                     <label className="text-sm font-bold text-white/90 flex justify-between font-[Vazirmatn]" htmlFor="confirm-password">
-                                        <span className="font-sans text-white/90">Confirm Password</span>
-                                        <span>تکرار رمز</span>
+                                        <span>{d.confirmPasswordLabel}</span>
                                     </label>
                                     <div className="relative">
                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
@@ -260,7 +358,7 @@ export default function ResetPasswordPage() {
                                             type={showConfirm ? "text" : "password"}
                                             value={confirm}
                                             onChange={e => setConfirm(e.target.value)}
-                                            placeholder="تکرار رمز عبور / Repeat password"
+                                            placeholder={d.confirmPasswordPlaceholder}
                                             required
                                             className={`w-full bg-neutral-900/90 border rounded-xl pl-12 pr-12 py-3.5 text-white placeholder-white/40 focus:outline-none focus:ring-2 transition-all shadow-inner font-mono tracking-widest ${
                                                 confirm.length > 0
@@ -274,7 +372,7 @@ export default function ResetPasswordPage() {
                                             type="button"
                                             onClick={() => setShowConfirm(v => !v)}
                                             className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white/80 transition-colors"
-                                            aria-label={showConfirm ? "Hide password" : "Show password"}
+                                            aria-label={showConfirm ? d.hidePassword : d.showPassword}
                                         >
                                             {showConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                         </button>
@@ -298,23 +396,23 @@ export default function ResetPasswordPage() {
                                     {isPending ? (
                                         <>
                                             <Loader2 className="w-5 h-5 animate-spin" />
-                                            در حال ذخیره...
+                                            {d.saving}
                                         </>
                                     ) : (
                                         <>
                                             <ShieldCheck className="w-5 h-5" />
-                                            ذخیره رمز عبور / Save Password
+                                            {d.savePassword}
                                         </>
                                     )}
                                 </button>
 
                                 {/* Password tips */}
-                                <div className="bg-white/4 border border-white/8 rounded-xl p-4 text-xs text-white/50 font-[Vazirmatn] leading-relaxed" dir="rtl">
-                                    <p className="font-bold text-white/70 mb-1.5">نکات امنیتی:</p>
+                                <div className="bg-white/4 border border-white/8 rounded-xl p-4 text-xs text-white/50 font-[Vazirmatn] leading-relaxed">
+                                    <p className="font-bold text-white/70 mb-1.5">{d.securityTipsTitle}</p>
                                     <ul className="space-y-1 list-disc list-inside">
-                                        <li>حداقل ۸ کاراکتر</li>
-                                        <li>ترکیب حرف بزرگ، کوچک و عدد</li>
-                                        <li>از رمزهای قبلی استفاده نکنید</li>
+                                        <li>{d.tipMinChars}</li>
+                                        <li>{d.tipMixCase}</li>
+                                        <li>{d.tipNoReuse}</li>
                                     </ul>
                                 </div>
                             </form>

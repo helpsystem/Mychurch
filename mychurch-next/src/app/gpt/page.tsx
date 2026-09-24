@@ -7,12 +7,45 @@ import AlHayatGPTWidget from "@/components/AlHayatGPTWidget";
 import {
   Sparkles, BookOpen, MessageCircle, ShieldCheck
 } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    heroTitleLine1: "Smart Theological Assistant",
+    heroTitleLine2: "Bible",
+    heroSubtitle: "A safe place for theological questions, deep study of the words of God, and conversations with Bible characters to strengthen your faith and deepen your understanding of Scripture.",
+    connectedStatus: "Connected to the theological database",
+    studyWordLink: "Study the Word",
+    trustNote1: "Answers are drawn from the Bible and reliable sources. Please verify them against the text of Scripture.",
+    trustNote2: "Official support and partnership with Shabake Mahabat",
+  },
+  fa: {
+    heroTitleLine1: "دستیار هوشمند و الهیاتی",
+    heroTitleLine2: "کتاب‌مقدس",
+    heroSubtitle: "محلی امن برای پرسش‌های الهیاتی، بررسی عمیق آیات کلام خدا، و مکالمه با شخصیت‌های کتاب‌مقدسی جهت تقویت ایمان و شناخت عمیق‌تر از کلام.",
+    connectedStatus: "متصل به پایگاه داده الهیاتی",
+    studyWordLink: "مطالعه کلام",
+    trustNote1: "پاسخ‌ها برگرفته از کتاب‌مقدس و منابع معتبر. لطفاً با متن کلام تطبیق دهید.",
+    trustNote2: "پشتیبانی و همیاری رسمی با شبکه محبت",
+  },
+  es: {
+    heroTitleLine1: "Asistente Teológico Inteligente",
+    heroTitleLine2: "Biblia",
+    heroSubtitle: "Un lugar seguro para preguntas teológicas, el estudio profundo de la palabra de Dios y conversaciones con personajes bíblicos para fortalecer tu fe y profundizar tu comprensión de las Escrituras.",
+    connectedStatus: "Conectado a la base de datos teológica",
+    studyWordLink: "Estudiar la Palabra",
+    trustNote1: "Las respuestas provienen de la Biblia y de fuentes confiables. Por favor, verifícalas con el texto de las Escrituras.",
+    trustNote2: "Apoyo y colaboración oficial con Shabake Mahabat",
+  },
+};
 
 export default function GptPage() {
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   return (
     <div
       className="min-h-screen bg-[#070709] text-white flex flex-col font-[Vazirmatn]"
-      dir="rtl"
+      dir={isRTL ? "rtl" : "ltr"}
     >
       <PublicHeader />
 
@@ -32,13 +65,13 @@ export default function GptPage() {
             Al Hayat GPT 2.0
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-3">
-            دستیار هوشمند و الهیاتی
+            {d.heroTitleLine1}
             <span className="block mt-1 bg-gradient-to-l from-amber-400 via-amber-200 to-amber-500 bg-clip-text text-transparent drop-shadow-sm">
-              کتاب‌مقدس
+              {d.heroTitleLine2}
             </span>
           </h1>
           <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            محلی امن برای پرسش‌های الهیاتی، بررسی عمیق آیات کلام خدا، و مکالمه با شخصیت‌های کتاب‌مقدسی جهت تقویت ایمان و شناخت عمیق‌تر از کلام.
+            {d.heroSubtitle}
           </p>
         </div>
 
@@ -48,7 +81,7 @@ export default function GptPage() {
           <div className="flex items-center justify-between px-5 py-3 mb-3 rounded-2xl bg-zinc-900/80 border border-white/10 backdrop-blur-md shadow-lg">
             <div className="flex items-center gap-2.5">
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-              <span className="text-sm text-zinc-300 font-medium">متصل به پایگاه داده الهیاتی</span>
+              <span className="text-sm text-zinc-300 font-medium">{d.connectedStatus}</span>
             </div>
             <div className="flex items-center gap-3">
               <Link
@@ -56,7 +89,7 @@ export default function GptPage() {
                 className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/20 transition-all text-xs font-bold"
               >
                 <BookOpen className="w-3.5 h-3.5" />
-                مطالعه کلام
+                {d.studyWordLink}
               </Link>
             </div>
           </div>
@@ -75,12 +108,12 @@ export default function GptPage() {
           <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-zinc-500 text-center sm:text-right">
             <div className="flex items-center gap-1.5">
               <MessageCircle className="w-4 h-4 text-amber-500/70" />
-              <span>پاسخ‌ها برگرفته از کتاب‌مقدس و منابع معتبر. لطفاً با متن کلام تطبیق دهید.</span>
+              <span>{d.trustNote1}</span>
             </div>
             <div className="hidden sm:block w-1 h-1 rounded-full bg-zinc-700" />
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-emerald-500/70" />
-              <span>پشتیبانی و همیاری رسمی با شبکه محبت</span>
+              <span>{d.trustNote2}</span>
             </div>
           </div>
         </div>

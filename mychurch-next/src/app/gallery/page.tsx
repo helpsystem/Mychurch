@@ -3,9 +3,8 @@ import React from "react";
 import { Suspense } from "react";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
-import { GalleryClient } from "@/components/gallery/GalleryClient";
+import { GalleryClient, GalleryHeader } from "@/components/gallery/GalleryClient";
 import { fetchGalleryImages } from "@/actions/gallery";
-import { Images } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -42,18 +41,7 @@ export default async function GalleryPage() {
 
             <main className="relative z-10 flex-1 pt-32 pb-24 px-6 lg:px-12 max-w-7xl mx-auto w-full">
                 {/* Header */}
-                <div className="mb-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold border border-primary/20 mb-6">
-                        <Images className="w-4 h-4" />
-                        GALLERY
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/60 leading-[1.1] mb-4" dir="rtl">
-                        گالری تصاویر کلیسا
-                    </h1>
-                    <p className="text-xl text-muted-foreground font-medium max-w-2xl" dir="rtl">
-                        خاطرات و لحظه‌های ماندگار از رویدادها و جلسات کلیسای ما را مرور کنید.
-                    </p>
-                </div>
+                <GalleryHeader />
 
                 {/* Gallery Grid */}
                 <Suspense fallback={

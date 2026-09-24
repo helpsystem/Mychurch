@@ -241,6 +241,9 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                             <NavItem href="/admin/schedule" icon={Calendar} colorClass="text-amber-400/90 group-hover:text-amber-300">
                                 <span className="font-[Vazirmatn]">برنامه‌های هفتگی و جلسات</span>
                             </NavItem>
+                            <NavItem href="/admin/calendar" icon={Calendar} colorClass="text-orange-400/90 group-hover:text-orange-300">
+                                <span className="font-[Vazirmatn]">تقویم و رویدادهای ویژه</span>
+                            </NavItem>
                             <NavItem href="/admin/widgets" icon={LayoutTemplate} colorClass="text-purple-400/80">Site Widgets</NavItem>
                             <NavItem href="/admin/categories" icon={Tags}>Categories</NavItem>
                         </>

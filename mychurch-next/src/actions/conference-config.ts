@@ -2,6 +2,7 @@
 
 import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { requireRole } from "@/utils/rbac";
 
 export interface ConferenceConfig {
     id: string;
@@ -78,6 +79,7 @@ export async function getConferenceConfig(): Promise<ConferenceConfig> {
 }
 
 export async function saveConferenceConfig(config: Partial<ConferenceConfig>) {
+    await requireRole(["Admin"]);
     try {
         await ensureConferenceConfigSchema();
         
@@ -180,6 +182,7 @@ export async function getValidFccAccessToken(): Promise<string | null> {
 }
 
 export async function exchangeFccCodeForToken(code: string, redirectUri: string) {
+    await requireRole(["Admin"]);
     try {
         const dbRes = await query("SELECT fcc_public_key, fcc_private_key FROM church_conference_settings WHERE id = 'default' LIMIT 1");
         if (dbRes.rows.length === 0) {
@@ -244,6 +247,7 @@ export async function exchangeFccCodeForToken(code: string, redirectUri: string)
 }
 
 export async function testFccConnection(publicKey?: string, privateKey?: string) {
+    await requireRole(["Admin"]);
     try {
         const token = await getValidFccAccessToken();
         if (!token) {

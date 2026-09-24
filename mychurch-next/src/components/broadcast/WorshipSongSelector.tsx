@@ -21,6 +21,148 @@ import { WorshipSong, SlideContentLyrics, LyricsLine, LyricsDisplayOptions, AppL
 import { fetchWorshipSongs, searchSongs, parseLyrics, BROADCAST_TRANSLATIONS } from './dataService';
 import { isYoutubeUrl, getYoutubeEmbedUrl } from './InteractiveMediaFrame';
 import AddFromYoutubeModal from '@/components/worship/AddFromYoutubeModal';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    en: {
+        selectWorshipSong: "🎵 Select Worship Song",
+        allInfoAndDisplay: "All info and display settings",
+        searchSongs: "Search songs...",
+        addFromYoutubeLink: "Add from YouTube link",
+        fromYoutube: "From YouTube",
+        suggestions: (n: number) => `Suggestions (${n})`,
+        allSongs: "All Songs",
+        loading: "Loading...",
+        showAllCount: (n: number) => `Show all (${n} songs)`,
+        changeSong: "Change song",
+        displaySettings: "📋 Display Settings",
+        background: "🎨 Background",
+        uploadBackgroundImage: "Upload Background Image",
+        opacity: "Opacity",
+        blur: "Blur",
+        strongTextShadow: "Strong Text Shadow",
+        imageFit: "Image Fit",
+        cancel: "Cancel",
+        addToSlides: "Add to Slides",
+        audioFileBadge: "Audio File",
+        videoBadge: "Video",
+        timingBadge: "Timing",
+        videoAudioPlayer: "Video / Audio Player",
+        audioPlayer: "Audio Player",
+        persianTextToggle: "🇮🇷 Persian Text",
+        finglishToggle: "🅰️ Finglish (Latin letters)",
+        englishTextToggle: "🇺🇸 English Text",
+        chordsToggle: "🎸 Chords",
+        songTitleToggle: "📝 Song Title",
+        artistNameToggle: "🎤 Artist Name",
+        finalPreview: "👁️ Final Preview",
+        availableContent: "Available Content:",
+        persianTextBadge: "✓ Persian Text",
+        englishTextBadge: "✓ English Text",
+        finglishBadge: "✓ Finglish",
+        chordBadge: "✓ Chord",
+        audioBadge: "✓ Audio",
+        videoBadge2: "✓ Video",
+        presetNightSky: "Night Sky",
+        presetGoldenSunset: "Golden Sunset",
+        presetBlueOcean: "Blue Ocean",
+        presetGreenForest: "Green Forest",
+        presetSpringBlossom: "Spring Blossom",
+        presetChurch: "Church",
+    },
+    fa: {
+        selectWorshipSong: "🎵 انتخاب سرود پرستشی",
+        allInfoAndDisplay: "تمام اطلاعات و تنظیمات نمایش",
+        searchSongs: "جستجوی سرود...",
+        addFromYoutubeLink: "افزودن سرود جدید از لینک یوتیوب",
+        fromYoutube: "افزودن از یوتیوب",
+        suggestions: (n: number) => `پیشنهاد بر اساس اسلایدها و آیات (${n})`,
+        allSongs: "همه سرودها",
+        loading: "در حال بارگذاری...",
+        showAllCount: (n: number) => `نمایش همه (${n} سرود)`,
+        changeSong: "تغییر سرود",
+        displaySettings: "📋 تنظیمات نمایش",
+        background: "🎨 پس‌زمینه",
+        uploadBackgroundImage: "آپلود تصویر زمینه",
+        opacity: "شفافیت",
+        blur: "تاری (Blur)",
+        strongTextShadow: "سایه متن قوی (برای خوانایی)",
+        imageFit: "نحوه نمایش عکس",
+        cancel: "انصراف",
+        addToSlides: "افزودن به اسلایدها",
+        audioFileBadge: "فایل صوتی",
+        videoBadge: "ویدیو",
+        timingBadge: "تایمینگ",
+        videoAudioPlayer: "پلیر ویدیو / صوت سرود",
+        audioPlayer: "پلیر صوت سرود",
+        persianTextToggle: "🇮🇷 متن فارسی",
+        finglishToggle: "🅰️ فینگلیش (حروف انگلیسی)",
+        englishTextToggle: "🇺🇸 متن انگلیسی",
+        chordsToggle: "🎸 آکوردها",
+        songTitleToggle: "📝 عنوان سرود",
+        artistNameToggle: "🎤 نام خواننده",
+        finalPreview: "👁️ پیش‌نمایش نهایی",
+        availableContent: "محتوای موجود:",
+        persianTextBadge: "✓ متن فارسی",
+        englishTextBadge: "✓ متن انگلیسی",
+        finglishBadge: "✓ فینگلیش",
+        chordBadge: "✓ آکورد",
+        audioBadge: "✓ صوت",
+        videoBadge2: "✓ ویدیو",
+        presetNightSky: "آسمان شب",
+        presetGoldenSunset: "غروب طلایی",
+        presetBlueOcean: "اقیانوس آبی",
+        presetGreenForest: "جنگل سبز",
+        presetSpringBlossom: "شکوفه بهار",
+        presetChurch: "کلیسا",
+    },
+    es: {
+        selectWorshipSong: "Seleccionar canción de adoración",
+        allInfoAndDisplay: "Toda la información y configuración de visualización",
+        searchSongs: "Buscar canciones...",
+        addFromYoutubeLink: "Añadir nueva canción desde un enlace de YouTube",
+        fromYoutube: "Desde YouTube",
+        suggestions: (n: number) => `Sugerencias basadas en diapositivas y versículos (${n})`,
+        allSongs: "Todas las canciones",
+        loading: "Cargando...",
+        showAllCount: (n: number) => `Mostrar todas (${n} canciones)`,
+        changeSong: "Cambiar canción",
+        displaySettings: "Configuración de visualización",
+        background: "Fondo",
+        uploadBackgroundImage: "Subir imagen de fondo",
+        opacity: "Opacidad",
+        blur: "Desenfoque (Blur)",
+        strongTextShadow: "Sombra de texto fuerte (para legibilidad)",
+        imageFit: "Modo de ajuste de imagen",
+        cancel: "Cancelar",
+        addToSlides: "Añadir a las diapositivas",
+        audioFileBadge: "Archivo de audio",
+        videoBadge: "Video",
+        timingBadge: "Sincronización",
+        videoAudioPlayer: "Reproductor de video / audio",
+        audioPlayer: "Reproductor de audio",
+        persianTextToggle: "🇮🇷 Texto persa",
+        finglishToggle: "🅰️ Finglish (letras latinas)",
+        englishTextToggle: "🇺🇸 Texto en inglés",
+        chordsToggle: "🎸 Acordes",
+        songTitleToggle: "📝 Título de la canción",
+        artistNameToggle: "🎤 Nombre del artista",
+        finalPreview: "👁️ Vista previa final",
+        availableContent: "Contenido disponible:",
+        persianTextBadge: "✓ Texto persa",
+        englishTextBadge: "✓ Texto en inglés",
+        finglishBadge: "✓ Finglish",
+        chordBadge: "✓ Acorde",
+        audioBadge: "✓ Audio",
+        videoBadge2: "✓ Video",
+        presetNightSky: "Cielo nocturno",
+        presetGoldenSunset: "Atardecer dorado",
+        presetBlueOcean: "Océano azul",
+        presetGreenForest: "Bosque verde",
+        presetSpringBlossom: "Flor de primavera",
+        presetChurch: "Iglesia",
+    },
+};
 
 interface WorshipSongSelectorProps {
   lang: AppLanguage;
@@ -148,12 +290,12 @@ export function getSuggestionsFromSlides(songs: WorshipSong[], slides: any[]): S
 
 // Predefined beautiful backgrounds
 const BACKGROUND_PRESETS = [
-  { id: 'gradient1', name: 'آسمان شب', type: 'gradient' as const, value: 'from-indigo-900 via-purple-900 to-slate-900' },
-  { id: 'gradient2', name: 'غروب طلایی', type: 'gradient' as const, value: 'from-amber-900 via-orange-800 to-red-900' },
-  { id: 'gradient3', name: 'اقیانوس آبی', type: 'gradient' as const, value: 'from-blue-900 via-cyan-800 to-teal-900' },
-  { id: 'gradient4', name: 'جنگل سبز', type: 'gradient' as const, value: 'from-emerald-900 via-green-800 to-teal-900' },
-  { id: 'gradient5', name: 'شکوفه بهار', type: 'gradient' as const, value: 'from-pink-900 via-rose-800 to-purple-900' },
-  { id: 'gradient6', name: 'کلیسا', type: 'gradient' as const, value: 'from-slate-900 via-indigo-900 to-purple-950' },
+  { id: 'gradient1', nameKey: 'presetNightSky' as const, type: 'gradient' as const, value: 'from-indigo-900 via-purple-900 to-slate-900' },
+  { id: 'gradient2', nameKey: 'presetGoldenSunset' as const, type: 'gradient' as const, value: 'from-amber-900 via-orange-800 to-red-900' },
+  { id: 'gradient3', nameKey: 'presetBlueOcean' as const, type: 'gradient' as const, value: 'from-blue-900 via-cyan-800 to-teal-900' },
+  { id: 'gradient4', nameKey: 'presetGreenForest' as const, type: 'gradient' as const, value: 'from-emerald-900 via-green-800 to-teal-900' },
+  { id: 'gradient5', nameKey: 'presetSpringBlossom' as const, type: 'gradient' as const, value: 'from-pink-900 via-rose-800 to-purple-900' },
+  { id: 'gradient6', nameKey: 'presetChurch' as const, type: 'gradient' as const, value: 'from-slate-900 via-indigo-900 to-purple-950' },
 ];
 
 // Normalize any format (flat array, legacy System V2, TranscriptData) into a standard nested lines object
@@ -224,6 +366,8 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 }) => {
   const t = BROADCAST_TRANSLATIONS[lang];
   const isRTL = lang === 'fa';
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
 
   // Song list state
   const [songs, setSongs] = useState<WorshipSong[]>([]);
@@ -495,10 +639,10 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
             <Music className="w-8 h-8 text-white" />
             <div>
               <h2 className={`text-xl font-bold text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? '🎵 انتخاب سرود پرستشی' : '🎵 Select Worship Song'}
+                {d.selectWorshipSong}
               </h2>
               <p className={`text-pink-200 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'تمام اطلاعات و تنظیمات نمایش' : 'All info and display settings'}
+                {d.allInfoAndDisplay}
               </p>
             </div>
           </div>
@@ -519,7 +663,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                     type="text"
                     value={songSearch}
                     onChange={(e) => setSongSearch(e.target.value)}
-                    placeholder={isRTL ? 'جستجوی سرود...' : 'Search songs...'}
+                    placeholder={d.searchSongs}
                     className={`w-full bg-slate-800 border border-slate-700 rounded-xl pr-10 pl-4 py-3 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn] text-right' : ''}`}
                   />
                 </div>
@@ -527,11 +671,11 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                   type="button"
                   onClick={() => setShowYoutubeModal(true)}
                   className="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-red-600/20 transition whitespace-nowrap"
-                  title={isRTL ? 'افزودن سرود جدید از لینک یوتیوب' : 'Add from YouTube link'}
+                  title={d.addFromYoutubeLink}
                 >
                   <Youtube className="w-5 h-5" />
                   <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
-                    {isRTL ? 'افزودن از یوتیوب' : 'From YouTube'}
+                    {d.fromYoutube}
                   </span>
                 </button>
               </div>
@@ -549,7 +693,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                     }`}
                   >
                     <span>💡</span>
-                    <span>{isRTL ? `پیشنهاد بر اساس اسلایدها و آیات (${suggestedSongs.length})` : `Suggestions (${suggestedSongs.length})`}</span>
+                    <span>{d.suggestions(suggestedSongs.length)}</span>
                   </button>
                   <button
                     type="button"
@@ -561,7 +705,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                     }`}
                   >
                     <span>🎵</span>
-                    <span>{isRTL ? 'همه سرودها' : 'All Songs'}</span>
+                    <span>{d.allSongs}</span>
                   </button>
                 </div>
               )}
@@ -571,7 +715,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                 <div className="text-center py-12">
                   <div className="animate-spin w-8 h-8 border-2 border-pink-500 border-t-transparent rounded-full mx-auto" />
                   <p className={`text-slate-400 mt-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    {isRTL ? 'در حال بارگذاری...' : 'Loading...'}
+                    {d.loading}
                   </p>
                 </div>
               ) : (
@@ -619,7 +763,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                   onClick={() => setShowAllSongs(true)}
                   className={`w-full py-3 text-pink-400 hover:text-pink-300 text-center transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                 >
-                  {isRTL ? `نمایش همه (${songs.length} سرود)` : `Show all (${songs.length} songs)`}
+                  {d.showAllCount(songs.length)}
                 </button>
               )}
             </div>
@@ -636,7 +780,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                       onClick={() => { setSelectedSong(null); setStep('search'); }}
                       className="text-pink-400 hover:text-pink-300 text-sm"
                     >
-                      {isRTL ? 'تغییر سرود' : 'Change song'}
+                      {d.changeSong}
                     </button>
                     <div className={`text-right ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                       <h3 className="text-xl font-bold text-white">{selectedSong.title[lang] || selectedSong.title.fa}</h3>
@@ -654,17 +798,17 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                   <div className="flex flex-wrap gap-2 mt-3 justify-end">
                     {selectedSong.audioUrl && (
                       <span className="bg-green-600/30 text-green-300 px-2 py-1 rounded text-xs flex items-center gap-1">
-                        <Volume2 className="w-3 h-3" /> فایل صوتی
+                        <Volume2 className="w-3 h-3" /> {d.audioFileBadge}
                       </span>
                     )}
                     {selectedSong.youtubeId && (
                       <span className="bg-red-600/30 text-red-300 px-2 py-1 rounded text-xs flex items-center gap-1">
-                        <Youtube className="w-3 h-3" /> ویدیو
+                        <Youtube className="w-3 h-3" /> {d.videoBadge}
                       </span>
                     )}
                     {selectedSong.hasTiming && (
                       <span className="bg-blue-600/30 text-blue-300 px-2 py-1 rounded text-xs flex items-center gap-1">
-                        <Clock className="w-3 h-3" /> تایمینگ
+                        <Clock className="w-3 h-3" /> {d.timingBadge}
                       </span>
                     )}
                   </div>
@@ -675,7 +819,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                       <div className="flex items-center justify-between text-xs text-pink-200">
                         <span className="font-bold flex items-center gap-1.5 font-[Vazirmatn]">
                           <Play className="w-3.5 h-3.5 fill-current text-pink-400" />
-                          {selectedSong.youtubeId || isYoutubeUrl(selectedSong.audioUrl) ? 'پلیر ویدیو / صوت سرود' : 'پلیر صوت سرود'}
+                          {selectedSong.youtubeId || isYoutubeUrl(selectedSong.audioUrl) ? d.videoAudioPlayer : d.audioPlayer}
                         </span>
                       </div>
 
@@ -710,7 +854,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                     <ChevronDown className={`w-5 h-5 text-slate-400 transition ${expandedSections.includes('display') ? 'rotate-180' : ''}`} />
                     <div className="flex items-center gap-2 text-white font-bold">
                       <Eye className="w-5 h-5 text-purple-400" />
-                      {isRTL ? '📋 تنظیمات نمایش' : '📋 Display Settings'}
+                      {d.displaySettings}
                     </div>
                   </button>
 
@@ -718,7 +862,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                     <div className={`p-4 border-t border-slate-700 space-y-3 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                       {/* Farsi Lyrics */}
                       <label className="flex items-center justify-between cursor-pointer group">
-                        <span className="text-slate-300 group-hover:text-white transition">🇮🇷 متن فارسی</span>
+                        <span className="text-slate-300 group-hover:text-white transition">{d.persianTextToggle}</span>
                         <input
                           type="checkbox"
                           checked={displayOptions.showFarsiLyrics}
@@ -729,7 +873,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 
                       {/* Finglish */}
                       <label className="flex items-center justify-between cursor-pointer group">
-                        <span className="text-slate-300 group-hover:text-white transition">🅰️ فینگلیش (حروف انگلیسی)</span>
+                        <span className="text-slate-300 group-hover:text-white transition">{d.finglishToggle}</span>
                         <input
                           type="checkbox"
                           checked={displayOptions.showFinglish}
@@ -740,7 +884,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 
                       {/* English Lyrics */}
                       <label className="flex items-center justify-between cursor-pointer group">
-                        <span className="text-slate-300 group-hover:text-white transition">🇺🇸 متن انگلیسی</span>
+                        <span className="text-slate-300 group-hover:text-white transition">{d.englishTextToggle}</span>
                         <input
                           type="checkbox"
                           checked={displayOptions.showEnglishLyrics}
@@ -751,7 +895,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 
                       {/* Chords */}
                       <label className="flex items-center justify-between cursor-pointer group">
-                        <span className="text-slate-300 group-hover:text-white transition">🎸 آکوردها</span>
+                        <span className="text-slate-300 group-hover:text-white transition">{d.chordsToggle}</span>
                         <input
                           type="checkbox"
                           checked={displayOptions.showChords}
@@ -762,7 +906,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 
                       {/* Title & Artist */}
                       <label className="flex items-center justify-between cursor-pointer group">
-                        <span className="text-slate-300 group-hover:text-white transition">📝 عنوان سرود</span>
+                        <span className="text-slate-300 group-hover:text-white transition">{d.songTitleToggle}</span>
                         <input
                           type="checkbox"
                           checked={displayOptions.showTitle}
@@ -772,7 +916,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                       </label>
 
                       <label className="flex items-center justify-between cursor-pointer group">
-                        <span className="text-slate-300 group-hover:text-white transition">🎤 نام خواننده</span>
+                        <span className="text-slate-300 group-hover:text-white transition">{d.artistNameToggle}</span>
                         <input
                           type="checkbox"
                           checked={displayOptions.showArtist}
@@ -793,7 +937,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                     <ChevronDown className={`w-5 h-5 text-slate-400 transition ${expandedSections.includes('background') ? 'rotate-180' : ''}`} />
                     <div className="flex items-center gap-2 text-white font-bold">
                       <Sparkles className="w-5 h-5 text-amber-400" />
-                      {isRTL ? '🎨 پس‌زمینه' : '🎨 Background'}
+                      {d.background}
                     </div>
                   </button>
 
@@ -804,7 +948,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                         <label className="flex-1 cursor-pointer bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-lg p-3 flex items-center justify-center gap-2 transition group">
                           <Upload className="w-5 h-5 text-pink-400 group-hover:scale-110 transition" />
                           <span className="text-slate-300 group-hover:text-white text-sm">
-                            {isRTL ? 'آپلود تصویر زمینه' : 'Upload Background Image'}
+                            {d.uploadBackgroundImage}
                           </span>
                           <input type="file" accept="image/*" onChange={handleBgImageUpload} className="hidden" />
                         </label>
@@ -820,7 +964,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                               ? 'border-pink-500 ring-2 ring-pink-500/30'
                               : 'border-transparent hover:border-slate-500'
                               }`}
-                            title={bg.name}
+                            title={d[bg.nameKey]}
                           />
                         ))}
                       </div>
@@ -830,7 +974,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                         {/* Opacity */}
                         <div>
                           <label className="text-xs text-slate-400 mb-1 block flex justify-between">
-                            <span>{isRTL ? 'شفافیت' : 'Opacity'}</span>
+                            <span>{d.opacity}</span>
                             <span>{displayOptions.backgroundOpacity || 60}%</span>
                           </label>
                           <input
@@ -846,7 +990,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                         {/* Blur */}
                         <div>
                           <label className="text-xs text-slate-400 mb-1 block flex justify-between">
-                            <span>{isRTL ? 'تاری (Blur)' : 'Blur'}</span>
+                            <span>{d.blur}</span>
                             <span>{displayOptions.backgroundBlur || 0}px</span>
                           </label>
                           <input
@@ -867,13 +1011,13 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                             onChange={(e) => setDisplayOptions(prev => ({ ...prev, textShadow: e.target.checked }))}
                             className="w-4 h-4 rounded bg-slate-700 border-slate-600 text-pink-500 focus:ring-pink-500"
                           />
-                          <span className="text-xs text-slate-300">{isRTL ? 'سایه متن قوی (برای خوانایی)' : 'Strong Text Shadow'}</span>
+                          <span className="text-xs text-slate-300">{d.strongTextShadow}</span>
                         </label>
 
                         {/* Object Fit */}
                         {displayOptions.backgroundType === 'image' && (
                           <div className="col-span-2">
-                            <label className="text-xs text-slate-400 mb-1 block">{isRTL ? 'نحوه نمایش عکس' : 'Image Fit'}</label>
+                            <label className="text-xs text-slate-400 mb-1 block">{d.imageFit}</label>
                             <div className="flex bg-slate-900 rounded-lg p-1">
                               {['cover', 'contain', 'fill'].map((fit) => (
                                 <button
@@ -899,7 +1043,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
               {/* Right: Preview */}
               <div className="space-y-4">
                 <h4 className={`text-white font-bold flex items-center gap-2 justify-end ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  👁️ پیش‌نمایش نهایی
+                  {d.finalPreview}
                 </h4>
 
 
@@ -965,25 +1109,25 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
 
                 {/* Available Content Info */}
                 <div className={`bg-slate-800/50 rounded-xl p-4 text-right ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  <h5 className="text-slate-400 text-sm mb-2">محتوای موجود:</h5>
+                  <h5 className="text-slate-400 text-sm mb-2">{d.availableContent}</h5>
                   <div className="flex flex-wrap gap-2 justify-end">
                     {selectedSong.lyrics?.fa && (
-                      <span className="bg-emerald-900/30 text-emerald-400 px-2 py-1 rounded text-xs">✓ متن فارسی</span>
+                      <span className="bg-emerald-900/30 text-emerald-400 px-2 py-1 rounded text-xs">{d.persianTextBadge}</span>
                     )}
                     {selectedSong.lyrics?.en && (
-                      <span className="bg-blue-900/30 text-blue-400 px-2 py-1 rounded text-xs">✓ متن انگلیسی</span>
+                      <span className="bg-blue-900/30 text-blue-400 px-2 py-1 rounded text-xs">{d.englishTextBadge}</span>
                     )}
                     {selectedSong.hasTiming && (
-                      <span className="bg-purple-900/30 text-purple-400 px-2 py-1 rounded text-xs">✓ فینگلیش</span>
+                      <span className="bg-purple-900/30 text-purple-400 px-2 py-1 rounded text-xs">{d.finglishBadge}</span>
                     )}
                     {selectedSong.chord && (
-                      <span className="bg-amber-900/30 text-amber-400 px-2 py-1 rounded text-xs">✓ آکورد</span>
+                      <span className="bg-amber-900/30 text-amber-400 px-2 py-1 rounded text-xs">{d.chordBadge}</span>
                     )}
                     {selectedSong.audioUrl && (
-                      <span className="bg-green-900/30 text-green-400 px-2 py-1 rounded text-xs">✓ صوت</span>
+                      <span className="bg-green-900/30 text-green-400 px-2 py-1 rounded text-xs">{d.audioBadge}</span>
                     )}
                     {selectedSong.youtubeId && (
-                      <span className="bg-red-900/30 text-red-400 px-2 py-1 rounded text-xs">✓ ویدیو</span>
+                      <span className="bg-red-900/30 text-red-400 px-2 py-1 rounded text-xs">{d.videoBadge2}</span>
                     )}
                   </div>
                 </div>
@@ -998,7 +1142,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
             onClick={onClose}
             className={`px-6 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition ${isRTL ? 'font-[Vazirmatn]' : ''}`}
           >
-            {isRTL ? 'انصراف' : 'Cancel'}
+            {d.cancel}
           </button>
 
           {step === 'configure' && (
@@ -1007,7 +1151,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
               className={`px-6 py-2 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-lg hover:from-pink-500 hover:to-purple-500 transition flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
             >
               <Check className="w-5 h-5" />
-              {isRTL ? 'افزودن به اسلایدها' : 'Add to Slides'}
+              {d.addToSlides}
             </button>
           )}
         </div>

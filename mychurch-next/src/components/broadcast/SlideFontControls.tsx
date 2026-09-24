@@ -4,6 +4,43 @@ import React from "react";
 import { ZoomIn, ZoomOut, Sparkles, RotateCcw } from "lucide-react";
 import { Slide, SlideType } from "@/types/broadcast";
 import { toast } from "sonner";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        smartSizeSet: (pct: number) => `Smart size set to ${pct}%.`,
+        shrinkText: "Shrink text (A-)",
+        clickToReset: "Click to reset to 100%",
+        enlargeText: "Enlarge text (A+)",
+        autoFitContent: "Auto-fit size based on content",
+        auto: "Auto",
+        fontZoomLabel: "Slide Text Size (Font Zoom)",
+        resetTo100: "Reset to 100%",
+        autoFitBest: "Automatically calculate the best text size",
+    },
+    fa: {
+        smartSizeSet: (pct: number) => `اندازه هوشمند روی ${pct}% تنظیم شد.`,
+        shrinkText: "کوچک‌تر کردن متن (A-)",
+        clickToReset: "کلیک برای ریست به ۱۰۰٪",
+        enlargeText: "بزرگ‌تر کردن متن (A+)",
+        autoFitContent: "تنظیم اندازه خودکار بر اساس محتوا (Auto-fit)",
+        auto: "خودکار",
+        fontZoomLabel: "اندازه متن اسلاید (Font Zoom)",
+        resetTo100: "بازنشانی به ۱۰۰٪",
+        autoFitBest: "محاسبه هوشمند بهترین اندازه متن",
+    },
+    es: {
+        smartSizeSet: (pct: number) => `Tamaño inteligente ajustado a ${pct}%.`,
+        shrinkText: "Reducir texto (A-)",
+        clickToReset: "Haga clic para restablecer a 100%",
+        enlargeText: "Aumentar texto (A+)",
+        autoFitContent: "Ajustar tamaño automáticamente según el contenido",
+        auto: "Automático",
+        fontZoomLabel: "Tamaño de texto de la diapositiva (Zoom de fuente)",
+        resetTo100: "Restablecer a 100%",
+        autoFitBest: "Calcular automáticamente el mejor tamaño de texto",
+    },
+};
 
 interface SlideFontControlsProps {
     currentZoom: number;
@@ -95,6 +132,8 @@ export default function SlideFontControls({
     compact = false,
     className = ""
 }: SlideFontControlsProps) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const zoomPct = Math.round((currentZoom || 1) * 100);
 
     const handleZoomStep = (delta: number) => {
@@ -105,7 +144,7 @@ export default function SlideFontControls({
     const handleAutoFit = () => {
         const optimal = calculateOptimalZoom(slide);
         onChangeZoom(optimal);
-        toast.success(`اندازه هوشمند روی ${Math.round(optimal * 100)}% تنظیم شد.`);
+        toast.success(d.smartSizeSet(Math.round(optimal * 100)));
     };
 
     const handleReset = () => {
@@ -120,7 +159,7 @@ export default function SlideFontControls({
                     type="button"
                     onClick={() => handleZoomStep(-0.05)}
                     className="w-7 h-7 flex items-center justify-center rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold transition active:scale-95"
-                    title="کوچک‌تر کردن متن (A-)"
+                    title={d.shrinkText}
                 >
                     <span className="text-[11px] font-mono font-black">A-</span>
                 </button>
@@ -130,7 +169,7 @@ export default function SlideFontControls({
                     type="button"
                     onClick={handleReset}
                     className="px-2 h-7 flex items-center justify-center rounded-lg bg-black/40 hover:bg-neutral-800 text-indigo-300 hover:text-white font-mono text-xs font-bold transition"
-                    title="کلیک برای ریست به ۱۰۰٪"
+                    title={d.clickToReset}
                 >
                     {zoomPct}%
                 </button>
@@ -140,7 +179,7 @@ export default function SlideFontControls({
                     type="button"
                     onClick={() => handleZoomStep(0.05)}
                     className="w-7 h-7 flex items-center justify-center rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold transition active:scale-95"
-                    title="بزرگ‌تر کردن متن (A+)"
+                    title={d.enlargeText}
                 >
                     <span className="text-[11px] font-mono font-black">A+</span>
                 </button>
@@ -150,10 +189,10 @@ export default function SlideFontControls({
                     type="button"
                     onClick={handleAutoFit}
                     className="h-7 px-2.5 flex items-center gap-1 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-indigo-300 text-xs font-bold transition active:scale-95"
-                    title="تنظیم اندازه خودکار بر اساس محتوا (Auto-fit)"
+                    title={d.autoFitContent}
                 >
                     <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
-                    <span className="hidden sm:inline text-[11px]">خودکار</span>
+                    <span className="hidden sm:inline text-[11px]">{d.auto}</span>
                 </button>
             </div>
         );
@@ -164,7 +203,7 @@ export default function SlideFontControls({
         <div className={`p-3 bg-neutral-950/70 rounded-xl border border-white/10 space-y-2.5 font-[Vazirmatn] ${className}`}>
             <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground flex items-center gap-1.5 font-bold">
-                    <span>اندازه متن اسلاید (Font Zoom)</span>
+                    <span>{d.fontZoomLabel}</span>
                 </span>
                 <div className="flex items-center gap-1.5">
                     <span className="font-mono text-indigo-400 font-bold bg-neutral-900 px-2 py-0.5 rounded border border-white/5">
@@ -174,7 +213,7 @@ export default function SlideFontControls({
                         type="button"
                         onClick={handleReset}
                         className="p-1 hover:bg-neutral-800 rounded text-neutral-400 hover:text-white transition"
-                        title="بازنشانی به ۱۰۰٪"
+                        title={d.resetTo100}
                     >
                         <RotateCcw className="w-3.5 h-3.5" />
                     </button>
@@ -190,7 +229,7 @@ export default function SlideFontControls({
                 value={currentZoom || 1}
                 onChange={(e) => onChangeZoom(parseFloat(e.target.value))}
                 className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-indigo-500"
-                title="Slide Font Zoom Slider"
+                title={d.fontZoomLabel}
             />
 
             {/* Action Buttons Row */}
@@ -225,10 +264,10 @@ export default function SlideFontControls({
                     type="button"
                     onClick={handleAutoFit}
                     className="py-1.5 px-2 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-bold flex items-center justify-center gap-1 shadow-sm transition"
-                    title="محاسبه هوشمند بهترین اندازه متن"
+                    title={d.autoFitBest}
                 >
                     <Sparkles className="w-3 h-3" />
-                    <span>خودکار</span>
+                    <span>{d.auto}</span>
                 </button>
             </div>
         </div>

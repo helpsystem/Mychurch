@@ -7,6 +7,31 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        close: "Close",
+        placeholder: "Write your prayer request...",
+        cancel: "Cancel",
+        addLight: "Add Light",
+        addPrayerButton: "+ Add a light of prayer",
+    },
+    fa: {
+        close: "بستن",
+        placeholder: "درخواست دعای خود را بنویسید...",
+        cancel: "انصراف",
+        addLight: "افزودن نور",
+        addPrayerButton: "+ یک نور دعا اضافه کنید",
+    },
+    es: {
+        close: "Cerrar",
+        placeholder: "Escriba su petición de oración...",
+        cancel: "Cancelar",
+        addLight: "Añadir Luz",
+        addPrayerButton: "+ Añadir una luz de oración",
+    },
+};
 
 export type Prayer = {
   id: string;
@@ -25,6 +50,8 @@ export default function PrayerWall({
   onAddPrayer,
   className = "",
 }: PrayerWallProps) {
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const mountRef = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState<Prayer | null>(null);
   const [selectedScreenPos, setSelectedScreenPos] = useState<{
@@ -191,7 +218,7 @@ export default function PrayerWall({
 
       {selected && selectedScreenPos && (
         <div
-          dir="rtl"
+          dir={isRTL ? "rtl" : "ltr"}
           className="absolute z-20 max-w-xs -translate-x-1/2 rounded-lg
                      border border-amber-200/20 bg-[#0B1120]/90 p-4
                      text-sm text-white shadow-lg backdrop-blur"
@@ -210,12 +237,12 @@ export default function PrayerWall({
             onClick={() => setSelected(null)}
             className="mt-3 text-xs text-white/50 hover:text-white/80"
           >
-            بستن
+            {d.close}
           </button>
         </div>
       )}
 
-      <div dir="rtl" className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
+      <div dir={isRTL ? "rtl" : "ltr"} className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
         {showForm ? (
           <form
             onSubmit={handleSubmit}
@@ -226,7 +253,7 @@ export default function PrayerWall({
             <textarea
               value={draftText}
               onChange={(e) => setDraftText(e.target.value)}
-              placeholder="درخواست دعای خود را بنویسید..."
+              placeholder={d.placeholder}
               rows={3}
               className="resize-none rounded-md border border-white/10
                          bg-white/5 p-2 text-sm text-white placeholder:text-white/40
@@ -238,14 +265,14 @@ export default function PrayerWall({
                 onClick={() => setShowForm(false)}
                 className="rounded-md px-3 py-1.5 text-sm text-white/60 hover:text-white"
               >
-                انصراف
+                {d.cancel}
               </button>
               <button
                 type="submit"
                 className="rounded-md bg-amber-200/90 px-4 py-1.5 text-sm
                            font-medium text-[#080D1A] hover:bg-amber-200"
               >
-                افزودن نور
+                {d.addLight}
               </button>
             </div>
           </form>
@@ -256,7 +283,7 @@ export default function PrayerWall({
                        px-5 py-2.5 text-sm text-amber-100 backdrop-blur
                        hover:bg-[#0B1120]"
           >
-            + یک نور دعا اضافه کنید
+            {d.addPrayerButton}
           </button>
         )}
       </div>

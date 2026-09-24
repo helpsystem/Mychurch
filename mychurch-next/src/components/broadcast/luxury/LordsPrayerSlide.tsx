@@ -4,6 +4,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SlideContentLordsPrayer } from '@/types/broadcast';
 import prayerTiming from '@/data/lords-prayer-timing.json';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    en: { title: "The Lord's Prayer" },
+    fa: { title: 'دعای ربانی' },
+    es: { title: 'El Padre Nuestro' },
+};
 
 // --- Luxury Particle System ---
 const ParticleBackground = () => {
@@ -88,6 +95,8 @@ const ParticleBackground = () => {
 };
 
 export const LordsPrayerSlide: React.FC<{ content: SlideContentLordsPrayer; isActive: boolean }> = ({ content, isActive }) => {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const audioRef = useRef<HTMLAudioElement>(null);
     const [currentTime, setCurrentTime] = useState(0);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -173,7 +182,7 @@ export const LordsPrayerSlide: React.FC<{ content: SlideContentLordsPrayer; isAc
                     <svg className="w-8 h-8 text-[var(--gold)] mb-4 drop-shadow-[0_0_15px_rgba(214,178,94,0.8)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m-4-10h8" />
                     </svg>
-                    <h1 className="text-2xl tracking-[0.2em] font-serif text-[var(--gold-light)] opacity-80 uppercase">The Lord's Prayer</h1>
+                    <h1 className="text-2xl tracking-[0.2em] font-serif text-[var(--gold-light)] opacity-80 uppercase">{d.title}</h1>
                 </motion.div>
 
                 {/* Glass Card Container for Sentences */}

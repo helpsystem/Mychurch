@@ -1,6 +1,15 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    fa: { alt: "واترمارک" },
+    en: { alt: "Watermark" },
+    es: { alt: "Marca de agua" },
+};
 
 export type WatermarkPosition =
     | 'top-left' | 'top-right' | 'top-center'
@@ -25,6 +34,8 @@ export const WatermarkLogo: React.FC<WatermarkLogoProps> = ({
     imageUrl,
     customOffsets
 }) => {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const positionClasses = {
         'top-left': 'top-0 left-0 -translate-x-1/4 -translate-y-1/4',
         'top-right': 'top-0 right-0 translate-x-1/4 -translate-y-1/4',
@@ -55,7 +66,7 @@ export const WatermarkLogo: React.FC<WatermarkLogoProps> = ({
         >
             <Image
                 src={imageUrl || "/logo-transparent.png"}
-                alt="Watermark"
+                alt={d.alt}
                 width={size}
                 height={size}
                 className="object-contain"

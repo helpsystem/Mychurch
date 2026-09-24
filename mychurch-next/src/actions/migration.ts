@@ -4,8 +4,14 @@ import { query } from "@/lib/db";
 import fs from "fs";
 import path from "path";
 import { revalidatePath } from "next/cache";
+import { requireRole } from "@/utils/rbac";
 
 export async function migrateLegacyWorshipData() {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
+    // NOTE: this path only ever exists on the original developer's Windows machine,
+    // never on the production VPS — this action is a no-op there (falls through to
+    // the "Legacy file not found" branch below) and is kept only for local dev use.
     const LEGACY_JSON_PATH = "D:\\Windows.old\\Users\\Sami\\Desktop\\Iran Church DC\\Git\\Mychurch\\data\\worship_songs.json";
     const results: any[] = [];
 

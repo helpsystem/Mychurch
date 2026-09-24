@@ -10,6 +10,79 @@ import { createClient } from "@/utils/supabase/client";
 import { cn } from "@/lib/utils";
 import { SongSectionsAccordion } from "./SongSectionsAccordion";
 import { SmartWorshipPlayer, getSafeAudioUrl } from "./SmartWorshipPlayer";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    lyricsFaTab: "Persian Lyrics",
+    englishTab: "English",
+    chordsTab: "🎸 Chords",
+    exitKaraokeMode: "Exit karaoke mode",
+    youtubeLabel: "YouTube",
+    unlike: "Unlike",
+    like: "Like",
+    close: "Close",
+    exitCinemaMode: "Exit cinema mode",
+    liveLyricsLabel: "Live Lyrics",
+    noAudioUploadedYet: "The audio file for this song has not been uploaded yet",
+    lyricsAndTextBadge: "Lyrics & Text",
+    focusedLyricsView: "Focused Lyrics View",
+    youtubePipHint: "YouTube switched to PIP (picture-in-picture) mode",
+    exitFocus: "Exit focus mode",
+    lyricsFaComingSoon: "The Persian lyrics for this song will be added and completed soon",
+    preparingLyricsSync: "Preparing and syncing lyrics and chords",
+    englishLyricsNotAvailable: "English lyrics not available",
+    translationsComingSoon: "Translations will be added soon",
+    fullLyricsView: "Full Lyrics View",
+    pleaseLoginToLike: "Please sign in first to like this song",
+  },
+  fa: {
+    lyricsFaTab: "متن فارسی",
+    englishTab: "English",
+    chordsTab: "🎸 آکوردها",
+    exitKaraokeMode: "خروج از حالت کارائوکه",
+    youtubeLabel: "یوتیوب",
+    unlike: "برداشتن لایک",
+    like: "لایک",
+    close: "بستن",
+    exitCinemaMode: "خروج از سینما",
+    liveLyricsLabel: "Live Lyrics",
+    noAudioUploadedYet: "فایل صوتی این سرود هنوز آپلود نشده است",
+    lyricsAndTextBadge: "متن و شعر",
+    focusedLyricsView: "نمای متمرکز متن",
+    youtubePipHint: "یوتیوب به حالت PIP (تصویر در تصویر) درآمد",
+    exitFocus: "خروج از تمرکز",
+    lyricsFaComingSoon: "متن فارسی این سرود به زودی ثبت و تکمیل می‌شود",
+    preparingLyricsSync: "در حال آماده‌سازی و همگام‌سازی شعر و آکورد",
+    englishLyricsNotAvailable: "English lyrics not available",
+    translationsComingSoon: "Translations will be added soon",
+    fullLyricsView: "نمای تمام متن",
+    pleaseLoginToLike: "لطفاً برای لایک کردن ابتدا وارد شوید",
+  },
+  es: {
+    lyricsFaTab: "Letra en persa",
+    englishTab: "English",
+    chordsTab: "🎸 Acordes",
+    exitKaraokeMode: "Salir del modo karaoke",
+    youtubeLabel: "YouTube",
+    unlike: "Quitar me gusta",
+    like: "Me gusta",
+    close: "Cerrar",
+    exitCinemaMode: "Salir del modo cine",
+    liveLyricsLabel: "Letra en vivo",
+    noAudioUploadedYet: "El archivo de audio de esta canción aún no se ha subido",
+    lyricsAndTextBadge: "Letra y texto",
+    focusedLyricsView: "Vista enfocada de la letra",
+    youtubePipHint: "YouTube cambió al modo PIP (imagen en imagen)",
+    exitFocus: "Salir del modo enfoque",
+    lyricsFaComingSoon: "La letra en persa de esta canción se completará y añadirá pronto",
+    preparingLyricsSync: "Preparando y sincronizando letra y acordes",
+    englishLyricsNotAvailable: "Letra en inglés no disponible",
+    translationsComingSoon: "Las traducciones se añadirán pronto",
+    fullLyricsView: "Vista completa de la letra",
+    pleaseLoginToLike: "Por favor inicia sesión primero para dar me gusta",
+  },
+};
 
 interface Props {
   song: WorshipSong;
@@ -26,14 +99,22 @@ function stripChords(text: string): string {
 
 // ── Section types for Live Lyrics view
 const SECTION_PATTERN = /^(Verse[\s\d]*|Chorus|Bridge|Intro|Outro|Pre-?[Cc]horus|Tag|Interlude)\s*$/i;
-const SECTION_LABELS: Record<string, string> = {
-  verse: "بند", "verse 1": "بند ۱", "verse 2": "بند ۲", "verse 3": "بند ۳",
-  chorus: "ترجیع‌بند", bridge: "پل", intro: "مقدمه",
-  outro: "پایان‌بندی", "pre-chorus": "پیش ترجیع", tag: "تگ", interlude: "میانی",
+const SECTION_LABELS: Record<string, { en: string; fa: string; es: string }> = {
+  verse: { en: "Verse", fa: "بند", es: "Estrofa" },
+  "verse 1": { en: "Verse 1", fa: "بند ۱", es: "Estrofa 1" },
+  "verse 2": { en: "Verse 2", fa: "بند ۲", es: "Estrofa 2" },
+  "verse 3": { en: "Verse 3", fa: "بند ۳", es: "Estrofa 3" },
+  chorus: { en: "Chorus", fa: "ترجیع‌بند", es: "Coro" },
+  bridge: { en: "Bridge", fa: "پل", es: "Puente" },
+  intro: { en: "Intro", fa: "مقدمه", es: "Introducción" },
+  outro: { en: "Outro", fa: "پایان‌بندی", es: "Cierre" },
+  "pre-chorus": { en: "Pre-Chorus", fa: "پیش ترجیع", es: "Pre-coro" },
+  tag: { en: "Tag", fa: "تگ", es: "Tag" },
+  interlude: { en: "Interlude", fa: "میانی", es: "Interludio" },
 };
 
 // ── Parse lyrics into sections for Live Lyrics view
-function parseSections(text: string): { type: string; label: string; lines: string[] }[] {
+function parseSections(text: string, language: "fa" | "en" | "es" = "fa"): { type: string; label: string; lines: string[] }[] {
   const clean = stripChords(text);
   const rawLines = clean.split("\n");
   const sections: { type: string; label: string; lines: string[] }[] = [];
@@ -44,7 +125,8 @@ function parseSections(text: string): { type: string; label: string; lines: stri
     if (!t) return;
     if (SECTION_PATTERN.test(t)) {
       if (current.lines.length > 0) sections.push(current);
-      current = { type: t.toLowerCase(), label: SECTION_LABELS[t.toLowerCase()] || t, lines: [] };
+      const labelEntry = SECTION_LABELS[t.toLowerCase()];
+      current = { type: t.toLowerCase(), label: labelEntry ? (labelEntry[language] || labelEntry.fa) : t, lines: [] };
     } else {
       current.lines.push(t);
     }
@@ -156,6 +238,8 @@ type Tab = "lyrics-fa" | "lyrics-en" | "chords";
 type FocusMode = "lyrics" | "media" | null;
 
 export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeChange, autoPlay = false }: Props) {
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const [liked, setLiked] = useState(initialLiked);
   const [likeCount, setLikeCount] = useState(song.likes_count || 0);
   const [user, setUser] = useState<any>(null);
@@ -200,9 +284,9 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
   const hasTimingData = !!(parsedTimingData?.lines?.length > 0);
 
   const tabs: { id: Tab; label: string; icon: React.ElementType }[] = [
-    ...(hasLyricsFA ? [{ id: "lyrics-fa" as Tab, label: "متن فارسی", icon: Mic2 }] : []),
-    ...(hasLyricsEN ? [{ id: "lyrics-en" as Tab, label: "English", icon: AlignLeft }] : []),
-    ...(lyricsHaveChords || hasSeparateChords ? [{ id: "chords" as Tab, label: "🎸 آکوردها", icon: Guitar }] : []),
+    ...(hasLyricsFA ? [{ id: "lyrics-fa" as Tab, label: d.lyricsFaTab, icon: Mic2 }] : []),
+    ...(hasLyricsEN ? [{ id: "lyrics-en" as Tab, label: d.englishTab, icon: AlignLeft }] : []),
+    ...(lyricsHaveChords || hasSeparateChords ? [{ id: "chords" as Tab, label: d.chordsTab, icon: Guitar }] : []),
   ];
 
   useEffect(() => {
@@ -254,8 +338,8 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
   };
 
   const handleLike = async () => {
-    if (!user) { alert("لطفاً برای لایک کردن ابتدا وارد شوید"); return; }
-    const { success, liked: newLiked, count } = await toggleLikeWorshipSong(song.id, user.id);
+    if (!user) { alert(d.pleaseLoginToLike); return; }
+    const { success, liked: newLiked, count } = await toggleLikeWorshipSong(song.id);
     if (success) { setLiked(newLiked); setLikeCount(count); onLikeChange?.(song.id, newLiked, count); }
   };
 
@@ -268,10 +352,10 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
 
         {showLiveLyrics && hasLyricsFA && hasTimingData && (
           <div className="absolute inset-0 z-20 flex flex-col bg-background/98 backdrop-blur-xl animate-in slide-in-from-bottom duration-300">
-            <button 
+            <button
                 onClick={() => setShowLiveLyrics(false)}
                 className="absolute top-4 left-6 z-[99] shrink-0 p-3 flex items-center gap-2 bg-black/40 hover:bg-red-500 hover:text-white rounded-full text-white backdrop-blur-md transition-all shadow-xl border border-white/10"
-                title="خروج از حالت کارائوکه">
+                title={d.exitKaraokeMode}>
                 <ChevronDown className="w-5 h-5" />
             </button>
             <div className="flex-1 w-full relative">
@@ -312,17 +396,17 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
                   onClick={() => handleSetFocusMode(m => m === "media" ? null : "media")}
                   className={cn("flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-xl border transition-all",
                     focusMode === "media" ? "bg-red-500 text-white border-red-500" : "bg-red-500/10 text-red-500 border-red-500/20 hover:bg-red-500/15")}>
-                  <Youtube className="w-3 h-3" /> یوتیوب
+                  <Youtube className="w-3 h-3" /> {d.youtubeLabel}
                 </button>
               )}
-              <button onClick={handleLike} title={liked ? "برداشتن لایک" : "لایک"}
+              <button onClick={handleLike} title={liked ? d.unlike : d.like}
                 className={cn("flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-bold border transition-all",
                   liked ? "bg-pink-500/15 text-pink-500 border-pink-500/30" : "bg-secondary text-muted-foreground border-border hover:text-pink-500 hover:border-pink-500/30")}>
                 <Heart className={cn("w-3 h-3", liked && "fill-current")} /> {likeCount}
               </button>
             </div>
           </div>
-          <button onClick={onClose} title="بستن"
+          <button onClick={onClose} title={d.close}
             className="flex items-center gap-1.5 shrink-0 px-3 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-500 transition-all">
             <X className="w-4 h-4" />
           </button>
@@ -359,7 +443,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
               {/* Media Focus Badge */}
               {focusMode === "media" && (
                 <div className="absolute bottom-4 right-4 flex gap-2">
-                   <button onClick={() => handleSetFocusMode(null)} title="خروج از سینما"
+                   <button onClick={() => handleSetFocusMode(null)} title={d.exitCinemaMode}
                      className="p-2.5 bg-black/60 backdrop-blur-md rounded-full text-white hover:bg-black/80 border border-white/20 transition-all">
                      <Minimize2 className="w-4 h-4" />
                    </button>
@@ -383,7 +467,7 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
                 {hasLyricsFA && hasTimingData && focusMode === null && (
                   <button onClick={() => setShowLiveLyrics(v => !v)}
                     className="flex items-center gap-2 px-4 py-2.5 rounded-xl border font-bold text-xs shrink-0 transition-all bg-purple-500/10 text-purple-500 border-purple-500/20 hover:bg-purple-500/15">
-                    <Zap className="w-3.5 h-3.5" /> Live Lyrics
+                    <Zap className="w-3.5 h-3.5" /> {d.liveLyricsLabel}
                   </button>
                 )}
               </div>
@@ -393,9 +477,9 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
           {!song.audio_url && !song.youtube_id && (
             <div className="px-5 py-2.5 border-b border-border/50 shrink-0 bg-secondary/20 flex items-center justify-between text-xs text-muted-foreground">
               <span className="flex items-center gap-2">
-                <Music className="w-3.5 h-3.5 text-primary/70" /> فایل صوتی این سرود هنوز آپلود نشده است
+                <Music className="w-3.5 h-3.5 text-primary/70" /> {d.noAudioUploadedYet}
               </span>
-              <span className="text-[10px] px-2.5 py-0.5 rounded-lg bg-secondary border border-border font-medium">متن و شعر</span>
+              <span className="text-[10px] px-2.5 py-0.5 rounded-lg bg-secondary border border-border font-medium">{d.lyricsAndTextBadge}</span>
             </div>
           )}
         </div>
@@ -450,11 +534,11 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
             <div className="flex items-center justify-between mb-6 animate-in fade-in slide-in-from-top-2 duration-400">
                <div className="flex items-center gap-3">
                  <span className="text-sm font-black text-primary uppercase tracking-widest flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/25">
-                   <Maximize2 className="w-4 h-4" /> نمای متمرکز متن
+                   <Maximize2 className="w-4 h-4" /> {d.focusedLyricsView}
                  </span>
-                 <p className="text-xs text-muted-foreground font-bold hidden sm:block">یوتیوب به حالت PIP (تصویر در تصویر) درآمد</p>
+                 <p className="text-xs text-muted-foreground font-bold hidden sm:block">{d.youtubePipHint}</p>
                </div>
-               <button onClick={() => handleSetFocusMode(null)} title="خروج از تمرکز"
+               <button onClick={() => handleSetFocusMode(null)} title={d.exitFocus}
                  className="p-2.5 bg-secondary rounded-full hover:bg-secondary/80 text-foreground transition-all border border-border shadow-sm">
                  <ChevronDown className="w-5 h-5" />
                </button>
@@ -508,8 +592,8 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
                     ) : (
                       <div className="text-center py-16 px-4">
                         <AlignLeft className="w-10 h-10 mx-auto text-muted-foreground/40 mb-3" />
-                        <p className="text-base font-bold text-foreground">متن فارسی این سرود به زودی ثبت و تکمیل می‌شود</p>
-                        <p className="text-xs text-muted-foreground mt-1">در حال آماده‌سازی و همگام‌سازی شعر و آکورد</p>
+                        <p className="text-base font-bold text-foreground">{d.lyricsFaComingSoon}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{d.preparingLyricsSync}</p>
                       </div>
                     )
                   ) : (
@@ -522,8 +606,8 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
                     ) : (
                       <div className="text-center py-16 px-4">
                         <AlignLeft className="w-10 h-10 mx-auto text-muted-foreground/40 mb-3" />
-                        <p className="text-base font-bold text-foreground">English lyrics not available</p>
-                        <p className="text-xs text-muted-foreground mt-1">Translations will be added soon</p>
+                        <p className="text-base font-bold text-foreground">{d.englishLyricsNotAvailable}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{d.translationsComingSoon}</p>
                       </div>
                     )
                   )}
@@ -549,15 +633,15 @@ export function SongDetailsModal({ song, onClose, initialLiked = false, onLikeCh
         <div className="shrink-0 border-t border-border bg-secondary/30 px-5 pt-3 pb-[calc(24px+env(safe-area-inset-bottom,0px))] sm:pb-3 flex items-center justify-between gap-3">
           <button onClick={onClose}
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/15 border border-red-500/25 text-red-500 font-bold text-sm transition-all">
-            <X className="w-4 h-4" /> بستن
+            <X className="w-4 h-4" /> {d.close}
           </button>
           <div className="flex gap-2">
             {hasLyricsFA && (
-              <button 
+              <button
                 onClick={() => handleSetFocusMode(f => f === "lyrics" ? null : "lyrics")}
                 className={cn("flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all border",
                   focusMode === "lyrics" ? "bg-primary text-white border-primary" : "bg-primary/10 text-primary border-primary/25 hover:bg-primary/20")}>
-                <Maximize2 className="w-4 h-4" /> نمای تمام متن
+                <Maximize2 className="w-4 h-4" /> {d.fullLyricsView}
               </button>
             )}
           </div>

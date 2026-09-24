@@ -1,20 +1,103 @@
-import { redirect } from "next/navigation";
+"use client";
 
-export const dynamic = "force-dynamic";
+import React, { useState } from "react";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 // Auto-redirect page that calls restore-access then goes to /admin
+// Note: this page renders its own <html>/<body> (pre-existing behavior, not
+// changed here) — it is a standalone admin/leader recovery utility, not part
+// of normal site navigation.
+
+const localDict = {
+    en: {
+        pageTitle: "Restore Admin Access | Restore Admin Access",
+        heading: "Restore Admin Access",
+        body: "If you're seeing an \"Access Denied\" error, click the button below to instantly restore your access.",
+        loginFirstNote: "You must be logged in to the site first.",
+        restoreButton: "🔓 Restore Access and Enter Panel",
+        restoringButton: "⏳ Restoring access...",
+        successButton: "✅ Success! Redirecting to panel...",
+        retryButton: "🔓 Try Again",
+        warning: "⚠️ This page is only usable by admins and site leaders.",
+        unknownError: "Unknown error",
+        connectionError: "Error connecting to the server",
+    },
+    fa: {
+        pageTitle: "بازیابی دسترسی مدیریت | Restore Admin Access",
+        heading: "بازیابی دسترسی مدیریت",
+        body: "اگر با خطای «عدم دسترسی» مواجه شده‌اید، روی دکمه زیر کلیک کنید تا دسترسی شما فوراً بازیابی شود.",
+        loginFirstNote: "ابتدا باید در سایت لاگین کرده باشید.",
+        restoreButton: "🔓 بازیابی دسترسی و ورود به پنل",
+        restoringButton: "⏳ در حال بازیابی دسترسی...",
+        successButton: "✅ موفق! در حال انتقال به پنل...",
+        retryButton: "🔓 تلاش مجدد",
+        warning: "⚠️ این صفحه فقط برای ادمین‌ها و رهبران سایت قابل استفاده است.",
+        unknownError: "خطای ناشناخته",
+        connectionError: "خطا در اتصال به سرور",
+    },
+    es: {
+        pageTitle: "Restaurar Acceso de Administrador | Restore Admin Access",
+        heading: "Restaurar Acceso de Administrador",
+        body: "Si ves un error de \"Acceso Denegado\", haz clic en el botón de abajo para restaurar tu acceso al instante.",
+        loginFirstNote: "Primero debes haber iniciado sesión en el sitio.",
+        restoreButton: "🔓 Restaurar Acceso y Entrar al Panel",
+        restoringButton: "⏳ Restaurando acceso...",
+        successButton: "✅ ¡Listo! Redirigiendo al panel...",
+        retryButton: "🔓 Intentar de Nuevo",
+        warning: "⚠️ Esta página solo puede ser usada por administradores y líderes del sitio.",
+        unknownError: "Error desconocido",
+        connectionError: "Error al conectar con el servidor",
+    },
+};
+
+type Status = { kind: "idle" | "success" | "error"; text: string };
+
 export default function RestoreAccessPage() {
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
+
+    const [loading, setLoading] = useState(false);
+    const [done, setDone] = useState(false);
+    const [status, setStatus] = useState<Status>({ kind: "idle", text: "" });
+
+    const restoreAccess = async () => {
+        setLoading(true);
+        setStatus({ kind: "idle", text: "" });
+        try {
+            const res = await fetch("/api/admin/restore-access");
+            const data = await res.json();
+            if (data.success) {
+                setStatus({ kind: "success", text: `✅ ${data.message}` });
+                setDone(true);
+                setTimeout(() => {
+                    window.location.href = "/admin";
+                }, 1500);
+            } else {
+                setStatus({ kind: "error", text: `❌ ${data.error || d.unknownError}` });
+                setLoading(false);
+            }
+        } catch (e) {
+            setStatus({ kind: "error", text: `❌ ${d.connectionError}` });
+            setLoading(false);
+        }
+    };
+
+    let buttonLabel = d.restoreButton;
+    if (done) buttonLabel = d.successButton;
+    else if (loading) buttonLabel = d.restoringButton;
+    else if (status.kind === "error") buttonLabel = d.retryButton;
+
     return (
-        <html lang="fa" dir="rtl">
+        <html lang={language} dir={isRTL ? "rtl" : "ltr"}>
             <head>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <title>بازیابی دسترسی مدیریت | Restore Admin Access</title>
+                <title>{d.pageTitle}</title>
                 <style>{`
                     * { margin: 0; padding: 0; box-sizing: border-box; }
-                    body { 
-                        background: #09090b; 
-                        color: #fff; 
+                    body {
+                        background: #09090b;
+                        color: #fff;
                         font-family: 'Vazirmatn', Tahoma, sans-serif;
                         min-height: 100vh;
                         display: flex;
@@ -58,48 +141,24 @@ export default function RestoreAccessPage() {
             <body>
                 <div className="card">
                     <div className="icon">🛡️</div>
-                    <h1>بازیابی دسترسی مدیریت</h1>
+                    <h1>{d.heading}</h1>
                     <p>
-                        اگر با خطای «عدم دسترسی» مواجه شده‌اید، روی دکمه زیر کلیک کنید تا دسترسی شما فوراً بازیابی شود.
+                        {d.body}
                         <br /><br />
-                        <small style={{color: '#71717a'}}>ابتدا باید در سایت لاگین کرده باشید.</small>
+                        <small style={{ color: '#71717a' }}>{d.loginFirstNote}</small>
                     </p>
-                    <button id="restoreBtn">
-                        🔓 بازیابی دسترسی و ورود به پنل
+                    <button
+                        id="restoreBtn"
+                        onClick={restoreAccess}
+                        disabled={loading || done}
+                    >
+                        {buttonLabel}
                     </button>
-                    <div className="status" id="status"></div>
-                    <p className="warning">⚠️ این صفحه فقط برای ادمین‌ها و رهبران سایت قابل استفاده است.</p>
+                    <div className={`status ${status.kind === "success" ? "success" : status.kind === "error" ? "error" : ""}`} id="status">
+                        {status.text}
+                    </div>
+                    <p className="warning">{d.warning}</p>
                 </div>
-                <script dangerouslySetInnerHTML={{__html: `
-                    async function restoreAccess() {
-                        const btn = document.getElementById('restoreBtn');
-                        const status = document.getElementById('status');
-                        btn.disabled = true;
-                        btn.textContent = '⏳ در حال بازیابی دسترسی...';
-                        status.textContent = '';
-                        try {
-                            const res = await fetch('/api/admin/restore-access');
-                            const data = await res.json();
-                            if (data.success) {
-                                status.className = 'status success';
-                                status.textContent = '✅ ' + data.message;
-                                btn.textContent = '✅ موفق! در حال انتقال به پنل...';
-                                setTimeout(() => { window.location.href = '/admin'; }, 1500);
-                            } else {
-                                status.className = 'status error';
-                                status.textContent = '❌ ' + (data.error || 'خطای ناشناخته');
-                                btn.disabled = false;
-                                btn.textContent = '🔓 تلاش مجدد';
-                            }
-                        } catch(e) {
-                            status.className = 'status error';
-                            status.textContent = '❌ خطا در اتصال به سرور';
-                            btn.disabled = false;
-                            btn.textContent = '🔓 تلاش مجدد';
-                        }
-                    }
-                    document.getElementById('restoreBtn').addEventListener('click', restoreAccess);
-                `}} />
             </body>
         </html>
     );

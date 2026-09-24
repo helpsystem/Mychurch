@@ -11,6 +11,112 @@ import { getPublicPresentationById } from "@/actions/presentations";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        onlineAvailable: "Online presentation available",
+        viewBooklet: "View Digital Booklet",
+        viewBookletTitle: "View this session's digital booklet",
+        today: "Today",
+        tomorrow: "Tomorrow",
+        programsCountSuffix: "programs",
+        noFilterTitle: "No programs scheduled",
+        filterTitle: "No programs found",
+        noFilterDesc: "Upcoming church programs will appear here soon",
+        filterDesc: "Change the filter or view all programs",
+        orgName: "Iranian Presbyterian Church of Washington D.C.",
+        heroTitlePrefix: "Programs &",
+        heroTitleHighlight: "Church Gatherings",
+        heroSubtitle: "Weekly meetings, worship calendar, and digital booklets from past church sessions",
+        upcomingProgramsCount: "upcoming programs",
+        pastSessionsCount: "sessions held",
+        upcomingTab: "Upcoming Programs",
+        pastTab: "Past Sessions",
+        searchUpcomingPlaceholder: "Search upcoming programs...",
+        searchPastPlaceholder: "Search past sessions...",
+        searchAriaLabel: "Search programs",
+        allCategory: "All",
+        resultsFound: (n: number) => `${n} programs found`,
+        noResults: "No results found",
+        clearFilter: "Clear filter ←",
+        footerContact: "Contact the church for more information",
+        backHome: "Back to Home",
+        close: "Close",
+        loadingBooklet: "Loading session's digital booklet...",
+        bookletNotFound: "Unfortunately this session's digital booklet was not found.",
+        bookletLoadError: "Error loading booklet information. Please try again.",
+        retry: "Retry",
+    },
+    fa: {
+        onlineAvailable: "ارائه آنلاین موجود",
+        viewBooklet: "کتابچه دیجیتال",
+        viewBookletTitle: "مشاهده کتابچه دیجیتال جلسه",
+        today: "امروز",
+        tomorrow: "فردا",
+        programsCountSuffix: "برنامه",
+        noFilterTitle: "برنامه‌ای تنظیم نشده",
+        filterTitle: "برنامه‌ای یافت نشد",
+        noFilterDesc: "برنامه‌های آینده کلیسا به زودی اینجا نمایش داده می‌شوند",
+        filterDesc: "فیلتر را تغییر دهید یا همه برنامه‌ها را مشاهده کنید",
+        orgName: "کلیسای ایرانیان واشنگتن دی‌سی",
+        heroTitlePrefix: "برنامه‌ها و",
+        heroTitleHighlight: "جلسات کلیسا",
+        heroSubtitle: "جلسات هفتگی، تقویم عبادت‌ها، و کتابچه‌های دیجیتال جلسات گذشته کلیسا",
+        upcomingProgramsCount: "برنامه پیش رو",
+        pastSessionsCount: "جلسه برگزار شده",
+        upcomingTab: "برنامه‌های آینده",
+        pastTab: "جلسات گذشته",
+        searchUpcomingPlaceholder: "جستجو در برنامه‌های آینده...",
+        searchPastPlaceholder: "جستجو در جلسات گذشته...",
+        searchAriaLabel: "جستجو در برنامه‌ها",
+        allCategory: "همه",
+        resultsFound: (n: number) => `${n} برنامه یافت شد`,
+        noResults: "نتیجه‌ای یافت نشد",
+        clearFilter: "پاک کردن فیلتر ←",
+        footerContact: "برای اطلاعات بیشتر با کلیسا تماس بگیرید",
+        backHome: "بازگشت به صفحه اصلی",
+        close: "بستن",
+        loadingBooklet: "در حال بارگذاری کتابچه دیجیتال جلسه...",
+        bookletNotFound: "متاسفانه کتابچه دیجیتال این جلسه یافت نشد.",
+        bookletLoadError: "خطا در بارگذاری اطلاعات کتابچه. لطفا دوباره تلاش کنید.",
+        retry: "تلاش مجدد",
+    },
+    es: {
+        onlineAvailable: "Presentación en línea disponible",
+        viewBooklet: "Folleto Digital",
+        viewBookletTitle: "Ver el folleto digital de esta sesión",
+        today: "Hoy",
+        tomorrow: "Mañana",
+        programsCountSuffix: "programas",
+        noFilterTitle: "No hay programas programados",
+        filterTitle: "No se encontraron programas",
+        noFilterDesc: "Los próximos programas de la iglesia aparecerán aquí pronto",
+        filterDesc: "Cambie el filtro o vea todos los programas",
+        orgName: "Iglesia Presbiteriana Iraní de Washington D.C.",
+        heroTitlePrefix: "Programas y",
+        heroTitleHighlight: "Reuniones de la Iglesia",
+        heroSubtitle: "Reuniones semanales, calendario de adoración y folletos digitales de sesiones pasadas de la iglesia",
+        upcomingProgramsCount: "programas próximos",
+        pastSessionsCount: "sesiones realizadas",
+        upcomingTab: "Próximos Programas",
+        pastTab: "Sesiones Pasadas",
+        searchUpcomingPlaceholder: "Buscar en próximos programas...",
+        searchPastPlaceholder: "Buscar en sesiones pasadas...",
+        searchAriaLabel: "Buscar programas",
+        allCategory: "Todo",
+        resultsFound: (n: number) => `${n} programas encontrados`,
+        noResults: "No se encontraron resultados",
+        clearFilter: "Borrar filtro ←",
+        footerContact: "Contacte a la iglesia para más información",
+        backHome: "Volver al Inicio",
+        close: "Cerrar",
+        loadingBooklet: "Cargando el folleto digital de la sesión...",
+        bookletNotFound: "Lamentablemente no se encontró el folleto digital de esta sesión.",
+        bookletLoadError: "Error al cargar la información del folleto. Inténtelo de nuevo.",
+        retry: "Reintentar",
+    },
+};
 
 // Dynamic import for booklet flipbook component (ssr: false since it reads window/document)
 const SessionFlipbook = dynamic(
@@ -50,9 +156,9 @@ function isTomorrow(dateStr: string): boolean {
     return dateStr === tomorrow.toISOString().split("T")[0];
 }
 
-function getDayBadge(dateStr: string): { label: string; className: string } | null {
-    if (isToday(dateStr)) return { label: "امروز", className: "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30" };
-    if (isTomorrow(dateStr)) return { label: "فردا", className: "bg-emerald-600/80 text-white" };
+function getDayBadge(dateStr: string, d: (typeof localDict)["fa"]): { label: string; className: string } | null {
+    if (isToday(dateStr)) return { label: d.today, className: "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30" };
+    if (isTomorrow(dateStr)) return { label: d.tomorrow, className: "bg-emerald-600/80 text-white" };
     return null;
 }
 
@@ -99,6 +205,8 @@ interface ProgramCardProps {
 }
 
 function ProgramCard({ program, category, index, onOpenBooklet }: ProgramCardProps) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const accentColor = category?.color ?? "#6366f1";
 
     return (
@@ -182,18 +290,18 @@ function ProgramCard({ program, category, index, onOpenBooklet }: ProgramCardPro
                     <div className="mt-4 pt-3 border-t border-white/6 flex flex-wrap gap-2 items-center justify-between">
                         <span className="inline-flex items-center gap-1.5 text-[10px] bg-indigo-500/15 text-indigo-400 px-2.5 py-1.5 rounded-lg font-bold font-[Vazirmatn]">
                             <Monitor className="w-3 h-3" />
-                            ارائه آنلاین موجود
+                            {d.onlineAvailable}
                         </span>
 
                         {onOpenBooklet && (
                             <button
                                 onClick={() => onOpenBooklet(program.presentation_id!)}
                                 className="inline-flex items-center gap-1.5 text-[11px] bg-[#d4af37]/20 hover:bg-[#d4af37]/35 border border-[#d4af37]/40 text-[#ebdcb9] hover:text-white px-2.5 py-1.5 rounded-xl font-bold font-[Vazirmatn] transition-all hover:scale-105 active:scale-95 shadow-sm"
-                                title="مشاهده کتابچه دیجیتال جلسه"
-                                aria-label="مشاهده کتابچه دیجیتال جلسه"
+                                title={d.viewBookletTitle}
+                                aria-label={d.viewBookletTitle}
                             >
                                 <BookOpen className="w-3.5 h-3.5 text-[#ebdcb9]" />
-                                کتابچه دیجیتال
+                                {d.viewBooklet}
                             </button>
                         )}
                     </div>
@@ -211,8 +319,10 @@ interface DateHeaderProps {
 }
 
 function DateHeader({ dateStr, count }: DateHeaderProps) {
-    const { fa, en, dayFa, dayNumFa, monthFa } = formatDateLabel(dateStr);
-    const badge = getDayBadge(dateStr);
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
+    const { fa, en, dayFa, monthFa } = formatDateLabel(dateStr);
+    const badge = getDayBadge(dateStr, d);
 
     return (
         <div className="flex items-center gap-4 mb-5">
@@ -251,7 +361,7 @@ function DateHeader({ dateStr, count }: DateHeaderProps) {
             <div className="hidden sm:flex items-center gap-3">
                 <div className="flex-1 h-px bg-white/6 min-w-[40px]" />
                 <span className="text-xs text-white/30 font-sans shrink-0">
-                    {count} برنامه
+                    {count} {d.programsCountSuffix}
                 </span>
             </div>
         </div>
@@ -261,6 +371,8 @@ function DateHeader({ dateStr, count }: DateHeaderProps) {
 // ─── Empty State ─────────────────────────────────────────────────────────────
 
 function EmptyState({ hasFilter }: { hasFilter: boolean }) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     return (
         <div className="flex flex-col items-center justify-center py-24 text-center animate-fade-in">
             <div className="relative mb-6">
@@ -272,12 +384,10 @@ function EmptyState({ hasFilter }: { hasFilter: boolean }) {
                 </div>
             </div>
             <h3 className="text-xl font-black text-white font-[Vazirmatn] mb-2">
-                {hasFilter ? "برنامه‌ای یافت نشد" : "برنامه‌ای تنظیم نشده"}
+                {hasFilter ? d.filterTitle : d.noFilterTitle}
             </h3>
             <p className="text-sm text-white/40 font-[Vazirmatn] max-w-xs leading-relaxed">
-                {hasFilter
-                    ? "فیلتر را تغییر دهید یا همه برنامه‌ها را مشاهده کنید"
-                    : "برنامه‌های آینده کلیسا به زودی اینجا نمایش داده می‌شوند"}
+                {hasFilter ? d.filterDesc : d.noFilterDesc}
             </p>
         </div>
     );
@@ -292,6 +402,8 @@ interface ScheduleViewerProps {
 }
 
 export default function ScheduleViewer({ programs, pastPrograms = [], categories }: ScheduleViewerProps) {
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
@@ -313,11 +425,11 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
             if (data) {
                 setPresentationData(data);
             } else {
-                setPresentationError("متاسفانه کتابچه دیجیتال این جلسه یافت نشد.");
+                setPresentationError(d.bookletNotFound);
             }
         } catch (err) {
             console.error("Error fetching presentation:", err);
-            setPresentationError("خطا در بارگذاری اطلاعات کتابچه. لطفا دوباره تلاش کنید.");
+            setPresentationError(d.bookletLoadError);
         } finally {
             setLoadingPresentation(false);
         }
@@ -375,7 +487,7 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
     const totalProgramsCount = activeTab === "upcoming" ? programs.length : pastPrograms.length;
 
     return (
-        <div className="min-h-screen bg-background" dir="rtl">
+        <div className="min-h-screen bg-background" dir={isRTL ? "rtl" : "ltr"}>
 
             {/* ── Hero Header ── */}
             <div className="relative overflow-hidden">
@@ -394,17 +506,17 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                             <Church className="w-5 h-5 text-indigo-400" />
                         </div>
                         <span className="text-sm font-bold text-white/50 font-[Vazirmatn]">
-                            کلیسای ایرانیان واشنگتن دی‌سی
+                            {d.orgName}
                         </span>
                     </div>
 
                     {/* Title */}
                     <div className="animate-fade-in-up" style={{ animationDelay: "80ms" }}>
                         <h1 className="text-4xl sm:text-5xl font-black text-white font-[Vazirmatn] leading-tight mb-3">
-                            برنامه‌ها و <span className="text-gradient">جلسات کلیسا</span>
+                            {d.heroTitlePrefix} <span className="text-gradient">{d.heroTitleHighlight}</span>
                         </h1>
                         <p className="text-white/50 font-[Vazirmatn] text-base leading-relaxed max-w-md">
-                            جلسات هفتگی، تقویم عبادت‌ها، و کتابچه‌های دیجیتال جلسات گذشته کلیسا
+                            {d.heroSubtitle}
                         </p>
                     </div>
 
@@ -412,12 +524,12 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                     <div className="flex items-center gap-6 mt-6 animate-fade-in" style={{ animationDelay: "160ms" }}>
                         <div className="flex items-center gap-2 text-sm text-white/40 font-[Vazirmatn]">
                             <Calendar className="w-4 h-4" />
-                            <span>{programs.length} برنامه پیش رو</span>
+                            <span>{programs.length} {d.upcomingProgramsCount}</span>
                         </div>
                         <div className="w-px h-4 bg-white/10" />
                         <div className="flex items-center gap-2 text-sm text-white/40 font-[Vazirmatn]">
                             <Clock className="w-4 h-4" />
-                            <span>{pastPrograms.length} جلسه برگزار شده</span>
+                            <span>{pastPrograms.length} {d.pastSessionsCount}</span>
                         </div>
                     </div>
                 </div>
@@ -436,7 +548,7 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                                     : "text-white/50 hover:text-white/80"
                             )}
                         >
-                            برنامه‌های آینده
+                            {d.upcomingTab}
                         </button>
                         <button
                             onClick={() => { setActiveTab("past"); setSelectedCategoryId(null); setSearchQuery(""); }}
@@ -447,7 +559,7 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                                     : "text-white/50 hover:text-white/80"
                             )}
                         >
-                            جلسات گذشته
+                            {d.pastTab}
                         </button>
                     </div>
                 </div>
@@ -467,8 +579,8 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                                 type="search"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder={activeTab === "upcoming" ? "جستجو در برنامه‌های آینده..." : "جستجو در جلسات گذشته..."}
-                                aria-label="جستجو در برنامه‌ها"
+                                placeholder={activeTab === "upcoming" ? d.searchUpcomingPlaceholder : d.searchPastPlaceholder}
+                                aria-label={d.searchAriaLabel}
                                 className="w-full bg-white/5 border border-white/10 rounded-2xl pr-10 pl-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/40 transition-all font-[Vazirmatn]"
                             />
                         </div>
@@ -477,7 +589,7 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                         {categories.length > 0 && (
                             <div className="flex gap-2 overflow-x-auto pb-1 custom-scrollbar">
                                 <CategoryChip
-                                    label="همه"
+                                    label={d.allCategory}
                                     count={totalProgramsCount}
                                     active={!selectedCategoryId}
                                     onClick={() => setSelectedCategoryId(null)}
@@ -504,13 +616,13 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                 {hasFilter && (
                     <div className="flex items-center justify-between mb-6 animate-fade-in">
                         <p className="text-sm text-white/40 font-[Vazirmatn]">
-                            {totalShown > 0 ? `${totalShown} برنامه یافت شد` : "نتیجه‌ای یافت نشد"}
+                            {totalShown > 0 ? d.resultsFound(totalShown) : d.noResults}
                         </p>
                         <button
                             onClick={() => { setSelectedCategoryId(null); setSearchQuery(""); }}
                             className="text-xs text-indigo-400 hover:text-indigo-300 font-[Vazirmatn] transition-colors"
                         >
-                            پاک کردن فیلتر ←
+                            {d.clearFilter}
                         </button>
                     </div>
                 )}
@@ -549,14 +661,14 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                 {/* Footer */}
                 <div className="mt-20 pt-8 border-t border-white/6 text-center">
                     <p className="text-xs text-white/25 font-[Vazirmatn]">
-                        برای اطلاعات بیشتر با کلیسا تماس بگیرید
+                        {d.footerContact}
                     </p>
                     <Link
                         href="/"
                         className="inline-flex items-center gap-1.5 mt-3 text-xs text-indigo-400/70 hover:text-indigo-400 font-[Vazirmatn] transition-colors"
                     >
                         <ExternalLink className="w-3 h-3" />
-                        بازگشت به صفحه اصلی
+                        {d.backHome}
                     </Link>
                 </div>
             </div>
@@ -564,9 +676,9 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
             {/* ── Booklet Modal Overlay ── */}
             {selectedPresentationId && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/80 backdrop-blur-md p-4 overflow-y-auto animate-fade-in">
-                    <div 
+                    <div
                         className="relative bg-neutral-900 border border-white/10 rounded-3xl p-6 max-w-3xl w-full shadow-2xl animate-zoom-in"
-                        dir="rtl"
+                        dir={isRTL ? "rtl" : "ltr"}
                     >
                         {/* Close button */}
                         <button
@@ -576,8 +688,8 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                                 setPresentationError(null);
                             }}
                             className="absolute top-4 left-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors border border-white/10"
-                            title="بستن"
-                            aria-label="بستن"
+                            title={d.close}
+                            aria-label={d.close}
                         >
                             ✕
                         </button>
@@ -585,7 +697,7 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                         {loadingPresentation && (
                             <div className="flex flex-col items-center justify-center py-20 gap-4 text-center">
                                 <Loader2 className="w-10 h-10 text-indigo-500 animate-spin" />
-                                <p className="text-sm text-white/50 font-[Vazirmatn]">در حال بارگذاری کتابچه دیجیتال جلسه...</p>
+                                <p className="text-sm text-white/50 font-[Vazirmatn]">{d.loadingBooklet}</p>
                             </div>
                         )}
 
@@ -597,7 +709,7 @@ export default function ScheduleViewer({ programs, pastPrograms = [], categories
                                     onClick={() => handleOpenBooklet(selectedPresentationId)}
                                     className="mt-4 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-[Vazirmatn] text-xs font-bold transition-colors"
                                 >
-                                    تلاش مجدد
+                                    {d.retry}
                                 </button>
                             </div>
                         )}

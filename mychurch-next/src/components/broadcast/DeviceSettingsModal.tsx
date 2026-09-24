@@ -1,5 +1,104 @@
+"use client";
+
 import React, { useState } from 'react';
 import { X, Mic, Volume2, AlertCircle, RefreshCw, Video, MoreHorizontal, Layers } from 'lucide-react';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    en: {
+        video: 'Video',
+        audio: 'Audio',
+        background: 'Background & Filters',
+        deviceSettings: 'Device Settings',
+        close: 'Close',
+        done: 'Done',
+        cameraSource: 'Camera Source',
+        selectCamera: 'Select Camera',
+        noCameraFound: 'No camera found',
+        refreshDevices: 'Refresh Devices',
+        resolution: 'Resolution',
+        default: 'Default',
+        hd: 'HD (720p)',
+        fullHd: 'Full HD (1080p)',
+        resolutionHint: 'Higher resolution requires more bandwidth and CPU.',
+        mirrorMyVideo: 'Mirror My Video',
+        mirrorHint: 'Useful for reading text naturally',
+        mirrorVideo: 'Mirror Video',
+        microphoneSource: 'Microphone Source',
+        selectMicrophone: 'Select Microphone',
+        noMicrophoneFound: 'No microphone found',
+        refreshMicrophoneList: 'Refresh Microphone List',
+        audioInputTest: 'Audio Input Test',
+        audioTestHint: 'Speak to test microphone. The bar should move.',
+        backgroundBlur: 'Background Blur',
+        backgroundBlurHint: 'Apply basic blur effect',
+        blurBackground: 'Blur Background',
+        note: 'Note:',
+        virtualBackgroundHint: 'Virtual Background removal is currently under development and will be available soon.',
+    },
+    fa: {
+        video: 'ویدیو',
+        audio: 'صدا',
+        background: 'پس‌زمینه و افکت',
+        deviceSettings: 'تنظیمات دستگاه‌ها',
+        close: 'بستن',
+        done: 'بستن',
+        cameraSource: '📷 دوربین',
+        selectCamera: 'انتخاب دوربین',
+        noCameraFound: 'دوربینی یافت نشد',
+        refreshDevices: 'Refresh Devices',
+        resolution: '📐 کیفیت تصویر',
+        default: 'Default',
+        hd: 'HD (720p)',
+        fullHd: 'Full HD (1080p)',
+        resolutionHint: 'کیفیت بالاتر ممکن است پهنای باند و پردازش بیشتری نیاز داشته باشد.',
+        mirrorMyVideo: 'آینه‌ای کردن ویدیو من',
+        mirrorHint: 'مفید برای خواندن متن‌ها و جهت‌گیری طبیعی‌تر',
+        mirrorVideo: 'آینه‌ای کردن ویدیو',
+        microphoneSource: '🎤 میکروفون',
+        selectMicrophone: 'انتخاب میکروفون',
+        noMicrophoneFound: 'میکروفونی یافت نشد',
+        refreshMicrophoneList: 'بروزرسانی لیست میکروفون‌ها',
+        audioInputTest: 'تست ورودی صدا',
+        audioTestHint: 'برای تست میکروفون صحبت کنید. نوار سبز باید حرکت کند.',
+        backgroundBlur: 'تار کردن پس‌زمینه (Blur)',
+        backgroundBlurHint: 'اعمال افکت تار روی تصویر',
+        blurBackground: 'تار کردن پس‌زمینه',
+        note: 'توجه:',
+        virtualBackgroundHint: 'قابلیت حذف کامل پس‌زمینه (Virtual Background) در حال توسعه است و به زودی اضافه خواهد شد.',
+    },
+    es: {
+        video: 'Video',
+        audio: 'Audio',
+        background: 'Fondo y filtros',
+        deviceSettings: 'Configuración de dispositivos',
+        close: 'Cerrar',
+        done: 'Listo',
+        cameraSource: 'Fuente de cámara',
+        selectCamera: 'Seleccionar cámara',
+        noCameraFound: 'No se encontró ninguna cámara',
+        refreshDevices: 'Actualizar dispositivos',
+        resolution: 'Resolución',
+        default: 'Predeterminada',
+        hd: 'HD (720p)',
+        fullHd: 'Full HD (1080p)',
+        resolutionHint: 'Una resolución más alta requiere más ancho de banda y CPU.',
+        mirrorMyVideo: 'Invertir mi video',
+        mirrorHint: 'Útil para leer texto de forma natural',
+        mirrorVideo: 'Invertir video',
+        microphoneSource: 'Fuente de micrófono',
+        selectMicrophone: 'Seleccionar micrófono',
+        noMicrophoneFound: 'No se encontró ningún micrófono',
+        refreshMicrophoneList: 'Actualizar lista de micrófonos',
+        audioInputTest: 'Prueba de entrada de audio',
+        audioTestHint: 'Hable para probar el micrófono. La barra debería moverse.',
+        backgroundBlur: 'Desenfoque de fondo',
+        backgroundBlurHint: 'Aplicar efecto de desenfoque básico',
+        blurBackground: 'Desenfocar fondo',
+        note: 'Nota:',
+        virtualBackgroundHint: 'La eliminación de fondo virtual está actualmente en desarrollo y estará disponible pronto.',
+    },
+};
 
 interface DeviceSettingsModalProps {
     isOpen: boolean;
@@ -33,13 +132,15 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
     isRTL = false
 }) => {
     const [activeTab, setActiveTab] = useState<'video' | 'audio' | 'background'>('video');
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
 
     if (!isOpen) return null;
 
     const tabs = [
-        { id: 'video', label: isRTL ? 'ویدیو' : 'Video', icon: Video },
-        { id: 'audio', label: isRTL ? 'صدا' : 'Audio', icon: Mic },
-        { id: 'background', label: isRTL ? 'پس‌زمینه و افکت' : 'Background & Filters', icon: Layers },
+        { id: 'video', label: d.video, icon: Video },
+        { id: 'audio', label: d.audio, icon: Mic },
+        { id: 'background', label: d.background, icon: Layers },
     ];
 
     return (
@@ -50,9 +151,9 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                 <div className="p-4 border-b border-white/5 flex items-center justify-between bg-black/20 rounded-t-2xl">
                     <h2 className={`text-xl font-bold text-white flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                         <MoreHorizontal className="w-5 h-5 text-indigo-400" />
-                        {isRTL ? 'تنظیمات دستگاه‌ها' : 'Device Settings'}
+                        {d.deviceSettings}
                     </h2>
-                    <button onClick={onClose} className="text-slate-400 hover:text-white transition p-1 rounded-full hover:bg-white/5" title={isRTL ? 'بستن' : 'Close'}>
+                    <button onClick={onClose} className="text-slate-400 hover:text-white transition p-1 rounded-full hover:bg-white/5" title={d.close}>
                         <X className="w-6 h-6" />
                     </button>
                 </div>
@@ -84,17 +185,17 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                 {/* Camera Source */}
                                 <div className="space-y-3">
                                     <label className={`block text-sm font-medium text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                        {isRTL ? '📷 دوربین' : 'Camera Source'}
+                                        {d.cameraSource}
                                     </label>
                                     <div className="flex gap-2">
                                         <select
                                             value={selectedVideoDevice}
                                             onChange={(e) => onVideoDeviceChange(e.target.value)}
                                             className="flex-1 bg-neutral-800 border border-white/10 text-white rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none"
-                                            title={isRTL ? 'انتخاب دوربین' : 'Select Camera'}
+                                            title={d.selectCamera}
                                         >
                                             {videoDevices.length === 0 ? (
-                                                <option value="">{isRTL ? 'دوربینی یافت نشد' : 'No camera found'}</option>
+                                                <option value="">{d.noCameraFound}</option>
                                             ) : (
                                                 videoDevices.map((device, i) => (
                                                     <option key={device.deviceId} value={device.deviceId}>
@@ -106,7 +207,7 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                         <button
                                             onClick={onRefreshDevices}
                                             className="p-2.5 bg-neutral-800 border border-white/10 rounded-lg hover:bg-neutral-700 text-slate-300"
-                                            title="Refresh Devices"
+                                            title={d.refreshDevices}
                                         >
                                             <RefreshCw className="w-5 h-5" />
                                         </button>
@@ -118,30 +219,30 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                 {/* Resolution */}
                                 <div className="space-y-3">
                                     <label className={`block text-sm font-medium text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                        {isRTL ? '📐 کیفیت تصویر' : 'Resolution'}
+                                        {d.resolution}
                                     </label>
                                     <div className="grid grid-cols-3 gap-2">
                                         <button
                                             onClick={() => onResolutionChange('default')}
                                             className={`px-3 py-2 rounded-lg border text-sm transition-all ${videoResolution === 'default' ? 'bg-indigo-600 border-indigo-500 text-white' : 'bg-neutral-800 border-white/5 text-slate-400 hover:bg-neutral-700'}`}
                                         >
-                                            Default
+                                            {d.default}
                                         </button>
                                         <button
                                             onClick={() => onResolutionChange('hd')}
                                             className={`px-3 py-2 rounded-lg border text-sm transition-all ${videoResolution === 'hd' ? 'bg-indigo-600 border-indigo-500 text-white' : 'bg-neutral-800 border-white/5 text-slate-400 hover:bg-neutral-700'}`}
                                         >
-                                            HD (720p)
+                                            {d.hd}
                                         </button>
                                         <button
                                             onClick={() => onResolutionChange('fhd')}
                                             className={`px-3 py-2 rounded-lg border text-sm transition-all ${videoResolution === 'fhd' ? 'bg-indigo-600 border-indigo-500 text-white' : 'bg-neutral-800 border-white/5 text-slate-400 hover:bg-neutral-700'}`}
                                         >
-                                            Full HD (1080p)
+                                            {d.fullHd}
                                         </button>
                                     </div>
                                     <p className="text-xs text-slate-500">
-                                        {isRTL ? 'کیفیت بالاتر ممکن است پهنای باند و پردازش بیشتری نیاز داشته باشد.' : 'Higher resolution requires more bandwidth and CPU.'}
+                                        {d.resolutionHint}
                                     </p>
                                 </div>
 
@@ -151,10 +252,10 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                 <div className="flex items-center justify-between">
                                     <div className="space-y-1">
                                         <span className={`block text-sm font-medium text-slate-200 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                            {isRTL ? 'آینه‌ای کردن ویدیو من' : 'Mirror My Video'}
+                                            {d.mirrorMyVideo}
                                         </span>
                                         <span className="text-xs text-slate-500 block">
-                                            {isRTL ? 'مفید برای خواندن متن‌ها و جهت‌گیری طبیعی‌تر' : 'Useful for reading text naturally'}
+                                            {d.mirrorHint}
                                         </span>
                                     </div>
                                     <label className="relative inline-flex items-center cursor-pointer">
@@ -163,7 +264,7 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                             className="sr-only peer"
                                             checked={isMirrored}
                                             onChange={(e) => onMirrorChange(e.target.checked)}
-                                            title={isRTL ? 'آینه‌ای کردن ویدیو' : 'Mirror Video'}
+                                            title={d.mirrorVideo}
                                         />
                                         <div className="w-11 h-6 bg-neutral-800 border border-white/5 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
                                     </label>
@@ -176,17 +277,17 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                             <div className="space-y-6">
                                 <div className="space-y-3">
                                     <label className={`block text-sm font-medium text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                        {isRTL ? '🎤 میکروفون' : 'Microphone Source'}
+                                        {d.microphoneSource}
                                     </label>
                                     <div className="flex gap-2">
                                         <select
                                             value={selectedAudioDevice}
                                             onChange={(e) => onAudioDeviceChange(e.target.value)}
                                             className="flex-1 bg-neutral-800 border border-white/10 text-white rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-indigo-500 outline-none"
-                                            title={isRTL ? 'انتخاب میکروفون' : 'Select Microphone'}
+                                            title={d.selectMicrophone}
                                         >
                                             {audioDevices.length === 0 ? (
-                                                <option value="">{isRTL ? 'میکروفونی یافت نشد' : 'No microphone found'}</option>
+                                                <option value="">{d.noMicrophoneFound}</option>
                                             ) : (
                                                 audioDevices.map((device, i) => (
                                                     <option key={device.deviceId} value={device.deviceId}>
@@ -198,7 +299,7 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                         <button
                                             onClick={onRefreshDevices}
                                             className="p-2.5 bg-neutral-800 border border-white/10 rounded-lg hover:bg-neutral-700 text-slate-300"
-                                            title={isRTL ? 'بروزرسانی لیست میکروفون‌ها' : 'Refresh Microphone List'}
+                                            title={d.refreshMicrophoneList}
                                         >
                                             <RefreshCw className="w-5 h-5" />
                                         </button>
@@ -209,7 +310,7 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                     <div className="flex items-center gap-3">
                                         <Volume2 className="w-5 h-5 text-emerald-400" />
                                         <span className={`text-sm text-slate-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                            {isRTL ? 'تست ورودی صدا' : 'Audio Input Test'}
+                                            {d.audioInputTest}
                                         </span>
                                     </div>
                                     <div className="w-full h-4 bg-neutral-800 rounded-full overflow-hidden relative">
@@ -221,7 +322,7 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                         <div className="absolute top-0 bottom-0 left-[90%] w-0.5 bg-red-500/50"></div>
                                     </div>
                                     <p className={`text-xs text-slate-500 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                        {isRTL ? 'برای تست میکروفون صحبت کنید. نوار سبز باید حرکت کند.' : 'Speak to test microphone. The bar should move.'}
+                                        {d.audioTestHint}
                                     </p>
                                 </div>
                             </div>
@@ -238,10 +339,10 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                         </div>
                                         <div>
                                             <span className={`block text-sm font-medium text-slate-200 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                                {isRTL ? 'تار کردن پس‌زمینه (Blur)' : 'Background Blur'}
+                                                {d.backgroundBlur}
                                             </span>
                                             <span className="text-xs text-slate-500 block font-[Vazirmatn]">
-                                                {isRTL ? 'اعمال افکت تار روی تصویر' : 'Apply basic blur effect'}
+                                                {d.backgroundBlurHint}
                                             </span>
                                         </div>
                                     </div>
@@ -251,7 +352,7 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                             className="sr-only peer"
                                             checked={isBlur}
                                             onChange={(e) => onBlurChange(e.target.checked)}
-                                            title={isRTL ? 'تار کردن پس‌زمینه' : 'Blur Background'}
+                                            title={d.blurBackground}
                                         />
                                         <div className="w-11 h-6 bg-neutral-800 border border-white/5 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
                                     </label>
@@ -261,13 +362,11 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                                     <div className="flex gap-2 text-yellow-500 mb-1">
                                         <AlertCircle className="w-4 h-4" />
                                         <span className={`text-xs font-bold ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                            {isRTL ? 'توجه:' : 'Note:'}
+                                            {d.note}
                                         </span>
                                     </div>
                                     <p className={`text-xs text-yellow-200/80 leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                                        {isRTL
-                                            ? 'قابلیت حذف کامل پس‌زمینه (Virtual Background) در حال توسعه است و به زودی اضافه خواهد شد.'
-                                            : 'Virtual Background removal is currently under development and will be available soon.'}
+                                        {d.virtualBackgroundHint}
                                     </p>
                                 </div>
                             </div>
@@ -282,7 +381,7 @@ export const DeviceSettingsModal: React.FC<DeviceSettingsModalProps> = ({
                         onClick={onClose}
                         className={`px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition text-sm font-medium ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                     >
-                        {isRTL ? 'بستن' : 'Done'}
+                        {d.done}
                     </button>
                 </div>
             </div>

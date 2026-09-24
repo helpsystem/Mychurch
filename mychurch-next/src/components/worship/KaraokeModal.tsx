@@ -6,8 +6,44 @@ import { type WorshipSong } from "@/actions/worship";
 import { AppleMusicLyrics } from "./AppleMusicLyrics";
 import { SmartWorshipPlayer, getSafeAudioUrl, normalizeTimingData } from "./SmartWorshipPlayer";
 import { DynamicWatermark } from "@/components/ui/DynamicWatermark";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        close: "Close",
+        smartKaraoke: "Smart Karaoke",
+        appleLyricsMode: "Apple Lyrics Mode",
+        worshipLyricsBadge: "Worship Song Lyrics",
+        lyricsComingSoon: "Lyrics for this song will be added soon",
+        unknownTitle: "Unknown Title",
+        pause: "Pause",
+        play: "Play",
+    },
+    fa: {
+        close: "بستن",
+        smartKaraoke: "کارائوکه هوشمند",
+        appleLyricsMode: "حالت نمایش متن اپل",
+        worshipLyricsBadge: "متن سرود پرستشی",
+        lyricsComingSoon: "متن سرود به زودی افزوده خواهد شد",
+        unknownTitle: "بدون عنوان",
+        pause: "توقف",
+        play: "پخش",
+    },
+    es: {
+        close: "Cerrar",
+        smartKaraoke: "Karaoke Inteligente",
+        appleLyricsMode: "Modo Letra Apple",
+        worshipLyricsBadge: "Letra de la canción de adoración",
+        lyricsComingSoon: "La letra de esta canción se añadirá próximamente",
+        unknownTitle: "Título desconocido",
+        pause: "Pausa",
+        play: "Reproducir",
+    },
+};
 
 export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: () => void }) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const audioRef = useRef<HTMLAudioElement>(null);
     const [currentTimeMs, setCurrentTimeMs] = useState(0);
     const [currentTimeSec, setCurrentTimeSec] = useState(0);
@@ -63,7 +99,7 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    title="بستن"
+                    title={d.close}
                     className="absolute top-4 right-4 z-[100] p-3 bg-white/10 hover:bg-white/20 hover:text-red-400 text-white rounded-full transition-all border border-white/10"
                 >
                     <X className="w-6 h-6" />
@@ -76,7 +112,7 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
                     {song.artist && <p className="text-xs text-white/50">{song.artist}</p>}
                     <div className="flex items-center gap-1.5 mt-1 px-2 py-1 bg-purple-500/20 border border-purple-500/30 rounded-full w-fit">
                         <Zap className="w-3 h-3 text-purple-400" />
-                        <span className="text-[10px] font-black text-purple-300 uppercase tracking-widest">Smart Karaoke</span>
+                        <span className="text-[10px] font-black text-purple-300 uppercase tracking-widest">{d.smartKaraoke}</span>
                     </div>
                 </div>
 
@@ -114,19 +150,19 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
             {/* Top Bar */}
             <div className="absolute top-0 left-0 right-0 p-6 flex items-baseline justify-between z-20 bg-gradient-to-b from-black/80 to-transparent" dir="ltr">
                 <div className="flex flex-col text-left">
-                    <h2 className="text-2xl font-black text-white drop-shadow-lg font-serif">{song.title_en || song.title_fa || 'Unknown Title'}</h2>
+                    <h2 className="text-2xl font-black text-white drop-shadow-lg font-serif">{song.title_en || song.title_fa || d.unknownTitle}</h2>
                     <h3 className="text-xl text-white/90 drop-shadow-md" dir="rtl">{song.title_fa}</h3>
                     {song.artist && <p className="text-white/70 font-medium mt-1">{song.artist}</p>}
                     {useAppleMusic && (
                         <div className="flex items-center gap-1.5 mt-2 px-2 py-1 bg-white/10 border border-white/20 rounded-full w-fit">
                             <Music className="w-3 h-3 text-white/70" />
-                            <span className="text-[10px] font-bold text-white/70 uppercase tracking-widest">Apple Lyrics Mode</span>
+                            <span className="text-[10px] font-bold text-white/70 uppercase tracking-widest">{d.appleLyricsMode}</span>
                         </div>
                     )}
                 </div>
                 <button
                     onClick={onClose}
-                    title="Close"
+                    title={d.close}
                     className="p-3 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-md transition-all border border-white/20"
                 >
                     <X className="w-6 h-6" />
@@ -138,10 +174,10 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
                 {hasNoData ? (
                     <div className="flex flex-col items-center h-full max-w-3xl mx-auto overflow-y-auto px-4 py-8 custom-scrollbar">
                         <span className="text-purple-400/80 text-xs font-black uppercase tracking-widest mb-6 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
-                            متن سرود پرستشی
+                            {d.worshipLyricsBadge}
                         </span>
                         <div className="space-y-4 font-[Vazirmatn] text-lg sm:text-2xl text-white/90 leading-[2.2] select-text text-center" dir="rtl">
-                            {(song.lyrics_fa || song.lyrics_en || "متن سرود به زودی افزوده خواهد شد").split('\n').map((line, idx) => {
+                            {(song.lyrics_fa || song.lyrics_en || d.lyricsComingSoon).split('\n').map((line, idx) => {
                                 const trimmed = line.trim();
                                 if (!trimmed) return <div key={idx} className="h-4" />;
                                 return <p key={idx} className="transition-all hover:text-white">{trimmed}</p>;
@@ -160,7 +196,7 @@ export function KaraokeModal({ song, onClose }: { song: WorshipSong, onClose: ()
             <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col items-center justify-center z-20 bg-gradient-to-t from-black via-black/80 to-transparent" dir="ltr">
                 <button
                     onClick={togglePlay}
-                    title={isPlaying ? "Pause" : "Play"}
+                    title={isPlaying ? d.pause : d.play}
                     className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.3)] mb-6"
                 >
                     {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}

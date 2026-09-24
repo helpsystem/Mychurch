@@ -4,22 +4,69 @@ import "@/lib/react-polyfill";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
+import {
     Calendar, Clock, Sparkles, Flame, User, Users,
     Video, BookOpen, Heart, ArrowLeft, Globe, CheckCircle2,
     Radio, MapPin
 } from "lucide-react";
 import { ChurchWeeklyProgram } from "@/types/weekly-programs";
 import { getActiveWeeklyPrograms } from "@/actions/weekly-programs";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 interface WeeklyProgramsSectionProps {
     initialPrograms?: ChurchWeeklyProgram[];
 }
 
+const localDict = {
+    en: {
+        badge: "Iranian Church D.C. Weekly Gatherings & Classes",
+        headingPrefix: "Weekly Services & ",
+        headingHighlight: "Bible Study Classes",
+        subheading: "All fellowship gatherings and Bible study classes are held according to Washington D.C. Time (EST) both online and in-person.",
+        liveStream: "Live Stream",
+        guidingLight: "Guiding Light of All Bible Classes",
+        mainTeacherTitle: "Under the Power, Leadership & Main Teacher: The Holy Spirit",
+        mainTeacherDesc: "Weekly Bible studies are taught through the power of the Holy Spirit, assisted by church leaders.",
+        dcTime: "Washington D.C. Time (EST)",
+        primaryLeader: "Primary Leader & Teacher",
+        facilitatedBy: "Facilitated by",
+        joinSession: "Join Session",
+    },
+    fa: {
+        badge: "برنامه‌ها و جلسات هفتگی کلیسای ایرانیان واشنگتن",
+        headingPrefix: "جلسات هفتگی و ",
+        headingHighlight: "کلاس‌های تدریس کتاب مقدس",
+        subheading: "تمامی جلسات و کلاس‌های تدریس کلام به وقت رسمی واشنگتن دی‌سی (EST) به صورت آنلاین و حضوری برگزار می‌گردد.",
+        liveStream: "پخش زنده جلسات",
+        guidingLight: "محور و رهبری تمامی کلاس‌های کلام",
+        mainTeacherTitle: "با قدرت و رهبر و معلم اصلی: روح‌القدس",
+        mainTeacherDesc: "کلاس‌های درس کتاب مقدس در طول هفته با هدایت روح‌القدس و یاری خادمین کلیسا برگزار می‌گردد.",
+        dcTime: "وقت واشنگتن دی‌سی (EST)",
+        primaryLeader: "معلم و رهبر اصلی",
+        facilitatedBy: "تدریس و یاری",
+        joinSession: "ورود به جلسه",
+    },
+    es: {
+        badge: "Reuniones y Clases Semanales de la Iglesia Iraní de D.C.",
+        headingPrefix: "Servicios Semanales y ",
+        headingHighlight: "Clases de Estudio Bíblico",
+        subheading: "Todas las reuniones de comunión y clases de estudio bíblico se realizan según la hora de Washington D.C. (EST), tanto en línea como en persona.",
+        liveStream: "Transmisión en Vivo",
+        guidingLight: "Luz Guía de Todas las Clases Bíblicas",
+        mainTeacherTitle: "Bajo el Poder, Liderazgo y Maestro Principal: El Espíritu Santo",
+        mainTeacherDesc: "Los estudios bíblicos semanales se enseñan a través del poder del Espíritu Santo, con la ayuda de los líderes de la iglesia.",
+        dcTime: "Hora de Washington D.C. (EST)",
+        primaryLeader: "Líder y Maestro Principal",
+        facilitatedBy: "Facilitado por",
+        joinSession: "Unirse a la Sesión",
+    },
+};
+
 export default function WeeklyProgramsSection({ initialPrograms }: WeeklyProgramsSectionProps) {
     const [programs, setPrograms] = useState<ChurchWeeklyProgram[]>(initialPrograms || []);
     const [isLoading, setIsLoading] = useState(!initialPrograms || initialPrograms.length === 0);
-    const [lang, setLang] = useState<"fa" | "en">("fa");
+    const { language, isRTL } = useLanguage();
+    const d = localDict[language] || localDict.fa;
 
     useEffect(() => {
         if (!initialPrograms || initialPrograms.length === 0) {
@@ -34,80 +81,49 @@ export default function WeeklyProgramsSection({ initialPrograms }: WeeklyProgram
         }
     }, [initialPrograms]);
 
-    const isFa = lang === "fa";
+    // The underlying CMS records only carry Persian/English copy (day_name_fa/en, etc.),
+    // so for Spanish we fall back to the English record fields, same as English does
+    // when a translated field is missing.
+    const isFa = language === "fa";
 
     return (
-        <section 
-            id="weekly-schedule" 
-            className="w-full py-20 px-4 max-w-[1280px] mx-auto relative" 
-            dir={isFa ? "rtl" : "ltr"}
+        <section
+            id="weekly-schedule"
+            className="w-full py-20 px-4 max-w-[1280px] mx-auto relative"
+            dir={isRTL ? "rtl" : "ltr"}
         >
             {/* Ambient Background Glows */}
             <div className="absolute top-1/4 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
             <div className="absolute bottom-10 left-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
             {/* ── Section Header ───────────────────────────────────────────── */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/10 pb-8">
-                <div className="text-right flex-1">
+            <div className={`flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/10 pb-8`}>
+                <div className={`flex-1 ${isRTL ? "text-right" : "text-left"}`}>
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 via-purple-500/20 to-indigo-500/20 border border-amber-500/30 text-amber-300 text-[13px] font-bold mb-3 shadow-lg shadow-amber-500/5">
                         <Flame className="w-4 h-4 text-amber-400 animate-pulse" />
-                        <span>
-                            {isFa 
-                                ? "برنامه‌ها و جلسات هفتگی کلیسای ایرانیان واشنگتن" 
-                                : "Iranian Church D.C. Weekly Gatherings & Classes"}
-                        </span>
+                        <span>{d.badge}</span>
                     </div>
 
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                        {isFa ? (
-                            <>
-                                جلسات هفتگی و <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 bg-clip-text text-transparent">کلاس‌های تدریس کتاب مقدس</span>
-                            </>
-                        ) : (
-                            <>
-                                Weekly Services & <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 bg-clip-text text-transparent">Bible Study Classes</span>
-                            </>
-                        )}
+                        {d.headingPrefix}
+                        <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 bg-clip-text text-transparent">
+                            {d.headingHighlight}
+                        </span>
                     </h2>
 
                     <p className="text-[15px] text-gray-300 mt-2.5 max-w-2xl leading-relaxed">
-                        {isFa 
-                            ? "تمامی جلسات و کلاس‌های تدریس کلام به وقت رسمی واشنگتن دی‌سی (EST) به صورت آنلاین و حضوری برگزار می‌گردد."
-                            : "All fellowship gatherings and Bible study classes are held according to Washington D.C. Time (EST) both online and in-person."}
+                        {d.subheading}
                     </p>
                 </div>
 
-                {/* Controls & Language Switcher */}
+                {/* Live Stream Link */}
                 <div className="flex items-center gap-3 shrink-0">
-                    <div className="flex items-center p-1 rounded-xl bg-neutral-900/90 border border-white/15 shadow-inner">
-                        <button
-                            onClick={() => setLang("fa")}
-                            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                                isFa 
-                                    ? "bg-amber-500 text-black shadow-md shadow-amber-500/20" 
-                                    : "text-gray-400 hover:text-white"
-                            }`}
-                        >
-                            فارسی
-                        </button>
-                        <button
-                            onClick={() => setLang("en")}
-                            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                                !isFa 
-                                    ? "bg-amber-500 text-black shadow-md shadow-amber-500/20" 
-                                    : "text-gray-400 hover:text-white"
-                            }`}
-                        >
-                            English
-                        </button>
-                    </div>
-
                     <Link
                         href="/broadcast/view"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-bold hover:bg-red-500/30 transition-all group"
                     >
                         <Radio className="w-3.5 h-3.5 text-red-400 animate-pulse" />
-                        <span>{isFa ? "پخش زنده جلسات" : "Live Stream"}</span>
+                        <span>{d.liveStream}</span>
                     </Link>
                 </div>
             </div>
@@ -127,24 +143,20 @@ export default function WeeklyProgramsSection({ initialPrograms }: WeeklyProgram
                         </div>
                         <div>
                             <span className="text-[12px] font-extrabold uppercase tracking-wider text-amber-400">
-                                {isFa ? "محور و رهبری تمامی کلاس‌های کلام" : "Guiding Light of All Bible Classes"}
+                                {d.guidingLight}
                             </span>
                             <h3 className="text-lg sm:text-xl font-black text-white mt-0.5">
-                                {isFa 
-                                    ? "با قدرت و رهبر و معلم اصلی: روح‌القدس" 
-                                    : "Under the Power, Leadership & Main Teacher: The Holy Spirit"}
+                                {d.mainTeacherTitle}
                             </h3>
                             <p className="text-xs sm:text-sm text-amber-200/80 mt-1">
-                                {isFa 
-                                    ? "کلاس‌های درس کتاب مقدس در طول هفته با هدایت روح‌القدس و یاری خادمین کلیسا برگزار می‌گردد."
-                                    : "Weekly Bible studies are taught through the power of the Holy Spirit, assisted by church leaders."}
+                                {d.mainTeacherDesc}
                             </p>
                         </div>
                     </div>
 
                     <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-black/40 border border-white/10 text-xs font-mono font-bold text-gray-300 shrink-0">
                         <Clock className="w-4 h-4 text-amber-400" />
-                        <span>{isFa ? "وقت واشنگتن دی‌سی (EST)" : "Washington D.C. Time (EST)"}</span>
+                        <span>{d.dcTime}</span>
                     </div>
                 </div>
             </motion.div>
@@ -216,7 +228,7 @@ export default function WeeklyProgramsSection({ initialPrograms }: WeeklyProgram
                                         <Sparkles className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                                         <div>
                                             <span className="text-[10px] uppercase text-amber-400 block font-normal">
-                                                {isFa ? "معلم و رهبر اصلی" : "Primary Leader & Teacher"}
+                                                {d.primaryLeader}
                                             </span>
                                             <span>
                                                 {isFa ? prog.main_teacher_fa : (prog.main_teacher_en || prog.main_teacher_fa)}
@@ -230,7 +242,7 @@ export default function WeeklyProgramsSection({ initialPrograms }: WeeklyProgram
                                             <User className="w-4 h-4 text-cyan-400 shrink-0" />
                                             <div>
                                                 <span className="text-[10px] text-gray-400 block font-normal">
-                                                    {isFa ? "تدریس و یاری" : "Facilitated by"}
+                                                    {d.facilitatedBy}
                                                 </span>
                                                 <span className="text-white font-bold">
                                                     {isFa ? prog.assistant_fa : (prog.assistant_en || prog.assistant_fa)}
@@ -259,9 +271,9 @@ export default function WeeklyProgramsSection({ initialPrograms }: WeeklyProgram
                                     className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white/10 hover:bg-amber-500 hover:text-black text-white text-xs font-bold transition-all duration-300 shadow-md group/btn"
                                 >
                                     <span>
-                                        {isFa 
-                                            ? (prog.action_text_fa || "ورود به جلسه") 
-                                            : (prog.action_text_en || "Join Session")}
+                                        {isFa
+                                            ? (prog.action_text_fa || d.joinSession)
+                                            : (prog.action_text_en || d.joinSession)}
                                     </span>
                                     <ArrowLeft className="w-4 h-4 transition-transform group-hover/btn:-translate-x-1" />
                                 </Link>

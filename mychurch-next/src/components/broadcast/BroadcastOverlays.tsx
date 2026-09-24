@@ -3,6 +3,40 @@
 import React from "react";
 import { HeartHandshake, Phone, Globe, User, Radio } from "lucide-react";
 import { BroadcastOverlayConfig } from "@/types/broadcast";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        churchLogoAlt: "Church Logo",
+        liveMeetingLabel: "Live audio/video meeting",
+        churchOnlineMeeting: "Church Online Meeting",
+        voiceCall: "Voice Call:",
+        code: "Code:",
+        video: "Video:",
+        prayerRequestsLabel: "Prayer Requests:",
+        believerFallback: "Believer",
+    },
+    fa: {
+        churchLogoAlt: "لوگوی کلیسا",
+        liveMeetingLabel: "ارتباط زنده جلسه صوتی/تصویری",
+        churchOnlineMeeting: "جلسه آنلاین کلیسا",
+        voiceCall: "تماس صوتی:",
+        code: "کد:",
+        video: "تصویری:",
+        prayerRequestsLabel: "درخواست‌های دعا:",
+        believerFallback: "ایماندار",
+    },
+    es: {
+        churchLogoAlt: "Logo de la iglesia",
+        liveMeetingLabel: "Reunión en vivo de audio/video",
+        churchOnlineMeeting: "Reunión en línea de la iglesia",
+        voiceCall: "Llamada de voz:",
+        code: "Código:",
+        video: "Video:",
+        prayerRequestsLabel: "Peticiones de oración:",
+        believerFallback: "Creyente",
+    },
+};
 
 interface BroadcastOverlaysProps {
     config?: BroadcastOverlayConfig;
@@ -17,6 +51,9 @@ export default function BroadcastOverlays({
     liveTranslationText,
     isProgramMonitor = false
 }: BroadcastOverlaysProps) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
+
     if (!config) return null;
 
     const {
@@ -64,7 +101,7 @@ export default function BroadcastOverlays({
                         <div className="relative group">
                             <img
                                 src={logoUrl || "/logo-transparent.png"}
-                                alt="Church Logo"
+                                alt={d.churchLogoAlt}
                                 className={`${sizeClass} w-auto object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] filter`}
                                 onError={(e) => {
                                     const target = e.currentTarget;
@@ -144,22 +181,22 @@ export default function BroadcastOverlays({
                             <Radio className={`${isProgramMonitor ? 'w-3 h-3' : 'w-4 h-4'} text-white`} />
                         </div>
                         <div className="text-right">
-                            <span className="text-[9px] md:text-[11px] text-neutral-400 block">ارتباط زنده جلسه صوتی/تصویری</span>
-                            <span className="text-xs md:text-sm font-bold text-emerald-400">جلسه آنلاین کلیسا</span>
+                            <span className="text-[9px] md:text-[11px] text-neutral-400 block">{d.liveMeetingLabel}</span>
+                            <span className="text-xs md:text-sm font-bold text-emerald-400">{d.churchOnlineMeeting}</span>
                         </div>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2 md:gap-4 text-[10px] md:text-xs">
                         <div className="bg-white/10 px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1.5">
                             <Phone className="w-3 h-3 text-emerald-400 shrink-0" />
-                            <span className="text-white/70">تماس صوتی:</span>
+                            <span className="text-white/70">{d.voiceCall}</span>
                             <span className="font-bold tracking-wide font-mono">{meetingDialIn}</span>
-                            <span className="bg-white/10 px-1.5 py-0.5 rounded text-[10px] text-amber-300">کد: {meetingAccessCode}#</span>
+                            <span className="bg-white/10 px-1.5 py-0.5 rounded text-[10px] text-amber-300">{d.code} {meetingAccessCode}#</span>
                         </div>
 
                         <div className="bg-white/10 px-2.5 py-1 rounded-lg border border-white/10 flex items-center gap-1.5">
                             <Globe className="w-3 h-3 text-cyan-400 shrink-0" />
-                            <span className="text-white/70">تصویری:</span>
+                            <span className="text-white/70">{d.video}</span>
                             <span className="font-bold text-cyan-300 font-mono">join.freeconferencecall.com/{meetingOnlineId}</span>
                         </div>
                     </div>
@@ -175,7 +212,7 @@ export default function BroadcastOverlays({
                     {/* Fixed Badge on Right */}
                     <div className="h-full bg-amber-600/90 px-3 flex items-center gap-1.5 text-white font-bold text-[11px] md:text-xs shrink-0 z-10 shadow-lg">
                         <HeartHandshake className="w-3.5 h-3.5 animate-pulse" />
-                        <span>درخواست‌های دعا:</span>
+                        <span>{d.prayerRequestsLabel}</span>
                     </div>
 
                     {/* Marquee Content */}
@@ -184,7 +221,7 @@ export default function BroadcastOverlays({
                             {prayerRequests.map((prayer, idx) => (
                                 <span key={prayer.id || idx} className="inline-flex items-center gap-2">
                                     <span className="font-bold text-amber-300">
-                                        🙏 {prayer.name || prayer.user_name || "ایماندار"}:
+                                        🙏 {prayer.name || prayer.user_name || d.believerFallback}:
                                     </span>
                                     <span className="text-neutral-200">
                                         {prayer.content}
@@ -196,7 +233,7 @@ export default function BroadcastOverlays({
                             {prayerRequests.map((prayer, idx) => (
                                 <span key={`dup-${prayer.id || idx}`} className="inline-flex items-center gap-2">
                                     <span className="font-bold text-amber-300">
-                                        🙏 {prayer.name || prayer.user_name || "ایماندار"}:
+                                        🙏 {prayer.name || prayer.user_name || d.believerFallback}:
                                     </span>
                                     <span className="text-neutral-200">
                                         {prayer.content}

@@ -53,15 +53,13 @@ export async function subscribeToNewsletter(formData: FormData) {
 }
 
 export async function getNewsletterSubscribers() {
-    const supabase = await createClient();
-    
-    // Require admin access - simplified check based on existing role structure
-    // Normally you would check user role here.
-    const { data: session } = await supabase.auth.getSession();
-    if (!session.session?.user) {
+    const { getUserRole } = await import("@/utils/rbac");
+    const role = await getUserRole();
+    if (role !== "Admin" && role !== "Leader") {
         return { success: false, error: "Unauthorized" };
     }
 
+    const supabase = await createClient();
     const { data, error } = await supabase
         .from("newsletter_subscribers")
         .select("*")
@@ -72,6 +70,12 @@ export async function getNewsletterSubscribers() {
 }
 
 export async function sendNewsletterCampaign(subject: string, htmlContent: string) {
+    const { getUserRole } = await import("@/utils/rbac");
+    const role = await getUserRole();
+    if (role !== "Admin" && role !== "Leader") {
+        return { success: false, error: "Unauthorized" };
+    }
+
     if (!process.env.RESEND_API_KEY) {
         return { success: false, error: "کلید API مربوط به Resend تنظیم نشده است / RESEND_API_KEY missing" };
     }

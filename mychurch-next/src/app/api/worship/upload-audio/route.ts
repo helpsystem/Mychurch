@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
 import { uploadToTelegramStorage } from "@/services/telegram";
 import { query } from "@/lib/db";
+import { createClient } from "@/utils/supabase/server";
 
 export const dynamic = "force-dynamic";
 
 /**
  * POST /api/worship/upload-audio
- * 
+ *
  * Uploads a worship song audio file to Telegram Storage CDN
  * and saves the file_id back to the song record.
- * 
+ *
  * Body: FormData with:
  *   - file: File (MP3/M4A/OGG)
  *   - songId: string (UUID of church_worship_songs record)
@@ -17,6 +18,22 @@ export const dynamic = "force-dynamic";
  */
 export async function POST(req: Request) {
   try {
+    // ===== Security Check: Admin/Leader/Operator Role Required =====
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const { data: userRecord } = await supabase
+      .from('users')
+      .select('role')
+      .eq('email', user.email)
+      .single();
+    if (!userRecord || !['Admin', 'Leader', 'Operator'].includes(userRecord.role)) {
+      return NextResponse.json({ error: "Forbidden: Admin/Leader/Operator access required" }, { status: 403 });
+    }
+    // ===== End Security Check =====
+
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
     const songId = formData.get("songId") as string | null;

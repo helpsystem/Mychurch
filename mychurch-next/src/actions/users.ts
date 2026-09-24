@@ -2,8 +2,19 @@
 
 import { createClient, createAdminClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
-import { hasAdminRoleOrPermission } from "@/lib/access-control";
+import { hasAdminRoleOrPermission, getAccessContext } from "@/lib/access-control";
 import { logUserActivity } from "@/actions/audit";
+
+// Role and permission grants are themselves a path to privilege escalation: a user who
+// only holds the granular "canManageUsers" permission (not the "Admin" role) could
+// otherwise use updateUserRole/updateUserPermissions to promote themselves (or anyone)
+// to Admin, or grant themselves any other permission. Those two mutations require the
+// caller to actually be Admin; canManageUsers alone is enough for the rest (viewing the
+// list, editing contact info, inviting/removing ordinary users).
+async function isTrueAdmin(): Promise<boolean> {
+    const context = await getAccessContext();
+    return context.authenticated && context.role === "Admin";
+}
 
 export type UserRow = {
     id: string;
@@ -56,7 +67,7 @@ export async function getUsers(): Promise<UserRow[]> {
 }
 
 export async function updateUserRole(id: string, newRole: string) {
-    if (!(await canManageUsers())) {
+    if (!(await isTrueAdmin())) {
         return false;
     }
 
@@ -146,7 +157,7 @@ export async function updateUserTelegramId(id: string, telegram_id: string) {
 }
 
 export async function updateUserPermissions(id: string, permissions: Record<string, boolean>) {
-    if (!(await canManageUsers())) {
+    if (!(await isTrueAdmin())) {
         return false;
     }
 
@@ -193,6 +204,20 @@ export async function deleteUser(id: string) {
 
     try {
         const supabase = await createClient();
+
+        // A caller who only holds the delegated "canManageUsers" permission (not the
+        // Admin role) must not be able to remove an Admin account.
+        if (!(await isTrueAdmin())) {
+            const { data: targetUser } = await supabase
+                .from('users')
+                .select('role')
+                .eq('id', id)
+                .maybeSingle();
+            if (targetUser?.role === 'Admin') {
+                return false;
+            }
+        }
+
         const { error } = await supabase
             .from('users')
             .delete()

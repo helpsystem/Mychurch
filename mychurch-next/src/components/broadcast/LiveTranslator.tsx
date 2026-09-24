@@ -8,6 +8,112 @@ import {
 import { HelpTooltip } from "@/components/ui/HelpTooltip";
 import { GeminiLiveTranslator } from "@/lib/geminiLiveTranslator";
 import { toast } from "sonner";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    apiKeyNotFound: "Gemini API key not found. Please set GEMINI_API_KEY in the server environment settings.",
+    connectedSuccess: "Live translation connected ✓",
+    translationError: (err: string) => `Translation error: ${err}`,
+    reconnectingToast: (attempt: number, max: number) => `Reconnecting... (${attempt}/${max})`,
+    maxRetriesError: "Connection to Gemini Live was lost after 3 attempts. Please start again.",
+    micAccessError: "Error accessing the microphone or connecting to the AI server.",
+    statusIdle: "Ready",
+    statusConnecting: "Connecting...",
+    statusConnected: (duration: string) => `Live ${duration}`,
+    statusReconnecting: (attempt: number, max: number) => `Reconnecting (${attempt}/${max})...`,
+    statusError: "Connection error",
+    statusMaxRetries: "Connection failed",
+    stopTranslationAria: "Stop translation",
+    startTranslationAria: "Start translation",
+    connectingButton: "Connecting...",
+    reconnectingButton: "Reconnecting...",
+    stopLiveTranslation: "Stop Live Translation",
+    startLiveTranslation: "Start Gemini AI Live Translation",
+    retry: "Retry",
+    helpTooltipText: "Real-time simultaneous voice translation by Google Gemini. The speaker's voice is converted directly into translated audio and captions. If the connection drops, the system automatically reconnects up to 3 times.",
+    targetLanguageLabel: "Target language:",
+    liveAudioActive: (duration: string) => `Live audio translation active — ${duration}`,
+    inputLevel: "Input level:",
+    connectionLostReconnecting: (attempt: number, max: number) => `Connection lost — reconnecting (${attempt}/${max})...`,
+    waitAutoReconnect: "Please wait, the system will automatically reconnect.",
+    failedAfter3Attempts: "Connection failed after 3 attempts.",
+    liveTranslationServiceError: "Error in the live translation service.",
+    pressRetryOrCheckInternet: "Press «Retry» or check your internet connection.",
+    inputSpeechLabel: "🎙 Input speech (source text):",
+    listeningToSpeaker: "Listening to the speaker...",
+    liveTranslationLabel: "🔊 Live translation:",
+    liveTranslationPlaceholder: "The real-time translation will appear here...",
+  },
+  fa: {
+    apiKeyNotFound: "کلید API Gemini یافت نشد. لطفاً GEMINI_API_KEY را در تنظیمات محیطی سرور تنظیم کنید.",
+    connectedSuccess: "ترجمه زنده متصل شد ✓",
+    translationError: (err: string) => `خطای ترجمه: ${err}`,
+    reconnectingToast: (attempt: number, max: number) => `اتصال مجدد... (${attempt}/${max})`,
+    maxRetriesError: "اتصال به Gemini Live پس از ۳ تلاش قطع شد. لطفاً دوباره شروع کنید.",
+    micAccessError: "خطا در دسترسی به میکروفون یا اتصال به سرور AI.",
+    statusIdle: "آماده",
+    statusConnecting: "در حال اتصال...",
+    statusConnected: (duration: string) => `زنده ${duration}`,
+    statusReconnecting: (attempt: number, max: number) => `اتصال مجدد (${attempt}/${max})...`,
+    statusError: "خطا در اتصال",
+    statusMaxRetries: "اتصال برقرار نشد",
+    stopTranslationAria: "توقف ترجمه",
+    startTranslationAria: "شروع ترجمه",
+    connectingButton: "در حال اتصال...",
+    reconnectingButton: "در حال اتصال مجدد...",
+    stopLiveTranslation: "توقف ترجمه زنده",
+    startLiveTranslation: "شروع ترجمه زنده Gemini AI",
+    retry: "تلاش مجدد",
+    helpTooltipText: "ترجمه همزمان بلادرنگ صوتی Google Gemini. صدای گوینده مستقیماً به صدا و زیرنویس ترجمه‌شده تبدیل می‌شود. در صورت قطعی، سیستم تا ۳ بار به‌طور خودکار اتصال مجدد برقرار می‌کند.",
+    targetLanguageLabel: "زبان مقصد:",
+    liveAudioActive: (duration: string) => `پخش و ترجمه زنده صوتی فعال — ${duration}`,
+    inputLevel: "سطح ورودی:",
+    connectionLostReconnecting: (attempt: number, max: number) => `اتصال قطع شد — در حال اتصال مجدد (${attempt}/${max})...`,
+    waitAutoReconnect: "صبر کنید، سیستم به‌طور خودکار دوباره متصل می‌شود.",
+    failedAfter3Attempts: "پس از ۳ تلاش، اتصال برقرار نشد.",
+    liveTranslationServiceError: "خطا در سرویس ترجمه زنده.",
+    pressRetryOrCheckInternet: "دکمه «تلاش مجدد» را بزنید یا از اتصال اینترنت مطمئن شوید.",
+    inputSpeechLabel: "🎙 گفتار ورودی (متن مبدا):",
+    listeningToSpeaker: "در حال گوش دادن به صدای گوینده...",
+    liveTranslationLabel: "🔊 ترجمه زنده:",
+    liveTranslationPlaceholder: "ترجمه بلادرنگ اینجا نمایش داده می‌شود...",
+  },
+  es: {
+    apiKeyNotFound: "No se encontró la clave API de Gemini. Configure GEMINI_API_KEY en los ajustes del entorno del servidor.",
+    connectedSuccess: "Traducción en vivo conectada ✓",
+    translationError: (err: string) => `Error de traducción: ${err}`,
+    reconnectingToast: (attempt: number, max: number) => `Reconectando... (${attempt}/${max})`,
+    maxRetriesError: "La conexión con Gemini Live se perdió después de 3 intentos. Vuelva a empezar.",
+    micAccessError: "Error al acceder al micrófono o conectar con el servidor de IA.",
+    statusIdle: "Listo",
+    statusConnecting: "Conectando...",
+    statusConnected: (duration: string) => `En vivo ${duration}`,
+    statusReconnecting: (attempt: number, max: number) => `Reconectando (${attempt}/${max})...`,
+    statusError: "Error de conexión",
+    statusMaxRetries: "Conexión fallida",
+    stopTranslationAria: "Detener traducción",
+    startTranslationAria: "Iniciar traducción",
+    connectingButton: "Conectando...",
+    reconnectingButton: "Reconectando...",
+    stopLiveTranslation: "Detener traducción en vivo",
+    startLiveTranslation: "Iniciar traducción en vivo con Gemini AI",
+    retry: "Reintentar",
+    helpTooltipText: "Traducción de voz simultánea en tiempo real de Google Gemini. La voz del orador se convierte directamente en audio y subtítulos traducidos. Si la conexión se interrumpe, el sistema se reconecta automáticamente hasta 3 veces.",
+    targetLanguageLabel: "Idioma de destino:",
+    liveAudioActive: (duration: string) => `Traducción de audio en vivo activa — ${duration}`,
+    inputLevel: "Nivel de entrada:",
+    connectionLostReconnecting: (attempt: number, max: number) => `Conexión perdida — reconectando (${attempt}/${max})...`,
+    waitAutoReconnect: "Espere, el sistema se reconectará automáticamente.",
+    failedAfter3Attempts: "La conexión falló después de 3 intentos.",
+    liveTranslationServiceError: "Error en el servicio de traducción en vivo.",
+    pressRetryOrCheckInternet: "Pulse «Reintentar» o verifique su conexión a internet.",
+    inputSpeechLabel: "🎙 Voz de entrada (texto de origen):",
+    listeningToSpeaker: "Escuchando al orador...",
+    liveTranslationLabel: "🔊 Traducción en vivo:",
+    liveTranslationPlaceholder: "La traducción en tiempo real aparecerá aquí...",
+  },
+};
 
 interface LiveTranslatorProps {
   meetingId?: string;
@@ -26,6 +132,8 @@ export default function LiveTranslator({
   meetingId = "broadcast-main",
   defaultTargetLang = "en",
 }: LiveTranslatorProps) {
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const [status, setStatus] = useState<ConnectionStatus>("idle");
   const [targetLang, setTargetLang] = useState(defaultTargetLang);
   const [inputTranscript, setInputTranscript] = useState("");
@@ -83,7 +191,7 @@ export default function LiveTranslator({
 
       if (!token) {
         setStatus("error");
-        toast.error("کلید API Gemini یافت نشد. لطفاً GEMINI_API_KEY را در تنظیمات محیطی سرور تنظیم کنید.");
+        toast.error(d.apiKeyNotFound);
         return;
       }
 
@@ -97,7 +205,7 @@ export default function LiveTranslator({
         {
           onOpen: () => {
             setStatus("connected");
-            toast.success("ترجمه زنده متصل شد ✓", { duration: 2000 });
+            toast.success(d.connectedSuccess, { duration: 2000 });
           },
           onClose: (reason) => {
             if (translatorRef.current === null) return; // intentional stop
@@ -106,17 +214,17 @@ export default function LiveTranslator({
           onError: (err) => {
             console.error("[LiveTranslator] Error:", err);
             setStatus("error");
-            toast.error(`خطای ترجمه: ${err}`, { duration: 4000 });
+            toast.error(d.translationError(err), { duration: 4000 });
           },
           onReconnecting: (attempt, max) => {
             setStatus("reconnecting");
             setReconnectAttempt(attempt);
             setMaxAttempts(max);
-            toast.warning(`اتصال مجدد... (${attempt}/${max})`, { duration: 2000 });
+            toast.warning(d.reconnectingToast(attempt, max), { duration: 2000 });
           },
           onMaxRetriesReached: () => {
             setStatus("max_retries");
-            toast.error("اتصال به Gemini Live پس از ۳ تلاش قطع شد. لطفاً دوباره شروع کنید.", { duration: 5000 });
+            toast.error(d.maxRetriesError, { duration: 5000 });
           },
           onInputTranscript: (text) => setInputTranscript(text),
           onOutputTranscript: (text) => setOutputTranscript(text),
@@ -129,9 +237,9 @@ export default function LiveTranslator({
     } catch (err: any) {
       console.error("[LiveTranslator] Start failed:", err);
       setStatus("error");
-      toast.error("خطا در دسترسی به میکروفون یا اتصال به سرور AI.");
+      toast.error(d.micAccessError);
     }
-  }, [targetLang]);
+  }, [targetLang, d]);
 
   const stopLive = useCallback(() => {
     translatorRef.current?.stop();
@@ -155,18 +263,18 @@ export default function LiveTranslator({
 
   // ── Status indicator config ──
   const statusConfig = {
-    idle: { color: "text-zinc-500", dot: "bg-zinc-600", label: "آماده" },
-    connecting: { color: "text-amber-400", dot: "bg-amber-400 animate-pulse", label: "در حال اتصال..." },
-    connected: { color: "text-emerald-400", dot: "bg-emerald-400", label: `زنده ${formatDuration(sessionDuration)}` },
-    reconnecting: { color: "text-orange-400", dot: "bg-orange-400 animate-pulse", label: `اتصال مجدد (${reconnectAttempt}/${maxAttempts})...` },
-    error: { color: "text-rose-400", dot: "bg-rose-500", label: "خطا در اتصال" },
-    max_retries: { color: "text-rose-500", dot: "bg-rose-600 animate-ping", label: "اتصال برقرار نشد" },
+    idle: { color: "text-zinc-500", dot: "bg-zinc-600", label: d.statusIdle },
+    connecting: { color: "text-amber-400", dot: "bg-amber-400 animate-pulse", label: d.statusConnecting },
+    connected: { color: "text-emerald-400", dot: "bg-emerald-400", label: d.statusConnected(formatDuration(sessionDuration)) },
+    reconnecting: { color: "text-orange-400", dot: "bg-orange-400 animate-pulse", label: d.statusReconnecting(reconnectAttempt, maxAttempts) },
+    error: { color: "text-rose-400", dot: "bg-rose-500", label: d.statusError },
+    max_retries: { color: "text-rose-500", dot: "bg-rose-600 animate-ping", label: d.statusMaxRetries },
   }[status];
 
   return (
     <div
       className="flex flex-col gap-4 p-5 border border-amber-500/20 bg-gradient-to-b from-neutral-900/90 to-black/90 rounded-3xl w-full backdrop-blur-xl shadow-2xl font-[Vazirmatn]"
-      dir="rtl"
+      dir={isRTL ? "rtl" : "ltr"}
     >
       {/* ── HEADER ── */}
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -182,7 +290,7 @@ export default function LiveTranslator({
                 ? "bg-gradient-to-r from-rose-700 to-red-700 text-white"
                 : "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black shadow-amber-500/30"
             }`}
-            aria-label={isActive ? "توقف ترجمه" : "شروع ترجمه"}
+            aria-label={isActive ? d.stopTranslationAria : d.startTranslationAria}
           >
             {status === "connecting" ? (
               <RefreshCw className="w-4 h-4 animate-spin" />
@@ -193,12 +301,12 @@ export default function LiveTranslator({
             )}
             <span>
               {status === "connecting"
-                ? "در حال اتصال..."
+                ? d.connectingButton
                 : status === "reconnecting"
-                ? "در حال اتصال مجدد..."
+                ? d.reconnectingButton
                 : isLive
-                ? "توقف ترجمه زنده"
-                : "شروع ترجمه زنده Gemini AI"}
+                ? d.stopLiveTranslation
+                : d.startLiveTranslation}
             </span>
           </button>
 
@@ -207,10 +315,10 @@ export default function LiveTranslator({
             <button
               onClick={handleRestart}
               className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 transition"
-              title="تلاش مجدد"
+              title={d.retry}
             >
               <RefreshCw className="w-3.5 h-3.5" />
-              <span>تلاش مجدد</span>
+              <span>{d.retry}</span>
             </button>
           )}
         </div>
@@ -233,13 +341,13 @@ export default function LiveTranslator({
             <span className="font-mono text-[11px]">Gemini 3.5 Live</span>
           </div>
 
-          <HelpTooltip text="ترجمه همزمان بلادرنگ صوتی Google Gemini. صدای گوینده مستقیماً به صدا و زیرنویس ترجمه‌شده تبدیل می‌شود. در صورت قطعی، سیستم تا ۳ بار به‌طور خودکار اتصال مجدد برقرار می‌کند." />
+          <HelpTooltip text={d.helpTooltipText} />
         </div>
 
         {/* Language Selector */}
         <div className="flex items-center gap-2">
           <Globe className="w-4 h-4 text-neutral-400" />
-          <span className="text-xs text-neutral-400">زبان مقصد:</span>
+          <span className="text-xs text-neutral-400">{d.targetLanguageLabel}</span>
           <select
             value={targetLang}
             onChange={(e) => {
@@ -265,10 +373,10 @@ export default function LiveTranslator({
         <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-400">
           <div className="flex items-center gap-2 font-bold">
             <Radio className="w-4 h-4 animate-pulse text-emerald-400" />
-            <span>پخش و ترجمه زنده صوتی فعال — {formatDuration(sessionDuration)}</span>
+            <span>{d.liveAudioActive(formatDuration(sessionDuration))}</span>
           </div>
           <div className="flex items-center gap-1">
-            <span className="text-[10px] text-neutral-400">سطح ورودی:</span>
+            <span className="text-[10px] text-neutral-400">{d.inputLevel}</span>
             <div className="w-24 h-2 bg-neutral-800 rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-emerald-500 to-amber-500 transition-all duration-75"
@@ -284,8 +392,8 @@ export default function LiveTranslator({
         <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-orange-500/10 border border-orange-500/30 text-xs text-orange-300">
           <WifiOff className="w-4 h-4 shrink-0 animate-pulse" />
           <div>
-            <p className="font-bold">اتصال قطع شد — در حال اتصال مجدد ({reconnectAttempt}/{maxAttempts})...</p>
-            <p className="text-orange-400/70 mt-0.5">صبر کنید، سیستم به‌طور خودکار دوباره متصل می‌شود.</p>
+            <p className="font-bold">{d.connectionLostReconnecting(reconnectAttempt, maxAttempts)}</p>
+            <p className="text-orange-400/70 mt-0.5">{d.waitAutoReconnect}</p>
           </div>
         </div>
       )}
@@ -297,11 +405,11 @@ export default function LiveTranslator({
           <div>
             <p className="font-bold">
               {status === "max_retries"
-                ? "پس از ۳ تلاش، اتصال برقرار نشد."
-                : "خطا در سرویس ترجمه زنده."}
+                ? d.failedAfter3Attempts
+                : d.liveTranslationServiceError}
             </p>
             <p className="text-rose-400/70 mt-0.5">
-              دکمه «تلاش مجدد» را بزنید یا از اتصال اینترنت مطمئن شوید.
+              {d.pressRetryOrCheckInternet}
             </p>
           </div>
         </div>
@@ -313,12 +421,12 @@ export default function LiveTranslator({
           {/* Original */}
           <div className="p-4 rounded-2xl bg-black/40 border border-white/10 min-h-[90px] flex flex-col">
             <span className="block text-[11px] font-bold text-neutral-400 mb-2">
-              🎙 گفتار ورودی (متن مبدا):
+              {d.inputSpeechLabel}
             </span>
             <p className="text-sm text-neutral-200 leading-relaxed font-medium flex-1">
               {inputTranscript || (
                 <span className="text-neutral-600 italic">
-                  {isLive ? "در حال گوش دادن به صدای گوینده..." : "—"}
+                  {isLive ? d.listeningToSpeaker : "—"}
                 </span>
               )}
             </p>
@@ -327,13 +435,13 @@ export default function LiveTranslator({
           {/* Translated */}
           <div className="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 min-h-[90px] flex flex-col">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-bold text-amber-400">🔊 ترجمه زنده:</span>
+              <span className="text-[11px] font-bold text-amber-400">{d.liveTranslationLabel}</span>
               {isLive && <Volume2 className="w-3.5 h-3.5 text-amber-400 animate-pulse" />}
             </div>
             <p className="text-sm text-amber-200 leading-relaxed font-bold flex-1">
               {outputTranscript || (
                 <span className="text-neutral-600 italic font-normal">
-                  {isLive ? "ترجمه بلادرنگ اینجا نمایش داده می‌شود..." : "—"}
+                  {isLive ? d.liveTranslationPlaceholder : "—"}
                 </span>
               )}
             </p>

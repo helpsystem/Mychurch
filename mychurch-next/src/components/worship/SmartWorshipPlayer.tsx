@@ -2,6 +2,79 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Play, Pause, Maximize, Minimize, Globe, Type, SkipBack, SkipForward, X, AlertCircle, Volume2, VolumeX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TranscriptData, LineSegment, SystemTimingV2 } from '@/types/worship-sync';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    en: {
+        changePlaybackTime: "Change playback position",
+        skipBack10: "Back 10 seconds",
+        pause: "Pause",
+        play: "Play",
+        skipForward10: "Forward 10 seconds",
+        lessDelay: "Less delay",
+        moreDelay: "More delay",
+        unmute: "Unmute",
+        mute: "Mute",
+        volumeLevel: "Volume level",
+        showPersianText: "Show original text (Persian)",
+        showFinglishText: "Show Finglish",
+        showEnglishTranslation: "Show English translation",
+        fullscreen: "Fullscreen",
+        close: "Close",
+        audioLoadError: "Error loading audio file",
+        dismiss: "Dismiss",
+        lyricsListTitle: "Song Lyrics List",
+        clickToPlayHint: "Click a line to play from there",
+        activeLine: "Active line",
+        clickToJump: "Click to jump to this time",
+    },
+    fa: {
+        changePlaybackTime: "تغییر زمان پخش",
+        skipBack10: "10 ثانیه عقب",
+        pause: "توقف",
+        play: "پخش",
+        skipForward10: "10 ثانیه جلو",
+        lessDelay: "تأخیر کمتر",
+        moreDelay: "تأخیر بیشتر",
+        unmute: "وصل صدا",
+        mute: "قطع صدا",
+        volumeLevel: "میزان صدا",
+        showPersianText: "نمایش متن اصلی (فارسی)",
+        showFinglishText: "نمایش فینگلیش",
+        showEnglishTranslation: "نمایش ترجمه انگلیسی",
+        fullscreen: "تمام صفحه",
+        close: "بستن",
+        audioLoadError: "خطا در بارگذاری فایل صوتی",
+        dismiss: "رد شدن",
+        lyricsListTitle: "لیست خطوط سرود",
+        clickToPlayHint: "جهت پخش روی خط کلیک کنید",
+        activeLine: "خط فعال",
+        clickToJump: "کلیک برای پرش به این زمان",
+    },
+    es: {
+        changePlaybackTime: "Cambiar posición de reproducción",
+        skipBack10: "Retroceder 10 segundos",
+        pause: "Pausa",
+        play: "Reproducir",
+        skipForward10: "Avanzar 10 segundos",
+        lessDelay: "Menos retraso",
+        moreDelay: "Más retraso",
+        unmute: "Activar sonido",
+        mute: "Silenciar",
+        volumeLevel: "Nivel de volumen",
+        showPersianText: "Mostrar texto original (persa)",
+        showFinglishText: "Mostrar Finglish",
+        showEnglishTranslation: "Mostrar traducción al inglés",
+        fullscreen: "Pantalla completa",
+        close: "Cerrar",
+        audioLoadError: "Error al cargar el archivo de audio",
+        dismiss: "Descartar",
+        lyricsListTitle: "Lista de líneas de la canción",
+        clickToPlayHint: "Haz clic en una línea para reproducir desde ahí",
+        activeLine: "Línea activa",
+        clickToJump: "Haz clic para saltar a este momento",
+    },
+};
 
 interface SmartWorshipPlayerProps {
     timingData: SystemTimingV2 | TranscriptData;
@@ -144,6 +217,8 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
     showEnglish: initialShowEnglish = false,
     onVisibilityChange
 }) => {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -691,9 +766,9 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                     >
                         {/* Sidebar Header */}
                         <div className={`p-4 text-right shrink-0 border-b ${isParchment ? 'border-[#8a4d0f]/15' : 'border-white/10'}`} dir="rtl">
-                            <h4 className={`font-bold text-[1.2rem] font-[Vazirmatn] ${isParchment ? 'text-[#41290e]' : 'text-indigo-300'}`}>لیست خطوط سرود</h4>
+                            <h4 className={`font-bold text-[1.2rem] font-[Vazirmatn] ${isParchment ? 'text-[#41290e]' : 'text-indigo-300'}`}>{d.lyricsListTitle}</h4>
                             <p className={`text-[0.85rem] mt-0.5 font-[Vazirmatn] ${isParchment ? 'text-[#8a4d0f]' : 'text-slate-400'}`}>
-                                جهت پخش روی خط کلیک کنید
+                                {d.clickToPlayHint}
                             </p>
                         </div>
 
@@ -711,7 +786,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                     ref={isActive ? activeItemRef : null}
                                     type="button"
                                     onClick={() => handleLineClick(idx)}
-                                    title={viewOnly ? 'خط فعال' : 'کلیک برای پرش به این زمان'}
+                                    title={viewOnly ? d.activeLine : d.clickToJump}
                                     className={`w-full text-right p-3 transition-all rounded-xl border flex flex-col gap-1 text-right items-stretch ${
                                         isActive 
                                             ? isParchment
@@ -787,7 +862,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                         setCurrentTime(time);
                                     }}
                                     className="absolute inset-0 w-full h-full appearance-none bg-white/10 rounded-full cursor-pointer overflow-hidden accent-teal-500 hover:accent-teal-400 group-hover/seek:h-2 transition-all outline-none"
-                                    title="تغییر زمان پخش"
+                                    title={d.changePlaybackTime}
                                 />
                                 <div 
                                     className="absolute left-0 top-0 bottom-0 bg-teal-500 rounded-l-full pointer-events-none group-hover/seek:bg-teal-400"
@@ -804,7 +879,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 <button
                                     onClick={() => skip(-10)}
                                     className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-                                    title="10 ثانیه عقب"
+                                    title={d.skipBack10}
                                 >
                                     <SkipBack className="w-5 h-5" />
                                 </button>
@@ -813,7 +888,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 <button
                                     onClick={togglePlay}
                                     className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-400 text-black transition-transform hover:scale-105 shadow-lg shadow-teal-500/30"
-                                    title={isPlaying ? "توقف" : "پخش"}
+                                    title={isPlaying ? d.pause : d.play}
                                 >
                                     {isPlaying ? <Pause className="w-6 h-6 lg:w-7 lg:h-7 fill-current" /> : <Play className="w-6 h-6 lg:w-7 lg:h-7 fill-current ml-1" />}
                                 </button>
@@ -822,31 +897,31 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 <button
                                     onClick={() => skip(10)}
                                     className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-                                    title="10 ثانیه جلو"
+                                    title={d.skipForward10}
                                 >
                                     <SkipForward className="w-5 h-5" />
                                 </button>
 
                                 {/* Sync Offset Controls */}
                                 <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10 ml-4 font-mono text-xs">
-                                    <button onClick={() => setSyncDelay(d => d - 0.1)} className="hover:text-teal-400" title="تأخیر کمتر">-0.1s</button>
+                                    <button onClick={() => setSyncDelay(sd => sd - 0.1)} className="hover:text-teal-400" title={d.lessDelay}>-0.1s</button>
                                     <span className={syncDelay !== 0 ? 'text-yellow-400' : 'text-gray-400'}>{syncDelay.toFixed(1)}s</span>
-                                    <button onClick={() => setSyncDelay(d => d + 0.1)} className="hover:text-teal-400" title="تأخیر بیشتر">+0.1s</button>
+                                    <button onClick={() => setSyncDelay(sd => sd + 0.1)} className="hover:text-teal-400" title={d.moreDelay}>+0.1s</button>
                                 </div>
                             </div>
 
                             <div className="flex items-center gap-2 lg:gap-3">
                                 {/* Volume Control */}
                                 <div className="flex items-center gap-2 mr-4 group/vol">
-                                    <button 
+                                    <button
                                         onClick={() => setIsMuted(!isMuted)}
                                         className="p-2 text-slate-400 hover:text-white transition-colors"
-                                        title={isMuted ? "وصل صدا" : "قطع صدا"}
+                                        title={isMuted ? d.unmute : d.mute}
                                     >
                                         {isMuted || volume === 0 ? <VolumeX className="w-5 h-5 text-red-400" /> : <Volume2 className="w-5 h-5" />}
                                     </button>
                                     <div className="w-0 group-hover/vol:w-24 overflow-hidden transition-all duration-300 flex items-center h-6">
-                                        <input 
+                                        <input
                                             type="range"
                                             min={0}
                                             max={1}
@@ -859,14 +934,14 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                                 if (v > 0) setIsMuted(false);
                                             }}
                                             className="w-full h-1 appearance-none bg-white/20 rounded-full cursor-pointer accent-teal-500"
-                                            title="میزان صدا"
+                                            title={d.volumeLevel}
                                         />
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => setShowPersian(!showPersian)}
                                     className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showPersian ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                                    title="نمایش متن اصلی (فارسی)"
+                                    title={d.showPersianText}
                                 >
                                     FA
                                 </button>
@@ -874,7 +949,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 <button
                                     onClick={() => setShowFinglish(!showFinglish)}
                                     className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showFinglish ? 'bg-teal-500/20 border-teal-500/50 text-teal-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                                    title="نمایش فینگلیش"
+                                    title={d.showFinglishText}
                                 >
                                     FN
                                 </button>
@@ -882,7 +957,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 <button
                                     onClick={() => setShowEnglish(!showEnglish)}
                                     className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors border font-bold text-sm ${showEnglish ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-300' : 'border-transparent text-gray-400 hover:text-white hover:bg-white/10'}`}
-                                    title="نمایش ترجمه انگلیسی"
+                                    title={d.showEnglishTranslation}
                                 >
                                     EN
                                 </button>
@@ -892,7 +967,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                                 <button
                                     onClick={toggleFullscreen}
                                     className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
-                                    title="تمام صفحه"
+                                    title={d.fullscreen}
                                 >
                                     {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
                                 </button>
@@ -922,7 +997,7 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                     {onClose && (
                         <button
                             onClick={onClose}
-                            title="بستن"
+                            title={d.close}
                             className="absolute top-4 right-4 z-[60] p-3 bg-white/10 hover:bg-white/20 hover:text-red-400 text-white rounded-full transition-all"
                         >
                             <X className="w-6 h-6" />
@@ -930,14 +1005,14 @@ export const SmartWorshipPlayer: React.FC<SmartWorshipPlayerProps> = ({
                     )}
                     <div className="text-center text-red-400 relative z-[50]">
                         <p className="text-xl mb-2 flex items-center justify-center gap-2">
-                            <AlertCircle className="w-6 h-6" /> خطا در بارگذاری فایل صوتی
+                            <AlertCircle className="w-6 h-6" /> {d.audioLoadError}
                         </p>
                         <p className="text-sm opacity-80 mb-4 truncate max-w-sm mx-auto" dir="ltr">{getSafeAudioUrl(audioSrc)}</p>
                         <button
                             onClick={() => setAudioError(false)}
                             className="mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors"
                         >
-                            رد شدن
+                            {d.dismiss}
                         </button>
                     </div>
                 </div>

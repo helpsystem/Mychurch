@@ -74,7 +74,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
       setUser(user);
 
       if (user) {
-        const likes = await getUserLikedSongs(user.id);
+        const likes = await getUserLikedSongs();
         setLikedSongs(new Set(likes));
       }
     };
@@ -87,7 +87,7 @@ export default function WorshipArchive({ initialSongs }: { initialSongs: Worship
       return;
     }
 
-    const { success, liked, count } = await toggleLikeWorshipSong(songId, user.id);
+    const { success, liked, count } = await toggleLikeWorshipSong(songId);
     if (success) {
       setLikedSongs(prev => {
         const next = new Set(prev);

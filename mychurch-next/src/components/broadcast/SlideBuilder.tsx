@@ -26,6 +26,385 @@ import SlidePreviewModal from './SlidePreviewModal';
 import { MediaPickerModal } from './MediaPickerModal';
 import SlideFontControls from './SlideFontControls';
 import InteractiveMediaFrame, { extractYoutubeId, isYoutubeUrl } from './InteractiveMediaFrame';
+import { useLanguage } from '@/providers/LanguageProvider';
+
+const localDict = {
+    en: {
+        getServiceNotesSongs: "Get Service Notes & Songs",
+        scanTheQrCode: "Scan the QR code with your phone camera to get worship audio, lyrics, scripture verses, and sermon notes on Telegram or WhatsApp.",
+        preview: "Preview",
+        edit: "Edit",
+        moveUp: "Move Up",
+        moveSlideUp: "Move Slide Up",
+        moveDown: "Move Down",
+        moveSlideDown: "Move Slide Down",
+        delete: "Delete",
+        deleteSlide: "Delete Slide",
+        topBottomTexts: "Top & Bottom Texts",
+        clear: "Clear",
+        topSlideTextHeader: "Top Slide Text (Header):",
+        eGWelcomeOr: "e.g., Welcome or Special Announcement...",
+        bottomSlideTextFooter: "Bottom Slide Text (Footer):",
+        eGTranslationNotes: "e.g., Translation notes, reference...",
+        templateName: "Template name...",
+        saveSlideAsTemplate: "Save slide as template",
+        saveAsTemplate: "Save as Template",
+        savedTemplates: (n: number) => `Saved Templates (${n})`,
+        addThisTemplate: "Add this template",
+        deleteTemplate: "Delete template",
+        prayerRequest: "Prayer Request",
+        design: "Design",
+        videoCall: "Video Call",
+        liveChartsStats: "Live Charts / Stats",
+        lordSPrayerLuxury: "Lord's Prayer (Luxury)",
+        addQrServiceSlide: "Add QR Service Slide",
+        addQrServiceSlide2: "Add QR Service Slide",
+        uploadingFile: "Uploading file...",
+        supportsYoutubeLinksDirect: "Supports YouTube links & direct media files",
+        youtubeVideoDetected: "YouTube Video Detected",
+        readyToStreamIn: "Ready to stream in console & projector.",
+        alreadyHaveAFile: "Already have a file?",
+        browseMediaGallery: "Browse Media Gallery",
+        interactiveLivePreviewPan: "Interactive Live Preview (Pan, Zoom, Fit)",
+        displayFramingSettings: "Display & Framing Settings",
+        width: "Width:",
+        width2: "Width",
+        height: "Height:",
+        height2: "Height",
+        position: "Position:",
+        position2: "Position",
+        center: "Center",
+        topLeft: "Top Left",
+        topRight: "Top Right",
+        bottomLeft: "Bottom Left",
+        bottomRight: "Bottom Right",
+        custom: "Custom",
+        fitMode: "Fit Mode:",
+        fitMode2: "Fit Mode",
+        contain: "Contain",
+        cover: "Cover",
+        fill: "Fill",
+        none: "None",
+        borderRadius: "Border Radius:",
+        borderRadius2: "Border Radius",
+        opacity: "Opacity:",
+        opacity2: "Opacity",
+        transparentChurchLogoWatermark: "Transparent Church Logo Watermark",
+        showLogo: "Show Logo",
+        position3: "Position:",
+        logoPosition: "Logo Position",
+        topRight2: "Top Right",
+        size: "Size:",
+        small: "Small",
+        medium: "Medium",
+        large: "Large",
+        opacity3: "Opacity:",
+        logoOpacity: "Logo Opacity",
+        title: "Title",
+        announcementTitle: "Announcement title...",
+        content: "Content",
+        enterAnnouncementContent: "Enter announcement content...",
+        imageOptional: "Image (optional)",
+        eventDateOptional: "Event Date (optional)",
+        linkOptional: "Link (optional)",
+        preview2: "Preview:",
+        noTitle: "No title",
+        noContent: "No content",
+        designSlide: "Design Slide",
+        titleOptional: "Title (Optional)",
+        slideTitle: "Slide title...",
+        backgroundType: "Background Type",
+        backgroundValue: "Background Value",
+        chooseBackgroundFromGallery: "Choose background from gallery",
+        slideFont: "Slide Font",
+        htmlContent: "HTML Content",
+        pEnterYourHtml: "<p>Enter your HTML content here...</p>",
+        layout: "Layout",
+        liveChart: "Live Chart",
+        chartTitle: "Chart Title",
+        title2: "Title...",
+        chartType: "Chart Type",
+        options: "Options",
+        showLegend: "Show Legend",
+        showValues: "Show Values",
+        dataPoints: "Data Points",
+        addDataPoint: "Add Data Point",
+        liveVideoMeeting: "Live Video Meeting",
+        roomId: "Room ID",
+        alphanumericAndDashesOnly: "Alphanumeric and dashes only.",
+        meetingSubject: "Meeting Subject",
+        eGQA: "e.g. Q&A Session",
+        thisSlideLaunchesA: "This slide launches a secure video meeting directly in the console.",
+        addPrayerRequestSlide: "Add Prayer Request Slide",
+        selectFromListOptional: "Select from list (Optional)",
+        selectARequest: "Select a request...",
+        titleSubject: "Title / Subject",
+        content2: "Content",
+        nameOptional: "Name (Optional)",
+        answered: "Answered",
+        update: "Update",
+        youtubeFallback: "YouTube",
+        loadingSession: "Loading session...",
+        sampleNFallback: (n: number) => `Sample ${n}`,
+        saveAction: "Save",
+        cancelAction: "Cancel",
+        youtubeUrlPlaceholder: "https://www.youtube.com/watch?v=... or direct link",
+        wavyPaperPlaceholder: "Wavy paper text...",
+        liveDataFallback: "Live Data",
+        meetingFallback: "Meeting",
+        lordsPrayerFallback: "Lord's Prayer",
+    },
+    fa: {
+        getServiceNotesSongs: "دریافت فایل‌ها، سرودها و برنامه جلسه",
+        scanTheQrCode: "برای دسترسی به متن و آکورد سرودها، صوت، آیات موعظه امروز و دریافت در تلگرام و واتساپ، دوربین گوشی خود را مقابل بارکد قرار دهید.",
+        preview: "پیش‌نمایش",
+        edit: "ویرایش",
+        moveUp: "بالا",
+        moveSlideUp: "انتقال به بالا",
+        moveDown: "پایین",
+        moveSlideDown: "انتقال به پایین",
+        delete: "حذف",
+        deleteSlide: "حذف اسلاید",
+        topBottomTexts: "متن‌های بالا و پایین اسلاید",
+        clear: "پاک کردن",
+        topSlideTextHeader: "متن بالای اسلاید (تیتر/عنوان):",
+        eGWelcomeOr: "مثال: جلسه دعای یکشنبه یا پیام شبان...",
+        bottomSlideTextFooter: "متن پایین اسلاید (پانویس/توضیح):",
+        eGTranslationNotes: "مثال: ترجمه تفسیری / آدرس وب‌سایت کلیسا...",
+        templateName: "نام نمونه...",
+        saveSlideAsTemplate: "ذخیره این اسلاید به عنوان نمونه",
+        saveAsTemplate: "ذخیره به‌عنوان نمونه",
+        savedTemplates: (n: number) => `نمونه‌های ذخیره‌شده (${n})`,
+        addThisTemplate: "اضافه کردن این نمونه",
+        deleteTemplate: "حذف نمونه",
+        prayerRequest: "درخواست دعا",
+        design: "اسلاید آزاد",
+        videoCall: "ارتباط ویدیویی",
+        liveChartsStats: "نمودار زنده / آمار",
+        lordSPrayerLuxury: "افزودن دعای ربانی (لوکس)",
+        addQrServiceSlide: "افزودن اسلاید بارکد QR دریافت فایل‌ها و برنامه جلسه",
+        addQrServiceSlide2: "📲 اسلاید بارکد QR دریافت فایل‌ها و برنامه",
+        uploadingFile: "در حال آپلود فایل...",
+        supportsYoutubeLinksDirect: "پشتیبانی کامل از لینک‌های یوتیوب (YouTube) و فایل‌های مدیا",
+        youtubeVideoDetected: "ویدیوی یوتیوب شناسایی شد",
+        readyToStreamIn: "ویدیو آماده پخش در مانیتور کنسول و پروژکتور سالن است.",
+        alreadyHaveAFile: "آیا فایلی قبلاً آپلود کرده‌اید؟",
+        browseMediaGallery: "جستجو در گالری مدیا",
+        interactiveLivePreviewPan: "پیش‌نمایش زنده تعاملی (درگ، زوم، فیت)",
+        displayFramingSettings: "تنظیمات اندازه و کادر نمایش",
+        width: "عرض کادر:",
+        width2: "عرض",
+        height: "ارتفاع کادر:",
+        height2: "ارتفاع",
+        position: "موقعیت در اسلاید:",
+        position2: "موقعیت",
+        center: "مرکز",
+        topLeft: "بالا چپ",
+        topRight: "بالا راست",
+        bottomLeft: "پایین چپ",
+        bottomRight: "پایین راست",
+        custom: "سفارشی",
+        fitMode: "حالت فیت (Fit):",
+        fitMode2: "برش تصویر",
+        contain: "کامل (Contain)",
+        cover: "پر کردن (Cover)",
+        fill: "کشیدن (Fill)",
+        none: "بدون تغییر",
+        borderRadius: "گوشه گرد:",
+        borderRadius2: "گوشه گرد",
+        opacity: "شفافیت:",
+        opacity2: "شفافیت",
+        transparentChurchLogoWatermark: "لوگوی ترنسپرنت کلیسا روی تصویر / مدیا",
+        showLogo: "نمایش لوگو",
+        position3: "موقعیت لوگو:",
+        logoPosition: "موقعیت لوگو",
+        topRight2: "بالا راست (پیش‌فرض)",
+        size: "اندازه لوگو:",
+        small: "کوچک",
+        medium: "متوسط",
+        large: "بزرگ",
+        opacity3: "میزان شفافیت (Opacity):",
+        logoOpacity: "شفافیت لوگو",
+        title: "عنوان اعلان",
+        announcementTitle: "عنوان اعلان...",
+        content: "متن اعلان",
+        enterAnnouncementContent: "متن اعلان را وارد کنید...",
+        imageOptional: "تصویر (اختیاری)",
+        eventDateOptional: "تاریخ رویداد (اختیاری)",
+        linkOptional: "لینک (اختیاری)",
+        preview2: "پیش‌نمایش:",
+        noTitle: "بدون عنوان",
+        noContent: "بدون محتوا",
+        designSlide: "اسلاید آزاد",
+        titleOptional: "عنوان (اختیاری)",
+        slideTitle: "عنوان اسلاید...",
+        backgroundType: "نوع پس‌زمینه",
+        backgroundValue: "مقدار پس‌زمینه",
+        chooseBackgroundFromGallery: "انتخاب پس‌زمینه از گالری",
+        slideFont: "فونت اسلاید",
+        htmlContent: "محتوای HTML",
+        pEnterYourHtml: "<p>متن خود را اینجا بنویسید...</p>",
+        layout: "چیدمان",
+        liveChart: "نمودار زنده",
+        chartTitle: "عنوان نمودار",
+        title2: "عنوان...",
+        chartType: "نوع نمودار",
+        options: "تنظیمات",
+        showLegend: "نمایش راهنما (Legend)",
+        showValues: "نمایش مقادیر",
+        dataPoints: "داده‌ها",
+        addDataPoint: "افزودن داده جدید",
+        liveVideoMeeting: "ارتباط ویدیویی زنده (یکپارچه)",
+        roomId: "شناسه / نام اتاق جلسه",
+        alphanumericAndDashesOnly: "فقط حروف انگلیسی، اعداد و خط تیره",
+        meetingSubject: "موضوع / عنوان نمایش داده شده",
+        eGQA: "مثال: پرسش و پاسخ",
+        thisSlideLaunchesA: "این اسلاید پلتفرم تماس ویدیویی فوق امن (بر پایه ابری) را مستقیماً داخل کنسول باز می‌کند. مهمانان می‌توانند بدون نیاز به نصب هیچ برنامه‌ای با لینک مخصوص به استودیو متصل شوند و تصاویرشان در پخش زنده نمایش داده خواهد شد.",
+        addPrayerRequestSlide: "افزودن اسلاید درخواست دعا",
+        selectFromListOptional: "انتخاب از لیست (اختیاری)",
+        selectARequest: "انتخاب درخواست...",
+        titleSubject: "عنوان / موضوع",
+        content2: "شرح درخواست",
+        nameOptional: "نام شخص (اختیاری)",
+        answered: "مستجاب شده",
+        update: "به‌روزرسانی",
+        youtubeFallback: "یوتیوب",
+        loadingSession: "در حال بارگذاری جلسه...",
+        sampleNFallback: (n: number) => `نمونه ${n}`,
+        saveAction: "ذخیره",
+        cancelAction: "لغو",
+        youtubeUrlPlaceholder: "https://www.youtube.com/watch?v=... یا لینک مستقیم",
+        wavyPaperPlaceholder: "متن الگوی کاغذی...",
+        liveDataFallback: "داده زنده",
+        meetingFallback: "جلسه",
+        lordsPrayerFallback: "دعای ربانی",
+    },
+    es: {
+        getServiceNotesSongs: "Obtener notas del servicio y canciones",
+        scanTheQrCode: "Escanee el código QR con la cámara de su teléfono para obtener audio de alabanza, letras, versículos bíblicos y notas del sermón en Telegram o WhatsApp.",
+        preview: "Vista previa",
+        edit: "Editar",
+        moveUp: "Subir",
+        moveSlideUp: "Subir diapositiva",
+        moveDown: "Bajar",
+        moveSlideDown: "Bajar diapositiva",
+        delete: "Eliminar",
+        deleteSlide: "Eliminar diapositiva",
+        topBottomTexts: "Textos superior e inferior",
+        clear: "Borrar",
+        topSlideTextHeader: "Texto superior de la diapositiva (encabezado):",
+        eGWelcomeOr: "ej., Bienvenida o anuncio especial...",
+        bottomSlideTextFooter: "Texto inferior de la diapositiva (pie):",
+        eGTranslationNotes: "ej., notas de traducción, referencia...",
+        templateName: "Nombre de la plantilla...",
+        saveSlideAsTemplate: "Guardar diapositiva como plantilla",
+        saveAsTemplate: "Guardar como plantilla",
+        savedTemplates: (n: number) => `Plantillas guardadas (${n})`,
+        addThisTemplate: "Añadir esta plantilla",
+        deleteTemplate: "Eliminar plantilla",
+        prayerRequest: "Petición de oración",
+        design: "Diseño",
+        videoCall: "Videollamada",
+        liveChartsStats: "Gráficos / estadísticas en vivo",
+        lordSPrayerLuxury: "El Padre Nuestro (Lujo)",
+        addQrServiceSlide: "Añadir diapositiva QR de servicio",
+        addQrServiceSlide2: "Añadir diapositiva QR de servicio",
+        uploadingFile: "Subiendo archivo...",
+        supportsYoutubeLinksDirect: "Admite enlaces de YouTube y archivos multimedia directos",
+        youtubeVideoDetected: "Video de YouTube detectado",
+        readyToStreamIn: "Listo para transmitir en la consola y el proyector.",
+        alreadyHaveAFile: "¿Ya tiene un archivo?",
+        browseMediaGallery: "Explorar galería de medios",
+        interactiveLivePreviewPan: "Vista previa interactiva en vivo (Desplazar, Zoom, Ajustar)",
+        displayFramingSettings: "Configuración de visualización y encuadre",
+        width: "Ancho:",
+        width2: "Ancho",
+        height: "Alto:",
+        height2: "Alto",
+        position: "Posición:",
+        position2: "Posición",
+        center: "Centro",
+        topLeft: "Arriba izquierda",
+        topRight: "Arriba derecha",
+        bottomLeft: "Abajo izquierda",
+        bottomRight: "Abajo derecha",
+        custom: "Personalizado",
+        fitMode: "Modo de ajuste:",
+        fitMode2: "Modo de ajuste",
+        contain: "Contener",
+        cover: "Cubrir",
+        fill: "Rellenar",
+        none: "Ninguno",
+        borderRadius: "Radio del borde:",
+        borderRadius2: "Radio del borde",
+        opacity: "Opacidad:",
+        opacity2: "Opacidad",
+        transparentChurchLogoWatermark: "Marca de agua transparente del logo de la iglesia",
+        showLogo: "Mostrar logo",
+        position3: "Posición:",
+        logoPosition: "Posición del logo",
+        topRight2: "Arriba derecha",
+        size: "Tamaño:",
+        small: "Pequeño",
+        medium: "Mediano",
+        large: "Grande",
+        opacity3: "Opacidad:",
+        logoOpacity: "Opacidad del logo",
+        title: "Título",
+        announcementTitle: "Título del anuncio...",
+        content: "Contenido",
+        enterAnnouncementContent: "Ingrese el contenido del anuncio...",
+        imageOptional: "Imagen (opcional)",
+        eventDateOptional: "Fecha del evento (opcional)",
+        linkOptional: "Enlace (opcional)",
+        preview2: "Vista previa:",
+        noTitle: "Sin título",
+        noContent: "Sin contenido",
+        designSlide: "Diapositiva de diseño",
+        titleOptional: "Título (opcional)",
+        slideTitle: "Título de la diapositiva...",
+        backgroundType: "Tipo de fondo",
+        backgroundValue: "Valor de fondo",
+        chooseBackgroundFromGallery: "Elegir fondo de la galería",
+        slideFont: "Fuente de la diapositiva",
+        htmlContent: "Contenido HTML",
+        pEnterYourHtml: "<p>Ingrese aquí su contenido HTML...</p>",
+        layout: "Disposición",
+        liveChart: "Gráfico en vivo",
+        chartTitle: "Título del gráfico",
+        title2: "Título...",
+        chartType: "Tipo de gráfico",
+        options: "Opciones",
+        showLegend: "Mostrar leyenda",
+        showValues: "Mostrar valores",
+        dataPoints: "Puntos de datos",
+        addDataPoint: "Añadir punto de datos",
+        liveVideoMeeting: "Videollamada en vivo",
+        roomId: "ID de la sala",
+        alphanumericAndDashesOnly: "Solo caracteres alfanuméricos y guiones.",
+        meetingSubject: "Asunto de la reunión",
+        eGQA: "ej. Sesión de preguntas y respuestas",
+        thisSlideLaunchesA: "Esta diapositiva abre una plataforma de videollamada ultra segura (basada en la nube) directamente dentro de la consola. Los invitados pueden conectarse al estudio con un enlace especial sin necesidad de instalar ninguna aplicación, y su imagen se mostrará en la transmisión en vivo.",
+        addPrayerRequestSlide: "Añadir diapositiva de petición de oración",
+        selectFromListOptional: "Seleccionar de la lista (opcional)",
+        selectARequest: "Seleccionar una petición...",
+        titleSubject: "Título / Asunto",
+        content2: "Contenido",
+        nameOptional: "Nombre (opcional)",
+        answered: "Respondida",
+        update: "Actualizar",
+        youtubeFallback: "YouTube",
+        loadingSession: "Cargando sesión...",
+        sampleNFallback: (n: number) => `Muestra ${n}`,
+        saveAction: "Guardar",
+        cancelAction: "Cancelar",
+        youtubeUrlPlaceholder: "https://www.youtube.com/watch?v=... o enlace directo",
+        wavyPaperPlaceholder: "Texto de papel ondulado...",
+        liveDataFallback: "Datos en vivo",
+        meetingFallback: "Reunión",
+        lordsPrayerFallback: "El Padre Nuestro",
+    },
+};
 
 interface SlideBuilderProps {
   session: BroadcastSession;
@@ -56,6 +435,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 }) => {
   const t = BROADCAST_TRANSLATIONS[lang];
   const isRTL = lang === 'fa';
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
 
   const [activeModal, setActiveModal] = useState<ModalType>('NONE');
   
@@ -279,16 +660,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       : `https://www.iranianchurchdc.com/service/${session.id}?ref=qr`;
 
     const content: SlideContentAnnouncement = {
-      title: isRTL ? 'دریافت فایل‌ها، سرودها و برنامه جلسه' : 'Get Service Notes & Songs',
-      content: isRTL
-        ? 'برای دسترسی به متن و آکورد سرودها، صوت، آیات موعظه امروز و دریافت در تلگرام و واتساپ، دوربین گوشی خود را مقابل بارکد قرار دهید.'
-        : 'Scan the QR code with your phone camera to get worship audio, lyrics, scripture verses, and sermon notes on Telegram or WhatsApp.',
+      title: d.getServiceNotesSongs,
+      content: d.scanTheQrCode,
       qrCodeUrl: serviceUrl,
       link: serviceUrl,
     };
 
     addSlide(SlideType.ANNOUNCEMENT, content);
-  }, [addSlide, isRTL, session.id]);
+  }, [addSlide, d, session.id]);
 
   // Delete slide
   const deleteSlide = useCallback((index: number) => {
@@ -429,7 +808,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     if (!slide) return;
     const newTemplate: SlideTemplate = {
       id: crypto.randomUUID(),
-      name: name.trim() || `نمونه ${templates.length + 1}`,
+      name: name.trim() || d.sampleNFallback(templates.length + 1),
       slide: { ...slide, id: crypto.randomUUID() }
     };
     const updated = [...templates, newTemplate];
@@ -437,7 +816,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
     localStorage.setItem('slideTemplates', JSON.stringify(updated));
     setShowSaveTemplateInput(false);
     setSavingTemplateName('');
-  }, [session.slides, activeSlideIndex, templates]);
+  }, [session.slides, activeSlideIndex, templates, d]);
 
   // Load a template (adds a copy as a new slide)
   const loadTemplate = useCallback((template: SlideTemplate) => {
@@ -844,7 +1223,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 rounded z-10 p-1">
                     <Youtube className="w-5 h-5 text-red-500 drop-shadow-md" />
                     <span className="text-[8px] text-white font-bold truncate max-w-full font-[Vazirmatn] mt-0.5">
-                      {mediaContent.title || 'یوتیوب'}
+                      {mediaContent.title || d.youtubeFallback}
                     </span>
                   </div>
                 </div>
@@ -870,7 +1249,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="text-center">
               <Edit3 className="w-6 h-6 text-purple-400 mx-auto mb-1" />
               <p className="text-[10px] text-white truncate">
-                {(slide.content as SlideContentGeneric).title || 'Design'}
+                {(slide.content as SlideContentGeneric).title || d.design}
               </p>
             </div>
           )}
@@ -878,7 +1257,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="text-center">
               <PieChart className="w-6 h-6 text-rose-400 mx-auto mb-1" />
               <p className="text-[10px] text-white truncate">
-                {(slide.content as SlideContentLiveData).title || 'Live Data'}
+                {(slide.content as SlideContentLiveData).title || d.liveDataFallback}
               </p>
             </div>
           )}
@@ -886,7 +1265,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="text-center">
               <PhoneCall className="w-6 h-6 text-emerald-400 mx-auto mb-1" />
               <p className="text-[10px] text-white truncate">
-                {(slide.content as SlideContentMeeting).subject || 'Meeting'}
+                {(slide.content as SlideContentMeeting).subject || d.meetingFallback}
               </p>
             </div>
           )}
@@ -894,7 +1273,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="text-center">
               <span className="text-2xl mb-1 block">✨</span>
               <p className="text-[10px] text-[var(--gold)] truncate font-bold">
-                Lord's Prayer
+                {d.lordsPrayerFallback}
               </p>
             </div>
           )}
@@ -921,14 +1300,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           <button
             onClick={(e) => { e.stopPropagation(); setPreviewSlideIndex(index); setIsPreviewOpen(true); }}
             className="p-1 bg-purple-600/80 rounded hover:bg-purple-500"
-            title={isRTL ? 'پیش‌نمایش' : 'Preview'}
+            title={d.preview}
           >
             <Eye className="w-3 h-3 text-white" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); startEditSlide(index); }}
             className="p-1 bg-blue-600/80 rounded hover:bg-blue-500"
-            title={isRTL ? 'ویرایش' : 'Edit'}
+            title={d.edit}
           >
             <Edit3 className="w-3 h-3 text-white" />
           </button>
@@ -936,8 +1315,8 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             onClick={(e) => { e.stopPropagation(); moveSlide(index, 'up'); }}
             className="p-1 bg-slate-700 rounded hover:bg-slate-600"
             disabled={index === 0}
-            title={isRTL ? 'بالا' : 'Move Up'}
-            aria-label={isRTL ? 'انتقال به بالا' : 'Move Slide Up'}
+            title={d.moveUp}
+            aria-label={d.moveSlideUp}
           >
             <ChevronUp className="w-3 h-3 text-white" />
           </button>
@@ -945,16 +1324,16 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             onClick={(e) => { e.stopPropagation(); moveSlide(index, 'down'); }}
             className="p-1 bg-slate-700 rounded hover:bg-slate-600"
             disabled={index === session.slides.length - 1}
-            title={isRTL ? 'پایین' : 'Move Down'}
-            aria-label={isRTL ? 'انتقال به پایین' : 'Move Slide Down'}
+            title={d.moveDown}
+            aria-label={d.moveSlideDown}
           >
             <ChevronDown className="w-3 h-3 text-white" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); deleteSlide(index); }}
             className="p-1 bg-red-600/80 rounded hover:bg-red-500"
-            title={isRTL ? 'حذف' : 'Delete'}
-            aria-label={isRTL ? 'حذف اسلاید' : 'Delete Slide'}
+            title={d.delete}
+            aria-label={d.deleteSlide}
           >
             <Trash2 className="w-3 h-3 text-white" />
           </button>
@@ -972,8 +1351,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
       <div className="flex items-center justify-center h-full bg-slate-900 text-white p-8">
         <div className="text-center">
           <Activity className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
-          <p className="text-xl font-bold font-[Vazirmatn]">در حال بارگذاری جلسه...</p>
-          <p className="text-slate-400 mt-2">Initializing session...</p>
+          <p className="text-xl font-bold font-[Vazirmatn]">{d.loadingSession}</p>
         </div>
       </div>
     );
@@ -1006,7 +1384,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-amber-300 flex items-center gap-1">
                   <span>✍️</span>
-                  <span>{isRTL ? 'متن‌های بالا و پایین اسلاید' : 'Top & Bottom Texts'}</span>
+                  <span>{d.topBottomTexts}</span>
                 </span>
                 {(session.slides[activeSlideIndex].headerText || session.slides[activeSlideIndex].footerText) && (
                   <button
@@ -1019,7 +1397,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                     }}
                     className="text-[10px] text-zinc-400 hover:text-red-400 transition"
                   >
-                    {isRTL ? 'پاک کردن' : 'Clear'}
+                    {d.clear}
                   </button>
                 )}
               </div>
@@ -1027,7 +1405,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               {/* Top Text (Header) */}
               <div>
                 <label className="block text-[11px] font-bold text-amber-200/90 mb-1">
-                  {isRTL ? 'متن بالای اسلاید (تیتر/عنوان):' : 'Top Slide Text (Header):'}
+                  {d.topSlideTextHeader}
                 </label>
                 <input
                   type="text"
@@ -1039,7 +1417,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       slides: prev.slides.map((s, i) => i === activeSlideIndex ? { ...s, headerText: text } : s)
                     }));
                   }}
-                  placeholder={isRTL ? 'مثال: جلسه دعای یکشنبه یا پیام شبان...' : 'e.g., Welcome or Special Announcement...'}
+                  placeholder={d.eGWelcomeOr}
                   className="w-full bg-black/60 border border-amber-500/30 focus:border-amber-400 rounded-lg px-2.5 py-1.5 text-xs text-amber-100 outline-none transition placeholder-zinc-500"
                 />
               </div>
@@ -1047,7 +1425,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               {/* Bottom Text (Footer) */}
               <div>
                 <label className="block text-[11px] font-bold text-indigo-200/90 mb-1">
-                  {isRTL ? 'متن پایین اسلاید (پانویس/توضیح):' : 'Bottom Slide Text (Footer):'}
+                  {d.bottomSlideTextFooter}
                 </label>
                 <input
                   type="text"
@@ -1059,7 +1437,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       slides: prev.slides.map((s, i) => i === activeSlideIndex ? { ...s, footerText: text } : s)
                     }));
                   }}
-                  placeholder={isRTL ? 'مثال: ترجمه تفسیری / آدرس وب‌سایت کلیسا...' : 'e.g., Translation notes, reference...'}
+                  placeholder={d.eGTranslationNotes}
                   className="w-full bg-black/60 border border-indigo-500/30 focus:border-indigo-400 rounded-lg px-2.5 py-1.5 text-xs text-indigo-100 outline-none transition placeholder-zinc-500"
                 />
               </div>
@@ -1071,24 +1449,24 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               <input
                 autoFocus
                 type="text"
-                placeholder={isRTL ? 'نام نمونه...' : 'Template name...'}
+                placeholder={d.templateName}
                 value={savingTemplateName}
                 onChange={e => setSavingTemplateName(e.target.value)}
                 onKeyDown={e => { if (e.key === 'Enter') saveTemplate(savingTemplateName); if (e.key === 'Escape') setShowSaveTemplateInput(false); }}
                 className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white outline-none focus:border-indigo-500"
               />
-              <button type="button" onClick={() => saveTemplate(savingTemplateName)} className="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 rounded text-white text-xs font-bold" title="ذخیره">✓</button>
-              <button type="button" onClick={() => setShowSaveTemplateInput(false)} className="px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded text-white text-xs" title="لغو">✕</button>
+              <button type="button" onClick={() => saveTemplate(savingTemplateName)} className="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 rounded text-white text-xs font-bold" title={d.saveAction}>✓</button>
+              <button type="button" onClick={() => setShowSaveTemplateInput(false)} className="px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded text-white text-xs" title={d.cancelAction}>✕</button>
             </div>
           ) : (
             <button
               type="button"
               onClick={() => setShowSaveTemplateInput(true)}
               className="mt-2 w-full flex items-center justify-center gap-1.5 py-1.5 bg-emerald-600/10 hover:bg-emerald-600/20 border border-emerald-600/30 rounded-lg text-emerald-400 text-xs font-bold transition"
-              title={isRTL ? 'ذخیره این اسلاید به عنوان نمونه' : 'Save slide as template'}
+              title={d.saveSlideAsTemplate}
             >
               <span>💾</span>
-              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'ذخیره به‌عنوان نمونه' : 'Save as Template'}</span>
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{d.saveAsTemplate}</span>
             </button>
           )}
         </div>
@@ -1102,7 +1480,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               onClick={() => setShowTemplates(v => !v)}
               className="w-full flex items-center justify-between text-xs text-slate-300 font-bold"
             >
-              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>📁 {isRTL ? `نمونه‌های ذخیره‌شده (${templates.length})` : `Saved Templates (${templates.length})`}</span>
+              <span className={isRTL ? 'font-[Vazirmatn]' : ''}>📁 {d.savedTemplates(templates.length)}</span>
               <span>{showTemplates ? '▲' : '▼'}</span>
             </button>
             {showTemplates && (
@@ -1113,7 +1491,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       type="button"
                       onClick={() => loadTemplate(t)}
                       className="flex-1 text-left px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-indigo-700/30 hover:border-indigo-500/40 border border-transparent text-xs text-slate-200 transition truncate"
-                      title={isRTL ? 'اضافه کردن این نمونه' : 'Add this template'}
+                      title={d.addThisTemplate}
                     >
                       {t.name}
                     </button>
@@ -1121,7 +1499,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       type="button"
                       onClick={() => deleteTemplate(t.id)}
                       className="p-1 text-slate-600 hover:text-red-400 transition rounded"
-                      title={isRTL ? 'حذف نمونه' : 'Delete template'}
+                      title={d.deleteTemplate}
                     >✕</button>
                   </div>
                 ))}
@@ -1159,7 +1537,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             className="flex items-center gap-1.5 px-2 py-1.5 bg-rose-600/20 border border-rose-600/40 rounded-lg text-rose-400 hover:bg-rose-600/30 transition text-xs justify-center md:justify-start"
           >
             <Heart className="w-3.5 h-3.5 shrink-0" />
-            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'درخواست دعا' : 'Prayer Request'}</span>
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{d.prayerRequest}</span>
           </button>
           <button
             onClick={() => setActiveModal('ANNOUNCEMENT')}
@@ -1175,7 +1553,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             className="flex items-center gap-1.5 px-2 py-1.5 bg-purple-600/20 border border-purple-600/40 rounded-lg text-purple-400 hover:bg-purple-600/30 transition text-xs justify-center"
           >
             <Plus className="w-3.5 h-3.5 shrink-0" />
-            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'اسلاید آزاد' : 'Design'}</span>
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{d.design}</span>
           </button>
 
           {/* Meeting Slide Button */}
@@ -1184,7 +1562,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             className="flex items-center gap-1.5 px-2 py-1.5 bg-emerald-600/20 border border-emerald-600/40 rounded-lg text-emerald-400 hover:bg-emerald-600/30 transition text-xs justify-center"
           >
             <PhoneCall className="w-3.5 h-3.5 shrink-0" />
-            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'ارتباط ویدیویی' : 'Video Call'}</span>
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{d.videoCall}</span>
           </button>
 
           {/* Live Data Slide Button */}
@@ -1193,7 +1571,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             className="flex items-center gap-1.5 px-2 py-1.5 bg-rose-600/20 border border-rose-600/40 rounded-lg text-rose-400 hover:bg-rose-600/30 transition text-xs col-span-2 justify-center"
           >
             <PieChart className="w-3.5 h-3.5 shrink-0" />
-            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{isRTL ? 'نمودار زنده / آمار' : 'Live Charts / Stats'}</span>
+            <span className={isRTL ? 'font-[Vazirmatn] truncate' : 'truncate'}>{d.liveChartsStats}</span>
           </button>
 
           {/* Luxury Lord's Prayer Button */}
@@ -1202,18 +1580,18 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             className="flex items-center gap-1.5 px-2 py-1.5 bg-[var(--gold)]/20 border border-[var(--gold)]/50 rounded-lg text-[var(--gold)] hover:bg-[var(--gold)]/30 transition text-xs col-span-2 justify-center shadow-[0_0_10px_rgba(214,178,94,0.3)]"
           >
             <span className="text-sm">✨</span>
-            <span className={isRTL ? 'font-[Vazirmatn] truncate font-bold' : 'truncate font-bold'}>{isRTL ? 'افزودن دعای ربانی (لوکس)' : "Lord's Prayer (Luxury)"}</span>
+            <span className={isRTL ? 'font-[Vazirmatn] truncate font-bold' : 'truncate font-bold'}>{d.lordSPrayerLuxury}</span>
           </button>
 
           {/* Smart QR Code Service Hub Slide Button */}
           <button
             onClick={() => handleAddQrShareSlide()}
             className="flex items-center gap-1.5 px-2 py-1.5 bg-gradient-to-r from-blue-600/25 to-indigo-600/25 border border-blue-400/50 rounded-lg text-blue-300 hover:bg-blue-600/35 transition text-xs col-span-2 justify-center shadow-[0_0_12px_rgba(59,130,246,0.25)]"
-            title={isRTL ? 'افزودن اسلاید بارکد QR دریافت فایل‌ها و برنامه جلسه' : 'Add QR Service Slide'}
+            title={d.addQrServiceSlide}
           >
             <QrCode className="w-4 h-4 shrink-0 text-amber-400" />
             <span className={isRTL ? 'font-[Vazirmatn] truncate font-bold' : 'truncate font-bold'}>
-              {isRTL ? '📲 اسلاید بارکد QR دریافت فایل‌ها و برنامه' : 'Add QR Service Slide'}
+              {d.addQrServiceSlide2}
             </span>
           </button>
         </div>
@@ -1314,7 +1692,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               />
               {uploadingAsset && (
                 <p className={`mt-2 text-xs text-amber-300 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'در حال آپلود فایل...' : 'Uploading file...'}
+                  {d.uploadingFile}
                 </p>
               )}
             </div>
@@ -1326,7 +1704,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   {t.fileUrl}
                 </label>
                 <span className="text-[11px] text-slate-400 font-[Vazirmatn]">
-                  {isRTL ? 'پشتیبانی کامل از لینک‌های یوتیوب (YouTube) و فایل‌های مدیا' : 'Supports YouTube links & direct media files'}
+                  {d.supportsYoutubeLinksDirect}
                 </span>
               </div>
               <input
@@ -1339,7 +1717,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                     setMediaType('video');
                   }
                 }}
-                placeholder="https://www.youtube.com/watch?v=... یا لینک مستقیم"
+                placeholder={d.youtubeUrlPlaceholder}
                 className="w-full bg-slate-700 border border-slate-600 focus:border-indigo-500 rounded-lg px-3 py-2 text-white outline-none"
                 aria-label={t.fileUrl}
               />
@@ -1356,14 +1734,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-bold text-white font-[Vazirmatn]">
-                            {isRTL ? 'ویدیوی یوتیوب شناسایی شد' : 'YouTube Video Detected'}
+                            {d.youtubeVideoDetected}
                           </span>
                           <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-red-600/50 text-white">
                             {ytId}
                           </span>
                         </div>
                         <p className="text-[11px] text-red-300/90 font-[Vazirmatn] mt-0.5">
-                          {isRTL ? 'ویدیو آماده پخش در مانیتور کنسول و پروژکتور سالن است.' : 'Ready to stream in console & projector.'}
+                          {d.readyToStreamIn}
                         </p>
                       </div>
                     </div>
@@ -1383,7 +1761,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="mb-4 bg-slate-900/70 border border-slate-700 rounded-lg p-4">
               <div className="flex items-center justify-between gap-2 mb-3">
                 <p className={`text-sm font-bold text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'آیا فایلی قبلاً آپلود کرده‌اید؟' : 'Already have a file?'}
+                  {d.alreadyHaveAFile}
                 </p>
               </div>
               <button
@@ -1395,7 +1773,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className={`w-full flex items-center justify-center gap-2 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl shadow-lg transition font-bold ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               >
                 <Search className="w-5 h-5" />
-                {isRTL ? 'جستجو در گالری مدیا' : 'Browse Media Gallery'}
+                {d.browseMediaGallery}
               </button>
             </div>
 
@@ -1406,7 +1784,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span className={`text-xs font-bold text-slate-200 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'پیش‌نمایش زنده تعاملی (درگ، زوم، فیت)' : 'Interactive Live Preview (Pan, Zoom, Fit)'}
+                      {d.interactiveLivePreviewPan}
                     </span>
                   </div>
                   <span className="text-[10px] text-slate-400 font-mono">
@@ -1468,14 +1846,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {(mediaType === 'image' || mediaType === 'video') && (
               <div className="mb-4 p-4 bg-slate-900/50 rounded-xl border border-slate-700">
                 <h4 className={`text-sm font-bold text-white mb-3 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  📐 {isRTL ? 'تنظیمات اندازه و کادر نمایش' : 'Display & Framing Settings'}
+                  📐 {d.displayFramingSettings}
                 </h4>
 
                 <div className="grid grid-cols-2 gap-4">
                   {/* Width */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'عرض کادر:' : 'Width:'} {mediaDisplayConfig.width}%
+                      {d.width} {mediaDisplayConfig.width}%
                     </label>
                     <input
                       type="range"
@@ -1484,14 +1862,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.width}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, width: parseInt(e.target.value) }))}
                       className="w-full accent-blue-500"
-                      aria-label={isRTL ? 'عرض' : 'Width'}
+                      aria-label={d.width2}
                     />
                   </div>
 
                   {/* Height */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'ارتفاع کادر:' : 'Height:'} {mediaDisplayConfig.height}%
+                      {d.height} {mediaDisplayConfig.height}%
                     </label>
                     <input
                       type="range"
@@ -1500,52 +1878,52 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.height}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, height: parseInt(e.target.value) }))}
                       className="w-full accent-blue-500"
-                      aria-label={isRTL ? 'ارتفاع' : 'Height'}
+                      aria-label={d.height2}
                     />
                   </div>
 
                   {/* Position */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'موقعیت در اسلاید:' : 'Position:'}
+                      {d.position}
                     </label>
                     <select
                       value={mediaDisplayConfig.position}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, position: e.target.value as any }))}
                       className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 py-1.5 text-white text-sm"
-                      aria-label={isRTL ? 'موقعیت' : 'Position'}
+                      aria-label={d.position2}
                     >
-                      <option value="center">{isRTL ? 'مرکز' : 'Center'}</option>
-                      <option value="top-left">{isRTL ? 'بالا چپ' : 'Top Left'}</option>
-                      <option value="top-right">{isRTL ? 'بالا راست' : 'Top Right'}</option>
-                      <option value="bottom-left">{isRTL ? 'پایین چپ' : 'Bottom Left'}</option>
-                      <option value="bottom-right">{isRTL ? 'پایین راست' : 'Bottom Right'}</option>
-                      <option value="custom">{isRTL ? 'سفارشی' : 'Custom'}</option>
+                      <option value="center">{d.center}</option>
+                      <option value="top-left">{d.topLeft}</option>
+                      <option value="top-right">{d.topRight}</option>
+                      <option value="bottom-left">{d.bottomLeft}</option>
+                      <option value="bottom-right">{d.bottomRight}</option>
+                      <option value="custom">{d.custom}</option>
                     </select>
                   </div>
 
                   {/* Object Fit */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'حالت فیت (Fit):' : 'Fit Mode:'}
+                      {d.fitMode}
                     </label>
                     <select
                       value={mediaDisplayConfig.objectFit}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, objectFit: e.target.value as any }))}
                       className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 py-1.5 text-white text-sm"
-                      aria-label={isRTL ? 'برش تصویر' : 'Fit Mode'}
+                      aria-label={d.fitMode2}
                     >
-                      <option value="contain">{isRTL ? 'کامل (Contain)' : 'Contain'}</option>
-                      <option value="cover">{isRTL ? 'پر کردن (Cover)' : 'Cover'}</option>
-                      <option value="fill">{isRTL ? 'کشیدن (Fill)' : 'Fill'}</option>
-                      <option value="none">{isRTL ? 'بدون تغییر' : 'None'}</option>
+                      <option value="contain">{d.contain}</option>
+                      <option value="cover">{d.cover}</option>
+                      <option value="fill">{d.fill}</option>
+                      <option value="none">{d.none}</option>
                     </select>
                   </div>
 
                   {/* Border Radius */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'گوشه گرد:' : 'Border Radius:'} {mediaDisplayConfig.borderRadius}px
+                      {d.borderRadius} {mediaDisplayConfig.borderRadius}px
                     </label>
                     <input
                       type="range"
@@ -1554,14 +1932,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.borderRadius}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, borderRadius: parseInt(e.target.value) }))}
                       className="w-full accent-blue-500"
-                      aria-label={isRTL ? 'گوشه گرد' : 'Border Radius'}
+                      aria-label={d.borderRadius2}
                     />
                   </div>
 
                   {/* Opacity */}
                   <div>
                     <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'شفافیت:' : 'Opacity:'} {mediaDisplayConfig.opacity}%
+                      {d.opacity} {mediaDisplayConfig.opacity}%
                     </label>
                     <input
                       type="range"
@@ -1570,7 +1948,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       value={mediaDisplayConfig.opacity}
                       onChange={(e) => setMediaDisplayConfig(prev => ({ ...prev, opacity: parseInt(e.target.value) }))}
                       className="w-full accent-blue-500"
-                      aria-label={isRTL ? 'شفافیت' : 'Opacity'}
+                      aria-label={d.opacity2}
                     />
                   </div>
                 </div>
@@ -1622,7 +2000,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       className="w-5 h-5 object-contain"
                     />
                     <span className={`text-sm font-bold text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'لوگوی ترنسپرنت کلیسا روی تصویر / مدیا' : 'Transparent Church Logo Watermark'}
+                      {d.transparentChurchLogoWatermark}
                     </span>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
@@ -1631,7 +2009,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       className="sr-only peer"
                       checked={mediaShowLogo}
                       onChange={(e) => setMediaShowLogo(e.target.checked)}
-                      title={isRTL ? 'نمایش لوگو' : 'Show Logo'}
+                      title={d.showLogo}
                     />
                     <div className="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
                   </label>
@@ -1643,26 +2021,26 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       {/* Logo Position */}
                       <div>
                         <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                          {isRTL ? 'موقعیت لوگو:' : 'Position:'}
+                          {d.position3}
                         </label>
                         <select
                           value={mediaLogoPosition}
                           onChange={(e) => setMediaLogoPosition(e.target.value as any)}
                           className="w-full bg-slate-800 border border-indigo-500/30 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none focus:border-indigo-400"
-                          aria-label={isRTL ? 'موقعیت لوگو' : 'Logo Position'}
+                          aria-label={d.logoPosition}
                         >
-                          <option value="top-right">{isRTL ? 'بالا راست (پیش‌فرض)' : 'Top Right'}</option>
-                          <option value="top-left">{isRTL ? 'بالا چپ' : 'Top Left'}</option>
-                          <option value="bottom-right">{isRTL ? 'پایین راست' : 'Bottom Right'}</option>
-                          <option value="bottom-left">{isRTL ? 'پایین چپ' : 'Bottom Left'}</option>
-                          <option value="center">{isRTL ? 'مرکز' : 'Center'}</option>
+                          <option value="top-right">{d.topRight2}</option>
+                          <option value="top-left">{d.topLeft}</option>
+                          <option value="bottom-right">{d.bottomRight}</option>
+                          <option value="bottom-left">{d.bottomLeft}</option>
+                          <option value="center">{d.center}</option>
                         </select>
                       </div>
 
                       {/* Logo Size */}
                       <div>
                         <label className={`block text-xs text-slate-400 mb-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                          {isRTL ? 'اندازه لوگو:' : 'Size:'}
+                          {d.size}
                         </label>
                         <div className="grid grid-cols-3 gap-1">
                           {(['sm', 'md', 'lg'] as const).map((sz) => (
@@ -1676,7 +2054,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                                   : 'bg-slate-800 text-slate-300 border-white/5 hover:bg-slate-700'
                               }`}
                             >
-                              {sz === 'sm' ? (isRTL ? 'کوچک' : 'Small') : sz === 'md' ? (isRTL ? 'متوسط' : 'Medium') : (isRTL ? 'بزرگ' : 'Large')}
+                              {sz === 'sm' ? (d.small) : sz === 'md' ? (d.medium) : (d.large)}
                             </button>
                           ))}
                         </div>
@@ -1686,7 +2064,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                     {/* Logo Opacity Slider */}
                     <div>
                       <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-                        <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{isRTL ? 'میزان شفافیت (Opacity):' : 'Opacity:'}</span>
+                        <span className={isRTL ? 'font-[Vazirmatn]' : ''}>{d.opacity3}</span>
                         <span className="font-mono text-indigo-300">{mediaLogoOpacity}%</span>
                       </div>
                       <input
@@ -1697,7 +2075,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                         value={mediaLogoOpacity}
                         onChange={(e) => setMediaLogoOpacity(parseInt(e.target.value))}
                         className="w-full accent-indigo-500"
-                        aria-label={isRTL ? 'شفافیت لوگو' : 'Logo Opacity'}
+                        aria-label={d.logoOpacity}
                       />
                     </div>
                   </div>
@@ -1736,13 +2114,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {/* Title */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'عنوان اعلان' : 'Title'}
+                {d.title}
               </label>
               <input
                 type="text"
                 value={announcementTitle}
                 onChange={(e) => setAnnouncementTitle(e.target.value)}
-                placeholder={isRTL ? 'عنوان اعلان...' : 'Announcement title...'}
+                placeholder={d.announcementTitle}
                 className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               />
             </div>
@@ -1750,13 +2128,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {/* Content */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'متن اعلان' : 'Content'}
+                {d.content}
               </label>
               <textarea
                 value={announcementContent}
                 onChange={(e) => setAnnouncementContent(e.target.value)}
                 rows={4}
-                placeholder={isRTL ? 'متن اعلان را وارد کنید...' : 'Enter announcement content...'}
+                placeholder={d.enterAnnouncementContent}
                 className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 resize-none ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               />
             </div>
@@ -1764,7 +2142,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {/* Image Upload */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'تصویر (اختیاری)' : 'Image (optional)'}
+                {d.imageOptional}
               </label>
               <input
                 type="file"
@@ -1789,7 +2167,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
                 <Calendar className="w-4 h-4 inline mr-1" />
-                {isRTL ? 'تاریخ رویداد (اختیاری)' : 'Event Date (optional)'}
+                {d.eventDateOptional}
               </label>
               <input
                 type="datetime-local"
@@ -1802,7 +2180,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {/* Link */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'لینک (اختیاری)' : 'Link (optional)'}
+                {d.linkOptional}
               </label>
               <input
                 type="url"
@@ -1817,13 +2195,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {(announcementTitle || announcementContent) && (
               <div className="mb-4 bg-slate-900 rounded-lg p-4 border border-green-600/30">
                 <p className={`text-sm text-green-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'پیش‌نمایش:' : 'Preview:'}
+                  {d.preview2}
                 </p>
                 <h4 className={`text-white font-bold text-lg mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {announcementTitle || (isRTL ? 'بدون عنوان' : 'No title')}
+                  {announcementTitle || (d.noTitle)}
                 </h4>
                 <p className={`text-slate-300 text-sm ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {announcementContent || (isRTL ? 'بدون محتوا' : 'No content')}
+                  {announcementContent || (d.noContent)}
                 </p>
                 {announcementEventDate && (
                   <p className="text-green-400 text-xs mt-2">
@@ -1858,19 +2236,19 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
             <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-              🎨 {isRTL ? 'اسلاید آزاد' : 'Design Slide'}
+              🎨 {d.designSlide}
             </h3>
 
             {/* Title */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'عنوان (اختیاری)' : 'Title (Optional)'}
+                {d.titleOptional}
               </label>
               <input
                 type="text"
                 value={genericTitle}
                 onChange={(e) => setGenericTitle(e.target.value)}
-                placeholder={isRTL ? 'عنوان اسلاید...' : 'Slide title...'}
+                placeholder={d.slideTitle}
                 className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               />
             </div>
@@ -1879,7 +2257,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="mb-4 grid grid-cols-2 gap-3">
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'نوع پس‌زمینه' : 'Background Type'}
+                  {d.backgroundType}
                 </label>
                 <select
                   value={genericBackgroundType}
@@ -1895,13 +2273,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </div>
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'مقدار پس‌زمینه' : 'Background Value'}
+                  {d.backgroundValue}
                 </label>
                 <input
                   type="text"
                   value={genericBackgroundValue}
                   onChange={(e) => setGenericBackgroundValue(e.target.value)}
-                  placeholder={genericBackgroundType === 'color' ? '#000000' : genericBackgroundType === 'wavyPaper' ? 'متن الگوی کاغذی...' : 'URL or Gradient CSS'}
+                  placeholder={genericBackgroundType === 'color' ? '#000000' : genericBackgroundType === 'wavyPaper' ? d.wavyPaperPlaceholder : 'URL or Gradient CSS'}
                   className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white"
                 />
               </div>
@@ -1910,7 +2288,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {(genericBackgroundType === 'image' || genericBackgroundType === 'video') && (
               <div className="mb-4 bg-slate-900/70 border border-slate-700 rounded-lg p-4">
                 <p className={`text-sm font-bold text-white mb-3 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'انتخاب پس‌زمینه از گالری' : 'Choose background from gallery'}
+                  {d.chooseBackgroundFromGallery}
                 </p>
                 <button
                   type="button"
@@ -1921,14 +2299,14 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   className={`w-full flex items-center justify-center gap-2 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl shadow-lg transition font-bold ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                 >
                   <Search className="w-5 h-5" />
-                  {isRTL ? 'جستجو در گالری مدیا' : 'Browse Media Gallery'}
+                  {d.browseMediaGallery}
                 </button>
               </div>
             )}
 
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'فونت اسلاید' : 'Slide Font'}
+                {d.slideFont}
               </label>
               <select
                 value={genericFontFamily}
@@ -1948,13 +2326,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {/* HTML Content */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'محتوای HTML' : 'HTML Content'}
+                {d.htmlContent}
               </label>
               <textarea
                 value={genericHtmlContent}
                 onChange={(e) => setGenericHtmlContent(e.target.value)}
                 rows={6}
-                placeholder={isRTL ? '<p>متن خود را اینجا بنویسید...</p>' : '<p>Enter your HTML content here...</p>'}
+                placeholder={d.pEnterYourHtml}
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 font-mono text-sm"
               />
               <p className="text-xs text-slate-500 mt-1">
@@ -1965,7 +2343,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {/* Layout */}
             <div className="mb-6">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'چیدمان' : 'Layout'}
+                {d.layout}
               </label>
               <div className="flex gap-2">
                 {['centered', 'title-only', 'text-only', 'split-left', 'split-right'].map(l => (
@@ -2005,19 +2383,19 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
             <h3 className={`text-xl font-bold text-white mb-4 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-              📊 {isRTL ? 'نمودار زنده' : 'Live Chart'}
+              📊 {d.liveChart}
             </h3>
 
             {/* Title */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'عنوان نمودار' : 'Chart Title'}
+                {d.chartTitle}
               </label>
               <input
                 type="text"
                 value={liveDataTitle}
                 onChange={(e) => setLiveDataTitle(e.target.value)}
-                placeholder={isRTL ? 'عنوان...' : 'Title...'}
+                placeholder={d.title2}
                 className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               />
             </div>
@@ -2026,7 +2404,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'نوع نمودار' : 'Chart Type'}
+                  {d.chartType}
                 </label>
                 <div className="flex gap-2 bg-slate-700 p-1 rounded-lg">
                   {[
@@ -2049,7 +2427,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </div>
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'تنظیمات' : 'Options'}
+                  {d.options}
                 </label>
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -2059,7 +2437,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       onChange={(e) => setLiveDataShowLegend(e.target.checked)}
                       className="rounded border-slate-600 bg-slate-700 text-rose-600"
                     />
-                    <span className="text-sm text-slate-300">{isRTL ? 'نمایش راهنما (Legend)' : 'Show Legend'}</span>
+                    <span className="text-sm text-slate-300">{d.showLegend}</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
@@ -2068,7 +2446,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       onChange={(e) => setLiveDataShowValues(e.target.checked)}
                       className="rounded border-slate-600 bg-slate-700 text-rose-600"
                     />
-                    <span className="text-sm text-slate-300">{isRTL ? 'نمایش مقادیر' : 'Show Values'}</span>
+                    <span className="text-sm text-slate-300">{d.showValues}</span>
                   </label>
                 </div>
               </div>
@@ -2077,7 +2455,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {/* Data Points */}
             <div className="mb-4">
               <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                {isRTL ? 'داده‌ها' : 'Data Points'}
+                {d.dataPoints}
               </label>
               <div className="space-y-2 mb-2">
                 {liveDataPoints.map((point, index) => (
@@ -2136,7 +2514,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 text-sm rounded-lg flex items-center justify-center gap-2 transition"
               >
                 <Plus className="w-4 h-4" />
-                {isRTL ? 'افزودن داده جدید' : 'Add Data Point'}
+                {d.addDataPoint}
               </button>
             </div>
 
@@ -2144,7 +2522,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             <div className="mb-6 grid grid-cols-2 gap-3">
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'نوع پس‌زمینه' : 'Background Type'}
+                  {d.backgroundType}
                 </label>
                 <select
                   value={liveDataBackgroundType}
@@ -2160,7 +2538,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               </div>
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'مقدار پس‌زمینه' : 'Background Value'}
+                  {d.backgroundValue}
                 </label>
                 <input
                   type="text"
@@ -2175,7 +2553,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
             {(liveDataBackgroundType === 'image' || liveDataBackgroundType === 'video') && (
               <div className="mb-4 bg-slate-900/70 border border-slate-700 rounded-lg p-4">
                 <p className={`text-sm font-bold text-white mb-3 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'انتخاب پس‌زمینه از گالری' : 'Choose background from gallery'}
+                  {d.chooseBackgroundFromGallery}
                 </p>
                 <button
                   type="button"
@@ -2186,7 +2564,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   className={`w-full flex items-center justify-center gap-2 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl shadow-lg transition font-bold ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                 >
                   <Search className="w-5 h-5" />
-                  {isRTL ? 'جستجو در گالری مدیا' : 'Browse Media Gallery'}
+                  {d.browseMediaGallery}
                 </button>
               </div>
             )}
@@ -2223,13 +2601,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6">
             <h3 className={`text-xl font-bold text-white mb-6 flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
               <PhoneCall className="w-6 h-6 text-emerald-400" />
-              {isRTL ? 'ارتباط ویدیویی زنده (یکپارچه)' : 'Live Video Meeting'}
+              {d.liveVideoMeeting}
             </h3>
 
             <div className="space-y-4 mb-6">
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'شناسه / نام اتاق جلسه' : 'Room ID'}
+                  {d.roomId}
                 </label>
                 <input
                   type="text"
@@ -2239,19 +2617,19 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white font-mono"
                 />
                 <p className={`text-xs text-slate-500 mt-1 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'فقط حروف انگلیسی، اعداد و خط تیره' : 'Alphanumeric and dashes only.'}
+                  {d.alphanumericAndDashesOnly}
                 </p>
               </div>
 
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'موضوع / عنوان نمایش داده شده' : 'Meeting Subject'}
+                  {d.meetingSubject}
                 </label>
                 <input
                   type="text"
                   value={meetingSubject}
                   onChange={(e) => setMeetingSubject(e.target.value)}
-                  placeholder={isRTL ? 'مثال: پرسش و پاسخ' : 'e.g. Q&A Session'}
+                  placeholder={d.eGQA}
                   className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                 />
               </div>
@@ -2259,9 +2637,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               <div className="bg-emerald-900/20 border border-emerald-800/50 p-3 rounded-lg flex gap-3 mt-4">
                 <Video className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
                 <p className={`text-sm text-emerald-200/80 leading-relaxed ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL
-                    ? 'این اسلاید پلتفرم تماس ویدیویی فوق امن (بر پایه ابری) را مستقیماً داخل کنسول باز می‌کند. مهمانان می‌توانند بدون نیاز به نصب هیچ برنامه‌ای با لینک مخصوص به استودیو متصل شوند و تصاویرشان در پخش زنده نمایش داده خواهد شد.'
-                    : 'This slide launches a secure video meeting directly in the console.'}
+                  {d.thisSlideLaunchesA}
                 </p>
               </div>
             </div>
@@ -2290,13 +2666,13 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
           <div className="bg-slate-800 rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
             <h3 className={`text-xl font-bold text-white mb-6 flex items-center gap-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
               <Heart className="w-6 h-6 text-rose-400" />
-              {isRTL ? 'افزودن اسلاید درخواست دعا' : 'Add Prayer Request Slide'}
+              {d.addPrayerRequestSlide}
             </h3>
 
             <div className="space-y-4 mb-6" dir={isRTL ? 'rtl' : 'ltr'}>
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'انتخاب از لیست (اختیاری)' : 'Select from list (Optional)'}
+                  {d.selectFromListOptional}
                 </label>
                 <select
                   value={selectedPrayerId}
@@ -2314,7 +2690,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                   }}
                   className={`w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}
                 >
-                  <option value="">{isRTL ? 'انتخاب درخواست...' : 'Select a request...'}</option>
+                  <option value="">{d.selectARequest}</option>
                   {availablePrayers.map(p => (
                     <option key={p.id} value={p.id}>{p.title} - {p.user_name}</option>
                   ))}
@@ -2323,7 +2699,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'عنوان / موضوع' : 'Title / Subject'}
+                  {d.titleSubject}
                 </label>
                 <input
                   type="text"
@@ -2335,7 +2711,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
 
               <div>
                 <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                  {isRTL ? 'شرح درخواست' : 'Content'}
+                  {d.content2}
                 </label>
                 <textarea
                   value={prayerContent}
@@ -2348,7 +2724,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className={`block text-sm text-slate-400 mb-2 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                    {isRTL ? 'نام شخص (اختیاری)' : 'Name (Optional)'}
+                    {d.nameOptional}
                   </label>
                   <input
                     type="text"
@@ -2366,7 +2742,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                       className="w-4 h-4 rounded border-slate-600 text-rose-500 focus:ring-rose-500" 
                     />
                     <span className={`text-sm text-white ${isRTL ? 'font-[Vazirmatn]' : ''}`}>
-                      {isRTL ? 'مستجاب شده' : 'Answered'}
+                      {d.answered}
                     </span>
                   </label>
                 </div>
@@ -2385,7 +2761,7 @@ export const SlideBuilder: React.FC<SlideBuilderProps> = ({
                 disabled={!prayerTitle || !prayerContent}
                 className={`px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-500 transition disabled:opacity-50 ${isRTL ? 'font-[Vazirmatn]' : ''}`}
               >
-                {editingSlideIndex !== null ? (isRTL ? 'به‌روزرسانی' : 'Update') : t.add}
+                {editingSlideIndex !== null ? (d.update) : t.add}
               </button>
             </div>
           </div>

@@ -6,6 +6,241 @@ import { ScripturePage, ScriptureReferenceItem } from "@/types/broadcast";
 import SelectedVersesModal from "./SelectedVersesModal";
 import BibleStepWizard from "./BibleStepWizard";
 import { toast } from "sonner";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    noVersesInRangeLoad: "No verses found in this range. Please load the chapter first.",
+    loadChapterFirst: "Please load the chapter first.",
+    noVersesToAdd: "No verses to add.",
+    noVersesSelected: "No verses selected.",
+    noTextSelectedRetry: "Selected verses have no text. Please try again.",
+    selectBibleVerseTitle: "Select Bible Verse",
+    selectBookPlaceholder: "Select a book...",
+    searchBooksPlaceholder: "Search books...",
+    noBooksFound: "No books found",
+    defaultActive: (fa: string, en: string) => `Default active: ${fa} & ${en}`,
+    setPermanentDefault: (fa: string, en: string) => `Set ${fa} & ${en} as permanent default`,
+    defaultLabel: "Default",
+    setDefaultLabel: "Set Default",
+    openStepWizardTitle: "Open Step-by-Step Bible Wizard",
+    stepWizardLabel: "Step Wizard",
+    addSelectedVersesTitle: "Add selected verses to presentation slides",
+    addToSlidesCount: (n: number) => `✓ Add to Slides (${n})`,
+    switchToDefault: (fa: string) => `Switch to Default (${fa})`,
+    selectRangeInListTitle: "Select this range in list",
+    directAddRangeTitle: "Directly add this range as slides",
+    directAddChapterTitle: "Directly add whole chapter to slides",
+    addWholeChapterLabel: "Add Whole Chapter",
+    selectAllLabel: "Select All",
+    clearSelectionLabel: "Clear Selection",
+    searchVersesPlaceholder: "Search in verses...",
+    noVersesMatchFound: "No verses found",
+    noVersesFoundShort: "No verses found",
+    versesCountLabel: "verses",
+    perVerseLabel: "Per Verse",
+    combinedLabel: "Combined",
+    toggleSelectedListTitle: "Toggle selected list",
+    hideListLabel: "Hide List",
+    showListLabel: "Show List",
+    clearSelectionTitle: "Clear selection",
+    addSlidesEnterLabel: "Add Slides (Enter)",
+    clickToManageTitle: "Click to manage verses",
+    versesSelectedLabel: "Verses Selected",
+    clearAllTitle: "Clear all",
+    sectionsCount: (n: number) => `${n} section(s)`,
+    removeTitle: "Remove",
+    multiInOneTitle: "All selected verses are merged into a single slide with internal accordion. Good for verse collections.",
+    multiInOneLabel: "Multi in One",
+    bySectionTitle: "Creates a separate slide for each contiguous block of verses. (Recommended)",
+    bySectionLabel: "By Section",
+    perVerseTitle: "Every individual verse forms a standalone separate slide. Best for verse-by-verse preaching.",
+    addSlidesLabel: "Add Slides",
+    selectRangeLabel: "Select range:",
+    fromVerseLabel: "from verse",
+    toVerseLabel: "to",
+    selectShortLabel: "Select",
+    addToSlideShort: "➕ Add to slide",
+    selectionGuideLabel: "💡 Selection guide:",
+    guideClickVerse: "Click a verse: select or remove",
+    guideCtrlClick: "Ctrl + Click",
+    guideCtrlClickDesc: ": manual multi-select",
+    guideShiftClick: "Shift + Click",
+    guideShiftClickDesc: ": select a range",
+    noFaTranslationFound: "— No translation found —",
+    noFaVerseMatch: "— No matching verse —",
+    setDefaultToast: (fa: string, en: string) => `✓ Default set: ${fa} (FA) & ${en} (EN)`,
+    chapterOnlyHasVerses: (bookName: string, chapter: number, max: number) => `${bookName} ${chapter} only contains ${max} verses.`,
+    selectedVersesRange: (start: number, end: number, count: number) => `Selected verses ${start} to ${end} (${count} verses).`,
+    selectedAllChapterVerses: (chapter: number) => `Selected all verses of chapter ${chapter}.`,
+    addedRangeToSlides: (bookName: string, chapter: number, start: number, end: number) => `✓ Added ${bookName} ${chapter}:${start}-${end} to slides.`,
+    addedWholeChapterToSlides: (chapter: number, bookName: string, count: number) => `✓ Added entire ${bookName} chapter ${chapter} (${count} verses) to slides.`,
+    ofCountLabel: (n: number) => `(of ${n})`,
+    selectBibleBookAria: "Select Bible book",
+    previousChapterAria: "Previous chapter",
+    nextChapterAria: "Next chapter",
+    englishVersionAria: "English Bible version",
+    farsiVersionAria: "Farsi Bible version",
+    closeSelectorAria: "Close scripture selector",
+    audioProgressAria: "Audio playback progress",
+    pauseLabel: "Pause",
+    playLabel: "Play",
+  },
+  fa: {
+    noVersesInRangeLoad: "در این بازه آیه‌ای یافت نشد. لطفاً ابتدا فصل را بارگذاری کنید.",
+    loadChapterFirst: "لطفاً ابتدا فصل را بارگذاری کنید.",
+    noVersesToAdd: "آیه‌ای برای افزودن یافت نشد.",
+    noVersesSelected: "هیچ آیه‌ای انتخاب نشده است.",
+    noTextSelectedRetry: "آیات انتخاب‌شده متنی ندارند. لطفاً دوباره تلاش کنید.",
+    selectBibleVerseTitle: "انتخاب آیه کتاب مقدس",
+    selectBookPlaceholder: "انتخاب کتاب...",
+    searchBooksPlaceholder: "جستجوی کتاب...",
+    noBooksFound: "کتابی پیدا نشد",
+    defaultActive: (fa: string, en: string) => `ترجمه‌های پیش‌فرض فعال: ${fa} و ${en}`,
+    setPermanentDefault: (fa: string, en: string) => `تنظیم ${fa} و ${en} به عنوان پیش‌فرض همیشگی`,
+    defaultLabel: "پیش‌فرض",
+    setDefaultLabel: "ذخیره پیش‌فرض",
+    openStepWizardTitle: "باز کردن دستیار گام‌به‌گام هوشمند آیات",
+    stepWizardLabel: "دستیار گام‌به‌گام",
+    addSelectedVersesTitle: "افزودن آیات انتخاب‌شده به اسلایدها",
+    addToSlidesCount: (n: number) => `✓ افزودن به اسلاید (${n})`,
+    switchToDefault: (fa: string) => `تغییر به ترجمه پیش‌فرض (${fa})`,
+    selectRangeInListTitle: "انتخاب این بازه در لیست آیات",
+    directAddRangeTitle: "ساخت فوری اسلاید از این بازه",
+    directAddChapterTitle: "ساخت مستقیم اسلاید از تمام آیات این باب",
+    addWholeChapterLabel: "➕ افزودن کل این باب به اسلاید",
+    selectAllLabel: "انتخاب همه آیات",
+    clearSelectionLabel: "پاک کردن انتخاب‌ها",
+    searchVersesPlaceholder: "جستجو در آیات...",
+    noVersesMatchFound: "آیه‌ای مطابقت یافت نشد",
+    noVersesFoundShort: "آیه‌ای یافت نشد",
+    versesCountLabel: "آیه انتخاب شد",
+    perVerseLabel: "هر آیه مجزا",
+    combinedLabel: "همه در یک اسلاید",
+    toggleSelectedListTitle: "نمایش یا بستن لیست انتخاب‌ها",
+    hideListLabel: "بستن لیست",
+    showListLabel: "نمایش لیست",
+    clearSelectionTitle: "پاک کردن انتخاب‌ها",
+    addSlidesEnterLabel: "افزودن اسلایدها (Enter)",
+    clickToManageTitle: "کلیک برای مدیریت آیات",
+    versesSelectedLabel: "آیه انتخاب‌شده",
+    clearAllTitle: "پاک کردن همه",
+    sectionsCount: (n: number) => `${n} بخش‌شناسی از کتاب‌ها`,
+    removeTitle: "حذف",
+    multiInOneTitle: "تمام آیات در یک اسلاید واحد قرار می‌گیرند (با قابلیت بازشوندگی داخلی). مناسب برای ساخت کالکشن آیات.",
+    multiInOneLabel: "همه در یک اسلاید",
+    bySectionTitle: "برای هر بخش پیوسته (مثلاً آیات ۱ الی ۵) یک اسلاید جداگانه ساخته می‌شود. (حالت پیش‌نهادی)",
+    bySectionLabel: "بخش‌بخش (مرجع)",
+    perVerseTitle: "هر تک آیه کاملاً یک اسلاید مجزا خواهد شد. مناسب برای ورق زدن آیه به آیه هنگام موعظه.",
+    addSlidesLabel: "افزودن اسلایدها",
+    selectRangeLabel: "انتخاب بازه:",
+    fromVerseLabel: "از آیه",
+    toVerseLabel: "تا",
+    selectShortLabel: "انتخاب",
+    addToSlideShort: "➕ افزودن به اسلاید",
+    selectionGuideLabel: "💡 راهنمای انتخاب:",
+    guideClickVerse: "کلیک روی آیه: انتخاب یا حذف",
+    guideCtrlClick: "Ctrl + کلیک",
+    guideCtrlClickDesc: ": سلکت دستی چندگانه",
+    guideShiftClick: "Shift + کلیک",
+    guideShiftClickDesc: ": انتخاب بازه",
+    noFaTranslationFound: "— ترجمه‌ای یافت نشد —",
+    noFaVerseMatch: "— آیه‌ای مطابقت یافت نشد —",
+    setDefaultToast: (fa: string, en: string) => `✓ ترجمه پیش‌فرض فارسی به «${fa}» و انگلیسی به «${en}» تنظیم شد.`,
+    chapterOnlyHasVerses: (bookName: string, chapter: number, max: number) => `باب ${chapter} از ${bookName} تنها دارای ${max} آیه است (آیات ۱ تا ${max}).`,
+    selectedVersesRange: (start: number, end: number, count: number) => `✓ آیات ${start} تا ${end} انتخاب شدند (${count} آیه).`,
+    selectedAllChapterVerses: (chapter: number) => `تمام آیات باب ${chapter} انتخاب شدند.`,
+    addedRangeToSlides: (bookName: string, chapter: number, start: number, end: number) => `✓ آیات ${start} تا ${end} از ${bookName} باب ${chapter} به اسلایدها افزوده شد.`,
+    addedWholeChapterToSlides: (chapter: number, bookName: string, count: number) => `✓ کل باب ${chapter} از ${bookName} (${count} آیه) به اسلایدها افزوده شد.`,
+    ofCountLabel: (n: number) => `(از ${n})`,
+    selectBibleBookAria: "انتخاب کتاب مقدس",
+    previousChapterAria: "باب قبلی",
+    nextChapterAria: "باب بعدی",
+    englishVersionAria: "ترجمه انگلیسی کتاب مقدس",
+    farsiVersionAria: "ترجمه فارسی کتاب مقدس",
+    closeSelectorAria: "بستن انتخابگر آیات",
+    audioProgressAria: "پیشرفت پخش صوت",
+    pauseLabel: "توقف",
+    playLabel: "پخش",
+  },
+  es: {
+    noVersesInRangeLoad: "No se encontraron versículos en este rango. Cargue primero el capítulo.",
+    loadChapterFirst: "Cargue primero el capítulo.",
+    noVersesToAdd: "No se encontraron versículos para agregar.",
+    noVersesSelected: "No hay versículos seleccionados.",
+    noTextSelectedRetry: "Los versículos seleccionados no tienen texto. Inténtelo de nuevo.",
+    selectBibleVerseTitle: "Seleccionar versículo bíblico",
+    selectBookPlaceholder: "Seleccionar un libro...",
+    searchBooksPlaceholder: "Buscar libros...",
+    noBooksFound: "No se encontraron libros",
+    defaultActive: (fa: string, en: string) => `Predeterminado activo: ${fa} y ${en}`,
+    setPermanentDefault: (fa: string, en: string) => `Establecer ${fa} y ${en} como predeterminados permanentes`,
+    defaultLabel: "Predeterminado",
+    setDefaultLabel: "Establecer predeterminado",
+    openStepWizardTitle: "Abrir el asistente bíblico paso a paso",
+    stepWizardLabel: "Asistente paso a paso",
+    addSelectedVersesTitle: "Agregar los versículos seleccionados a las diapositivas",
+    addToSlidesCount: (n: number) => `✓ Agregar a diapositivas (${n})`,
+    switchToDefault: (fa: string) => `Cambiar al predeterminado (${fa})`,
+    selectRangeInListTitle: "Seleccionar este rango en la lista",
+    directAddRangeTitle: "Agregar este rango directamente como diapositivas",
+    directAddChapterTitle: "Agregar todo el capítulo directamente a las diapositivas",
+    addWholeChapterLabel: "Agregar capítulo completo",
+    selectAllLabel: "Seleccionar todo",
+    clearSelectionLabel: "Borrar selección",
+    searchVersesPlaceholder: "Buscar en versículos...",
+    noVersesMatchFound: "No se encontraron versículos",
+    noVersesFoundShort: "No se encontraron versículos",
+    versesCountLabel: "versículos",
+    perVerseLabel: "Por versículo",
+    combinedLabel: "Combinado",
+    toggleSelectedListTitle: "Mostrar u ocultar la lista de seleccionados",
+    hideListLabel: "Ocultar lista",
+    showListLabel: "Mostrar lista",
+    clearSelectionTitle: "Borrar selección",
+    addSlidesEnterLabel: "Agregar diapositivas (Enter)",
+    clickToManageTitle: "Clic para administrar versículos",
+    versesSelectedLabel: "Versículos seleccionados",
+    clearAllTitle: "Borrar todo",
+    sectionsCount: (n: number) => `${n} sección(es)`,
+    removeTitle: "Eliminar",
+    multiInOneTitle: "Todos los versículos seleccionados se combinan en una sola diapositiva con acordeón interno. Ideal para colecciones de versículos.",
+    multiInOneLabel: "Todo en uno",
+    bySectionTitle: "Crea una diapositiva separada para cada bloque contiguo de versículos. (Recomendado)",
+    bySectionLabel: "Por sección",
+    perVerseTitle: "Cada versículo individual forma una diapositiva independiente. Ideal para predicar versículo por versículo.",
+    addSlidesLabel: "Agregar diapositivas",
+    selectRangeLabel: "Seleccionar rango:",
+    fromVerseLabel: "desde el versículo",
+    toVerseLabel: "hasta",
+    selectShortLabel: "Seleccionar",
+    addToSlideShort: "➕ Agregar a diapositiva",
+    selectionGuideLabel: "💡 Guía de selección:",
+    guideClickVerse: "Clic en un versículo: seleccionar o quitar",
+    guideCtrlClick: "Ctrl + Clic",
+    guideCtrlClickDesc: ": selección múltiple manual",
+    guideShiftClick: "Shift + Clic",
+    guideShiftClickDesc: ": seleccionar un rango",
+    noFaTranslationFound: "— No se encontró ninguna traducción —",
+    noFaVerseMatch: "— No se encontró ningún versículo —",
+    setDefaultToast: (fa: string, en: string) => `✓ Predeterminado establecido: ${fa} (FA) y ${en} (EN)`,
+    chapterOnlyHasVerses: (bookName: string, chapter: number, max: number) => `${bookName} ${chapter} solo contiene ${max} versículos.`,
+    selectedVersesRange: (start: number, end: number, count: number) => `Versículos ${start} a ${end} seleccionados (${count} versículos).`,
+    selectedAllChapterVerses: (chapter: number) => `Se seleccionaron todos los versículos del capítulo ${chapter}.`,
+    addedRangeToSlides: (bookName: string, chapter: number, start: number, end: number) => `✓ Se agregó ${bookName} ${chapter}:${start}-${end} a las diapositivas.`,
+    addedWholeChapterToSlides: (chapter: number, bookName: string, count: number) => `✓ Se agregó todo el capítulo ${chapter} de ${bookName} (${count} versículos) a las diapositivas.`,
+    ofCountLabel: (n: number) => `(de ${n})`,
+    selectBibleBookAria: "Seleccionar libro bíblico",
+    previousChapterAria: "Capítulo anterior",
+    nextChapterAria: "Capítulo siguiente",
+    englishVersionAria: "Versión bíblica en inglés",
+    farsiVersionAria: "Versión bíblica en persa",
+    closeSelectorAria: "Cerrar selector de escritura",
+    audioProgressAria: "Progreso de reproducción de audio",
+    pauseLabel: "Pausar",
+    playLabel: "Reproducir",
+  },
+};
 
 interface BibleVersion {
   version_id: number;
@@ -113,6 +348,8 @@ const formatTime = (value: number) => {
 
 export default function BiblePresentationSelector({ onClose, onAddSlides, lang }: BiblePresentationSelectorProps) {
   const isRTL = lang === "fa";
+  const { language } = useLanguage();
+  const d = localDict[language] || localDict.fa;
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const bookDropdownRef = useRef<HTMLDivElement | null>(null);
   const selectedBookIdRef = useRef("GEN");
@@ -135,11 +372,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     setDefaultVersionFa(selectedVersionFa);
     persist("bp_default_ver_en", selectedVersionEn);
     persist("bp_default_ver_fa", selectedVersionFa);
-    toast.success(
-      isRTL
-        ? `✓ ترجمه پیش‌فرض فارسی به «${selectedVersionFa}» و انگلیسی به «${selectedVersionEn}» تنظیم شد.`
-        : `✓ Default set: ${selectedVersionFa} (FA) & ${selectedVersionEn} (EN)`
-    );
+    toast.success(d.setDefaultToast(selectedVersionFa, selectedVersionEn));
   };
 
   const [selectedChapter, setSelectedChapter] = useState(1);
@@ -476,11 +709,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     const parsedEnd = parseInt(toAsciiDigits(rangeEndStr), 10) || parsedStart;
 
     if (maxAvailable > 0 && Math.min(parsedStart, parsedEnd) > maxAvailable) {
-      toast.error(
-        isRTL
-          ? `باب ${selectedChapter} از ${currentBook.book_name_fa} تنها دارای ${maxAvailable} آیه است (آیات ۱ تا ${maxAvailable}).`
-          : `${currentBook.book_name_en} ${selectedChapter} only contains ${maxAvailable} verses.`
-      );
+      toast.error(d.chapterOnlyHasVerses(isRTL ? currentBook.book_name_fa : currentBook.book_name_en, selectedChapter, maxAvailable));
       return;
     }
 
@@ -523,11 +752,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       }
     }, 50);
 
-    toast.success(
-      isRTL
-        ? `✓ آیات ${start} تا ${end} انتخاب شدند (${range.length} آیه).`
-        : `Selected verses ${start} to ${end} (${range.length} verses).`
-    );
+    toast.success(d.selectedVersesRange(start, end, range.length));
   };
 
   const addVisibleVerses = () => {
@@ -552,11 +777,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       });
       return Array.from(byId.values()).sort((a, b) => a.book_order - b.book_order || a.chapter - b.chapter || a.verse_num - b.verse_num);
     });
-    toast.success(
-      isRTL
-        ? `تمام آیات باب ${selectedChapter} انتخاب شدند.`
-        : `Selected all verses of chapter ${selectedChapter}.`
-    );
+    toast.success(d.selectedAllChapterVerses(selectedChapter));
   };
 
   const addCustomRangeDirectlyToSlides = () => {
@@ -597,18 +818,14 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     });
 
     if (entries.length === 0) {
-      toast.error(isRTL ? 'در این بازه آیه‌ای یافت نشد. لطفاً ابتدا فصل را بارگذاری کنید.' : 'No verses found in this range. Please load the chapter first.');
+      toast.error(d.noVersesInRangeLoad);
       return;
     }
     const slides = buildSlides(entries);
     onAddSlides(slides);
     setSelectedVerses([]);
     onClose();
-    toast.success(
-      isRTL
-        ? `✓ آیات ${start} تا ${end} از ${currentBook.book_name_fa} باب ${selectedChapter} به اسلایدها افزوده شد.`
-        : `✓ Added ${currentBook.book_name_en} ${selectedChapter}:${start}-${end} to slides.`
-    );
+    toast.success(d.addedRangeToSlides(isRTL ? currentBook.book_name_fa : currentBook.book_name_en, selectedChapter, start, end));
   };
 
   const addAllChapterDirectlyToSlides = () => {
@@ -618,7 +835,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
       : Math.max(verses.length, faVerses.length);
 
     if (maxAvailable <= 0) {
-      toast.error(isRTL ? 'لطفاً ابتدا فصل را بارگذاری کنید.' : 'Please load the chapter first.');
+      toast.error(d.loadChapterFirst);
       return;
     }
     const range = Array.from({ length: maxAvailable }, (_, idx) => idx + 1);
@@ -643,18 +860,14 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
     });
 
     if (entries.length === 0) {
-      toast.error(isRTL ? 'آیه‌ای برای افزودن یافت نشد.' : 'No verses to add.');
+      toast.error(d.noVersesToAdd);
       return;
     }
     const slides = buildSlides(entries);
     onAddSlides(slides);
     setSelectedVerses([]);
     onClose();
-    toast.success(
-      isRTL
-        ? `✓ کل باب ${selectedChapter} از ${currentBook.book_name_fa} (${entries.length} آیه) به اسلایدها افزوده شد.`
-        : `✓ Added entire ${currentBook.book_name_en} chapter ${selectedChapter} (${entries.length} verses) to slides.`
-    );
+    toast.success(d.addedWholeChapterToSlides(selectedChapter, isRTL ? currentBook.book_name_fa : currentBook.book_name_en, entries.length));
   };
 
   const clearCurrentChapterSelection = () => {
@@ -789,12 +1002,12 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
   const handleAddSlides = () => {
     if (!selectedVerses.length) {
-      toast.error(isRTL ? 'هیچ آیه‌ای انتخاب نشده است.' : 'No verses selected.');
+      toast.error(d.noVersesSelected);
       return;
     }
     const slides = buildSlides();
     if (!slides.length) {
-      toast.error(isRTL ? 'آیات انتخاب‌شده متنی ندارند. لطفاً دوباره تلاش کنید.' : 'Selected verses have no text. Please try again.');
+      toast.error(d.noTextSelectedRetry);
       return;
     }
     onAddSlides(slides);
@@ -856,34 +1069,34 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
 
       <div className="shrink-0 bg-[#0e0e0f]/95 backdrop-blur-xl border-b border-white/5 px-4 py-3 flex flex-wrap items-center gap-2 md:gap-3 relative z-[220] overflow-visible">
         <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-blue-400 shrink-0" />
-        <span className={`font-bold text-white text-sm md:text-base shrink-0 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{isRTL ? "انتخاب آیه کتاب مقدس" : "Select Bible Verse"}</span>
+        <span className={`font-bold text-white text-sm md:text-base shrink-0 ${isRTL ? 'font-[Vazirmatn]' : ''}`}>{d.selectBibleVerseTitle}</span>
 
         <div ref={bookDropdownRef} className="relative z-[230]">
-          <button type="button" onClick={(event) => { event.stopPropagation(); setShowBookList((value) => !value); setShowChapterGrid(false); }} className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2 text-xs md:text-sm font-bold transition-all text-left min-w-[11rem] md:min-w-[14rem] max-w-[16rem] md:max-w-none" aria-label="Select Bible book">
+          <button type="button" onClick={(event) => { event.stopPropagation(); setShowBookList((value) => !value); setShowChapterGrid(false); }} className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2 text-xs md:text-sm font-bold transition-all text-left min-w-[11rem] md:min-w-[14rem] max-w-[16rem] md:max-w-none" aria-label={d.selectBibleBookAria}>
             <BookOpen className="w-4 h-4 text-blue-400 shrink-0" />
-            <span className="flex-1 truncate text-white">{currentBook ? (isRTL ? <span className="font-[Vazirmatn]">{currentBook.book_name_fa}</span> : currentBook.book_name_en) : (isRTL ? "انتخاب کتاب..." : "Select a book...")}</span>
+            <span className="flex-1 truncate text-white">{currentBook ? (isRTL ? <span className="font-[Vazirmatn]">{currentBook.book_name_fa}</span> : currentBook.book_name_en) : d.selectBookPlaceholder}</span>
             <List className="w-3.5 h-3.5 text-slate-500 shrink-0" />
           </button>
           {showBookList && (
             <div className="absolute top-full mt-1 left-0 z-[240] max-h-[55vh] overflow-y-auto bg-[#18181b] border border-white/20 rounded-2xl shadow-2xl p-2 ring-1 ring-white/10 min-w-[18rem] w-max">
               <div className="relative mb-2">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500" />
-                <input value={bookSearch} onChange={(event) => setBookSearch(event.target.value)} placeholder={isRTL ? "جستجوی کتاب..." : "Search books..."} className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-sm outline-none focus:border-blue-500/50 text-white" />
+                <input value={bookSearch} onChange={(event) => setBookSearch(event.target.value)} placeholder={d.searchBooksPlaceholder} className="w-full bg-white/5 border border-white/10 rounded-lg pl-9 pr-3 py-2 text-sm outline-none focus:border-blue-500/50 text-white" />
               </div>
               {filteredBooks.length ? filteredBooks.map((book) => (
                 <button type="button" key={book.book_id} onClick={() => selectBook(book)} className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-left transition-all hover:bg-white/10 ${selectedBookId === book.book_id ? "bg-blue-500/20 text-blue-400 font-bold" : "text-zinc-300"}`}>
                   <span className="font-[Vazirmatn] text-[13px]" dir="rtl">{book.book_name_fa}</span>
                   <span className="text-zinc-500 text-xs" dir="ltr">{book.book_name_en}</span>
                 </button>
-              )) : <div className="px-3 py-4 text-center text-slate-500 text-sm">{isRTL ? "کتابی پیدا نشد" : "No books found"}</div>}
+              )) : <div className="px-3 py-4 text-center text-slate-500 text-sm">{d.noBooksFound}</div>}
             </div>
           )}
         </div>
 
         <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl overflow-hidden shrink-0" dir="ltr">
-          <button onClick={prevChapter} disabled={selectedChapter <= 1} className="p-2 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label="Previous chapter"><ChevronLeft className="w-4 h-4" /></button>
+          <button onClick={prevChapter} disabled={selectedChapter <= 1} className="p-2 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label={d.previousChapterAria}><ChevronLeft className="w-4 h-4" /></button>
           <button onClick={() => setShowChapterGrid((value) => !value)} className="bg-white/5 hover:bg-white/10 text-xs md:text-sm font-bold px-3 md:px-4 py-2 transition-all border-x border-white/5 flex items-center gap-2"><span className="text-blue-400">Ch.</span><span>{selectedChapter}</span></button>
-          <button onClick={nextChapter} disabled={!currentBook || selectedChapter >= currentBook.chapter_count} className="p-2 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label="Next chapter"><ChevronRight className="w-4 h-4" /></button>
+          <button onClick={nextChapter} disabled={!currentBook || selectedChapter >= currentBook.chapter_count} className="p-2 hover:bg-white/10 transition-colors disabled:opacity-20" aria-label={d.nextChapterAria}><ChevronRight className="w-4 h-4" /></button>
         </div>
 
         {/* English version select */}
@@ -893,7 +1106,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             setSelectedVersionEn(event.target.value);
             persist("bp_ver_en", event.target.value);
           }}
-          aria-label="English Bible version"
+          aria-label={d.englishVersionAria}
           className={`${VERSION_SELECT_STYLE.en} ${VERSION_SELECT_STYLE.base} border-white/10 focus:border-blue-500/50`}
         >
           {englishVersions.map((version) => (
@@ -912,7 +1125,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             setSelectedVersionFa(event.target.value);
             persist("bp_ver_fa", event.target.value);
           }}
-          aria-label="Farsi Bible version"
+          aria-label={d.farsiVersionAria}
           className={`font-[Vazirmatn] ${VERSION_SELECT_STYLE.fa} ${VERSION_SELECT_STYLE.base} truncate ${persianVersions.length === 0 ? VERSION_SELECT_STYLE.empty : VERSION_SELECT_STYLE.normal}`}
           dir="rtl"
         >
@@ -944,13 +1157,13 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
           }`}
           title={
             isCurrentVersionsDefault
-              ? (isRTL ? `ترجمه‌های پیش‌فرض فعال: ${defaultVersionFa} و ${defaultVersionEn}` : `Default active: ${defaultVersionFa} & ${defaultVersionEn}`)
-              : (isRTL ? `تنظیم ${selectedVersionFa} و ${selectedVersionEn} به عنوان پیش‌فرض همیشگی` : `Set ${selectedVersionFa} & ${selectedVersionEn} as permanent default`)
+              ? d.defaultActive(defaultVersionFa, defaultVersionEn)
+              : d.setPermanentDefault(selectedVersionFa, selectedVersionEn)
           }
         >
           <Star className={`w-3.5 h-3.5 ${isCurrentVersionsDefault ? "fill-amber-400 text-amber-400" : ""}`} />
           <span className="hidden xl:inline text-[11px] font-[Vazirmatn]">
-            {isCurrentVersionsDefault ? (isRTL ? "پیش‌فرض" : "Default") : (isRTL ? "ذخیره پیش‌فرض" : "Set Default")}
+            {isCurrentVersionsDefault ? d.defaultLabel : d.setDefaultLabel}
           </span>
         </button>
 
@@ -959,10 +1172,10 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
           type="button"
           onClick={() => setIsWizardModeOpen(true)}
           className="flex items-center gap-1.5 bg-gradient-to-r from-purple-600/30 via-indigo-600/30 to-purple-600/30 hover:from-purple-600/50 hover:to-indigo-600/50 border border-purple-500/40 text-purple-200 px-3 py-2 rounded-xl text-xs font-bold transition shadow shrink-0 font-[Vazirmatn] cursor-pointer"
-          title={isRTL ? "باز کردن دستیار گام‌به‌گام هوشمند آیات" : "Open Step-by-Step Bible Wizard"}
+          title={d.openStepWizardTitle}
         >
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span className="hidden sm:inline">{isRTL ? "دستیار گام‌به‌گام" : "Step Wizard"}</span>
+          <span className="hidden sm:inline">{d.stepWizardLabel}</span>
         </button>
 
         <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-xl p-1 shrink-0" dir="ltr">
@@ -979,14 +1192,14 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             type="button"
             onClick={handleAddSlides}
             className="flex items-center gap-1.5 px-3 md:px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_16px_rgba(245,158,11,0.5)] transition cursor-pointer font-[Vazirmatn] shrink-0"
-            title={isRTL ? "افزودن آیات انتخاب‌شده به اسلایدها" : "Add selected verses to presentation slides"}
+            title={d.addSelectedVersesTitle}
           >
             <Zap className="w-4 h-4 fill-black" />
-            <span>{isRTL ? `✓ افزودن به اسلاید (${selectedVerses.length})` : `✓ Add to Slides (${selectedVerses.length})`}</span>
+            <span>{d.addToSlidesCount(selectedVerses.length)}</span>
           </button>
         )}
 
-        <button onClick={onClose} className="ml-auto p-2 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-all" aria-label="Close scripture selector"><X className="w-5 h-5" /></button>
+        <button onClick={onClose} className="ml-auto p-2 text-white/60 hover:text-white hover:bg-white/10 rounded-xl transition-all" aria-label={d.closeSelectorAria}><X className="w-5 h-5" /></button>
       </div>
 
       {showChapterGrid && currentBook && (
@@ -1056,7 +1269,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                 }}
                 className="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 active:scale-95 text-black font-black rounded-xl transition cursor-pointer text-xs shrink-0 font-[Vazirmatn]"
               >
-                {isRTL ? `تغییر به ترجمه پیش‌فرض (${defaultVersionFa})` : `Switch to Default (${defaultVersionFa})`}
+                {d.switchToDefault(defaultVersionFa)}
               </button>
             </div>
           </div>
@@ -1065,9 +1278,9 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
         <div className="max-w-5xl mx-auto px-4 pt-3 pb-2 flex flex-wrap items-center justify-center gap-2.5">
           {/* Segmented Range Selector Box */}
           <div className="flex items-center gap-2 bg-black/80 border border-amber-400/60 rounded-xl px-3 py-1.5 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-            <span className="text-xs text-amber-300 font-bold font-[Vazirmatn] select-none">انتخاب بازه:</span>
+            <span className="text-xs text-amber-300 font-bold font-[Vazirmatn] select-none">{d.selectRangeLabel}</span>
             <div className="flex items-center gap-1">
-              <span className="text-xs text-zinc-400 font-[Vazirmatn]">از آیه</span>
+              <span className="text-xs text-zinc-400 font-[Vazirmatn]">{d.fromVerseLabel}</span>
               <input
                 type="text"
                 inputMode="numeric"
@@ -1090,7 +1303,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
               />
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-xs text-zinc-400 font-[Vazirmatn]">تا</span>
+              <span className="text-xs text-zinc-400 font-[Vazirmatn]">{d.toVerseLabel}</span>
               <input
                 type="text"
                 inputMode="numeric"
@@ -1114,26 +1327,26 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             </div>
             {totalVerseCount > 0 && (
               <span className="text-[11px] text-zinc-400 font-mono select-none">
-                (از {totalVerseCount})
+                {d.ofCountLabel(totalVerseCount)}
               </span>
             )}
             <button
               type="button"
               onClick={selectCustomRange}
               className="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-lg transition shadow flex items-center gap-1 cursor-pointer font-[Vazirmatn]"
-              title={isRTL ? "انتخاب این بازه در لیست آیات" : "Select this range in list"}
+              title={d.selectRangeInListTitle}
             >
               <Check className="w-3.5 h-3.5 text-amber-400" />
-              <span>انتخاب</span>
+              <span>{d.selectShortLabel}</span>
             </button>
             <button
               type="button"
               onClick={addCustomRangeDirectlyToSlides}
               className="px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs rounded-lg transition shadow-[0_0_12px_rgba(245,158,11,0.4)] flex items-center gap-1 cursor-pointer font-[Vazirmatn]"
-              title={isRTL ? "ساخت فوری اسلاید از این بازه" : "Directly add this range as slides"}
+              title={d.directAddRangeTitle}
             >
               <Zap className="w-3.5 h-3.5 fill-black" />
-              <span>➕ افزودن به اسلاید</span>
+              <span>{d.addToSlideShort}</span>
             </button>
           </div>
 
@@ -1142,36 +1355,36 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
               type="button"
               onClick={addAllChapterDirectlyToSlides}
               className="px-3 py-1.5 rounded-lg text-xs font-black bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white shadow-lg shadow-emerald-600/30 transition flex items-center gap-1.5 font-[Vazirmatn] cursor-pointer"
-              title={isRTL ? "ساخت مستقیم اسلاید از تمام آیات این باب" : "Directly add whole chapter to slides"}
+              title={d.directAddChapterTitle}
             >
               <Zap className="w-3.5 h-3.5 fill-white" />
-              <span>{isRTL ? "➕ افزودن کل این باب به اسلاید" : "Add Whole Chapter"}</span>
+              <span>{d.addWholeChapterLabel}</span>
             </button>
             <button
               type="button"
               onClick={addVisibleVerses}
               className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-white/5 border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 transition font-[Vazirmatn]"
             >
-              {isRTL ? "انتخاب همه آیات" : "Select All"}
+              {d.selectAllLabel}
             </button>
             <button
               type="button"
               onClick={clearCurrentChapterSelection}
               className="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-rose-600/15 border border-rose-500/35 text-rose-300 hover:bg-rose-600/25 transition font-[Vazirmatn]"
             >
-              {isRTL ? "پاک کردن انتخاب‌ها" : "Clear Selection"}
+              {d.clearSelectionLabel}
             </button>
           </div>
         </div>
 
         <div className="max-w-5xl mx-auto px-4 pb-2">
           <p className="text-xs text-zinc-400 text-center font-[Vazirmatn] flex items-center justify-center gap-2 flex-wrap select-none">
-            <span className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded text-[11px] text-amber-300 font-bold">💡 راهنمای انتخاب:</span>
-            <span>کلیک روی آیه: انتخاب یا حذف</span>
+            <span className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded text-[11px] text-amber-300 font-bold">{d.selectionGuideLabel}</span>
+            <span>{d.guideClickVerse}</span>
             <span>•</span>
-            <span><kbd className="px-1.5 py-0.5 bg-zinc-800 border border-zinc-600 rounded text-[10px] text-zinc-200">Ctrl + کلیک</kbd>: سلکت دستی چندگانه</span>
+            <span><kbd className="px-1.5 py-0.5 bg-zinc-800 border border-zinc-600 rounded text-[10px] text-zinc-200">{d.guideCtrlClick}</kbd>{d.guideCtrlClickDesc}</span>
             <span>•</span>
-            <span><kbd className="px-1.5 py-0.5 bg-zinc-800 border border-zinc-600 rounded text-[10px] text-zinc-200">Shift + کلیک</kbd>: انتخاب بازه</span>
+            <span><kbd className="px-1.5 py-0.5 bg-zinc-800 border border-zinc-600 rounded text-[10px] text-zinc-200">{d.guideShiftClick}</kbd>{d.guideShiftClickDesc}</span>
           </p>
         </div>
 
@@ -1181,7 +1394,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             <input
               value={verseSearch}
               onChange={(event) => setVerseSearch(event.target.value)}
-              placeholder={isRTL ? "جستجو در آیات..." : "Search in verses..."}
+              placeholder={d.searchVersesPlaceholder}
               className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-3 py-2 text-sm outline-none focus:border-blue-500/50 focus:bg-white/10 text-white placeholder-slate-600 transition-all"
             />
             {verseSearch && (
@@ -1212,7 +1425,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     );
                   })
                 ) : (
-                  <p className="text-center text-slate-600 py-16">{isRTL ? "آیه‌ای مطابقت یافت نشد" : "No verses found"}</p>
+                  <p className="text-center text-slate-600 py-16">{d.noVersesMatchFound}</p>
                 )}
               </div>
             )}
@@ -1233,7 +1446,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     );
                   })
                 ) : (
-                  <p className="text-center text-slate-600 py-16 not-prose">{isRTL ? "آیه‌ای مطابقت یافت نشد" : "No verses found"}</p>
+                  <p className="text-center text-slate-600 py-16 not-prose">{d.noVersesMatchFound}</p>
                 )}
               </div>
             )}
@@ -1241,7 +1454,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             {readingMode === "fa" && (
               <div className="text-right space-y-0.5" dir="rtl" style={{ fontSize: `${fontSize}px`, lineHeight: 2.3, fontFamily: fontFa }}>
                 {filteredFaVerses.length === 0 ? (
-                  <p className="text-center text-slate-600 italic py-8">{faVerses.length === 0 ? "— ترجمه‌ای یافت نشد —" : "— آیه‌ای مطابقت یافت نشد —"}</p>
+                  <p className="text-center text-slate-600 italic py-8">{faVerses.length === 0 ? d.noFaTranslationFound : d.noFaVerseMatch}</p>
                 ) : (
                   filteredFaVerses.map((verse) => {
                     const selected = selectedVerses.some((entry) => entry.verse_num === verse.verse_num && entry.chapter === selectedChapter && entry.book_id === currentBook?.book_id);
@@ -1256,7 +1469,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
               </div>
             )}
 
-            {!parallelVerses.length && !verses.length && !faVerses.length && !loading && <p className="text-center text-slate-600 py-16">{isRTL ? "آیه‌ای یافت نشد" : "No verses found"}</p>}
+            {!parallelVerses.length && !verses.length && !faVerses.length && !loading && <p className="text-center text-slate-600 py-16">{d.noVersesFoundShort}</p>}
           </div>
         )}
 
@@ -1266,7 +1479,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             <div className="flex items-center gap-2 shrink-0">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
               <span className="text-amber-300 font-black text-xs md:text-sm font-[Vazirmatn] select-none">
-                {selectedVerses.length} {isRTL ? "آیه انتخاب شد" : "verses"}
+                {selectedVerses.length} {d.versesCountLabel}
               </span>
             </div>
 
@@ -1279,14 +1492,14 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                 onClick={() => { setSlideBuildMode("perVerse"); persist("bp_slide_mode", "perVerse"); }}
                 className={`px-2 py-1 rounded-lg font-bold transition font-[Vazirmatn] ${slideBuildMode === "perVerse" ? "bg-amber-500/30 text-amber-300" : "text-zinc-400 hover:text-white"}`}
               >
-                {isRTL ? "هر آیه مجزا" : "Per Verse"}
+                {d.perVerseLabel}
               </button>
               <button
                 type="button"
                 onClick={() => { setSlideBuildMode("single"); persist("bp_slide_mode", "single"); }}
                 className={`px-2 py-1 rounded-lg font-bold transition font-[Vazirmatn] ${slideBuildMode === "single" ? "bg-amber-500/30 text-amber-300" : "text-zinc-400 hover:text-white"}`}
               >
-                {isRTL ? "همه در یک اسلاید" : "Combined"}
+                {d.combinedLabel}
               </button>
             </div>
 
@@ -1294,16 +1507,16 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
               type="button"
               onClick={() => setShowSidebar(prev => !prev)}
               className={`px-2.5 py-1 text-xs rounded-lg transition font-[Vazirmatn] shrink-0 ${showSidebar ? "bg-white/20 text-white" : "text-zinc-400 hover:text-white hover:bg-white/10"}`}
-              title={isRTL ? "نمایش یا بستن لیست انتخاب‌ها" : "Toggle selected list"}
+              title={d.toggleSelectedListTitle}
             >
-              {showSidebar ? (isRTL ? "بستن لیست" : "Hide List") : (isRTL ? "نمایش لیست" : "Show List")}
+              {showSidebar ? d.hideListLabel : d.showListLabel}
             </button>
 
             <button
               type="button"
               onClick={() => setSelectedVerses([])}
               className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition shrink-0"
-              title={isRTL ? "پاک کردن انتخاب‌ها" : "Clear selection"}
+              title={d.clearSelectionTitle}
             >
               <Trash2 className="w-4 h-4" />
             </button>
@@ -1314,7 +1527,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
               className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-95 text-black font-black text-xs md:text-sm rounded-xl shadow-[0_0_18px_rgba(245,158,11,0.5)] transition cursor-pointer font-[Vazirmatn] shrink-0"
             >
               <Zap className="w-4 h-4 fill-black" />
-              <span>{isRTL ? "افزودن اسلایدها (Enter)" : "Add Slides (Enter)"}</span>
+              <span>{d.addSlidesEnterLabel}</span>
             </button>
           </div>
         )}
@@ -1327,22 +1540,20 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                 <button
                   onClick={() => setVerseManagerOpen(true)}
                   className={`font-bold text-amber-300 text-sm cursor-pointer hover:text-amber-200 transition-colors ${isRTL ? 'font-[Vazirmatn]' : ''}`}
-                  title={isRTL ? 'کلیک برای مدیریت آیات' : 'Click to manage verses'}
+                  title={d.clickToManageTitle}
                 >
-                  {selectedVerses.length} {isRTL ? 'آیه انتخاب‌شده' : 'Verses Selected'}
+                  {selectedVerses.length} {d.versesSelectedLabel}
                 </button>
                 <button
                   onClick={() => setSelectedVerses([])}
                   className="p-1 text-slate-400 hover:text-red-400 transition-colors rounded"
-                  title={isRTL ? 'پاک کردن همه' : 'Clear all'}
+                  title={d.clearAllTitle}
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>
               <p className="text-xs text-slate-400">
-                {isRTL
-                  ? `${selectedReferences.length} بخش‌شناسی از کتاب‌ها`
-                  : `${selectedReferences.length} section(s)`}
+                {d.sectionsCount(selectedReferences.length)}
               </p>
             </div>
 
@@ -1383,7 +1594,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                           )
                         }
                         className="p-1 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded transition-colors shrink-0 mt-0.5"
-                        title={isRTL ? 'حذف' : 'Remove'}
+                        title={d.removeTitle}
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
@@ -1402,9 +1613,9 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     persist("bp_slide_mode", "single");
                   }}
                   className={`flex-1 px-2 py-1.5 rounded-md text-[10px] leading-tight font-bold transition ${slideBuildMode === "single" ? "bg-amber-600/40 text-amber-300 shadow-sm" : "text-slate-400 hover:text-slate-200"}`}
-                  title={isRTL ? "تمام آیات در یک اسلاید واحد قرار می‌گیرند (با قابلیت بازشوندگی داخلی). مناسب برای ساخت کالکشن آیات." : "All selected verses are merged into a single slide with internal accordion. Good for verse collections."}
+                  title={d.multiInOneTitle}
                 >
-                  {isRTL ? "همه در یک اسلاید" : "Multi in One"}
+                  {d.multiInOneLabel}
                 </button>
                 <button
                   type="button"
@@ -1413,9 +1624,9 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     persist("bp_slide_mode", "perReference");
                   }}
                   className={`flex-1 px-2 py-1.5 rounded-md text-[10px] leading-tight font-bold transition ${slideBuildMode === "perReference" ? "bg-amber-600/40 text-amber-300 shadow-sm" : "text-slate-400 hover:text-slate-200"}`}
-                  title={isRTL ? "برای هر بخش پیوسته (مثلاً آیات ۱ الی ۵) یک اسلاید جداگانه ساخته می‌شود. (حالت پیش‌نهادی)" : "Creates a separate slide for each contiguous block of verses. (Recommended)"}
+                  title={d.bySectionTitle}
                 >
-                  {isRTL ? "بخش‌بخش (مرجع)" : "By Section"}
+                  {d.bySectionLabel}
                 </button>
                 <button
                   type="button"
@@ -1424,9 +1635,9 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
                     persist("bp_slide_mode", "perVerse");
                   }}
                   className={`flex-1 px-2 py-1.5 rounded-md text-[10px] leading-tight font-bold transition ${slideBuildMode === "perVerse" ? "bg-amber-600/40 text-amber-300 shadow-sm" : "text-slate-400 hover:text-slate-200"}`}
-                  title={isRTL ? "هر تک آیه کاملاً یک اسلاید مجزا خواهد شد. مناسب برای ورق زدن آیه به آیه هنگام موعظه." : "Every individual verse forms a standalone separate slide. Best for verse-by-verse preaching."}
+                  title={d.perVerseTitle}
                 >
-                  {isRTL ? "هر آیه مجزا" : "Per Verse"}
+                  {d.perVerseLabel}
                 </button>
               </div>
               <button
@@ -1435,7 +1646,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
               >
                 <span>✓</span>
                 <span className={isRTL ? 'font-[Vazirmatn]' : ''}>
-                  {isRTL ? "افزودن اسلایدها" : "Add Slides"}
+                  {d.addSlidesLabel}
                 </span>
               </button>
             </div>
@@ -1449,7 +1660,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             <div className="flex items-center gap-4 flex-1">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg flex-shrink-0"><Music2 className="w-5 h-5 text-white" /></div>
               <div className="flex-1 min-w-0"><p className="text-sm font-bold truncate">{currentBook?.book_name_en} — Ch. {selectedChapter}</p><p className="text-xs text-slate-400 truncate">{audioTracks[selectedTrackIdx]?.title}</p></div>
-              <button aria-label={isPlaying ? "Pause" : "Play"} onClick={() => {
+              <button aria-label={isPlaying ? d.pauseLabel : d.playLabel} onClick={() => {
                 if (!audioRef.current || !audioTracks.length) return;
                 if (isPlaying) { audioRef.current.pause(); setIsPlaying(false); } else { audioRef.current.src = audioTracks[selectedTrackIdx]?.mp3_url; audioRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false)); }
               }} className="w-11 h-11 shrink-0 rounded-full bg-blue-500 hover:bg-blue-400 flex items-center justify-center shadow-xl shadow-blue-500/30 transition-all hover:scale-105">
@@ -1459,7 +1670,7 @@ export default function BiblePresentationSelector({ onClose, onAddSlides, lang }
             <div className="flex items-center gap-3 text-xs text-slate-500 flex-1 w-full">
               <span className="w-9 text-right tabular-nums">{formatTime(audioProgress)}</span>
               <div className="relative flex-1 h-3 flex items-center group touch-none mx-2">
-                <input min={0} max={audioDuration || 100} aria-label="Audio playback progress" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" dir="ltr" type="range" value={audioProgress} onChange={(event) => { if (!audioRef.current) return; audioRef.current.currentTime = Number(event.target.value); setAudioProgress(Number(event.target.value)); }} />
+                <input min={0} max={audioDuration || 100} aria-label={d.audioProgressAria} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" dir="ltr" type="range" value={audioProgress} onChange={(event) => { if (!audioRef.current) return; audioRef.current.currentTime = Number(event.target.value); setAudioProgress(Number(event.target.value)); }} />
                 <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-blue-500 rounded-full pointer-events-none" style={{ width: `${(audioProgress / (audioDuration || 1)) * 100}%` }} /></div>
               </div>
               <span className="w-9 tabular-nums">{formatTime(audioDuration)}</span>

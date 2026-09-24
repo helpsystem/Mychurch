@@ -2,6 +2,25 @@
 
 import { useEffect } from "react";
 import Error500Animated from "@/components/ui/Error500Animated";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+    en: {
+        title: "Internal Server Error",
+        message: "Something went wrong while processing your request. Please try again.",
+        hint: "Internal Server Error",
+    },
+    fa: {
+        title: "خطای داخلی سرور",
+        message: "در پردازش درخواست مشکلی رخ داد. لطفا دوباره تلاش کنید.",
+        hint: "Internal Server Error",
+    },
+    es: {
+        title: "Error Interno del Servidor",
+        message: "Ocurrió un problema al procesar su solicitud. Por favor, inténtelo de nuevo.",
+        hint: "Internal Server Error",
+    },
+};
 
 export default function GlobalError({
     error,
@@ -10,6 +29,8 @@ export default function GlobalError({
     error: Error & { digest?: string };
     reset: () => void;
 }) {
+    const { language } = useLanguage();
+    const d = localDict[language] || localDict.fa;
     useEffect(() => {
         console.error("Global Error Boundary Caught:", error);
 
@@ -62,9 +83,9 @@ export default function GlobalError({
 
     return (
         <Error500Animated
-            title="خطای داخلی سرور"
-            message={error?.message || "در پردازش درخواست مشکلی رخ داد. لطفا دوباره تلاش کنید."}
-            hintEn="Internal Server Error"
+            title={d.title}
+            message={error?.message || d.message}
+            hintEn={d.hint}
             onRetry={reset}
         />
     );

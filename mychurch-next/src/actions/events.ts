@@ -4,6 +4,7 @@ import { query } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { sendEmail } from "@/lib/email";
 import { getConferenceConfig } from "./conference-config";
+import { requireRole } from "@/utils/rbac";
 
 export interface ChurchEvent {
     id: string;
@@ -33,10 +34,12 @@ export async function getUpcomingEvents(): Promise<ChurchEvent[]> {
 }
 
 export async function scheduleEvent(
-    title: string, 
-    startTimeStr: string, 
+    title: string,
+    startTimeStr: string,
     presentationId: string | null
 ) {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
     try {
         const config = await getConferenceConfig();
         
@@ -205,6 +208,8 @@ export async function scheduleEvent(
 }
 
 export async function deleteEvent(id: string) {
+    await requireRole(["Admin", "Leader", "Operator"]);
+
     try {
         await query("DELETE FROM church_events WHERE id = $1", [id]);
         revalidatePath("/", "layout");

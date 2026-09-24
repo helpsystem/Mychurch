@@ -2,10 +2,40 @@
 
 import React, { useState, useEffect } from "react";
 import { Sparkles, Radio, Menu, X } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
+
+const localDict = {
+  en: {
+    churchName: "Iranian Evangelical Church of Washington D.C.",
+    home: "Home",
+    prayerWall: "Prayer Wall",
+    globalReach: "Global Reach",
+    liveBroadcast: "Live Broadcast",
+    donate: "Give & Support",
+  },
+  fa: {
+    churchName: "کلیسای انجیلی ایرانیان واشنگتن دی‌سی",
+    home: "خانه",
+    prayerWall: "دیوار نوری دعا",
+    globalReach: "پراکنش جهانی",
+    liveBroadcast: "پخش زنده",
+    donate: "اهدای هدیه و همیاری",
+  },
+  es: {
+    churchName: "Iglesia Evangélica Iraní de Washington D.C.",
+    home: "Inicio",
+    prayerWall: "Muro de Oración",
+    globalReach: "Alcance Global",
+    liveBroadcast: "Transmisión en Vivo",
+    donate: "Donar y Apoyar",
+  },
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, isRTL } = useLanguage();
+  const d = localDict[language] || localDict.fa;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +52,7 @@ export default function Navbar() {
           ? "bg-bgDark/80 backdrop-blur-md border-b border-accentGold/20 py-3 shadow-lg shadow-black/50"
           : "bg-transparent py-5"
       }`}
-      dir="rtl"
+      dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* لوگو و نام کلیسا */}
@@ -32,7 +62,7 @@ export default function Navbar() {
           </div>
           <div>
             <h1 className="text-lg font-bold text-white tracking-wide">
-              کلیسای انجیلی ایرانیان واشنگتن دی‌سی
+              {d.churchName}
             </h1>
             <p className="text-xs text-accentGold/80">Iranian Presbyterian Church</p>
           </div>
@@ -41,25 +71,25 @@ export default function Navbar() {
         {/* منوی دسکتاپ */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
           <a href="#hero" className="hover:text-accentGold transition-colors">
-            خانه
+            {d.home}
           </a>
           <a href="#prayer-wall" className="hover:text-accentGold transition-colors flex items-center gap-1.5">
             <Sparkles className="w-4 h-4 text-accentGold" />
-            دیوار نوری دعا
+            {d.prayerWall}
           </a>
           <a href="#globe" className="hover:text-accentGold transition-colors">
-            پراکنش جهانی
+            {d.globalReach}
           </a>
           <a href="#live" className="hover:text-accentGold transition-colors flex items-center gap-1.5 text-rose-400">
             <Radio className="w-4 h-4 animate-pulse" />
-            پخش زنده
+            {d.liveBroadcast}
           </a>
         </div>
 
         {/* دکمه اقدام / همیاری */}
         <div className="hidden md:block">
           <button className="px-5 py-2.5 rounded-full bg-gradient-to-r from-accentGold to-amber-600 text-bgDark font-bold text-sm hover:shadow-[0_0_20px_rgba(251,191,36,0.6)] transition-all transform hover:-translate-y-0.5">
-            اهدای هدیه و همیاری
+            {d.donate}
           </button>
         </div>
 
@@ -75,10 +105,10 @@ export default function Navbar() {
       {/* منوی کشویی موبایل */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-bgDark/95 backdrop-blur-xl border-b border-accentGold/20 px-6 py-6 flex flex-col gap-4 text-slate-200">
-          <a href="#hero" onClick={() => setMobileMenuOpen(false)}>خانه</a>
-          <a href="#prayer-wall" onClick={() => setMobileMenuOpen(false)}>دیوار نوری دعا</a>
-          <a href="#globe" onClick={() => setMobileMenuOpen(false)}>پراکنش جهانی</a>
-          <a href="#live" onClick={() => setMobileMenuOpen(false)}>پخش زنده</a>
+          <a href="#hero" onClick={() => setMobileMenuOpen(false)}>{d.home}</a>
+          <a href="#prayer-wall" onClick={() => setMobileMenuOpen(false)}>{d.prayerWall}</a>
+          <a href="#globe" onClick={() => setMobileMenuOpen(false)}>{d.globalReach}</a>
+          <a href="#live" onClick={() => setMobileMenuOpen(false)}>{d.liveBroadcast}</a>
         </div>
       )}
     </nav>
