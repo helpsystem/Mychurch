@@ -11,12 +11,18 @@
 
 import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
 import { createClient } from '@/utils/supabase/client';
 import { SmartWorshipPlayer, getSafeAudioUrl } from '@/components/worship/SmartWorshipPlayer';
 import AmenBadge from '@/components/broadcast/AmenBadge';
 import { SlideRenderer } from '@/components/broadcast/SlideRenderer';
 import BroadcastOverlays from '@/components/broadcast/BroadcastOverlays';
 import { useLanguage } from '@/providers/LanguageProvider';
+import {
+    SLIDE_TRANSITION_VARIANTS,
+    DEFAULT_SLIDE_TRANSITION,
+    type SlideTransitionName,
+} from '@/components/broadcast/slideTransitions';
 import {
     Slide,
     BroadcastOverlayConfig,
@@ -63,6 +69,7 @@ interface ViewerState {
     } | null;
     liveTranslationText?: string;
     showLiveTranslation?: boolean;
+    transition: SlideTransitionName;
 }
 
 const stripChordMarkers = (text: string): string => {
@@ -163,7 +170,8 @@ function ViewerContent() {
         scripturePopupScale: 1.0,
         lyricsVisibility: null,
         liveTranslationText: "",
-        showLiveTranslation: false
+        showLiveTranslation: false,
+        transition: DEFAULT_SLIDE_TRANSITION
     });
     const [showGlassPopup, setShowGlassPopup] = useState(false);
     const activeLineRef = useRef<HTMLDivElement>(null);
@@ -342,7 +350,16 @@ function ViewerContent() {
                         lyricsVisibility: null,
                         activeScriptureReference: null,
                         connected: true,
-                        connectionType: 'websocket' // Treat realtime as cloud-sync
+                        connectionType: 'websocket', // Treat realtime as cloud-sync
+                        transition: msg.transition || DEFAULT_SLIDE_TRANSITION
+                    }));
+                }
+
+                if (msg.type === 'SET_AUDIO_SYNC') {
+                    setState(prev => ({
+                        ...prev,
+                        audioCurrentTime: msg.currentTime,
+                        audioIsPlaying: msg.isPlaying
                     }));
                 }
 
@@ -421,7 +438,8 @@ function ViewerContent() {
                     lyricsVisibility: null, // Reset overrides upon active slide change
                     activeScriptureReference: null,
                     connected: true,
-                    connectionType: 'broadcast-channel'
+                    connectionType: 'broadcast-channel',
+                    transition: msg.payload.transition || prev.transition
                 }));
             }
 
@@ -461,7 +479,8 @@ function ViewerContent() {
                     scripturePopupScale: msg.payload.scripturePopupScale || 1.0,
                     lyricsVisibility: msg.payload.lyricsVisibility || null,
                     connected: true,
-                    connectionType: 'broadcast-channel'
+                    connectionType: 'broadcast-channel',
+                    transition: msg.payload.transition || prev.transition
                 }));
             }
 
@@ -676,27 +695,17 @@ function ViewerContent() {
             );
         }
 
-        if (slide.type === SlideType.MEDIA) {
-            return (
-                <SlideRenderer
-                    slide={slide}
-                    isRemotePreview={true}
-                    internalPageIndex={state.internalPageIndex}
-                />
-            );
-        }
-
-        if (slide.type === SlideType.ANNOUNCEMENT) {
-            return (
-                <SlideRenderer
-                    slide={slide}
-                    isRemotePreview={true}
-                    internalPageIndex={state.internalPageIndex}
-                />
-            );
-        }
-
-        return null;
+        // Every other slide type (MEDIA, ANNOUNCEMENT, GENERIC, LIVEDATA, MEETING, PRAYER,
+        // LORDS_PRAYER) is handled by SlideRenderer — it has a branch for each of them, so
+        // routing them here too means the live output never goes black for a type it doesn't
+        // special-case above.
+        return (
+            <SlideRenderer
+                slide={slide}
+                isRemotePreview={true}
+                internalPageIndex={state.internalPageIndex}
+            />
+        );
     };
 
     return (
@@ -719,15 +728,26 @@ function ViewerContent() {
                     <div className="text-sm">{d.initialConnectionBody}</div>
                 </div>
             )}
-            <div 
-                className="w-full h-full"
+            <div
+                className="w-full h-full relative"
                 style={{
                     transform: `scale(${state.config?.contentScale ?? 1.0})`,
                     transformOrigin: 'center center',
                     transition: 'transform 0.2s ease-out'
                 }}
             >
-                {renderSlideContent()}
+                <AnimatePresence mode="sync" initial={false}>
+                    <motion.div
+                        key={state.currentSlide?.id ?? state.slideIndex}
+                        className="absolute inset-0 w-full h-full"
+                        variants={SLIDE_TRANSITION_VARIANTS[state.transition] || SLIDE_TRANSITION_VARIANTS.fade}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                    >
+                        {renderSlideContent()}
+                    </motion.div>
+                </AnimatePresence>
             </div>
             {state.config?.amenBadge && <AmenBadge config={state.config.amenBadge} isEditable={false} />}
 

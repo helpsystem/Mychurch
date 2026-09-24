@@ -833,7 +833,8 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
                     config: current.config,
                     activeScriptureReference: useBroadcastStore.getState().activeScriptureReference,
                     scripturePopupScale: useBroadcastStore.getState().scripturePopupScale,
-                    lyricsVisibility: useBroadcastStore.getState().lyricsVisibility
+                    lyricsVisibility: useBroadcastStore.getState().lyricsVisibility,
+                    transition: useBroadcastStore.getState().lastTransition
                 }
             });
         };
@@ -934,7 +935,8 @@ export default function LiveConsole({ initialPresentationId = null }: LiveConsol
             payload: {
                 slide: currentSlide,
                 index: activeSlideIndex,
-                internalPageIndex
+                internalPageIndex,
+                transition: useBroadcastStore.getState().lastTransition
             }
         });
     }, [activeSlideIndex, internalPageIndex]); // Triggers only on index changes

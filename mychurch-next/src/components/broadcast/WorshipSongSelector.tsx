@@ -569,6 +569,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
       title: selectedSong.title[lang] || selectedSong.title.fa,
       titleFa: selectedSong.title.fa,
       titleEn: selectedSong.title.en,
+      artist: selectedSong.artist ? (selectedSong.artist[lang] || selectedSong.artist.fa) : undefined,
       lines,
       lyricsEnLines: selectedSong.lyrics?.en
         ? parseLyrics(selectedSong.lyrics.en).map(line => line.text)

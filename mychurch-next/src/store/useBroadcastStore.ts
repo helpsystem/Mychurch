@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { Slide, BroadcastOverlayConfig, ScriptureReferenceItem } from '@/types/broadcast';
 import { createClient } from '@/utils/supabase/client';
 import { RealtimeChannel } from '@supabase/supabase-js';
+import { pickRandomSlideTransition, DEFAULT_SLIDE_TRANSITION, SlideTransitionName } from '@/components/broadcast/slideTransitions';
 
 export interface SessionMetadataEvent {
     type: 'song' | 'scripture';
@@ -19,6 +20,11 @@ interface BroadcastState {
     internalPageIndex: number; // for multi-page scriptures or long lyrics
     activeScriptureReference: ScriptureReferenceItem | null;
     scripturePopupScale: number;
+    lastTransition: SlideTransitionName; // random transition effect for the current slide change
+
+    // Cross-device worship song playback sync (Supabase Realtime)
+    remoteAudioSync: { currentTime: number; isPlaying: boolean } | null;
+    pushAudioSync: (currentTime: number, isPlaying: boolean) => void;
 
     // Overlay & Display Config
     config: BroadcastOverlayConfig;
@@ -106,6 +112,8 @@ interface BroadcastState {
     disconnectSync: () => void;
 }
 
+let lastAudioSyncPushAt = 0;
+
 const DEFAULT_CONFIG: BroadcastOverlayConfig = {
     layout: 'FULL_CAM',
     pipScale: 0.3,
@@ -146,6 +154,8 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
 
     config: DEFAULT_CONFIG,
     isAudioStageEnabled: false,
+    lastTransition: DEFAULT_SLIDE_TRANSITION,
+    remoteAudioSync: null,
 
     lyricsVisibility: {
         showPersian: true,
@@ -225,14 +235,16 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
                 showEnglish: displayOpts?.showEnglishLyrics === true
             };
         }
-        set({ 
-            activeSlideIndex: index, 
-            internalPageIndex: 0, 
+        const transition = pickRandomSlideTransition(get().lastTransition);
+        set({
+            activeSlideIndex: index,
+            internalPageIndex: 0,
             activeScriptureReference: null,
-            lyricsVisibility: nextVisibility
+            lyricsVisibility: nextVisibility,
+            lastTransition: transition
         });
         if (!skipSync) {
-            get().pushRemoteSync({ type: 'SET_SLIDE', slideIndex: index, pageIndex: 0 });
+            get().pushRemoteSync({ type: 'SET_SLIDE', slideIndex: index, pageIndex: 0, transition });
             get().pushRemoteSync({ type: 'SET_ACTIVE_REFERENCE', reference: null });
             get().pushRemoteSync({ type: 'SET_LYRICS_VISIBILITY', visibility: nextVisibility });
         }
@@ -355,7 +367,10 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
 
                 switch (data.type) {
                     case 'SET_SLIDE':
-                        set({ activeSlideIndex: data.slideIndex, internalPageIndex: data.pageIndex || 0, activeScriptureReference: null });
+                        set({ activeSlideIndex: data.slideIndex, internalPageIndex: data.pageIndex || 0, activeScriptureReference: null, lastTransition: data.transition || DEFAULT_SLIDE_TRANSITION });
+                        break;
+                    case 'SET_AUDIO_SYNC':
+                        set({ remoteAudioSync: { currentTime: data.currentTime, isPlaying: data.isPlaying } });
                         break;
                     case 'SET_PAGE':
                         set({ internalPageIndex: data.pageIndex, activeScriptureReference: null });
@@ -411,6 +426,14 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
                 event: 'sync-event',
                 payload: payload
             });
+        }
+    },
+
+    pushAudioSync: (currentTime, isPlaying) => {
+        const now = Date.now();
+        if (!isPlaying || now - lastAudioSyncPushAt > 350) {
+            lastAudioSyncPushAt = now;
+            get().pushRemoteSync({ type: 'SET_AUDIO_SYNC', currentTime, isPlaying });
         }
     },
 
