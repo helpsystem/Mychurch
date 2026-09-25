@@ -43,7 +43,7 @@ $VPS_NEXT_PATH = "/root/mychurch-v2/mychurch-next"
 $LOCAL_ENV_PATH = ".\.env.local"
 
 Write-Host "`n[1/4] Setting up fresh codebase on VPS..." -ForegroundColor Yellow
-$gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df -e mychurch-next/.deps-lock.json && (git checkout main || true) && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
+$gitPullCmd = "if [ ! -d $VPS_REPO_PATH ]; then git clone https://github.com/helpsystem/Mychurch.git $VPS_REPO_PATH; fi && cd $VPS_REPO_PATH && git restore . && git clean -df -e mychurch-next/.deps-lock.json -e mychurch-next/.next* && (git checkout main || true) && (git pull origin main || git fetch origin main) && git reset --hard origin/main"
 $oldPref = $ErrorActionPreference
 $ErrorActionPreference = "Continue"
 ssh -o StrictHostKeyChecking=no ${VPS_USER}@${VPS_HOST} $gitPullCmd
@@ -82,8 +82,10 @@ export NEXT_TELEMETRY_DISABLED=1
 export NEXT_DISABLE_ESLINT=1
 
 cleanup() {{
-    echo '🚀 Restoring HugePages configuration and restarting backends...'
-    sysctl -w vm.nr_hugepages=1491 || true
+    echo '🚀 Finalizing deployment cleanup...'
+    if [ -f /etc/sysctl.conf ] && grep -q 'nr_hugepages' /etc/sysctl.conf; then
+        sysctl -p /etc/sysctl.conf || true
+    fi
 
     if pm2 show mychurch-backend > /dev/null 2>&1; then
         echo 'Starting PM2 process mychurch-backend...'
@@ -161,8 +163,7 @@ if [ ! -f /swapfile ] || [ "$current_swap_size" -lt 5368709120 ]; then
 fi
 
 if pm2 show mychurch-next > /dev/null 2>&1; then
-    echo 'Stopping PM2 process mychurch-next to release file locks...'
-    pm2 stop mychurch-next || true
+    echo '✨ Zero-Downtime: Keeping mychurch-next active during compilation to prevent 502 errors...'
 fi
 if pm2 show mychurch-backend > /dev/null 2>&1; then
     echo 'Stopping PM2 process mychurch-backend to free memory...'
@@ -204,23 +205,39 @@ else
     echo 'Dependencies installed successfully'
 fi
 
-# Build using a deterministic low-memory profile for slower VPS nodes.
-rm -rf .next
+# Build using Zero-Downtime staging directory
+rm -rf .next.staging
+export NEXT_DIST_DIR=.next.staging
 export NODE_OPTIONS="--max-old-space-size=3072"
 export NEXT_CPU_LIMIT=1
 export NEXT_PRIVATE_BUILD_WORKER=0
-echo 'Building Next.js (timeout: 120 minutes)...'
+echo '🚀 Building Next.js in staging directory (Zero-Downtime, timeout: 120 minutes)...'
 if ! timeout 120m npm run build; then
     echo 'Build failed, retrying after 30s...'
     sleep 30
     timeout 120m npm run build
 fi
 
+if [ -d .next.staging ]; then
+    echo '✅ Build succeeded! Performing atomic swap to active .next directory...'
+    rm -rf .next.old
+    if [ -d .next ]; then
+        mv .next .next.old
+    fi
+    mv .next.staging .next
+    rm -rf .next.old >/dev/null 2>&1 &
+else
+    echo '❌ Build directory .next.staging not found!'
+    exit 1
+fi
+
+echo '🔄 Restarting PM2 process mychurch-next with zero-downtime...'
 if pm2 show mychurch-next > /dev/null 2>&1; then
-    pm2 start mychurch-next --update-env || pm2 restart mychurch-next --update-env
+    pm2 restart mychurch-next --update-env
 else
     pm2 start npm --name 'mychurch-next' -- start
 fi
+pm2 save
 '@ -f $VPS_NEXT_PATH
 $deployCmd = $deployCmd -replace "`r`n", "`n"
 $oldPref = $ErrorActionPreference
