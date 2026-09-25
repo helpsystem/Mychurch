@@ -3,25 +3,55 @@ import type { Metadata, Viewport } from "next";
 import React, { Suspense } from "react";
 import "./globals.css";
 import { LanguageProvider } from "@/providers/LanguageProvider";
-import {
-  Inter,
-  Vazirmatn,
-  Lalezar,
-  Cinzel,
-  Cormorant_Garamond,
-  Roboto,
-  Playfair_Display,
-  Merriweather,
-} from "next/font/google";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
-const vazirmatn = Vazirmatn({ subsets: ['arabic', 'latin'], variable: '--font-vazirmatn', display: 'swap' });
-const lalezar = Lalezar({ weight: ['400'], subsets: ['arabic'], variable: '--font-lalezar', display: 'swap' });
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['700'], variable: '--font-cinzel', display: 'swap' });
-const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '600', '700'], variable: '--font-cormorant', display: 'swap' });
-const roboto = Roboto({ subsets: ['latin'], weight: ['300', '400', '500', '700'], variable: '--font-roboto', display: 'swap' });
-const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400', '600', '700'], variable: '--font-playfair', display: 'swap' });
-const merriweather = Merriweather({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-merriweather', display: 'swap' });
+// Self-hosted (see src/fonts/) rather than next/font/google: fetching ~10 font
+// families from Google at build time is what was making `next build` hang on
+// "Retrying 1/3..." and eventually time out on the production server whenever
+// its outbound access to Google's font CDN was slow or blocked. Local files
+// make the build fully offline and deterministic. Vazirmatn is the one
+// exception — it needs both its arabic and latin subsets, which next/font/local
+// can't express as two unicode-range-scoped @font-face rules under one
+// variable, so it's hand-declared in the <style> block below instead.
+const inter = localFont({ src: "../fonts/inter-variable.woff2", weight: "100 900", variable: "--font-inter", display: "swap" });
+const lalezar = localFont({ src: "../fonts/lalezar-400.woff2", weight: "400", variable: "--font-lalezar", display: "swap" });
+const cinzel = localFont({ src: "../fonts/cinzel-700.woff2", weight: "700", variable: "--font-cinzel", display: "swap" });
+const cormorant = localFont({
+  src: [
+    { path: "../fonts/cormorant-garamond-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/cormorant-garamond-600.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/cormorant-garamond-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+const roboto = localFont({
+  src: [
+    { path: "../fonts/roboto-300.woff2", weight: "300", style: "normal" },
+    { path: "../fonts/roboto-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/roboto-500.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/roboto-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-roboto",
+  display: "swap",
+});
+const playfair = localFont({
+  src: [
+    { path: "../fonts/playfair-display-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/playfair-display-600.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/playfair-display-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-playfair",
+  display: "swap",
+});
+const merriweather = localFont({
+  src: [
+    { path: "../fonts/merriweather-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/merriweather-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-merriweather",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.iranianchurchdc.com"),
@@ -91,7 +121,7 @@ export default async function RootLayout({
   const realRole = await getRealUserRole();
   const currentRole = await getUserRole();
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning className={`dark ${inter.variable} ${vazirmatn.variable} ${lalezar.variable} ${cinzel.variable} ${cormorant.variable} ${roboto.variable} ${playfair.variable} ${merriweather.variable}`}>
+    <html lang="fa" dir="rtl" suppressHydrationWarning className={`dark ${inter.variable} ${lalezar.variable} ${cinzel.variable} ${cormorant.variable} ${roboto.variable} ${playfair.variable} ${merriweather.variable}`}>
       <head>
         {/* Preconnect to Google Fonts for Noto scripts (Arabic/Nastaliq not available via next/font) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -124,7 +154,24 @@ export default async function RootLayout({
           }}
         />
         <style dangerouslySetInnerHTML={{ __html: `
+          @font-face {
+            font-family: 'Vazirmatn Local';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('/fonts/vazirmatn-arabic-variable.woff2') format('woff2-variations');
+            unicode-range: U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC,U+102E0-102FB,U+10E60-10E7E,U+10EC2-10EC4,U+10EFC-10EFF,U+1EE00-1EE03,U+1EE05-1EE1F,U+1EE21-1EE22,U+1EE24,U+1EE27,U+1EE29-1EE32,U+1EE34-1EE37,U+1EE39,U+1EE3B,U+1EE42,U+1EE47,U+1EE49,U+1EE4B,U+1EE4D-1EE4F,U+1EE51-1EE52,U+1EE54,U+1EE57,U+1EE59,U+1EE5B,U+1EE5D,U+1EE5F,U+1EE61-1EE62,U+1EE64,U+1EE67-1EE6A,U+1EE6C-1EE72,U+1EE74-1EE77,U+1EE79-1EE7C,U+1EE7E,U+1EE80-1EE89,U+1EE8B-1EE9B,U+1EEA1-1EEA3,U+1EEA5-1EEA9,U+1EEAB-1EEBB,U+1EEF0-1EEF1;
+          }
+          @font-face {
+            font-family: 'Vazirmatn Local';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('/fonts/vazirmatn-latin-variable.woff2') format('woff2-variations');
+            unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+          }
           :root {
+            --font-vazirmatn: 'Vazirmatn Local', sans-serif;
             --font-naskh: 'Noto Naskh Arabic', serif;
             --font-homa: 'B Homa', 'BHoma', 'Homa', var(--font-vazirmatn), sans-serif;
             --font-sans: var(--font-vazirmatn), sans-serif;

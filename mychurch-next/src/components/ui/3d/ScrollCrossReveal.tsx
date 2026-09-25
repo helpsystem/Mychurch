@@ -3,7 +3,7 @@
 /**
  * ScrollCrossReveal
  * ------------------
- * A translucent, glass-like 3D cross that slowly turns as the user scrolls
+ * A radiant, glass-like 3D cross that slowly turns as the user scrolls
  * through this section, while verses fade in and out in sync — telling the
  * church's story (or the gospel itself) through scripture rather than
  * marketing copy.
@@ -23,6 +23,12 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 
 export type Verse = {
   reference: string;
@@ -34,6 +40,35 @@ type ScrollCrossRevealProps = {
   className?: string;
   dir?: "rtl" | "ltr";
 };
+
+// A soft radial-gradient sprite used for both the drifting dust motes and the
+// halo glowing behind the cross — a plain square PointsMaterial dot reads as
+// a lifeless pixel; a soft circular falloff reads as light.
+function createGlowSpriteTexture(): THREE.CanvasTexture {
+  const size = 128;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  if (ctx) {
+    const gradient = ctx.createRadialGradient(
+      size / 2,
+      size / 2,
+      0,
+      size / 2,
+      size / 2,
+      size / 2
+    );
+    gradient.addColorStop(0, "rgba(255,255,255,1)");
+    gradient.addColorStop(0.35, "rgba(255,233,199,0.7)");
+    gradient.addColorStop(1, "rgba(255,233,199,0)");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}
 
 export default function ScrollCrossReveal({
   verses,
@@ -92,11 +127,12 @@ export default function ScrollCrossReveal({
       0.1,
       100
     );
-    camera.position.set(0, 0, 6);
+    camera.position.set(0.6, 0.2, 6);
+    camera.lookAt(0, 0, 0);
 
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer = new THREE.WebGLRenderer({ antialias: true });
     } catch (err) {
       // No WebGL support — fail quietly rather than crash the section; the verse text
       // itself still renders and fades on scroll (just without the rotating glass cross
@@ -107,40 +143,81 @@ export default function ScrollCrossReveal({
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
+    renderer.setClearColor(0x080d1a, 1);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
     mount.appendChild(renderer.domElement);
+
+    // an environment map is what makes a transmissive glass material actually
+    // catch and bend light — without one it reads as flat grey plastic.
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    const envRT = pmremGenerator.fromScene(new RoomEnvironment(), 0.04);
+    scene.environment = envRT.texture;
+    pmremGenerator.dispose();
 
     // ---------- glass cross ----------
     const crossGroup = new THREE.Group();
+    crossGroup.rotation.set(-0.18, -0.35, 0);
+
     const glassMaterial = new THREE.MeshPhysicalMaterial({
-      color: "#F3C989",
-      transmission: 0.9,
-      roughness: 0.08,
-      thickness: 0.6,
-      ior: 1.4,
+      color: "#F6D9A0",
+      emissive: "#FFB86B",
+      emissiveIntensity: 0.15,
+      transmission: 0.92,
+      roughness: 0.04,
+      thickness: 0.9,
+      ior: 1.5,
       transparent: true,
-      opacity: 0.95,
+      opacity: 0.97,
       clearcoat: 1,
-      clearcoatRoughness: 0.05,
+      clearcoatRoughness: 0.03,
+      attenuationColor: new THREE.Color("#E3A85E"),
+      attenuationDistance: 1.2,
+      envMapIntensity: 1.4,
     });
     const vertical = new THREE.Mesh(
-      new THREE.BoxGeometry(0.42, 2.6, 0.42),
+      new RoundedBoxGeometry(0.42, 2.6, 0.42, 4, 0.07),
       glassMaterial
     );
     const horizontal = new THREE.Mesh(
-      new THREE.BoxGeometry(1.7, 0.42, 0.42),
+      new RoundedBoxGeometry(1.7, 0.42, 0.42, 4, 0.07),
       glassMaterial
     );
     horizontal.position.y = 0.55;
     crossGroup.add(vertical, horizontal);
     scene.add(crossGroup);
 
-    // soft particle haze around the cross for atmosphere
-    const hazeCount = 260;
+    // a warm light living inside the glass, breathing gently — this is what
+    // reads as "soul" rather than a static decorative object
+    const innerGlow = new THREE.PointLight("#FFD9A0", 2.4, 5, 2);
+    innerGlow.position.set(0, 0.45, 0.35);
+    crossGroup.add(innerGlow);
+
+    // soft halo glowing behind the cross, billboarded so it always faces camera
+    const glowTexture = createGlowSpriteTexture();
+    const haloMaterial = new THREE.SpriteMaterial({
+      map: glowTexture,
+      color: "#F3C989",
+      transparent: true,
+      opacity: 0.5,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const halo = new THREE.Sprite(haloMaterial);
+    halo.scale.set(4.6, 4.6, 1);
+    halo.position.set(0, 0.2, -0.7);
+    scene.add(halo);
+
+    // soft particle haze around the cross for atmosphere — warm dust drifting
+    // slowly upward through the light, not just static dots
+    const hazeCount = 220;
     const hazePositions = new Float32Array(hazeCount * 3);
+    const hazeSpeeds = new Float32Array(hazeCount);
     for (let i = 0; i < hazeCount; i++) {
       hazePositions[i * 3] = (Math.random() - 0.5) * 8;
       hazePositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
       hazePositions[i * 3 + 2] = (Math.random() - 0.5) * 6 - 1;
+      hazeSpeeds[i] = 0.06 + Math.random() * 0.12;
     }
     const hazeGeometry = new THREE.BufferGeometry();
     hazeGeometry.setAttribute(
@@ -149,27 +226,44 @@ export default function ScrollCrossReveal({
     );
     const hazeMaterial = new THREE.PointsMaterial({
       color: "#FFE9C7",
-      size: 0.035,
+      size: 0.09,
+      map: glowTexture,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.5,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      sizeAttenuation: true,
     });
     const haze = new THREE.Points(hazeGeometry, hazeMaterial);
     scene.add(haze);
 
     // lighting for the glass to catch
-    const key = new THREE.DirectionalLight("#FFE9C7", 2);
-    key.position.set(3, 4, 5);
-    scene.add(key);
-    const rim = new THREE.DirectionalLight("#7C93C4", 1);
-    rim.position.set(-4, -2, -3);
-    scene.add(rim);
-    scene.add(new THREE.AmbientLight("#1A2440", 1.4));
+    const keyLight = new THREE.DirectionalLight("#FFE9C7", 2.4);
+    keyLight.position.set(3, 4, 5);
+    scene.add(keyLight);
+    const rimLight = new THREE.DirectionalLight("#7C93C4", 1.2);
+    rimLight.position.set(-4, -2, -3);
+    scene.add(rimLight);
+    scene.add(new THREE.AmbientLight("#1A2440", 1.1));
+
+    // bloom is what turns the cross's highlights into a genuine glow
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(mount.clientWidth, mount.clientHeight),
+      0.85,
+      0.55,
+      0.2
+    );
+    composer.addPass(bloomPass);
+    composer.addPass(new OutputPass());
 
     function handleResize() {
       if (!mount) return;
       camera.aspect = mount.clientWidth / mount.clientHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(mount.clientWidth, mount.clientHeight);
+      composer.setSize(mount.clientWidth, mount.clientHeight);
     }
     window.addEventListener("resize", handleResize);
 
@@ -180,17 +274,28 @@ export default function ScrollCrossReveal({
       const t = clock.getElapsedTime();
 
       if (!prefersReducedMotion) {
-        crossGroup.rotation.y = scrollProgress * Math.PI * 1.4 + Math.sin(t * 0.15) * 0.05;
-        crossGroup.rotation.x = Math.sin(t * 0.1) * 0.04;
+        crossGroup.rotation.y = -0.35 + scrollProgress * Math.PI * 1.2 + Math.sin(t * 0.15) * 0.05;
+        crossGroup.rotation.x = -0.18 + Math.sin(t * 0.1) * 0.04;
+        innerGlow.intensity = 2.1 + Math.sin(t * 0.8) * 0.7;
+        glassMaterial.emissiveIntensity = 0.12 + Math.sin(t * 0.8) * 0.05;
+
+        const positions = hazeGeometry.attributes.position.array as Float32Array;
+        for (let i = 0; i < hazeCount; i++) {
+          positions[i * 3 + 1] += hazeSpeeds[i] * 0.01;
+          if (positions[i * 3 + 1] > 4.5) positions[i * 3 + 1] = -4.5;
+        }
+        hazeGeometry.attributes.position.needsUpdate = true;
         haze.rotation.y = t * 0.01;
       } else {
-        crossGroup.rotation.y = scrollProgress * Math.PI * 1.4;
+        crossGroup.rotation.y = -0.35 + scrollProgress * Math.PI * 1.2;
       }
 
       const scale = 0.9 + scrollProgress * 0.25;
       crossGroup.scale.setScalar(scale);
+      halo.position.copy(crossGroup.position);
+      halo.scale.setScalar(4.6 * (0.85 + scrollProgress * 0.3));
 
-      renderer.render(scene, camera);
+      composer.render();
     }
     animate();
 
@@ -201,6 +306,11 @@ export default function ScrollCrossReveal({
       glassMaterial.dispose();
       hazeGeometry.dispose();
       hazeMaterial.dispose();
+      haloMaterial.dispose();
+      glowTexture.dispose();
+      envRT.texture.dispose();
+      composer.dispose();
+      bloomPass.dispose();
       renderer.dispose();
       mount?.removeChild(renderer.domElement);
     };
