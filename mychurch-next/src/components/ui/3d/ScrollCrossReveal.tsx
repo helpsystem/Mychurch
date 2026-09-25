@@ -104,15 +104,29 @@ export default function ScrollCrossReveal({
       const raw = -rect.top / total;
       scrollProgress = Math.min(1, Math.max(0, raw));
 
-      // fade verses based on which segment we're in
+      // Fade verses based on which segment we're in. Each verse is fully opaque
+      // across the core of its own segment, cross-fading only near the boundary
+      // with its neighbor — the first verse stays at opacity 1 at scrollProgress
+      // 0 and the last stays at opacity 1 at scrollProgress 1, instead of the old
+      // centered falloff that left both ends of the section looking empty.
       const segment = 1 / verses.length;
+      const fade = Math.min(0.15, segment * 0.4);
       verseRefs.current.forEach((el, i) => {
         if (!el) return;
         const segStart = i * segment;
         const segEnd = segStart + segment;
-        const center = (segStart + segEnd) / 2;
-        const dist = Math.abs(scrollProgress - center) / (segment * 0.6);
-        const opacity = Math.max(0, 1 - dist);
+        let opacity = 1;
+        if (i > 0) {
+          const fadeInEnd = segStart + fade;
+          if (scrollProgress < segStart) opacity = 0;
+          else if (scrollProgress < fadeInEnd) opacity = (scrollProgress - segStart) / fade;
+        }
+        if (i < verses.length - 1) {
+          const fadeOutStart = segEnd - fade;
+          if (scrollProgress > segEnd) opacity = Math.min(opacity, 0);
+          else if (scrollProgress > fadeOutStart) opacity = Math.min(opacity, (segEnd - scrollProgress) / fade);
+        }
+        opacity = Math.max(0, Math.min(1, opacity));
         el.style.opacity = String(opacity);
         el.style.transform = `translateY(${(1 - opacity) * 12}px)`;
       });
