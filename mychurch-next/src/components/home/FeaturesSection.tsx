@@ -143,10 +143,18 @@ export default function FeaturesSection() {
             >
               <Link
                 href={item.href}
-                className={`group p-5 rounded-2xl bg-[#171b26]/90 border border-white/8 hover:bg-[#1c1f2a] shadow-lg transition-all duration-300 flex flex-col justify-between h-full active:scale-[0.98] ${item.hoverBorder}`}
+                className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/[0.05] active:scale-[0.98] active:translate-y-0 ${item.hoverBorder}`}
+                style={{ boxShadow: "0 1px 0 0 rgba(255,255,255,0.06) inset" }}
               >
-                <div>
-                  <div className={`w-11 h-11 rounded-xl ${item.iconBg} ${item.iconColor} flex items-center justify-center mb-4 transition-transform group-hover:scale-110`}>
+                {/* ambient glow that blooms on hover, echoing the item's own color */}
+                <div
+                  className={`pointer-events-none absolute -top-10 h-32 w-32 rounded-full ${item.iconBg} opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-80 ${isRTL ? "-left-10" : "-right-10"}`}
+                />
+                {/* hairline sheen along the top edge */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+
+                <div className="relative">
+                  <div className={`relative mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${item.iconBg} ${item.iconColor} ring-1 ring-inset ring-white/10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
                     <Icon className="w-6 h-6" />
                   </div>
                   <h3 className="text-[16px] text-white font-bold mb-1.5 group-hover:text-amber-300 transition-colors">
@@ -157,7 +165,7 @@ export default function FeaturesSection() {
                   </p>
                 </div>
 
-                <div className={`mt-5 pt-3 border-t border-white/5 flex items-center justify-between ${item.actionColor} text-[12px] font-bold`}>
+                <div className={`relative mt-5 pt-3 border-t border-white/5 flex items-center justify-between ${item.actionColor} text-[12px] font-bold`}>
                   <span>{text.action}</span>
                   <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 </div>
