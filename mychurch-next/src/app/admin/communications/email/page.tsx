@@ -1,15 +1,16 @@
 import React from "react";
-import { getEmailLogs } from "@/actions/communications";
-import EmailClient from "./EmailClient";
+import { getAdminEmails } from "@/actions/admin-emails";
+import EmailInboxClient from "./EmailInboxClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function EmailCommunicationsPage() {
-    const emailLogs = await getEmailLogs();
+    const res = await getAdminEmails({ folder: "inbox" });
 
     return (
-        <EmailClient 
-            initialEmailLogs={emailLogs} 
+        <EmailInboxClient 
+            initialEmails={res.emails || []}
+            initialFolderCounts={res.folderCounts || { inbox: 0, inboxUnread: 0, sent: 0, spam: 0 }}
         />
     );
 }

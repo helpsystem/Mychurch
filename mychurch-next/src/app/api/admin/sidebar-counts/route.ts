@@ -47,16 +47,27 @@ export async function GET() {
                 .eq('role', 'User')
         ]);
 
+        const { query } = await import("@/lib/db");
+        let unreadEmails = 0;
+        try {
+            const { rows: emailRows } = await query("SELECT COUNT(*) as count FROM admin_emails WHERE direction = 'inbound' AND is_spam = FALSE AND status = 'unread'");
+            unreadEmails = parseInt(emailRows[0]?.count || "0", 10);
+        } catch (e) {
+            // table might be empty or fallback
+        }
+
         const counts = {
             prayers: prayersRes.count || 0,
             messages: ticketsRes.count || 0,
             documents: docsRes.count || 0,
             users: usersRes.count || 0,
+            emails: unreadEmails,
         };
 
         return NextResponse.json(counts);
     } catch (err: any) {
         console.error("[Sidebar Counts API] Error:", err.message);
-        return NextResponse.json({ prayers: 0, messages: 0, documents: 0, users: 0 });
+        return NextResponse.json({ prayers: 0, messages: 0, documents: 0, users: 0, emails: 0 });
     }
 }
+

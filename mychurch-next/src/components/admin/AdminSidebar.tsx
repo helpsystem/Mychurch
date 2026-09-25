@@ -25,11 +25,12 @@ interface AdminSidebarProps {
 export default function AdminSidebar({ role, realRole, permissions, userEmail, initials, isAdmin }: AdminSidebarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-    const [counts, setCounts] = useState<{ prayers: number; messages: number; documents: number; users: number }>({
+    const [counts, setCounts] = useState<{ prayers: number; messages: number; documents: number; users: number; emails?: number }>({
         prayers: 0,
         messages: 0,
         documents: 0,
         users: 0,
+        emails: 0,
     });
 
     // Close sidebar on route change when on mobile
@@ -177,7 +178,15 @@ export default function AdminSidebar({ role, realRole, permissions, userEmail, i
                     {(isAdmin || permissions?.canManageMedia) && (
                         <>
                             <NavItem href="/admin/communications" icon={Megaphone}>Communications Hub</NavItem>
-                            <NavItem href="/admin/communications/email" icon={Mail} colorClass="text-[#adc6ff] pl-8">Email Campaigns</NavItem>
+                            <NavItem 
+                                href="/admin/communications/email" 
+                                icon={Mail} 
+                                badge={counts.emails && counts.emails > 0 ? counts.emails : undefined}
+                                badgeColor="bg-amber-500/20 text-amber-300 border-amber-500/30"
+                                colorClass="text-[#adc6ff] pl-8"
+                            >
+                                <span className="font-[Vazirmatn]">صندوق ایمیل (Mail Console)</span>
+                            </NavItem>
                             <NavItem href="/admin/communications/whatsapp" icon={MessageSquare} colorClass="text-[#00dce4] pl-8">WhatsApp Broadcasts</NavItem>
                             <NavItem href="/admin/newsletter" icon={Mail} colorClass="text-blue-400/80">Legacy Newsletter</NavItem>
                         </>
