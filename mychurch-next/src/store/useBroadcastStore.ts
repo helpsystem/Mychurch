@@ -70,6 +70,12 @@ interface BroadcastState {
     setTranslationLanguages: (from: string, to: string) => void;
     setTranslationDisplayMode: (mode: 'original' | 'translated' | 'both') => void;
 
+    // Live Translation engine connection health (Gemini Live WebSocket), for the operator UI
+    translationConnectionStatus: 'idle' | 'connecting' | 'connected' | 'reconnecting' | 'error';
+    translationReconnectAttempt: number;
+    translationReconnectMax: number;
+    setTranslationConnectionStatus: (status: 'idle' | 'connecting' | 'connected' | 'reconnecting' | 'error', attempt?: number, max?: number) => void;
+
     // Recording and Session Metadata
     isRecording: boolean;
     sessionMetadata: SessionMetadataEvent[];
@@ -185,7 +191,10 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     fromTranslationLang: 'fa',
     toTranslationLang: 'en',
     translationDisplayMode: 'both', // 'original' | 'translated' | 'both'
-    
+    translationConnectionStatus: 'idle',
+    translationReconnectAttempt: 0,
+    translationReconnectMax: 3,
+
     isRecording: false,
     sessionMetadata: [],
     
@@ -210,6 +219,8 @@ export const useBroadcastStore = create<BroadcastState>((set, get) => ({
     setTranslationActive: (active) => set({ isTranslationActive: active }),
     setTranslationLanguages: (from, to) => set({ fromTranslationLang: from, toTranslationLang: to }),
     setTranslationDisplayMode: (mode) => set({ translationDisplayMode: mode }),
+    setTranslationConnectionStatus: (status, attempt = 0, max = 3) =>
+        set({ translationConnectionStatus: status, translationReconnectAttempt: attempt, translationReconnectMax: max }),
 
     // Implementations
     setSessionId: (id) => set({ sessionId: id }),

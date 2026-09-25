@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { getPresentations, getPresentationById } from "@/actions/presentations";
-import { nvidiaTranslateText, interimTranslateText } from "@/actions/translate";
+import { GeminiLiveTranslator } from "@/lib/geminiLiveTranslator";
 import { BroadcastSession, SlideType, SlideContentLyrics } from "@/types/broadcast";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { useShallow } from "zustand/react/shallow";
@@ -61,12 +61,12 @@ export default function LiveConsole({ initialPresentationId = null, fccDialInNum
     const isConnected = useBroadcastStore(state => state.isConnected);
     
     // Live Translation store fields
-    const fromTranslationLang = useBroadcastStore(state => state.fromTranslationLang);
     const toTranslationLang = useBroadcastStore(state => state.toTranslationLang);
     const setLiveTranslation = useBroadcastStore(state => state.setLiveTranslation);
     const isTranslationActive = useBroadcastStore(state => state.isTranslationActive);
     const setTranslationActive = useBroadcastStore(state => state.setTranslationActive);
     const liveTranslationText = useBroadcastStore(state => state.liveTranslationText);
+    const setTranslationConnectionStatus = useBroadcastStore(state => state.setTranslationConnectionStatus);
 
     // Recording store fields
     const isRecording = useBroadcastStore(state => state.isRecording);
@@ -304,203 +304,141 @@ export default function LiveConsole({ initialPresentationId = null, fccDialInNum
         return () => clearTimeout(timer);
     }, []);
 
-    // ─── Live Speech Translation Overlay logic ───
-    const speechRecRef = React.useRef<any>(null);
-    const speechAccumulatorRef = React.useRef<string>("");
+    // ─── Live Speech Translation Overlay logic (Gemini Live speech-to-speech) ───
+    // Gemini Live listens to the mic directly, auto-detects the spoken language, and
+    // streams back both the original transcript and its live translation over one
+    // WebSocket — replacing the old browser Web Speech API + separate translate-API
+    // call, which was Chrome-only and noticeably less accurate/consistent.
+    const translatorRef = React.useRef<GeminiLiveTranslator | null>(null);
+    const latestInputRef = React.useRef<string>("");
+    const latestOutputRef = React.useRef<string>("");
 
     useEffect(() => {
-        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-        if (!SpeechRecognition) return;
-
-        if (isTranslationActive) {
-            console.log("[LiveConsole] Starting Live Translation Overlay Speech Recognition...");
-            const rec = new SpeechRecognition();
-            
-            // Map simple lang codes to full STT codes
-            const STT_CODES: Record<string, string> = {
-                'en': 'en-US',
-                'fa': 'fa-IR',
-                'ar': 'ar-SA',
-                'es': 'es-ES'
-            };
-            
-            rec.lang = STT_CODES[fromTranslationLang] || 'en-US';
-            rec.continuous = true;
-            rec.interimResults = true;
-            rec.maxAlternatives = 1;
-            
-            speechAccumulatorRef.current = "";
-            
-            rec.onstart = () => {
-                console.log("[LiveConsole] Speech Recognition active for presentation overlay.");
-                toast.info("مترجم همزمان پرزنتیشن فعال شد. در حال شنود صدا...");
-            };
-            
-            rec.onresult = async (event: any) => {
-                let interim = "";
-                let final = "";
-                
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    const transcript = event.results[i][0].transcript;
-                    if (event.results[i].isFinal) {
-                        final += transcript;
-                    } else {
-                        interim += transcript;
-                    }
-                }
-                
-                const displayMode = useBroadcastStore.getState().translationDisplayMode || 'both';
-
-                // Show real-time interim transcription (original language) to reduce perceived delay
-                if (interim && !final) {
-                    const cleanInterim = interim.trim();
-                    
-                    if ((window as any)._interimDebounce) {
-                        clearTimeout((window as any)._interimDebounce);
-                    }
-                    
-                    (window as any)._interimDebounce = setTimeout(async () => {
-                        if (cleanInterim.split(" ").length > 1 || cleanInterim.length > 5) {
-                            const res = await interimTranslateText(cleanInterim, fromTranslationLang, toTranslationLang);
-                            let tempText = "";
-                            if (res.success && res.text) {
-                                if (displayMode === 'both') {
-                                    tempText = cleanInterim + "\n⚡ " + res.text;
-                                } else if (displayMode === 'translated') {
-                                    tempText = "⚡ " + res.text;
-                                } else {
-                                    tempText = cleanInterim + " ...";
-                                }
-                            } else {
-                                tempText = displayMode === 'translated' ? "Translating ..." : cleanInterim + " ...";
-                            }
-                            
-                            setLiveTranslation(tempText, true);
-                            
-                            if (viewerChannelRef.current) {
-                                viewerChannelRef.current.postMessage({
-                                    type: 'live_translation_sync',
-                                    payload: { text: tempText, show: true }
-                                });
-                            }
-                        }
-                    }, 400); // 400ms debounce for near-instant feel
-                }
-                
-                if (final) {
-                    const textToTranslate = final.trim();
-                    if (!textToTranslate) return;
-                    
-                    // Show final original text immediately before API call if mode allows
-                    if (displayMode === 'original' || displayMode === 'both') {
-                        setLiveTranslation(textToTranslate + (displayMode === 'both' ? "\n..." : ""), true);
-                        if (viewerChannelRef.current) {
-                            viewerChannelRef.current.postMessage({
-                                type: 'live_translation_sync',
-                                payload: { text: textToTranslate + (displayMode === 'both' ? "\n..." : ""), show: true }
-                            });
-                        }
-                    }
-                    
-                    // Call translation API for the latest sentence ONLY (prevents massive slowdowns)
-                    if (displayMode === 'translated' || displayMode === 'both') {
-                        try {
-                            const res = await nvidiaTranslateText(textToTranslate, fromTranslationLang, toTranslationLang);
-                            if (res.success && res.text) {
-                                const finalText = displayMode === 'both' 
-                                    ? textToTranslate + "\n" + res.text 
-                                    : res.text;
-                                    
-                                setLiveTranslation(finalText, true);
-                                
-                                // Send via BroadcastChannel for local/same-browser viewers
-                                if (viewerChannelRef.current) {
-                                    viewerChannelRef.current.postMessage({
-                                        type: 'live_translation_sync',
-                                        payload: { text: finalText, show: true }
-                                    });
-                                }
-                                
-                                // Auto-clear subtitle after 10 seconds of silence
-                                if ((window as any)._subtitleTimeout) {
-                                    clearTimeout((window as any)._subtitleTimeout);
-                                }
-                                (window as any)._subtitleTimeout = setTimeout(() => {
-                                    setLiveTranslation("", false);
-                                    if (viewerChannelRef.current) {
-                                        viewerChannelRef.current.postMessage({
-                                            type: 'live_translation_sync',
-                                            payload: { text: "", show: false }
-                                        });
-                                    }
-                                }, 10000);
-                            }
-                        } catch (e) {
-                            console.error("[LiveConsole] Translation error:", e);
-                        }
-                    } else {
-                        // Original only mode: we still need the auto-clear timeout!
-                        if ((window as any)._subtitleTimeout) {
-                            clearTimeout((window as any)._subtitleTimeout);
-                        }
-                        (window as any)._subtitleTimeout = setTimeout(() => {
-                            setLiveTranslation("", false);
-                            if (viewerChannelRef.current) {
-                                viewerChannelRef.current.postMessage({
-                                    type: 'live_translation_sync',
-                                    payload: { text: "", show: false }
-                                });
-                            }
-                        }, 10000);
-                    }
-                }
-            };
-            
-            rec.onerror = (event: any) => {
-                if (event.error !== "no-speech" && event.error !== "aborted") {
-                    console.error("[LiveConsole] Speech recognition error:", event.error);
-                }
-            };
-            
-            rec.onend = () => {
-                // If it was still supposed to be active, restart it
-                if (useBroadcastStore.getState().isTranslationActive) {
-                    try {
-                        rec.start();
-                    } catch (e) {
-                        console.error("[LiveConsole] Failed to restart speech recognition:", e);
-                    }
-                }
-            };
-            
-            speechRecRef.current = rec;
-            rec.start();
-        } else {
-            console.log("[LiveConsole] Stopping Live Translation Overlay Speech Recognition...");
-            if (speechRecRef.current) {
-                try {
-                    speechRecRef.current.stop();
-                } catch (e) {}
-                speechRecRef.current = null;
-            }
+        if (!isTranslationActive) {
+            translatorRef.current?.stop();
+            translatorRef.current = null;
             setLiveTranslation("", false);
-            
-            // Sync clear with local/same-browser viewers
+            setTranslationConnectionStatus('idle');
             if (viewerChannelRef.current) {
                 viewerChannelRef.current.postMessage({
                     type: 'live_translation_sync',
                     payload: { text: "", show: false }
                 });
             }
+            return;
         }
-        
-        return () => {
-            if (speechRecRef.current) {
-                try { speechRecRef.current.stop(); } catch (e) {}
-                speechRecRef.current = null;
+
+        let cancelled = false;
+        let clearTimer: ReturnType<typeof setTimeout> | null = null;
+        latestInputRef.current = "";
+        latestOutputRef.current = "";
+
+        const syncText = (text: string) => {
+            setLiveTranslation(text, true);
+            if (viewerChannelRef.current) {
+                viewerChannelRef.current.postMessage({
+                    type: 'live_translation_sync',
+                    payload: { text, show: true }
+                });
             }
+            // Auto-clear the subtitle after 10s of silence (no new transcript events)
+            if (clearTimer) clearTimeout(clearTimer);
+            clearTimer = setTimeout(() => {
+                latestInputRef.current = "";
+                latestOutputRef.current = "";
+                setLiveTranslation("", false);
+                if (viewerChannelRef.current) {
+                    viewerChannelRef.current.postMessage({
+                        type: 'live_translation_sync',
+                        payload: { text: "", show: false }
+                    });
+                }
+            }, 10000);
         };
-    }, [isTranslationActive, fromTranslationLang, toTranslationLang]);
+
+        const composeAndSync = () => {
+            const displayMode = useBroadcastStore.getState().translationDisplayMode || 'both';
+            const input = latestInputRef.current.trim();
+            const output = latestOutputRef.current.trim();
+            const text =
+                displayMode === 'original' ? input :
+                displayMode === 'translated' ? output :
+                [input, output].filter(Boolean).join("\n");
+            if (text) syncText(text);
+        };
+
+        (async () => {
+            setTranslationConnectionStatus('connecting');
+            try {
+                const tokenRes = await fetch("/api/translate/live-token", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ targetLanguage: toTranslationLang, echoTargetLanguage: true }),
+                });
+                const tokenData = await tokenRes.json();
+                if (cancelled) return;
+
+                const token = tokenData.token;
+                if (!token) {
+                    console.error("[LiveConsole] Gemini Live token unavailable:", tokenData);
+                    toast.error("کلید API Gemini برای ترجمه زنده تنظیم نشده است.");
+                    setTranslationConnectionStatus('error');
+                    setTranslationActive(false);
+                    return;
+                }
+
+                const translator = new GeminiLiveTranslator(
+                    { targetLanguageCode: toTranslationLang, echoTargetLanguage: true, token, maxReconnectAttempts: 3 },
+                    {
+                        onOpen: () => {
+                            setTranslationConnectionStatus('connected');
+                            toast.info("مترجم همزمان پرزنتیشن (Gemini Live) فعال شد. در حال شنود صدا...");
+                        },
+                        onClose: () => {
+                            if (translatorRef.current === null) return; // intentional stop
+                            setTranslationConnectionStatus('idle');
+                        },
+                        onError: (err) => {
+                            console.error("[LiveConsole] Gemini Live error:", err);
+                            setTranslationConnectionStatus('error');
+                        },
+                        onReconnecting: (attempt, max) => {
+                            setTranslationConnectionStatus('reconnecting', attempt, max);
+                            toast.warning(`اتصال ترجمه زنده قطع شد — تلاش مجدد (${attempt}/${max})...`);
+                        },
+                        onMaxRetriesReached: () => {
+                            setTranslationConnectionStatus('error');
+                            toast.error("اتصال ترجمه زنده پس از چند تلاش برقرار نشد.");
+                            setTranslationActive(false);
+                        },
+                        onInputTranscript: (text) => {
+                            latestInputRef.current = text;
+                            composeAndSync();
+                        },
+                        onOutputTranscript: (text) => {
+                            latestOutputRef.current = text;
+                            composeAndSync();
+                        },
+                    }
+                );
+
+                translatorRef.current = translator;
+                await translator.start();
+            } catch (err) {
+                console.error("[LiveConsole] Failed to start Gemini Live translation:", err);
+                toast.error("خطا در اتصال به سرویس ترجمه زنده.");
+                setTranslationConnectionStatus('error');
+                setTranslationActive(false);
+            }
+        })();
+
+        return () => {
+            cancelled = true;
+            if (clearTimer) clearTimeout(clearTimer);
+            translatorRef.current?.stop();
+            translatorRef.current = null;
+        };
+    }, [isTranslationActive, toTranslationLang]);
 
     const [savedSessions, setSavedSessions] = React.useState<BroadcastSession[]>([]);
     const [isLoadingSessions, setIsLoadingSessions] = React.useState(false);
