@@ -656,7 +656,7 @@ export default function WorshipAdminClient() {
         setProcessingAiId(id);
         try {
             console.log("[Client] Triggering AI Extraction for:", id);
-            const res = await extractWorshipSongAI(id);
+            const res = await extractWorshipSongAI(id, true);
             if (!res.success) {
                 alert("خطا در استخراج هوش مصنوعی: " + res.message);
             } else {
