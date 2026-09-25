@@ -70,7 +70,7 @@ async function ensureSchema(): Promise<void> {
                 'جلسه عمومی و عبادت', 'Worship Service',
                 'شبانی و موعظه کلام: کشیش جواد', 'Pastoral Teaching: Pastor Javad',
                 'با همراهی تیم پرستش و خدمتگزاران کلیسا', 'With Church Worship & Ministry Team',
-                'ساعت ۱۱:۰۰ صبح به وقت واشنگتن دی‌سی (EST)', '11:00 AM Washington D.C. Time (EST)',
+                'ساعت ۱:۰۰ بعد از ظهر به وقت واشنگتن دی‌سی (EST)', '1:00 PM Washington D.C. Time (EST)',
                 'حضوری در واشنگتن دی‌سی و پخش زنده همزمان', 'In-Person (Washington D.C.) & Live Broadcast',
                 'مشارکت پربرکت ایمانداران، سرودهای پرستشی، موعظه کلام زنده خدا و دعای شفاعتی.',
                 'Fellowship of believers, worship songs, living word sermon and intercessory prayer.',

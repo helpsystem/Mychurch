@@ -20,7 +20,9 @@ const localDict = {
     heading: "A Living Church in 34 Countries Worldwide",
     subheading: "Over three decades of continuous ministry, connecting Persian-speaking believers through live services and home groups across America, Europe, and the underground church in Iran.",
     scheduleTitle: "Sunday Worship Services",
-    scheduleText: "Sundays at 10:00 AM Washington D.C. time (6:30 PM Iran time), live.",
+    scheduleTextPrefix: "Sundays at ",
+    scheduleTextSuffix: " (9:30 PM Iran time), live.",
+    scheduleTimeFallback: "10:00 AM Washington D.C. time",
     stats: {
       members: { label: "Active Members", sub: "On 5 continents" },
       countries: { label: "Countries Worldwide", sub: "Online ministry" },
@@ -33,7 +35,9 @@ const localDict = {
     heading: "کلیسایی زنده در ۳۴ کشور جهان",
     subheading: "بیش از سه دهه خدمت پیوسته، اتصال ایمانداران فارسی‌زبان از طریق جلسات زنده و گروه‌های خانگی در آمریکا، اروپا و کلیسای زیرزمینی ایران.",
     scheduleTitle: "جلسات عبادتی یکشنبه",
-    scheduleText: "یکشنبه‌ها ساعت ۱۰:۰۰ صبح به وقت واشنگتن (۶:۳۰ عصر ایران) به صورت زنده.",
+    scheduleTextPrefix: "یکشنبه‌ها ",
+    scheduleTextSuffix: " (۹:۳۰ شب به وقت ایران) به صورت زنده.",
+    scheduleTimeFallback: "ساعت ۱:۰۰ بعد از ظهر به وقت واشنگتن",
     stats: {
       members: { label: "عضو فعال", sub: "در ۵ قاره جهان" },
       countries: { label: "کشور جهان", sub: "شبانی برخط" },
@@ -46,7 +50,9 @@ const localDict = {
     heading: "Una Iglesia Viva en 34 Países del Mundo",
     subheading: "Más de tres décadas de ministerio continuo, conectando a creyentes de habla persa a través de servicios en vivo y grupos hogareños en América, Europa y la iglesia clandestina de Irán.",
     scheduleTitle: "Servicios Dominicales de Adoración",
-    scheduleText: "Los domingos a las 10:00 AM hora de Washington D.C. (6:30 PM hora de Irán), en vivo.",
+    scheduleTextPrefix: "Los domingos a ",
+    scheduleTextSuffix: " (9:30 PM hora de Irán), en vivo.",
+    scheduleTimeFallback: "las 10:00 AM hora de Washington D.C.",
     stats: {
       members: { label: "Miembros Activos", sub: "En 5 continentes" },
       countries: { label: "Países del Mundo", sub: "Ministerio en línea" },
@@ -56,9 +62,14 @@ const localDict = {
   },
 };
 
-export default function StatsSection() {
+interface StatsSectionProps {
+  sundayTime?: { fa: string; en: string } | null;
+}
+
+export default function StatsSection({ sundayTime }: StatsSectionProps = {}) {
   const { language, isRTL } = useLanguage();
   const d = localDict[language] || localDict.fa;
+  const liveTime = sundayTime ? (sundayTime[language as "fa" | "en"] || sundayTime.en) : d.scheduleTimeFallback;
 
   return (
     <section className="w-full py-16 bg-[#0a0e18]/90 relative overflow-hidden px-4 border-y border-white/5" dir={isRTL ? "rtl" : "ltr"}>
@@ -93,7 +104,7 @@ export default function StatsSection() {
               {d.scheduleTitle}
             </span>
             <p className="text-[13px] text-gray-300 mt-1 leading-relaxed">
-              {d.scheduleText}
+              {d.scheduleTextPrefix}{liveTime}{d.scheduleTextSuffix}
             </p>
           </div>
         </div>

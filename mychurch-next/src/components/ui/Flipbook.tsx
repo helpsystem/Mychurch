@@ -21,7 +21,7 @@ const localDict = {
             contact: "با ما در تماس باشید",
         },
         scheduleItems: [
-            { day: "یکشنبه", event: "جلسه عبادی اصلی — ساعت ۱۱ صبح" },
+            { day: "یکشنبه", event: "جلسه عبادی اصلی — ساعت ۱ بعد از ظهر" },
             { day: "سه‌شنبه", event: "مطالعه کتاب مقدس آنلاین — ساعت ۸ شب" },
             { day: "جمعه", event: "جلسه دعا و پرستش — ساعت ۷:۳۰ شب" },
         ],
@@ -56,7 +56,7 @@ const localDict = {
             contact: "Get in Touch",
         },
         scheduleItems: [
-            { day: "Sunday", event: "Main Worship Service — 11:00 AM" },
+            { day: "Sunday", event: "Main Worship Service — 1:00 PM" },
             { day: "Tuesday", event: "Online Bible Study — 8:00 PM" },
             { day: "Friday", event: "Prayer & Worship Gathering — 7:30 PM" },
         ],
@@ -91,7 +91,7 @@ const localDict = {
             contact: "Ponte en contacto",
         },
         scheduleItems: [
-            { day: "Domingo", event: "Servicio de adoración principal — 11:00 a.m." },
+            { day: "Domingo", event: "Servicio de adoración principal — 1:00 p.m." },
             { day: "Martes", event: "Estudio bíblico en línea — 8:00 p.m." },
             { day: "Viernes", event: "Reunión de oración y adoración — 7:30 p.m." },
         ],

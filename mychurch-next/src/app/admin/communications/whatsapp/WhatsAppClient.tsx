@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { MessageSquare, Send, Users, Calendar, Loader2, ArrowLeft, PhoneCall, Info, Key, Smartphone, QrCode, ShieldCheck, RefreshCw, ExternalLink, LogOut, BookOpen, Sparkles, Radio, Bell } from "lucide-react";
 import { toast } from "sonner";
 import { sendWhatsAppBroadcast, sendTestWhatsAppMessage, WhatsAppLog, getVerseOfTheDayContent } from "@/actions/communications";
+import { getActiveWeeklyPrograms } from "@/actions/weekly-programs";
 import Link from "next/link";
 
 export default function WhatsAppClient({ 
@@ -57,12 +58,25 @@ export default function WhatsAppClient({
                 setLoadingPreset(false);
             }
         } else if (type === 'sunday') {
-            setWhatsappData(prev => ({
-                ...prev,
-                isTemplate: false,
-                body: `🕊️ سلام و فیض خداوند بر شما باد\n\nجلسه موعظه و پرستش این یکشنبه ساعت ۱۱:۰۰ صبح در کلیسای ایرانیان واشنگتن دی‌سی برگزار می‌گردد.\nمشتاق دیدار و مشارکت پربرکت شما عزیزان هستیم.\n\n🌐 پخش زنده و جزییات:\nhttps://www.iranianchurchdc.com`
-            }));
-            toast.success("قالب اطلاعیه یکشنبه درج شد.");
+            setLoadingPreset(true);
+            try {
+                // Pull the actual Sunday service time from the schedule admin (church_weekly_programs)
+                // instead of a hardcoded guess, so this template always matches whatever an admin
+                // last set at /admin/schedule.
+                const programs = await getActiveWeeklyPrograms();
+                const sunday = programs.find(p => p.day_of_week === 'sunday');
+                const timeText = sunday?.time_fa || 'ساعت ۱:۰۰ بعد از ظهر';
+                setWhatsappData(prev => ({
+                    ...prev,
+                    isTemplate: false,
+                    body: `🕊️ سلام و فیض خداوند بر شما باد\n\nجلسه موعظه و پرستش این یکشنبه ${timeText} در کلیسای ایرانیان واشنگتن دی‌سی برگزار می‌گردد.\nمشتاق دیدار و مشارکت پربرکت شما عزیزان هستیم.\n\n🌐 پخش زنده و جزییات:\nhttps://www.iranianchurchdc.com`
+                }));
+                toast.success("قالب اطلاعیه یکشنبه درج شد.");
+            } catch {
+                toast.error("خطا در بارگذاری ساعت برنامه یکشنبه");
+            } finally {
+                setLoadingPreset(false);
+            }
         } else if (type === 'broadcast') {
             setWhatsappData(prev => ({
                 ...prev,
@@ -424,11 +438,12 @@ export default function WhatsAppClient({
                                             <button
                                                 type="button"
                                                 onClick={() => applyPreset('sunday')}
-                                                className="px-2.5 py-1 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs transition flex items-center gap-1"
+                                                disabled={loadingPreset}
+                                                className="px-2.5 py-1 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs transition flex items-center gap-1 disabled:opacity-50"
                                                 title="اطلاعیه جلسه یکشنبه"
                                             >
                                                 <Bell className="w-3 h-3" />
-                                                <span>📢 جلسه یکشنبه</span>
+                                                <span>{loadingPreset ? "..." : "📢 جلسه یکشنبه"}</span>
                                             </button>
                                             <button
                                                 type="button"

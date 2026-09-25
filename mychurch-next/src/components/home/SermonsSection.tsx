@@ -36,11 +36,13 @@ const localDict = {
     viewAll: "View All",
     liveStreamAlt: "Live broadcast of the Iranian Church of Washington's services",
     liveBadge: "Live",
-    liveTimeBadge: "Sunday 10:00 AM EST",
+    liveTimeBadge: "Sunday",
     liveAriaLabel: "Live broadcast",
     videoLabel: "Weekly Worship Service & Sermon",
     videoTitle: "Live Broadcast — Iranian Christian Church of Washington",
-    videoDesc: "Join our Sunday worship services online at 10:00 AM Washington D.C. time (EST), with prayer, intercession, worship songs, and live fellowship.",
+    videoDescPrefix: "Join our Sunday worship services online at ",
+    videoDescSuffix: ", with prayer, intercession, worship songs, and live fellowship.",
+    videoDescTimeFallback: "10:00 AM Washington D.C. time (EST)",
     presenter: "Pastor Javad and Mrs. Nazi Rasti",
     enterLive: "Enter Live Broadcast Room",
     sermons: {
@@ -55,11 +57,13 @@ const localDict = {
     viewAll: "مشاهده همه",
     liveStreamAlt: "پخش زنده جلسات کلیسای ایرانیان واشنگتن",
     liveBadge: "زنده (Live)",
-    liveTimeBadge: "یکشنبه ۱۰:۰۰ AM EST",
+    liveTimeBadge: "یکشنبه",
     liveAriaLabel: "پخش زنده",
     videoLabel: "جلسه عبادتی و موعظه هفتگی",
     videoTitle: "پخش زنده جلسات — کلیسای مسیحی ایرانیان واشنگتن",
-    videoDesc: "شرکت آنلاین در جلسات عبادتی یکشنبه‌ها ساعت ۱۰:۰۰ صبح به وقت واشنگتن (EST) همراه با دعا، شفاعت، سرودهای پرستشی و مشارکت زنده.",
+    videoDescPrefix: "شرکت آنلاین در جلسات عبادتی یکشنبه‌ها ",
+    videoDescSuffix: " همراه با دعا، شفاعت، سرودهای پرستشی و مشارکت زنده.",
+    videoDescTimeFallback: "ساعت ۱۰:۰۰ صبح به وقت واشنگتن (EST)",
     presenter: "کشیش جواد و سرکار خانم نازی راستی",
     enterLive: "ورود به اتاق پخش زنده",
     sermons: {
@@ -74,11 +78,13 @@ const localDict = {
     viewAll: "Ver Todo",
     liveStreamAlt: "Transmisión en vivo de los servicios de la Iglesia Iraní de Washington",
     liveBadge: "En Vivo",
-    liveTimeBadge: "Domingo 10:00 AM EST",
+    liveTimeBadge: "Domingo",
     liveAriaLabel: "Transmisión en vivo",
     videoLabel: "Servicio de Adoración y Sermón Semanal",
     videoTitle: "Transmisión en Vivo — Iglesia Cristiana Iraní de Washington",
-    videoDesc: "Únete a nuestros servicios dominicales en línea a las 10:00 AM hora de Washington D.C. (EST), con oración, intercesión, cantos de adoración y comunión en vivo.",
+    videoDescPrefix: "Únete a nuestros servicios dominicales en línea a ",
+    videoDescSuffix: ", con oración, intercesión, cantos de adoración y comunión en vivo.",
+    videoDescTimeFallback: "las 10:00 AM hora de Washington D.C. (EST)",
     presenter: "Pastor Javad y Sra. Nazi Rasti",
     enterLive: "Entrar a la Sala de Transmisión en Vivo",
     sermons: {
@@ -89,9 +95,14 @@ const localDict = {
   },
 };
 
-export default function SermonsSection() {
+interface SermonsSectionProps {
+  sundayTime?: { fa: string; en: string } | null;
+}
+
+export default function SermonsSection({ sundayTime }: SermonsSectionProps = {}) {
   const { language, isRTL } = useLanguage();
   const d = localDict[language] || localDict.fa;
+  const liveTime = sundayTime ? (sundayTime[language as "fa" | "en"] || sundayTime.en) : d.videoDescTimeFallback;
 
   return (
     <section className="w-full py-16 bg-[#0a0e18]/90 relative px-4 border-y border-white/5" dir={isRTL ? "rtl" : "ltr"}>
@@ -169,7 +180,7 @@ export default function SermonsSection() {
                 {d.videoTitle}
               </h3>
               <p className="text-[13px] text-gray-300 leading-relaxed mb-4">
-                {d.videoDesc}
+                {d.videoDescPrefix}{liveTime}{d.videoDescSuffix}
               </p>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-white/5">

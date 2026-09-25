@@ -19,7 +19,8 @@ const textVariants: any = {
 
 const localDict = {
   en: {
-    liveBadge: "Live Sunday Service — 10:00 AM Washington D.C. Time (EST)",
+    liveBadgePrefix: "Live Sunday Service — ",
+    liveBadgeFallback: "1:00 PM Washington D.C. Time (EST)",
     headline: "Iranian Christian Church",
     scriptureQuote: "\"I am the light of the world\"",
     scriptureRef: "John 8:12",
@@ -41,7 +42,8 @@ const localDict = {
     card3Ref: "Galatians 2:20",
   },
   fa: {
-    liveBadge: "پخش زنده یکشنبه‌ها — ساعت ۱۰:۰۰ صبح به وقت واشنگتن (EST)",
+    liveBadgePrefix: "پخش زنده یکشنبه‌ها — ",
+    liveBadgeFallback: "ساعت ۱:۰۰ بعد از ظهر به وقت واشنگتن (EST)",
     headline: "کلیسای مسیحی ایرانیان",
     scriptureQuote: "«من نور جهان هستم»",
     scriptureRef: "انجیل یوحنا ۸:۱۲",
@@ -63,7 +65,8 @@ const localDict = {
     card3Ref: "غلاطیان ۲:۲۰",
   },
   es: {
-    liveBadge: "Servicio en Vivo los Domingos — 10:00 AM hora de Washington D.C. (EST)",
+    liveBadgePrefix: "Servicio en Vivo los Domingos — ",
+    liveBadgeFallback: "1:00 PM hora de Washington D.C. (EST)",
     headline: "Iglesia Cristiana Iraní",
     scriptureQuote: "\"Yo soy la luz del mundo\"",
     scriptureRef: "Juan 8:12",
@@ -86,10 +89,17 @@ const localDict = {
   },
 };
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  sundayTime?: { fa: string; en: string } | null;
+}
+
+export default function HeroSection({ sundayTime }: HeroSectionProps = {}) {
   const { language, isRTL } = useLanguage();
   const d = localDict[language] || localDict.fa;
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+  // Spanish has no dedicated schedule column in church_weekly_programs — falls back
+  // to the English time string, matching the pattern used elsewhere on this page.
+  const liveTime = sundayTime ? (sundayTime[language as "fa" | "en"] || sundayTime.en) : d.liveBadgeFallback;
 
   return (
     <section className="relative w-full min-h-[760px] lg:min-h-[840px] flex items-center justify-center overflow-hidden bg-[#0a0e18] pt-20">
@@ -118,7 +128,7 @@ export default function HeroSection() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
             </span>
             <span className="text-[13px] text-gray-100 font-medium tracking-wide">
-              {d.liveBadge}
+              {d.liveBadgePrefix}{liveTime}
             </span>
             <ArrowIcon className="w-3.5 h-3.5 text-amber-400 group-hover:-translate-x-1 transition-transform" />
           </Link>
