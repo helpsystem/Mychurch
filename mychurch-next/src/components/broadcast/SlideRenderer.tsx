@@ -12,6 +12,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { LordsPrayerSlide } from "./luxury/LordsPrayerSlide";
 import InteractiveMediaFrame, { extractYoutubeId, isYoutubeUrl } from "./InteractiveMediaFrame";
+import { getSafeAudioUrl } from "@/components/worship/SmartWorshipPlayer";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 const localDict = {
@@ -529,7 +530,7 @@ export function SlideRenderer({
                             <div className="absolute bottom-12 left-12 text-left z-10 glass-strong p-4 border border-white/10 rounded-2xl">
                                 <p className="text-white/80 font-bold text-xl">{content.title}</p>
                                 {opts?.showArtist !== false && (
-                                    <p className="text-white/50 text-sm mt-1">Iran Church DC Worship</p>
+                                    <p className="text-white/50 text-sm mt-1">{content.artist || 'Iran Church DC Worship'}</p>
                                 )}
                             </div>
                         )}
@@ -1183,6 +1184,30 @@ export function SlideRenderer({
                 const content = slide.content as SlideContentMedia;
                 const displayConfig = content.displayConfig;
 
+                // Audio has no visual frame to speak of — InteractiveMediaFrame only knows
+                // 'image'/'video', so give it a dedicated player instead of miscasting it as an image.
+                if (content.mediaType === 'audio') {
+                    return (
+                        <div className="w-full h-full bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 flex flex-col items-center justify-center gap-8 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:24px_24px]" />
+                            <div className="relative z-10 w-28 h-28 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                                <Megaphone className="w-12 h-12 text-teal-300" />
+                            </div>
+                            {content.title && (
+                                <p className="relative z-10 text-white text-2xl font-bold font-[Vazirmatn] text-center px-8">{content.title}</p>
+                            )}
+                            <audio
+                                key={content.url}
+                                src={getSafeAudioUrl(content.url)}
+                                controls
+                                autoPlay={content.isAutoPlay}
+                                loop={content.isLoop}
+                                className="relative z-10 w-[80%] max-w-xl"
+                            />
+                        </div>
+                    );
+                }
+
                 // If customized width/height or position specified
                 const widthPercent = displayConfig?.width ?? 100;
                 const heightPercent = displayConfig?.height ?? 100;
@@ -1301,6 +1326,39 @@ export function SlideRenderer({
                                 )}
                             </div>
                         </div>
+                    </div>
+                );
+            }
+
+            case SlideType.MEETING: {
+                const content = slide.content as SlideContentMeeting;
+                const roomName = (content.roomName || '').trim();
+                if (!roomName) {
+                    return (
+                        <div className="w-full h-full flex items-center justify-center bg-black">
+                            <h1 className="text-4xl text-white">{d.unsupportedSlideType}</h1>
+                        </div>
+                    );
+                }
+                // Free, credential-less embed via Jitsi's public server. `roomName` doubles as
+                // the meeting's identity — anyone with the same room name joins the same call.
+                const configHash = [
+                    content.subject ? `config.subject=%22${encodeURIComponent(content.subject)}%22` : null,
+                    'config.prejoinPageEnabled=false',
+                    'config.startWithVideoMuted=false',
+                    'config.disableDeepLinking=true',
+                ].filter(Boolean).join('&');
+                const jitsiUrl = `https://meet.jit.si/${encodeURIComponent(roomName)}#${configHash}`;
+
+                return (
+                    <div className="w-full h-full bg-black relative">
+                        <iframe
+                            key={roomName}
+                            src={jitsiUrl}
+                            className="w-full h-full border-0"
+                            allow="camera; microphone; fullscreen; display-capture; autoplay"
+                            allowFullScreen
+                        />
                     </div>
                 );
             }

@@ -3,10 +3,10 @@
 import "@/lib/react-polyfill";
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Radio, BookOpen, ArrowLeft, ArrowRight, Globe, Sparkles, Flame, Lightbulb, Heart } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
+import HeroParticleField from "@/components/ui/3d/HeroParticleField";
 
 const textVariants: any = {
   hidden: { opacity: 0, y: 25 },
@@ -19,8 +19,8 @@ const textVariants: any = {
 
 const localDict = {
   en: {
-    heroImgAlt: "The altar and the Word of God at the Iranian Church",
-    liveBadge: "Live Sunday Service — 10:00 AM Washington D.C. Time (EST)",
+    liveBadgePrefix: "Live Sunday Service — ",
+    liveBadgeFallback: "1:00 PM Washington D.C. Time (EST)",
     headline: "Iranian Christian Church",
     scriptureQuote: "\"I am the light of the world\"",
     scriptureRef: "John 8:12",
@@ -42,8 +42,8 @@ const localDict = {
     card3Ref: "Galatians 2:20",
   },
   fa: {
-    heroImgAlt: "محراب و کلام خدا در کلیسای ایرانیان",
-    liveBadge: "پخش زنده یکشنبه‌ها — ساعت ۱۰:۰۰ صبح به وقت واشنگتن (EST)",
+    liveBadgePrefix: "پخش زنده یکشنبه‌ها — ",
+    liveBadgeFallback: "ساعت ۱:۰۰ بعد از ظهر به وقت واشنگتن (EST)",
     headline: "کلیسای مسیحی ایرانیان",
     scriptureQuote: "«من نور جهان هستم»",
     scriptureRef: "انجیل یوحنا ۸:۱۲",
@@ -65,8 +65,8 @@ const localDict = {
     card3Ref: "غلاطیان ۲:۲۰",
   },
   es: {
-    heroImgAlt: "El altar y la Palabra de Dios en la Iglesia Iraní",
-    liveBadge: "Servicio en Vivo los Domingos — 10:00 AM hora de Washington D.C. (EST)",
+    liveBadgePrefix: "Servicio en Vivo los Domingos — ",
+    liveBadgeFallback: "1:00 PM hora de Washington D.C. (EST)",
     headline: "Iglesia Cristiana Iraní",
     scriptureQuote: "\"Yo soy la luz del mundo\"",
     scriptureRef: "Juan 8:12",
@@ -89,25 +89,27 @@ const localDict = {
   },
 };
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  sundayTime?: { fa: string; en: string } | null;
+}
+
+export default function HeroSection({ sundayTime }: HeroSectionProps = {}) {
   const { language, isRTL } = useLanguage();
   const d = localDict[language] || localDict.fa;
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+  // Spanish has no dedicated schedule column in church_weekly_programs — falls back
+  // to the English time string, matching the pattern used elsewhere on this page.
+  const liveTime = sundayTime ? (sundayTime[language as "fa" | "en"] || sundayTime.en) : d.liveBadgeFallback;
 
   return (
     <section className="relative w-full min-h-[760px] lg:min-h-[840px] flex items-center justify-center overflow-hidden bg-[#0a0e18] pt-20">
-      {/* ── Background Imagery & Spiritual Luminous Glow ────────────────────── */}
+      {/* ── Animated Background: a field of warm light particles slowly ────────
+           tracing the shape of a cross, drifting like dust in a sunbeam ────── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <Image
-          src="/images/stitch/stitch_asset_2.webp"
-          alt={d.heroImgAlt}
-          fill
-          priority
-          className="object-cover object-center filter brightness-[0.38] contrast-125 scale-105 transition-transform duration-1000 ease-out"
-        />
-        {/* Multilayered Spiritual Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e18] via-[#0a0e18]/80 to-[#0f131d]/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.22)_0%,rgba(10,14,24,0.92)_75%)]" />
+        <HeroParticleField color="#fbbf24" background="#0a0e18" density={2400} className="opacity-90" />
+        {/* Multilayered Spiritual Gradients — keep the text legible over the particles */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e18] via-[#0a0e18]/70 to-[#0a0e18]/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,14,24,0.85)_78%)]" />
         <div className="absolute -top-24 right-10 w-96 h-[600px] bg-amber-500/10 rotate-12 blur-[120px]" />
         <div className="absolute -bottom-24 left-10 w-96 h-[600px] bg-cyan-500/10 -rotate-12 blur-[120px]" />
       </div>
@@ -126,7 +128,7 @@ export default function HeroSection() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
             </span>
             <span className="text-[13px] text-gray-100 font-medium tracking-wide">
-              {d.liveBadge}
+              {d.liveBadgePrefix}{liveTime}
             </span>
             <ArrowIcon className="w-3.5 h-3.5 text-amber-400 group-hover:-translate-x-1 transition-transform" />
           </Link>

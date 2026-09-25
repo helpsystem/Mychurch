@@ -587,8 +587,13 @@ export async function sendSMSBroadcast(
         const { sendSMSViaGoogleMessages, checkGoogleMessagesPairing } = await import("@/services/google-messages");
         const { sendSMS } = await import("@/lib/twilio");
 
+        // Twilio first: a real API with per-message delivery confirmation, safe for
+        // concurrent/sequential sends. Google Messages drives a single shared headless
+        // browser through messages.google.com's UI — it's the fragile fallback (depends on
+        // a paired Android phone staying online and Google's web UI not changing), not the
+        // primary path, especially for a broadcast that fires off many sends in a row.
         let gmPaired = false;
-        if (providerPreference === "google-messages" || providerPreference === "auto") {
+        if (providerPreference === "google-messages") {
             try {
                 const gmStatus = await checkGoogleMessagesPairing();
                 gmPaired = gmStatus.paired;
@@ -601,23 +606,32 @@ export async function sendSMSBroadcast(
         for (const recipient of recipients) {
             let sent = false;
 
-            // 1. Google Messages SIM
-            if ((providerPreference === "google-messages" || providerPreference === "auto") && gmPaired) {
-                try {
-                    sent = await sendSMSViaGoogleMessages(recipient, body.trim());
-                } catch (e: any) {
-                    lastError = e?.message || "Google Messages error";
-                }
-            }
-
-            // 2. Fallback to Twilio SMS
-            if (!sent && (providerPreference === "twilio" || providerPreference === "auto")) {
+            // 1. Twilio SMS
+            if (providerPreference === "twilio" || providerPreference === "auto") {
                 try {
                     const twRes = await sendSMS(recipient, body.trim());
                     sent = twRes.success;
                     if (!sent) lastError = twRes.error || "Twilio SMS delivery failure";
                 } catch (e: any) {
                     lastError = e?.message || "Twilio SMS exception";
+                }
+            }
+
+            // 2. Google Messages SIM — only when explicitly requested, or as a last resort
+            // if Twilio isn't configured/failed in "auto" mode.
+            if (!sent && (providerPreference === "google-messages" || providerPreference === "auto")) {
+                if (providerPreference === "auto" && !gmPaired) {
+                    try {
+                        const gmStatus = await checkGoogleMessagesPairing();
+                        gmPaired = gmStatus.paired;
+                    } catch {}
+                }
+                if (gmPaired) {
+                    try {
+                        sent = await sendSMSViaGoogleMessages(recipient, body.trim());
+                    } catch (e: any) {
+                        lastError = e?.message || "Google Messages error";
+                    }
                 }
             }
 

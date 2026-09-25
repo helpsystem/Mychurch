@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Smartphone, Send, RefreshCw, CheckCircle, XCircle, Loader2, Zap, ShieldCheck, QrCode, Cpu, BookOpen, Bell, Radio, Sparkles, Users, User } from "lucide-react";
 import { toast } from "sonner";
 import { getVerseOfTheDayContent, sendSMSBroadcast } from "@/actions/communications";
+import { getActiveWeeklyPrograms } from "@/actions/weekly-programs";
 
 export default function SMSGatewayPage() {
     const [activeTab, setActiveTab] = useState<"google-messages" | "twilio">("google-messages");
@@ -42,8 +43,21 @@ export default function SMSGatewayPage() {
                 setLoadingPreset(false);
             }
         } else if (type === 'sunday') {
-            setTestMsg(`🕊️ سلام و فیض خداوند بر شما باد\n\nجلسه موعظه و پرستش این یکشنبه ساعت ۱۱:۰۰ صبح در کلیسای ایرانیان واشنگتن دی‌سی برگزار می‌گردد.\nمشتاق دیدار شما عزیزان هستیم.\n\nhttps://www.iranianchurchdc.com`);
-            toast.success("قالب اطلاعیه یکشنبه درج شد.");
+            setLoadingPreset(true);
+            try {
+                // Pull the actual Sunday service time from the schedule admin (church_weekly_programs)
+                // instead of a hardcoded guess, so this test template always matches whatever an
+                // admin last set at /admin/schedule.
+                const programs = await getActiveWeeklyPrograms();
+                const sunday = programs.find(p => p.day_of_week === 'sunday');
+                const timeText = sunday?.time_fa || 'ساعت ۱:۰۰ بعد از ظهر';
+                setTestMsg(`🕊️ سلام و فیض خداوند بر شما باد\n\nجلسه موعظه و پرستش این یکشنبه ${timeText} در کلیسای ایرانیان واشنگتن دی‌سی برگزار می‌گردد.\nمشتاق دیدار شما عزیزان هستیم.\n\nhttps://www.iranianchurchdc.com`);
+                toast.success("قالب اطلاعیه یکشنبه درج شد.");
+            } catch {
+                toast.error("خطا در بارگذاری ساعت برنامه یکشنبه");
+            } finally {
+                setLoadingPreset(false);
+            }
         } else if (type === 'broadcast') {
             setTestMsg(`🎥 پخش زنده مراسم کلیسا آغاز شد:\nhttps://www.iranianchurchdc.com/broadcast/view`);
             toast.success("قالب پخش زنده درج شد.");
@@ -395,11 +409,12 @@ export default function SMSGatewayPage() {
                             <button
                                 type="button"
                                 onClick={() => applyPreset('sunday')}
-                                className="px-2 py-0.5 rounded bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-[11px] transition flex items-center gap-1"
+                                disabled={loadingPreset}
+                                className="px-2 py-0.5 rounded bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-[11px] transition flex items-center gap-1 disabled:opacity-50"
                                 title="اطلاعیه یکشنبه"
                             >
                                 <Bell className="w-3 h-3" />
-                                <span>📢 یکشنبه</span>
+                                <span>{loadingPreset ? "..." : "📢 یکشنبه"}</span>
                             </button>
                             <button
                                 type="button"

@@ -15,11 +15,19 @@ import {
     SlideContentPrayer 
 } from "@/types/broadcast";
 import { cn } from "@/lib/utils";
-import { 
-    BookOpen, Music, FileImage, Video, Mic, 
-    Megaphone, Edit3, PieChart, PhoneCall, Heart, Youtube
+import {
+    BookOpen, Music, FileImage, Video, Mic,
+    Megaphone, Edit3, PieChart, PhoneCall, Heart, Youtube, Cross
 } from "lucide-react";
 import { extractYoutubeId } from "./InteractiveMediaFrame";
+
+// Maps a "scene" picked in the left sidebar to the matching slide-type filter here,
+// so clicking e.g. "Worship" in Scenes narrows this grid to worship-song slides.
+const SCENE_TO_FILTER: Record<string, 'all' | 'lyrics' | 'bible' | 'media'> = {
+    scene_1: 'lyrics',
+    scene_2: 'bible',
+    scene_5: 'media',
+};
 
 export function SlideGrid() {
     const { t } = useLanguage();
@@ -29,6 +37,14 @@ export function SlideGrid() {
     const activeSceneId = useBroadcastStore((state) => state.activeSceneId);
 
     const [filter, setFilter] = useState<'all' | 'lyrics' | 'bible' | 'media'>('all');
+
+    // Follow scene selection, but only for scenes that map to a slide-type filter
+    // (Lower Thirds / Main Cam scenes act on the layout instead, handled in BroadcastSidebar).
+    useEffect(() => {
+        const mapped = SCENE_TO_FILTER[activeSceneId];
+        if (mapped) setFilter(mapped);
+        else if (!activeSceneId) setFilter('all');
+    }, [activeSceneId]);
 
     // Counts for tabs
     const counts = useMemo(() => {
@@ -248,6 +264,14 @@ export function SlideGrid() {
                                         <Heart className="w-4 h-4 text-rose-400 mx-auto mb-1" />
                                         <p className="text-[8px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
                                             {(slide.content as SlideContentPrayer).title || 'درخواست دعا'}
+                                        </p>
+                                    </div>
+                                )}
+                                {slide.type === SlideType.LORDS_PRAYER && (
+                                    <div className="w-full text-center px-1">
+                                        <Cross className="w-4 h-4 text-amber-300 mx-auto mb-1" />
+                                        <p className="text-[8px] text-white/90 font-bold truncate leading-tight font-[Vazirmatn]">
+                                            دعای ربانی
                                         </p>
                                     </div>
                                 )}

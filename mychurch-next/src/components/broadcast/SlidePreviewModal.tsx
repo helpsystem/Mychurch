@@ -5,6 +5,7 @@ import { X, ChevronDown, ChevronUp, Copy, Check } from "lucide-react";
 import { ScripturePage, SlideType } from "@/types/broadcast";
 import { Slide } from "@/types/broadcast";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
 
 const localDict = {
   en: {
@@ -317,8 +318,8 @@ export default function SlidePreviewModal({ slide, isOpen, onClose, lang }: Slid
         </div>
 
         <div className="flex-1 overflow-y-auto p-6">
-          <div className="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p className="text-slate-300">{JSON.stringify(slide.content, null, 2)}</p>
+          <div className="w-full aspect-video rounded-xl overflow-hidden border border-white/10 bg-black relative">
+            <SlideRenderer slide={slide} isRemotePreview={true} />
           </div>
         </div>
 

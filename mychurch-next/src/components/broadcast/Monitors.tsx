@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { MonitorPlay, Camera } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/providers/LanguageProvider";
 import { useBroadcastStore } from "@/store/useBroadcastStore";
 import { SmartWorshipPlayer } from "@/components/worship/SmartWorshipPlayer";
@@ -9,6 +10,7 @@ import { SlideType, SlideContentLyrics } from "@/types/broadcast";
 import { SlideRenderer } from "@/components/broadcast/SlideRenderer";
 import { AudioStage3D } from "@/components/broadcast/AudioStage3D";
 import BroadcastOverlays from "@/components/broadcast/BroadcastOverlays";
+import { SLIDE_TRANSITION_VARIANTS } from "@/components/broadcast/slideTransitions";
 import { cn } from "@/lib/utils";
 
 // Camera Stream Video Renderer
@@ -59,7 +61,15 @@ export function PreviewMonitor() {
     const { t } = useLanguage();
     const slides = useBroadcastStore((state) => state.slides);
     const activeSlideIndex = useBroadcastStore((state) => state.activeSlideIndex);
+    const sessionId = useBroadcastStore((state) => state.sessionId);
+    const nextSlide = useBroadcastStore((state) => state.nextSlide);
+    const hasNext = activeSlideIndex < slides.length - 1;
     const previewSlide = slides[activeSlideIndex + 1] || slides[activeSlideIndex] || null;
+
+    const handleEdit = () => {
+        const href = sessionId && sessionId !== 'default' ? `/broadcast/builder?id=${sessionId}` : '/broadcast/builder';
+        window.open(href, '_blank', 'noopener,noreferrer');
+    };
 
     return (
         <div className="flex-1 flex flex-col bg-neutral-900 rounded-xl border border-border/10 overflow-hidden relative group">
@@ -76,10 +86,15 @@ export function PreviewMonitor() {
             </div>
 
             <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-end gap-2 font-[Vazirmatn]">
-                <button className="px-4 py-1.5 text-xs font-bold bg-neutral-800 hover:bg-neutral-700 rounded text-white transition" title="Edit">
+                <button onClick={handleEdit} className="px-4 py-1.5 text-xs font-bold bg-neutral-800 hover:bg-neutral-700 rounded text-white transition" title="Edit">
                     {t.edit || "Edit"}
                 </button>
-                <button className="px-4 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-500 rounded text-white transition" title="Transition">
+                <button
+                    onClick={nextSlide}
+                    disabled={!hasNext}
+                    className="px-4 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed rounded text-white transition"
+                    title="Transition"
+                >
                     {t.transition || "Transition"} ➔
                 </button>
             </div>
@@ -109,7 +124,9 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     
     const lyricsVisibility = useBroadcastStore((state) => state.lyricsVisibility);
     const setLyricsVisibility = useBroadcastStore((state) => state.setLyricsVisibility);
-    
+    const lastTransition = useBroadcastStore((state) => state.lastTransition);
+    const pushAudioSync = useBroadcastStore((state) => state.pushAudioSync);
+
     const activeSlide = slides[activeSlideIndex];
     const channelRef = useRef<BroadcastChannel | null>(null);
 
@@ -126,25 +143,28 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
     }, [sessionId]);
 
     const handleTimeUpdate = React.useCallback((time: number, isPlaying?: boolean) => {
-        // Broadcast the exact audio time to the viewer window
+        const playing = isPlaying !== undefined ? isPlaying : false;
+        // Broadcast the exact audio time to same-browser viewer tabs
         if (channelRef.current) {
             channelRef.current.postMessage({
                 type: 'audio_sync',
-                payload: { 
-                    currentTime: time, 
-                    isPlaying: isPlaying !== undefined ? isPlaying : false 
-                }
+                payload: { currentTime: time, isPlaying: playing }
             });
         }
-    }, []);
+        // ...and to viewers on other devices via Supabase Realtime (throttled)
+        pushAudioSync(time, playing);
+    }, [pushAudioSync]);
 
     const renderSlideOrKaraoke = (isTrans: boolean, isPreview: boolean = false) => {
         const lyricsContent = activeSlide?.content as SlideContentLyrics;
-        if (activeSlide?.type === SlideType.LYRICS && (lyricsContent?.timingData || lyricsContent?.hasTiming)) {
+        // Give every worship-song slide a real player (transport controls + audio playback)
+        // as soon as it has an audio source — synced karaoke timing is a bonus, not a requirement.
+        const inner = (activeSlide?.type === SlideType.LYRICS && lyricsContent?.audioUrl) ? (() => {
+            const displayOpts = lyricsContent.displayOptions;
             return (
                 <SmartWorshipPlayer
                     timingData={lyricsContent.timingData}
-                    audioSrc={lyricsContent.audioUrl || ''}
+                    audioSrc={lyricsContent.audioUrl}
                     title={lyricsContent.title}
                     viewOnly={isPreview}
                     onTimeUpdate={handleTimeUpdate}
@@ -159,11 +179,14 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                         persian: lyricsContent.persianTranslationLines
                     }}
                     isTransparent={isTrans}
+                    backgroundImage={displayOpts?.backgroundUrl}
+                    backgroundOpacity={displayOpts?.backgroundOpacity}
+                    backgroundBlur={displayOpts?.backgroundBlur}
+                    textShadow={displayOpts?.textShadow}
+                    objectFit={displayOpts?.objectFit}
                 />
             );
-        }
-
-        return (
+        })() : (
             <SlideRenderer
                 slide={activeSlide}
                 isRemotePreview={isPreview}
@@ -173,6 +196,23 @@ export function ProgramMonitor({ isLive }: { isLive: boolean }) {
                 scripturePopupScale={scripturePopupScale}
                 lyricsVisibility={lyricsVisibility}
             />
+        );
+
+        // Random transition effect on every slide change (not on page/verse-only changes)
+        const variants = SLIDE_TRANSITION_VARIANTS[lastTransition] || SLIDE_TRANSITION_VARIANTS.fade;
+        return (
+            <AnimatePresence mode="sync" initial={false}>
+                <motion.div
+                    key={activeSlide?.id ?? activeSlideIndex}
+                    className="absolute inset-0 w-full h-full"
+                    variants={variants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                >
+                    {inner}
+                </motion.div>
+            </AnimatePresence>
         );
     };
 
