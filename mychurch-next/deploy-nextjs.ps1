@@ -177,6 +177,9 @@ sleep 3
 # Temporarily release HugePages to free up 3GB of RAM for the Next.js compile step
 echo '⚠️ Releasing HugePages to maximize free RAM for compilation...'
 sysctl -w vm.nr_hugepages=0 || true
+sysctl -w vm.overcommit_memory=1 || true
+killall -9 chrome 2>/dev/null || true
+sync && echo 3 > /proc/sys/vm/drop_caches || true
 free -h
 
 if [ -d node_modules ] && [ -f .deps-lock.json ] && cmp -s package-lock.json .deps-lock.json; then
