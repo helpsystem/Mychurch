@@ -14,6 +14,14 @@ import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
 import os from 'os';
+import dns from 'dns';
+
+// Ensure Node.js DNS prefers IPv4 over unreachable IPv6 routes on production servers
+try {
+    dns.setDefaultResultOrder('ipv4first');
+} catch {
+    // Unsupported in older Node versions
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,12 +39,19 @@ if (fs.existsSync(envLocalPath)) {
     console.warn('[env] No .env.local or .env found!');
 }
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AQ.Ab8RN6IpDe6-VgR8OumktCUPuVVPR015eoQRIjC8gAFaarcYSw';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+if (!GEMINI_API_KEY) {
+    console.error('GEMINI_API_KEY is not configured. Set it in .env.local before running this script.');
+    process.exit(1);
+}
+// generativelanguage.googleapis.com is the correct endpoint for `?key=` API-key auth
+// (aiplatform.googleapis.com / Vertex AI requires OAuth2, not a raw API key).
 const GEMINI_BASE = 'https://generativelanguage.googleapis.com/v1beta';
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL,
-    ssl: { rejectUnauthorized: false }
+    ssl: { rejectUnauthorized: false },
+    connectionTimeoutMillis: 10000,
 });
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
@@ -87,7 +102,7 @@ async function downloadAudio(url: string): Promise<string | null> {
     }
 }
 
-// ── Transcribe audio using Vertex AI with inline base64
+// ── Transcribe audio using the Gemini API with inline base64
 async function transcribeWithGemini(filePath: string, lyricsHint: string): Promise<any | null> {
     try {
         console.log('  🤖 Transcribing with Gemini (Inline)...');
@@ -149,9 +164,9 @@ NO MARKDOWN. NO EXPLANATION. ONLY RAW JSON.`;
             }
         };
 
-        const VERTEX_URL = `https://aiplatform.googleapis.com/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-        
-        const res = await fetch(VERTEX_URL, {
+        const GEMINI_URL = `${GEMINI_BASE}/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+        const res = await fetch(GEMINI_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),

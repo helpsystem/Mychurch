@@ -317,7 +317,7 @@ export async function getUserLikedSongs(): Promise<string[]> {
     }
 }
 
-export async function extractWorshipSongAI(id: string): Promise<{ success: boolean; message?: string }> {
+export async function extractWorshipSongAI(id: string, force: boolean = false): Promise<{ success: boolean; message?: string; skipped?: boolean }> {
     await ensureWorshipManagementAccess();
 
     console.log(`[AI-Wizard] Starting extraction for ID: ${id}`);
@@ -332,7 +332,14 @@ export async function extractWorshipSongAI(id: string): Promise<{ success: boole
             console.error(`[AI-Wizard] Missing lyrics_fa for song: ${id}`);
             return { success: false, message: "متن فارسی یافت نشد" };
         }
-        
+        // Skip the (billable) AI call entirely when timing already exists, unless explicitly forced —
+        // this is what lets the on-demand "sync" button in the broadcast song picker be pressed freely
+        // without re-spending Gemini tokens on a song that's already been processed.
+        if (!force && song.timing_data && Object.keys(song.timing_data as object).length > 0) {
+            console.log(`[AI-Wizard] Timing already exists for ${id}, skipping (force=false).`);
+            return { success: true, skipped: true, message: "این سرود قبلاً تایمینگ دارد" };
+        }
+
         console.log(`[AI-Wizard] Processing song: ${song.title_fa}`);
         const { getAIConfig } = await import("./ai-config");
         const aiConfig = await getAIConfig();

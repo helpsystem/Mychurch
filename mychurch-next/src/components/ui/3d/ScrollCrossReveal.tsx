@@ -104,15 +104,29 @@ export default function ScrollCrossReveal({
       const raw = -rect.top / total;
       scrollProgress = Math.min(1, Math.max(0, raw));
 
-      // fade verses based on which segment we're in
+      // Fade verses based on which segment we're in. Each verse is fully opaque
+      // across the core of its own segment, cross-fading only near the boundary
+      // with its neighbor — the first verse stays at opacity 1 at scrollProgress
+      // 0 and the last stays at opacity 1 at scrollProgress 1, instead of the old
+      // centered falloff that left both ends of the section looking empty.
       const segment = 1 / verses.length;
+      const fade = Math.min(0.15, segment * 0.4);
       verseRefs.current.forEach((el, i) => {
         if (!el) return;
         const segStart = i * segment;
         const segEnd = segStart + segment;
-        const center = (segStart + segEnd) / 2;
-        const dist = Math.abs(scrollProgress - center) / (segment * 0.6);
-        const opacity = Math.max(0, 1 - dist);
+        let opacity = 1;
+        if (i > 0) {
+          const fadeInEnd = segStart + fade;
+          if (scrollProgress < segStart) opacity = 0;
+          else if (scrollProgress < fadeInEnd) opacity = (scrollProgress - segStart) / fade;
+        }
+        if (i < verses.length - 1) {
+          const fadeOutStart = segEnd - fade;
+          if (scrollProgress > segEnd) opacity = Math.min(opacity, 0);
+          else if (scrollProgress > fadeOutStart) opacity = Math.min(opacity, (segEnd - scrollProgress) / fade);
+        }
+        opacity = Math.max(0, Math.min(1, opacity));
         el.style.opacity = String(opacity);
         el.style.transform = `translateY(${(1 - opacity) * 12}px)`;
       });
@@ -332,15 +346,25 @@ export default function ScrollCrossReveal({
                 ref={(el) => {
                   verseRefs.current[i] = el;
                 }}
-                className="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300 pointer-events-none"
+                className="absolute inset-0 flex flex-col items-center justify-center px-4 transition-opacity duration-300 pointer-events-none"
                 style={{ opacity: i === 0 ? 1 : 0 }}
               >
-                <p className="text-xl leading-relaxed text-white sm:text-2xl drop-shadow-md">
-                  {verse.text}
-                </p>
-                <p className="mt-4 text-sm tracking-wide text-amber-200/70 drop-shadow-md">
-                  {verse.reference}
-                </p>
+                <div className="rounded-2xl border border-amber-200/15 bg-black/35 px-6 py-8 shadow-[0_8px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-md sm:px-10 sm:py-10">
+                  <span className="mx-auto mb-5 block h-px w-14 bg-gradient-to-r from-transparent via-amber-300/70 to-transparent" />
+                  <p
+                    className="text-xl leading-[1.9] text-amber-50 sm:text-2xl"
+                    style={{
+                      fontFamily: dir === "rtl" ? "var(--font-naskh)" : "var(--font-cormorant)",
+                      textShadow: "0 2px 20px rgba(0,0,0,0.65)",
+                    }}
+                  >
+                    {verse.text}
+                  </p>
+                  <span className="mx-auto mb-3 mt-6 block h-px w-14 bg-gradient-to-r from-transparent via-amber-300/70 to-transparent" />
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-amber-300/85">
+                    {verse.reference}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

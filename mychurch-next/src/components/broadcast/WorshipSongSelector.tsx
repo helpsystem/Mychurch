@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { WorshipSong, SlideContentLyrics, LyricsLine, LyricsDisplayOptions, AppLanguage } from '@/types/broadcast';
 import { fetchWorshipSongs, searchSongs, parseLyrics, BROADCAST_TRANSLATIONS } from './dataService';
+import { extractWorshipSongAI } from '@/actions/worship';
 import { isYoutubeUrl, getYoutubeEmbedUrl } from './InteractiveMediaFrame';
 import AddFromYoutubeModal from '@/components/worship/AddFromYoutubeModal';
 import { useLanguage } from '@/providers/LanguageProvider';
@@ -50,6 +51,11 @@ const localDict = {
         audioFileBadge: "Audio File",
         videoBadge: "Video",
         timingBadge: "Timing",
+        syncTiming: "Sync timing",
+        syncingTiming: "Syncing...",
+        syncTimingSuccess: "Timing extracted and saved ✓",
+        syncTimingSkipped: "Timing already exists",
+        syncTimingError: "Failed to sync timing",
         videoAudioPlayer: "Video / Audio Player",
         audioPlayer: "Audio Player",
         persianTextToggle: "🇮🇷 Persian Text",
@@ -98,6 +104,11 @@ const localDict = {
         audioFileBadge: "فایل صوتی",
         videoBadge: "ویدیو",
         timingBadge: "تایمینگ",
+        syncTiming: "سینک تایمینگ",
+        syncingTiming: "در حال سینک...",
+        syncTimingSuccess: "تایمینگ استخراج و ذخیره شد ✓",
+        syncTimingSkipped: "این سرود قبلاً تایمینگ دارد",
+        syncTimingError: "خطا در سینک تایمینگ",
         videoAudioPlayer: "پلیر ویدیو / صوت سرود",
         audioPlayer: "پلیر صوت سرود",
         persianTextToggle: "🇮🇷 متن فارسی",
@@ -146,6 +157,11 @@ const localDict = {
         audioFileBadge: "Archivo de audio",
         videoBadge: "Video",
         timingBadge: "Sincronización",
+        syncTiming: "Sincronizar tiempos",
+        syncingTiming: "Sincronizando...",
+        syncTimingSuccess: "Tiempos extraídos y guardados ✓",
+        syncTimingSkipped: "Este canto ya tiene sincronización",
+        syncTimingError: "Error al sincronizar",
         videoAudioPlayer: "Reproductor de video / audio",
         audioPlayer: "Reproductor de audio",
         persianTextToggle: "🇮🇷 Texto persa",
@@ -392,6 +408,7 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
   // Selected song state
   const [selectedSong, setSelectedSong] = useState<WorshipSong | null>(null);
   const [timingData, setTimingData] = useState<any>(null);
+  const [isSyncingTiming, setIsSyncingTiming] = useState(false);
   // Tracks which song's timing-data fetch is the latest one, so a slow
   // response for a song the user already clicked past can't overwrite the
   // timing data of the song they're now on.
@@ -519,6 +536,33 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
     } else {
       console.log('⚠️ [WorshipSongSelector] No timing data for song', song.id);
       setTimingData(null);
+    }
+  };
+
+  // On-demand timing extraction — only spends a Gemini call when the operator actually
+  // picks this song to use live, and the action itself skips the AI call entirely if
+  // timing already exists, so repeated clicks (or re-selecting the same song later) are free.
+  const handleSyncTiming = async () => {
+    if (!selectedSong || isSyncingTiming) return;
+    setIsSyncingTiming(true);
+    try {
+      const res = await extractWorshipSongAI(String(selectedSong.id));
+      if (!res.success) {
+        toast.error(res.message || d.syncTimingError);
+        return;
+      }
+      if (res.skipped) {
+        toast.info(d.syncTimingSkipped);
+        return;
+      }
+      toast.success(d.syncTimingSuccess);
+      // Re-run the same load path handleSongSelect uses, now that timing_data exists in the DB
+      await handleSongSelect({ ...selectedSong, hasTiming: true });
+    } catch (err) {
+      console.error('[WorshipSongSelector] Sync timing failed:', err);
+      toast.error(d.syncTimingError);
+    } finally {
+      setIsSyncingTiming(false);
     }
   };
 
@@ -841,11 +885,22 @@ export const WorshipSongSelector: React.FC<WorshipSongSelectorProps> = ({
                         <Youtube className="w-3 h-3" /> {d.videoBadge}
                       </span>
                     )}
-                    {selectedSong.hasTiming && (
+                    {selectedSong.hasTiming ? (
                       <span className="bg-blue-600/30 text-blue-300 px-2 py-1 rounded text-xs flex items-center gap-1">
                         <Clock className="w-3 h-3" /> {d.timingBadge}
                       </span>
-                    )}
+                    ) : selectedSong.audioUrl ? (
+                      <button
+                        type="button"
+                        onClick={handleSyncTiming}
+                        disabled={isSyncingTiming}
+                        className="bg-amber-500/15 text-amber-300 hover:bg-amber-500 hover:text-black px-2 py-1 rounded text-xs flex items-center gap-1 transition disabled:opacity-60 disabled:cursor-wait"
+                        title={d.syncTiming}
+                      >
+                        <Sparkles className={`w-3 h-3 ${isSyncingTiming ? 'animate-spin' : ''}`} />
+                        {isSyncingTiming ? d.syncingTiming : d.syncTiming}
+                      </button>
+                    ) : null}
                   </div>
 
                   {/* Inline Audio / Video Preview Player */}

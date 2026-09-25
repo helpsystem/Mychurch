@@ -23,13 +23,15 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
 
     // Live Speech Translation variables
     const isTranslationActive = useBroadcastStore(state => state.isTranslationActive);
-    const fromTranslationLang = useBroadcastStore(state => state.fromTranslationLang);
     const toTranslationLang = useBroadcastStore(state => state.toTranslationLang);
     const setTranslationActive = useBroadcastStore(state => state.setTranslationActive);
     const setTranslationLanguages = useBroadcastStore(state => state.setTranslationLanguages);
     const translationDisplayMode = useBroadcastStore(state => state.translationDisplayMode);
     const setTranslationDisplayMode = useBroadcastStore(state => state.setTranslationDisplayMode);
     const liveTranslationText = useBroadcastStore(state => state.liveTranslationText);
+    const translationConnectionStatus = useBroadcastStore(state => state.translationConnectionStatus);
+    const translationReconnectAttempt = useBroadcastStore(state => state.translationReconnectAttempt);
+    const translationReconnectMax = useBroadcastStore(state => state.translationReconnectMax);
 
     // Modal state for managing prayer ticker requests
     const [isPrayerModalOpen, setIsPrayerModalOpen] = useState(false);
@@ -417,6 +419,7 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
                 <div className="space-y-3 p-3 bg-indigo-950/20 border border-indigo-500/20 rounded-2xl">
                     <label className="text-xs font-bold text-indigo-400 uppercase flex items-center gap-1.5 border-b border-indigo-500/10 pb-1">
                         <Mic className="w-3.5 h-3.5 text-indigo-400" /> ترجمه همزمان گفتار
+                        <span className="ms-auto normal-case font-mono text-[9px] text-indigo-300/70">Gemini Live</span>
                     </label>
 
                     <div className="flex items-center justify-between py-1">
@@ -435,37 +438,24 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
 
                     {isTranslationActive && (
                         <div className="space-y-3 pt-2 animate-in slide-in-from-top-2 duration-200">
-                            <div className="grid grid-cols-2 gap-2 text-xs">
-                                <div>
-                                    <span className="text-[10px] text-muted-foreground block mb-1">زبان گوینده:</span>
-                                    <select
-                                        value={fromTranslationLang}
-                                        onChange={(e) => setTranslationLanguages(e.target.value, toTranslationLang)}
-                                        className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-white text-xs"
-                                        title="From Lang"
-                                    >
-                                        <option value="en">🇺🇸 English</option>
-                                        <option value="fa">🇮🇷 فارسی</option>
-                                        <option value="ar">🇸🇦 العربية</option>
-                                        <option value="es">🇪🇸 Español</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <span className="text-[10px] text-muted-foreground block mb-1">زبان ترجمه:</span>
-                                    <select
-                                        value={toTranslationLang}
-                                        onChange={(e) => setTranslationLanguages(fromTranslationLang, e.target.value)}
-                                        className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-white text-xs"
-                                        title="To Lang"
-                                    >
-                                        <option value="fa">🇮🇷 فارسی</option>
-                                        <option value="en">🇺🇸 English</option>
-                                        <option value="ar">🇸🇦 العربية</option>
-                                        <option value="es">🇪🇸 Español</option>
-                                    </select>
-                                </div>
+                            <div>
+                                <span className="text-[10px] text-muted-foreground block mb-1">زبان ترجمه (زبان گوینده به‌صورت خودکار تشخیص داده می‌شود):</span>
+                                <select
+                                    value={toTranslationLang}
+                                    onChange={(e) => setTranslationLanguages("auto", e.target.value)}
+                                    className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-white text-xs"
+                                    title="To Lang"
+                                >
+                                    <option value="fa">🇮🇷 فارسی</option>
+                                    <option value="en">🇺🇸 English</option>
+                                    <option value="ar">🇸🇦 العربية</option>
+                                    <option value="es">🇪🇸 Español</option>
+                                    <option value="de">🇩🇪 Deutsch</option>
+                                    <option value="fr">🇫🇷 Français</option>
+                                    <option value="tr">🇹🇷 Türkçe</option>
+                                </select>
                             </div>
-                            
+
                             <div>
                                 <span className="text-[10px] text-muted-foreground block mb-1">حالت نمایش:</span>
                                 <select
@@ -474,17 +464,37 @@ export function BroadcastProperties({ className }: BroadcastPropertiesProps) {
                                     className="w-full bg-neutral-900 border border-white/10 rounded px-2 py-1 text-white text-xs"
                                     title="Display Mode"
                                 >
-                                    <option value="translated">فقط ترجمه شده (انگلیسی)</option>
-                                    <option value="original">فقط متن اصلی (فارسی)</option>
+                                    <option value="translated">فقط ترجمه شده</option>
+                                    <option value="original">فقط متن اصلی</option>
                                     <option value="both">هر دو همزمان</option>
                                 </select>
                             </div>
 
-                            {/* Small Status & Live Text View */}
+                            {/* Connection status & live text preview */}
                             <div className="p-2 bg-black/40 rounded-lg border border-white/5 space-y-1">
-                                <div className="flex items-center gap-1.5 text-[9px] text-emerald-400 font-bold">
-                                    <span className="h-1.5 w-1.5 bg-emerald-500 rounded-full animate-ping" />
-                                    <span>میکروفون فعال (درحال شنود)</span>
+                                <div className={cn(
+                                    "flex items-center gap-1.5 text-[9px] font-bold",
+                                    translationConnectionStatus === 'connected' ? "text-emerald-400" :
+                                    translationConnectionStatus === 'connecting' ? "text-amber-400" :
+                                    translationConnectionStatus === 'reconnecting' ? "text-orange-400" :
+                                    translationConnectionStatus === 'error' ? "text-rose-400" :
+                                    "text-neutral-400"
+                                )}>
+                                    <span className={cn(
+                                        "h-1.5 w-1.5 rounded-full",
+                                        translationConnectionStatus === 'connected' ? "bg-emerald-500 animate-pulse" :
+                                        translationConnectionStatus === 'connecting' ? "bg-amber-400 animate-pulse" :
+                                        translationConnectionStatus === 'reconnecting' ? "bg-orange-400 animate-pulse" :
+                                        translationConnectionStatus === 'error' ? "bg-rose-500" :
+                                        "bg-neutral-600"
+                                    )} />
+                                    <span>
+                                        {translationConnectionStatus === 'connected' && "متصل — درحال شنود"}
+                                        {translationConnectionStatus === 'connecting' && "در حال اتصال..."}
+                                        {translationConnectionStatus === 'reconnecting' && `اتصال مجدد (${translationReconnectAttempt}/${translationReconnectMax})...`}
+                                        {translationConnectionStatus === 'error' && "خطا در اتصال"}
+                                        {translationConnectionStatus === 'idle' && "آماده"}
+                                    </span>
                                 </div>
                                 <p className="text-[10px] text-neutral-300 italic line-clamp-2">
                                     {liveTranslationText || "صدا ضبط و ترجمه می‌شود..."}
